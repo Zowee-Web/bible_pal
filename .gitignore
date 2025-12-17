@@ -49,3 +49,8 @@ app.*.map.json
 server/node_modules/
 
 .DS_Store
+
+# Bible PAL generated audio + temp stitching
+assets/stories/**/*.mp3
+assets/stories/temp_segments/
+assets/stories/temp_segments/**
