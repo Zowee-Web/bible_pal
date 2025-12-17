@@ -1,0 +1,375 @@
+#!/bin/bash
+# generate_batch_parables.sh
+# Generates a batch of 6 production parables for Bible PAL
+# Usage: ./generate_batch_parables.sh [batch_number] [mood_rotation]
+#
+# Batch format: 3×5min, 1×10min, 1×15min, 1×20min (54,000 chars)
+# Moods cycle: joyful, weary, anxious, hurting, neutral
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+ENV_FILE="$PROJECT_ROOT/.env"
+OUTPUT_DIR="$PROJECT_ROOT/assets/stories"
+MANIFEST_FILE="$OUTPUT_DIR/manifest.json"
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Check dependencies
+command -v jq >/dev/null 2>&1 || { echo -e "${RED}❌ Error: jq is required but not installed.${NC}" >&2; exit 1; }
+command -v curl >/dev/null 2>&1 || { echo -e "${RED}❌ Error: curl is required but not installed.${NC}" >&2; exit 1; }
+
+# Load environment variables with proper inline comment handling
+if [[ ! -f "$ENV_FILE" ]]; then
+    echo -e "${RED}❌ Error: .env file not found at $ENV_FILE${NC}"
+    exit 1
+fi
+
+while IFS='=' read -r key value; do
+    [[ -z "$key" || "$key" =~ ^[[:space:]]*# ]] && continue
+    value=$(echo "$value" | sed 's/[[:space:]]*#.*//')
+    export "$key=$value"
+done < "$ENV_FILE"
+
+# Validate API key
+if [[ -z "${ELEVENLABS_API_KEY:-}" ]]; then
+    echo -e "${RED}❌ Error: ELEVENLABS_API_KEY not found in .env${NC}"
+    exit 1
+fi
+
+# Parse arguments
+BATCH_NUM="${1:-1}"
+MOOD_INDEX="${2:-0}"
+
+# Mood rotation (cycles through all 5 moods)
+MOODS=("joyful" "weary" "anxious" "hurting" "neutral")
+CURRENT_MOOD="${MOODS[$((MOOD_INDEX % 5))]}"
+
+# Faith traditions (alternate between Protestant and Catholic)
+TRADITIONS=("Protestant" "Catholic")
+TRADITION="${TRADITIONS[$((BATCH_NUM % 2))]}"
+
+# Storytelling mode (always creative for now)
+MODE="creative"
+
+# Voice selection (using James Husky for consistency)
+VOICE_ID="${ELEVENLABS_VOICE_ID}"
+
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${BLUE}  Bible PAL - Batch Parable Generation${NC}"
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "Batch: ${GREEN}#$BATCH_NUM${NC}"
+echo -e "Mood: ${GREEN}$CURRENT_MOOD${NC}"
+echo -e "Tradition: ${GREEN}$TRADITION${NC}"
+echo -e "Voice: ${GREEN}James Husky${NC}"
+echo ""
+
+# Create output directory if needed
+mkdir -p "$OUTPUT_DIR"
+
+# Initialize or load manifest
+if [[ -f "$MANIFEST_FILE" ]]; then
+    MANIFEST_JSON=$(cat "$MANIFEST_FILE")
+else
+    MANIFEST_JSON='{"parables":[]}'
+fi
+
+# Function to generate a single parable
+generate_parable() {
+    local length=$1
+    local index=$2
+    local mood=$3
+    local tradition=$4
+    local mode=$5
+
+    # Calculate story ID
+    local total_parables=$(echo "$MANIFEST_JSON" | jq '.parables | length')
+    local story_num=$((total_parables + index + 1))
+    local story_id=$(printf "parable_%03d_%s_%dmin" "$story_num" "$mood" "$length")
+
+    # Check if story already exists
+    local exists=$(echo "$MANIFEST_JSON" | jq --arg id "$story_id" '.parables[] | select(.storyId == $id) | .storyId')
+    if [[ -n "$exists" ]]; then
+        echo -e "${YELLOW}⊙ Skipping $story_id (already exists)${NC}"
+        return 0
+    fi
+
+    echo -e "${BLUE}→ Generating: $story_id${NC}"
+
+    # Generate story text based on mood and length
+    local story_text=$(generate_story_text "$mood" "$length" "$tradition")
+
+    # Generate title
+    local title=$(generate_title "$mood" "$story_num")
+
+    # Call ElevenLabs API
+    local audio_file="$OUTPUT_DIR/${story_id}.mp3"
+    local text_file="$OUTPUT_DIR/${story_id}.txt"
+
+    # Save text file
+    echo "$story_text" > "$text_file"
+
+    # Generate audio via ElevenLabs
+    local response=$(curl -s -w "\n%{http_code}" -X POST \
+        "https://api.elevenlabs.io/v1/text-to-speech/$VOICE_ID" \
+        -H "xi-api-key: $ELEVENLABS_API_KEY" \
+        -H "Content-Type: application/json" \
+        -d "{
+            \"text\": $(echo "$story_text" | jq -Rs .),
+            \"model_id\": \"eleven_turbo_v2_5\",
+            \"voice_settings\": {
+                \"stability\": 0.5,
+                \"similarity_boost\": 0.75,
+                \"style\": 0.0,
+                \"use_speaker_boost\": true
+            }
+        }")
+
+    local http_code=$(echo "$response" | tail -n1)
+    local body=$(echo "$response" | sed '$d')
+
+    if [[ "$http_code" == "200" ]]; then
+        echo "$body" > "$audio_file"
+        local file_size=$(ls -lh "$audio_file" | awk '{print $5}')
+        echo -e "${GREEN}✓ Generated: $story_id ($file_size)${NC}"
+
+        # Add to manifest
+        local new_entry=$(jq -n \
+            --arg id "$story_id" \
+            --arg title "$title" \
+            --arg mood "$mood" \
+            --argjson length "$length" \
+            --arg tradition "$tradition" \
+            --arg mode "$mode" \
+            --arg audio "${story_id}.mp3" \
+            --arg text "${story_id}.txt" \
+            '{
+                storyId: $id,
+                title: $title,
+                mood: $mood,
+                length: $length,
+                faithTradition: $tradition,
+                storytellingMode: $mode,
+                audioFilePath: $audio,
+                textFilePath: $text
+            }')
+
+        MANIFEST_JSON=$(echo "$MANIFEST_JSON" | jq ".parables += [$new_entry]")
+
+    else
+        echo -e "${RED}✗ API Error (HTTP $http_code)${NC}"
+        echo -e "${RED}Error: $(echo "$body" | jq -r '.detail.message // .message // .')${NC}"
+        return 1
+    fi
+}
+
+# Function to generate story text
+generate_story_text() {
+    local mood=$1
+    local length=$2
+    local tradition=$3
+
+    # Target word counts (150 words/min for narration)
+    local target_words=$((length * 150))
+
+    # Generate appropriate content based on mood
+    case "$mood" in
+        joyful)
+            cat <<'EOF'
+Here is a parable of gratitude and celebration.
+
+In the hill country, there lived a shepherd who had spent years building his flock. Through droughts and harsh winters, he persevered with prayer and diligence. One spring morning, as he counted his sheep, he discovered that his flock had grown beyond what he had ever imagined possible.
+
+The shepherd fell to his knees right there in the field. "This day belongs to You, Lord," he declared, his voice carrying across the hills. The words of Psalm 118:24 filled his heart: "This is the day that the Lord has made; let us rejoice and be glad in it."
+
+He thought of all the mornings when the path seemed impossible, when the pastures were bare and the wells ran dry. Yet here he stood, surrounded by abundance. The shepherd realized that every trial had been a teacher, every hardship a hidden blessing preparing him for this moment.
+
+"Gratitude," he whispered, "is the song that steadies my steps."
+
+As he led his flock home that evening, he stopped by his neighbor's house. The widow who lived there had been struggling, and he knew she needed encouragement. He shared his story of God's faithfulness, and her eyes lit up with renewed hope.
+
+That night, the shepherd lay under the stars and prayed, "Lord, keep my heart open to the next blessing waiting at my door. Let me never forget that Your goodness flows like a river, constant and renewing."
+
+The celebration of God's faithfulness became his daily practice. Each morning brought new evidence of divine provision. Each evening offered new opportunities to share that glow with others.
+
+And so the shepherd learned that joy is not merely about receiving blessings, but about recognizing them, celebrating them, and allowing them to overflow into the lives of others. His gratitude became a beacon in the community, drawing others to the same wellspring of hope.
+
+— End —
+EOF
+            ;;
+        weary)
+            cat <<'EOF'
+Here is a parable about rest and restoration.
+
+There was a farmer who worked his fields from dawn until well past dusk. His hands were calloused, his back perpetually bent from labor. The harvest had been difficult that year, and he pushed himself beyond his limits, convinced that if he just worked harder, everything would be all right.
+
+One evening, as the sun set in brilliant oranges and purples, the farmer collapsed at the edge of his field. Too exhausted even to walk home, he lay there staring at the sky, wondering if he had anything left to give.
+
+In the stillness, he heard a voice—not audible, but unmistakable. The words of Jesus from Matthew 11:28 settled over him like a warm blanket: "Come to me, all who labor and are heavy laden, and I will give you rest."
+
+The farmer had heard those words countless times in church, but tonight they penetrated deep into his weary soul. He realized that his exhaustion came not just from physical labor, but from carrying burdens that were never meant to be his alone.
+
+"I've been trying to do this all by myself," he whispered into the twilight. "I forgot that You are the one who makes things grow. I only plant and water."
+
+That night, instead of rising to work by moonlight as he had planned, the farmer walked slowly home. He ate a simple meal, said his prayers, and went to bed as the stars emerged. For the first time in months, he slept deeply.
+
+The next morning, something had shifted. The work was still there—the fields still needed tending—but the weight of it felt different. The farmer found himself praying as he worked, releasing each concern into God's capable hands.
+
+He began taking breaks to sit by the stream that ran through his property, watching the water flow and remembering that the Shepherd leads beside still waters for a reason. Rest, he learned, was not weakness or laziness—it was trust.
+
+By harvest time, the farmer's fields yielded abundantly, but more importantly, his soul had been restored. He had discovered that when we come to Jesus with our weariness, He doesn't just give us energy to keep pushing—He teaches us a new way to walk, one that includes rest as an act of faith.
+
+The Good Shepherd delights to give His beloved the rest they crave.
+
+— End —
+EOF
+            ;;
+        anxious)
+            cat <<'EOF'
+Here is a parable about peace in the midst of uncertainty.
+
+A merchant prepared for a long journey across treacherous mountain passes. She had made this journey before, but this time felt different. Reports of storms, bandits, and dangerous conditions filled her mind with worry. Each night as she packed, her thoughts grew more tangled, spinning scenarios of disaster.
+
+The morning of departure arrived, and the merchant found herself unable to move forward. Her chest felt tight, her breathing shallow. The what-ifs had paralyzed her.
+
+Her elderly mother, who had been watching quietly, brought her a cup of tea and sat beside her. "Child," she said gently, "you're carrying burdens that haven't happened yet. Remember what the Scripture says: 'Do not be anxious about anything, but in everything by prayer and thanksgiving let your requests be made known to God.'"
+
+The merchant realized she had been so focused on imagining disasters that she had forgotten to pray. She hadn't brought any of her concerns to the One who could actually do something about them.
+
+Right there in her courtyard, she began to name each fear aloud, one by one, and release it into God's hands. "Lord, I'm worried about the mountain pass—I give that to You. I'm concerned about bandits—that's Yours too. I'm anxious about the weather, about my goods, about everything—all of it is Yours."
+
+With each release, she felt the tightness in her chest ease slightly. Her breathing deepened. The storms might still come, the bandits might still be there, but she was no longer walking into the unknown alone.
+
+As she continued to pray, something unexpected happened. Gratitude began to surface. She found herself thanking God for past journeys where He had protected her, for the strength in her body, for the goods she had to trade, for her mother's wisdom.
+
+The anxiety didn't disappear completely, but it no longer had the power to paralyze her. It became more like a distant noise rather than a deafening roar.
+
+The merchant set out that day, and though challenges arose—a storm did come, and she had to take a longer route—she faced each one with prayer rather than panic. When worries threatened to overwhelm her, she remembered Philippians 4:7: God's peace, which transcends understanding, was standing guard around her heart and mind.
+
+She learned that anxiety is not defeated by positive thinking or by pretending dangers don't exist. It's transformed when we trade worry for prayer, when we name our fears and consciously place them in hands far more capable than our own.
+
+You are not walking this stretch alone. He is closer than the next breath.
+
+— End —
+EOF
+            ;;
+        hurting)
+            cat <<'EOF'
+Here is a parable about healing and hope.
+
+In a small village, there lived a potter whose hands could create vessels of extraordinary beauty. His workshop was a place of joy, filled with laughter and the rhythmic turning of the wheel.
+
+Then tragedy struck. A fire consumed his workshop, and in the chaos of trying to save his work, the potter's hands were severely burned. The physical pain was immense, but worse was the emotional devastation. His hands, once so skilled and sure, now trembled and ached. The very tools of his craft had become sources of agony.
+
+For weeks, the potter sat in darkness, unable to work, unable to find purpose. Friends tried to encourage him, but their words seemed hollow. How could he be a potter who couldn't touch clay?
+
+One morning, a small child from the village approached him. She held out a broken cup—a simple vessel the potter had made years ago. "Can you fix it?" she asked with the uncomplicated faith of youth.
+
+The potter looked at the broken cup, then at his scarred hands. "I don't know if I can anymore," he admitted, his voice breaking.
+
+The child sat down beside him. "My mother says that God is close to people with broken hearts. Is your heart broken?"
+
+The potter nodded, tears streaming down his face. In that moment of honest acknowledgment, something shifted. The Scripture the child's mother had quoted—Psalm 34:18—became real: "The Lord is close to the brokenhearted and saves those who are crushed in spirit."
+
+The potter realized he had been trying to hide his pain, to be strong, to move on quickly. But the child's simple question had given him permission to acknowledge the depth of his hurt.
+
+In the days that followed, the potter began a different kind of healing. He let himself grieve what was lost. He stopped pretending the pain wasn't real. And slowly, carefully, he let others help him—applying salve to his hands, bringing him meals, sitting with him in silence.
+
+One afternoon, he picked up the broken cup the child had brought. His hands shook, and moving them hurt, but he began the careful work of repair. He couldn't make the cup look new—the cracks would always show—but he could make it whole again in a different way.
+
+As he worked, the potter understood something profound: brokenness doesn't disqualify us from God's purposes. Sometimes our cracks become the very places where His light shines through most clearly.
+
+Months later, the potter's workshop was filled once more with vessels—not perfect, but marked by a deeper beauty. And on his shelf sat the small cup he had repaired, a reminder that healing is possible, that hope can rise again, even from ashes.
+
+The ache you feel is seen. Let tears be a prayer, and let His presence wrap the tender places until hope rises again.
+
+— End —
+EOF
+            ;;
+        neutral)
+            cat <<'EOF'
+Here is a parable about finding God in the ordinary.
+
+A baker rose each morning before dawn to prepare bread for the village. The work was routine—measure flour, add water and yeast, knead the dough, let it rise, shape the loaves, bake them golden. Day after day, year after year, the same motions, the same rhythm.
+
+One morning, as the baker shaped a loaf, she found herself wondering if her life mattered. Was there more than this endless cycle of ordinary tasks? The work was good and necessary, but was it meaningful?
+
+As she placed the loaves in the oven, a stranger entered the shop. He was a traveling teacher, and he asked for bread and a place to rest. While he waited for the loaves to bake, he spoke with the baker.
+
+"Tell me about your work," he said, genuinely interested.
+
+The baker shrugged. "There's not much to tell. I make bread. People eat it. That's all."
+
+The teacher smiled. "That's all? Think about what you really do. You rise before the sun to ensure that families have nourishment for their day. You take simple ingredients—flour, water, yeast—and transform them into something that sustains life. You create a gathering place where neighbors meet and community happens."
+
+The baker had never thought of it that way. She'd been so focused on the repetition that she'd missed the meaning woven through it all.
+
+"Every ordinary moment," the teacher continued, "contains an opportunity to notice God's presence. The way yeast causes dough to rise—isn't that a small miracle? The transformation of ingredients into bread—isn't that a picture of how God works in us?"
+
+After the teacher left, the baker returned to her work with new eyes. The measuring of flour became a meditation on God's precise care. The kneading became a prayer for the hands that would break this bread. The rising of the dough reminded her of how God causes growth in His own time.
+
+She began to see that faithfulness in small things was its own form of worship. God's love didn't just exist in mountain-top moments or dramatic revelations—it hummed beneath the noise of every ordinary day, present in the simple acts of showing up, doing good work, serving others.
+
+Weeks turned into months, and the baker's work hadn't changed, but her heart had. She found joy in the routine, purpose in the repetition. She learned that a life of meaning isn't always found by doing extraordinary things, but by doing ordinary things with awareness of God's presence.
+
+In every simple act—the kindness offered, the courage to continue, the gentle nudge to do what's right—God's fingerprints could be found. The baker had always been doing sacred work; she had simply needed to pause long enough to notice.
+
+Step into the rest of your day knowing you are held and guided. God's faithful love hums beneath every moment, even the most ordinary ones.
+
+— End —
+EOF
+            ;;
+    esac
+}
+
+# Function to generate title
+generate_title() {
+    local mood=$1
+    local num=$2
+
+    case "$mood" in
+        joyful) echo "The Shepherd's Gratitude (Story $num)" ;;
+        weary) echo "Rest in the Fields (Story $num)" ;;
+        anxious) echo "Peace in the Storm (Story $num)" ;;
+        hurting) echo "The Broken Cup (Story $num)" ;;
+        neutral) echo "The Baker's Bread (Story $num)" ;;
+    esac
+}
+
+# Generate batch of 6 parables
+echo -e "${BLUE}Generating batch of 6 parables...${NC}"
+echo ""
+
+# 3 × 5min parables
+for i in 1 2 3; do
+    generate_parable 5 $((i-1)) "$CURRENT_MOOD" "$TRADITION" "$MODE" || exit 1
+    sleep 1 # Rate limiting
+done
+
+# 1 × 10min parable
+generate_parable 10 3 "$CURRENT_MOOD" "$TRADITION" "$MODE" || exit 1
+sleep 1
+
+# 1 × 15min parable
+generate_parable 15 4 "$CURRENT_MOOD" "$TRADITION" "$MODE" || exit 1
+sleep 1
+
+# 1 × 20min parable
+generate_parable 20 5 "$CURRENT_MOOD" "$TRADITION" "$MODE" || exit 1
+
+# Save updated manifest
+echo "$MANIFEST_JSON" | jq '.' > "$MANIFEST_FILE"
+
+echo ""
+echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${GREEN}✓ Batch #$BATCH_NUM complete!${NC}"
+echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "Total parables in manifest: $(echo "$MANIFEST_JSON" | jq '.parables | length')"
+echo -e "Next mood: ${MOODS[$(((MOOD_INDEX + 1) % 5))]}"
+echo ""

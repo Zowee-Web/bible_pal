@@ -1,0 +1,202 @@
+import 'dart:convert';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
+import 'package:path_provider/path_provider.dart';
+import '../models/parable.dart';
+import '../models/user_preferences.dart';
+import 'storage_service.dart';
+
+/// Parable Service - handles parable selection, generation, and management
+/// Based on SPEC.md Features #4, #6, #14, #15
+class ParableService {
+  final StorageService _storage;
+  final String? _externalStoragePath;
+
+  ParableService(this._storage, [this._externalStoragePath]);
+
+  /// Get the parable library directory
+  Future<Directory> _getParableLibraryDir() async {
+    // Check for external storage first (T9 drive, per SPEC.md Feature #15)
+    if (_externalStoragePath != null) {
+      final externalDir = Directory(_externalStoragePath);
+      if (await externalDir.exists()) {
+        return externalDir;
+      }
+    }
+
+    // Fall back to app documents directory
+    final appDir = await getApplicationDocumentsDirectory();
+    final parableDir = Directory('${appDir.path}/parables');
+    if (!await parableDir.exists()) {
+      await parableDir.create(recursive: true);
+    }
+    return parableDir;
+  }
+
+  /// Load manifest of available parables
+  Future<List<Parable>> _loadManifest() async {
+    try {
+      final dir = await _getParableLibraryDir();
+      final manifestFile = File('${dir.path}/manifest.json');
+
+      if (!await manifestFile.exists()) {
+        debugPrint('Parable manifest not found');
+        return [];
+      }
+
+      final jsonContent = await manifestFile.readAsString();
+      final manifestData = jsonDecode(jsonContent) as Map<String, dynamic>;
+      final parablesList = manifestData['parables'] as List<dynamic>? ?? [];
+
+      return parablesList
+          .map((json) => Parable.fromJson(json as Map<String, dynamic>))
+          .toList();
+    } catch (e) {
+      debugPrint('Error loading parable manifest: $e');
+      return [];
+    }
+  }
+
+  /// Get eligible parables based on user preferences and mood
+  /// Per SPEC.md Feature #4: Parable Generation / Selection Engine
+  Future<List<Parable>> getEligibleParables({
+    required String mood,
+    required int lengthMinutes,
+    required UserPreferences userPrefs,
+  }) async {
+    final allParables = await _loadManifest();
+
+    // Filter by criteria
+    return allParables.where((p) {
+      // Match mood
+      if (p.mood != mood) return false;
+
+      // Match length
+      if (p.length != lengthMinutes) return false;
+
+      // Match faith tradition
+      if (p.faithTradition != userPrefs.faithTradition) return false;
+
+      // Match storytelling mode
+      if (p.storytellingMode != userPrefs.storytellingMode) return false;
+
+      return true;
+    }).toList();
+  }
+
+  /// Select a parable using non-repeat serving rule
+  /// Per SPEC.md Feature #14: Non-Repeat Story Serving Rule
+  Future<Parable?> selectParable({
+    required String mood,
+    required int lengthMinutes,
+    required UserPreferences userPrefs,
+  }) async {
+    final eligibleParables = await getEligibleParables(
+      mood: mood,
+      lengthMinutes: lengthMinutes,
+      userPrefs: userPrefs,
+    );
+
+    if (eligibleParables.isEmpty) {
+      debugPrint('No eligible parables found for criteria');
+      return null;
+    }
+
+    // Get history to implement non-repeat rule
+    final history = await _storage.getHistory();
+    final recentStoryIds = history.map((h) => h.storyId).toSet();
+
+    // Find parables not recently played
+    final unplayedParables = eligibleParables
+        .where((p) => !recentStoryIds.contains(p.storyId))
+        .toList();
+
+    // If all parables have been played, use least recently played
+    if (unplayedParables.isEmpty) {
+      debugPrint('All eligible parables played, using least recent');
+      // Sort by last played (earliest first)
+      final storyPlayOrder = <String, int>{};
+      for (var i = 0; i < history.length; i++) {
+        if (!storyPlayOrder.containsKey(history[i].storyId)) {
+          storyPlayOrder[history[i].storyId] = i;
+        }
+      }
+
+      eligibleParables.sort((a, b) {
+        final aOrder = storyPlayOrder[a.storyId] ?? 999999;
+        final bOrder = storyPlayOrder[b.storyId] ?? 999999;
+        return bOrder.compareTo(aOrder); // Oldest first
+      });
+
+      return eligibleParables.first;
+    }
+
+    // Return a random unplayed parable
+    unplayedParables.shuffle();
+    return unplayedParables.first;
+  }
+
+  /// Get parable by ID
+  Future<Parable?> getParableById(String storyId) async {
+    final allParables = await _loadManifest();
+    try {
+      return allParables.firstWhere((p) => p.storyId == storyId);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /// Get audio file for a parable
+  Future<File?> getAudioFile(Parable parable) async {
+    if (parable.audioFilePath == null) return null;
+
+    final dir = await _getParableLibraryDir();
+    final audioFile = File('${dir.path}/${parable.audioFilePath}');
+
+    if (await audioFile.exists()) {
+      return audioFile;
+    }
+
+    return null;
+  }
+
+  /// Get text file for a parable
+  Future<String?> getParableText(Parable parable) async {
+    if (parable.textFilePath == null) return null;
+
+    try {
+      final dir = await _getParableLibraryDir();
+      final textFile = File('${dir.path}/${parable.textFilePath}');
+
+      if (await textFile.exists()) {
+        return await textFile.readAsString();
+      }
+    } catch (e) {
+      debugPrint('Error reading parable text: $e');
+    }
+
+    return null;
+  }
+
+  /// Get count of available parables by criteria
+  Future<int> getAvailableCount({
+    String? mood,
+    int? lengthMinutes,
+    String? faithTradition,
+    String? storytellingMode,
+  }) async {
+    final allParables = await _loadManifest();
+
+    return allParables.where((p) {
+      if (mood != null && p.mood != mood) return false;
+      if (lengthMinutes != null && p.length != lengthMinutes) return false;
+      if (faithTradition != null && p.faithTradition != faithTradition) {
+        return false;
+      }
+      if (storytellingMode != null && p.storytellingMode != storytellingMode) {
+        return false;
+      }
+      return true;
+    }).length;
+  }
+}

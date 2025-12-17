@@ -1,0 +1,5 @@
+Kid-Friendly Single Parable Generation - 20251214_1945
+Using Ollama model: gemma:7b
+Target length: 1100-1300 words
+Mood: joyful
+

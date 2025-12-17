@@ -1,0 +1,94 @@
+import 'dart:io';
+import 'package:flutter/foundation.dart';
+import 'package:just_audio/just_audio.dart';
+
+/// Audio Service - handles playback of parable audio files
+/// Based on SPEC.md Feature #16: ElevenLabs v3 Multi-Voice Playback
+class AudioService {
+  final AudioPlayer _player;
+
+  AudioService() : _player = AudioPlayer();
+
+  /// Get the audio player instance
+  AudioPlayer get player => _player;
+
+  /// Load and prepare audio file for playback
+  Future<void> loadAudio(File audioFile) async {
+    try {
+      await _player.setFilePath(audioFile.path);
+      debugPrint('Audio loaded: ${audioFile.path}');
+    } catch (e) {
+      debugPrint('Error loading audio: $e');
+      rethrow;
+    }
+  }
+
+  /// Play the loaded audio
+  Future<void> play() async {
+    try {
+      await _player.play();
+    } catch (e) {
+      debugPrint('Error playing audio: $e');
+      rethrow;
+    }
+  }
+
+  /// Pause playback
+  Future<void> pause() async {
+    await _player.pause();
+  }
+
+  /// Stop playback and reset position
+  Future<void> stop() async {
+    await _player.stop();
+    await _player.seek(Duration.zero);
+  }
+
+  /// Seek to a specific position
+  Future<void> seek(Duration position) async {
+    await _player.seek(position);
+  }
+
+  /// Set playback speed (0.5 to 2.0)
+  Future<void> setSpeed(double speed) async {
+    await _player.setSpeed(speed.clamp(0.5, 2.0));
+  }
+
+  /// Set volume (0.0 to 1.0)
+  Future<void> setVolume(double volume) async {
+    await _player.setVolume(volume.clamp(0.0, 1.0));
+  }
+
+  /// Get current playback position
+  Duration get position => _player.position;
+
+  /// Get total duration
+  Duration? get duration => _player.duration;
+
+  /// Get current playback state
+  PlayerState get playerState => _player.playerState;
+
+  /// Stream of position updates
+  Stream<Duration> get positionStream => _player.positionStream;
+
+  /// Stream of duration updates
+  Stream<Duration?> get durationStream => _player.durationStream;
+
+  /// Stream of player state updates
+  Stream<PlayerState> get playerStateStream => _player.playerStateStream;
+
+  /// Stream of playback completed events
+  Stream<void> get playbackCompletedStream =>
+      _player.playerStateStream.where((state) => state.processingState == ProcessingState.completed).map((_) {});
+
+  /// Check if audio is currently playing
+  bool get isPlaying => _player.playing;
+
+  /// Check if audio is paused
+  bool get isPaused => !_player.playing && _player.position > Duration.zero;
+
+  /// Dispose the audio player
+  Future<void> dispose() async {
+    await _player.dispose();
+  }
+}

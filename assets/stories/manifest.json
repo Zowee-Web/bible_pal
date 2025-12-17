@@ -1,0 +1,312 @@
+{
+  "parables": [
+    {
+      "storyId": "parable_001_joyful_5min",
+      "title": "The Shepherd's Gratitude (Story 1)",
+      "mood": "joyful",
+      "length": 5,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_001_joyful_5min.mp3",
+      "textFilePath": "parable_001_joyful_5min.txt"
+    },
+    {
+      "storyId": "parable_002_joyful_10min",
+      "title": "The Shepherd's Gratitude (Story 2)",
+      "mood": "joyful",
+      "length": 10,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_002_joyful_10min.mp3",
+      "textFilePath": "parable_002_joyful_10min.txt"
+    },
+    {
+      "storyId": "parable_003_joyful_15min",
+      "title": "The Shepherd's Gratitude (Story 3)",
+      "mood": "joyful",
+      "length": 15,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_003_joyful_15min.mp3",
+      "textFilePath": "parable_003_joyful_15min.txt"
+    },
+    {
+      "storyId": "parable_004_weary_5min",
+      "title": "Rest in the Fields (Story 4)",
+      "mood": "weary",
+      "length": 5,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_004_weary_5min.mp3",
+      "textFilePath": "parable_004_weary_5min.txt"
+    },
+    {
+      "storyId": "parable_005_weary_10min",
+      "title": "Rest in the Fields (Story 5)",
+      "mood": "weary",
+      "length": 10,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_005_weary_10min.mp3",
+      "textFilePath": "parable_005_weary_10min.txt"
+    },
+    {
+      "storyId": "parable_006_weary_15min",
+      "title": "Rest in the Fields (Story 6)",
+      "mood": "weary",
+      "length": 15,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_006_weary_15min.mp3",
+      "textFilePath": "parable_006_weary_15min.txt"
+    },
+    {
+      "storyId": "parable_007_anxious_5min",
+      "title": "Peace in the Storm (Story 7)",
+      "mood": "anxious",
+      "length": 5,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_007_anxious_5min.mp3",
+      "textFilePath": "parable_007_anxious_5min.txt"
+    },
+    {
+      "storyId": "parable_008_anxious_10min",
+      "title": "Peace in the Storm (Story 8)",
+      "mood": "anxious",
+      "length": 10,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_008_anxious_10min.mp3",
+      "textFilePath": "parable_008_anxious_10min.txt"
+    },
+    {
+      "storyId": "parable_009_anxious_15min",
+      "title": "Peace in the Storm (Story 9)",
+      "mood": "anxious",
+      "length": 15,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_009_anxious_15min.mp3",
+      "textFilePath": "parable_009_anxious_15min.txt"
+    },
+    {
+      "storyId": "parable_010_hurting_5min",
+      "title": "The Broken Cup (Story 10)",
+      "mood": "hurting",
+      "length": 5,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_010_hurting_5min.mp3",
+      "textFilePath": "parable_010_hurting_5min.txt"
+    },
+    {
+      "storyId": "parable_011_hurting_10min",
+      "title": "The Broken Cup (Story 11)",
+      "mood": "hurting",
+      "length": 10,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_011_hurting_10min.mp3",
+      "textFilePath": "parable_011_hurting_10min.txt"
+    },
+    {
+      "storyId": "parable_012_hurting_15min",
+      "title": "The Broken Cup (Story 12)",
+      "mood": "hurting",
+      "length": 15,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_012_hurting_15min.mp3",
+      "textFilePath": "parable_012_hurting_15min.txt"
+    },
+    {
+      "storyId": "parable_013_neutral_5min",
+      "title": "The Baker's Bread (Story 13)",
+      "mood": "neutral",
+      "length": 5,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_013_neutral_5min.mp3",
+      "textFilePath": "parable_013_neutral_5min.txt"
+    },
+    {
+      "storyId": "parable_014_neutral_10min",
+      "title": "The Baker's Bread (Story 14)",
+      "mood": "neutral",
+      "length": 10,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_014_neutral_10min.mp3",
+      "textFilePath": "parable_014_neutral_10min.txt"
+    },
+    {
+      "storyId": "parable_015_neutral_15min",
+      "title": "The Baker's Bread (Story 15)",
+      "mood": "neutral",
+      "length": 15,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_015_neutral_15min.mp3",
+      "textFilePath": "parable_015_neutral_15min.txt"
+    },
+    {
+      "storyId": "parable_multivoice_test",
+      "title": "The Potter's Healing (Multi-Voice)",
+      "mood": "hurting",
+      "length": 5,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_multivoice_test.mp3",
+      "textFilePath": "parable_multivoice_test.txt"
+    },
+    {
+      "storyId": "parable_040_joyful_5min",
+      "title": "A Story of Joy",
+      "mood": "joyful",
+      "length": 5,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_040_joyful_5min.mp3",
+      "textFilePath": "parable_040_joyful_5min.txt"
+    },
+    {
+      "storyId": "parable_041_joyful_10min",
+      "title": "A Story of Joy",
+      "mood": "joyful",
+      "length": 10,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_041_joyful_10min.mp3",
+      "textFilePath": "parable_041_joyful_10min.txt"
+    },
+    {
+      "storyId": "parable_042_joyful_15min",
+      "title": "A Story of Joy",
+      "mood": "joyful",
+      "length": 15,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_042_joyful_15min.mp3",
+      "textFilePath": "parable_042_joyful_15min.txt"
+    },
+    {
+      "storyId": "parable_020_joyful_5min_kid",
+      "title": "A Happy Day",
+      "mood": "joyful",
+      "length": 5,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "audioFilePath": "parable_020_joyful_5min_kid.mp3",
+      "textFilePath": "parable_020_joyful_5min_kid.txt"
+    },
+    {
+      "storyId": "parable_021_weary_5min_kid",
+      "title": "Time to Rest",
+      "mood": "weary",
+      "length": 5,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "audioFilePath": "parable_021_weary_5min_kid.mp3",
+      "textFilePath": "parable_021_weary_5min_kid.txt"
+    },
+    {
+      "storyId": "parable_022_anxious_5min_kid",
+      "title": "Being Brave",
+      "mood": "anxious",
+      "length": 5,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "audioFilePath": "parable_022_anxious_5min_kid.mp3",
+      "textFilePath": "parable_022_anxious_5min_kid.txt"
+    },
+    {
+      "storyId": "parable_023_hurting_5min_kid",
+      "title": "Finding Comfort",
+      "mood": "hurting",
+      "length": 5,
+      "faithTradition": "Protestant",
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "audioFilePath": "parable_023_hurting_5min_kid.mp3",
+      "textFilePath": "parable_023_hurting_5min_kid.txt"
+    },
+    {
+      "storyId": "parable_024_weary_5min",
+      "title": "**Rest for the Soul**",
+      "mood": "weary",
+      "length": 5,
+      "faithTradition": "Unspecified",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_024_weary_5min.mp3",
+      "textFilePath": "parable_024_weary_5min.txt"
+    },
+    {
+      "storyId": "parable_025_weary_5min",
+      "title": "Refuge",
+      "mood": "weary",
+      "length": 5,
+      "faithTradition": "Unspecified",
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "audioFilePath": "parable_025_weary_5min.mp3",
+      "textFilePath": "parable_025_weary_5min.txt"
+    },
+    {
+      "storyId": "parable_999_joyful_5min",
+      "title": "Overflowing Love",
+      "mood": "joyful",
+      "length": 5,
+      "faithTradition": "Unspecified",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "parable_999_joyful_5min.mp3",
+      "textFilePath": "parable_999_joyful_5min.txt"
+    },
+    {
+      "storyId": "parable_1002_joyful_5min",
+      "title": "Embrace of Love",
+      "mood": "joyful",
+      "length": 5,
+      "faithTradition": "Unspecified",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": null,
+      "textFilePath": "parable_1002_joyful_5min.txt"
+    },
+    {
+      "storyId": "parable_1000_neutral_5min",
+      "title": "Embrace",
+      "mood": "neutral",
+      "length": 5,
+      "faithTradition": "Unspecified",
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": null,
+      "textFilePath": "parable_1000_neutral_5min.txt"
+    }
+  ]
+}

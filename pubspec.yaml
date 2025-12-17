@@ -1,0 +1,53 @@
+name: bible_pal
+description: "Bible PAL"
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # UI
+  cupertino_icons: ^1.0.8
+
+  # State management
+  flutter_riverpod: ^2.6.1
+
+  # Audio
+  just_audio: ^0.9.39
+  just_audio_platform_interface: ^4.3.0
+  audio_session: ^0.1.18
+
+  # Speech-to-text and TTS for mood detection
+  speech_to_text: ^7.0.0
+  flutter_tts: ^4.2.0
+
+  # Core utils
+  path_provider: ^2.1.5
+  shared_preferences: ^2.3.3
+
+  # HTTP for API calls (ElevenLabs, future features)
+  http: ^1.2.2
+
+  # Permissions
+  permission_handler: ^11.3.0
+
+  # Env vars
+  flutter_dotenv: ^5.1.0
+
+  # SQLite for local database (optional, for future enhancements)
+  sqflite: ^2.4.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/stories/manifest.json
+    - assets/stories/

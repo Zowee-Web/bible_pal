@@ -1,0 +1,146 @@
+# Bible PAL — Development Rules (Authoritative)
+
+THIS FILE IS THE HIGHEST AUTHORITY FOR BIBLE PAL DEVELOPMENT.
+IF ANYTHING CONFLICTS WITH THIS FILE, THIS FILE WINS.
+IF A REQUEST CONFLICTS WITH THESE RULES, STOP AND ASK.
+
+---
+
+## 1. Project Overview
+
+Bible PAL is a Flutter application that delivers biblically-inspired parables using:
+- User mood detection (based on user input)
+- A pre-generated story library
+- Audio playback
+- Strictly controlled behavior and flow
+
+---
+
+## 2. Scope Control (CRITICAL)
+
+Current phase:
+PHASE C — PROVIDER → RIVERPOD MIGRATION ONLY
+
+During Phase C:
+- DO NOT add features
+- DO NOT change behavior
+- DO NOT change UI/UX
+- DO NOT refactor unrelated code
+- DO NOT reinterpret product rules
+- DO NOT modify story generation or selection logic
+- ONLY migrate state access from legacy Provider to Riverpod
+
+---
+
+## 3. Single Source of Truth
+
+This .clinerules file governs:
+- Migration behavior
+- Allowed code changes
+- Enforcement behavior
+
+If anything conflicts with this file:
+STOP AND ASK BEFORE PROCEEDING.
+
+---
+
+## 4. Bible PAL Product Laws (DO NOT IMPLEMENT DURING PHASE C)
+
+These rules define how Bible PAL works.
+They are NOT to be implemented or modified during Phase C unless explicitly requested.
+
+### Core User Flow (LOCKED)
+
+1. User taps "PAL's Parables"
+2. App asks how the user’s day is going
+3. Mood is detected
+4. App responds with a short compassionate or encouraging message
+5. App selects a PRE-GENERATED parable from the library
+6. Parable plays via audio
+7. After completion, "Share with a PAL" option appears
+
+### Content Rules
+
+- NO on-demand story generation
+- Story creation happens ONLY via nightly batch generation
+- Fixed parable length buckets: 5 / 10 / 15 / 20 minutes
+- A story must not repeat until the eligible pool is exhausted
+
+Eligibility is defined as:
+StoryID + Mode + LengthBucket + FaithTradition + KidFriendly
+
+### Filters (Product Rules)
+
+- Faith tradition
+- Bible translation
+- Kid-friendly toggle
+- Creative vs Traditional mode
+
+These filters affect story selection but are OUT OF SCOPE for Phase C.
+
+---
+
+## 5. Migration Principles (MANDATORY)
+
+### Minimal Diffs
+
+- Change ONLY what is required for Provider → Riverpod migration
+- Preserve exact UI behavior
+- Preserve file structure
+- Preserve naming
+- Preserve existing comments
+
+### Do NOT:
+
+- Add TODOs
+- Add explanatory comments
+- Add abstractions
+- "Clean up" unrelated code
+- Optimize or restructure
+
+---
+
+## 6. Required Patterns
+
+### Riverpod
+
+- Notifiers: AsyncNotifier
+- Providers: Singleton providers
+- Widgets: ConsumerWidget or ConsumerStatefulWidget
+- Async handling: .when(), .maybeWhen(), or .requireValue()
+
+### Imports
+
+1. Flutter
+2. Packages (alphabetical)
+3. Local (alphabetical)
+
+---
+
+## 7. Migration Pattern (Provider → Riverpod)
+
+### BEFORE (Legacy Provider)
+
+```dart
+import 'package:provider/provider.dart';
+import '../../providers/app_state_provider.dart';
+
+final appState = context.watch<AppStateProvider>();
+
+### Step 2 — Add the AFTER (Riverpod) section  
+Paste this **right after** the closing backticks:
+
+```md
+### AFTER (Riverpod)
+
+```dart
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../providers/app_state_notifier.dart';
+
+final state = ref.watch(appStateProvider);
+
+return state.when(
+  data: (value) => Text(value.toString()),
+  loading: () => const CircularProgressIndicator(),
+  error: (err, stack) => Text('Error: $err'),
+);

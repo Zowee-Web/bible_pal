@@ -1,0 +1,94 @@
+name: Flutter CI
+
+on:
+  push:
+    branches: [ master, main, develop ]
+  pull_request:
+    branches: [ master, main, develop ]
+
+jobs:
+  test:
+    name: Test and Analyze
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.24.5'
+        channel: 'stable'
+
+    - name: Get dependencies
+      run: flutter pub get
+
+    - name: Verify Flutter installation
+      run: flutter doctor -v
+
+    - name: Run static analysis
+      run: flutter analyze
+
+    - name: Run all tests
+      run: flutter test
+
+    - name: 🔒 CRITICAL - Run Bible Translation Compliance Tests
+      run: |
+        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        echo "🔒 BIBLE TRANSLATION LICENSING COMPLIANCE CHECK"
+        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        echo ""
+        echo "This step enforces the Bible Translation Licensing Invariant."
+        echo "See docs/INVARIANTS.md for details."
+        echo ""
+        echo "HARD REQUIREMENT: Bible PAL must never use non-open-source"
+        echo "or non-public-domain Bible translations."
+        echo ""
+        echo "Banned translations: NIV, ESV, NRSV, NLT, NASB, CSB, MSG, HCSB, AMP, GNT"
+        echo "Allowed translations: WEB, KJV, ASV, YLT, DRA"
+        echo ""
+        echo "Running compliance tests..."
+        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        flutter test test/core/bible_translation_compliance_test.dart test/core/repo_wide_compliance_scan_test.dart test/services/verse_service_test.dart
+
+    - name: Check compliance test results
+      if: failure()
+      run: |
+        echo ""
+        echo "❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌"
+        echo "❌"
+        echo "❌  COMPLIANCE VIOLATION DETECTED"
+        echo "❌"
+        echo "❌  The Bible Translation Licensing Invariant has been violated."
+        echo "❌"
+        echo "❌  A banned Bible translation ID (NIV, ESV, NRSV, NLT, NASB,"
+        echo "❌  CSB, MSG, HCSB, AMP, GNT, or other non-approved translation)"
+        echo "❌  was detected in the codebase."
+        echo "❌"
+        echo "❌  This is a NON-NEGOTIABLE requirement. The build MUST fail."
+        echo "❌"
+        echo "❌  To fix:"
+        echo "❌  1. Review the test output above"
+        echo "❌  2. Remove all references to banned translations"
+        echo "❌  3. Use only allowed translations: WEB, KJV, ASV, YLT, DRA"
+        echo "❌  4. Re-run: flutter test"
+        echo "❌"
+        echo "❌  See docs/INVARIANTS.md and docs/BIBLE_TRANSLATION_COMPLIANCE.md"
+        echo "❌  for complete documentation."
+        echo "❌"
+        echo "❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌"
+        exit 1
+
+    - name: ✅ Compliance check passed
+      if: success()
+      run: |
+        echo ""
+        echo "✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅"
+        echo "✅"
+        echo "✅  BIBLE TRANSLATION COMPLIANCE: PASSED"
+        echo "✅"
+        echo "✅  All Bible translation references are compliant."
+        echo "✅  Only open-source/public-domain translations detected."
+        echo "✅"
+        echo "✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅"

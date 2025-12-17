@@ -1,0 +1,5 @@
+Kid-Friendly Single Parable Generation - 20251215_2212
+Using Ollama model: gemma:7b
+Target length: 600-750 words (CORRECTED for narrated audio ~130-150 wpm)
+Mood: joyful
+
