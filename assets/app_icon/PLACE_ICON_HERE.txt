@@ -1,0 +1,22 @@
+================================================================================
+  MISSING: PAL Stories App Icon (1024x1024)
+================================================================================
+
+The app icon setup is complete and ready, but the source icon file is missing.
+
+REQUIRED FILE:
+  Name: app_icon_1024.png
+  Size: 1024 × 1024 pixels
+  Format: PNG
+  Location: This directory (assets/app_icon/)
+
+TO ADD THE ICON:
+  1. Locate: PAL_Stories_AppIcon_1024.png
+  2. Copy to: assets/app_icon/app_icon_1024.png
+  3. Verify: sips -g pixelWidth -g pixelHeight assets/app_icon/app_icon_1024.png
+  4. Generate: dart run flutter_launcher_icons
+
+FULL INSTRUCTIONS:
+  See README.md in this directory for complete setup instructions.
+
+================================================================================
