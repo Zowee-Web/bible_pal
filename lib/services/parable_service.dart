@@ -13,8 +13,9 @@ class ParableService {
   final StorageService _storage;
   final String? _externalStoragePath;
   bool _useAssets = false;
+  final bool testMode;
 
-  ParableService(this._storage, [this._externalStoragePath]);
+  ParableService(this._storage, [this._externalStoragePath, this.testMode = false]);
 
   /// Get the parable library directory
   Future<Directory> _getParableLibraryDir() async {
@@ -56,6 +57,12 @@ class ParableService {
         for (var json in parablesList) {
           final parable = Parable.fromJson(json as Map<String, dynamic>);
 
+          // In test mode, skip audio validation to allow testing filtering logic
+          if (testMode) {
+            parables.add(parable);
+            continue;
+          }
+
           // Check if audio file exists (only if audioFilePath is not null)
           if (parable.audioFilePath != null) {
             try {
@@ -94,6 +101,12 @@ class ParableService {
       // Validate each entry in documents directory
       for (var json in parablesList) {
         final parable = Parable.fromJson(json as Map<String, dynamic>);
+
+        // In test mode, skip audio validation
+        if (testMode) {
+          parables.add(parable);
+          continue;
+        }
 
         // Check if audio file exists
         if (parable.audioFilePath != null) {

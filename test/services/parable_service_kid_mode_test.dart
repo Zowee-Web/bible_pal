@@ -21,7 +21,9 @@ void main() {
 
       // Initialize storage service
       storage = await StorageService.create();
-      service = ParableService(storage);
+
+      // Initialize ParableService in test mode (bypasses audio file validation)
+      service = ParableService(storage, null, true);
     });
 
     group('CRITICAL: Kid Mode Filtering (Layer 1 Invariant)', () {
