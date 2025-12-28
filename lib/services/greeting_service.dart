@@ -5,10 +5,14 @@ import 'dart:math';
 /// Provides time-appropriate, varied emotional check-in questions
 class GreetingService {
   final Random _random = Random();
+  final DateTime Function() _now;
+
+  /// Create a greeting service with optional clock injection (for testing)
+  GreetingService({DateTime Function()? now}) : _now = now ?? DateTime.now;
 
   /// Get a context-aware greeting based on the current time
   String getGreeting() {
-    final hour = DateTime.now().hour;
+    final hour = _now().hour;
     return _getGreetingForTimeWindow(hour);
   }
 
@@ -68,7 +72,7 @@ class GreetingService {
 
   /// Get the time window name for the current hour (useful for UI/debugging)
   String getTimeWindowName() {
-    final hour = DateTime.now().hour;
+    final hour = _now().hour;
     if (hour >= 5 && hour < 12) {
       return 'Morning';
     } else if (hour >= 12 && hour < 17) {
@@ -82,7 +86,7 @@ class GreetingService {
 
   /// Get emoji for the current time window (optional, for UI decoration)
   String getTimeWindowEmoji() {
-    final hour = DateTime.now().hour;
+    final hour = _now().hour;
     if (hour >= 5 && hour < 12) {
       return '🌅'; // Morning
     } else if (hour >= 12 && hour < 17) {
