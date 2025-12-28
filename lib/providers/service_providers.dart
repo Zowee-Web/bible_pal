@@ -12,7 +12,12 @@ import 'package:bible_pal/services/daily_bread_service.dart';
 // keepAlive prevents disposal and ensures stable singleton instance
 final storageServiceProvider = FutureProvider<StorageService>((ref) async {
   ref.keepAlive();
-  return await StorageService.create();
+  final storage = await StorageService.create();
+
+  // Validate and heal data invariants (caps on History/Favorites/Pending Shares)
+  await storage.validateAndHealInvariants();
+
+  return storage;
 });
 
 // ParableService provider - async-safe, depends on StorageService

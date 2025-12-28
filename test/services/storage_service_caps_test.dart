@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:bible_pal/services/storage_service.dart';
@@ -370,6 +371,105 @@ void main() {
 
       expect(share.direction, equals(ShareDirection.sent),
           reason: 'Should default to sent for backward compatibility');
+    });
+  });
+
+  group('Data Migration & Invariant Healing', () {
+    test('should heal History cap violation (>20 entries)', () async {
+      // Manually insert 30 history entries (simulating legacy data)
+      final prefs = await SharedPreferences.getInstance();
+      final legacyHistory = List.generate(
+        30,
+        (i) => {
+          'storyId': 'story_$i',
+          'title': 'Story $i',
+          'mood': 'joyful',
+          'length': 5,
+          'faithTradition': 'Protestant',
+          'timestamp': DateTime.now().toIso8601String(),
+        },
+      );
+      await prefs.setString('history', jsonEncode(legacyHistory));
+
+      // Run migration
+      final report = await storage.validateAndHealInvariants();
+
+      // Verify trimmed count reported
+      expect(report['history_trimmed'], equals(10),
+          reason: 'Should report 10 entries trimmed (30 - 20)');
+
+      // Verify cap enforced
+      final history = await storage.getHistory();
+      expect(history.length, equals(20),
+          reason: 'History should be capped at 20 after migration');
+    });
+
+    test('should heal Favorites cap violation (>100 entries)', () async {
+      // Manually insert 120 favorites (simulating legacy data)
+      final prefs = await SharedPreferences.getInstance();
+      final legacyFavorites = List.generate(
+        120,
+        (i) => {
+          'storyId': 'story_$i',
+          'title': 'Story $i',
+          'mood': 'joyful',
+          'length': 5,
+          'faithTradition': 'Protestant',
+          'scriptureSources': <String>[],
+          'dateSaved': DateTime.now().toIso8601String(),
+        },
+      );
+      await prefs.setString('favorites', jsonEncode(legacyFavorites));
+
+      // Run migration
+      final report = await storage.validateAndHealInvariants();
+
+      // Verify trimmed count reported
+      expect(report['favorites_trimmed'], equals(20),
+          reason: 'Should report 20 entries trimmed (120 - 100)');
+
+      // Verify cap enforced
+      final favorites = await storage.getFavorites();
+      expect(favorites.length, equals(100),
+          reason: 'Favorites should be capped at 100 after migration');
+    });
+
+    test('should heal Pending Shares cap violation (>50 entries)', () async {
+      // Manually insert 70 pending shares (simulating legacy data)
+      final prefs = await SharedPreferences.getInstance();
+      final legacyPending = List.generate(
+        70,
+        (i) => {
+          'shareId': 'share_$i',
+          'storyId': 'story_$i',
+          'storyTitle': 'Story $i',
+          'toPalId': 'pal_1',
+          'createdAt': DateTime.now().toIso8601String(),
+          'retryCount': 0,
+        },
+      );
+      await prefs.setString('pending_shares', jsonEncode(legacyPending));
+
+      // Run migration
+      final report = await storage.validateAndHealInvariants();
+
+      // Verify trimmed count reported
+      expect(report['pending_shares_trimmed'], equals(20),
+          reason: 'Should report 20 entries trimmed (70 - 50)');
+
+      // Verify cap enforced
+      final pending = await storage.getPendingShares();
+      expect(pending.length, equals(50),
+          reason: 'Pending shares should be capped at 50 after migration');
+    });
+
+    test('should return empty report when no healing needed', () async {
+      // Start with clean slate (no data)
+      final report = await storage.validateAndHealInvariants();
+
+      // Verify empty report
+      expect(report.isEmpty, true,
+          reason: 'Should return empty report when no healing needed');
     });
   });
 }

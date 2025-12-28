@@ -99,6 +99,7 @@ class StorageService {
   // ========== History ==========
 
   /// Get history (last 20 entries, per v1.0 cap)
+  /// Note: Returns pure read - cap enforcement happens on write and during migration
   Future<List<HistoryEntry>> getHistory() async {
     final json = _prefs.getString(_keyHistory);
     if (json == null) return [];
@@ -108,14 +109,8 @@ class StorageService {
         .map((item) => HistoryEntry.fromJson(item as Map<String, dynamic>))
         .toList();
 
-    // Enforce 20-entry cap on load (handles migration/existing data)
-    if (history.length > 20) {
-      final trimmed = history.sublist(0, 20);
-      await saveHistory(trimmed); // Persist the trimmed list
-      return trimmed;
-    }
-
-    return history;
+    // Return only first 20 entries (pure read, no write side-effect)
+    return history.take(20).toList();
   }
 
   /// Save history list
@@ -174,6 +169,50 @@ class StorageService {
 
     final map = jsonDecode(json) as Map<String, dynamic>;
     return map.map((key, value) => MapEntry(key, value as String));
+  }
+
+  // ========== Data Migration & Invariant Healing ==========
+
+  /// Validate and heal data invariants (called during app initialization)
+  /// Enforces caps on History (20), Favorites (100), and Pending Shares (50)
+  /// Returns a report of what was healed for debugging/logging
+  Future<Map<String, int>> validateAndHealInvariants() async {
+    final report = <String, int>{};
+
+    // Heal History cap (20 entries)
+    final historyJson = _prefs.getString(_keyHistory);
+    if (historyJson != null) {
+      final list = jsonDecode(historyJson) as List<dynamic>;
+      if (list.length > 20) {
+        final trimmed = list.take(20).toList();
+        await _prefs.setString(_keyHistory, jsonEncode(trimmed));
+        report['history_trimmed'] = list.length - 20;
+      }
+    }
+
+    // Heal Favorites cap (100 entries)
+    final favoritesJson = _prefs.getString(_keyFavorites);
+    if (favoritesJson != null) {
+      final list = jsonDecode(favoritesJson) as List<dynamic>;
+      if (list.length > 100) {
+        final trimmed = list.take(100).toList();
+        await _prefs.setString(_keyFavorites, jsonEncode(trimmed));
+        report['favorites_trimmed'] = list.length - 100;
+      }
+    }
+
+    // Heal Pending Shares cap (50 entries)
+    final pendingJson = _prefs.getString(_keyPendingShares);
+    if (pendingJson != null) {
+      final list = jsonDecode(pendingJson) as List<dynamic>;
+      if (list.length > 50) {
+        final trimmed = list.take(50).toList();
+        await _prefs.setString(_keyPendingShares, jsonEncode(trimmed));
+        report['pending_shares_trimmed'] = list.length - 50;
+      }
+    }
+
+    return report;
   }
 
   // ========== Utility ==========
