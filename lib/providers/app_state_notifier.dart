@@ -4,6 +4,8 @@ import 'package:bible_pal/models/parable.dart';
 import 'package:bible_pal/models/favorite.dart';
 import 'package:bible_pal/models/history_entry.dart';
 import 'package:bible_pal/models/daily_bread.dart';
+import 'package:bible_pal/models/pal.dart';
+import 'package:bible_pal/models/share_record.dart';
 import 'package:bible_pal/services/storage_service.dart';
 import 'package:bible_pal/services/parable_service.dart';
 import 'package:bible_pal/services/mood_service.dart';
@@ -17,6 +19,7 @@ class AppState {
   final List<Favorite> favorites;
   final List<HistoryEntry> history;
   final DailyBread? dailyBread;
+  final List<PAL> pals;
   final bool isLoading;
 
   const AppState({
@@ -24,6 +27,7 @@ class AppState {
     required this.favorites,
     required this.history,
     this.dailyBread,
+    required this.pals,
     this.isLoading = false,
   });
 
@@ -32,6 +36,7 @@ class AppState {
     List<Favorite>? favorites,
     List<HistoryEntry>? history,
     DailyBread? dailyBread,
+    List<PAL>? pals,
     bool? isLoading,
   }) {
     return AppState(
@@ -39,6 +44,7 @@ class AppState {
       favorites: favorites ?? this.favorites,
       history: history ?? this.history,
       dailyBread: dailyBread ?? this.dailyBread,
+      pals: pals ?? this.pals,
       isLoading: isLoading ?? this.isLoading,
     );
   }
@@ -63,6 +69,7 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
     final userPreferences = await _storage.getUserPreferences();
     final favorites = await _storage.getFavorites();
     final history = await _storage.getHistory();
+    final pals = await _storage.getPals();
     final dailyBread = await _dailyBreadService.getDailyVerse(userPreferences);
 
     return AppState(
@@ -70,6 +77,7 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
       favorites: favorites,
       history: history,
       dailyBread: dailyBread,
+      pals: pals,
     );
   }
 
@@ -198,6 +206,35 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
     return _parableService.getParableById(storyId);
   }
 
+  // PAL Methods
+  Future<void> addPal(PAL pal) async {
+    state = await AsyncValue.guard(() async {
+      await _storage.addPal(pal);
+      final pals = await _storage.getPals();
+      return state.requireValue.copyWith(pals: pals);
+    });
+  }
+
+  Future<void> removePal(String palId) async {
+    state = await AsyncValue.guard(() async {
+      await _storage.removePal(palId);
+      final pals = await _storage.getPals();
+      return state.requireValue.copyWith(pals: pals);
+    });
+  }
+
+  Future<void> updatePal(PAL pal) async {
+    state = await AsyncValue.guard(() async {
+      await _storage.updatePal(pal);
+      final pals = await _storage.getPals();
+      return state.requireValue.copyWith(pals: pals);
+    });
+  }
+
+  Future<List<ShareRecord>> getSharesToPal(String palId) async {
+    return _storage.getSharesToPal(palId);
+  }
+
   // Utility
   Future<void> refresh() async {
     state = const AsyncValue.loading();
@@ -205,6 +242,7 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
       final userPreferences = await _storage.getUserPreferences();
       final favorites = await _storage.getFavorites();
       final history = await _storage.getHistory();
+      final pals = await _storage.getPals();
       final dailyBread =
           await _dailyBreadService.getDailyVerse(userPreferences);
 
@@ -213,6 +251,7 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
         favorites: favorites,
         history: history,
         dailyBread: dailyBread,
+        pals: pals,
       );
     });
   }
