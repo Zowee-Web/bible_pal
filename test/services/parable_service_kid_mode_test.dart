@@ -6,13 +6,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:bible_pal/services/parable_service.dart';
 import 'package:bible_pal/services/storage_service.dart';
 import 'package:bible_pal/models/user_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   group('ParableService - Kid Mode Source Lockdown', () {
     late ParableService service;
     late StorageService storage;
 
     setUpAll(() async {
+      // Initialize SharedPreferences with mock values
+      SharedPreferences.setMockInitialValues({});
+
       // Initialize storage service
       storage = await StorageService.create();
       service = ParableService(storage);

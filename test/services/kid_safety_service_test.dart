@@ -6,6 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:bible_pal/services/kid_safety_service.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   group('KidSafetyService', () {
     late KidSafetyService service;
 
@@ -249,29 +251,31 @@ in their hearts even when far apart.
       test('reports correct line numbers for violations', () async {
         await service.initialize();
 
-        final result = await service.scanStoryText('''
-This is line one with safe content.
-This is line two with the word damn in it.
-This is line three with more safe content.
-        ''');
+        final result = await service.scanStoryText(
+          'This is line one with safe content.\n'
+          'This is line two with the word damn in it.\n'
+          'This is line three with more safe content.',
+        );
 
         expect(result.passed, false);
         expect(result.violations.length, greaterThan(0));
+        // Line 2 contains "damn"
         expect(result.violations[0].lineNumber, 2);
       });
 
       test('reports multiple violations with correct line numbers', () async {
         await service.initialize();
 
-        final result = await service.scanStoryText('''
-Safe line one.
-This damn line has profanity.
-Another safe line.
-This line mentions hell.
-        ''');
+        final result = await service.scanStoryText(
+          'Safe line one.\n'
+          'This damn line has profanity.\n'
+          'Another safe line.\n'
+          'This line mentions hell.',
+        );
 
         expect(result.passed, false);
         expect(result.violations.length, 2);
+        // Line 2 for "damn", line 4 for "hell"
         expect(result.violations[0].lineNumber, 2);
         expect(result.violations[1].lineNumber, 4);
       });
