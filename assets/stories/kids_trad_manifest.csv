@@ -1,0 +1,5 @@
+id,filename,mood,length,target_words,actual_words,title,bible_basis,status
+101,parable_101_brave_courage_5min_kid_trad.txt,brave_courage,5min,600,550,David and the Giant,David and Goliath,PASS
+102,parable_102_brave_courage_10min_kid_trad.txt,brave_courage,10min,1200,1206,Daniel in the Lions' Den,Daniel 6,PASS
+110,parable_110_encouraging_15min_kid_trad.txt,encouraging,15min,1800,1800,Esther's Brave Choice,Book of Esther,PASS
+113,parable_113_calm_peaceful_20min_kid_trad.txt,calm_peaceful,20min,2400,2421,Jonah Learns About Mercy,Book of Jonah,PASS
