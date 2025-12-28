@@ -182,13 +182,16 @@ class KidSafetyService {
   /// Load blocklist patterns from assets
   ///
   /// Returns list of compiled RegExp objects ready for matching.
-  /// Patterns are loaded from server/kid_safety_blocklist.txt and
+  /// Patterns are loaded from assets/safety/kid_safety_blocklist.txt and
   /// compiled as case-insensitive regex patterns.
+  ///
+  /// If asset loading fails or returns 0 patterns, falls back to critical
+  /// built-in patterns to ensure the scanner never runs with empty rules.
   Future<List<RegExp>> _loadBlocklistPatterns() async {
     try {
       // Load blocklist file from assets
       final content =
-          await rootBundle.loadString('assets/kid_safety_blocklist.txt');
+          await rootBundle.loadString('assets/safety/kid_safety_blocklist.txt');
 
       final patterns = <RegExp>[];
       final lines = content.split('\n');
@@ -215,6 +218,16 @@ class KidSafetyService {
         }
       }
 
+      // Fallback: if no patterns loaded, use critical built-in list
+      if (patterns.isEmpty) {
+        developer.log(
+          '[KidSafety] WARNING: No patterns loaded from asset, using built-in fallback',
+          name: 'bible_pal.kid_safety',
+          level: 900,
+        );
+        return _getCriticalFallbackPatterns();
+      }
+
       return patterns;
     } catch (e) {
       developer.log(
@@ -222,10 +235,47 @@ class KidSafetyService {
         name: 'bible_pal.kid_safety',
         level: 1000,
       );
-      // Return empty list to fail-open (better than crashing)
-      // Build-time gates are the primary defense anyway
-      return [];
+      developer.log(
+        '[KidSafety] Using critical fallback patterns',
+        name: 'bible_pal.kid_safety',
+        level: 900,
+      );
+      return _getCriticalFallbackPatterns();
     }
+  }
+
+  /// Critical fallback patterns when asset loading fails
+  ///
+  /// Returns a minimal list of the most critical patterns to ensure
+  /// the scanner never runs with zero rules in production.
+  List<RegExp> _getCriticalFallbackPatterns() {
+    return [
+      // Profanity
+      RegExp(r'\bdamn\b', caseSensitive: false),
+      RegExp(r'\bhell\b', caseSensitive: false),
+      RegExp(r'\bbastard\b', caseSensitive: false),
+      RegExp(r'\bbitch\b', caseSensitive: false),
+      // Sexual content
+      RegExp(r'\bsex\b', caseSensitive: false),
+      RegExp(r'\brape\b', caseSensitive: false),
+      RegExp(r'\bpenis\b', caseSensitive: false),
+      RegExp(r'\bvagina\b', caseSensitive: false),
+      // Violence
+      RegExp(r'\bblood\b', caseSensitive: false),
+      RegExp(r'\btorture\b', caseSensitive: false),
+      RegExp(r'\bexecuted\b', caseSensitive: false),
+      RegExp(r'\bbeheaded\b', caseSensitive: false),
+      RegExp(r'\bdismembered\b', caseSensitive: false),
+      // Self-harm
+      RegExp(r'\bsuicide\b', caseSensitive: false),
+      RegExp(r'\bcut herself\b', caseSensitive: false),
+      RegExp(r'\bcut himself\b', caseSensitive: false),
+      // Substances
+      RegExp(r'\bcocaine\b', caseSensitive: false),
+      RegExp(r'\bheroin\b', caseSensitive: false),
+      RegExp(r'\bdrunk\b', caseSensitive: false),
+      RegExp(r'\bstoned\b', caseSensitive: false),
+    ];
   }
 
   /// Optional: ML-based content classifier hook (future enhancement)

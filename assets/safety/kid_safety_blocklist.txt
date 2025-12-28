@@ -1,0 +1,158 @@
+# Bible PAL Kid Safety Blocklist
+# ================================
+# This file contains patterns that are forbidden in kid-friendly content (ages 6-11).
+# Used by both build-time quality gates and runtime safety scanner.
+#
+# Format:
+# - One pattern per line
+# - Case-insensitive matching
+# - Lines starting with # are comments
+# - Empty lines ignored
+# - Patterns are regex-compatible
+#
+# Categories:
+# 1. Profanity and vulgar language
+# 2. Sexual content and innuendo
+# 3. Graphic violence and gore
+# 4. Self-harm and suicide
+# 5. Hate speech and slurs
+# 6. Substance abuse
+#
+# Maintenance:
+# - Add patterns conservatively to avoid false positives
+# - Test new patterns before committing
+# - Document reason for addition in comments
+# - Keep patterns specific enough to avoid legitimate Biblical content
+#
+# Last Updated: 2025-12-28
+
+# ====================
+# 1. PROFANITY (EXPLICIT)
+# ====================
+\bdamn\b
+\bdamned\b
+\bhell\b
+\bass\b
+\bbastard\b
+\bbitch\b
+\bcrap\b
+\bpiss\b
+\bshit\b
+\bfuck
+\basshole\b
+
+# ====================
+# 2. SEXUAL CONTENT
+# ====================
+# Explicit terms
+\bsex\b
+\bsexual\b
+\brape\b
+\braped\b
+\bmolest
+\bporn
+\bprostitut
+\bnaked\b
+\bnude\b
+\bnudity\b
+# Anatomy (explicit)
+\bpenis\b
+\bvagina\b
+\bgenitals\b
+\bbreast\b
+# Innuendo patterns
+\bmake love\b
+\bsleep together\b
+
+# ====================
+# 3. GRAPHIC VIOLENCE
+# ====================
+# Gore and dismemberment
+\bblood\s+spatter
+\bbloody\s+mess
+\bdismember
+\bgore\b
+\bgorily\b
+\beviscerat
+\bdecapitat
+\bbeheaded\b
+\bchopped\s+off
+\bsliced\s+off
+\btorn\s+apart
+\bripped\s+apart
+# Graphic death
+\bexecut
+\btorture
+\btortured\b
+\bmassacre
+\bslaughter
+\bbutcher
+\bmutilat
+# Specific graphic imagery
+\bblood\s+gushing
+\bblood\s+spurting
+\bblood\s+pouring
+\bentrails\b
+\bintestines\b
+\borgans\s+spilling
+\bskull\s+crushed
+\bbones\s+shattered
+
+# ====================
+# 4. SELF-HARM
+# ====================
+\bsuicide\b
+\bkill\s+myself
+\bkill\s+themselves
+\bkill\s+herself
+\bkill\s+himself
+\bcut\s+myself
+\bcut\s+themselves
+\bcut\s+herself
+\bcut\s+himself
+\bself-harm\b
+\bhang\s+myself
+\bhang\s+themselves
+\bhang\s+herself
+\bhang\s+himself
+
+# ====================
+# 5. HATE SPEECH (SLURS)
+# ====================
+# Note: Keeping this list minimal and focused on clear slurs
+# Many historical slurs are part of Biblical text context
+# Only blocking modern/explicit hate speech terms
+\bretard
+\bfaggot\b
+\bn[i1]gg[e3]r
+
+# ====================
+# 6. SUBSTANCE ABUSE
+# ====================
+\bdrug\s+addict
+\bcocaine\b
+\bheroin\b
+\bmeth\b
+\bcrack\b
+\bmarijuana\b
+\bweed\b
+\bstoned\b
+\bhigh\s+on\b
+\bdrunk\b
+\balcoholic\b
+\bintoxicated\b
+\bsmoke\s+pot\b
+
+# ====================
+# 7. OTHER INAPPROPRIATE
+# ====================
+# Modern weapons (contextually inappropriate for kids)
+\bgun\s+down\b
+\bshoot\s+up\b
+\bmachine\s+gun\b
+\bbomb\b
+\bexplosion\b
+\bexplode
+# Modern violence context
+\bterrorist\b
+\bschool\s+shooting\b
