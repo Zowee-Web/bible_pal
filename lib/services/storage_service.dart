@@ -104,9 +104,18 @@ class StorageService {
     if (json == null) return [];
 
     final list = jsonDecode(json) as List<dynamic>;
-    return list
+    final history = list
         .map((item) => HistoryEntry.fromJson(item as Map<String, dynamic>))
         .toList();
+
+    // Enforce 20-entry cap on load (handles migration/existing data)
+    if (history.length > 20) {
+      final trimmed = history.sublist(0, 20);
+      await saveHistory(trimmed); // Persist the trimmed list
+      return trimmed;
+    }
+
+    return history;
   }
 
   /// Save history list

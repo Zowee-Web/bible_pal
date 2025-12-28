@@ -5,7 +5,7 @@ import '../../providers/parable_player_notifier.dart';
 
 /// History Screen
 /// Based on SPEC.md Feature #11: History System
-/// Displays last 100 listened parables (FIFO), most recent first
+/// Displays last 20 listened parables (FIFO), most recent first
 class HistoryScreen extends ConsumerWidget {
   const HistoryScreen({super.key});
 

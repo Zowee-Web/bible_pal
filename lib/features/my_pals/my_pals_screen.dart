@@ -125,13 +125,6 @@ class MyPalsScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('My PALs'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.person_add),
-            onPressed: () => _addPal(context, ref),
-            tooltip: 'Add PAL',
-          ),
-        ],
       ),
       body: pals.isEmpty
           ? Center(
