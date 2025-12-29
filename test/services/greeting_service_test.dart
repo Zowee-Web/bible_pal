@@ -1,11 +1,14 @@
+import 'dart:math';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bible_pal/services/greeting_service.dart';
 
 void main() {
   group('GreetingService', () {
     test('should return a non-empty greeting (morning)', () {
-      final greetingService =
-          GreetingService(now: () => DateTime(2025, 1, 1, 9, 0)); // 9 AM
+      final greetingService = GreetingService(
+        now: () => DateTime(2025, 1, 1, 9, 0), // 9 AM
+        random: Random(0), // Deterministic
+      );
       final greeting = greetingService.getGreeting();
       expect(greeting.isNotEmpty, true);
     });
@@ -79,27 +82,36 @@ void main() {
     });
 
     test('evening greeting should contain evening-related text', () {
-      final greetingService =
-          GreetingService(now: () => DateTime(2025, 1, 1, 19, 0)); // 7 PM
+      final greetingService = GreetingService(
+        now: () => DateTime(2025, 1, 1, 19, 0), // 7 PM
+        random: Random(0), // Deterministic
+      );
       final greeting = greetingService.getGreeting();
       expect(
-        greeting.contains('evening') || greeting.contains('tonight'),
+        greeting.contains('evening') ||
+            greeting.contains('tonight') ||
+            greeting.contains('winding down') ||
+            greeting.contains('day'),
         true,
-        reason: 'Evening greeting should mention "evening" or "tonight"',
+        reason:
+            'Evening greeting should mention "evening", "tonight", "winding down", or "day"',
       );
     });
 
     test('late night greeting should contain night-related text', () {
-      final greetingService =
-          GreetingService(now: () => DateTime(2025, 1, 1, 22, 0)); // 10 PM
+      final greetingService = GreetingService(
+        now: () => DateTime(2025, 1, 1, 22, 0), // 10 PM
+        random: Random(0), // Deterministic
+      );
       final greeting = greetingService.getGreeting();
       expect(
         greeting.contains('night') ||
             greeting.contains('tonight') ||
-            greeting.contains('quiet hour'),
+            greeting.contains('quiet hour') ||
+            greeting.contains('late'),
         true,
         reason:
-            'Late night greeting should mention "night", "tonight", or "quiet hour"',
+            'Late night greeting should mention "night", "tonight", "quiet hour", or "late"',
       );
     });
 

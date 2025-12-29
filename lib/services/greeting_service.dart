@@ -4,11 +4,15 @@ import 'dart:math';
 /// Based on SPEC.md Feature 2.1: Context-Aware Emotional Check-In Greeting
 /// Provides time-appropriate, varied emotional check-in questions
 class GreetingService {
-  final Random _random = Random();
+  final Random _random;
   final DateTime Function() _now;
 
-  /// Create a greeting service with optional clock injection (for testing)
-  GreetingService({DateTime Function()? now}) : _now = now ?? DateTime.now;
+  /// Create a greeting service with optional clock and random injection (for testing)
+  GreetingService({
+    DateTime Function()? now,
+    Random? random,
+  })  : _now = now ?? DateTime.now,
+        _random = random ?? Random();
 
   /// Get a context-aware greeting based on the current time
   String getGreeting() {
