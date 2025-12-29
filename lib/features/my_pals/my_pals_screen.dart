@@ -151,12 +151,6 @@ class MyPalsScreen extends ConsumerWidget {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 24),
-                    FilledButton.icon(
-                      onPressed: () => _addPal(context, ref),
-                      icon: const Icon(Icons.person_add),
-                      label: const Text('Add Your First PAL'),
-                    ),
                   ],
                 ),
               ),
@@ -286,13 +280,11 @@ class MyPalsScreen extends ConsumerWidget {
                 );
               },
             ),
-      floatingActionButton: pals.isNotEmpty
-          ? FloatingActionButton.extended(
-              onPressed: () => _addPal(context, ref),
-              icon: const Icon(Icons.person_add),
-              label: const Text('Add PAL'),
-            )
-          : null,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => _addPal(context, ref),
+        icon: const Icon(Icons.person_add),
+        label: const Text('Add PAL'),
+      ),
     );
   }
 }

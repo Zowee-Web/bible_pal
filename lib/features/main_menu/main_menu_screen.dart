@@ -196,65 +196,96 @@ class MainMenuScreen extends ConsumerWidget {
 
             const SizedBox(height: 32),
 
-            // Secondary Buttons (Favorites & History - Smaller, Softer)
+            // Secondary Buttons (Favorites, History & My PALs - Smaller, Softer)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: Row(
+              child: Column(
                 children: [
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed('/favorites');
-                      },
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        side: BorderSide(
-                          color: AppTheme.lightBlue,
-                          width: 1.5,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          onPressed: () {
+                            Navigator.of(context).pushNamed('/favorites');
+                          },
+                          style: OutlinedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            side: BorderSide(
+                              color: AppTheme.lightBlue,
+                              width: 1.5,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          icon: Icon(
+                            Icons.favorite_outline,
+                            size: 20,
+                            color: AppTheme.softSkyBlue,
+                          ),
+                          label: Text(
+                            'Favorites',
+                            style: theme.textTheme.bodyLarge?.copyWith(
+                              color: AppTheme.deepCharcoal,
+                            ),
+                          ),
                         ),
                       ),
-                      icon: Icon(
-                        Icons.favorite_outline,
-                        size: 20,
-                        color: AppTheme.softSkyBlue,
-                      ),
-                      label: Text(
-                        'Favorites',
-                        style: theme.textTheme.bodyLarge?.copyWith(
-                          color: AppTheme.deepCharcoal,
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          onPressed: () {
+                            Navigator.of(context).pushNamed('/history');
+                          },
+                          style: OutlinedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            side: BorderSide(
+                              color: AppTheme.lightBlue,
+                              width: 1.5,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          icon: Icon(
+                            Icons.history_outlined,
+                            size: 20,
+                            color: AppTheme.softSkyBlue,
+                          ),
+                          label: Text(
+                            'History',
+                            style: theme.textTheme.bodyLarge?.copyWith(
+                              color: AppTheme.deepCharcoal,
+                            ),
+                          ),
                         ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  OutlinedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('/my_pals');
+                    },
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      side: BorderSide(
+                        color: AppTheme.lightBlue,
+                        width: 1.5,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed('/history');
-                      },
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        side: BorderSide(
-                          color: AppTheme.lightBlue,
-                          width: 1.5,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      icon: Icon(
-                        Icons.history_outlined,
-                        size: 20,
-                        color: AppTheme.softSkyBlue,
-                      ),
-                      label: Text(
-                        'History',
-                        style: theme.textTheme.bodyLarge?.copyWith(
-                          color: AppTheme.deepCharcoal,
-                        ),
+                    icon: Icon(
+                      Icons.people_outline,
+                      size: 20,
+                      color: AppTheme.softSkyBlue,
+                    ),
+                    label: Text(
+                      'My PALs',
+                      style: theme.textTheme.bodyLarge?.copyWith(
+                        color: AppTheme.deepCharcoal,
                       ),
                     ),
                   ),

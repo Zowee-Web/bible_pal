@@ -6,6 +6,7 @@ import 'features/pals_parables/pals_parables_screen.dart';
 import 'features/pals_parables/parable_player_screen.dart';
 import 'features/favorites/favorites_screen.dart';
 import 'features/history/history_screen.dart';
+import 'features/my_pals/my_pals_screen.dart';
 
 class AppRouter extends StatelessWidget {
   final bool needsTradition;
@@ -39,6 +40,10 @@ class AppRouter extends StatelessWidget {
       case '/history':
         return MaterialPageRoute(
           builder: (_) => const HistoryScreen(),
+        );
+      case '/my_pals':
+        return MaterialPageRoute(
+          builder: (_) => const MyPalsScreen(),
         );
       default:
         return null;

@@ -118,6 +118,24 @@ class HistoryScreen extends ConsumerWidget {
     final history = appState.history;
     final theme = Theme.of(context);
 
+    // Contract enforcement: History must never exceed 20 entries
+    // This assertion helps detect if AppState is providing uncapped data
+    assert(
+      history.length <= 20,
+      'History violated cap: ${history.length} items (expected ≤20). '
+      'This indicates AppState.history is not properly capped by StorageService.',
+    );
+
+    // Debug logging (strips in release builds)
+    assert(() {
+      debugPrint('📜 History Screen: ${history.length} items');
+      if (history.isNotEmpty) {
+        debugPrint('  First: ${history.first.storyId} at ${history.first.timestamp}');
+        debugPrint('  Last: ${history.last.storyId} at ${history.last.timestamp}');
+      }
+      return true;
+    }());
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('History'),
