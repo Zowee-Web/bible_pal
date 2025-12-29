@@ -235,6 +235,20 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
     return _storage.getSharesToPal(palId);
   }
 
+  Future<void> shareStoryWithPal(ShareRecord share) async {
+    state = await AsyncValue.guard(() async {
+      // Add share record
+      await _storage.addShare(share);
+
+      // Increment share count for the PAL
+      await _storage.incrementPalShareCount(share.toPalId);
+
+      // Reload PALs to reflect updated share counts
+      final pals = await _storage.getPals();
+      return state.requireValue.copyWith(pals: pals);
+    });
+  }
+
   // Utility
   Future<void> refresh() async {
     state = const AsyncValue.loading();

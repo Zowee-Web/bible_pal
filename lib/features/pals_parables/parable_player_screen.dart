@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bible_pal/providers/parable_player_notifier.dart';
 import 'package:bible_pal/providers/app_state_notifier.dart';
+import 'package:bible_pal/features/my_pals/select_pals_dialog.dart';
+import 'package:bible_pal/models/share_record.dart';
+import 'package:uuid/uuid.dart';
 
 /// Parable Player Screen
 /// Based on SPEC.md Features 11, 12, 16, 17
@@ -67,6 +70,56 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
         );
       }
     }
+  }
+
+  Future<void> _shareWithPals() async {
+    final playerState = ref.read(parablePlayerProvider);
+    if (playerState.currentParable == null) return;
+
+    final appStateAsync = ref.read(appStateProvider);
+    final pals = appStateAsync.valueOrNull?.pals ?? [];
+
+    if (!mounted) return;
+
+    // Show dialog to select PALs
+    final selectedPalIds = await showDialog<List<String>>(
+      context: context,
+      builder: (context) => SelectPalsDialog(pals: pals),
+    );
+
+    if (selectedPalIds == null || selectedPalIds.isEmpty) return;
+
+    final appStateNotifier = ref.read(appStateProvider.notifier);
+    final parable = playerState.currentParable!;
+
+    // Share with each selected PAL
+    for (final palId in selectedPalIds) {
+      final shareId = const Uuid().v4();
+      final share = ShareRecord(
+        shareId: shareId,
+        storyId: parable.storyId,
+        storyTitle: parable.title,
+        toPalId: palId,
+        timestamp: DateTime.now(),
+        direction: ShareDirection.sent,
+      );
+
+      await appStateNotifier.shareStoryWithPal(share);
+    }
+
+    if (!mounted) return;
+
+    // Show success message
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          selectedPalIds.length == 1
+              ? 'Shared with 1 PAL'
+              : 'Shared with ${selectedPalIds.length} PALs',
+        ),
+        duration: const Duration(seconds: 2),
+      ),
+    );
   }
 
   @override
@@ -268,18 +321,11 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                       label: Text(_isFavorited ? 'Favorited' : 'Favorite'),
                     ),
 
-                    // Share (TODO: implement - SPEC.md Feature #14)
+                    // Share with a PAL (SPEC.md Feature #14)
                     OutlinedButton.icon(
-                      onPressed: () {
-                        // TODO: Implement share functionality
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Share feature coming soon!'),
-                          ),
-                        );
-                      },
+                      onPressed: _shareWithPals,
                       icon: const Icon(Icons.share),
-                      label: const Text('Share'),
+                      label: const Text('Share with a PAL'),
                     ),
                   ],
                 ),
