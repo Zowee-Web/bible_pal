@@ -321,6 +321,176 @@ flutter run --debug
 
 ---
 
+## 🔒 Kid Safety Contract Invariant (NON-NEGOTIABLE)
+
+**Invariant**: When `UserPreferences.kidFriendlyOnly` is `true`, the app MUST NEVER serve, display, or recommend non-kid-friendly parables. All parables returned MUST have `kidFriendly = true`.
+
+### Why This Exists
+
+**Protecting children is paramount.**
+
+- Children are vulnerable and must be shielded from inappropriate content
+- Parents trust the "Kid Friendly" toggle to protect their children
+- Violating this trust endangers children and destroys user confidence
+- Legal liability if inappropriate content reaches children due to app malfunction
+
+### The Contract
+
+When a user enables "Kid Friendly" mode (Settings → Kid Friendly toggle), the app enters a **strict safety contract**:
+
+1. **UserPreferences MUST store kidFriendlyOnly correctly**
+   - Settings toggle must update `UserPreferences.kidFriendlyOnly`
+   - Value must persist across app restarts
+   - Value must survive serialization (toJson/fromJson)
+   - Value must be preserved by `copyWith()`
+
+2. **ParableService MUST enforce kid-friendly filtering**
+   - `getEligibleParables()` must filter out `kidFriendly = false` parables
+   - `selectParable()` must only return kid-friendly parables (or null)
+   - Runtime assertion must verify no non-kid-friendly parables leak through
+   - Debug logs must clearly indicate when kid mode is active
+
+3. **All layers must respect kidFriendlyOnly**
+   - Storage layer: Save/load correctly
+   - State layer: Update UserPreferences properly
+   - Service layer: Filter parables strictly
+   - UI layer: Reflect correct toggle state
+
+### Enforcement Mechanisms
+
+This invariant is enforced at **four layers**:
+
+#### 1. Settings UI → UserPreferences Sync
+
+**File**: [`lib/features/settings/settings_screen.dart`](../lib/features/settings/settings_screen.dart)
+
+```dart
+Future<void> _setKidFriendlyOnly(bool on) async {
+  setState(() => _kidFriendlyOnly = on);
+  final appState = ref.read(appStateProvider.notifier);
+  await appState.updateKidFriendlyOnly(on);  // Updates UserPreferences
+}
+```
+
+**Contract**: Settings toggle MUST call `appStateNotifier.updateKidFriendlyOnly()` to update UserPreferences. Never save to separate SharedPreferences key.
+
+#### 2. AppStateNotifier Update Method
+
+**File**: [`lib/providers/app_state_notifier.dart`](../lib/providers/app_state_notifier.dart)
+
+```dart
+Future<void> updateKidFriendlyOnly(bool kidFriendlyOnly) async {
+  final prefs = state.requireValue.userPreferences.copyWith(
+    kidFriendlyOnly: kidFriendlyOnly,
+  );
+  await updateUserPreferences(prefs);
+}
+```
+
+**Contract**: AppStateNotifier MUST provide `updateKidFriendlyOnly()` method that updates UserPreferences and persists to storage.
+
+#### 3. ParableService Runtime Filtering
+
+**File**: [`lib/services/parable_service.dart`](../lib/services/parable_service.dart)
+
+```dart
+// Match kid-friendly filter (CRITICAL FOR CHILD SAFETY)
+if (userPrefs.kidFriendlyOnly && !p.kidFriendly) {
+  debugPrint('    ✗ Not kid-friendly (BLOCKED for child safety)');
+  return false;
+}
+
+// CRITICAL SAFETY CHECK: Verify no non-kid-friendly parables leaked through
+if (userPrefs.kidFriendlyOnly) {
+  final nonKidFriendlyCount = eligible.where((p) => !p.kidFriendly).length;
+  if (nonKidFriendlyCount > 0) {
+    debugPrint('🚨🚨🚨 CRITICAL KID SAFETY VIOLATION 🚨🚨🚨');
+    assert(false, '🚨 KID SAFETY VIOLATION');  // Fail in debug
+    return eligible.where((p) => p.kidFriendly).toList();  // Emergency filter in production
+  }
+}
+```
+
+**Contract**: ParableService MUST:
+- Filter out `kidFriendly = false` parables when `userPrefs.kidFriendlyOnly = true`
+- Run post-filter safety check to catch bugs
+- Throw assertion in debug mode if violation detected
+- Emergency-filter in production as last resort
+
+#### 4. Build-Failing Tests
+
+**File**: [`test/critical/kid_friendly_toggle_safety_test.dart`](../test/critical/kid_friendly_toggle_safety_test.dart)
+
+**Critical Tests** (MUST PASS):
+- `CRITICAL: Kid mode MUST filter out non-kid-friendly parables`
+- `CRITICAL: selectParable() MUST enforce kid-friendly filter`
+- `CRITICAL: UserPreferences.copyWith preserves kidFriendlyOnly`
+- `CRITICAL: UserPreferences.fromJson/toJson preserves kidFriendlyOnly`
+- `CRITICAL: Adult mode MUST allow non-kid-friendly parables`
+
+If ANY test fails, the build FAILS and children are at risk.
+
+### Violation Response
+
+**If kid safety violation is detected:**
+
+**Development Time**:
+- Assertion fires immediately in debug mode
+- Developer sees: `🚨 KID SAFETY VIOLATION: Non-kid-friendly parables returned when kidFriendlyOnly=true`
+- App crashes to force immediate fix
+- Test suite fails with detailed error messages
+
+**Production (Emergency Fallback)**:
+- Debug logs show: `🚨🚨🚨 CRITICAL KID SAFETY VIOLATION 🚨🚨🚨`
+- Emergency filter removes non-kid-friendly parables
+- App continues functioning (degraded but safe)
+- Violation logged for post-release investigation
+
+### Testing Kid Safety
+
+```bash
+# Run all kid safety tests
+flutter test test/critical/kid_friendly_toggle_safety_test.dart
+
+# Run all tests (includes kid safety)
+flutter test
+
+# Check debug logs when kid mode is on
+# Look for: "🔒 KID-FRIENDLY MODE ENABLED"
+# Look for: "✅ Kid safety check passed"
+flutter run --debug
+```
+
+All tests MUST pass before release.
+
+### Maintenance Rules
+
+**When modifying code that touches kid-friendly filtering:**
+
+1. **NEVER** bypass UserPreferences for kid mode setting
+2. **ALWAYS** update UserPreferences when toggle changes
+3. **ALWAYS** filter by `userPrefs.kidFriendlyOnly` in ParableService
+4. **RUN** kid safety tests before committing
+5. **DO NOT** weaken or remove safety assertions
+6. **DO NOT** disable kid safety tests
+
+**If a kid safety test fails:**
+1. DO NOT disable the test
+2. DO NOT weaken the assertion
+3. Fix the root cause immediately
+4. Verify all kid safety tests pass
+5. Test manually with kid mode ON/OFF
+
+### Resources
+
+- [ParableService Implementation](../lib/services/parable_service.dart)
+- [Settings Screen Toggle](../lib/features/settings/settings_screen.dart)
+- [AppStateNotifier](../lib/providers/app_state_notifier.dart)
+- [UserPreferences Model](../lib/models/user_preferences.dart)
+- [Kid Safety Tests](../test/critical/kid_friendly_toggle_safety_test.dart)
+
+---
+
 ## Future Invariants
 
 As the project evolves, additional invariants may be added here. Each invariant must:

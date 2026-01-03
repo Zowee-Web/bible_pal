@@ -1,7 +1,7 @@
 # Bible PAL - Technical Specification
 
-**Version:** 1.1
-**Last Updated:** 2025-12-08
+**Version:** 1.2
+**Last Updated:** 2026-01-03
 
 This document is the single source of truth for Bible PAL's features and behavior. All code must follow this specification. Changes to app behavior require explicit updates to this document.
 
@@ -128,8 +128,8 @@ Each parable includes:
 
 **11. History System**
 - Automatically records listened parables
-- Stores last **100 entries only**
-- When 101st entry added, oldest entry is removed (FIFO)
+- Stores last **20 entries only**
+- When 21st entry added, oldest entry is removed (FIFO)
 - Metadata stored per entry:
   - `storyId`
   - `title`
@@ -181,9 +181,9 @@ Affects:
 - Support for external drive storage (e.g., T9) for bulk libraries
 - App fully functional without internet connection
 
-**17. ElevenLabs v3 Multi-Voice Playback**
+**17. ElevenLabs v3 Audio Playback**
 - Parables converted to audio using ElevenLabs v3
-- Multiple voices per story
+- Single narrator voice per story (multi-voice deferred)
 - SSML tags for enhanced narration
 - Pre-generated audio files (not live streaming TTS)
 - High-quality playback from stored audio files
