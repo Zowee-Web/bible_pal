@@ -1,0 +1,6 @@
+{
+  "kidSafe": false,
+  "attempts": 5,
+  "validationFailures": /Volumes/T9-AI/bible_pal/server/kid_bedtime_validator.sh: line 31: declare: -A: invalid option
+declare: usage: declare [-afFirtx] [-p] [name[=value] ...]
+}

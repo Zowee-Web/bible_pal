@@ -1,0 +1,288 @@
+# Kid Bedtime Safe - Forbidden Vocabulary List
+# =============================================
+# This is the SINGLE SOURCE OF TRUTH for forbidden words/phrases.
+# Used by both server-side validator and Dart-side KidBedtimeValidator.
+#
+# Format: One pattern per line, case-insensitive matching
+# Lines starting with # are comments
+# Empty lines are ignored
+# Patterns support basic word boundaries (matched as substrings)
+
+# === VIOLENCE & PERIL ===
+roar
+roared
+roaring
+jaws
+teeth
+claws
+fangs
+devour
+devoured
+devouring
+attack
+attacked
+attacking
+strike
+struck
+striking
+kill
+killed
+killing
+slay
+slew
+slaying
+slain
+destroy
+destroyed
+destroying
+destruction
+annihilate
+annihilated
+battle
+battles
+war
+wars
+fight
+fighting
+fought
+combat
+sword
+swords
+spear
+spears
+weapon
+weapons
+army
+armies
+soldier
+soldiers
+warrior
+warriors
+
+# === DEATH & DYING ===
+death
+dead
+died
+dying
+perish
+perished
+perishing
+corpse
+grave
+tomb
+funeral
+mourn
+mourning
+lifeless
+
+# === FEAR & TERROR ===
+terror
+terrified
+terrifying
+horror
+horrified
+horrifying
+scream
+screamed
+screaming
+shriek
+shrieked
+nightmare
+afraid
+frightened
+frightening
+scary
+scared
+dread
+dreaded
+panic
+panicked
+
+# === PUNISHMENT & RETRIBUTION ===
+punish
+punished
+punishment
+punishing
+vengeance
+revenge
+wrath
+wrathful
+condemn
+condemned
+judgment
+curse
+cursed
+cursing
+doom
+doomed
+smite
+smote
+smitten
+
+# === POWER & AUTHORITY REWARDS ===
+crown
+crowned
+crowning
+throne
+thrones
+king
+kings
+kingdom
+kingdoms
+ruler
+rulers
+rule
+ruled
+ruling
+reign
+reigned
+reigning
+monarch
+royal
+royalty
+palace
+emperor
+empress
+sovereign
+ascend
+ascended
+ascending
+conquer
+conquered
+conquering
+victory
+victorious
+triumph
+triumphant
+
+# === PREDATOR & THREAT IMAGERY ===
+beast
+beasts
+monster
+monsters
+creature
+creatures
+predator
+prey
+hunt
+hunted
+hunting
+chase
+chased
+chasing
+flee
+fled
+fleeing
+escape
+escaped
+escaping
+trap
+trapped
+trapping
+stalk
+stalked
+stalking
+lurk
+lurked
+lurking
+prowl
+prowled
+prowling
+
+# === LOUD & STARTLING ===
+thunder
+thundered
+thundering
+crash
+crashed
+crashing
+boom
+boomed
+booming
+explode
+exploded
+explosion
+blast
+blasted
+
+# === DARKNESS AS THREAT ===
+darkness
+shadowy
+shadows
+ominous
+menacing
+sinister
+evil
+wicked
+demon
+demons
+devil
+satan
+
+# === SEPARATION & ABANDONMENT ===
+abandoned
+abandonment
+forsaken
+lost
+stranded
+alone
+lonely
+orphan
+orphaned
+
+# === SUFFERING ===
+suffer
+suffered
+suffering
+agony
+anguish
+torment
+tormented
+torture
+tortured
+pain
+painful
+wound
+wounded
+wounding
+bleed
+bleeding
+blood
+bloody
+injury
+injured
+
+# === CONFLICT ESCALATION ===
+enemy
+enemies
+foe
+foes
+adversary
+opponent
+oppose
+opposed
+opposing
+threat
+threatened
+threatening
+danger
+dangerous
+peril
+perilous
+risk
+risky
+hazard
+hazardous
+
+# === BIBLICAL INACCURACIES (common hallucinations) ===
+# Patterns that indicate invented promotions/rewards
+became king
+became ruler
+was crowned
+made king
+made ruler
+appointed king
+appointed ruler
+given the throne
+took the throne
+received the crown

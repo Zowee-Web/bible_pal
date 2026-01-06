@@ -4,6 +4,9 @@
       "storyId": "parable_001_joyful_5min",
       "title": "The Shepherd's Gratitude (Story 1)",
       "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
       "length": 5,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -15,6 +18,9 @@
       "storyId": "parable_002_joyful_10min",
       "title": "The Shepherd's Gratitude (Story 2)",
       "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
       "length": 10,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -26,6 +32,9 @@
       "storyId": "parable_003_joyful_15min",
       "title": "The Shepherd's Gratitude (Story 3)",
       "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
       "length": 15,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -37,6 +46,9 @@
       "storyId": "parable_004_weary_5min",
       "title": "Rest in the Fields (Story 4)",
       "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
       "length": 5,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -48,6 +60,9 @@
       "storyId": "parable_005_weary_10min",
       "title": "Rest in the Fields (Story 5)",
       "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
       "length": 10,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -59,6 +74,9 @@
       "storyId": "parable_006_weary_15min",
       "title": "Rest in the Fields (Story 6)",
       "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
       "length": 15,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -70,6 +88,9 @@
       "storyId": "parable_007_anxious_5min",
       "title": "Peace in the Storm (Story 7)",
       "mood": "anxious",
+      "emotionalTags": [
+        "anxious"
+      ],
       "length": 5,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -81,6 +102,9 @@
       "storyId": "parable_008_anxious_10min",
       "title": "Peace in the Storm (Story 8)",
       "mood": "anxious",
+      "emotionalTags": [
+        "anxious"
+      ],
       "length": 10,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -92,6 +116,9 @@
       "storyId": "parable_009_anxious_15min",
       "title": "Peace in the Storm (Story 9)",
       "mood": "anxious",
+      "emotionalTags": [
+        "anxious"
+      ],
       "length": 15,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -103,6 +130,10 @@
       "storyId": "parable_010_hurting_5min",
       "title": "The Broken Cup (Story 10)",
       "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "grief"
+      ],
       "length": 5,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -114,6 +145,10 @@
       "storyId": "parable_011_hurting_10min",
       "title": "The Broken Cup (Story 11)",
       "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "grief"
+      ],
       "length": 10,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -125,6 +160,10 @@
       "storyId": "parable_012_hurting_15min",
       "title": "The Broken Cup (Story 12)",
       "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "grief"
+      ],
       "length": 15,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -136,6 +175,9 @@
       "storyId": "parable_013_neutral_5min",
       "title": "The Baker's Bread (Story 13)",
       "mood": "neutral",
+      "emotionalTags": [
+        "waiting"
+      ],
       "length": 5,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -147,6 +189,9 @@
       "storyId": "parable_014_neutral_10min",
       "title": "The Baker's Bread (Story 14)",
       "mood": "neutral",
+      "emotionalTags": [
+        "waiting"
+      ],
       "length": 10,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -158,6 +203,9 @@
       "storyId": "parable_015_neutral_15min",
       "title": "The Baker's Bread (Story 15)",
       "mood": "neutral",
+      "emotionalTags": [
+        "waiting"
+      ],
       "length": 15,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -166,20 +214,12 @@
       "textFilePath": "parable_015_neutral_15min.txt"
     },
     {
-      "storyId": "parable_multivoice_test",
-      "title": "The Potter's Healing (Multi-Voice)",
-      "mood": "hurting",
-      "length": 5,
-      "faithTradition": "Protestant",
-      "storytellingMode": "creative",
-      "kidFriendly": false,
-      "audioFilePath": "parable_multivoice_test.mp3",
-      "textFilePath": "parable_multivoice_test.txt"
-    },
-    {
       "storyId": "parable_040_joyful_5min",
       "title": "A Story of Joy",
       "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
       "length": 5,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -191,6 +231,9 @@
       "storyId": "parable_041_joyful_10min",
       "title": "A Story of Joy",
       "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
       "length": 10,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -202,6 +245,9 @@
       "storyId": "parable_042_joyful_15min",
       "title": "A Story of Joy",
       "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
       "length": 15,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -213,6 +259,9 @@
       "storyId": "parable_020_joyful_5min_kid",
       "title": "A Happy Day",
       "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
       "length": 5,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -224,6 +273,9 @@
       "storyId": "parable_021_weary_5min_kid",
       "title": "Time to Rest",
       "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
       "length": 5,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -235,6 +287,10 @@
       "storyId": "parable_022_anxious_5min_kid",
       "title": "Being Brave",
       "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "self_doubt"
+      ],
       "length": 5,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
@@ -246,17 +302,24 @@
       "storyId": "parable_023_hurting_5min_kid",
       "title": "Finding Comfort",
       "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "lonely"
+      ],
       "length": 5,
       "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": true,
       "audioFilePath": "parable_023_hurting_5min_kid.mp3",
-      "textFilePath": "parable_023_hurting_5min_kid.txt"
+      "textFilePath": null
     },
     {
       "storyId": "parable_024_weary_5min",
       "title": "**Rest for the Soul**",
       "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
       "length": 5,
       "faithTradition": "Unspecified",
       "storytellingMode": "creative",
@@ -268,6 +331,10 @@
       "storyId": "parable_025_weary_5min",
       "title": "Refuge",
       "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed",
+        "anxious"
+      ],
       "length": 5,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -279,6 +346,10 @@
       "storyId": "parable_999_joyful_5min",
       "title": "Overflowing Love",
       "mood": "joyful",
+      "emotionalTags": [
+        "grateful",
+        "relationship_conflict"
+      ],
       "length": 5,
       "faithTradition": "Unspecified",
       "storytellingMode": "creative",
@@ -290,6 +361,10 @@
       "storyId": "parable_1002_joyful_5min",
       "title": "Embrace of Love",
       "mood": "joyful",
+      "emotionalTags": [
+        "grateful",
+        "lonely"
+      ],
       "length": 5,
       "faithTradition": "Unspecified",
       "storytellingMode": "creative",
@@ -301,6 +376,9 @@
       "storyId": "parable_1000_neutral_5min",
       "title": "Embrace",
       "mood": "neutral",
+      "emotionalTags": [
+        "lonely"
+      ],
       "length": 5,
       "faithTradition": "Unspecified",
       "storytellingMode": "creative",
@@ -312,6 +390,9 @@
       "storyId": "parable_029_weary_5min",
       "title": "Finding Rest",
       "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
       "length": 5,
       "faithTradition": "Unspecified",
       "storytellingMode": "creative",
@@ -323,9 +404,13 @@
       "storyId": "parable_030_weary_15min",
       "title": "Finding Rest",
       "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
       "length": 15,
       "faithTradition": "Unspecified",
       "storytellingMode": "creative",
+      "kidFriendly": false,
       "audioFilePath": "parable_030_weary_15min.mp3",
       "textFilePath": "parable_030_weary_15min.txt"
     },
@@ -333,9 +418,13 @@
       "storyId": "parable_031_weary_5min",
       "title": "Finding Rest",
       "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
       "length": 5,
       "faithTradition": "Unspecified",
       "storytellingMode": "creative",
+      "kidFriendly": false,
       "audioFilePath": "parable_031_weary_5min.mp3",
       "textFilePath": "parable_031_weary_5min.txt"
     },
@@ -343,9 +432,13 @@
       "storyId": "parable_032_weary_10min",
       "title": "Finding Rest",
       "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
       "length": 10,
       "faithTradition": "Unspecified",
       "storytellingMode": "creative",
+      "kidFriendly": false,
       "audioFilePath": "parable_032_weary_10min.mp3",
       "textFilePath": "parable_032_weary_10min.txt"
     },
@@ -353,9 +446,13 @@
       "storyId": "parable_033_weary_15min",
       "title": "Finding Rest",
       "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
       "length": 15,
       "faithTradition": "Unspecified",
       "storytellingMode": "creative",
+      "kidFriendly": false,
       "audioFilePath": "parable_033_weary_15min.mp3",
       "textFilePath": "parable_033_weary_15min.txt"
     },
@@ -363,6 +460,10 @@
       "storyId": "parable_050_joyful_5min_kid_trad",
       "title": "David and the Giant",
       "mood": "joyful",
+      "emotionalTags": [
+        "anxious",
+        "self_doubt"
+      ],
       "length": 5,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -374,6 +475,9 @@
       "storyId": "parable_051_joyful_10min_kid_trad",
       "title": "The Boy Who Shared His Lunch",
       "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
       "length": 10,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -385,6 +489,10 @@
       "storyId": "parable_052_joyful_15min_kid_trad",
       "title": "The Lost Sheep and the Good Shepherd",
       "mood": "joyful",
+      "emotionalTags": [
+        "lonely",
+        "rejection"
+      ],
       "length": 15,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -396,6 +504,10 @@
       "storyId": "parable_053_joyful_20min_kid_trad",
       "title": "Noah's Ark: The Rainbow Promise",
       "mood": "joyful",
+      "emotionalTags": [
+        "anxious",
+        "waiting"
+      ],
       "length": 20,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -407,6 +519,10 @@
       "storyId": "parable_054_weary_5min_kid_trad",
       "title": "Jesus Calms the Storm",
       "mood": "weary",
+      "emotionalTags": [
+        "anxious",
+        "overwhelmed"
+      ],
       "length": 5,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -418,6 +534,10 @@
       "storyId": "parable_055_weary_10min_kid_trad",
       "title": "Elijah and the Gentle Whisper",
       "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed",
+        "hopeless"
+      ],
       "length": 10,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -429,6 +549,10 @@
       "storyId": "parable_056_weary_15min_kid_trad",
       "title": "The Exodus: Journey to Rest",
       "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed",
+        "waiting"
+      ],
       "length": 15,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -440,6 +564,10 @@
       "storyId": "parable_057_weary_20min_kid_trad",
       "title": "The Creation: God's Good Rest",
       "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed",
+        "grateful"
+      ],
       "length": 20,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -451,6 +579,10 @@
       "storyId": "parable_058_anxious_5min_kid_trad",
       "title": "Daniel and the Lions",
       "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "unfair_authority"
+      ],
       "length": 5,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -462,6 +594,10 @@
       "storyId": "parable_059_anxious_10min_kid_trad",
       "title": "Peter Walks on Water",
       "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "self_doubt"
+      ],
       "length": 10,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -473,6 +609,10 @@
       "storyId": "parable_060_anxious_15min_kid_trad",
       "title": "Joshua and the Walls of Jericho",
       "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "waiting"
+      ],
       "length": 15,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -484,6 +624,10 @@
       "storyId": "parable_061_anxious_20min_kid_trad",
       "title": "Moses and the Red Sea",
       "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "hopeless"
+      ],
       "length": 20,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -495,6 +639,10 @@
       "storyId": "parable_062_hurting_5min_kid_trad",
       "title": "Jesus Heals the Sick",
       "mood": "hurting",
+      "emotionalTags": [
+        "illness",
+        "hopeless"
+      ],
       "length": 5,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -506,6 +654,10 @@
       "storyId": "parable_063_hurting_10min_kid_trad",
       "title": "The Prodigal Son: Coming Home",
       "mood": "hurting",
+      "emotionalTags": [
+        "failure",
+        "rejection"
+      ],
       "length": 10,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -517,6 +669,10 @@
       "storyId": "parable_064_hurting_15min_kid_trad",
       "title": "Joseph: From Pit to Palace",
       "mood": "hurting",
+      "emotionalTags": [
+        "rejection",
+        "injustice"
+      ],
       "length": 15,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -528,6 +684,11 @@
       "storyId": "parable_065_hurting_20min_kid_trad",
       "title": "Job: Hope in Suffering",
       "mood": "hurting",
+      "emotionalTags": [
+        "hopeless",
+        "illness",
+        "grief"
+      ],
       "length": 20,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -539,6 +700,10 @@
       "storyId": "parable_101_brave_courage_5min_kid_trad",
       "title": "David and Goliath: Faith Over Fear",
       "mood": "brave_courage",
+      "emotionalTags": [
+        "anxious",
+        "self_doubt"
+      ],
       "length": 5,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -550,6 +715,10 @@
       "storyId": "parable_102_brave_courage_10min_kid_trad",
       "title": "Daniel in the Lions' Den",
       "mood": "brave_courage",
+      "emotionalTags": [
+        "anxious",
+        "unfair_authority"
+      ],
       "length": 10,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -561,6 +730,10 @@
       "storyId": "parable_110_encouraging_15min_kid_trad",
       "title": "Queen Esther: Courage to Save Her People",
       "mood": "encouraging",
+      "emotionalTags": [
+        "anxious",
+        "injustice"
+      ],
       "length": 15,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
@@ -572,12 +745,29 @@
       "storyId": "parable_113_calm_peaceful_20min_kid_trad",
       "title": "Jonah and the Great Fish: God's Mercy",
       "mood": "calm_peaceful",
+      "emotionalTags": [
+        "failure",
+        "angry"
+      ],
       "length": 20,
       "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_113_calm_peaceful_20min_kid_trad.mp3",
       "textFilePath": "parable_113_calm_peaceful_20min_kid_trad.txt"
+    },
+    {
+      "storyId": "parable_114_samuel_listens_5min_kid_safe",
+      "title": "Young Samuel Learns to Listen",
+      "mood": "calm_peaceful",
+      "emotionalTags": [],
+      "length": 5,
+      "faithTradition": "Unspecified",
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "kidBedtimeSafe": true,
+      "audioFilePath": "parable_114_samuel_listens_5min_kid_safe.mp3",
+      "textFilePath": "parable_114_samuel_listens_5min_kid_safe.txt"
     }
   ]
 }

@@ -1,13 +1,30 @@
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'app_router.dart';
+import 'core/app_logger.dart';
+import 'core/diagnostics_lifecycle_observer.dart';
 
 const _pkTradition = 'settings.tradition';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize logging with app version info
+  // TODO: Read version from pubspec.yaml or package_info_plus
+  setLoggerAppInfo(version: '1.0.0', build: '1');
+
+  // Log app startup
+  logEvent('app_started', {
+    'platform': Platform.operatingSystem,
+    'platform_version': Platform.operatingSystemVersion,
+  });
+
+  // Initialize diagnostics lifecycle observer (flushes breadcrumbs on background)
+  // Only active when DIAGNOSTICS_ENABLED=true
+  initializeDiagnosticsLifecycle();
 
   // TODO: Re-enable dotenv when .env is wired as a Flutter asset.
   // await dotenv.load(fileName: '.env');

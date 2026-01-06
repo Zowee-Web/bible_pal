@@ -6,6 +6,7 @@ import 'package:bible_pal/services/verse_service.dart';
 import 'package:bible_pal/providers/app_state_notifier.dart';
 import 'package:bible_pal/providers/parable_player_notifier.dart';
 import 'package:bible_pal/widgets/greeting_display.dart';
+import 'package:bible_pal/core/app_logger.dart';
 
 /// PAL's Parables Screen
 /// Based on SPEC.md Features 2, 2.1, 3, 4, 5, 14, 16
@@ -34,6 +35,9 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     super.initState();
     _greeting = _greetingService.getGreeting();
     _emoji = _greetingService.getTimeWindowEmoji();
+
+    // Log screen view
+    logEvent('screen_view', {'screen_name': 'pals_parables'});
   }
 
   @override
@@ -70,15 +74,22 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
       return;
     }
 
+    // Log length selection (no user text logged!)
+    logEvent('length_selected', {
+      'length_min': lengthMinutes,
+      'detected_mood': _moodResult!.mood,
+    });
+
     setState(() => _isSelectingParable = true);
 
     try {
       final appStateNotifier = ref.read(appStateProvider.notifier);
 
-      // Select parable based on mood and length
+      // Select parable based on mood, length, and user's text for relatability
       final parable = await appStateNotifier.selectParable(
         mood: _moodResult!.mood,
         lengthMinutes: lengthMinutes,
+        userText: _moodController.text,
       );
 
       if (!mounted) return;
@@ -178,6 +189,9 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                   TextField(
                     controller: _moodController,
                     maxLines: 3,
+                    autofocus: false,
+                    keyboardType: TextInputType.multiline,
+                    textInputAction: TextInputAction.newline,
                     decoration: const InputDecoration(
                       labelText: 'Share how you\'re doing',
                       hintText: 'Type a few words about your day or night...',
@@ -309,6 +323,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                             _buildLengthButton(5, '5 min', theme),
                             _buildLengthButton(10, '10 min', theme),
                             _buildLengthButton(15, '15 min', theme),
+                            _buildLengthButton(20, '20 min', theme),
                           ],
                         ),
                       ],

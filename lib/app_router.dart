@@ -7,6 +7,8 @@ import 'features/pals_parables/parable_player_screen.dart';
 import 'features/favorites/favorites_screen.dart';
 import 'features/history/history_screen.dart';
 import 'features/my_pals/my_pals_screen.dart';
+import 'features/diagnostics/diagnostics_screen.dart';
+import 'core/diagnostics_config.dart';
 
 class AppRouter extends StatelessWidget {
   final bool needsTradition;
@@ -44,6 +46,12 @@ class AppRouter extends StatelessWidget {
       case '/my_pals':
         return MaterialPageRoute(
           builder: (_) => const MyPalsScreen(),
+        );
+      case '/diagnostics':
+        // Only allow navigation when diagnostics are enabled
+        if (!kDiagnosticsEnabled) return null;
+        return MaterialPageRoute(
+          builder: (_) => const DiagnosticsScreen(),
         );
       default:
         return null;

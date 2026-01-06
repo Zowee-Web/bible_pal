@@ -1,11 +1,13 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:just_audio/just_audio.dart';
+import '../core/app_logger.dart';
 
 /// Audio Service - handles playback of parable audio files
 /// Based on SPEC.md Feature #16: ElevenLabs v3 Multi-Voice Playback
 class AudioService {
   final AudioPlayer _player;
+  String? _currentStoryId;
 
   AudioService() : _player = AudioPlayer();
 
@@ -13,12 +15,19 @@ class AudioService {
   AudioPlayer get player => _player;
 
   /// Load and prepare audio file for playback
-  Future<void> loadAudio(File audioFile) async {
+  Future<void> loadAudio(File audioFile, {String? storyId}) async {
     try {
+      _currentStoryId = storyId;
       await _player.setFilePath(audioFile.path);
       debugPrint('Audio loaded: ${audioFile.path}');
     } catch (e) {
       debugPrint('Error loading audio: $e');
+
+      logEvent('audio_error', {
+        'story_id': storyId,
+        'error_type': 'load_failed',
+      }, level: LogLevel.error);
+
       rethrow;
     }
   }
@@ -26,15 +35,33 @@ class AudioService {
   /// Play the loaded audio
   Future<void> play() async {
     try {
+      // Log play start
+      logEvent('audio_play_start', {
+        'story_id': _currentStoryId,
+        'position_ms': _player.position.inMilliseconds,
+      });
+
       await _player.play();
     } catch (e) {
       debugPrint('Error playing audio: $e');
+
+      logEvent('audio_error', {
+        'story_id': _currentStoryId,
+        'error_type': 'play_failed',
+      }, level: LogLevel.error);
+
       rethrow;
     }
   }
 
   /// Pause playback
   Future<void> pause() async {
+    // Log pause event
+    logEvent('audio_play_pause', {
+      'story_id': _currentStoryId,
+      'position_ms': _player.position.inMilliseconds,
+    });
+
     await _player.pause();
   }
 

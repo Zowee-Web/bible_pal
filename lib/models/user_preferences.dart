@@ -14,6 +14,7 @@ class UserPreferences {
   final String storytellingMode; // 'creative' or 'traditional'
   final bool contentFilteringEnabled; // Feature #24
   final bool kidFriendlyOnly; // Filter to kid-friendly content only
+  final bool showEverydayReflections; // Feature #34: Post-story reflections
   final bool hasCompletedOnboarding;
 
   const UserPreferences({
@@ -22,6 +23,7 @@ class UserPreferences {
     this.storytellingMode = 'creative',
     this.contentFilteringEnabled = true,
     this.kidFriendlyOnly = false,
+    this.showEverydayReflections = true, // Default ON per SPEC.md #34
     this.hasCompletedOnboarding = false,
   });
 
@@ -33,6 +35,7 @@ class UserPreferences {
       storytellingMode: 'creative',
       contentFilteringEnabled: true,
       kidFriendlyOnly: false,
+      showEverydayReflections: true, // Default ON per SPEC.md #34
       hasCompletedOnboarding: false,
     );
   }
@@ -50,6 +53,8 @@ class UserPreferences {
       contentFilteringEnabled:
           json['contentFilteringEnabled'] as bool? ?? true,
       kidFriendlyOnly: json['kidFriendlyOnly'] as bool? ?? false,
+      showEverydayReflections:
+          json['showEverydayReflections'] as bool? ?? true, // Default ON
       hasCompletedOnboarding:
           json['hasCompletedOnboarding'] as bool? ?? false,
     );
@@ -63,6 +68,7 @@ class UserPreferences {
       'storytellingMode': storytellingMode,
       'contentFilteringEnabled': contentFilteringEnabled,
       'kidFriendlyOnly': kidFriendlyOnly,
+      'showEverydayReflections': showEverydayReflections,
       'hasCompletedOnboarding': hasCompletedOnboarding,
     };
   }
@@ -74,6 +80,7 @@ class UserPreferences {
     String? storytellingMode,
     bool? contentFilteringEnabled,
     bool? kidFriendlyOnly,
+    bool? showEverydayReflections,
     bool? hasCompletedOnboarding,
   }) {
     // RUNTIME GUARD: Validate translation if provided
@@ -88,6 +95,8 @@ class UserPreferences {
       contentFilteringEnabled:
           contentFilteringEnabled ?? this.contentFilteringEnabled,
       kidFriendlyOnly: kidFriendlyOnly ?? this.kidFriendlyOnly,
+      showEverydayReflections:
+          showEverydayReflections ?? this.showEverydayReflections,
       hasCompletedOnboarding:
           hasCompletedOnboarding ?? this.hasCompletedOnboarding,
     );

@@ -4,6 +4,7 @@ import 'package:bible_pal/providers/parable_player_notifier.dart';
 import 'package:bible_pal/providers/app_state_notifier.dart';
 import 'package:bible_pal/features/my_pals/select_pals_dialog.dart';
 import 'package:bible_pal/models/share_record.dart';
+import 'package:bible_pal/services/reflection_service.dart';
 import 'package:uuid/uuid.dart';
 
 /// Parable Player Screen
@@ -18,11 +19,24 @@ class ParablePlayerScreen extends ConsumerStatefulWidget {
 
 class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
   bool _isFavorited = false;
+  bool _showReflection = false;
+  bool _reflectionDismissed = false;
+  final ReflectionService _reflectionService = ReflectionService();
 
   @override
   void initState() {
     super.initState();
     _checkIfFavorited();
+    _listenForPlaybackCompletion();
+  }
+
+  void _listenForPlaybackCompletion() {
+    final playerNotifier = ref.read(parablePlayerProvider.notifier);
+    playerNotifier.audioService.playbackCompletedStream.listen((_) {
+      if (mounted && !_reflectionDismissed) {
+        setState(() => _showReflection = true);
+      }
+    });
   }
 
   Future<void> _checkIfFavorited() async {
@@ -329,8 +343,139 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                     ),
                   ],
                 ),
+
+                // Post-Story Reflection (SPEC.md Features #34-37)
+                _buildReflectionSection(theme),
               ],
             ),
+    );
+  }
+
+  /// Build the post-story reflection section
+  /// Only shows when:
+  /// - Playback has completed
+  /// - User has showEverydayReflections enabled
+  /// - Reflection has not been dismissed
+  Widget _buildReflectionSection(ThemeData theme) {
+    if (!_showReflection || _reflectionDismissed) {
+      return const SizedBox.shrink();
+    }
+
+    final playerState = ref.read(parablePlayerProvider);
+    if (playerState.currentParable == null) {
+      return const SizedBox.shrink();
+    }
+
+    final appState = ref.read(appStateProvider).valueOrNull;
+    if (appState == null) {
+      return const SizedBox.shrink();
+    }
+
+    // Check if reflections are enabled
+    if (!appState.userPreferences.showEverydayReflections) {
+      return const SizedBox.shrink();
+    }
+
+    final isKidMode = appState.userPreferences.kidFriendlyOnly;
+    final reflection = _reflectionService.getReflectionForParable(
+      parable: playerState.currentParable!,
+      isKidMode: isKidMode,
+    );
+
+    if (reflection == null) {
+      return const SizedBox.shrink();
+    }
+
+    return Column(
+      children: [
+        const SizedBox(height: 24),
+        Card(
+          elevation: 2,
+          color: theme.colorScheme.tertiaryContainer,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Header with dismiss button
+                Row(
+                  children: [
+                    Icon(
+                      Icons.lightbulb_outline,
+                      color: theme.colorScheme.onTertiaryContainer,
+                      size: 20,
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        'A moment to reflect',
+                        style: theme.textTheme.titleSmall?.copyWith(
+                          color: theme.colorScheme.onTertiaryContainer,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.close,
+                        size: 20,
+                        color: theme.colorScheme.onTertiaryContainer,
+                      ),
+                      onPressed: () {
+                        setState(() => _reflectionDismissed = true);
+                      },
+                      tooltip: 'Dismiss',
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+
+                // Reflection text
+                Text(
+                  reflection.text,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onTertiaryContainer,
+                  ),
+                ),
+
+                // Optional reflection question (not shown in kid mode)
+                if (reflection.question != null && !isKidMode) ...[
+                  const SizedBox(height: 16),
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.tertiary.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.help_outline,
+                          size: 18,
+                          color: theme.colorScheme.onTertiaryContainer,
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            reflection.question!,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.colorScheme.onTertiaryContainer,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 

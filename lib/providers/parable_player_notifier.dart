@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bible_pal/models/parable.dart';
 import 'package:bible_pal/services/audio_service.dart';
+import 'package:bible_pal/core/app_logger.dart';
 import 'service_providers.dart';
 
 /// Parable Player State
@@ -87,10 +88,15 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
       // Load audio file
       final audioFile = await parableService.getAudioFile(parable);
       if (audioFile == null) {
+        logEvent('audio_asset_missing', {
+          'story_id': parable.storyId,
+          'expected_path': parable.audioFilePath,
+        }, level: LogLevel.error);
+
         throw Exception('Audio file not found for parable: ${parable.storyId}');
       }
 
-      await _audioService.loadAudio(audioFile);
+      await _audioService.loadAudio(audioFile, storyId: parable.storyId);
 
       // Load text (optional, for scripture panel)
       final parableText = await parableService.getParableText(parable);
@@ -101,6 +107,9 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
         isLoading: false,
       );
     } catch (e) {
+      logError('parable_load_failed', 'ParablePlayerNotifier.loadParable',
+          storyId: parable.storyId, errorMessage: e.toString());
+
       state = state.copyWith(
         isLoading: false,
         errorMessage: 'Error loading parable: $e',
@@ -153,6 +162,15 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
 
   /// Handle playback completion
   void _onPlaybackCompleted() {
+    // Log playback complete
+    final storyId = state.currentParable?.storyId;
+    final durationMs = _audioService.duration?.inMilliseconds;
+
+    logEvent('audio_play_complete', {
+      'story_id': storyId,
+      'duration_ms': durationMs,
+    });
+
     // Playback completed, app can show sharing options or return to menu
     ref.notifyListeners();
   }

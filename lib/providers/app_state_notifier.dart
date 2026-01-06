@@ -133,6 +133,20 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
     await updateUserPreferences(prefs);
   }
 
+  Future<void> updateKidFriendlyOnly(bool kidFriendlyOnly) async {
+    final prefs = state.requireValue.userPreferences.copyWith(
+      kidFriendlyOnly: kidFriendlyOnly,
+    );
+    await updateUserPreferences(prefs);
+  }
+
+  Future<void> updateShowEverydayReflections(bool showEverydayReflections) async {
+    final prefs = state.requireValue.userPreferences.copyWith(
+      showEverydayReflections: showEverydayReflections,
+    );
+    await updateUserPreferences(prefs);
+  }
+
   // Favorites Methods
   Future<void> addFavorite(Parable parable) async {
     state = await AsyncValue.guard(() async {
@@ -194,11 +208,13 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
   Future<Parable?> selectParable({
     required String mood,
     required int lengthMinutes,
+    String? userText,
   }) async {
     return _parableService.selectParable(
       mood: mood,
       lengthMinutes: lengthMinutes,
       userPrefs: state.requireValue.userPreferences,
+      userText: userText,
     );
   }
 

@@ -491,6 +491,401 @@ All tests MUST pass before release.
 
 ---
 
+## 🔒 Kid Bedtime Safe Generation Invariant (NON-NEGOTIABLE)
+
+**Invariant**: All kid-mode story generations MUST pass the Kid Bedtime Validator before being saved to the kid library. Forbidden words MUST never appear in kid-safe output. Maximum regeneration attempts = 3. Unsafe stories MUST NOT be saved to kid library.
+
+### Why This Exists
+
+**Bedtime safety for children is paramount.**
+
+- Children ages 5-9 may fall asleep while listening
+- Parents may not be actively monitoring
+- A startling word or scary image could disturb a sleeping child
+- Biblical hallucinations (e.g., "Jonah was crowned king") confuse children about scripture
+- Parents trust the "Kid Friendly" mode to be truly safe for unattended bedtime listening
+
+### The Contract
+
+When generating stories for kid mode, the system enters a **strict bedtime safety contract**:
+
+1. **Contract Injection MUST occur**
+   - Every Gemma prompt MUST include the Kid Bedtime Contract
+   - Contract file: `docs/prompts/kid_bedtime_contract.txt`
+   - No exceptions or bypasses permitted
+
+2. **Forbidden Vocabulary MUST be blocked**
+   - Source of truth: `server/kid_bedtime_forbidden.txt`
+   - Post-generation scan MUST detect ANY forbidden word
+   - Case-insensitive matching with word boundaries
+   - Single violation = story rejected
+
+3. **Structure Requirements MUST be met**
+   - Minimum 3 distinct sections
+   - Minimum 200 words
+   - Average sentence length ≤15 words
+   - Bedtime closing signal MUST be present
+
+4. **Regeneration MUST be bounded**
+   - Maximum attempts: **3** (`kMaxRegenAttempts`)
+   - Repair instruction MUST list all violations
+   - Each retry MUST include repair instruction
+
+5. **Unsafe stories MUST NOT enter kid library**
+   - If validation fails after max attempts:
+     - Mark as `kidSafe: false`
+     - Log all violations
+     - DO NOT save to kid library
+     - DO NOT serve to children
+
+### Enforcement Mechanisms
+
+This invariant is enforced at **four layers**:
+
+#### 1. Contract Injection (Generation Time)
+
+**Files**:
+- [`docs/prompts/kid_bedtime_contract.txt`](prompts/kid_bedtime_contract.txt) - Contract text
+- [`server/kid_bedtime_harness.sh`](../server/kid_bedtime_harness.sh) - Injects contract
+
+The harness script MUST inject the full contract into every kid-mode generation prompt.
+
+#### 2. Post-Generation Validation
+
+**Files**:
+- [`server/kid_bedtime_validator.sh`](../server/kid_bedtime_validator.sh) - Bash validator
+- [`lib/safety/kid_bedtime_validator.dart`](../lib/safety/kid_bedtime_validator.dart) - Dart validator
+- [`server/kid_bedtime_forbidden.txt`](../server/kid_bedtime_forbidden.txt) - Forbidden vocabulary
+
+Validators check:
+- Forbidden words (160+ patterns)
+- Story structure (sections, length)
+- Bedtime closing signals
+- Sentence length averages
+
+#### 3. Bounded Regeneration (Harness)
+
+**File**: [`server/kid_bedtime_harness.sh`](../server/kid_bedtime_harness.sh)
+
+```bash
+MAX_ATTEMPTS=3  # Configurable, matches kMaxRegenAttempts
+
+while [[ $ATTEMPT -le $MAX_ATTEMPTS ]]; do
+    # Generate story
+    # Validate story
+    # If failed, build repair instruction and retry
+done
+
+# If still failing, mark as unsafe
+echo '{"kidSafe": false, ...}' > "${OUTPUT_FILE}.meta.json"
+```
+
+#### 4. Build-Failing Tests
+
+**Files**:
+- [`test/kid_bedtime_safe/validator_forbidden_words_test.dart`](../test/kid_bedtime_safe/validator_forbidden_words_test.dart)
+- [`test/kid_bedtime_safe/validator_structure_test.dart`](../test/kid_bedtime_safe/validator_structure_test.dart)
+- [`test/kid_bedtime_safe/regeneration_on_failure_test.dart`](../test/kid_bedtime_safe/regeneration_on_failure_test.dart)
+
+**Critical Tests** (MUST PASS):
+- `fails when story contains "roar" or variants`
+- `fails when story contains predator imagery (jaws, teeth, claws)`
+- `fails when story contains crown/throne power rewards`
+- `passes for a known-good kid-safe sample`
+- `triggers regeneration when forbidden words detected`
+- `respects max attempts limit and marks as unsafe`
+
+### Forbidden Vocabulary Categories
+
+The forbidden list includes (non-exhaustive):
+
+| Category | Examples |
+|----------|----------|
+| Violence/Peril | roar, jaws, teeth, claws, devour, attack, battle, sword |
+| Death/Dying | death, dead, died, perish, corpse |
+| Fear/Terror | terror, horror, scream, nightmare, frightened |
+| Punishment | punish, vengeance, wrath, doom, condemned |
+| Power Rewards | crown, throne, king, ruler, reign, conquer |
+| Predator Imagery | beast, monster, hunt, chase, flee, trap |
+| Biblical Inaccuracies | "became king", "was crowned", "given the throne" |
+
+Full list: [`server/kid_bedtime_forbidden.txt`](../server/kid_bedtime_forbidden.txt)
+
+### Violation Response
+
+**Generation Time**:
+- Validator returns detailed violation list
+- Repair instruction built from violations
+- Regeneration attempted (up to max attempts)
+- If all attempts fail, story marked unsafe
+
+**Runtime (If Unsafe Story Escapes)**:
+- KidSafetyService runtime scanner catches violations
+- Story blocked from playback
+- Error logged for investigation
+- User sees "Content unavailable" message
+
+### Testing Kid Bedtime Safety
+
+```bash
+# Run all kid bedtime safety tests
+flutter test test/kid_bedtime_safe/
+
+# Test the validator script directly
+./server/kid_bedtime_validator.sh assets/stories/some_story.txt
+
+# Test the harness (requires Ollama running)
+./server/kid_bedtime_harness.sh prompt.txt output.txt --max-attempts 3
+
+# Run all tests (includes kid bedtime safety)
+flutter test
+```
+
+### Maintenance Rules
+
+**When modifying kid bedtime generation:**
+
+1. **NEVER** bypass the Kid Bedtime Contract injection
+2. **NEVER** skip post-generation validation
+3. **NEVER** save stories with `kidSafe: false` to kid library
+4. **ALWAYS** include repair instruction on regeneration
+5. **ALWAYS** respect max attempts limit
+6. **RUN** kid bedtime tests before committing
+7. **DO NOT** weaken forbidden vocabulary list
+8. **DO NOT** disable or weaken safety tests
+
+**If a kid bedtime test fails:**
+1. DO NOT disable the test
+2. DO NOT weaken the validator
+3. Fix the root cause (missing validation, weak pattern, etc.)
+4. Verify all kid bedtime tests pass
+5. Test with sample forbidden content manually
+
+### Resources
+
+- [Kid Bedtime Contract](prompts/kid_bedtime_contract.txt)
+- [Forbidden Vocabulary](../server/kid_bedtime_forbidden.txt)
+- [Bash Validator](../server/kid_bedtime_validator.sh)
+- [Dart Validator](../lib/safety/kid_bedtime_validator.dart)
+- [Harness Script](../server/kid_bedtime_harness.sh)
+- [Kid Bedtime Tests](../test/kid_bedtime_safe/)
+- [SPEC.md Kid Bedtime Section](SPEC.md#kid-bedtime-safe-harness)
+
+---
+
+## 🔒 Reflection Language Safety Invariant (NON-NEGOTIABLE)
+
+**Invariant**: Post-story reflections MUST be descriptive, not prescriptive. Reflections MUST NOT give advice, make diagnostic claims, or promise outcomes. This is reflection, not therapy.
+
+### Why This Exists
+
+**User trust and safety are paramount.**
+
+- Users may be in vulnerable emotional states after listening to stories about difficult topics
+- Prescriptive language ("you should...") overreaches the app's role
+- Diagnostic language ("you are feeling...") makes unqualified claims
+- Therapeutic promises ("this will help you...") create false expectations
+- The app is a storytelling companion, not a counselor or therapist
+
+### The Contract
+
+Post-story reflections MUST:
+1. Use descriptive language only
+2. Describe patterns and themes, not prescribe actions
+3. Use phrases like: "often looks like", "can reflect", "stories like this show..."
+
+Post-story reflections MUST NOT:
+1. Give advice ("you should", "try to", "consider doing")
+2. Make diagnostic claims ("you are feeling", "this means you")
+3. Promise outcomes ("this will help", "you'll feel better")
+4. Use therapeutic language ("healing", "therapy", "treatment", "cope")
+5. Probe emotions ("how did that make you feel", "what emotions came up")
+
+### Kid Mode Additional Constraints
+
+When `kidFriendlyOnly` is enabled, reflections MUST also:
+1. Use short, literal language (1-2 sentences max)
+2. Avoid abstract concepts
+3. Use age-appropriate vocabulary (5-9 year olds)
+4. Not probe emotions or encourage self-analysis
+
+### Enforcement Mechanisms
+
+This invariant is enforced at **three layers**:
+
+#### 1. Template-Based Reflection Content
+**File**: [`lib/services/reflection_service.dart`](../lib/services/reflection_service.dart)
+
+All reflections are pre-written templates that have been reviewed for compliance. No free-form AI generation at playback time.
+
+#### 2. Build-Failing Tests
+**File**: [`test/services/reflection_safety_test.dart`](../test/services/reflection_safety_test.dart)
+
+Tests verify:
+- No banned phrases appear in any reflection template
+- Kid mode reflections meet length/complexity requirements
+- All templates pass language compliance scan
+
+#### 3. Code Review
+All reflection template additions require review against this invariant.
+
+### Banned Phrases (Non-Exhaustive)
+
+The following phrases/patterns are BANNED from reflections:
+
+| Category | Banned Examples |
+|----------|-----------------|
+| Advice | "you should", "try to", "consider", "it helps to" |
+| Diagnosis | "you are feeling", "you seem", "this suggests you" |
+| Promises | "will help you", "you'll feel", "this can heal" |
+| Therapy | "cope", "healing", "therapy", "treatment", "process your" |
+| Probing | "how did that make you feel", "what came up for you" |
+
+### Testing Reflection Safety
+
+```bash
+# Run reflection safety tests
+flutter test test/services/reflection_safety_test.dart
+
+# Run all tests (includes reflection safety)
+flutter test
+```
+
+### Maintenance Rules
+
+**When modifying reflection templates:**
+
+1. **NEVER** use banned phrases
+2. **ALWAYS** use descriptive, not prescriptive language
+3. **RUN** reflection safety tests before committing
+4. **DO NOT** add free-form AI generation at playback time
+5. **REVIEW** kid mode templates for age-appropriateness
+
+**If a reflection safety test fails:**
+1. DO NOT disable the test
+2. Rewrite the reflection template to be descriptive only
+3. Remove any advice, diagnosis, or therapeutic language
+4. Verify all tests pass
+
+### Resources
+
+- [SPEC.md Reflection Section](SPEC.md#post-story-everyday-life-reflection)
+- [Reflection Service](../lib/services/reflection_service.dart)
+- [Reflection Safety Tests](../test/services/reflection_safety_test.dart)
+
+---
+
+## 🔒 Logging Privacy Invariant (NON-NEGOTIABLE)
+
+**Invariant**: The logging system MUST NEVER log raw user-entered text, personally identifiable information (PII), or any data that could identify a user. All logs must be structured key/value pairs. Logging failures must never crash the app.
+
+### Why This Exists
+
+**User privacy and trust are paramount.**
+
+- Users share vulnerable emotional states when using PAL's Parables
+- Raw mood input text could reveal sensitive personal information
+- PII exposure creates legal liability (GDPR, CCPA, etc.)
+- Logging should aid debugging without compromising privacy
+- App stability must never be sacrificed for observability
+
+### The Contract
+
+The logging system enforces these rules:
+
+1. **PRIVACY: Never log user text or PII**
+   - Blocked keys: `userText`, `prompt`, `transcript`, `message`, `email`, `phone`, `name`, etc.
+   - Blocked patterns: email addresses, phone numbers
+   - Values containing PII are redacted automatically
+
+2. **STRUCTURED: All logs are key/value JSON**
+   - No free-form paragraph logging
+   - Required fields: `event`, `level`, `ts`
+   - Machine-parseable format only
+
+3. **LOW NOISE: Only log decision points**
+   - Log: story selection, audio lifecycle, errors, mode changes
+   - Don't log: every UI interaction, routine operations
+
+4. **SAFE FAIL: Never crash the app**
+   - All logging wrapped in try/catch
+   - Failed logs are silently dropped
+   - Malformed input is blocked, not thrown
+
+5. **BUILD SAFE: Tests enforce constraints**
+   - Tests verify blocked keys are rejected
+   - Tests verify PII patterns are detected
+   - Tests verify logging never throws
+
+### Enforcement Mechanisms
+
+This invariant is enforced at **three layers**:
+
+#### 1. Code-Level Blocking
+**File**: [`lib/core/app_logger.dart`](../lib/core/app_logger.dart)
+
+```dart
+// Blocked keys that are NEVER logged
+static const Set<String> _blockedKeys = {
+  'userText', 'user_text', 'message', 'prompt', 'transcript',
+  'email', 'phone', 'name', 'password', 'token', 'secret', ...
+};
+
+// PII pattern detection
+static final RegExp _emailPattern = RegExp(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}');
+static final RegExp _phonePattern = RegExp(r'(?:\+?1[-.\s]?)?\(?[0-9]{3}\)?[-.\s]?[0-9]{3}[-.\s]?[0-9]{4}');
+```
+
+If a blocked key or PII value is detected, the log is rejected and a warning is emitted instead.
+
+#### 2. Safe-Fail Wrapper
+All logging operations are wrapped in try/catch. Even if JSON encoding fails, the app continues normally.
+
+#### 3. Build-Failing Tests
+**File**: [`test/core/app_logger_test.dart`](../test/core/app_logger_test.dart)
+
+**Critical Tests** (MUST PASS):
+- `blocks raw text fields (userText, message, prompt, transcript)`
+- `blocks values that look like emails`
+- `blocks values that look like phone numbers`
+- `never throws even with malformed input`
+- `emits structured JSON format`
+
+### Testing Logging Privacy
+
+```bash
+# Run logging tests
+flutter test test/core/app_logger_test.dart
+
+# Run all tests (includes logging)
+flutter test
+```
+
+### Maintenance Rules
+
+**When modifying logging code:**
+
+1. **NEVER** add user text fields to logged data
+2. **NEVER** remove keys from the blocked list
+3. **NEVER** bypass the sanitization layer
+4. **ALWAYS** use `logEvent()` or `logError()` — never direct print with user data
+5. **RUN** logging tests before committing
+6. **DO NOT** weaken or remove privacy tests
+
+**If a logging privacy test fails:**
+1. DO NOT disable the test
+2. Fix the code to not log the blocked data
+3. Verify all tests pass
+4. Consider if additional blocked keys are needed
+
+### Resources
+
+- [SPEC.md Observability Section](SPEC.md#observability--logging-v1)
+- [AppLogger Implementation](../lib/core/app_logger.dart)
+- [Logging Tests](../test/core/app_logger_test.dart)
+
+---
+
 ## Future Invariants
 
 As the project evolves, additional invariants may be added here. Each invariant must:
@@ -501,5 +896,5 @@ As the project evolves, additional invariants may be added here. Each invariant 
 
 ---
 
-**Last Updated**: 2025-12-28
+**Last Updated**: 2026-01-05
 **Maintained By**: Bible PAL Development Team
