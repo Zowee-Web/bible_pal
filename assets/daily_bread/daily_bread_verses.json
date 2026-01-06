@@ -1,0 +1,136 @@
+{
+  "verses": [
+    {
+      "id": "db_001",
+      "reference": "Psalm 23:1",
+      "text": {
+        "WEB": "Yahweh is my shepherd; I shall lack nothing.",
+        "KJV": "The LORD is my shepherd; I shall not want.",
+        "ASV": "Jehovah is my shepherd; I shall not want.",
+        "YLT": "Jehovah is my shepherd, I do not lack.",
+        "DRA": "The Lord ruleth me: and I shall want nothing."
+      }
+    },
+    {
+      "id": "db_002",
+      "reference": "Proverbs 3:5-6",
+      "text": {
+        "WEB": "Trust in Yahweh with all your heart, and don't lean on your own understanding. In all your ways acknowledge him, and he will make your paths straight.",
+        "KJV": "Trust in the LORD with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.",
+        "ASV": "Trust in Jehovah with all thy heart, And lean not upon thine own understanding: In all thy ways acknowledge him, And he will direct thy paths.",
+        "YLT": "Trust unto Jehovah with all thy heart, And unto thine own understanding lean not. In all thy ways know thou Him, And He doth make straight thy paths.",
+        "DRA": "Have confidence in the Lord with all thy heart, and lean not upon thy own prudence. In all thy ways think on him, and he will direct thy steps."
+      }
+    },
+    {
+      "id": "db_003",
+      "reference": "Psalm 46:10",
+      "text": {
+        "WEB": "Be still, and know that I am God. I will be exalted among the nations. I will be exalted in the earth.",
+        "KJV": "Be still, and know that I am God: I will be exalted among the heathen, I will be exalted in the earth.",
+        "ASV": "Be still, and know that I am God: I will be exalted among the nations, I will be exalted in the earth.",
+        "YLT": "Desist, and know that I am God, I am exalted among nations, I am exalted in the earth.",
+        "DRA": "Be still and see that I am God; I will be exalted among the nations, and I will be exalted in the earth."
+      }
+    },
+    {
+      "id": "db_004",
+      "reference": "Isaiah 40:31",
+      "text": {
+        "WEB": "But those who wait for Yahweh will renew their strength. They will mount up with wings like eagles. They will run, and not be weary. They will walk, and not faint.",
+        "KJV": "But they that wait upon the LORD shall renew their strength; they shall mount up with wings as eagles; they shall run, and not be weary; and they shall walk, and not faint.",
+        "ASV": "But they that wait for Jehovah shall renew their strength; they shall mount up with wings as eagles; they shall run, and not be weary; they shall walk, and not faint.",
+        "YLT": "But those expecting Jehovah pass to power, They raise up the pinion as eagles, They run and are not wearied, They go on and do not faint.",
+        "DRA": "But they that hope in the Lord shall renew their strength, they shall take wings as eagles, they shall run and not be weary, they shall walk and not faint."
+      }
+    },
+    {
+      "id": "db_005",
+      "reference": "Philippians 4:13",
+      "text": {
+        "WEB": "I can do all things through Christ, who strengthens me.",
+        "KJV": "I can do all things through Christ which strengtheneth me.",
+        "ASV": "I can do all things in him that strengtheneth me.",
+        "YLT": "For all things I have strength, in Christ's strengthening me.",
+        "DRA": "I can do all things in him who strengtheneth me."
+      }
+    },
+    {
+      "id": "db_006",
+      "reference": "Romans 8:28",
+      "text": {
+        "WEB": "We know that all things work together for good for those who love God, for those who are called according to his purpose.",
+        "KJV": "And we know that all things work together for good to them that love God, to them who are the called according to his purpose.",
+        "ASV": "And we know that to them that love God all things work together for good, even to them that are called according to his purpose.",
+        "YLT": "And we have known that to those loving God all things do work together for good, to those who are called according to purpose.",
+        "DRA": "And we know that to them that love God, all things work together unto good, to such as, according to his purpose, are called to be saints."
+      }
+    },
+    {
+      "id": "db_007",
+      "reference": "Jeremiah 29:11",
+      "text": {
+        "WEB": "For I know the thoughts that I think toward you, says Yahweh, thoughts of peace, and not of evil, to give you hope and a future.",
+        "KJV": "For I know the thoughts that I think toward you, saith the LORD, thoughts of peace, and not of evil, to give you an expected end.",
+        "ASV": "For I know the thoughts that I think toward you, saith Jehovah, thoughts of peace, and not of evil, to give you hope in your latter end.",
+        "YLT": "For I have known the thoughts that I am thinking towards you -- an affirmation of Jehovah; thoughts of peace, and not of evil, to give to you posterity and hope.",
+        "DRA": "For I know the thoughts that I think towards you, saith the Lord, thoughts of peace, and not of affliction, to give you an end and patience."
+      }
+    },
+    {
+      "id": "db_008",
+      "reference": "Psalm 16:11",
+      "text": {
+        "WEB": "You will show me the path of life. In your presence is fullness of joy. In your right hand there are pleasures forever more.",
+        "KJV": "Thou wilt shew me the path of life: in thy presence is fulness of joy; at thy right hand there are pleasures for evermore.",
+        "ASV": "Thou wilt show me the path of life: In thy presence is fulness of joy; In thy right hand there are pleasures for evermore.",
+        "YLT": "Thou causest me to know the path of life; Fulness of joys is with Thy presence, Pleasant things by Thy right hand for ever.",
+        "DRA": "Thou hast made known to me the ways of life, thou shalt fill me with joy with thy countenance: at thy right hand are delights even to the end."
+      }
+    },
+    {
+      "id": "db_009",
+      "reference": "Matthew 11:28",
+      "text": {
+        "WEB": "Come to me, all you who labor and are heavily burdened, and I will give you rest.",
+        "KJV": "Come unto me, all ye that labour and are heavy laden, and I will give you rest.",
+        "ASV": "Come unto me, all ye that labor and are heavy laden, and I will give you rest.",
+        "YLT": "Come unto me, all ye labouring and burdened ones, and I will give you rest.",
+        "DRA": "Come to me, all you that labour, and are burdened, and I will refresh you."
+      }
+    },
+    {
+      "id": "db_010",
+      "reference": "Joshua 1:9",
+      "text": {
+        "WEB": "Haven't I commanded you? Be strong and courageous. Don't be afraid. Don't be dismayed, for Yahweh your God is with you wherever you go.",
+        "KJV": "Have not I commanded thee? Be strong and of a good courage; be not afraid, neither be thou dismayed: for the LORD thy God is with thee whithersoever thou goest.",
+        "ASV": "Have not I commanded thee? Be strong and of good courage; be not affrighted, neither be thou dismayed: for Jehovah thy God is with thee whithersoever thou goest.",
+        "YLT": "Have not I commanded thee? Be strong and courageous; be not terrified nor affrighted, for with thee is Jehovah thy God in every place whither thou goest.",
+        "DRA": "Behold I command thee, take courage, and be strong. Fear not and be not dismayed: because the Lord thy God is with thee in all things whatsoever thou shalt go to."
+      }
+    },
+    {
+      "id": "db_011",
+      "reference": "Psalm 119:105",
+      "text": {
+        "WEB": "Your word is a lamp to my feet, and a light for my path.",
+        "KJV": "Thy word is a lamp unto my feet, and a light unto my path.",
+        "ASV": "Thy word is a lamp unto my feet, And light unto my path.",
+        "YLT": "A lamp to my foot is Thy word, And a light to my path.",
+        "DRA": "Thy word is a lamp to my feet, and a light to my paths."
+      }
+    },
+    {
+      "id": "db_012",
+      "reference": "Lamentations 3:22-23",
+      "text": {
+        "WEB": "It is because of Yahweh's loving kindnesses that we are not consumed, because his compassion doesn't fail. They are new every morning. Great is your faithfulness.",
+        "KJV": "It is of the LORD's mercies that we are not consumed, because his compassions fail not. They are new every morning: great is thy faithfulness.",
+        "ASV": "It is of Jehovah's lovingkindnesses that we are not consumed, because his compassions fail not. They are new every morning; great is thy faithfulness.",
+        "YLT": "The kindnesses of Jehovah! For we have not been consumed, For His mercies have not ended. New every morning, great is Thy faithfulness.",
+        "DRA": "The mercies of the Lord that we are not consumed: because his commiserations have not failed. They are new every morning, great is thy faithfulness."
+      }
+    }
+  ]
+}

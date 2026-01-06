@@ -57,6 +57,7 @@ flutter:
     - assets/stories/manifest.json
     - assets/stories/
     - assets/safety/kid_safety_blocklist.txt
+    - assets/daily_bread/daily_bread_verses.json
 
 # App icon configuration
 flutter_launcher_icons:
