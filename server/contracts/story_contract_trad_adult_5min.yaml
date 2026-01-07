@@ -1,0 +1,120 @@
+# Story Contract: Traditional Adult 5-Minute Parable
+# This is the SINGLE SOURCE OF TRUTH for generation requirements.
+# All generation scripts MUST load this file and enforce these rules.
+
+# === LENGTH REQUIREMENTS ===
+length:
+  target_words: 600
+  min_words: 510       # Absolute minimum to pass validation
+  max_words: 720       # Maximum before truncation warning
+  duration_minutes: 5  # Target audio length (ElevenLabs calibration)
+
+# === REQUIRED STRUCTURE ===
+# Each section has a word budget. Total should equal target_words.
+structure:
+  opening:
+    description: "Acknowledge listener's emotional state, set the scene"
+    min_words: 60
+    max_words: 100
+
+  story_body:
+    description: "Main parable with relatable character facing similar feelings"
+    min_words: 350
+    max_words: 450
+
+  turning_point:
+    description: "How faith, prayer, or scripture brings comfort/perspective"
+    min_words: 80
+    max_words: 120
+
+  closing_reflection:
+    description: "Gentle, hopeful conclusion - REQUIRED"
+    min_words: 50
+    max_words: 80
+    required: true
+    markers:
+      - "may you"
+      - "rest in"
+      - "peace be"
+      - "go now"
+      - "remember"
+      - "hold onto"
+      - "carry with you"
+
+# === TONE & STYLE RULES ===
+tone:
+  mode: traditional
+  voice: "pastoral, like a wise elder or gentle pastor speaking"
+  pacing: "unhurried, contemplative, reverent"
+
+  required:
+    - scripture_aligned
+    - spiritually_comforting
+    - grounded_in_biblical_wisdom
+    - hopeful_ending
+
+  forbidden:
+    - modern_slang
+    - casual_language
+    - fantasy_elements
+    - magical_thinking
+    - prosperity_gospel
+    - fire_and_brimstone
+    - guilt_manipulation
+    - denominational_specifics
+
+# === CONTENT RULES ===
+content:
+  kid_friendly: false
+
+  allowed_adult_themes:
+    - work_stress
+    - doubt
+    - fear
+    - grief
+    - exhaustion
+    - relationship_struggles
+    - financial_worry
+    - health_concerns
+    - loneliness
+    - feeling_lost
+
+  forbidden_content:
+    - graphic_violence
+    - explicit_content
+    - political_statements
+    - controversial_theology
+    - specific_denominations
+    - judgment_of_others
+
+# === SCRIPTURE RULES ===
+scripture:
+  allowed:
+    - brief_allusions
+    - paraphrased_wisdom
+    - thematic_references
+
+  forbidden:
+    - long_verbatim_quotes (more than 10 words)
+    - chapter_verse_citations_inline
+    - multiple_scripture_blocks
+
+# === VALIDATION RULES ===
+validation:
+  max_retries: 5
+  continue_on_short: true  # Ask Gemma to continue if under min_words
+
+  must_pass:
+    - word_count_minimum
+    - has_closing_reflection
+    - no_forbidden_content
+
+  warn_only:
+    - word_count_over_max
+    - structure_sections_missing
+
+# === FAILURE HANDLING ===
+failure:
+  quarantine_dir: "assets/stories_failed"
+  log_failures: true
+  retry_on_next_batch: true

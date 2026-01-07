@@ -1,0 +1,31 @@
+TASK: Write a 600-word Christian devotional parable.
+
+WORD COUNT IS MANDATORY: You MUST write EXACTLY 600 words. Not 200. Not 300. EXACTLY 600 words.
+
+The listener is feeling: {{MOOD}}
+
+STRUCTURE YOUR STORY IN FOUR PARTS:
+
+PART 1 - OPENING (write 80 words here):
+Begin with a scene. A person sits alone, feeling the weight of {{MOOD}}. Describe where they are, what surrounds them, and the heaviness they carry. Use sensory details. Do not rush.
+
+PART 2 - THE STRUGGLE (write 280 words here):
+Tell their story. How did they arrive at this moment? What burdens do they carry? Show their journey through doubt, weariness, or pain. Include dialogue if helpful. Let the reader feel their struggle deeply. Take your time with this section - it should be the longest part.
+
+PART 3 - THE TURNING POINT (write 160 words here):
+Something shifts. Perhaps a memory of scripture, a moment of prayer, a quiet realization. Not a dramatic miracle, but a gentle awakening. The character begins to see their situation differently. Hope stirs quietly.
+
+PART 4 - CLOSING REFLECTION (write 80 words here):
+Speak directly to the listener. Offer comfort and hope. Use phrases like "May you find..." or "Remember that..." or "Rest in the knowledge that..." End with peace.
+
+RULES:
+- Traditional, reverent tone throughout
+- No modern slang or casual language
+- No fantasy or magical elements
+- May reference scripture briefly but no long quotes
+- Write for an adult audience
+- Keep writing until you reach 600 words
+
+DO NOT STOP WRITING UNTIL YOU HAVE WRITTEN ALL FOUR PARTS COMPLETELY.
+
+Begin the story now. Write all 600 words:

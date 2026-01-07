@@ -1,0 +1,93 @@
+# Golden Prompt Contract: Traditional Adult 5-Minute Parable
+# Single-shot generation - trusts model more, no continuation logic
+#
+# Key philosophy:
+# - Constrain the model, don't ask it to be smart
+# - Match task to Gemma's strengths (reflective prose, moral framing)
+# - Single purpose, single audience, single mode
+# - Trust the model with a clear lane
+
+# === LENGTH REQUIREMENTS ===
+length:
+  target_words: 600
+  min_words: 450       # Lower threshold - trust model more
+  max_words: 800       # Higher ceiling - allow natural length
+  duration_minutes: 5
+
+# === VALIDATION ===
+validation:
+  max_retries: 2                # Fewer retries - trust model
+  continue_on_short: false      # CRITICAL: no continuation prompts
+  regenerate_on_short: true     # Fresh regeneration instead
+
+  must_pass:
+    - word_count_minimum
+
+  warn_only:
+    - word_count_over_max
+
+# === TONE & STYLE (preserved from standard contract) ===
+tone:
+  mode: traditional
+  voice: "pastoral, like a trusted mentor speaking gently"
+  pacing: "calm, reverent"
+
+  required:
+    - scripture_aligned
+    - spiritually_comforting
+    - grounded_in_biblical_wisdom
+    - hopeful_ending
+
+  forbidden:
+    - modern_slang
+    - casual_language
+    - fantasy_elements
+    - magical_thinking
+    - prosperity_gospel
+    - fire_and_brimstone
+    - guilt_manipulation
+    - denominational_specifics
+
+# === CONTENT RULES (preserved from standard contract) ===
+content:
+  kid_friendly: false
+
+  allowed_adult_themes:
+    - work_stress
+    - doubt
+    - fear
+    - grief
+    - exhaustion
+    - relationship_struggles
+    - financial_worry
+    - health_concerns
+    - loneliness
+    - feeling_lost
+
+  forbidden_content:
+    - graphic_violence
+    - explicit_content
+    - political_statements
+    - controversial_theology
+    - specific_denominations
+    - judgment_of_others
+
+# === SCRIPTURE RULES (preserved from standard contract) ===
+scripture:
+  allowed:
+    - brief_allusions
+    - paraphrased_wisdom
+    - thematic_references
+
+  forbidden:
+    - long_verbatim_quotes (more than 10 words)
+    - chapter_verse_citations_inline
+    - multiple_scripture_blocks
+
+# === MODE GUARD ===
+mode_guard:
+  mode_name: golden
+  incompatible_with:
+    - continuation_prompts
+    - segmented_generation
+    - multi_objective_prompts
