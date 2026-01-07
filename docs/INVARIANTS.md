@@ -886,6 +886,34 @@ flutter test
 
 ---
 
+## 🔒 Golden Prompt Single-Shot Generation Invariant (NON-NEGOTIABLE)
+
+**Invariant**: When `--golden-prompt` is enabled for adult traditional 5-min generation:
+
+1. **No continuation prompts may be used.** Each attempt is a fresh, complete generation.
+2. **Attempt 1 MUST require exactly 10 paragraphs, 5 sentences each.**
+3. **If attempt 1 fails min_words, attempt 2 MUST regenerate fresh requiring exactly 12 paragraphs, 5 sentences each.**
+4. **If attempt 2 fails min_words, output MUST follow existing quarantine behavior.**
+5. **Standard mode behavior MUST remain unchanged.**
+
+### Why This Exists
+
+Gemma-7B produces story repetition/duplication when given continuation prompts (e.g., "continue the story from here..."). Structure-based length control (paragraph × sentence counts) reliably produces target word counts without degrading narrative quality.
+
+### Violation Response
+
+- **CORRECT**: Attempt 1 produces 433 words → Attempt 2 regenerates fresh with 12 paragraphs
+- **VIOLATION**: Attempt 1 produces 433 words → Attempt 2 appends "continue the story..."
+
+### Resources
+
+- [SPEC.md Golden Prompt Section](SPEC.md#golden-prompt-mode-adult-traditional-5-min-generation)
+- [Generation Script](../server/generate_adult_traditional_stories.sh)
+- [Golden Prompt Template](../server/prompts/golden_trad_adult_5min.prompt.txt)
+- [Golden Contract](../server/contracts/golden_contract_trad_adult_5min.yaml)
+
+---
+
 ## Future Invariants
 
 As the project evolves, additional invariants may be added here. Each invariant must:
@@ -896,5 +924,5 @@ As the project evolves, additional invariants may be added here. Each invariant 
 
 ---
 
-**Last Updated**: 2026-01-05
+**Last Updated**: 2026-01-06
 **Maintained By**: Bible PAL Development Team

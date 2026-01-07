@@ -160,6 +160,62 @@ Affects:
 - Story generation prompts
 - Pre-generated story selection pool
 
+---
+
+### Golden Prompt Mode: Adult Traditional 5-Min Generation
+
+Golden Prompt mode is a specialized generation strategy for adult traditional 5-minute parables that uses structure-based length control instead of continuation prompts.
+
+**Goals:**
+- Reliable single-shot generation that meets word count requirements
+- Exploit Gemma-7B's strength with constrained, structured prompts
+- Eliminate story repetition/duplication bugs caused by continuation logic
+
+**Non-Goals:**
+- Creative mode support (standard mode only)
+- Kid-friendly generation (separate harness)
+- Variable-length stories (5-min only)
+
+**Inputs:**
+- Mood: one of `joyful`, `weary`, `anxious`, `hurting`, `neutral`, `encouraging`, `calm_peaceful`, `brave_courage`
+- Model: `gemma:7b` via Ollama
+
+**Prompt Constraints (Structure-Based Length Control):**
+- Attempt 1: exactly 10 paragraphs, exactly 5 sentences per paragraph
+- Attempt 2 fallback: exactly 12 paragraphs, exactly 5 sentences per paragraph
+- No headings, no numbering, no bullet points
+- No modern slang, no fantasy, no humor, no dialogue-heavy scenes
+- Scripture may be referenced gently (no long quotes)
+
+**Retry Policy:**
+- Maximum attempts: 2
+- If attempt 1 word count < 450: regenerate fresh with stricter structure (12 paragraphs)
+- NO continuation prompts — always single-shot generation
+- Each retry uses the same mood but escalated structure
+
+**Output:**
+- Filename pattern: `parable_3XX_<mood>_5min_golden_trad.txt`
+- Story ID range: 301-308 (one per mood)
+- YAML frontmatter with `mode: golden_traditional`
+
+**Quarantine Behavior:**
+- If attempt 2 still fails min_words (< 450): story is quarantined
+- Quarantine location: `assets/stories_failed/`
+- Metadata includes: `failure_reason: word_count_too_low`, `actual_words`, `attempts`
+
+**Acceptance Examples:**
+
+1. **Escalation case**: If attempt 1 produces 433 words, attempt 2 MUST regenerate with 12 paragraphs (not continue the story).
+
+2. **Quarantine case**: If attempt 2 still produces only 420 words, the story MUST be quarantined to `assets/stories_failed/` with `kidSafe: false` equivalent marking.
+
+3. **Success case**: If attempt 1 produces 512 words, no retry is needed — story is saved immediately.
+
+**Script:**
+- `server/generate_adult_traditional_stories.sh --golden-prompt`
+- Prompt template: `server/prompts/golden_trad_adult_5min.prompt.txt`
+- Contract: `server/contracts/golden_contract_trad_adult_5min.yaml`
+
 ### Sharing & Replay Logic
 
 **14. Share With a PAL**
