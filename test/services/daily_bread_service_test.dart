@@ -94,17 +94,45 @@ void main() {
         }
       });
 
-      test('Asset should have at least 10 verses', () async {
+      test('Asset should have at least 120 verses', () async {
         final jsonString = await rootBundle
             .loadString('assets/daily_bread/daily_bread_verses.json');
         final data = jsonDecode(jsonString) as Map<String, dynamic>;
         final verses = data['verses'] as List<dynamic>;
 
         expect(
-          verses.length >= 10,
+          verses.length >= 120,
           true,
-          reason: 'Asset should have at least 10 verses, found ${verses.length}',
+          reason: 'Asset should have at least 120 verses for variety, found ${verses.length}',
         );
+      });
+
+      test('CRITICAL: All verses must have all 5 translations', () async {
+        final jsonString = await rootBundle
+            .loadString('assets/daily_bread/daily_bread_verses.json');
+        final data = jsonDecode(jsonString) as Map<String, dynamic>;
+        final verses = data['verses'] as List<dynamic>;
+
+        const requiredTranslations = ['WEB', 'KJV', 'ASV', 'YLT', 'DRA'];
+
+        for (final verse in verses) {
+          final id = verse['id'] as String;
+          final reference = verse['reference'] as String;
+          final text = verse['text'] as Map<String, dynamic>;
+
+          for (final translation in requiredTranslations) {
+            expect(
+              text.containsKey(translation),
+              true,
+              reason: 'Verse "$id" ($reference) missing $translation translation.',
+            );
+            expect(
+              (text[translation] as String).isNotEmpty,
+              true,
+              reason: 'Verse "$id" ($reference) has empty $translation translation.',
+            );
+          }
+        }
       });
     });
 
