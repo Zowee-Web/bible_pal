@@ -40,8 +40,10 @@ class VoiceConsentDialog extends ConsumerStatefulWidget {
 }
 
 class _VoiceConsentDialogState extends ConsumerState<VoiceConsentDialog> {
-  bool _storyNarrationEnabled = true;
-  bool _palGreetingsEnabled = true;
+  // Default to OFF - safest interpretation of "explicit consent"
+  // User must actively check boxes to enable voice features
+  bool _storyNarrationEnabled = false;
+  bool _palGreetingsEnabled = false;
 
   @override
   Widget build(BuildContext context) {
