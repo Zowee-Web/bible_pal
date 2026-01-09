@@ -20,6 +20,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   bool _showEverydayReflections = true;
   String _storytellingMode = 'creative';
   String _storyLanguage = 'WEB';
+  // Voice consent (Phase 3)
+  bool? _storyNarrationEnabled;
+  bool? _palGreetingsEnabled;
 
   @override
   void initState() {
@@ -38,13 +41,16 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       _backgroundSoundOn = backgroundSound;
     }
 
-    // Load kid-friendly mode, reflections, storytelling mode, and story language from UserPreferences (via app state)
+    // Load kid-friendly mode, reflections, storytelling mode, story language, and voice consent from UserPreferences
     final appState = ref.read(appStateProvider).valueOrNull;
     if (appState != null) {
       _kidFriendlyOnly = appState.userPreferences.kidFriendlyOnly;
       _showEverydayReflections = appState.userPreferences.showEverydayReflections;
       _storytellingMode = appState.userPreferences.storytellingMode;
       _storyLanguage = appState.userPreferences.storyLanguage;
+      // Voice consent (Phase 3)
+      _storyNarrationEnabled = appState.userPreferences.storyNarrationEnabled;
+      _palGreetingsEnabled = appState.userPreferences.palGreetingsEnabled;
     }
 
     setState(() => _loaded = true);
@@ -99,6 +105,30 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     setState(() => _storyLanguage = language);
     final appState = ref.read(appStateProvider.notifier);
     await appState.updateStoryLanguage(language);
+  }
+
+  Future<void> _setStoryNarrationEnabled(bool enabled) async {
+    logEvent('voice_consent_changed', {
+      'feature': 'story_narration',
+      'from': _storyNarrationEnabled,
+      'to': enabled,
+    });
+
+    setState(() => _storyNarrationEnabled = enabled);
+    final appState = ref.read(appStateProvider.notifier);
+    await appState.updateStoryNarrationConsent(enabled);
+  }
+
+  Future<void> _setPalGreetingsEnabled(bool enabled) async {
+    logEvent('voice_consent_changed', {
+      'feature': 'pal_greetings',
+      'from': _palGreetingsEnabled,
+      'to': enabled,
+    });
+
+    setState(() => _palGreetingsEnabled = enabled);
+    final appState = ref.read(appStateProvider.notifier);
+    await appState.updatePalGreetingsConsent(enabled);
   }
 
   @override
@@ -168,6 +198,23 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             value: 'KJV',
             groupValue: _storyLanguage,
             onChanged: (value) => _setStoryLanguage(value!),
+          ),
+          const Divider(),
+          const ListTile(
+            title: Text('Voice Features'),
+            subtitle: Text('Control audio narration and voice greetings'),
+          ),
+          SwitchListTile(
+            title: const Text('Story Narration'),
+            subtitle: const Text('Audio playback of parables'),
+            value: _storyNarrationEnabled ?? false,
+            onChanged: (value) => _setStoryNarrationEnabled(value),
+          ),
+          SwitchListTile(
+            title: const Text('PAL Greetings'),
+            subtitle: const Text('Voice greetings from your PAL'),
+            value: _palGreetingsEnabled ?? false,
+            onChanged: (value) => _setPalGreetingsEnabled(value),
           ),
           // Diagnostics entry - only visible when diagnostics are enabled
           if (kDiagnosticsEnabled) ...[

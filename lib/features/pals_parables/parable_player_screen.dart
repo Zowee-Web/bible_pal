@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bible_pal/providers/parable_player_notifier.dart';
 import 'package:bible_pal/providers/app_state_notifier.dart';
 import 'package:bible_pal/features/my_pals/select_pals_dialog.dart';
+import 'package:bible_pal/features/consent/voice_consent_dialog.dart';
 import 'package:bible_pal/models/share_record.dart';
 import 'package:bible_pal/services/reflection_service.dart';
 import 'package:uuid/uuid.dart';
@@ -134,6 +135,52 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
         duration: const Duration(seconds: 2),
       ),
     );
+  }
+
+  /// Handle play button press with voice consent check.
+  /// Shows VoiceConsentDialog if user hasn't consented yet.
+  Future<void> _handlePlay(ParablePlayerNotifier playerNotifier) async {
+    final result = await playerNotifier.play();
+
+    if (!mounted) return;
+
+    switch (result) {
+      case VoicePlayResult.played:
+        // Audio started successfully, nothing more to do
+        break;
+
+      case VoicePlayResult.needsConsent:
+        // Show consent dialog
+        final consentResult = await VoiceConsentDialog.show(context);
+
+        if (!mounted) return;
+
+        // If user enabled narration, retry play
+        if (consentResult == VoiceConsentResult.enabled) {
+          // Re-check consent by playing again
+          await playerNotifier.play();
+        }
+        // If declined or dismissed, stay in text-only mode (no action needed)
+        break;
+
+      case VoicePlayResult.disabled:
+        // User explicitly disabled narration - show snackbar as gentle reminder
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Story narration is disabled. Enable it in Settings.'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+        break;
+
+      case VoicePlayResult.noParable:
+        // Should not happen since button is only visible when parable is loaded
+        break;
+
+      case VoicePlayResult.error:
+        // Error message is set in state, will be displayed by UI
+        break;
+    }
   }
 
   @override
@@ -271,11 +318,11 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                 size: 64,
                               ),
                               color: theme.colorScheme.primary,
-                              onPressed: () {
+                              onPressed: () async {
                                 if (playerNotifier.isPlaying) {
                                   playerNotifier.pause();
                                 } else {
-                                  playerNotifier.play();
+                                  await _handlePlay(playerNotifier);
                                 }
                               },
                             ),

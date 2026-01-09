@@ -11,6 +11,10 @@ import '../core/bible_translation_registry.dart';
 /// Allowed values for storyLanguage (stricter than bibleTranslation)
 const List<String> allowedStoryLanguages = ['WEB', 'KJV'];
 
+/// Current voice consent schema version.
+/// Increment this to re-prompt users for consent (e.g., if we add new voice features).
+const int currentVoiceConsentVersion = 1;
+
 /// Validates and sanitizes storyLanguage, returning 'WEB' if invalid
 String _validateStoryLanguage(String? value) {
   if (value == null || !allowedStoryLanguages.contains(value)) {
@@ -29,6 +33,12 @@ class UserPreferences {
   final bool showEverydayReflections; // Feature #34: Post-story reflections
   final bool hasCompletedOnboarding;
 
+  // Voice consent fields (Phase 3)
+  // null = not asked yet, true = enabled, false = disabled
+  final bool? storyNarrationEnabled; // Audio playback of stories
+  final bool? palGreetingsEnabled; // PAL voice greetings (future)
+  final int? voiceConsentVersion; // Schema version when consent was given
+
   const UserPreferences({
     required this.faithTradition,
     required this.bibleTranslation,
@@ -38,6 +48,9 @@ class UserPreferences {
     this.kidFriendlyOnly = false,
     this.showEverydayReflections = true, // Default ON per SPEC.md #34
     this.hasCompletedOnboarding = false,
+    this.storyNarrationEnabled, // null = not asked
+    this.palGreetingsEnabled, // null = not asked
+    this.voiceConsentVersion, // null = never consented
   });
 
   /// Default preferences for first-time users
@@ -76,6 +89,9 @@ class UserPreferences {
           json['showEverydayReflections'] as bool? ?? true, // Default ON
       hasCompletedOnboarding:
           json['hasCompletedOnboarding'] as bool? ?? false,
+      storyNarrationEnabled: json['storyNarrationEnabled'] as bool?,
+      palGreetingsEnabled: json['palGreetingsEnabled'] as bool?,
+      voiceConsentVersion: json['voiceConsentVersion'] as int?,
     );
   }
 
@@ -90,10 +106,18 @@ class UserPreferences {
       'kidFriendlyOnly': kidFriendlyOnly,
       'showEverydayReflections': showEverydayReflections,
       'hasCompletedOnboarding': hasCompletedOnboarding,
+      'storyNarrationEnabled': storyNarrationEnabled,
+      'palGreetingsEnabled': palGreetingsEnabled,
+      'voiceConsentVersion': voiceConsentVersion,
     };
   }
 
   /// Create a copy with modified fields
+  ///
+  /// For nullable voice consent fields, use the special sentinel value pattern:
+  /// - Pass nothing to keep current value
+  /// - Pass a value to set it
+  /// To explicitly set to null, use clearVoiceConsent() instead.
   UserPreferences copyWith({
     String? faithTradition,
     String? bibleTranslation,
@@ -103,6 +127,9 @@ class UserPreferences {
     bool? kidFriendlyOnly,
     bool? showEverydayReflections,
     bool? hasCompletedOnboarding,
+    bool? storyNarrationEnabled,
+    bool? palGreetingsEnabled,
+    int? voiceConsentVersion,
   }) {
     // RUNTIME GUARD: Validate translation if provided
     final validatedTranslation = bibleTranslation != null
@@ -126,6 +153,10 @@ class UserPreferences {
           showEverydayReflections ?? this.showEverydayReflections,
       hasCompletedOnboarding:
           hasCompletedOnboarding ?? this.hasCompletedOnboarding,
+      storyNarrationEnabled:
+          storyNarrationEnabled ?? this.storyNarrationEnabled,
+      palGreetingsEnabled: palGreetingsEnabled ?? this.palGreetingsEnabled,
+      voiceConsentVersion: voiceConsentVersion ?? this.voiceConsentVersion,
     );
   }
 
@@ -134,4 +165,23 @@ class UserPreferences {
       hasCompletedOnboarding &&
       faithTradition.isNotEmpty &&
       bibleTranslation.isNotEmpty;
+
+  // === Voice Consent Helpers ===
+
+  /// True if story narration consent has been asked (regardless of answer)
+  bool get hasAskedStoryNarrationConsent => storyNarrationEnabled != null;
+
+  /// True if PAL greetings consent has been asked (regardless of answer)
+  bool get hasAskedPalGreetingsConsent => palGreetingsEnabled != null;
+
+  /// True if story narration is explicitly enabled
+  bool get isStoryNarrationEnabled => storyNarrationEnabled == true;
+
+  /// True if PAL greetings are explicitly enabled
+  bool get isPalGreetingsEnabled => palGreetingsEnabled == true;
+
+  /// Check if we need to re-ask consent due to version upgrade
+  bool get needsConsentVersionUpgrade =>
+      voiceConsentVersion != null &&
+      voiceConsentVersion! < currentVoiceConsentVersion;
 }

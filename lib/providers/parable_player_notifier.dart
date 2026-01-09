@@ -3,6 +3,28 @@ import 'package:bible_pal/models/parable.dart';
 import 'package:bible_pal/services/audio_service.dart';
 import 'package:bible_pal/core/app_logger.dart';
 import 'service_providers.dart';
+import 'app_state_notifier.dart';
+
+/// Result of attempting to play voice audio (story narration).
+/// Callers MUST handle `needsConsent` by showing VoiceConsentDialog.
+enum VoicePlayResult {
+  /// Audio playback started successfully
+  played,
+
+  /// User has not yet been asked for voice consent (storyNarrationEnabled == null).
+  /// Caller MUST show VoiceConsentDialog and retry play() after consent is given.
+  needsConsent,
+
+  /// User explicitly disabled story narration (storyNarrationEnabled == false).
+  /// Audio will not play. Caller may show text-only fallback.
+  disabled,
+
+  /// No parable loaded to play
+  noParable,
+
+  /// Error occurred during playback
+  error,
+}
 
 /// Parable Player State
 class ParablePlayerState {
@@ -118,15 +140,54 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
     }
   }
 
-  /// Play the current parable
-  Future<void> play() async {
-    if (state.currentParable == null) return;
+  /// Play the current parable (with voice consent check).
+  ///
+  /// Returns [VoicePlayResult] indicating what happened:
+  /// - `played`: Audio started successfully
+  /// - `needsConsent`: User hasn't been asked yet - caller MUST show VoiceConsentDialog
+  /// - `disabled`: User declined narration - caller may show text-only fallback
+  /// - `noParable`: No parable loaded
+  /// - `error`: Playback error occurred
+  ///
+  /// Callers MUST handle `needsConsent` by showing VoiceConsentDialog,
+  /// then calling play() again after user grants consent.
+  Future<VoicePlayResult> play() async {
+    if (state.currentParable == null) return VoicePlayResult.noParable;
+
+    // Check voice consent before playing
+    final appState = ref.read(appStateProvider);
+    final userPrefs = appState.valueOrNull?.userPreferences;
+
+    if (userPrefs != null) {
+      final storyNarrationEnabled = userPrefs.storyNarrationEnabled;
+
+      // null = not asked yet → needs consent
+      if (storyNarrationEnabled == null) {
+        logEvent('voice_consent_needed', {
+          'story_id': state.currentParable?.storyId,
+          'trigger': 'play_button',
+        });
+        return VoicePlayResult.needsConsent;
+      }
+
+      // false = explicitly disabled → don't play
+      if (storyNarrationEnabled == false) {
+        logEvent('voice_narration_disabled', {
+          'story_id': state.currentParable?.storyId,
+        });
+        return VoicePlayResult.disabled;
+      }
+
+      // true = enabled → proceed with playback
+    }
 
     try {
       await _audioService.play();
       ref.notifyListeners();
+      return VoicePlayResult.played;
     } catch (e) {
       state = state.copyWith(errorMessage: 'Error playing audio: $e');
+      return VoicePlayResult.error;
     }
   }
 

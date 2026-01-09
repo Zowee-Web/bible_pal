@@ -154,6 +154,40 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
     await updateUserPreferences(prefs);
   }
 
+  // Voice Consent Methods (Phase 3)
+
+  /// Update voice consent settings.
+  /// Called when user responds to voice consent dialog or toggles in settings.
+  Future<void> updateVoiceConsent({
+    bool? storyNarrationEnabled,
+    bool? palGreetingsEnabled,
+  }) async {
+    final prefs = state.requireValue.userPreferences.copyWith(
+      storyNarrationEnabled: storyNarrationEnabled,
+      palGreetingsEnabled: palGreetingsEnabled,
+      voiceConsentVersion: currentVoiceConsentVersion,
+    );
+    await updateUserPreferences(prefs);
+  }
+
+  /// Update story narration consent only
+  Future<void> updateStoryNarrationConsent(bool enabled) async {
+    final prefs = state.requireValue.userPreferences.copyWith(
+      storyNarrationEnabled: enabled,
+      voiceConsentVersion: currentVoiceConsentVersion,
+    );
+    await updateUserPreferences(prefs);
+  }
+
+  /// Update PAL greetings consent only
+  Future<void> updatePalGreetingsConsent(bool enabled) async {
+    final prefs = state.requireValue.userPreferences.copyWith(
+      palGreetingsEnabled: enabled,
+      voiceConsentVersion: currentVoiceConsentVersion,
+    );
+    await updateUserPreferences(prefs);
+  }
+
   // Favorites Methods
   Future<void> addFavorite(Parable parable) async {
     state = await AsyncValue.guard(() async {
