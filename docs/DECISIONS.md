@@ -285,6 +285,60 @@ When crash reporting is needed:
 
 ---
 
+## ADR-007: First-Launch Onboarding Gate (Silent, Race-Free)
+
+**Date:** 2026-01-08
+**Status:** Accepted (Frozen)
+**Context:** Bible PAL needed a first-launch onboarding flow that:
+1. Shows PAL introducing itself with a typing animation
+2. Collects user's name
+3. Routes directly to PAL's Stories
+4. Plays NO audio during onboarding
+5. Shows NO voice consent dialog during onboarding
+6. Has NO race conditions that could flash wrong screens
+
+**Decision:** Implement a `FutureBuilder`-gated routing system:
+
+1. **Single source of truth**: `kFirstLaunchCompleteKey` in SharedPreferences
+2. **FutureBuilder gate**: Bootstrap widget awaits SharedPreferences before routing
+3. **Loading state**: Shows spinner while preferences load (not a functional screen)
+4. **Error fallback**: On SharedPreferences error, default to FirstLaunchScreen (privacy-safe)
+5. **No initialRoute override**: Only `home:` property used in MaterialApp
+
+**Routing Logic:**
+```
+Bootstrap._isFirstLaunch() → FutureBuilder
+  ├─ hasError → AppRouter(showFirstLaunch: true)  // Safe default
+  ├─ !hasData → CircularProgressIndicator         // Loading
+  ├─ data=true → AppRouter(showFirstLaunch: true) // First launch
+  └─ data=false → AppRouter(showFirstLaunch: false) // Returning user
+```
+
+**Hard Invariants (Frozen):**
+- FirstLaunchScreen is ALWAYS the first functional screen on true first launch
+- No VoiceConsentGate, TraditionSetupScreen, or MainMenuScreen can appear before it
+- No audio plays during FirstLaunchScreen (silent by design)
+- Completion flag is set BEFORE navigation away from FirstLaunchScreen
+- On error, default to first-launch flow (never to main app)
+
+**Rationale:**
+- **FutureBuilder over async main()**: Keeps main() synchronous, standard Flutter pattern
+- **Error → FirstLaunchScreen**: If we can't read prefs, safer to show onboarding than assume user is returning
+- **Flag before navigate**: Prevents re-triggering onboarding if app is killed during transition
+- **No initialRoute**: Prevents accidental override of the home screen logic
+
+**Consequences:**
+- New files:
+  - `lib/features/onboarding/first_launch_screen.dart`
+  - `test/features/onboarding/first_launch_screen_test.dart`
+- Modified:
+  - `lib/main.dart` (Bootstrap with FutureBuilder)
+  - `lib/app_router.dart` (showFirstLaunch parameter)
+  - `lib/models/user_preferences.dart` (userName field)
+- This behavior is FROZEN — do not modify routing logic without explicit approval
+
+---
+
 ## Template for Future Decisions
 
 ```
