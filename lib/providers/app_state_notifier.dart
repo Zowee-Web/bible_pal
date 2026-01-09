@@ -133,6 +133,13 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
     await updateUserPreferences(prefs);
   }
 
+  Future<void> updateStoryLanguage(String storyLanguage) async {
+    final prefs = state.requireValue.userPreferences.copyWith(
+      storyLanguage: storyLanguage,
+    );
+    await updateUserPreferences(prefs);
+  }
+
   Future<void> updateKidFriendlyOnly(bool kidFriendlyOnly) async {
     final prefs = state.requireValue.userPreferences.copyWith(
       kidFriendlyOnly: kidFriendlyOnly,

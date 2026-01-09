@@ -8,6 +8,7 @@ class Parable {
   final int length; // 5, 10, 15, or 20 minutes
   final String faithTradition;
   final String storytellingMode; // 'creative' or 'traditional'
+  final String translationId; // 'WEB' or 'KJV' - Bible translation used in story
   final bool kidFriendly; // Content appropriate for children
   final List<String> scriptureSources; // Array of verse references
   final String? audioFilePath; // Path to pre-generated audio file
@@ -22,6 +23,7 @@ class Parable {
     required this.length,
     required this.faithTradition,
     required this.storytellingMode,
+    this.translationId = 'WEB', // Default to WEB for backwards compatibility
     required this.kidFriendly,
     this.scriptureSources = const [],
     this.audioFilePath,
@@ -42,6 +44,7 @@ class Parable {
       length: json['length'] as int,
       faithTradition: json['faithTradition'] as String,
       storytellingMode: json['storytellingMode'] as String,
+      translationId: json['translationId'] as String? ?? 'WEB',
       kidFriendly: json['kidFriendly'] as bool? ?? false,
       scriptureSources: (json['scriptureSources'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -65,6 +68,7 @@ class Parable {
       'length': length,
       'faithTradition': faithTradition,
       'storytellingMode': storytellingMode,
+      'translationId': translationId,
       'kidFriendly': kidFriendly,
       'scriptureSources': scriptureSources,
       'audioFilePath': audioFilePath,
@@ -82,6 +86,7 @@ class Parable {
     int? length,
     String? faithTradition,
     String? storytellingMode,
+    String? translationId,
     bool? kidFriendly,
     List<String>? scriptureSources,
     String? audioFilePath,
@@ -96,6 +101,7 @@ class Parable {
       length: length ?? this.length,
       faithTradition: faithTradition ?? this.faithTradition,
       storytellingMode: storytellingMode ?? this.storytellingMode,
+      translationId: translationId ?? this.translationId,
       kidFriendly: kidFriendly ?? this.kidFriendly,
       scriptureSources: scriptureSources ?? this.scriptureSources,
       audioFilePath: audioFilePath ?? this.audioFilePath,

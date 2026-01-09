@@ -19,6 +19,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   bool _kidFriendlyOnly = false;
   bool _showEverydayReflections = true;
   String _storytellingMode = 'creative';
+  String _storyLanguage = 'WEB';
 
   @override
   void initState() {
@@ -37,12 +38,13 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       _backgroundSoundOn = backgroundSound;
     }
 
-    // Load kid-friendly mode, reflections, and storytelling mode from UserPreferences (via app state)
+    // Load kid-friendly mode, reflections, storytelling mode, and story language from UserPreferences (via app state)
     final appState = ref.read(appStateProvider).valueOrNull;
     if (appState != null) {
       _kidFriendlyOnly = appState.userPreferences.kidFriendlyOnly;
       _showEverydayReflections = appState.userPreferences.showEverydayReflections;
       _storytellingMode = appState.userPreferences.storytellingMode;
+      _storyLanguage = appState.userPreferences.storyLanguage;
     }
 
     setState(() => _loaded = true);
@@ -84,6 +86,19 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     setState(() => _storytellingMode = mode);
     final appState = ref.read(appStateProvider.notifier);
     await appState.updateStorytellingMode(mode);
+  }
+
+  Future<void> _setStoryLanguage(String language) async {
+    // Log story language change
+    logEvent('story_language_changed', {
+      'from': _storyLanguage,
+      'to': language,
+      'kid_mode': _kidFriendlyOnly,
+    });
+
+    setState(() => _storyLanguage = language);
+    final appState = ref.read(appStateProvider.notifier);
+    await appState.updateStoryLanguage(language);
   }
 
   @override
@@ -134,6 +149,25 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             value: 'traditional',
             groupValue: _storytellingMode,
             onChanged: (value) => _setStorytellingMode(value!),
+          ),
+          const Divider(),
+          const ListTile(
+            title: Text('Story Language'),
+            subtitle: Text('Choose the Bible translation style for stories'),
+          ),
+          RadioListTile<String>(
+            title: const Text('Modern (WEB)'),
+            subtitle: const Text('World English Bible - contemporary language'),
+            value: 'WEB',
+            groupValue: _storyLanguage,
+            onChanged: (value) => _setStoryLanguage(value!),
+          ),
+          RadioListTile<String>(
+            title: const Text('Classic (KJV)'),
+            subtitle: const Text('King James Version - traditional language'),
+            value: 'KJV',
+            groupValue: _storyLanguage,
+            onChanged: (value) => _setStoryLanguage(value!),
           ),
           // Diagnostics entry - only visible when diagnostics are enabled
           if (kDiagnosticsEnabled) ...[

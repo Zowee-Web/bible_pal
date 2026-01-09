@@ -178,78 +178,53 @@ class ParableService {
     final allParables = await _loadManifest();
     
     // For bundled test assets, be more lenient with filtering
-    final isTestMode = _useAssets;
     final hasEmptyTradition = userPrefs.faithTradition.isEmpty;
     
-    debugPrint('Filtering parables: mood=$mood, length=$lengthMinutes, tradition=${userPrefs.faithTradition}, mode=${userPrefs.storytellingMode}, kidFriendlyOnly=${userPrefs.kidFriendlyOnly} (testMode=$isTestMode)');
+    // Story language filter (WEB or KJV)
+    // Stories are filtered by translationId to match user's storyLanguage preference
+    final storyLanguage = userPrefs.storyLanguage;
 
-    // Log filters being applied
+    // Log filters being applied (analytics only, not verbose debug output)
     logEvent('filters_applied', {
       'kid_mode': userPrefs.kidFriendlyOnly,
       'tradition': userPrefs.faithTradition,
       'storytelling_mode': userPrefs.storytellingMode,
+      'story_language': storyLanguage,
       'mood': mood,
       'length_min': lengthMinutes,
       'pool_size': allParables.length,
     });
 
-    // CRITICAL: Log kid-friendly mode status
-    if (userPrefs.kidFriendlyOnly) {
-      debugPrint('🔒 KID-FRIENDLY MODE ENABLED: Only kid-safe parables will be returned');
-    }
-
-    // Filter by criteria
+    // Filter by criteria (no per-item logging - use debugVerbose for troubleshooting)
     final eligible = allParables.where((p) {
-      debugPrint('  Checking ${p.storyId}: mood=${p.mood}, length=${p.length}, tradition=${p.faithTradition}, mode=${p.storytellingMode}');
-      
       // Match mood (always required)
-      if (p.mood != mood) {
-        debugPrint('    ✗ Mood mismatch');
-        return false;
-      }
+      if (p.mood != mood) return false;
 
       // Match length (always required)
-      if (p.length != lengthMinutes) {
-        debugPrint('    ✗ Length mismatch');
-        return false;
-      }
+      if (p.length != lengthMinutes) return false;
 
       // Match faith tradition - skip if user hasn't set one yet (test mode)
       if (!hasEmptyTradition && p.faithTradition != userPrefs.faithTradition) {
-        debugPrint('    ✗ Tradition mismatch');
         return false;
-      } else if (hasEmptyTradition) {
-        debugPrint('    ⊙ Tradition check skipped (user has not set tradition yet)');
       }
 
       // Match storytelling mode (ALWAYS enforced - user expects this to work!)
-      if (p.storytellingMode != userPrefs.storytellingMode) {
-        debugPrint('    ✗ Mode mismatch (expected: ${userPrefs.storytellingMode}, got: ${p.storytellingMode})');
-        return false;
-      }
+      if (p.storytellingMode != userPrefs.storytellingMode) return false;
+
+      // Match story language / translation (WEB or KJV)
+      if (p.translationId != storyLanguage) return false;
 
       // Match kid-friendly filter (CRITICAL FOR PROPER CONTENT SEGREGATION)
       // Kid mode ON: ONLY kid-friendly stories
       // Kid mode OFF: ONLY non-kid-friendly stories (adult content)
       if (userPrefs.kidFriendlyOnly) {
-        // Kid mode: block non-kid-friendly stories
-        if (!p.kidFriendly) {
-          debugPrint('    ✗ Not kid-friendly (BLOCKED for child safety)');
-          return false;
-        }
+        if (!p.kidFriendly) return false;
       } else {
-        // Adult mode: block kid-friendly stories (adults want adult content only)
-        if (p.kidFriendly) {
-          debugPrint('    ✗ Kid-friendly story (BLOCKED - adult mode wants adult content only)');
-          return false;
-        }
+        if (p.kidFriendly) return false;
       }
 
-      debugPrint('    ✓ Match!');
       return true;
     }).toList();
-
-    debugPrint('Found ${eligible.length} eligible parables');
 
     // CRITICAL SAFETY CHECK: Verify content segregation is working
     if (userPrefs.kidFriendlyOnly) {

@@ -8,9 +8,21 @@ import '../core/bible_translation_registry.dart';
 /// bibleTranslation field MUST ONLY contain open-source/public-domain translations.
 /// ALL translations are validated against BibleTranslationRegistry.
 /// Banned translations are automatically reset to default.
+/// Allowed values for storyLanguage (stricter than bibleTranslation)
+const List<String> allowedStoryLanguages = ['WEB', 'KJV'];
+
+/// Validates and sanitizes storyLanguage, returning 'WEB' if invalid
+String _validateStoryLanguage(String? value) {
+  if (value == null || !allowedStoryLanguages.contains(value)) {
+    return 'WEB'; // Default to WEB if invalid
+  }
+  return value;
+}
+
 class UserPreferences {
   final String faithTradition; // Catholic, Protestant, Orthodox, etc.
-  final String bibleTranslation; // ONLY open-source: 'WEB', 'KJV', 'ASV'
+  final String bibleTranslation; // ONLY open-source: 'WEB', 'KJV', 'ASV', 'YLT', 'DRA' (for Daily Bread)
+  final String storyLanguage; // ONLY 'WEB' or 'KJV' (for story filtering, stricter than bibleTranslation)
   final String storytellingMode; // 'creative' or 'traditional'
   final bool contentFilteringEnabled; // Feature #24
   final bool kidFriendlyOnly; // Filter to kid-friendly content only
@@ -20,6 +32,7 @@ class UserPreferences {
   const UserPreferences({
     required this.faithTradition,
     required this.bibleTranslation,
+    this.storyLanguage = 'WEB', // Default to Modern (WEB) for stories
     this.storytellingMode = 'creative',
     this.contentFilteringEnabled = true,
     this.kidFriendlyOnly = false,
@@ -31,7 +44,8 @@ class UserPreferences {
   factory UserPreferences.defaults() {
     return const UserPreferences(
       faithTradition: '',
-      bibleTranslation: 'WEB', // World English Bible (public domain)
+      bibleTranslation: 'WEB', // World English Bible (public domain) - for Daily Bread
+      storyLanguage: 'WEB', // Modern stories (WEB) - for story filtering
       storytellingMode: 'creative',
       contentFilteringEnabled: true,
       kidFriendlyOnly: false,
@@ -42,13 +56,18 @@ class UserPreferences {
 
   /// Create from JSON
   factory UserPreferences.fromJson(Map<String, dynamic> json) {
-    // RUNTIME GUARD: Validate translation against allowlist
+    // RUNTIME GUARD: Validate bibleTranslation against allowlist
     final rawTranslation = json['bibleTranslation'] as String? ?? 'WEB';
     final validatedTranslation = BibleTranslationRegistry.validateAndSanitize(rawTranslation);
+
+    // RUNTIME GUARD: Validate storyLanguage (stricter: only WEB or KJV)
+    final rawStoryLanguage = json['storyLanguage'] as String?;
+    final validatedStoryLanguage = _validateStoryLanguage(rawStoryLanguage);
 
     return UserPreferences(
       faithTradition: json['faithTradition'] as String? ?? '',
       bibleTranslation: validatedTranslation, // Guaranteed to be allowed translation
+      storyLanguage: validatedStoryLanguage, // Guaranteed to be WEB or KJV
       storytellingMode: json['storytellingMode'] as String? ?? 'creative',
       contentFilteringEnabled:
           json['contentFilteringEnabled'] as bool? ?? true,
@@ -65,6 +84,7 @@ class UserPreferences {
     return {
       'faithTradition': faithTradition,
       'bibleTranslation': bibleTranslation,
+      'storyLanguage': storyLanguage,
       'storytellingMode': storytellingMode,
       'contentFilteringEnabled': contentFilteringEnabled,
       'kidFriendlyOnly': kidFriendlyOnly,
@@ -77,6 +97,7 @@ class UserPreferences {
   UserPreferences copyWith({
     String? faithTradition,
     String? bibleTranslation,
+    String? storyLanguage,
     String? storytellingMode,
     bool? contentFilteringEnabled,
     bool? kidFriendlyOnly,
@@ -88,9 +109,15 @@ class UserPreferences {
         ? BibleTranslationRegistry.validateAndSanitize(bibleTranslation)
         : this.bibleTranslation;
 
+    // RUNTIME GUARD: Validate storyLanguage if provided (stricter: only WEB or KJV)
+    final validatedStoryLanguage = storyLanguage != null
+        ? _validateStoryLanguage(storyLanguage)
+        : this.storyLanguage;
+
     return UserPreferences(
       faithTradition: faithTradition ?? this.faithTradition,
       bibleTranslation: validatedTranslation,
+      storyLanguage: validatedStoryLanguage,
       storytellingMode: storytellingMode ?? this.storytellingMode,
       contentFilteringEnabled:
           contentFilteringEnabled ?? this.contentFilteringEnabled,
