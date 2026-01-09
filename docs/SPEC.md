@@ -343,6 +343,10 @@ The Kid Bedtime Safe Harness ensures that all kid-mode story generations are saf
 - Influences story details and scripture interpretation
 - User can change later in Settings
 
+> **V1 Scope:** Denomination selector is disabled in v1. All users default to 'christian' tradition.
+> Controlled by `lib/core/feature_flags.dart` via `ENABLE_DENOMINATION_SELECTOR` dart-define (default: false).
+> Enable in v2+ with: `flutter run --dart-define=ENABLE_DENOMINATION_SELECTOR=true`
+
 **19. Bible Translation Selector**
 - Presented on first launch
 - User selects preferred Bible translation(s)
