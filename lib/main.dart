@@ -55,6 +55,10 @@ class Bootstrap extends StatelessWidget {
     return FutureBuilder<bool>(
       future: _isFirstLaunch(),
       builder: (context, snap) {
+        if (snap.hasError) {
+          // Safe default: show first-launch onboarding if prefs fail to load
+          return const AppRouter(showFirstLaunch: true);
+        }
         if (!snap.hasData) {
           return const MaterialApp(
             debugShowCheckedModeBanner: false,
