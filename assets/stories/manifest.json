@@ -12,7 +12,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_001_joyful_5min.mp3",
-      "textFilePath": "parable_001_joyful_5min.txt"
+      "textFilePath": "parable_001_joyful_5min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_002_joyful_10min",
@@ -26,7 +27,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_002_joyful_10min.mp3",
-      "textFilePath": "parable_002_joyful_10min.txt"
+      "textFilePath": "parable_002_joyful_10min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_003_joyful_15min",
@@ -40,7 +42,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_003_joyful_15min.mp3",
-      "textFilePath": "parable_003_joyful_15min.txt"
+      "textFilePath": "parable_003_joyful_15min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_004_weary_5min",
@@ -54,7 +57,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_004_weary_5min.mp3",
-      "textFilePath": "parable_004_weary_5min.txt"
+      "textFilePath": "parable_004_weary_5min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_005_weary_10min",
@@ -68,7 +72,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_005_weary_10min.mp3",
-      "textFilePath": "parable_005_weary_10min.txt"
+      "textFilePath": "parable_005_weary_10min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_006_weary_15min",
@@ -82,7 +87,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_006_weary_15min.mp3",
-      "textFilePath": "parable_006_weary_15min.txt"
+      "textFilePath": "parable_006_weary_15min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_007_anxious_5min",
@@ -96,7 +102,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_007_anxious_5min.mp3",
-      "textFilePath": "parable_007_anxious_5min.txt"
+      "textFilePath": "parable_007_anxious_5min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_008_anxious_10min",
@@ -110,7 +117,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_008_anxious_10min.mp3",
-      "textFilePath": "parable_008_anxious_10min.txt"
+      "textFilePath": "parable_008_anxious_10min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_009_anxious_15min",
@@ -124,7 +132,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_009_anxious_15min.mp3",
-      "textFilePath": "parable_009_anxious_15min.txt"
+      "textFilePath": "parable_009_anxious_15min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_010_hurting_5min",
@@ -139,7 +148,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_010_hurting_5min.mp3",
-      "textFilePath": "parable_010_hurting_5min.txt"
+      "textFilePath": "parable_010_hurting_5min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_011_hurting_10min",
@@ -154,7 +164,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_011_hurting_10min.mp3",
-      "textFilePath": "parable_011_hurting_10min.txt"
+      "textFilePath": "parable_011_hurting_10min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_012_hurting_15min",
@@ -169,7 +180,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_012_hurting_15min.mp3",
-      "textFilePath": "parable_012_hurting_15min.txt"
+      "textFilePath": "parable_012_hurting_15min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_013_neutral_5min",
@@ -183,7 +195,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_013_neutral_5min.mp3",
-      "textFilePath": "parable_013_neutral_5min.txt"
+      "textFilePath": "parable_013_neutral_5min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_014_neutral_10min",
@@ -197,7 +210,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_014_neutral_10min.mp3",
-      "textFilePath": "parable_014_neutral_10min.txt"
+      "textFilePath": "parable_014_neutral_10min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_015_neutral_15min",
@@ -211,7 +225,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_015_neutral_15min.mp3",
-      "textFilePath": "parable_015_neutral_15min.txt"
+      "textFilePath": "parable_015_neutral_15min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_040_joyful_5min",
@@ -225,7 +240,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_040_joyful_5min.mp3",
-      "textFilePath": "parable_040_joyful_5min.txt"
+      "textFilePath": "parable_040_joyful_5min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_041_joyful_10min",
@@ -239,7 +255,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_041_joyful_10min.mp3",
-      "textFilePath": "parable_041_joyful_10min.txt"
+      "textFilePath": "parable_041_joyful_10min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_042_joyful_15min",
@@ -253,7 +270,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_042_joyful_15min.mp3",
-      "textFilePath": "parable_042_joyful_15min.txt"
+      "textFilePath": "parable_042_joyful_15min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_020_joyful_5min_kid",
@@ -267,7 +285,8 @@
       "storytellingMode": "creative",
       "kidFriendly": true,
       "audioFilePath": "parable_020_joyful_5min_kid.mp3",
-      "textFilePath": "parable_020_joyful_5min_kid.txt"
+      "textFilePath": "parable_020_joyful_5min_kid.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_021_weary_5min_kid",
@@ -281,7 +300,8 @@
       "storytellingMode": "creative",
       "kidFriendly": true,
       "audioFilePath": "parable_021_weary_5min_kid.mp3",
-      "textFilePath": "parable_021_weary_5min_kid.txt"
+      "textFilePath": "parable_021_weary_5min_kid.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_022_anxious_5min_kid",
@@ -296,7 +316,8 @@
       "storytellingMode": "creative",
       "kidFriendly": true,
       "audioFilePath": "parable_022_anxious_5min_kid.mp3",
-      "textFilePath": "parable_022_anxious_5min_kid.txt"
+      "textFilePath": "parable_022_anxious_5min_kid.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_023_hurting_5min_kid",
@@ -311,7 +332,8 @@
       "storytellingMode": "creative",
       "kidFriendly": true,
       "audioFilePath": "parable_023_hurting_5min_kid.mp3",
-      "textFilePath": null
+      "textFilePath": null,
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_024_weary_5min",
@@ -325,7 +347,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_024_weary_5min.mp3",
-      "textFilePath": "parable_024_weary_5min.txt"
+      "textFilePath": "parable_024_weary_5min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_025_weary_5min",
@@ -340,7 +363,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": false,
       "audioFilePath": "parable_025_weary_5min.mp3",
-      "textFilePath": "parable_025_weary_5min.txt"
+      "textFilePath": "parable_025_weary_5min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_999_joyful_5min",
@@ -355,7 +379,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_999_joyful_5min.mp3",
-      "textFilePath": "parable_999_joyful_5min.txt"
+      "textFilePath": "parable_999_joyful_5min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_1002_joyful_5min",
@@ -370,7 +395,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": null,
-      "textFilePath": "parable_1002_joyful_5min.txt"
+      "textFilePath": "parable_1002_joyful_5min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_1000_neutral_5min",
@@ -384,7 +410,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": null,
-      "textFilePath": "parable_1000_neutral_5min.txt"
+      "textFilePath": "parable_1000_neutral_5min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_029_weary_5min",
@@ -398,7 +425,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_029_weary_5min.mp3",
-      "textFilePath": "parable_029_weary_5min.txt"
+      "textFilePath": "parable_029_weary_5min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_030_weary_15min",
@@ -412,7 +440,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_030_weary_15min.mp3",
-      "textFilePath": "parable_030_weary_15min.txt"
+      "textFilePath": "parable_030_weary_15min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_031_weary_5min",
@@ -426,7 +455,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_031_weary_5min.mp3",
-      "textFilePath": "parable_031_weary_5min.txt"
+      "textFilePath": "parable_031_weary_5min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_032_weary_10min",
@@ -440,7 +470,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_032_weary_10min.mp3",
-      "textFilePath": "parable_032_weary_10min.txt"
+      "textFilePath": "parable_032_weary_10min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_033_weary_15min",
@@ -454,7 +485,8 @@
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_033_weary_15min.mp3",
-      "textFilePath": "parable_033_weary_15min.txt"
+      "textFilePath": "parable_033_weary_15min.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_050_joyful_5min_kid_trad",
@@ -469,7 +501,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_050_joyful_5min_kid_trad.mp3",
-      "textFilePath": "parable_050_joyful_5min_kid_trad.txt"
+      "textFilePath": "parable_050_joyful_5min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_051_joyful_10min_kid_trad",
@@ -483,7 +516,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_051_joyful_10min_kid_trad.mp3",
-      "textFilePath": "parable_051_joyful_10min_kid_trad.txt"
+      "textFilePath": "parable_051_joyful_10min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_052_joyful_15min_kid_trad",
@@ -498,7 +532,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_052_joyful_15min_kid_trad.mp3",
-      "textFilePath": "parable_052_joyful_15min_kid_trad.txt"
+      "textFilePath": "parable_052_joyful_15min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_053_joyful_20min_kid_trad",
@@ -513,7 +548,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_053_joyful_20min_kid_trad.mp3",
-      "textFilePath": "parable_053_joyful_20min_kid_trad.txt"
+      "textFilePath": "parable_053_joyful_20min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_054_weary_5min_kid_trad",
@@ -528,7 +564,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_054_weary_5min_kid_trad.mp3",
-      "textFilePath": "parable_054_weary_5min_kid_trad.txt"
+      "textFilePath": "parable_054_weary_5min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_055_weary_10min_kid_trad",
@@ -543,7 +580,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_055_weary_10min_kid_trad.mp3",
-      "textFilePath": "parable_055_weary_10min_kid_trad.txt"
+      "textFilePath": "parable_055_weary_10min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_056_weary_15min_kid_trad",
@@ -558,7 +596,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_056_weary_15min_kid_trad.mp3",
-      "textFilePath": "parable_056_weary_15min_kid_trad.txt"
+      "textFilePath": "parable_056_weary_15min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_057_weary_20min_kid_trad",
@@ -573,7 +612,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_057_weary_20min_kid_trad.mp3",
-      "textFilePath": "parable_057_weary_20min_kid_trad.txt"
+      "textFilePath": "parable_057_weary_20min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_058_anxious_5min_kid_trad",
@@ -588,7 +628,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_058_anxious_5min_kid_trad.mp3",
-      "textFilePath": "parable_058_anxious_5min_kid_trad.txt"
+      "textFilePath": "parable_058_anxious_5min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_059_anxious_10min_kid_trad",
@@ -603,7 +644,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_059_anxious_10min_kid_trad.mp3",
-      "textFilePath": "parable_059_anxious_10min_kid_trad.txt"
+      "textFilePath": "parable_059_anxious_10min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_060_anxious_15min_kid_trad",
@@ -618,7 +660,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_060_anxious_15min_kid_trad.mp3",
-      "textFilePath": "parable_060_anxious_15min_kid_trad.txt"
+      "textFilePath": "parable_060_anxious_15min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_061_anxious_20min_kid_trad",
@@ -633,7 +676,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_061_anxious_20min_kid_trad.mp3",
-      "textFilePath": "parable_061_anxious_20min_kid_trad.txt"
+      "textFilePath": "parable_061_anxious_20min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_062_hurting_5min_kid_trad",
@@ -648,7 +692,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_062_hurting_5min_kid_trad.mp3",
-      "textFilePath": "parable_062_hurting_5min_kid_trad.txt"
+      "textFilePath": "parable_062_hurting_5min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_063_hurting_10min_kid_trad",
@@ -663,7 +708,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_063_hurting_10min_kid_trad.mp3",
-      "textFilePath": "parable_063_hurting_10min_kid_trad.txt"
+      "textFilePath": "parable_063_hurting_10min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_064_hurting_15min_kid_trad",
@@ -678,7 +724,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_064_hurting_15min_kid_trad.mp3",
-      "textFilePath": "parable_064_hurting_15min_kid_trad.txt"
+      "textFilePath": "parable_064_hurting_15min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_065_hurting_20min_kid_trad",
@@ -694,7 +741,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_065_hurting_20min_kid_trad.mp3",
-      "textFilePath": "parable_065_hurting_20min_kid_trad.txt"
+      "textFilePath": "parable_065_hurting_20min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_101_brave_courage_5min_kid_trad",
@@ -709,7 +757,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_101_brave_courage_5min_kid_trad.mp3",
-      "textFilePath": "parable_101_brave_courage_5min_kid_trad.txt"
+      "textFilePath": "parable_101_brave_courage_5min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_102_brave_courage_10min_kid_trad",
@@ -724,7 +773,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_102_brave_courage_10min_kid_trad.mp3",
-      "textFilePath": "parable_102_brave_courage_10min_kid_trad.txt"
+      "textFilePath": "parable_102_brave_courage_10min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_110_encouraging_15min_kid_trad",
@@ -739,7 +789,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_110_encouraging_15min_kid_trad.mp3",
-      "textFilePath": "parable_110_encouraging_15min_kid_trad.txt"
+      "textFilePath": "parable_110_encouraging_15min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_113_calm_peaceful_20min_kid_trad",
@@ -754,7 +805,8 @@
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_113_calm_peaceful_20min_kid_trad.mp3",
-      "textFilePath": "parable_113_calm_peaceful_20min_kid_trad.txt"
+      "textFilePath": "parable_113_calm_peaceful_20min_kid_trad.txt",
+      "translationId": "WEB"
     },
     {
       "storyId": "parable_114_samuel_listens_5min_kid_safe",
@@ -767,7 +819,129 @@
       "kidFriendly": true,
       "kidBedtimeSafe": true,
       "audioFilePath": "parable_114_samuel_listens_5min_kid_safe.mp3",
-      "textFilePath": "parable_114_samuel_listens_5min_kid_safe.txt"
+      "textFilePath": "parable_114_samuel_listens_5min_kid_safe.txt",
+      "translationId": "WEB"
+    },
+    {
+      "storyId": "parable_201_joyful_5min_adult_trad",
+      "title": "A Heart Full of Joy",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "length": 5,
+      "faithTradition": "Unspecified",
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "audioFilePath": null,
+      "textFilePath": "parable_201_joyful_5min_adult_trad.txt",
+      "translationId": "WEB"
+    },
+    {
+      "storyId": "parable_202_weary_5min_adult_trad",
+      "title": "Rest for the Weary",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
+      "length": 5,
+      "faithTradition": "Unspecified",
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "audioFilePath": null,
+      "textFilePath": "parable_202_weary_5min_adult_trad.txt",
+      "translationId": "WEB"
+    },
+    {
+      "storyId": "parable_203_anxious_5min_adult_trad",
+      "title": "Peace in Troubled Times",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious"
+      ],
+      "length": 5,
+      "faithTradition": "Unspecified",
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "audioFilePath": null,
+      "textFilePath": "parable_203_anxious_5min_adult_trad.txt",
+      "translationId": "WEB"
+    },
+    {
+      "storyId": "parable_204_hurting_5min_adult_trad",
+      "title": "Comfort in Sorrow",
+      "mood": "hurting",
+      "emotionalTags": [
+        "grief",
+        "sad"
+      ],
+      "length": 5,
+      "faithTradition": "Unspecified",
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "audioFilePath": null,
+      "textFilePath": "parable_204_hurting_5min_adult_trad.txt",
+      "translationId": "WEB"
+    },
+    {
+      "storyId": "parable_205_neutral_5min_adult_trad",
+      "title": "Quiet Reflection",
+      "mood": "neutral",
+      "emotionalTags": [
+        "waiting"
+      ],
+      "length": 5,
+      "faithTradition": "Unspecified",
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "audioFilePath": null,
+      "textFilePath": "parable_205_neutral_5min_adult_trad.txt",
+      "translationId": "WEB"
+    },
+    {
+      "storyId": "parable_206_encouraging_5min_adult_trad",
+      "title": "Words of Encouragement",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "hopeless"
+      ],
+      "length": 5,
+      "faithTradition": "Unspecified",
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "audioFilePath": null,
+      "textFilePath": "parable_206_encouraging_5min_adult_trad.txt",
+      "translationId": "WEB"
+    },
+    {
+      "storyId": "parable_207_calm_peaceful_5min_adult_trad",
+      "title": "Still Waters",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "anxious"
+      ],
+      "length": 5,
+      "faithTradition": "Unspecified",
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "audioFilePath": null,
+      "textFilePath": "parable_207_calm_peaceful_5min_adult_trad.txt",
+      "translationId": "WEB"
+    },
+    {
+      "storyId": "parable_208_brave_courage_5min_adult_trad",
+      "title": "Courage to Stand",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "self_doubt"
+      ],
+      "length": 5,
+      "faithTradition": "Unspecified",
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "audioFilePath": null,
+      "textFilePath": "parable_208_brave_courage_5min_adult_trad.txt",
+      "translationId": "WEB"
     }
   ]
 }
