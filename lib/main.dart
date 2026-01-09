@@ -6,8 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app_router.dart';
 import 'core/app_logger.dart';
 import 'core/diagnostics_lifecycle_observer.dart';
-
-const _pkTradition = 'settings.tradition';
+import 'features/onboarding/first_launch_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,16 +44,16 @@ Future<void> main() async {
 class Bootstrap extends StatelessWidget {
   const Bootstrap({super.key});
 
-  Future<bool> _needsTradition() async {
+  Future<bool> _isFirstLaunch() async {
     final sp = await SharedPreferences.getInstance();
-    // If null, we still need to ask the user for their tradition once.
-    return sp.getString(_pkTradition) == null;
+    // Check if first-launch onboarding has been completed
+    return sp.getBool(kFirstLaunchCompleteKey) != true;
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<bool>(
-      future: _needsTradition(),
+      future: _isFirstLaunch(),
       builder: (context, snap) {
         if (!snap.hasData) {
           return const MaterialApp(
@@ -64,8 +63,11 @@ class Bootstrap extends StatelessWidget {
             ),
           );
         }
-        // AppRouter should return a MaterialApp configured for your app.
-        return AppRouter(needsTradition: snap.data!);
+        // Show first-launch onboarding or main app
+        if (snap.data!) {
+          return const AppRouter(showFirstLaunch: true);
+        }
+        return const AppRouter(showFirstLaunch: false);
       },
     );
   }

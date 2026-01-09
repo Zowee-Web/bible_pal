@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'theme/app_theme.dart';
-import 'features/onboarding/tradition_setup_screen.dart';
+import 'features/onboarding/first_launch_screen.dart';
 import 'features/main_menu/main_menu_screen.dart';
 import 'features/pals_parables/pals_parables_screen.dart';
 import 'features/pals_parables/parable_player_screen.dart';
@@ -11,8 +11,8 @@ import 'features/diagnostics/diagnostics_screen.dart';
 import 'core/diagnostics_config.dart';
 
 class AppRouter extends StatelessWidget {
-  final bool needsTradition;
-  const AppRouter({super.key, required this.needsTradition});
+  final bool showFirstLaunch;
+  const AppRouter({super.key, required this.showFirstLaunch});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class AppRouter extends StatelessWidget {
       title: 'Bible PAL',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.theme,
-      home: needsTradition ? const TraditionSetupScreen() : const MainMenuScreen(),
+      home: showFirstLaunch ? const FirstLaunchScreen() : const MainMenuScreen(),
       onGenerateRoute: _onGenerateRoute,
     );
   }

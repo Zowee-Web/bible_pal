@@ -24,6 +24,7 @@ String _validateStoryLanguage(String? value) {
 }
 
 class UserPreferences {
+  final String userName; // User's name (collected during first-launch onboarding)
   final String faithTradition; // Catholic, Protestant, Orthodox, etc.
   final String bibleTranslation; // ONLY open-source: 'WEB', 'KJV', 'ASV', 'YLT', 'DRA' (for Daily Bread)
   final String storyLanguage; // ONLY 'WEB' or 'KJV' (for story filtering, stricter than bibleTranslation)
@@ -40,6 +41,7 @@ class UserPreferences {
   final int? voiceConsentVersion; // Schema version when consent was given
 
   const UserPreferences({
+    this.userName = '',
     required this.faithTradition,
     required this.bibleTranslation,
     this.storyLanguage = 'WEB', // Default to Modern (WEB) for stories
@@ -56,6 +58,7 @@ class UserPreferences {
   /// Default preferences for first-time users
   factory UserPreferences.defaults() {
     return const UserPreferences(
+      userName: '',
       faithTradition: '',
       bibleTranslation: 'WEB', // World English Bible (public domain) - for Daily Bread
       storyLanguage: 'WEB', // Modern stories (WEB) - for story filtering
@@ -78,6 +81,7 @@ class UserPreferences {
     final validatedStoryLanguage = _validateStoryLanguage(rawStoryLanguage);
 
     return UserPreferences(
+      userName: json['userName'] as String? ?? '',
       faithTradition: json['faithTradition'] as String? ?? '',
       bibleTranslation: validatedTranslation, // Guaranteed to be allowed translation
       storyLanguage: validatedStoryLanguage, // Guaranteed to be WEB or KJV
@@ -98,6 +102,7 @@ class UserPreferences {
   /// Convert to JSON
   Map<String, dynamic> toJson() {
     return {
+      'userName': userName,
       'faithTradition': faithTradition,
       'bibleTranslation': bibleTranslation,
       'storyLanguage': storyLanguage,
@@ -119,6 +124,7 @@ class UserPreferences {
   /// - Pass a value to set it
   /// To explicitly set to null, use clearVoiceConsent() instead.
   UserPreferences copyWith({
+    String? userName,
     String? faithTradition,
     String? bibleTranslation,
     String? storyLanguage,
@@ -142,6 +148,7 @@ class UserPreferences {
         : this.storyLanguage;
 
     return UserPreferences(
+      userName: userName ?? this.userName,
       faithTradition: faithTradition ?? this.faithTradition,
       bibleTranslation: validatedTranslation,
       storyLanguage: validatedStoryLanguage,

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../app_router.dart';
+import 'first_launch_screen.dart';
 
 const _pkTradition = 'settings.tradition';
 
+/// Legacy tradition setup screen.
+/// Note: This screen is no longer part of the main onboarding flow.
+/// The new first-launch flow uses FirstLaunchScreen instead.
 class TraditionSetupScreen extends StatefulWidget {
   const TraditionSetupScreen({super.key});
 
@@ -15,11 +19,13 @@ class _TraditionSetupScreenState extends State<TraditionSetupScreen> {
   Future<void> _saveAndGo(String value) async {
     final sp = await SharedPreferences.getInstance();
     await sp.setString(_pkTradition, value);
+    // Also mark first launch complete since tradition was selected
+    await sp.setBool(kFirstLaunchCompleteKey, true);
 
     if (!mounted) return; // ✅ safeguard against async gap
 
     Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (_) => const AppRouter(needsTradition: false)),
+      MaterialPageRoute(builder: (_) => const AppRouter(showFirstLaunch: false)),
       (_) => false,
     );
   }
