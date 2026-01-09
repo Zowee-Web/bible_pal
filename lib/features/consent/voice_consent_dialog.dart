@@ -45,6 +45,9 @@ class _VoiceConsentDialogState extends ConsumerState<VoiceConsentDialog> {
   bool _storyNarrationEnabled = false;
   bool _palGreetingsEnabled = false;
 
+  /// True if at least one voice feature is enabled (for button gating)
+  bool get _hasAnyEnabled => _storyNarrationEnabled || _palGreetingsEnabled;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -100,13 +103,20 @@ class _VoiceConsentDialogState extends ConsumerState<VoiceConsentDialog> {
         ),
       ),
       actions: [
+        // "Not Now" dismisses without writing prefs (keeps null = unknown)
         TextButton(
-          onPressed: () => _handleTextOnly(),
-          child: const Text('Text Only for Now'),
+          onPressed: () => Navigator.of(context).pop(VoiceConsentResult.dismissed),
+          child: const Text('Not Now'),
         ),
+        // "Don't Allow" explicitly writes false (user declined)
+        TextButton(
+          onPressed: () => _handleDontAllow(),
+          child: const Text("Don't Allow"),
+        ),
+        // "Enable" only active when at least one checkbox is checked
         FilledButton(
-          onPressed: () => _handleEnableSelected(),
-          child: const Text('Enable Selected'),
+          onPressed: _hasAnyEnabled ? () => _handleEnableSelected() : null,
+          child: const Text('Enable'),
         ),
       ],
     );
@@ -129,10 +139,10 @@ class _VoiceConsentDialogState extends ConsumerState<VoiceConsentDialog> {
     }
   }
 
-  Future<void> _handleTextOnly() async {
+  Future<void> _handleDontAllow() async {
     final appNotifier = ref.read(appStateProvider.notifier);
 
-    // Save explicit decline for both features
+    // Save explicit decline for both features (writes false)
     await appNotifier.updateVoiceConsent(
       storyNarrationEnabled: false,
       palGreetingsEnabled: false,
