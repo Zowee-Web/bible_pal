@@ -12,6 +12,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('CRITICAL: VoiceConsentGate Bypass Prevention', () {
     late Directory libDir;
+    late String libPath;
 
     setUpAll(() {
       // Find project root
@@ -23,20 +24,37 @@ void main() {
         }
       }
       libDir = Directory('${projectRoot.path}/lib');
+      libPath = libDir.path;
     });
 
-    // Files allowed to call AudioService.play() directly
+    /// Convert absolute file path to lib-relative path (e.g., "providers/parable_player_notifier.dart")
+    String toLibRelative(String absolutePath) {
+      if (absolutePath.startsWith(libPath)) {
+        var relative = absolutePath.substring(libPath.length);
+        if (relative.startsWith('/')) relative = relative.substring(1);
+        return relative;
+      }
+      return absolutePath;
+    }
+
+    // Files allowed to call AudioService.play() directly (lib-relative paths)
     // These files MUST use VoiceConsentGate before calling play()
     const audioPlayAllowlist = {
-      'parable_player_notifier.dart', // Uses VoiceConsentGate.checkStoryNarration()
-      'audio_service.dart', // The service itself (defines play())
-      'voice_consent_gate.dart', // Contains usage example in doc comments
+      'providers/parable_player_notifier.dart', // Uses VoiceConsentGate.checkStoryNarration()
+      'services/audio_service.dart', // The service itself (defines play())
+      'services/voice_consent_gate.dart', // Contains usage example in doc comments
     };
 
-    // Files allowed to call FlutterTts.speak() directly
+    // Files allowed to call FlutterTts.speak() directly (lib-relative paths)
     // These files MUST use VoiceConsentGate before calling speak()
     const ttsAllowlist = {
-      'whisper_screen.dart', // Uses VoiceConsentGate.checkPalGreetings()
+      'features/whisper/whisper_screen.dart', // Uses VoiceConsentGate.checkPalGreetings()
+    };
+
+    // Files exempt from "must import gate" and "must use gate" checks
+    const exemptFromGateUsage = {
+      'services/audio_service.dart', // The service itself
+      'services/voice_consent_gate.dart', // The gate itself
     };
 
     test('CRITICAL: No direct AudioService.play() calls outside allowlist', () {
@@ -46,19 +64,19 @@ void main() {
         if (file is! File) continue;
         if (!file.path.endsWith('.dart')) continue;
 
-        final fileName = file.uri.pathSegments.last;
-        if (audioPlayAllowlist.contains(fileName)) continue;
+        final relativePath = toLibRelative(file.path);
+        if (audioPlayAllowlist.contains(relativePath)) continue;
 
         final content = file.readAsStringSync();
 
         // Check for _audioService.play() or audioService.play() patterns
         if (RegExp(r'_?audioService\.play\s*\(').hasMatch(content)) {
-          violations.add(file.path);
+          violations.add(relativePath);
         }
 
         // Check for AudioService().play() or similar direct instantiation
         if (RegExp(r'AudioService\s*\(\s*\).*\.play\s*\(').hasMatch(content)) {
-          violations.add(file.path);
+          violations.add(relativePath);
         }
       }
 
@@ -69,7 +87,7 @@ void main() {
 🚨 VOICE CONSENT BYPASS DETECTED 🚨
 
 The following files call AudioService.play() directly:
-${violations.map((v) => '  - $v').join('\n')}
+${violations.map((v) => '  - lib/$v').join('\n')}
 
 All voice playback MUST go through VoiceConsentGate.
 
@@ -91,19 +109,19 @@ AND ensure it properly uses VoiceConsentGate.
         if (file is! File) continue;
         if (!file.path.endsWith('.dart')) continue;
 
-        final fileName = file.uri.pathSegments.last;
-        if (ttsAllowlist.contains(fileName)) continue;
+        final relativePath = toLibRelative(file.path);
+        if (ttsAllowlist.contains(relativePath)) continue;
 
         final content = file.readAsStringSync();
 
         // Check for _tts.speak() or tts.speak() patterns
         if (RegExp(r'_?tts\.speak\s*\(').hasMatch(content)) {
-          violations.add(file.path);
+          violations.add(relativePath);
         }
 
         // Check for FlutterTts().speak() direct instantiation
         if (RegExp(r'FlutterTts\s*\(\s*\).*\.speak\s*\(').hasMatch(content)) {
-          violations.add(file.path);
+          violations.add(relativePath);
         }
       }
 
@@ -114,7 +132,7 @@ AND ensure it properly uses VoiceConsentGate.
 🚨 VOICE CONSENT BYPASS DETECTED 🚨
 
 The following files call FlutterTts.speak() directly:
-${violations.map((v) => '  - $v').join('\n')}
+${violations.map((v) => '  - lib/$v').join('\n')}
 
 All voice playback MUST go through VoiceConsentGate.
 
@@ -132,35 +150,31 @@ AND ensure it properly uses VoiceConsentGate.
     test('Allowlisted files import VoiceConsentGate', () {
       final missingImports = <String>[];
 
-      // Files that don't need to import VoiceConsentGate
-      const exemptFromImport = {
-        'audio_service.dart', // The service itself
-        'voice_consent_gate.dart', // The gate itself
-      };
-
       // Check audio allowlist files
-      for (final fileName in audioPlayAllowlist) {
-        if (exemptFromImport.contains(fileName)) continue;
+      for (final relativePath in audioPlayAllowlist) {
+        if (exemptFromGateUsage.contains(relativePath)) continue;
 
-        final file = _findFile(libDir, fileName);
-        if (file == null) continue;
+        final file = File('$libPath/$relativePath');
+        if (!file.existsSync()) continue;
 
         final content = file.readAsStringSync();
         if (!content.contains("import 'package:bible_pal/services/voice_consent_gate.dart'") &&
             !content.contains('import "package:bible_pal/services/voice_consent_gate.dart"')) {
-          missingImports.add(fileName);
+          missingImports.add(relativePath);
         }
       }
 
       // Check TTS allowlist files
-      for (final fileName in ttsAllowlist) {
-        final file = _findFile(libDir, fileName);
-        if (file == null) continue;
+      for (final relativePath in ttsAllowlist) {
+        if (exemptFromGateUsage.contains(relativePath)) continue;
+
+        final file = File('$libPath/$relativePath');
+        if (!file.existsSync()) continue;
 
         final content = file.readAsStringSync();
         if (!content.contains("import 'package:bible_pal/services/voice_consent_gate.dart'") &&
             !content.contains('import "package:bible_pal/services/voice_consent_gate.dart"')) {
-          missingImports.add(fileName);
+          missingImports.add(relativePath);
         }
       }
 
@@ -169,7 +183,7 @@ AND ensure it properly uses VoiceConsentGate.
         isEmpty,
         reason: '''
 Files in the voice playback allowlist must import VoiceConsentGate:
-${missingImports.map((f) => '  - $f').join('\n')}
+${missingImports.map((f) => '  - lib/$f').join('\n')}
 
 This ensures the gate is actually being used, not just allowed.
 ''',
@@ -179,33 +193,29 @@ This ensures the gate is actually being used, not just allowed.
     test('Allowlisted files actually use VoiceConsentGate', () {
       final notUsingGate = <String>[];
 
-      // Files that don't need to call VoiceConsentGate methods
-      const exemptFromUsage = {
-        'audio_service.dart', // The service itself
-        'voice_consent_gate.dart', // The gate itself (defines the methods)
-      };
-
       // Check audio allowlist files
-      for (final fileName in audioPlayAllowlist) {
-        if (exemptFromUsage.contains(fileName)) continue;
+      for (final relativePath in audioPlayAllowlist) {
+        if (exemptFromGateUsage.contains(relativePath)) continue;
 
-        final file = _findFile(libDir, fileName);
-        if (file == null) continue;
+        final file = File('$libPath/$relativePath');
+        if (!file.existsSync()) continue;
 
         final content = file.readAsStringSync();
         if (!content.contains('VoiceConsentGate.checkStoryNarration')) {
-          notUsingGate.add('$fileName (missing checkStoryNarration)');
+          notUsingGate.add('$relativePath (missing checkStoryNarration)');
         }
       }
 
       // Check TTS allowlist files
-      for (final fileName in ttsAllowlist) {
-        final file = _findFile(libDir, fileName);
-        if (file == null) continue;
+      for (final relativePath in ttsAllowlist) {
+        if (exemptFromGateUsage.contains(relativePath)) continue;
+
+        final file = File('$libPath/$relativePath');
+        if (!file.existsSync()) continue;
 
         final content = file.readAsStringSync();
         if (!content.contains('VoiceConsentGate.checkPalGreetings')) {
-          notUsingGate.add('$fileName (missing checkPalGreetings)');
+          notUsingGate.add('$relativePath (missing checkPalGreetings)');
         }
       }
 
@@ -214,21 +224,11 @@ This ensures the gate is actually being used, not just allowed.
         isEmpty,
         reason: '''
 Files in the voice playback allowlist must actually call VoiceConsentGate:
-${notUsingGate.map((f) => '  - $f').join('\n')}
+${notUsingGate.map((f) => '  - lib/$f').join('\n')}
 
 Being in the allowlist means you MUST use the gate, not that you're exempt from it.
 ''',
       );
     });
   });
-}
-
-/// Find a file by name in the directory tree
-File? _findFile(Directory dir, String fileName) {
-  for (final entity in dir.listSync(recursive: true)) {
-    if (entity is File && entity.uri.pathSegments.last == fileName) {
-      return entity;
-    }
-  }
-  return null;
 }
