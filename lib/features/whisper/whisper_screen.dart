@@ -7,6 +7,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:bible_pal/providers/app_state_notifier.dart';
+import 'package:bible_pal/services/voice_consent_gate.dart';
 import 'package:bible_pal/features/consent/voice_consent_dialog.dart';
 
 class WhisperScreen extends ConsumerStatefulWidget {
@@ -91,51 +92,57 @@ class _WhisperScreenState extends ConsumerState<WhisperScreen> {
 
   /// Main flow: ask a question (TTS) → listen → generate/speak a short story.
   Future<void> _captureAndPlay() async {
-    // 0) Check voice consent for PAL greetings before any TTS
+    // 0) Check voice consent via VoiceConsentGate (single source of truth)
     final appState = ref.read(appStateProvider).valueOrNull;
-    final palGreetingsEnabled = appState?.userPreferences.palGreetingsEnabled;
+    final gateResult = VoiceConsentGate.checkPalGreetings(appState?.userPreferences);
 
-    if (palGreetingsEnabled == null) {
-      // Not asked yet - show consent dialog
-      final consentResult = await VoiceConsentDialog.show(context);
-      if (!mounted) return;
+    switch (gateResult) {
+      case VoiceGateResult.needsConsent:
+        // Not asked yet - show consent dialog
+        final consentResult = await VoiceConsentDialog.show(context);
+        if (!mounted) return;
 
-      if (consentResult != VoiceConsentResult.enabled) {
-        // User declined or dismissed - don't proceed with TTS
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Voice features require consent to use.'),
-            duration: Duration(seconds: 3),
-          ),
-        );
+        if (consentResult != VoiceConsentResult.enabled) {
+          // User declined or dismissed - don't proceed with TTS
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Voice features require consent to use.'),
+              duration: Duration(seconds: 3),
+            ),
+          );
+          return;
+        }
+
+        // Re-check after consent dialog via gate
+        final updatedState = ref.read(appStateProvider).valueOrNull;
+        final recheck = VoiceConsentGate.checkPalGreetings(updatedState?.userPreferences);
+        if (recheck != VoiceGateResult.allowed) {
+          // PAL greetings specifically not enabled
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('PAL Greetings must be enabled for Whisper.'),
+              duration: Duration(seconds: 3),
+            ),
+          );
+          return;
+        }
+
+      case VoiceGateResult.blocked:
+        // Explicitly disabled - show snackbar reminder
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('PAL Greetings are disabled. Enable them in Settings.'),
+              duration: Duration(seconds: 3),
+            ),
+          );
+        }
         return;
-      }
 
-      // Re-check after consent dialog
-      final updatedState = ref.read(appStateProvider).valueOrNull;
-      if (updatedState?.userPreferences.palGreetingsEnabled != true) {
-        // PAL greetings specifically not enabled
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('PAL Greetings must be enabled for Whisper.'),
-            duration: Duration(seconds: 3),
-          ),
-        );
-        return;
-      }
-    } else if (palGreetingsEnabled == false) {
-      // Explicitly disabled - show snackbar reminder
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('PAL Greetings are disabled. Enable them in Settings.'),
-            duration: Duration(seconds: 3),
-          ),
-        );
-      }
-      return;
+      case VoiceGateResult.allowed:
+        // Proceed with TTS
+        break;
     }
-    // palGreetingsEnabled == true → proceed with TTS
 
     // 1) Permissions first (this is what triggers iOS prompts)
     if (!await _ensurePermissions()) return;

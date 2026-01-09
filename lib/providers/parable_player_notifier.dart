@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bible_pal/models/parable.dart';
 import 'package:bible_pal/services/audio_service.dart';
+import 'package:bible_pal/services/voice_consent_gate.dart';
 import 'package:bible_pal/core/app_logger.dart';
 import 'service_providers.dart';
 import 'app_state_notifier.dart';
@@ -140,7 +141,7 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
     }
   }
 
-  /// Play the current parable (with voice consent check).
+  /// Play the current parable (with voice consent check via VoiceConsentGate).
   ///
   /// Returns [VoicePlayResult] indicating what happened:
   /// - `played`: Audio started successfully
@@ -154,31 +155,28 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
   Future<VoicePlayResult> play() async {
     if (state.currentParable == null) return VoicePlayResult.noParable;
 
-    // Check voice consent before playing
+    // Check voice consent via VoiceConsentGate (single source of truth)
     final appState = ref.read(appStateProvider);
     final userPrefs = appState.valueOrNull?.userPreferences;
+    final gateResult = VoiceConsentGate.checkStoryNarration(userPrefs);
 
-    if (userPrefs != null) {
-      final storyNarrationEnabled = userPrefs.storyNarrationEnabled;
-
-      // null = not asked yet → needs consent
-      if (storyNarrationEnabled == null) {
+    switch (gateResult) {
+      case VoiceGateResult.needsConsent:
         logEvent('voice_consent_needed', {
           'story_id': state.currentParable?.storyId,
           'trigger': 'play_button',
         });
         return VoicePlayResult.needsConsent;
-      }
 
-      // false = explicitly disabled → don't play
-      if (storyNarrationEnabled == false) {
+      case VoiceGateResult.blocked:
         logEvent('voice_narration_disabled', {
           'story_id': state.currentParable?.storyId,
         });
         return VoicePlayResult.disabled;
-      }
 
-      // true = enabled → proceed with playback
+      case VoiceGateResult.allowed:
+        // Proceed with playback
+        break;
     }
 
     try {
