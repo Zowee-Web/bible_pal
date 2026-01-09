@@ -62,3 +62,12 @@ assets/stories_failed/
 
 # Server generation logs and mode lock
 server/logs/
+
+# Temporary/superseded story generation scripts
+server/tools/fix_story_files.py
+server/tools/regenerate_trad_stories.py
+server/tools/regenerate_with_continuation.py
+server/tools/generation_practice_run.sh
+
+# Unused feature flags (v2 placeholder)
+lib/core/feature_flags.dart
