@@ -14,6 +14,7 @@ import 'package:bible_pal/models/parable.dart';
 import 'package:bible_pal/models/user_preferences.dart';
 import 'package:bible_pal/services/parable_service.dart';
 import 'package:bible_pal/services/storage_service.dart';
+import 'package:bible_pal/core/story_length_bucket.dart';
 
 void main() {
   group('CRITICAL: Story Translation Filtering', () {
@@ -84,7 +85,7 @@ void main() {
       // ACT: Get eligible parables
       final eligibleParables = await parableService.getEligibleParables(
         mood: 'joyful',
-        lengthMinutes: 5,
+        lengthBucket: StoryLengthBucket.short,
         userPrefs: webPrefs,
       );
 
@@ -233,7 +234,7 @@ void main() {
       // ACT: Get eligible parables
       final eligibleParables = await parableService.getEligibleParables(
         mood: 'joyful',
-        lengthMinutes: 5,
+        lengthBucket: StoryLengthBucket.short,
         userPrefs: kjvPrefs,
       );
 

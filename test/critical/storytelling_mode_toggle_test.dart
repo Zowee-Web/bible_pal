@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:bible_pal/models/user_preferences.dart';
 import 'package:bible_pal/services/parable_service.dart';
 import 'package:bible_pal/services/storage_service.dart';
+import 'package:bible_pal/core/story_length_bucket.dart';
 
 void main() {
   group('CRITICAL: Storytelling Mode Toggle', () {
@@ -38,7 +39,7 @@ void main() {
       // ACT: Get eligible parables
       final eligibleParables = await parableService.getEligibleParables(
         mood: 'joyful',
-        lengthMinutes: 5,
+        lengthBucket: StoryLengthBucket.short,
         userPrefs: creativePrefs,
       );
 
@@ -75,7 +76,7 @@ void main() {
       // ACT: Get eligible parables
       final eligibleParables = await parableService.getEligibleParables(
         mood: 'joyful',
-        lengthMinutes: 5,
+        lengthBucket: StoryLengthBucket.short,
         userPrefs: traditionalPrefs,
       );
 
@@ -113,7 +114,7 @@ void main() {
       for (int i = 0; i < 10; i++) {
         final selectedParable = await parableService.selectParable(
           mood: 'joyful',
-          lengthMinutes: 5,
+          lengthBucket: StoryLengthBucket.short,
           userPrefs: creativePrefs,
         );
 
@@ -195,7 +196,7 @@ void main() {
       // This ensures we have content for both modes
       final allParables = await parableService.getEligibleParables(
         mood: 'joyful',
-        lengthMinutes: 5,
+        lengthBucket: StoryLengthBucket.short,
         userPrefs: UserPreferences(
           faithTradition: '', // Empty to match test data
           bibleTranslation: 'WEB',
@@ -208,7 +209,7 @@ void main() {
 
       final traditionalParables = await parableService.getEligibleParables(
         mood: 'joyful',
-        lengthMinutes: 5,
+        lengthBucket: StoryLengthBucket.short,
         userPrefs: UserPreferences(
           faithTradition: '', // Empty to match test data
           bibleTranslation: 'WEB',
@@ -235,9 +236,9 @@ void main() {
       // ignore: avoid_print
       print('\n📊 Storytelling Mode Stats:');
       // ignore: avoid_print
-      print('   Creative stories (joyful, 5min): $creativeCount');
+      print('   Creative stories (joyful, short): $creativeCount');
       // ignore: avoid_print
-      print('   Traditional stories (joyful, 5min): $traditionalCount');
+      print('   Traditional stories (joyful, short): $traditionalCount');
     });
   });
 }

@@ -942,6 +942,21 @@
       "audioFilePath": null,
       "textFilePath": "parable_208_brave_courage_5min_adult_trad.txt",
       "translationId": "WEB"
+    },
+    {
+      "storyId": "parable_209_joyful_5min_adult_trad",
+      "title": "The Harvest of Joy",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "length": 5,
+      "faithTradition": "Unspecified",
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "audioFilePath": null,
+      "textFilePath": "parable_209_joyful_5min_adult_trad.txt",
+      "translationId": "WEB"
     }
   ]
 }

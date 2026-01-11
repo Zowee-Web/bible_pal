@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:bible_pal/models/user_preferences.dart';
 import 'package:bible_pal/services/parable_service.dart';
 import 'package:bible_pal/services/storage_service.dart';
+import 'package:bible_pal/core/story_length_bucket.dart';
 
 void main() {
   group('CRITICAL: Kid-Friendly Toggle Safety', () {
@@ -39,10 +40,10 @@ void main() {
         kidFriendlyOnly: true, // KID MODE ENABLED
       );
 
-      // ACT: Get eligible parables for a joyful mood, 5-minute story
+      // ACT: Get eligible parables for a joyful mood, short story
       final eligibleParables = await parableService.getEligibleParables(
         mood: 'joyful',
-        lengthMinutes: 5,
+        lengthBucket: StoryLengthBucket.short,
         userPrefs: kidModePrefs,
       );
 
@@ -84,7 +85,7 @@ void main() {
       for (int i = 0; i < 10; i++) {
         final selectedParable = await parableService.selectParable(
           mood: 'joyful',
-          lengthMinutes: 5,
+          lengthBucket: StoryLengthBucket.short,
           userPrefs: kidModePrefs,
         );
 
@@ -117,7 +118,7 @@ void main() {
       // ACT: Get eligible parables
       final eligibleParables = await parableService.getEligibleParables(
         mood: 'joyful',
-        lengthMinutes: 5,
+        lengthBucket: StoryLengthBucket.short,
         userPrefs: adultModePrefs,
       );
 

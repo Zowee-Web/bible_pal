@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:bible_pal/services/parable_service.dart';
 import 'package:bible_pal/services/storage_service.dart';
 import 'package:bible_pal/models/user_preferences.dart';
+import 'package:bible_pal/core/story_length_bucket.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -38,7 +39,7 @@ void main() {
         // Get eligible parables with kid mode enabled
         final eligible = await service.getEligibleParables(
           mood: 'joyful',
-          lengthMinutes: 5,
+          lengthBucket: StoryLengthBucket.short,
           userPrefs: kidPrefs,
         );
 
@@ -72,13 +73,13 @@ void main() {
         // Get eligible parables in both modes
         final kidEligible = await service.getEligibleParables(
           mood: 'joyful',
-          lengthMinutes: 5,
+          lengthBucket: StoryLengthBucket.short,
           userPrefs: kidPrefs,
         );
 
         final adultEligible = await service.getEligibleParables(
           mood: 'joyful',
-          lengthMinutes: 5,
+          lengthBucket: StoryLengthBucket.short,
           userPrefs: adultPrefs,
         );
 
@@ -101,7 +102,7 @@ void main() {
         // Get eligible parables with kid mode disabled
         final eligible = await service.getEligibleParables(
           mood: 'joyful',
-          lengthMinutes: 5,
+          lengthBucket: StoryLengthBucket.short,
           userPrefs: adultPrefs,
         );
 
@@ -127,7 +128,7 @@ void main() {
 
         final eligible = await service.getEligibleParables(
           mood: 'joyful',
-          lengthMinutes: 5,
+          lengthBucket: StoryLengthBucket.short,
           userPrefs: kidPrefs,
         );
 
@@ -146,7 +147,7 @@ void main() {
 
         final eligible = await service.getEligibleParables(
           mood: 'weary',
-          lengthMinutes: 10,
+          lengthBucket: StoryLengthBucket.short,
           userPrefs: kidPrefs,
         );
 
@@ -165,7 +166,7 @@ void main() {
 
         final eligible = await service.getEligibleParables(
           mood: 'anxious',
-          lengthMinutes: 15,
+          lengthBucket: StoryLengthBucket.full,
           userPrefs: kidPrefs,
         );
 
@@ -175,8 +176,8 @@ void main() {
       });
     });
 
-    group('Kid Mode Filtering Across Lengths', () {
-      test('5min stories respect kid mode', () async {
+    group('Kid Mode Filtering Across Length Buckets', () {
+      test('short stories respect kid mode', () async {
         final kidPrefs = UserPreferences(
           kidFriendlyOnly: true,
           faithTradition: 'Protestant',
@@ -186,17 +187,17 @@ void main() {
 
         final eligible = await service.getEligibleParables(
           mood: 'joyful',
-          lengthMinutes: 5,
+          lengthBucket: StoryLengthBucket.short,
           userPrefs: kidPrefs,
         );
 
         for (final parable in eligible) {
           expect(parable.kidFriendly, true);
-          expect(parable.length, 5);
+          expect(parable.lengthBucket, StoryLengthBucket.short);
         }
       });
 
-      test('10min stories respect kid mode', () async {
+      test('full stories respect kid mode', () async {
         final kidPrefs = UserPreferences(
           kidFriendlyOnly: true,
           faithTradition: 'Protestant',
@@ -206,17 +207,17 @@ void main() {
 
         final eligible = await service.getEligibleParables(
           mood: 'weary',
-          lengthMinutes: 10,
+          lengthBucket: StoryLengthBucket.full,
           userPrefs: kidPrefs,
         );
 
         for (final parable in eligible) {
           expect(parable.kidFriendly, true);
-          expect(parable.length, 10);
+          expect(parable.lengthBucket, StoryLengthBucket.full);
         }
       });
 
-      test('20min stories respect kid mode', () async {
+      test('long stories respect kid mode', () async {
         final kidPrefs = UserPreferences(
           kidFriendlyOnly: true,
           faithTradition: 'Protestant',
@@ -226,13 +227,13 @@ void main() {
 
         final eligible = await service.getEligibleParables(
           mood: 'calm_peaceful',
-          lengthMinutes: 20,
+          lengthBucket: StoryLengthBucket.long,
           userPrefs: kidPrefs,
         );
 
         for (final parable in eligible) {
           expect(parable.kidFriendly, true);
-          expect(parable.length, 20);
+          expect(parable.lengthBucket, StoryLengthBucket.long);
         }
       });
     });
@@ -251,7 +252,7 @@ void main() {
         for (int i = 0; i < 3; i++) {
           final selected = await service.selectParable(
             mood: 'joyful',
-            lengthMinutes: 5,
+            lengthBucket: StoryLengthBucket.short,
             userPrefs: kidPrefs,
           );
 
@@ -278,7 +279,7 @@ void main() {
         // In adult mode, both kid-friendly and non-kid-friendly are allowed
         final selected = await service.selectParable(
           mood: 'joyful',
-          lengthMinutes: 5,
+          lengthBucket: StoryLengthBucket.short,
           userPrefs: adultPrefs,
         );
 
