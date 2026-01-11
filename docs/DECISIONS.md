@@ -396,6 +396,64 @@ Early testing showed that Gemma-7B does not reliably hit the target length range
 
 ---
 
+## ADR-009: Story Length UI Migration (Minutes → Buckets)
+
+**Date:** 2026-01-11
+**Status:** Accepted
+**Context:** The original story length UI presented 4 buttons (5/10/15/20 minutes) which:
+1. Exposed implementation details (minute-based audio lengths) to users
+2. Created confusion about what "5 minutes" vs "10 minutes" meant semantically
+3. Required 4 buttons when 3 meaningful categories would suffice
+4. Made it harder to adjust generation word counts without changing the UI
+
+The question was: How do we present story lengths in a user-friendly way while maintaining backwards compatibility with existing minute-based story assets?
+
+**Decision:** Replace the 4-button minute UI with 3 descriptive bucket labels:
+
+| UI Label | Enum Value | Maps From (Legacy Minutes) | Word Count Range |
+|----------|------------|---------------------------|------------------|
+| Short Story | `short` | 5 min, 10 min | 300–700 words |
+| Full Story | `full` | 15 min | 900–1400 words |
+| Long Story | `long` | 20 min | 1700–2600 words |
+
+Implementation:
+1. **New enum**: `StoryLengthBucket` in `lib/core/story_length_bucket.dart`
+2. **Compatibility mapper**: `lengthMinutesToBucket(int)` function
+3. **Computed property**: `Parable.lengthBucket` getter uses mapper
+4. **Selection filtering**: `ParableService` filters by `parable.lengthBucket == lengthBucket`
+5. **Stateless selection**: Length bucket is chosen fresh each session (not persisted)
+6. **Additive telemetry**: Keep `length_min` for backwards compatibility, add `length_bucket`
+
+**Rationale:**
+- **Buckets over minutes**: Users think in "short story" vs "long story", not "5 minutes vs 10 minutes"
+- **3 buttons over 4**: Short/Full/Long covers the semantic space; 5 vs 10 minutes was arbitrary
+- **Compatibility mapping over migration**: No manifest changes needed; existing assets work via `lengthMinutesToBucket()`
+- **Keep legacy `length` field**: Manifest still uses minutes; Parable model computes bucket on read
+- **Stateless selection**: Length was never persisted; users choose length fresh each session
+- **Additive telemetry**: Don't break existing analytics pipelines; add new dimension
+
+**Alternatives Considered:**
+1. **Add `lengthBucket` to manifest.json** — Rejected. Requires rewriting all story metadata. Compatibility mapper achieves the same result.
+2. **Use word count instead of buckets** — Rejected. Would require reading story files to compute counts. Bucket mapping is simpler.
+3. **Keep 4 buttons with new labels** — Rejected. 5 min and 10 min both map to "short"; having 4 UI options for 3 buckets is confusing.
+4. **Persist length preference** — Rejected. Current stateless behavior (choose each session) matches product design.
+
+**Consequences:**
+- New file: `lib/core/story_length_bucket.dart` (~50 lines)
+- Modified:
+  - `lib/models/parable.dart` (added `lengthBucket` getter)
+  - `lib/services/parable_service.dart` (bucket-based filtering)
+  - `lib/providers/app_state_notifier.dart` (updated signature)
+  - `lib/features/pals_parables/pals_parables_screen.dart` (3 buttons)
+  - All test files using `lengthMinutes` parameter
+  - `docs/SPEC.md` (updated Feature #6)
+  - `.clinerules` (updated line 66)
+- UI shows "Short Story", "Full Story", "Long Story" instead of "5 min", "10 min", etc.
+- All existing story assets remain compatible (no manifest changes)
+- Telemetry now includes both `length_min` and `length_bucket`
+
+---
+
 ## Template for Future Decisions
 
 ```

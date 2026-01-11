@@ -63,7 +63,7 @@ They are NOT to be implemented or modified during Phase C unless explicitly requ
 
 - NO on-demand story generation
 - Story creation happens ONLY via nightly batch generation
-- Fixed parable length buckets: 5 / 10 / 15 / 20 minutes
+- Fixed parable length buckets: Short / Full / Long (mapped from legacy 5/10/15/20 minutes)
 - A story must not repeat until the eligible pool is exhausted
 
 Eligibility is defined as:

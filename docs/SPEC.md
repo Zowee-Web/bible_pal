@@ -84,10 +84,23 @@ This document is the single source of truth for Bible PAL's features and behavio
 
 ### Story Length & Generation
 
-**6. Fixed Length Options**
-- Four fixed durations: **5, 10, 15, 20 minutes**
-- No slider interface
-- Length is stored as metadata with each story
+**6. Story Length Buckets**
+
+Three user-facing length options (no minute estimates shown to users):
+- **Short Story**: 300–700 words
+- **Full Story**: 900–1400 words
+- **Long Story**: 1700–2600 words
+
+Implementation notes:
+- UI presents descriptive labels only (Short/Full/Long), not minutes
+- Selection filters by `StoryLengthBucket` enum (short/full/long)
+- Word ranges are for generation validation; selection uses bucket mapping
+- Length selection is stateless (chosen fresh each session after mood detection)
+
+**Compatibility with existing assets:**
+- Existing stories store `length` in minutes (5, 10, 15, 20)
+- Mapping: 5-min → short, 10-min → short, 15-min → full, 20-min → long
+- Manifest schema unchanged; `Parable.lengthBucket` getter handles mapping
 
 **7. Nightly Batch Generation**
 - Automated script runs at 2:00 AM daily
@@ -103,7 +116,8 @@ Each parable includes:
 - `storyId` (unique identifier)
 - `title` (AI-generated, user-editable)
 - `mood` / emotional tags
-- `length` (5, 10, 15, or 20 minutes)
+- `length` (minutes: 5, 10, 15, or 20 - legacy field for asset compatibility)
+- `lengthBucket` (computed: short, full, or long - used for selection)
 - `faithTradition`
 - `storytellingMode` (creative or traditional)
 - `scriptureSources` (array of verse references)
