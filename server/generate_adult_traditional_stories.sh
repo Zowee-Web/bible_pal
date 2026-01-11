@@ -59,7 +59,6 @@ LOGS_DIR="${SCRIPT_DIR}/logs"
 MODEL="gemma:7b"
 
 if [ "$GOLDEN_PROMPT_MODE" = true ]; then
-    CONTRACT_FILE="${SCRIPT_DIR}/contracts/golden_contract_trad_adult_5min.yaml"
     PROMPT_TEMPLATE="${SCRIPT_DIR}/prompts/golden_trad_adult_5min.prompt.txt"
     # SHORT bucket test generation (NOT claiming 5-min calibration)
     ACCEPT_MIN=300       # Below this: needs continuation
@@ -67,7 +66,6 @@ if [ "$GOLDEN_PROMPT_MODE" = true ]; then
     PROMPT_TARGET=500    # Midpoint of 380-620 for prompt
     MODE_NAME="golden"
 else
-    CONTRACT_FILE="${SCRIPT_DIR}/contracts/story_contract_trad_adult_5min.yaml"
     PROMPT_TEMPLATE="${SCRIPT_DIR}/prompts/trad_adult_5min.prompt.txt"
     ACCEPT_MIN=510
     ACCEPT_MAX=720
@@ -254,6 +252,8 @@ generate_with_retries() {
 
     if [ "$GOLDEN_PROMPT_MODE" = true ]; then
         # === GOLDEN MODE: Gate branching logic ===
+        # Golden mode currently allows limited continuation (max 2) to help Gemma
+        # hit the accept range; this is intentional, not single-shot.
 
         # GATE: Too short (<300) - try continuation (max 2 times)
         while [ "$word_count" -lt "$ACCEPT_MIN" ] && [ "$continuation_attempts" -lt 2 ]; do
@@ -399,7 +399,6 @@ else
     echo "Mode: STANDARD (with continuation)"
 fi
 echo "Model: $MODEL"
-echo "Contract: $CONTRACT_FILE (documentation only)"
 echo "Template: $PROMPT_TEMPLATE"
 echo "Output: $STORY_DIR"
 echo "Quarantine: $FAILED_DIR"
