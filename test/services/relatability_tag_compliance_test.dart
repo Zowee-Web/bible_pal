@@ -158,6 +158,8 @@ void main() {
       final usedTags = tagCounts.keys.toSet();
       final unusedTags = allowedTags.difference(usedTags);
       if (unusedTags.isNotEmpty) {
+        // NOTE: This is informational only.
+        // Indicates allowed relatability tags that currently have no story coverage.
         // ignore: avoid_print
         print('\nUnused tags: ${unusedTags.join(', ')}');
       }
