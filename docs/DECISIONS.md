@@ -339,6 +339,63 @@ Bootstrap._isFirstLaunch() → FutureBuilder
 
 ---
 
+## ADR-008: Golden Prompt Story Generator Behavior (SHORT Bucket)
+
+**Date:** 2026-01-11
+**Status:** Accepted
+**Context:** Bible PAL uses a "golden prompt" generation mode for producing high-quality, prose-only story seed files using Gemma via Ollama. These stories are used as foundational content and must meet strict formatting and length guarantees while remaining model-agnostic.
+
+Early testing showed that Gemma-7B does not reliably hit the target length range in a single generation pass.
+
+**Decision:** Golden prompt mode is defined with the following **intentional behavior**:
+
+1. **SHORT bucket only**
+   - Acceptance range: **300–700 words**
+   - Prompt target: **380–620 words**
+   - This mode does **not** claim 5-minute / 600-word calibration
+
+2. **Prose-only output**
+   - Generated `.txt` files contain ONLY story prose
+   - No YAML headers, metadata, IDs, titles, or commentary
+   - Metadata is handled externally (manifest, filename, etc.)
+
+3. **Controlled continuation is allowed**
+   - If initial output is below 300 words:
+     - Up to **2 continuation attempts** are allowed
+     - Continuation uses last 1–2 sentences for context
+   - If still under range, a single full regeneration is allowed
+   - This is **intentional** and **not** a single-shot generator
+
+4. **Over-length handling**
+   - If output exceeds 700 words:
+     - One regeneration is allowed using a tighter target range (350–600)
+
+5. **Contract files are documentation only**
+   - YAML contract files describe intent and constraints
+   - They are **not parsed or enforced at runtime**
+   - Contract paths are no longer printed during generation
+
+**Rationale:**
+- **Continuation over single-shot**: Allowing limited continuation dramatically improves length reliability for smaller local models without sacrificing story quality.
+- **Prose-only over metadata-embedded**: Simplifies downstream consumption and avoids duplication of metadata concerns.
+- **Hardcoded gates over contract parsing**: Keeps behavior explicit in the script. Avoids false assumptions about runtime contract enforcement.
+
+**Alternatives Considered:**
+1. **True single-shot golden** — Rejected. Gemma-7B frequently produces under-length output. Would require many retries.
+2. **Parse contract YAML at runtime** — Rejected. Adds complexity without benefit. Script is the source of truth.
+3. **Include metadata in story files** — Rejected. Creates duplication with manifest. Makes story files harder to consume.
+
+**Consequences:**
+- Golden mode is optimized for **reliability and quality**, not purity
+- Future "single-shot" experimentation must be explicitly introduced (e.g., via a new flag), not by modifying golden mode
+- Any changes to golden generator behavior must update this ADR
+- Script changes:
+  - `server/generate_adult_traditional_stories.sh` — bash shebang, strict mode, gate branching
+  - `server/prompts/golden_trad_adult_5min.prompt.txt` — OUTPUT RULES section
+  - `server/contracts/golden_contract_trad_adult_5min.yaml` — marked as documentation only
+
+---
+
 ## Template for Future Decisions
 
 ```
