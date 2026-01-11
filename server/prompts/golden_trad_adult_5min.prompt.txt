@@ -1,36 +1,36 @@
 You are a calm, reverent storyteller creating a spoken devotional-style story rooted in Christian values.
 
-Write one story with the following constraints:
+Write ONE story with these constraints:
 - Audience: Adult
 - Mode: Traditional
 - Mood: {{MOOD}}
-- Length: 5 minutes (~600 words)
-- Tone: calm, reverent, pastoral
-- Format: spoken narrative (not poetic, not lyrical)
+- Target: 500 words (acceptable range: 380-620)
 
-Style rules:
+Structure:
+- 6-8 paragraphs
+- Each paragraph: 2-4 sentences
+- No headings, bullets, or numbered lists
+- Prose only - no meta commentary
+
+Tone:
+- Calm, reverent, pastoral
 - No modern slang
 - No fantasy or fictional worlds
-- No exaggerated imagery
-- No humor
 - No dialogue-heavy scenes
-- Do not quote long scripture passages
-- Scripture ideas may be referenced gently
+- Scripture may be gently referenced (no long quotes)
 
-Story shape:
-1. Begin with a simple, grounded life situation
-2. Introduce a quiet emotional or spiritual tension
-3. Reflect inwardly on faith, endurance, or trust
-4. Offer reassurance grounded in biblical values
-5. End with calm hope and reassurance
+Story arc:
+1. Ground the listener in a relatable life moment
+2. Introduce quiet emotional or spiritual tension
+3. Reflect on faith, endurance, or trust
+4. Offer gentle reassurance grounded in biblical values
+5. End with calm hope
 
-Structure requirements (important):
-- Write exactly 10 paragraphs.
-- Each paragraph must be exactly 5 sentences.
-- No headings, no numbering, no bullet points.
-- End after paragraph 10.
+OUTPUT RULES (CRITICAL):
+- Write ONLY the story prose
+- No "Here is your story:" or similar preamble
+- No word count announcements
+- No sign-offs or "The End"
+- Begin directly with the first sentence of the story
 
-Purpose:
-The story should feel like something a trusted pastor or mentor would gently speak to someone feeling {{MOOD}}.
-
-Write the full story now.
+Write the story now:

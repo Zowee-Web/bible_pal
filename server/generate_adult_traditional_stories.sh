@@ -1,20 +1,20 @@
-#!/bin/sh
-# Generate Adult Traditional 5-minute stories with CONTRACT ENFORCEMENT
+#!/usr/bin/env bash
+# Generate Adult Traditional stories with CONTRACT ENFORCEMENT
 # Uses Gemma-7B via Ollama for content generation
 # Claude Code is infrastructure only - NO prose generation
 #
 # This script:
-# 1. Loads contract + prompt template
+# 1. Loads prompt template
 # 2. Generates with Gemma
-# 3. Validates word count
-# 4. Retries/continues until valid (standard mode) OR regenerates fresh (golden mode)
+# 3. Validates word count with gate branching
+# 4. Retries via continuation or regeneration
 # 5. Quarantines failures
 #
 # Usage:
 #   ./generate_adult_traditional_stories.sh              # Standard mode (with continuation)
-#   ./generate_adult_traditional_stories.sh --golden-prompt  # Golden mode (single-shot)
+#   ./generate_adult_traditional_stories.sh --golden-prompt  # Golden mode (SHORT bucket test)
 
-set -e
+set -euo pipefail
 
 # === MODE SELECTION ===
 GOLDEN_PROMPT_MODE=false
@@ -32,8 +32,8 @@ while [ $# -gt 0 ]; do
             echo "Usage: $0 [--golden-prompt]"
             echo ""
             echo "Options:"
-            echo "  --golden-prompt  Use Golden Prompt mode (recommended for Gemma-7B)"
-            echo "                   Single-shot generation, no continuation logic"
+            echo "  --golden-prompt  Use Golden Prompt mode with SHORT bucket guardrails"
+            echo "                   Accept gate: 300-700 words"
             echo "                   Outputs to parable_3XX_*_golden_trad.txt"
             echo ""
             echo "Without flags: Standard mode with continuation prompts"
@@ -57,19 +57,21 @@ LOGS_DIR="${SCRIPT_DIR}/logs"
 
 # === MODE-DEPENDENT PATHS AND CONFIG ===
 MODEL="gemma:7b"
-TARGET_WORDS=600
 
 if [ "$GOLDEN_PROMPT_MODE" = true ]; then
     CONTRACT_FILE="${SCRIPT_DIR}/contracts/golden_contract_trad_adult_5min.yaml"
     PROMPT_TEMPLATE="${SCRIPT_DIR}/prompts/golden_trad_adult_5min.prompt.txt"
-    MIN_WORDS=450
-    MAX_RETRIES=2
+    # SHORT bucket test generation (NOT claiming 5-min calibration)
+    ACCEPT_MIN=300       # Below this: needs continuation
+    ACCEPT_MAX=700       # Above this: regenerate with tighter range
+    PROMPT_TARGET=500    # Midpoint of 380-620 for prompt
     MODE_NAME="golden"
 else
     CONTRACT_FILE="${SCRIPT_DIR}/contracts/story_contract_trad_adult_5min.yaml"
     PROMPT_TEMPLATE="${SCRIPT_DIR}/prompts/trad_adult_5min.prompt.txt"
-    MIN_WORDS=510
-    MAX_RETRIES=5
+    ACCEPT_MIN=510
+    ACCEPT_MAX=720
+    PROMPT_TARGET=600
     MODE_NAME="standard"
 fi
 
@@ -102,8 +104,44 @@ trap clear_mode_guard EXIT INT TERM
 
 # === HELPER FUNCTIONS ===
 
+# Strip ANSI/CSI escape sequences (portable for macOS/BSD sed)
+strip_ansi() {
+    printf '%s' "$1" | sed \
+        -e $'s/\x1b\\[[0-9;?]*[ -/]*[@-~]//g' \
+        -e $'s/\x1b.//g' \
+        -e $'s/\r//g'
+}
+
+# Count words (strips ANSI first)
 count_words() {
-    echo "$1" | wc -w | tr -d ' '
+    local clean
+    clean=$(strip_ansi "$1")
+    printf '%s' "$clean" | wc -w | tr -d ' '
+}
+
+# Extract last 1-2 sentences for continuation context
+extract_last_context() {
+    local text="$1"
+    local clean
+    clean=$(strip_ansi "$text")
+
+    # Normalize whitespace
+    clean=$(printf '%s' "$clean" | tr '\n' ' ' | tr -s ' ')
+
+    # Take last ~1000 chars
+    local tail_text
+    tail_text=$(printf '%s' "$clean" | tail -c 1000)
+
+    # Try to extract last 1-2 sentences
+    local sentences
+    sentences=$(printf '%s' "$tail_text" | grep -oE '[^.!?]*[.!?]' | tail -2 | tr '\n' ' ')
+
+    # Fallback: if sentence parse fails (<50 chars), use last 250 chars
+    if [ ${#sentences} -lt 50 ]; then
+        sentences=$(printf '%s' "$tail_text" | tail -c 250)
+    fi
+
+    printf '%s' "$sentences"
 }
 
 get_tags() {
@@ -126,16 +164,59 @@ build_prompt() {
     sed "s/{{MOOD}}/${mood}/g" "$PROMPT_TEMPLATE"
 }
 
+# Tighter prompt for over-length regeneration (350-600 range)
+build_prompt_tight() {
+    local mood=$1
+    sed "s/{{MOOD}}/${mood}/g; s/380-620/350-600/g" "$PROMPT_TEMPLATE"
+}
+
 build_continue_prompt() {
-    local current_words=$1
-    local remaining=$((TARGET_WORDS - current_words))
-    echo "Your story is incomplete. You wrote only ${current_words} words but need ${TARGET_WORDS}.
+    local current_text="$1"
+    local current_words="$2"
+    local remaining=$((PROMPT_TARGET - current_words))
 
-Continue the story EXACTLY where you left off. Write ${remaining} more words to complete it.
+    local context
+    context=$(extract_last_context "$current_text")
 
-DO NOT restart. DO NOT summarize. Just continue the narrative and bring it to a proper closing reflection.
+    cat << EOF
+Continue this story. Write approximately ${remaining} more words.
 
-CONTINUE:"
+Pick up EXACTLY where this left off:
+"${context}"
+
+Continue the narrative now:
+EOF
+}
+
+# Run ollama and capture both stdout and stderr
+# Returns 1 if ollama fails or output is empty
+run_ollama() {
+    local prompt="$1"
+    local tmpfile
+    tmpfile=$(mktemp)
+    local errfile
+    errfile=$(mktemp)
+
+    local result
+    if ! ollama run "$MODEL" "$prompt" > "$tmpfile" 2> "$errfile"; then
+        echo "ERROR: ollama command failed" >&2
+        cat "$errfile" >&2
+        rm -f "$tmpfile" "$errfile"
+        return 1
+    fi
+
+    local output
+    output=$(cat "$tmpfile")
+    rm -f "$tmpfile" "$errfile"
+
+    # Check for empty output
+    if [ -z "$output" ]; then
+        echo "ERROR: ollama returned empty output" >&2
+        return 1
+    fi
+
+    printf '%s' "$output"
+    return 0
 }
 
 generate_with_retries() {
@@ -156,67 +237,131 @@ generate_with_retries() {
     echo ""
     echo "=== Generating: $filename (mood: $mood, mode: $MODE_NAME) ==="
 
-    local attempt=1
-    local story_content=""
-    local word_count=0
+    local prompt story_content word_count
+    local continuation_attempts=0
+    local regeneration_attempts=0
 
     # Initial generation
-    echo "Attempt $attempt: Initial generation..."
-    local prompt=$(build_prompt "$mood")
-    story_content=$(ollama run "$MODEL" "$prompt" 2>/dev/null)
+    echo "  Initial generation..."
+    prompt=$(build_prompt "$mood")
+    if ! story_content=$(run_ollama "$prompt"); then
+        echo "  ERROR: Initial generation failed"
+        return 1
+    fi
+    story_content=$(strip_ansi "$story_content")
     word_count=$(count_words "$story_content")
-    echo "  Generated $word_count words"
+    echo "  Initial: $word_count words"
 
-    # Retry logic - differs by mode
     if [ "$GOLDEN_PROMPT_MODE" = true ]; then
-        # GOLDEN MODE: Fresh regeneration only (no continuation prompts)
-        # Attempt 2 uses stricter structure (12 paragraphs instead of 10)
-        while [ "$word_count" -lt "$MIN_WORDS" ] && [ "$attempt" -lt "$MAX_RETRIES" ]; do
-            attempt=$((attempt + 1))
-            echo "Attempt $attempt: Story too short ($word_count < $MIN_WORDS), regenerating fresh with stricter structure..."
+        # === GOLDEN MODE: Gate branching logic ===
 
-            # Escalate structure: 10 paragraphs -> 12 paragraphs for attempt 2
-            local prompt_stricter
-            prompt_stricter=$(echo "$prompt" | sed 's/exactly 10 paragraphs/exactly 12 paragraphs/g' | sed 's/End after paragraph 10/End after paragraph 12/g')
+        # GATE: Too short (<300) - try continuation (max 2 times)
+        while [ "$word_count" -lt "$ACCEPT_MIN" ] && [ "$continuation_attempts" -lt 2 ]; do
+            continuation_attempts=$((continuation_attempts + 1))
+            echo "  Continuation attempt $continuation_attempts (wc=$word_count < $ACCEPT_MIN)..."
 
-            # Full regeneration with stricter structure
-            story_content=$(ollama run "$MODEL" "$prompt_stricter" 2>/dev/null)
-            word_count=$(count_words "$story_content")
-            echo "  Generated $word_count words"
-        done
-    else
-        # STANDARD MODE: Continuation prompts (original behavior)
-        while [ "$word_count" -lt "$MIN_WORDS" ] && [ "$attempt" -lt "$MAX_RETRIES" ]; do
-            attempt=$((attempt + 1))
-            echo "Attempt $attempt: Story too short ($word_count < $MIN_WORDS), continuing..."
+            local continue_prompt
+            continue_prompt=$(build_continue_prompt "$story_content" "$word_count")
+            local continuation
+            if ! continuation=$(run_ollama "$continue_prompt"); then
+                echo "    ERROR: Continuation failed"
+                break
+            fi
+            continuation=$(strip_ansi "$continuation")
 
-            # Build continuation prompt
-            local continue_prompt=$(build_continue_prompt "$word_count")
-            continue_prompt="${continue_prompt}
-
-Previous text (continue from here):
----
-${story_content}
----"
-
-            # Get continuation
-            local continuation=$(ollama run "$MODEL" "$continue_prompt" 2>/dev/null)
-
-            # Append continuation
             story_content="${story_content}
 
 ${continuation}"
             word_count=$(count_words "$story_content")
-            echo "  Now at $word_count words"
+            echo "    Now: $word_count words"
+        done
+
+        # GATE: Still too short after continuations - regenerate once from scratch
+        if [ "$word_count" -lt "$ACCEPT_MIN" ] && [ "$regeneration_attempts" -lt 1 ]; then
+            regeneration_attempts=$((regeneration_attempts + 1))
+            echo "  Still short after continuations, regenerating from scratch..."
+
+            if ! story_content=$(run_ollama "$prompt"); then
+                echo "    ERROR: Regeneration failed"
+            else
+                story_content=$(strip_ansi "$story_content")
+                word_count=$(count_words "$story_content")
+                echo "    Regenerated: $word_count words"
+
+                # One more continuation attempt if still short
+                if [ "$word_count" -lt "$ACCEPT_MIN" ]; then
+                    local continue_prompt
+                    continue_prompt=$(build_continue_prompt "$story_content" "$word_count")
+                    local continuation
+                    if continuation=$(run_ollama "$continue_prompt"); then
+                        continuation=$(strip_ansi "$continuation")
+                        story_content="${story_content}
+
+${continuation}"
+                        word_count=$(count_words "$story_content")
+                        echo "    After continuation: $word_count words"
+                    fi
+                fi
+            fi
+        fi
+
+        # GATE: Too long (>700) - regenerate once with tighter range
+        if [ "$word_count" -gt "$ACCEPT_MAX" ]; then
+            echo "  Too long ($word_count > $ACCEPT_MAX), regenerating with tighter range..."
+
+            local tighter_prompt
+            tighter_prompt=$(build_prompt_tight "$mood")
+            if story_content=$(run_ollama "$tighter_prompt"); then
+                story_content=$(strip_ansi "$story_content")
+                word_count=$(count_words "$story_content")
+                echo "    Tighter regeneration: $word_count words"
+            else
+                echo "    ERROR: Tighter regeneration failed, keeping original"
+            fi
+        fi
+
+    else
+        # === STANDARD MODE: Original continuation logic ===
+        local attempt=1
+        while [ "$word_count" -lt "$ACCEPT_MIN" ] && [ "$attempt" -lt 5 ]; do
+            attempt=$((attempt + 1))
+            echo "  Attempt $attempt: Story too short ($word_count < $ACCEPT_MIN), continuing..."
+
+            # Build continuation prompt with full story
+            local continue_prompt="Your story is incomplete. You wrote only ${word_count} words but need ${PROMPT_TARGET}.
+
+Continue the story EXACTLY where you left off. Write $((PROMPT_TARGET - word_count)) more words to complete it.
+
+DO NOT restart. DO NOT summarize. Just continue the narrative and bring it to a proper closing reflection.
+
+Previous text (continue from here):
+---
+${story_content}
+---
+
+CONTINUE:"
+
+            local continuation
+            if ! continuation=$(run_ollama "$continue_prompt"); then
+                echo "    ERROR: Continuation failed"
+                break
+            fi
+            continuation=$(strip_ansi "$continuation")
+
+            story_content="${story_content}
+
+${continuation}"
+            word_count=$(count_words "$story_content")
+            echo "    Now at $word_count words"
         done
     fi
 
     # Final validation
-    if [ "$word_count" -lt "$MIN_WORDS" ]; then
-        echo "FAILED: Could not reach $MIN_WORDS words after $attempt attempt(s)"
+    if [ "$word_count" -lt "$ACCEPT_MIN" ]; then
+        echo "FAILED: Could not reach $ACCEPT_MIN words"
         echo "  Quarantining to: $failed_path"
 
-        # Save to quarantine
+        # Save to quarantine (with metadata for debugging)
         cat > "$failed_path" << EOF
 ---
 story_id: parable_${story_id}_${mood}_5min_${OUTPUT_SUFFIX}
@@ -228,8 +373,7 @@ tradition: Unspecified
 tags: [${tags}]
 failure_reason: word_count_too_low
 actual_words: ${word_count}
-required_words: ${MIN_WORDS}
-attempts: ${attempt}
+required_words: ${ACCEPT_MIN}
 ---
 
 ${story_content}
@@ -237,23 +381,9 @@ EOF
         return 1
     fi
 
-    # SUCCESS - write to assets/stories
-    echo "SUCCESS: $filename ($word_count words in $attempt attempt(s))"
-
-    cat > "$filepath" << EOF
----
-story_id: parable_${story_id}_${mood}_5min_${OUTPUT_SUFFIX}
-mood: ${mood}
-length_min: 5
-mode: ${mode_label}
-kid_friendly: false
-tradition: Unspecified
-tags: [${tags}]
----
-
-EOF
-
-    echo "$story_content" >> "$filepath"
+    # SUCCESS - write prose-only (no metadata header)
+    echo "SUCCESS: $filename ($word_count words)"
+    printf '%s\n' "$story_content" > "$filepath"
     return 0
 }
 
@@ -263,28 +393,22 @@ echo "=========================================="
 echo "Adult Traditional Story Generator"
 echo "=========================================="
 if [ "$GOLDEN_PROMPT_MODE" = true ]; then
-    echo "Mode: GOLDEN PROMPT (single-shot, no continuation)"
+    echo "Mode: GOLDEN PROMPT (SHORT bucket test)"
+    echo "Accept gate: $ACCEPT_MIN - $ACCEPT_MAX words"
 else
     echo "Mode: STANDARD (with continuation)"
 fi
 echo "Model: $MODEL"
-echo "Contract: $CONTRACT_FILE"
+echo "Contract: $CONTRACT_FILE (documentation only)"
 echo "Template: $PROMPT_TEMPLATE"
 echo "Output: $STORY_DIR"
 echo "Quarantine: $FAILED_DIR"
-echo "Min words: $MIN_WORDS"
-echo "Max retries: $MAX_RETRIES"
 echo "=========================================="
 
 # Validate mode guard (prevents mixing modes in same session)
 validate_mode_guard
 
-# Verify files exist
-if [ ! -f "$CONTRACT_FILE" ]; then
-    echo "ERROR: Contract file not found: $CONTRACT_FILE"
-    exit 1
-fi
-
+# Verify prompt template exists
 if [ ! -f "$PROMPT_TEMPLATE" ]; then
     echo "ERROR: Prompt template not found: $PROMPT_TEMPLATE"
     exit 1
@@ -329,3 +453,9 @@ if [ "$fail_count" -gt 0 ]; then
 fi
 
 echo "Next step: Update manifest.json if needed"
+
+# === VERIFICATION COMMANDS (run manually) ===
+# Word count check:
+#   wc -w assets/stories/parable_30*_golden_trad.txt
+# ANSI escape check:
+#   grep -l $'\x1b' assets/stories/parable_30*_golden_trad.txt || echo "No ANSI codes"

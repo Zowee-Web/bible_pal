@@ -1,5 +1,6 @@
-# Golden Prompt Contract: Traditional Adult 5-Minute Parable
-# Single-shot generation - trusts model more, no continuation logic
+# Golden Prompt Contract: Traditional Adult SHORT Bucket Story
+# DOCUMENTATION ONLY - Script hardcodes these values
+# This file is NOT parsed at runtime
 #
 # Key philosophy:
 # - Constrain the model, don't ask it to be smart
@@ -7,26 +8,31 @@
 # - Single purpose, single audience, single mode
 # - Trust the model with a clear lane
 
-# === LENGTH REQUIREMENTS ===
+# === LENGTH REQUIREMENTS (SHORT bucket test generation) ===
+# NOTE: NOT claiming 5-min/600-word calibration
 length:
-  target_words: 600
-  min_words: 450       # Lower threshold - trust model more
-  max_words: 800       # Higher ceiling - allow natural length
-  duration_minutes: 5
+  prompt_target: 500       # Midpoint of 380-620
+  accept_min: 300          # Gate: below = continuation (max 2), then regenerate
+  accept_max: 700          # Gate: above = tighter regeneration (350-600)
+  ideal_range: [380, 620]  # Prompt target range
+  tight_range: [350, 600]  # For over-length regeneration
+  duration_minutes: 5      # Legacy field for reference
 
-# === VALIDATION ===
+# === VALIDATION (implemented in script, not parsed) ===
 validation:
-  max_retries: 2                # Fewer retries - trust model
-  continue_on_short: false      # CRITICAL: no continuation prompts
-  regenerate_on_short: true     # Fresh regeneration instead
+  max_continuation_attempts: 2    # Try continuation twice before regenerating
+  max_regeneration_attempts: 1    # Regenerate from scratch once if still short
+  accept_range: [300, 700]        # Stories in this range are accepted
 
-  must_pass:
-    - word_count_minimum
+# === GATE BRANCHING LOGIC ===
+# Implemented in generate_adult_traditional_stories.sh:
+#   if wc < 300: continuation (max 2, append)
+#   if still < 300: regenerate once from scratch
+#   if wc > 700: regenerate once with tighter range (350-600)
+#   300 <= wc <= 700: accept
+#   file exists: skip
 
-  warn_only:
-    - word_count_over_max
-
-# === TONE & STYLE (preserved from standard contract) ===
+# === TONE & STYLE ===
 tone:
   mode: traditional
   voice: "pastoral, like a trusted mentor speaking gently"
@@ -48,7 +54,7 @@ tone:
     - guilt_manipulation
     - denominational_specifics
 
-# === CONTENT RULES (preserved from standard contract) ===
+# === CONTENT RULES ===
 content:
   kid_friendly: false
 
@@ -72,7 +78,7 @@ content:
     - specific_denominations
     - judgment_of_others
 
-# === SCRIPTURE RULES (preserved from standard contract) ===
+# === SCRIPTURE RULES ===
 scripture:
   allowed:
     - brief_allusions
@@ -84,10 +90,10 @@ scripture:
     - chapter_verse_citations_inline
     - multiple_scripture_blocks
 
-# === MODE GUARD ===
-mode_guard:
-  mode_name: golden
-  incompatible_with:
-    - continuation_prompts
-    - segmented_generation
-    - multi_objective_prompts
+# === OUTPUT FORMAT ===
+output:
+  format: prose_only
+  no_headers: true
+  no_yaml_frontmatter: true
+  no_preamble: true
+  no_signoffs: true
