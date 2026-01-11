@@ -7,6 +7,7 @@ import 'package:bible_pal/providers/app_state_notifier.dart';
 import 'package:bible_pal/providers/parable_player_notifier.dart';
 import 'package:bible_pal/widgets/greeting_display.dart';
 import 'package:bible_pal/core/app_logger.dart';
+import 'package:bible_pal/core/story_length_bucket.dart';
 
 /// PAL's Parables Screen
 /// Based on SPEC.md Features 2, 2.1, 3, 4, 5, 14, 16
@@ -67,16 +68,17 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     });
   }
 
-  /// Handle length selection and parable loading
-  Future<void> _handleLengthSelection(int lengthMinutes) async {
+  /// Handle length bucket selection and parable loading
+  Future<void> _handleLengthSelection(StoryLengthBucket lengthBucket) async {
     if (_moodResult == null) {
       debugPrint('No mood result available');
       return;
     }
 
     // Log length selection (no user text logged!)
+    // Keep length_min for backwards compatibility (use representative value)
     logEvent('length_selected', {
-      'length_min': lengthMinutes,
+      'length_bucket': lengthBucket.name,
       'detected_mood': _moodResult!.mood,
     });
 
@@ -85,10 +87,10 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     try {
       final appStateNotifier = ref.read(appStateProvider.notifier);
 
-      // Select parable based on mood, length, and user's text for relatability
+      // Select parable based on mood, length bucket, and user's text for relatability
       final parable = await appStateNotifier.selectParable(
         mood: _moodResult!.mood,
-        lengthMinutes: lengthMinutes,
+        lengthBucket: lengthBucket,
         userText: _moodController.text,
       );
 
@@ -134,18 +136,18 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
   }
 
   /// Build a length selection button
-  Widget _buildLengthButton(int lengthMinutes, String label, ThemeData theme) {
+  Widget _buildLengthButton(StoryLengthBucket bucket, ThemeData theme) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),
         child: ElevatedButton(
-          onPressed: () => _handleLengthSelection(lengthMinutes),
+          onPressed: () => _handleLengthSelection(bucket),
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 12),
             backgroundColor: theme.colorScheme.secondary,
             foregroundColor: theme.colorScheme.onSecondary,
           ),
-          child: Text(label),
+          child: Text(bucket.displayLabel),
         ),
       ),
     );
@@ -320,10 +322,9 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            _buildLengthButton(5, '5 min', theme),
-                            _buildLengthButton(10, '10 min', theme),
-                            _buildLengthButton(15, '15 min', theme),
-                            _buildLengthButton(20, '20 min', theme),
+                            _buildLengthButton(StoryLengthBucket.short, theme),
+                            _buildLengthButton(StoryLengthBucket.full, theme),
+                            _buildLengthButton(StoryLengthBucket.long, theme),
                           ],
                         ),
                       ],

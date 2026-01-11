@@ -6,6 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import '../models/parable.dart';
 import '../models/user_preferences.dart';
 import '../core/app_logger.dart';
+import '../core/story_length_bucket.dart';
 import 'storage_service.dart';
 import 'relatability_matcher.dart';
 
@@ -172,26 +173,27 @@ class ParableService {
   /// Per SPEC.md Feature #4: Parable Generation / Selection Engine
   Future<List<Parable>> getEligibleParables({
     required String mood,
-    required int lengthMinutes,
+    required StoryLengthBucket lengthBucket,
     required UserPreferences userPrefs,
   }) async {
     final allParables = await _loadManifest();
-    
+
     // For bundled test assets, be more lenient with filtering
     final hasEmptyTradition = userPrefs.faithTradition.isEmpty;
-    
+
     // Story language filter (WEB or KJV)
     // Stories are filtered by translationId to match user's storyLanguage preference
     final storyLanguage = userPrefs.storyLanguage;
 
     // Log filters being applied (analytics only, not verbose debug output)
+    // Keep length_min for backwards compatibility, add length_bucket
     logEvent('filters_applied', {
       'kid_mode': userPrefs.kidFriendlyOnly,
       'tradition': userPrefs.faithTradition,
       'storytelling_mode': userPrefs.storytellingMode,
       'story_language': storyLanguage,
       'mood': mood,
-      'length_min': lengthMinutes,
+      'length_bucket': lengthBucket.name,
       'pool_size': allParables.length,
     });
 
@@ -200,8 +202,8 @@ class ParableService {
       // Match mood (always required)
       if (p.mood != mood) return false;
 
-      // Match length (always required)
-      if (p.length != lengthMinutes) return false;
+      // Match length bucket (uses compatibility mapping from minute-based metadata)
+      if (p.lengthBucket != lengthBucket) return false;
 
       // Match faith tradition - skip if user hasn't set one yet (test mode)
       if (!hasEmptyTradition && p.faithTradition != userPrefs.faithTradition) {
@@ -283,19 +285,19 @@ class ParableService {
   /// Per SPEC.md Feature #14: Non-Repeat Story Serving Rule
   ///
   /// Selection algorithm:
-  /// 1. Filter by eligibility (mode, length, tradition, kid mode)
+  /// 1. Filter by eligibility (mode, lengthBucket, tradition, kid mode)
   /// 2. Exclude recently played (no-repeat invariant) if unplayed exist
   /// 3. Rank by relatability score (if userText provided)
   /// 4. Tie-break: least-recently-played, then stable storyId
   Future<Parable?> selectParable({
     required String mood,
-    required int lengthMinutes,
+    required StoryLengthBucket lengthBucket,
     required UserPreferences userPrefs,
     String? userText,
   }) async {
     final eligibleParables = await getEligibleParables(
       mood: mood,
-      lengthMinutes: lengthMinutes,
+      lengthBucket: lengthBucket,
       userPrefs: userPrefs,
     );
 
@@ -358,10 +360,12 @@ class ParableService {
 
         final selected = ranked.first;
         // Log story selected with relatability ranking
+        // Keep length_min for backwards compatibility, add length_bucket
         logEvent('story_selected', {
           'story_id': selected.storyId,
           'mode': '${userPrefs.kidFriendlyOnly ? "kid" : "adult"}_${selected.storytellingMode}',
           'length_min': selected.length,
+          'length_bucket': selected.lengthBucket.name,
           'tradition': selected.faithTradition,
           'matched_tags': selected.emotionalTags,
           'selection_method': 'relatability_ranking',
@@ -391,10 +395,12 @@ class ParableService {
 
     final selected = candidates.first;
     // Log story selected via deterministic fallback
+    // Keep length_min for backwards compatibility, add length_bucket
     logEvent('story_selected', {
       'story_id': selected.storyId,
       'mode': '${userPrefs.kidFriendlyOnly ? "kid" : "adult"}_${selected.storytellingMode}',
       'length_min': selected.length,
+      'length_bucket': selected.lengthBucket.name,
       'tradition': selected.faithTradition,
       'matched_tags': selected.emotionalTags,
       'selection_method': 'deterministic_lrp',
@@ -470,7 +476,7 @@ class ParableService {
   /// Get count of available parables by criteria
   Future<int> getAvailableCount({
     String? mood,
-    int? lengthMinutes,
+    StoryLengthBucket? lengthBucket,
     String? faithTradition,
     String? storytellingMode,
   }) async {
@@ -478,7 +484,7 @@ class ParableService {
 
     return allParables.where((p) {
       if (mood != null && p.mood != mood) return false;
-      if (lengthMinutes != null && p.length != lengthMinutes) return false;
+      if (lengthBucket != null && p.lengthBucket != lengthBucket) return false;
       if (faithTradition != null && p.faithTradition != faithTradition) {
         return false;
       }

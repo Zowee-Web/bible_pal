@@ -1,11 +1,13 @@
+import '../core/story_length_bucket.dart';
+
 /// Parable model - represents a single parable/story
-/// Based on SPEC.md Feature #7: Parable Metadata System
+/// Based on SPEC.md Feature #8: Parable Metadata System
 class Parable {
   final String storyId;
   final String title; // AI-generated, can be edited by user
   final String mood; // e.g., 'joyful', 'anxious', 'weary', 'hurting', 'neutral'
   final List<String> emotionalTags;
-  final int length; // 5, 10, 15, or 20 minutes
+  final int length; // 5, 10, 15, or 20 minutes (legacy, for asset compatibility)
   final String faithTradition;
   final String storytellingMode; // 'creative' or 'traditional'
   final String translationId; // 'WEB' or 'KJV' - Bible translation used in story
@@ -76,6 +78,10 @@ class Parable {
       'generatedAt': generatedAt?.toIso8601String(),
     };
   }
+
+  /// Computed length bucket from legacy minute-based length
+  /// Used for selection filtering (SPEC.md Feature #6)
+  StoryLengthBucket get lengthBucket => lengthMinutesToBucket(length);
 
   /// Create a copy with modified fields (for title editing, etc.)
   Parable copyWith({

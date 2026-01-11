@@ -6,6 +6,7 @@ import 'package:bible_pal/models/history_entry.dart';
 import 'package:bible_pal/models/daily_bread.dart';
 import 'package:bible_pal/models/pal.dart';
 import 'package:bible_pal/models/share_record.dart';
+import 'package:bible_pal/core/story_length_bucket.dart';
 import 'package:bible_pal/services/storage_service.dart';
 import 'package:bible_pal/services/parable_service.dart';
 import 'package:bible_pal/services/mood_service.dart';
@@ -248,12 +249,12 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
   // Parable Selection
   Future<Parable?> selectParable({
     required String mood,
-    required int lengthMinutes,
+    required StoryLengthBucket lengthBucket,
     String? userText,
   }) async {
     return _parableService.selectParable(
       mood: mood,
-      lengthMinutes: lengthMinutes,
+      lengthBucket: lengthBucket,
       userPrefs: state.requireValue.userPreferences,
       userText: userText,
     );
