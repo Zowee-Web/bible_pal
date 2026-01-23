@@ -237,7 +237,8 @@ class AppLogger {
     String? errorMessage,
     Map<String, Object?>? additionalData,
   }) {
-    final sanitizedMessage = errorMessage != null ? _sanitizeErrorMessage(errorMessage) : null;
+    final sanitizedMessage =
+        errorMessage != null ? _sanitizeErrorMessage(errorMessage) : null;
     final data = <String, Object?>{
       'error_type': errorType,
       'location': location,

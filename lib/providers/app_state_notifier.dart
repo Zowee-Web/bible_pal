@@ -101,21 +101,12 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
   }
 
   Future<void> completeOnboarding({
-    required String faithTradition,
     required String bibleTranslation,
   }) async {
     final currentState = state.requireValue;
     final prefs = currentState.userPreferences.copyWith(
-      faithTradition: faithTradition,
       bibleTranslation: bibleTranslation,
       hasCompletedOnboarding: true,
-    );
-    await updateUserPreferences(prefs);
-  }
-
-  Future<void> updateFaithTradition(String tradition) async {
-    final prefs = state.requireValue.userPreferences.copyWith(
-      faithTradition: tradition,
     );
     await updateUserPreferences(prefs);
   }
@@ -134,9 +125,10 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
     await updateUserPreferences(prefs);
   }
 
-  Future<void> updateStoryLanguage(String storyLanguage) async {
+  /// Update story language style (WEB/KJV) - Contracts v2: presentation diction
+  Future<void> updateLanguageStyle(String languageStyle) async {
     final prefs = state.requireValue.userPreferences.copyWith(
-      storyLanguage: storyLanguage,
+      languageStyle: languageStyle,
     );
     await updateUserPreferences(prefs);
   }
@@ -148,7 +140,8 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
     await updateUserPreferences(prefs);
   }
 
-  Future<void> updateShowEverydayReflections(bool showEverydayReflections) async {
+  Future<void> updateShowEverydayReflections(
+      bool showEverydayReflections) async {
     final prefs = state.requireValue.userPreferences.copyWith(
       showEverydayReflections: showEverydayReflections,
     );

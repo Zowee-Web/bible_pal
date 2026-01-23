@@ -230,7 +230,8 @@ class StorageService {
     if (json == null) return [];
 
     final list = jsonDecode(json) as List<dynamic>;
-    final pals = list.map((item) => PAL.fromJson(item as Map<String, dynamic>)).toList();
+    final pals =
+        list.map((item) => PAL.fromJson(item as Map<String, dynamic>)).toList();
 
     // Sort: pinned first, then by shareCount descending
     pals.sort((a, b) {

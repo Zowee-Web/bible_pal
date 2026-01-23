@@ -105,7 +105,8 @@ class _VoiceConsentDialogState extends ConsumerState<VoiceConsentDialog> {
       actions: [
         // "Not Now" dismisses without writing prefs (keeps null = unknown)
         TextButton(
-          onPressed: () => Navigator.of(context).pop(VoiceConsentResult.dismissed),
+          onPressed: () =>
+              Navigator.of(context).pop(VoiceConsentResult.dismissed),
           child: const Text('Not Now'),
         ),
         // "Don't Allow" explicitly writes false (user declined)

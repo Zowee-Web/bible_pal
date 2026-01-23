@@ -144,7 +144,7 @@ class FavoritesScreen extends ConsumerWidget {
                       children: [
                         const SizedBox(height: 4),
                         Text(
-                          '${favorite.length} min • ${favorite.mood}',
+                          '${favorite.lengthBucket.displayLabel} • ${favorite.mood}',
                           style: theme.textTheme.bodySmall,
                         ),
                         if (favorite.scriptureSources.isNotEmpty) ...[

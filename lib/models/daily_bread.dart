@@ -8,7 +8,8 @@ import '../core/bible_translation_registry.dart';
 class DailyBread {
   final String verse;
   final String reference; // e.g., "Psalm 16:11"
-  final String translation; // e.g., "WEB", "KJV", "ASV" - validated against allowlist
+  final String
+      translation; // e.g., "WEB", "KJV", "ASV" - validated against allowlist
   final DateTime date;
   final String? theme; // Optional: for thematic alignment with parable
 
@@ -24,7 +25,8 @@ class DailyBread {
   factory DailyBread.fromJson(Map<String, dynamic> json) {
     // RUNTIME GUARD: Validate translation against allowlist
     final rawTranslation = json['translation'] as String;
-    final validatedTranslation = BibleTranslationRegistry.validateAndSanitize(rawTranslation);
+    final validatedTranslation =
+        BibleTranslationRegistry.validateAndSanitize(rawTranslation);
 
     return DailyBread(
       verse: json['verse'] as String,

@@ -1,10 +1,10 @@
 /// Story length buckets for user-facing selection
 /// Based on SPEC.md Feature #6: Story Length Buckets
 ///
-/// Word count ranges (for generation validation):
-/// - Short: 300–700 words
-/// - Full: 900–1400 words
-/// - Long: 1700–2600 words
+/// Word count ranges (LOCKED - for generation validation):
+/// - Short: 250–600 words
+/// - Full: 601–1200 words
+/// - Long: 1201–2000 words
 enum StoryLengthBucket {
   short,
   full,
@@ -23,14 +23,15 @@ enum StoryLengthBucket {
   }
 
   /// Word count range for generation validation (min, max)
+  /// LOCKED SPEC: short=250-600, full=601-1200, long=1201-2000
   (int, int) get wordCountRange {
     switch (this) {
       case StoryLengthBucket.short:
-        return (300, 700);
+        return (250, 600);
       case StoryLengthBucket.full:
-        return (900, 1400);
+        return (601, 1200);
       case StoryLengthBucket.long:
-        return (1700, 2600);
+        return (1201, 2000);
     }
   }
 
@@ -47,7 +48,7 @@ enum StoryLengthBucket {
 }
 
 /// Maps legacy minute-based length to bucket
-/// Used for compatibility with existing story assets
+/// Used for compatibility with existing story assets that don't have storyLength
 ///
 /// Mapping:
 /// - 5 min  → short
@@ -69,4 +70,15 @@ StoryLengthBucket lengthMinutesToBucket(int lengthMinutes) {
       if (lengthMinutes <= 15) return StoryLengthBucket.full;
       return StoryLengthBucket.long;
   }
+}
+
+/// Computes storyLength bucket from word count
+/// LOCKED SPEC thresholds:
+/// - short: <= 600 words
+/// - full: 601-1200 words
+/// - long: 1201-2000 words
+StoryLengthBucket wordCountToBucket(int wordCount) {
+  if (wordCount <= 600) return StoryLengthBucket.short;
+  if (wordCount <= 1200) return StoryLengthBucket.full;
+  return StoryLengthBucket.long;
 }

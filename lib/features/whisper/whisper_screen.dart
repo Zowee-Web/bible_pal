@@ -94,7 +94,8 @@ class _WhisperScreenState extends ConsumerState<WhisperScreen> {
   Future<void> _captureAndPlay() async {
     // 0) Check voice consent via VoiceConsentGate (single source of truth)
     final appState = ref.read(appStateProvider).valueOrNull;
-    final gateResult = VoiceConsentGate.checkPalGreetings(appState?.userPreferences);
+    final gateResult =
+        VoiceConsentGate.checkPalGreetings(appState?.userPreferences);
 
     switch (gateResult) {
       case VoiceGateResult.needsConsent:
@@ -115,7 +116,8 @@ class _WhisperScreenState extends ConsumerState<WhisperScreen> {
 
         // Re-check after consent dialog via gate
         final updatedState = ref.read(appStateProvider).valueOrNull;
-        final recheck = VoiceConsentGate.checkPalGreetings(updatedState?.userPreferences);
+        final recheck =
+            VoiceConsentGate.checkPalGreetings(updatedState?.userPreferences);
         if (recheck != VoiceGateResult.allowed) {
           // PAL greetings specifically not enabled
           ScaffoldMessenger.of(context).showSnackBar(
@@ -132,7 +134,8 @@ class _WhisperScreenState extends ConsumerState<WhisperScreen> {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('PAL Greetings are disabled. Enable them in Settings.'),
+              content:
+                  Text('PAL Greetings are disabled. Enable them in Settings.'),
               duration: Duration(seconds: 3),
             ),
           );

@@ -3,32 +3,38 @@ import '../core/bible_translation_registry.dart';
 /// User Preferences model
 /// Stores user settings from onboarding and settings screen
 /// Based on SPEC.md Features #17, #18, #21, #22, #23
+/// Updated for Story Mode Contracts v2 (SPEC.md)
 ///
 /// SCRIPTURE LICENSING COMPLIANCE:
 /// bibleTranslation field MUST ONLY contain open-source/public-domain translations.
 /// ALL translations are validated against BibleTranslationRegistry.
 /// Banned translations are automatically reset to default.
-/// Allowed values for storyLanguage (stricter than bibleTranslation)
-const List<String> allowedStoryLanguages = ['WEB', 'KJV'];
+
+/// Allowed values for languageStyle (story presentation diction)
+/// Contracts v2: languageStyle is separate from bibleTranslation (compliance)
+const List<String> allowedLanguageStyles = ['WEB', 'KJV'];
 
 /// Current voice consent schema version.
 /// Increment this to re-prompt users for consent (e.g., if we add new voice features).
 const int currentVoiceConsentVersion = 1;
 
-/// Validates and sanitizes storyLanguage, returning 'WEB' if invalid
-String _validateStoryLanguage(String? value) {
-  if (value == null || !allowedStoryLanguages.contains(value)) {
-    return 'WEB'; // Default to WEB if invalid
+/// Validates and sanitizes languageStyle, returning 'WEB' if invalid
+String _validateLanguageStyle(String? value) {
+  if (value == null || !allowedLanguageStyles.contains(value)) {
+    return 'WEB'; // Default to WEB (modern) if invalid
   }
   return value;
 }
 
 class UserPreferences {
-  final String userName; // User's name (collected during first-launch onboarding)
-  final String faithTradition; // Catholic, Protestant, Orthodox, etc.
-  final String bibleTranslation; // ONLY open-source: 'WEB', 'KJV', 'ASV', 'YLT', 'DRA' (for Daily Bread)
-  final String storyLanguage; // ONLY 'WEB' or 'KJV' (for story filtering, stricter than bibleTranslation)
-  final String storytellingMode; // 'creative' or 'traditional'
+  final String
+      userName; // User's name (collected during first-launch onboarding)
+  final String
+      bibleTranslation; // ONLY open-source: 'WEB', 'KJV', 'ASV', 'YLT', 'DRA' (for Daily Bread)
+  final String
+      languageStyle; // 'WEB' or 'KJV' - story presentation diction (Contracts v2)
+  final String
+      storytellingMode; // 'creative' or 'traditional' - DEFAULT is 'traditional' (Contracts v2)
   final bool contentFilteringEnabled; // Feature #24
   final bool kidFriendlyOnly; // Filter to kid-friendly content only
   final bool showEverydayReflections; // Feature #34: Post-story reflections
@@ -42,10 +48,11 @@ class UserPreferences {
 
   const UserPreferences({
     this.userName = '',
-    required this.faithTradition,
     required this.bibleTranslation,
-    this.storyLanguage = 'WEB', // Default to Modern (WEB) for stories
-    this.storytellingMode = 'creative',
+    this.languageStyle =
+        'WEB', // Default to Modern (WEB) for story presentation
+    this.storytellingMode =
+        'traditional', // DEFAULT is Traditional per Contracts v2
     this.contentFilteringEnabled = true,
     this.kidFriendlyOnly = false,
     this.showEverydayReflections = true, // Default ON per SPEC.md #34
@@ -56,13 +63,15 @@ class UserPreferences {
   });
 
   /// Default preferences for first-time users
+  /// Contracts v2: storytellingMode defaults to 'traditional'
   factory UserPreferences.defaults() {
     return const UserPreferences(
       userName: '',
-      faithTradition: '',
-      bibleTranslation: 'WEB', // World English Bible (public domain) - for Daily Bread
-      storyLanguage: 'WEB', // Modern stories (WEB) - for story filtering
-      storytellingMode: 'creative',
+      bibleTranslation:
+          'WEB', // World English Bible (public domain) - for Daily Bread
+      languageStyle: 'WEB', // Modern diction (WEB) - for story presentation
+      storytellingMode:
+          'traditional', // DEFAULT is Traditional per Contracts v2
       contentFilteringEnabled: true,
       kidFriendlyOnly: false,
       showEverydayReflections: true, // Default ON per SPEC.md #34
@@ -74,25 +83,30 @@ class UserPreferences {
   factory UserPreferences.fromJson(Map<String, dynamic> json) {
     // RUNTIME GUARD: Validate bibleTranslation against allowlist
     final rawTranslation = json['bibleTranslation'] as String? ?? 'WEB';
-    final validatedTranslation = BibleTranslationRegistry.validateAndSanitize(rawTranslation);
+    final validatedTranslation =
+        BibleTranslationRegistry.validateAndSanitize(rawTranslation);
 
-    // RUNTIME GUARD: Validate storyLanguage (stricter: only WEB or KJV)
-    final rawStoryLanguage = json['storyLanguage'] as String?;
-    final validatedStoryLanguage = _validateStoryLanguage(rawStoryLanguage);
+    // RUNTIME GUARD: Validate languageStyle (only WEB or KJV)
+    // Backwards compat: check both 'languageStyle' and legacy 'storyLanguage'
+    final rawLanguageStyle =
+        json['languageStyle'] as String? ?? json['storyLanguage'] as String?;
+    final validatedLanguageStyle = _validateLanguageStyle(rawLanguageStyle);
+
+    // Contracts v2: Default storytellingMode is 'traditional'
+    final storytellingMode =
+        json['storytellingMode'] as String? ?? 'traditional';
 
     return UserPreferences(
       userName: json['userName'] as String? ?? '',
-      faithTradition: json['faithTradition'] as String? ?? '',
-      bibleTranslation: validatedTranslation, // Guaranteed to be allowed translation
-      storyLanguage: validatedStoryLanguage, // Guaranteed to be WEB or KJV
-      storytellingMode: json['storytellingMode'] as String? ?? 'creative',
-      contentFilteringEnabled:
-          json['contentFilteringEnabled'] as bool? ?? true,
+      bibleTranslation:
+          validatedTranslation, // Guaranteed to be allowed translation
+      languageStyle: validatedLanguageStyle, // Guaranteed to be WEB or KJV
+      storytellingMode: storytellingMode,
+      contentFilteringEnabled: json['contentFilteringEnabled'] as bool? ?? true,
       kidFriendlyOnly: json['kidFriendlyOnly'] as bool? ?? false,
       showEverydayReflections:
           json['showEverydayReflections'] as bool? ?? true, // Default ON
-      hasCompletedOnboarding:
-          json['hasCompletedOnboarding'] as bool? ?? false,
+      hasCompletedOnboarding: json['hasCompletedOnboarding'] as bool? ?? false,
       storyNarrationEnabled: json['storyNarrationEnabled'] as bool?,
       palGreetingsEnabled: json['palGreetingsEnabled'] as bool?,
       voiceConsentVersion: json['voiceConsentVersion'] as int?,
@@ -103,9 +117,8 @@ class UserPreferences {
   Map<String, dynamic> toJson() {
     return {
       'userName': userName,
-      'faithTradition': faithTradition,
       'bibleTranslation': bibleTranslation,
-      'storyLanguage': storyLanguage,
+      'languageStyle': languageStyle, // Contracts v2 field name
       'storytellingMode': storytellingMode,
       'contentFilteringEnabled': contentFilteringEnabled,
       'kidFriendlyOnly': kidFriendlyOnly,
@@ -125,9 +138,8 @@ class UserPreferences {
   /// To explicitly set to null, use clearVoiceConsent() instead.
   UserPreferences copyWith({
     String? userName,
-    String? faithTradition,
     String? bibleTranslation,
-    String? storyLanguage,
+    String? languageStyle,
     String? storytellingMode,
     bool? contentFilteringEnabled,
     bool? kidFriendlyOnly,
@@ -142,16 +154,15 @@ class UserPreferences {
         ? BibleTranslationRegistry.validateAndSanitize(bibleTranslation)
         : this.bibleTranslation;
 
-    // RUNTIME GUARD: Validate storyLanguage if provided (stricter: only WEB or KJV)
-    final validatedStoryLanguage = storyLanguage != null
-        ? _validateStoryLanguage(storyLanguage)
-        : this.storyLanguage;
+    // RUNTIME GUARD: Validate languageStyle if provided (only WEB or KJV)
+    final validatedLanguageStyle = languageStyle != null
+        ? _validateLanguageStyle(languageStyle)
+        : this.languageStyle;
 
     return UserPreferences(
       userName: userName ?? this.userName,
-      faithTradition: faithTradition ?? this.faithTradition,
       bibleTranslation: validatedTranslation,
-      storyLanguage: validatedStoryLanguage,
+      languageStyle: validatedLanguageStyle,
       storytellingMode: storytellingMode ?? this.storytellingMode,
       contentFilteringEnabled:
           contentFilteringEnabled ?? this.contentFilteringEnabled,
@@ -169,9 +180,7 @@ class UserPreferences {
 
   /// Check if onboarding is complete (has required fields)
   bool get isOnboardingComplete =>
-      hasCompletedOnboarding &&
-      faithTradition.isNotEmpty &&
-      bibleTranslation.isNotEmpty;
+      hasCompletedOnboarding && bibleTranslation.isNotEmpty;
 
   // === Voice Consent Helpers ===
 

@@ -30,7 +30,8 @@ class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen> {
   bool _typingComplete = false;
   bool _isSaving = false;
 
-  static const _introMessage = "Hi there! I'm PAL, your Personal Audio Listener. "
+  static const _introMessage =
+      "Hi there! I'm PAL, your Personal Audio Listener. "
       "I'm here to share meaningful stories that speak to your heart. "
       "What's your name?";
 
@@ -185,7 +186,8 @@ class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen> {
                             ? const SizedBox(
                                 width: 20,
                                 height: 20,
-                                child: CircularProgressIndicator(strokeWidth: 2),
+                                child:
+                                    CircularProgressIndicator(strokeWidth: 2),
                               )
                             : const Text('Continue'),
                       ),

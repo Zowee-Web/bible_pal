@@ -9,12 +9,16 @@ import 'package:flutter/material.dart';
 /// - A gentle spiritual companion
 class AppTheme {
   // Core Color Palette
-  static const Color softSkyBlue = Color(0xFF87CEEB);      // Primary - soft sky blue
-  static const Color warmGold = Color(0xFFD4AF37);         // Secondary accent - warm gold
-  static const Color parchment = Color(0xFFFAF8F3);        // Background - off-white/parchment
-  static const Color deepCharcoal = Color(0xFF2C3E50);     // Text - deep charcoal
-  static const Color lightBlue = Color(0xFFB3E0F2);        // Lighter shade for containers
-  static const Color paleGold = Color(0xFFF5E6D3);         // Pale gold for subtle highlights
+  static const Color softSkyBlue = Color(0xFF87CEEB); // Primary - soft sky blue
+  static const Color warmGold =
+      Color(0xFFD4AF37); // Secondary accent - warm gold
+  static const Color parchment =
+      Color(0xFFFAF8F3); // Background - off-white/parchment
+  static const Color deepCharcoal = Color(0xFF2C3E50); // Text - deep charcoal
+  static const Color lightBlue =
+      Color(0xFFB3E0F2); // Lighter shade for containers
+  static const Color paleGold =
+      Color(0xFFF5E6D3); // Pale gold for subtle highlights
 
   /// Main theme for the app
   static ThemeData get theme {

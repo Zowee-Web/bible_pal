@@ -76,7 +76,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     }
 
     // Log length selection (no user text logged!)
-    // Keep length_min for backwards compatibility (use representative value)
+    // NOTE: length_bucket is canonical - no minute-based fields in telemetry (INVARIANTS.md)
     logEvent('length_selected', {
       'length_bucket': lengthBucket.name,
       'detected_mood': _moodResult!.mood,
@@ -202,8 +202,9 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                   ),
                   const SizedBox(height: 16),
                   ElevatedButton(
-                    onPressed:
-                        _compassionateReply != null ? null : _handleMoodSubmission,
+                    onPressed: _compassionateReply != null
+                        ? null
+                        : _handleMoodSubmission,
                     child: const Text('Continue'),
                   ),
                 ],
@@ -280,7 +281,8 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                       Text(
                         _verse!.context,
                         style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.onPrimaryContainer.withOpacity(0.9),
+                          color: theme.colorScheme.onPrimaryContainer
+                              .withOpacity(0.9),
                         ),
                       ),
                       const SizedBox(height: 16),

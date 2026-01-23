@@ -8,12 +8,13 @@
         "grateful"
       ],
       "length": 5,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_001_joyful_5min.mp3",
       "textFilePath": "parable_001_joyful_5min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_PETER_BOLD",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_002_joyful_10min",
@@ -23,12 +24,13 @@
         "grateful"
       ],
       "length": 10,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_002_joyful_10min.mp3",
       "textFilePath": "parable_002_joyful_10min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_003_joyful_15min",
@@ -38,12 +40,13 @@
         "grateful"
       ],
       "length": 15,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_003_joyful_15min.mp3",
       "textFilePath": "parable_003_joyful_15min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_SAMUEL_EARNEST",
+      "storyLength": "full"
     },
     {
       "storyId": "parable_004_weary_5min",
@@ -53,12 +56,13 @@
         "overwhelmed"
       ],
       "length": 5,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_004_weary_5min.mp3",
       "textFilePath": "parable_004_weary_5min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_005_weary_10min",
@@ -68,12 +72,13 @@
         "overwhelmed"
       ],
       "length": 10,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_005_weary_10min.mp3",
       "textFilePath": "parable_005_weary_10min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_006_weary_15min",
@@ -83,12 +88,13 @@
         "overwhelmed"
       ],
       "length": 15,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_006_weary_15min.mp3",
       "textFilePath": "parable_006_weary_15min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "full"
     },
     {
       "storyId": "parable_007_anxious_5min",
@@ -98,12 +104,13 @@
         "anxious"
       ],
       "length": 5,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_007_anxious_5min.mp3",
       "textFilePath": "parable_007_anxious_5min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_008_anxious_10min",
@@ -113,12 +120,13 @@
         "anxious"
       ],
       "length": 10,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_008_anxious_10min.mp3",
       "textFilePath": "parable_008_anxious_10min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_009_anxious_15min",
@@ -128,12 +136,13 @@
         "anxious"
       ],
       "length": 15,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_009_anxious_15min.mp3",
       "textFilePath": "parable_009_anxious_15min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "full"
     },
     {
       "storyId": "parable_010_hurting_5min",
@@ -144,12 +153,13 @@
         "grief"
       ],
       "length": 5,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_010_hurting_5min.mp3",
       "textFilePath": "parable_010_hurting_5min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_011_hurting_10min",
@@ -160,12 +170,13 @@
         "grief"
       ],
       "length": 10,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_011_hurting_10min.mp3",
       "textFilePath": "parable_011_hurting_10min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_012_hurting_15min",
@@ -176,12 +187,13 @@
         "grief"
       ],
       "length": 15,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_012_hurting_15min.mp3",
       "textFilePath": "parable_012_hurting_15min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_PETER_BOLD",
+      "storyLength": "full"
     },
     {
       "storyId": "parable_013_neutral_5min",
@@ -191,12 +203,13 @@
         "waiting"
       ],
       "length": 5,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_013_neutral_5min.mp3",
       "textFilePath": "parable_013_neutral_5min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_014_neutral_10min",
@@ -206,12 +219,13 @@
         "waiting"
       ],
       "length": 10,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_014_neutral_10min.mp3",
       "textFilePath": "parable_014_neutral_10min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_PETER_BOLD",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_015_neutral_15min",
@@ -221,12 +235,13 @@
         "waiting"
       ],
       "length": 15,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_015_neutral_15min.mp3",
       "textFilePath": "parable_015_neutral_15min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_SAMUEL_EARNEST",
+      "storyLength": "full"
     },
     {
       "storyId": "parable_040_joyful_5min",
@@ -236,12 +251,13 @@
         "grateful"
       ],
       "length": 5,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_040_joyful_5min.mp3",
       "textFilePath": "parable_040_joyful_5min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_041_joyful_10min",
@@ -251,12 +267,13 @@
         "grateful"
       ],
       "length": 10,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_041_joyful_10min.mp3",
       "textFilePath": "parable_041_joyful_10min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_042_joyful_15min",
@@ -266,12 +283,13 @@
         "grateful"
       ],
       "length": 15,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_042_joyful_15min.mp3",
       "textFilePath": "parable_042_joyful_15min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "full"
     },
     {
       "storyId": "parable_020_joyful_5min_kid",
@@ -281,12 +299,13 @@
         "grateful"
       ],
       "length": 5,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": true,
       "audioFilePath": "parable_020_joyful_5min_kid.mp3",
       "textFilePath": "parable_020_joyful_5min_kid.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_021_weary_5min_kid",
@@ -296,12 +315,13 @@
         "overwhelmed"
       ],
       "length": 5,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": true,
       "audioFilePath": "parable_021_weary_5min_kid.mp3",
       "textFilePath": "parable_021_weary_5min_kid.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_022_anxious_5min_kid",
@@ -312,12 +332,13 @@
         "self_doubt"
       ],
       "length": 5,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": true,
       "audioFilePath": "parable_022_anxious_5min_kid.mp3",
       "textFilePath": "parable_022_anxious_5min_kid.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_023_hurting_5min_kid",
@@ -328,12 +349,13 @@
         "lonely"
       ],
       "length": 5,
-      "faithTradition": "Protestant",
       "storytellingMode": "creative",
       "kidFriendly": true,
       "audioFilePath": "parable_023_hurting_5min_kid.mp3",
       "textFilePath": null,
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_024_weary_5min",
@@ -343,28 +365,13 @@
         "overwhelmed"
       ],
       "length": 5,
-      "faithTradition": "Unspecified",
       "storytellingMode": "creative",
       "kidFriendly": false,
-      "audioFilePath": "parable_024_weary_5min.mp3",
+      "audioFilePath": null,
       "textFilePath": "parable_024_weary_5min.txt",
-      "translationId": "WEB"
-    },
-    {
-      "storyId": "parable_025_weary_5min",
-      "title": "Refuge",
-      "mood": "weary",
-      "emotionalTags": [
-        "overwhelmed",
-        "anxious"
-      ],
-      "length": 5,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
-      "kidFriendly": false,
-      "audioFilePath": "parable_025_weary_5min.mp3",
-      "textFilePath": "parable_025_weary_5min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_999_joyful_5min",
@@ -375,12 +382,13 @@
         "relationship_conflict"
       ],
       "length": 5,
-      "faithTradition": "Unspecified",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_999_joyful_5min.mp3",
       "textFilePath": "parable_999_joyful_5min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_1002_joyful_5min",
@@ -391,12 +399,13 @@
         "lonely"
       ],
       "length": 5,
-      "faithTradition": "Unspecified",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": null,
       "textFilePath": "parable_1002_joyful_5min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_1000_neutral_5min",
@@ -406,27 +415,13 @@
         "lonely"
       ],
       "length": 5,
-      "faithTradition": "Unspecified",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": null,
       "textFilePath": "parable_1000_neutral_5min.txt",
-      "translationId": "WEB"
-    },
-    {
-      "storyId": "parable_029_weary_5min",
-      "title": "Finding Rest",
-      "mood": "weary",
-      "emotionalTags": [
-        "overwhelmed"
-      ],
-      "length": 5,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "creative",
-      "kidFriendly": false,
-      "audioFilePath": "parable_029_weary_5min.mp3",
-      "textFilePath": "parable_029_weary_5min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_030_weary_15min",
@@ -436,12 +431,13 @@
         "overwhelmed"
       ],
       "length": 15,
-      "faithTradition": "Unspecified",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_030_weary_15min.mp3",
       "textFilePath": "parable_030_weary_15min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "full"
     },
     {
       "storyId": "parable_031_weary_5min",
@@ -451,12 +447,13 @@
         "overwhelmed"
       ],
       "length": 5,
-      "faithTradition": "Unspecified",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_031_weary_5min.mp3",
       "textFilePath": "parable_031_weary_5min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_032_weary_10min",
@@ -466,12 +463,13 @@
         "overwhelmed"
       ],
       "length": 10,
-      "faithTradition": "Unspecified",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_032_weary_10min.mp3",
       "textFilePath": "parable_032_weary_10min.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_033_weary_15min",
@@ -481,268 +479,13 @@
         "overwhelmed"
       ],
       "length": 15,
-      "faithTradition": "Unspecified",
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "parable_033_weary_15min.mp3",
       "textFilePath": "parable_033_weary_15min.txt",
-      "translationId": "WEB"
-    },
-    {
-      "storyId": "parable_050_joyful_5min_kid_trad",
-      "title": "David and the Giant",
-      "mood": "joyful",
-      "emotionalTags": [
-        "anxious",
-        "self_doubt"
-      ],
-      "length": 5,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
-      "kidFriendly": true,
-      "audioFilePath": "parable_050_joyful_5min_kid_trad.mp3",
-      "textFilePath": "parable_050_joyful_5min_kid_trad.txt",
-      "translationId": "WEB"
-    },
-    {
-      "storyId": "parable_051_joyful_10min_kid_trad",
-      "title": "The Boy Who Shared His Lunch",
-      "mood": "joyful",
-      "emotionalTags": [
-        "grateful"
-      ],
-      "length": 10,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
-      "kidFriendly": true,
-      "audioFilePath": "parable_051_joyful_10min_kid_trad.mp3",
-      "textFilePath": "parable_051_joyful_10min_kid_trad.txt",
-      "translationId": "WEB"
-    },
-    {
-      "storyId": "parable_052_joyful_15min_kid_trad",
-      "title": "The Lost Sheep and the Good Shepherd",
-      "mood": "joyful",
-      "emotionalTags": [
-        "lonely",
-        "rejection"
-      ],
-      "length": 15,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
-      "kidFriendly": true,
-      "audioFilePath": "parable_052_joyful_15min_kid_trad.mp3",
-      "textFilePath": "parable_052_joyful_15min_kid_trad.txt",
-      "translationId": "WEB"
-    },
-    {
-      "storyId": "parable_053_joyful_20min_kid_trad",
-      "title": "Noah's Ark: The Rainbow Promise",
-      "mood": "joyful",
-      "emotionalTags": [
-        "anxious",
-        "waiting"
-      ],
-      "length": 20,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
-      "kidFriendly": true,
-      "audioFilePath": "parable_053_joyful_20min_kid_trad.mp3",
-      "textFilePath": "parable_053_joyful_20min_kid_trad.txt",
-      "translationId": "WEB"
-    },
-    {
-      "storyId": "parable_054_weary_5min_kid_trad",
-      "title": "Jesus Calms the Storm",
-      "mood": "weary",
-      "emotionalTags": [
-        "anxious",
-        "overwhelmed"
-      ],
-      "length": 5,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
-      "kidFriendly": true,
-      "audioFilePath": "parable_054_weary_5min_kid_trad.mp3",
-      "textFilePath": "parable_054_weary_5min_kid_trad.txt",
-      "translationId": "WEB"
-    },
-    {
-      "storyId": "parable_055_weary_10min_kid_trad",
-      "title": "Elijah and the Gentle Whisper",
-      "mood": "weary",
-      "emotionalTags": [
-        "overwhelmed",
-        "hopeless"
-      ],
-      "length": 10,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
-      "kidFriendly": true,
-      "audioFilePath": "parable_055_weary_10min_kid_trad.mp3",
-      "textFilePath": "parable_055_weary_10min_kid_trad.txt",
-      "translationId": "WEB"
-    },
-    {
-      "storyId": "parable_056_weary_15min_kid_trad",
-      "title": "The Exodus: Journey to Rest",
-      "mood": "weary",
-      "emotionalTags": [
-        "overwhelmed",
-        "waiting"
-      ],
-      "length": 15,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
-      "kidFriendly": true,
-      "audioFilePath": "parable_056_weary_15min_kid_trad.mp3",
-      "textFilePath": "parable_056_weary_15min_kid_trad.txt",
-      "translationId": "WEB"
-    },
-    {
-      "storyId": "parable_057_weary_20min_kid_trad",
-      "title": "The Creation: God's Good Rest",
-      "mood": "weary",
-      "emotionalTags": [
-        "overwhelmed",
-        "grateful"
-      ],
-      "length": 20,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
-      "kidFriendly": true,
-      "audioFilePath": "parable_057_weary_20min_kid_trad.mp3",
-      "textFilePath": "parable_057_weary_20min_kid_trad.txt",
-      "translationId": "WEB"
-    },
-    {
-      "storyId": "parable_058_anxious_5min_kid_trad",
-      "title": "Daniel and the Lions",
-      "mood": "anxious",
-      "emotionalTags": [
-        "anxious",
-        "unfair_authority"
-      ],
-      "length": 5,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
-      "kidFriendly": true,
-      "audioFilePath": "parable_058_anxious_5min_kid_trad.mp3",
-      "textFilePath": "parable_058_anxious_5min_kid_trad.txt",
-      "translationId": "WEB"
-    },
-    {
-      "storyId": "parable_059_anxious_10min_kid_trad",
-      "title": "Peter Walks on Water",
-      "mood": "anxious",
-      "emotionalTags": [
-        "anxious",
-        "self_doubt"
-      ],
-      "length": 10,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
-      "kidFriendly": true,
-      "audioFilePath": "parable_059_anxious_10min_kid_trad.mp3",
-      "textFilePath": "parable_059_anxious_10min_kid_trad.txt",
-      "translationId": "WEB"
-    },
-    {
-      "storyId": "parable_060_anxious_15min_kid_trad",
-      "title": "Joshua and the Walls of Jericho",
-      "mood": "anxious",
-      "emotionalTags": [
-        "anxious",
-        "waiting"
-      ],
-      "length": 15,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
-      "kidFriendly": true,
-      "audioFilePath": "parable_060_anxious_15min_kid_trad.mp3",
-      "textFilePath": "parable_060_anxious_15min_kid_trad.txt",
-      "translationId": "WEB"
-    },
-    {
-      "storyId": "parable_061_anxious_20min_kid_trad",
-      "title": "Moses and the Red Sea",
-      "mood": "anxious",
-      "emotionalTags": [
-        "anxious",
-        "hopeless"
-      ],
-      "length": 20,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
-      "kidFriendly": true,
-      "audioFilePath": "parable_061_anxious_20min_kid_trad.mp3",
-      "textFilePath": "parable_061_anxious_20min_kid_trad.txt",
-      "translationId": "WEB"
-    },
-    {
-      "storyId": "parable_062_hurting_5min_kid_trad",
-      "title": "Jesus Heals the Sick",
-      "mood": "hurting",
-      "emotionalTags": [
-        "illness",
-        "hopeless"
-      ],
-      "length": 5,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
-      "kidFriendly": true,
-      "audioFilePath": "parable_062_hurting_5min_kid_trad.mp3",
-      "textFilePath": "parable_062_hurting_5min_kid_trad.txt",
-      "translationId": "WEB"
-    },
-    {
-      "storyId": "parable_063_hurting_10min_kid_trad",
-      "title": "The Prodigal Son: Coming Home",
-      "mood": "hurting",
-      "emotionalTags": [
-        "failure",
-        "rejection"
-      ],
-      "length": 10,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
-      "kidFriendly": true,
-      "audioFilePath": "parable_063_hurting_10min_kid_trad.mp3",
-      "textFilePath": "parable_063_hurting_10min_kid_trad.txt",
-      "translationId": "WEB"
-    },
-    {
-      "storyId": "parable_064_hurting_15min_kid_trad",
-      "title": "Joseph: From Pit to Palace",
-      "mood": "hurting",
-      "emotionalTags": [
-        "rejection",
-        "injustice"
-      ],
-      "length": 15,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
-      "kidFriendly": true,
-      "audioFilePath": "parable_064_hurting_15min_kid_trad.mp3",
-      "textFilePath": "parable_064_hurting_15min_kid_trad.txt",
-      "translationId": "WEB"
-    },
-    {
-      "storyId": "parable_065_hurting_20min_kid_trad",
-      "title": "Job: Hope in Suffering",
-      "mood": "hurting",
-      "emotionalTags": [
-        "hopeless",
-        "illness",
-        "grief"
-      ],
-      "length": 20,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
-      "kidFriendly": true,
-      "audioFilePath": "parable_065_hurting_20min_kid_trad.mp3",
-      "textFilePath": "parable_065_hurting_20min_kid_trad.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "storyLength": "full"
     },
     {
       "storyId": "parable_101_brave_courage_5min_kid_trad",
@@ -753,12 +496,13 @@
         "self_doubt"
       ],
       "length": 5,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
+      "storytellingMode": "creative",
       "kidFriendly": true,
       "audioFilePath": "parable_101_brave_courage_5min_kid_trad.mp3",
       "textFilePath": "parable_101_brave_courage_5min_kid_trad.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_102_brave_courage_10min_kid_trad",
@@ -769,12 +513,15 @@
         "unfair_authority"
       ],
       "length": 10,
-      "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_102_brave_courage_10min_kid_trad.mp3",
       "textFilePath": "parable_102_brave_courage_10min_kid_trad.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "storyLength": "short",
+      "bibleSourceRef": "Daniel 6",
+      "bibleStoryKey": "daniel_lions_den"
     },
     {
       "storyId": "parable_110_encouraging_15min_kid_trad",
@@ -785,12 +532,15 @@
         "injustice"
       ],
       "length": 15,
-      "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "audioFilePath": "parable_110_encouraging_15min_kid_trad.mp3",
       "textFilePath": "parable_110_encouraging_15min_kid_trad.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "storyLength": "full",
+      "bibleSourceRef": "Esther 4-7",
+      "bibleStoryKey": "queen_esther"
     },
     {
       "storyId": "parable_113_calm_peaceful_20min_kid_trad",
@@ -801,12 +551,13 @@
         "angry"
       ],
       "length": 20,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
+      "storytellingMode": "creative",
       "kidFriendly": true,
       "audioFilePath": "parable_113_calm_peaceful_20min_kid_trad.mp3",
       "textFilePath": "parable_113_calm_peaceful_20min_kid_trad.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "storyLength": "long"
     },
     {
       "storyId": "parable_114_samuel_listens_5min_kid_safe",
@@ -814,13 +565,16 @@
       "mood": "calm_peaceful",
       "emotionalTags": [],
       "length": 5,
-      "faithTradition": "Unspecified",
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "kidBedtimeSafe": true,
       "audioFilePath": "parable_114_samuel_listens_5min_kid_safe.mp3",
       "textFilePath": "parable_114_samuel_listens_5min_kid_safe.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "short",
+      "bibleSourceRef": "1 Samuel 3",
+      "bibleStoryKey": "samuel_listens"
     },
     {
       "storyId": "parable_201_joyful_5min_adult_trad",
@@ -830,12 +584,13 @@
         "grateful"
       ],
       "length": 5,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
+      "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": null,
       "textFilePath": "parable_201_joyful_5min_adult_trad.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_PETER_BOLD",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_202_weary_5min_adult_trad",
@@ -845,12 +600,13 @@
         "overwhelmed"
       ],
       "length": 5,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
+      "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": null,
       "textFilePath": "parable_202_weary_5min_adult_trad.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_203_anxious_5min_adult_trad",
@@ -860,12 +616,13 @@
         "anxious"
       ],
       "length": 5,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
+      "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": null,
       "textFilePath": "parable_203_anxious_5min_adult_trad.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_204_hurting_5min_adult_trad",
@@ -876,12 +633,13 @@
         "sad"
       ],
       "length": 5,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
+      "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": null,
       "textFilePath": "parable_204_hurting_5min_adult_trad.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_205_neutral_5min_adult_trad",
@@ -891,12 +649,13 @@
         "waiting"
       ],
       "length": 5,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
+      "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": null,
       "textFilePath": "parable_205_neutral_5min_adult_trad.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_206_encouraging_5min_adult_trad",
@@ -906,12 +665,13 @@
         "hopeless"
       ],
       "length": 5,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
+      "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": null,
       "textFilePath": "parable_206_encouraging_5min_adult_trad.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_SAMUEL_EARNEST",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_207_calm_peaceful_5min_adult_trad",
@@ -921,12 +681,13 @@
         "anxious"
       ],
       "length": 5,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
+      "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": null,
       "textFilePath": "parable_207_calm_peaceful_5min_adult_trad.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_208_brave_courage_5min_adult_trad",
@@ -936,12 +697,13 @@
         "self_doubt"
       ],
       "length": 5,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
+      "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": null,
       "textFilePath": "parable_208_brave_courage_5min_adult_trad.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "storyLength": "short"
     },
     {
       "storyId": "parable_209_joyful_5min_adult_trad",
@@ -951,12 +713,97 @@
         "grateful"
       ],
       "length": 5,
-      "faithTradition": "Unspecified",
-      "storytellingMode": "traditional",
+      "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": null,
       "textFilePath": "parable_209_joyful_5min_adult_trad.txt",
-      "translationId": "WEB"
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "storyLength": "short"
+    },
+    {
+      "storyId": "parable_1003_joyful_short_kid_creative",
+      "title": "The Little Shepherd's Song",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "length": 5,
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "audioFilePath": null,
+      "textFilePath": "parable_1003_joyful_short_kid.txt",
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "storyLength": "short"
+    },
+    {
+      "storyId": "parable_1004_joyful_short_creative",
+      "title": "The Unexpected Garden",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "length": 5,
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": null,
+      "textFilePath": "parable_1004_joyful_short_creative.txt",
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "storyLength": "short"
+    },
+    {
+      "storyId": "parable_1005_joyful_short_kid_trad",
+      "title": "The Kind Neighbor's Gift",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "length": 5,
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "audioFilePath": null,
+      "textFilePath": "parable_1005_joyful_short_kid_trad.txt",
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "short"
+    },
+    {
+      "storyId": "parable_501_joyful_short_adult_trad",
+      "title": "The Lost Sheep",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "length": 5,
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "audioFilePath": null,
+      "textFilePath": "parable_501_joyful_short_adult_trad.txt",
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_PETER_BOLD",
+      "storyLength": "short",
+      "bibleSourceRef": "Luke 15:3-7",
+      "bibleStoryKey": "lost_sheep"
+    },
+    {
+      "storyId": "parable_502_joyful_short_kid_trad",
+      "title": "The Lost Sheep",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "length": 5,
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": null,
+      "textFilePath": "parable_502_joyful_short_kid_trad.txt",
+      "translationId": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "short",
+      "bibleSourceRef": "Luke 15:3-7",
+      "bibleStoryKey": "lost_sheep"
     }
   ]
 }

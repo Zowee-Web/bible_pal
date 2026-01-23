@@ -8,6 +8,7 @@
 library;
 
 import 'dart:io';
+import '../core/story_length_bucket.dart';
 
 /// Maximum regeneration attempts before giving up
 const int kMaxRegenAttempts = 3;
@@ -15,20 +16,28 @@ const int kMaxRegenAttempts = 3;
 /// Maximum average words per sentence for readability
 const int kMaxAvgWordsPerSentence = 15;
 
-/// Word count ranges for different story lengths (minutes)
-/// Format: {minutes: (minWords, maxWords)}
-const Map<int, (int, int)> kWordCountRanges = {
-  3: (270, 400), // 3 min: ~90 wpm * 3 = 270, allow up to 400
-  5: (540, 720), // 5 min: ~100-120 wpm * 5 = 500-600, allow 540-720
-  10: (900, 1200), // 10 min: ~90-100 wpm * 10 = 900-1000
-  15: (1350, 1800), // 15 min: ~90-100 wpm * 15
-  20: (1800, 2400), // 20 min: ~90-100 wpm * 20
-};
+/// LEGACY: Special 3-minute kid story word count range
+/// This is a KID-BEDTIME-SPECIFIC range not in standard StoryLengthBucket enum
+/// (kept for backwards compatibility with 3-minute kid bedtime stories)
+const (int, int) k3MinuteKidStoryRange = (270, 400);
 
-/// Get word count range for a given target length in minutes
-/// Returns null if length not in predefined buckets (uses default 200 min)
+/// Get word count range for a storyLength bucket (PRIMARY method)
+/// Derives from StoryLengthBucket.wordCountRange (canonical source of truth)
+(int, int) getWordCountRangeForBucket(StoryLengthBucket bucket) {
+  return bucket.wordCountRange;
+}
+
+/// LEGACY: Get word count range for a given target length in minutes
+/// Maps minute-based lengths to bucket ranges via lengthMinutesToBucket()
+/// Returns null only for truly unknown minute values
 (int, int)? getWordCountRange(int lengthMinutes) {
-  return kWordCountRanges[lengthMinutes];
+  // Special case: 3-minute kid story (not in standard buckets)
+  if (lengthMinutes == 3) {
+    return k3MinuteKidStoryRange;
+  }
+  // Map minutes to bucket and get range from canonical source
+  final bucket = lengthMinutesToBucket(lengthMinutes);
+  return bucket.wordCountRange;
 }
 
 /// Result of validating a story against the Kid Bedtime Contract
@@ -112,7 +121,11 @@ class KidBedtimeValidator {
   final List<String> _forbiddenPatterns;
   final List<RegExp> _forbiddenRegexes;
 
-  /// Target length in minutes (used for word count validation)
+  /// Target storyLength bucket (PRIMARY - used for word count validation)
+  StoryLengthBucket? targetLengthBucket;
+
+  /// LEGACY: Target length in minutes (used for word count validation)
+  /// If both targetLengthBucket and targetLengthMinutes are set, bucket takes priority
   /// If null, only enforces minimum 200 words
   int? targetLengthMinutes;
 
@@ -219,31 +232,39 @@ class KidBedtimeValidator {
           'Story needs at least 3 distinct sections (found ${paragraphs.length})');
     }
 
-    // Check word count based on target length
+    // Check word count based on target length (bucket takes priority)
     final wordCount = text.split(RegExp(r'\s+')).length;
 
-    if (targetLengthMinutes != null) {
+    if (targetLengthBucket != null) {
+      // PRIMARY: Use bucket-based validation (LOCKED SPEC)
+      final (minWords, maxWords) =
+          getWordCountRangeForBucket(targetLengthBucket!);
+      final bucketLabel = targetLengthBucket!.displayLabel;
+      if (wordCount < minWords) {
+        violations.add(
+            'Story too short for $bucketLabel ($wordCount words, need $minWords-$maxWords). '
+            'Expand sections 2-4 with more gentle, calm details.');
+      } else if (wordCount > maxWords) {
+        violations.add(
+            'Story too long for $bucketLabel ($wordCount words, max $maxWords)');
+      }
+    } else if (targetLengthMinutes != null) {
+      // LEGACY: Fallback to minute-based validation
       final range = getWordCountRange(targetLengthMinutes!);
-      if (range != null) {
-        final (minWords, maxWords) = range;
-        if (wordCount < minWords) {
-          violations.add(
-              'Story too short for ${targetLengthMinutes}min ($wordCount words, need $minWords-$maxWords). '
-              'Expand sections 2-4 with more gentle, calm details.');
-        } else if (wordCount > maxWords) {
-          violations.add(
-              'Story too long for ${targetLengthMinutes}min ($wordCount words, max $maxWords)');
-        }
-      } else {
-        // Unknown length bucket, use default minimum
-        if (wordCount < 200) {
-          violations.add('Story too short ($wordCount words, minimum 200)');
-        }
+      // getWordCountRange always returns a value now (maps to bucket)
+      final (minWords, maxWords) = range!;
+      if (wordCount < minWords) {
+        violations.add(
+            'Story too short ($wordCount words, need $minWords-$maxWords). '
+            'Expand sections 2-4 with more gentle, calm details.');
+      } else if (wordCount > maxWords) {
+        violations.add('Story too long ($wordCount words, max $maxWords)');
       }
     } else {
-      // No target length specified, use default minimum
-      if (wordCount < 200) {
-        violations.add('Story too short ($wordCount words, minimum 200)');
+      // No target length specified, use short bucket minimum (canonical source)
+      final minWords = StoryLengthBucket.short.wordCountRange.$1;
+      if (wordCount < minWords) {
+        violations.add('Story too short ($wordCount words, minimum $minWords)');
       }
     }
 
@@ -301,7 +322,8 @@ class KidBedtimeValidator {
   /// Calculate average words per sentence
   double _calculateAvgWordsPerSentence(String text) {
     // Split by sentence-ending punctuation
-    final sentences = text.split(RegExp(r'[.!?]+'))
+    final sentences = text
+        .split(RegExp(r'[.!?]+'))
         .where((s) => s.trim().isNotEmpty)
         .toList();
 

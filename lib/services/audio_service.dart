@@ -23,10 +23,13 @@ class AudioService {
     } catch (e) {
       debugPrint('Error loading audio: $e');
 
-      logEvent('audio_error', {
-        'story_id': storyId,
-        'error_type': 'load_failed',
-      }, level: LogLevel.error);
+      logEvent(
+          'audio_error',
+          {
+            'story_id': storyId,
+            'error_type': 'load_failed',
+          },
+          level: LogLevel.error);
 
       rethrow;
     }
@@ -45,10 +48,13 @@ class AudioService {
     } catch (e) {
       debugPrint('Error playing audio: $e');
 
-      logEvent('audio_error', {
-        'story_id': _currentStoryId,
-        'error_type': 'play_failed',
-      }, level: LogLevel.error);
+      logEvent(
+          'audio_error',
+          {
+            'story_id': _currentStoryId,
+            'error_type': 'play_failed',
+          },
+          level: LogLevel.error);
 
       rethrow;
     }
@@ -105,8 +111,9 @@ class AudioService {
   Stream<PlayerState> get playerStateStream => _player.playerStateStream;
 
   /// Stream of playback completed events
-  Stream<void> get playbackCompletedStream =>
-      _player.playerStateStream.where((state) => state.processingState == ProcessingState.completed).map((_) {});
+  Stream<void> get playbackCompletedStream => _player.playerStateStream
+      .where((state) => state.processingState == ProcessingState.completed)
+      .map((_) {});
 
   /// Check if audio is currently playing
   bool get isPlaying => _player.playing;

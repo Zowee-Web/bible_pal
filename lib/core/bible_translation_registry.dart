@@ -40,7 +40,8 @@ class BibleTranslationRegistry {
       licenseName: 'Public Domain (no copyright)',
       year: 2000,
       url: 'https://worldenglish.bible',
-      notes: 'Modern English update based on ASV, released to public domain by editors',
+      notes:
+          'Modern English update based on ASV, released to public domain by editors',
     ),
     BibleTranslation(
       id: 'KJV',
@@ -57,7 +58,8 @@ class BibleTranslationRegistry {
       licenseType: LicenseType.publicDomain,
       licenseName: 'Public Domain (copyright expired)',
       year: 1901,
-      url: 'https://www.biblegateway.com/versions/American-Standard-Version-ASV-Bible',
+      url:
+          'https://www.biblegateway.com/versions/American-Standard-Version-ASV-Bible',
       notes: 'Public domain revision of KJV',
     ),
     BibleTranslation(
@@ -66,7 +68,8 @@ class BibleTranslationRegistry {
       licenseType: LicenseType.publicDomain,
       licenseName: 'Public Domain (copyright expired)',
       year: 1862,
-      url: 'https://www.biblegateway.com/versions/Youngs-Literal-Translation-YLT-Bible',
+      url:
+          'https://www.biblegateway.com/versions/Youngs-Literal-Translation-YLT-Bible',
       notes: 'Highly literal translation, public domain',
     ),
     BibleTranslation(
@@ -170,11 +173,10 @@ class BibleTranslationRegistry {
       bannedTranslations.map((t) => t.id).toSet();
 
   /// Get all banned fingerprints (for text scanning)
-  static Set<String> get bannedFingerprints =>
-      bannedTranslations
-          .expand((t) => t.fingerprints)
-          .map((f) => f.toLowerCase())
-          .toSet();
+  static Set<String> get bannedFingerprints => bannedTranslations
+      .expand((t) => t.fingerprints)
+      .map((f) => f.toLowerCase())
+      .toSet();
 
   /// Check if a translation ID is allowed
   static bool isAllowed(String translationId) {
@@ -211,7 +213,8 @@ class BibleTranslationRegistry {
     if (isBanned(normalized)) {
       // In production, this should trigger an alert
       // ignore: avoid_print
-      print('⚠️ COMPLIANCE VIOLATION: Banned translation "$translationId" (normalized: "$normalized") detected. Resetting to $defaultTranslationId');
+      print(
+          '⚠️ COMPLIANCE VIOLATION: Banned translation "$translationId" (normalized: "$normalized") detected. Resetting to $defaultTranslationId');
       return defaultTranslationId;
     }
 
@@ -222,7 +225,8 @@ class BibleTranslationRegistry {
 
     // Unknown translation - reset to default
     // ignore: avoid_print
-    print('⚠️ WARNING: Unknown translation "$translationId" (normalized: "$normalized") detected. Resetting to $defaultTranslationId');
+    print(
+        '⚠️ WARNING: Unknown translation "$translationId" (normalized: "$normalized") detected. Resetting to $defaultTranslationId');
     return defaultTranslationId;
   }
 

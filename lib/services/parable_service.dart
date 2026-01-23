@@ -19,7 +19,8 @@ class ParableService {
   final bool testMode;
   final RelatabilityMatcher _matcher = RelatabilityMatcher();
 
-  ParableService(this._storage, [this._externalStoragePath, this.testMode = false]);
+  ParableService(this._storage,
+      [this._externalStoragePath, this.testMode = false]);
 
   /// Get the parable library directory
   Future<Directory> _getParableLibraryDir() async {
@@ -50,11 +51,13 @@ class ParableService {
 
       // First try loading from bundled assets (for testing)
       try {
-        final jsonContent = await rootBundle.loadString('assets/stories/manifest.json');
+        final jsonContent =
+            await rootBundle.loadString('assets/stories/manifest.json');
         final manifestData = jsonDecode(jsonContent) as Map<String, dynamic>;
         final parablesList = manifestData['parables'] as List<dynamic>? ?? [];
         totalEntries = parablesList.length;
-        debugPrint('📚 Loading ${parablesList.length} parables from bundled assets');
+        debugPrint(
+            '📚 Loading ${parablesList.length} parables from bundled assets');
         _useAssets = true; // Flag to use assets for audio/text files too
 
         // Validate each entry
@@ -73,13 +76,17 @@ class ParableService {
               await rootBundle.load('assets/stories/${parable.audioFilePath}');
               parables.add(parable);
             } catch (e) {
-              debugPrint('⚠️ Skipping ${parable.storyId}: audio file missing (${parable.audioFilePath})');
+              debugPrint(
+                  '⚠️ Skipping ${parable.storyId}: audio file missing (${parable.audioFilePath})');
 
               // Log audio asset missing
-              logEvent('audio_asset_missing', {
-                'story_id': parable.storyId,
-                'expected_path': 'assets/stories/${parable.audioFilePath}',
-              }, level: LogLevel.warn);
+              logEvent(
+                  'audio_asset_missing',
+                  {
+                    'story_id': parable.storyId,
+                    'expected_path': 'assets/stories/${parable.audioFilePath}',
+                  },
+                  level: LogLevel.warn);
 
               skippedEntries++;
             }
@@ -89,7 +96,8 @@ class ParableService {
           }
         }
 
-        debugPrint('✅ Manifest validation: $totalEntries total, ${parables.length} valid, $skippedEntries skipped');
+        debugPrint(
+            '✅ Manifest validation: $totalEntries total, ${parables.length} valid, $skippedEntries skipped');
 
         // Log story pool loaded event
         logEvent('story_pool_loaded', {
@@ -101,7 +109,8 @@ class ParableService {
 
         return parables;
       } catch (assetError) {
-        debugPrint('No bundled assets found, checking documents directory: $assetError');
+        debugPrint(
+            'No bundled assets found, checking documents directory: $assetError');
       }
 
       // Fall back to documents directory
@@ -137,10 +146,13 @@ class ParableService {
             debugPrint('⚠️ Skipping ${parable.storyId}: audio file missing');
 
             // Log audio asset missing
-            logEvent('audio_asset_missing', {
-              'story_id': parable.storyId,
-              'expected_path': '${dir.path}/${parable.audioFilePath}',
-            }, level: LogLevel.warn);
+            logEvent(
+                'audio_asset_missing',
+                {
+                  'story_id': parable.storyId,
+                  'expected_path': '${dir.path}/${parable.audioFilePath}',
+                },
+                level: LogLevel.warn);
 
             skippedEntries++;
           }
@@ -150,7 +162,8 @@ class ParableService {
         }
       }
 
-      debugPrint('✅ Manifest validation: $totalEntries total, ${parables.length} valid, $skippedEntries skipped');
+      debugPrint(
+          '✅ Manifest validation: $totalEntries total, ${parables.length} valid, $skippedEntries skipped');
 
       // Log story pool loaded event
       logEvent('story_pool_loaded', {
@@ -171,6 +184,7 @@ class ParableService {
 
   /// Get eligible parables based on user preferences and mood
   /// Per SPEC.md Feature #4: Parable Generation / Selection Engine
+  /// Updated for Story Mode Contracts v2 (SPEC.md)
   Future<List<Parable>> getEligibleParables({
     required String mood,
     required StoryLengthBucket lengthBucket,
@@ -178,20 +192,16 @@ class ParableService {
   }) async {
     final allParables = await _loadManifest();
 
-    // For bundled test assets, be more lenient with filtering
-    final hasEmptyTradition = userPrefs.faithTradition.isEmpty;
-
-    // Story language filter (WEB or KJV)
-    // Stories are filtered by translationId to match user's storyLanguage preference
-    final storyLanguage = userPrefs.storyLanguage;
+    // Language style filter (WEB or KJV) - Contracts v2: presentation diction
+    // Stories are filtered by languageStyle to match user's preference
+    final languageStyle = userPrefs.languageStyle;
 
     // Log filters being applied (analytics only, not verbose debug output)
-    // Keep length_min for backwards compatibility, add length_bucket
+    // NOTE: length_bucket is canonical - no minute-based fields in telemetry (INVARIANTS.md)
     logEvent('filters_applied', {
       'kid_mode': userPrefs.kidFriendlyOnly,
-      'tradition': userPrefs.faithTradition,
       'storytelling_mode': userPrefs.storytellingMode,
-      'story_language': storyLanguage,
+      'language_style': languageStyle,
       'mood': mood,
       'length_bucket': lengthBucket.name,
       'pool_size': allParables.length,
@@ -205,16 +215,55 @@ class ParableService {
       // Match length bucket (uses compatibility mapping from minute-based metadata)
       if (p.lengthBucket != lengthBucket) return false;
 
-      // Match faith tradition - skip if user hasn't set one yet (test mode)
-      if (!hasEmptyTradition && p.faithTradition != userPrefs.faithTradition) {
-        return false;
-      }
-
       // Match storytelling mode (ALWAYS enforced - user expects this to work!)
       if (p.storytellingMode != userPrefs.storytellingMode) return false;
 
-      // Match story language / translation (WEB or KJV)
-      if (p.translationId != storyLanguage) return false;
+      // Match language style (WEB or KJV) - Contracts v2
+      // Use story's languageStyle field for filtering
+      if (p.languageStyle != languageStyle) return false;
+
+      // CONTRACTS V2 + ADR-010: Traditional stories MUST have bibleSourceRef AND bibleStoryKey
+      // Stories without these fields are EXCLUDED (not guessed)
+      if (p.storytellingMode == 'traditional') {
+        if (!p.hasBibleSourceRef) {
+          // Log exclusion for missing bibleSourceRef
+          logEvent(
+              'story_excluded',
+              {
+                'story_id': p.storyId,
+                'reason': 'traditional_missing_bible_source_ref',
+              },
+              level: LogLevel.warn);
+          return false;
+        }
+        if (!p.hasBibleStoryKey) {
+          // Log exclusion for missing bibleStoryKey (ADR-010)
+          logEvent(
+              'story_excluded',
+              {
+                'story_id': p.storyId,
+                'reason': 'traditional_missing_bible_story_key',
+              },
+              level: LogLevel.warn);
+          return false;
+        }
+      }
+
+      // CONTRACTS V2: Creative stories MUST NOT have bibleSourceRef
+      // Stories with bibleSourceRef are EXCLUDED (data error)
+      if (p.storytellingMode == 'creative') {
+        if (p.hasBibleSourceRef) {
+          // Log exclusion for unexpected bibleSourceRef
+          logEvent(
+              'story_excluded',
+              {
+                'story_id': p.storyId,
+                'reason': 'creative_has_bible_source_ref',
+              },
+              level: LogLevel.warn);
+          return false;
+        }
+      }
 
       // Match kid-friendly filter (CRITICAL FOR PROPER CONTENT SEGREGATION)
       // Kid mode ON: ONLY kid-friendly stories
@@ -234,15 +283,21 @@ class ParableService {
       final nonKidFriendlyCount = eligible.where((p) => !p.kidFriendly).length;
       if (nonKidFriendlyCount > 0) {
         debugPrint('🚨🚨🚨 CRITICAL KID SAFETY VIOLATION 🚨🚨🚨');
-        debugPrint('Found $nonKidFriendlyCount non-kid-friendly parables in filtered results!');
-        debugPrint('Kid mode is ON but non-kid-friendly content passed through!');
-        debugPrint('This is a CRITICAL BUG that exposes children to inappropriate content!');
+        debugPrint(
+            'Found $nonKidFriendlyCount non-kid-friendly parables in filtered results!');
+        debugPrint(
+            'Kid mode is ON but non-kid-friendly content passed through!');
+        debugPrint(
+            'This is a CRITICAL BUG that exposes children to inappropriate content!');
 
         // Log kid mode guard failure
-        logEvent('kid_mode_guard_fail', {
-          'violation_reason': 'non_kid_friendly_content_leaked',
-          'leaked_count': nonKidFriendlyCount,
-        }, level: LogLevel.error);
+        logEvent(
+            'kid_mode_guard_fail',
+            {
+              'violation_reason': 'non_kid_friendly_content_leaked',
+              'leaked_count': nonKidFriendlyCount,
+            },
+            level: LogLevel.error);
 
         // In debug mode, throw assertion to catch this immediately
         assert(
@@ -253,7 +308,8 @@ class ParableService {
         // In production, filter them out as emergency safety measure
         return eligible.where((p) => p.kidFriendly).toList();
       }
-      debugPrint('✅ Kid safety check passed: All ${eligible.length} parables are kid-friendly');
+      debugPrint(
+          '✅ Kid safety check passed: All ${eligible.length} parables are kid-friendly');
 
       // Log successful kid mode guard
       logEvent('kid_mode_guard_pass', {
@@ -263,7 +319,8 @@ class ParableService {
       // Adult mode: ensure NO kid-friendly content leaked through
       final kidFriendlyCount = eligible.where((p) => p.kidFriendly).length;
       if (kidFriendlyCount > 0) {
-        debugPrint('🚨 ADULT MODE VIOLATION: Found $kidFriendlyCount kid-friendly parables!');
+        debugPrint(
+            '🚨 ADULT MODE VIOLATION: Found $kidFriendlyCount kid-friendly parables!');
         debugPrint('Adult mode should ONLY return adult content!');
 
         // In debug mode, throw assertion
@@ -275,7 +332,8 @@ class ParableService {
         // In production, filter them out
         return eligible.where((p) => !p.kidFriendly).toList();
       }
-      debugPrint('✅ Adult mode check passed: All ${eligible.length} parables are adult content');
+      debugPrint(
+          '✅ Adult mode check passed: All ${eligible.length} parables are adult content');
     }
 
     return eligible;
@@ -285,7 +343,7 @@ class ParableService {
   /// Per SPEC.md Feature #14: Non-Repeat Story Serving Rule
   ///
   /// Selection algorithm:
-  /// 1. Filter by eligibility (mode, lengthBucket, tradition, kid mode)
+  /// 1. Filter by eligibility (mode, lengthBucket, kid mode)
   /// 2. Exclude recently played (no-repeat invariant) if unplayed exist
   /// 3. Rank by relatability score (if userText provided)
   /// 4. Tie-break: least-recently-played, then stable storyId
@@ -305,10 +363,13 @@ class ParableService {
       debugPrint('No eligible parables found for criteria');
 
       // Log pool exhausted (no matches)
-      logEvent('pool_exhausted', {
-        'eligible_count': 0,
-        'reason': 'no_matches_for_criteria',
-      }, level: LogLevel.warn);
+      logEvent(
+          'pool_exhausted',
+          {
+            'eligible_count': 0,
+            'reason': 'no_matches_for_criteria',
+          },
+          level: LogLevel.warn);
 
       return null;
     }
@@ -356,17 +417,17 @@ class ParableService {
         playHistory: playHistory,
       );
       if (ranked.isNotEmpty) {
-        debugPrint('Relatability ranking applied, top match: ${ranked.first.storyId}');
+        debugPrint(
+            'Relatability ranking applied, top match: ${ranked.first.storyId}');
 
         final selected = ranked.first;
         // Log story selected with relatability ranking
-        // Keep length_min for backwards compatibility, add length_bucket
+        // NOTE: length_bucket is canonical - no minute-based fields in telemetry (INVARIANTS.md)
         logEvent('story_selected', {
           'story_id': selected.storyId,
-          'mode': '${userPrefs.kidFriendlyOnly ? "kid" : "adult"}_${selected.storytellingMode}',
-          'length_min': selected.length,
+          'mode':
+              '${userPrefs.kidFriendlyOnly ? "kid" : "adult"}_${selected.storytellingMode}',
           'length_bucket': selected.lengthBucket.name,
-          'tradition': selected.faithTradition,
           'matched_tags': selected.emotionalTags,
           'selection_method': 'relatability_ranking',
           'repeat_allowed': unplayedParables.isEmpty,
@@ -395,13 +456,12 @@ class ParableService {
 
     final selected = candidates.first;
     // Log story selected via deterministic fallback
-    // Keep length_min for backwards compatibility, add length_bucket
+    // NOTE: length_bucket is canonical - no minute-based fields in telemetry (INVARIANTS.md)
     logEvent('story_selected', {
       'story_id': selected.storyId,
-      'mode': '${userPrefs.kidFriendlyOnly ? "kid" : "adult"}_${selected.storytellingMode}',
-      'length_min': selected.length,
+      'mode':
+          '${userPrefs.kidFriendlyOnly ? "kid" : "adult"}_${selected.storytellingMode}',
       'length_bucket': selected.lengthBucket.name,
-      'tradition': selected.faithTradition,
       'matched_tags': selected.emotionalTags,
       'selection_method': 'deterministic_lrp',
       'repeat_allowed': unplayedParables.isEmpty,
@@ -428,7 +488,8 @@ class ParableService {
     if (_useAssets) {
       // For bundled assets, we need to copy to temp directory for just_audio to play
       try {
-        final audioData = await rootBundle.load('assets/stories/${parable.audioFilePath}');
+        final audioData =
+            await rootBundle.load('assets/stories/${parable.audioFilePath}');
         final tempDir = await getTemporaryDirectory();
         final tempFile = File('${tempDir.path}/${parable.audioFilePath}');
         await tempFile.writeAsBytes(audioData.buffer.asUint8List());
@@ -457,7 +518,8 @@ class ParableService {
     try {
       // If using bundled assets
       if (_useAssets) {
-        return await rootBundle.loadString('assets/stories/${parable.textFilePath}');
+        return await rootBundle
+            .loadString('assets/stories/${parable.textFilePath}');
       }
 
       final dir = await _getParableLibraryDir();
@@ -477,7 +539,6 @@ class ParableService {
   Future<int> getAvailableCount({
     String? mood,
     StoryLengthBucket? lengthBucket,
-    String? faithTradition,
     String? storytellingMode,
   }) async {
     final allParables = await _loadManifest();
@@ -485,9 +546,6 @@ class ParableService {
     return allParables.where((p) {
       if (mood != null && p.mood != mood) return false;
       if (lengthBucket != null && p.lengthBucket != lengthBucket) return false;
-      if (faithTradition != null && p.faithTradition != faithTradition) {
-        return false;
-      }
       if (storytellingMode != null && p.storytellingMode != storytellingMode) {
         return false;
       }

@@ -20,7 +20,8 @@ class AppRouter extends StatelessWidget {
       title: 'Bible PAL',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.theme,
-      home: showFirstLaunch ? const FirstLaunchScreen() : const MainMenuScreen(),
+      home:
+          showFirstLaunch ? const FirstLaunchScreen() : const MainMenuScreen(),
       onGenerateRoute: _onGenerateRoute,
     );
   }

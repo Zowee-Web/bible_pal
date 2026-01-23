@@ -18,8 +18,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   bool _backgroundSoundOn = false;
   bool _kidFriendlyOnly = false;
   bool _showEverydayReflections = true;
-  String _storytellingMode = 'creative';
-  String _storyLanguage = 'WEB';
+  String _storytellingMode =
+      'traditional'; // Default is Traditional per Contracts v2
+  String _languageStyle = 'WEB'; // Story presentation diction (Contracts v2)
   // Voice consent (Phase 3)
   bool? _storyNarrationEnabled;
   bool? _palGreetingsEnabled;
@@ -45,9 +46,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     final appState = ref.read(appStateProvider).valueOrNull;
     if (appState != null) {
       _kidFriendlyOnly = appState.userPreferences.kidFriendlyOnly;
-      _showEverydayReflections = appState.userPreferences.showEverydayReflections;
+      _showEverydayReflections =
+          appState.userPreferences.showEverydayReflections;
       _storytellingMode = appState.userPreferences.storytellingMode;
-      _storyLanguage = appState.userPreferences.storyLanguage;
+      _languageStyle = appState.userPreferences.languageStyle;
       // Voice consent (Phase 3)
       _storyNarrationEnabled = appState.userPreferences.storyNarrationEnabled;
       _palGreetingsEnabled = appState.userPreferences.palGreetingsEnabled;
@@ -94,17 +96,17 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     await appState.updateStorytellingMode(mode);
   }
 
-  Future<void> _setStoryLanguage(String language) async {
-    // Log story language change
-    logEvent('story_language_changed', {
-      'from': _storyLanguage,
-      'to': language,
+  Future<void> _setLanguageStyle(String style) async {
+    // Log language style change (Contracts v2: presentation diction)
+    logEvent('language_style_changed', {
+      'from': _languageStyle,
+      'to': style,
       'kid_mode': _kidFriendlyOnly,
     });
 
-    setState(() => _storyLanguage = language);
+    setState(() => _languageStyle = style);
     final appState = ref.read(appStateProvider.notifier);
-    await appState.updateStoryLanguage(language);
+    await appState.updateLanguageStyle(style);
   }
 
   Future<void> _setStoryNarrationEnabled(bool enabled) async {
@@ -164,7 +166,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           const Divider(),
           const ListTile(
             title: Text('Story Mode'),
-            subtitle: Text('Choose between creative parables or traditional Bible retellings'),
+            subtitle: Text(
+                'Choose between creative parables or traditional Bible retellings'),
           ),
           RadioListTile<String>(
             title: const Text('Creative Stories'),
@@ -175,29 +178,29 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           ),
           RadioListTile<String>(
             title: const Text('Traditional Stories'),
-            subtitle: const Text('Real Bible stories retold poetically'),
+            subtitle: const Text('Actual Bible stories faithfully retold'),
             value: 'traditional',
             groupValue: _storytellingMode,
             onChanged: (value) => _setStorytellingMode(value!),
           ),
           const Divider(),
           const ListTile(
-            title: Text('Story Language'),
-            subtitle: Text('Choose the Bible translation style for stories'),
+            title: Text('Story Language Style'),
+            subtitle: Text('Choose the language style for story narration'),
           ),
           RadioListTile<String>(
             title: const Text('Modern (WEB)'),
-            subtitle: const Text('World English Bible - contemporary language'),
+            subtitle: const Text('Contemporary language style'),
             value: 'WEB',
-            groupValue: _storyLanguage,
-            onChanged: (value) => _setStoryLanguage(value!),
+            groupValue: _languageStyle,
+            onChanged: (value) => _setLanguageStyle(value!),
           ),
           RadioListTile<String>(
             title: const Text('Classic (KJV)'),
-            subtitle: const Text('King James Version - traditional language'),
+            subtitle: const Text('Traditional/poetic language style'),
             value: 'KJV',
-            groupValue: _storyLanguage,
-            onChanged: (value) => _setStoryLanguage(value!),
+            groupValue: _languageStyle,
+            onChanged: (value) => _setLanguageStyle(value!),
           ),
           const Divider(),
           const ListTile(

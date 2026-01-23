@@ -111,10 +111,13 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
       // Load audio file
       final audioFile = await parableService.getAudioFile(parable);
       if (audioFile == null) {
-        logEvent('audio_asset_missing', {
-          'story_id': parable.storyId,
-          'expected_path': parable.audioFilePath,
-        }, level: LogLevel.error);
+        logEvent(
+            'audio_asset_missing',
+            {
+              'story_id': parable.storyId,
+              'expected_path': parable.audioFilePath,
+            },
+            level: LogLevel.error);
 
         throw Exception('Audio file not found for parable: ${parable.storyId}');
       }

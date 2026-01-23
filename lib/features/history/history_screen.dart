@@ -130,8 +130,10 @@ class HistoryScreen extends ConsumerWidget {
     assert(() {
       debugPrint('📜 History Screen: ${history.length} items');
       if (history.isNotEmpty) {
-        debugPrint('  First: ${history.first.storyId} at ${history.first.timestamp}');
-        debugPrint('  Last: ${history.last.storyId} at ${history.last.timestamp}');
+        debugPrint(
+            '  First: ${history.first.storyId} at ${history.first.timestamp}');
+        debugPrint(
+            '  Last: ${history.last.storyId} at ${history.last.timestamp}');
       }
       return true;
     }());
@@ -203,7 +205,7 @@ class HistoryScreen extends ConsumerWidget {
                       children: [
                         const SizedBox(height: 4),
                         Text(
-                          '${entry.length} min • ${entry.mood}',
+                          '${entry.lengthBucket.displayLabel} • ${entry.mood}',
                           style: theme.textTheme.bodySmall,
                         ),
                         const SizedBox(height: 4),

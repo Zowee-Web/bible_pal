@@ -72,7 +72,8 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
         });
 
       // Keep last 50
-      final trimmed = sorted.length > 50 ? sorted.sublist(sorted.length - 50) : sorted;
+      final trimmed =
+          sorted.length > 50 ? sorted.sublist(sorted.length - 50) : sorted;
 
       setState(() {
         _breadcrumbs = trimmed;
@@ -140,7 +141,8 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Clear Breadcrumbs?'),
-        content: const Text('This will clear all diagnostic breadcrumbs from memory and disk.'),
+        content: const Text(
+            'This will clear all diagnostic breadcrumbs from memory and disk.'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
@@ -256,7 +258,8 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
 
                     return ExpansionTile(
                       leading: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 6, vertical: 2),
                         decoration: BoxDecoration(
                           color: levelColor.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(4),
@@ -276,7 +279,8 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
                       ),
                       subtitle: Text(
                         formattedTs,
-                        style: const TextStyle(fontSize: 12, color: Colors.grey),
+                        style:
+                            const TextStyle(fontSize: 12, color: Colors.grey),
                       ),
                       children: [
                         if (data.isNotEmpty)
@@ -290,7 +294,8 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text(
-                                const JsonEncoder.withIndent('  ').convert(data),
+                                const JsonEncoder.withIndent('  ')
+                                    .convert(data),
                                 style: const TextStyle(
                                   fontFamily: 'monospace',
                                   fontSize: 12,

@@ -1,4 +1,5 @@
 import 'parable.dart';
+import '../core/story_length_bucket.dart';
 
 /// Favorite model - represents a user's favorited parable
 /// Based on SPEC.md Feature #9: Favorites System
@@ -7,7 +8,6 @@ class Favorite {
   final String title; // User's edited title or AI title
   final String mood;
   final int length;
-  final String faithTradition;
   final List<String> scriptureSources;
   final DateTime dateSaved;
 
@@ -16,7 +16,6 @@ class Favorite {
     required this.title,
     required this.mood,
     required this.length,
-    required this.faithTradition,
     this.scriptureSources = const [],
     required this.dateSaved,
   });
@@ -28,7 +27,6 @@ class Favorite {
       title: parable.title,
       mood: parable.mood,
       length: parable.length,
-      faithTradition: parable.faithTradition,
       scriptureSources: parable.scriptureSources,
       dateSaved: DateTime.now(),
     );
@@ -41,7 +39,6 @@ class Favorite {
       title: json['title'] as String,
       mood: json['mood'] as String,
       length: json['length'] as int,
-      faithTradition: json['faithTradition'] as String,
       scriptureSources: (json['scriptureSources'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -57,11 +54,13 @@ class Favorite {
       'title': title,
       'mood': mood,
       'length': length,
-      'faithTradition': faithTradition,
       'scriptureSources': scriptureSources,
       'dateSaved': dateSaved.toIso8601String(),
     };
   }
+
+  /// Get length bucket for display (computed from legacy minute-based length)
+  StoryLengthBucket get lengthBucket => lengthMinutesToBucket(length);
 
   /// Create a copy with modified fields (for title edits)
   Favorite copyWith({
@@ -69,7 +68,6 @@ class Favorite {
     String? title,
     String? mood,
     int? length,
-    String? faithTradition,
     List<String>? scriptureSources,
     DateTime? dateSaved,
   }) {
@@ -78,7 +76,6 @@ class Favorite {
       title: title ?? this.title,
       mood: mood ?? this.mood,
       length: length ?? this.length,
-      faithTradition: faithTradition ?? this.faithTradition,
       scriptureSources: scriptureSources ?? this.scriptureSources,
       dateSaved: dateSaved ?? this.dateSaved,
     );
