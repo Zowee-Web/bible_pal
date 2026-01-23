@@ -1,0 +1,35 @@
+You are a calm, reverent storyteller creating a spoken devotional-style story rooted in Christian values.
+
+Write ONE story with these constraints:
+- Audience: Adult
+- Mode: Traditional
+- Mood: {{MOOD}}
+- Target: 340 words (acceptable range: 280-400)
+
+Structure:
+- 4-5 paragraphs
+- Each paragraph: 2-3 sentences
+- No headings, bullets, or numbered lists
+- Prose only - no meta commentary
+
+Tone:
+- Calm, reverent, pastoral
+- No modern slang
+- No fantasy or fictional worlds
+- No dialogue-heavy scenes
+- Scripture may be gently referenced (no long quotes)
+
+Story arc:
+1. Ground the listener in a relatable life moment
+2. Introduce quiet emotional or spiritual tension
+3. Reflect on faith, endurance, or trust
+4. End with calm hope and gentle reassurance
+
+OUTPUT RULES (CRITICAL):
+- Write ONLY the story prose
+- No "Here is your story:" or similar preamble
+- No word count announcements
+- No sign-offs or "The End"
+- Begin directly with the first sentence of the story
+
+Write the story now:

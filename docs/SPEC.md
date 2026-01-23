@@ -1,7 +1,7 @@
 # Bible PAL - Technical Specification
 
-**Version:** 1.2
-**Last Updated:** 2026-01-03
+**Version:** 1.3
+**Last Updated:** 2026-01-12
 
 This document is the single source of truth for Bible PAL's features and behavior. All code must follow this specification. Changes to app behavior require explicit updates to this document.
 
@@ -76,7 +76,6 @@ This document is the single source of truth for Bible PAL's features and behavio
 **5. Parable Generation / Selection Engine**
 - Chooses or generates a parable based on:
   - User's detected mood
-  - Faith tradition
   - Storytelling mode (creative vs traditional)
   - Selected length
 - If pre-generated stories exist that match criteria, selects one
@@ -87,9 +86,9 @@ This document is the single source of truth for Bible PAL's features and behavio
 **6. Story Length Buckets**
 
 Three user-facing length options (no minute estimates shown to users):
-- **Short Story**: 300–700 words
-- **Full Story**: 900–1400 words
-- **Long Story**: 1700–2600 words
+- **Short Story**: 250–600 words (LOCKED SPEC)
+- **Full Story**: 601–1200 words (LOCKED SPEC)
+- **Long Story**: 1201–2000 words (LOCKED SPEC)
 
 Implementation notes:
 - UI presents descriptive labels only (Short/Full/Long), not minutes
@@ -98,9 +97,10 @@ Implementation notes:
 - Length selection is stateless (chosen fresh each session after mood detection)
 
 **Compatibility with existing assets:**
-- Existing stories store `length` in minutes (5, 10, 15, 20)
-- Mapping: 5-min → short, 10-min → short, 15-min → full, 20-min → long
-- Manifest schema unchanged; `Parable.lengthBucket` getter handles mapping
+- New stories use `storyLength` field directly ("short", "full", "long")
+- Legacy stories may have `length` in minutes (5, 10, 15, 20)
+- Legacy mapping: 5-min/10-min → short, 15-min → full, 20-min → long
+- `Parable.lengthBucket` getter prioritizes `storyLength`, falls back to legacy `length`
 
 **7. Nightly Batch Generation**
 - Automated script runs at 2:00 AM daily
@@ -116,9 +116,9 @@ Each parable includes:
 - `storyId` (unique identifier)
 - `title` (AI-generated, user-editable)
 - `mood` / emotional tags
-- `length` (minutes: 5, 10, 15, or 20 - legacy field for asset compatibility)
-- `lengthBucket` (computed: short, full, or long - used for selection)
-- `faithTradition`
+- `storyLength` ("short", "full", or "long" - primary field, LOCKED SPEC)
+- `length` (minutes: 5, 10, 15, or 20 - legacy field for backwards compatibility)
+- `lengthBucket` (computed getter: prioritizes storyLength, falls back to length)
 - `storytellingMode` (creative or traditional)
 - `scriptureSources` (array of verse references)
 
@@ -138,7 +138,6 @@ Each parable includes:
   - `title` (edited or AI-generated)
   - `mood`
   - `length`
-  - `faithTradition`
   - `scriptureSources`
   - `dateSaved`
 
@@ -151,7 +150,6 @@ Each parable includes:
   - `title`
   - `mood`
   - `length`
-  - `faithTradition`
   - `scriptureSources`
   - `timestamp`
 
@@ -176,9 +174,154 @@ Affects:
 
 ---
 
-### Golden Prompt Mode: Adult Traditional 5-Min Generation
+### Story Mode Contracts v2 (LOCKED)
 
-Golden Prompt mode is a specialized generation strategy for adult traditional 5-minute parables that uses structure-based length control instead of continuation prompts.
+Story Mode Contracts v2 defines two orthogonal axes that govern story content and presentation. These contracts are **LOCKED** and must never be violated or blurred.
+
+#### Axis 1 — Story Mode (Authority)
+
+`storytellingMode`: `traditional` | `creative`
+
+This axis determines the **authority and source** of the story content.
+
+#### Axis 2 — Language Style (Presentation)
+
+`languageStyle`: `WEB` | `KJV`
+
+This axis determines the **diction and presentation style** only. It NEVER changes authority.
+
+**IMPORTANT:** `languageStyle` is separate from `translationId` (used for Bible translation compliance in Daily Bread and scripture references). Stories use `languageStyle` for presentation; scripture features use `translationId` for compliance.
+
+---
+
+#### Traditional Mode Contract (DEFAULT)
+
+Traditional mode is the **default** for all users. Stories in Traditional mode are **faithful retellings of actual Bible stories**.
+
+**Core Definition (LOCKED):**
+Traditional stories MUST be **real Bible stories retold faithfully**. They are not devotional content, not original stories with biblical themes, not paraphrased scripture. They are specific, identifiable Bible narratives rendered in narrative form.
+
+**Requirements:**
+- Must map directly to specific Bible passages
+- Preserve characters, event order, outcomes, and meaning from scripture
+- Third-person narrative by default; biblical narrative posture
+- `bibleSourceRef` field is **REQUIRED** (e.g., "Luke 15:3-7", "Genesis 22:1-19")
+- `bibleStoryKey` field is **REQUIRED** — a stable canonical identifier for the Bible story (e.g., "lost_sheep", "jesus_calms_storm", "david_and_goliath")
+- **One Bible story per mood**: Each mood has exactly ONE canonical Bible story. This ensures users always hear the same Bible story for their emotional state.
+
+**Allowed ("Pizzazz"):**
+Scripture-faithful narrative enrichment is allowed:
+- Pacing adjustments and transitions
+- Scene detail, sensory description, emotional texture implied by the text
+- languageStyle may be WEB (modern) or KJV (classical)
+
+**Pizzazz Constraints:**
+"Pizzazz" means narrative style, NOT narrative license:
+- NO new events that aren't in scripture
+- NO altered outcomes or reordered events
+- NO invented theology or doctrine
+- NO modern framing (e.g., "like when you feel stressed at work")
+- NO inner monologue not implied by scripture
+
+**Forbidden:**
+- Invented motives or inner monologue not implied by scripture
+- Changed outcomes or reordered events
+- MoDC companionship voice (e.g., "I sit with you", "I am here")
+- First/second-person spiritual guide posture
+- Commentary or devotional asides within the narrative
+- Blurring into Creative mode territory
+
+**Validation:**
+- Traditional stories without `bibleSourceRef` are **EXCLUDED** from the serving pool
+- Traditional stories without `bibleStoryKey` are **EXCLUDED** from the serving pool
+- Stories with MoDC narrator patterns fail validation
+- Stories with invented inner-monologue markers fail validation
+- Stories that read as devotional commentary rather than narrative fail validation
+- Multiple Traditional stories sharing a mood but different `bibleStoryKey` fail validation
+
+---
+
+#### Creative Mode Contract (USER TOGGLE)
+
+Creative mode produces original stories with biblical meaning and values. These are NOT derived from specific Bible passages.
+
+**Requirements:**
+- Original stories only; not retellings of specific Bible stories
+- MoDC (Model of Digital Companionship) rules apply fully:
+  - Non-directive: no commands or prescriptions
+  - Optional: user can skip/dismiss at any time
+  - Interruptible: no forced completion
+- `bibleSourceRef` field must be **ABSENT or empty**
+
+**Allowed:**
+- Biblical themes, values, and wisdom woven into original narratives
+- Contemporary or timeless settings
+- languageStyle may be WEB (modern) or KJV (poetic)
+
+**Forbidden:**
+- Retelling specific Bible stories (even loosely)
+- Implying scriptural authority ("as the Bible says", "scripture tells us")
+- Teaching doctrine as fact
+- Commands or prescriptions ("you should", "you must")
+- Dependency language ("you need this", "come back tomorrow")
+- `bibleSourceRef` field present
+
+**Creative + KJV Extra Restrictions:**
+When `languageStyle=KJV` in Creative mode, treat as **poetic diction only**. Additional forbidden patterns:
+- "Thus saith" or similar archaic authority markers
+- Verse numbering or chapter references
+- "This is the Word" or "hear the Word"
+- Any markers that imply scripture quotation
+
+**Validation:**
+- Creative stories with `bibleSourceRef` present fail validation
+- Stories with strong signals of Bible story retelling fail validation
+- Stories with scripture-authority claims fail validation
+- Stories with advice/prescription/dependency language fail validation
+- Creative+KJV stories with scripture-claim markers fail validation
+
+---
+
+#### Global Invariants (Story Mode)
+
+1. **Non-Blur Enforcement**: Traditional and Creative modes must NEVER blur. Mode determines authority and validation rules.
+
+2. **No Silent Fallback**: If no stories match the user's selected mode, return empty pool. Never silently serve cross-mode content.
+
+3. **bibleSourceRef Integrity**:
+   - Traditional: REQUIRED. Stories without it are excluded (not guessed).
+   - Creative: FORBIDDEN. Stories with it fail validation.
+
+4. **languageStyle Independence**: Changing languageStyle (WEB↔KJV) never changes authority rules or mode validation.
+
+5. **Default is Traditional**: New users and unset preferences default to Traditional mode.
+
+---
+
+#### Parable Metadata (Updated for Contracts v2)
+
+Each parable now includes:
+- `storyId` (unique identifier)
+- `title` (AI-generated, user-editable)
+- `mood` / emotional tags
+- `storyLength` ("short", "full", or "long" - LOCKED SPEC)
+- `length` (legacy minutes field for backwards compatibility)
+- `storytellingMode` ("traditional" or "creative") - **REQUIRED**
+- `languageStyle` ("WEB" or "KJV") - **REQUIRED** for new stories
+- `translationId` (Bible translation for compliance - separate from languageStyle)
+- `bibleSourceRef` (scripture reference - **REQUIRED for Traditional, ABSENT for Creative**)
+- `bibleStoryKey` (canonical Bible story identifier - **REQUIRED for Traditional, ABSENT for Creative**)
+- `kidFriendly` (boolean)
+- `scriptureSources` (array of verse references used in story)
+- `narratorVoiceKey` (symbolic voice key - **REQUIRED** for all stories)
+- `reflectionAudioPath` (path to pre-generated reflection audio - **REQUIRED** for all stories)
+- `reflectionTextPath` (path to reflection text file - optional)
+
+---
+
+### Golden Prompt Mode: Adult Traditional SHORT Bucket Generation
+
+Golden Prompt mode is a specialized generation strategy for adult traditional SHORT bucket parables (250-600 words, LOCKED SPEC) that uses structure-based length control instead of continuation prompts.
 
 **Goals:**
 - Reliable single-shot generation that meets word count requirements
@@ -188,7 +331,7 @@ Golden Prompt mode is a specialized generation strategy for adult traditional 5-
 **Non-Goals:**
 - Creative mode support (standard mode only)
 - Kid-friendly generation (separate harness)
-- Variable-length stories (5-min only)
+- Full/Long bucket stories (SHORT bucket only)
 
 **Inputs:**
 - Mood: one of `joyful`, `weary`, `anxious`, `hurting`, `neutral`, `encouraging`, `calm_peaceful`, `brave_courage`
@@ -203,32 +346,32 @@ Golden Prompt mode is a specialized generation strategy for adult traditional 5-
 
 **Retry Policy:**
 - Maximum attempts: 2
-- If attempt 1 word count < 450: regenerate fresh with stricter structure (12 paragraphs)
+- If attempt 1 word count < 250: regenerate fresh with stricter structure (12 paragraphs)
 - NO continuation prompts — always single-shot generation
 - Each retry uses the same mood but escalated structure
 
 **Output:**
-- Filename pattern: `parable_3XX_<mood>_5min_golden_trad.txt`
+- Filename pattern: `parable_3XX_<mood>_short_golden_trad.txt`
 - Story ID range: 301-308 (one per mood)
-- YAML frontmatter with `mode: golden_traditional`
+- YAML frontmatter with `mode: golden_traditional`, `storyLength: short`
 
 **Quarantine Behavior:**
-- If attempt 2 still fails min_words (< 450): story is quarantined
+- If attempt 2 still fails min_words (< 250): story is quarantined
 - Quarantine location: `assets/stories_failed/`
 - Metadata includes: `failure_reason: word_count_too_low`, `actual_words`, `attempts`
 
 **Acceptance Examples:**
 
-1. **Escalation case**: If attempt 1 produces 433 words, attempt 2 MUST regenerate with 12 paragraphs (not continue the story).
+1. **Escalation case**: If attempt 1 produces 200 words, attempt 2 MUST regenerate with 12 paragraphs (not continue the story).
 
-2. **Quarantine case**: If attempt 2 still produces only 420 words, the story MUST be quarantined to `assets/stories_failed/` with `kidSafe: false` equivalent marking.
+2. **Quarantine case**: If attempt 2 still produces only 180 words, the story MUST be quarantined to `assets/stories_failed/` with `kidSafe: false` equivalent marking.
 
-3. **Success case**: If attempt 1 produces 512 words, no retry is needed — story is saved immediately.
+3. **Success case**: If attempt 1 produces 450 words (within 250-600 range), no retry is needed — story is saved immediately.
 
 **Script:**
 - `server/generate_adult_traditional_stories.sh --golden-prompt`
-- Prompt template: `server/prompts/golden_trad_adult_5min.prompt.txt`
-- Contract: `server/contracts/golden_contract_trad_adult_5min.yaml`
+- Prompt template: `server/prompts/golden_trad_adult_short.prompt.txt`
+- Contract: `server/contracts/golden_contract_trad_adult_short.yaml` (if exists)
 
 ### Sharing & Replay Logic
 
@@ -242,7 +385,6 @@ Golden Prompt mode is a specialized generation strategy for adult traditional 5-
 - Eligibility based on current filters:
   - Storytelling mode
   - Length preference
-  - Faith tradition
   - Other active criteria
 - After pool exhausted, stories repeat using "least recently played" ordering
 
@@ -345,21 +487,15 @@ The Kid Bedtime Safe Harness ensures that all kid-mode story generations are saf
 
 ## Onboarding
 
-**18. Faith Tradition Selector**
-- Presented on first launch
-- Options include:
-  - Catholic
-  - Protestant
-  - Orthodox
-  - Messianic
-  - Non-Denominational
-  - Other
-- Influences story details and scripture interpretation
-- User can change later in Settings
+**18. Christian General Only (LOCKED)**
 
-> **V1 Scope:** Denomination selector is disabled in v1. All users default to 'christian' tradition.
-> Controlled by `lib/core/feature_flags.dart` via `ENABLE_DENOMINATION_SELECTOR` dart-define (default: false).
-> Enable in v2+ with: `flutter run --dart-define=ENABLE_DENOMINATION_SELECTOR=true`
+Bible PAL serves all Christians with a unified, non-denominational experience:
+- No faith tradition or denomination selection
+- All stories use Christian General perspective
+- No denomination-specific content branching
+- This is a permanent design decision (not a v1 deferral)
+
+See [INVARIANTS.md](INVARIANTS.md) for the enforcement details.
 
 **19. Bible Translation Selector**
 - Presented on first launch
@@ -395,14 +531,28 @@ After a PAL's Story finishes playing, an optional reflection connects the story'
 - **User-toggleable**: Via Settings ("Relate stories to everyday life" toggle)
 - **Persisted**: Setting survives app restarts
 - **Optional**: User may skip/dismiss at any time with no consequence
+- **Opt-in audio**: Reflection audio is NEVER auto-played. User must tap "Hear Reflection" button.
 
-**When Enabled:**
-- Display a 2-4 sentence reflection after story completion
-- Optionally show one gentle reflection question
-- Reflection derives from story metadata (mood, emotional tags) without additional AI calls
+**Reflection System (LOCKED):**
+- **Every story has a reflection**: Both Traditional AND Creative stories have a story-specific reflection created alongside the story.
+- **Reflection audio uses same narrator voice**: The `narratorVoiceKey` for reflection audio MUST match the story's `narratorVoiceKey`. No separate "PAL voice" for reflections.
+- **Pre-generated audio**: Reflection audio is pre-generated alongside story audio, not runtime TTS.
+
+**Scripture Reference Display (Traditional Mode):**
+- Scripture reference (`bibleSourceRef`) is displayed AFTER story playback completes, NOT during narration.
+- Display format: Book Chapter:Verse-Verse (e.g., "Mark 4:35-41")
+- Scripture reference is NOT spoken in the narration.
+
+**UI Flow:**
+1. Story playback completes
+2. For Traditional stories: Display scripture reference (e.g., "Mark 4:35-41")
+3. Show "Hear Reflection" button (if reflection audio exists)
+4. User taps button → play reflection audio
+5. User may dismiss at any time
 
 **When Disabled:**
 - No reflection UI, audio, or questions appear
+- Scripture reference for Traditional stories is still shown
 
 **35. Reflection Language Constraints**
 
@@ -437,20 +587,20 @@ When `kidFriendlyOnly` is enabled:
 ## Settings
 
 **22. Creative/Traditional Mode Toggle**
-- Global setting for default storytelling mode
+- Global setting for storytelling mode
+- **Default**: Traditional mode
+- **Persistence**: Mode persists across app restarts until explicitly changed
 - Affects parable selection and generation
+- Only two modes: Traditional and Creative (no other modes exist)
 
-**23. Change Faith Tradition**
-- Allows user to update faith tradition after onboarding
-
-**24. Change Bible Translation**
+**23. Change Bible Translation**
 - Allows user to update preferred Bible translation(s) after onboarding
 
-**25. Content Filtering / Moderation Controls**
+**24. Content Filtering / Moderation Controls**
 - Filter inappropriate or offensive content in generated parables
 - Applied before content reaches user
 
-**26. Everyday Life Reflection Toggle**
+**25. Everyday Life Reflection Toggle**
 - Label: "Relate stories to everyday life"
 - Default: ON (enabled on first launch)
 - Controls whether post-story reflections are displayed
@@ -460,14 +610,14 @@ When `kidFriendlyOnly` is enabled:
 
 ## Security & Technical Architecture
 
-**27. User Data Encryption**
+**26. User Data Encryption**
 - Secure storage for:
   - Mood input text
   - User preferences
   - Favorites metadata
   - History metadata
 
-**28. Local Parable Library + Optional Cloud Sync**
+**27. Local Parable Library + Optional Cloud Sync**
 - Parable metadata can sync from Mac (generation source) to user devices
 - Personal user data remains local only (not synced to cloud)
 - Only story libraries and story-related metadata sync
@@ -534,7 +684,6 @@ Bible PAL implements minimal, privacy-safe structured logging for diagnostics an
 - `screen_view` — Screen navigation
 - `length_selected` — User chose story length
 - `mode_changed` — Storytelling mode toggled
-- `tradition_changed` — Faith tradition updated
 - `translation_changed` — Bible translation updated
 
 **Error Events:**

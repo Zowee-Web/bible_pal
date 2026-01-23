@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # elevenlabs_guard.sh
 # Shared safety gate for ALL ElevenLabs API calls
 # Prevents accidental credit usage and enforces character limits
@@ -101,6 +101,12 @@ elevenlabs_check_and_log() {
 # elevenlabs_call: Make the actual ElevenLabs API call
 # Args: story_text output_file voice_id api_key
 # Returns: HTTP status code
+#
+# Robust curl invocation:
+#   - --connect-timeout 10: fail fast if server unreachable
+#   - --max-time 120: hard cap on total request time
+#   - -sS: silent but show errors
+#   - Captures curl exit code for diagnostics
 elevenlabs_call() {
     local story_text="$1"
     local output_file="$2"
@@ -111,24 +117,42 @@ elevenlabs_call() {
 
     echo -e "${BLUE}→ Calling ElevenLabs API...${NC}" >&2
 
+    # Build JSON payload using jq for proper escaping
+    local json_payload
+    json_payload=$(jq -n --arg text "$story_text" '{
+        text: $text,
+        model_id: "eleven_turbo_v2_5",
+        voice_settings: {
+            stability: 0.6,
+            similarity_boost: 0.8,
+            style: 0.0,
+            use_speaker_boost: true
+        }
+    }')
+
     local http_code
-    http_code=$(curl -s -w "%{http_code}" -o "$output_file" -X POST \
+    local curl_exit
+    http_code=$(curl -sS \
+        --connect-timeout 10 \
+        --max-time 120 \
+        -w "%{http_code}" \
+        -o "$output_file" \
+        -X POST \
         "https://api.elevenlabs.io/v1/text-to-speech/${voice_id}" \
         -H "xi-api-key: $api_key" \
         -H "Content-Type: application/json" \
-        -d "{
-            \"text\": $(echo "$story_text" | jq -Rs .),
-            \"model_id\": \"eleven_turbo_v2_5\",
-            \"voice_settings\": {
-                \"stability\": 0.6,
-                \"similarity_boost\": 0.8,
-                \"style\": 0.2,
-                \"use_speaker_boost\": true
-            }
-        }")
+        -d "$json_payload" 2>&1) || curl_exit=$?
 
     # Release lock
     rmdir "$GUARD_LOCK_DIR" 2>/dev/null
+
+    # Check curl exit code first
+    if [[ -n "${curl_exit:-}" && "$curl_exit" -ne 0 ]]; then
+        echo "$timestamp,$script_name,FAILED,CURL_EXIT_$curl_exit,HTTP_$http_code" >> "$GUARD_LOG_FILE"
+        echo -e "${RED}✗ Curl failed (exit code: $curl_exit, HTTP: $http_code)${NC}" >&2
+        echo "000"
+        return 1
+    fi
 
     # Log the result
     if [[ "$http_code" == "200" ]]; then
@@ -138,6 +162,14 @@ elevenlabs_call() {
     else
         echo "$timestamp,$script_name,FAILED,HTTP_$http_code" >> "$GUARD_LOG_FILE"
         echo -e "${RED}✗ ElevenLabs API Error (HTTP $http_code)${NC}" >&2
+        # Print diagnostic if response file exists
+        if [[ -f "$output_file" ]]; then
+            local error_msg
+            error_msg=$(jq -r '.detail.message // .detail // .message // empty' < "$output_file" 2>/dev/null || head -100 "$output_file")
+            if [[ -n "$error_msg" ]]; then
+                echo -e "${RED}  Detail: $error_msg${NC}" >&2
+            fi
+        fi
     fi
 
     echo "$http_code"

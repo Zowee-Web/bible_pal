@@ -1,12 +1,14 @@
-#!/bin/bash
-# generate_batch_parables.sh - v1 MVP
-# Generates a batch of 6 production parables for Bible PAL
+#!/usr/bin/env bash
+# generate_batch_parables.sh - v1.1
+# Generates a batch of production parables for Bible PAL
 # Usage: ./generate_batch_parables.sh [batch_number] [mood_rotation]
 #
-# Known v1 limitations (will fix in v2 after testing):
-# - All 3×5min parables will be identical
+# v1.1 changes:
+# - Uses voice_selector.sh for narrator variety (deterministic per story)
+# - Writes narratorVoiceKey to manifest.json
+#
+# Known limitations:
 # - Lengths are approximate, not precisely timed
-# - No voice variety (all default narrator)
 
 set -euo pipefail
 
@@ -16,9 +18,10 @@ ENV_FILE="$PROJECT_ROOT/.env"
 OUTPUT_DIR="$PROJECT_ROOT/assets/stories"
 MANIFEST_FILE="$OUTPUT_DIR/manifest.json"
 
-# Source shared calibration and safety guard
+# Source shared calibration, safety guard, and voice selection
 source "$SCRIPT_DIR/story_calibration.sh"
 source "$SCRIPT_DIR/elevenlabs_guard.sh"
+source "$SCRIPT_DIR/voice_selector.sh"
 trap elevenlabs_release_lock EXIT INT TERM
 
 # Colors
@@ -50,11 +53,6 @@ if [[ -z "${ELEVENLABS_API_KEY:-}" ]]; then
     exit 1
 fi
 
-if [[ -z "${ELEVENLABS_VOICE_ID:-}" ]]; then
-    echo -e "${RED}❌ Error: ELEVENLABS_VOICE_ID not found in .env${NC}"
-    exit 1
-fi
-
 # Parse arguments
 BATCH_NUM="${1:-1}"
 MOOD_INDEX="${2:-0}"
@@ -64,10 +62,11 @@ MOODS=("joyful" "weary" "anxious" "hurting" "neutral")
 CURRENT_MOOD="${MOODS[$((MOOD_INDEX % 5))]}"
 
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${BLUE}  Bible PAL - Batch Parable Generation (v1 MVP)${NC}"
+echo -e "${BLUE}  Bible PAL - Batch Parable Generation (v1.1)${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "Batch: ${GREEN}#$BATCH_NUM${NC}"
 echo -e "Mood: ${GREEN}$CURRENT_MOOD${NC}"
+echo -e "Voice Pool: ${GREEN}$(jq '.voices | length' "$VOICES_FILE") voices${NC}"
 echo ""
 
 # Create output directory
@@ -101,7 +100,16 @@ generate_parable() {
         return 0
     fi
 
+    # Select narrator voice for this story (deterministic based on storyId)
+    local voice_key
+    voice_key=$(select_voice_for_story "$story_id" "false")
+    local voice_id
+    voice_id=$(get_voice_id "$voice_key")
+    local voice_name
+    voice_name=$(get_voice_display_name "$voice_key")
+
     echo -e "${BLUE}→ Generating: $story_id${NC}"
+    echo -e "${BLUE}  Narrator: $voice_name ($voice_key)${NC}"
 
     # Generate story text
     local story_text=$(generate_story_text "$mood" "$length")
@@ -126,7 +134,7 @@ generate_parable() {
     local audio_generated=false
 
     if elevenlabs_check_and_log "$story_id" "$char_count" "$length"; then
-        local http_code=$(elevenlabs_call "$story_text" "$audio_file" "$ELEVENLABS_VOICE_ID" "$ELEVENLABS_API_KEY")
+        local http_code=$(elevenlabs_call "$story_text" "$audio_file" "$voice_id" "$ELEVENLABS_API_KEY")
 
         if [[ "$http_code" == "200" ]]; then
             local file_size=$(ls -lh "$audio_file" | awk '{print $5}')
@@ -143,7 +151,7 @@ generate_parable() {
 
     if [[ "$audio_generated" == true ]]; then
 
-        # Add to manifest
+        # Add to manifest (including narratorVoiceKey)
         local new_entry=$(jq -n \
             --arg id "$story_id" \
             --arg title "$title" \
@@ -151,15 +159,16 @@ generate_parable() {
             --argjson length "$length" \
             --arg audio "${story_id}.mp3" \
             --arg text "${story_id}.txt" \
+            --arg voice "$voice_key" \
             '{
                 storyId: $id,
                 title: $title,
                 mood: $mood,
                 length: $length,
-                faithTradition: "Protestant",
                 storytellingMode: "creative",
                 audioFilePath: $audio,
-                textFilePath: $text
+                textFilePath: $text,
+                narratorVoiceKey: $voice
             }')
 
         MANIFEST_JSON=$(echo "$MANIFEST_JSON" | jq ".parables += [$new_entry]")

@@ -306,7 +306,7 @@ If you see a compliance violation error:
 **Development Stage:** Active development
 
 **Key Features Implemented:**
-- ✅ Onboarding (faith tradition + Bible translation selection)
+- ✅ Onboarding (Bible translation selection, Christian General only)
 - ✅ PAL's Parables player with mood detection
 - ✅ Context-aware emotional check-in greetings
 - ✅ ElevenLabs TTS integration

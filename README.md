@@ -31,12 +31,17 @@ flutter analyze
 ### Running Tests
 
 ```bash
+# Run CRITICAL invariant tests first (fast-fail)
+./scripts/run_critical_tests.sh
+
 # Run all tests
 flutter test
 
 # Run compliance tests only
 flutter test test/core/bible_translation_compliance_test.dart test/core/repo_wide_compliance_scan_test.dart
 ```
+
+**Important**: Always run `./scripts/run_critical_tests.sh` before the full test suite. It enforces CRITICAL invariants (kid safety, canonical story mapping, translation compliance) and fails fast on violations.
 
 ### CI/CD
 

@@ -59,17 +59,23 @@ LOGS_DIR="${SCRIPT_DIR}/logs"
 MODEL="gemma:7b"
 
 if [ "$GOLDEN_PROMPT_MODE" = true ]; then
-    PROMPT_TEMPLATE="${SCRIPT_DIR}/prompts/golden_trad_adult_5min.prompt.txt"
-    # SHORT bucket test generation (NOT claiming 5-min calibration)
-    ACCEPT_MIN=300       # Below this: needs continuation
-    ACCEPT_MAX=700       # Above this: regenerate with tighter range
-    PROMPT_TARGET=500    # Midpoint of 380-620 for prompt
+    PROMPT_TEMPLATE="${SCRIPT_DIR}/prompts/golden_trad_adult_short.prompt.txt"
+    # SHORT bucket: LOCKED SPEC 250-600 words
+    ACCEPT_MIN=250       # Below this: needs continuation
+    ACCEPT_MAX=600       # Above this: regenerate with tighter range
+    PROMPT_TARGET=450    # Midpoint of 250-600 for prompt
     MODE_NAME="golden"
 else
-    PROMPT_TEMPLATE="${SCRIPT_DIR}/prompts/trad_adult_5min.prompt.txt"
-    ACCEPT_MIN=510
-    ACCEPT_MAX=720
-    PROMPT_TARGET=600
+    # Fallback to legacy prompt if exists, else use short bucket prompt
+    if [ -f "${SCRIPT_DIR}/prompts/legacy/trad_adult_5min.prompt.txt" ]; then
+        PROMPT_TEMPLATE="${SCRIPT_DIR}/prompts/legacy/trad_adult_5min.prompt.txt"
+    else
+        PROMPT_TEMPLATE="${SCRIPT_DIR}/prompts/golden_trad_adult_short.prompt.txt"
+    fi
+    # SHORT bucket: LOCKED SPEC 250-600 words
+    ACCEPT_MIN=250
+    ACCEPT_MAX=600
+    PROMPT_TARGET=450
     MODE_NAME="standard"
 fi
 
@@ -220,7 +226,7 @@ run_ollama() {
 generate_with_retries() {
     local mood=$1
     local story_id=$2
-    local filename="parable_${story_id}_${mood}_5min_${OUTPUT_SUFFIX}.txt"
+    local filename="parable_${story_id}_${mood}_short_${OUTPUT_SUFFIX}.txt"
     local filepath="${STORY_DIR}/${filename}"
     local failed_path="${FAILED_DIR}/${filename}.failed"
     local tags=$(get_tags "$mood")
@@ -364,9 +370,9 @@ ${continuation}"
         # Save to quarantine (with metadata for debugging)
         cat > "$failed_path" << EOF
 ---
-story_id: parable_${story_id}_${mood}_5min_${OUTPUT_SUFFIX}
+story_id: parable_${story_id}_${mood}_short_${OUTPUT_SUFFIX}
 mood: ${mood}
-length_min: 5
+storyLength: short
 mode: ${mode_label}
 kid_friendly: false
 tradition: Unspecified

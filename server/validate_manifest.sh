@@ -1,7 +1,13 @@
 #!/bin/bash
 # validate_manifest.sh
 # Validates that manifest.json matches actual story files on disk
-# Checks word counts, audio file existence, and length calibration
+# Checks storyLength field, word counts, and audio file existence
+#
+# LOCKED SPEC: storyLength is REQUIRED and must be one of: short, full, long
+# Word count thresholds:
+#   short: 250-600 words
+#   full:  601-1200 words
+#   long:  1201-2000 words
 
 set -euo pipefail
 
@@ -17,19 +23,32 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-# Word count targets (narrated audio ~130-150 wpm)
+# LOCKED SPEC: storyLength word count ranges
+declare -A MIN_WORDS_BUCKET=(
+    [short]=250
+    [full]=601
+    [long]=1201
+)
+
+declare -A MAX_WORDS_BUCKET=(
+    [short]=600
+    [full]=1200
+    [long]=2000
+)
+
+# Legacy minute-based ranges (for backwards compat validation)
 declare -A MIN_WORDS=(
-    [5]=600
-    [10]=1200
-    [15]=1800
-    [20]=2400
+    [5]=250
+    [10]=250
+    [15]=601
+    [20]=1201
 )
 
 declare -A MAX_WORDS=(
-    [5]=750
-    [10]=1500
-    [15]=2250
-    [20]=3000
+    [5]=600
+    [10]=600
+    [15]=1200
+    [20]=2000
 )
 
 # Check dependencies
@@ -65,26 +84,47 @@ for i in $(seq 0 $((TOTAL_STORIES - 1))); do
     STORY=$(jq ".parables[$i]" "$MANIFEST_FILE")
     STORY_ID=$(echo "$STORY" | jq -r '.storyId')
     LENGTH=$(echo "$STORY" | jq -r '.length')
+    STORY_LENGTH=$(echo "$STORY" | jq -r '.storyLength // empty')
     TEXT_FILE=$(echo "$STORY" | jq -r '.textFilePath')
     AUDIO_FILE=$(echo "$STORY" | jq -r '.audioFilePath')
 
     echo -e "${BLUE}[$((i + 1))/$TOTAL_STORIES] $STORY_ID${NC}"
 
+    # CRITICAL: Validate storyLength field exists and is valid
+    if [[ -z "$STORY_LENGTH" ]]; then
+        echo -e "  ${RED}✗ MISSING storyLength field (REQUIRED)${NC}"
+        ((ERRORS++))
+    elif [[ "$STORY_LENGTH" != "short" && "$STORY_LENGTH" != "full" && "$STORY_LENGTH" != "long" ]]; then
+        echo -e "  ${RED}✗ INVALID storyLength: '$STORY_LENGTH' (must be: short, full, or long)${NC}"
+        ((ERRORS++))
+    else
+        echo -e "  ${GREEN}✓ storyLength: $STORY_LENGTH${NC}"
+    fi
+
     # Check text file exists
-    if [[ ! -f "$STORIES_DIR/$TEXT_FILE" ]]; then
+    if [[ "$TEXT_FILE" == "null" ]]; then
+        echo -e "  ${YELLOW}⚠ No text file path${NC}"
+        ((WARNINGS++))
+    elif [[ ! -f "$STORIES_DIR/$TEXT_FILE" ]]; then
         echo -e "  ${RED}✗ Text file missing: $TEXT_FILE${NC}"
         ((ERRORS++))
     else
-        # Validate word count
+        # Validate word count against storyLength bucket
         WORD_COUNT=$(wc -w < "$STORIES_DIR/$TEXT_FILE" | tr -d ' ')
-        MIN=${MIN_WORDS[$LENGTH]:-600}
-        MAX=${MAX_WORDS[$LENGTH]:-750}
 
-        if (( WORD_COUNT < MIN || WORD_COUNT > MAX )); then
-            echo -e "  ${RED}✗ Word count out of range: $WORD_COUNT (expected: $MIN-$MAX for ${LENGTH}min)${NC}"
-            ((ERRORS++))
+        if [[ -n "$STORY_LENGTH" && "$STORY_LENGTH" =~ ^(short|full|long)$ ]]; then
+            MIN=${MIN_WORDS_BUCKET[$STORY_LENGTH]:-250}
+            MAX=${MAX_WORDS_BUCKET[$STORY_LENGTH]:-600}
+
+            if (( WORD_COUNT < MIN || WORD_COUNT > MAX )); then
+                echo -e "  ${YELLOW}⚠ Word count mismatch: $WORD_COUNT words (storyLength=$STORY_LENGTH expects $MIN-$MAX)${NC}"
+                ((WARNINGS++))
+            else
+                echo -e "  ${GREEN}✓ Word count: $WORD_COUNT (valid for $STORY_LENGTH)${NC}"
+            fi
         else
-            echo -e "  ${GREEN}✓ Word count: $WORD_COUNT${NC}"
+            echo -e "  ${YELLOW}⚠ Word count: $WORD_COUNT (cannot validate without valid storyLength)${NC}"
+            ((WARNINGS++))
         fi
     fi
 

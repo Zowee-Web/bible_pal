@@ -1,0 +1,187 @@
+{
+  "_comment": "Canonical voice pool for Bible PAL narrator variety. DO NOT expose ElevenLabs IDs to mobile app.",
+  "_version": "1.0.1",
+  "_updated": "2026-01-11",
+  "_forbiddenVoices": {
+    "_comment": "These ElevenLabs voices are GLOBALLY BANNED from Bible PAL. Never add them to the voice pool.",
+    "voices": ["Grace", "Abilene", "Grant"],
+    "reason": "Quality issues and project policy. See ADR-002 in docs/DECISIONS.md."
+  },
+  "voices": [
+    {
+      "voiceKey": "VOICE_JAMES_HUSKY",
+      "elevenLabsId": "EkK5I93UQWFDigLMpZcX",
+      "displayName": "James (Wise Elder)",
+      "description": "Calm, reflective male narrator. Warm and pastoral tone.",
+      "tags": ["calm", "pastoral", "warm", "male", "elder"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_SARAH_STORYTELLER",
+      "elevenLabsId": "EXAVITQu4vr4xnSDxMaL",
+      "displayName": "Sarah (Gentle Guide)",
+      "description": "Warm, nurturing female narrator. Comforting and steady.",
+      "tags": ["warm", "nurturing", "female", "gentle"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_MARCUS_ANCHOR",
+      "elevenLabsId": "VR6AewLTigWG4xSOukaG",
+      "displayName": "Marcus (Steady Anchor)",
+      "description": "Deep, grounded male voice. Reassuring presence.",
+      "tags": ["deep", "grounded", "male", "reassuring"],
+      "audience": ["adult"]
+    },
+    {
+      "voiceKey": "VOICE_HANNAH_HOPE",
+      "elevenLabsId": "ThT5KcBeYPX3keUQqHPh",
+      "displayName": "Hannah (Voice of Hope)",
+      "description": "Bright, encouraging female narrator. Uplifting energy.",
+      "tags": ["bright", "encouraging", "female", "uplifting"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_ELIJAH_SAGE",
+      "elevenLabsId": "yoZ06aMxZJJ28mfd3POQ",
+      "displayName": "Elijah (Ancient Sage)",
+      "description": "Thoughtful, measured male voice. Timeless wisdom.",
+      "tags": ["thoughtful", "measured", "male", "wise"],
+      "audience": ["adult"]
+    },
+    {
+      "voiceKey": "VOICE_RUTH_COMFORT",
+      "elevenLabsId": "jBpfuIE2acCO8z3wKNLl",
+      "displayName": "Ruth (Compassionate Friend)",
+      "description": "Soft, empathetic female voice. Deeply compassionate.",
+      "tags": ["soft", "empathetic", "female", "compassionate"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_DAVID_SHEPHERD",
+      "elevenLabsId": "CYw3kZ02Hs0563khs1Fj",
+      "displayName": "David (Faithful Shepherd)",
+      "description": "Warm, protective male voice. Trustworthy guide.",
+      "tags": ["warm", "protective", "male", "trustworthy"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_MIRIAM_JOYFUL",
+      "elevenLabsId": "XrExE9yKIg1WjnnlVkGX",
+      "displayName": "Miriam (Joyful Spirit)",
+      "description": "Lively, celebratory female voice. Full of gratitude.",
+      "tags": ["lively", "celebratory", "female", "grateful"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_SAMUEL_EARNEST",
+      "elevenLabsId": "pNInz6obpgDQGcFmaJgB",
+      "displayName": "Samuel (Earnest Seeker)",
+      "description": "Sincere, searching male voice. Honest and direct.",
+      "tags": ["sincere", "searching", "male", "honest"],
+      "audience": ["adult"]
+    },
+    {
+      "voiceKey": "VOICE_ESTHER_BRAVE",
+      "elevenLabsId": "21m00Tcm4TlvDq8ikWAM",
+      "displayName": "Esther (Courageous Heart)",
+      "description": "Strong, determined female voice. Quietly brave.",
+      "tags": ["strong", "determined", "female", "brave"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_NOAH_PATIENT",
+      "elevenLabsId": "AZnzlk1XvdvUeBnXmlld",
+      "displayName": "Noah (Patient Builder)",
+      "description": "Steady, patient male voice. Enduring faith.",
+      "tags": ["steady", "patient", "male", "enduring"],
+      "audience": ["adult"]
+    },
+    {
+      "voiceKey": "VOICE_LYDIA_GRACIOUS",
+      "elevenLabsId": "MF3mGyEYCl7XYWbV9V6O",
+      "displayName": "Lydia (Gracious Host)",
+      "description": "Welcoming, hospitable female voice. Open-hearted.",
+      "tags": ["welcoming", "hospitable", "female", "gracious"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_PETER_BOLD",
+      "elevenLabsId": "TxGEqnHWrfWFTfGW9XjX",
+      "displayName": "Peter (Bold Fisherman)",
+      "description": "Energetic, passionate male voice. Full of conviction.",
+      "tags": ["energetic", "passionate", "male", "bold"],
+      "audience": ["adult"]
+    },
+    {
+      "voiceKey": "VOICE_MARTHA_CARING",
+      "elevenLabsId": "oWAxZDx7w5VEj9dCyTzz",
+      "displayName": "Martha (Caring Servant)",
+      "description": "Practical, caring female voice. Down-to-earth.",
+      "tags": ["practical", "caring", "female", "grounded"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_JOHN_BELOVED",
+      "elevenLabsId": "onwK4e9ZLuTAKqWW03F9",
+      "displayName": "John (Beloved Disciple)",
+      "description": "Tender, loving male voice. Deeply relational.",
+      "tags": ["tender", "loving", "male", "relational"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_DEBORAH_WISE",
+      "elevenLabsId": "z9fAnlkpzviPz146aGWa",
+      "displayName": "Deborah (Wise Judge)",
+      "description": "Authoritative yet kind female voice. Fair and discerning.",
+      "tags": ["authoritative", "kind", "female", "wise"],
+      "audience": ["adult"]
+    },
+    {
+      "voiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "elevenLabsId": "IKne3meq5aSn9XLyUdCD",
+      "displayName": "Barnabas (Son of Encouragement)",
+      "description": "Uplifting, supportive male voice. Always hopeful.",
+      "tags": ["uplifting", "supportive", "male", "hopeful"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_PRISCILLA_TEACHER",
+      "elevenLabsId": "XB0fDUnXU5powFXDhCwa",
+      "displayName": "Priscilla (Faithful Teacher)",
+      "description": "Clear, instructive female voice. Patient educator.",
+      "tags": ["clear", "instructive", "female", "patient"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_JOSEPH_DREAMER",
+      "elevenLabsId": "g5CIjZEefAph4nQFvHAz",
+      "displayName": "Joseph (Faithful Dreamer)",
+      "description": "Hopeful, visionary male voice. Sees beyond circumstances.",
+      "tags": ["hopeful", "visionary", "male", "faithful"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_MARY_PONDER",
+      "elevenLabsId": "jsCqWAovK2LkecY7zXl4",
+      "displayName": "Mary (Pondering Heart)",
+      "description": "Contemplative, reverent female voice. Treasures meaning.",
+      "tags": ["contemplative", "reverent", "female", "thoughtful"],
+      "audience": ["adult", "kid"]
+    }
+  ],
+  "moodVoiceWeights": {
+    "_comment": "Suggested voice tags by mood for weighted selection",
+    "joyful": ["celebratory", "uplifting", "grateful", "bright"],
+    "weary": ["calm", "pastoral", "gentle", "patient"],
+    "anxious": ["reassuring", "steady", "grounded", "warm"],
+    "hurting": ["compassionate", "empathetic", "soft", "loving"],
+    "neutral": ["warm", "clear", "trustworthy", "pastoral"]
+  },
+  "selectionAlgorithm": {
+    "_comment": "Voice selection rules",
+    "method": "deterministic_hash",
+    "fallback": "VOICE_JAMES_HUSKY",
+    "kidModeFilter": true,
+    "hashInputs": ["storyId"]
+  }
+}

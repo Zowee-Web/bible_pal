@@ -24,25 +24,38 @@ This document logs key design decisions and trade-offs made during development.
 
 ---
 
-## ADR-002: Multi-Voice Playback Deferred
+## ADR-002: Multi-Voice Playback Deferred + Forbidden Voices
 
 **Date:** 2026-01-03
-**Status:** Deferred
-**Context:** SPEC.md §17 originally specified "Multiple voices per story" as a feature. Testing revealed quality issues with child voices (Grant, Abilene) and multi-voice coordination complexity.
+**Updated:** 2026-01-11
+**Status:** Deferred (multi-voice); Accepted (forbidden voices)
+**Context:** SPEC.md §17 originally specified "Multiple voices per story" as a feature. Testing revealed quality issues with certain voices and multi-voice coordination complexity.
 
-**Decision:** Defer multi-voice playback. Use single narrator voice per story.
+**Decision:**
+1. Defer multi-voice playback. Use single narrator voice per story.
+2. **FORBIDDEN VOICES:** The following ElevenLabs voices are permanently banned from Bible PAL:
+   - **Grace** — Removed from voice pool
+   - **Abilene** — Child voice, quality issues
+   - **Grant** — Child voice, quality issues
 
 **Rationale:**
 - Child voices (Grant, Abilene) did not sound natural in stories
+- Grace voice removed per project policy
 - Multi-voice coordination adds production complexity
 - Single narrator provides consistent, high-quality experience
 - Feature can be revisited when voice quality improves
+
+**Forbidden Voice Enforcement:**
+- These voices must NOT appear in: voice pools, .env files, generation scripts, test fixtures, or fallback logic
+- `server/voices.json` includes `_forbiddenVoices` section documenting the ban
+- Treat these voices as non-existent for this project
 
 **Consequences:**
 - SPEC.md §17 updated: "Single narrator voice per story (multi-voice deferred)"
 - Multi-voice generation scripts disabled (.DISABLED suffix)
 - Existing multi-voice test story removed from manifest
-- Grant and Abilene voices commented out in .env
+- Grace, Grant, and Abilene voices removed from .env
+- Default voice changed from Grace to James Husky in gen_one_audio.sh
 
 ---
 
@@ -410,30 +423,33 @@ The question was: How do we present story lengths in a user-friendly way while m
 
 **Decision:** Replace the 4-button minute UI with 3 descriptive bucket labels:
 
-| UI Label | Enum Value | Maps From (Legacy Minutes) | Word Count Range |
-|----------|------------|---------------------------|------------------|
-| Short Story | `short` | 5 min, 10 min | 300–700 words |
-| Full Story | `full` | 15 min | 900–1400 words |
-| Long Story | `long` | 20 min | 1700–2600 words |
+| UI Label | Enum Value | Maps From (Legacy Minutes) | Word Count Range (LOCKED SPEC) |
+|----------|------------|---------------------------|--------------------------------|
+| Short Story | `short` | 5 min, 10 min | 250–600 words |
+| Full Story | `full` | 15 min | 601–1200 words |
+| Long Story | `long` | 20 min | 1201–2000 words |
+
+**Note:** Word count ranges updated to LOCKED SPEC values (2026-01-11). Previous ranges (300-700, 900-1400, 1700-2600) are superseded.
 
 Implementation:
 1. **New enum**: `StoryLengthBucket` in `lib/core/story_length_bucket.dart`
-2. **Compatibility mapper**: `lengthMinutesToBucket(int)` function
-3. **Computed property**: `Parable.lengthBucket` getter uses mapper
-4. **Selection filtering**: `ParableService` filters by `parable.lengthBucket == lengthBucket`
-5. **Stateless selection**: Length bucket is chosen fresh each session (not persisted)
-6. **Additive telemetry**: Keep `length_min` for backwards compatibility, add `length_bucket`
+2. **Primary field**: `storyLength` in manifest ("short", "full", "long")
+3. **Compatibility mapper**: `lengthMinutesToBucket(int)` function for legacy assets
+4. **Computed property**: `Parable.lengthBucket` getter prioritizes `storyLength`, falls back to mapper
+5. **Selection filtering**: `ParableService` filters by `parable.lengthBucket == lengthBucket`
+6. **Stateless selection**: Length bucket is chosen fresh each session (not persisted)
+7. **Additive telemetry**: Keep `length_min` for backwards compatibility, add `length_bucket`
 
 **Rationale:**
 - **Buckets over minutes**: Users think in "short story" vs "long story", not "5 minutes vs 10 minutes"
 - **3 buttons over 4**: Short/Full/Long covers the semantic space; 5 vs 10 minutes was arbitrary
-- **Compatibility mapping over migration**: No manifest changes needed; existing assets work via `lengthMinutesToBucket()`
-- **Keep legacy `length` field**: Manifest still uses minutes; Parable model computes bucket on read
+- **Primary `storyLength` field**: New stories use `storyLength` directly; manifest updated with backfill
+- **Keep legacy `length` field**: Older assets still work via `lengthMinutesToBucket()` fallback
 - **Stateless selection**: Length was never persisted; users choose length fresh each session
 - **Additive telemetry**: Don't break existing analytics pipelines; add new dimension
 
 **Alternatives Considered:**
-1. **Add `lengthBucket` to manifest.json** — Rejected. Requires rewriting all story metadata. Compatibility mapper achieves the same result.
+1. **Add `lengthBucket` to manifest.json** — Initially rejected, then implemented as `storyLength` field via backfill script.
 2. **Use word count instead of buckets** — Rejected. Would require reading story files to compute counts. Bucket mapping is simpler.
 3. **Keep 4 buttons with new labels** — Rejected. 5 min and 10 min both map to "short"; having 4 UI options for 3 buckets is confusing.
 4. **Persist length preference** — Rejected. Current stateless behavior (choose each session) matches product design.
@@ -451,6 +467,81 @@ Implementation:
 - UI shows "Short Story", "Full Story", "Long Story" instead of "5 min", "10 min", etc.
 - All existing story assets remain compatible (no manifest changes)
 - Telemetry now includes both `length_min` and `length_bucket`
+
+---
+
+## ADR-010: Traditional Mode = Real Bible Story System
+
+**Date:** 2026-01-16
+**Status:** Accepted (Locked)
+**Context:** Traditional storytelling mode was ambiguously defined. Some stories labeled "traditional" were devotional content or generic faith-based stories, not actual Bible narratives. Users selecting Traditional mode expected actual Bible stories like "Jesus Calms the Storm" or "The Good Samaritan", not original compositions with biblical themes.
+
+The question was: What EXACTLY is Traditional mode, and how do we enforce it?
+
+**Decision:** Lock the following system for Traditional mode:
+
+1. **Traditional = Real Bible Story Retelling**
+   - Traditional stories MUST be faithful retellings of specific, identifiable Bible narratives
+   - NOT devotional content, NOT original stories with biblical themes
+   - Examples: The Lost Sheep (Luke 15:3-7), David and Goliath (1 Samuel 17)
+
+2. **New Required Fields**
+   - `bibleStoryKey`: Stable canonical identifier (e.g., "lost_sheep", "jesus_calms_storm")
+   - `bibleSourceRef`: Scripture reference (e.g., "Mark 4:35-41") — already existed but now strictly enforced
+
+3. **One Bible Story Per Mood**
+   - Each mood maps to exactly ONE `bibleStoryKey` for Traditional stories
+   - Multiple renditions (kid/adult, short/long) share the same `bibleStoryKey`
+   - Ensures predictable user experience: "joyful" always tells the same Bible story
+
+4. **"Pizzazz" Constraints**
+   - Allowed: pacing, sensory detail, emotional texture implied by scripture
+   - Forbidden: new events, altered outcomes, invented theology, modern framing
+
+5. **Reflection System (All Stories)**
+   - Every story (Traditional AND Creative) has a reflection
+   - Reflection audio uses same `narratorVoiceKey` as story (no separate PAL voice)
+   - Reflection is NEVER auto-played — user taps "Hear Reflection" button
+   - Scripture reference displayed AFTER story ends (Traditional only), NOT during
+
+6. **Mode Persistence**
+   - Default: Traditional
+   - Persists across app restarts
+   - Only two modes: Traditional and Creative
+
+**Rationale:**
+- **Clarity over ambiguity**: "Traditional = Bible story" is unambiguous and testable
+- **User trust**: Users selecting Traditional mode rightfully expect actual Bible stories
+- **One story per mood**: Prevents confusion about which Bible story matches a mood
+- **Same narrator for reflection**: Voice continuity improves experience
+- **Scripture after story**: Lets narrative breathe; scripture serves as closure/anchor
+- **Opt-in reflection audio**: Respects user agency (MoDC principles)
+
+**Alternatives Considered:**
+1. **Allow devotional content in Traditional** — Rejected. Blurs the line, confuses users.
+2. **Multiple Bible stories per mood** — Rejected. Creates unpredictability; user can't learn "joyful = Lost Sheep".
+3. **Auto-play reflection** — Rejected. Violates MoDC non-directive principle.
+4. **Different voice for reflection** — Rejected. Breaks immersion, adds complexity.
+5. **Scripture during story narration** — Rejected. Interrupts narrative flow.
+
+**Consequences:**
+- New field `bibleStoryKey` added to Parable model
+- Manifest schema requires `bibleStoryKey` for Traditional stories
+- Build-failing tests enforce one-Bible-story-per-mood rule
+- Player UI shows scripture ref after completion (Traditional) and "Hear Reflection" button
+- Existing Traditional stories without `bibleStoryKey` need backfill
+- Server generation scripts updated to generate reflection audio alongside story
+- Mode persists via SharedPreferences (already worked, now documented)
+
+**Files Modified:**
+- `docs/SPEC.md` — Traditional contract, reflection system, mode persistence
+- `docs/INVARIANTS.md` — New invariants for Traditional, reflection, mode persistence
+- `lib/models/parable.dart` — `bibleStoryKey` field
+- `lib/features/pals_parables/parable_player_screen.dart` — Scripture display, reflection button
+- `lib/services/parable_service.dart` — `bibleStoryKey` validation
+- `test/critical/traditional_bible_story_test.dart` — New test file
+- `test/critical/reflection_system_test.dart` — New test file
+- `test/critical/mode_persistence_test.dart` — New test file
 
 ---
 

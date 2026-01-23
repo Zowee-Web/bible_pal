@@ -888,11 +888,11 @@ flutter test
 
 ## 🔒 Golden Prompt Single-Shot Generation Invariant (NON-NEGOTIABLE)
 
-**Invariant**: When `--golden-prompt` is enabled for adult traditional 5-min generation:
+**Invariant**: When `--golden-prompt` is enabled for adult traditional SHORT bucket generation:
 
 1. **No continuation prompts may be used.** Each attempt is a fresh, complete generation.
 2. **Attempt 1 MUST require exactly 10 paragraphs, 5 sentences each.**
-3. **If attempt 1 fails min_words, attempt 2 MUST regenerate fresh requiring exactly 12 paragraphs, 5 sentences each.**
+3. **If attempt 1 fails min_words (< 250), attempt 2 MUST regenerate fresh requiring exactly 12 paragraphs, 5 sentences each.**
 4. **If attempt 2 fails min_words, output MUST follow existing quarantine behavior.**
 5. **Standard mode behavior MUST remain unchanged.**
 
@@ -902,15 +902,672 @@ Gemma-7B produces story repetition/duplication when given continuation prompts (
 
 ### Violation Response
 
-- **CORRECT**: Attempt 1 produces 433 words → Attempt 2 regenerates fresh with 12 paragraphs
-- **VIOLATION**: Attempt 1 produces 433 words → Attempt 2 appends "continue the story..."
+- **CORRECT**: Attempt 1 produces 200 words → Attempt 2 regenerates fresh with 12 paragraphs
+- **VIOLATION**: Attempt 1 produces 200 words → Attempt 2 appends "continue the story..."
 
 ### Resources
 
-- [SPEC.md Golden Prompt Section](SPEC.md#golden-prompt-mode-adult-traditional-5-min-generation)
+- [SPEC.md Golden Prompt Section](SPEC.md#golden-prompt-mode-adult-traditional-short-bucket-generation)
 - [Generation Script](../server/generate_adult_traditional_stories.sh)
-- [Golden Prompt Template](../server/prompts/golden_trad_adult_5min.prompt.txt)
-- [Golden Contract](../server/contracts/golden_contract_trad_adult_5min.yaml)
+- [Golden Prompt Template](../server/prompts/golden_trad_adult_short.prompt.txt)
+- [Legacy prompts](../server/prompts/legacy/)
+
+---
+
+## 🔒 Christian General Only Invariant (NON-NEGOTIABLE)
+
+**Invariant**: Bible PAL MUST serve all users with a unified Christian General experience. No denomination-specific content, filtering, or UI selection is permitted. The codebase MUST NOT contain any faith tradition selection logic, denomination branching, or tradition-based filtering.
+
+### Why This Exists
+
+**Unity in Christ, not division by denomination.**
+
+- Bible PAL is for ALL Christians, regardless of denominational background
+- Denomination-specific content creates barriers and exclusion
+- Tradition-based filtering fragments the content library unnecessarily
+- Simplified UX: users don't need to know or declare their denomination
+- Reduced complexity: single content path serves all users equally
+- This is a **permanent design decision**, not a v1 deferral
+
+### The Contract
+
+1. **No tradition/denomination fields in models**
+   - No `faithTradition` field in UserPreferences, Parable, Favorite, or HistoryEntry
+   - No tradition-based filtering in ParableService
+   - No tradition selection in onboarding or settings
+
+2. **No tradition/denomination UI**
+   - No tradition selector screens
+   - No tradition options in settings
+   - No tradition display in story metadata
+
+3. **No tradition/denomination logic**
+   - No branching based on user denomination
+   - No content filtering by tradition
+   - No analytics events for tradition changes
+
+4. **Codebase cleanliness**
+   - Source files MUST NOT contain tradition/denomination selection code
+   - Manifest files MUST NOT contain `faithTradition` fields
+   - Test files MUST NOT test tradition filtering (except negative tests verifying absence)
+
+### Enforcement Mechanisms
+
+This invariant is enforced at **three layers**:
+
+#### 1. Repo-Wide Scan Tests
+**File**: [`test/critical/christian_general_only_test.dart`](../test/critical/christian_general_only_test.dart)
+
+Tests scan the entire codebase for forbidden patterns:
+- `faithTradition` field definitions
+- `tradition` selection/filtering code
+- `denomination` references in code
+- Tradition UI components
+
+**Critical Tests** (MUST PASS):
+- `CRITICAL: No faithTradition field in lib/ models`
+- `CRITICAL: No tradition filtering in ParableService`
+- `CRITICAL: No tradition selector UI`
+- `CRITICAL: No faithTradition in manifest.json`
+
+#### 2. Code Review
+All PRs that touch models, services, or UI require review against this invariant.
+
+#### 3. CI Enforcement
+GitHub Actions runs the scan tests on every PR. Any tradition-related code causes build failure.
+
+### Violation Response
+
+**Build Time**:
+- Tests FAIL immediately
+- Build cannot complete
+- PR cannot be merged (CI blocks it)
+
+**If violation detected**:
+1. Remove the tradition-related code
+2. Run `flutter test test/critical/christian_general_only_test.dart`
+3. Verify all tests pass
+
+### Allowed Terminology
+
+The following terms ARE allowed when used appropriately:
+- "Christian" - when referring to the unified Christian General perspective
+- "faith" - when not paired with "tradition" for selection purposes
+- "tradition" - when referring to Biblical traditions (e.g., Jewish traditions mentioned in scripture)
+
+### Banned Patterns
+
+The following patterns MUST NOT appear in source code:
+- `faithTradition` as a field or parameter
+- `updateFaithTradition()` method
+- `traditionSelector` or similar UI components
+- Filtering by `p.faithTradition`
+- `denomination` as user-selectable option
+
+### Testing Christian General Only
+
+```bash
+# Run Christian General Only enforcement tests
+flutter test test/critical/christian_general_only_test.dart
+
+# Run all tests (includes this invariant)
+flutter test
+```
+
+### Resources
+
+- [SPEC.md Christian General Only Section](SPEC.md#onboarding)
+- [Repo-Wide Scan Tests](../test/critical/christian_general_only_test.dart)
+
+---
+
+## 🔒 Story Mode Non-Blur Invariant (NON-NEGOTIABLE)
+
+**Invariant**: Traditional and Creative storytelling modes MUST NEVER blur. Each mode has distinct authority, validation rules, and content requirements. No story may exhibit characteristics of both modes.
+
+### Why This Exists
+
+**Content integrity and user trust are paramount.**
+
+- Traditional mode users expect faithful Bible retellings with scriptural authority
+- Creative mode users expect original stories without false scriptural claims
+- Blurring modes confuses users about the source and authority of content
+- Mixed-mode content undermines the distinct value proposition of each mode
+- Clear separation enables proper validation and quality gates
+
+### The Contract
+
+Story Mode Contracts v2 defines two orthogonal axes:
+
+**Axis 1 — Story Mode (Authority)**: `storytellingMode: traditional | creative`
+**Axis 2 — Language Style (Presentation)**: `languageStyle: WEB | KJV`
+
+#### Traditional Mode Requirements
+
+1. **Faithful Bible Retellings Only**
+   - Must map to specific Bible passages
+   - Preserve characters, events, outcomes, meaning
+   - Third-person biblical narrative posture
+
+2. **`bibleSourceRef` REQUIRED**
+   - Field must contain valid scripture reference (e.g., "Luke 15:3-7")
+   - Stories without `bibleSourceRef` are EXCLUDED from serving pool
+   - Do NOT guess or invent references — exclude until manually provided
+
+3. **Forbidden Patterns**
+   - MoDC companionship voice ("I sit with you", "I am here with you")
+   - Invented inner monologue not implied by scripture
+   - Changed outcomes or reordered events
+   - First/second-person spiritual guide posture
+   - Devotional commentary within narrative
+
+#### Creative Mode Requirements
+
+1. **Original Stories Only**
+   - NOT retellings of specific Bible stories
+   - Biblical themes/values allowed, not specific narratives
+   - MoDC rules apply (non-directive, optional, interruptible)
+
+2. **`bibleSourceRef` FORBIDDEN**
+   - Field must be absent or empty
+   - Stories with `bibleSourceRef` fail validation
+
+3. **Forbidden Patterns**
+   - Scripture authority claims ("as the Bible says", "scripture tells us")
+   - Teaching doctrine as fact
+   - Commands/prescriptions ("you should", "you must")
+   - Dependency language ("you need this", "come back tomorrow")
+   - Retelling specific Bible stories (even loosely)
+
+#### Creative + KJV Extra Restrictions
+
+When `languageStyle=KJV` in Creative mode:
+- Treat as poetic diction ONLY
+- FORBIDDEN: "Thus saith", verse numbering, "this is the Word", chapter/verse recitations
+
+### Enforcement Mechanisms
+
+This invariant is enforced at **four layers**:
+
+#### 1. Manifest Validation
+**File**: [`test/critical/story_mode_contracts_test.dart`](../test/critical/story_mode_contracts_test.dart)
+
+- All Traditional stories must have `bibleSourceRef`
+- All Creative stories must NOT have `bibleSourceRef`
+- Tests scan manifest and fail build on violations
+
+#### 2. Service Layer Filtering
+**File**: [`lib/services/parable_service.dart`](../lib/services/parable_service.dart)
+
+```dart
+// Traditional stories without bibleSourceRef are EXCLUDED
+if (p.storytellingMode == 'traditional' &&
+    (p.bibleSourceRef == null || p.bibleSourceRef!.isEmpty)) {
+  // Log exclusion and skip this story
+  return false;
+}
+```
+
+#### 3. Story Mode Validator
+**File**: [`lib/safety/story_mode_validator.dart`](../lib/safety/story_mode_validator.dart)
+
+- `validateTraditional()`: Checks for required `bibleSourceRef`, forbidden MoDC patterns
+- `validateCreative()`: Checks for forbidden `bibleSourceRef`, scripture authority claims
+- Returns detailed violation list for generation repair
+
+#### 4. Build-Failing Tests
+**File**: [`test/critical/story_mode_contracts_test.dart`](../test/critical/story_mode_contracts_test.dart)
+
+**Critical Tests** (MUST PASS):
+- `CRITICAL: Traditional stories MUST have bibleSourceRef`
+- `CRITICAL: Creative stories MUST NOT have bibleSourceRef`
+- `CRITICAL: Mode filtering never cross-contaminates`
+- `CRITICAL: No silent cross-mode fallback`
+- `CRITICAL: Default storytellingMode is traditional`
+
+### Violation Response
+
+**Build Time**:
+- Tests FAIL immediately
+- Build cannot complete
+- PR cannot be merged (CI blocks it)
+
+**Runtime**:
+- Traditional stories without `bibleSourceRef` are excluded from pool
+- Creative stories with `bibleSourceRef` are excluded from pool
+- Violation logged with detailed error message
+- App continues with reduced pool (fail-safe)
+
+### Testing Story Mode Contracts
+
+```bash
+# Run story mode contract tests
+flutter test test/critical/story_mode_contracts_test.dart
+
+# Run all tests (includes story mode)
+flutter test
+```
+
+### Maintenance Rules
+
+**When modifying story-related code:**
+
+1. **NEVER** blur Traditional and Creative modes
+2. **NEVER** guess or invent `bibleSourceRef` values
+3. **NEVER** serve Traditional stories without `bibleSourceRef`
+4. **NEVER** allow Creative stories with `bibleSourceRef`
+5. **ALWAYS** validate mode-specific rules before serving
+6. **RUN** story mode tests before committing
+7. **DO NOT** weaken or remove mode validation tests
+
+**If a story mode test fails:**
+1. DO NOT disable the test
+2. DO NOT add cross-mode content to pass
+3. Fix the root cause (missing/extra bibleSourceRef, wrong mode assignment)
+4. Verify all tests pass
+
+### Resources
+
+- [SPEC.md Story Mode Contracts v2](SPEC.md#story-mode-contracts-v2-locked)
+- [Story Mode Validator](../lib/safety/story_mode_validator.dart)
+- [Story Mode Tests](../test/critical/story_mode_contracts_test.dart)
+- [Parable Service](../lib/services/parable_service.dart)
+
+---
+
+## 🔒 Language Style Presentation-Only Invariant (NON-NEGOTIABLE)
+
+**Invariant**: The `languageStyle` field (WEB/KJV) controls ONLY presentation diction. It MUST NEVER change story mode authority, validation rules, or `bibleSourceRef` requirements. Language style is orthogonal to story mode.
+
+### Why This Exists
+
+**Separation of concerns prevents confusion.**
+
+- Users should be able to choose KJV diction without implying scriptural authority
+- Creative stories in KJV style are still original stories, not Bible retellings
+- Traditional stories in WEB style are still faithful retellings
+- Conflating presentation with authority creates validation loopholes
+
+### The Contract
+
+1. **languageStyle is Presentation Only**
+   - WEB: Modern English diction
+   - KJV: Classical/archaic English diction
+   - Neither implies or changes scriptural authority
+
+2. **Separate from translationId**
+   - `translationId`: Used for Bible translation compliance (Daily Bread, scripture quotes)
+   - `languageStyle`: Used for story narrative presentation style
+   - These are independent fields with different purposes
+
+3. **Mode Rules Apply Regardless of languageStyle**
+   - Traditional + WEB: Faithful retelling, modern diction, `bibleSourceRef` required
+   - Traditional + KJV: Faithful retelling, classical diction, `bibleSourceRef` required
+   - Creative + WEB: Original story, modern diction, `bibleSourceRef` forbidden
+   - Creative + KJV: Original story, poetic diction, `bibleSourceRef` forbidden + extra restrictions
+
+### Enforcement Mechanisms
+
+#### 1. Code-Level Separation
+- `languageStyle` field on Parable model (presentation)
+- `translationId` field on Parable model (Bible compliance)
+- Never conflate these fields in filtering or validation
+
+#### 2. Build-Failing Tests
+**File**: [`test/critical/story_mode_contracts_test.dart`](../test/critical/story_mode_contracts_test.dart)
+
+**Critical Tests** (MUST PASS):
+- `CRITICAL: languageStyle does not affect bibleSourceRef requirements`
+- `CRITICAL: Traditional+KJV still requires bibleSourceRef`
+- `CRITICAL: Creative+KJV still forbids bibleSourceRef`
+
+### Resources
+
+- [SPEC.md Story Mode Contracts v2](SPEC.md#story-mode-contracts-v2-locked)
+
+---
+
+## 🔒 StoryLengthBucket-Only Invariant (NON-NEGOTIABLE)
+
+**Invariant**: All story length logic MUST use `StoryLengthBucket` (short/full/long). Minute-based values are for legacy compatibility ONLY and must never appear in new code, UI, prompts, or user-facing features.
+
+### Why This Exists
+
+**Consistent user experience and clear contracts.**
+
+- Users see "Short Story", "Full Story", "Long Story" — not minutes
+- Word count ranges are locked spec (250-600, 601-1200, 1201-2000)
+- Minute estimates are inaccurate (reading speed varies)
+- Single source of truth prevents confusion
+
+### The Contract
+
+1. **UI shows bucket labels only**: "Short Story", "Full Story", "Long Story"
+2. **Filtering uses StoryLengthBucket enum**
+3. **Generation prompts use word ranges, not minutes**
+4. **Legacy `length` field is read-only for backwards compatibility**
+
+### Enforcement Mechanisms
+
+**File**: [`test/core/story_length_test.dart`](../test/core/story_length_test.dart)
+
+**Critical Tests** (MUST PASS):
+- `CRITICAL: No minute-based UI labels`
+- `CRITICAL: StoryLengthBucket word ranges match LOCKED SPEC`
+- `CRITICAL: Legacy minute mapping is read-only`
+
+### Resources
+
+- [SPEC.md Story Length Buckets](SPEC.md#story-length--generation)
+- [StoryLengthBucket Implementation](../lib/core/story_length_bucket.dart)
+
+---
+
+## 🔒 Traditional Mode = Real Bible Story Invariant (NON-NEGOTIABLE)
+
+**Invariant**: Traditional stories MUST be faithful retellings of actual Bible stories. They are NOT devotional content, NOT original stories with biblical themes. Each Traditional story must have a `bibleStoryKey` identifying the specific Bible story being retold.
+
+### Why This Exists
+
+**Content integrity and user trust are paramount.**
+
+- Users selecting Traditional mode expect ACTUAL Bible stories
+- Generic "faith-based" content misleads users about what they're receiving
+- Clear Bible story identification enables testing and validation
+- One-to-one mood-to-story mapping ensures consistent experience
+
+### The Contract
+
+1. **Traditional = Real Bible Story**
+   - Every Traditional story retells a specific, identifiable Bible narrative
+   - NOT a devotional, NOT an original story with biblical themes
+   - Examples: The Lost Sheep, Jesus Calms the Storm, David and Goliath
+
+2. **`bibleStoryKey` REQUIRED for Traditional**
+   - Every Traditional story MUST have a `bibleStoryKey` field
+   - Format: snake_case identifier (e.g., "lost_sheep", "jesus_calms_storm")
+   - Stories without `bibleStoryKey` are EXCLUDED from serving pool
+
+3. **`bibleSourceRef` REQUIRED for Traditional**
+   - Every Traditional story MUST have a `bibleSourceRef` field
+   - Format: Book Chapter:Verse-Verse (e.g., "Luke 15:3-7")
+
+4. **One Bible Story Per Mood**
+   - Each mood maps to exactly ONE `bibleStoryKey`
+   - Multiple Traditional stories may exist for a mood (different lengths, kid/adult), but they MUST share the same `bibleStoryKey`
+   - Prevents mood from being ambiguous about which Bible story is told
+
+5. **"Pizzazz" is Style, Not License**
+   - Allowed: pacing, sensory detail, emotional texture implied by text
+   - Forbidden: new events, altered outcomes, invented theology, modern framing
+
+### Enforcement Mechanisms
+
+**File**: [`test/critical/traditional_bible_story_test.dart`](../test/critical/traditional_bible_story_test.dart)
+
+**Critical Tests** (MUST PASS):
+- `CRITICAL: Traditional stories MUST have bibleStoryKey`
+- `CRITICAL: Traditional stories MUST have bibleSourceRef`
+- `CRITICAL: Each mood has exactly one bibleStoryKey for Traditional`
+- `CRITICAL: No Traditional story without valid bibleStoryKey in manifest`
+
+### Testing
+
+```bash
+# Run Traditional Bible story tests
+flutter test test/critical/traditional_bible_story_test.dart
+
+# Run all tests (includes Traditional tests)
+flutter test
+```
+
+### Resources
+
+- [SPEC.md Traditional Mode Contract](SPEC.md#traditional-mode-contract-default)
+- [Parable Model](../lib/models/parable.dart)
+
+---
+
+## 🔒 Reflection System Invariant (NON-NEGOTIABLE)
+
+**Invariant**: Every story (Traditional AND Creative) MUST have a reflection. Reflection audio MUST use the same narrator voice as the story. Reflection is NEVER auto-played.
+
+### Why This Exists
+
+**Consistent user experience and voice continuity.**
+
+- Reflections are part of the complete story experience
+- Using different voices for reflection breaks immersion
+- Auto-playing reflection without consent violates MoDC principles
+- Every story deserves a reflection, not just some
+
+### The Contract
+
+1. **Every Story Has a Reflection**
+   - Both Traditional and Creative stories MUST have `reflectionAudioPath`
+   - Stories without reflection audio are incomplete
+   - Reflection text (`reflectionTextPath`) is optional but encouraged
+
+2. **Same Narrator Voice**
+   - Reflection audio MUST be generated with the same `narratorVoiceKey` as the story
+   - No separate "PAL voice" for reflections
+   - Enforced via manifest validation: `reflectionNarratorVoiceKey == narratorVoiceKey`
+
+3. **Never Auto-Play Reflection**
+   - After story ends, show "Hear Reflection" button
+   - User MUST tap to hear reflection
+   - No automatic playback of reflection audio
+
+4. **Scripture Reference Display (Traditional Only)**
+   - Scripture reference shown AFTER story completes, NOT during
+   - Display `bibleSourceRef` prominently
+   - Scripture reference is NOT narrated
+
+### Enforcement Mechanisms
+
+**File**: [`test/critical/reflection_system_test.dart`](../test/critical/reflection_system_test.dart)
+
+**Critical Tests** (MUST PASS):
+- `CRITICAL: All stories have reflectionAudioPath`
+- `CRITICAL: Reflection narrator voice matches story narrator voice`
+- `CRITICAL: Reflection is never auto-played (UI test)`
+- `CRITICAL: Traditional stories show scripture ref after completion`
+
+### Testing
+
+```bash
+# Run reflection system tests
+flutter test test/critical/reflection_system_test.dart
+
+# Run all tests (includes reflection tests)
+flutter test
+```
+
+### Resources
+
+- [SPEC.md Post-Story Reflection](SPEC.md#post-story-everyday-life-reflection)
+- [Player Screen](../lib/features/pals_parables/parable_player_screen.dart)
+
+---
+
+## 🔒 Mode Persistence Invariant (NON-NEGOTIABLE)
+
+**Invariant**: Storytelling mode (Traditional/Creative) persists across app restarts. Default is Traditional. Only two modes exist.
+
+### Why This Exists
+
+**User expectation and session continuity.**
+
+- Users expect their mode choice to be remembered
+- Traditional is the safer default (actual Bible stories)
+- Only two modes simplifies UX and code
+
+### The Contract
+
+1. **Default is Traditional**
+   - New users and unset preferences default to Traditional
+   - `UserPreferences.defaults().storytellingMode == 'traditional'`
+
+2. **Persistence Across Restarts**
+   - Mode change in Settings persists to SharedPreferences
+   - On app restart, mode is restored from storage
+   - No session-scoped mode that resets on restart
+
+3. **Only Two Modes**
+   - `'traditional'` and `'creative'` are the only valid values
+   - No other modes exist or will be added
+   - Invalid values reset to Traditional
+
+### Enforcement Mechanisms
+
+**File**: [`test/critical/mode_persistence_test.dart`](../test/critical/mode_persistence_test.dart)
+
+**Critical Tests** (MUST PASS):
+- `CRITICAL: Default storytelling mode is traditional`
+- `CRITICAL: Mode persists after simulated restart`
+- `CRITICAL: Invalid mode values reset to traditional`
+
+### Resources
+
+- [SPEC.md Settings](SPEC.md#settings)
+- [UserPreferences Model](../lib/models/user_preferences.dart)
+
+---
+
+## 🔒 Telemetry: No Minute-Based Length Fields (NON-NEGOTIABLE)
+
+**Invariant**: Telemetry events, allowlists, support bundles, and filter tracking MUST NEVER contain minute-based story length fields. Only `length_bucket` (short/full/long) is permitted.
+
+### Why This Exists
+
+**Consistent data model and privacy.**
+
+- `StoryLengthBucket` (short/full/long) is the canonical representation
+- Minute-based fields leak implementation details into telemetry
+- Mixed field usage creates confusing analytics
+- Word count ranges (not minutes) define buckets per SPEC.md
+- Prevents reintroduction of legacy minute-based filtering
+
+### Forbidden Fields
+
+The following fields MUST NEVER appear in telemetry code:
+
+| Field | Reason |
+|-------|--------|
+| `length_min` | Legacy minute-based field |
+| `length_max` | Legacy minute-based field |
+| `duration_minutes` | Minute-based duration |
+| `story_length_minutes` | Minute-based story length |
+| `length_minutes` | Minute-based length |
+| `duration_min` | Minute-based duration |
+| `minutes` | When used as telemetry field for story length |
+
+### Also Forbidden (Christian General Only)
+
+Per the Christian General Only invariant, these fields are also banned from telemetry:
+
+- `tradition`
+- `denomination`
+- `faith_tradition`
+
+### Allowed Field
+
+**Use `length_bucket` only** with values: `short`, `full`, `long`
+
+### Enforcement Mechanisms
+
+#### 1. Repo-Wide Scan Test
+**File**: [`test/critical/telemetry_forbidden_tokens_test.dart`](../test/critical/telemetry_forbidden_tokens_test.dart)
+
+Scans all source files in `lib/` and `test/` for:
+- Forbidden tokens in telemetry code
+- Forbidden tokens in allowlist definitions
+- Misleading backwards-compatibility comments
+
+**Critical Tests** (MUST PASS):
+- `CRITICAL: No minute-based length tokens in lib/ directory`
+- `CRITICAL: No minute-based length tokens in telemetry allowlists`
+- `CRITICAL: No backwards-compatibility comments for minute-based fields`
+- `CRITICAL: No minute tokens in support bundle serialization`
+- `CRITICAL: No minute tokens in ParableService telemetry`
+
+#### 2. Allowlist Validation
+**File**: [`test/core/support_bundle_test.dart`](../test/core/support_bundle_test.dart)
+
+Tests verify:
+- `length_min` is NOT in any allowlist
+- `length_bucket` IS in filter allowlists
+- No minute-based fields in any allowlist
+
+#### 3. CI Enforcement
+**File**: [`.github/workflows/flutter.yml`](../.github/workflows/flutter.yml)
+
+GitHub Actions runs a forbidden token scan step that fails if minute-based tokens are found.
+
+### Testing
+
+```bash
+# Run telemetry forbidden tokens test
+flutter test test/critical/telemetry_forbidden_tokens_test.dart
+
+# Run support bundle tests (includes allowlist validation)
+flutter test test/core/support_bundle_test.dart
+
+# Run all tests (includes telemetry invariant)
+flutter test
+
+# Manual verification (should return no matches)
+grep -RInE "length_min|length_max|duration_minutes|story_length_minutes" lib || echo "✅ No forbidden tokens"
+```
+
+### Violation Response
+
+**Build Time**:
+- Tests FAIL immediately
+- CI fails with detailed error message showing file:line
+- PR cannot be merged
+
+**Example Failure**:
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚨 TELEMETRY INVARIANT VIOLATION: Minute-Based Length Fields
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Minute-based length fields are BANNED from telemetry.
+Use StoryLengthBucket (short/full/long) via length_bucket only.
+
+Violations found:
+  ❌ lib/services/parable_service.dart:142: Found "length_min"
+      Line: 'length_min': bucket.minMinutes,
+
+See: docs/INVARIANTS.md - Telemetry: No minute-based length fields
+Test: test/critical/telemetry_forbidden_tokens_test.dart
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+### Maintenance Rules
+
+**When modifying telemetry code:**
+
+1. **NEVER** add minute-based length fields to telemetry events
+2. **NEVER** add minute-based fields to allowlists
+3. **ALWAYS** use `length_bucket` for story length tracking
+4. **RUN** `flutter test test/critical/telemetry_forbidden_tokens_test.dart` before committing
+5. **DO NOT** weaken or remove telemetry invariant tests
+6. **DO NOT** add "backwards compatibility" comments suggesting minute fields should be kept
+
+**If a telemetry invariant test fails:**
+1. DO NOT disable the test
+2. Remove the minute-based field
+3. Replace with `length_bucket` if needed
+4. Verify all tests pass
+
+### Resources
+
+- [StoryLengthBucket Implementation](../lib/core/story_length_bucket.dart)
+- [SPEC.md Story Length Buckets](SPEC.md#story-length--generation)
+- [Telemetry Forbidden Tokens Test](../test/critical/telemetry_forbidden_tokens_test.dart)
+- [Support Bundle Tests](../test/core/support_bundle_test.dart)
 
 ---
 
@@ -924,5 +1581,5 @@ As the project evolves, additional invariants may be added here. Each invariant 
 
 ---
 
-**Last Updated**: 2026-01-06
+**Last Updated**: 2026-01-22
 **Maintained By**: Bible PAL Development Team

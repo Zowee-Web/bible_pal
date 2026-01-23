@@ -29,11 +29,11 @@ lib/
 All models follow the same pattern: fromJson, toJson, copyWith
 
 1. ✅ **parable.dart** - Core parable/story model (Feature #7)
-   - storyId, title, mood, length, faithTradition, storytellingMode, scriptureSources
+   - storyId, title, mood, length, storytellingMode, scriptureSources
    - audioFilePath, textFilePath, generatedAt
 
 2. ✅ **user_preferences.dart** - User settings (Features #17, #18, #21-23)
-   - faithTradition, bibleTranslation, storytellingMode
+   - bibleTranslation, storytellingMode
    - contentFilteringEnabled, hasCompletedOnboarding
 
 3. ✅ **favorite.dart** - User's favorited parables (Feature #9)

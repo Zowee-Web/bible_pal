@@ -398,7 +398,6 @@ new_entry=$(jq -n \
         title: $title,
         mood: $mood,
         length: $length,
-        faithTradition: "Unspecified",
         storytellingMode: "traditional",
         kidFriendly: false,
         audioFilePath: (if $audio == "null" then null else $audio end),

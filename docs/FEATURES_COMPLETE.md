@@ -24,14 +24,14 @@ Successfully implemented:
 **Structure:**
 - 5 sample parables covering all moods
 - Proper JSON format matching Parable model exactly
-- All required fields present: storyId, title, mood, emotionalTags, length, faithTradition, storytellingMode, scriptureSources, audioFilePath, textFilePath, generatedAt
+- All required fields present: storyId, title, mood, emotionalTags, length, storytellingMode, scriptureSources, audioFilePath, textFilePath, generatedAt
 
 **Parable Coverage:**
-1. **parable_001_joyful_5min** - Joyful, 5 min, Protestant, Creative
-2. **parable_002_weary_10min** - Weary, 10 min, Protestant, Traditional
-3. **parable_003_anxious_15min** - Anxious, 15 min, Catholic, Creative
-4. **parable_004_hurting_20min** - Hurting, 20 min, Protestant, Traditional
-5. **parable_005_neutral_10min** - Neutral, 10 min, Catholic, Creative
+1. **parable_001_joyful_5min** - Joyful, 5 min, Creative
+2. **parable_002_weary_10min** - Weary, 10 min, Traditional
+3. **parable_003_anxious_15min** - Anxious, 15 min, Creative
+4. **parable_004_hurting_20min** - Hurting, 20 min, Traditional
+5. **parable_005_neutral_10min** - Neutral, 10 min, Creative
 
 ### 1.2 Sample Parable Entries ✅
 
@@ -178,7 +178,7 @@ All files referenced correctly in manifest and available in `assets/stories/` di
 **SPEC.md Feature #10: Favorites System**
 - ✅ Unlimited favorites capacity (no max limit enforced)
 - ✅ Saved locally on device (uses SharedPreferences via StorageService)
-- ✅ Metadata-only storage (stores only: storyId, title, mood, length, faithTradition, scriptureSources, dateSaved)
+- ✅ Metadata-only storage (stores only: storyId, title, mood, length, scriptureSources, dateSaved)
 - ✅ No duplicate story content stored
 - ✅ User can add/remove favorites
 - ✅ Favorites persist across app sessions
@@ -190,7 +190,7 @@ All files referenced correctly in manifest and available in `assets/stories/` di
 - ✅ FIFO behavior: when 101st entry added, oldest removed
 - ✅ Most recent first order (history.insert(0, entry) in StorageService)
 - ✅ Automatically records listened parables
-- ✅ Metadata stored: storyId, title, mood, length, faithTradition, scriptureSources, timestamp
+- ✅ Metadata stored: storyId, title, mood, length, scriptureSources, timestamp
 - ✅ User can clear all history
 
 ### Parable Library Compliance ✅
@@ -201,7 +201,6 @@ All files referenced correctly in manifest and available in `assets/stories/` di
 - ✅ title (AI-generated, user-editable) ✅
 - ✅ mood / emotional tags ✅
 - ✅ length (5, 10, 15, or 20 minutes) ✅
-- ✅ faithTradition ✅
 - ✅ storytellingMode (creative or traditional) ✅
 - ✅ scriptureSources (array of verse references) ✅
 

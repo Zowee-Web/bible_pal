@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Generate audio for 16 kid-friendly traditional Bible stories using ElevenLabs
 # Uses warm, nurturing voices appropriate for children's content
+# Voice selection uses voices.json as single source of truth (kid-compatible pool)
 
 set -euo pipefail
 
@@ -11,6 +12,7 @@ OUTPUT_DIR="$PROJECT_ROOT/assets/stories"
 
 # Source shared components
 source "$SCRIPT_DIR/elevenlabs_guard.sh"
+source "$SCRIPT_DIR/voice_selector.sh"
 trap elevenlabs_release_lock EXIT INT TERM
 
 # Colors
@@ -41,17 +43,11 @@ fi
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "${BLUE}  Bible PAL - Kid-Friendly Story Audio Generation${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "Kid Voice Pool: ${GREEN}$(jq '[.voices[] | select(.audience | index("kid"))] | length' "$VOICES_FILE") voices${NC}"
 echo ""
 
-# Kid-friendly voice pool (warm, nurturing, appropriate for children)
-# Using nurturing adult voices instead of child voices for better storytelling quality
-VOICES=(
-    "$VOICE_GRACE"           # Warm, compassionate female
-    "$VOICE_ARABELLA"        # Nurturing, tender female
-    "$VOICE_LILY_WOLFF"      # Energetic, uplifting female
-    "$VOICE_JAMES_HUSKY"     # Wise elder male
-    "$VOICE_JAMES_BRITISH_PROFESSIONAL"  # Reassuring fatherly male
-)
+# Voice selection now uses voice_selector.sh with kid-compatible filter
+# NOTE: Grace, Abilene, and Grant are FORBIDDEN voices - see ADR-002
 
 # Story IDs to generate (parable_050 through parable_065)
 STORY_IDS=(
@@ -95,11 +91,13 @@ for i in "${!STORY_IDS[@]}"; do
     story_text=$(cat "$text_file")
     char_count=$(printf "%s" "$story_text" | wc -c | tr -d ' ')
 
-    # Select voice (rotate through pool for variety)
-    voice_index=$((i % ${#VOICES[@]}))
-    voice_id="${VOICES[$voice_index]}"
+    # Select voice from kid-compatible pool (deterministic based on storyId)
+    voice_key=$(select_voice_for_story "$story_id" "true")
+    voice_id=$(get_voice_id "$voice_key")
+    voice_name=$(get_voice_display_name "$voice_key")
 
     echo -e "${BLUE}→ Generating audio: $story_id${NC}"
+    echo -e "${BLUE}  Narrator: $voice_name ($voice_key)${NC}"
     echo -e "${BLUE}  Characters: $char_count${NC}"
 
     # Extract length from story_id for safety check
