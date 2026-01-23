@@ -545,6 +545,44 @@ The question was: What EXACTLY is Traditional mode, and how do we enforce it?
 
 ---
 
+## ADR-011: Debug-Only Reset First Launch Tool
+
+**Date:** 2026-01-22
+**Status:** Accepted
+**Context:** On macOS (and other desktop platforms), SharedPreferences persists between app runs. This makes it impossible to re-test the onboarding flow without manually clearing app data or using special tools. Developers needed a quick way to reset onboarding state for verification and testing.
+
+**Decision:** Add a "Reset First Launch (Dev)" button to the Diagnostics screen with the following properties:
+
+1. **Debug-only visibility**: Guarded by `kDebugMode` — never visible in release builds
+2. **Location**: Diagnostics screen (already a dev-focused area, requires DIAGNOSTICS_ENABLED)
+3. **Scope of reset**:
+   - Clears: `kFirstLaunchCompleteKey`, `hasCompletedOnboarding`, `userName`, all voice consent fields
+   - Preserves: `bibleTranslation`, `languageStyle`, `storytellingMode`, `kidFriendlyOnly`, favorites, history
+4. **Behavior after reset**: Shows message "Restart app to re-run onboarding" (no automatic navigation)
+5. **Confirmation dialog**: Requires explicit user confirmation before reset
+
+**Rationale:**
+- **Debug-only over runtime toggle**: This is purely a developer tool. Users should never see or need it.
+- **Diagnostics screen over Settings**: Settings is user-facing. Diagnostics is already dev-only.
+- **Manual restart over auto-navigate**: Safer. Avoids state corruption from mid-session navigation reset.
+- **Preserve preferences**: User's Bible translation, mode, and kid-friendly settings are deliberate choices. Don't discard them.
+- **Preserve favorites/history**: These are user data, not onboarding state. Would be destructive to clear.
+- **Clear voice consent**: Voice consent is part of the onboarding-adjacent flow. Resetting allows re-testing consent dialogs.
+
+**Alternatives Considered:**
+1. **Add to Settings screen** — Rejected. Settings is user-facing; this is dev-only.
+2. **Auto-navigate to FirstLaunchScreen** — Rejected. Complex state management; could cause bugs.
+3. **Clear all data** — Rejected. Destructive; loses user preferences and content.
+4. **Use a CLI flag** — Rejected. Harder to use during manual testing sessions.
+
+**Consequences:**
+- Modified: `lib/features/diagnostics/diagnostics_screen.dart` (added reset button + logic)
+- New test: `test/critical/reset_first_launch_test.dart` (5 tests)
+- No changes to release build behavior
+- Developers can now quickly verify onboarding flow on macOS/desktop
+
+---
+
 ## Template for Future Decisions
 
 ```

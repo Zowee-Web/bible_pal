@@ -8,17 +8,21 @@
 /// - Copy all to clipboard button
 /// - Clear breadcrumbs button
 /// - Loads both in-memory and persisted breadcrumbs
+/// - [DEBUG ONLY] Reset First Launch button for dev testing
 library;
 
 import 'dart:convert';
 import 'dart:io' show Platform;
 
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/app_logger.dart';
 import '../../core/breadcrumb_store.dart';
 import '../../core/diagnostics_config.dart';
+import '../../services/storage_service.dart';
 
 /// Diagnostics screen for viewing and exporting breadcrumbs.
 ///
@@ -163,6 +167,60 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
     }
   }
 
+  /// [DEBUG ONLY] Reset first-launch state for dev testing.
+  /// Calls StorageService.resetFirstLaunchDevOnly() which is the single source of truth.
+  Future<void> _resetFirstLaunch() async {
+    final confirm = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Reset First Launch?'),
+        content: const Text(
+            'This will reset onboarding state:\n\n'
+            '• Onboarding completion flag\n'
+            '• User name\n'
+            '• Voice consent settings\n\n'
+            'Favorites and history will be preserved.\n\n'
+            'Restart the app to re-run onboarding.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            style: TextButton.styleFrom(foregroundColor: Colors.orange),
+            child: const Text('Reset'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirm != true) return;
+
+    try {
+      final sp = await SharedPreferences.getInstance();
+      final storageService = StorageService(sp);
+      await storageService.resetFirstLaunchDevOnly();
+
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('First launch reset. Restart app to re-run onboarding.'),
+          backgroundColor: Colors.orange,
+        ),
+      );
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Reset failed: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     if (!kDiagnosticsEnabled) {
@@ -217,96 +275,140 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
       ),
       body: _loading
           ? const Center(child: CircularProgressIndicator())
-          : _breadcrumbs.isEmpty
-              ? const Center(
-                  child: Text(
-                    'No breadcrumbs recorded yet.',
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                )
-              : ListView.builder(
-                  itemCount: _breadcrumbs.length,
-                  itemBuilder: (context, index) {
-                    final breadcrumb = _breadcrumbs[index];
-                    final event = breadcrumb['event']?.toString() ?? 'unknown';
-                    final level = breadcrumb['level']?.toString() ?? 'info';
-                    final ts = breadcrumb['ts']?.toString() ?? '';
-
-                    // Format timestamp for display
-                    String formattedTs = ts;
-                    try {
-                      final dt = DateTime.parse(ts);
-                      formattedTs = '${dt.hour.toString().padLeft(2, '0')}:'
-                          '${dt.minute.toString().padLeft(2, '0')}:'
-                          '${dt.second.toString().padLeft(2, '0')}';
-                    } catch (_) {}
-
-                    // Level color
-                    final levelColor = switch (level) {
-                      'debug' => Colors.grey,
-                      'info' => Colors.blue,
-                      'warn' => Colors.orange,
-                      'error' => Colors.red,
-                      _ => Colors.grey,
-                    };
-
-                    // Remove event/level/ts from data for display
-                    final data = Map<String, Object?>.from(breadcrumb)
-                      ..remove('event')
-                      ..remove('level')
-                      ..remove('ts');
-
-                    return ExpansionTile(
-                      leading: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 6, vertical: 2),
-                        decoration: BoxDecoration(
-                          color: levelColor.withValues(alpha: 0.2),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Text(
-                          level.toUpperCase(),
+          : Column(
+              children: [
+                // [DEBUG ONLY] Reset First Launch button
+                if (kDebugMode)
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(12),
+                    color: Colors.orange.withValues(alpha: 0.1),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Developer Tools',
                           style: TextStyle(
-                            fontSize: 10,
                             fontWeight: FontWeight.bold,
-                            color: levelColor,
+                            fontSize: 12,
+                            color: Colors.orange,
                           ),
                         ),
-                      ),
-                      title: Text(
-                        event,
-                        style: const TextStyle(fontFamily: 'monospace'),
-                      ),
-                      subtitle: Text(
-                        formattedTs,
-                        style:
-                            const TextStyle(fontSize: 12, color: Colors.grey),
-                      ),
-                      children: [
-                        if (data.isNotEmpty)
-                          Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Container(
-                              width: double.infinity,
-                              padding: const EdgeInsets.all(12),
-                              decoration: BoxDecoration(
-                                color: Colors.grey.withValues(alpha: 0.1),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Text(
-                                const JsonEncoder.withIndent('  ')
-                                    .convert(data),
-                                style: const TextStyle(
-                                  fontFamily: 'monospace',
-                                  fontSize: 12,
-                                ),
-                              ),
+                        const SizedBox(height: 8),
+                        SizedBox(
+                          width: double.infinity,
+                          child: OutlinedButton.icon(
+                            onPressed: _resetFirstLaunch,
+                            icon: const Icon(Icons.restart_alt, size: 18),
+                            label: const Text('Reset First Launch (Dev)'),
+                            style: OutlinedButton.styleFrom(
+                              foregroundColor: Colors.orange,
+                              side: const BorderSide(color: Colors.orange),
                             ),
                           ),
+                        ),
                       ],
-                    );
-                  },
+                    ),
+                  ),
+                // Breadcrumbs list or empty state
+                Expanded(
+                  child: _breadcrumbs.isEmpty
+                      ? const Center(
+                          child: Text(
+                            'No breadcrumbs recorded yet.',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        )
+                      : ListView.builder(
+                          itemCount: _breadcrumbs.length,
+                          itemBuilder: (context, index) {
+                            final breadcrumb = _breadcrumbs[index];
+                            final event =
+                                breadcrumb['event']?.toString() ?? 'unknown';
+                            final level =
+                                breadcrumb['level']?.toString() ?? 'info';
+                            final ts = breadcrumb['ts']?.toString() ?? '';
+
+                            // Format timestamp for display
+                            String formattedTs = ts;
+                            try {
+                              final dt = DateTime.parse(ts);
+                              formattedTs =
+                                  '${dt.hour.toString().padLeft(2, '0')}:'
+                                  '${dt.minute.toString().padLeft(2, '0')}:'
+                                  '${dt.second.toString().padLeft(2, '0')}';
+                            } catch (_) {}
+
+                            // Level color
+                            final levelColor = switch (level) {
+                              'debug' => Colors.grey,
+                              'info' => Colors.blue,
+                              'warn' => Colors.orange,
+                              'error' => Colors.red,
+                              _ => Colors.grey,
+                            };
+
+                            // Remove event/level/ts from data for display
+                            final data = Map<String, Object?>.from(breadcrumb)
+                              ..remove('event')
+                              ..remove('level')
+                              ..remove('ts');
+
+                            return ExpansionTile(
+                              leading: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 6, vertical: 2),
+                                decoration: BoxDecoration(
+                                  color: levelColor.withValues(alpha: 0.2),
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                child: Text(
+                                  level.toUpperCase(),
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                    color: levelColor,
+                                  ),
+                                ),
+                              ),
+                              title: Text(
+                                event,
+                                style: const TextStyle(fontFamily: 'monospace'),
+                              ),
+                              subtitle: Text(
+                                formattedTs,
+                                style: const TextStyle(
+                                    fontSize: 12, color: Colors.grey),
+                              ),
+                              children: [
+                                if (data.isNotEmpty)
+                                  Padding(
+                                    padding: const EdgeInsets.all(16),
+                                    child: Container(
+                                      width: double.infinity,
+                                      padding: const EdgeInsets.all(12),
+                                      decoration: BoxDecoration(
+                                        color:
+                                            Colors.grey.withValues(alpha: 0.1),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Text(
+                                        const JsonEncoder.withIndent('  ')
+                                            .convert(data),
+                                        style: const TextStyle(
+                                          fontFamily: 'monospace',
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            );
+                          },
+                        ),
                 ),
+              ],
+            ),
     );
   }
 }

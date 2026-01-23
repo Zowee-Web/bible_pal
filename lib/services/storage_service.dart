@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/user_preferences.dart';
 import '../models/favorite.dart';
@@ -6,6 +7,7 @@ import '../models/history_entry.dart';
 import '../models/pal.dart';
 import '../models/share_record.dart';
 import '../models/pending_share.dart';
+import '../features/onboarding/first_launch_screen.dart' show kFirstLaunchCompleteKey;
 
 /// Storage Service - handles all local data persistence
 /// Based on SPEC.md Feature #25: User Data Encryption (secure storage)
@@ -220,6 +222,48 @@ class StorageService {
   /// Clear all data (for testing or reset)
   Future<void> clearAll() async {
     await _prefs.clear();
+  }
+
+  // ========== Developer Tools ==========
+
+  /// [DEBUG ONLY] Reset first-launch state for dev testing.
+  ///
+  /// Clears:
+  /// - kFirstLaunchCompleteKey (SharedPreferences flag)
+  /// - hasCompletedOnboarding, userName, voice consent fields (UserPreferences)
+  ///
+  /// Preserves:
+  /// - bibleTranslation, languageStyle, storytellingMode, kidFriendlyOnly, etc.
+  /// - Favorites, history, and all other storage
+  ///
+  /// This method will throw in release builds.
+  Future<void> resetFirstLaunchDevOnly() async {
+    // Hard-fail if not in debug mode
+    if (!kDebugMode) {
+      throw StateError(
+        'resetFirstLaunchDevOnly() must only be called in debug builds',
+      );
+    }
+
+    // 1. Clear the first-launch SharedPreferences key
+    await _prefs.remove(kFirstLaunchCompleteKey);
+
+    // 2. Load current preferences and reset onboarding-related fields
+    final currentPrefs = await getUserPreferences();
+    final clearedPrefs = UserPreferences(
+      userName: '', // Clear user name
+      bibleTranslation: currentPrefs.bibleTranslation, // Preserve
+      languageStyle: currentPrefs.languageStyle, // Preserve
+      storytellingMode: currentPrefs.storytellingMode, // Preserve
+      contentFilteringEnabled: currentPrefs.contentFilteringEnabled, // Preserve
+      kidFriendlyOnly: currentPrefs.kidFriendlyOnly, // Preserve
+      showEverydayReflections: currentPrefs.showEverydayReflections, // Preserve
+      hasCompletedOnboarding: false, // Clear onboarding flag
+      storyNarrationEnabled: null, // Clear voice consent
+      palGreetingsEnabled: null, // Clear voice consent
+      voiceConsentVersion: null, // Clear voice consent version
+    );
+    await saveUserPreferences(clearedPrefs);
   }
 
   // ========== PALs (Compatibility Shims for Tests) ==========
