@@ -39,7 +39,8 @@ void main() {
         );
       });
 
-      test('CRITICAL: hasAskedStoryNarrationConsent returns false when null', () {
+      test('CRITICAL: hasAskedStoryNarrationConsent returns false when null',
+          () {
         // ARRANGE: Preferences with null consent
         final prefs = UserPreferences.defaults();
 
@@ -52,10 +53,10 @@ void main() {
         );
       });
 
-      test('CRITICAL: hasAskedStoryNarrationConsent returns true when false', () {
+      test('CRITICAL: hasAskedStoryNarrationConsent returns true when false',
+          () {
         // ARRANGE: User explicitly declined
         final prefs = UserPreferences(
-          faithTradition: '',
           bibleTranslation: 'WEB',
           storyNarrationEnabled: false,
           voiceConsentVersion: currentVoiceConsentVersion,
@@ -70,10 +71,10 @@ void main() {
         );
       });
 
-      test('CRITICAL: hasAskedStoryNarrationConsent returns true when true', () {
+      test('CRITICAL: hasAskedStoryNarrationConsent returns true when true',
+          () {
         // ARRANGE: User enabled narration
         final prefs = UserPreferences(
-          faithTradition: '',
           bibleTranslation: 'WEB',
           storyNarrationEnabled: true,
           voiceConsentVersion: currentVoiceConsentVersion,
@@ -105,7 +106,6 @@ void main() {
       test('CRITICAL: isStoryNarrationEnabled returns false when false', () {
         // ARRANGE: User declined
         final prefs = UserPreferences(
-          faithTradition: '',
           bibleTranslation: 'WEB',
           storyNarrationEnabled: false,
           voiceConsentVersion: currentVoiceConsentVersion,
@@ -122,7 +122,6 @@ void main() {
       test('CRITICAL: isStoryNarrationEnabled returns true ONLY when true', () {
         // ARRANGE: User enabled
         final prefs = UserPreferences(
-          faithTradition: '',
           bibleTranslation: 'WEB',
           storyNarrationEnabled: true,
           voiceConsentVersion: currentVoiceConsentVersion,
@@ -138,7 +137,8 @@ void main() {
     });
 
     group('PAL greetings consent', () {
-      test('CRITICAL: PAL greetings consent follows same tri-state pattern', () {
+      test('CRITICAL: PAL greetings consent follows same tri-state pattern',
+          () {
         // ARRANGE: Not asked
         final notAsked = UserPreferences.defaults();
 
@@ -148,7 +148,6 @@ void main() {
 
         // ARRANGE: Declined
         final declined = UserPreferences(
-          faithTradition: '',
           bibleTranslation: 'WEB',
           palGreetingsEnabled: false,
           voiceConsentVersion: currentVoiceConsentVersion,
@@ -160,7 +159,6 @@ void main() {
 
         // ARRANGE: Enabled
         final enabled = UserPreferences(
-          faithTradition: '',
           bibleTranslation: 'WEB',
           palGreetingsEnabled: true,
           voiceConsentVersion: currentVoiceConsentVersion,
@@ -176,7 +174,6 @@ void main() {
       test('CRITICAL: voiceConsentVersion tracks schema version', () {
         // ARRANGE: User granted consent
         final prefs = UserPreferences(
-          faithTradition: '',
           bibleTranslation: 'WEB',
           storyNarrationEnabled: true,
           palGreetingsEnabled: true,
@@ -187,7 +184,8 @@ void main() {
         expect(
           prefs.voiceConsentVersion,
           currentVoiceConsentVersion,
-          reason: 'voiceConsentVersion MUST be set to currentVoiceConsentVersion '
+          reason:
+              'voiceConsentVersion MUST be set to currentVoiceConsentVersion '
               'when consent is granted.',
         );
       });
@@ -195,7 +193,6 @@ void main() {
       test('CRITICAL: needsConsentVersionUpgrade detects outdated consent', () {
         // ARRANGE: Old consent version (simulate future version bump)
         final oldConsent = UserPreferences(
-          faithTradition: '',
           bibleTranslation: 'WEB',
           storyNarrationEnabled: true,
           voiceConsentVersion: 0, // Old version
@@ -228,7 +225,6 @@ void main() {
       test('needsConsentVersionUpgrade returns false for current version', () {
         // ARRANGE: Current consent version
         final prefs = UserPreferences(
-          faithTradition: '',
           bibleTranslation: 'WEB',
           storyNarrationEnabled: true,
           voiceConsentVersion: currentVoiceConsentVersion,
@@ -276,7 +272,6 @@ void main() {
       test('CRITICAL: false consent persists correctly through JSON', () {
         // ARRANGE: User declined
         final original = UserPreferences(
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storyNarrationEnabled: false,
           palGreetingsEnabled: false,
@@ -308,7 +303,6 @@ void main() {
       test('CRITICAL: true consent persists correctly through JSON', () {
         // ARRANGE: User enabled
         final original = UserPreferences(
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storyNarrationEnabled: true,
           palGreetingsEnabled: true,
@@ -335,7 +329,6 @@ void main() {
       test('Legacy JSON without voice fields defaults to null (not false)', () {
         // ARRANGE: Old JSON without voice consent fields (migration case)
         final legacyJson = {
-          'faithTradition': 'Protestant',
           'bibleTranslation': 'WEB',
           'storytellingMode': 'creative',
           'contentFilteringEnabled': true,
@@ -374,7 +367,7 @@ void main() {
         final original = UserPreferences.defaults();
 
         // ACT: Update unrelated field
-        final updated = original.copyWith(faithTradition: 'Catholic');
+        final updated = original.copyWith(bibleTranslation: 'KJV');
 
         // ASSERT: Null consent is preserved
         expect(
@@ -407,7 +400,6 @@ void main() {
       test('copyWith can set consent to false', () {
         // ARRANGE: Previously enabled
         final original = UserPreferences(
-          faithTradition: '',
           bibleTranslation: 'WEB',
           storyNarrationEnabled: true,
           voiceConsentVersion: currentVoiceConsentVersion,

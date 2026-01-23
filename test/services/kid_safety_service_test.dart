@@ -39,7 +39,8 @@ void main() {
 
         expect(result.passed, false);
         expect(result.violations.length, greaterThan(0));
-        expect(result.violations[0].matchedText.toLowerCase(), contains('damn'));
+        expect(
+            result.violations[0].matchedText.toLowerCase(), contains('damn'));
       });
 
       test('CRITICAL: blocks profanity (hell)', () async {

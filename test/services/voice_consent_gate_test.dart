@@ -11,7 +11,8 @@ import 'package:bible_pal/models/user_preferences.dart';
 void main() {
   group('CRITICAL: VoiceConsentGate', () {
     group('checkStoryNarration', () {
-      test('CRITICAL: returns needsConsent when storyNarrationEnabled is null', () {
+      test('CRITICAL: returns needsConsent when storyNarrationEnabled is null',
+          () {
         final prefs = UserPreferences.defaults();
         expect(prefs.storyNarrationEnabled, isNull);
 
@@ -26,7 +27,6 @@ void main() {
 
       test('CRITICAL: returns blocked when storyNarrationEnabled is false', () {
         final prefs = UserPreferences(
-          faithTradition: '',
           bibleTranslation: 'WEB',
           storyNarrationEnabled: false,
         );
@@ -40,9 +40,9 @@ void main() {
         );
       });
 
-      test('CRITICAL: returns allowed ONLY when storyNarrationEnabled is true', () {
+      test('CRITICAL: returns allowed ONLY when storyNarrationEnabled is true',
+          () {
         final prefs = UserPreferences(
-          faithTradition: '',
           bibleTranslation: 'WEB',
           storyNarrationEnabled: true,
         );
@@ -68,7 +68,8 @@ void main() {
     });
 
     group('checkPalGreetings', () {
-      test('CRITICAL: returns needsConsent when palGreetingsEnabled is null', () {
+      test('CRITICAL: returns needsConsent when palGreetingsEnabled is null',
+          () {
         final prefs = UserPreferences.defaults();
         expect(prefs.palGreetingsEnabled, isNull);
 
@@ -83,7 +84,6 @@ void main() {
 
       test('CRITICAL: returns blocked when palGreetingsEnabled is false', () {
         final prefs = UserPreferences(
-          faithTradition: '',
           bibleTranslation: 'WEB',
           palGreetingsEnabled: false,
         );
@@ -97,9 +97,9 @@ void main() {
         );
       });
 
-      test('CRITICAL: returns allowed ONLY when palGreetingsEnabled is true', () {
+      test('CRITICAL: returns allowed ONLY when palGreetingsEnabled is true',
+          () {
         final prefs = UserPreferences(
-          faithTradition: '',
           bibleTranslation: 'WEB',
           palGreetingsEnabled: true,
         );
@@ -128,36 +128,39 @@ void main() {
       test('story narration and PAL greetings are checked independently', () {
         // Story enabled, PAL disabled
         final prefs1 = UserPreferences(
-          faithTradition: '',
           bibleTranslation: 'WEB',
           storyNarrationEnabled: true,
           palGreetingsEnabled: false,
         );
 
-        expect(VoiceConsentGate.checkStoryNarration(prefs1), VoiceGateResult.allowed);
-        expect(VoiceConsentGate.checkPalGreetings(prefs1), VoiceGateResult.blocked);
+        expect(VoiceConsentGate.checkStoryNarration(prefs1),
+            VoiceGateResult.allowed);
+        expect(VoiceConsentGate.checkPalGreetings(prefs1),
+            VoiceGateResult.blocked);
 
         // Story disabled, PAL enabled
         final prefs2 = UserPreferences(
-          faithTradition: '',
           bibleTranslation: 'WEB',
           storyNarrationEnabled: false,
           palGreetingsEnabled: true,
         );
 
-        expect(VoiceConsentGate.checkStoryNarration(prefs2), VoiceGateResult.blocked);
-        expect(VoiceConsentGate.checkPalGreetings(prefs2), VoiceGateResult.allowed);
+        expect(VoiceConsentGate.checkStoryNarration(prefs2),
+            VoiceGateResult.blocked);
+        expect(VoiceConsentGate.checkPalGreetings(prefs2),
+            VoiceGateResult.allowed);
 
         // Story null, PAL true
         final prefs3 = UserPreferences(
-          faithTradition: '',
           bibleTranslation: 'WEB',
           storyNarrationEnabled: null,
           palGreetingsEnabled: true,
         );
 
-        expect(VoiceConsentGate.checkStoryNarration(prefs3), VoiceGateResult.needsConsent);
-        expect(VoiceConsentGate.checkPalGreetings(prefs3), VoiceGateResult.allowed);
+        expect(VoiceConsentGate.checkStoryNarration(prefs3),
+            VoiceGateResult.needsConsent);
+        expect(VoiceConsentGate.checkPalGreetings(prefs3),
+            VoiceGateResult.allowed);
       });
     });
   });

@@ -86,15 +86,18 @@ Everyone looked up to Samuel for guidance and advice on important matters.
     });
 
     test('passes when story has proper sections and bedtime closing', () {
+      // Note: Story must be >= 250 words (LOCKED SPEC short bucket minimum)
       const properStory = '''
 Little Samuel lived in a very special place called the temple. It was
 a quiet, peaceful building where many people came to pray each day. Samuel had
 a small bed in a cozy corner, and he felt very safe and loved there always.
+The temple was a wonderful home for the young boy.
 
 Every day, Samuel would wake up early to help the kind priest named Eli.
 He would carry things carefully and keep everything clean and tidy. Eli was
 like a grandfather to Samuel, always gentle, patient, and full of wisdom.
 Samuel loved spending time with Eli and learning from him each day.
+They worked together happily in the peaceful temple.
 
 One quiet night, Samuel heard someone calling his name very softly.
 At first he thought it was Eli calling for him, but Eli was sleeping.
@@ -104,7 +107,7 @@ The voice was gentle and kind, not scary at all.
 Eli told Samuel that it might be God speaking to him directly.
 Samuel felt very special knowing that God wanted to talk to him.
 He felt loved and important, just like every child is to God.
-This made Samuel very happy and grateful.
+This made Samuel very happy and grateful for the blessing.
 
 As the night grew quiet again, Samuel lay back down in his soft bed.
 The stars twinkled through the window like many tiny nightlights.
@@ -130,22 +133,32 @@ and Samuel drifted off to a restful, peaceful sleep.
       ];
 
       for (final closing in closingSignals) {
+        // Note: Story must be >= 250 words (LOCKED SPEC short bucket minimum)
         final story = '''
 This is a wonderful story about a child who learned about God's amazing love.
 The child was young and curious about the world around them. They asked many
 questions about life and faith and always wanted to learn new things.
+Every day brought new discoveries and joyful moments of learning.
 
 The child spent quiet time in prayer and reflection each and every day.
 They would sit in a peaceful spot and think about all the good things in life.
 Prayer became an important part of their daily routine and brought them joy.
+The peaceful moments of prayer helped them feel close to God always.
 
 The kind adults in the village taught the child many important lessons.
 They shared stories of faith and hope that had been passed down through time.
 The child listened carefully and remembered everything they were taught.
+These stories filled the child's heart with wonder and gratitude.
+
+The child loved to help others in the village whenever they could.
+They would share their food with those who were hungry and alone.
+Helping others made the child feel happy and fulfilled inside.
+It was a wonderful way to show love to their neighbors.
 
 They learned to trust completely in God's loving care and protection always.
 Knowing that God was watching over them made the child feel safe and secure.
 This trust gave them courage to face each new day with confidence and hope.
+The child knew that God loved them very much and always would.
 
 $closing
 ''';

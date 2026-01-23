@@ -19,15 +19,21 @@ const Set<String> kSupportBundleAllowedKeys = {
 };
 
 /// Keys allowed in last_filters map (subset of safe filter fields)
+/// NOTE: 'tradition' is BANNED per Christian General Only invariant (INVARIANTS.md)
+/// NOTE: 'length_min' is BANNED - use 'length_bucket' only (StoryLengthBucket canonical)
 const Set<String> kLastFiltersAllowedKeys = {
   'kid_mode',
   'story_mode',
-  'length_min',
-  'tradition',
+  'length_bucket',
   'mood',
+  'language_style',
+  'storytelling_mode',
+  'pool_size',
 };
 
 /// Keys allowed in individual breadcrumb entries
+/// NOTE: 'tradition' is BANNED per Christian General Only invariant (INVARIANTS.md)
+/// NOTE: 'length_min' is BANNED - use 'length_bucket' only (StoryLengthBucket canonical)
 const Set<String> kBreadcrumbAllowedKeys = {
   'ts',
   'event',
@@ -44,8 +50,9 @@ const Set<String> kBreadcrumbAllowedKeys = {
   'to',
   'kid_mode',
   'story_mode',
-  'length_min',
-  'tradition',
+  'storytelling_mode',
+  'language_style',
+  'length_bucket',
   'error_type',
   'error_message',
   'count',
@@ -53,6 +60,7 @@ const Set<String> kBreadcrumbAllowedKeys = {
   'position_ms',
   'success',
   'source',
+  'pool_size',
 };
 
 void main() {
@@ -93,14 +101,14 @@ void main() {
       logEvent('filters_applied', {
         'kid_mode': true,
         'story_mode': 'traditional',
-        'length_min': 5,
-        'tradition': 'catholic',
+        'length_bucket': 'short',
+        'mood': 'joyful',
       });
 
       final filters = getLastFilters();
       expect(filters['kid_mode'], isTrue);
       expect(filters['story_mode'], equals('traditional'));
-      expect(filters['length_min'], equals(5));
+      expect(filters['length_bucket'], equals('short'));
     });
 
     test('last_filters only updated by filters_applied event', () {
@@ -189,10 +197,20 @@ void main() {
     });
 
     test('last_filters keys are safe', () {
-      // All filter keys should be safe (enum values, numbers, not user text)
+      // All filter keys should be safe (enum values, bucket names, not user text)
+      // NOTE: 'tradition' is BANNED per Christian General Only invariant
+      // NOTE: 'length_min' is BANNED - use 'length_bucket' only
       for (final key in kLastFiltersAllowedKeys) {
         expect(
-          ['kid_mode', 'story_mode', 'length_min', 'tradition', 'mood'],
+          [
+            'kid_mode',
+            'story_mode',
+            'length_bucket',
+            'mood',
+            'language_style',
+            'storytelling_mode',
+            'pool_size'
+          ],
           contains(key),
           reason: '$key is in last_filters allowlist',
         );
@@ -275,8 +293,8 @@ void main() {
       logEvent('filters_applied', {
         'kid_mode': true,
         'story_mode': 'creative',
-        'length_min': 5,
-        'tradition': 'catholic',
+        'length_bucket': 'short',
+        'mood': 'joyful',
       });
 
       // Get breadcrumbs and verify structure
@@ -325,6 +343,270 @@ void main() {
       for (final crumb in breadcrumbs) {
         expect(crumb.containsKey('userText'), isFalse);
         expect(crumb.containsKey('email'), isFalse);
+      }
+    });
+  });
+
+  group('CRITICAL: Telemetry Invariants - Christian General Only & StoryLengthBucket', () {
+    // These tests enforce HARD invariants on telemetry:
+    // 1. NO 'tradition' field anywhere (Christian General Only - INVARIANTS.md)
+    // 2. NO 'length_min' or minute-based length fields (use 'length_bucket' only)
+    //
+    // DO NOT WEAKEN THESE TESTS.
+
+    test('CRITICAL: tradition field MUST NOT be in any allowlist', () {
+      // Per INVARIANTS.md: Christian General Only - no denomination/tradition fields
+      const bannedKey = 'tradition';
+
+      expect(
+        kSupportBundleAllowedKeys.contains(bannedKey),
+        isFalse,
+        reason:
+            '🚨 INVARIANT VIOLATION: "tradition" in kSupportBundleAllowedKeys violates Christian General Only',
+      );
+
+      expect(
+        kLastFiltersAllowedKeys.contains(bannedKey),
+        isFalse,
+        reason:
+            '🚨 INVARIANT VIOLATION: "tradition" in kLastFiltersAllowedKeys violates Christian General Only',
+      );
+
+      expect(
+        kBreadcrumbAllowedKeys.contains(bannedKey),
+        isFalse,
+        reason:
+            '🚨 INVARIANT VIOLATION: "tradition" in kBreadcrumbAllowedKeys violates Christian General Only',
+      );
+    });
+
+    test('CRITICAL: length_min field MUST NOT be in any allowlist', () {
+      // Per SPEC.md: StoryLengthBucket is canonical, no minutes in active logic
+      const bannedKey = 'length_min';
+
+      expect(
+        kSupportBundleAllowedKeys.contains(bannedKey),
+        isFalse,
+        reason:
+            '🚨 INVARIANT VIOLATION: "length_min" in kSupportBundleAllowedKeys - use length_bucket',
+      );
+
+      expect(
+        kLastFiltersAllowedKeys.contains(bannedKey),
+        isFalse,
+        reason:
+            '🚨 INVARIANT VIOLATION: "length_min" in kLastFiltersAllowedKeys - use length_bucket',
+      );
+
+      expect(
+        kBreadcrumbAllowedKeys.contains(bannedKey),
+        isFalse,
+        reason:
+            '🚨 INVARIANT VIOLATION: "length_min" in kBreadcrumbAllowedKeys - use length_bucket',
+      );
+    });
+
+    test('CRITICAL: length_bucket MUST be in filter allowlists', () {
+      // StoryLengthBucket is the canonical representation
+      expect(
+        kLastFiltersAllowedKeys.contains('length_bucket'),
+        isTrue,
+        reason: 'length_bucket must be allowed in filters (StoryLengthBucket canonical)',
+      );
+
+      expect(
+        kBreadcrumbAllowedKeys.contains('length_bucket'),
+        isTrue,
+        reason: 'length_bucket must be allowed in breadcrumbs (StoryLengthBucket canonical)',
+      );
+    });
+
+    test('CRITICAL: no minute-based length fields in any allowlist', () {
+      // Comprehensive check for any legacy minute-based fields
+      const bannedMinuteFields = [
+        'length_min',
+        'length_max',
+        'length_minutes',
+        'minutes',
+        'duration_minutes',
+      ];
+
+      final allAllowedKeys = <String>{
+        ...kSupportBundleAllowedKeys,
+        ...kLastFiltersAllowedKeys,
+        ...kBreadcrumbAllowedKeys,
+      };
+
+      for (final banned in bannedMinuteFields) {
+        expect(
+          allAllowedKeys.contains(banned),
+          isFalse,
+          reason:
+              '🚨 INVARIANT VIOLATION: "$banned" found in allowlist - use length_bucket instead',
+        );
+      }
+    });
+
+    test('CRITICAL: no denomination fields in any allowlist', () {
+      // Comprehensive check for any tradition/denomination fields
+      const bannedDenominationFields = [
+        'tradition',
+        'denomination',
+        'faith_tradition',
+        'church',
+        'religion',
+      ];
+
+      final allAllowedKeys = <String>{
+        ...kSupportBundleAllowedKeys,
+        ...kLastFiltersAllowedKeys,
+        ...kBreadcrumbAllowedKeys,
+      };
+
+      for (final banned in bannedDenominationFields) {
+        expect(
+          allAllowedKeys.contains(banned),
+          isFalse,
+          reason:
+              '🚨 INVARIANT VIOLATION: "$banned" found in allowlist - violates Christian General Only',
+        );
+      }
+    });
+  });
+
+  group('CRITICAL: story_selected Event Telemetry Invariants', () {
+    // These tests enforce that story_selected events use ONLY canonical fields.
+    // NO minute-based length fields, NO tradition/denomination fields.
+    //
+    // DO NOT WEAKEN THESE TESTS.
+
+    test('CRITICAL: story_selected event MUST NOT contain length_min', () {
+      // Log a story_selected event (simulating what ParableService does)
+      logEvent('story_selected', {
+        'story_id': 'parable_001',
+        'mode': 'adult_traditional',
+        'length_bucket': 'short',
+        'matched_tags': ['grateful'],
+        'selection_method': 'deterministic_lrp',
+        'repeat_allowed': false,
+      });
+
+      final breadcrumbs = getRecentBreadcrumbs();
+      expect(breadcrumbs, isNotEmpty);
+
+      final storySelectedCrumb =
+          breadcrumbs.firstWhere((c) => c['event'] == 'story_selected');
+
+      // CRITICAL: Must NOT contain any minute-based length fields
+      expect(
+        storySelectedCrumb.containsKey('length_min'),
+        isFalse,
+        reason: '🚨 INVARIANT VIOLATION: story_selected contains length_min - use length_bucket only',
+      );
+      expect(
+        storySelectedCrumb.containsKey('length_max'),
+        isFalse,
+        reason: '🚨 INVARIANT VIOLATION: story_selected contains length_max - use length_bucket only',
+      );
+      expect(
+        storySelectedCrumb.containsKey('minutes'),
+        isFalse,
+        reason: '🚨 INVARIANT VIOLATION: story_selected contains minutes - use length_bucket only',
+      );
+      expect(
+        storySelectedCrumb.containsKey('duration_minutes'),
+        isFalse,
+        reason: '🚨 INVARIANT VIOLATION: story_selected contains duration_minutes - use length_bucket only',
+      );
+    });
+
+    test('CRITICAL: story_selected event MUST include length_bucket', () {
+      logEvent('story_selected', {
+        'story_id': 'parable_002',
+        'mode': 'kid_creative',
+        'length_bucket': 'full',
+        'matched_tags': ['anxious'],
+        'selection_method': 'relatability_ranking',
+        'repeat_allowed': true,
+      });
+
+      final breadcrumbs = getRecentBreadcrumbs();
+      final storySelectedCrumb =
+          breadcrumbs.firstWhere((c) => c['event'] == 'story_selected');
+
+      // CRITICAL: Must contain length_bucket (canonical representation)
+      expect(
+        storySelectedCrumb.containsKey('length_bucket'),
+        isTrue,
+        reason: '🚨 INVARIANT VIOLATION: story_selected missing length_bucket - required field',
+      );
+
+      // Verify it's a valid bucket value
+      final lengthBucket = storySelectedCrumb['length_bucket'] as String;
+      expect(
+        ['short', 'full', 'long'].contains(lengthBucket),
+        isTrue,
+        reason: '🚨 INVARIANT VIOLATION: length_bucket must be short/full/long, got: $lengthBucket',
+      );
+    });
+
+    test('CRITICAL: story_selected event MUST NOT contain tradition field', () {
+      logEvent('story_selected', {
+        'story_id': 'parable_003',
+        'mode': 'adult_creative',
+        'length_bucket': 'long',
+        'matched_tags': ['sad'],
+        'selection_method': 'deterministic_lrp',
+        'repeat_allowed': false,
+      });
+
+      final breadcrumbs = getRecentBreadcrumbs();
+      final storySelectedCrumb =
+          breadcrumbs.firstWhere((c) => c['event'] == 'story_selected');
+
+      // CRITICAL: Must NOT contain tradition/denomination fields
+      expect(
+        storySelectedCrumb.containsKey('tradition'),
+        isFalse,
+        reason: '🚨 INVARIANT VIOLATION: story_selected contains tradition - violates Christian General Only',
+      );
+      expect(
+        storySelectedCrumb.containsKey('denomination'),
+        isFalse,
+        reason: '🚨 INVARIANT VIOLATION: story_selected contains denomination - violates Christian General Only',
+      );
+    });
+
+    test('CRITICAL: story_selected required fields check', () {
+      logEvent('story_selected', {
+        'story_id': 'parable_test',
+        'mode': 'kid_traditional',
+        'length_bucket': 'short',
+        'matched_tags': ['grateful', 'waiting'],
+        'selection_method': 'relatability_ranking',
+        'repeat_allowed': false,
+      });
+
+      final breadcrumbs = getRecentBreadcrumbs();
+      final crumb = breadcrumbs.firstWhere((c) => c['event'] == 'story_selected');
+
+      // Verify expected required fields are present
+      expect(crumb.containsKey('story_id'), isTrue, reason: 'story_id is required');
+      expect(crumb.containsKey('mode'), isTrue, reason: 'mode is required');
+      expect(crumb.containsKey('length_bucket'), isTrue, reason: 'length_bucket is required');
+      expect(crumb.containsKey('selection_method'), isTrue, reason: 'selection_method is required');
+
+      // Verify NO banned fields
+      const bannedFields = [
+        'length_min', 'length_max', 'minutes', 'duration_minutes',
+        'tradition', 'denomination', 'faith_tradition',
+      ];
+      for (final banned in bannedFields) {
+        expect(
+          crumb.containsKey(banned),
+          isFalse,
+          reason: '🚨 story_selected contains banned field: $banned',
+        );
       }
     });
   });

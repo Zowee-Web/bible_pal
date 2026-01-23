@@ -45,7 +45,9 @@ void main() {
       container.dispose();
     });
 
-    test('CRITICAL: play() would return needsConsent when storyNarrationEnabled is null', () async {
+    test(
+        'CRITICAL: play() would return needsConsent when storyNarrationEnabled is null',
+        () async {
       // ARRANGE: Default state (consent is null)
       final appState = await container.read(appStateProvider.future);
 
@@ -53,7 +55,8 @@ void main() {
       expect(
         appState.userPreferences.storyNarrationEnabled,
         isNull,
-        reason: '🚨 CONSENT GATE: storyNarrationEnabled should be null by default',
+        reason:
+            '🚨 CONSENT GATE: storyNarrationEnabled should be null by default',
       );
 
       // ASSERT: isStoryNarrationEnabled returns false for null
@@ -61,14 +64,16 @@ void main() {
       expect(
         appState.userPreferences.isStoryNarrationEnabled,
         false,
-        reason: '🚨 CONSENT GATE: isStoryNarrationEnabled must return false when null',
+        reason:
+            '🚨 CONSENT GATE: isStoryNarrationEnabled must return false when null',
       );
 
       // ASSERT: hasAsked returns false (needs dialog)
       expect(
         appState.userPreferences.hasAskedStoryNarrationConsent,
         false,
-        reason: '🚨 CONSENT GATE: hasAskedStoryNarrationConsent must return false when null',
+        reason:
+            '🚨 CONSENT GATE: hasAskedStoryNarrationConsent must return false when null',
       );
     });
 
@@ -120,13 +125,15 @@ void main() {
       expect(
         appState.userPreferences.storyNarrationEnabled,
         false,
-        reason: '🚨 CONSENT GATE: storyNarrationEnabled should be false after disabling',
+        reason:
+            '🚨 CONSENT GATE: storyNarrationEnabled should be false after disabling',
       );
 
       expect(
         appState.userPreferences.isStoryNarrationEnabled,
         false,
-        reason: '🚨 CONSENT GATE: isStoryNarrationEnabled must return false when disabled',
+        reason:
+            '🚨 CONSENT GATE: isStoryNarrationEnabled must return false when disabled',
       );
 
       // But hasAsked should still be true (user was asked)
@@ -185,7 +192,8 @@ void main() {
       expect(
         appState.userPreferences.palGreetingsEnabled,
         isNull,
-        reason: 'PAL greetings should remain null when only story narration is updated',
+        reason:
+            'PAL greetings should remain null when only story narration is updated',
       );
       expect(appState.userPreferences.isPalGreetingsEnabled, false);
     });
@@ -220,7 +228,8 @@ void main() {
       // ASSERT: Both set correctly
       expect(appState.userPreferences.storyNarrationEnabled, true);
       expect(appState.userPreferences.palGreetingsEnabled, false);
-      expect(appState.userPreferences.voiceConsentVersion, currentVoiceConsentVersion);
+      expect(appState.userPreferences.voiceConsentVersion,
+          currentVoiceConsentVersion);
     });
   });
 }

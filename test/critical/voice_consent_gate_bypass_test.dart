@@ -158,8 +158,10 @@ AND ensure it properly uses VoiceConsentGate.
         if (!file.existsSync()) continue;
 
         final content = file.readAsStringSync();
-        if (!content.contains("import 'package:bible_pal/services/voice_consent_gate.dart'") &&
-            !content.contains('import "package:bible_pal/services/voice_consent_gate.dart"')) {
+        if (!content.contains(
+                "import 'package:bible_pal/services/voice_consent_gate.dart'") &&
+            !content.contains(
+                'import "package:bible_pal/services/voice_consent_gate.dart"')) {
           missingImports.add(relativePath);
         }
       }
@@ -172,8 +174,10 @@ AND ensure it properly uses VoiceConsentGate.
         if (!file.existsSync()) continue;
 
         final content = file.readAsStringSync();
-        if (!content.contains("import 'package:bible_pal/services/voice_consent_gate.dart'") &&
-            !content.contains('import "package:bible_pal/services/voice_consent_gate.dart"')) {
+        if (!content.contains(
+                "import 'package:bible_pal/services/voice_consent_gate.dart'") &&
+            !content.contains(
+                'import "package:bible_pal/services/voice_consent_gate.dart"')) {
           missingImports.add(relativePath);
         }
       }

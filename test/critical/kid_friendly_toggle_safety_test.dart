@@ -31,10 +31,10 @@ void main() {
       parableService = ParableService(storageService, null, true);
     });
 
-    test('CRITICAL: Kid mode MUST filter out non-kid-friendly parables', () async {
+    test('CRITICAL: Kid mode MUST filter out non-kid-friendly parables',
+        () async {
       // ARRANGE: Create user preferences with kid mode ON
       final kidModePrefs = UserPreferences(
-        faithTradition: 'Protestant',
         bibleTranslation: 'WEB',
         storytellingMode: 'creative',
         kidFriendlyOnly: true, // KID MODE ENABLED
@@ -72,10 +72,10 @@ void main() {
       );
     });
 
-    test('CRITICAL: selectParable() MUST enforce kid-friendly filter', () async {
+    test('CRITICAL: selectParable() MUST enforce kid-friendly filter',
+        () async {
       // ARRANGE: Kid mode enabled
       final kidModePrefs = UserPreferences(
-        faithTradition: 'Protestant',
         bibleTranslation: 'WEB',
         storytellingMode: 'creative',
         kidFriendlyOnly: true,
@@ -106,10 +106,10 @@ void main() {
       }
     });
 
-    test('CRITICAL: Adult mode MUST ONLY return non-kid-friendly parables', () async {
+    test('CRITICAL: Adult mode MUST ONLY return non-kid-friendly parables',
+        () async {
       // ARRANGE: Kid mode disabled (adult mode)
       final adultModePrefs = UserPreferences(
-        faithTradition: '', // Empty to match test data with "Unspecified"
         bibleTranslation: 'WEB',
         storytellingMode: 'creative',
         kidFriendlyOnly: false, // KID MODE DISABLED (adults want adult content)
@@ -147,10 +147,11 @@ void main() {
       );
     });
 
-    test('CRITICAL: UserPreferences.kidFriendlyOnly defaults to FALSE (safe default)', () {
+    test(
+        'CRITICAL: UserPreferences.kidFriendlyOnly defaults to FALSE (safe default)',
+        () {
       // ARRANGE & ACT: Create UserPreferences with no kidFriendlyOnly specified
       final defaultPrefs = UserPreferences(
-        faithTradition: 'Protestant',
         bibleTranslation: 'WEB',
         storytellingMode: 'creative',
         // kidFriendlyOnly NOT specified - should default to false
@@ -160,7 +161,8 @@ void main() {
       expect(
         defaultPrefs.kidFriendlyOnly,
         false,
-        reason: 'UserPreferences.kidFriendlyOnly should default to false (adult mode).\n'
+        reason:
+            'UserPreferences.kidFriendlyOnly should default to false (adult mode).\n'
             'If it defaults to true, adults will be restricted.\n'
             'If it defaults to null, we have undefined behavior.',
       );
@@ -169,7 +171,6 @@ void main() {
     test('CRITICAL: UserPreferences.copyWith preserves kidFriendlyOnly', () {
       // ARRANGE: Create preferences with kid mode ON
       final originalPrefs = UserPreferences(
-        faithTradition: 'Protestant',
         bibleTranslation: 'WEB',
         storytellingMode: 'creative',
         kidFriendlyOnly: true,
@@ -192,10 +193,10 @@ void main() {
       );
     });
 
-    test('CRITICAL: UserPreferences.fromJson/toJson preserves kidFriendlyOnly', () {
+    test('CRITICAL: UserPreferences.fromJson/toJson preserves kidFriendlyOnly',
+        () {
       // ARRANGE: Create preferences with kid mode ON
       final originalPrefs = UserPreferences(
-        faithTradition: 'Catholic',
         bibleTranslation: 'KJV',
         storytellingMode: 'traditional',
         kidFriendlyOnly: true,
@@ -218,7 +219,6 @@ void main() {
 
       // Test false case too
       final adultPrefs = UserPreferences(
-        faithTradition: 'Orthodox',
         bibleTranslation: 'ASV',
         storytellingMode: 'creative',
         kidFriendlyOnly: false,
@@ -230,7 +230,8 @@ void main() {
       expect(
         deserializedAdult.kidFriendlyOnly,
         false,
-        reason: 'UserPreferences serialization failed for kidFriendlyOnly=false',
+        reason:
+            'UserPreferences serialization failed for kidFriendlyOnly=false',
       );
     });
   });

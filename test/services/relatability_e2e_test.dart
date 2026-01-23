@@ -15,14 +15,19 @@ void main() {
     matcher = RelatabilityMatcher();
 
     // Load real manifest
-    final jsonContent = await rootBundle.loadString('assets/stories/manifest.json');
+    final jsonContent =
+        await rootBundle.loadString('assets/stories/manifest.json');
     final manifestData = jsonDecode(jsonContent) as Map<String, dynamic>;
     final parablesList = manifestData['parables'] as List<dynamic>;
-    allParables = parablesList.map((json) => Parable.fromJson(json as Map<String, dynamic>)).toList();
+    allParables = parablesList
+        .map((json) => Parable.fromJson(json as Map<String, dynamic>))
+        .toList();
   });
 
   group('End-to-End Relatability Matching', () {
-    test('"boss treated me badly and I\'m exhausted" ranks unfair_authority + overwhelmed stories higher', () {
+    test(
+        '"boss treated me badly and I\'m exhausted" ranks unfair_authority + overwhelmed stories higher',
+        () {
       const userText = "my boss treated me badly and I'm exhausted";
 
       // Get all stories (no filtering for this test)
@@ -30,13 +35,16 @@ void main() {
 
       // Verify extracted tags
       final extractedTags = matcher.extractTags(userText);
-      expect(extractedTags, contains('unfair_authority'), reason: '"boss" should trigger unfair_authority');
-      expect(extractedTags, contains('overwhelmed'), reason: '"exhausted" should trigger overwhelmed');
+      expect(extractedTags, contains('unfair_authority'),
+          reason: '"boss" should trigger unfair_authority');
+      expect(extractedTags, contains('overwhelmed'),
+          reason: '"exhausted" should trigger overwhelmed');
 
       // The top-ranked story should have at least one of these tags
       final topStory = ranked.first;
       final topTags = topStory.emotionalTags.toSet();
-      final hasRelevantTag = topTags.contains('unfair_authority') || topTags.contains('overwhelmed');
+      final hasRelevantTag = topTags.contains('unfair_authority') ||
+          topTags.contains('overwhelmed');
 
       expect(
         hasRelevantTag,
@@ -57,7 +65,8 @@ void main() {
       final topStory = ranked.first;
       final topTags = topStory.emotionalTags.toSet();
 
-      final hasRelevantTag = topTags.contains('lonely') || topTags.contains('sad');
+      final hasRelevantTag =
+          topTags.contains('lonely') || topTags.contains('sad');
       expect(
         hasRelevantTag,
         isTrue,
@@ -96,7 +105,8 @@ void main() {
       Parable? oneMatchStory;
 
       for (final parable in ranked) {
-        final matchCount = extractedTags.intersection(parable.emotionalTags.toSet()).length;
+        final matchCount =
+            extractedTags.intersection(parable.emotionalTags.toSet()).length;
         if (matchCount == 2 && twoMatchStory == null) {
           twoMatchStory = parable;
         } else if (matchCount == 1 && oneMatchStory == null) {
@@ -140,20 +150,27 @@ void main() {
       final ranked = matcher.rankByRelatability(userText, allParables);
 
       // Find Daniel stories (which should have unfair_authority tag)
-      final danielStories = ranked.where(
-        (p) => p.title.toLowerCase().contains('daniel') && p.emotionalTags.contains('unfair_authority'),
-      ).toList();
+      final danielStories = ranked
+          .where(
+            (p) =>
+                p.title.toLowerCase().contains('daniel') &&
+                p.emotionalTags.contains('unfair_authority'),
+          )
+          .toList();
 
       if (danielStories.isNotEmpty) {
         // Daniel story should be in top 10 at minimum
         final firstDanielIndex = ranked.indexWhere(
-          (p) => p.title.toLowerCase().contains('daniel') && p.emotionalTags.contains('unfair_authority'),
+          (p) =>
+              p.title.toLowerCase().contains('daniel') &&
+              p.emotionalTags.contains('unfair_authority'),
         );
 
         expect(
           firstDanielIndex,
           lessThan(20),
-          reason: 'Daniel story with unfair_authority tag should rank in top 20 for boss/bully query',
+          reason:
+              'Daniel story with unfair_authority tag should rank in top 20 for boss/bully query',
         );
       }
     });
@@ -178,7 +195,8 @@ void main() {
         expect(
           josephIndex,
           lessThan(10),
-          reason: 'Joseph story should rank in top 10 for rejection + injustice query. '
+          reason:
+              'Joseph story should rank in top 10 for rejection + injustice query. '
               'Actual index: $josephIndex',
         );
       }

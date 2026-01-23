@@ -84,7 +84,8 @@ void main() {
           expect(
             verse.text.toLowerCase().contains('heavy laden'),
             isFalse,
-            reason: 'Found ESV fingerprint "heavy laden" in ${verse.reference}. '
+            reason:
+                'Found ESV fingerprint "heavy laden" in ${verse.reference}. '
                 'This is a COMPLIANCE VIOLATION - copyrighted ESV text detected!',
           );
         }
@@ -103,7 +104,8 @@ void main() {
           expect(
             verse.text.toLowerCase().contains('lowly in heart'),
             isFalse,
-            reason: 'Found ESV fingerprint "lowly in heart" in ${verse.reference}. '
+            reason:
+                'Found ESV fingerprint "lowly in heart" in ${verse.reference}. '
                 'This is a COMPLIANCE VIOLATION - copyrighted ESV text detected!',
           );
         }
@@ -122,7 +124,8 @@ void main() {
           expect(
             verse.text.toLowerCase().contains('conviction of things'),
             isFalse,
-            reason: 'Found ESV fingerprint "conviction of things" in ${verse.reference}. '
+            reason:
+                'Found ESV fingerprint "conviction of things" in ${verse.reference}. '
                 'This is a COMPLIANCE VIOLATION - copyrighted ESV text detected!',
           );
         }
@@ -138,12 +141,15 @@ void main() {
           expect(
             verse.translation,
             equals('WEB'),
-            reason: 'Verse for mood "$mood" must use WEB translation (public domain)',
+            reason:
+                'Verse for mood "$mood" must use WEB translation (public domain)',
           );
         }
       });
 
-      test('WEB translation confirmed (no banned fingerprints + allowlist check)', () {
+      test(
+          'WEB translation confirmed (no banned fingerprints + allowlist check)',
+          () {
         // Deterministic test: Verify WEB usage by checking:
         // 1. Translation field is in allowlist
         // 2. No banned fingerprints appear (using registry scanner)
@@ -156,7 +162,8 @@ void main() {
           expect(
             BibleTranslationRegistry.isAllowed(verse.translation),
             isTrue,
-            reason: 'Verse ${verse.reference} for mood "$mood" uses translation "${verse.translation}" '
+            reason:
+                'Verse ${verse.reference} for mood "$mood" uses translation "${verse.translation}" '
                 'which is not in the allowlist!',
           );
 
@@ -164,15 +171,18 @@ void main() {
           expect(
             BibleTranslationRegistry.isBanned(verse.translation),
             isFalse,
-            reason: 'Verse ${verse.reference} for mood "$mood" uses BANNED translation "${verse.translation}"!',
+            reason:
+                'Verse ${verse.reference} for mood "$mood" uses BANNED translation "${verse.translation}"!',
           );
 
           // Scan for banned fingerprints using registry
-          final detectedFingerprints = BibleTranslationRegistry.scanForBannedFingerprints(verse.text);
+          final detectedFingerprints =
+              BibleTranslationRegistry.scanForBannedFingerprints(verse.text);
           expect(
             detectedFingerprints,
             isEmpty,
-            reason: 'Found banned fingerprints $detectedFingerprints in ${verse.reference} for mood "$mood". '
+            reason:
+                'Found banned fingerprints $detectedFingerprints in ${verse.reference} for mood "$mood". '
                 'This indicates copyrighted translation text!',
           );
         }

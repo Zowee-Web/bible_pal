@@ -77,7 +77,8 @@ void main() {
             greeting.contains('today') ||
             greeting.contains('day'),
         true,
-        reason: 'Afternoon greeting should mention "afternoon", "today", or "day"',
+        reason:
+            'Afternoon greeting should mention "afternoon", "today", or "day"',
       );
     });
 

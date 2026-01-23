@@ -141,24 +141,29 @@ The CROWN was placed upon his head as he became KING.
     });
 
     test('passes for a known-good kid-safe sample', () {
+      // Note: Story must be >= 250 words (LOCKED SPEC short bucket minimum)
       const goodStory = '''
 Little Samuel lay quietly in his soft and comfortable bed. The night was
 peaceful and still all around the temple. He could hear the gentle sounds
 of the wind blowing softly outside his window. Everything felt calm.
+Samuel was thankful for this peaceful night.
 
 A warm and gentle light seemed to fill the entire room around him. Samuel
 felt very safe and loved in his cozy bed. He knew that God was watching
 over him always, just like a caring parent watches over a sleeping child.
 This thought made Samuel smile and feel happy inside.
+The warmth of God's love was all around him.
 
 The bright stars twinkled softly outside his window like tiny lights.
 Samuel whispered a quiet prayer of thanks for the wonderful day. His
 heart felt calm and happy knowing that God heard every word he said.
 Prayer made Samuel feel close to God always.
+Samuel loved talking to God each night.
 
 As his eyes grew heavy with sleep, Samuel remembered all the good things
 of the day. He thought of the kind words, the gentle moments, the peaceful
 hours spent helping Eli in the temple. Every memory was special to him.
+Samuel smiled thinking about all the blessings.
 
 Now it was time to rest for the night. Samuel closed his eyes and smiled
 peacefully. The gentle night wrapped around him like a cozy warm blanket,
@@ -173,7 +178,8 @@ more of God's gentle love and many more wonderful blessings.
 
     test('repair instruction lists all forbidden words found', () {
       // Use exact patterns that match: 'roared', 'devour' (not 'devoured'), 'teeth'
-      const story = 'The lion roared. It would devour its prey. Sharp teeth gleamed.';
+      const story =
+          'The lion roared. It would devour its prey. Sharp teeth gleamed.';
       final result = validator.validate(story);
 
       expect(result.isValid, isFalse);

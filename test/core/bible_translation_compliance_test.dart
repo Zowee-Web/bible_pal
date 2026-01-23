@@ -25,29 +25,35 @@ void main() {
 
       // Verify all allowed translations have required metadata
       for (final translation in BibleTranslationRegistry.allowedTranslations) {
-        expect(translation.id, isNotEmpty, reason: 'Translation must have an ID');
+        expect(translation.id, isNotEmpty,
+            reason: 'Translation must have an ID');
         expect(translation.id, equals(translation.id.toUpperCase()),
             reason: 'Translation ID must be UPPERCASE');
-        expect(translation.name, isNotEmpty, reason: 'Translation must have a name');
+        expect(translation.name, isNotEmpty,
+            reason: 'Translation must have a name');
 
         // Check structured license type (not string matching)
         expect(
           translation.licenseType == LicenseType.publicDomain ||
               translation.licenseType == LicenseType.openLicense,
           isTrue,
-          reason: 'Translation must have valid LicenseType (publicDomain or openLicense)',
+          reason:
+              'Translation must have valid LicenseType (publicDomain or openLicense)',
         );
         expect(translation.licenseName, isNotEmpty,
             reason: 'Translation must have a license name');
 
-        expect(translation.year, greaterThan(0), reason: 'Translation must have a valid year');
-        expect(translation.url, isNotEmpty, reason: 'Translation must have a source URL');
+        expect(translation.year, greaterThan(0),
+            reason: 'Translation must have a valid year');
+        expect(translation.url, isNotEmpty,
+            reason: 'Translation must have a source URL');
       }
     });
 
     test('Default translation is in allowlist', () {
       expect(
-        BibleTranslationRegistry.isAllowed(BibleTranslationRegistry.defaultTranslationId),
+        BibleTranslationRegistry.isAllowed(
+            BibleTranslationRegistry.defaultTranslationId),
         isTrue,
         reason: 'Default translation must be in the allowlist',
       );
@@ -57,12 +63,18 @@ void main() {
       final bannedIds = BibleTranslationRegistry.bannedIds;
 
       // Verify critical banned translations are present
-      expect(bannedIds, contains('NIV'), reason: 'NIV must be explicitly banned');
-      expect(bannedIds, contains('ESV'), reason: 'ESV must be explicitly banned');
-      expect(bannedIds, contains('NRSV'), reason: 'NRSV must be explicitly banned');
-      expect(bannedIds, contains('NLT'), reason: 'NLT must be explicitly banned');
-      expect(bannedIds, contains('NASB'), reason: 'NASB must be explicitly banned');
-      expect(bannedIds, contains('CSB'), reason: 'CSB must be explicitly banned');
+      expect(bannedIds, contains('NIV'),
+          reason: 'NIV must be explicitly banned');
+      expect(bannedIds, contains('ESV'),
+          reason: 'ESV must be explicitly banned');
+      expect(bannedIds, contains('NRSV'),
+          reason: 'NRSV must be explicitly banned');
+      expect(bannedIds, contains('NLT'),
+          reason: 'NLT must be explicitly banned');
+      expect(bannedIds, contains('NASB'),
+          reason: 'NASB must be explicitly banned');
+      expect(bannedIds, contains('CSB'),
+          reason: 'CSB must be explicitly banned');
     });
 
     test('HARD INVARIANT: No overlap between allowed and banned', () {
@@ -95,24 +107,35 @@ void main() {
 
     test('CRITICAL: validateAndSanitize() rejects banned translations', () {
       // Attempt to use banned translations - MUST be reset to default
-      expect(BibleTranslationRegistry.validateAndSanitize('NIV'), equals('WEB'));
-      expect(BibleTranslationRegistry.validateAndSanitize('ESV'), equals('WEB'));
-      expect(BibleTranslationRegistry.validateAndSanitize('NRSV'), equals('WEB'));
-      expect(BibleTranslationRegistry.validateAndSanitize('NLT'), equals('WEB'));
-      expect(BibleTranslationRegistry.validateAndSanitize('NASB'), equals('WEB'));
-      expect(BibleTranslationRegistry.validateAndSanitize('CSB'), equals('WEB'));
+      expect(
+          BibleTranslationRegistry.validateAndSanitize('NIV'), equals('WEB'));
+      expect(
+          BibleTranslationRegistry.validateAndSanitize('ESV'), equals('WEB'));
+      expect(
+          BibleTranslationRegistry.validateAndSanitize('NRSV'), equals('WEB'));
+      expect(
+          BibleTranslationRegistry.validateAndSanitize('NLT'), equals('WEB'));
+      expect(
+          BibleTranslationRegistry.validateAndSanitize('NASB'), equals('WEB'));
+      expect(
+          BibleTranslationRegistry.validateAndSanitize('CSB'), equals('WEB'));
     });
 
     test('validateAndSanitize() accepts allowed translations', () {
-      expect(BibleTranslationRegistry.validateAndSanitize('WEB'), equals('WEB'));
-      expect(BibleTranslationRegistry.validateAndSanitize('KJV'), equals('KJV'));
-      expect(BibleTranslationRegistry.validateAndSanitize('ASV'), equals('ASV'));
+      expect(
+          BibleTranslationRegistry.validateAndSanitize('WEB'), equals('WEB'));
+      expect(
+          BibleTranslationRegistry.validateAndSanitize('KJV'), equals('KJV'));
+      expect(
+          BibleTranslationRegistry.validateAndSanitize('ASV'), equals('ASV'));
     });
 
     test('validateAndSanitize() resets unknown translations to default', () {
-      expect(BibleTranslationRegistry.validateAndSanitize('UNKNOWN'), equals('WEB'));
+      expect(BibleTranslationRegistry.validateAndSanitize('UNKNOWN'),
+          equals('WEB'));
       expect(BibleTranslationRegistry.validateAndSanitize(''), equals('WEB'));
-      expect(BibleTranslationRegistry.validateAndSanitize('FAKE'), equals('WEB'));
+      expect(
+          BibleTranslationRegistry.validateAndSanitize('FAKE'), equals('WEB'));
     });
   });
 
@@ -120,7 +143,6 @@ void main() {
     test('fromJson() blocks banned translations', () {
       // Attempt to load user preferences with banned translation
       final prefs = UserPreferences.fromJson({
-        'faithTradition': 'Protestant',
         'bibleTranslation': 'NIV', // BANNED
         'storytellingMode': 'creative',
       });
@@ -135,7 +157,6 @@ void main() {
 
     test('fromJson() allows valid translations', () {
       final prefs = UserPreferences.fromJson({
-        'faithTradition': 'Protestant',
         'bibleTranslation': 'KJV',
         'storytellingMode': 'creative',
       });
@@ -192,7 +213,8 @@ void main() {
   group('Fingerprint Detection - Text Scanning', () {
     test('scanForBannedFingerprints() detects ESV phrases', () {
       const esvText = 'Come to me, all who are heavy laden';
-      final detected = BibleTranslationRegistry.scanForBannedFingerprints(esvText);
+      final detected =
+          BibleTranslationRegistry.scanForBannedFingerprints(esvText);
 
       expect(
         detected,
@@ -203,7 +225,8 @@ void main() {
 
     test('scanForBannedFingerprints() returns empty for WEB text', () {
       const webText = 'Come to me, all you who labor and are heavily burdened';
-      final detected = BibleTranslationRegistry.scanForBannedFingerprints(webText);
+      final detected =
+          BibleTranslationRegistry.scanForBannedFingerprints(webText);
 
       expect(
         detected,
@@ -226,7 +249,8 @@ void main() {
         expect(
           detectedFingerprints,
           isEmpty,
-          reason: 'Verse ${verse.reference} for mood "$mood" contains banned fingerprints: $detectedFingerprints. '
+          reason:
+              'Verse ${verse.reference} for mood "$mood" contains banned fingerprints: $detectedFingerprints. '
               'This indicates copyrighted translation text!',
         );
       }
@@ -241,14 +265,14 @@ void main() {
 
       for (final banned in testCases) {
         final prefs = UserPreferences.fromJson({
-          'faithTradition': 'Protestant',
           'bibleTranslation': banned,
         });
 
         expect(
           prefs.bibleTranslation,
           isNot(equals(banned)),
-          reason: 'UserPreferences must NEVER contain banned translation "$banned"',
+          reason:
+              'UserPreferences must NEVER contain banned translation "$banned"',
         );
       }
     });
@@ -269,7 +293,8 @@ void main() {
         expect(
           BibleTranslationRegistry.isAllowed(verse.translation),
           isTrue,
-          reason: 'Verse translation "${verse.translation}" must be in allowlist',
+          reason:
+              'Verse translation "${verse.translation}" must be in allowlist',
         );
       }
     });
@@ -293,7 +318,8 @@ void main() {
           expect(
             lowerText.contains(fingerprint.toLowerCase()),
             isFalse,
-            reason: 'Found ESV fingerprint "$fingerprint" in ${verse.reference}. '
+            reason:
+                'Found ESV fingerprint "$fingerprint" in ${verse.reference}. '
                 'This is a COMPLIANCE VIOLATION - copyrighted ESV text detected!',
           );
         }
@@ -308,29 +334,40 @@ void main() {
 
     test('Normalization: Case sensitivity does not bypass validation', () {
       // Try various casings of banned translations - all should be normalized and blocked
-      expect(BibleTranslationRegistry.validateAndSanitize('niv'), equals('WEB'));
-      expect(BibleTranslationRegistry.validateAndSanitize('Niv'), equals('WEB'));
-      expect(BibleTranslationRegistry.validateAndSanitize('esv'), equals('WEB'));
-      expect(BibleTranslationRegistry.validateAndSanitize('Esv'), equals('WEB'));
+      expect(
+          BibleTranslationRegistry.validateAndSanitize('niv'), equals('WEB'));
+      expect(
+          BibleTranslationRegistry.validateAndSanitize('Niv'), equals('WEB'));
+      expect(
+          BibleTranslationRegistry.validateAndSanitize('esv'), equals('WEB'));
+      expect(
+          BibleTranslationRegistry.validateAndSanitize('Esv'), equals('WEB'));
     });
 
     test('Normalization: Whitespace does not bypass validation', () {
       // Whitespace should be trimmed before checking
-      expect(BibleTranslationRegistry.validateAndSanitize(' NIV '), equals('WEB'));
-      expect(BibleTranslationRegistry.validateAndSanitize('\tESV\n'), equals('WEB'));
-      expect(BibleTranslationRegistry.validateAndSanitize('  nlt  '), equals('WEB'));
+      expect(
+          BibleTranslationRegistry.validateAndSanitize(' NIV '), equals('WEB'));
+      expect(BibleTranslationRegistry.validateAndSanitize('\tESV\n'),
+          equals('WEB'));
+      expect(BibleTranslationRegistry.validateAndSanitize('  nlt  '),
+          equals('WEB'));
     });
 
     test('Normalization: Allowed translations are normalized to uppercase', () {
       // Lowercase allowed translations should be normalized and accepted
-      expect(BibleTranslationRegistry.validateAndSanitize('web'), equals('WEB'));
-      expect(BibleTranslationRegistry.validateAndSanitize('kjv'), equals('KJV'));
-      expect(BibleTranslationRegistry.validateAndSanitize(' asv '), equals('ASV'));
+      expect(
+          BibleTranslationRegistry.validateAndSanitize('web'), equals('WEB'));
+      expect(
+          BibleTranslationRegistry.validateAndSanitize('kjv'), equals('KJV'));
+      expect(
+          BibleTranslationRegistry.validateAndSanitize(' asv '), equals('ASV'));
     });
 
     test('UserPreferences.defaults() uses allowed translation', () {
       final defaults = UserPreferences.defaults();
-      expect(BibleTranslationRegistry.isAllowed(defaults.bibleTranslation), isTrue);
+      expect(BibleTranslationRegistry.isAllowed(defaults.bibleTranslation),
+          isTrue);
       expect(defaults.bibleTranslation, equals('WEB'));
     });
   });

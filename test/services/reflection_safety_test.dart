@@ -52,12 +52,14 @@ void main() {
           expect(
             text.contains(phrase),
             isFalse,
-            reason: 'Adult mood reflection "$mood" contains banned phrase "$phrase" in text',
+            reason:
+                'Adult mood reflection "$mood" contains banned phrase "$phrase" in text',
           );
           expect(
             question.contains(phrase),
             isFalse,
-            reason: 'Adult mood reflection "$mood" contains banned phrase "$phrase" in question',
+            reason:
+                'Adult mood reflection "$mood" contains banned phrase "$phrase" in question',
           );
         }
       }
@@ -74,12 +76,14 @@ void main() {
           expect(
             text.contains(phrase),
             isFalse,
-            reason: 'Adult tag reflection "$tag" contains banned phrase "$phrase" in text',
+            reason:
+                'Adult tag reflection "$tag" contains banned phrase "$phrase" in text',
           );
           expect(
             question.contains(phrase),
             isFalse,
-            reason: 'Adult tag reflection "$tag" contains banned phrase "$phrase" in question',
+            reason:
+                'Adult tag reflection "$tag" contains banned phrase "$phrase" in question',
           );
         }
       }
@@ -95,7 +99,8 @@ void main() {
           expect(
             text.contains(phrase),
             isFalse,
-            reason: 'Kid mood reflection "$mood" contains banned phrase "$phrase"',
+            reason:
+                'Kid mood reflection "$mood" contains banned phrase "$phrase"',
           );
         }
       }
@@ -111,7 +116,8 @@ void main() {
           expect(
             text.contains(phrase),
             isFalse,
-            reason: 'Kid tag reflection "$tag" contains banned phrase "$phrase"',
+            reason:
+                'Kid tag reflection "$tag" contains banned phrase "$phrase"',
           );
         }
       }
@@ -150,7 +156,8 @@ void main() {
         expect(
           reflection.text.length,
           lessThanOrEqualTo(maxLength),
-          reason: 'Kid mood reflection "$mood" is too long (${reflection.text.length} chars)',
+          reason:
+              'Kid mood reflection "$mood" is too long (${reflection.text.length} chars)',
         );
       }
 
@@ -160,7 +167,8 @@ void main() {
         expect(
           reflection.text.length,
           lessThanOrEqualTo(maxLength),
-          reason: 'Kid tag reflection "$tag" is too long (${reflection.text.length} chars)',
+          reason:
+              'Kid tag reflection "$tag" is too long (${reflection.text.length} chars)',
         );
       }
     });
@@ -172,7 +180,8 @@ void main() {
         expect(
           reflection.text.startsWith('This story shows'),
           isTrue,
-          reason: 'Kid mood reflection "$mood" should start with "This story shows"',
+          reason:
+              'Kid mood reflection "$mood" should start with "This story shows"',
         );
       }
 
@@ -182,7 +191,8 @@ void main() {
         expect(
           reflection.text.startsWith('This story shows'),
           isTrue,
-          reason: 'Kid tag reflection "$tag" should start with "This story shows"',
+          reason:
+              'Kid tag reflection "$tag" should start with "This story shows"',
         );
       }
     });
@@ -201,7 +211,6 @@ void main() {
         title: 'Test Story',
         mood: 'joyful',
         length: 5,
-        faithTradition: 'Non-Denominational',
         storytellingMode: 'creative',
         kidFriendly: false,
       );
@@ -221,7 +230,6 @@ void main() {
         title: 'Test Story',
         mood: 'joyful',
         length: 5,
-        faithTradition: 'Non-Denominational',
         storytellingMode: 'creative',
         kidFriendly: true,
       );
@@ -243,7 +251,6 @@ void main() {
         mood: 'joyful',
         emotionalTags: ['grief'], // Tag should take priority
         length: 5,
-        faithTradition: 'Non-Denominational',
         storytellingMode: 'creative',
         kidFriendly: false,
       );
@@ -263,7 +270,6 @@ void main() {
         title: 'Test Story',
         mood: 'joyful',
         length: 5,
-        faithTradition: 'Non-Denominational',
         storytellingMode: 'creative',
         kidFriendly: false,
       );
@@ -277,13 +283,13 @@ void main() {
       expect(result, isFalse);
     });
 
-    test('shouldShowReflection returns true when enabled and reflection exists', () {
+    test('shouldShowReflection returns true when enabled and reflection exists',
+        () {
       final parable = Parable(
         storyId: 'test-5',
         title: 'Test Story',
         mood: 'joyful',
         length: 5,
-        faithTradition: 'Non-Denominational',
         storytellingMode: 'creative',
         kidFriendly: false,
       );
@@ -306,7 +312,6 @@ void main() {
 
     test('persists through JSON serialization', () {
       final prefs = UserPreferences(
-        faithTradition: 'Protestant',
         bibleTranslation: 'WEB',
         showEverydayReflections: false,
       );
@@ -319,7 +324,6 @@ void main() {
 
     test('persists true value through JSON serialization', () {
       final prefs = UserPreferences(
-        faithTradition: 'Protestant',
         bibleTranslation: 'WEB',
         showEverydayReflections: true,
       );
@@ -332,20 +336,18 @@ void main() {
 
     test('copyWith preserves showEverydayReflections', () {
       final prefs = UserPreferences(
-        faithTradition: 'Protestant',
         bibleTranslation: 'WEB',
         showEverydayReflections: false,
       );
 
-      final updated = prefs.copyWith(faithTradition: 'Catholic');
+      final updated = prefs.copyWith(bibleTranslation: 'KJV');
 
       expect(updated.showEverydayReflections, isFalse);
-      expect(updated.faithTradition, 'Catholic');
+      expect(updated.bibleTranslation, 'KJV');
     });
 
     test('copyWith can change showEverydayReflections', () {
       final prefs = UserPreferences(
-        faithTradition: 'Protestant',
         bibleTranslation: 'WEB',
         showEverydayReflections: false,
       );
@@ -357,7 +359,6 @@ void main() {
 
     test('fromJson defaults to true when key is missing', () {
       final json = <String, dynamic>{
-        'faithTradition': 'Protestant',
         'bibleTranslation': 'WEB',
         // showEverydayReflections not present
       };

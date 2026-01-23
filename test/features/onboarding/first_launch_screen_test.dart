@@ -44,7 +44,8 @@ void main() {
       expect(find.textContaining('Hi'), findsOneWidget);
     });
 
-    testWidgets('shows name input field after typing completes', (tester) async {
+    testWidgets('shows name input field after typing completes',
+        (tester) async {
       await tester.pumpWidget(
         const ProviderScope(
           child: MaterialApp(

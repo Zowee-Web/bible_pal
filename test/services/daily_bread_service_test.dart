@@ -103,7 +103,8 @@ void main() {
         expect(
           verses.length >= 120,
           true,
-          reason: 'Asset should have at least 120 verses for variety, found ${verses.length}',
+          reason:
+              'Asset should have at least 120 verses for variety, found ${verses.length}',
         );
       });
 
@@ -124,12 +125,14 @@ void main() {
             expect(
               text.containsKey(translation),
               true,
-              reason: 'Verse "$id" ($reference) missing $translation translation.',
+              reason:
+                  'Verse "$id" ($reference) missing $translation translation.',
             );
             expect(
               (text[translation] as String).isNotEmpty,
               true,
-              reason: 'Verse "$id" ($reference) has empty $translation translation.',
+              reason:
+                  'Verse "$id" ($reference) has empty $translation translation.',
             );
           }
         }
@@ -139,7 +142,6 @@ void main() {
     group('Deterministic Selection', () {
       test('Same date always returns same verse', () async {
         final prefs = UserPreferences(
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'creative',
         );
@@ -156,7 +158,6 @@ void main() {
       test('Different dates return different verses (modulo verse count)',
           () async {
         final prefs = UserPreferences(
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'creative',
         );
@@ -182,9 +183,9 @@ void main() {
         }
       });
 
-      test('Selection uses (dayOfYear - 1) modulo verse count formula', () async {
+      test('Selection uses (dayOfYear - 1) modulo verse count formula',
+          () async {
         final prefs = UserPreferences(
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'creative',
         );
@@ -216,7 +217,6 @@ void main() {
 
       test('Leap year day 366 works correctly', () async {
         final prefs = UserPreferences(
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'creative',
         );
@@ -234,13 +234,11 @@ void main() {
     group('Translation Selection', () {
       test('Returns verse in requested translation when available', () async {
         final prefsKJV = UserPreferences(
-          faithTradition: 'Protestant',
           bibleTranslation: 'KJV',
           storytellingMode: 'creative',
         );
 
         final prefsWEB = UserPreferences(
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'creative',
         );
@@ -327,7 +325,6 @@ void main() {
     group('Caching', () {
       test('Caches verses after first load', () async {
         final prefs = UserPreferences(
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'creative',
         );
@@ -344,7 +341,6 @@ void main() {
 
       test('clearCache() allows reload', () async {
         final prefs = UserPreferences(
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'creative',
         );

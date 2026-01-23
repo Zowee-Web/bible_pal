@@ -101,7 +101,8 @@ void main() {
       );
 
       expect(mockReporter.recordedBreadcrumbs, hasLength(1));
-      expect(mockReporter.recordedBreadcrumbs.first['event'], equals('test_event'));
+      expect(mockReporter.recordedBreadcrumbs.first['event'],
+          equals('test_event'));
     });
 
     test('custom reporter receives errors', () {
@@ -115,7 +116,8 @@ void main() {
       );
 
       expect(mockReporter.reportedErrors, hasLength(1));
-      expect(mockReporter.reportedErrors.first['errorType'], equals('audio_load_failed'));
+      expect(mockReporter.reportedErrors.first['errorType'],
+          equals('audio_load_failed'));
     });
 
     test('custom reporter receives fatal crashes', () {

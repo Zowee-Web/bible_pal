@@ -8,9 +8,17 @@ void main() {
   });
 
   group('AppLogger Privacy Enforcement', () {
-    test('CRITICAL: blocks raw text fields (userText, message, prompt, transcript)', () {
+    test(
+        'CRITICAL: blocks raw text fields (userText, message, prompt, transcript)',
+        () {
       // These keys should NEVER be logged - they contain user input
-      final blockedKeys = ['userText', 'user_text', 'message', 'prompt', 'transcript'];
+      final blockedKeys = [
+        'userText',
+        'user_text',
+        'message',
+        'prompt',
+        'transcript'
+      ];
 
       for (final key in blockedKeys) {
         final result = logEvent('test_event', {
@@ -27,7 +35,16 @@ void main() {
     });
 
     test('CRITICAL: blocks PII fields (email, phone, name, password)', () {
-      final piiKeys = ['email', 'phone', 'name', 'firstName', 'lastName', 'password', 'token', 'secret'];
+      final piiKeys = [
+        'email',
+        'phone',
+        'name',
+        'firstName',
+        'lastName',
+        'password',
+        'token',
+        'secret'
+      ];
 
       for (final key in piiKeys) {
         final result = logEvent('test_event', {
@@ -75,8 +92,8 @@ void main() {
     test('allows safe fields without PII', () {
       final result = logEvent('story_selected', {
         'story_id': 'parable_113',
-        'mode': 'kid_traditional',
-        'length_min': 5,
+        'storytelling_mode': 'traditional',
+        'length_bucket': 'short',
         'score': 0.82,
         'repeat_allowed': false,
       });
@@ -88,8 +105,8 @@ void main() {
       final result = logEvent('filters_applied', {
         'filters': {
           'kid_mode': true,
-          'tradition': 'catholic',
-          'mode': 'traditional',
+          'storytelling_mode': 'traditional',
+          'length_bucket': 'short',
         },
         'counts': {
           'total': 100,
@@ -373,7 +390,8 @@ void main() {
   group('AppLogger Log Levels', () {
     test('supports all log levels', () {
       expect(
-        () => logEvent('debug_event', {'level': 'debug'}, level: LogLevel.debug),
+        () =>
+            logEvent('debug_event', {'level': 'debug'}, level: LogLevel.debug),
         returnsNormally,
       );
       expect(
@@ -385,7 +403,8 @@ void main() {
         returnsNormally,
       );
       expect(
-        () => logEvent('error_event', {'level': 'error'}, level: LogLevel.error),
+        () =>
+            logEvent('error_event', {'level': 'error'}, level: LogLevel.error),
         returnsNormally,
       );
     });
@@ -404,9 +423,9 @@ void main() {
     test('story_selected event with required fields', () {
       final result = logEvent('story_selected', {
         'story_id': 'parable_113',
-        'mode': 'kid_traditional',
-        'length_min': 5,
-        'tradition': 'catholic',
+        'storytelling_mode': 'traditional',
+        'length_bucket': 'short',
+        'kid_mode': true,
         'matched_tags': ['calm_peaceful', 'trust'],
         'score': 0.82,
         'repeat_allowed': false,
@@ -456,10 +475,13 @@ void main() {
     });
 
     test('kid_mode_guard_fail event', () {
-      final result = logEvent('kid_mode_guard_fail', {
-        'violation_reason': 'non_kid_friendly_content_leaked',
-        'leaked_count': 2,
-      }, level: LogLevel.error);
+      final result = logEvent(
+          'kid_mode_guard_fail',
+          {
+            'violation_reason': 'non_kid_friendly_content_leaked',
+            'leaked_count': 2,
+          },
+          level: LogLevel.error);
 
       expect(result, equals(LogResult.success));
     });

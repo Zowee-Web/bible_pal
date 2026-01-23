@@ -31,24 +31,29 @@ void main() {
     test('accepts valid story on first attempt without regeneration', () {
       var regenerationCount = 0;
 
+      // Note: Story must be >= 250 words (LOCKED SPEC short bucket minimum)
       const validStory = '''
 Samuel was a young boy who lived in a special place called the temple. It was
 a quiet and peaceful building where people came to pray. Samuel had a small
 bed in a cozy corner, and he felt very safe and loved there every single day.
+The temple was his home, and he loved it very much.
 
 Every day, Samuel helped the kind old priest named Eli with daily tasks.
 He would carry things carefully and keep everything clean and tidy.
 Eli was like a grandfather to Samuel, always gentle, patient, and caring.
 Everything was peaceful and calm in their little home together.
+Samuel enjoyed every moment of helping his dear friend Eli.
 
 One quiet night, Samuel heard a gentle voice calling his name softly.
 At first he thought it was Eli, but Eli was sleeping peacefully.
 Samuel felt curious but not afraid. He trusted that everything was okay.
 The voice was soft and kind, like a loving parent speaking to a child.
+Samuel listened carefully and wondered who could be calling.
 
 Samuel learned to listen carefully to God. He felt so special knowing
 that God wanted to talk with him. Samuel felt loved and important.
 God cared for Samuel just like God cares for every child in the world.
+This made Samuel happy and thankful for God's love.
 
 The stars twinkled softly outside his window like tiny nightlights.
 Samuel whispered a quiet prayer of thanks. His heart felt calm.
@@ -194,7 +199,8 @@ all the tired villagers as they rested in their warm comfortable beds.
 
       expect(result.isKidSafe, isFalse);
       expect(result.attemptCount, equals(3));
-      expect(regenerationCount, equals(2)); // 2 regenerations after first attempt
+      expect(
+          regenerationCount, equals(2)); // 2 regenerations after first attempt
       expect(result.finalViolations, isNotEmpty);
     });
 
@@ -245,7 +251,8 @@ All the tired people closed their eyes and drifted off to restful sleep.
     });
 
     test('repair instruction includes all failure reasons', () {
-      const badStory = 'The king roared.'; // Short, bad word, no bedtime closing
+      const badStory =
+          'The king roared.'; // Short, bad word, no bedtime closing
 
       final result = validator.validate(badStory);
 

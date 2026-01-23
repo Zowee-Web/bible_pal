@@ -1,6 +1,6 @@
 // CRITICAL STORY TRANSLATION FILTER TEST
-// This test ensures that stories are correctly filtered by translationId.
-// storyLanguage (WEB/KJV) must match story's translationId for proper content segregation.
+// This test ensures that stories are correctly filtered by languageStyle (Contracts v2).
+// languageStyle (WEB/KJV) must match story's translationId for proper content segregation.
 //
 // DO NOT DISABLE OR WEAKEN THIS TEST.
 
@@ -32,9 +32,11 @@ void main() {
       parableService = ParableService(storageService, null, true);
     });
 
-    test('CRITICAL: All parables in manifest MUST have translationId field', () async {
+    test('CRITICAL: All parables in manifest MUST have translationId field',
+        () async {
       // ARRANGE: Load manifest.json directly to check ALL entries
-      final jsonContent = await rootBundle.loadString('assets/stories/manifest.json');
+      final jsonContent =
+          await rootBundle.loadString('assets/stories/manifest.json');
       final manifestData = jsonDecode(jsonContent) as Map<String, dynamic>;
       final parablesList = manifestData['parables'] as List<dynamic>;
 
@@ -68,15 +70,16 @@ void main() {
       expect(
         parablesList.length,
         greaterThan(10),
-        reason: 'Manifest should have more than 10 parables. Found: ${parablesList.length}',
+        reason:
+            'Manifest should have more than 10 parables. Found: ${parablesList.length}',
       );
     });
 
-    test('CRITICAL: WEB stories MUST be returned when storyLanguage is WEB', () async {
+    test('CRITICAL: WEB stories MUST be returned when storyLanguage is WEB',
+        () async {
       // ARRANGE: User with WEB preference (default)
       // Note: storyLanguage will be added in Phase 2, currently defaults to WEB in ParableService
       final webPrefs = UserPreferences(
-        faithTradition: '',
         bibleTranslation: 'WEB',
         storytellingMode: 'creative',
         kidFriendlyOnly: false,
@@ -109,7 +112,6 @@ void main() {
         title: 'Test WEB Story',
         mood: 'joyful',
         length: 5,
-        faithTradition: 'Protestant',
         storytellingMode: 'creative',
         translationId: 'WEB',
         kidFriendly: false,
@@ -129,7 +131,6 @@ void main() {
         title: 'Test KJV Story',
         mood: 'weary',
         length: 10,
-        faithTradition: 'Protestant',
         storytellingMode: 'traditional',
         translationId: 'KJV',
         kidFriendly: true,
@@ -142,7 +143,8 @@ void main() {
       expect(deserializedKjv.translationId, 'KJV');
     });
 
-    test('CRITICAL: Parable.fromJson defaults to WEB if translationId missing', () {
+    test('CRITICAL: Parable.fromJson defaults to WEB if translationId missing',
+        () {
       // ARRANGE: JSON without translationId (legacy data)
       final legacyJson = {
         'storyId': 'legacy_001',
@@ -150,7 +152,6 @@ void main() {
         'mood': 'joyful',
         'emotionalTags': <String>[],
         'length': 5,
-        'faithTradition': 'Protestant',
         'storytellingMode': 'creative',
         'kidFriendly': false,
         // Note: no translationId field
@@ -175,7 +176,6 @@ void main() {
         title: 'Original Title',
         mood: 'weary',
         length: 10,
-        faithTradition: 'Protestant',
         storytellingMode: 'traditional',
         translationId: 'KJV',
         kidFriendly: false,
@@ -205,7 +205,6 @@ void main() {
         title: 'Test Story',
         mood: 'joyful',
         length: 5,
-        faithTradition: 'Protestant',
         storytellingMode: 'creative',
         translationId: 'WEB',
         kidFriendly: false,
@@ -221,12 +220,13 @@ void main() {
       expect(originalParable.translationId, 'WEB'); // Original unchanged
     });
 
-    test('CRITICAL: KJV stories MUST be returned when storyLanguage is KJV', () async {
-      // ARRANGE: User with KJV story language preference
+    test('CRITICAL: KJV stories MUST be returned when languageStyle is KJV',
+        () async {
+      // ARRANGE: User with KJV language style preference (Contracts v2)
       final kjvPrefs = UserPreferences(
-        faithTradition: '',
         bibleTranslation: 'KJV',
-        storyLanguage: 'KJV', // Explicitly set KJV story language
+        languageStyle:
+            'KJV', // Explicitly set KJV language style (Contracts v2)
         storytellingMode: 'creative',
         kidFriendlyOnly: false,
       );
@@ -244,57 +244,57 @@ void main() {
         expect(
           parable.translationId,
           'KJV',
-          reason: '🚨 STORY LANGUAGE VIOLATION 🚨\n'
+          reason: '🚨 LANGUAGE STYLE VIOLATION 🚨\n'
               'Parable "${parable.title}" (ID: ${parable.storyId}) has translationId="${parable.translationId}"\n'
-              'but was returned when storyLanguage=KJV.\n'
-              'Stories must be filtered by translationId to match user\'s Story Language preference.',
+              'but was returned when languageStyle=KJV.\n'
+              'Stories must be filtered by translationId to match user\'s languageStyle preference.',
         );
       }
     });
 
-    test('CRITICAL: UserPreferences.storyLanguage defaults to WEB', () {
+    test('CRITICAL: UserPreferences.languageStyle defaults to WEB', () {
       // ARRANGE & ACT: Create UserPreferences with defaults
       final defaultPrefs = UserPreferences.defaults();
 
-      // ASSERT: storyLanguage should default to WEB
+      // ASSERT: languageStyle should default to WEB (Contracts v2)
       expect(
-        defaultPrefs.storyLanguage,
+        defaultPrefs.languageStyle,
         'WEB',
-        reason: 'UserPreferences.storyLanguage should default to WEB (Modern).',
+        reason: 'UserPreferences.languageStyle should default to WEB (Modern).',
       );
     });
 
-    test('CRITICAL: UserPreferences.storyLanguage validates to WEB or KJV only', () {
-      // ARRANGE: JSON with invalid storyLanguage (use constructed invalid value
+    test('CRITICAL: UserPreferences.languageStyle validates to WEB or KJV only',
+        () {
+      // ARRANGE: JSON with invalid languageStyle (use constructed invalid value
       // to avoid literal banned translation tokens in test code)
       const invalidValue = 'INVALID_TRANSLATION'; // Any non-WEB/KJV value
       final invalidJson = {
-        'faithTradition': 'Protestant',
         'bibleTranslation': 'WEB',
-        'storyLanguage': invalidValue,
+        'languageStyle': invalidValue,
         'storytellingMode': 'creative',
         'kidFriendlyOnly': false,
       };
 
-      // ACT: Parse JSON with invalid storyLanguage
+      // ACT: Parse JSON with invalid languageStyle
       final prefs = UserPreferences.fromJson(invalidJson);
 
-      // ASSERT: Invalid storyLanguage should be sanitized to WEB
+      // ASSERT: Invalid languageStyle should be sanitized to WEB
       expect(
-        prefs.storyLanguage,
+        prefs.languageStyle,
         'WEB',
-        reason: '🚨 CRITICAL: Invalid storyLanguage "$invalidValue" was NOT sanitized!\n'
-            'Only WEB or KJV are allowed for storyLanguage.\n'
+        reason:
+            '🚨 CRITICAL: Invalid languageStyle "$invalidValue" was NOT sanitized!\n'
+            'Only WEB or KJV are allowed for languageStyle.\n'
             'Invalid values must be reset to WEB.',
       );
     });
 
-    test('CRITICAL: UserPreferences.copyWith preserves storyLanguage', () {
-      // ARRANGE: Create preferences with KJV story language
+    test('CRITICAL: UserPreferences.copyWith preserves languageStyle', () {
+      // ARRANGE: Create preferences with KJV language style
       final originalPrefs = UserPreferences(
-        faithTradition: 'Protestant',
         bibleTranslation: 'KJV',
-        storyLanguage: 'KJV',
+        languageStyle: 'KJV',
         storytellingMode: 'creative',
         kidFriendlyOnly: false,
       );
@@ -304,24 +304,24 @@ void main() {
         storytellingMode: 'traditional',
       );
 
-      // ASSERT: storyLanguage MUST be preserved
+      // ASSERT: languageStyle MUST be preserved
       expect(
-        copiedPrefs.storyLanguage,
+        copiedPrefs.languageStyle,
         'KJV',
         reason: '🚨 CRITICAL BUG 🚨\n'
-            'UserPreferences.copyWith() did NOT preserve storyLanguage!\n'
-            'Original: storyLanguage=KJV\n'
-            'Copied: storyLanguage=${copiedPrefs.storyLanguage}\n'
-            'This means updating other preferences will accidentally change story language!',
+            'UserPreferences.copyWith() did NOT preserve languageStyle!\n'
+            'Original: languageStyle=KJV\n'
+            'Copied: languageStyle=${copiedPrefs.languageStyle}\n'
+            'This means updating other preferences will accidentally change language style!',
       );
     });
 
-    test('CRITICAL: UserPreferences.fromJson/toJson preserves storyLanguage', () {
-      // ARRANGE: Create preferences with KJV story language
+    test('CRITICAL: UserPreferences.fromJson/toJson preserves languageStyle',
+        () {
+      // ARRANGE: Create preferences with KJV language style
       final originalPrefs = UserPreferences(
-        faithTradition: 'Catholic',
         bibleTranslation: 'KJV',
-        storyLanguage: 'KJV',
+        languageStyle: 'KJV',
         storytellingMode: 'traditional',
         kidFriendlyOnly: true,
       );
@@ -330,22 +330,21 @@ void main() {
       final json = originalPrefs.toJson();
       final deserializedPrefs = UserPreferences.fromJson(json);
 
-      // ASSERT: storyLanguage MUST survive serialization
+      // ASSERT: languageStyle MUST survive serialization
       expect(
-        deserializedPrefs.storyLanguage,
+        deserializedPrefs.languageStyle,
         'KJV',
         reason: '🚨 CRITICAL BUG 🚨\n'
-            'UserPreferences serialization lost storyLanguage!\n'
-            'Original: storyLanguage=KJV\n'
-            'After JSON round-trip: storyLanguage=${deserializedPrefs.storyLanguage}\n'
-            'This means saving/loading preferences will lose story language setting!',
+            'UserPreferences serialization lost languageStyle!\n'
+            'Original: languageStyle=KJV\n'
+            'After JSON round-trip: languageStyle=${deserializedPrefs.languageStyle}\n'
+            'This means saving/loading preferences will lose language style setting!',
       );
 
       // Test WEB case too
       final webPrefs = UserPreferences(
-        faithTradition: 'Orthodox',
         bibleTranslation: 'WEB',
-        storyLanguage: 'WEB',
+        languageStyle: 'WEB',
         storytellingMode: 'creative',
         kidFriendlyOnly: false,
       );
@@ -354,9 +353,9 @@ void main() {
       final deserializedWeb = UserPreferences.fromJson(webJson);
 
       expect(
-        deserializedWeb.storyLanguage,
+        deserializedWeb.languageStyle,
         'WEB',
-        reason: 'UserPreferences serialization failed for storyLanguage=WEB',
+        reason: 'UserPreferences serialization failed for languageStyle=WEB',
       );
     });
   });

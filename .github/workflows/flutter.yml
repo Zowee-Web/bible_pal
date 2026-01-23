@@ -92,3 +92,66 @@ jobs:
         echo "✅  Only open-source/public-domain translations detected."
         echo "✅"
         echo "✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅"
+
+    - name: 🔒 CRITICAL - Forbidden Telemetry Token Scan
+      run: |
+        set -euo pipefail
+        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        echo "🔒 TELEMETRY FORBIDDEN TOKEN SCAN"
+        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        echo ""
+        echo "This step enforces the Telemetry Forbidden Tokens Invariant."
+        echo "See docs/INVARIANTS.md for details."
+        echo ""
+        echo "HARD REQUIREMENT: Minute-based length fields must NEVER"
+        echo "appear in telemetry, allowlists, or support bundles."
+        echo ""
+        echo "Forbidden tokens: length_min, length_max, duration_minutes,"
+        echo "                  story_length_minutes, length_minutes"
+        echo ""
+        echo "Canonical field: length_bucket (short/full/long)"
+        echo ""
+        echo "Scanning lib/ and test/ for forbidden tokens..."
+        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+        PATTERN='length_min|length_max|duration_minutes|story_length_minutes'
+
+        # Scan lib/ directory (excluding comments in grep is hard, but Dart test is authoritative)
+        # This is defense-in-depth - the Dart test is the primary enforcement
+        if grep -RInE "'${PATTERN}'|\"${PATTERN}\"" lib 2>/dev/null | grep -v "// " | grep -v "/// " | head -20; then
+          echo ""
+          echo "❌ WARNING: Potential forbidden telemetry tokens detected in lib/"
+          echo "   The authoritative test is: flutter test test/critical/telemetry_forbidden_tokens_test.dart"
+          echo "   If the Dart test passes, this grep may be a false positive (e.g., in comments)."
+          echo ""
+        fi
+
+        # Run the authoritative Dart test
+        echo ""
+        echo "Running authoritative Dart test..."
+        flutter test test/critical/telemetry_forbidden_tokens_test.dart
+
+    - name: Check telemetry token scan results
+      if: failure()
+      run: |
+        echo ""
+        echo "❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌"
+        echo "❌"
+        echo "❌  TELEMETRY INVARIANT VIOLATION DETECTED"
+        echo "❌"
+        echo "❌  Minute-based length fields are BANNED from telemetry."
+        echo "❌  Use StoryLengthBucket (short/full/long) via length_bucket only."
+        echo "❌"
+        echo "❌  Forbidden: length_min, length_max, duration_minutes,"
+        echo "❌             story_length_minutes, length_minutes"
+        echo "❌"
+        echo "❌  To fix:"
+        echo "❌  1. Review the test output above"
+        echo "❌  2. Remove all minute-based length fields from telemetry"
+        echo "❌  3. Use length_bucket instead"
+        echo "❌  4. Re-run: flutter test test/critical/telemetry_forbidden_tokens_test.dart"
+        echo "❌"
+        echo "❌  See docs/INVARIANTS.md - Telemetry: No minute-based length fields"
+        echo "❌"
+        echo "❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌"
+        exit 1

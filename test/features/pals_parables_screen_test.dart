@@ -11,7 +11,9 @@ void main() {
   });
 
   group('StoryLengthBucket', () {
-    test('UI shows exactly 3 length buckets: Short Story, Full Story, Long Story', () {
+    test(
+        'UI shows exactly 3 length buckets: Short Story, Full Story, Long Story',
+        () {
       // Verify the enum has exactly 3 values
       expect(StoryLengthBucket.values.length, 3);
 
@@ -27,15 +29,16 @@ void main() {
       expect(StoryLengthBucket.long.displayLabel, 'Long Story');
     });
 
-    test('word count ranges are defined correctly per SPEC.md', () {
-      // Short: 300-700 words
-      expect(StoryLengthBucket.short.wordCountRange, (300, 700));
+    test('word count ranges are defined correctly per LOCKED SPEC', () {
+      // LOCKED SPEC word count ranges:
+      // Short: 250-600 words
+      expect(StoryLengthBucket.short.wordCountRange, (250, 600));
 
-      // Full: 900-1400 words
-      expect(StoryLengthBucket.full.wordCountRange, (900, 1400));
+      // Full: 601-1200 words
+      expect(StoryLengthBucket.full.wordCountRange, (601, 1200));
 
-      // Long: 1700-2600 words
-      expect(StoryLengthBucket.long.wordCountRange, (1700, 2600));
+      // Long: 1201-2000 words
+      expect(StoryLengthBucket.long.wordCountRange, (1201, 2000));
     });
   });
 

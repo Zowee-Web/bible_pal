@@ -29,7 +29,8 @@ void main() {
         expect(find.textContaining('not available'), findsOneWidget);
       } else {
         // Should show either breadcrumbs list or empty state
-        final hasBreadcrumbs = find.text('No breadcrumbs recorded yet.').evaluate().isNotEmpty;
+        final hasBreadcrumbs =
+            find.text('No breadcrumbs recorded yet.').evaluate().isNotEmpty;
         final hasListView = find.byType(ListView).evaluate().isNotEmpty;
         expect(hasBreadcrumbs || hasListView, isTrue);
       }

@@ -69,7 +69,8 @@ void main() {
     });
 
     test('extracts multiple tags', () {
-      final tags = matcher.extractTags('My boss yelled at me and I feel exhausted');
+      final tags =
+          matcher.extractTags('My boss yelled at me and I feel exhausted');
       expect(tags, contains('overwhelmed')); // 'exhausted' keyword
       expect(tags, contains('unfair_authority')); // 'boss' keyword
     });
@@ -145,15 +146,21 @@ void main() {
     });
 
     test('counts matching tags correctly', () {
-      final parable = _createParable(emotionalTags: ['overwhelmed', 'anxious', 'sad']);
+      final parable =
+          _createParable(emotionalTags: ['overwhelmed', 'anxious', 'sad']);
       expect(matcher.scoreParable({'overwhelmed'}, parable), 1);
       expect(matcher.scoreParable({'overwhelmed', 'anxious'}, parable), 2);
-      expect(matcher.scoreParable({'overwhelmed', 'anxious', 'sad'}, parable), 3);
+      expect(
+          matcher.scoreParable({'overwhelmed', 'anxious', 'sad'}, parable), 3);
     });
 
     test('does not count non-matching story tags negatively', () {
       final parable = _createParable(
-        emotionalTags: ['overwhelmed', 'workplace_conflict', 'unfair_authority'],
+        emotionalTags: [
+          'overwhelmed',
+          'workplace_conflict',
+          'unfair_authority'
+        ],
       );
       // User only expressed 'overwhelmed', story has 3 tags
       // Score should be 1, not penalized for extra tags
@@ -177,9 +184,12 @@ void main() {
     });
 
     test('ranks by score descending', () {
-      final p1 = _createParable(storyId: 'a', emotionalTags: ['grateful']); // 0 match
-      final p2 = _createParable(storyId: 'b', emotionalTags: ['overwhelmed']); // 1 match
-      final p3 = _createParable(storyId: 'c', emotionalTags: ['overwhelmed', 'anxious']); // 2 matches
+      final p1 =
+          _createParable(storyId: 'a', emotionalTags: ['grateful']); // 0 match
+      final p2 = _createParable(
+          storyId: 'b', emotionalTags: ['overwhelmed']); // 1 match
+      final p3 = _createParable(
+          storyId: 'c', emotionalTags: ['overwhelmed', 'anxious']); // 2 matches
 
       final ranked = matcher.rankByRelatability(
         'I am overwhelmed and anxious',
@@ -197,7 +207,8 @@ void main() {
       final now = DateTime.now();
       final playHistory = {
         'a': now, // played now (more recent)
-        'b': now.subtract(const Duration(hours: 1)), // played 1 hour ago (older)
+        'b':
+            now.subtract(const Duration(hours: 1)), // played 1 hour ago (older)
       };
 
       final ranked = matcher.rankByRelatability(
@@ -249,7 +260,8 @@ void main() {
       expect(ranked.first.storyId, 'only');
     });
 
-    test('deterministic tie-breaking produces same result on repeated calls', () {
+    test('deterministic tie-breaking produces same result on repeated calls',
+        () {
       final p1 = _createParable(storyId: 'a', emotionalTags: ['overwhelmed']);
       final p2 = _createParable(storyId: 'b', emotionalTags: ['overwhelmed']);
       final p3 = _createParable(storyId: 'c', emotionalTags: ['overwhelmed']);
@@ -263,13 +275,19 @@ void main() {
       final result3 = matcher.rankByRelatability(userText, candidates);
 
       // All should produce the same order
-      expect(result1.map((p) => p.storyId).toList(), result2.map((p) => p.storyId).toList());
-      expect(result2.map((p) => p.storyId).toList(), result3.map((p) => p.storyId).toList());
+      expect(result1.map((p) => p.storyId).toList(),
+          result2.map((p) => p.storyId).toList());
+      expect(result2.map((p) => p.storyId).toList(),
+          result3.map((p) => p.storyId).toList());
     });
 
-    test('multi-tag input outranks single-tag (boss + overwhelmed > overwhelmed)', () {
-      final p1 = _createParable(storyId: 'single', emotionalTags: ['overwhelmed']);
-      final p2 = _createParable(storyId: 'multi', emotionalTags: ['overwhelmed', 'unfair_authority']);
+    test(
+        'multi-tag input outranks single-tag (boss + overwhelmed > overwhelmed)',
+        () {
+      final p1 =
+          _createParable(storyId: 'single', emotionalTags: ['overwhelmed']);
+      final p2 = _createParable(
+          storyId: 'multi', emotionalTags: ['overwhelmed', 'unfair_authority']);
 
       final ranked = matcher.rankByRelatability(
         'my boss is overwhelming me',
@@ -278,7 +296,9 @@ void main() {
       expect(ranked.first.storyId, 'multi');
     });
 
-    test('selects unfair_authority story over workplace_conflict for "boss treated me badly"', () {
+    test(
+        'selects unfair_authority story over workplace_conflict for "boss treated me badly"',
+        () {
       final workplaceStory = _createParable(
         storyId: 'workplace',
         emotionalTags: ['workplace_conflict'],
@@ -308,7 +328,6 @@ Parable _createParable({
     mood: 'neutral',
     emotionalTags: emotionalTags,
     length: 5,
-    faithTradition: 'Unspecified',
     storytellingMode: 'creative',
     kidFriendly: false,
   );

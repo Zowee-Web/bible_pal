@@ -29,7 +29,6 @@ void main() {
           title: 'Story $i',
           mood: 'joyful',
           length: 5,
-          faithTradition: 'Protestant',
           timestamp: DateTime.now(),
         );
         await storage.addToHistory(entry);
@@ -55,7 +54,6 @@ void main() {
           title: 'Story $i',
           mood: 'neutral',
           length: 10,
-          faithTradition: 'Protestant',
           timestamp: DateTime.now(),
         ));
       }
@@ -77,7 +75,6 @@ void main() {
           title: 'Story $i',
           mood: 'joyful',
           length: 5,
-          faithTradition: 'Protestant',
           scriptureSources: [],
           dateSaved: DateTime.now(),
         );
@@ -98,7 +95,6 @@ void main() {
           title: 'Story $i',
           mood: 'neutral',
           length: 5,
-          faithTradition: 'Protestant',
           scriptureSources: [],
           dateSaved: DateTime.now(),
         ));
@@ -385,7 +381,6 @@ void main() {
           'title': 'Story $i',
           'mood': 'joyful',
           'length': 5,
-          'faithTradition': 'Protestant',
           'timestamp': DateTime.now().toIso8601String(),
         },
       );
@@ -414,7 +409,6 @@ void main() {
           'title': 'Story $i',
           'mood': 'joyful',
           'length': 5,
-          'faithTradition': 'Protestant',
           'scriptureSources': <String>[],
           'dateSaved': DateTime.now().toIso8601String(),
         },

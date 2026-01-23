@@ -75,8 +75,7 @@ void main() {
       }
 
       // All should be unique
-      expect(shareIds.length, equals(10),
-          reason: 'All UUIDs should be unique');
+      expect(shareIds.length, equals(10), reason: 'All UUIDs should be unique');
     });
 
     test('UUID should remain stable across serialization', () async {

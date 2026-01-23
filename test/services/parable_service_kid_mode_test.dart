@@ -31,7 +31,6 @@ void main() {
       test('kid mode ONLY returns kid-friendly stories', () async {
         final kidPrefs = UserPreferences(
           kidFriendlyOnly: true,
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'traditional',
         );
@@ -55,17 +54,15 @@ void main() {
         }
       });
 
-      test('kid mode filters out non-kid-friendly stories', () async {
+      test('kid mode returns ONLY kid-friendly stories', () async {
         final kidPrefs = UserPreferences(
           kidFriendlyOnly: true,
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'traditional',
         );
 
         final adultPrefs = UserPreferences(
           kidFriendlyOnly: false,
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'traditional',
         );
@@ -83,37 +80,44 @@ void main() {
           userPrefs: adultPrefs,
         );
 
-        // Kid mode should return same or fewer stories than adult mode
-        expect(
-          kidEligible.length,
-          lessThanOrEqualTo(adultEligible.length),
-          reason: 'Kid mode should filter out non-kid-friendly stories',
-        );
+        // CONTENT SEGREGATION: Kid mode returns ONLY kid-friendly, adult mode returns ONLY adult
+        // The pools are completely separate - no overlap expected
+        for (final p in kidEligible) {
+          expect(p.kidFriendly, true,
+              reason: 'Kid mode returned non-kid-friendly: ${p.storyId}');
+        }
+        for (final p in adultEligible) {
+          expect(p.kidFriendly, false,
+              reason: 'Adult mode returned kid-friendly: ${p.storyId}');
+        }
       });
 
-      test('non-kid mode returns all eligible stories', () async {
+      test('adult mode returns ONLY non-kid-friendly stories', () async {
         final adultPrefs = UserPreferences(
           kidFriendlyOnly: false,
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'traditional',
         );
 
-        // Get eligible parables with kid mode disabled
+        // Get eligible parables with kid mode disabled (adult mode)
         final eligible = await service.getEligibleParables(
           mood: 'joyful',
           lengthBucket: StoryLengthBucket.short,
           userPrefs: adultPrefs,
         );
 
-        // Should include both kid-friendly and non-kid-friendly stories
+        // CONTENT SEGREGATION: Adult mode returns ONLY non-kid-friendly stories
+        // No kid-friendly stories should be in adult mode results
         final kidFriendlyCount = eligible.where((p) => p.kidFriendly).length;
-        final nonKidFriendlyCount =
-            eligible.where((p) => !p.kidFriendly).length;
 
-        // Both counts should be non-negative (may be zero if no stories match)
-        expect(kidFriendlyCount, greaterThanOrEqualTo(0));
-        expect(nonKidFriendlyCount, greaterThanOrEqualTo(0));
+        expect(kidFriendlyCount, equals(0),
+            reason: 'Adult mode should not return any kid-friendly stories');
+
+        // All stories should be non-kid-friendly
+        for (final p in eligible) {
+          expect(p.kidFriendly, false,
+              reason: 'Adult mode returned kid-friendly: ${p.storyId}');
+        }
       });
     });
 
@@ -121,7 +125,6 @@ void main() {
       test('joyful mood respects kid mode', () async {
         final kidPrefs = UserPreferences(
           kidFriendlyOnly: true,
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'traditional',
         );
@@ -140,7 +143,6 @@ void main() {
       test('weary mood respects kid mode', () async {
         final kidPrefs = UserPreferences(
           kidFriendlyOnly: true,
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'traditional',
         );
@@ -159,7 +161,6 @@ void main() {
       test('anxious mood respects kid mode', () async {
         final kidPrefs = UserPreferences(
           kidFriendlyOnly: true,
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'traditional',
         );
@@ -180,7 +181,6 @@ void main() {
       test('short stories respect kid mode', () async {
         final kidPrefs = UserPreferences(
           kidFriendlyOnly: true,
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'traditional',
         );
@@ -200,7 +200,6 @@ void main() {
       test('full stories respect kid mode', () async {
         final kidPrefs = UserPreferences(
           kidFriendlyOnly: true,
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'traditional',
         );
@@ -220,7 +219,6 @@ void main() {
       test('long stories respect kid mode', () async {
         final kidPrefs = UserPreferences(
           kidFriendlyOnly: true,
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'traditional',
         );
@@ -243,7 +241,6 @@ void main() {
           () async {
         final kidPrefs = UserPreferences(
           kidFriendlyOnly: true,
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'traditional',
         );
@@ -267,11 +264,9 @@ void main() {
         }
       });
 
-      test('selectParable may return non-kid-friendly in adult mode',
-          () async {
+      test('selectParable may return non-kid-friendly in adult mode', () async {
         final adultPrefs = UserPreferences(
           kidFriendlyOnly: false,
-          faithTradition: 'Protestant',
           bibleTranslation: 'WEB',
           storytellingMode: 'traditional',
         );

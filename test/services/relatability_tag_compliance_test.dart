@@ -16,7 +16,8 @@ void main() {
 
   setUpAll(() async {
     // Load manifest
-    final jsonContent = await rootBundle.loadString('assets/stories/manifest.json');
+    final jsonContent =
+        await rootBundle.loadString('assets/stories/manifest.json');
     final manifestData = jsonDecode(jsonContent) as Map<String, dynamic>;
     parables = manifestData['parables'] as List<dynamic>;
 
@@ -62,7 +63,8 @@ void main() {
             [];
 
         if (tags.length > 3) {
-          violations.add('$storyId has ${tags.length} tags (max 3): ${tags.join(', ')}');
+          violations.add(
+              '$storyId has ${tags.length} tags (max 3): ${tags.join(', ')}');
         }
       }
 
@@ -93,7 +95,8 @@ void main() {
 
       // Print coverage report
       // ignore: avoid_print
-      print('Tag coverage: $storiesWithTags / $totalStories (${(coverage * 100).toStringAsFixed(1)}%)');
+      print(
+          'Tag coverage: $storiesWithTags / $totalStories (${(coverage * 100).toStringAsFixed(1)}%)');
 
       expect(
         coverage,

@@ -76,13 +76,15 @@ void main() {
       expect(
         violations,
         isEmpty,
-        reason: 'Found banned translation references in lib/:\n${violations.join('\n')}',
+        reason:
+            'Found banned translation references in lib/:\n${violations.join('\n')}',
       );
     });
 
     test('CRITICAL: No banned translation IDs in test/ directory', () {
       final testDir = Directory('${projectRoot.path}/test');
-      expect(testDir.existsSync(), isTrue, reason: 'test/ directory must exist');
+      expect(testDir.existsSync(), isTrue,
+          reason: 'test/ directory must exist');
 
       final violations = <String>[];
       // Exclude this test file itself and the compliance test (they contain banned IDs for testing)
@@ -101,7 +103,8 @@ void main() {
       expect(
         violations,
         isEmpty,
-        reason: 'Found banned translation references in test/:\n${violations.join('\n')}',
+        reason:
+            'Found banned translation references in test/:\n${violations.join('\n')}',
       );
     });
 
@@ -119,7 +122,8 @@ void main() {
       expect(
         violations,
         isEmpty,
-        reason: 'Found banned translation references in assets/:\n${violations.join('\n')}',
+        reason:
+            'Found banned translation references in assets/:\n${violations.join('\n')}',
       );
     });
 
@@ -137,7 +141,8 @@ void main() {
       expect(
         violations,
         isEmpty,
-        reason: 'Found banned translation references in server/:\n${violations.join('\n')}',
+        reason:
+            'Found banned translation references in server/:\n${violations.join('\n')}',
       );
     });
 
@@ -234,7 +239,8 @@ void _scanDirectory(
 
       try {
         final content = entity.readAsStringSync();
-        _scanContent(entity.path, content, bannedTokens, allowedTokens, violations);
+        _scanContent(
+            entity.path, content, bannedTokens, allowedTokens, violations);
       } catch (e) {
         // Skip files that can't be read as text (likely binary)
         continue;
@@ -262,9 +268,28 @@ bool _shouldSkipFile(String path) {
   // Skip binary files
   final ext = path.split('.').last.toLowerCase();
   const binaryExtensions = [
-    'png', 'jpg', 'jpeg', 'gif', 'ico', 'mp3', 'wav', 'mp4',
-    'ttf', 'otf', 'woff', 'woff2', 'lock', 'iml', 'xcworkspace',
-    'pbxproj', 'gradle', 'jar', 'aar', 'so', 'dylib', 'framework',
+    'png',
+    'jpg',
+    'jpeg',
+    'gif',
+    'ico',
+    'mp3',
+    'wav',
+    'mp4',
+    'ttf',
+    'otf',
+    'woff',
+    'woff2',
+    'lock',
+    'iml',
+    'xcworkspace',
+    'pbxproj',
+    'gradle',
+    'jar',
+    'aar',
+    'so',
+    'dylib',
+    'framework',
   ];
   if (binaryExtensions.contains(ext)) return true;
 
@@ -314,7 +339,9 @@ void _findTranslationReferences(
         for (final word in words) {
           final normalized = word.trim().toUpperCase();
           if (translationIds.contains(normalized)) {
-            foundTranslations.putIfAbsent(normalized, () => []).add(entity.path);
+            foundTranslations
+                .putIfAbsent(normalized, () => [])
+                .add(entity.path);
           }
         }
       } catch (e) {
@@ -331,7 +358,9 @@ bool _isInComment(String content, String word) {
   for (final line in lines) {
     if (line.contains(word)) {
       final trimmed = line.trim();
-      if (trimmed.startsWith('//') || trimmed.startsWith('/*') || trimmed.startsWith('*')) {
+      if (trimmed.startsWith('//') ||
+          trimmed.startsWith('/*') ||
+          trimmed.startsWith('*')) {
         return true;
       }
     }
