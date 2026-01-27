@@ -21,6 +21,9 @@ dependencies:
   just_audio_platform_interface: ^4.3.0
   audio_session: ^0.1.18
 
+  # Desktop SFX (low-latency typewriter clicks)
+  flutter_soloud: ^3.1.1
+
   # Speech-to-text and TTS for mood detection
   speech_to_text: ^7.0.0
   flutter_tts: ^4.2.0
@@ -56,6 +59,7 @@ flutter:
     - .env
     - assets/stories/manifest.json
     - assets/stories/
+    - assets/audio/
     - assets/safety/kid_safety_blocklist.txt
     - assets/daily_bread/daily_bread_verses.json
 

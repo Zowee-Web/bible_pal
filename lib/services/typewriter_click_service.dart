@@ -1,4 +1,4 @@
-import 'dart:math' show Random, max;
+import 'dart:math' show Random;
 import 'package:flutter/foundation.dart'
     show kDebugMode, kIsWeb, debugPrint, defaultTargetPlatform, TargetPlatform;
 import 'package:flutter/services.dart'
@@ -16,21 +16,8 @@ import 'typewriter_click_fallback.dart';
 /// Set to false to revert to just_audio pool if SoLoud causes issues.
 const bool kUseSoloudTypewriter = true;
 
-/// Minimum click interval for desktop (ms) to prevent "buzzing" sound.
-const int kDesktopMinIntervalMs = 80;
-
-/// Desktop humanization: click every Nth non-punctuation character.
-const int kDesktopCharInterval = 6;
-
-/// Desktop humanization: random jitter added to interval (0..max ms).
-const int kDesktopJitterMaxMs = 60;
-
-/// Desktop humanization: probability of skipping a non-punctuation click.
-const double kDesktopSkipProb = 0.25;
-
-/// Desktop humanization: minimum gap between punctuation clicks (ms).
-/// Prevents rapid "tick-tick-tick" bursts on "..." or "!!!" sequences.
-const int kDesktopPunctuationMinGapMs = 50;
+/// Minimum click interval (ms) - at 70ms typing speed, this allows every click
+const int kMinClickIntervalMs = 50;
 
 /// Typewriter click sound service for PAL intro typing animations.
 ///
@@ -225,31 +212,10 @@ class TypewriterClickService {
 class TypewriterClickHelper {
   final TypewriterClickService _service = TypewriterClickService.instance;
   bool _serviceInitialized = false;
-
-  int _charCount = 0;
   DateTime _lastClick = DateTime(1970);
   bool enabled = true;
 
-  /// Seeded RNG for deterministic jitter/skip behavior.
-  final Random _rng = Random(1337);
-
-  /// Last punctuation click timestamp (ms since epoch) for micro-floor gating.
-  int _lastPunctuationClickMs = 0;
-
-  /// Characters between clicks (default: every char)
-  final int charInterval;
-
-  /// Minimum milliseconds between clicks (default: 5ms safety buffer)
-  /// Note: Desktop clamps this to kDesktopMinIntervalMs (28ms) minimum.
-  final int minIntervalMs;
-
-  /// Punctuation characters that always trigger clicks.
-  static const String _punctuation = '.,!?;:\'"—–-()[]{}';
-
-  TypewriterClickHelper({
-    this.charInterval = 1,
-    this.minIntervalMs = 5,
-  });
+  TypewriterClickHelper();
 
   /// Pre-initialize the audio service for instant playback on first character.
   /// Call this in initState() before typing animation starts.
@@ -275,56 +241,19 @@ class TypewriterClickHelper {
       return;
     }
 
-    _charCount++;
-
-    // Determine if this character is punctuation (always clicks)
-    final isPunctuation = char.length == 1 && _punctuation.contains(char);
-
-    // Desktop humanization: thinning for non-punctuation
-    if (_service.isDesktop && !isPunctuation) {
-      // Click every Nth character (kDesktopCharInterval = 2)
-      if (_charCount % kDesktopCharInterval != 0 && _charCount != 1) return;
-
-      // Rare skip (5% probability)
-      if (_rng.nextDouble() < kDesktopSkipProb) return;
-    } else if (_service.isDesktop && isPunctuation) {
-      // Desktop punctuation: enforce micro-floor to prevent rapid bursts
-      final nowMs = DateTime.now().millisecondsSinceEpoch;
-      if (nowMs - _lastPunctuationClickMs < kDesktopPunctuationMinGapMs) return;
-      _lastPunctuationClickMs = nowMs;
-    } else if (!_service.isDesktop) {
-      // Mobile: use configured charInterval
-      if (_charCount % charInterval != 0 && _charCount != 1) return;
+    // Simple rate limit to prevent audio overlap
+    final now = DateTime.now();
+    if (now.difference(_lastClick).inMilliseconds < kMinClickIntervalMs) {
+      return;
     }
+    _lastClick = now;
 
-    // Compute effective min interval (desktop gets clamped to 28ms + jitter)
-    int effectiveMinIntervalMs = _service.isDesktop
-        ? max(minIntervalMs, kDesktopMinIntervalMs)
-        : minIntervalMs;
-
-    // Desktop: add random jitter (0..12ms)
-    if (_service.isDesktop) {
-      effectiveMinIntervalMs += _rng.nextInt(kDesktopJitterMaxMs + 1);
-    }
-
-    // Rate limit if configured (punctuation bypasses this check)
-    if (effectiveMinIntervalMs > 0 && _charCount > 1 && !isPunctuation) {
-      final now = DateTime.now();
-      if (now.difference(_lastClick).inMilliseconds < effectiveMinIntervalMs) {
-        return;
-      }
-      _lastClick = now;
-    } else {
-      _lastClick = DateTime.now();
-    }
-
-    // Play click synchronously (service handles fire-and-forget internally)
+    // Play click on every non-whitespace character
     _service.playClick();
   }
 
-  /// Reset the character counter (useful if restarting animation)
+  /// Reset state (useful if restarting animation)
   void reset() {
-    _charCount = 0;
     _lastClick = DateTime(1970);
   }
 }
