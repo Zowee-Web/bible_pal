@@ -74,3 +74,7 @@ bp_*.mp3
 
 # One-off test directories
 audio_tests/
+
+# Test audio assets (not needed for production)
+assets/audio/pal_test_greeting*.mp3
+assets/audio/typewriter_click.mp3
