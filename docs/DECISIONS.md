@@ -583,6 +583,37 @@ The question was: What EXACTLY is Traditional mode, and how do we enforce it?
 
 ---
 
+## ADR-012: Commit 1a7f117 Historical Clarification
+
+**Date:** 2026-01-27
+**Status:** Accepted (Historical Record)
+**Context:** During the checkpoint commit process for typewriter click service and PAL intro features, commit `1a7f117` was created with a misleading commit message. The message states "chore: ignore and remove local test artifacts" but the commit also includes the initial TypewriterClickService source files.
+
+**What Happened:**
+The typewriter service files (`typewriter_click_service.dart`, `typewriter_click_fallback.dart`, etc.) had been staged in a previous session (shown as `AM` status in git — Added in index, Modified in working tree). When `.gitignore` was committed, these pre-staged files were swept into the same commit.
+
+**Actual Contents of 1a7f117:**
+- `.gitignore` — New patterns for `bp_*.mp3` and `audio_tests/`
+- `lib/services/typewriter_click_service.dart` — Initial service (330 lines)
+- `lib/services/typewriter_click_fallback.dart` — Abstract interface
+- `lib/services/typewriter_click_fallback_just_audio.dart` — Desktop fallback
+- `lib/services/typewriter_click_fallback_stub.dart` — Web stub
+
+**Impact:** None. This is a documentation mismatch only:
+- No behavior change
+- No test impact
+- Subsequent commit `97ce392` contains the remaining typewriter infrastructure (deps, WAV assets, plugin configs)
+- All features work correctly
+
+**Decision:** Document this discrepancy rather than rewrite history. The commit has been pushed and tagged (`checkpoint_typewriter_onboarding_v1`).
+
+**Consequences:**
+- This ADR serves as the historical record
+- Future readers should consult both `1a7f117` and `97ce392` for complete typewriter service history
+- No git history rewrite performed
+
+---
+
 ## Template for Future Decisions
 
 ```
