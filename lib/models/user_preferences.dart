@@ -64,6 +64,7 @@ class UserPreferences {
 
   /// Default preferences for first-time users
   /// Contracts v2: storytellingMode defaults to 'traditional'
+  /// Voice consent fields are null (tri-state: null=not asked, true=enabled, false=disabled)
   factory UserPreferences.defaults() {
     return const UserPreferences(
       userName: '',
@@ -76,6 +77,8 @@ class UserPreferences {
       kidFriendlyOnly: false,
       showEverydayReflections: true, // Default ON per SPEC.md #34
       hasCompletedOnboarding: false,
+      // Voice consent: null = not asked yet (tri-state model)
+      // Onboarding sets these to true when user completes first launch
     );
   }
 

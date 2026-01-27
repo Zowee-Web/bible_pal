@@ -48,6 +48,14 @@ class AppRouter extends StatelessWidget {
         return MaterialPageRoute(
           builder: (_) => const MyPalsScreen(),
         );
+      case '/main_menu':
+        return MaterialPageRoute(
+          builder: (_) => const MainMenuScreen(),
+        );
+      case '/first_launch':
+        return MaterialPageRoute(
+          builder: (_) => const FirstLaunchScreen(),
+        );
       case '/diagnostics':
         // Only allow navigation when diagnostics are enabled
         if (!kDiagnosticsEnabled) return null;

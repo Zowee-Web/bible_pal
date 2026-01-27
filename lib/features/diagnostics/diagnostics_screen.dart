@@ -15,6 +15,7 @@ import 'dart:convert';
 import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart' show kDebugMode;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,18 +24,19 @@ import '../../core/app_logger.dart';
 import '../../core/breadcrumb_store.dart';
 import '../../core/diagnostics_config.dart';
 import '../../services/storage_service.dart';
+import '../../providers/service_providers.dart';
 
 /// Diagnostics screen for viewing and exporting breadcrumbs.
 ///
 /// Shows a "not available" message if diagnostics disabled.
-class DiagnosticsScreen extends StatefulWidget {
+class DiagnosticsScreen extends ConsumerStatefulWidget {
   const DiagnosticsScreen({super.key});
 
   @override
-  State<DiagnosticsScreen> createState() => _DiagnosticsScreenState();
+  ConsumerState<DiagnosticsScreen> createState() => _DiagnosticsScreenState();
 }
 
-class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
+class _DiagnosticsScreenState extends ConsumerState<DiagnosticsScreen> {
   List<Map<String, Object?>> _breadcrumbs = [];
   bool _loading = true;
   String? _copyStatus;
@@ -165,6 +167,12 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
       await BreadcrumbStore.instance.clear();
       await _loadBreadcrumbs();
     }
+  }
+
+  /// [DEBUG ONLY] Play test audio asset for dev testing.
+  Future<void> _playTestAudio() async {
+    final audioService = ref.read(audioServiceProvider);
+    await audioService.playAsset('assets/audio/pal_test_greeting_sarah.mp3');
   }
 
   /// [DEBUG ONLY] Reset first-launch state for dev testing.
@@ -307,6 +315,17 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
                             ),
                           ),
                         ),
+                        if (kDiagnosticsEnabled) ...[
+                          const SizedBox(height: 8),
+                          SizedBox(
+                            width: double.infinity,
+                            child: OutlinedButton.icon(
+                              onPressed: _playTestAudio,
+                              icon: const Icon(Icons.play_arrow, size: 18),
+                              label: const Text('Play Test Audio (Dev)'),
+                            ),
+                          ),
+                        ],
                       ],
                     ),
                   ),

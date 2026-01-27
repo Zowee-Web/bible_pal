@@ -35,6 +35,21 @@ class AudioService {
     }
   }
 
+  /// Load and play audio from asset bundle (dev/test use)
+  Future<void> playAsset(String assetPath) async {
+    if (isPlaying) {
+      debugPrint('Audio already playing, skipping playAsset');
+      return;
+    }
+    try {
+      await _player.setAsset(assetPath);
+      await _player.play();
+      debugPrint('Playing asset: $assetPath');
+    } catch (e) {
+      debugPrint('Error playing asset: $e');
+    }
+  }
+
   /// Play the loaded audio
   Future<void> play() async {
     try {

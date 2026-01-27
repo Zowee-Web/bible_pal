@@ -7,7 +7,7 @@ import '../models/history_entry.dart';
 import '../models/pal.dart';
 import '../models/share_record.dart';
 import '../models/pending_share.dart';
-import '../features/onboarding/first_launch_screen.dart' show kFirstLaunchCompleteKey;
+import '../features/onboarding/first_launch_screen.dart' show kFirstLaunchCompleteKey, kPalIntroShownKey;
 
 /// Storage Service - handles all local data persistence
 /// Based on SPEC.md Feature #25: User Data Encryption (secure storage)
@@ -261,6 +261,42 @@ class StorageService {
       hasCompletedOnboarding: false, // Clear onboarding flag
       storyNarrationEnabled: null, // Clear voice consent
       palGreetingsEnabled: null, // Clear voice consent
+      voiceConsentVersion: null, // Clear voice consent version
+    );
+    await saveUserPreferences(clearedPrefs);
+  }
+
+  /// Reset first-launch state (USER-FACING, release-safe).
+  ///
+  /// Called from Settings when user explicitly chooses to restart onboarding.
+  /// Unlike resetFirstLaunchDevOnly(), this method is safe to call in release builds.
+  ///
+  /// Clears:
+  /// - kFirstLaunchCompleteKey (SharedPreferences flag)
+  /// - kPalIntroShownKey (PAL intro overlay flag)
+  /// - hasCompletedOnboarding, userName, voice consent fields (UserPreferences)
+  ///
+  /// Preserves:
+  /// - bibleTranslation, languageStyle, storytellingMode, kidFriendlyOnly, etc.
+  /// - Favorites, history, and all other storage
+  Future<void> resetFirstLaunchUserFacing() async {
+    // 1. Clear the first-launch SharedPreferences keys
+    await _prefs.remove(kFirstLaunchCompleteKey);
+    await _prefs.remove(kPalIntroShownKey);
+
+    // 2. Load current preferences and reset onboarding-related fields
+    final currentPrefs = await getUserPreferences();
+    final clearedPrefs = UserPreferences(
+      userName: '', // Clear user name
+      bibleTranslation: currentPrefs.bibleTranslation, // Preserve
+      languageStyle: currentPrefs.languageStyle, // Preserve
+      storytellingMode: currentPrefs.storytellingMode, // Preserve
+      contentFilteringEnabled: currentPrefs.contentFilteringEnabled, // Preserve
+      kidFriendlyOnly: currentPrefs.kidFriendlyOnly, // Preserve
+      showEverydayReflections: currentPrefs.showEverydayReflections, // Preserve
+      hasCompletedOnboarding: false, // Clear onboarding flag
+      storyNarrationEnabled: null, // Clear voice consent (tri-state: null = not asked)
+      palGreetingsEnabled: null, // Clear voice consent (tri-state: null = not asked)
       voiceConsentVersion: null, // Clear voice consent version
     );
     await saveUserPreferences(clearedPrefs);

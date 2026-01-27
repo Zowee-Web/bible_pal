@@ -37,8 +37,9 @@ void main() {
       // Initially, the text should start appearing (typing animation)
       expect(find.byType(FirstLaunchScreen), findsOneWidget);
 
-      // Wait for some typing animation frames
-      await tester.pump(const Duration(milliseconds: 100));
+      // Wait for some typing animation frames (70ms per char)
+      // Pump enough for at least 2-3 chars to appear
+      await tester.pump(const Duration(milliseconds: 250));
 
       // Should find partial text (typing in progress)
       expect(find.textContaining('Hi'), findsOneWidget);
@@ -54,8 +55,8 @@ void main() {
         ),
       );
 
-      // Wait for typing animation to complete (full message is ~120 chars at 35ms each)
-      await tester.pumpAndSettle(const Duration(seconds: 5));
+      // Wait for typing animation to complete (95ms * ~120 chars = ~12 seconds)
+      await tester.pump(const Duration(seconds: 13));
 
       // Name input should be visible
       expect(find.byType(TextField), findsOneWidget);
@@ -75,7 +76,8 @@ void main() {
         ),
       );
 
-      await tester.pumpAndSettle(const Duration(seconds: 5));
+      // Wait for typing animation to complete (95ms * ~120 chars = ~12 seconds)
+      await tester.pump(const Duration(seconds: 13));
 
       // No voice consent dialog should appear
       expect(find.text('Enable Voice Features'), findsNothing);
@@ -94,7 +96,8 @@ void main() {
         ),
       );
 
-      await tester.pumpAndSettle(const Duration(seconds: 5));
+      // Wait for typing animation to complete (95ms * ~120 chars = ~12 seconds)
+      await tester.pump(const Duration(seconds: 13));
 
       // No audio player widgets should be present
       // The screen is purely text-based with typing animation
@@ -112,11 +115,12 @@ void main() {
         ),
       );
 
-      await tester.pumpAndSettle(const Duration(seconds: 5));
+      // Wait for typing animation to complete (95ms * ~120 chars = ~12 seconds)
+      await tester.pump(const Duration(seconds: 13));
 
       // Try to continue without entering name
       await tester.tap(find.widgetWithText(ElevatedButton, 'Continue'));
-      await tester.pumpAndSettle();
+      await tester.pump(); // Allow snackbar to appear
 
       // Should show error snackbar
       expect(find.text('Please enter your name'), findsOneWidget);
@@ -136,47 +140,51 @@ void main() {
         ),
       );
 
-      await tester.pumpAndSettle(const Duration(seconds: 5));
+      // Wait for typing animation to complete (95ms * ~120 chars = ~12 seconds)
+      await tester.pump(const Duration(seconds: 13));
 
       // Enter name
       await tester.enterText(find.byType(TextField), 'TestUser');
-      await tester.pumpAndSettle();
+      await tester.pump();
 
       // Tap continue
       await tester.tap(find.widgetWithText(ElevatedButton, 'Continue'));
-      await tester.pumpAndSettle();
+      await tester.pump(); // Allow navigation to begin
+      await tester.pump(const Duration(milliseconds: 100)); // Allow async to complete
 
       // Verify first launch flag is set
       final sp = await SharedPreferences.getInstance();
       expect(sp.getBool(kFirstLaunchCompleteKey), true);
     });
 
-    testWidgets('navigates to PAL\'s Stories after name entry', (tester) async {
+    testWidgets('navigates to Main Menu after name entry', (tester) async {
       await tester.pumpWidget(
         ProviderScope(
           child: MaterialApp(
             home: const FirstLaunchScreen(),
             routes: {
-              '/pals_parables': (_) => const Scaffold(
-                    body: Text('PAL\'s Stories Screen'),
+              '/main_menu': (_) => const Scaffold(
+                    body: Text('Main Menu Screen'),
                   ),
             },
           ),
         ),
       );
 
-      await tester.pumpAndSettle(const Duration(seconds: 5));
+      // Wait for typing animation to complete (95ms * ~120 chars = ~12 seconds)
+      await tester.pump(const Duration(seconds: 13));
 
       // Enter name
       await tester.enterText(find.byType(TextField), 'TestUser');
-      await tester.pumpAndSettle();
+      await tester.pump();
 
       // Tap continue
       await tester.tap(find.widgetWithText(ElevatedButton, 'Continue'));
-      await tester.pumpAndSettle();
+      await tester.pump(); // Allow navigation to begin
+      await tester.pump(const Duration(milliseconds: 100)); // Allow async to complete
 
-      // Should navigate to PAL's Stories
-      expect(find.text('PAL\'s Stories Screen'), findsOneWidget);
+      // Should navigate to Main Menu (where PAL intro overlay will show)
+      expect(find.text('Main Menu Screen'), findsOneWidget);
     });
   });
 

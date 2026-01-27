@@ -106,7 +106,7 @@ void main() {
       await for (final entity in libDir.list(recursive: true)) {
         if (entity is File && entity.path.endsWith('.dart')) {
           final relativePath =
-              entity.path.replaceFirst(Directory.current.path + '/', '');
+              entity.path.replaceFirst('${Directory.current.path}/', '');
           if (shouldExclude(relativePath)) continue;
 
           final content = await entity.readAsString();
@@ -132,7 +132,7 @@ void main() {
 
               for (final pattern in patterns) {
                 if (line.contains(pattern)) {
-                  violations.add('${relativePath}:${i + 1}: Found "$token"\n'
+                  violations.add('$relativePath:${i + 1}: Found "$token"\n'
                       '    Line: ${line.trim()}');
                 }
               }
@@ -180,7 +180,7 @@ void main() {
         await for (final entity in dir.list(recursive: true)) {
           if (entity is File && entity.path.endsWith('.dart')) {
             final relativePath =
-                entity.path.replaceFirst(Directory.current.path + '/', '');
+                entity.path.replaceFirst('${Directory.current.path}/', '');
             if (shouldExclude(relativePath)) continue;
 
             final content = await entity.readAsString();
@@ -201,7 +201,7 @@ void main() {
                         (line.contains("'$token'") ||
                             line.contains('"$token"'))) {
                       violations.add(
-                          '${relativePath}:${i + 1}: Forbidden token "$token" in allowlist\n'
+                          '$relativePath:${i + 1}: Forbidden token "$token" in allowlist\n'
                           '    Line: ${line.trim()}');
                     }
                   }
@@ -237,7 +237,7 @@ void main() {
         await for (final entity in dir.list(recursive: true)) {
           if (entity is File && entity.path.endsWith('.dart')) {
             final relativePath =
-                entity.path.replaceFirst(Directory.current.path + '/', '');
+                entity.path.replaceFirst('${Directory.current.path}/', '');
             if (shouldExclude(relativePath)) continue;
 
             final content = await entity.readAsString();
@@ -269,7 +269,7 @@ void main() {
                           continue;
                         }
                         violations.add(
-                            '${relativePath}:${i + 1}: Forbidden token "$token" in allowlist\n'
+                            '$relativePath:${i + 1}: Forbidden token "$token" in allowlist\n'
                             '    Line: ${line.trim()}');
                       }
                     }
@@ -316,7 +316,7 @@ void main() {
       await for (final entity in libDir.list(recursive: true)) {
         if (entity is File && entity.path.endsWith('.dart')) {
           final relativePath =
-              entity.path.replaceFirst(Directory.current.path + '/', '');
+              entity.path.replaceFirst('${Directory.current.path}/', '');
           if (shouldExclude(relativePath)) continue;
 
           final content = await entity.readAsString();
@@ -326,7 +326,7 @@ void main() {
             final line = lines[i].toLowerCase();
             for (final pattern in forbiddenCommentPatterns) {
               if (RegExp(pattern, caseSensitive: false).hasMatch(line)) {
-                violations.add('${relativePath}:${i + 1}: Misleading comment\n'
+                violations.add('$relativePath:${i + 1}: Misleading comment\n'
                     '    Line: ${lines[i].trim()}');
               }
             }
@@ -451,7 +451,7 @@ void main() {
       await for (final entity in libDir.list(recursive: true)) {
         if (entity is File && entity.path.endsWith('.dart')) {
           final relativePath =
-              entity.path.replaceFirst(Directory.current.path + '/', '');
+              entity.path.replaceFirst('${Directory.current.path}/', '');
 
           if (!isTelemetryRelatedFile(relativePath)) continue;
           if (shouldExclude(relativePath)) continue;

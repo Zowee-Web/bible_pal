@@ -2,17 +2,21 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../models/user_preferences.dart' show currentVoiceConsentVersion;
 import '../../providers/app_state_notifier.dart';
 
 /// Key for tracking first-launch onboarding completion
 const kFirstLaunchCompleteKey = 'first_launch_complete';
 
+/// Key for tracking if the PAL intro overlay has been shown (first-launch only)
+const kPalIntroShownKey = 'pal_intro_shown';
+
 /// First-launch onboarding screen with silent typing animation.
 ///
 /// Hard invariants:
-/// - NO audio plays during this screen
+/// - NO voice/TTS audio plays during this screen
 /// - NO voice consent dialog is shown
-/// - User is routed directly to PAL's Stories after name entry
+/// - User is routed to Main Menu after name entry (PAL intro shows there)
 class FirstLaunchScreen extends ConsumerStatefulWidget {
   const FirstLaunchScreen({super.key});
 
@@ -35,10 +39,13 @@ class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen> {
       "I'm here to share meaningful stories that speak to your heart. "
       "What's your name?";
 
+  /// Typing speed (ms per character) - deliberate, readable pace
+  static const _typingDelayMs = 95;
+
   @override
   void initState() {
     super.initState();
-    _startTypingAnimation();
+    _startTyping();
   }
 
   @override
@@ -48,23 +55,34 @@ class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen> {
     super.dispose();
   }
 
-  void _startTypingAnimation() {
-    _typingTimer = Timer.periodic(const Duration(milliseconds: 35), (timer) {
-      if (_charIndex < _introMessage.length) {
+  /// Start the typing animation with fixed interval
+  void _startTyping() {
+    _typingTimer = Timer.periodic(
+      const Duration(milliseconds: _typingDelayMs),
+      (timer) {
+        if (!mounted) {
+          timer.cancel();
+          return;
+        }
+
+        if (_charIndex >= _introMessage.length) {
+          timer.cancel();
+          setState(() {
+            _typingComplete = true;
+          });
+          return;
+        }
+
         setState(() {
           _charIndex++;
           _displayedText = _introMessage.substring(0, _charIndex);
         });
-      } else {
-        timer.cancel();
-        setState(() {
-          _typingComplete = true;
-        });
-      }
-    });
+      },
+    );
   }
 
   Future<void> _handleContinue() async {
+
     final name = _nameController.text.trim();
     if (name.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -84,6 +102,10 @@ class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen> {
         final updatedPrefs = currentState.userPreferences.copyWith(
           userName: name,
           hasCompletedOnboarding: true,
+          // Fresh install: enable voice features by default
+          storyNarrationEnabled: true,
+          palGreetingsEnabled: true,
+          voiceConsentVersion: currentVoiceConsentVersion,
         );
         await notifier.updateUserPreferences(updatedPrefs);
       }
@@ -94,9 +116,9 @@ class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen> {
 
       if (!mounted) return;
 
-      // Navigate to PAL's Stories screen
+      // Navigate to main menu (where PAL intro overlay will show)
       Navigator.of(context).pushNamedAndRemoveUntil(
-        '/pals_parables',
+        '/main_menu',
         (_) => false,
       );
     } catch (e) {
@@ -204,3 +226,4 @@ class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen> {
     );
   }
 }
+

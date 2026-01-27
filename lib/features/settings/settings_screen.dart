@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../providers/app_state_notifier.dart';
+import '../../providers/service_providers.dart';
 import '../../core/app_logger.dart';
 import '../../core/diagnostics_config.dart';
 
@@ -133,6 +134,46 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     await appState.updatePalGreetingsConsent(enabled);
   }
 
+  Future<void> _resetOnboarding() async {
+    // Show confirmation dialog
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Reset Onboarding?'),
+        content: const Text(
+          'This will restart the onboarding experience. '
+          'Your favorites, history, and content preferences will be preserved.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Continue'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed != true) return;
+
+    // Reset onboarding state via StorageService (release-safe)
+    final storageService = await ref.read(storageServiceProvider.future);
+    await storageService.resetFirstLaunchUserFacing();
+
+    if (!mounted) return;
+
+    logEvent('reset_onboarding', {});
+
+    // Navigate to first launch screen, clearing the navigation stack
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      '/first_launch',
+      (_) => false,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (!_loaded) {
@@ -201,6 +242,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             value: 'KJV',
             groupValue: _languageStyle,
             onChanged: (value) => _setLanguageStyle(value!),
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.refresh),
+            title: const Text('Reset Onboarding'),
+            subtitle: const Text('Return to PAL\'s introduction'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: _resetOnboarding,
           ),
           const Divider(),
           const ListTile(
