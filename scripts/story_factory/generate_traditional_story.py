@@ -20,6 +20,8 @@ import pathlib
 import re
 import shutil
 import sys
+import time
+import urllib.error
 import urllib.request
 
 # ── Constants ──────────────────────────────────────────────────────────────
@@ -66,6 +68,41 @@ SYSTEM_PROMPT_REFLECTION = (
 LANE_LABEL = {"kjv": "Classic (KJV-style)", "web": "Modern (WEB-style)"}
 LANE_STYLE = {"kjv": "KJV", "web": "WEB"}
 
+# 66-book Protestant canon — full unabbreviated English names
+PROTESTANT_BOOKS = {
+    "Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy",
+    "Joshua", "Judges", "Ruth", "1 Samuel", "2 Samuel",
+    "1 Kings", "2 Kings", "1 Chronicles", "2 Chronicles",
+    "Ezra", "Nehemiah", "Esther", "Job", "Psalm", "Proverbs",
+    "Ecclesiastes", "Song of Solomon", "Isaiah", "Jeremiah",
+    "Lamentations", "Ezekiel", "Daniel", "Hosea", "Joel", "Amos",
+    "Obadiah", "Jonah", "Micah", "Nahum", "Habakkuk", "Zephaniah",
+    "Haggai", "Zechariah", "Malachi",
+    "Matthew", "Mark", "Luke", "John", "Acts", "Romans",
+    "1 Corinthians", "2 Corinthians", "Galatians", "Ephesians",
+    "Philippians", "Colossians", "1 Thessalonians", "2 Thessalonians",
+    "1 Timothy", "2 Timothy", "Titus", "Philemon", "Hebrews",
+    "James", "1 Peter", "2 Peter", "1 John", "2 John", "3 John",
+    "Jude", "Revelation",
+}
+
+# Matches: "Book Chapter" or "Book Chapter:Verse" or "Book Chapter:Verse–Verse"
+# en-dash (–) required for verse ranges, not hyphen (-)
+_ANCHOR_RE = re.compile(
+    r"^(?P<book>.+?)\s+(?P<chapter>\d+)(?::(?P<verse>\d+)(?:\u2013(?P<verse_end>\d+))?)?$"
+)
+
+
+def validate_anchor_format(anchor: str) -> str | None:
+    """Validate anchor against spec Section 2.2. Returns error message or None."""
+    m = _ANCHOR_RE.match(anchor)
+    if not m:
+        return f"Anchor does not match format 'Book Chapter[:Verse[–Verse]]': {anchor!r}"
+    book = m.group("book")
+    if book not in PROTESTANT_BOOKS:
+        return f"Unknown or abbreviated book name: {book!r} (must be full Protestant English name)"
+    return None
+
 # ── .env loader ────────────────────────────────────────────────────────────
 
 def load_env(root: pathlib.Path) -> None:
@@ -88,6 +125,35 @@ def load_env(root: pathlib.Path) -> None:
         value = re.sub(r"\s+#.*$", "", value)
         os.environ[key.strip()] = value.strip()
 
+# ── Retry helper ───────────────────────────────────────────────────────────
+
+TRANSIENT_CODES = {429, 502, 503}
+MAX_RETRIES = 3
+
+def _urlopen_with_retry(req: urllib.request.Request, timeout: int):
+    """urlopen with retry for transient HTTP errors (429/502/503/timeout).
+
+    Non-transient errors (400, 401, 422, etc.) abort immediately.
+    Up to MAX_RETRIES retries with exponential backoff (1s, 2s, 4s).
+    """
+    for attempt in range(MAX_RETRIES + 1):
+        try:
+            return urllib.request.urlopen(req, timeout=timeout)
+        except urllib.error.HTTPError as exc:
+            if exc.code in TRANSIENT_CODES and attempt < MAX_RETRIES:
+                wait = 2 ** attempt
+                print(f"    Transient HTTP {exc.code}, retry {attempt + 1}/{MAX_RETRIES} in {wait}s...")
+                time.sleep(wait)
+                continue
+            raise
+        except (urllib.error.URLError, TimeoutError) as exc:
+            if attempt < MAX_RETRIES:
+                wait = 2 ** attempt
+                print(f"    Network error ({exc}), retry {attempt + 1}/{MAX_RETRIES} in {wait}s...")
+                time.sleep(wait)
+                continue
+            raise
+
 # ── OpenAI helper ──────────────────────────────────────────────────────────
 
 def call_openai(system: str, user: str) -> str:
@@ -108,7 +174,7 @@ def call_openai(system: str, user: str) -> str:
             "Content-Type": "application/json",
         },
     )
-    with urllib.request.urlopen(req, timeout=120) as resp:
+    with _urlopen_with_retry(req, timeout=120) as resp:
         data = json.loads(resp.read())
     for output in data.get("output", []):
         if output.get("type") == "message":
@@ -136,7 +202,7 @@ def tts(text: str, outfile: pathlib.Path, voice_id: str) -> None:
             "Accept": "audio/mpeg",
         },
     )
-    with urllib.request.urlopen(req, timeout=300) as resp:
+    with _urlopen_with_retry(req, timeout=300) as resp:
         audio = resp.read()
     if len(audio) < 1000:
         raise RuntimeError(
@@ -187,6 +253,12 @@ def main() -> int:
     anchors = json.loads(anchors_file.read_text())
     if args.anchor in anchors:
         print(f"ABORT: anchor already used: {args.anchor}")
+        return 1
+
+    # 3b. Anchor format validation (spec Section 2.2)
+    anchor_err = validate_anchor_format(args.anchor)
+    if anchor_err:
+        print(f"ABORT: {anchor_err}")
         return 1
 
     # 4. Required env vars
@@ -287,6 +359,7 @@ def main() -> int:
         # ── Write metadata ─────────────────────────────────────────────
         print(f"\n=== Writing metadata ===")
         meta = {
+            "schemaVersion": 1,
             "storyId": sid,
             "mode": "traditional",
             "languageStyle": LANE_STYLE[lane],

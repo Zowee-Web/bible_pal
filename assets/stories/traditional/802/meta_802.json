@@ -1,0 +1,33 @@
+{
+  "storyId": 802,
+  "mode": "traditional",
+  "languageStyle": "KJV",
+  "mood": "peaceful",
+  "scriptureAnchor": "Psalm 23",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_JAMES_HUSKY",
+  "createdByModel": "gpt-4.1",
+  "generationBatch": "PAL_TRADITIONAL_CLASSIC_OPTION_B2_800_SERIES",
+  "files": {
+    "short": {
+      "storyText": "story_802_traditional_kjv_short.txt",
+      "storyAudio": "audio_802_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_802_traditional_kjv_full.txt",
+      "storyAudio": "audio_802_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_802_traditional_kjv_long.txt",
+      "storyAudio": "audio_802_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_802_traditional_kjv.txt",
+      "reflectionAudio": "audio_802_reflection.mp3"
+    }
+  }
+}

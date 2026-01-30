@@ -1,0 +1,31 @@
+{
+  "storyId": 801,
+  "mode": "traditional",
+  "languageStyle": "WEB",
+  "mood": "weary",
+  "scriptureAnchor": "Matthew 11:28–30",
+  "lengths": ["short", "full", "long"],
+  "voiceKey": "VOICE_JAMES_HUSKY",
+  "createdByModel": "gpt-4.1",
+  "generationBatch": "PAL_TRADITIONAL_OPTION_B_TEST",
+  "files": {
+    "short": {
+      "storyText": "story_801_traditional_web_short.txt",
+      "reflectionText": "reflection_801_traditional_web_short.txt",
+      "storyAudio": "audio_801_story_short.mp3",
+      "reflectionAudio": "audio_801_reflection_short.mp3"
+    },
+    "full": {
+      "storyText": "story_801_traditional_web_full.txt",
+      "reflectionText": "reflection_801_traditional_web_full.txt",
+      "storyAudio": "audio_801_story_full.mp3",
+      "reflectionAudio": "audio_801_reflection_full.mp3"
+    },
+    "long": {
+      "storyText": "story_801_traditional_web_long.txt",
+      "reflectionText": "reflection_801_traditional_web_long.txt",
+      "storyAudio": "audio_801_story_long.mp3",
+      "reflectionAudio": "audio_801_reflection_long.mp3"
+    }
+  }
+}
