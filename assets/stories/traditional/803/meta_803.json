@@ -1,0 +1,33 @@
+{
+  "storyId": 803,
+  "mode": "traditional",
+  "languageStyle": "KJV",
+  "mood": "hopeful",
+  "scriptureAnchor": "Psalm 46",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_JAMES_HUSKY",
+  "createdByModel": "gpt-4.1",
+  "generationBatch": "PAL_TRADITIONAL_OPTION_B2",
+  "files": {
+    "short": {
+      "storyText": "story_803_traditional_kjv_short.txt",
+      "storyAudio": "audio_803_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_803_traditional_kjv_full.txt",
+      "storyAudio": "audio_803_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_803_traditional_kjv_long.txt",
+      "storyAudio": "audio_803_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_803_traditional_kjv.txt",
+      "reflectionAudio": "audio_803_reflection.mp3"
+    }
+  }
+}
