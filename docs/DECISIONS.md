@@ -635,6 +635,7 @@ External crash reporting SDKs provide powerful diagnostics but introduce signifi
 
 1. **CrashLogStore** (local crash persistence)
    - Writes crash logs to disk (gated by `DIAGNOSTICS_ENABLED=true` compile flag)
+   - In production builds, `DIAGNOSTICS_ENABLED` is false by default, so crash logs are not persisted unless explicitly enabled for diagnostic builds
    - Max 10 crash logs (FIFO), stored in app documents directory
    - Privacy firewall: whitelisted breadcrumb keys (41 allowed), path redaction, email/phone removal
    - Metadata-only: timestamp, error_type, breadcrumb_count, app_version
@@ -653,7 +654,7 @@ External crash reporting SDKs provide powerful diagnostics but introduce signifi
 
 **Rationale:**
 - **Privacy-first**: Local diagnostics have zero external data transmission. No privacy policy updates, no legal review, no compliance risk.
-- **Data minimization**: User controls export. Support bundle is metadata-only. No PII leakage possible.
+- **Data minimization**: User controls export. Support bundle is metadata-only. Designed to minimize risk of PII capture/transmission; enforced by allowlists, sanitizers, and 28 build-failing tests.
 - **Sufficient for v1**: Crash logs + breadcrumbs provide enough context to debug most issues. Support bundle can be shared via email/GitHub issue.
 - **Defers complexity**: No SDK integration, no API key management, no consent flows, no vendor lock-in decisions.
 - **Defers cost**: External crash reporting services charge per event. Unknown v1 usage makes cost unpredictable.
@@ -669,7 +670,7 @@ External crash reporting SDKs provide powerful diagnostics but introduce signifi
 2. **Sentry** — Rejected for v1.
    - Pros: Privacy-focused, self-hostable option, powerful filtering
    - Cons: Paid service, requires credit card, configuration complexity, SDK size
-   - Decision: Good option for future, but overkill for v1
+   - Decision: Good option for future, but overkill for v1. Self-hosted Sentry may be reconsidered post-launch if it passes the same data contract requirements.
 
 3. **No diagnostics at all** — Rejected.
    - Pros: Simplest implementation, zero complexity
@@ -691,6 +692,8 @@ Hard privacy constraints enforced by CrashLogStore:
 - **NO file paths**: Absolute paths redacted to `[PATH]` (preserves package:/dart: URIs only)
 - **NO PII**: Email addresses → `[EMAIL]`, phone numbers → `[PHONE]`, paths sanitized
 
+Support bundle export applies the same data-minimization rule: metadata-only; no content payloads.
+
 Breadcrumb privacy firewall:
 - Whitelisted keys only (41 allowed: event, story_id, length_bucket, kid_friendly, etc.)
 - String values capped at 100 chars
@@ -707,13 +710,12 @@ Enforcement:
 
 New files created:
 - `lib/core/crash_log_store.dart` — Local crash persistence (494 lines)
-- `test/core/crash_log_store_test.dart` — Privacy firewall tests (492 lines, 28 tests)
+- `test/core/crash_log_store_test.dart` — Privacy firewall tests (492 lines, 28 tests), tagged with `@Tags(['requires_diagnostics_define'])`
 - `docs/DECISIONS.md` — This ADR
 
 Modified files:
 - `lib/features/diagnostics/diagnostics_screen.dart` — Support bundle enhancement
 - `.github/workflows/flutter.yml` — Separate diagnostics test step
-- `test/core/crash_log_store_test.dart` — Tagged with `@Tags(['requires_diagnostics_define'])`
 
 Test infrastructure:
 - Default run: `flutter test --exclude-tags=requires_diagnostics_define` (667 tests)
@@ -729,7 +731,7 @@ User experience:
 
 **When to Revisit:**
 
-External crash reporting should be reconsidered when ANY of these conditions are met:
+External crash reporting may be reconsidered only when ALL of these conditions are met:
 
 1. **Explicit user opt-in implemented**
    - Consent dialog explaining what data is sent
