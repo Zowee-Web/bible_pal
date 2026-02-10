@@ -1,3 +1,6 @@
+@Tags(['requires_diagnostics_define'])
+library;
+
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -145,6 +148,7 @@ void main() {
         error: Exception('Test 1'),
         stackTrace: StackTrace.current,
       );
+      await Future.delayed(const Duration(milliseconds: 2));
       await writeCrashLog(
         error: Exception('Test 2'),
         stackTrace: StackTrace.current,
