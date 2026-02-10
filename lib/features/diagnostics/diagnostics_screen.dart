@@ -22,9 +22,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/app_logger.dart';
 import '../../core/breadcrumb_store.dart';
+import '../../core/crash_log_store.dart';
 import '../../core/diagnostics_config.dart';
-import '../../services/storage_service.dart';
+import '../../providers/app_state_notifier.dart';
 import '../../providers/service_providers.dart';
+import '../../services/storage_service.dart';
 
 /// Diagnostics screen for viewing and exporting breadcrumbs.
 ///
@@ -94,7 +96,31 @@ class _DiagnosticsScreenState extends ConsumerState<DiagnosticsScreen> {
   }
 
   /// Build the full support bundle for export
-  Map<String, Object?> _buildSupportBundle() {
+  Future<Map<String, Object?>> _buildSupportBundle() async {
+    // Load crash log summaries (metadata only, not full content)
+    final crashLogs = await loadCrashLogs();
+    final crashLogSummary = crashLogs.take(5).map((log) => {
+          'timestamp': log.timestamp.toUtc().toIso8601String(),
+          'error_type': log.errorType,
+          'breadcrumb_count': log.breadcrumbs.length,
+        }).toList();
+
+    // Get current mode state from UserPreferences
+    final appState = ref.read(appStateProvider);
+    final prefs = appState.valueOrNull?.userPreferences;
+    final modeState = prefs != null
+        ? {
+            'storytellingMode': prefs.storytellingMode,
+            'kidFriendlyOnly': prefs.kidFriendlyOnly,
+          }
+        : null;
+
+    // Truncate platform_version if too long
+    var platformVersion = Platform.operatingSystemVersion;
+    if (platformVersion.length > 200) {
+      platformVersion = '${platformVersion.substring(0, 200)}... [truncated]';
+    }
+
     return {
       // Metadata
       'session_id': getSessionId(),
@@ -107,7 +133,15 @@ class _DiagnosticsScreenState extends ConsumerState<DiagnosticsScreen> {
 
       // Platform info (safe, non-PII)
       'platform': Platform.operatingSystem,
-      'platform_version': Platform.operatingSystemVersion,
+      'platform_version': platformVersion,
+      'number_of_processors': Platform.numberOfProcessors,
+
+      // Current mode state (if available)
+      if (modeState != null) 'current_mode_state': modeState,
+
+      // Crash log summary (last 5, metadata only)
+      'crash_log_count': crashLogs.length,
+      if (crashLogSummary.isNotEmpty) 'recent_crashes': crashLogSummary,
 
       // Last known filters (already sanitized)
       'last_filters': getLastFilters(),
@@ -121,7 +155,7 @@ class _DiagnosticsScreenState extends ConsumerState<DiagnosticsScreen> {
   Future<void> _copyToClipboard() async {
     try {
       const jsonEncoder = JsonEncoder.withIndent('  ');
-      final supportBundle = _buildSupportBundle();
+      final supportBundle = await _buildSupportBundle();
       final jsonString = jsonEncoder.convert(supportBundle);
 
       await Clipboard.setData(ClipboardData(text: jsonString));
