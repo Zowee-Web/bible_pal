@@ -3,8 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bible_pal/services/greeting_service.dart';
 import 'package:bible_pal/services/mood_service.dart';
 import 'package:bible_pal/services/verse_service.dart';
+import 'package:bible_pal/services/voice_consent_gate.dart';
 import 'package:bible_pal/providers/app_state_notifier.dart';
 import 'package:bible_pal/providers/parable_player_notifier.dart';
+import 'package:bible_pal/providers/service_providers.dart';
 import 'package:bible_pal/widgets/greeting_display.dart';
 import 'package:bible_pal/core/app_logger.dart';
 import 'package:bible_pal/core/story_length_bucket.dart';
@@ -90,6 +92,9 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
       'detected_mood': _moodResult!.mood,
     });
 
+    // Play PAL greeting (non-blocking, respects consent)
+    _maybePlayPalGreeting();
+
     try {
       final appStateNotifier = ref.read(appStateProvider.notifier);
 
@@ -139,6 +144,36 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
         ),
       );
     }
+  }
+
+  /// Play PAL greeting audio if voice consent allows (non-blocking, fail-safe)
+  void _maybePlayPalGreeting() {
+    // Fire-and-forget: greeting plays while parable loads
+    Future.microtask(() async {
+      try {
+        // Check voice consent
+        final appState = ref.read(appStateProvider).valueOrNull;
+        final prefs = appState?.userPreferences;
+        final consentResult = VoiceConsentGate.checkPalGreetings(prefs);
+
+        if (consentResult != VoiceGateResult.allowed) {
+          // Silently skip - respect user preference
+          return;
+        }
+
+        // Play greeting asset (non-blocking)
+        final audioService = ref.read(audioServiceProvider);
+        await audioService.playAsset('assets/audio/pal_test_greeting.mp3');
+
+        // Log success
+        logEvent('pal_greeting_played', {
+          'source': 'default',
+        });
+      } catch (e) {
+        // Fail gracefully - don't block story flow
+        debugPrint('[PalGreeting] Failed to play: $e');
+      }
+    });
   }
 
   /// Build a length selection button
