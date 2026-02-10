@@ -1571,6 +1571,89 @@ Test: test/critical/telemetry_forbidden_tokens_test.dart
 
 ---
 
+## 🔒 Meta-Text Prevention Invariant (NON-NEGOTIABLE)
+
+**Invariant**: Generated Scripture narration output MUST NEVER contain meta-commentary, introductions, disclaimers, process language, or LLM preamble. Violations are silently rejected and regenerated. Declarative verses MUST NOT be narrativized. Reflection/interpretation language MUST only appear in the post-story reflection system.
+
+### Why This Exists
+
+**Content purity and immersion are paramount.**
+
+- Meta-text ("Here is a retelling…", "Certainly!") breaks the narration experience
+- LLMs frequently prepend process language despite prompt instructions
+- Declarative Scripture (e.g., Romans 8:28) must not be turned into scenes with imagined characters
+- Comfort, explanation, application, and interpretation belong in reflections, not narration
+- Deterministic validation catches failures that prompt-only fixes cannot prevent
+
+### The Contract
+
+1. **Meta-Text Kill Switch**
+   - A configurable blocklist of meta-phrases is checked against the opening of all generated output
+   - ANY match → output rejected, silent regeneration triggered
+   - Blocklist includes: "Here is", "Certainly", "This version", "In this retelling", "The following", "This passage", etc.
+
+2. **Scripture-First Enforcement**
+   - The first non-whitespace characters must be story/Scripture prose
+   - No preamble, no disclaimers, no process language
+
+3. **Verse Classification**
+   - `DECLARATIVE_ONLY`: Statement-level elevation only. No scene, people, setting, emotional atmosphere, imagined listeners, or historical framing (e.g., Romans 8:28, Jeremiah 29:11)
+   - `NARRATIVE_ELIGIBLE`: May include scene-setting, characters, setting (e.g., narrative Bible stories)
+
+4. **Reflection Firewall**
+   - Comfort, explanation, application, and interpretation language is forbidden in Scripture narration
+   - These patterns may ONLY appear in the post-story reflection system
+
+5. **Regeneration Loop**
+   - On validation failure: discard output, regenerate with stricter reminder
+   - Maximum 3 attempts (configurable via `kMetaTextMaxRegenAttempts`)
+   - No apologies, no explanations surfaced to user
+   - After max attempts: output marked as contaminated, not served
+
+### Enforcement Mechanisms
+
+#### 1. Dart Validator
+**File**: [`lib/safety/meta_text_validator.dart`](../lib/safety/meta_text_validator.dart)
+
+- `MetaTextValidator` — blocklist + declarative + reflection firewall checks
+- `VerseClassification` — registry of verse types (declarative vs narrative)
+- `MetaTextHarness` — validate-reject-regenerate loop
+
+#### 2. Build-Failing Tests
+**File**: [`test/safety/meta_text_validator_test.dart`](../test/safety/meta_text_validator_test.dart)
+
+**Critical Tests** (MUST PASS):
+- `CRITICAL: rejects output starting with "Here is"`
+- `CRITICAL: Romans 8:28 classified as DECLARATIVE_ONLY`
+- `CRITICAL: rejects comfort language in narration`
+- `CRITICAL: rejects explanation language in narration`
+- `CRITICAL: rejects application language in narration`
+
+### Testing
+
+```bash
+# Run meta-text prevention tests
+flutter test test/safety/meta_text_validator_test.dart
+
+# Run all tests (includes meta-text prevention)
+flutter test
+```
+
+### Maintenance Rules
+
+1. **NEVER** weaken or remove blocklist entries
+2. **NEVER** bypass the validator for generated output
+3. **ALWAYS** run meta-text tests before committing
+4. **DO NOT** add reflection/interpretation language to narration content
+5. **DO NOT** narrativize DECLARATIVE_ONLY verses
+
+### Resources
+
+- [Meta-Text Validator](../lib/safety/meta_text_validator.dart)
+- [Meta-Text Tests](../test/safety/meta_text_validator_test.dart)
+
+---
+
 ## Future Invariants
 
 As the project evolves, additional invariants may be added here. Each invariant must:
