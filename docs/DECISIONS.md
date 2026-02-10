@@ -614,6 +614,154 @@ The typewriter service files (`typewriter_click_service.dart`, `typewriter_click
 
 ---
 
+## ADR-013: Defer External Crash Reporting for v1
+
+**Date:** 2026-02-10
+**Status:** Accepted
+**Context:** Bible PAL needs robust diagnostics for debugging production issues, but users share vulnerable emotional states (anxiety, grief, loneliness) with the app. We needed to decide:
+
+1. Should we integrate external crash reporting SDKs (Firebase Crashlytics, Sentry, etc.) in v1?
+2. How do we balance diagnostic capabilities with privacy-first design?
+3. What level of diagnostics is sufficient for pre-launch stability?
+
+External crash reporting SDKs provide powerful diagnostics but introduce significant complexity:
+- **Privacy risk**: SDKs send data to external servers; requires strict data contracts and legal review
+- **Configuration overhead**: API keys, consent flows, privacy policy updates, SDK integration
+- **Vendor lock-in**: Choosing Crashlytics vs Sentry is hard to reverse later
+- **App size**: Additional dependencies increase APK/IPA size
+- **Cost**: Most crash reporting services charge based on volume (unknown for v1)
+
+**Decision:** Defer all external crash reporting SDK integration for Bible PAL v1. Instead, implement privacy-first local diagnostics:
+
+1. **CrashLogStore** (local crash persistence)
+   - Writes crash logs to disk (gated by `DIAGNOSTICS_ENABLED=true` compile flag)
+   - Max 10 crash logs (FIFO), stored in app documents directory
+   - Privacy firewall: whitelisted breadcrumb keys (41 allowed), path redaction, email/phone removal
+   - Metadata-only: timestamp, error_type, breadcrumb_count, app_version
+   - NO user text, story content, verse text, tokens, or file paths
+
+2. **Support Bundle Export**
+   - User-triggered clipboard export from diagnostics screen
+   - Includes: crash summaries (last 5, metadata only), breadcrumbs, platform info, mode state
+   - Safe metadata: session_id, platform, platform_version, app_version, storytellingMode, kidFriendlyOnly
+   - NO PII or sensitive data
+
+3. **Abstract CrashReporter interface**
+   - All logging flows through `CrashReporter` abstraction
+   - `NoopCrashReporter` is default (logs to console only)
+   - Future SDK integration requires only implementing interface + calling `setCrashReporter()`
+
+**Rationale:**
+- **Privacy-first**: Local diagnostics have zero external data transmission. No privacy policy updates, no legal review, no compliance risk.
+- **Data minimization**: User controls export. Support bundle is metadata-only. No PII leakage possible.
+- **Sufficient for v1**: Crash logs + breadcrumbs provide enough context to debug most issues. Support bundle can be shared via email/GitHub issue.
+- **Defers complexity**: No SDK integration, no API key management, no consent flows, no vendor lock-in decisions.
+- **Defers cost**: External crash reporting services charge per event. Unknown v1 usage makes cost unpredictable.
+- **Future-ready**: `CrashReporter` abstraction allows easy SDK swap when needed. All logging already flows through hooks.
+
+**Alternatives Considered:**
+
+1. **Firebase Crashlytics** — Rejected for v1.
+   - Pros: Free tier, integrated with Firebase ecosystem, good Flutter support
+   - Cons: Requires Google account, privacy policy updates, vendor lock-in, external data transmission
+   - Decision: Defer until we have user consent flow and legal review
+
+2. **Sentry** — Rejected for v1.
+   - Pros: Privacy-focused, self-hostable option, powerful filtering
+   - Cons: Paid service, requires credit card, configuration complexity, SDK size
+   - Decision: Good option for future, but overkill for v1
+
+3. **No diagnostics at all** — Rejected.
+   - Pros: Simplest implementation, zero complexity
+   - Cons: Post-launch bugs would be undiagnosable
+   - Decision: Local diagnostics provide enough value without external dependencies
+
+4. **Build custom crash uploader** — Rejected.
+   - Pros: Full control, no vendor lock-in
+   - Cons: Requires backend infrastructure, security considerations, maintenance burden
+   - Decision: Not worth the effort for v1
+
+**Privacy & Security Notes:**
+
+Hard privacy constraints enforced by CrashLogStore:
+- **NO user-entered text**: No mood input, no reflection responses, no any text the user types
+- **NO story content**: No parable text, no generated stories, no prompts
+- **NO verse text**: No Bible verses, no Daily Bread content
+- **NO tokens/keys**: No API keys, no session tokens, no authentication data
+- **NO file paths**: Absolute paths redacted to `[PATH]` (preserves package:/dart: URIs only)
+- **NO PII**: Email addresses → `[EMAIL]`, phone numbers → `[PHONE]`, paths sanitized
+
+Breadcrumb privacy firewall:
+- Whitelisted keys only (41 allowed: event, story_id, length_bucket, kid_friendly, etc.)
+- String values capped at 100 chars
+- Complex types (Map, List) dropped
+- Numbers, bools, nulls allowed
+- Unknown keys silently dropped
+
+Enforcement:
+- 28 build-failing tests verify privacy constraints
+- Tests check: whitelist enforcement, string caps, complex type dropping, path redaction, PII sanitization
+- FIFO caps prevent unbounded storage (max 10 crash logs)
+
+**Consequences:**
+
+New files created:
+- `lib/core/crash_log_store.dart` — Local crash persistence (494 lines)
+- `test/core/crash_log_store_test.dart` — Privacy firewall tests (492 lines, 28 tests)
+- `docs/DECISIONS.md` — This ADR
+
+Modified files:
+- `lib/features/diagnostics/diagnostics_screen.dart` — Support bundle enhancement
+- `.github/workflows/flutter.yml` — Separate diagnostics test step
+- `test/core/crash_log_store_test.dart` — Tagged with `@Tags(['requires_diagnostics_define'])`
+
+Test infrastructure:
+- Default run: `flutter test --exclude-tags=requires_diagnostics_define` (667 tests)
+- Diagnostics run: `flutter test --tags=requires_diagnostics_define --dart-define=DIAGNOSTICS_ENABLED=true` (28 tests)
+- CI runs both separately
+
+User experience:
+- No external data transmission
+- No consent dialogs required
+- Support bundle export is user-triggered
+- Crash logs survive app restart (when diagnostics enabled)
+- Developers can debug issues from exported bundles
+
+**When to Revisit:**
+
+External crash reporting should be reconsidered when ANY of these conditions are met:
+
+1. **Explicit user opt-in implemented**
+   - Consent dialog explaining what data is sent
+   - Clear opt-out mechanism
+   - GDPR/CCPA compliant consent flow
+
+2. **Legal/privacy review completed**
+   - Privacy policy updated
+   - Data Processing Agreement (DPA) with vendor reviewed
+   - GDPR Article 30 compliance verified
+
+3. **SDK vetted and chosen**
+   - Data minimization guarantees from vendor
+   - Self-hosted option evaluated
+   - SDK size impact acceptable
+   - Cost model understood
+
+4. **Written data contract**
+   - Explicit list of what data is sent
+   - Retention policy defined
+   - Data deletion process documented
+   - PII guarantees formalized
+
+5. **Post-launch volume justifies cost**
+   - Enough users to make crash reporting cost effective
+   - Free tier limits understood
+   - Budget allocated
+
+**DO NOT** integrate external crash reporting without all 5 conditions met. The current local diagnostics + support bundle export is sufficient for v1 and preserves user privacy.
+
+---
+
 ## Template for Future Decisions
 
 ```
