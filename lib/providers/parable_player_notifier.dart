@@ -104,6 +104,11 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
   Future<void> loadParable(Parable parable) async {
     state = state.copyWith(isLoading: true, errorMessage: null);
 
+    logEvent('story_load_start', {
+      'story_id': parable.storyId,
+      'length_bucket': parable.lengthBucket.name,
+    });
+
     try {
       // Get ParableService
       final parableService = await ref.read(parableServiceProvider.future);
@@ -132,7 +137,18 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
         parableText: parableText,
         isLoading: false,
       );
+
+      logEvent('story_load_success', {
+        'story_id': parable.storyId,
+        'length_bucket': parable.lengthBucket.name,
+        'kid_friendly': parable.kidFriendly,
+      });
     } catch (e) {
+      logEvent('story_load_fail', {
+        'story_id': parable.storyId,
+        'error_type': e.runtimeType.toString(),
+      }, level: LogLevel.error);
+
       logError('parable_load_failed', 'ParablePlayerNotifier.loadParable',
           storyId: parable.storyId, errorMessage: e.toString());
 
@@ -184,9 +200,19 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
 
     try {
       await _audioService.play();
+
+      logEvent('audio_play_start', {
+        'story_id': state.currentParable?.storyId,
+      });
+
       ref.notifyListeners();
       return VoicePlayResult.played;
     } catch (e) {
+      logEvent('audio_play_fail', {
+        'story_id': state.currentParable?.storyId,
+        'error_type': e.runtimeType.toString(),
+      }, level: LogLevel.error);
+
       state = state.copyWith(errorMessage: 'Error playing audio: $e');
       return VoicePlayResult.error;
     }

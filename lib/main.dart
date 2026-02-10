@@ -16,7 +16,7 @@ Future<void> main() async {
   setLoggerAppInfo(version: '1.0.0', build: '1');
 
   // Log app startup
-  logEvent('app_started', {
+  logEvent('app_start', {
     'platform': Platform.operatingSystem,
     'platform_version': Platform.operatingSystemVersion,
   });

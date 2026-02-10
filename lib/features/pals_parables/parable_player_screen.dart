@@ -10,6 +10,7 @@ import 'package:bible_pal/models/parable.dart';
 import 'package:bible_pal/models/share_record.dart';
 import 'package:bible_pal/services/reflection_service.dart';
 import 'package:bible_pal/services/voice_consent_gate.dart';
+import 'package:bible_pal/core/app_logger.dart';
 import 'package:uuid/uuid.dart';
 
 /// Parable Player Screen
@@ -122,6 +123,10 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
       // Load from assets
       await _reflectionPlayer!.setAsset('assets/stories/$reflectionPath');
 
+      logEvent('reflection_start', {
+        'story_id': playerState.currentParable!.storyId,
+      });
+
       setState(() {
         _isReflectionPlaying = true;
         _reflectionAudioPlayed = true;
@@ -139,6 +144,12 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
       });
     } catch (e) {
       debugPrint('[ReflectionAudio] Error playing: $e');
+
+      logEvent('reflection_fail', {
+        'story_id': playerState.currentParable!.storyId,
+        'error_type': e.runtimeType.toString(),
+      }, level: LogLevel.error);
+
       setState(() {
         _isReflectionPlaying = false;
         _hasReflectionAudio = false; // Mark as unavailable

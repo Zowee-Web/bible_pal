@@ -84,6 +84,12 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
 
     setState(() => _isSelectingParable = true);
 
+    // Log PAL tap event
+    logEvent('pal_tap', {
+      'length_bucket': lengthBucket.name,
+      'detected_mood': _moodResult!.mood,
+    });
+
     try {
       final appStateNotifier = ref.read(appStateProvider.notifier);
 
