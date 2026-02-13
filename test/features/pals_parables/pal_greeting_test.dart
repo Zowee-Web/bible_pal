@@ -49,21 +49,22 @@ void main() {
 
   group('PAL Greeting Asset Path', () {
     test('greeting asset path is correct', () {
-      const expectedPath = 'assets/audio/pal_test_greeting.mp3';
+      // SoLoud uses WAV format for instant playback
+      const expectedPath = 'assets/audio/pal_test_greeting.wav';
 
       // Verify the path follows the expected pattern
       expect(expectedPath.startsWith('assets/audio/'), isTrue);
-      expect(expectedPath.endsWith('.mp3'), isTrue);
+      expect(expectedPath.endsWith('.wav'), isTrue);
       expect(expectedPath.contains('pal_test_greeting'), isTrue);
     });
   });
 
   group('PAL Greeting Breadcrumb Privacy', () {
     test('pal_greeting_played breadcrumb uses only whitelisted keys', () {
-      // Expected breadcrumb structure
+      // Expected breadcrumb structure (now triggered from PAL button tap)
       final breadcrumb = {
         'event': 'pal_greeting_played',
-        'source': 'default',
+        'source': 'pal_button_tap',
       };
 
       // Verify all keys are in the known whitelist
@@ -85,7 +86,7 @@ void main() {
     test('pal_greeting_played breadcrumb has minimal payload', () {
       final breadcrumb = {
         'event': 'pal_greeting_played',
-        'source': 'default',
+        'source': 'pal_button_tap',
       };
 
       // Verify minimal payload (only 2 user-specified fields)

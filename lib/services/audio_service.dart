@@ -37,11 +37,13 @@ class AudioService {
 
   /// Load and play audio from asset bundle (dev/test use)
   Future<void> playAsset(String assetPath) async {
-    if (isPlaying) {
-      debugPrint('Audio already playing, skipping playAsset');
-      return;
-    }
     try {
+      // Stop any existing playback first
+      if (isPlaying) {
+        debugPrint('Stopping current audio to play new asset');
+        await stop();
+      }
+
       await _player.setAsset(assetPath);
       await _player.play();
       debugPrint('Playing asset: $assetPath');

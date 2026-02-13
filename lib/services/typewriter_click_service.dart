@@ -14,7 +14,8 @@ import 'typewriter_click_fallback.dart';
 
 /// Dev-only toggle for SoLoud vs just_audio fallback on desktop.
 /// Set to false to revert to just_audio pool if SoLoud causes issues.
-const bool kUseSoloudTypewriter = true;
+/// Can be disabled via: --dart-define=DISABLE_SOLOUD_AUDIO=true
+const bool kUseSoloudTypewriter = !bool.fromEnvironment('DISABLE_SOLOUD_AUDIO');
 
 /// Minimum click interval (ms) - at 70ms typing speed, this allows every click
 const int kMinClickIntervalMs = 50;

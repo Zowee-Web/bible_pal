@@ -209,6 +209,43 @@ class _DiagnosticsScreenState extends ConsumerState<DiagnosticsScreen> {
     await audioService.playAsset('assets/audio/pal_test_greeting_sarah.mp3');
   }
 
+  /// [DEBUG ONLY] Play story audio test for macOS audio routing diagnostics.
+  Future<void> _playStoryAudioTest() async {
+    final audioService = ref.read(audioServiceProvider);
+
+    if (kDebugMode) {
+      debugPrint('DiagnosticsScreen: Testing story audio playback (just_audio)');
+    }
+
+    try {
+      // Test story audio playback using just_audio
+      // This helps diagnose macOS audio routing issues
+      await audioService.playAsset('assets/audio/pal_test_greeting_sarah.mp3');
+
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Story audio test started. Listen for playback.'),
+          backgroundColor: Colors.blue,
+        ),
+      );
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('DiagnosticsScreen: Story audio test failed: $e');
+      }
+
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Story audio test failed: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
   /// [DEBUG ONLY] Reset first-launch state for dev testing.
   /// Calls StorageService.resetFirstLaunchDevOnly() which is the single source of truth.
   Future<void> _resetFirstLaunch() async {
@@ -357,6 +394,29 @@ class _DiagnosticsScreenState extends ConsumerState<DiagnosticsScreen> {
                               onPressed: _playTestAudio,
                               icon: const Icon(Icons.play_arrow, size: 18),
                               label: const Text('Play Test Audio (Dev)'),
+                            ),
+                          ),
+                        ],
+                        if (const bool.fromEnvironment('DEBUG_AUDIO_PANEL')) ...[
+                          const SizedBox(height: 8),
+                          SizedBox(
+                            width: double.infinity,
+                            child: OutlinedButton.icon(
+                              onPressed: _playStoryAudioTest,
+                              icon: const Icon(Icons.volume_up, size: 18),
+                              label: const Text('Test Story Audio (just_audio)'),
+                              style: OutlinedButton.styleFrom(
+                                foregroundColor: Colors.blue,
+                                side: const BorderSide(color: Colors.blue),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 4),
+                            child: Text(
+                              'macOS audio routing test: Should play via just_audio when SoLoud is disabled',
+                              style: TextStyle(fontSize: 10, color: Colors.grey),
                             ),
                           ),
                         ],

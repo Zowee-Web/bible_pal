@@ -4,9 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../providers/app_state_notifier.dart';
 import '../../services/typewriter_click_service.dart';
+import '../../services/greeting_audio_service.dart';
+import '../../services/voice_consent_gate.dart';
 import '../../theme/app_theme.dart';
 import '../onboarding/first_launch_screen.dart' show kPalIntroShownKey;
 import '../settings/settings_screen.dart';
+import '../../core/app_logger.dart';
 
 /// Main Menu Screen
 /// Based on UI/UX Design Spec Section 4: Home Screen
@@ -267,16 +270,16 @@ class MainMenuScreen extends ConsumerWidget {
 
 /// PAL button with first-launch intro overlay.
 /// Shows a 3-line typewriter intro on first launch, then pulses the button.
-class _PalButtonWithIntro extends StatefulWidget {
+class _PalButtonWithIntro extends ConsumerStatefulWidget {
   final ThemeData theme;
 
   const _PalButtonWithIntro({required this.theme});
 
   @override
-  State<_PalButtonWithIntro> createState() => _PalButtonWithIntroState();
+  ConsumerState<_PalButtonWithIntro> createState() => _PalButtonWithIntroState();
 }
 
-class _PalButtonWithIntroState extends State<_PalButtonWithIntro>
+class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     with SingleTickerProviderStateMixin {
   // Intro state
   bool _showIntro = false;
@@ -286,6 +289,7 @@ class _PalButtonWithIntroState extends State<_PalButtonWithIntro>
   int _currentLine = 0;
   Timer? _typingTimer;
   final _clickHelper = TypewriterClickHelper();
+  final _greetingAudio = GreetingAudioService.instance;
 
   // Pulse animation
   late final AnimationController _pulseController;
@@ -309,6 +313,10 @@ class _PalButtonWithIntroState extends State<_PalButtonWithIntro>
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
     _pulseController.addStatusListener(_onPulseStatus);
+
+    // Pre-initialize greeting audio for instant playback when PAL is tapped
+    _greetingAudio.initialize();
+
     _checkIntroState();
   }
 
@@ -433,8 +441,34 @@ class _PalButtonWithIntroState extends State<_PalButtonWithIntro>
       });
     }
 
+    // Play PAL greeting (non-blocking, consent-aware)
+    _maybePlayPalGreeting();
+
     // Navigate to PAL's stories
     Navigator.of(context).pushNamed('/pals_parables');
+  }
+
+  /// Play PAL greeting audio if voice consent allows (non-blocking, fail-safe)
+  void _maybePlayPalGreeting() {
+    // Check voice consent
+    final appState = ref.read(appStateProvider).valueOrNull;
+    final prefs = appState?.userPreferences;
+    final consentResult = VoiceConsentGate.checkPalGreetings(prefs);
+
+    if (consentResult != VoiceGateResult.allowed) {
+      // Silently skip - respect user preference
+      return;
+    }
+
+    // Play greeting (fire-and-forget with error handling)
+    _greetingAudio.playGreeting().catchError((error) {
+      debugPrint('[PAL Greeting] Playback error: $error');
+    });
+
+    // Log success
+    logEvent('pal_greeting_played', {
+      'source': 'pal_button_tap',
+    });
   }
 
   @override
