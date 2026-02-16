@@ -34,7 +34,7 @@ jobs:
       run: flutter test --exclude-tags=requires_diagnostics_define
 
     - name: Run diagnostics tests (requires DIAGNOSTICS_ENABLED)
-      run: flutter test --tags=requires_diagnostics_define --dart-define=DIAGNOSTICS_ENABLED=true
+      run: flutter test --run-skipped --tags=requires_diagnostics_define --dart-define=DIAGNOSTICS_ENABLED=true
 
     - name: 🔒 CRITICAL - Run Bible Translation Compliance Tests
       run: |

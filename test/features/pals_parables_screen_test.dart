@@ -10,6 +10,18 @@ void main() {
     expect(screen, isA<PalsParablesScreen>());
   });
 
+  group('textOnly parameter', () {
+    test('defaults to false', () {
+      const screen = PalsParablesScreen();
+      expect(screen.textOnly, false);
+    });
+
+    test('can be set to true', () {
+      const screen = PalsParablesScreen(textOnly: true);
+      expect(screen.textOnly, true);
+    });
+  });
+
   group('StoryLengthBucket', () {
     test(
         'UI shows exactly 3 length buckets: Short Story, Full Story, Long Story',

@@ -135,8 +135,11 @@ This invariant is enforced through:
 **Before committing any code:**
 
 ```bash
-# Run all tests (MUST PASS)
+# Run all tests (MUST PASS — diagnostics-gated tests auto-skip)
 flutter test
+
+# Run diagnostics-gated tests (separate compile flag required)
+flutter test --run-skipped --tags=requires_diagnostics_define --dart-define=DIAGNOSTICS_ENABLED=true
 
 # Run compliance tests specifically
 flutter test test/core/bible_translation_compliance_test.dart test/core/repo_wide_compliance_scan_test.dart

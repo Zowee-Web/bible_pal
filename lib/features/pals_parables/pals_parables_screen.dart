@@ -1,8 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:bible_pal/services/greeting_service.dart';
+import 'package:bible_pal/services/greeting_audio_service.dart';
 import 'package:bible_pal/services/mood_service.dart';
 import 'package:bible_pal/services/verse_service.dart';
+import 'package:bible_pal/services/stt_service.dart';
 import 'package:bible_pal/providers/app_state_notifier.dart';
 import 'package:bible_pal/providers/parable_player_notifier.dart';
 import 'package:bible_pal/widgets/greeting_display.dart';
@@ -10,11 +15,38 @@ import 'package:bible_pal/widgets/story_length_radio_selector.dart';
 import 'package:bible_pal/core/app_logger.dart';
 import 'package:bible_pal/core/story_length_bucket.dart';
 
+/// Voice input states for the PAL Voice Mood Input flow (Feature 2.2).
+///
+/// See SPEC.md Feature 2.2 for state machine transitions.
+enum VoiceInputState {
+  /// Default state. TextField + mic button visible.
+  idle,
+
+  /// System permission dialog is showing.
+  awaitingPermission,
+
+  /// Microphone active, STT processing. Partial transcript shown as preview.
+  listening,
+
+  /// Final transcript inserted into TextField. User can edit/re-record.
+  confirming,
+
+  /// Mood detected, proceeding with compassionate reply + verse + length selection.
+  proceeding,
+}
+
 /// PAL's Parables Screen
-/// Based on SPEC.md Features 2, 2.1, 3, 4, 5, 14, 16
-/// Complete flow: greeting → mood input → compassionate reply + verse → auto-transition to parable playback
+/// Based on SPEC.md Features 2, 2.1, 2.2, 3, 4, 5, 14, 16
+/// Complete flow: greeting → mood input (type or voice) → compassionate reply + verse → auto-transition to parable playback
 class PalsParablesScreen extends ConsumerStatefulWidget {
-  const PalsParablesScreen({super.key});
+  const PalsParablesScreen({super.key, this.sttService, this.textOnly = false});
+
+  /// Optional STT service for dependency injection (testing).
+  final SttService? sttService;
+
+  /// When true, voice/mic input is hidden (text-only interaction with PAL).
+  /// Story audio playback is NOT affected — only input method changes.
+  final bool textOnly;
 
   @override
   ConsumerState<PalsParablesScreen> createState() => _PalsParablesScreenState();
@@ -25,6 +57,8 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
   final GreetingService _greetingService = GreetingService();
   final VerseService _verseService = VerseService();
 
+  late final SttService _sttService;
+
   String? _greeting;
   String? _emoji;
   String? _compassionateReply;
@@ -33,23 +67,223 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
   bool _isSelectingParable = false;
   StoryLengthBucket _selectedLengthBucket = StoryLengthBucket.short;
 
+  // Voice input state (Feature 2.2)
+  VoiceInputState _voiceState = VoiceInputState.idle;
+  String _partialTranscript = '';
+  bool _sttAvailable = false;
+
   @override
   void initState() {
     super.initState();
+    _sttService = widget.sttService ?? SttService();
     _greeting = _greetingService.getGreeting();
     _emoji = _greetingService.getTimeWindowEmoji();
 
     // Log screen view
     logEvent('screen_view', {'screen_name': 'pals_parables'});
+
+    // Initialize STT engine (non-blocking) to check availability
+    if (!widget.textOnly) {
+      _initStt();
+    }
+  }
+
+  Future<void> _initStt() async {
+    final available = await _sttService.initialize();
+    if (mounted) {
+      setState(() => _sttAvailable = available);
+    }
   }
 
   @override
   void dispose() {
     _moodController.dispose();
+    _sttService.dispose();
     super.dispose();
   }
 
-  /// Handle mood detection, show verse, and display length selection
+  // ---------------------------------------------------------------------------
+  // Voice input methods (Feature 2.2)
+  // ---------------------------------------------------------------------------
+
+  /// Handle mic button tap. Transitions through the state machine:
+  /// idle → awaitingPermission → listening → confirming
+  Future<void> _onMicTap() async {
+    if (_voiceState != VoiceInputState.idle) return;
+
+    // Auto-stop greeting audio if still playing (SPEC 2.2)
+    GreetingAudioService.instance.stopPlayback();
+
+    // Check if STT is available
+    if (!_sttAvailable) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Voice input not available on this platform'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+        logEvent('voice_input_cancelled', {'reason': 'stt_unavailable'});
+      }
+      return;
+    }
+
+    // Check permissions
+    setState(() => _voiceState = VoiceInputState.awaitingPermission);
+
+    final permResult = await _sttService.checkPermissions();
+
+    if (!mounted) return;
+
+    switch (permResult) {
+      case SttPermissionResult.granted:
+        _startListening();
+
+      case SttPermissionResult.denied:
+        setState(() => _voiceState = VoiceInputState.idle);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Microphone permission is required for voice input'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+        logEvent('voice_input_cancelled', {'reason': 'permission_denied'});
+
+      case SttPermissionResult.permanentlyDenied:
+        setState(() => _voiceState = VoiceInputState.idle);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Text(
+                'Microphone permission denied. Enable it in Settings.'),
+            duration: const Duration(seconds: 4),
+            action: SnackBarAction(
+              label: 'Settings',
+              onPressed: () => openAppSettings(),
+            ),
+          ),
+        );
+        logEvent('voice_input_cancelled', {'reason': 'permission_denied'});
+    }
+  }
+
+  /// Start STT listening. Transitions: awaitingPermission → listening.
+  Future<void> _startListening() async {
+    setState(() {
+      _voiceState = VoiceInputState.listening;
+      _partialTranscript = '';
+    });
+
+    final completer = Completer<void>();
+
+    await _sttService.startListening(
+      onResult: (result) {
+        if (!mounted) return;
+        if (result.isFinal) {
+          // Final result: place into TextField and transition to confirming
+          final transcript = result.text;
+          if (transcript.isEmpty) {
+            // Silence timeout — 0 words detected
+            setState(() {
+              _voiceState = VoiceInputState.idle;
+              _partialTranscript = '';
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("I didn't catch that. Try again or type your response."),
+                duration: Duration(seconds: 3),
+              ),
+            );
+            logEvent('voice_input_cancelled', {'reason': 'timeout'});
+          } else {
+            // Voice transcript → TextField (Invariant 17: input equivalence)
+            _moodController.text = transcript;
+            setState(() {
+              _voiceState = VoiceInputState.confirming;
+              _partialTranscript = '';
+            });
+            // Log completion with word count only — no transcript (Invariant 17)
+            logEvent('voice_input_completed', {
+              'input_method': 'voice',
+              'word_count': transcript.split(RegExp(r'\s+')).length,
+            });
+          }
+          if (!completer.isCompleted) completer.complete();
+        } else {
+          // Partial result: show preview below mic indicator
+          setState(() => _partialTranscript = result.text);
+        }
+      },
+      onError: (error) {
+        if (!mounted) return;
+        setState(() {
+          _voiceState = VoiceInputState.idle;
+          _partialTranscript = '';
+        });
+        logEvent('voice_input_cancelled', {'reason': 'stt_unavailable'});
+        if (!completer.isCompleted) completer.complete();
+      },
+    );
+
+    // Timeout fallback: if no final result within listen duration + buffer
+    unawaited(
+      Future.delayed(const Duration(seconds: SttService.defaultListenSeconds + 1))
+          .then((_) {
+        if (!completer.isCompleted) {
+          // Use partial transcript if we have one
+          if (_partialTranscript.isNotEmpty && mounted) {
+            _moodController.text = _partialTranscript;
+            setState(() {
+              _voiceState = VoiceInputState.confirming;
+              _partialTranscript = '';
+            });
+            logEvent('voice_input_completed', {
+              'input_method': 'voice',
+              'word_count':
+                  _moodController.text.split(RegExp(r'\s+')).length,
+            });
+          } else if (mounted) {
+            setState(() {
+              _voiceState = VoiceInputState.idle;
+              _partialTranscript = '';
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("I didn't catch that. Try again or type your response."),
+                duration: Duration(seconds: 3),
+              ),
+            );
+            logEvent('voice_input_cancelled', {'reason': 'timeout'});
+          }
+          completer.complete();
+        }
+      }),
+    );
+  }
+
+  /// Cancel voice input and return to idle (typing fallback).
+  Future<void> _cancelVoiceInput() async {
+    await _sttService.stopListening();
+    if (mounted) {
+      setState(() {
+        _voiceState = VoiceInputState.idle;
+        _partialTranscript = '';
+      });
+      logEvent('voice_input_cancelled', {'reason': 'user_cancel'});
+    }
+  }
+
+  /// Re-record: go back to listening from confirming state.
+  Future<void> _reRecord() async {
+    _moodController.clear();
+    _startListening();
+  }
+
+  // ---------------------------------------------------------------------------
+  // Mood submission (shared by typed and voice input — Invariant 17)
+  // ---------------------------------------------------------------------------
+
+  /// Handle mood detection, show verse, and display length selection.
+  /// This is the SAME handler for both typed and voice input (Invariant 17: input equivalence).
   Future<void> _handleMoodSubmission() async {
     if (_moodController.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -67,6 +301,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
       _moodResult = result;
       _compassionateReply = reply;
       _verse = verse;
+      _voiceState = VoiceInputState.proceeding;
     });
   }
 
@@ -143,9 +378,15 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     }
   }
 
+  // ---------------------------------------------------------------------------
+  // Build
+  // ---------------------------------------------------------------------------
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isVoiceActive = _voiceState == VoiceInputState.listening ||
+        _voiceState == VoiceInputState.awaitingPermission;
 
     return Scaffold(
       appBar: AppBar(
@@ -178,19 +419,36 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  // TextField (always visible per SPEC 2.2)
                   TextField(
                     controller: _moodController,
                     maxLines: 3,
                     autofocus: false,
                     keyboardType: TextInputType.multiline,
                     textInputAction: TextInputAction.newline,
-                    decoration: const InputDecoration(
+                    enabled: !isVoiceActive,
+                    onTap: () {
+                      // Tapping TextField cancels voice input (SPEC 2.2)
+                      if (_voiceState == VoiceInputState.listening) {
+                        _cancelVoiceInput();
+                      }
+                    },
+                    decoration: InputDecoration(
                       labelText: 'Share how you\'re doing',
-                      hintText: 'Type a few words about your day or night...',
-                      border: OutlineInputBorder(),
+                      hintText: _voiceState == VoiceInputState.confirming
+                          ? 'Edit your response or tap Continue'
+                          : 'Type a few words about your day or night...',
+                      border: const OutlineInputBorder(),
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 12),
+
+                  // Voice input controls (Feature 2.2)
+                  _buildVoiceControls(theme),
+
+                  const SizedBox(height: 12),
+
+                  // Continue button
                   ElevatedButton(
                     onPressed: _compassionateReply != null
                         ? null
@@ -336,5 +594,108 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
         ],
       ),
     );
+  }
+
+  /// Build voice input controls: mic button, listening indicator, re-record.
+  Widget _buildVoiceControls(ThemeData theme) {
+    switch (_voiceState) {
+      case VoiceInputState.idle:
+        if (widget.textOnly) return const SizedBox.shrink();
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'or',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+            const SizedBox(width: 8),
+            IconButton(
+              key: const Key('voice_mic_button'),
+              onPressed: _compassionateReply != null ? null : _onMicTap,
+              icon: const Icon(Icons.mic),
+              tooltip: _sttAvailable
+                  ? 'Tap to speak'
+                  : 'Voice input not available on this platform',
+              color: _sttAvailable
+                  ? theme.colorScheme.primary
+                  : theme.colorScheme.onSurfaceVariant,
+            ),
+          ],
+        );
+
+      case VoiceInputState.awaitingPermission:
+        return const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 16,
+              height: 16,
+              child: CircularProgressIndicator(strokeWidth: 2),
+            ),
+            SizedBox(width: 8),
+            Text('Requesting permission...'),
+          ],
+        );
+
+      case VoiceInputState.listening:
+        return Column(
+          children: [
+            // Pulsing mic indicator
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.mic,
+                  key: const Key('voice_listening_indicator'),
+                  color: theme.colorScheme.error,
+                  size: 28,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  'Listening...',
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.error,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                TextButton(
+                  onPressed: _cancelVoiceInput,
+                  child: const Text('Cancel'),
+                ),
+              ],
+            ),
+            // Partial transcript preview (NOT in TextField per SPEC 2.2)
+            if (_partialTranscript.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Text(
+                _partialTranscript,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                  fontStyle: FontStyle.italic,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ],
+        );
+
+      case VoiceInputState.confirming:
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextButton.icon(
+              onPressed: _reRecord,
+              icon: const Icon(Icons.refresh, size: 18),
+              label: const Text('Re-record'),
+            ),
+          ],
+        );
+
+      case VoiceInputState.proceeding:
+        return const SizedBox.shrink();
+    }
   }
 }

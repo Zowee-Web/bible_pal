@@ -28,5 +28,9 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Bible PAL uses the microphone for voice mood input so you can speak how you're feeling instead of typing.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Bible PAL uses speech recognition to transcribe your voice input for mood detection.</string>
 </dict>
 </plist>

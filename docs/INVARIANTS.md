@@ -1654,6 +1654,83 @@ flutter test
 
 ---
 
+## 🔒 Voice Transcript Privacy & Input Equivalence Invariant (NON-NEGOTIABLE)
+
+**Invariant**: Voice transcripts are private, ephemeral, and equivalent to typed input. A voice transcript must never be logged, persisted, transmitted, or included in diagnostics/support bundles, and must be processed through the exact same mood pipeline as typed text. Microphone capture must require explicit user action.
+
+### Why This Exists
+
+**Voice is high-risk data. We protect users by making transcripts ephemeral and non-observable.**
+
+- A transcript can contain sensitive personal information (PII, mental health details, names, locations)
+- Logging or persisting transcripts creates unnecessary privacy and compliance risk
+- Divergent "voice-only" logic increases bugs, regressions, and kid-mode inconsistencies
+- Explicit consent is required to maintain user trust and platform compliance
+
+### The Contract
+
+1. **Input Equivalence**
+   - Voice transcripts must be inserted into the same UI field used for typed input (the mood TextField)
+   - Submission must call the same handler used for typing: `_handleMoodSubmission()` → `MoodService.detectMood()`
+   - No separate "voice mood detection" path may exist in code
+
+2. **Transcript Privacy**
+   - Voice transcripts must never be:
+     - logged (including AppLogger events, breadcrumbs, and `debugPrint()` calls)
+     - persisted (SharedPreferences, files, SQLite, caches)
+     - transmitted externally (network calls, analytics payloads, remote services)
+     - included in diagnostics/support bundles or crash logs
+   - Transcripts may exist only in-memory for the current screen session and must be discarded when leaving the screen
+
+3. **Microphone Consent**
+   - Microphone capture must never start automatically
+   - Microphone capture must start only after an explicit user tap on a mic control
+   - If permissions are denied, the system must fall back to typing without blocking the feature
+
+### Enforcement Mechanisms
+
+- **Logging guardrails:**
+  - AppLogger must block keys that could contain transcript data (including but not limited to: `transcript`, `recognized_text`, `speech_result`, `voice_text`, `userText`)
+  - No `logEvent()` calls may include transcript strings (even under "debug")
+- **Storage guardrails:**
+  - No StorageService / SharedPreferences writes may store transcript data
+  - Diagnostics/support bundle generation must not include transcript fields or raw mood input text
+- **Architecture guardrails:**
+  - Voice path must terminate in the same text submission handler as typed input
+- **Repo-wide scan:**
+  - `test/critical/voice_privacy_scan_test.dart` scans all `lib/` files for patterns that could leak transcript data (e.g., `logEvent.*transcript`, `debugPrint.*transcript`, `SharedPreferences.*transcript`)
+
+### Testing
+
+```bash
+# Run voice transcript privacy tests
+flutter test test/critical/voice_transcript_privacy_test.dart
+
+# Run voice mic consent tests
+flutter test test/critical/voice_mic_consent_test.dart
+
+# Run voice mood pipeline equivalence tests
+flutter test test/services/voice_mood_pipeline_test.dart
+
+# Run repo-wide voice privacy scan
+flutter test test/critical/voice_privacy_scan_test.dart
+```
+
+### Maintenance Rules
+
+1. **NEVER** add transcript-like payloads to telemetry, breadcrumbs, crash logs, debugPrint, or support bundles
+2. **ALWAYS** route voice input through the existing typed mood submission pipeline
+3. **ALWAYS** require explicit mic tap prior to any recording/listening
+4. **DO NOT** create voice-specific mood detection logic
+
+### Resources
+
+- [AppLogger blocked-keys policy](../lib/core/app_logger.dart)
+- [Permission handling pattern reference](../lib/features/whisper/whisper_screen.dart)
+- [Voice consent patterns](../lib/services/voice_consent_gate.dart)
+
+---
+
 ## Future Invariants
 
 As the project evolves, additional invariants may be added here. Each invariant must:
@@ -1664,5 +1741,5 @@ As the project evolves, additional invariants may be added here. Each invariant 
 
 ---
 
-**Last Updated**: 2026-01-22
+**Last Updated**: 2026-02-12
 **Maintained By**: Bible PAL Development Team

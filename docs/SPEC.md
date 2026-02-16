@@ -65,9 +65,58 @@ This document is the single source of truth for Bible PAL's features and behavio
 - Choice of greeting does not affect mood classification, only UX
 - This is the first step before mood detection
 
+**2.2 PAL Voice Mood Input (Feature 2.2)**
+- User can optionally speak their mood response instead of typing (Milestone 1 = single-turn voice input only)
+- A mic button appears on the PAL's Parables mood check-in screen near the mood TextField
+- Voice input is never automatic; it only starts after an explicit mic tap
+- If the PAL greeting audio is still playing and the user taps the mic, the app auto-stops the greeting and immediately proceeds to permission/listening
+- SoLoud playback must be fully stopped before STT activation to avoid audio session conflicts
+- Voice transcription is placed into the same TextField used for typed input
+- User can edit the transcript before continuing
+- Voice transcripts go through the identical pipeline as typed text: _handleMoodSubmission() → MoodService.detectMood()
+- Fallback is always available: user can cancel voice and type at any time
+- Compassionate reply remains text-only in Milestone 1 (TTS reading of PAL's reply is deferred)
+
+**Voice Conversation States (Milestone 1):**
+- `idle` — TextField visible, mic available
+- `awaiting_permission` — system permission request in progress
+- `listening` — mic active, partial transcript shown (preview only)
+- `confirming` — final transcript inserted into TextField, user can edit/re-record
+- `proceeding` — same as existing flow after Continue (mood result → compassionate reply → verse → length selection)
+
+**Listening Behavior:**
+- `listenFor`: 10 seconds max
+- `pauseFor`: 3 seconds of silence triggers finalize
+- If STT returns 0 words, show a short snackbar ("I didn't catch that") and return to idle
+- Partial transcript may be shown during listening, but only the final transcript is inserted into the TextField
+
+**Permissions:**
+- Microphone (and speech recognition where required) permission is requested only on the first mic tap (never on screen load)
+- If permission is denied, the app returns to idle and the user can type instead
+- If permission is permanently denied, show a short message with an option to open system Settings
+
+**Kid Mode:**
+- No special voice-only rules in Milestone 1 beyond existing kid safety rules
+- Voice transcript is treated exactly like typed text and must still respect kid-safe filtering and kid-friendly story pool constraints
+
+**Privacy and Storage:**
+- Voice transcripts must never be logged, persisted, or included in diagnostics/support bundles
+- The transcript exists only in memory for the current screen session
+
+**Platform Support:**
+- **iOS / Android**: Full support; microphone and speech permissions already configured
+- **macOS**: Requires adding `com.apple.security.device.audio-input` to sandbox entitlements and `NSMicrophoneUsageDescription` to Info.plist; if STT initialization fails, mic button is disabled with tooltip "Voice input not available on this platform"
+
+**Telemetry / Observability (privacy-safe):**
+- `voice_input_started` — user tapped mic (no text payload)
+- `voice_permission_result` — {granted: bool, permanently_denied: bool}
+- `voice_input_completed` — {input_method: "voice", word_count: N, detected_mood: "<mood_key>"}
+- `voice_input_cancelled` — {reason: "user_cancel" | "timeout" | "permission_denied" | "stt_unavailable"}
+
 **3. Mood Detection Flow**
-- User can type or speak their answer to the greeting question
+- User can type or speak (Feature 2.2) their answer to the greeting question
 - Text is analyzed to detect mood (positive / neutral / negative plus finer emotional tags)
+- Voice input places transcribed text into the TextField, then follows the identical detection pipeline
 
 **4. Compassionate Reply System**
 - After mood detection, app shows a short, caring text reply that matches the mood

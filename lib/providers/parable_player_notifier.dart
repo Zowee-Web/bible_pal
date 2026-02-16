@@ -33,12 +33,14 @@ class ParablePlayerState {
   final String? parableText;
   final bool isLoading;
   final String? errorMessage;
+  final bool playbackCompleted;
 
   const ParablePlayerState({
     this.currentParable,
     this.parableText,
     this.isLoading = false,
     this.errorMessage,
+    this.playbackCompleted = false,
   });
 
   ParablePlayerState copyWith({
@@ -46,12 +48,14 @@ class ParablePlayerState {
     String? parableText,
     bool? isLoading,
     String? errorMessage,
+    bool? playbackCompleted,
   }) {
     return ParablePlayerState(
       currentParable: currentParable ?? this.currentParable,
       parableText: parableText ?? this.parableText,
       isLoading: isLoading ?? this.isLoading,
       errorMessage: errorMessage ?? this.errorMessage,
+      playbackCompleted: playbackCompleted ?? this.playbackCompleted,
     );
   }
 
@@ -205,6 +209,7 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
         'story_id': state.currentParable?.storyId,
       });
 
+      state = state.copyWith(playbackCompleted: false);
       ref.notifyListeners();
       return VoicePlayResult.played;
     } catch (e) {
@@ -259,7 +264,7 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
       'duration_ms': durationMs,
     });
 
-    // Playback completed, app can show sharing options or return to menu
+    state = state.copyWith(playbackCompleted: true);
     ref.notifyListeners();
   }
 

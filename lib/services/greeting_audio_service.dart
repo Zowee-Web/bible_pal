@@ -14,6 +14,7 @@ class GreetingAudioService {
 
   soloud.SoLoud? _soloud;
   soloud.AudioSource? _greetingSource;
+  soloud.SoundHandle? _currentHandle;
   bool _initialized = false;
 
   /// WAV asset path for PAL greeting
@@ -97,8 +98,8 @@ class GreetingAudioService {
         return;
       }
 
-      // Play with full volume - SoLoud.play is synchronous and instant
-      _soloud!.play(_greetingSource!, volume: 1.0);
+      // Play with full volume
+      _currentHandle = await _soloud!.play(_greetingSource!, volume: 1.0);
 
       if (kDebugMode) {
         debugPrint('GreetingAudioService: Playing greeting');
@@ -106,6 +107,19 @@ class GreetingAudioService {
     } catch (e, stackTrace) {
       debugPrint('GreetingAudioService: Play failed: $e');
       debugPrint('Stack trace: $stackTrace');
+    }
+  }
+
+  /// Stop any currently playing greeting audio without deiniting SoLoud.
+  /// Safe to call even if nothing is playing.
+  void stopPlayback() {
+    if (_currentHandle != null && _soloud != null) {
+      try {
+        _soloud!.stop(_currentHandle!);
+      } catch (_) {
+        // Safe-fail: stopping should never throw to caller.
+      }
+      _currentHandle = null;
     }
   }
 

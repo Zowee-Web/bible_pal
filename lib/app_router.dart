@@ -29,8 +29,10 @@ class AppRouter extends StatelessWidget {
   Route<dynamic>? _onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/pals_parables':
+        final args = settings.arguments as Map<String, dynamic>?;
+        final textOnly = args?['textOnly'] as bool? ?? false;
         return MaterialPageRoute(
-          builder: (_) => const PalsParablesScreen(),
+          builder: (_) => PalsParablesScreen(textOnly: textOnly),
         );
       case '/parable_player':
         return MaterialPageRoute(
