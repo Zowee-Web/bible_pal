@@ -10,6 +10,23 @@ import '../../theme/app_theme.dart';
 import '../onboarding/first_launch_screen.dart' show kPalIntroShownKey;
 import '../settings/settings_screen.dart';
 import '../../core/app_logger.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/services.dart' show HapticFeedback;
+import '../../providers/parable_player_notifier.dart';
+import '../../models/parable.dart';
+import '../../widgets/story_length_radio_selector.dart';
+import '../../core/story_length_bucket.dart';
+import '../consent/voice_consent_dialog.dart';
+import '../../services/reflection_service.dart';
+import '../my_pals/select_pals_dialog.dart';
+import '../../models/share_record.dart';
+import 'package:uuid/uuid.dart';
+import '../../services/stt_service.dart';
+import 'package:permission_handler/permission_handler.dart' show openAppSettings;
+
+/// File-private tap counter for cross-widget PAL tap signaling.
+/// Incremented by [_PalButtonWithIntro], watched by [_ReservedPanel].
+final _palTapProvider = StateProvider<int>((ref) => 0);
 
 /// Main Menu Screen
 /// Based on UI/UX Design Spec Section 4: Home Screen
@@ -151,6 +168,11 @@ class MainMenuScreen extends ConsumerWidget {
                           // Wrapped with intro overlay for first-launch experience
                           _PalButtonWithIntro(theme: theme),
 
+                          const SizedBox(height: 16),
+
+                          // Reserved panel: swaps IDLE / NOW PLAYING / FINISHED
+                          const _ReservedPanel(),
+
                           const SizedBox(height: 24),
 
                           // Secondary Buttons (Favorites, History & My PALs - Smaller, Softer)
@@ -280,7 +302,7 @@ class _PalButtonWithIntro extends ConsumerStatefulWidget {
 }
 
 class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   // Intro state
   bool _showIntro = false;
   bool _introChecked = false;
@@ -295,6 +317,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   late final AnimationController _pulseController;
   late final Animation<double> _pulseAnimation;
   int _pulseCount = 0;
+  late final AnimationController _glowController;
 
   static const _introLines = [
     'Meet PAL.',
@@ -314,6 +337,11 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     );
     _pulseController.addStatusListener(_onPulseStatus);
 
+    _glowController = AnimationController(
+      duration: const Duration(milliseconds: 400),
+      vsync: this,
+    );
+
     // Pre-initialize greeting audio for instant playback when PAL is tapped
     _greetingAudio.initialize();
 
@@ -325,6 +353,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     _typingTimer?.cancel();
     _pulseController.removeStatusListener(_onPulseStatus);
     _pulseController.dispose();
+    _glowController.dispose();
     super.dispose();
   }
 
@@ -424,6 +453,14 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   }
 
   void _onPalTap() {
+    // Soft glow (one-shot, fades out over 400ms)
+    _glowController.forward(from: 0.0);
+
+    // Light haptic feedback (no-op on web)
+    if (!kIsWeb) {
+      HapticFeedback.lightImpact();
+    }
+
     // Disable clicks immediately when user taps PAL
     _clickHelper.enabled = false;
 
@@ -444,8 +481,8 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     // Play PAL greeting (non-blocking, consent-aware)
     _maybePlayPalGreeting();
 
-    // Navigate to PAL's stories
-    Navigator.of(context).pushNamed('/pals_parables');
+    // Signal the reserved panel to start voice-first STT flow
+    ref.read(_palTapProvider.notifier).state++;
   }
 
   /// Play PAL greeting audio if voice consent allows (non-blocking, fail-safe)
@@ -523,24 +560,39 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
               ),
             ),
 
-          // PAL Button with pulse animation
+          // PAL Button with pulse animation + tap glow
           ScaleTransition(
             scale: _pulseAnimation,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: AppTheme.warmGold,
-                  width: 2,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppTheme.warmGold.withOpacity(0.2),
-                    blurRadius: 12,
-                    offset: const Offset(0, 4),
+            child: AnimatedBuilder(
+              animation: _glowController,
+              builder: (context, child) {
+                final glowOpacity =
+                    Curves.easeInOut.transform(1.0 - _glowController.value) *
+                        0.5;
+                return Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: AppTheme.warmGold,
+                      width: 2,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppTheme.warmGold.withOpacity(0.2),
+                        blurRadius: 12,
+                        offset: const Offset(0, 4),
+                      ),
+                      if (glowOpacity > 0.01)
+                        BoxShadow(
+                          color: AppTheme.warmGold.withOpacity(glowOpacity),
+                          blurRadius: 28,
+                          spreadRadius: 6,
+                        ),
+                    ],
                   ),
-                ],
-              ),
+                  child: child,
+                );
+              },
               child: Material(
                 color: AppTheme.softSkyBlue,
                 borderRadius: BorderRadius.circular(18),
@@ -585,6 +637,734 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Reserved Panel — crossfades between IDLE / NOW PLAYING / FINISHED
+// ---------------------------------------------------------------------------
+
+/// Panel mode derived from [ParablePlayerState].
+enum _PanelMode { idle, listening, nowPlaying, finished }
+
+/// Reserved panel directly under the PAL hero button.
+/// Uses [AnimatedSwitcher] to crossfade between three content states.
+class _ReservedPanel extends ConsumerStatefulWidget {
+  const _ReservedPanel();
+
+  @override
+  ConsumerState<_ReservedPanel> createState() => _ReservedPanelState();
+}
+
+class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
+  StoryLengthBucket _selectedBucket = StoryLengthBucket.short;
+  bool _reflectionExpanded = false;
+  final ReflectionService _reflectionService = ReflectionService();
+
+  // Voice-first STT state
+  SttService? _sttService;
+  bool _isVoiceActive = false;
+  String _partialTranscript = '';
+
+  @override
+  void dispose() {
+    _sttService?.dispose();
+    super.dispose();
+  }
+
+  // --------------- state derivation ---------------
+
+  _PanelMode _deriveMode(ParablePlayerState s) {
+    if (_isVoiceActive) return _PanelMode.listening;
+    if (s.currentParable == null) return _PanelMode.idle;
+    if (s.playbackCompleted) return _PanelMode.finished;
+    return _PanelMode.nowPlaying;
+  }
+
+  // --------------- helpers ---------------
+
+  /// Compact one-line scripture reference for NOW PLAYING.
+  static String _scriptureLineFor(Parable parable) {
+    if (parable.hasBibleSourceRef) return parable.bibleSourceRef!;
+    final src = parable.scriptureSources;
+    if (src.isEmpty) return '';
+    if (src.length <= 2) return src.join(', ');
+    return '${src[0]}, ${src[1]} +${src.length - 2} more';
+  }
+
+  static String _fmt(Duration d) {
+    final m = d.inMinutes.toString().padLeft(2, '0');
+    final s = (d.inSeconds % 60).toString().padLeft(2, '0');
+    return '$m:$s';
+  }
+
+  // --------------- actions ---------------
+
+  Future<void> _handlePlay(ParablePlayerNotifier notifier) async {
+    final result = await notifier.play();
+    if (!mounted) return;
+    switch (result) {
+      case VoicePlayResult.played:
+      case VoicePlayResult.noParable:
+      case VoicePlayResult.error:
+        break;
+      case VoicePlayResult.needsConsent:
+        final consent = await VoiceConsentDialog.show(context);
+        if (!mounted) return;
+        if (consent == VoiceConsentResult.enabled) {
+          await notifier.play();
+        }
+      case VoicePlayResult.disabled:
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content:
+                Text('Story narration is disabled. Enable it in Settings.'),
+          ),
+        );
+    }
+  }
+
+  Future<void> _saveFavorite(Parable parable) async {
+    final notifier = ref.read(appStateProvider.notifier);
+    await notifier.addFavorite(parable);
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Saved to Favorites'),
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
+
+  void _onReadTodaysStory() {
+    final ps = ref.read(parablePlayerProvider);
+    if (ps.currentParable != null) {
+      Navigator.of(context).pushNamed('/parable_player');
+    } else {
+      Navigator.of(context).pushNamed('/pals_parables');
+    }
+  }
+
+  void _onTextPal() {
+    Navigator.of(context).pushNamed(
+      '/pals_parables',
+      arguments: {'textOnly': true},
+    );
+  }
+
+  // --------------- voice-first STT flow ---------------
+
+  Future<void> _handlePalTap() async {
+    // Stop current playback if active
+    final playerNotifier = ref.read(parablePlayerProvider.notifier);
+    if (playerNotifier.isPlaying || playerNotifier.isPaused) {
+      await playerNotifier.stop();
+    }
+
+    // Create STT service if needed
+    _sttService ??= SttService();
+
+    setState(() {
+      _isVoiceActive = true;
+      _partialTranscript = '';
+    });
+
+    final permResult = await _sttService!.checkPermissions();
+    if (!mounted) return;
+
+    switch (permResult) {
+      case SttPermissionResult.granted:
+        _startListening();
+
+      case SttPermissionResult.denied:
+        setState(() => _isVoiceActive = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Voice input isn't available \u2014 tap Text PAL"),
+            duration: Duration(seconds: 3),
+          ),
+        );
+
+      case SttPermissionResult.permanentlyDenied:
+        setState(() => _isVoiceActive = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content:
+                const Text("Voice input isn't available \u2014 tap Text PAL"),
+            duration: const Duration(seconds: 4),
+            action: SnackBarAction(
+              label: 'Settings',
+              onPressed: () => openAppSettings(),
+            ),
+          ),
+        );
+    }
+  }
+
+  Future<void> _startListening() async {
+    final completer = Completer<void>();
+
+    await _sttService!.startListening(
+      onResult: (result) {
+        if (!mounted) return;
+        if (result.isFinal) {
+          final transcript = result.text;
+          if (transcript.isEmpty) {
+            setState(() {
+              _isVoiceActive = false;
+              _partialTranscript = '';
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content:
+                    Text("I didn't catch that. Try again or tap Text PAL."),
+                duration: Duration(seconds: 3),
+              ),
+            );
+            logEvent('voice_input_cancelled', {'reason': 'timeout'});
+          } else {
+            logEvent('voice_input_completed', {
+              'input_method': 'voice',
+              'word_count': transcript.split(RegExp(r'\s+')).length,
+            });
+            _processVoiceMood(transcript);
+          }
+          if (!completer.isCompleted) completer.complete();
+        } else {
+          setState(() => _partialTranscript = result.text);
+        }
+      },
+      onError: (error) {
+        if (!mounted) return;
+        setState(() {
+          _isVoiceActive = false;
+          _partialTranscript = '';
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Voice input isn't available \u2014 tap Text PAL"),
+            duration: Duration(seconds: 3),
+          ),
+        );
+        logEvent('voice_input_cancelled', {'reason': 'stt_error'});
+        if (!completer.isCompleted) completer.complete();
+      },
+    );
+
+    // Timeout fallback: use partial transcript if available
+    unawaited(
+      Future.delayed(
+              const Duration(seconds: SttService.defaultListenSeconds + 1))
+          .then((_) {
+        if (!completer.isCompleted) {
+          if (_partialTranscript.isNotEmpty && mounted) {
+            logEvent('voice_input_completed', {
+              'input_method': 'voice',
+              'word_count': _partialTranscript.split(RegExp(r'\s+')).length,
+            });
+            _processVoiceMood(_partialTranscript);
+          } else if (mounted) {
+            setState(() {
+              _isVoiceActive = false;
+              _partialTranscript = '';
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content:
+                    Text("I didn't catch that. Try again or tap Text PAL."),
+                duration: Duration(seconds: 3),
+              ),
+            );
+            logEvent('voice_input_cancelled', {'reason': 'timeout'});
+          }
+          completer.complete();
+        }
+      }),
+    );
+  }
+
+  Future<void> _processVoiceMood(String transcript) async {
+    // Detect mood (skip compassionate reply in voice-first flow)
+    final appNotifier = ref.read(appStateProvider.notifier);
+    final moodResult = appNotifier.moodService.detectMood(transcript);
+
+    logEvent('mood_detected', {
+      'mood': moodResult.mood,
+      'confidence': moodResult.confidenceScore,
+      'input_method': 'voice',
+    });
+
+    // Select parable based on mood + current length bucket
+    final parable = await appNotifier.selectParable(
+      mood: moodResult.mood,
+      lengthBucket: _selectedBucket,
+      userText: transcript,
+    );
+
+    if (!mounted) return;
+
+    if (parable == null) {
+      setState(() {
+        _isVoiceActive = false;
+        _partialTranscript = '';
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('No story found for that mood. Try again.'),
+          duration: Duration(seconds: 3),
+        ),
+      );
+      return;
+    }
+
+    // Load parable into player
+    final playerNotifier = ref.read(parablePlayerProvider.notifier);
+    await playerNotifier.loadParable(parable);
+
+    // Add to history
+    await appNotifier.addToHistory(parable);
+
+    // Voice flow complete — panel transitions to NOW PLAYING via _deriveMode
+    setState(() {
+      _isVoiceActive = false;
+      _partialTranscript = '';
+    });
+
+    // Auto-play
+    await _handlePlay(playerNotifier);
+  }
+
+  void _cancelListening() {
+    _sttService?.cancel();
+    setState(() {
+      _isVoiceActive = false;
+      _partialTranscript = '';
+    });
+    logEvent('voice_input_cancelled', {'reason': 'user_cancelled'});
+  }
+
+  // --------------- build ---------------
+
+  @override
+  Widget build(BuildContext context) {
+    // React to PAL button taps from the hero button widget
+    ref.listen<int>(_palTapProvider, (prev, next) {
+      if (prev != next) _handlePalTap();
+    });
+
+    final playerState = ref.watch(parablePlayerProvider);
+    final mode = _deriveMode(playerState);
+    final theme = Theme.of(context);
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 32),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(minHeight: 280),
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 280),
+          switchInCurve: Curves.easeInOut,
+          switchOutCurve: Curves.easeInOut,
+          child: _buildPanel(mode, playerState, theme),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPanel(
+      _PanelMode mode, ParablePlayerState state, ThemeData theme) {
+    switch (mode) {
+      case _PanelMode.idle:
+        return _buildIdlePanel(theme);
+      case _PanelMode.listening:
+        return _buildListeningPanel(theme);
+      case _PanelMode.nowPlaying:
+        return _buildNowPlayingPanel(state, theme);
+      case _PanelMode.finished:
+        return _buildFinishedPanel(state, theme);
+    }
+  }
+
+  // --------------- IDLE ---------------
+
+  Widget _buildIdlePanel(ThemeData theme) {
+    return Column(
+      key: const ValueKey('idle'),
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        StoryLengthRadioSelector(
+          selectedBucket: _selectedBucket,
+          onBucketChanged: (b) => setState(() => _selectedBucket = b),
+        ),
+        const SizedBox(height: 16),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: _onReadTodaysStory,
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              backgroundColor: theme.colorScheme.primary,
+              foregroundColor: theme.colorScheme.onPrimary,
+            ),
+            child: const Text("Read Today's Story"),
+          ),
+        ),
+        const SizedBox(height: 12),
+        SizedBox(
+          width: double.infinity,
+          child: OutlinedButton(
+            onPressed: _onTextPal,
+            style: OutlinedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              side: BorderSide(color: AppTheme.lightBlue, width: 1.5),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Text PAL',
+                  style: theme.textTheme.bodyLarge?.copyWith(
+                    color: AppTheme.deepCharcoal,
+                  ),
+                ),
+                Text(
+                  '(No audio)',
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: AppTheme.deepCharcoal.withOpacity(0.7),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  // --------------- LISTENING ---------------
+
+  Widget _buildListeningPanel(ThemeData theme) {
+    return Column(
+      key: const ValueKey('listening'),
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const SizedBox(height: 24),
+        Icon(
+          Icons.mic,
+          size: 56,
+          color: Colors.red.shade400,
+        ),
+        const SizedBox(height: 12),
+        Text(
+          'Listening...',
+          style: theme.textTheme.titleMedium?.copyWith(
+            color: AppTheme.deepCharcoal,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        if (_partialTranscript.isNotEmpty) ...[
+          const SizedBox(height: 12),
+          Text(
+            _partialTranscript,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: AppTheme.deepCharcoal.withOpacity(0.7),
+              fontStyle: FontStyle.italic,
+            ),
+            textAlign: TextAlign.center,
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+        const SizedBox(height: 16),
+        TextButton(
+          onPressed: _cancelListening,
+          child: Text(
+            'Cancel',
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: AppTheme.deepCharcoal.withOpacity(0.6),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  // --------------- NOW PLAYING ---------------
+
+  Widget _buildNowPlayingPanel(ParablePlayerState state, ThemeData theme) {
+    final notifier = ref.read(parablePlayerProvider.notifier);
+    final parable = state.currentParable!;
+    final scripture = _scriptureLineFor(parable);
+
+    return Column(
+      key: const ValueKey('now_playing'),
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        // Story title
+        Text(
+          parable.title,
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+          textAlign: TextAlign.center,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        ),
+        if (scripture.isNotEmpty) ...[
+          const SizedBox(height: 4),
+          Text(
+            scripture,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+        const SizedBox(height: 16),
+
+        // Play / Pause
+        IconButton(
+          icon: Icon(
+            notifier.isPlaying
+                ? Icons.pause_circle_filled
+                : Icons.play_circle_filled,
+            size: 56,
+          ),
+          color: theme.colorScheme.primary,
+          onPressed: () async {
+            if (notifier.isPlaying) {
+              notifier.pause();
+            } else {
+              await _handlePlay(notifier);
+            }
+          },
+        ),
+        const SizedBox(height: 8),
+
+        // Seek slider
+        StreamBuilder<Duration>(
+          stream: notifier.positionStream,
+          builder: (context, snapshot) {
+            final position = snapshot.data ?? Duration.zero;
+            final duration = notifier.duration ?? Duration.zero;
+            final max = duration.inMilliseconds.toDouble();
+            final value =
+                position.inMilliseconds.toDouble().clamp(0.0, max);
+
+            return Column(
+              children: [
+                Slider(
+                  value: value,
+                  max: max > 0 ? max : 1,
+                  onChanged: (v) =>
+                      notifier.seek(Duration(milliseconds: v.toInt())),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(_fmt(position),
+                          style: theme.textTheme.bodySmall),
+                      Text(_fmt(duration),
+                          style: theme.textTheme.bodySmall),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ],
+    );
+  }
+
+  // --------------- FINISHED ---------------
+
+  Widget _buildFinishedPanel(ParablePlayerState state, ThemeData theme) {
+    return Column(
+      key: const ValueKey('finished'),
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        // Reflection — inline expand/collapse, NO navigation
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () =>
+                setState(() => _reflectionExpanded = !_reflectionExpanded),
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              backgroundColor: theme.colorScheme.primary,
+              foregroundColor: theme.colorScheme.onPrimary,
+            ),
+            child: const Text('Reflection'),
+          ),
+        ),
+        if (_reflectionExpanded) _buildInlineReflection(state, theme),
+        const SizedBox(height: 12),
+
+        // Save to Favorites — direct action (unchanged)
+        SizedBox(
+          width: double.infinity,
+          child: OutlinedButton(
+            onPressed: () => _saveFavorite(state.currentParable!),
+            style: OutlinedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              side: BorderSide(color: AppTheme.lightBlue, width: 1.5),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            child: const Text('Save to Favorites'),
+          ),
+        ),
+        const SizedBox(height: 12),
+
+        // Share with a PAL — dialog, NO navigation
+        SizedBox(
+          width: double.infinity,
+          child: OutlinedButton(
+            onPressed: () => _shareWithPals(state.currentParable!),
+            style: OutlinedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              side: BorderSide(color: AppTheme.lightBlue, width: 1.5),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            child: const Text('Share with a PAL'),
+          ),
+        ),
+      ],
+    );
+  }
+
+  // --------------- inline reflection ---------------
+
+  Widget _buildInlineReflection(ParablePlayerState state, ThemeData theme) {
+    final appState = ref.read(appStateProvider).valueOrNull;
+    if (appState == null) return const SizedBox.shrink();
+
+    if (!appState.userPreferences.showEverydayReflections) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 8),
+        child: Text(
+          'Reflections are disabled in Settings.',
+          style: theme.textTheme.bodySmall,
+        ),
+      );
+    }
+
+    final isKidMode = appState.userPreferences.kidFriendlyOnly;
+    final reflection = _reflectionService.getReflectionForParable(
+      parable: state.currentParable!,
+      isKidMode: isKidMode,
+    );
+
+    if (reflection == null) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 8),
+        child: Text(
+          'No reflection available for this story.',
+          style: theme.textTheme.bodySmall,
+        ),
+      );
+    }
+
+    return Card(
+      margin: const EdgeInsets.only(top: 8),
+      color: theme.colorScheme.tertiaryContainer,
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              reflection.text,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.colorScheme.onTertiaryContainer,
+              ),
+            ),
+            if (reflection.question != null && !isKidMode) ...[
+              const SizedBox(height: 12),
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.tertiary.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(Icons.help_outline,
+                        size: 16,
+                        color: theme.colorScheme.onTertiaryContainer),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        reflection.question!,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.colorScheme.onTertiaryContainer,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  // --------------- share (dialog, no navigation) ---------------
+
+  Future<void> _shareWithPals(Parable parable) async {
+    final appStateAsync = ref.read(appStateProvider);
+    final pals = appStateAsync.valueOrNull?.pals ?? [];
+
+    if (!mounted) return;
+
+    final selectedPalIds = await showDialog<List<String>>(
+      context: context,
+      builder: (context) => SelectPalsDialog(pals: pals),
+    );
+
+    if (selectedPalIds == null || selectedPalIds.isEmpty) return;
+
+    final appStateNotifier = ref.read(appStateProvider.notifier);
+
+    for (final palId in selectedPalIds) {
+      final shareId = const Uuid().v4();
+      final share = ShareRecord(
+        shareId: shareId,
+        storyId: parable.storyId,
+        storyTitle: parable.title,
+        toPalId: palId,
+        timestamp: DateTime.now(),
+        direction: ShareDirection.sent,
+      );
+      await appStateNotifier.shareStoryWithPal(share);
+    }
+
+    if (!mounted) return;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          selectedPalIds.length == 1
+              ? 'Shared with 1 PAL'
+              : 'Shared with ${selectedPalIds.length} PALs',
+        ),
+        duration: const Duration(seconds: 2),
       ),
     );
   }
