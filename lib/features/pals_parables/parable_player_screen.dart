@@ -725,36 +725,47 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                     ),
                   ),
 
-                  // Optional reflection question (not shown in kid mode)
-                  if (reflection.question != null && !isKidMode) ...[
-                    const SizedBox(height: 16),
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.tertiary.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.help_outline,
-                            size: 18,
-                            color: theme.colorScheme.onTertiaryContainer,
+                  // Optional reflection question (SPEC Feature 37, not shown in kid mode)
+                  // Prefer pipeline-generated question; fall back to template for legacy stories
+                  if (!isKidMode) ...[
+                    () {
+                      final pq = playerState.currentParable!.reflectionQuestion;
+                      // Pipeline: non-empty → use it; "" → suppress; null → template fallback
+                      final questionText = pq != null
+                          ? (pq.isNotEmpty ? pq : null)
+                          : reflection.question;
+                      if (questionText == null) return const SizedBox.shrink();
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 16),
+                        child: Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: theme.colorScheme.tertiary.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: Text(
-                              reflection.question!,
-                              style: theme.textTheme.bodyMedium?.copyWith(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Icon(
+                                Icons.help_outline,
+                                size: 18,
                                 color: theme.colorScheme.onTertiaryContainer,
-                                fontStyle: FontStyle.italic,
                               ),
-                            ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  questionText,
+                                  style: theme.textTheme.bodyMedium?.copyWith(
+                                    color: theme.colorScheme.onTertiaryContainer,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    }(),
                   ],
 
                   // Audio controls (if pre-generated reflection audio exists)
