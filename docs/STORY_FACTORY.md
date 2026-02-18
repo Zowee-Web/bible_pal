@@ -78,6 +78,24 @@ Allowed:
 - Scene pacing and sensory detail
 - Poetic elevation without semantic drift
 
+### 4.1 Poetic Style Tiers
+
+Stories use a tiered poetic style system to control prose ornamentation:
+
+| Tier | Label           | Description                                        |
+|------|-----------------|----------------------------------------------------|
+| 1    | Plain/Clear     | Minimal ornament, plain narrative                  |
+| 2    | Vivid+          | Moderate sensory detail, warm imagery, clarity first|
+| 3    | Elevated        | Rich poetic language, complex rhythm               |
+
+**Traditional WEB** defaults to **Tier 2 (Vivid+)**.
+
+Tier 2 guidance for prompts:
+- Favor clarity and warmth over ornamentation.
+- Sensory detail is welcome; purple prose is not.
+- Concrete images preferred over abstract flourishes.
+- If a phrase feels literary rather than natural, pull back.
+
 ---
 
 ## 5. Story Length System (Locked)
@@ -102,6 +120,7 @@ Invariants:
 - Each story has exactly ONE canonical reflection.
 - Reflection applies to all three lengths.
 - Reflection is generated via gpt-4.1.
+- Reflection word count target: **120–220 words**.
 
 Reflection Guardrails:
 - No advice
@@ -112,6 +131,17 @@ Allowed:
 - Gentle observations
 - Pattern-based language
 - Invitations to notice, not commands
+
+### 6.1 Reflection Question (Optional)
+
+Per SPEC.md Feature 37, each reflection may include a single optional question.
+
+Rules:
+- 0 or 1 question per reflection (empty string `""` is valid).
+- Gentle, invitational, everyday-life phrasing (e.g., "Have you ever…", "Is there…", "Where in your life…").
+- NOT directive, NOT guilt-inducing, NOT therapeutic language.
+- The question is display-only; user response is NOT captured or stored.
+- Stored inline in `meta_<id>.json` as `reflectionQuestion` (string).
 
 ---
 
@@ -150,10 +180,16 @@ Filenames are authoritative and must not change.
 
 ### 8.1 Metadata Schema
 
-`meta_<id>.json` MUST include a top-level `"schemaVersion": 1` field.
+`meta_<id>.json` MUST include a top-level `"schemaVersion"` field.
+
+**Current version: 2** (added `reflectionQuestion` field).
 
 Any structural change to the metadata format requires incrementing this version
 and updating this spec.
+
+Schema changelog:
+- **v1**: Initial schema (story files, reflection files, audio files).
+- **v2**: Added `reflectionQuestion` (string, may be `""`).
 
 ---
 

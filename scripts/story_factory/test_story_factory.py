@@ -10,6 +10,8 @@ from generate_traditional_story import (
     TRANSIENT_CODES,
     LOCKED_RANGES,
     PROTESTANT_BOOKS,
+    REFLECTION_WORD_RANGE,
+    REFLECTION_BANNED_PHRASES,
     validate_anchor_format,
 )
 
@@ -94,6 +96,129 @@ class TestAnchorFormatValidation(unittest.TestCase):
     def test_reject_empty(self):
         err = validate_anchor_format("")
         self.assertIsNotNone(err)
+
+
+class TestReflectionWordRange(unittest.TestCase):
+    """Verify reflection word count range (STORY_FACTORY.md Section 6)."""
+
+    def test_range_defined(self):
+        self.assertEqual(REFLECTION_WORD_RANGE, (120, 220))
+
+    def test_range_contiguous(self):
+        lo, hi = REFLECTION_WORD_RANGE
+        self.assertGreater(hi, lo)
+        self.assertGreater(lo, 0)
+
+
+class TestReflectionBannedPhrases(unittest.TestCase):
+    """Verify reflection language safety (INVARIANTS.md)."""
+
+    def test_banned_list_not_empty(self):
+        self.assertGreater(len(REFLECTION_BANNED_PHRASES), 0)
+
+    def test_prescriptive_phrases_banned(self):
+        for phrase in ["you should", "you must", "you need to", "try to"]:
+            self.assertIn(phrase, REFLECTION_BANNED_PHRASES,
+                          f"{phrase!r} should be banned")
+
+    def test_diagnostic_phrases_banned(self):
+        self.assertIn("you are feeling", REFLECTION_BANNED_PHRASES)
+
+    def test_therapeutic_phrases_banned(self):
+        for phrase in ["therapy", "therapist", "counselor"]:
+            self.assertIn(phrase, REFLECTION_BANNED_PHRASES,
+                          f"{phrase!r} should be banned")
+
+    def test_detection_works(self):
+        """Validate that banned phrase detection works on sample text."""
+        safe_text = "Stories like this often show how rest can be found in unexpected places."
+        unsafe_text = "You should take some time to rest today."
+        for phrase in REFLECTION_BANNED_PHRASES:
+            self.assertNotIn(phrase, safe_text.lower(),
+                             f"Safe text should not contain {phrase!r}")
+        found = any(p in unsafe_text.lower() for p in REFLECTION_BANNED_PHRASES)
+        self.assertTrue(found, "Unsafe text should trigger at least one banned phrase")
+
+
+class TestBatchAnchorSuggestions(unittest.TestCase):
+    """Verify batch_generate anchor suggestions are valid."""
+
+    def test_all_canonical_moods_have_anchors(self):
+        from batch_generate import ANCHOR_SUGGESTIONS, CANONICAL_MOODS
+        for mood in CANONICAL_MOODS:
+            self.assertIn(mood, ANCHOR_SUGGESTIONS,
+                          f"Mood {mood!r} missing from ANCHOR_SUGGESTIONS")
+            self.assertGreater(len(ANCHOR_SUGGESTIONS[mood]), 0,
+                               f"Mood {mood!r} has no anchor suggestions")
+
+    def test_anchor_suggestions_are_valid_format(self):
+        from batch_generate import ANCHOR_SUGGESTIONS
+        for mood, anchors in ANCHOR_SUGGESTIONS.items():
+            for anchor in anchors:
+                err = validate_anchor_format(anchor)
+                self.assertIsNone(err,
+                    f"Anchor {anchor!r} for mood {mood!r} is invalid: {err}")
+
+    def test_no_duplicate_anchors_across_moods(self):
+        from batch_generate import ANCHOR_SUGGESTIONS
+        all_anchors = []
+        for anchors in ANCHOR_SUGGESTIONS.values():
+            all_anchors.extend(anchors)
+        self.assertEqual(len(all_anchors), len(set(all_anchors)),
+                         "Duplicate anchors found across mood suggestions")
+
+
+class TestBatchDryRun(unittest.TestCase):
+    """Verify batch_generate.py --dry-run produces a stable plan without side effects."""
+
+    def test_dry_run_exits_zero(self):
+        import subprocess
+        result = subprocess.run(
+            [sys.executable, str(pathlib.Path(__file__).parent / "batch_generate.py"),
+             "--lane", "web", "--voice_key", "VOICE_JAMES_HUSKY", "--dry-run"],
+            capture_output=True, text=True,
+        )
+        self.assertEqual(result.returncode, 0,
+                         f"Dry run should exit 0, got {result.returncode}\n{result.stderr}")
+
+    def test_dry_run_prints_all_moods(self):
+        import subprocess
+        from batch_generate import CANONICAL_MOODS
+        result = subprocess.run(
+            [sys.executable, str(pathlib.Path(__file__).parent / "batch_generate.py"),
+             "--lane", "web", "--voice_key", "VOICE_JAMES_HUSKY", "--dry-run"],
+            capture_output=True, text=True,
+        )
+        for mood in CANONICAL_MOODS:
+            self.assertIn(mood, result.stdout,
+                          f"Dry run output should mention mood {mood!r}")
+
+    def test_dry_run_assigns_story_ids(self):
+        import subprocess
+        result = subprocess.run(
+            [sys.executable, str(pathlib.Path(__file__).parent / "batch_generate.py"),
+             "--lane", "web", "--voice_key", "VOICE_JAMES_HUSKY", "--dry-run"],
+            capture_output=True, text=True,
+        )
+        # Should contain bracketed story IDs like [905]
+        import re
+        ids = re.findall(r"\[(\d+)\]", result.stdout)
+        self.assertGreater(len(ids), 0, "Dry run should print story IDs")
+        # All IDs should be unique
+        self.assertEqual(len(ids), len(set(ids)), "Story IDs should be unique")
+
+    def test_dry_run_does_not_mutate_anchor_registry(self):
+        import subprocess
+        anchors_file = pathlib.Path(__file__).parent.parent.parent / "used_scripture_anchors.json"
+        before = anchors_file.read_text() if anchors_file.exists() else "[]"
+        subprocess.run(
+            [sys.executable, str(pathlib.Path(__file__).parent / "batch_generate.py"),
+             "--lane", "web", "--voice_key", "VOICE_JAMES_HUSKY", "--dry-run"],
+            capture_output=True, text=True,
+        )
+        after = anchors_file.read_text() if anchors_file.exists() else "[]"
+        self.assertEqual(before, after,
+                         "Dry run must NOT mutate used_scripture_anchors.json")
 
 
 if __name__ == "__main__":

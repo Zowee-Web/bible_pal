@@ -29,6 +29,8 @@ class Parable {
   final String? reflectionAudioPath; // Path to pre-generated reflection audio
   final String?
       narratorVoiceKey; // Symbolic voice key (e.g., 'VOICE_JAMES_HUSKY')
+  final String?
+      reflectionQuestion; // Optional gentle question (SPEC Feature 37, display-only)
   final DateTime? generatedAt;
 
   const Parable({
@@ -50,6 +52,7 @@ class Parable {
     this.textFilePath,
     this.reflectionAudioPath,
     this.narratorVoiceKey,
+    this.reflectionQuestion,
     this.generatedAt,
   });
 
@@ -91,6 +94,7 @@ class Parable {
       textFilePath: json['textFilePath'] as String?,
       reflectionAudioPath: json['reflectionAudioPath'] as String?,
       narratorVoiceKey: json['narratorVoiceKey'] as String?,
+      reflectionQuestion: json['reflectionQuestion'] as String?,
       generatedAt: json['generatedAt'] != null
           ? DateTime.parse(json['generatedAt'] as String)
           : null,
@@ -116,6 +120,7 @@ class Parable {
       'textFilePath': textFilePath,
       'reflectionAudioPath': reflectionAudioPath,
       'narratorVoiceKey': narratorVoiceKey,
+      'reflectionQuestion': reflectionQuestion,
       'generatedAt': generatedAt?.toIso8601String(),
     };
     // Contracts v2: Only include bibleSourceRef if present (required for Traditional)
@@ -159,6 +164,7 @@ class Parable {
     String? textFilePath,
     String? reflectionAudioPath,
     String? narratorVoiceKey,
+    String? reflectionQuestion,
     DateTime? generatedAt,
   }) {
     return Parable(
@@ -179,6 +185,7 @@ class Parable {
       textFilePath: textFilePath ?? this.textFilePath,
       reflectionAudioPath: reflectionAudioPath ?? this.reflectionAudioPath,
       narratorVoiceKey: narratorVoiceKey ?? this.narratorVoiceKey,
+      reflectionQuestion: reflectionQuestion ?? this.reflectionQuestion,
       generatedAt: generatedAt ?? this.generatedAt,
     );
   }

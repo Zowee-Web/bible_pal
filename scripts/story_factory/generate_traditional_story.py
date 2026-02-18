@@ -41,17 +41,20 @@ SYSTEM_PROMPTS_STORY = {
         "Use elevated, reverent KJV-like cadence and diction (Classic), "
         "but stay clear and comprehensible. "
         "Only describe observable events and spoken words. "
-        "Poetic lift is allowed, but meaning must remain scripture-accurate."
+        "Poetic style: Tier 3 (Elevated) — rich poetic language, complex rhythm. "
+        "Meaning must remain scripture-accurate."
     ),
     "web": (
         "You are Bible PAL in Traditional mode, Modern (WEB-style) lane. "
         "Retell real Bible passages faithfully. "
         "Do not add interpretation, symbolism, inner monologue, or added theology. "
         "Do not invent events beyond the passage. "
-        "Use clear, warm modern English in the style of the World English Bible (WEB), "
-        "but stay comprehensible and natural. "
+        "Use clear, warm modern English in the style of the World English Bible (WEB). "
         "Only describe observable events and spoken words. "
-        "Poetic lift is allowed, but meaning must remain scripture-accurate."
+        "Poetic style: Tier 2 (Vivid+) — moderate sensory detail, warm imagery, "
+        "clarity first. Favor concrete images over abstract flourishes. "
+        "If a phrase feels literary rather than natural, pull back. "
+        "Meaning must remain scripture-accurate."
     ),
 }
 
@@ -59,11 +62,36 @@ SYSTEM_PROMPT_REFLECTION = (
     "You are Bible PAL creating a post-story reflection. "
     "Do not give advice. "
     "Do not interpret theology. "
-    "Do not prescribe actions. "
+    "Do not prescribe actions ('you should', 'you must', 'try to'). "
+    "Do not make diagnostic claims ('you are feeling'). "
+    "Do not promise outcomes ('this will help you'). "
+    "Do not use therapeutic language. "
     "Gently connect the story's themes to everyday life "
     "using pattern-based language (observations, invitations to notice), "
-    "without telling the listener what to do."
+    "without telling the listener what to do. "
+    "Target length: 120 to 220 words."
 )
+
+SYSTEM_PROMPT_REFLECTION_QUESTION = (
+    "You are Bible PAL generating an optional reflection question. "
+    "Return ONLY the question text — one sentence, no preamble, no quotes. "
+    "If you cannot produce a gentle, appropriate question, return an empty string. "
+    "Rules: "
+    "- Gentle, invitational, everyday-life phrasing. "
+    "- Use forms like 'Have you ever…', 'Is there…', 'Where in your life…'. "
+    "- NOT directive, NOT guilt-inducing, NOT therapeutic. "
+    "- The listener is NOT expected to answer. "
+    "- One question only, or empty string if uncertain."
+)
+
+REFLECTION_WORD_RANGE = (120, 220)
+
+# Phrases banned from reflections (INVARIANTS.md)
+REFLECTION_BANNED_PHRASES = [
+    "you should", "you must", "you need to", "try to",
+    "you are feeling", "this will help you", "this will make you",
+    "healing", "coping", "therapy", "therapist", "counselor",
+]
 
 LANE_LABEL = {"kjv": "Classic (KJV-style)", "web": "Modern (WEB-style)"}
 LANE_STYLE = {"kjv": "KJV", "web": "WEB"}
@@ -328,14 +356,60 @@ def main() -> int:
         # ── Generate reflection (B2: ONE) ──────────────────────────────
         print(f"\n=== Generating REFLECTION ===")
         refl_prompt = (
-            f"Write one short reflection (1 to 2 paragraphs) for a "
+            f"Write one short reflection (120 to 220 words) for a "
             f"Traditional {lane_label} story based on {args.anchor}. "
             f"Keep the tone reverent, gentle, and non-prescriptive."
         )
         reflection = call_openai(SYSTEM_PROMPT_REFLECTION, refl_prompt)
+        refl_wc = len(reflection.split())
+        print(f"  Reflection word count: {refl_wc} (target: {REFLECTION_WORD_RANGE[0]}-{REFLECTION_WORD_RANGE[1]})")
+
+        if refl_wc < REFLECTION_WORD_RANGE[0] or refl_wc > REFLECTION_WORD_RANGE[1]:
+            return fail_clean(
+                f"Reflection has {refl_wc} words, "
+                f"outside target range {REFLECTION_WORD_RANGE[0]}-{REFLECTION_WORD_RANGE[1]}"
+            )
+
+        # Validate reflection language safety
+        refl_lower = reflection.lower()
+        for phrase in REFLECTION_BANNED_PHRASES:
+            if phrase in refl_lower:
+                return fail_clean(
+                    f"Reflection contains banned phrase: {phrase!r}"
+                )
+
         refl_fname = f"reflection_{sid}_traditional_{lane}.txt"
         (outdir / refl_fname).write_text(reflection)
-        print(f"  Saved {refl_fname} ({len(reflection.split())} words)")
+        print(f"  Saved {refl_fname} ({refl_wc} words)")
+
+        # ── Generate reflection question (optional) ──────────────────
+        print(f"\n=== Generating REFLECTION QUESTION ===")
+        rq_prompt = (
+            f"Generate one gentle, optional reflection question for a "
+            f"Traditional {lane_label} story based on {args.anchor}. "
+            f"The question should connect the story's theme to everyday life. "
+            f"Return ONLY the question, or an empty string if none fits."
+        )
+        reflection_question = call_openai(
+            SYSTEM_PROMPT_REFLECTION_QUESTION, rq_prompt
+        ).strip()
+
+        # Validate: must be 0 or 1 question (no multi-line)
+        if "\n" in reflection_question:
+            reflection_question = reflection_question.split("\n")[0].strip()
+
+        # Validate banned phrases in question too
+        rq_lower = reflection_question.lower()
+        for phrase in REFLECTION_BANNED_PHRASES:
+            if phrase in rq_lower:
+                print(f"  Reflection question contained banned phrase {phrase!r}, clearing to empty")
+                reflection_question = ""
+                break
+
+        if reflection_question:
+            print(f"  Reflection question: {reflection_question}")
+        else:
+            print(f"  Reflection question: (empty — none generated)")
 
         # ── Generate audio ─────────────────────────────────────────────
         print(f"\n=== Generating AUDIO ===")
@@ -359,7 +433,7 @@ def main() -> int:
         # ── Write metadata ─────────────────────────────────────────────
         print(f"\n=== Writing metadata ===")
         meta = {
-            "schemaVersion": 1,
+            "schemaVersion": 2,
             "storyId": sid,
             "mode": "traditional",
             "languageStyle": LANE_STYLE[lane],
@@ -369,6 +443,7 @@ def main() -> int:
             "voiceKey": args.voice_key,
             "createdByModel": "gpt-4.1",
             "generationBatch": args.batch,
+            "reflectionQuestion": reflection_question,
             "files": {
                 "short": {
                     "storyText": f"story_{sid}_traditional_{lane}_short.txt",
