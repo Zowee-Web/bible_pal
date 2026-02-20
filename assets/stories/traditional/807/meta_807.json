@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "storyId": 807,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "languageStyle": "WEB",
+  "mood": "weary",
+  "scriptureAnchor": "Psalm 127:1\u20132",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_JAMES_HUSKY",
+  "createdByModel": "gpt-4.1",
+  "generationBatch": "PAL_KID_BEDTIME",
+  "reflectionQuestion": "Can you think of a time when you felt safe because someone was taking care of you?",
+  "files": {
+    "short": {
+      "storyText": "story_807_traditional_web_short.txt",
+      "storyAudio": "audio_807_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_807_traditional_web_full.txt",
+      "storyAudio": "audio_807_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_807_traditional_web_long.txt",
+      "storyAudio": "audio_807_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_807_traditional_web.txt",
+      "reflectionAudio": "audio_807_reflection.mp3"
+    }
+  }
+}

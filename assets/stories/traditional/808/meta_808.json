@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "storyId": 808,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "languageStyle": "KJV",
+  "mood": "neutral",
+  "scriptureAnchor": "Psalm 19:1\u20136",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_JAMES_HUSKY",
+  "createdByModel": "gpt-4.1",
+  "generationBatch": "PAL_KID_BEDTIME",
+  "reflectionQuestion": "What is something in the sky that makes you feel happy or amazed?",
+  "files": {
+    "short": {
+      "storyText": "story_808_traditional_kjv_short.txt",
+      "storyAudio": "audio_808_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_808_traditional_kjv_full.txt",
+      "storyAudio": "audio_808_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_808_traditional_kjv_long.txt",
+      "storyAudio": "audio_808_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_808_traditional_kjv.txt",
+      "reflectionAudio": "audio_808_reflection.mp3"
+    }
+  }
+}

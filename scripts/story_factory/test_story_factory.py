@@ -9,6 +9,9 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from generate_traditional_story import (
     TRANSIENT_CODES,
     LOCKED_RANGES,
+    KID_LOCKED_RANGES,
+    KID_REFLECTION_WORD_RANGE,
+    BEDTIME_CLOSING_SIGNALS,
     PROTESTANT_BOOKS,
     REFLECTION_WORD_RANGE,
     REFLECTION_BANNED_PHRASES,
@@ -17,6 +20,9 @@ from generate_traditional_story import (
     TRADITIONAL_VIOLATIONS,
     check_meta_text,
     check_traditional_compliance,
+    check_forbidden_words,
+    check_bedtime_closing,
+    load_forbidden_words,
     validate_anchor_format,
 )
 
@@ -336,6 +342,120 @@ class TestBatchAnchorSuggestions(unittest.TestCase):
             all_anchors.extend(anchors)
         self.assertEqual(len(all_anchors), len(set(all_anchors)),
                          "Duplicate anchors found across mood suggestions")
+
+
+class TestKidLockedRanges(unittest.TestCase):
+    """Verify kid mode word count ranges match contract."""
+
+    def test_short_range(self):
+        self.assertEqual(KID_LOCKED_RANGES["short"], (250, 600))
+
+    def test_full_range(self):
+        self.assertEqual(KID_LOCKED_RANGES["full"], (601, 1200))
+
+    def test_long_range(self):
+        self.assertEqual(KID_LOCKED_RANGES["long"], (1201, 1800))
+
+    def test_exactly_three_buckets(self):
+        self.assertEqual(set(KID_LOCKED_RANGES.keys()), {"short", "full", "long"})
+
+    def test_kid_reflection_range(self):
+        self.assertEqual(KID_REFLECTION_WORD_RANGE, (60, 120))
+
+
+class TestForbiddenWords(unittest.TestCase):
+    """Verify forbidden word loading and detection."""
+
+    @classmethod
+    def setUpClass(cls):
+        root = pathlib.Path(__file__).parent.parent.parent
+        cls.forbidden = load_forbidden_words(root)
+
+    def test_loads_nonempty_list(self):
+        self.assertGreater(len(self.forbidden), 200,
+                           f"Expected 200+ forbidden words, got {len(self.forbidden)}")
+
+    def test_no_comment_lines_loaded(self):
+        for word in self.forbidden:
+            self.assertFalse(word.startswith("#"),
+                             f"Comment line loaded as forbidden word: {word!r}")
+
+    def test_no_empty_entries(self):
+        for word in self.forbidden:
+            self.assertTrue(word.strip(), "Empty forbidden word entry found")
+
+    def test_clean_text_passes(self):
+        clean = "The gentle breeze blew through the trees and the birds sang softly."
+        found = check_forbidden_words(clean, self.forbidden)
+        self.assertEqual(found, [])
+
+    def test_violence_word_detected(self):
+        bad = "The warriors attacked the village with their swords."
+        found = check_forbidden_words(bad, self.forbidden)
+        self.assertGreater(len(found), 0)
+        # Should catch multiple: warrior(s), attack(ed), sword(s)
+        self.assertTrue(any("warrior" in w for w in found) or
+                        any("attack" in w for w in found))
+
+    def test_death_word_detected(self):
+        bad = "The old man died peacefully in his bed."
+        found = check_forbidden_words(bad, self.forbidden)
+        self.assertIn("died", found)
+
+    def test_fear_word_detected(self):
+        bad = "The children were terrified of the darkness."
+        found = check_forbidden_words(bad, self.forbidden)
+        self.assertGreater(len(found), 0)
+
+    def test_word_boundary_prevents_false_positive(self):
+        """'king' should NOT match 'making' or 'baking'."""
+        clean = "She was making bread and baking cookies."
+        found = check_forbidden_words(clean, self.forbidden)
+        self.assertEqual(found, [],
+                         f"False positive: {found}")
+
+    def test_king_detected_standalone(self):
+        bad = "The king sat on the throne."
+        found = check_forbidden_words(bad, self.forbidden)
+        self.assertIn("king", found)
+        self.assertIn("throne", found)
+
+    def test_multiword_phrase_detected(self):
+        bad = "And so David became king of Israel."
+        found = check_forbidden_words(bad, self.forbidden)
+        self.assertIn("became king", found)
+
+
+class TestBedtimeClosing(unittest.TestCase):
+    """Verify bedtime closing signal detection."""
+
+    def test_closing_signals_not_empty(self):
+        self.assertGreater(len(BEDTIME_CLOSING_SIGNALS), 10)
+
+    def test_detects_sleep_closing(self):
+        story = ("Once upon a time a kind shepherd watched over his sheep. " * 20 +
+                 "And as the stars twinkled softly overhead, the little lamb "
+                 "closed her eyes and drifted to sleep.")
+        self.assertTrue(check_bedtime_closing(story))
+
+    def test_detects_resting_closing(self):
+        story = ("A gentle morning came over the hillside. " * 20 +
+                 "Wrapped in the cozy blanket of night, everyone was resting.")
+        self.assertTrue(check_bedtime_closing(story))
+
+    def test_rejects_missing_closing(self):
+        story = ("The people gathered and praised God together. " * 20 +
+                 "The morning sun continued to shine over the hills.")
+        self.assertFalse(check_bedtime_closing(story))
+
+    def test_signal_must_be_in_last_20_percent(self):
+        """Sleep words early in the story don't count."""
+        story = ("The child fell asleep early. " +
+                 "The morning brought new adventures to the hillside. " * 30)
+        self.assertFalse(check_bedtime_closing(story))
+
+    def test_empty_text(self):
+        self.assertFalse(check_bedtime_closing(""))
 
 
 class TestBatchDryRun(unittest.TestCase):
