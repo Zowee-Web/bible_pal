@@ -7,6 +7,7 @@ import 'package:bible_pal/models/daily_bread.dart';
 import 'package:bible_pal/models/pal.dart';
 import 'package:bible_pal/models/share_record.dart';
 import 'package:bible_pal/core/story_length_bucket.dart';
+import 'package:bible_pal/core/analytics_events.dart';
 import 'package:bible_pal/services/storage_service.dart';
 import 'package:bible_pal/services/parable_service.dart';
 import 'package:bible_pal/services/mood_service.dart';
@@ -188,6 +189,10 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
       final favorite = Favorite.fromParable(parable);
       await _storage.addFavorite(favorite);
       final favorites = await _storage.getFavorites();
+
+      // Analytics: fire-and-forget after successful storage
+      AnalyticsEvents.logStoryFavorited(parable);
+
       return state.requireValue.copyWith(favorites: favorites);
     });
   }

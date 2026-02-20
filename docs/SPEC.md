@@ -825,7 +825,45 @@ See [ERROR_TAXONOMY.md](ERROR_TAXONOMY.md) for the canonical list of error types
 
 - No external logging vendors or dashboards (deferred via CrashReporter interface)
 - No storing or transmitting user input text
-- No analytics or user tracking
+- No user tracking or identification
+
+### Anonymous Usage Telemetry — Favorites
+
+**44. Story Favorited Event**
+
+When a user adds a story to favorites, a single `story_favorited` event is emitted via `AppLogger.logEvent()`. This enables aggregate insight into which content resonates without tracking individual users.
+
+**Event Name:** `story_favorited`
+
+**Allowlisted Payload Fields (EXHAUSTIVE):**
+
+| Field | Source | Example |
+|-------|--------|---------|
+| `story_id` | `Parable.storyId` | `"807"` |
+| `mood` | `Parable.mood` | `"weary"` |
+| `mode` | `Parable.storytellingMode` | `"traditional"` |
+| `length_bucket` | `Parable.lengthBucket.name` | `"short"` |
+| `kid_friendly` | `Parable.kidFriendly` | `true` |
+| `translation_id` | `Parable.translationId` | `"WEB"` |
+| `language_style` | `Parable.languageStyle` | `"KJV"` |
+| `voice_key` | `Parable.narratorVoiceKey` | `"VOICE_JAMES_HUSKY"` |
+
+**Privacy Constraints:**
+- NO user text, titles, scripture content, or PII
+- NO minute-based length fields (telemetry invariant)
+- NO tradition/denomination fields (Christian General Only invariant)
+- Payload fields are validated against an allowlist at compile time via tests
+
+**Emission Rules:**
+- Fire-and-forget: result is ignored by caller
+- Single emission: exactly one event per `addFavorite()` call
+- After storage: event fires only after successful `StorageService.addFavorite()`
+- Safe-fail: emission failure never blocks the favorite operation
+
+**Implementation:**
+- Event builder: `lib/core/analytics_events.dart` → `AnalyticsEvents.logStoryFavorited(Parable)`
+- Call site: `lib/providers/app_state_notifier.dart` → `addFavorite()`
+- Backend: existing `AppLogger.logEvent()` (no Firebase, no external vendor)
 
 ---
 

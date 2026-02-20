@@ -1731,6 +1731,105 @@ flutter test test/critical/voice_privacy_scan_test.dart
 
 ---
 
+## 🔒 Analytics Telemetry Privacy Invariant (NON-NEGOTIABLE)
+
+**Invariant**: Analytics events MUST only contain allowlisted payload fields. No user text, PII, minute-based length fields, or tradition/denomination fields may appear in analytics payloads. Analytics emission MUST be fire-and-forget and MUST NEVER block user-facing operations.
+
+### Why This Exists
+
+**Privacy-safe telemetry enables content insights without tracking users.**
+
+- Aggregate favorite patterns reveal which stories resonate (mood, mode, length)
+- No user identification or tracking is needed for this insight
+- Allowlisted payloads prevent accidental PII leakage as new fields are added
+- Fire-and-forget ensures analytics never degrades user experience
+- Existing `AppLogger` provides all needed infrastructure — no external vendors required
+
+### The Contract
+
+1. **Allowlisted Payload Only**
+   - Only keys in `analyticsAllowedKeys` (defined in `lib/core/analytics_events.dart`) may appear
+   - Adding new keys requires updating the allowlist, tests, AND this document
+   - Keys not in the allowlist are a test failure
+
+2. **Disallowed Fields MUST NOT Appear**
+   - PII keys: `userText`, `email`, `phone`, `name`, `title`, etc.
+   - Minute-based keys: `length_min`, `duration_minutes`, etc. (per Telemetry invariant)
+   - Tradition keys: `tradition`, `denomination`, `faith_tradition` (per Christian General Only invariant)
+
+3. **Fire-and-Forget Emission**
+   - `AnalyticsEvents` methods return `LogResult` for testability but callers MUST NOT branch on it
+   - Emission failure MUST NEVER prevent the user action (e.g., adding a favorite)
+   - All emission is delegated to `AppLogger.logEvent()` which is already safe-fail
+
+4. **Single Emission Per Action**
+   - Each user action (e.g., one `addFavorite()` call) emits exactly one analytics event
+   - No duplicate emissions, no batching, no deferred emission
+
+5. **No External Vendors**
+   - Analytics uses `AppLogger.logEvent()` only
+   - No Firebase Analytics, no Mixpanel, no Amplitude
+   - Future vendor integration (if needed) goes through `AppLogger`, not around it
+
+### Enforcement Mechanisms
+
+#### 1. Allowlist Validation (Compile-Time)
+**File**: [`lib/core/analytics_events.dart`](../lib/core/analytics_events.dart)
+
+```dart
+const Set<String> analyticsAllowedKeys = {
+  'story_id', 'mood', 'mode', 'length_bucket',
+  'kid_friendly', 'translation_id', 'language_style', 'voice_key',
+};
+```
+
+#### 2. Build-Failing Tests
+**File**: [`test/core/analytics_events_test.dart`](../test/core/analytics_events_test.dart)
+
+**Critical Tests** (MUST PASS):
+- `CRITICAL: story_favorited payload contains only allowlisted keys`
+- `CRITICAL: disallowed keys are never in analytics payload`
+- `CRITICAL: kidFriendly field is populated correctly`
+- `CRITICAL: length_bucket uses StoryLengthBucket (not minutes)`
+- `CRITICAL: logStoryFavorited never throws`
+
+#### 3. AppLogger Privacy Layer
+All payloads pass through `AppLogger._sanitizeData()` which blocks PII keys and patterns as a second safety net.
+
+### Testing
+
+```bash
+# Run analytics event tests
+flutter test test/core/analytics_events_test.dart
+
+# Run all tests (includes analytics)
+flutter test
+```
+
+### Maintenance Rules
+
+**When adding new analytics events:**
+
+1. **ALWAYS** add payload keys to `analyticsAllowedKeys`
+2. **ALWAYS** add tests verifying the new event's payload
+3. **NEVER** include user text, PII, or minute-based fields
+4. **NEVER** add external analytics vendors without updating this invariant
+5. **RUN** analytics tests before committing
+
+**If an analytics test fails:**
+1. DO NOT disable the test
+2. Remove the disallowed field from the payload
+3. Verify all tests pass
+
+### Resources
+
+- [SPEC.md Analytics Section](SPEC.md#anonymous-usage-telemetry--favorites)
+- [AnalyticsEvents Implementation](../lib/core/analytics_events.dart)
+- [Analytics Tests](../test/core/analytics_events_test.dart)
+- [AppLogger](../lib/core/app_logger.dart)
+
+---
+
 ## Future Invariants
 
 As the project evolves, additional invariants may be added here. Each invariant must:
@@ -1741,5 +1840,5 @@ As the project evolves, additional invariants may be added here. Each invariant 
 
 ---
 
-**Last Updated**: 2026-02-12
+**Last Updated**: 2026-02-18
 **Maintained By**: Bible PAL Development Team
