@@ -12,6 +12,11 @@ from generate_traditional_story import (
     PROTESTANT_BOOKS,
     REFLECTION_WORD_RANGE,
     REFLECTION_BANNED_PHRASES,
+    META_TEXT_BLOCKLIST,
+    META_TEXT_MAX_REGEN,
+    TRADITIONAL_VIOLATIONS,
+    check_meta_text,
+    check_traditional_compliance,
     validate_anchor_format,
 )
 
@@ -138,6 +143,171 @@ class TestReflectionBannedPhrases(unittest.TestCase):
                              f"Safe text should not contain {phrase!r}")
         found = any(p in unsafe_text.lower() for p in REFLECTION_BANNED_PHRASES)
         self.assertTrue(found, "Unsafe text should trigger at least one banned phrase")
+
+
+class TestMetaTextValidation(unittest.TestCase):
+    """Verify meta-text detection (ported from meta_text_validator.dart)."""
+
+    def test_blocklist_not_empty(self):
+        self.assertGreater(len(META_TEXT_BLOCKLIST), 0)
+
+    def test_max_regen_is_three(self):
+        self.assertEqual(META_TEXT_MAX_REGEN, 3)
+
+    def test_clean_text_passes(self):
+        clean = "The morning sun rose over the hills, casting gold light across the land."
+        self.assertIsNone(check_meta_text(clean))
+
+    def test_certainly_detected(self):
+        bad = "Certainly! This is a full retelling of Psalm 100..."
+        self.assertIsNotNone(check_meta_text(bad))
+        self.assertEqual("certainly", check_meta_text(bad))
+
+    def test_here_is_detected(self):
+        bad = "Here is the story of Psalm 23 retold in modern English."
+        self.assertIsNotNone(check_meta_text(bad))
+
+    def test_sure_detected(self):
+        bad = "Sure! Below is Psalm 46 retold..."
+        self.assertIsNotNone(check_meta_text(bad))
+
+    def test_separator_line_detected(self):
+        bad = "---\nThe morning sun rose..."
+        self.assertIsNotNone(check_meta_text(bad))
+
+    def test_empty_text_detected(self):
+        self.assertIsNotNone(check_meta_text(""))
+        self.assertIsNotNone(check_meta_text("   "))
+
+    def test_leading_whitespace_stripped(self):
+        # Clean text with leading whitespace should still pass
+        clean = "  \n  The morning sun rose over the hills."
+        self.assertIsNone(check_meta_text(clean))
+
+    def test_meta_text_only_in_opening(self):
+        # "here is" appearing after 200 chars should NOT trigger
+        clean = ("A " * 120) + "here is a gift from God."
+        self.assertIsNone(check_meta_text(clean))
+
+    def test_all_dart_blocklist_phrases_present(self):
+        """Verify Python blocklist matches Dart MetaTextValidator.defaultBlocklist."""
+        dart_phrases = [
+            "here is", "here's", "this version", "certainly", "of course",
+            "sure,", "sure!", "in this retelling", "expanded carefully",
+            "staying true to", "the following", "this passage", "this story",
+            "this verse", "this retelling", "this rendering", "this adaptation",
+            "i've", "i have", "let me", "below is", "as requested", "as you asked",
+            "happy to", "glad to", "i'd be", "i would be", "absolutely",
+            "great question", "what a",
+        ]
+        for phrase in dart_phrases:
+            self.assertIn(phrase, META_TEXT_BLOCKLIST,
+                          f"Dart phrase {phrase!r} missing from Python META_TEXT_BLOCKLIST")
+
+
+class TestTraditionalCompliance(unittest.TestCase):
+    """Verify Traditional compliance validator catches violations."""
+
+    # Fixture: excerpt from the contaminated Psalm 100 full story (known violations)
+    FAILING_FIXTURE = (
+        "Men and women gather, wide-eyed, from every land. Some come to the "
+        "temple gates, bearing baskets of grain or oil, their steps quickened "
+        "by the hope in their hearts. There is no shadow of burden or weight; "
+        "all who come are wrapped in the warmth of joy. "
+        "Every judgment is wise. His words are a balm. "
+        "The song goes on, a golden thread passed from one voice to another. "
+        "I was a child once, lifted up by his mercy. He formed my lungs, "
+        "painted the features of my face."
+    )
+
+    # Fixture: clean Traditional text (no violations)
+    PASSING_FIXTURE = (
+        "The morning sun rose over the hills, casting gold light across the land. "
+        "People from every village drew near to the house of the Lord, their "
+        "voices rising. Men, women, and children walked along the dusty road, "
+        "clapping hands and singing aloud, for the day was bright with gladness."
+    )
+
+    def test_violations_dict_has_all_categories(self):
+        expected = {"INNER_THOUGHTS", "INTERPRETIVE_THEOLOGY",
+                    "SYMBOLISM_METAPHOR", "FIRST_PERSON_TESTIMONY"}
+        self.assertEqual(set(TRADITIONAL_VIOLATIONS.keys()), expected)
+
+    def test_each_category_not_empty(self):
+        for cat, phrases in TRADITIONAL_VIOLATIONS.items():
+            self.assertGreater(len(phrases), 0,
+                               f"Category {cat!r} has no phrases")
+
+    def test_clean_text_passes(self):
+        violations = check_traditional_compliance(self.PASSING_FIXTURE)
+        self.assertEqual(violations, [])
+
+    def test_inner_thoughts_detected(self):
+        violations = check_traditional_compliance(self.FAILING_FIXTURE)
+        cats = [cat for cat, _ in violations]
+        self.assertIn("INNER_THOUGHTS", cats)
+
+    def test_interpretive_theology_detected(self):
+        violations = check_traditional_compliance(self.FAILING_FIXTURE)
+        cats = [cat for cat, _ in violations]
+        self.assertIn("INTERPRETIVE_THEOLOGY", cats)
+
+    def test_symbolism_detected(self):
+        violations = check_traditional_compliance(self.FAILING_FIXTURE)
+        cats = [cat for cat, _ in violations]
+        self.assertIn("SYMBOLISM_METAPHOR", cats)
+
+    def test_first_person_testimony_detected(self):
+        violations = check_traditional_compliance(self.FAILING_FIXTURE)
+        cats = [cat for cat, _ in violations]
+        self.assertIn("FIRST_PERSON_TESTIMONY", cats)
+
+    def test_specific_phrases_caught(self):
+        violations = check_traditional_compliance(self.FAILING_FIXTURE)
+        phrases = [phrase for _, phrase in violations]
+        self.assertIn("in their hearts", phrases)
+        self.assertIn("every judgment is wise", phrases)
+        self.assertIn("golden thread", phrases)
+        self.assertIn("i was a child once", phrases)
+
+    def test_reflection_fixture_passes(self):
+        """Verify the Psalm 100 reflection passes Traditional check too."""
+        reflection = (
+            "Psalm 100 brings a portrait of collective praise and joyful "
+            "thanksgiving. It speaks with imagery of people entering gates "
+            "with gratitude, voices raised in song."
+        )
+        violations = check_traditional_compliance(reflection)
+        self.assertEqual(violations, [])
+
+    def test_contaminated_fixture_hits_all_four_categories(self):
+        """Validator hit-rate: contaminated fixture must hit all 4 categories."""
+        violations = check_traditional_compliance(self.FAILING_FIXTURE)
+        hit_cats = {cat for cat, _ in violations}
+        self.assertEqual(hit_cats, set(TRADITIONAL_VIOLATIONS.keys()),
+                         f"Expected all 4 categories, got {hit_cats}")
+
+    def test_contaminated_fixture_minimum_hit_count(self):
+        """Contaminated fixture should trigger at least 6 violations."""
+        violations = check_traditional_compliance(self.FAILING_FIXTURE)
+        self.assertGreaterEqual(len(violations), 6,
+                                f"Expected ≥6 hits, got {len(violations)}: {violations}")
+
+    def test_sanitized_fixture_passes(self):
+        """Simulate a post-sanitize output: same passage but compliant."""
+        sanitized = (
+            "Men and women gather from every land. Some come to the "
+            "temple gates, bearing baskets of grain or oil, their steps "
+            "quickened on the dusty road. All who come are wrapped in "
+            "the bright morning light. "
+            "The people lift their voices together, clapping and singing. "
+            "An elder speaks aloud the words: "
+            "'Yahweh is good. His loving kindness endures forever.' "
+            "Children spin in circles near the courtyard stones."
+        )
+        violations = check_traditional_compliance(sanitized)
+        self.assertEqual(violations, [],
+                         f"Sanitized fixture should pass, but got: {violations}")
 
 
 class TestBatchAnchorSuggestions(unittest.TestCase):

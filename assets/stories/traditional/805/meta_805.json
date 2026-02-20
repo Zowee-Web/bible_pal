@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 805,
+  "mode": "traditional",
+  "languageStyle": "WEB",
+  "mood": "joyful",
+  "scriptureAnchor": "Psalm 100",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_JAMES_HUSKY",
+  "createdByModel": "gpt-4.1",
+  "generationBatch": "PAL_TRADITIONAL_OPTION_B2",
+  "reflectionQuestion": "Where in your daily routine do you find opportunities to express gratitude or joy?",
+  "files": {
+    "short": {
+      "storyText": "story_805_traditional_web_short.txt",
+      "storyAudio": "audio_805_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_805_traditional_web_full.txt",
+      "storyAudio": "audio_805_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_805_traditional_web_long.txt",
+      "storyAudio": "audio_805_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_805_traditional_web.txt",
+      "reflectionAudio": "audio_805_reflection.mp3"
+    }
+  }
+}

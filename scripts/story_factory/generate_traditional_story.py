@@ -32,29 +32,54 @@ LOCKED_RANGES = {
     "long":  (901, 1500),
 }
 
+# Hard rules appended to every Traditional story prompt.
+# These explicitly ban the most common GPT-4.1 drift patterns.
+_TRADITIONAL_HARD_RULES = (
+    "\n\nTRADITIONAL HARD RULES (violations cause rejection):\n"
+    "1. NO inner thoughts or emotions: never write what characters feel, "
+    "think, hope, wonder, know, or trust internally. "
+    "No 'in their hearts', 'every heart knows', 'uncertainty fades', "
+    "'hearts rested', 'wide-eyed with trust', 'confidence settling', "
+    "'felt a sense of', 'hoping that', 'knew in'.\n"
+    "2. NO interpretive theology or commentary beyond the passage: "
+    "do not explain God's character, motives, or judgments. "
+    "No 'every judgment is wise', 'his words are a balm', "
+    "'there is no bitterness in him', 'he calls us back', "
+    "'when we stray'. Only state what the passage states.\n"
+    "3. NO symbolism or figurative metaphor: no 'golden thread', "
+    "'river of song', 'breathes with music', 'like an offering', "
+    "'as if meeting an old friend'. Keep descriptions concrete.\n"
+    "4. NO first-person testimony: no lines like 'I was a child once', "
+    "'He formed my lungs', 'When I was lost, he called my name'. "
+    "The story is third-person narrative of observable events.\n"
+    "5. NO personal application, moralizing, or devotional language. "
+    "This is a faithful retelling, not a sermon or meditation.\n"
+    "6. ONLY write observable actions, settings, dialogue, and "
+    "direct scripture lines. Characters walk, sing, gather, lift hands, "
+    "bring offerings, enter gates. Describe what a bystander could SEE and HEAR.\n"
+    "7. Output ONLY the story text. No titles, headings, separator lines (---), "
+    "or meta-commentary."
+)
+
 SYSTEM_PROMPTS_STORY = {
     "kjv": (
         "You are Bible PAL in Traditional mode, Classic (KJV-style) lane. "
-        "Retell real Bible passages faithfully. "
-        "Do not add interpretation, symbolism, inner monologue, or added theology. "
-        "Do not invent events beyond the passage. "
+        "Retell real Bible passages faithfully as observable-scene narrative. "
         "Use elevated, reverent KJV-like cadence and diction (Classic), "
         "but stay clear and comprehensible. "
-        "Only describe observable events and spoken words. "
         "Poetic style: Tier 3 (Elevated) — rich poetic language, complex rhythm. "
         "Meaning must remain scripture-accurate."
+        + _TRADITIONAL_HARD_RULES
     ),
     "web": (
         "You are Bible PAL in Traditional mode, Modern (WEB-style) lane. "
-        "Retell real Bible passages faithfully. "
-        "Do not add interpretation, symbolism, inner monologue, or added theology. "
-        "Do not invent events beyond the passage. "
+        "Retell real Bible passages faithfully as observable-scene narrative. "
         "Use clear, warm modern English in the style of the World English Bible (WEB). "
-        "Only describe observable events and spoken words. "
         "Poetic style: Tier 2 (Vivid+) — moderate sensory detail, warm imagery, "
         "clarity first. Favor concrete images over abstract flourishes. "
         "If a phrase feels literary rather than natural, pull back. "
         "Meaning must remain scripture-accurate."
+        + _TRADITIONAL_HARD_RULES
     ),
 }
 
@@ -92,6 +117,125 @@ REFLECTION_BANNED_PHRASES = [
     "you are feeling", "this will help you", "this will make you",
     "healing", "coping", "therapy", "therapist", "counselor",
 ]
+
+# ── Meta-text blocklist (ported from lib/safety/meta_text_validator.dart) ──
+# Matched case-insensitively against the first ~200 chars of generated text.
+META_TEXT_BLOCKLIST = [
+    "here is", "here's", "this version", "certainly", "of course",
+    "sure,", "sure!", "in this retelling", "expanded carefully",
+    "staying true to", "the following", "this passage", "this story",
+    "this verse", "this retelling", "this rendering", "this adaptation",
+    "i've", "i have", "let me", "below is", "as requested", "as you asked",
+    "happy to", "glad to", "i'd be", "i would be", "absolutely",
+    "great question", "what a",
+]
+
+META_TEXT_MAX_REGEN = 3
+
+META_TEXT_REPAIR_INSTRUCTION = (
+    "YOUR OUTPUT WAS REJECTED — it contained meta-text (LLM preamble). "
+    "FIX: Begin DIRECTLY with story/Scripture prose. "
+    "No introductions, disclaimers, or meta-commentary. "
+    "No 'Here is', 'Certainly', 'This version', etc. "
+    "No '---' separator lines. "
+    "Write ONLY the story content."
+)
+
+
+def check_meta_text(text: str) -> str | None:
+    """Check for meta-text contamination in first ~200 chars.
+
+    Returns the offending phrase if found, or None if clean.
+    """
+    trimmed = text.lstrip()
+    if not trimmed:
+        return "empty output"
+    opening = trimmed[:200].lower()
+    for phrase in META_TEXT_BLOCKLIST:
+        if phrase in opening:
+            return phrase
+    # Also reject leading separator lines like "---"
+    if trimmed.startswith("---") or trimmed.startswith("***"):
+        return "leading separator"
+    return None
+
+# ── Traditional compliance validator ──────────────────────────────────────
+# High-confidence phrase patterns that indicate Traditional rule violations.
+# Matched case-insensitively against the full story text.
+# Organized by violation category for clear error reporting.
+
+TRADITIONAL_VIOLATIONS = {
+    "INNER_THOUGHTS": [
+        "in their hearts", "in his heart", "in her heart",
+        "every heart knows", "every heart knew",
+        "hearts rested", "heart rested",
+        "hearts stirred", "heart stirred",
+        "hearts swelled", "heart swelled",
+        "uncertainty fades", "uncertainty faded",
+        "confidence settling", "confidence settled",
+        "wide-eyed with trust",
+        "felt a sense of", "felt a wave of", "felt the warmth of",
+        "knew in that moment", "knowing deep",
+        "hoped that", "hoping that",
+        "wondered if", "wondered what",
+    ],
+    "INTERPRETIVE_THEOLOGY": [
+        "every judgment is wise",
+        "every act is kindness",
+        "his words are a balm",
+        "there is no bitterness in him",
+        "he calls us back",
+        "when we stray",
+        "no shadow of burden",
+        "no shadow of doubt",
+    ],
+    "SYMBOLISM_METAPHOR": [
+        "golden thread",
+        "river of song",
+        "breathes with music", "breathed with music",
+        "house breathes", "house breathed",
+        "like an offering",
+        "as if meeting an old friend",
+    ],
+    "FIRST_PERSON_TESTIMONY": [
+        "i was a child once",
+        "he formed my lungs",
+        "he called my name",
+        "painted the features of my face",
+        "when i was lost",
+        "lifted up by his mercy",
+    ],
+}
+
+
+def check_traditional_compliance(text: str) -> list[tuple[str, str]]:
+    """Check story text for Traditional mode violations.
+
+    Returns list of (category, phrase) tuples for each violation found.
+    Empty list means compliant.
+    """
+    violations = []
+    lower = text.lower()
+    for category, phrases in TRADITIONAL_VIOLATIONS.items():
+        for phrase in phrases:
+            if phrase in lower:
+                violations.append((category, phrase))
+    return violations
+
+
+TRADITIONAL_SANITIZE_PROMPT = (
+    "YOUR OUTPUT WAS REJECTED — it violates Traditional mode rules. "
+    "Rewrite to fix ONLY the violations listed below. "
+    "Keep the same passage structure, observable actions, setting details, "
+    "and approximate length (±15%). Use 'Yahweh' naming. "
+    "Replace inner thoughts with observable actions. "
+    "Replace interpretive theology with direct scripture lines. "
+    "Remove symbolism/metaphors and use concrete descriptions. "
+    "Remove first-person testimony. "
+    "Output ONLY the rewritten story — no notes, no analysis.\n\n"
+    "VIOLATIONS FOUND:\n"
+)
+
 
 LANE_LABEL = {"kjv": "Classic (KJV-style)", "web": "Modern (WEB-style)"}
 LANE_STYLE = {"kjv": "KJV", "web": "WEB"}
@@ -319,34 +463,106 @@ def main() -> int:
 
         for length, (lo, hi) in LOCKED_RANGES.items():
             print(f"\n=== Generating {length.upper()} story ===")
-            user_prompt = (
-                f"Create a {length.upper()} ({lo} to {hi} words) "
-                f"Traditional Bible PAL story retelling {args.anchor}. "
+            base_prompt = (
+                f"Create a {length.upper()} Traditional Bible PAL story "
+                f"retelling {args.anchor}. "
+                f"HARD WORD COUNT: you MUST produce between {lo} and {hi} words. "
+                f"This is a strict requirement — do not go under {lo} or over {hi}. "
             )
             if length == "short":
-                user_prompt += (
-                    "Do not add events beyond the passage; "
-                    "render it as a lived, narrated moment."
+                base_prompt += (
+                    "Build the scene with concrete, observable details — "
+                    "setting, weather, sounds, physical actions — "
+                    "to reach the required length. "
+                    "Render the passage as a lived, narrated moment."
                 )
             elif length == "full":
-                user_prompt += (
-                    "Expand detail and pacing without adding "
-                    "new events beyond the passage."
+                base_prompt += (
+                    "Expand detail and pacing: describe the setting, "
+                    "the people, their physical actions, the sounds and sights. "
+                    "Do not add new events beyond the passage."
                 )
             else:  # long
-                user_prompt += (
-                    "Slow the narrative, enrich scene detail, "
-                    "but introduce no new events or meaning beyond the passage."
+                base_prompt += (
+                    "Slow the narrative, enrich scene detail with "
+                    "concrete sensory description (sights, sounds, textures). "
+                    "Introduce no new events or meaning beyond the passage."
                 )
 
-            text = call_openai(system_story, user_prompt)
-            wc = len(text.split())
-            print(f"  Word count: {wc} (required: {lo}-{hi})")
+            # Unified generation loop: meta-text + word count + Traditional compliance
+            text = None
+            for attempt in range(1, META_TEXT_MAX_REGEN + 1):
+                if attempt > 1:
+                    print(f"  Fresh generation attempt {attempt}/{META_TEXT_MAX_REGEN}...")
 
-            if wc < lo or wc > hi:
+                text = call_openai(system_story, base_prompt)
+
+                # Strip leading/trailing separator lines (---) that LLMs love to add
+                text = re.sub(r"^-{3,}\s*\n?", "", text.lstrip())
+                text = re.sub(r"\n?-{3,}\s*$", "", text.rstrip())
+                text = text.strip()
+
+                # Gate 1: meta-text check
+                offending = check_meta_text(text)
+                if offending is not None:
+                    print(f"  Meta-text detected: {offending!r} (attempt {attempt})")
+                    continue
+
+                # Gate 2: word count
+                wc = len(text.split())
+                print(f"  Word count: {wc} (required: {lo}-{hi})")
+                if wc < lo or wc > hi:
+                    print(f"  Word count out of range (attempt {attempt})")
+                    continue
+
+                # Gate 3: Traditional compliance
+                violations = check_traditional_compliance(text)
+                if not violations:
+                    break  # all gates passed
+
+                print(f"  Traditional violations found ({len(violations)}):")
+                for cat, phrase in violations:
+                    print(f"    [{cat}] {phrase!r}")
+
+                # Try one sanitize rewrite before burning another attempt
+                violation_lines = "\n".join(
+                    f"- [{cat}] \"{phrase}\"" for cat, phrase in violations
+                )
+                sanitize_prompt = (
+                    TRADITIONAL_SANITIZE_PROMPT + violation_lines
+                    + "\n\nORIGINAL STORY:\n" + text
+                )
+                print(f"  Attempting Traditional sanitize rewrite...")
+                text = call_openai(system_story, sanitize_prompt)
+                text = re.sub(r"^-{3,}\s*\n?", "", text.lstrip())
+                text = re.sub(r"\n?-{3,}\s*$", "", text.rstrip())
+                text = text.strip()
+
+                # Re-check all gates after sanitize
+                offending = check_meta_text(text)
+                if offending is not None:
+                    print(f"  Sanitize introduced meta-text: {offending!r}")
+                    continue
+
+                wc = len(text.split())
+                print(f"  Post-sanitize word count: {wc} (required: {lo}-{hi})")
+                if wc < lo or wc > hi:
+                    print(f"  Post-sanitize word count out of range")
+                    continue
+
+                remaining = check_traditional_compliance(text)
+                if remaining:
+                    print(f"  Still {len(remaining)} violations after sanitize:")
+                    for cat, phrase in remaining:
+                        print(f"    [{cat}] {phrase!r}")
+                    continue  # hard gate: retry fresh generation
+
+                print(f"  Sanitize pass cleared all violations")
+                break  # all gates passed
+            else:
                 return fail_clean(
-                    f"{length} story has {wc} words, "
-                    f"outside locked range {lo}-{hi}"
+                    f"{length} story failed all gates after "
+                    f"{META_TEXT_MAX_REGEN} attempts"
                 )
 
             fname = f"story_{sid}_traditional_{lane}_{length}.txt"
@@ -355,12 +571,33 @@ def main() -> int:
 
         # ── Generate reflection (B2: ONE) ──────────────────────────────
         print(f"\n=== Generating REFLECTION ===")
-        refl_prompt = (
+        refl_base_prompt = (
             f"Write one short reflection (120 to 220 words) for a "
             f"Traditional {lane_label} story based on {args.anchor}. "
             f"Keep the tone reverent, gentle, and non-prescriptive."
         )
-        reflection = call_openai(SYSTEM_PROMPT_REFLECTION, refl_prompt)
+
+        reflection = None
+        for attempt in range(1, META_TEXT_MAX_REGEN + 1):
+            refl_prompt = refl_base_prompt
+            if attempt > 1:
+                refl_prompt = META_TEXT_REPAIR_INSTRUCTION + "\n\n" + refl_base_prompt
+                print(f"  Regeneration attempt {attempt}/{META_TEXT_MAX_REGEN}...")
+
+            reflection = call_openai(SYSTEM_PROMPT_REFLECTION, refl_prompt)
+            reflection = re.sub(r"^-{3,}\s*\n?", "", reflection.lstrip())
+            reflection = re.sub(r"\n?-{3,}\s*$", "", reflection.rstrip())
+            reflection = reflection.strip()
+
+            offending = check_meta_text(reflection)
+            if offending is None:
+                break
+            print(f"  Meta-text detected in reflection: {offending!r} (attempt {attempt})")
+        else:
+            return fail_clean(
+                f"Reflection still has meta-text after {META_TEXT_MAX_REGEN} attempts"
+            )
+
         refl_wc = len(reflection.split())
         print(f"  Reflection word count: {refl_wc} (target: {REFLECTION_WORD_RANGE[0]}-{REFLECTION_WORD_RANGE[1]})")
 
