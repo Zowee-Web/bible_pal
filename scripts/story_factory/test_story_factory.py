@@ -11,7 +11,6 @@ from generate_traditional_story import (
     LOCKED_RANGES,
     KID_LOCKED_RANGES,
     KID_REFLECTION_WORD_RANGE,
-    BEDTIME_CLOSING_SIGNALS,
     PROTESTANT_BOOKS,
     REFLECTION_WORD_RANGE,
     REFLECTION_BANNED_PHRASES,
@@ -21,7 +20,6 @@ from generate_traditional_story import (
     check_meta_text,
     check_traditional_compliance,
     check_forbidden_words,
-    check_bedtime_closing,
     load_forbidden_words,
     validate_anchor_format,
 )
@@ -424,38 +422,6 @@ class TestForbiddenWords(unittest.TestCase):
         bad = "And so David became king of Israel."
         found = check_forbidden_words(bad, self.forbidden)
         self.assertIn("became king", found)
-
-
-class TestBedtimeClosing(unittest.TestCase):
-    """Verify bedtime closing signal detection."""
-
-    def test_closing_signals_not_empty(self):
-        self.assertGreater(len(BEDTIME_CLOSING_SIGNALS), 10)
-
-    def test_detects_sleep_closing(self):
-        story = ("Once upon a time a kind shepherd watched over his sheep. " * 20 +
-                 "And as the stars twinkled softly overhead, the little lamb "
-                 "closed her eyes and drifted to sleep.")
-        self.assertTrue(check_bedtime_closing(story))
-
-    def test_detects_resting_closing(self):
-        story = ("A gentle morning came over the hillside. " * 20 +
-                 "Wrapped in the cozy blanket of night, everyone was resting.")
-        self.assertTrue(check_bedtime_closing(story))
-
-    def test_rejects_missing_closing(self):
-        story = ("The people gathered and praised God together. " * 20 +
-                 "The morning sun continued to shine over the hills.")
-        self.assertFalse(check_bedtime_closing(story))
-
-    def test_signal_must_be_in_last_20_percent(self):
-        """Sleep words early in the story don't count."""
-        story = ("The child fell asleep early. " +
-                 "The morning brought new adventures to the hillside. " * 30)
-        self.assertFalse(check_bedtime_closing(story))
-
-    def test_empty_text(self):
-        self.assertFalse(check_bedtime_closing(""))
 
 
 class TestBatchDryRun(unittest.TestCase):

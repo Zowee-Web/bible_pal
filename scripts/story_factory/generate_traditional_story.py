@@ -32,7 +32,7 @@ LOCKED_RANGES = {
     "long":  (901, 1500),
 }
 
-# Kid mode word count ranges (per kid_bedtime_contract.txt)
+# Kid mode word count ranges (per kid_story_contract.txt)
 KID_LOCKED_RANGES = {
     "short": (250, 600),
     "full":  (601, 1200),
@@ -42,11 +42,11 @@ KID_LOCKED_RANGES = {
 KID_REFLECTION_WORD_RANGE = (60, 120)
 KID_MAX_REGEN = 5
 
-# Kid bedtime story rules (from docs/prompts/kid_bedtime_contract.txt)
-_KID_BEDTIME_RULES = (
-    "\n\nKID BEDTIME STORY RULES (violations cause rejection):\n"
-    "AUDIENCE: Children ages 5–9, bedtime audio listening context.\n"
-    "TONE: Calm, gentle, soothing throughout. Warm and comforting. "
+# Kid safety rules (from docs/prompts/kid_story_contract.txt)
+_KID_SAFETY_RULES = (
+    "\n\nKID STORY RULES (violations cause rejection):\n"
+    "AUDIENCE: Children ages 5–9, audio listening context.\n"
+    "TONE: Calm, gentle, warm throughout. Comforting and encouraging. "
     "Never startling, tense, or suspenseful.\n\n"
     "FORBIDDEN CONTENT (ABSOLUTE — any occurrence causes rejection):\n"
     "- No peril, danger, threat, violence (even implied)\n"
@@ -69,32 +69,13 @@ _KID_BEDTIME_RULES = (
     "2. GENTLE SITUATION (20–25%): story context without tension\n"
     "3. FAITH IN ACTION (25–30%): trust in God through gentle actions\n"
     "4. QUIET RESOLUTION (20–25%): peaceful natural resolution\n"
-    "5. SOOTHING BEDTIME CLOSING (10–15%): transition to rest/sleep, "
-    "drowsy imagery, characters at rest, sleep-invitation language\n\n"
+    "5. GENTLE, POSITIVE ENDING (10–15%): warm wrap-up, characters at "
+    "peace, hopeful tone, sense of safety and comfort\n\n"
     "SENTENCE STYLE: Short, simple sentences (average 12 words or fewer). "
     "No complex vocabulary. Gentle rhythm. Smooth, flowing language.\n\n"
-    "PARENT TEST: Would a parent feel completely safe falling asleep while "
-    "this plays for their child? If not, revise."
+    "PARENT TEST: Would a parent feel completely safe having "
+    "this play for their child at any time? If not, revise."
 )
-
-# Bedtime closing signal phrases — at least one must appear in final 20% of kid stories
-BEDTIME_CLOSING_SIGNALS = [
-    "closed their eyes", "closed his eyes", "closed her eyes",
-    "fell asleep", "drifted to sleep", "drifted off",
-    "fast asleep", "softly asleep", "sound asleep",
-    "asleep",
-    "sleeping", "slept",
-    "resting", "rested",
-    "tucked in", "snuggled", "curled up",
-    "quiet night", "still night", "peaceful night",
-    "stars twinkled", "stars blinked", "stars shone",
-    "moonlight", "starlight",
-    "cozy blanket", "warm blanket",
-    "dreaming", "dreams",
-    "yawned", "yawning",
-    "goodnight", "good night",
-    "eyelids", "drowsy", "sleepy",
-]
 
 # Hard rules appended to every Traditional story prompt.
 # These explicitly ban the most common GPT-4.1 drift patterns.
@@ -178,29 +159,29 @@ REFLECTION_WORD_RANGE = (120, 220)
 KID_SYSTEM_PROMPTS_STORY = {
     "kjv": (
         "You are Bible PAL in Traditional mode, Classic lane, "
-        "for CHILDREN ages 5–9 at bedtime. "
+        "for CHILDREN ages 5–9. "
         "Retell real Bible passages faithfully as observable-scene narrative. "
         "Use gentle, reverent language with a soft KJV-like cadence, "
         "but keep vocabulary simple and sentences short for young children. "
         "Meaning must remain scripture-accurate."
-        + _KID_BEDTIME_RULES
+        + _KID_SAFETY_RULES
         + _TRADITIONAL_HARD_RULES
     ),
     "web": (
         "You are Bible PAL in Traditional mode, Modern (WEB-style) lane, "
-        "for CHILDREN ages 5–9 at bedtime. "
+        "for CHILDREN ages 5–9. "
         "Retell real Bible passages faithfully as observable-scene narrative. "
         "Use clear, warm, simple modern English. "
         "Keep vocabulary accessible for young children. "
         "Meaning must remain scripture-accurate."
-        + _KID_BEDTIME_RULES
+        + _KID_SAFETY_RULES
         + _TRADITIONAL_HARD_RULES
     ),
 }
 
 KID_SYSTEM_PROMPT_REFLECTION = (
     "You are Bible PAL creating a post-story reflection "
-    "for CHILDREN ages 5–9 at bedtime. "
+    "for CHILDREN ages 5–9. "
     "Use simple, warm, gentle language a young child can understand. "
     "Do not give advice. "
     "Do not interpret theology. "
@@ -342,7 +323,7 @@ def check_traditional_compliance(text: str) -> list[tuple[str, str]]:
 
 
 def load_forbidden_words(root: pathlib.Path) -> list[str]:
-    """Load forbidden words from server/kid_bedtime_forbidden.txt."""
+    """Load forbidden words from server/kid_bedtime_forbidden.txt (kid safety vocabulary)."""
     forbidden_file = root / "server" / "kid_bedtime_forbidden.txt"
     if not forbidden_file.exists():
         raise FileNotFoundError(f"Forbidden words file not found: {forbidden_file}")
@@ -356,7 +337,7 @@ def load_forbidden_words(root: pathlib.Path) -> list[str]:
 
 
 def check_forbidden_words(text: str, forbidden: list[str]) -> list[str]:
-    """Check text for forbidden kid-bedtime words.
+    """Check text for forbidden kid-safety words.
 
     Returns list of forbidden words/phrases found. Empty list means clean.
     Multi-word phrases use substring matching.
@@ -374,22 +355,6 @@ def check_forbidden_words(text: str, forbidden: list[str]) -> list[str]:
             if re.search(r"\b" + re.escape(word) + r"\b", lower):
                 found.append(word)
     return found
-
-
-def check_bedtime_closing(text: str) -> bool:
-    """Check that a kid story ends with bedtime closing signals.
-
-    Returns True if at least one signal found in the last 20% of text.
-    """
-    words = text.split()
-    if not words:
-        return False
-    cutoff = max(1, len(words) * 80 // 100)
-    closing = " ".join(words[cutoff:]).lower()
-    for signal in BEDTIME_CLOSING_SIGNALS:
-        if signal in closing:
-            return True
-    return False
 
 
 TRADITIONAL_SANITIZE_PROMPT = (
@@ -571,7 +536,7 @@ def main() -> int:
                         default="PAL_TRADITIONAL_OPTION_B2",
                         help="Generation batch label")
     parser.add_argument("--kid", action="store_true",
-                        help="Kid bedtime mode (ages 5-9, safe vocabulary)")
+                        help="Kid mode (ages 5-9, safe vocabulary)")
     args = parser.parse_args()
 
     sid = args.story_id
@@ -639,7 +604,7 @@ def main() -> int:
             rq_system = KID_SYSTEM_PROMPT_REFLECTION_QUESTION
             refl_range = KID_REFLECTION_WORD_RANGE
             forbidden = load_forbidden_words(root)
-            print(f"Kid bedtime mode: loaded {len(forbidden)} forbidden words, max retries {max_regen}")
+            print(f"Kid mode: loaded {len(forbidden)} forbidden words, max retries {max_regen}")
         else:
             ranges = LOCKED_RANGES
             max_regen = META_TEXT_MAX_REGEN
@@ -680,10 +645,10 @@ def main() -> int:
 
             if is_kid:
                 base_prompt += (
-                    " This is a KID BEDTIME story for children ages 5–9. "
+                    " This is a KID story for children ages 5–9. "
                     "Follow the required 5-part structure. "
-                    "End with a soothing bedtime closing where characters "
-                    "rest or sleep. "
+                    "End with a gentle, positive closing that feels warm "
+                    "and safe. "
                     "Use short, simple sentences (average 12 words). "
                     "AVOID these specific words (auto-rejected): "
                     "shadows, shadowy, darkness, alone, lonely, lost, "
@@ -731,10 +696,6 @@ def main() -> int:
                         if found_forbidden:
                             print(f"  Forbidden words ({len(found_forbidden)}): {found_forbidden[:5]}")
                             continue
-                    # Gate 5 (kid only): bedtime closing
-                    if is_kid and not check_bedtime_closing(text):
-                        print(f"  Missing bedtime closing signal (attempt {attempt})")
-                        continue
                     break  # all gates passed
 
                 print(f"  Traditional violations found ({len(violations)}):")
@@ -780,9 +741,6 @@ def main() -> int:
                     if found_forbidden:
                         print(f"  Post-sanitize forbidden words ({len(found_forbidden)}): {found_forbidden[:5]}")
                         continue
-                if is_kid and not check_bedtime_closing(text):
-                    print(f"  Post-sanitize missing bedtime closing signal")
-                    continue
                 print(f"  Sanitize pass cleared all violations")
                 break  # all gates passed
             else:
@@ -800,9 +758,9 @@ def main() -> int:
         if is_kid:
             refl_base_prompt = (
                 f"Write one short reflection ({refl_range[0]} to {refl_range[1]} words) for a "
-                f"kid bedtime {lane_label} story based on {args.anchor}. "
+                f"kid-friendly {lane_label} story based on {args.anchor}. "
                 f"Use simple, warm language a child ages 5–9 can understand. "
-                f"Keep the tone gentle, soothing, and non-prescriptive."
+                f"Keep the tone gentle, encouraging, and non-prescriptive."
             )
         else:
             refl_base_prompt = (
@@ -869,7 +827,7 @@ def main() -> int:
         if is_kid:
             rq_prompt = (
                 f"Generate one gentle, optional reflection question for a "
-                f"kid bedtime {lane_label} story based on {args.anchor}. "
+                f"kid-friendly {lane_label} story based on {args.anchor}. "
                 f"Use simple words a child ages 5–9 can understand. "
                 f"Return ONLY the question, or an empty string if none fits."
             )

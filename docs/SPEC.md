@@ -10,7 +10,7 @@ This document is the single source of truth for Bible PAL's features and behavio
 ## Table of Contents
 
 1. [PAL's Parables System](#pals-parables-system)
-2. [Kid Bedtime Safe Harness](#kid-bedtime-safe-harness)
+2. [Kid Safe Harness](#kid-safe-harness)
 3. [Onboarding](#onboarding)
 4. [Daily Bread](#daily-bread)
 5. [Post-Story Everyday Life Reflection](#post-story-everyday-life-reflection)
@@ -453,23 +453,22 @@ Golden Prompt mode is a specialized generation strategy for adult traditional SH
 
 ---
 
-## Kid Bedtime Safe Harness
+## Kid Safe Harness
 
-The Kid Bedtime Safe Harness ensures that all kid-mode story generations are safe for children ages 5-9 listening at bedtime. Parents can confidently let their child fall asleep while PAL's Stories plays.
+The Kid Safe Harness ensures that all kid-mode story generations are safe for children ages 5-9. Parents can confidently have stories play for their child at any time.
 
 ### Contract Injection
 
-**28. Kid Bedtime Contract**
-- All kid-mode generations MUST include the Kid Bedtime Contract in the prompt
+**28. Kid Story Contract**
+- All kid-mode generations MUST include the Kid Story Contract in the prompt
 - Contract location: `docs/prompts/kid_bedtime_contract.txt`
 - Contract specifies:
-  - Audience: ages 5-9 bedtime audio
+  - Audience: ages 5-9 audio listening
   - Calm/comforting tone requirement
   - No peril/violence/terror imagery
   - No crowns/thrones/power reward arcs
   - Biblical accuracy (no invented promotions)
-  - Fixed 5-part structure
-  - Soothing bedtime closing requirement
+  - Fixed 5-part structure with gentle, positive ending
   - "Parent Test" self-check instruction
 
 ### Forbidden Vocabulary Gate
@@ -493,8 +492,7 @@ The Kid Bedtime Safe Harness ensures that all kid-mode story generations are saf
 - Stories must have at least 3 distinct sections (paragraphs)
 - Minimum word count: 200 words
 - Average sentence length: 15 words or fewer
-- Ending MUST include bedtime/sleep signals:
-  - Examples: sleep, rest, dream, peaceful, calm, quiet, stars, moon, blanket, cozy
+- Ending should be gentle and positive (warm, hopeful tone)
 
 ### Post-Generation Validator
 
@@ -504,8 +502,7 @@ The Kid Bedtime Safe Harness ensures that all kid-mode story generations are saf
 - Checks:
   1. No forbidden words present
   2. Required structure exists
-  3. Bedtime closing signal present
-  4. Sentence length within limits
+  3. Sentence length within limits
 - Returns detailed violation list for repair instructions
 
 ### Bounded Regeneration
@@ -521,11 +518,11 @@ The Kid Bedtime Safe Harness ensures that all kid-mode story generations are saf
 
 ### Harness Wrapper
 
-**33. Kid Bedtime Harness**
+**33. Kid Safe Harness**
 - Harness script: `server/kid_bedtime_harness.sh`
-- Wraps Gemma generation with validation loop
+- Wraps generation with validation loop
 - Process:
-  1. Inject Kid Bedtime Contract into prompt
+  1. Inject Kid Story Contract into prompt
   2. Call Ollama/Gemma to generate story
   3. Validate output against contract
   4. If failed, append repair instruction and retry

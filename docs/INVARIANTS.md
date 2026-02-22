@@ -491,26 +491,26 @@ All tests MUST pass before release.
 
 ---
 
-## 🔒 Kid Bedtime Safe Generation Invariant (NON-NEGOTIABLE)
+## 🔒 Kid Safe Generation Invariant (NON-NEGOTIABLE)
 
-**Invariant**: All kid-mode story generations MUST pass the Kid Bedtime Validator before being saved to the kid library. Forbidden words MUST never appear in kid-safe output. Maximum regeneration attempts = 3. Unsafe stories MUST NOT be saved to kid library.
+**Invariant**: All kid-mode story generations MUST pass the Kid Safe Validator before being saved to the kid library. Forbidden words MUST never appear in kid-safe output. Maximum regeneration attempts = 3. Unsafe stories MUST NOT be saved to kid library.
 
 ### Why This Exists
 
-**Bedtime safety for children is paramount.**
+**Safety for children is paramount.**
 
-- Children ages 5-9 may fall asleep while listening
+- Children ages 5-9 are the audience
 - Parents may not be actively monitoring
-- A startling word or scary image could disturb a sleeping child
+- A startling word or scary image could upset a child
 - Biblical hallucinations (e.g., "Jonah was crowned king") confuse children about scripture
-- Parents trust the "Kid Friendly" mode to be truly safe for unattended bedtime listening
+- Parents trust the "Kid Friendly" mode to be truly safe for unattended listening
 
 ### The Contract
 
-When generating stories for kid mode, the system enters a **strict bedtime safety contract**:
+When generating stories for kid mode, the system enters a **strict safety contract**:
 
 1. **Contract Injection MUST occur**
-   - Every Gemma prompt MUST include the Kid Bedtime Contract
+   - Every generation prompt MUST include the Kid Story Contract
    - Contract file: `docs/prompts/kid_bedtime_contract.txt`
    - No exceptions or bypasses permitted
 
@@ -524,7 +524,6 @@ When generating stories for kid mode, the system enters a **strict bedtime safet
    - Minimum 3 distinct sections
    - Minimum 200 words
    - Average sentence length ≤15 words
-   - Bedtime closing signal MUST be present
 
 4. **Regeneration MUST be bounded**
    - Maximum attempts: **3** (`kMaxRegenAttempts`)
@@ -545,7 +544,7 @@ This invariant is enforced at **four layers**:
 #### 1. Contract Injection (Generation Time)
 
 **Files**:
-- [`docs/prompts/kid_bedtime_contract.txt`](prompts/kid_bedtime_contract.txt) - Contract text
+- [`docs/prompts/kid_bedtime_contract.txt`](prompts/kid_bedtime_contract.txt) - Kid Story Contract
 - [`server/kid_bedtime_harness.sh`](../server/kid_bedtime_harness.sh) - Injects contract
 
 The harness script MUST inject the full contract into every kid-mode generation prompt.
@@ -560,7 +559,6 @@ The harness script MUST inject the full contract into every kid-mode generation 
 Validators check:
 - Forbidden words (160+ patterns)
 - Story structure (sections, length)
-- Bedtime closing signals
 - Sentence length averages
 
 #### 3. Bounded Regeneration (Harness)
@@ -625,10 +623,10 @@ Full list: [`server/kid_bedtime_forbidden.txt`](../server/kid_bedtime_forbidden.
 - Error logged for investigation
 - User sees "Content unavailable" message
 
-### Testing Kid Bedtime Safety
+### Testing Kid Safety
 
 ```bash
-# Run all kid bedtime safety tests
+# Run all kid safety tests
 flutter test test/kid_bedtime_safe/
 
 # Test the validator script directly
@@ -637,39 +635,39 @@ flutter test test/kid_bedtime_safe/
 # Test the harness (requires Ollama running)
 ./server/kid_bedtime_harness.sh prompt.txt output.txt --max-attempts 3
 
-# Run all tests (includes kid bedtime safety)
+# Run all tests (includes kid safety)
 flutter test
 ```
 
 ### Maintenance Rules
 
-**When modifying kid bedtime generation:**
+**When modifying kid-mode generation:**
 
-1. **NEVER** bypass the Kid Bedtime Contract injection
+1. **NEVER** bypass the Kid Story Contract injection
 2. **NEVER** skip post-generation validation
 3. **NEVER** save stories with `kidSafe: false` to kid library
 4. **ALWAYS** include repair instruction on regeneration
 5. **ALWAYS** respect max attempts limit
-6. **RUN** kid bedtime tests before committing
+6. **RUN** kid safety tests before committing
 7. **DO NOT** weaken forbidden vocabulary list
 8. **DO NOT** disable or weaken safety tests
 
-**If a kid bedtime test fails:**
+**If a kid safety test fails:**
 1. DO NOT disable the test
 2. DO NOT weaken the validator
 3. Fix the root cause (missing validation, weak pattern, etc.)
-4. Verify all kid bedtime tests pass
+4. Verify all kid safety tests pass
 5. Test with sample forbidden content manually
 
 ### Resources
 
-- [Kid Bedtime Contract](prompts/kid_bedtime_contract.txt)
+- [Kid Story Contract](prompts/kid_bedtime_contract.txt)
 - [Forbidden Vocabulary](../server/kid_bedtime_forbidden.txt)
 - [Bash Validator](../server/kid_bedtime_validator.sh)
 - [Dart Validator](../lib/safety/kid_bedtime_validator.dart)
 - [Harness Script](../server/kid_bedtime_harness.sh)
-- [Kid Bedtime Tests](../test/kid_bedtime_safe/)
-- [SPEC.md Kid Bedtime Section](SPEC.md#kid-bedtime-safe-harness)
+- [Kid Safety Tests](../test/kid_bedtime_safe/)
+- [SPEC.md Kid Safe Section](SPEC.md#kid-safe-harness)
 
 ---
 

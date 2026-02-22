@@ -1,10 +1,9 @@
-/// Kid Bedtime Safe - Structure Validator Tests
+/// Kid Safe - Structure Validator Tests
 ///
 /// Tests that the validator correctly checks for required story structure
-/// as specified in the Kid Bedtime Contract (5-part structure, bedtime closing).
+/// as specified in the Kid Story Contract (5-part structure, gentle ending).
 ///
 /// Spec clause: "Required structure headings or sections exist (5 sections)"
-/// Spec clause: "Ending includes a 'calm bedtime closing' signal"
 @Tags(['kid-safety', 'critical'])
 library;
 
@@ -54,38 +53,7 @@ void main() {
       );
     });
 
-    test('fails when story lacks bedtime closing signals', () {
-      const noBedtimeClosing = '''
-Samuel was a young boy who lived in a very special place called the temple.
-It was a quiet and peaceful building where many people came to pray each day.
-Samuel had a small room where he stayed and he felt very comfortable there.
-
-He helped the kind old priest named Eli with many daily tasks and chores.
-Samuel would carry things carefully and keep everything clean and organized.
-Eli appreciated Samuel's help very much and treated him like a grandson.
-
-One quiet day, Samuel heard a mysterious voice calling out his name softly.
-At first he was confused and thought it might be Eli calling for him.
-But Eli told him it was not his voice and to listen more carefully next time.
-
-Samuel learned to listen carefully to God's voice whenever it called to him.
-He understood that God wanted to communicate with him about important things.
-This made Samuel feel very special and honored to be chosen by God.
-
-Samuel grew up to become a wise and respected leader among all the people.
-He guided them with wisdom and helped them understand God's messages.
-Everyone looked up to Samuel for guidance and advice on important matters.
-''';
-      final result = validator.validate(noBedtimeClosing);
-
-      expect(result.isValid, isFalse);
-      expect(
-        result.otherViolations.any((v) => v.contains('bedtime')),
-        isTrue,
-      );
-    });
-
-    test('passes when story has proper sections and bedtime closing', () {
+    test('passes when story has proper sections and gentle ending', () {
       // Note: Story must be >= 250 words (LOCKED SPEC short bucket minimum)
       const properStory = '''
 Little Samuel lived in a very special place called the temple. It was
@@ -122,55 +90,6 @@ and Samuel drifted off to a restful, peaceful sleep.
       expect(result.otherViolations, isEmpty);
     });
 
-    test('detects various bedtime closing signals', () {
-      final closingSignals = [
-        'and he drifted off to sleep peacefully.',
-        'the children rested quietly under the stars.',
-        'feeling warm and safe, she closed her eyes to dream.',
-        'the calm night brought peace to everyone.',
-        'snuggled in his cozy blanket, he smiled softly.',
-        'as the moon rose, all was quiet and peaceful.',
-      ];
-
-      for (final closing in closingSignals) {
-        // Note: Story must be >= 250 words (LOCKED SPEC short bucket minimum)
-        final story = '''
-This is a wonderful story about a child who learned about God's amazing love.
-The child was young and curious about the world around them. They asked many
-questions about life and faith and always wanted to learn new things.
-Every day brought new discoveries and joyful moments of learning.
-
-The child spent quiet time in prayer and reflection each and every day.
-They would sit in a peaceful spot and think about all the good things in life.
-Prayer became an important part of their daily routine and brought them joy.
-The peaceful moments of prayer helped them feel close to God always.
-
-The kind adults in the village taught the child many important lessons.
-They shared stories of faith and hope that had been passed down through time.
-The child listened carefully and remembered everything they were taught.
-These stories filled the child's heart with wonder and gratitude.
-
-The child loved to help others in the village whenever they could.
-They would share their food with those who were hungry and alone.
-Helping others made the child feel happy and fulfilled inside.
-It was a wonderful way to show love to their neighbors.
-
-They learned to trust completely in God's loving care and protection always.
-Knowing that God was watching over them made the child feel safe and secure.
-This trust gave them courage to face each new day with confidence and hope.
-The child knew that God loved them very much and always would.
-
-$closing
-''';
-        final result = validator.validate(story);
-
-        expect(
-          result.otherViolations.any((v) => v.contains('bedtime')),
-          isFalse,
-          reason: 'Should accept closing: "$closing"',
-        );
-      }
-    });
   });
 
   group('KidBedtimeValidator - Sentence Length', () {

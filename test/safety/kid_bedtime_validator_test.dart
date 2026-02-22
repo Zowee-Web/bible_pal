@@ -363,7 +363,7 @@ void main() {
 }
 
 /// Generate a story with approximately the target word count.
-/// The story has proper structure (paragraphs) and bedtime signals.
+/// The story has proper structure (paragraphs) and gentle ending.
 String _generateStoryWithWordCount(int targetWords) {
   final buffer = StringBuffer();
 
@@ -405,7 +405,7 @@ String _generateStoryWithWordCount(int targetWords) {
     buffer.writeln();
   }
 
-  // Add bedtime closing with sleep signals
+  // Add gentle closing
   buffer.writeln(closingParagraph);
 
   return buffer.toString();

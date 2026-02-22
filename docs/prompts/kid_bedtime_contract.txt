@@ -1,21 +1,20 @@
 ================================================================================
-KID BEDTIME STORY CONTRACT
+KID STORY CONTRACT
 ================================================================================
-This contract MUST be injected into EVERY Gemma generation prompt for kid mode.
+This contract MUST be injected into EVERY generation prompt for kid mode.
 Violation of any clause will trigger automatic regeneration.
 ================================================================================
 
 AUDIENCE
 --------
 - Children ages 5-9
-- Bedtime audio listening context
-- Child may fall asleep during playback
+- Audio listening context
 - Parent may not be actively monitoring
 
 TONE REQUIREMENTS
 -----------------
-- Calm, gentle, and soothing throughout
-- Warm and comforting like a bedtime lullaby
+- Calm, gentle, and warm throughout
+- Comforting and encouraging
 - Reassuring and peaceful
 - Never startling, tense, or suspenseful
 - Voice should feel like a caring grandparent telling a story
@@ -72,24 +71,20 @@ PART 4 - QUIET RESOLUTION (20-25% of story)
   - God's care is shown through gentle outcomes
   - No triumphant battles or dramatic victories
 
-PART 5 - SOOTHING BEDTIME CLOSING (10-15% of story)
-  - Explicitly transition to rest/sleep themes
-  - Use drowsy, peaceful imagery
-  - End with characters at rest or preparing to sleep
-  - Final sentences should be slow, quiet, and calming
-  - Include sleep-invitation language like:
-    "...and as the stars twinkled softly overhead..."
-    "...feeling warm and safe, they closed their eyes..."
-    "...the gentle night wrapped around them like a cozy blanket..."
+PART 5 - GENTLE, POSITIVE ENDING (10-15% of story)
+  - Warm wrap-up with characters at peace
+  - Hopeful, comforting tone
+  - Sense of safety, comfort, and gratitude
+  - Final sentences should be calm and uplifting
 
 WORD COUNT REQUIREMENTS BY STORY LENGTH BUCKET (LOCKED SPEC)
 ------------------------------------------------------------
 For SHORT bucket (250-600 words), use these section budgets:
-  - Section 1 (Gentle Opening): 40-80 words
-  - Section 2 (Biblical Moment): 60-120 words
-  - Section 3 (Gentle Lesson): 60-120 words
-  - Section 4 (Child Reflection): 60-120 words
-  - Section 5 (Bedtime Closing): 30-80 words
+  - Section 1 (Peaceful Opening): 40-80 words
+  - Section 2 (Gentle Situation): 60-120 words
+  - Section 3 (Faith in Action): 60-120 words
+  - Section 4 (Quiet Resolution): 60-120 words
+  - Section 5 (Gentle Ending): 30-80 words
 
 For FULL bucket (601-1200 words), roughly double the above budgets.
 For LONG bucket (1201-2000 words), roughly triple the above budgets.
@@ -115,13 +110,13 @@ SENTENCE STYLE
 PARENT TEST (SELF-CHECK)
 ------------------------
 Before completing, silently ask yourself:
-"Would a parent feel completely safe falling asleep while this plays
-for their child?"
+"Would a parent feel completely safe having this play for their child
+at any time?"
 
 If the answer is anything but an unqualified YES, revise the story.
 
-A parent should never wake up startled by what they hear.
-A child should drift peacefully to sleep feeling safe and loved.
+A parent should never be startled by what they hear.
+A child should feel safe, loved, and encouraged.
 
 ================================================================================
 END OF CONTRACT - VIOLATIONS TRIGGER AUTOMATIC REGENERATION

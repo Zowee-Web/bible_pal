@@ -252,7 +252,7 @@ All the tired people closed their eyes and drifted off to restful sleep.
 
     test('repair instruction includes all failure reasons', () {
       const badStory =
-          'The king roared.'; // Short, bad word, no bedtime closing
+          'The king roared.'; // Short, bad word
 
       final result = validator.validate(badStory);
 
@@ -272,7 +272,7 @@ All the tired people closed their eyes and drifted off to restful sleep.
 
       // Should include regeneration guidance
       expect(repair, contains('REWRITE'));
-      expect(repair, contains('BEDTIME'));
+      expect(repair, contains('children ages 5-9'));
     });
 
     test('configurable max attempts works correctly', () {

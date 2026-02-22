@@ -1,6 +1,6 @@
-/// Kid Bedtime Safe Validator
+/// Kid Safe Validator
 ///
-/// Validates generated story content against the Kid Bedtime Contract.
+/// Validates generated story content against the Kid Story Contract.
 /// Used for post-generation validation and regeneration decisions.
 ///
 /// See: docs/prompts/kid_bedtime_contract.txt
@@ -17,8 +17,8 @@ const int kMaxRegenAttempts = 3;
 const int kMaxAvgWordsPerSentence = 15;
 
 /// LEGACY: Special 3-minute kid story word count range
-/// This is a KID-BEDTIME-SPECIFIC range not in standard StoryLengthBucket enum
-/// (kept for backwards compatibility with 3-minute kid bedtime stories)
+/// This is a KID-SPECIFIC range not in standard StoryLengthBucket enum
+/// (kept for backwards compatibility with 3-minute kid stories)
 const (int, int) k3MinuteKidStoryRange = (270, 400);
 
 /// Get word count range for a storyLength bucket (PRIMARY method)
@@ -40,7 +40,7 @@ const (int, int) k3MinuteKidStoryRange = (270, 400);
   return bucket.wordCountRange;
 }
 
-/// Result of validating a story against the Kid Bedtime Contract
+/// Result of validating a story against the Kid Story Contract
 class KidBedtimeValidationResult {
   final bool isValid;
   final List<String> forbiddenWordsFound;
@@ -99,8 +99,8 @@ class KidBedtimeValidationResult {
     }
 
     buffer.writeln('REWRITE THE STORY TO FIX ALL ISSUES ABOVE.');
-    buffer.writeln('Remember: This is for children ages 5-9 at BEDTIME.');
-    buffer.writeln('It must be calm, peaceful, and sleep-inducing.');
+    buffer.writeln('Remember: This is for children ages 5-9.');
+    buffer.writeln('It must be calm, peaceful, and gentle.');
 
     return buffer.toString();
   }
@@ -116,7 +116,7 @@ class KidBedtimeValidationResult {
   }
 }
 
-/// Validator for Kid Bedtime Safe stories
+/// Validator for Kid Safe stories
 class KidBedtimeValidator {
   final List<String> _forbiddenPatterns;
   final List<RegExp> _forbiddenRegexes;
@@ -174,7 +174,7 @@ class KidBedtimeValidator {
     return KidBedtimeValidator._(lowerPatterns, regexes);
   }
 
-  /// Validate story text against the Kid Bedtime Contract
+  /// Validate story text against the Kid Story Contract
   KidBedtimeValidationResult validate(String storyText) {
     final forbiddenFound = <String>[];
     final structureViolations = <String>[];
@@ -190,12 +190,6 @@ class KidBedtimeValidator {
     // Check structure (5 parts)
     final structureResult = _validateStructure(storyText);
     structureViolations.addAll(structureResult);
-
-    // Check bedtime closing
-    final closingResult = _validateBedtimeClosing(storyText);
-    if (closingResult != null) {
-      otherViolations.add(closingResult);
-    }
 
     // Check sentence length
     final avgWords = _calculateAvgWordsPerSentence(storyText);
@@ -269,54 +263,6 @@ class KidBedtimeValidator {
     }
 
     return violations;
-  }
-
-  /// Validate story has a calm bedtime closing
-  String? _validateBedtimeClosing(String text) {
-    // Get last ~200 characters for closing check
-    final closingSection =
-        text.length > 200 ? text.substring(text.length - 200) : text;
-    final closingLower = closingSection.toLowerCase();
-
-    // Check for bedtime/sleep-related closing signals
-    final sleepSignals = [
-      'sleep',
-      'slept',
-      'sleeping',
-      'rest',
-      'rested',
-      'resting',
-      'dream',
-      'dreams',
-      'dreaming',
-      'peaceful',
-      'peace',
-      'calm',
-      'quiet',
-      'softly',
-      'gently',
-      'warm',
-      'cozy',
-      'safe',
-      'eyes closed',
-      'closed eyes',
-      'night',
-      'stars',
-      'moon',
-      'blanket',
-      'pillow',
-      'bed',
-      'goodnight',
-      'good night',
-    ];
-
-    final hasClosingSignal = sleepSignals.any((s) => closingLower.contains(s));
-
-    if (!hasClosingSignal) {
-      return 'Story ending lacks bedtime/sleep signals (should reference rest, sleep, peace, etc.)';
-    }
-
-    return null;
   }
 
   /// Calculate average words per sentence
