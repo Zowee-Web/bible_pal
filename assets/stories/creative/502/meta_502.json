@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 2,
+  "storyId": 502,
+  "mode": "creative",
+  "kidFriendly": true,
+  "languageStyle": "WEB",
+  "mood": "joyful",
+  "theme": "a community garden that brings neighbors together",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_JAMES_HUSKY",
+  "voiceKeys": {
+    "short": "VOICE_LILY_WOLFF",
+    "full": "VOICE_JAMES_HUSKY",
+    "long": "VOICE_ARABELLA",
+    "reflection": "VOICE_CHARLOTTE_V3"
+  },
+  "createdByModel": "gemma:7b",
+  "generationBatch": "PAL_CREATIVE_BATCH_01",
+  "reflectionQuestion": "",
+  "files": {
+    "short": {
+      "storyText": "story_502_creative_web_short.txt",
+      "storyAudio": "audio_502_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_502_creative_web_full.txt",
+      "storyAudio": "audio_502_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_502_creative_web_long.txt",
+      "storyAudio": "audio_502_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_502_creative_web.txt",
+      "reflectionAudio": "audio_502_reflection.mp3"
+    }
+  }
+}

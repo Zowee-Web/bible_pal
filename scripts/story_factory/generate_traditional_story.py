@@ -106,6 +106,21 @@ _TRADITIONAL_HARD_RULES = (
     "or meta-commentary."
 )
 
+# Anti-repetition rules to prevent looping imagery and monotonous phrasing.
+_ANTI_REPETITION_RULES = (
+    "\n\nANTI-REPETITION RULES (violations cause rejection):\n"
+    "1. Do NOT repeat the same imagery (sky, light, sun, clouds, stars) "
+    "more than twice in the entire story.\n"
+    "2. Each section must advance time, setting, or emotional development. "
+    "No section should feel interchangeable with another.\n"
+    "3. Vary sentence openers — do NOT start 3+ consecutive sentences "
+    "with the same word or structure.\n"
+    "4. Do NOT restate the same sentiment (e.g. 'gentle', 'peaceful', 'safe') "
+    "in similar phrasing across sections. Find fresh ways to convey tone.\n"
+    "5. Avoid formulaic paragraph patterns (setup-detail-conclusion repeated "
+    "identically across sections)."
+)
+
 SYSTEM_PROMPTS_STORY = {
     "kjv": (
         "You are Bible PAL in Traditional mode, Classic (KJV-style) lane. "
@@ -115,6 +130,7 @@ SYSTEM_PROMPTS_STORY = {
         "Poetic style: Tier 3 (Elevated) — rich poetic language, complex rhythm. "
         "Meaning must remain scripture-accurate."
         + _TRADITIONAL_HARD_RULES
+        + _ANTI_REPETITION_RULES
     ),
     "web": (
         "You are Bible PAL in Traditional mode, Modern (WEB-style) lane. "
@@ -125,6 +141,7 @@ SYSTEM_PROMPTS_STORY = {
         "If a phrase feels literary rather than natural, pull back. "
         "Meaning must remain scripture-accurate."
         + _TRADITIONAL_HARD_RULES
+        + _ANTI_REPETITION_RULES
     ),
 }
 
@@ -166,6 +183,7 @@ KID_SYSTEM_PROMPTS_STORY = {
         "Meaning must remain scripture-accurate."
         + _KID_SAFETY_RULES
         + _TRADITIONAL_HARD_RULES
+        + _ANTI_REPETITION_RULES
     ),
     "web": (
         "You are Bible PAL in Traditional mode, Modern (WEB-style) lane, "
@@ -176,6 +194,7 @@ KID_SYSTEM_PROMPTS_STORY = {
         "Meaning must remain scripture-accurate."
         + _KID_SAFETY_RULES
         + _TRADITIONAL_HARD_RULES
+        + _ANTI_REPETITION_RULES
     ),
 }
 
@@ -467,6 +486,7 @@ def call_openai(system: str, user: str) -> str:
     api_key = os.environ["OPENAI_API_KEY"]
     payload = json.dumps({
         "model": "gpt-4.1",
+        "temperature": 0.7,
         "input": [
             {"role": "system", "content": system},
             {"role": "user", "content": user},

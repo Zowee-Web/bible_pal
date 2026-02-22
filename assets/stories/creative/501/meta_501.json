@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "storyId": 501,
+  "mode": "creative",
+  "kidFriendly": true,
+  "languageStyle": "WEB",
+  "mood": "joyful",
+  "theme": "a child who discovers the gift of gratitude",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_JAMES_HUSKY",
+  "createdByModel": "gemma:7b",
+  "generationBatch": "PAL_CREATIVE_BATCH_01",
+  "reflectionQuestion": "",
+  "files": {
+    "short": {
+      "storyText": "story_501_creative_web_short.txt",
+      "storyAudio": "audio_501_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_501_creative_web_full.txt",
+      "storyAudio": "audio_501_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_501_creative_web_long.txt",
+      "storyAudio": "audio_501_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_501_creative_web.txt",
+      "reflectionAudio": "audio_501_reflection.mp3"
+    }
+  }
+}

@@ -17,6 +17,8 @@ from generate_traditional_story import (
     META_TEXT_BLOCKLIST,
     META_TEXT_MAX_REGEN,
     TRADITIONAL_VIOLATIONS,
+    SYSTEM_PROMPTS_STORY,
+    KID_SYSTEM_PROMPTS_STORY,
     check_meta_text,
     check_traditional_compliance,
     check_forbidden_words,
@@ -422,6 +424,34 @@ class TestForbiddenWords(unittest.TestCase):
         bad = "And so David became king of Israel."
         found = check_forbidden_words(bad, self.forbidden)
         self.assertIn("became king", found)
+
+
+class TestAntiRepetitionRules(unittest.TestCase):
+    """Verify anti-repetition rules are present in all story system prompts."""
+
+    def test_adult_kjv_has_anti_repetition(self):
+        self.assertIn("ANTI-REPETITION RULES", SYSTEM_PROMPTS_STORY["kjv"])
+
+    def test_adult_web_has_anti_repetition(self):
+        self.assertIn("ANTI-REPETITION RULES", SYSTEM_PROMPTS_STORY["web"])
+
+    def test_kid_kjv_has_anti_repetition(self):
+        self.assertIn("ANTI-REPETITION RULES", KID_SYSTEM_PROMPTS_STORY["kjv"])
+
+    def test_kid_web_has_anti_repetition(self):
+        self.assertIn("ANTI-REPETITION RULES", KID_SYSTEM_PROMPTS_STORY["web"])
+
+    def test_rules_mention_imagery_limit(self):
+        # Core rule: don't repeat same imagery >2x
+        self.assertIn("more than twice", SYSTEM_PROMPTS_STORY["web"])
+
+    def test_rules_mention_section_advancement(self):
+        # Core rule: each section must advance
+        self.assertIn("advance time", SYSTEM_PROMPTS_STORY["web"])
+
+    def test_rules_mention_sentence_openers(self):
+        # Core rule: vary sentence openers
+        self.assertIn("sentence openers", SYSTEM_PROMPTS_STORY["web"])
 
 
 class TestBatchDryRun(unittest.TestCase):

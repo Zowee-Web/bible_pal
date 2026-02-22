@@ -764,6 +764,108 @@ External crash reporting may be reconsidered only when ALL of these conditions a
 
 ---
 
+## ADR-014: Dual-Engine Story Pipeline (Traditional + Creative)
+
+**Date:** 2026-02-22
+**Status:** Accepted (Locked)
+**Context:** Bible PAL needed a Creative story generation pipeline to complement the existing Traditional pipeline. The Traditional pipeline uses gpt-4.1 via OpenAI for faithful Bible retellings. Creative stories are original faith-themed narratives (parables, metaphor stories, modern faith fiction) that need a different engine assignment.
+
+Key requirements:
+1. Creative stories must be clearly distinct from Traditional (no Bible retellings)
+2. Cost control — Creative stories could be generated at high volume
+3. Vendor independence — avoid relying on a single cloud provider
+4. Quality — Creative stories need warmth, emotional resonance, and variety
+5. Safety — same kid safety, reflection safety, and anti-repetition standards
+
+**Decision:** Implement a locked dual-engine architecture:
+
+1. **Traditional Engine: gpt-4.1 (OpenAI Cloud)**
+   - Script: `scripts/story_factory/generate_traditional_story.py`
+   - Use for: Scripture-anchored Bible retellings
+   - Registry: `used_scripture_anchors.json`
+   - Output: `assets/stories/traditional/<id>/`
+   - Forbidden: Gemma, local models
+
+2. **Creative Engine: Gemma 7B (Ollama Local)**
+   - Script: `scripts/story_factory/generate_creative_story.py`
+   - Use for: Original parables, modern faith stories, metaphor narratives
+   - Registry: `used_creative_themes.json`
+   - Output: `assets/stories/creative/<id>/`
+   - Forbidden: OpenAI API, cloud LLMs
+
+3. **Shared Infrastructure**
+   - Same word count ranges (locked spec)
+   - Same meta-text blocklist
+   - Same kid safety vocabulary
+   - Same reflection language constraints
+   - Same ElevenLabs TTS for audio
+   - Same anti-repetition rules in prompts
+
+4. **Creative-Specific Validation**
+   - Creative compliance checker catches scripture retelling, authority claims,
+     direct God dialogue, spiritual commands, fear framing
+   - Sanitize-then-regenerate loop (same pattern as Traditional)
+   - Max 5 attempts (slightly higher than Traditional due to local model variability)
+
+5. **ID Space Separation**
+   - Traditional: 801+
+   - Creative: 501+
+
+**Rationale:**
+- **Gemma for Creative over OpenAI**: Zero API cost, runs offline, no vendor lock-in. Creative stories don't need the same scripture fidelity as Traditional — they need warmth and variety, which Gemma handles well.
+- **gpt-4.1 for Traditional over Gemma**: Scripture accuracy is critical for Traditional mode. gpt-4.1 has proven reliability for faithful Bible retellings. The cost is justified by the doctrinal trust requirement.
+- **Separate registries over shared**: Prevents any cross-contamination between modes. Theme uniqueness (Creative) and anchor uniqueness (Traditional) are independent concerns.
+- **Separate output directories**: Clear physical separation. No risk of mode confusion in the asset pipeline.
+- **Shared validation infrastructure**: Reduces code duplication. Meta-text, kid safety, and reflection constraints are mode-agnostic.
+- **Locked engine assignment**: Prevents drift. Once you allow engine substitution, you lose the quality guarantees each engine was chosen for.
+
+**Alternatives Considered:**
+1. **Use gpt-4.1 for both modes** — Rejected. Unnecessary API cost for Creative stories. Creates full vendor dependency on OpenAI.
+2. **Use Gemma for both modes** — Rejected. Gemma's scripture accuracy is insufficient for Traditional mode. Bible retellings require proven cloud model quality.
+3. **Use Claude for Creative** — Rejected. Still a cloud dependency. Local model is preferable for Creative's volume needs and vendor independence.
+4. **Single script with engine flag** — Rejected. The validation gates, prompts, and metadata are sufficiently different to warrant separate scripts. Cleaner separation of concerns.
+
+**Consequences:**
+- New files:
+  - `scripts/story_factory/generate_creative_story.py` — Creative story generator
+  - `scripts/story_factory/batch_generate_creative.py` — Creative batch orchestrator
+  - `scripts/story_factory/test_creative_story_factory.py` — Creative pipeline tests
+  - `used_creative_themes.json` — Creative theme registry (created on first run)
+- Modified:
+  - `docs/STORY_FACTORY.md` — Added Creative sections (12–22)
+  - `docs/DECISIONS.md` — This ADR
+- Creative stories require Ollama running locally with `gemma:7b` model
+- Creative generation is slower than Traditional (local model vs cloud API)
+- Creative generation has zero API cost
+- Both pipelines share TTS costs (ElevenLabs)
+
+**Prerequisites for Running Creative Pipeline:**
+```bash
+# Install Ollama
+brew install ollama  # or download from ollama.com
+
+# Pull Gemma model
+ollama pull gemma:7b
+
+# Start Ollama server
+ollama serve
+
+# Generate a single creative story
+python3 scripts/story_factory/generate_creative_story.py \
+  --story_id 501 --theme "a baker who feeds more than hunger" \
+  --mood joyful --lane web --voice_key VOICE_JAMES_HUSKY
+
+# Batch generate (all moods)
+python3 scripts/story_factory/batch_generate_creative.py \
+  --lane web --voice_key VOICE_JAMES_HUSKY
+
+# Text-only (skip expensive TTS)
+python3 scripts/story_factory/batch_generate_creative.py \
+  --lane web --voice_key VOICE_JAMES_HUSKY --skip-audio
+```
+
+---
+
 ## Template for Future Decisions
 
 ```
