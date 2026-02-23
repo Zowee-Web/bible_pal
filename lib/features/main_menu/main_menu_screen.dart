@@ -4,7 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../providers/app_state_notifier.dart';
 import '../../services/typewriter_click_service.dart';
-import '../../services/greeting_audio_service.dart';
+import '../../providers/service_providers.dart';
+import '../../services/pal_audio_service.dart';
 import '../../services/voice_consent_gate.dart';
 import '../../theme/app_theme.dart';
 import '../onboarding/first_launch_screen.dart' show kPalIntroShownKey;
@@ -311,7 +312,6 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   int _currentLine = 0;
   Timer? _typingTimer;
   final _clickHelper = TypewriterClickHelper();
-  final _greetingAudio = GreetingAudioService.instance;
 
   // Pulse animation
   late final AnimationController _pulseController;
@@ -341,9 +341,6 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       duration: const Duration(milliseconds: 400),
       vsync: this,
     );
-
-    // Pre-initialize greeting audio for instant playback when PAL is tapped
-    _greetingAudio.initialize();
 
     _checkIntroState();
   }
@@ -497,14 +494,18 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       return;
     }
 
-    // Play greeting (fire-and-forget with error handling)
-    _greetingAudio.playGreeting().catchError((error) {
+    // Play greeting via PalAudioService (fire-and-forget with error handling)
+    final voiceKey = prefs?.palVoiceKey ?? 'VOICE_SARAH_STORYTELLER';
+    final palAudio = ref.read(palAudioServiceProvider);
+    palAudio.playGreeting(voiceKey).catchError((error) {
       debugPrint('[PAL Greeting] Playback error: $error');
+      return '';
     });
 
     // Log success
     logEvent('pal_greeting_played', {
       'source': 'pal_button_tap',
+      'voice': voiceKey,
     });
   }
 
@@ -886,7 +887,6 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
   }
 
   Future<void> _processVoiceMood(String transcript) async {
-    // Detect mood (skip compassionate reply in voice-first flow)
     final appNotifier = ref.read(appStateProvider.notifier);
     final moodResult = appNotifier.moodService.detectMood(transcript);
 
@@ -894,6 +894,16 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
       'mood': moodResult.mood,
       'confidence': moodResult.confidenceScore,
       'input_method': 'voice',
+    });
+
+    // Play compassionate reply audio (fire-and-forget so story selection proceeds)
+    final appState = ref.read(appStateProvider).valueOrNull;
+    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_SARAH_STORYTELLER';
+    final palAudio = ref.read(palAudioServiceProvider);
+    final moodBucket = PalAudioService.moodToBucket(moodResult.mood);
+    palAudio.playCompassionateReply(moodBucket, voiceKey).catchError((e) {
+      debugPrint('[PAL Reply] Playback error: $e');
+      return '';
     });
 
     // Select parable based on mood + current length bucket
@@ -925,6 +935,9 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
 
     // Add to history
     await appNotifier.addToHistory(parable);
+
+    // Stop PAL reply audio before story plays (prevent overlap)
+    await palAudio.stop();
 
     // Voice flow complete — panel transitions to NOW PLAYING via _deriveMode
     setState(() {

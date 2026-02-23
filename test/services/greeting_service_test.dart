@@ -57,63 +57,97 @@ void main() {
       expect(lateNight.getTimeWindowEmoji(), '🌙');
     });
 
-    test('morning greeting should contain morning-related text', () {
-      final greetingService =
-          GreetingService(now: () => DateTime(2025, 1, 1, 9, 0)); // 9 AM
-      final greeting = greetingService.getGreeting();
-      expect(
-        greeting.contains('morning') || greeting.contains('Morning'),
-        true,
-        reason: 'Morning greeting should mention "morning"',
-      );
+    test('morning greetings all ask how the user is doing', () {
+      // Verify every morning greeting contains a question or prompt
+      for (var seed = 0; seed < 20; seed++) {
+        final greetingService = GreetingService(
+          now: () => DateTime(2025, 1, 1, 9, 0),
+          random: Random(seed),
+        );
+        final greeting = greetingService.getGreeting();
+        expect(
+          greeting.contains('?'),
+          true,
+          reason: 'Morning greeting should ask a question: "$greeting"',
+        );
+      }
     });
 
-    test('afternoon greeting should contain appropriate text', () {
-      final greetingService =
-          GreetingService(now: () => DateTime(2025, 1, 1, 14, 0)); // 2 PM
-      final greeting = greetingService.getGreeting();
-      expect(
-        greeting.contains('afternoon') ||
-            greeting.contains('today') ||
-            greeting.contains('day'),
-        true,
-        reason:
-            'Afternoon greeting should mention "afternoon", "today", or "day"',
-      );
+    test('afternoon greetings all ask how the user is doing', () {
+      for (var seed = 0; seed < 20; seed++) {
+        final greetingService = GreetingService(
+          now: () => DateTime(2025, 1, 1, 14, 0),
+          random: Random(seed),
+        );
+        final greeting = greetingService.getGreeting();
+        expect(
+          greeting.contains('?'),
+          true,
+          reason: 'Afternoon greeting should ask a question: "$greeting"',
+        );
+      }
     });
 
-    test('evening greeting should contain evening-related text', () {
-      final greetingService = GreetingService(
-        now: () => DateTime(2025, 1, 1, 19, 0), // 7 PM
-        random: Random(0), // Deterministic
-      );
-      final greeting = greetingService.getGreeting();
-      expect(
-        greeting.contains('evening') ||
-            greeting.contains('tonight') ||
-            greeting.contains('winding down') ||
-            greeting.contains('day'),
-        true,
-        reason:
-            'Evening greeting should mention "evening", "tonight", "winding down", or "day"',
-      );
+    test('evening greetings all ask how the user is doing', () {
+      for (var seed = 0; seed < 20; seed++) {
+        final greetingService = GreetingService(
+          now: () => DateTime(2025, 1, 1, 19, 0),
+          random: Random(seed),
+        );
+        final greeting = greetingService.getGreeting();
+        expect(
+          greeting.contains('?') || greeting.contains('Tell me'),
+          true,
+          reason: 'Evening greeting should ask a question: "$greeting"',
+        );
+      }
     });
 
-    test('late night greeting should contain night-related text', () {
-      final greetingService = GreetingService(
-        now: () => DateTime(2025, 1, 1, 22, 0), // 10 PM
-        random: Random(0), // Deterministic
-      );
-      final greeting = greetingService.getGreeting();
-      expect(
-        greeting.contains('night') ||
-            greeting.contains('tonight') ||
-            greeting.contains('quiet hour') ||
-            greeting.contains('late'),
-        true,
-        reason:
-            'Late night greeting should mention "night", "tonight", "quiet hour", or "late"',
-      );
+    test('late night greetings all ask how the user is doing', () {
+      for (var seed = 0; seed < 20; seed++) {
+        final greetingService = GreetingService(
+          now: () => DateTime(2025, 1, 1, 22, 0),
+          random: Random(seed),
+        );
+        final greeting = greetingService.getGreeting();
+        expect(
+          greeting.contains('?') || greeting.contains('Tell me'),
+          true,
+          reason: 'Late night greeting should ask a question: "$greeting"',
+        );
+      }
+    });
+
+    test('greetings have variety (at least 8 per time slot)', () {
+      // Collect unique greetings across many seeds
+      final morningSet = <String>{};
+      final afternoonSet = <String>{};
+      final eveningSet = <String>{};
+      final lateNightSet = <String>{};
+
+      for (var seed = 0; seed < 50; seed++) {
+        morningSet.add(GreetingService(
+          now: () => DateTime(2025, 1, 1, 9, 0),
+          random: Random(seed),
+        ).getGreeting());
+        afternoonSet.add(GreetingService(
+          now: () => DateTime(2025, 1, 1, 14, 0),
+          random: Random(seed),
+        ).getGreeting());
+        eveningSet.add(GreetingService(
+          now: () => DateTime(2025, 1, 1, 19, 0),
+          random: Random(seed),
+        ).getGreeting());
+        lateNightSet.add(GreetingService(
+          now: () => DateTime(2025, 1, 1, 22, 0),
+          random: Random(seed),
+        ).getGreeting());
+      }
+
+      expect(morningSet.length, greaterThanOrEqualTo(8));
+      expect(afternoonSet.length, greaterThanOrEqualTo(8));
+      expect(eveningSet.length, greaterThanOrEqualTo(8));
+      expect(lateNightSet.length, greaterThanOrEqualTo(8));
     });
 
     test('default constructor uses real DateTime.now', () {

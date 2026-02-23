@@ -43,6 +43,10 @@ class GreetingService {
     "Morning! How are you feeling so far today?",
     "Hi there — how's your morning going?",
     "Good morning! What's on your heart today?",
+    "Rise and shine! How are you doing this morning?",
+    "Hey, good morning! How did you sleep?",
+    "A new day — how are you stepping into it?",
+    "Morning! Anything weighing on you today?",
   ];
 
   /// Afternoon greetings (12 PM - 4:59 PM)
@@ -51,6 +55,10 @@ class GreetingService {
     "I'm glad you're here — how are you doing today?",
     "How's your day been so far?",
     "Checking in — how are you feeling this afternoon?",
+    "Hey! How's the rest of your day shaping up?",
+    "Good afternoon — what's been on your mind today?",
+    "How are you holding up this afternoon?",
+    "Afternoon! Tell me, how are you feeling right now?",
   ];
 
   /// Evening greetings (5 PM - 8:59 PM)
@@ -59,6 +67,10 @@ class GreetingService {
     "Good to see you — how are you feeling tonight?",
     "How has your day been winding down?",
     "How are you doing this evening?",
+    "Evening! How did today treat you?",
+    "Hey there — how are you feeling as the day wraps up?",
+    "Good evening! What's on your heart right now?",
+    "Winding down? Tell me how your day went.",
   ];
 
   /// Late night greetings (9 PM - 4:59 AM)
@@ -67,6 +79,10 @@ class GreetingService {
     "It's a quiet hour — how are you feeling?",
     "How are you doing tonight?",
     "Is everything going okay this late? How are you feeling?",
+    "Can't sleep? Tell me what's on your mind.",
+    "Hey, night owl — how are you holding up?",
+    "It's late — how are you doing right now?",
+    "A quiet moment together. How are you feeling tonight?",
   ];
 
   /// Randomly select a greeting from a list

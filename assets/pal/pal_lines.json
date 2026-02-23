@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "onboarding": [
+    { "id": "onboard_01", "text": "Hi, I'm PAL. I'm here to walk with you." }
+  ],
+  "preview": [
+    { "id": "preview_01", "text": "Hi, friend. Whenever you're ready, we can listen to a story together." }
+  ],
+  "greetings": [
+    { "id": "greeting_01", "text": "Hi, friend. I'm really glad you're here." },
+    { "id": "greeting_02", "text": "Hello. Want a story today?" },
+    { "id": "greeting_03", "text": "Welcome back. Let's take a calm moment together." },
+    { "id": "greeting_04", "text": "Hey there. How's your day going?" },
+    { "id": "greeting_05", "text": "Good to see you. Ready for something encouraging?" },
+    { "id": "greeting_06", "text": "You made it. I'm proud of you for showing up." },
+    { "id": "greeting_07", "text": "Hello, friend. Short story or longer one today?" },
+    { "id": "greeting_08", "text": "Welcome. Let's find a story that fits your day." },
+    { "id": "greeting_09", "text": "Hi, friend. We can go at a gentle pace." },
+    { "id": "greeting_10", "text": "Hey. Let's choose something peaceful and strong." },
+    { "id": "greeting_11", "text": "Hello again. A story is ready whenever you are." },
+    { "id": "greeting_12", "text": "Hi there. You're not alone in this moment." },
+    { "id": "greeting_13", "text": "Welcome back. Want something that lifts your heart?" },
+    { "id": "greeting_14", "text": "Hi. Let's take one small step forward together." },
+    { "id": "greeting_15", "text": "Hello. Want a story that brings comfort?" },
+    { "id": "greeting_16", "text": "Hey, friend. Ready for something hopeful?" },
+    { "id": "greeting_17", "text": "Hi. Let's pause, breathe, and begin." },
+    { "id": "greeting_18", "text": "Hello, friend. Let's listen for what's good and true." },
+    { "id": "greeting_19", "text": "Welcome. I'm here to help you feel steady." },
+    { "id": "greeting_20", "text": "Hi there. Let's find the right story for today." }
+  ],
+  "compassionateReplies": {
+    "positive": [
+      { "id": "comp_pos_01", "text": "That's wonderful to hear. Want a story that matches that joy?" },
+      { "id": "comp_pos_02", "text": "I'm really glad for you. Want a story that keeps that hope strong?" },
+      { "id": "comp_pos_03", "text": "That sounds like a bright moment. Want a story to carry that light forward?" },
+      { "id": "comp_pos_04", "text": "That's a gift of a day. Want a thankful kind of story?" },
+      { "id": "comp_pos_05", "text": "That's a win. Want a story about courage and gratitude?" },
+      { "id": "comp_pos_06", "text": "I love hearing that. Want a story that feels steady and joyful?" },
+      { "id": "comp_pos_07", "text": "That's encouraging. Want a story that helps you stay grounded in that good?" },
+      { "id": "comp_pos_08", "text": "That's beautiful. Want a story that celebrates goodness in a calm way?" },
+      { "id": "comp_pos_09", "text": "That sounds peaceful. Want a story that keeps your heart calm and strong?" },
+      { "id": "comp_pos_10", "text": "I'm smiling with you. Want a story that stays uplifting and gentle?" },
+      { "id": "comp_pos_11", "text": "That's great news. Want a story that builds brave joy?" },
+      { "id": "comp_pos_12", "text": "That's so good to hear. Want a story that helps you hold on to that?" },
+      { "id": "comp_pos_13", "text": "That sounds refreshing. Want a story that feels like sunshine and strength?" },
+      { "id": "comp_pos_14", "text": "That's a good feeling. Want a story that keeps things peaceful and bright?" },
+      { "id": "comp_pos_15", "text": "I'm glad your day has some light in it. Want a story that matches that warmth?" }
+    ],
+    "neutral": [
+      { "id": "comp_neu_01", "text": "Thanks for telling me. Want a steady story to help your day feel grounded?" },
+      { "id": "comp_neu_02", "text": "I hear you. Want a calm story that helps you reset?" },
+      { "id": "comp_neu_03", "text": "That makes sense. Want a story that's peaceful and clear?" },
+      { "id": "comp_neu_04", "text": "Okay. Want a story that brings quiet strength?" },
+      { "id": "comp_neu_05", "text": "Thanks for sharing. Want a story that helps you feel steady?" },
+      { "id": "comp_neu_06", "text": "Got it. Want a story that's gentle, simple, and true?" },
+      { "id": "comp_neu_07", "text": "Alright. Want a story that brings a little peace?" },
+      { "id": "comp_neu_08", "text": "That's okay. Want a story that helps you take the next step?" },
+      { "id": "comp_neu_09", "text": "I'm listening. Want a story that's calm and encouraging?" },
+      { "id": "comp_neu_10", "text": "Thanks. Want a story that helps your heart feel settled?" },
+      { "id": "comp_neu_11", "text": "Understood. Want a story that feels steady like a safe path?" },
+      { "id": "comp_neu_12", "text": "Okay, friend. Want a story that brings quiet hope?" },
+      { "id": "comp_neu_13", "text": "That's fair. Want a story that helps you breathe a little easier?" },
+      { "id": "comp_neu_14", "text": "Thanks for being honest. Want a story that's gentle and strong?" },
+      { "id": "comp_neu_15", "text": "Got you. Want a story that keeps things simple and comforting?" }
+    ],
+    "negative": [
+      { "id": "comp_neg_01", "text": "I'm sorry it's been heavy. Want a gentle story for comfort?" },
+      { "id": "comp_neg_02", "text": "That sounds really hard. Want a story that helps you feel safe and steady?" },
+      { "id": "comp_neg_03", "text": "I hear you. Want a quiet story that brings strength?" },
+      { "id": "comp_neg_04", "text": "You don't have to carry this alone. Want a story that brings peace?" },
+      { "id": "comp_neg_05", "text": "That's a lot to hold. Want a story that feels like a warm light?" },
+      { "id": "comp_neg_06", "text": "I'm sorry your day hurts. Want a story that helps you breathe again?" },
+      { "id": "comp_neg_07", "text": "Thanks for telling me. Want a story that reminds you you're cared for?" },
+      { "id": "comp_neg_08", "text": "That sounds exhausting. Want a story for courage, one step at a time?" },
+      { "id": "comp_neg_09", "text": "I hear the weight in that. Want a story that brings comfort and calm?" },
+      { "id": "comp_neg_10", "text": "I'm sorry it's been rough. Want a story that helps you feel held up?" },
+      { "id": "comp_neg_11", "text": "It's okay to feel this. Want a story that brings quiet strength?" },
+      { "id": "comp_neg_12", "text": "That's painful. Want a story that helps your heart rest a little?" },
+      { "id": "comp_neg_13", "text": "I'm sorry, friend. Want a story that brings hope without rushing you?" },
+      { "id": "comp_neg_14", "text": "That's a stormy kind of day. Want a story that feels like shelter?" },
+      { "id": "comp_neg_15", "text": "Thanks for sharing that. Want a story that gently reminds you you're not alone?" }
+    ]
+  }
+}

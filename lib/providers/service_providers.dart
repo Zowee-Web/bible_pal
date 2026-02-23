@@ -6,6 +6,7 @@ import 'package:bible_pal/services/mood_service.dart';
 import 'package:bible_pal/services/daily_bread_service.dart';
 import 'package:bible_pal/services/content_filter_service.dart';
 import 'package:bible_pal/services/share_service.dart';
+import 'package:bible_pal/services/pal_audio_service.dart';
 
 /// Service Providers for Riverpod
 /// These providers manage the lifecycle of singleton services
@@ -52,4 +53,11 @@ final contentFilterServiceProvider = Provider<ContentFilterService>((ref) {
 // ShareService provider - singleton
 final shareServiceProvider = Provider<ShareService>((ref) {
   return ShareService();
+});
+
+// PalAudioService provider - offline PAL conversation audio
+final palAudioServiceProvider = Provider<PalAudioService>((ref) {
+  final service = PalAudioService();
+  ref.onDispose(() => service.dispose());
+  return service;
 });

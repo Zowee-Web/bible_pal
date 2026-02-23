@@ -5,6 +5,7 @@ import '../../providers/app_state_notifier.dart';
 import '../../providers/service_providers.dart';
 import '../../core/app_logger.dart';
 import '../../core/diagnostics_config.dart';
+import '../../core/pal_voice_registry.dart';
 
 const _pkBackgroundSound = 'settings.backgroundSoundOn';
 
@@ -19,13 +20,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   bool _backgroundSoundOn = false;
   bool _kidFriendlyOnly = false;
   bool _showEverydayReflections = true;
-  bool _contentFilteringEnabled = true;
   String _storytellingMode =
       'traditional'; // Default is Traditional per Contracts v2
   String _languageStyle = 'WEB'; // Story presentation diction (Contracts v2)
   // Voice consent (Phase 3)
   bool? _storyNarrationEnabled;
   bool? _palGreetingsEnabled;
+  // PAL voice selection
+  String _palVoiceKey = PalVoiceRegistry.defaultVoiceKey;
 
   @override
   void initState() {
@@ -50,13 +52,13 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       _kidFriendlyOnly = appState.userPreferences.kidFriendlyOnly;
       _showEverydayReflections =
           appState.userPreferences.showEverydayReflections;
-      _contentFilteringEnabled =
-          appState.userPreferences.contentFilteringEnabled;
       _storytellingMode = appState.userPreferences.storytellingMode;
       _languageStyle = appState.userPreferences.languageStyle;
       // Voice consent (Phase 3)
       _storyNarrationEnabled = appState.userPreferences.storyNarrationEnabled;
       _palGreetingsEnabled = appState.userPreferences.palGreetingsEnabled;
+      // PAL voice selection
+      _palVoiceKey = appState.userPreferences.palVoiceKey;
     }
 
     setState(() => _loaded = true);
@@ -85,12 +87,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     setState(() => _showEverydayReflections = on);
     final appState = ref.read(appStateProvider.notifier);
     await appState.updateShowEverydayReflections(on);
-  }
-
-  Future<void> _setContentFilteringEnabled(bool on) async {
-    setState(() => _contentFilteringEnabled = on);
-    final appState = ref.read(appStateProvider.notifier);
-    await appState.updateContentFilteringEnabled(on);
   }
 
   Future<void> _setStorytellingMode(String mode) async {
@@ -141,6 +137,22 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     setState(() => _palGreetingsEnabled = enabled);
     final appState = ref.read(appStateProvider.notifier);
     await appState.updatePalGreetingsConsent(enabled);
+  }
+
+  Future<void> _setPalVoiceKey(String voiceKey) async {
+    logEvent('pal_voice_changed', {
+      'from': _palVoiceKey,
+      'to': voiceKey,
+    });
+
+    setState(() => _palVoiceKey = voiceKey);
+    final appState = ref.read(appStateProvider.notifier);
+    await appState.updatePalVoiceKey(voiceKey);
+  }
+
+  Future<void> _previewVoice() async {
+    final palAudio = ref.read(palAudioServiceProvider);
+    await palAudio.playPreview(_palVoiceKey);
   }
 
   Future<void> _resetOnboarding() async {
@@ -197,13 +209,13 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         children: [
           SwitchListTile(
             title: const Text('Background Sound'),
-            subtitle: const Text('Play ambient audio during parables'),
+            subtitle: const Text('Play ambient audio during stories'),
             value: _backgroundSoundOn,
             onChanged: _setBackgroundSound,
           ),
           SwitchListTile(
             title: const Text('Kid Friendly'),
-            subtitle: const Text('Only show parables appropriate for children'),
+            subtitle: const Text('Only show stories appropriate for children'),
             value: _kidFriendlyOnly,
             onChanged: _setKidFriendlyOnly,
           ),
@@ -213,21 +225,15 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             value: _showEverydayReflections,
             onChanged: _setShowEverydayReflections,
           ),
-          SwitchListTile(
-            title: const Text('Content Filter'),
-            subtitle: const Text('Block inappropriate content in stories'),
-            value: _contentFilteringEnabled,
-            onChanged: _setContentFilteringEnabled,
-          ),
           const Divider(),
           const ListTile(
             title: Text('Story Mode'),
             subtitle: Text(
-                'Choose between creative parables or traditional Bible retellings'),
+                'Choose between creative stories or traditional Bible retellings'),
           ),
           RadioListTile<String>(
             title: const Text('Creative Stories'),
-            subtitle: const Text('Original faith-inspired parables'),
+            subtitle: const Text('Original faith-inspired stories'),
             value: 'creative',
             groupValue: _storytellingMode,
             onChanged: (value) => _setStorytellingMode(value!),
@@ -273,7 +279,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           ),
           SwitchListTile(
             title: const Text('Story Narration'),
-            subtitle: const Text('Audio playback of parables'),
+            subtitle: const Text('Audio playback of stories'),
             value: _storyNarrationEnabled ?? false,
             onChanged: (value) => _setStoryNarrationEnabled(value),
           ),
@@ -283,6 +289,24 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             value: _palGreetingsEnabled ?? false,
             onChanged: (value) => _setPalGreetingsEnabled(value),
           ),
+          const Divider(),
+          ListTile(
+            title: const Text("PAL's Voice"),
+            subtitle: const Text('Choose a voice for PAL'),
+            trailing: IconButton(
+              icon: const Icon(Icons.play_circle_outline),
+              tooltip: 'Preview voice',
+              onPressed: _previewVoice,
+            ),
+          ),
+          for (final voice in PalVoiceRegistry.voices)
+            RadioListTile<String>(
+              title: Text(voice.displayName),
+              subtitle: Text(voice.description),
+              value: voice.voiceKey,
+              groupValue: _palVoiceKey,
+              onChanged: (value) => _setPalVoiceKey(value!),
+            ),
           // Diagnostics entry - only visible when diagnostics are enabled
           if (kDiagnosticsEnabled) ...[
             const Divider(),

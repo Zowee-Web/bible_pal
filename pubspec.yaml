@@ -68,6 +68,11 @@ flutter:
     - assets/safety/kid_safety_blocklist.txt
     - assets/safety/content_filter_blocklist.txt
     - assets/daily_bread/daily_bread_verses.json
+    - assets/pal/pal_lines.json
+    - assets/pal/audio/VOICE_SARAH_STORYTELLER/
+    - assets/pal/audio/VOICE_HANNAH_HOPE/
+    - assets/pal/audio/VOICE_JAMES_HUSKY/
+    - assets/pal/audio/VOICE_DAVID_SHEPHERD/
 
 # App icon configuration
 flutter_launcher_icons:

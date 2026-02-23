@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:bible_pal/services/greeting_service.dart';
-import 'package:bible_pal/services/greeting_audio_service.dart';
 import 'package:bible_pal/services/mood_service.dart';
+import 'package:bible_pal/services/pal_audio_service.dart';
+import 'package:bible_pal/providers/service_providers.dart' show palAudioServiceProvider;
 import 'package:bible_pal/services/verse_service.dart';
 import 'package:bible_pal/services/stt_service.dart';
 import 'package:bible_pal/providers/app_state_notifier.dart';
@@ -82,9 +83,28 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     // Log screen view
     logEvent('screen_view', {'screen_name': 'pals_parables'});
 
+    // Play PAL greeting audio and use its text for display
+    _playPalGreeting();
+
     // Initialize STT engine (non-blocking) to check availability
     if (!widget.textOnly) {
       _initStt();
+    }
+  }
+
+  Future<void> _playPalGreeting() async {
+    final appState = ref.read(appStateProvider).valueOrNull;
+    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_SARAH_STORYTELLER';
+    final palAudio = ref.read(palAudioServiceProvider);
+
+    try {
+      final text = await palAudio.playGreeting(voiceKey);
+      if (mounted && text.isNotEmpty) {
+        setState(() => _greeting = text);
+      }
+    } catch (e) {
+      debugPrint('[PalsParables] PAL greeting audio failed: $e');
+      // Text-only fallback — _greeting already set from GreetingService
     }
   }
 
@@ -112,7 +132,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     if (_voiceState != VoiceInputState.idle) return;
 
     // Auto-stop greeting audio if still playing (SPEC 2.2)
-    GreetingAudioService.instance.stopPlayback();
+    ref.read(palAudioServiceProvider).stop();
 
     // Check if STT is available
     if (!_sttAvailable) {
@@ -294,8 +314,22 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
 
     final moodService = ref.read(appStateProvider.notifier).moodService;
     final result = moodService.detectMood(_moodController.text);
-    final reply = moodService.generateCompassionateReply(result);
     final verse = _verseService.getVerseForMood(result.mood);
+
+    // Play PAL compassionate reply audio and use its text
+    final appState = ref.read(appStateProvider).valueOrNull;
+    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_SARAH_STORYTELLER';
+    final palAudio = ref.read(palAudioServiceProvider);
+    final moodBucket = PalAudioService.moodToBucket(result.mood);
+
+    String reply;
+    try {
+      reply = await palAudio.playCompassionateReply(moodBucket, voiceKey);
+    } catch (e) {
+      debugPrint('[PalsParables] PAL reply audio failed: $e');
+      // Fallback to MoodService text
+      reply = moodService.generateCompassionateReply(result);
+    }
 
     setState(() {
       _moodResult = result;

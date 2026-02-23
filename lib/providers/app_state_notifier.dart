@@ -190,6 +190,14 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
     await updateUserPreferences(prefs);
   }
 
+  /// Update PAL conversation voice selection
+  Future<void> updatePalVoiceKey(String voiceKey) async {
+    final prefs = state.requireValue.userPreferences.copyWith(
+      palVoiceKey: voiceKey,
+    );
+    await updateUserPreferences(prefs);
+  }
+
   // Favorites Methods
   Future<void> addFavorite(Parable parable) async {
     state = await AsyncValue.guard(() async {

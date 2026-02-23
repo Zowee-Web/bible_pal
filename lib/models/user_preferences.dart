@@ -46,6 +46,9 @@ class UserPreferences {
   final bool? palGreetingsEnabled; // PAL voice greetings (future)
   final int? voiceConsentVersion; // Schema version when consent was given
 
+  // PAL voice selection
+  final String palVoiceKey; // Selected PAL conversation voice
+
   const UserPreferences({
     this.userName = '',
     required this.bibleTranslation,
@@ -60,6 +63,7 @@ class UserPreferences {
     this.storyNarrationEnabled, // null = not asked
     this.palGreetingsEnabled, // null = not asked
     this.voiceConsentVersion, // null = never consented
+    this.palVoiceKey = 'VOICE_SARAH_STORYTELLER',
   });
 
   /// Default preferences for first-time users
@@ -113,6 +117,8 @@ class UserPreferences {
       storyNarrationEnabled: json['storyNarrationEnabled'] as bool?,
       palGreetingsEnabled: json['palGreetingsEnabled'] as bool?,
       voiceConsentVersion: json['voiceConsentVersion'] as int?,
+      palVoiceKey:
+          json['palVoiceKey'] as String? ?? 'VOICE_SARAH_STORYTELLER',
     );
   }
 
@@ -130,6 +136,7 @@ class UserPreferences {
       'storyNarrationEnabled': storyNarrationEnabled,
       'palGreetingsEnabled': palGreetingsEnabled,
       'voiceConsentVersion': voiceConsentVersion,
+      'palVoiceKey': palVoiceKey,
     };
   }
 
@@ -151,6 +158,7 @@ class UserPreferences {
     bool? storyNarrationEnabled,
     bool? palGreetingsEnabled,
     int? voiceConsentVersion,
+    String? palVoiceKey,
   }) {
     // RUNTIME GUARD: Validate translation if provided
     final validatedTranslation = bibleTranslation != null
@@ -178,6 +186,7 @@ class UserPreferences {
           storyNarrationEnabled ?? this.storyNarrationEnabled,
       palGreetingsEnabled: palGreetingsEnabled ?? this.palGreetingsEnabled,
       voiceConsentVersion: voiceConsentVersion ?? this.voiceConsentVersion,
+      palVoiceKey: palVoiceKey ?? this.palVoiceKey,
     );
   }
 
