@@ -68,7 +68,7 @@ class UserPreferences {
 
   /// Default preferences for first-time users
   /// Contracts v2: storytellingMode defaults to 'traditional'
-  /// Voice consent fields are null (tri-state: null=not asked, true=enabled, false=disabled)
+  /// Voice features default to ON; user must explicitly turn them OFF.
   factory UserPreferences.defaults() {
     return const UserPreferences(
       userName: '',
@@ -81,8 +81,9 @@ class UserPreferences {
       kidFriendlyOnly: false,
       showEverydayReflections: true, // Default ON per SPEC.md #34
       hasCompletedOnboarding: false,
-      // Voice consent: null = not asked yet (tri-state model)
-      // Onboarding sets these to true when user completes first launch
+      storyNarrationEnabled: true, // ON by default
+      palGreetingsEnabled: true, // ON by default
+      voiceConsentVersion: currentVoiceConsentVersion,
     );
   }
 
@@ -114,8 +115,8 @@ class UserPreferences {
       showEverydayReflections:
           json['showEverydayReflections'] as bool? ?? true, // Default ON
       hasCompletedOnboarding: json['hasCompletedOnboarding'] as bool? ?? false,
-      storyNarrationEnabled: json['storyNarrationEnabled'] as bool?,
-      palGreetingsEnabled: json['palGreetingsEnabled'] as bool?,
+      storyNarrationEnabled: json['storyNarrationEnabled'] as bool? ?? true,
+      palGreetingsEnabled: json['palGreetingsEnabled'] as bool? ?? true,
       voiceConsentVersion: json['voiceConsentVersion'] as int?,
       palVoiceKey:
           json['palVoiceKey'] as String? ?? 'VOICE_SARAH_STORYTELLER',

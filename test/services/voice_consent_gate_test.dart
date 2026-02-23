@@ -11,10 +11,26 @@ import 'package:bible_pal/models/user_preferences.dart';
 void main() {
   group('CRITICAL: VoiceConsentGate', () {
     group('checkStoryNarration', () {
+      test('CRITICAL: returns allowed for defaults (ON by default)', () {
+        final prefs = UserPreferences.defaults();
+        expect(prefs.storyNarrationEnabled, true);
+
+        final result = VoiceConsentGate.checkStoryNarration(prefs);
+
+        expect(
+          result,
+          VoiceGateResult.allowed,
+          reason: 'Defaults (true) must return allowed',
+        );
+      });
+
       test('CRITICAL: returns needsConsent when storyNarrationEnabled is null',
           () {
-        final prefs = UserPreferences.defaults();
-        expect(prefs.storyNarrationEnabled, isNull);
+        // Explicitly construct with null to test gate handles it
+        final prefs = UserPreferences(
+          bibleTranslation: 'WEB',
+          storyNarrationEnabled: null,
+        );
 
         final result = VoiceConsentGate.checkStoryNarration(prefs);
 
@@ -68,10 +84,26 @@ void main() {
     });
 
     group('checkPalGreetings', () {
+      test('CRITICAL: returns allowed for defaults (ON by default)', () {
+        final prefs = UserPreferences.defaults();
+        expect(prefs.palGreetingsEnabled, true);
+
+        final result = VoiceConsentGate.checkPalGreetings(prefs);
+
+        expect(
+          result,
+          VoiceGateResult.allowed,
+          reason: 'Defaults (true) must return allowed',
+        );
+      });
+
       test('CRITICAL: returns needsConsent when palGreetingsEnabled is null',
           () {
-        final prefs = UserPreferences.defaults();
-        expect(prefs.palGreetingsEnabled, isNull);
+        // Explicitly construct with null to test gate handles it
+        final prefs = UserPreferences(
+          bibleTranslation: 'WEB',
+          palGreetingsEnabled: null,
+        );
 
         final result = VoiceConsentGate.checkPalGreetings(prefs);
 

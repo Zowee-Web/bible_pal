@@ -46,34 +46,33 @@ void main() {
     });
 
     test(
-        'CRITICAL: play() would return needsConsent when storyNarrationEnabled is null',
+        'CRITICAL: default state has voice features ON (play allowed)',
         () async {
-      // ARRANGE: Default state (consent is null)
+      // ARRANGE: Default state (voice features ON by default)
       final appState = await container.read(appStateProvider.future);
 
-      // ASSERT: Verify consent is null (default state)
+      // ASSERT: Default is true (ON by default)
       expect(
         appState.userPreferences.storyNarrationEnabled,
-        isNull,
+        true,
         reason:
-            '🚨 CONSENT GATE: storyNarrationEnabled should be null by default',
+            'storyNarrationEnabled should be true by default (ON by default)',
       );
 
-      // ASSERT: isStoryNarrationEnabled returns false for null
-      // This is what ParablePlayerNotifier.play() checks
+      // ASSERT: isStoryNarrationEnabled returns true for defaults
       expect(
         appState.userPreferences.isStoryNarrationEnabled,
-        false,
+        true,
         reason:
-            '🚨 CONSENT GATE: isStoryNarrationEnabled must return false when null',
+            'isStoryNarrationEnabled must return true when defaulting to ON',
       );
 
-      // ASSERT: hasAsked returns false (needs dialog)
+      // ASSERT: hasAsked returns true (defaults count as set)
       expect(
         appState.userPreferences.hasAskedStoryNarrationConsent,
-        false,
+        true,
         reason:
-            '🚨 CONSENT GATE: hasAskedStoryNarrationConsent must return false when null',
+            'hasAskedStoryNarrationConsent must return true when default is ON',
       );
     });
 
@@ -180,20 +179,21 @@ void main() {
     });
 
     test('PAL greetings consent is independent from story narration', () async {
-      // ARRANGE: Enable story narration but NOT PAL greetings
+      // ARRANGE: Disable PAL greetings but keep story narration enabled
       final appNotifier = container.read(appStateProvider.notifier);
       await appNotifier.updateStoryNarrationConsent(true);
+      await appNotifier.updatePalGreetingsConsent(false);
 
       // ACT: Read state
       final appState = await container.read(appStateProvider.future);
 
-      // ASSERT: Story narration enabled, PAL greetings still null
+      // ASSERT: Story narration enabled, PAL greetings disabled independently
       expect(appState.userPreferences.isStoryNarrationEnabled, true);
       expect(
         appState.userPreferences.palGreetingsEnabled,
-        isNull,
+        false,
         reason:
-            'PAL greetings should remain null when only story narration is updated',
+            'PAL greetings should be false after being explicitly disabled',
       );
       expect(appState.userPreferences.isPalGreetingsEnabled, false);
     });

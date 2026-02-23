@@ -44,6 +44,19 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     _checkIfFavorited();
     _listenForPlaybackCompletion();
     _checkReflectionAudioExists();
+    _autoPlayOnOpen();
+  }
+
+  /// Auto-play story audio when the player screen opens.
+  void _autoPlayOnOpen() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted) return;
+      final playerState = ref.read(parablePlayerProvider);
+      final playerNotifier = ref.read(parablePlayerProvider.notifier);
+      if (playerState.currentParable != null && !playerNotifier.isPlaying) {
+        await _handlePlay(playerNotifier);
+      }
+    });
   }
 
   @override

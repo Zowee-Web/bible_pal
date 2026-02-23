@@ -1,6 +1,6 @@
 // CRITICAL VOICE CONSENT TEST
-// This test ensures voice audio NEVER plays without explicit user consent.
-// The tri-state consent model (null/false/true) MUST be enforced correctly.
+// This test ensures voice features default to ON and respect user's OFF choice.
+// The consent model: true (default ON), false (user disabled), null (edge case).
 //
 // DO NOT DISABLE OR WEAKEN THIS TEST.
 
@@ -11,45 +11,43 @@ import 'package:bible_pal/models/user_preferences.dart';
 
 void main() {
   group('CRITICAL: Voice Consent System', () {
-    group('Tri-state consent model', () {
-      test('CRITICAL: null consent means user has NOT been asked', () {
-        // ARRANGE: Default preferences (never asked)
+    group('Defaults-ON consent model', () {
+      test('CRITICAL: default preferences have voice features ON', () {
+        // ARRANGE: Default preferences
         final prefs = UserPreferences.defaults();
 
-        // ASSERT: Consent fields are null (not asked)
+        // ASSERT: Consent fields default to true (ON by default)
         expect(
           prefs.storyNarrationEnabled,
-          isNull,
-          reason: '🚨 CONSENT VIOLATION 🚨\n'
-              'Default preferences MUST have storyNarrationEnabled=null\n'
-              'to indicate user has not been asked for consent.\n'
-              'null = not asked, true = enabled, false = disabled',
+          true,
+          reason: 'Default preferences MUST have storyNarrationEnabled=true.\n'
+              'Voice features are ON by default until user turns them OFF.',
         );
         expect(
           prefs.palGreetingsEnabled,
-          isNull,
-          reason: '🚨 CONSENT VIOLATION 🚨\n'
-              'Default preferences MUST have palGreetingsEnabled=null\n'
-              'to indicate user has not been asked for consent.',
+          true,
+          reason: 'Default preferences MUST have palGreetingsEnabled=true.\n'
+              'Voice features are ON by default until user turns them OFF.',
         );
         expect(
           prefs.voiceConsentVersion,
-          isNull,
-          reason: 'voiceConsentVersion MUST be null for fresh preferences.',
+          currentVoiceConsentVersion,
+          reason:
+              'voiceConsentVersion MUST be set for default preferences.',
         );
       });
 
-      test('CRITICAL: hasAskedStoryNarrationConsent returns false when null',
+      test('CRITICAL: hasAskedStoryNarrationConsent returns true for defaults',
           () {
-        // ARRANGE: Preferences with null consent
+        // ARRANGE: Default preferences (ON by default)
         final prefs = UserPreferences.defaults();
 
-        // ASSERT: Helper correctly identifies not-asked state
+        // ASSERT: Defaults are treated as "asked" (value is non-null)
         expect(
           prefs.hasAskedStoryNarrationConsent,
-          false,
-          reason: 'hasAskedStoryNarrationConsent MUST return false when '
-              'storyNarrationEnabled is null (not asked yet).',
+          true,
+          reason: 'hasAskedStoryNarrationConsent MUST return true when '
+              'storyNarrationEnabled is true (default ON).',
         );
       });
 
@@ -89,17 +87,16 @@ void main() {
         );
       });
 
-      test('CRITICAL: isStoryNarrationEnabled returns false when null', () {
-        // ARRANGE: Not asked yet
+      test('CRITICAL: isStoryNarrationEnabled returns true for defaults', () {
+        // ARRANGE: Default (ON)
         final prefs = UserPreferences.defaults();
 
-        // ASSERT: Must NOT return true for null (not enabled)
+        // ASSERT: Must return true for defaults (ON by default)
         expect(
           prefs.isStoryNarrationEnabled,
-          false,
-          reason: '🚨 CONSENT VIOLATION 🚨\n'
-              'isStoryNarrationEnabled MUST return false when null.\n'
-              'Audio must NEVER play without explicit consent (true).',
+          true,
+          reason: 'isStoryNarrationEnabled MUST return true for defaults.\n'
+              'Voice features are ON by default.',
         );
       });
 
@@ -137,14 +134,13 @@ void main() {
     });
 
     group('PAL greetings consent', () {
-      test('CRITICAL: PAL greetings consent follows same tri-state pattern',
-          () {
-        // ARRANGE: Not asked
-        final notAsked = UserPreferences.defaults();
+      test('CRITICAL: PAL greetings defaults to ON, respects user OFF', () {
+        // ARRANGE: Defaults (ON)
+        final defaults = UserPreferences.defaults();
 
-        // ASSERT
-        expect(notAsked.hasAskedPalGreetingsConsent, false);
-        expect(notAsked.isPalGreetingsEnabled, false);
+        // ASSERT: Defaults are ON
+        expect(defaults.hasAskedPalGreetingsConsent, true);
+        expect(defaults.isPalGreetingsEnabled, true);
 
         // ARRANGE: Declined
         final declined = UserPreferences(
@@ -209,20 +205,21 @@ void main() {
         }
       });
 
-      test('needsConsentVersionUpgrade returns false for null version', () {
-        // ARRANGE: Never consented (null version)
+      test('needsConsentVersionUpgrade returns false for current version', () {
+        // ARRANGE: Current consent version (defaults)
         final prefs = UserPreferences.defaults();
 
-        // ASSERT: null version means never consented, not "needs upgrade"
+        // ASSERT: No upgrade needed
         expect(
           prefs.needsConsentVersionUpgrade,
           false,
           reason: 'needsConsentVersionUpgrade should return false when '
-              'voiceConsentVersion is null (never consented).',
+              'voiceConsentVersion equals currentVoiceConsentVersion.',
         );
       });
 
-      test('needsConsentVersionUpgrade returns false for current version', () {
+      test('needsConsentVersionUpgrade returns false for current version (explicit)',
+          () {
         // ARRANGE: Current consent version
         final prefs = UserPreferences(
           bibleTranslation: 'WEB',
@@ -241,31 +238,31 @@ void main() {
     });
 
     group('JSON persistence', () {
-      test('CRITICAL: null consent persists correctly through JSON', () {
-        // ARRANGE: Default preferences
+      test('CRITICAL: default consent (true) persists correctly through JSON',
+          () {
+        // ARRANGE: Default preferences (ON by default)
         final original = UserPreferences.defaults();
 
         // ACT: Serialize and deserialize
         final json = original.toJson();
         final restored = UserPreferences.fromJson(json);
 
-        // ASSERT: null consent is preserved
+        // ASSERT: true consent is preserved
         expect(
           restored.storyNarrationEnabled,
-          isNull,
-          reason: '🚨 CONSENT VIOLATION 🚨\n'
-              'null storyNarrationEnabled MUST be preserved through JSON.\n'
-              'If null becomes false after persistence, consent UI may not show.',
+          true,
+          reason: 'Default storyNarrationEnabled (true) MUST persist through JSON.',
         );
         expect(
           restored.palGreetingsEnabled,
-          isNull,
-          reason: 'null palGreetingsEnabled MUST be preserved through JSON.',
+          true,
+          reason: 'Default palGreetingsEnabled (true) MUST persist through JSON.',
         );
         expect(
           restored.voiceConsentVersion,
-          isNull,
-          reason: 'null voiceConsentVersion MUST be preserved through JSON.',
+          currentVoiceConsentVersion,
+          reason:
+              'Default voiceConsentVersion MUST persist through JSON.',
         );
       });
 
@@ -326,7 +323,8 @@ void main() {
         );
       });
 
-      test('Legacy JSON without voice fields defaults to null (not false)', () {
+      test('Legacy JSON without voice fields defaults to true (ON by default)',
+          () {
         // ARRANGE: Old JSON without voice consent fields (migration case)
         final legacyJson = {
           'bibleTranslation': 'WEB',
@@ -340,45 +338,45 @@ void main() {
         // ACT: Parse legacy JSON
         final prefs = UserPreferences.fromJson(legacyJson);
 
-        // ASSERT: Voice fields default to null (not false)
+        // ASSERT: Voice fields default to true (ON by default)
         expect(
           prefs.storyNarrationEnabled,
-          isNull,
-          reason: '🚨 MIGRATION BUG 🚨\n'
-              'Legacy JSON without voice fields MUST default to null.\n'
-              'Defaulting to false would skip the consent dialog for existing users!',
+          true,
+          reason: 'Legacy JSON without voice fields MUST default to true (ON).\n'
+              'Voice features are ON by default for all users.',
         );
         expect(
           prefs.palGreetingsEnabled,
-          isNull,
-          reason: 'Legacy JSON without voice fields MUST default to null.',
+          true,
+          reason: 'Legacy JSON without voice fields MUST default to true (ON).',
         );
         expect(
           prefs.voiceConsentVersion,
           isNull,
-          reason: 'Legacy JSON without voice fields MUST default to null.',
+          reason: 'Legacy JSON without voice version should remain null.',
         );
       });
     });
 
     group('copyWith behavior', () {
-      test('CRITICAL: copyWith preserves null consent when not specified', () {
-        // ARRANGE: Preferences with null consent
+      test('CRITICAL: copyWith preserves default consent when not specified',
+          () {
+        // ARRANGE: Preferences with default consent (true)
         final original = UserPreferences.defaults();
 
         // ACT: Update unrelated field
         final updated = original.copyWith(bibleTranslation: 'KJV');
 
-        // ASSERT: Null consent is preserved
+        // ASSERT: Default consent is preserved
         expect(
           updated.storyNarrationEnabled,
-          isNull,
-          reason: 'copyWith MUST preserve null consent when not specified.',
+          true,
+          reason: 'copyWith MUST preserve consent when not specified.',
         );
         expect(
           updated.palGreetingsEnabled,
-          isNull,
-          reason: 'copyWith MUST preserve null consent when not specified.',
+          true,
+          reason: 'copyWith MUST preserve consent when not specified.',
         );
       });
 

@@ -77,11 +77,13 @@ void main() {
               '🚨 CRITICAL: After reset, hasCompletedOnboarding must be false');
       expect(resetUserPrefs.userName, '',
           reason: '🚨 CRITICAL: After reset, userName must be cleared');
-      expect(resetUserPrefs.storyNarrationEnabled, null,
-          reason: '🚨 CRITICAL: After reset, voice consent must be null');
-      expect(resetUserPrefs.palGreetingsEnabled, null,
+      // Voice features default to ON even after reset (fromJson defaults null → true)
+      expect(resetUserPrefs.storyNarrationEnabled, true,
           reason:
-              '🚨 CRITICAL: After reset, PAL greetings consent must be null');
+              '🚨 CRITICAL: After reset, voice features default to ON (true)');
+      expect(resetUserPrefs.palGreetingsEnabled, true,
+          reason:
+              '🚨 CRITICAL: After reset, PAL greetings default to ON (true)');
       expect(resetUserPrefs.voiceConsentVersion, null,
           reason:
               '🚨 CRITICAL: After reset, voice consent version must be null');

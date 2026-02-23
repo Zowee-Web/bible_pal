@@ -280,13 +280,13 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           SwitchListTile(
             title: const Text('Story Narration'),
             subtitle: const Text('Audio playback of stories'),
-            value: _storyNarrationEnabled ?? false,
+            value: _storyNarrationEnabled ?? true,
             onChanged: (value) => _setStoryNarrationEnabled(value),
           ),
           SwitchListTile(
             title: const Text('PAL Greetings'),
             subtitle: const Text('Voice greetings from your PAL'),
-            value: _palGreetingsEnabled ?? false,
+            value: _palGreetingsEnabled ?? true,
             onChanged: (value) => _setPalGreetingsEnabled(value),
           ),
           const Divider(),

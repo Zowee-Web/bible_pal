@@ -94,6 +94,9 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
 
   Future<void> _playPalGreeting() async {
     final appState = ref.read(appStateProvider).valueOrNull;
+    // Skip audio if PAL greetings are disabled
+    if (appState?.userPreferences.palGreetingsEnabled == false) return;
+
     final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_SARAH_STORYTELLER';
     final palAudio = ref.read(palAudioServiceProvider);
 
@@ -319,16 +322,21 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     // Play PAL compassionate reply audio and use its text
     final appState = ref.read(appStateProvider).valueOrNull;
     final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_SARAH_STORYTELLER';
-    final palAudio = ref.read(palAudioServiceProvider);
-    final moodBucket = PalAudioService.moodToBucket(result.mood);
 
     String reply;
-    try {
-      reply = await palAudio.playCompassionateReply(moodBucket, voiceKey);
-    } catch (e) {
-      debugPrint('[PalsParables] PAL reply audio failed: $e');
-      // Fallback to MoodService text
+    if (appState?.userPreferences.palGreetingsEnabled == false) {
+      // PAL greetings disabled — text-only
       reply = moodService.generateCompassionateReply(result);
+    } else {
+      final palAudio = ref.read(palAudioServiceProvider);
+      final moodBucket = PalAudioService.moodToBucket(result.mood);
+      try {
+        reply = await palAudio.playCompassionateReply(moodBucket, voiceKey);
+      } catch (e) {
+        debugPrint('[PalsParables] PAL reply audio failed: $e');
+        // Fallback to MoodService text
+        reply = moodService.generateCompassionateReply(result);
+      }
     }
 
     setState(() {
