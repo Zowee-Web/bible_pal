@@ -392,5 +392,142 @@ void main() {
         expect(result.reference, isNotEmpty);
       });
     });
+
+    group('Mood-Biased Selection (SPEC Feature #21)', () {
+      test('Same date + same mood returns same verse (deterministic)', () async {
+        final prefs = UserPreferences(
+          bibleTranslation: 'WEB',
+          storytellingMode: 'traditional',
+        );
+
+        final date = DateTime(2026, 3, 15);
+
+        final result1 =
+            await service.getVerseForDate(date, prefs, mood: 'anxious');
+        final result2 =
+            await service.getVerseForDate(date, prefs, mood: 'anxious');
+
+        expect(result1.reference, result2.reference);
+        expect(result1.verse, result2.verse);
+      });
+
+      test('Mood filters to compatible-theme verses', () async {
+        final prefs = UserPreferences(
+          bibleTranslation: 'WEB',
+          storytellingMode: 'traditional',
+        );
+
+        final date = DateTime(2026, 6, 15);
+
+        final result =
+            await service.getVerseForDate(date, prefs, mood: 'anxious');
+
+        // anxious maps to: anxious, calm_peaceful, brave_courage
+        final compatibleThemes = {'anxious', 'calm_peaceful', 'brave_courage'};
+        expect(
+          compatibleThemes.contains(result.theme),
+          true,
+          reason: 'Verse theme "${result.theme}" should be compatible with '
+              'mood "anxious". Expected one of: $compatibleThemes',
+        );
+      });
+
+      test('Null mood returns same verse as no-mood (regression)', () async {
+        final prefs = UserPreferences(
+          bibleTranslation: 'WEB',
+          storytellingMode: 'traditional',
+        );
+
+        final date = DateTime(2026, 1, 1);
+
+        final withoutMood = await service.getVerseForDate(date, prefs);
+        final withNullMood =
+            await service.getVerseForDate(date, prefs, mood: null);
+
+        expect(withNullMood.reference, withoutMood.reference);
+        expect(withNullMood.verse, withoutMood.verse);
+      });
+
+      test('Unknown mood falls back to date-based selection', () async {
+        final prefs = UserPreferences(
+          bibleTranslation: 'WEB',
+          storytellingMode: 'traditional',
+        );
+
+        final date = DateTime(2026, 1, 1);
+
+        final baseline = await service.getVerseForDate(date, prefs);
+        final unknown =
+            await service.getVerseForDate(date, prefs, mood: 'unknown_mood');
+
+        expect(unknown.reference, baseline.reference);
+        expect(unknown.verse, baseline.verse);
+      });
+
+      test('Mood with matching verses differs from no-mood selection', () async {
+        final prefs = UserPreferences(
+          bibleTranslation: 'WEB',
+          storytellingMode: 'traditional',
+        );
+
+        // Try several dates — at least one should differ when mood is applied
+        // (since mood narrows the pool, the index will resolve differently)
+        bool foundDifference = false;
+        for (int day = 1; day <= 60; day++) {
+          final date = DateTime(2026, 1, day);
+          final noMood = await service.getVerseForDate(date, prefs);
+          final withMood =
+              await service.getVerseForDate(date, prefs, mood: 'hurting');
+
+          if (noMood.reference != withMood.reference) {
+            foundDifference = true;
+            break;
+          }
+        }
+
+        expect(foundDifference, true,
+            reason: 'Mood-biased selection should produce different verses '
+                'than date-only selection for at least some dates');
+      });
+
+      test('All mood-to-theme mappings return non-empty sets', () {
+        for (final mood in ['joyful', 'weary', 'anxious', 'hurting', 'neutral']) {
+          final themes = DailyBreadService.getCompatibleThemes(mood);
+          expect(themes.isNotEmpty, true,
+              reason: 'Mood "$mood" should map to at least one theme');
+          // Direct match should always be included
+          expect(themes.contains(mood), true,
+              reason: 'Mood "$mood" should include itself in compatible themes');
+        }
+      });
+
+      test('Unknown mood maps to empty compatible themes', () {
+        expect(DailyBreadService.getCompatibleThemes('bogus'), isEmpty);
+        expect(DailyBreadService.getCompatibleThemes(''), isEmpty);
+      });
+
+      test('Compatible themes include complementary themes', () {
+        expect(
+          DailyBreadService.getCompatibleThemes('anxious'),
+          containsAll(['anxious', 'calm_peaceful', 'brave_courage']),
+        );
+        expect(
+          DailyBreadService.getCompatibleThemes('hurting'),
+          containsAll(['hurting', 'encouraging', 'calm_peaceful']),
+        );
+        expect(
+          DailyBreadService.getCompatibleThemes('joyful'),
+          containsAll(['joyful', 'encouraging']),
+        );
+        expect(
+          DailyBreadService.getCompatibleThemes('weary'),
+          containsAll(['weary', 'encouraging', 'calm_peaceful']),
+        );
+        expect(
+          DailyBreadService.getCompatibleThemes('neutral'),
+          containsAll(['neutral', 'calm_peaceful']),
+        );
+      });
+    });
   });
 }

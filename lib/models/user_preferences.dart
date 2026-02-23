@@ -14,6 +14,22 @@ import '../core/bible_translation_registry.dart';
 /// Contracts v2: languageStyle is separate from bibleTranslation (compliance)
 const List<String> allowedLanguageStyles = ['WEB', 'KJV'];
 
+/// Allowed mood IDs for lastDetectedMood (SPEC Feature #21: Thematic Alignment).
+/// Only these values are persisted; anything else is treated as null.
+const Set<String> allowedMoodIds = {
+  'joyful',
+  'weary',
+  'anxious',
+  'hurting',
+  'neutral',
+};
+
+/// Validates a mood ID, returning null if not in allowedMoodIds.
+String? _validateMood(String? value) {
+  if (value == null || !allowedMoodIds.contains(value)) return null;
+  return value;
+}
+
 /// Current voice consent schema version.
 /// Increment this to re-prompt users for consent (e.g., if we add new voice features).
 const int currentVoiceConsentVersion = 1;
@@ -49,6 +65,11 @@ class UserPreferences {
   // PAL voice selection
   final String palVoiceKey; // Selected PAL conversation voice
 
+  // Thematic alignment (SPEC Feature #21)
+  // Last detected mood for mood-biased Daily Bread verse selection.
+  // null = no mood detected yet; only allowedMoodIds values are persisted.
+  final String? lastDetectedMood;
+
   const UserPreferences({
     this.userName = '',
     required this.bibleTranslation,
@@ -64,6 +85,7 @@ class UserPreferences {
     this.palGreetingsEnabled, // null = not asked
     this.voiceConsentVersion, // null = never consented
     this.palVoiceKey = 'VOICE_SARAH_STORYTELLER',
+    this.lastDetectedMood,
   });
 
   /// Default preferences for first-time users
@@ -120,6 +142,8 @@ class UserPreferences {
       voiceConsentVersion: json['voiceConsentVersion'] as int?,
       palVoiceKey:
           json['palVoiceKey'] as String? ?? 'VOICE_SARAH_STORYTELLER',
+      lastDetectedMood:
+          _validateMood(json['lastDetectedMood'] as String?),
     );
   }
 
@@ -138,6 +162,7 @@ class UserPreferences {
       'palGreetingsEnabled': palGreetingsEnabled,
       'voiceConsentVersion': voiceConsentVersion,
       'palVoiceKey': palVoiceKey,
+      'lastDetectedMood': lastDetectedMood,
     };
   }
 
@@ -160,6 +185,7 @@ class UserPreferences {
     bool? palGreetingsEnabled,
     int? voiceConsentVersion,
     String? palVoiceKey,
+    String? lastDetectedMood,
   }) {
     // RUNTIME GUARD: Validate translation if provided
     final validatedTranslation = bibleTranslation != null
@@ -188,6 +214,7 @@ class UserPreferences {
       palGreetingsEnabled: palGreetingsEnabled ?? this.palGreetingsEnabled,
       voiceConsentVersion: voiceConsentVersion ?? this.voiceConsentVersion,
       palVoiceKey: palVoiceKey ?? this.palVoiceKey,
+      lastDetectedMood: lastDetectedMood ?? this.lastDetectedMood,
     );
   }
 

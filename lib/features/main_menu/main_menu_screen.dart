@@ -890,6 +890,9 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
     final appNotifier = ref.read(appStateProvider.notifier);
     final moodResult = appNotifier.moodService.detectMood(transcript);
 
+    // Persist mood for thematic Daily Bread alignment (SPEC Feature #21)
+    appNotifier.updateLastDetectedMood(moodResult.mood);
+
     logEvent('mood_detected', {
       'mood': moodResult.mood,
       'confidence': moodResult.confidenceScore,

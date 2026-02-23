@@ -19,30 +19,50 @@ class DailyBreadService {
 
   /// Get daily bread verse for today
   /// Uses deterministic selection: index = dayOfYear % verses.length
-  Future<DailyBread> getDailyVerse(UserPreferences userPrefs) async {
+  /// If [mood] is provided and valid, biases selection toward theme-matching verses.
+  Future<DailyBread> getDailyVerse(
+    UserPreferences userPrefs, {
+    String? mood,
+  }) async {
     final now = DateTime.now();
-    return getVerseForDate(now, userPrefs);
+    return getVerseForDate(now, userPrefs, mood: mood);
   }
 
-  /// Get verse for a specific date using deterministic selection
+  /// Get verse for a specific date using deterministic selection.
+  /// If [mood] is provided, filters to theme-compatible verses first;
+  /// falls back to full pool if no matches.
   Future<DailyBread> getVerseForDate(
     DateTime date,
-    UserPreferences userPrefs,
-  ) async {
-    final verses = await _loadVerses();
+    UserPreferences userPrefs, {
+    String? mood,
+  }) async {
+    final allVerses = await _loadVerses();
 
-    if (verses.isEmpty) {
-      // Fallback if no verses available
+    if (allVerses.isEmpty) {
       return _fallbackVerse(date, userPrefs);
     }
 
-    // Deterministic selection: (dayOfYear - 1) % verses.length
-    // Jan 1 (day 1) → index 0 (first verse)
     final dayOfYear = _dayOfYear(date);
-    final index = (dayOfYear - 1) % verses.length;
-    final entry = verses[index];
 
-    // Get text for requested translation, fallback to WEB if missing
+    // Mood-biased selection: filter to compatible themes if mood is valid
+    List<DailyBreadEntry> pool = allVerses;
+    if (mood != null) {
+      final compatibleThemes = getCompatibleThemes(mood);
+      if (compatibleThemes.isNotEmpty) {
+        final filtered = allVerses
+            .where((v) => v.theme != null && compatibleThemes.contains(v.theme))
+            .toList();
+        if (filtered.isNotEmpty) {
+          pool = filtered;
+        }
+        // If filtered is empty, fall back to full pool (existing behavior)
+      }
+    }
+
+    // Deterministic selection: (dayOfYear - 1) % pool.length
+    final index = (dayOfYear - 1) % pool.length;
+    final entry = pool[index];
+
     final translation = userPrefs.bibleTranslation;
     final verseText = entry.getText(translation);
 
@@ -55,6 +75,25 @@ class DailyBreadService {
       date: DateTime(date.year, date.month, date.day),
       theme: entry.theme,
     );
+  }
+
+  /// Returns the set of Daily Bread themes compatible with a detected mood.
+  /// Returns empty set for unknown moods (caller should fall back to full pool).
+  static Set<String> getCompatibleThemes(String mood) {
+    switch (mood) {
+      case 'joyful':
+        return const {'joyful', 'encouraging'};
+      case 'weary':
+        return const {'weary', 'encouraging', 'calm_peaceful'};
+      case 'anxious':
+        return const {'anxious', 'calm_peaceful', 'brave_courage'};
+      case 'hurting':
+        return const {'hurting', 'encouraging', 'calm_peaceful'};
+      case 'neutral':
+        return const {'neutral', 'calm_peaceful'};
+      default:
+        return const {};
+    }
   }
 
   /// Load and cache verses from JSON asset

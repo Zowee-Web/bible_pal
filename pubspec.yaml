@@ -51,6 +51,9 @@ dependencies:
   # Platform share sheet for sharing stories (SPEC Feature #14)
   share_plus: ^10.0.0
 
+  # Runtime version/build info for logging
+  package_info_plus: ^8.2.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

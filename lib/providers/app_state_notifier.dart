@@ -72,7 +72,10 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
     final favorites = await _storage.getFavorites();
     final history = await _storage.getHistory();
     final pals = await _storage.getPals();
-    final dailyBread = await _dailyBreadService.getDailyVerse(userPreferences);
+    final dailyBread = await _dailyBreadService.getDailyVerse(
+      userPreferences,
+      mood: userPreferences.lastDetectedMood,
+    );
 
     return AppState(
       userPreferences: userPreferences,
@@ -91,8 +94,11 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
     state = await AsyncValue.guard(() async {
       await _storage.saveUserPreferences(prefs);
 
-      // Reload daily bread if translation changed
-      final dailyBread = await _dailyBreadService.getDailyVerse(prefs);
+      // Reload daily bread if translation or mood changed
+      final dailyBread = await _dailyBreadService.getDailyVerse(
+        prefs,
+        mood: prefs.lastDetectedMood,
+      );
 
       return state.requireValue.copyWith(
         userPreferences: prefs,
@@ -202,6 +208,15 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
   Future<void> updateUserName(String name) async {
     final prefs = state.requireValue.userPreferences.copyWith(
       userName: name,
+    );
+    await updateUserPreferences(prefs);
+  }
+
+  /// Persist last detected mood for thematic Daily Bread alignment (SPEC Feature #21).
+  /// Only valid mood IDs are stored; invalid values are ignored.
+  Future<void> updateLastDetectedMood(String mood) async {
+    final prefs = state.requireValue.userPreferences.copyWith(
+      lastDetectedMood: mood,
     );
     await updateUserPreferences(prefs);
   }
@@ -336,8 +351,10 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
       final favorites = await _storage.getFavorites();
       final history = await _storage.getHistory();
       final pals = await _storage.getPals();
-      final dailyBread =
-          await _dailyBreadService.getDailyVerse(userPreferences);
+      final dailyBread = await _dailyBreadService.getDailyVerse(
+        userPreferences,
+        mood: userPreferences.lastDetectedMood,
+      );
 
       return AppState(
         userPreferences: userPreferences,

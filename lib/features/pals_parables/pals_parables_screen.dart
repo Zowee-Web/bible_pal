@@ -331,9 +331,13 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
       return;
     }
 
-    final moodService = ref.read(appStateProvider.notifier).moodService;
+    final appNotifier = ref.read(appStateProvider.notifier);
+    final moodService = appNotifier.moodService;
     final result = moodService.detectMood(_moodController.text);
     final verse = _verseService.getVerseForMood(result.mood);
+
+    // Persist mood for thematic Daily Bread alignment (SPEC Feature #21)
+    appNotifier.updateLastDetectedMood(result.mood);
 
     // Play PAL compassionate reply audio and use its text
     final appState = ref.read(appStateProvider).valueOrNull;
