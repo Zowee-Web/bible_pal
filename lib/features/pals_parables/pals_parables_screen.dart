@@ -6,7 +6,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:bible_pal/services/greeting_service.dart';
 import 'package:bible_pal/services/mood_service.dart';
 import 'package:bible_pal/services/pal_audio_service.dart';
-import 'package:bible_pal/providers/service_providers.dart' show palAudioServiceProvider;
+import 'package:bible_pal/providers/service_providers.dart' show nameAudioServiceProvider, palAudioServiceProvider;
 import 'package:bible_pal/services/verse_service.dart';
 import 'package:bible_pal/services/stt_service.dart';
 import 'package:bible_pal/providers/app_state_notifier.dart';
@@ -98,10 +98,26 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     if (appState?.userPreferences.palGreetingsEnabled == false) return;
 
     final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_SARAH_STORYTELLER';
+    final userName = appState?.userPreferences.userName ?? '';
     final palAudio = ref.read(palAudioServiceProvider);
+    final nameAudio = ref.read(nameAudioServiceProvider);
+
+    // Try to get a cached name clip for personalized greeting
+    final nameClip = userName.isNotEmpty
+        ? await nameAudio.getRandomNameClip(userName, voiceKey)
+        : null;
+
+    // If name is set but no clip cached, fire-and-forget generation for next time
+    if (nameClip == null && userName.isNotEmpty) {
+      nameAudio.generateNamePhrases(name: userName, voiceKey: voiceKey);
+    }
 
     try {
-      final text = await palAudio.playGreeting(voiceKey);
+      final text = await palAudio.playGreeting(
+        voiceKey,
+        nameClipFile: nameClip?.file,
+        nameClipText: nameClip?.text,
+      );
       if (mounted && text.isNotEmpty) {
         setState(() => _greeting = text);
       }
@@ -322,6 +338,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     // Play PAL compassionate reply audio and use its text
     final appState = ref.read(appStateProvider).valueOrNull;
     final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_SARAH_STORYTELLER';
+    final userName = appState?.userPreferences.userName ?? '';
 
     String reply;
     if (appState?.userPreferences.palGreetingsEnabled == false) {
@@ -329,9 +346,21 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
       reply = moodService.generateCompassionateReply(result);
     } else {
       final palAudio = ref.read(palAudioServiceProvider);
+      final nameAudio = ref.read(nameAudioServiceProvider);
       final moodBucket = PalAudioService.moodToBucket(result.mood);
+
+      // Try to get a cached name clip for personalized reply
+      final nameClip = userName.isNotEmpty
+          ? await nameAudio.getRandomNameClip(userName, voiceKey)
+          : null;
+
       try {
-        reply = await palAudio.playCompassionateReply(moodBucket, voiceKey);
+        reply = await palAudio.playCompassionateReply(
+          moodBucket,
+          voiceKey,
+          nameClipFile: nameClip?.file,
+          nameClipText: nameClip?.text,
+        );
       } catch (e) {
         debugPrint('[PalsParables] PAL reply audio failed: $e');
         // Fallback to MoodService text

@@ -198,6 +198,14 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
     await updateUserPreferences(prefs);
   }
 
+  /// Update user's display name
+  Future<void> updateUserName(String name) async {
+    final prefs = state.requireValue.userPreferences.copyWith(
+      userName: name,
+    );
+    await updateUserPreferences(prefs);
+  }
+
   // Favorites Methods
   Future<void> addFavorite(Parable parable) async {
     state = await AsyncValue.guard(() async {

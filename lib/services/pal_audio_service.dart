@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
@@ -17,7 +18,7 @@ class PalLine {
 
 // Offline PAL audio playback service.
 // Loads curated lines from pal_lines.json and plays pre-rendered MP3 assets.
-// NO network calls. NO API keys. 100% offline.
+// Name-prefix clips (generated via proxy TTS) can be stitched before greetings.
 class PalAudioService {
   final Random _random;
   final AudioPlayer _player;
@@ -42,6 +43,9 @@ class PalAudioService {
 
   // Lazy init
   Completer<void>? _initCompleter;
+
+  // Playback lock — prevents overlapping audio
+  Completer<void>? _playbackLock;
 
   PalAudioService({Random? random, AudioPlayer? player})
       : _random = random ?? Random(),
@@ -135,20 +139,64 @@ class PalAudioService {
     return picked;
   }
 
-  /// Play a greeting in the selected voice. Returns the greeting text.
-  Future<String> playGreeting(String voiceKey) async {
+  /// Acquire the playback lock. Waits if another playback is in progress.
+  Future<void> _acquireLock() async {
+    while (_playbackLock != null) {
+      await _playbackLock!.future;
+    }
+    _playbackLock = Completer<void>();
+  }
+
+  /// Release the playback lock.
+  void _releaseLock() {
+    _playbackLock?.complete();
+    _playbackLock = null;
+  }
+
+  /// Play a greeting in the selected voice. Returns the display text.
+  ///
+  /// If [nameClipFile] and [nameClipText] are provided, there's a 30% chance
+  /// the name prefix clip is stitched before the greeting using
+  /// ConcatenatingAudioSource for gapless playback.
+  Future<String> playGreeting(
+    String voiceKey, {
+    File? nameClipFile,
+    String? nameClipText,
+  }) async {
     await _ensureInit();
 
     final line = _pickRandom(_greetings, _recentGreetings);
     _lastGreeting = line;
 
-    await _playAsset(voiceKey, line.id);
-    return line.text;
+    final includeName = nameClipFile != null &&
+        nameClipText != null &&
+        await nameClipFile.exists() &&
+        _random.nextDouble() < 0.30;
+
+    await _acquireLock();
+    try {
+      if (includeName) {
+        await _playWithNamePrefix(voiceKey, line.id, nameClipFile);
+        return '$nameClipText ${line.text}';
+      } else {
+        await _playAsset(voiceKey, line.id);
+        return line.text;
+      }
+    } finally {
+      _releaseLock();
+    }
   }
 
-  /// Play a compassionate reply for the given mood bucket. Returns the reply text.
+  /// Play a compassionate reply for the given mood bucket. Returns the display text.
+  ///
+  /// If [nameClipFile] and [nameClipText] are provided, there's a 20% chance
+  /// the name prefix clip is stitched before the reply.
   Future<String> playCompassionateReply(
-      String moodBucket, String voiceKey) async {
+    String moodBucket,
+    String voiceKey, {
+    File? nameClipFile,
+    String? nameClipText,
+  }) async {
     await _ensureInit();
 
     final pool = _replies[moodBucket] ?? _replies['neutral']!;
@@ -156,8 +204,45 @@ class PalAudioService {
     final line = _pickRandom(pool, recentIds);
     _lastReply = line;
 
-    await _playAsset(voiceKey, line.id);
-    return line.text;
+    final includeName = nameClipFile != null &&
+        nameClipText != null &&
+        await nameClipFile.exists() &&
+        _random.nextDouble() < 0.20;
+
+    await _acquireLock();
+    try {
+      if (includeName) {
+        await _playWithNamePrefix(voiceKey, line.id, nameClipFile);
+        return '$nameClipText ${line.text}';
+      } else {
+        await _playAsset(voiceKey, line.id);
+        return line.text;
+      }
+    } finally {
+      _releaseLock();
+    }
+  }
+
+  /// Stitch a name-prefix clip (local file) + greeting/reply asset into one
+  /// gapless sequence using ConcatenatingAudioSource.
+  Future<void> _playWithNamePrefix(
+    String voiceKey,
+    String lineId,
+    File nameClipFile,
+  ) async {
+    final greetingPath = assetPath(voiceKey, lineId);
+    try {
+      final playlist = ConcatenatingAudioSource(children: [
+        AudioSource.file(nameClipFile.path),
+        AudioSource.asset(greetingPath),
+      ]);
+      await _player.setAudioSource(playlist);
+      await _player.play();
+    } catch (e) {
+      debugPrint('[PalAudioService] Name prefix playback failed: $e');
+      // Fallback: play greeting only
+      await _playAsset(voiceKey, lineId);
+    }
   }
 
   /// Play the preview line (for Settings voice preview).

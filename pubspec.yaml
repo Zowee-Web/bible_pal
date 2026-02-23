@@ -31,6 +31,7 @@ dependencies:
   # Core utils
   path_provider: ^2.1.5
   shared_preferences: ^2.3.3
+  crypto: ^3.0.3
 
   # HTTP for API calls (ElevenLabs, future features)
   http: ^1.2.2

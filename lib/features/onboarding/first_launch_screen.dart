@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/user_preferences.dart' show currentVoiceConsentVersion;
 import '../../providers/app_state_notifier.dart';
+import '../../providers/service_providers.dart' show nameAudioServiceProvider;
 
 /// Key for tracking first-launch onboarding completion
 const kFirstLaunchCompleteKey = 'first_launch_complete';
@@ -113,6 +114,13 @@ class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen> {
       // Mark first launch complete in SharedPreferences
       final sp = await SharedPreferences.getInstance();
       await sp.setBool(kFirstLaunchCompleteKey, true);
+
+      // Fire-and-forget: generate name audio clips for personalized greetings
+      final palVoiceKey = currentState?.userPreferences.palVoiceKey ?? 'VOICE_SARAH_STORYTELLER';
+      ref.read(nameAudioServiceProvider).generateNamePhrases(
+            name: name,
+            voiceKey: palVoiceKey,
+          );
 
       if (!mounted) return;
 

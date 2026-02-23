@@ -7,6 +7,8 @@ import 'package:bible_pal/services/daily_bread_service.dart';
 import 'package:bible_pal/services/content_filter_service.dart';
 import 'package:bible_pal/services/share_service.dart';
 import 'package:bible_pal/services/pal_audio_service.dart';
+import 'package:bible_pal/services/pal_tts_client.dart';
+import 'package:bible_pal/services/name_audio_service.dart';
 
 /// Service Providers for Riverpod
 /// These providers manage the lifecycle of singleton services
@@ -60,4 +62,17 @@ final palAudioServiceProvider = Provider<PalAudioService>((ref) {
   final service = PalAudioService();
   ref.onDispose(() => service.dispose());
   return service;
+});
+
+// PalTtsClient provider - proxy HTTP client for name audio TTS
+final palTtsClientProvider = Provider<PalTtsClient>((ref) {
+  final client = PalTtsClient();
+  ref.onDispose(() => client.dispose());
+  return client;
+});
+
+// NameAudioService provider - generates + caches personalized name clips
+final nameAudioServiceProvider = Provider<NameAudioService>((ref) {
+  final ttsClient = ref.read(palTtsClientProvider);
+  return NameAudioService(ttsClient: ttsClient);
 });

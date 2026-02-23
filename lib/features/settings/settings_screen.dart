@@ -28,6 +28,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   bool? _palGreetingsEnabled;
   // PAL voice selection
   String _palVoiceKey = PalVoiceRegistry.defaultVoiceKey;
+  // User name
+  String _userName = '';
 
   @override
   void initState() {
@@ -59,6 +61,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       _palGreetingsEnabled = appState.userPreferences.palGreetingsEnabled;
       // PAL voice selection
       _palVoiceKey = appState.userPreferences.palVoiceKey;
+      // User name
+      _userName = appState.userPreferences.userName;
     }
 
     setState(() => _loaded = true);
@@ -148,6 +152,61 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     setState(() => _palVoiceKey = voiceKey);
     final appState = ref.read(appStateProvider.notifier);
     await appState.updatePalVoiceKey(voiceKey);
+
+    // Regenerate name audio for the new voice
+    final nameAudio = ref.read(nameAudioServiceProvider);
+    await nameAudio.invalidateCache();
+    if (_userName.isNotEmpty) {
+      nameAudio.generateNamePhrases(name: _userName, voiceKey: voiceKey);
+    }
+  }
+
+  Future<void> _editUserName() async {
+    final controller = TextEditingController(text: _userName);
+    final result = await showDialog<String>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Edit Your Name'),
+        content: TextField(
+          controller: controller,
+          autofocus: true,
+          textCapitalization: TextCapitalization.words,
+          textInputAction: TextInputAction.done,
+          onSubmitted: (_) => Navigator.pop(ctx, controller.text.trim()),
+          decoration: const InputDecoration(
+            labelText: 'Your name',
+            hintText: 'Enter your name',
+            border: OutlineInputBorder(),
+            prefixIcon: Icon(Icons.person_outline),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, controller.text.trim()),
+            child: const Text('Save'),
+          ),
+        ],
+      ),
+    );
+
+    if (result == null || result.isEmpty || result == _userName) return;
+
+    logEvent('user_name_changed', {
+      'had_previous': _userName.isNotEmpty,
+    });
+
+    setState(() => _userName = result);
+    final appNotifier = ref.read(appStateProvider.notifier);
+    await appNotifier.updateUserName(result);
+
+    // Generate name audio in background
+    final nameAudio = ref.read(nameAudioServiceProvider);
+    await nameAudio.invalidateCache();
+    nameAudio.generateNamePhrases(name: result, voiceKey: _palVoiceKey);
   }
 
   Future<void> _previewVoice() async {
@@ -207,6 +266,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       appBar: AppBar(title: const Text('Settings')),
       body: ListView(
         children: [
+          ListTile(
+            leading: const Icon(Icons.person_outline),
+            title: const Text('Your Name'),
+            subtitle: Text(_userName.isEmpty ? 'Not set' : _userName),
+            trailing: const Icon(Icons.edit),
+            onTap: _editUserName,
+          ),
+          const Divider(),
           SwitchListTile(
             title: const Text('Background Sound'),
             subtitle: const Text('Play ambient audio during stories'),
@@ -232,16 +299,16 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 'Choose between creative stories or traditional Bible retellings'),
           ),
           RadioListTile<String>(
-            title: const Text('Creative Stories'),
-            subtitle: const Text('Original faith-inspired stories'),
-            value: 'creative',
+            title: const Text('Traditional Stories'),
+            subtitle: const Text('Actual Bible stories faithfully retold'),
+            value: 'traditional',
             groupValue: _storytellingMode,
             onChanged: (value) => _setStorytellingMode(value!),
           ),
           RadioListTile<String>(
-            title: const Text('Traditional Stories'),
-            subtitle: const Text('Actual Bible stories faithfully retold'),
-            value: 'traditional',
+            title: const Text('Creative Stories'),
+            subtitle: const Text('Original faith-inspired stories'),
+            value: 'creative',
             groupValue: _storytellingMode,
             onChanged: (value) => _setStorytellingMode(value!),
           ),

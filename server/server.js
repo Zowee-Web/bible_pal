@@ -33,8 +33,24 @@ try {
   voicesMap = {};
 }
 
+// === Load voiceKey -> elevenLabsId mapping from voices.json ===
+const voiceKeyMap = {};
+try {
+  const voicesData = require("./voices.json");
+  for (const v of voicesData.voices || []) {
+    if (v.voiceKey && v.elevenLabsId) {
+      voiceKeyMap[v.voiceKey] = v.elevenLabsId;
+    }
+  }
+  console.log(`Loaded ${Object.keys(voiceKeyMap).length} voice keys from voices.json`);
+} catch (e) {
+  console.warn("Could not load voices.json:", e.message);
+}
+
 function getVoiceId(byNameOrId) {
   if (!byNameOrId) return defaultVoiceId;
+  // Check voiceKey map first (e.g., VOICE_SARAH_STORYTELLER)
+  if (voiceKeyMap[byNameOrId]) return voiceKeyMap[byNameOrId];
   // if it's an exact id, pass through; else map name -> id
   if (byNameOrId.startsWith("voice_")) return byNameOrId;
   return voicesMap[byNameOrId] || defaultVoiceId;
@@ -112,6 +128,46 @@ async function handleTTS(req, res) {
 
 app.get("/tts", handleTTS);
 app.post("/tts", handleTTS);
+
+// === Name prefix TTS route (stricter validation + tighter rate limit) ===
+const namePrefixLimiter = rateLimit({
+  windowMs: 60_000,
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "rate_limited", detail: "Max 10 name-prefix requests per minute" },
+});
+
+app.post("/tts/name-prefix", namePrefixLimiter, async (req, res) => {
+  const { voice, text } = req.body || {};
+
+  // Validate voice: must be a known voiceKey
+  if (!voice || !voiceKeyMap[voice]) {
+    return res.status(400).json({ error: "invalid_voice", detail: "voice must be a valid voiceKey" });
+  }
+
+  // Validate text: required, trimmed, max 80 chars, no dangerous chars
+  const trimmed = (text || "").toString().trim();
+  if (!trimmed) {
+    return res.status(400).json({ error: "invalid_text", detail: "text is required" });
+  }
+  if (trimmed.length > 80) {
+    return res.status(400).json({ error: "invalid_text", detail: "text must be <= 80 characters" });
+  }
+  if (/[<>]/.test(trimmed)) {
+    return res.status(400).json({ error: "invalid_text", detail: "text must not contain < or >" });
+  }
+  if (/\n|\r/.test(trimmed)) {
+    return res.status(400).json({ error: "invalid_text", detail: "text must not contain newlines" });
+  }
+  if (/https?:\/\//i.test(trimmed)) {
+    return res.status(400).json({ error: "invalid_text", detail: "text must not contain URLs" });
+  }
+
+  // Override body for handleTTS
+  req.body = { voice, text: trimmed };
+  return handleTTS(req, res);
+});
 
 const port = Number(process.env.PORT || 8080);
 app.listen(port, "0.0.0.0", () => console.log(`Bible PAL proxy listening on :${port}`));
