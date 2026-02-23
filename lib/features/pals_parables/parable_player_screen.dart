@@ -11,6 +11,7 @@ import 'package:bible_pal/models/share_record.dart';
 import 'package:bible_pal/services/reflection_service.dart';
 import 'package:bible_pal/services/voice_consent_gate.dart';
 import 'package:bible_pal/core/app_logger.dart';
+import 'package:bible_pal/providers/service_providers.dart';
 import 'package:uuid/uuid.dart';
 
 /// Parable Player Screen
@@ -292,6 +293,13 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
 
       await appStateNotifier.shareStoryWithPal(share);
     }
+
+    // Invoke platform share sheet with story content
+    final shareService = ref.read(shareServiceProvider);
+    await shareService.shareParable(
+      parable: parable,
+      storyText: playerState.parableText,
+    );
 
     if (!mounted) return;
 

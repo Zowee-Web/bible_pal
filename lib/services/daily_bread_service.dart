@@ -53,7 +53,7 @@ class DailyBreadService {
           ? translation
           : BibleTranslationRegistry.defaultTranslationId,
       date: DateTime(date.year, date.month, date.day),
-      theme: null,
+      theme: entry.theme,
     );
   }
 
@@ -112,11 +112,13 @@ class DailyBreadEntry {
   final String id;
   final String reference;
   final Map<String, String> text;
+  final String? theme;
 
   const DailyBreadEntry({
     required this.id,
     required this.reference,
     required this.text,
+    this.theme,
   });
 
   factory DailyBreadEntry.fromJson(Map<String, dynamic> json) {
@@ -125,6 +127,7 @@ class DailyBreadEntry {
       id: json['id'] as String,
       reference: json['reference'] as String,
       text: textMap.map((k, v) => MapEntry(k, v as String)),
+      theme: json['theme'] as String?,
     );
   }
 

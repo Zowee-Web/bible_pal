@@ -19,6 +19,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   bool _backgroundSoundOn = false;
   bool _kidFriendlyOnly = false;
   bool _showEverydayReflections = true;
+  bool _contentFilteringEnabled = true;
   String _storytellingMode =
       'traditional'; // Default is Traditional per Contracts v2
   String _languageStyle = 'WEB'; // Story presentation diction (Contracts v2)
@@ -49,6 +50,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       _kidFriendlyOnly = appState.userPreferences.kidFriendlyOnly;
       _showEverydayReflections =
           appState.userPreferences.showEverydayReflections;
+      _contentFilteringEnabled =
+          appState.userPreferences.contentFilteringEnabled;
       _storytellingMode = appState.userPreferences.storytellingMode;
       _languageStyle = appState.userPreferences.languageStyle;
       // Voice consent (Phase 3)
@@ -82,6 +85,12 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     setState(() => _showEverydayReflections = on);
     final appState = ref.read(appStateProvider.notifier);
     await appState.updateShowEverydayReflections(on);
+  }
+
+  Future<void> _setContentFilteringEnabled(bool on) async {
+    setState(() => _contentFilteringEnabled = on);
+    final appState = ref.read(appStateProvider.notifier);
+    await appState.updateContentFilteringEnabled(on);
   }
 
   Future<void> _setStorytellingMode(String mode) async {
@@ -203,6 +212,12 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             subtitle: const Text('Show a brief reflection after each story'),
             value: _showEverydayReflections,
             onChanged: _setShowEverydayReflections,
+          ),
+          SwitchListTile(
+            title: const Text('Content Filter'),
+            subtitle: const Text('Block inappropriate content in stories'),
+            value: _contentFilteringEnabled,
+            onChanged: _setContentFilteringEnabled,
           ),
           const Divider(),
           const ListTile(

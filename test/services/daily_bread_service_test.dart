@@ -94,6 +94,45 @@ void main() {
         }
       });
 
+      test('CRITICAL: All verses must have valid theme for thematic alignment',
+          () async {
+        final jsonString = await rootBundle
+            .loadString('assets/daily_bread/daily_bread_verses.json');
+        final data = jsonDecode(jsonString) as Map<String, dynamic>;
+        final verses = data['verses'] as List<dynamic>;
+
+        const validThemes = {
+          'joyful',
+          'weary',
+          'anxious',
+          'hurting',
+          'neutral',
+          'encouraging',
+          'calm_peaceful',
+          'brave_courage',
+        };
+
+        for (final verse in verses) {
+          final id = verse['id'] as String;
+          final reference = verse['reference'] as String;
+          final theme = verse['theme'] as String?;
+
+          expect(
+            theme,
+            isNotNull,
+            reason: 'Verse "$id" ($reference) missing required "theme" field '
+                'for thematic alignment (SPEC Feature #21).',
+          );
+
+          expect(
+            validThemes.contains(theme),
+            true,
+            reason: 'Verse "$id" ($reference) has invalid theme "$theme". '
+                'Valid themes: $validThemes',
+          );
+        }
+      });
+
       test('Asset should have at least 120 verses', () async {
         final jsonString = await rootBundle
             .loadString('assets/daily_bread/daily_bread_verses.json');

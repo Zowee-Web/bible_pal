@@ -2,6 +2,7 @@
   "verses": [
     {
       "id": "db_001",
+      "theme": "calm_peaceful",
       "reference": "Psalm 23:1",
       "text": {
         "WEB": "Yahweh is my shepherd; I shall lack nothing.",
@@ -13,6 +14,7 @@
     },
     {
       "id": "db_002",
+      "theme": "anxious",
       "reference": "Proverbs 3:5-6",
       "text": {
         "WEB": "Trust in Yahweh with all your heart, and don't lean on your own understanding. In all your ways acknowledge him, and he will make your paths straight.",
@@ -24,6 +26,7 @@
     },
     {
       "id": "db_003",
+      "theme": "anxious",
       "reference": "Psalm 46:10",
       "text": {
         "WEB": "Be still, and know that I am God. I will be exalted among the nations. I will be exalted in the earth.",
@@ -35,6 +38,7 @@
     },
     {
       "id": "db_004",
+      "theme": "weary",
       "reference": "Isaiah 40:31",
       "text": {
         "WEB": "But those who wait for Yahweh will renew their strength. They will mount up with wings like eagles. They will run, and not be weary. They will walk, and not faint.",
@@ -46,6 +50,7 @@
     },
     {
       "id": "db_005",
+      "theme": "brave_courage",
       "reference": "Philippians 4:13",
       "text": {
         "WEB": "I can do all things through Christ, who strengthens me.",
@@ -57,6 +62,7 @@
     },
     {
       "id": "db_006",
+      "theme": "encouraging",
       "reference": "Romans 8:28",
       "text": {
         "WEB": "We know that all things work together for good for those who love God, for those who are called according to his purpose.",
@@ -68,6 +74,7 @@
     },
     {
       "id": "db_007",
+      "theme": "encouraging",
       "reference": "Jeremiah 29:11",
       "text": {
         "WEB": "For I know the thoughts that I think toward you, says Yahweh, thoughts of peace, and not of evil, to give you hope and a future.",
@@ -79,6 +86,7 @@
     },
     {
       "id": "db_008",
+      "theme": "joyful",
       "reference": "Psalm 16:11",
       "text": {
         "WEB": "You will show me the path of life. In your presence is fullness of joy. In your right hand there are pleasures forever more.",
@@ -90,6 +98,7 @@
     },
     {
       "id": "db_009",
+      "theme": "weary",
       "reference": "Matthew 11:28",
       "text": {
         "WEB": "Come to me, all you who labor and are heavily burdened, and I will give you rest.",
@@ -101,6 +110,7 @@
     },
     {
       "id": "db_010",
+      "theme": "brave_courage",
       "reference": "Joshua 1:9",
       "text": {
         "WEB": "Haven't I commanded you? Be strong and courageous. Don't be afraid. Don't be dismayed, for Yahweh your God is with you wherever you go.",
@@ -112,6 +122,7 @@
     },
     {
       "id": "db_011",
+      "theme": "neutral",
       "reference": "Psalm 119:105",
       "text": {
         "WEB": "Your word is a lamp to my feet, and a light for my path.",
@@ -123,6 +134,7 @@
     },
     {
       "id": "db_012",
+      "theme": "encouraging",
       "reference": "Lamentations 3:22-23",
       "text": {
         "WEB": "It is because of Yahweh's loving kindnesses that we are not consumed, because his compassion doesn't fail. They are new every morning. Great is your faithfulness.",
@@ -134,6 +146,7 @@
     },
     {
       "id": "db_013",
+      "theme": "brave_courage",
       "reference": "Psalm 27:1",
       "text": {
         "WEB": "Yahweh is my light and my salvation. Whom shall I fear? Yahweh is the strength of my life. Of whom shall I be afraid?",
@@ -145,6 +158,7 @@
     },
     {
       "id": "db_014",
+      "theme": "brave_courage",
       "reference": "Isaiah 41:10",
       "text": {
         "WEB": "Don't you be afraid, for I am with you. Don't be dismayed, for I am your God. I will strengthen you. Yes, I will help you. Yes, I will uphold you with the right hand of my righteousness.",
@@ -156,6 +170,7 @@
     },
     {
       "id": "db_015",
+      "theme": "hurting",
       "reference": "Psalm 34:18",
       "text": {
         "WEB": "Yahweh is near to those who have a broken heart, and saves those who have a crushed spirit.",
@@ -167,6 +182,7 @@
     },
     {
       "id": "db_016",
+      "theme": "neutral",
       "reference": "John 3:16",
       "text": {
         "WEB": "For God so loved the world, that he gave his only born Son, that whoever believes in him should not perish, but have eternal life.",
@@ -178,6 +194,7 @@
     },
     {
       "id": "db_017",
+      "theme": "anxious",
       "reference": "Philippians 4:6-7",
       "text": {
         "WEB": "In nothing be anxious, but in everything, by prayer and petition with thanksgiving, let your requests be made known to God. And the peace of God, which surpasses all understanding, will guard your hearts and your thoughts in Christ Jesus.",
@@ -189,6 +206,7 @@
     },
     {
       "id": "db_018",
+      "theme": "neutral",
       "reference": "Romans 12:2",
       "text": {
         "WEB": "Don't be conformed to this world, but be transformed by the renewing of your mind, so that you may prove what is the good, well-pleasing, and perfect will of God.",
@@ -200,6 +218,7 @@
     },
     {
       "id": "db_019",
+      "theme": "joyful",
       "reference": "Psalm 37:4",
       "text": {
         "WEB": "Also delight yourself in Yahweh, and he will give you the desires of your heart.",
@@ -211,6 +230,7 @@
     },
     {
       "id": "db_020",
+      "theme": "encouraging",
       "reference": "2 Corinthians 5:17",
       "text": {
         "WEB": "Therefore if anyone is in Christ, he is a new creation. The old things have passed away. Behold, all things have become new.",
@@ -222,6 +242,7 @@
     },
     {
       "id": "db_021",
+      "theme": "neutral",
       "reference": "Hebrews 11:1",
       "text": {
         "WEB": "Now faith is assurance of things hoped for, proof of things not seen.",
@@ -233,6 +254,7 @@
     },
     {
       "id": "db_022",
+      "theme": "neutral",
       "reference": "1 John 4:19",
       "text": {
         "WEB": "We love him, because he first loved us.",
@@ -244,6 +266,7 @@
     },
     {
       "id": "db_023",
+      "theme": "calm_peaceful",
       "reference": "Psalm 46:1",
       "text": {
         "WEB": "God is our refuge and strength, a very present help in trouble.",
@@ -255,6 +278,7 @@
     },
     {
       "id": "db_024",
+      "theme": "neutral",
       "reference": "Matthew 6:33",
       "text": {
         "WEB": "But seek first God's Kingdom and his righteousness; and all these things will be given to you as well.",
@@ -266,6 +290,7 @@
     },
     {
       "id": "db_025",
+      "theme": "joyful",
       "reference": "Psalm 118:24",
       "text": {
         "WEB": "This is the day that Yahweh has made. We will rejoice and be glad in it!",
@@ -277,6 +302,7 @@
     },
     {
       "id": "db_026",
+      "theme": "neutral",
       "reference": "Galatians 5:22-23",
       "text": {
         "WEB": "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faith, gentleness, and self-control. Against such things there is no law.",
@@ -288,6 +314,7 @@
     },
     {
       "id": "db_027",
+      "theme": "calm_peaceful",
       "reference": "Psalm 91:1-2",
       "text": {
         "WEB": "He who dwells in the secret place of the Most High will rest in the shadow of the Almighty. I will say of Yahweh, \"He is my refuge and my fortress; my God, in whom I trust.\"",
@@ -299,6 +326,7 @@
     },
     {
       "id": "db_028",
+      "theme": "anxious",
       "reference": "1 Peter 5:7",
       "text": {
         "WEB": "casting all your worries on him, because he cares for you.",
@@ -310,6 +338,7 @@
     },
     {
       "id": "db_029",
+      "theme": "encouraging",
       "reference": "Proverbs 16:3",
       "text": {
         "WEB": "Commit your deeds to Yahweh, and your plans shall succeed.",
@@ -321,6 +350,7 @@
     },
     {
       "id": "db_030",
+      "theme": "neutral",
       "reference": "James 1:5",
       "text": {
         "WEB": "But if any of you lacks wisdom, let him ask of God, who gives to all liberally and without reproach, and it will be given to him.",
@@ -332,6 +362,7 @@
     },
     {
       "id": "db_031",
+      "theme": "brave_courage",
       "reference": "Deuteronomy 31:6",
       "text": {
         "WEB": "Be strong and courageous. Don't be afraid or scared of them, for Yahweh your God himself is who goes with you. He will not fail you nor forsake you.",
@@ -343,6 +374,7 @@
     },
     {
       "id": "db_032",
+      "theme": "joyful",
       "reference": "Psalm 139:14",
       "text": {
         "WEB": "I will give thanks to you, for I am fearfully and wonderfully made. Your works are wonderful. My soul knows that very well.",
@@ -354,6 +386,7 @@
     },
     {
       "id": "db_033",
+      "theme": "joyful",
       "reference": "Romans 15:13",
       "text": {
         "WEB": "Now may the God of hope fill you with all joy and peace in believing, that you may abound in hope, in the power of the Holy Spirit.",
@@ -365,6 +398,7 @@
     },
     {
       "id": "db_034",
+      "theme": "neutral",
       "reference": "Ephesians 2:8-9",
       "text": {
         "WEB": "for by grace you have been saved through faith, and that not of yourselves; it is the gift of God, not of works, that no one would boast.",
@@ -376,6 +410,7 @@
     },
     {
       "id": "db_035",
+      "theme": "calm_peaceful",
       "reference": "Psalm 23:4",
       "text": {
         "WEB": "Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff, they comfort me.",
@@ -387,6 +422,7 @@
     },
     {
       "id": "db_036",
+      "theme": "calm_peaceful",
       "reference": "Matthew 28:20",
       "text": {
         "WEB": "teaching them to observe all things that I commanded you. Behold, I am with you always, even to the end of the age.",
@@ -398,6 +434,7 @@
     },
     {
       "id": "db_037",
+      "theme": "calm_peaceful",
       "reference": "John 14:27",
       "text": {
         "WEB": "Peace I leave with you. My peace I give to you; not as the world gives, I give to you. Don't let your heart be troubled, neither let it be fearful.",
@@ -409,6 +446,7 @@
     },
     {
       "id": "db_038",
+      "theme": "neutral",
       "reference": "Proverbs 4:23",
       "text": {
         "WEB": "Keep your heart with all diligence, for out of it is the wellspring of life.",
@@ -420,6 +458,7 @@
     },
     {
       "id": "db_039",
+      "theme": "neutral",
       "reference": "Colossians 3:23",
       "text": {
         "WEB": "And whatever you do, work heartily, as for the Lord and not for men,",
@@ -431,6 +470,7 @@
     },
     {
       "id": "db_040",
+      "theme": "calm_peaceful",
       "reference": "Isaiah 26:3",
       "text": {
         "WEB": "You will keep whoever's mind is steadfast in perfect peace, because he trusts in you.",
@@ -442,6 +482,7 @@
     },
     {
       "id": "db_041",
+      "theme": "joyful",
       "reference": "Psalm 103:1-2",
       "text": {
         "WEB": "Praise Yahweh, my soul! All that is within me, praise his holy name! Praise Yahweh, my soul, and don't forget all his benefits.",
@@ -453,6 +494,7 @@
     },
     {
       "id": "db_042",
+      "theme": "brave_courage",
       "reference": "John 16:33",
       "text": {
         "WEB": "I have told you these things, that in me you may have peace. In the world you have trouble; but cheer up! I have overcome the world.",
@@ -464,6 +506,7 @@
     },
     {
       "id": "db_043",
+      "theme": "anxious",
       "reference": "Psalm 55:22",
       "text": {
         "WEB": "Cast your burden on Yahweh and he will sustain you. He will never allow the righteous to be moved.",
@@ -475,6 +518,7 @@
     },
     {
       "id": "db_044",
+      "theme": "encouraging",
       "reference": "Romans 8:38-39",
       "text": {
         "WEB": "For I am persuaded that neither death, nor life, nor angels, nor principalities, nor things present, nor things to come, nor powers, nor height, nor depth, nor any other created thing will be able to separate us from God's love which is in Christ Jesus our Lord.",
@@ -486,6 +530,7 @@
     },
     {
       "id": "db_045",
+      "theme": "joyful",
       "reference": "Psalm 34:8",
       "text": {
         "WEB": "Oh taste and see that Yahweh is good. Blessed is the man who takes refuge in him.",
@@ -497,6 +542,7 @@
     },
     {
       "id": "db_046",
+      "theme": "brave_courage",
       "reference": "Isaiah 43:2",
       "text": {
         "WEB": "When you pass through the waters, I will be with you, and through the rivers, they will not overflow you. When you walk through the fire, you will not be burned, and flame will not scorch you.",
@@ -508,6 +554,7 @@
     },
     {
       "id": "db_047",
+      "theme": "brave_courage",
       "reference": "2 Timothy 1:7",
       "text": {
         "WEB": "For God didn't give us a spirit of fear, but of power, love, and self-control.",
@@ -519,6 +566,7 @@
     },
     {
       "id": "db_048",
+      "theme": "calm_peaceful",
       "reference": "Proverbs 18:10",
       "text": {
         "WEB": "Yahweh's name is a strong tower; the righteous run to him and are safe.",
@@ -530,6 +578,7 @@
     },
     {
       "id": "db_049",
+      "theme": "neutral",
       "reference": "Psalm 32:8",
       "text": {
         "WEB": "I will instruct you and teach you in the way which you shall go. I will counsel you with my eye on you.",
@@ -541,6 +590,7 @@
     },
     {
       "id": "db_050",
+      "theme": "weary",
       "reference": "1 Corinthians 10:13",
       "text": {
         "WEB": "No temptation has taken you except what is common to man. God is faithful, who will not allow you to be tempted above what you are able, but will with the temptation also make the way of escape, that you may be able to endure it.",
@@ -552,6 +602,7 @@
     },
     {
       "id": "db_051",
+      "theme": "encouraging",
       "reference": "Psalm 121:1-2",
       "text": {
         "WEB": "I will lift up my eyes to the hills. Where does my help come from? My help comes from Yahweh, who made heaven and earth.",
@@ -563,6 +614,7 @@
     },
     {
       "id": "db_052",
+      "theme": "neutral",
       "reference": "Psalm 90:12",
       "text": {
         "WEB": "So teach us to count our days, that we may gain a heart of wisdom.",
@@ -574,6 +626,7 @@
     },
     {
       "id": "db_053",
+      "theme": "neutral",
       "reference": "Micah 6:8",
       "text": {
         "WEB": "He has shown you, O man, what is good. What does Yahweh require of you, but to act justly, to love mercy, and to walk humbly with your God?",
@@ -585,6 +638,7 @@
     },
     {
       "id": "db_054",
+      "theme": "neutral",
       "reference": "Psalm 1:1-2",
       "text": {
         "WEB": "Blessed is the man who doesn't walk in the counsel of the wicked, nor stand on the path of sinners, nor sit in the seat of scoffers; but his delight is in Yahweh's law. On his law he meditates day and night.",
@@ -596,6 +650,7 @@
     },
     {
       "id": "db_055",
+      "theme": "encouraging",
       "reference": "Matthew 5:16",
       "text": {
         "WEB": "Even so, let your light shine before men, that they may see your good works and glorify your Father who is in heaven.",
@@ -607,6 +662,7 @@
     },
     {
       "id": "db_056",
+      "theme": "neutral",
       "reference": "James 4:8",
       "text": {
         "WEB": "Draw near to God, and he will draw near to you. Cleanse your hands, you sinners. Purify your hearts, you double-minded.",
@@ -618,6 +674,7 @@
     },
     {
       "id": "db_057",
+      "theme": "calm_peaceful",
       "reference": "Psalm 19:14",
       "text": {
         "WEB": "Let the words of my mouth and the meditation of my heart be acceptable in your sight, Yahweh, my rock, and my redeemer.",
@@ -629,6 +686,7 @@
     },
     {
       "id": "db_058",
+      "theme": "calm_peaceful",
       "reference": "Nahum 1:7",
       "text": {
         "WEB": "Yahweh is good, a stronghold in the day of trouble; and he knows those who take refuge in him.",
@@ -640,6 +698,7 @@
     },
     {
       "id": "db_059",
+      "theme": "calm_peaceful",
       "reference": "Psalm 145:18",
       "text": {
         "WEB": "Yahweh is near to all those who call on him, to all who call on him in truth.",
@@ -651,6 +710,7 @@
     },
     {
       "id": "db_060",
+      "theme": "hurting",
       "reference": "1 John 1:9",
       "text": {
         "WEB": "If we confess our sins, he is faithful and righteous to forgive us the sins and to cleanse us from all unrighteousness.",
@@ -662,6 +722,7 @@
     },
     {
       "id": "db_061",
+      "theme": "calm_peaceful",
       "reference": "Psalm 62:1-2",
       "text": {
         "WEB": "My soul rests in God alone. My salvation is from him. He alone is my rock and my salvation, my fortress. I will never be greatly shaken.",
@@ -673,6 +734,7 @@
     },
     {
       "id": "db_062",
+      "theme": "encouraging",
       "reference": "Matthew 7:7",
       "text": {
         "WEB": "Ask, and it will be given you. Seek, and you will find. Knock, and it will be opened to you.",
@@ -684,6 +746,7 @@
     },
     {
       "id": "db_063",
+      "theme": "weary",
       "reference": "Psalm 73:26",
       "text": {
         "WEB": "My flesh and my heart fails, but God is the strength of my heart and my portion forever.",
@@ -695,6 +758,7 @@
     },
     {
       "id": "db_064",
+      "theme": "joyful",
       "reference": "Zephaniah 3:17",
       "text": {
         "WEB": "Yahweh your God is among you, a mighty one who will save. He will rejoice over you with joy. He will calm you in his love. He will rejoice over you with singing.",
@@ -706,6 +770,7 @@
     },
     {
       "id": "db_065",
+      "theme": "calm_peaceful",
       "reference": "Psalm 18:2",
       "text": {
         "WEB": "Yahweh is my rock, my fortress, and my deliverer; my God, my rock, in whom I take refuge; my shield, and the horn of my salvation, my high tower.",
@@ -717,6 +782,7 @@
     },
     {
       "id": "db_066",
+      "theme": "weary",
       "reference": "2 Corinthians 12:9",
       "text": {
         "WEB": "He has said to me, \"My grace is sufficient for you, for my power is made perfect in weakness.\" Most gladly therefore I will rather glory in my weaknesses, that the power of Christ may rest on me.",
@@ -728,6 +794,7 @@
     },
     {
       "id": "db_067",
+      "theme": "hurting",
       "reference": "Psalm 42:11",
       "text": {
         "WEB": "Why are you in despair, my soul? Why are you disturbed within me? Hope in God! For I shall still praise him, the saving health of my face, and my God.",
@@ -739,6 +806,7 @@
     },
     {
       "id": "db_068",
+      "theme": "neutral",
       "reference": "Proverbs 2:6",
       "text": {
         "WEB": "For Yahweh gives wisdom. Out of his mouth comes knowledge and understanding.",
@@ -750,6 +818,7 @@
     },
     {
       "id": "db_069",
+      "theme": "hurting",
       "reference": "Psalm 147:3",
       "text": {
         "WEB": "He heals the broken in heart, and binds up their wounds.",
@@ -761,6 +830,7 @@
     },
     {
       "id": "db_070",
+      "theme": "neutral",
       "reference": "John 8:12",
       "text": {
         "WEB": "Again, therefore, Jesus spoke to them, saying, \"I am the light of the world. He who follows me will not walk in the darkness, but will have the light of life.\"",
@@ -772,6 +842,7 @@
     },
     {
       "id": "db_071",
+      "theme": "hurting",
       "reference": "Psalm 30:5",
       "text": {
         "WEB": "For his anger is but for a moment. His favor is for a lifetime. Weeping may stay for the night, but joy comes in the morning.",
@@ -783,6 +854,7 @@
     },
     {
       "id": "db_072",
+      "theme": "joyful",
       "reference": "1 Thessalonians 5:16-18",
       "text": {
         "WEB": "Rejoice always. Pray without ceasing. In everything give thanks, for this is the will of God in Christ Jesus toward you.",
@@ -794,6 +866,7 @@
     },
     {
       "id": "db_073",
+      "theme": "weary",
       "reference": "Psalm 40:1-2",
       "text": {
         "WEB": "I waited patiently for Yahweh. He turned to me, and heard my cry. He brought me up also out of a horrible pit, out of the miry clay. He set my feet on a rock, and gave me a firm place to stand.",
@@ -805,6 +878,7 @@
     },
     {
       "id": "db_074",
+      "theme": "weary",
       "reference": "Hebrews 12:1-2",
       "text": {
         "WEB": "Therefore let's also, seeing we are surrounded by so great a cloud of witnesses, lay aside every weight and the sin which so easily entangles us, and let's run with perseverance the race that is set before us, looking to Jesus, the author and perfecter of faith.",
@@ -816,6 +890,7 @@
     },
     {
       "id": "db_075",
+      "theme": "hurting",
       "reference": "Psalm 86:5",
       "text": {
         "WEB": "For you, Lord, are good, and ready to forgive, abundant in loving kindness to all those who call on you.",
@@ -827,6 +902,7 @@
     },
     {
       "id": "db_076",
+      "theme": "weary",
       "reference": "Isaiah 40:29",
       "text": {
         "WEB": "He gives power to the weak. He increases the strength of him who has no might.",
@@ -838,6 +914,7 @@
     },
     {
       "id": "db_077",
+      "theme": "joyful",
       "reference": "Psalm 100:4-5",
       "text": {
         "WEB": "Enter into his gates with thanksgiving, and into his courts with praise. Give thanks to him, and bless his name. For Yahweh is good. His loving kindness endures forever, and his faithfulness to all generations.",
@@ -849,6 +926,7 @@
     },
     {
       "id": "db_078",
+      "theme": "neutral",
       "reference": "Romans 5:8",
       "text": {
         "WEB": "But God commends his own love toward us, in that while we were yet sinners, Christ died for us.",
@@ -860,6 +938,7 @@
     },
     {
       "id": "db_079",
+      "theme": "hurting",
       "reference": "Psalm 9:9-10",
       "text": {
         "WEB": "Yahweh will also be a high tower for the oppressed, a high tower in times of trouble. Those who know your name will put their trust in you, for you, Yahweh, have not forsaken those who seek you.",
@@ -871,6 +950,7 @@
     },
     {
       "id": "db_080",
+      "theme": "neutral",
       "reference": "Proverbs 19:21",
       "text": {
         "WEB": "There are many plans in a man's heart, but Yahweh's counsel will prevail.",
@@ -882,6 +962,7 @@
     },
     {
       "id": "db_081",
+      "theme": "calm_peaceful",
       "reference": "Psalm 4:8",
       "text": {
         "WEB": "In peace I will both lay myself down and sleep, for you alone, Yahweh, make me live in safety.",
@@ -893,6 +974,7 @@
     },
     {
       "id": "db_082",
+      "theme": "encouraging",
       "reference": "John 10:10",
       "text": {
         "WEB": "The thief only comes to steal, kill, and destroy. I came that they may have life, and may have it abundantly.",
@@ -904,6 +986,7 @@
     },
     {
       "id": "db_083",
+      "theme": "brave_courage",
       "reference": "Psalm 31:24",
       "text": {
         "WEB": "Be strong, and let your heart take courage, all you who hope in Yahweh.",
@@ -915,6 +998,7 @@
     },
     {
       "id": "db_084",
+      "theme": "neutral",
       "reference": "Ecclesiastes 3:1",
       "text": {
         "WEB": "For everything there is a season, and a time for every purpose under heaven.",
@@ -926,6 +1010,7 @@
     },
     {
       "id": "db_085",
+      "theme": "anxious",
       "reference": "Psalm 25:4-5",
       "text": {
         "WEB": "Show me your ways, Yahweh. Teach me your paths. Guide me in your truth, and teach me, for you are the God of my salvation. I wait for you all day long.",
@@ -937,6 +1022,7 @@
     },
     {
       "id": "db_086",
+      "theme": "neutral",
       "reference": "1 Corinthians 13:4-7",
       "text": {
         "WEB": "Love is patient and is kind. Love doesn't envy. Love doesn't brag, is not proud, doesn't behave itself inappropriately, doesn't seek its own way, is not provoked, takes no account of evil; doesn't rejoice in unrighteousness, but rejoices with the truth; bears all things, believes all things, hopes all things, and endures all things.",
@@ -948,6 +1034,7 @@
     },
     {
       "id": "db_087",
+      "theme": "encouraging",
       "reference": "Psalm 138:8",
       "text": {
         "WEB": "Yahweh will fulfill that which concerns me. Your loving kindness, Yahweh, endures forever. Don't forsake the works of your own hands.",
@@ -959,6 +1046,7 @@
     },
     {
       "id": "db_088",
+      "theme": "neutral",
       "reference": "Isaiah 55:8-9",
       "text": {
         "WEB": "\"For my thoughts are not your thoughts, and your ways are not my ways,\" says Yahweh. \"For as the heavens are higher than the earth, so are my ways higher than your ways, and my thoughts than your thoughts.\"",
@@ -970,6 +1058,7 @@
     },
     {
       "id": "db_089",
+      "theme": "hurting",
       "reference": "Psalm 51:10",
       "text": {
         "WEB": "Create in me a clean heart, O God. Renew a right spirit within me.",
@@ -981,6 +1070,7 @@
     },
     {
       "id": "db_090",
+      "theme": "neutral",
       "reference": "John 15:5",
       "text": {
         "WEB": "I am the vine. You are the branches. He who remains in me and I in him bears much fruit, for apart from me you can do nothing.",
@@ -992,6 +1082,7 @@
     },
     {
       "id": "db_091",
+      "theme": "weary",
       "reference": "Psalm 63:1",
       "text": {
         "WEB": "God, you are my God. I will earnestly seek you. My soul thirsts for you. My flesh longs for you, in a dry and weary land, where there is no water.",
@@ -1003,6 +1094,7 @@
     },
     {
       "id": "db_092",
+      "theme": "anxious",
       "reference": "Colossians 3:2",
       "text": {
         "WEB": "Set your mind on the things that are above, not on the things that are on the earth.",
@@ -1014,6 +1106,7 @@
     },
     {
       "id": "db_093",
+      "theme": "joyful",
       "reference": "Psalm 107:1",
       "text": {
         "WEB": "Give thanks to Yahweh, for he is good, for his loving kindness endures forever.",
@@ -1025,6 +1118,7 @@
     },
     {
       "id": "db_094",
+      "theme": "calm_peaceful",
       "reference": "Proverbs 14:26",
       "text": {
         "WEB": "In the fear of Yahweh is a secure fortress, and he will be a refuge for his children.",
@@ -1036,6 +1130,7 @@
     },
     {
       "id": "db_095",
+      "theme": "joyful",
       "reference": "Psalm 36:5-6",
       "text": {
         "WEB": "Your loving kindness, Yahweh, is in the heavens. Your faithfulness reaches to the skies. Your righteousness is like the mountains of God. Your judgments are like a great deep. Yahweh, you preserve man and animal.",
@@ -1047,6 +1142,7 @@
     },
     {
       "id": "db_096",
+      "theme": "encouraging",
       "reference": "Mark 11:24",
       "text": {
         "WEB": "Therefore I tell you, all things whatever you pray and ask for, believe that you have received them, and you shall have them.",
@@ -1058,6 +1154,7 @@
     },
     {
       "id": "db_097",
+      "theme": "joyful",
       "reference": "Psalm 5:11-12",
       "text": {
         "WEB": "But let all those who take refuge in you rejoice. Let them always shout for joy, because you defend them. Let them also who love your name be joyful in you. For you will bless the righteous. Yahweh, you will surround him with favor as with a shield.",
@@ -1069,6 +1166,7 @@
     },
     {
       "id": "db_098",
+      "theme": "encouraging",
       "reference": "1 Peter 3:15",
       "text": {
         "WEB": "But sanctify the Lord God in your hearts. Always be ready to give an answer to everyone who asks you a reason concerning the hope that is in you, with humility and fear.",
@@ -1080,6 +1178,7 @@
     },
     {
       "id": "db_099",
+      "theme": "encouraging",
       "reference": "Psalm 84:11",
       "text": {
         "WEB": "For Yahweh God is a sun and a shield. Yahweh will give grace and glory. He withholds no good thing from those who walk blamelessly.",
@@ -1091,6 +1190,7 @@
     },
     {
       "id": "db_100",
+      "theme": "neutral",
       "reference": "John 1:14",
       "text": {
         "WEB": "The Word became flesh and lived among us. We saw his glory, such glory as of the only born Son of the Father, full of grace and truth.",
@@ -1102,6 +1202,7 @@
     },
     {
       "id": "db_101",
+      "theme": "anxious",
       "reference": "Psalm 143:8",
       "text": {
         "WEB": "Cause me to hear your loving kindness in the morning, for I trust in you. Cause me to know the way in which I should walk, for I lift up my soul to you.",
@@ -1113,6 +1214,7 @@
     },
     {
       "id": "db_102",
+      "theme": "weary",
       "reference": "Romans 12:12",
       "text": {
         "WEB": "rejoicing in hope, enduring in troubles, continuing steadfastly in prayer.",
@@ -1124,6 +1226,7 @@
     },
     {
       "id": "db_103",
+      "theme": "joyful",
       "reference": "Psalm 116:1-2",
       "text": {
         "WEB": "I love Yahweh, because he listens to my voice, and my cries for mercy. Because he has turned his ear to me, therefore I will call on him as long as I live.",
@@ -1135,6 +1238,7 @@
     },
     {
       "id": "db_104",
+      "theme": "brave_courage",
       "reference": "Isaiah 12:2",
       "text": {
         "WEB": "Behold, God is my salvation. I will trust, and will not be afraid; for Yah, Yahweh, is my strength and song; and he has become my salvation.",
@@ -1146,6 +1250,7 @@
     },
     {
       "id": "db_105",
+      "theme": "hurting",
       "reference": "Psalm 57:1",
       "text": {
         "WEB": "Be merciful to me, God, be merciful to me, for my soul takes refuge in you. Yes, in the shadow of your wings I will take refuge, until disaster has passed.",
@@ -1157,6 +1262,7 @@
     },
     {
       "id": "db_106",
+      "theme": "neutral",
       "reference": "Matthew 5:6",
       "text": {
         "WEB": "Blessed are those who hunger and thirst for righteousness, for they shall be filled.",
@@ -1168,6 +1274,7 @@
     },
     {
       "id": "db_107",
+      "theme": "weary",
       "reference": "Psalm 130:5",
       "text": {
         "WEB": "I wait for Yahweh. My soul waits. I hope in his word.",
@@ -1179,6 +1286,7 @@
     },
     {
       "id": "db_108",
+      "theme": "neutral",
       "reference": "Proverbs 15:1",
       "text": {
         "WEB": "A gentle answer turns away wrath, but a harsh word stirs up anger.",
@@ -1190,6 +1298,7 @@
     },
     {
       "id": "db_109",
+      "theme": "joyful",
       "reference": "Psalm 28:7",
       "text": {
         "WEB": "Yahweh is my strength and my shield. My heart has trusted in him, and I am helped. Therefore my heart greatly rejoices. With my song I will thank him.",
@@ -1201,6 +1310,7 @@
     },
     {
       "id": "db_110",
+      "theme": "calm_peaceful",
       "reference": "2 Thessalonians 3:3",
       "text": {
         "WEB": "But the Lord is faithful, who will establish you and guard you from the evil one.",
@@ -1212,6 +1322,7 @@
     },
     {
       "id": "db_111",
+      "theme": "encouraging",
       "reference": "Psalm 33:18",
       "text": {
         "WEB": "Behold, Yahweh's eye is on those who fear him, on those who hope in his loving kindness.",
@@ -1223,6 +1334,7 @@
     },
     {
       "id": "db_112",
+      "theme": "brave_courage",
       "reference": "Habakkuk 3:19",
       "text": {
         "WEB": "Yahweh, the Lord, is my strength. He makes my feet like deer's feet, and enables me to go in high places.",
@@ -1234,6 +1346,7 @@
     },
     {
       "id": "db_113",
+      "theme": "calm_peaceful",
       "reference": "Psalm 46:7",
       "text": {
         "WEB": "Yahweh of Armies is with us. The God of Jacob is our refuge.",
@@ -1245,6 +1358,7 @@
     },
     {
       "id": "db_114",
+      "theme": "encouraging",
       "reference": "Romans 8:1",
       "text": {
         "WEB": "There is therefore now no condemnation to those who are in Christ Jesus.",
@@ -1256,6 +1370,7 @@
     },
     {
       "id": "db_115",
+      "theme": "joyful",
       "reference": "Psalm 77:11-12",
       "text": {
         "WEB": "I will remember Yah's deeds; for I will remember your wonders of old. I will also meditate on all your work, and consider your doings.",
@@ -1267,6 +1382,7 @@
     },
     {
       "id": "db_116",
+      "theme": "calm_peaceful",
       "reference": "Colossians 3:15",
       "text": {
         "WEB": "And let the peace of Christ rule in your hearts, to which also you were called in one body, and be thankful.",
@@ -1278,6 +1394,7 @@
     },
     {
       "id": "db_117",
+      "theme": "neutral",
       "reference": "Psalm 119:11",
       "text": {
         "WEB": "I have hidden your word in my heart, that I might not sin against you.",
@@ -1289,6 +1406,7 @@
     },
     {
       "id": "db_118",
+      "theme": "encouraging",
       "reference": "Ephesians 3:20-21",
       "text": {
         "WEB": "Now to him who is able to do exceedingly abundantly above all that we ask or think, according to the power that works in us, to him be the glory in the assembly and in Christ Jesus to all generations, forever and ever. Amen.",
@@ -1300,6 +1418,7 @@
     },
     {
       "id": "db_119",
+      "theme": "anxious",
       "reference": "Psalm 56:3-4",
       "text": {
         "WEB": "When I am afraid, I will put my trust in you. In God, I praise his word. In God, I put my trust. I will not be afraid. What can flesh do to me?",
@@ -1311,6 +1430,7 @@
     },
     {
       "id": "db_120",
+      "theme": "weary",
       "reference": "1 Chronicles 16:11",
       "text": {
         "WEB": "Seek Yahweh and his strength. Seek his face forever more.",
@@ -1322,6 +1442,7 @@
     },
     {
       "id": "db_121",
+      "theme": "encouraging",
       "reference": "Psalm 85:12",
       "text": {
         "WEB": "Yes, Yahweh will give that which is good. Our land will yield its increase.",
@@ -1333,6 +1454,7 @@
     },
     {
       "id": "db_122",
+      "theme": "hurting",
       "reference": "John 11:25-26",
       "text": {
         "WEB": "Jesus said to her, \"I am the resurrection and the life. He who believes in me will still live, even if he dies. Whoever lives and believes in me will never die. Do you believe this?\"",
@@ -1344,6 +1466,7 @@
     },
     {
       "id": "db_123",
+      "theme": "anxious",
       "reference": "Psalm 37:5",
       "text": {
         "WEB": "Commit your way to Yahweh. Trust also in him, and he will do this:",
@@ -1355,6 +1478,7 @@
     },
     {
       "id": "db_124",
+      "theme": "brave_courage",
       "reference": "Hebrews 4:16",
       "text": {
         "WEB": "Let's therefore draw near with boldness to the throne of grace, that we may receive mercy and may find grace for help in time of need.",
@@ -1366,6 +1490,7 @@
     },
     {
       "id": "db_125",
+      "theme": "joyful",
       "reference": "Psalm 92:1-2",
       "text": {
         "WEB": "It is a good thing to give thanks to Yahweh, to sing praises to your name, Most High, to declare your loving kindness in the morning, and your faithfulness every night.",
@@ -1377,6 +1502,7 @@
     },
     {
       "id": "db_126",
+      "theme": "encouraging",
       "reference": "Philippians 1:6",
       "text": {
         "WEB": "being confident of this very thing, that he who began a good work in you will complete it until the day of Jesus Christ.",
@@ -1388,6 +1514,7 @@
     },
     {
       "id": "db_127",
+      "theme": "joyful",
       "reference": "Psalm 8:1",
       "text": {
         "WEB": "Yahweh, our Lord, how majestic is your name in all the earth! You have set your glory above the heavens!",
@@ -1399,6 +1526,7 @@
     },
     {
       "id": "db_128",
+      "theme": "calm_peaceful",
       "reference": "Numbers 6:24-26",
       "text": {
         "WEB": "Yahweh bless you and keep you. Yahweh make his face to shine on you, and be gracious to you. Yahweh lift up his face toward you, and give you peace.",
@@ -1410,6 +1538,7 @@
     },
     {
       "id": "db_129",
+      "theme": "calm_peaceful",
       "reference": "Psalm 23:6",
       "text": {
         "WEB": "Surely goodness and loving kindness shall follow me all the days of my life, and I will dwell in Yahweh's house forever.",
@@ -1421,6 +1550,7 @@
     },
     {
       "id": "db_130",
+      "theme": "anxious",
       "reference": "Isaiah 30:15",
       "text": {
         "WEB": "For thus said the Lord Yahweh, the Holy One of Israel, \"You will be saved in returning and rest. Your strength will be in quietness and in confidence.\"",
@@ -1432,6 +1562,7 @@
     },
     {
       "id": "db_131",
+      "theme": "joyful",
       "reference": "Psalm 150:6",
       "text": {
         "WEB": "Let everything that has breath praise Yah! Praise Yah!",

@@ -149,6 +149,13 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
     await updateUserPreferences(prefs);
   }
 
+  Future<void> updateContentFilteringEnabled(bool enabled) async {
+    final prefs = state.requireValue.userPreferences.copyWith(
+      contentFilteringEnabled: enabled,
+    );
+    await updateUserPreferences(prefs);
+  }
+
   // Voice Consent Methods (Phase 3)
 
   /// Update voice consent settings.

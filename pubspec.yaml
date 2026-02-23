@@ -47,6 +47,9 @@ dependencies:
   # UUID generation for share IDs
   uuid: ^4.5.1
 
+  # Platform share sheet for sharing stories (SPEC Feature #14)
+  share_plus: ^10.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -63,6 +66,7 @@ flutter:
     - assets/stories/creative/503/
     - assets/audio/
     - assets/safety/kid_safety_blocklist.txt
+    - assets/safety/content_filter_blocklist.txt
     - assets/daily_bread/daily_bread_verses.json
 
 # App icon configuration

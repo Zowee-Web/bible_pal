@@ -85,6 +85,51 @@ For scheduled content generation, see [GENERATION_SCHEDULE.md](GENERATION_SCHEDU
 AUDIO_ENABLED=1 ./server/generate_batch_parables.sh <batch_num> <mood_index>
 ```
 
+## Nightly Batch Automation (SPEC Feature #7)
+
+The `nightly_generate.sh` script automates story generation at 2:00 AM daily,
+producing ~20 new parables per night across mixed moods.
+
+### Manual Run
+
+```bash
+# Normal run (generates ~20 stories)
+./server/nightly_generate.sh
+
+# Preview without generating
+DRY_RUN=1 ./server/nightly_generate.sh
+```
+
+### Install Scheduler (macOS)
+
+```bash
+# Copy plist to LaunchAgents
+cp server/com.biblepal.nightly-generate.plist ~/Library/LaunchAgents/
+
+# Load the scheduler (runs at 2:00 AM daily)
+launchctl load ~/Library/LaunchAgents/com.biblepal.nightly-generate.plist
+
+# Verify it's loaded
+launchctl list | grep biblepal
+```
+
+### Uninstall Scheduler
+
+```bash
+launchctl unload ~/Library/LaunchAgents/com.biblepal.nightly-generate.plist
+rm ~/Library/LaunchAgents/com.biblepal.nightly-generate.plist
+```
+
+### Logs
+
+Nightly run logs are stored in `server/logs/nightly_*.log`.
+LaunchAgent stdout/stderr goes to `server/logs/launchd_*.log`.
+
+### State Tracking
+
+The script tracks its batch number and mood offset in `server/.nightly_state`
+(gitignored) so each run continues where the last left off.
+
 ## Directory Structure
 
 ```

@@ -60,8 +60,9 @@ assets/stories/.temp_generation/**
 # Bible PAL generation quarantine (failed stories)
 assets/stories_failed/
 
-# Server generation logs and mode lock
+# Server generation logs, mode lock, and nightly state
 server/logs/
+server/.nightly_state
 
 # Temporary/superseded story generation scripts
 server/tools/fix_story_files.py

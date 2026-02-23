@@ -4,6 +4,8 @@ import 'package:bible_pal/services/parable_service.dart';
 import 'package:bible_pal/services/audio_service.dart';
 import 'package:bible_pal/services/mood_service.dart';
 import 'package:bible_pal/services/daily_bread_service.dart';
+import 'package:bible_pal/services/content_filter_service.dart';
+import 'package:bible_pal/services/share_service.dart';
 
 /// Service Providers for Riverpod
 /// These providers manage the lifecycle of singleton services
@@ -40,4 +42,14 @@ final moodServiceProvider = Provider<MoodService>((ref) {
 // DailyBreadService provider - singleton
 final dailyBreadServiceProvider = Provider<DailyBreadService>((ref) {
   return DailyBreadService();
+});
+
+// ContentFilterService provider - singleton
+final contentFilterServiceProvider = Provider<ContentFilterService>((ref) {
+  return ContentFilterService();
+});
+
+// ShareService provider - singleton
+final shareServiceProvider = Provider<ShareService>((ref) {
+  return ShareService();
 });

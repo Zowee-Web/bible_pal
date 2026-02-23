@@ -1,0 +1,93 @@
+# Bible PAL Content Filter Blocklist
+# ====================================
+# General-audience content filter for generated parables.
+# Narrower than kid-safe blocklist — adult Bible stories may legitimately
+# mention death, swords, blood, battle, etc. This list catches content
+# that is genuinely inappropriate for a faith-based storytelling app.
+#
+# Format:
+# - One pattern per line (regex-compatible)
+# - Case-insensitive matching
+# - Lines starting with # are comments
+# - Empty lines ignored
+#
+# IMPORTANT: This is NOT the kid-safe blocklist. Adult Biblical content
+# (war, death, sacrifice, blood) is allowed here. Only block content
+# that has no place in faith-based storytelling.
+#
+# Last Updated: 2026-02-22
+
+# ====================
+# 1. PROFANITY (STRONG)
+# ====================
+# Only strong profanity — mild terms like "hell" and "damn" may appear
+# legitimately in Biblical context
+\bfuck\b
+\bfucking\b
+\bfucked\b
+\bshit\b
+\bshitty\b
+\bbullshit\b
+\basshole\b
+\bmotherfucker\b
+\bcocksucker\b
+\bcunt\b
+
+# ====================
+# 2. SEXUAL CONTENT (EXPLICIT)
+# ====================
+# Block explicit sexual descriptions — not general terms
+\borgasm\b
+\bmasturbat
+\bpornograph
+\berotic\b
+\bsexual intercourse\b
+\bgenitalia\b
+\bejaculat
+
+# ====================
+# 3. GRAPHIC GORE
+# ====================
+# Block gratuitous gore — standard violence references are OK in Bible context
+\bdismember
+\beviscerat
+\bdecapitat
+\bmutilat
+\btortur(?:ed|ing|e)\b
+\bflayed\b
+\bgoriest\b
+\bentrails\b
+\bbowels spill
+
+# ====================
+# 4. HATE SPEECH / SLURS
+# ====================
+\bnigger
+\bfaggot
+\bretard\b
+\bkike\b
+\bspic\b
+\bwetback\b
+\bchink\b
+\btranny\b
+\bdyke\b
+
+# ====================
+# 5. SUBSTANCE ABUSE (GLORIFICATION)
+# ====================
+# Block glorification of hard drugs — wine/drink references are fine in Bible context
+\bcocaine\b
+\bheroin\b
+\bmethamphetamine\b
+\bcrack pipe\b
+\bshoot(?:ing)? up\b
+\bsnort(?:ing|ed)?\b
+
+# ====================
+# 6. SELF-HARM (EXPLICIT INSTRUCTIONS)
+# ====================
+# Block detailed self-harm descriptions — general mentions of suffering are OK
+\bcut (?:her|him|my|your)self\b
+\bslit (?:her|his|my|your) wrist
+\bhang (?:her|him|my|your)self\b
+\bkill (?:her|him|my|your)self\b

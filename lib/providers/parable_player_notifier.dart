@@ -136,6 +136,28 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
       // Load text (optional, for scripture panel)
       final parableText = await parableService.getParableText(parable);
 
+      // Content filtering check (SPEC Feature #24)
+      if (parableText != null) {
+        final appState = ref.read(appStateProvider).valueOrNull;
+        if (appState?.userPreferences.contentFilteringEnabled == true) {
+          final contentFilter = ref.read(contentFilterServiceProvider);
+          final scanResult = await contentFilter.scanText(parableText);
+          if (!scanResult.passed) {
+            logEvent('content_filter_blocked', {
+              'story_id': parable.storyId,
+              'violations': scanResult.violations.length,
+            }, level: LogLevel.warn);
+
+            state = state.copyWith(
+              isLoading: false,
+              errorMessage:
+                  'This story was blocked by the content filter. Please try another story.',
+            );
+            return;
+          }
+        }
+      }
+
       state = ParablePlayerState(
         currentParable: parable,
         parableText: parableText,
