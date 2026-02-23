@@ -804,6 +804,63 @@
       "storyLength": "short",
       "bibleSourceRef": "Luke 15:3-7",
       "bibleStoryKey": "lost_sheep"
+    },
+    {
+      "storyId": "story_503_weary_short_creative",
+      "title": "The Potter's Trust",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
+      "length": 5,
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "creative/503/audio_503_story_short.mp3",
+      "textFilePath": "creative/503/story_503_creative_web_short.txt",
+      "reflectionAudioPath": "creative/503/audio_503_reflection.mp3",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "short",
+      "reflectionQuestion": "Is there a creative process you've struggled with where learning to let go and embrace the unexpected has been key to success?"
+    },
+    {
+      "storyId": "story_503_weary_full_creative",
+      "title": "The Potter's Trust",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
+      "length": 15,
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "creative/503/audio_503_story_full.mp3",
+      "textFilePath": "creative/503/story_503_creative_web_full.txt",
+      "reflectionAudioPath": "creative/503/audio_503_reflection.mp3",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "full",
+      "reflectionQuestion": "Is there a creative process you've struggled with where learning to let go and embrace the unexpected has been key to success?"
+    },
+    {
+      "storyId": "story_503_weary_long_creative",
+      "title": "The Potter's Trust",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
+      "length": 20,
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "audioFilePath": "creative/503/audio_503_story_long.mp3",
+      "textFilePath": "creative/503/story_503_creative_web_long.txt",
+      "reflectionAudioPath": "creative/503/audio_503_reflection.mp3",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "long",
+      "reflectionQuestion": "Is there a creative process you've struggled with where learning to let go and embrace the unexpected has been key to success?"
     }
   ]
 }
