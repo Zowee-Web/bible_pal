@@ -861,6 +861,60 @@
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "long",
       "reflectionQuestion": "Is there a creative process you've struggled with where learning to let go and embrace the unexpected has been key to success?"
+    },
+    {
+      "storyId": "story_501_joyful_short_kid_creative",
+      "title": "The Grateful Seed",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "length": 5,
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "audioFilePath": "creative/501/audio_501_story_short.mp3",
+      "textFilePath": "creative/501/story_501_creative_web_short.txt",
+      "reflectionAudioPath": "creative/501/audio_501_reflection.mp3",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "short"
+    },
+    {
+      "storyId": "story_501_joyful_full_kid_creative",
+      "title": "The Grateful Seed",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "length": 15,
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "audioFilePath": null,
+      "textFilePath": "creative/501/story_501_creative_web_full.txt",
+      "reflectionAudioPath": "creative/501/audio_501_reflection.mp3",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "full"
+    },
+    {
+      "storyId": "story_501_joyful_long_kid_creative",
+      "title": "The Grateful Seed",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "length": 20,
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "audioFilePath": null,
+      "textFilePath": "creative/501/story_501_creative_web_long.txt",
+      "reflectionAudioPath": "creative/501/audio_501_reflection.mp3",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "long"
     }
   ]
 }
