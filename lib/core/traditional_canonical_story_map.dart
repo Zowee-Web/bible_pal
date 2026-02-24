@@ -33,6 +33,7 @@ const Map<String, String> kTraditionalCanonicalStoryByMood = {
   'calm_peaceful': 'samuel_listens', // 1 Samuel 3
   'encouraging': 'queen_esther', // Esther 4-7
   'joyful': 'lost_sheep', // Luke 15:3-7
+  'weary': 'rest_for_the_weary', // Matthew 11:28-30
 };
 
 /// Set of moods that have Traditional story coverage.
@@ -54,5 +55,4 @@ const Set<String> kMoodsWithoutTraditionalCoverage = {
   'anxious',
   'hurting',
   'neutral',
-  'weary',
 };

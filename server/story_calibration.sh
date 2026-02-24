@@ -101,9 +101,101 @@ compute_story_length() {
     fi
 }
 
+# ============================================================
+# STORY_FACTORY.md mode-specific generation ranges (LOCKED)
+# These are STRICTER than the broad bucket ranges above.
+# Used by generate_v2_batch.sh for generation-time validation.
+# ============================================================
+
+# Traditional (STORY_FACTORY.md Section 5)
+readonly TRAD_MIN_SHORT=300
+readonly TRAD_MAX_SHORT=500
+readonly TRAD_MIN_FULL=501
+readonly TRAD_MAX_FULL=900
+readonly TRAD_MIN_LONG=901
+readonly TRAD_MAX_LONG=1500
+
+# Creative Adult (STORY_FACTORY.md Section 15)
+readonly CREATIVE_ADULT_MIN_SHORT=200
+readonly CREATIVE_ADULT_MAX_SHORT=400
+readonly CREATIVE_ADULT_MIN_FULL=401
+readonly CREATIVE_ADULT_MAX_FULL=700
+readonly CREATIVE_ADULT_MIN_LONG=701
+readonly CREATIVE_ADULT_MAX_LONG=1100
+
+# Creative Kid (STORY_FACTORY.md Section 15)
+readonly CREATIVE_KID_MIN_SHORT=200
+readonly CREATIVE_KID_MAX_SHORT=500
+readonly CREATIVE_KID_MIN_FULL=501
+readonly CREATIVE_KID_MAX_FULL=900
+readonly CREATIVE_KID_MIN_LONG=901
+readonly CREATIVE_KID_MAX_LONG=1400
+
+# Mode-aware min words: get_min_words_for_mode <bucket> <mode> [is_kid]
+get_min_words_for_mode() {
+    local bucket="$1"
+    local mode="$2"
+    local is_kid="${3:-false}"
+
+    if [[ "$mode" == "traditional" ]]; then
+        case "$bucket" in
+            short) echo "$TRAD_MIN_SHORT" ;;
+            full)  echo "$TRAD_MIN_FULL" ;;
+            long)  echo "$TRAD_MIN_LONG" ;;
+            *)     echo "$TRAD_MIN_SHORT" ;;
+        esac
+    elif [[ "$is_kid" == "true" ]]; then
+        case "$bucket" in
+            short) echo "$CREATIVE_KID_MIN_SHORT" ;;
+            full)  echo "$CREATIVE_KID_MIN_FULL" ;;
+            long)  echo "$CREATIVE_KID_MIN_LONG" ;;
+            *)     echo "$CREATIVE_KID_MIN_SHORT" ;;
+        esac
+    else
+        case "$bucket" in
+            short) echo "$CREATIVE_ADULT_MIN_SHORT" ;;
+            full)  echo "$CREATIVE_ADULT_MIN_FULL" ;;
+            long)  echo "$CREATIVE_ADULT_MIN_LONG" ;;
+            *)     echo "$CREATIVE_ADULT_MIN_SHORT" ;;
+        esac
+    fi
+}
+
+# Mode-aware max words: get_max_words_for_mode <bucket> <mode> [is_kid]
+get_max_words_for_mode() {
+    local bucket="$1"
+    local mode="$2"
+    local is_kid="${3:-false}"
+
+    if [[ "$mode" == "traditional" ]]; then
+        case "$bucket" in
+            short) echo "$TRAD_MAX_SHORT" ;;
+            full)  echo "$TRAD_MAX_FULL" ;;
+            long)  echo "$TRAD_MAX_LONG" ;;
+            *)     echo "$TRAD_MAX_SHORT" ;;
+        esac
+    elif [[ "$is_kid" == "true" ]]; then
+        case "$bucket" in
+            short) echo "$CREATIVE_KID_MAX_SHORT" ;;
+            full)  echo "$CREATIVE_KID_MAX_FULL" ;;
+            long)  echo "$CREATIVE_KID_MAX_LONG" ;;
+            *)     echo "$CREATIVE_KID_MAX_SHORT" ;;
+        esac
+    else
+        case "$bucket" in
+            short) echo "$CREATIVE_ADULT_MAX_SHORT" ;;
+            full)  echo "$CREATIVE_ADULT_MAX_FULL" ;;
+            long)  echo "$CREATIVE_ADULT_MAX_LONG" ;;
+            *)     echo "$CREATIVE_ADULT_MAX_SHORT" ;;
+        esac
+    fi
+}
+
 # Export functions for use in scripts
 export -f get_min_words
 export -f get_max_words
 export -f get_min_words_for_bucket
 export -f get_max_words_for_bucket
 export -f compute_story_length
+export -f get_min_words_for_mode
+export -f get_max_words_for_mode

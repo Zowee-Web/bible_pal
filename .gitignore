@@ -79,3 +79,6 @@ audio_tests/
 # Test audio assets (not needed for production)
 assets/audio/pal_test_greeting*.mp3
 assets/audio/typewriter_click.mp3
+
+# Quarantined story batches (compliance violations)
+quarantine/

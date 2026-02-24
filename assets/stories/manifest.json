@@ -915,6 +915,195 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "long"
+    },
+    {
+      "storyId": "story_801_weary_short_traditional",
+      "title": "Come to Me, All Who Are Weary",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
+      "length": 5,
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "short",
+      "reflectionQuestion": "",
+      "audioFilePath": null,
+      "textFilePath": "traditional/801/story_801_traditional_web_short.txt",
+      "reflectionAudioPath": "traditional/801/audio_801_reflection_short.mp3",
+      "bibleSourceRef": "Matthew 11:28-30",
+      "bibleStoryKey": "rest_for_the_weary"
+    },
+    {
+      "storyId": "story_801_weary_full_traditional",
+      "title": "Come to Me, All Who Are Weary",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
+      "length": 15,
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "full",
+      "reflectionQuestion": "",
+      "audioFilePath": "traditional/801/audio_801_story_full.mp3",
+      "textFilePath": "traditional/801/story_801_traditional_web_full.txt",
+      "reflectionAudioPath": "traditional/801/audio_801_reflection_full.mp3",
+      "bibleSourceRef": "Matthew 11:28-30",
+      "bibleStoryKey": "rest_for_the_weary"
+    },
+    {
+      "storyId": "story_801_weary_long_traditional",
+      "title": "Come to Me, All Who Are Weary",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
+      "length": 20,
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "long",
+      "reflectionQuestion": "",
+      "audioFilePath": "traditional/801/audio_801_story_long.mp3",
+      "textFilePath": "traditional/801/story_801_traditional_web_long.txt",
+      "reflectionAudioPath": "traditional/801/audio_801_reflection_long.mp3",
+      "bibleSourceRef": "Matthew 11:28-30",
+      "bibleStoryKey": "rest_for_the_weary"
+    },
+    {
+      "storyId": "story_805_joyful_short_traditional",
+      "title": "Make a Joyful Noise",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "length": 5,
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "short",
+      "reflectionQuestion": "Where in your daily routine do you find opportunities to express gratitude or joy?",
+      "audioFilePath": "traditional/805/audio_805_story_short.mp3",
+      "textFilePath": "traditional/805/story_805_traditional_web_short.txt",
+      "reflectionAudioPath": "traditional/805/audio_805_reflection.mp3",
+      "bibleSourceRef": "Psalm 100",
+      "bibleStoryKey": "lost_sheep"
+    },
+    {
+      "storyId": "story_805_joyful_full_traditional",
+      "title": "Make a Joyful Noise",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "length": 15,
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "full",
+      "reflectionQuestion": "Where in your daily routine do you find opportunities to express gratitude or joy?",
+      "audioFilePath": "traditional/805/audio_805_story_full.mp3",
+      "textFilePath": "traditional/805/story_805_traditional_web_full.txt",
+      "reflectionAudioPath": "traditional/805/audio_805_reflection.mp3",
+      "bibleSourceRef": "Psalm 100",
+      "bibleStoryKey": "lost_sheep"
+    },
+    {
+      "storyId": "story_805_joyful_long_traditional",
+      "title": "Make a Joyful Noise",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "length": 20,
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "long",
+      "reflectionQuestion": "Where in your daily routine do you find opportunities to express gratitude or joy?",
+      "audioFilePath": "traditional/805/audio_805_story_long.mp3",
+      "textFilePath": "traditional/805/story_805_traditional_web_long.txt",
+      "reflectionAudioPath": "traditional/805/audio_805_reflection.mp3",
+      "bibleSourceRef": "Psalm 100",
+      "bibleStoryKey": "lost_sheep"
+    },
+    {
+      "storyId": "story_807_weary_short_kid_traditional",
+      "title": "God Watches While You Sleep",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
+      "length": 5,
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "short",
+      "reflectionQuestion": "Can you think of a time when you felt safe because someone was taking care of you?",
+      "audioFilePath": "traditional/807/audio_807_story_short.mp3",
+      "textFilePath": "traditional/807/story_807_traditional_web_short.txt",
+      "reflectionAudioPath": "traditional/807/audio_807_reflection.mp3",
+      "bibleSourceRef": "Psalm 127:1-2",
+      "bibleStoryKey": "rest_for_the_weary"
+    },
+    {
+      "storyId": "story_807_weary_full_kid_traditional",
+      "title": "God Watches While You Sleep",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
+      "length": 15,
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "full",
+      "reflectionQuestion": "Can you think of a time when you felt safe because someone was taking care of you?",
+      "audioFilePath": "traditional/807/audio_807_story_full.mp3",
+      "textFilePath": "traditional/807/story_807_traditional_web_full.txt",
+      "reflectionAudioPath": "traditional/807/audio_807_reflection.mp3",
+      "bibleSourceRef": "Psalm 127:1-2",
+      "bibleStoryKey": "rest_for_the_weary"
+    },
+    {
+      "storyId": "story_807_weary_long_kid_traditional",
+      "title": "God Watches While You Sleep",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
+      "length": 20,
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "long",
+      "reflectionQuestion": "Can you think of a time when you felt safe because someone was taking care of you?",
+      "audioFilePath": "traditional/807/audio_807_story_long.mp3",
+      "textFilePath": "traditional/807/story_807_traditional_web_long.txt",
+      "reflectionAudioPath": "traditional/807/audio_807_reflection.mp3",
+      "bibleSourceRef": "Psalm 127:1-2",
+      "bibleStoryKey": "rest_for_the_weary"
     }
   ]
 }

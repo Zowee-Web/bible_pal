@@ -68,6 +68,9 @@ flutter:
     - assets/stories/
     - assets/stories/creative/501/
     - assets/stories/creative/503/
+    - assets/stories/traditional/801/
+    - assets/stories/traditional/805/
+    - assets/stories/traditional/807/
     - assets/audio/
     - assets/safety/kid_safety_blocklist.txt
     - assets/safety/content_filter_blocklist.txt
