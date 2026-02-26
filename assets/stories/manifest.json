@@ -812,7 +812,6 @@
       "emotionalTags": [
         "overwhelmed"
       ],
-      "length": 5,
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "creative/503/audio_503_story_short.mp3",
@@ -831,7 +830,6 @@
       "emotionalTags": [
         "overwhelmed"
       ],
-      "length": 15,
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "creative/503/audio_503_story_full.mp3",
@@ -850,7 +848,6 @@
       "emotionalTags": [
         "overwhelmed"
       ],
-      "length": 20,
       "storytellingMode": "creative",
       "kidFriendly": false,
       "audioFilePath": "creative/503/audio_503_story_long.mp3",
@@ -869,7 +866,6 @@
       "emotionalTags": [
         "grateful"
       ],
-      "length": 5,
       "storytellingMode": "creative",
       "kidFriendly": true,
       "audioFilePath": "creative/501/audio_501_story_short.mp3",
@@ -887,7 +883,6 @@
       "emotionalTags": [
         "grateful"
       ],
-      "length": 15,
       "storytellingMode": "creative",
       "kidFriendly": true,
       "audioFilePath": "creative/501/audio_501_story_full.mp3",
@@ -905,7 +900,6 @@
       "emotionalTags": [
         "grateful"
       ],
-      "length": 20,
       "storytellingMode": "creative",
       "kidFriendly": true,
       "audioFilePath": "creative/501/audio_501_story_long.mp3",
@@ -923,7 +917,6 @@
       "emotionalTags": [
         "overwhelmed"
       ],
-      "length": 5,
       "storytellingMode": "traditional",
       "kidFriendly": false,
       "translationId": "WEB",
@@ -944,7 +937,6 @@
       "emotionalTags": [
         "overwhelmed"
       ],
-      "length": 15,
       "storytellingMode": "traditional",
       "kidFriendly": false,
       "translationId": "WEB",
@@ -965,7 +957,6 @@
       "emotionalTags": [
         "overwhelmed"
       ],
-      "length": 20,
       "storytellingMode": "traditional",
       "kidFriendly": false,
       "translationId": "WEB",
@@ -986,7 +977,6 @@
       "emotionalTags": [
         "grateful"
       ],
-      "length": 5,
       "storytellingMode": "traditional",
       "kidFriendly": false,
       "translationId": "WEB",
@@ -1007,7 +997,6 @@
       "emotionalTags": [
         "grateful"
       ],
-      "length": 15,
       "storytellingMode": "traditional",
       "kidFriendly": false,
       "translationId": "WEB",
@@ -1028,7 +1017,6 @@
       "emotionalTags": [
         "grateful"
       ],
-      "length": 20,
       "storytellingMode": "traditional",
       "kidFriendly": false,
       "translationId": "WEB",
@@ -1049,7 +1037,6 @@
       "emotionalTags": [
         "overwhelmed"
       ],
-      "length": 5,
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "translationId": "WEB",
@@ -1070,7 +1057,6 @@
       "emotionalTags": [
         "overwhelmed"
       ],
-      "length": 15,
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "translationId": "WEB",
@@ -1091,7 +1077,6 @@
       "emotionalTags": [
         "overwhelmed"
       ],
-      "length": 20,
       "storytellingMode": "traditional",
       "kidFriendly": true,
       "translationId": "WEB",
@@ -1104,6 +1089,1109 @@
       "reflectionAudioPath": "traditional/807/audio_807_reflection.mp3",
       "bibleSourceRef": "Psalm 127:1-2",
       "bibleStoryKey": "rest_for_the_weary"
+    },
+    {
+      "storyId": "story_502_joyful_short_kid_creative",
+      "title": "The Village Garden",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "short",
+      "audioFilePath": "creative/502/audio_502_story_short.mp3",
+      "textFilePath": "creative/502/story_502_creative_web_short.txt",
+      "reflectionAudioPath": "creative/502/audio_502_reflection.mp3"
+    },
+    {
+      "storyId": "story_502_joyful_full_kid_creative",
+      "title": "The Village Garden",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "full",
+      "audioFilePath": "creative/502/audio_502_story_full.mp3",
+      "textFilePath": "creative/502/story_502_creative_web_full.txt",
+      "reflectionAudioPath": "creative/502/audio_502_reflection.mp3"
+    },
+    {
+      "storyId": "story_502_joyful_long_kid_creative",
+      "title": "The Village Garden",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "storyLength": "long",
+      "audioFilePath": "creative/502/audio_502_story_long.mp3",
+      "textFilePath": "creative/502/story_502_creative_web_long.txt",
+      "reflectionAudioPath": "creative/502/audio_502_reflection.mp3"
+    },
+    {
+      "storyId": "story_504_joyful_short_creative",
+      "title": "Journey's Light",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "storyLength": "short",
+      "audioFilePath": "creative/504/audio_504_story_short.mp3",
+      "textFilePath": "creative/504/story_504_creative_web_short.txt",
+      "reflectionAudioPath": "creative/504/audio_504_reflection.mp3",
+      "reflectionQuestion": "What moment today filled you with unexpected gratitude?"
+    },
+    {
+      "storyId": "story_504_joyful_full_creative",
+      "title": "Journey's Light",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "storyLength": "full",
+      "audioFilePath": "creative/504/audio_504_story_full.mp3",
+      "textFilePath": "creative/504/story_504_creative_web_full.txt",
+      "reflectionAudioPath": "creative/504/audio_504_reflection.mp3",
+      "reflectionQuestion": "What moment today filled you with unexpected gratitude?"
+    },
+    {
+      "storyId": "story_504_joyful_long_creative",
+      "title": "Journey's Light",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "storyLength": "long",
+      "audioFilePath": "creative/504/audio_504_story_long.mp3",
+      "textFilePath": "creative/504/story_504_creative_web_long.txt",
+      "reflectionAudioPath": "creative/504/audio_504_reflection.mp3",
+      "reflectionQuestion": "What moment today filled you with unexpected gratitude?"
+    },
+    {
+      "storyId": "story_505_anxious_short_creative",
+      "title": "Faith's Embrace",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
+      "storyLength": "short",
+      "audioFilePath": "creative/505/audio_505_story_short.mp3",
+      "textFilePath": "creative/505/story_505_creative_web_short.txt",
+      "reflectionAudioPath": "creative/505/audio_505_reflection.mp3",
+      "reflectionQuestion": "What feels most uncertain in your life right now?"
+    },
+    {
+      "storyId": "story_505_anxious_full_creative",
+      "title": "Faith's Embrace",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
+      "storyLength": "full",
+      "audioFilePath": "creative/505/audio_505_story_full.mp3",
+      "textFilePath": "creative/505/story_505_creative_web_full.txt",
+      "reflectionAudioPath": "creative/505/audio_505_reflection.mp3",
+      "reflectionQuestion": "What feels most uncertain in your life right now?"
+    },
+    {
+      "storyId": "story_505_anxious_long_creative",
+      "title": "Faith's Embrace",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
+      "storyLength": "long",
+      "audioFilePath": "creative/505/audio_505_story_long.mp3",
+      "textFilePath": "creative/505/story_505_creative_web_long.txt",
+      "reflectionAudioPath": "creative/505/audio_505_reflection.mp3",
+      "reflectionQuestion": "What feels most uncertain in your life right now?"
+    },
+    {
+      "storyId": "story_506_hurting_short_creative",
+      "title": "Renewed Faith",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "grief"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "short",
+      "audioFilePath": "creative/506/audio_506_story_short.mp3",
+      "textFilePath": "creative/506/story_506_creative_web_short.txt",
+      "reflectionAudioPath": "creative/506/audio_506_reflection.mp3",
+      "reflectionQuestion": "Where do you feel the weight of pain or loss today?"
+    },
+    {
+      "storyId": "story_506_hurting_full_creative",
+      "title": "Renewed Faith",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "grief"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "full",
+      "audioFilePath": "creative/506/audio_506_story_full.mp3",
+      "textFilePath": "creative/506/story_506_creative_web_full.txt",
+      "reflectionAudioPath": "creative/506/audio_506_reflection.mp3",
+      "reflectionQuestion": "Where do you feel the weight of pain or loss today?"
+    },
+    {
+      "storyId": "story_506_hurting_long_creative",
+      "title": "Renewed Faith",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "grief"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "long",
+      "audioFilePath": "creative/506/audio_506_story_long.mp3",
+      "textFilePath": "creative/506/story_506_creative_web_long.txt",
+      "reflectionAudioPath": "creative/506/audio_506_reflection.mp3",
+      "reflectionQuestion": "Where do you feel the weight of pain or loss today?"
+    },
+    {
+      "storyId": "story_507_neutral_short_creative",
+      "title": "Seeds of Hope",
+      "mood": "neutral",
+      "emotionalTags": [
+        "waiting"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "storyLength": "short",
+      "audioFilePath": "creative/507/audio_507_story_short.mp3",
+      "textFilePath": "creative/507/story_507_creative_web_short.txt",
+      "reflectionAudioPath": "creative/507/audio_507_reflection.mp3",
+      "reflectionQuestion": "What small thing might you notice differently tomorrow?"
+    },
+    {
+      "storyId": "story_507_neutral_full_creative",
+      "title": "Seeds of Hope",
+      "mood": "neutral",
+      "emotionalTags": [
+        "waiting"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "storyLength": "full",
+      "audioFilePath": "creative/507/audio_507_story_full.mp3",
+      "textFilePath": "creative/507/story_507_creative_web_full.txt",
+      "reflectionAudioPath": "creative/507/audio_507_reflection.mp3",
+      "reflectionQuestion": "What small thing might you notice differently tomorrow?"
+    },
+    {
+      "storyId": "story_507_neutral_long_creative",
+      "title": "Seeds of Hope",
+      "mood": "neutral",
+      "emotionalTags": [
+        "waiting"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "storyLength": "long",
+      "audioFilePath": "creative/507/audio_507_story_long.mp3",
+      "textFilePath": "creative/507/story_507_creative_web_long.txt",
+      "reflectionAudioPath": "creative/507/audio_507_reflection.mp3",
+      "reflectionQuestion": "What small thing might you notice differently tomorrow?"
+    },
+    {
+      "storyId": "story_508_weary_short_kid_creative",
+      "title": "Hope's Bloom",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "storyLength": "short",
+      "audioFilePath": "creative/508/audio_508_story_short.mp3",
+      "textFilePath": "creative/508/story_508_creative_web_short.txt",
+      "reflectionAudioPath": "creative/508/audio_508_reflection.mp3"
+    },
+    {
+      "storyId": "story_508_weary_full_kid_creative",
+      "title": "Hope's Bloom",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "storyLength": "full",
+      "audioFilePath": "creative/508/audio_508_story_full.mp3",
+      "textFilePath": "creative/508/story_508_creative_web_full.txt",
+      "reflectionAudioPath": "creative/508/audio_508_reflection.mp3"
+    },
+    {
+      "storyId": "story_508_weary_long_kid_creative",
+      "title": "Hope's Bloom",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "storyLength": "long",
+      "audioFilePath": "creative/508/audio_508_story_long.mp3",
+      "textFilePath": "creative/508/story_508_creative_web_long.txt",
+      "reflectionAudioPath": "creative/508/audio_508_reflection.mp3"
+    },
+    {
+      "storyId": "story_509_anxious_short_kid_creative",
+      "title": "Hope's Bloom",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "short",
+      "audioFilePath": "creative/509/audio_509_story_short.mp3",
+      "textFilePath": "creative/509/story_509_creative_web_short.txt",
+      "reflectionAudioPath": "creative/509/audio_509_reflection.mp3"
+    },
+    {
+      "storyId": "story_509_anxious_full_kid_creative",
+      "title": "Hope's Bloom",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "full",
+      "audioFilePath": "creative/509/audio_509_story_full.mp3",
+      "textFilePath": "creative/509/story_509_creative_web_full.txt",
+      "reflectionAudioPath": "creative/509/audio_509_reflection.mp3"
+    },
+    {
+      "storyId": "story_509_anxious_long_kid_creative",
+      "title": "Hope's Bloom",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "long",
+      "audioFilePath": "creative/509/audio_509_story_long.mp3",
+      "textFilePath": "creative/509/story_509_creative_web_long.txt",
+      "reflectionAudioPath": "creative/509/audio_509_reflection.mp3"
+    },
+    {
+      "storyId": "story_510_hurting_short_kid_creative",
+      "title": "Rooted Dreams",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "grief"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "short",
+      "audioFilePath": "creative/510/audio_510_story_short.mp3",
+      "textFilePath": "creative/510/story_510_creative_web_short.txt",
+      "reflectionAudioPath": "creative/510/audio_510_reflection.mp3"
+    },
+    {
+      "storyId": "story_510_hurting_full_kid_creative",
+      "title": "Rooted Dreams",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "grief"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "full",
+      "audioFilePath": "creative/510/audio_510_story_full.mp3",
+      "textFilePath": "creative/510/story_510_creative_web_full.txt",
+      "reflectionAudioPath": "creative/510/audio_510_reflection.mp3"
+    },
+    {
+      "storyId": "story_510_hurting_long_kid_creative",
+      "title": "Rooted Dreams",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "grief"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "long",
+      "audioFilePath": "creative/510/audio_510_story_long.mp3",
+      "textFilePath": "creative/510/story_510_creative_web_long.txt",
+      "reflectionAudioPath": "creative/510/audio_510_reflection.mp3"
+    },
+    {
+      "storyId": "story_511_neutral_short_kid_creative",
+      "title": "Flame of Love",
+      "mood": "neutral",
+      "emotionalTags": [
+        "waiting"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "storyLength": "short",
+      "audioFilePath": "creative/511/audio_511_story_short.mp3",
+      "textFilePath": "creative/511/story_511_creative_web_short.txt",
+      "reflectionAudioPath": "creative/511/audio_511_reflection.mp3"
+    },
+    {
+      "storyId": "story_511_neutral_full_kid_creative",
+      "title": "Flame of Love",
+      "mood": "neutral",
+      "emotionalTags": [
+        "waiting"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "storyLength": "full",
+      "audioFilePath": "creative/511/audio_511_story_full.mp3",
+      "textFilePath": "creative/511/story_511_creative_web_full.txt",
+      "reflectionAudioPath": "creative/511/audio_511_reflection.mp3"
+    },
+    {
+      "storyId": "story_511_neutral_long_kid_creative",
+      "title": "Flame of Love",
+      "mood": "neutral",
+      "emotionalTags": [
+        "waiting"
+      ],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "storyLength": "long",
+      "audioFilePath": "creative/511/audio_511_story_long.mp3",
+      "textFilePath": "creative/511/story_511_creative_web_long.txt",
+      "reflectionAudioPath": "creative/511/audio_511_reflection.mp3"
+    },
+    {
+      "storyId": "story_802_calm_peaceful_short_traditional",
+      "title": "The Lord Is My Shepherd",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "anxious"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "short",
+      "audioFilePath": "traditional/802/audio_802_story_short.mp3",
+      "textFilePath": "traditional/802/story_802_traditional_kjv_short.txt",
+      "reflectionAudioPath": "traditional/802/audio_802_reflection.mp3",
+      "bibleSourceRef": "Psalm 23",
+      "bibleStoryKey": "samuel_listens"
+    },
+    {
+      "storyId": "story_802_calm_peaceful_full_traditional",
+      "title": "The Lord Is My Shepherd",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "anxious"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "full",
+      "audioFilePath": "traditional/802/audio_802_story_full.mp3",
+      "textFilePath": "traditional/802/story_802_traditional_kjv_full.txt",
+      "reflectionAudioPath": "traditional/802/audio_802_reflection.mp3",
+      "bibleSourceRef": "Psalm 23",
+      "bibleStoryKey": "samuel_listens"
+    },
+    {
+      "storyId": "story_802_calm_peaceful_long_traditional",
+      "title": "The Lord Is My Shepherd",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "anxious"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "long",
+      "audioFilePath": "traditional/802/audio_802_story_long.mp3",
+      "textFilePath": "traditional/802/story_802_traditional_kjv_long.txt",
+      "reflectionAudioPath": "traditional/802/audio_802_reflection.mp3",
+      "bibleSourceRef": "Psalm 23",
+      "bibleStoryKey": "samuel_listens"
+    },
+    {
+      "storyId": "story_803_encouraging_short_traditional",
+      "title": "God Is Our Refuge",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "hopeless"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "short",
+      "audioFilePath": "traditional/803/audio_803_story_short.mp3",
+      "textFilePath": "traditional/803/story_803_traditional_kjv_short.txt",
+      "reflectionAudioPath": "traditional/803/audio_803_reflection.mp3",
+      "bibleSourceRef": "Psalm 46",
+      "bibleStoryKey": "queen_esther"
+    },
+    {
+      "storyId": "story_803_encouraging_full_traditional",
+      "title": "God Is Our Refuge",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "hopeless"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "full",
+      "audioFilePath": "traditional/803/audio_803_story_full.mp3",
+      "textFilePath": "traditional/803/story_803_traditional_kjv_full.txt",
+      "reflectionAudioPath": "traditional/803/audio_803_reflection.mp3",
+      "bibleSourceRef": "Psalm 46",
+      "bibleStoryKey": "queen_esther"
+    },
+    {
+      "storyId": "story_803_encouraging_long_traditional",
+      "title": "God Is Our Refuge",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "hopeless"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "long",
+      "audioFilePath": "traditional/803/audio_803_story_long.mp3",
+      "textFilePath": "traditional/803/story_803_traditional_kjv_long.txt",
+      "reflectionAudioPath": "traditional/803/audio_803_reflection.mp3",
+      "bibleSourceRef": "Psalm 46",
+      "bibleStoryKey": "queen_esther"
+    },
+    {
+      "storyId": "story_804_joyful_short_traditional",
+      "title": "All Things Work Together",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "short",
+      "audioFilePath": "traditional/804/audio_804_story_short.mp3",
+      "textFilePath": "traditional/804/story_804_traditional_web_short.txt",
+      "reflectionAudioPath": "traditional/804/audio_804_reflection.mp3",
+      "bibleSourceRef": "Romans 8:28",
+      "bibleStoryKey": "lost_sheep"
+    },
+    {
+      "storyId": "story_804_joyful_full_traditional",
+      "title": "All Things Work Together",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "full",
+      "audioFilePath": "traditional/804/audio_804_story_full.mp3",
+      "textFilePath": "traditional/804/story_804_traditional_web_full.txt",
+      "reflectionAudioPath": "traditional/804/audio_804_reflection.mp3",
+      "bibleSourceRef": "Romans 8:28",
+      "bibleStoryKey": "lost_sheep"
+    },
+    {
+      "storyId": "story_804_joyful_long_traditional",
+      "title": "All Things Work Together",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "long",
+      "audioFilePath": "traditional/804/audio_804_story_long.mp3",
+      "textFilePath": "traditional/804/story_804_traditional_web_long.txt",
+      "reflectionAudioPath": "traditional/804/audio_804_reflection.mp3",
+      "bibleSourceRef": "Romans 8:28",
+      "bibleStoryKey": "lost_sheep"
+    },
+    {
+      "storyId": "story_806_weary_short_traditional",
+      "title": "Those Who Wait on the Lord",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "short",
+      "audioFilePath": "traditional/806/audio_806_story_short.mp3",
+      "textFilePath": "traditional/806/story_806_traditional_web_short.txt",
+      "reflectionAudioPath": "traditional/806/audio_806_reflection.mp3",
+      "bibleSourceRef": "Isaiah 40:28-31",
+      "bibleStoryKey": "rest_for_the_weary",
+      "reflectionQuestion": "Where in your life have you found renewed strength when you were feeling worn out?"
+    },
+    {
+      "storyId": "story_806_weary_full_traditional",
+      "title": "Those Who Wait on the Lord",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "full",
+      "audioFilePath": "traditional/806/audio_806_story_full.mp3",
+      "textFilePath": "traditional/806/story_806_traditional_web_full.txt",
+      "reflectionAudioPath": "traditional/806/audio_806_reflection.mp3",
+      "bibleSourceRef": "Isaiah 40:28-31",
+      "bibleStoryKey": "rest_for_the_weary",
+      "reflectionQuestion": "Where in your life have you found renewed strength when you were feeling worn out?"
+    },
+    {
+      "storyId": "story_806_weary_long_traditional",
+      "title": "Those Who Wait on the Lord",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "long",
+      "audioFilePath": "traditional/806/audio_806_story_long.mp3",
+      "textFilePath": "traditional/806/story_806_traditional_web_long.txt",
+      "reflectionAudioPath": "traditional/806/audio_806_reflection.mp3",
+      "bibleSourceRef": "Isaiah 40:28-31",
+      "bibleStoryKey": "rest_for_the_weary",
+      "reflectionQuestion": "Where in your life have you found renewed strength when you were feeling worn out?"
+    },
+    {
+      "storyId": "story_809_anxious_short_traditional",
+      "title": "Calm Amidst Chaos",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "short",
+      "audioFilePath": "traditional/809/audio_809_story_short.mp3",
+      "textFilePath": "traditional/809/story_809_traditional_web_short.txt",
+      "reflectionAudioPath": "traditional/809/audio_809_reflection.mp3",
+      "bibleSourceRef": "Mark 4:35-41",
+      "bibleStoryKey": "jesus_calms_storm",
+      "reflectionQuestion": "What feels most uncertain in your life right now?"
+    },
+    {
+      "storyId": "story_809_anxious_full_traditional",
+      "title": "Calm Amidst Chaos",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "full",
+      "audioFilePath": "traditional/809/audio_809_story_full.mp3",
+      "textFilePath": "traditional/809/story_809_traditional_web_full.txt",
+      "reflectionAudioPath": "traditional/809/audio_809_reflection.mp3",
+      "bibleSourceRef": "Mark 4:35-41",
+      "bibleStoryKey": "jesus_calms_storm",
+      "reflectionQuestion": "What feels most uncertain in your life right now?"
+    },
+    {
+      "storyId": "story_809_anxious_long_traditional",
+      "title": "Calm Amidst Chaos",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "long",
+      "audioFilePath": "traditional/809/audio_809_story_long.mp3",
+      "textFilePath": "traditional/809/story_809_traditional_web_long.txt",
+      "reflectionAudioPath": "traditional/809/audio_809_reflection.mp3",
+      "bibleSourceRef": "Mark 4:35-41",
+      "bibleStoryKey": "jesus_calms_storm",
+      "reflectionQuestion": "What feels most uncertain in your life right now?"
+    },
+    {
+      "storyId": "story_810_hurting_short_traditional",
+      "title": "Hope's Thirst",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "grief"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "storyLength": "short",
+      "audioFilePath": "traditional/810/audio_810_story_short.mp3",
+      "textFilePath": "traditional/810/story_810_traditional_web_short.txt",
+      "reflectionAudioPath": "traditional/810/audio_810_reflection.mp3",
+      "bibleSourceRef": "John 4:4-26",
+      "bibleStoryKey": "woman_at_well",
+      "reflectionQuestion": "Where do you feel the weight of pain or loss today?"
+    },
+    {
+      "storyId": "story_810_hurting_full_traditional",
+      "title": "Hope's Thirst",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "grief"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "storyLength": "full",
+      "audioFilePath": "traditional/810/audio_810_story_full.mp3",
+      "textFilePath": "traditional/810/story_810_traditional_web_full.txt",
+      "reflectionAudioPath": "traditional/810/audio_810_reflection.mp3",
+      "bibleSourceRef": "John 4:4-26",
+      "bibleStoryKey": "woman_at_well",
+      "reflectionQuestion": "Where do you feel the weight of pain or loss today?"
+    },
+    {
+      "storyId": "story_810_hurting_long_traditional",
+      "title": "Hope's Thirst",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "grief"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "storyLength": "long",
+      "audioFilePath": "traditional/810/audio_810_story_long.mp3",
+      "textFilePath": "traditional/810/story_810_traditional_web_long.txt",
+      "reflectionAudioPath": "traditional/810/audio_810_reflection.mp3",
+      "bibleSourceRef": "John 4:4-26",
+      "bibleStoryKey": "woman_at_well",
+      "reflectionQuestion": "Where do you feel the weight of pain or loss today?"
+    },
+    {
+      "storyId": "story_811_neutral_short_traditional",
+      "title": "Echoes of Love",
+      "mood": "neutral",
+      "emotionalTags": [
+        "waiting"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PETER_BOLD",
+      "storyLength": "short",
+      "audioFilePath": "traditional/811/audio_811_story_short.mp3",
+      "textFilePath": "traditional/811/story_811_traditional_web_short.txt",
+      "reflectionAudioPath": "traditional/811/audio_811_reflection.mp3",
+      "bibleSourceRef": "Luke 24:13-35",
+      "bibleStoryKey": "road_to_emmaus",
+      "reflectionQuestion": "What small thing might you notice differently tomorrow?"
+    },
+    {
+      "storyId": "story_811_neutral_full_traditional",
+      "title": "Echoes of Love",
+      "mood": "neutral",
+      "emotionalTags": [
+        "waiting"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PETER_BOLD",
+      "storyLength": "full",
+      "audioFilePath": "traditional/811/audio_811_story_full.mp3",
+      "textFilePath": "traditional/811/story_811_traditional_web_full.txt",
+      "reflectionAudioPath": "traditional/811/audio_811_reflection.mp3",
+      "bibleSourceRef": "Luke 24:13-35",
+      "bibleStoryKey": "road_to_emmaus",
+      "reflectionQuestion": "What small thing might you notice differently tomorrow?"
+    },
+    {
+      "storyId": "story_811_neutral_long_traditional",
+      "title": "Echoes of Love",
+      "mood": "neutral",
+      "emotionalTags": [
+        "waiting"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PETER_BOLD",
+      "storyLength": "long",
+      "audioFilePath": "traditional/811/audio_811_story_long.mp3",
+      "textFilePath": "traditional/811/story_811_traditional_web_long.txt",
+      "reflectionAudioPath": "traditional/811/audio_811_reflection.mp3",
+      "bibleSourceRef": "Luke 24:13-35",
+      "bibleStoryKey": "road_to_emmaus",
+      "reflectionQuestion": "What small thing might you notice differently tomorrow?"
+    },
+    {
+      "storyId": "story_812_joyful_full_kid_traditional",
+      "title": "Compassion's Embrace",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "storyLength": "full",
+      "audioFilePath": "traditional/812/audio_812_story_full.mp3",
+      "textFilePath": "traditional/812/story_812_traditional_web_full.txt",
+      "reflectionAudioPath": "traditional/812/audio_812_reflection.mp3",
+      "bibleSourceRef": "Luke 15:3-7",
+      "bibleStoryKey": "lost_sheep"
+    },
+    {
+      "storyId": "story_812_joyful_long_kid_traditional",
+      "title": "Compassion's Embrace",
+      "mood": "joyful",
+      "emotionalTags": [
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "storyLength": "long",
+      "audioFilePath": "traditional/812/audio_812_story_long.mp3",
+      "textFilePath": "traditional/812/story_812_traditional_web_long.txt",
+      "reflectionAudioPath": "traditional/812/audio_812_reflection.mp3",
+      "bibleSourceRef": "Luke 15:3-7",
+      "bibleStoryKey": "lost_sheep"
+    },
+    {
+      "storyId": "story_813_anxious_short_kid_traditional",
+      "title": "Peace Amidst Storm",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "storyLength": "short",
+      "audioFilePath": "traditional/813/audio_813_story_short.mp3",
+      "textFilePath": "traditional/813/story_813_traditional_web_short.txt",
+      "reflectionAudioPath": "traditional/813/audio_813_reflection.mp3",
+      "bibleSourceRef": "Mark 4:35-41",
+      "bibleStoryKey": "jesus_calms_storm"
+    },
+    {
+      "storyId": "story_813_anxious_full_kid_traditional",
+      "title": "Peace Amidst Storm",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "storyLength": "full",
+      "audioFilePath": "traditional/813/audio_813_story_full.mp3",
+      "textFilePath": "traditional/813/story_813_traditional_web_full.txt",
+      "reflectionAudioPath": "traditional/813/audio_813_reflection.mp3",
+      "bibleSourceRef": "Mark 4:35-41",
+      "bibleStoryKey": "jesus_calms_storm"
+    },
+    {
+      "storyId": "story_813_anxious_long_kid_traditional",
+      "title": "Peace Amidst Storm",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "storyLength": "long",
+      "audioFilePath": "traditional/813/audio_813_story_long.mp3",
+      "textFilePath": "traditional/813/story_813_traditional_web_long.txt",
+      "reflectionAudioPath": "traditional/813/audio_813_reflection.mp3",
+      "bibleSourceRef": "Mark 4:35-41",
+      "bibleStoryKey": "jesus_calms_storm"
+    },
+    {
+      "storyId": "story_814_hurting_short_kid_traditional",
+      "title": "Hope's Embrace",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "grief"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "storyLength": "short",
+      "audioFilePath": "traditional/814/audio_814_story_short.mp3",
+      "textFilePath": "traditional/814/story_814_traditional_web_short.txt",
+      "reflectionAudioPath": "traditional/814/audio_814_reflection.mp3",
+      "bibleSourceRef": "John 4:4-26",
+      "bibleStoryKey": "woman_at_well"
+    },
+    {
+      "storyId": "story_814_hurting_full_kid_traditional",
+      "title": "Hope's Embrace",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "grief"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "storyLength": "full",
+      "audioFilePath": "traditional/814/audio_814_story_full.mp3",
+      "textFilePath": "traditional/814/story_814_traditional_web_full.txt",
+      "reflectionAudioPath": "traditional/814/audio_814_reflection.mp3",
+      "bibleSourceRef": "John 4:4-26",
+      "bibleStoryKey": "woman_at_well"
+    },
+    {
+      "storyId": "story_814_hurting_long_kid_traditional",
+      "title": "Hope's Embrace",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "grief"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "storyLength": "long",
+      "audioFilePath": "traditional/814/audio_814_story_long.mp3",
+      "textFilePath": "traditional/814/story_814_traditional_web_long.txt",
+      "reflectionAudioPath": "traditional/814/audio_814_reflection.mp3",
+      "bibleSourceRef": "John 4:4-26",
+      "bibleStoryKey": "woman_at_well"
+    },
+    {
+      "storyId": "story_815_neutral_short_kid_traditional",
+      "title": "Resurrection Dawn",
+      "mood": "neutral",
+      "emotionalTags": [
+        "waiting"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "short",
+      "audioFilePath": "traditional/815/audio_815_story_short.mp3",
+      "textFilePath": "traditional/815/story_815_traditional_web_short.txt",
+      "reflectionAudioPath": "traditional/815/audio_815_reflection.mp3",
+      "bibleSourceRef": "Luke 24:13-35",
+      "bibleStoryKey": "road_to_emmaus"
+    },
+    {
+      "storyId": "story_815_neutral_full_kid_traditional",
+      "title": "Resurrection Dawn",
+      "mood": "neutral",
+      "emotionalTags": [
+        "waiting"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "full",
+      "audioFilePath": "traditional/815/audio_815_story_full.mp3",
+      "textFilePath": "traditional/815/story_815_traditional_web_full.txt",
+      "reflectionAudioPath": "traditional/815/audio_815_reflection.mp3",
+      "bibleSourceRef": "Luke 24:13-35",
+      "bibleStoryKey": "road_to_emmaus"
+    },
+    {
+      "storyId": "story_815_neutral_long_kid_traditional",
+      "title": "Resurrection Dawn",
+      "mood": "neutral",
+      "emotionalTags": [
+        "waiting"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "long",
+      "audioFilePath": "traditional/815/audio_815_story_long.mp3",
+      "textFilePath": "traditional/815/story_815_traditional_web_long.txt",
+      "reflectionAudioPath": "traditional/815/audio_815_reflection.mp3",
+      "bibleSourceRef": "Luke 24:13-35",
+      "bibleStoryKey": "road_to_emmaus"
     }
   ]
 }

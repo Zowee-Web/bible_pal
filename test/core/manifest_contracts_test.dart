@@ -251,6 +251,27 @@ void main() {
     });
   });
 
+  group('CRITICAL: bucket-first invariants', () {
+    test('CRITICAL: all entries must have storyLength (bucket-first)', () {
+      final missing = parables.where((p) => p['storyLength'] == null).toList();
+      final ids = missing.map((p) => p['storyId']).toList();
+      expect(missing, isEmpty,
+          reason: 'All entries must have storyLength. Missing: $ids');
+    });
+
+    test(
+        'CRITICAL: v2 entries must not contain minute-based length field', () {
+      final v2WithLength = parables.where((p) {
+        final id = p['storyId'] as String;
+        return id.startsWith('story_') && p.containsKey('length');
+      }).toList();
+      final ids = v2WithLength.map((p) => p['storyId']).toList();
+      expect(v2WithLength, isEmpty,
+          reason:
+              'v2 entries (story_*) must not have minute-based "length" field. Found: $ids');
+    });
+  });
+
   group('Manifest validation summary', () {
     test('print manifest statistics', () {
       final totalStories = parables.length;

@@ -26,7 +26,7 @@ class Favorite {
       storyId: parable.storyId,
       title: parable.title,
       mood: parable.mood,
-      length: parable.length,
+      length: parable.length ?? 0, // 0 means omitted; bucket-first uses storyLength
       scriptureSources: parable.scriptureSources,
       dateSaved: DateTime.now(),
     );

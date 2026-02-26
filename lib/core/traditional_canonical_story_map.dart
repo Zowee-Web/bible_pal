@@ -29,10 +29,13 @@
 /// for each mood in Traditional mode. All Traditional stories for a given
 /// mood MUST use the bibleStoryKey specified here.
 const Map<String, String> kTraditionalCanonicalStoryByMood = {
+  'anxious': 'jesus_calms_storm', // Mark 4:35-41
   'brave_courage': 'daniel_lions_den', // Daniel 6
   'calm_peaceful': 'samuel_listens', // 1 Samuel 3
   'encouraging': 'queen_esther', // Esther 4-7
+  'hurting': 'woman_at_well', // John 4:4-26
   'joyful': 'lost_sheep', // Luke 15:3-7
+  'neutral': 'road_to_emmaus', // Luke 24:13-35
   'weary': 'rest_for_the_weary', // Matthew 11:28-30
 };
 
@@ -51,8 +54,4 @@ Set<String> get kTraditionalCoveredMoods =>
 /// 2. Generate the Traditional story with that bibleStoryKey
 /// 3. Update manifest.json
 /// 4. Run tests to verify alignment
-const Set<String> kMoodsWithoutTraditionalCoverage = {
-  'anxious',
-  'hurting',
-  'neutral',
-};
+const Set<String> kMoodsWithoutTraditionalCoverage = {};

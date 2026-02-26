@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 2,
+  "storyId": 815,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "languageStyle": "WEB",
+  "mood": "neutral",
+  "scriptureAnchor": "Luke 24:13-35",
+  "lengths": ["short", "full", "long"],
+  "voiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "voiceKeys": {
+    "short": "VOICE_BARNABAS_ENCOURAGER",
+    "full": "VOICE_BARNABAS_ENCOURAGER",
+    "long": "VOICE_BARNABAS_ENCOURAGER",
+    "reflection": "VOICE_BARNABAS_ENCOURAGER"
+  },
+  "createdByModel": "gemma:7b",
+  "generationBatch": "PAL_V2_BATCH_44",
+  "reflectionQuestion": "",
+  "files": {
+    "short": {
+      "storyText": "story_815_traditional_web_short.txt",
+      "storyAudio": "audio_815_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_815_traditional_web_full.txt",
+      "storyAudio": "audio_815_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_815_traditional_web_long.txt",
+      "storyAudio": "audio_815_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_815_traditional_web.txt",
+      "reflectionAudio": "audio_815_reflection.mp3"
+    }
+  }
+}

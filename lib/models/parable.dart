@@ -9,8 +9,8 @@ class Parable {
   final String title; // AI-generated, can be edited by user
   final String mood; // e.g., 'joyful', 'anxious', 'weary', 'hurting', 'neutral'
   final List<String> emotionalTags;
-  final int
-      length; // 5, 10, 15, or 20 minutes (legacy, for asset compatibility)
+  final int?
+      length; // Nullable: null means bucket-first entry (use storyLength instead)
   final String?
       storyLength; // Primary: 'short', 'full', or 'long' (LOCKED SPEC)
   final String storytellingMode; // 'creative' or 'traditional'
@@ -38,7 +38,7 @@ class Parable {
     required this.title,
     required this.mood,
     this.emotionalTags = const [],
-    required this.length,
+    this.length,
     this.storyLength, // Optional for backwards compat; uses lengthBucket getter if missing
     required this.storytellingMode,
     this.translationId = 'WEB', // Default to WEB for backwards compatibility
@@ -74,7 +74,7 @@ class Parable {
               ?.map((e) => e as String)
               .toList() ??
           [],
-      length: json['length'] as int,
+      length: json['length'] as int?,
       storyLength:
           json['storyLength'] as String?, // Primary field for filtering
       storytellingMode: json['storytellingMode'] as String,
@@ -108,7 +108,7 @@ class Parable {
       'title': title,
       'mood': mood,
       'emotionalTags': emotionalTags,
-      'length': length,
+      if (length != null) 'length': length,
       'storyLength':
           storyLength ?? lengthBucket.name, // Always include storyLength
       'storytellingMode': storytellingMode,
@@ -142,7 +142,7 @@ class Parable {
       return StoryLengthBucket.fromJson(storyLength!);
     }
     // Fallback to legacy minute-based mapping
-    return lengthMinutesToBucket(length);
+    return lengthMinutesToBucket(length ?? 0);
   }
 
   /// Create a copy with modified fields (for title editing, etc.)

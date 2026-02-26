@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 2,
+  "storyId": 814,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "languageStyle": "WEB",
+  "mood": "hurting",
+  "scriptureAnchor": "John 4:4-26",
+  "lengths": ["short", "full", "long"],
+  "voiceKey": "VOICE_MARTHA_CARING",
+  "voiceKeys": {
+    "short": "VOICE_MARTHA_CARING",
+    "full": "VOICE_MARTHA_CARING",
+    "long": "VOICE_MARTHA_CARING",
+    "reflection": "VOICE_MARTHA_CARING"
+  },
+  "createdByModel": "gemma:7b",
+  "generationBatch": "PAL_V2_BATCH_44",
+  "reflectionQuestion": "",
+  "files": {
+    "short": {
+      "storyText": "story_814_traditional_web_short.txt",
+      "storyAudio": "audio_814_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_814_traditional_web_full.txt",
+      "storyAudio": "audio_814_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_814_traditional_web_long.txt",
+      "storyAudio": "audio_814_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_814_traditional_web.txt",
+      "reflectionAudio": "audio_814_reflection.mp3"
+    }
+  }
+}
