@@ -1,15 +1,24 @@
 #!/bin/bash
 # generate_pal_audio_batch.sh
-# Pre-renders ALL PAL conversation audio (greetings + compassionate replies + preview)
-# for all 4 PAL voices using ElevenLabs API.
+# Pre-renders ALL PAL conversation audio (prompts + micro-responses + preview + onboarding)
+# for all 4 PAL voices using ElevenLabs API with Eleven v3 engine.
 #
 # CRITICAL: This is a SERVER-SIDE script. The generated MP3s ship as bundled assets.
 # The mobile app NEVER calls ElevenLabs at runtime.
 #
 # Usage: AUDIO_ENABLED=1 ./server/generate_pal_audio_batch.sh
+#        AUDIO_ENABLED=1 FORCE_REGEN=1 ./server/generate_pal_audio_batch.sh
 #
-# Onboarding audio (onboard_01) is rendered ONLY for the default voice (VOICE_SARAH_STORYTELLER).
+# Onboarding audio (onboard_01) is rendered ONLY for the default voice (VOICE_GRACE).
 # All other lines are rendered for all 4 voices.
+#
+# pal_lines.json v2 structure:
+#   prompts:        16 buckets (4 time windows × 4 categories) × 6 lines = 96
+#   microResponses: 5 mood buckets × 6 lines = 30
+#   preview:        1 line
+#   onboarding:     1 line (default voice only)
+#
+# Expected total: (96 + 30 + 1) × 4 voices + 1 onboarding = 509 files
 
 set -euo pipefail
 
@@ -64,33 +73,66 @@ if [[ ! -f "$PAL_LINES_FILE" ]]; then
     exit 1
 fi
 
+# Validate pal_lines.json is v2
+PAL_VERSION=$(jq '.version // 0' "$PAL_LINES_FILE")
+if [[ "$PAL_VERSION" != "2" ]]; then
+    echo -e "${RED}Error: pal_lines.json version is $PAL_VERSION, expected 2${NC}" >&2
+    exit 1
+fi
+
 # PAL voice keys (must match pal_voice_registry.dart)
 PAL_VOICES=(
-    "VOICE_SARAH_STORYTELLER"
-    "VOICE_HANNAH_HOPE"
-    "VOICE_JAMES_HUSKY"
-    "VOICE_DAVID_SHEPHERD"
+    "VOICE_GRACE"
+    "VOICE_SHEPHERD"
+    "VOICE_HOPE"
+    "VOICE_STILLWATER"
 )
-DEFAULT_VOICE="VOICE_SARAH_STORYTELLER"
+DEFAULT_VOICE="VOICE_GRACE"
+
+# ElevenLabs model for PAL audio (v3 engine)
+PAL_MODEL_ID="eleven_v3"
+
+# Prompt bucket keys (4 time windows × 4 categories = 16 buckets)
+PROMPT_BUCKETS=(
+    "morning_day" "morning_heart" "morning_burden" "morning_gratitude"
+    "afternoon_day" "afternoon_heart" "afternoon_burden" "afternoon_gratitude"
+    "evening_day" "evening_heart" "evening_burden" "evening_gratitude"
+    "lateNight_day" "lateNight_heart" "lateNight_burden" "lateNight_gratitude"
+)
+
+# Micro-response mood keys
+MICRO_MOODS=("joyful" "weary" "anxious" "hurting" "neutral")
 
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${CYAN}  Bible PAL - Batch PAL Voice Audio Generation${NC}"
+echo -e "${CYAN}  Bible PAL - Batch PAL Voice Audio Generation (v2)${NC}"
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "  Model: ${BLUE}$PAL_MODEL_ID${NC}"
 echo ""
 
-# Resolve ElevenLabs IDs from voices.json
+# Resolve ElevenLabs IDs from voices.json palVoices section
 resolve_voice_id() {
     local voice_key="$1"
     local el_id
-    el_id=$(jq -r --arg key "$voice_key" '.voices[] | select(.voiceKey == $key) | .elevenLabsId' "$VOICES_FILE")
+    el_id=$(jq -r --arg key "$voice_key" '.palVoices[] | select(.voiceKey == $key) | .elevenLabsId' "$VOICES_FILE")
     if [[ -z "$el_id" || "$el_id" == "null" ]]; then
-        echo -e "${RED}Error: Voice key '$voice_key' not found in voices.json${NC}" >&2
+        echo -e "${RED}Error: Voice key '$voice_key' not found in voices.json palVoices${NC}" >&2
         exit 1
     fi
     echo "$el_id"
 }
 
-# Collect all lines from pal_lines.json
+# Format text for speech: trim whitespace, collapse repeated spaces,
+# preserve commas, periods, ellipses, em dashes (these aid cadence).
+format_text_for_speech() {
+    local text="$1"
+    # Trim leading/trailing whitespace
+    text=$(echo "$text" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+    # Collapse repeated spaces
+    text=$(echo "$text" | tr -s ' ')
+    echo "$text"
+}
+
+# Collect lines from pal_lines.json v2
 # Returns: line_id\ttext pairs
 collect_lines() {
     local category="$1"
@@ -101,22 +143,22 @@ collect_lines() {
         preview)
             jq -r '.preview[] | "\(.id)\t\(.text)"' "$PAL_LINES_FILE"
             ;;
-        greetings)
-            jq -r '.greetings[] | "\(.id)\t\(.text)"' "$PAL_LINES_FILE"
+        prompt_*)
+            local bucket="${category#prompt_}"
+            jq -r --arg b "$bucket" '.prompts[$b][] | "\(.id)\t\(.text)"' "$PAL_LINES_FILE"
             ;;
-        positive)
-            jq -r '.compassionateReplies.positive[] | "\(.id)\t\(.text)"' "$PAL_LINES_FILE"
+        micro_*)
+            local mood="${category#micro_}"
+            jq -r --arg m "$mood" '.microResponses[$m][] | "\(.id)\t\(.text)"' "$PAL_LINES_FILE"
             ;;
-        neutral)
-            jq -r '.compassionateReplies.neutral[] | "\(.id)\t\(.text)"' "$PAL_LINES_FILE"
-            ;;
-        negative)
-            jq -r '.compassionateReplies.negative[] | "\(.id)\t\(.text)"' "$PAL_LINES_FILE"
+        *)
+            echo -e "${RED}Error: Unknown category '$category'${NC}" >&2
+            exit 1
             ;;
     esac
 }
 
-# Generate one audio file
+# Generate one audio file using PAL-specific voice settings + Eleven v3
 # Args: voice_key eleven_labs_id line_id text
 generate_one() {
     local voice_key="$1"
@@ -134,21 +176,68 @@ generate_one() {
 
     mkdir -p "$output_dir"
 
+    # Format text for speech
+    text=$(format_text_for_speech "$text")
+
     local char_count
     char_count=$(printf "%s" "$text" | wc -c | tr -d ' ')
 
     # Use elevenlabs_guard for safety (PAL lines are short, use 5min tier)
     if elevenlabs_check_and_log "pal_${voice_key}_${line_id}" "$char_count" "5"; then
+        # Build PAL-specific JSON payload with v3 model + PAL voice settings
+        local json_payload
+        json_payload=$(jq -n --arg text "$text" --arg model "$PAL_MODEL_ID" '{
+            text: $text,
+            model_id: $model,
+            voice_settings: {
+                stability: 0.35,
+                similarity_boost: 0.75,
+                style: 0.40,
+                use_speaker_boost: true
+            }
+        }')
+
+        echo -e "${BLUE}→ Calling ElevenLabs API (model: $PAL_MODEL_ID)...${NC}" >&2
+
         local http_code
-        http_code=$(elevenlabs_call "$text" "$output_file" "$el_id" "$ELEVENLABS_API_KEY")
+        local curl_exit
+        http_code=$(curl -sS \
+            --connect-timeout 10 \
+            --max-time 120 \
+            -w "%{http_code}" \
+            -o "$output_file" \
+            -X POST \
+            "https://api.elevenlabs.io/v1/text-to-speech/${el_id}" \
+            -H "xi-api-key: $ELEVENLABS_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d "$json_payload" 2>&1) || curl_exit=$?
+
+        # Release lock
+        rmdir "$GUARD_LOCK_DIR" 2>/dev/null || true
+
+        # Check curl exit code first
+        if [[ -n "${curl_exit:-}" && "$curl_exit" -ne 0 ]]; then
+            echo -e "  ${RED}FAIL${NC} $voice_key/$line_id.mp3 (curl exit: $curl_exit)"
+            rm -f "$output_file"
+            return 1
+        fi
 
         if [[ "$http_code" == "200" && -s "$output_file" ]]; then
             local file_size
             file_size=$(ls -lh "$output_file" | awk '{print $5}')
             echo -e "  ${GREEN}done${NC} $voice_key/$line_id.mp3 ($file_size)"
+            CHARS_USED=$((CHARS_USED + char_count))
             return 0
         else
             echo -e "  ${RED}FAIL${NC} $voice_key/$line_id.mp3 (HTTP $http_code)"
+            # Print error detail if available
+            if [[ -f "$output_file" ]]; then
+                local error_msg
+                error_msg=$(jq -r '.detail.message // .detail // .message // empty' < "$output_file" 2>/dev/null || true)
+                if [[ -n "$error_msg" ]]; then
+                    echo -e "  ${RED}  Detail: $error_msg${NC}"
+                fi
+            fi
             rm -f "$output_file"
             return 1
         fi
@@ -159,24 +248,22 @@ generate_one() {
 }
 
 # Count lines for progress
-GREETING_COUNT=$(jq '.greetings | length' "$PAL_LINES_FILE")
+PROMPT_COUNT=$(jq '[.prompts | to_entries[] | .value | length] | add' "$PAL_LINES_FILE")
+MICRO_COUNT=$(jq '[.microResponses | to_entries[] | .value | length] | add' "$PAL_LINES_FILE")
 PREVIEW_COUNT=$(jq '.preview | length' "$PAL_LINES_FILE")
-POS_COUNT=$(jq '.compassionateReplies.positive | length' "$PAL_LINES_FILE")
-NEU_COUNT=$(jq '.compassionateReplies.neutral | length' "$PAL_LINES_FILE")
-NEG_COUNT=$(jq '.compassionateReplies.negative | length' "$PAL_LINES_FILE")
 ONBOARD_COUNT=$(jq '.onboarding | length' "$PAL_LINES_FILE")
-LINES_PER_VOICE=$((PREVIEW_COUNT + GREETING_COUNT + POS_COUNT + NEU_COUNT + NEG_COUNT))
+LINES_PER_VOICE=$((PREVIEW_COUNT + PROMPT_COUNT + MICRO_COUNT))
 TOTAL_FILES=$(( (LINES_PER_VOICE * ${#PAL_VOICES[@]}) + ONBOARD_COUNT ))
 
-echo -e "Lines per voice: ${CYAN}$LINES_PER_VOICE${NC} (preview: $PREVIEW_COUNT, greetings: $GREETING_COUNT, replies: $((POS_COUNT + NEU_COUNT + NEG_COUNT)))"
+echo -e "Lines per voice: ${CYAN}$LINES_PER_VOICE${NC} (preview: $PREVIEW_COUNT, prompts: $PROMPT_COUNT, micro-responses: $MICRO_COUNT)"
 echo -e "Onboarding lines: ${CYAN}$ONBOARD_COUNT${NC} (default voice only)"
-echo -e "Voices: ${CYAN}${#PAL_VOICES[@]}${NC}"
+echo -e "Voices: ${CYAN}${#PAL_VOICES[@]}${NC} (${PAL_VOICES[*]})"
 echo -e "Total files: ${CYAN}$TOTAL_FILES${NC}"
 echo ""
 
 SUCCESS=0
 FAILURES=0
-SKIPPED=0
+CHARS_USED=0
 
 for voice_key in "${PAL_VOICES[@]}"; do
     el_id=$(resolve_voice_id "$voice_key")
@@ -204,26 +291,28 @@ for voice_key in "${PAL_VOICES[@]}"; do
         fi
     done < <(collect_lines "preview")
 
-    # Greetings
-    echo -e "  ${CYAN}[greetings]${NC}"
-    while IFS=$'\t' read -r line_id text; do
-        if generate_one "$voice_key" "$el_id" "$line_id" "$text"; then
-            SUCCESS=$((SUCCESS + 1))
-        else
-            FAILURES=$((FAILURES + 1))
-        fi
-    done < <(collect_lines "greetings")
-
-    # Compassionate replies
-    for bucket in positive neutral negative; do
-        echo -e "  ${CYAN}[compassionate: $bucket]${NC}"
+    # Prompts (16 buckets)
+    for bucket in "${PROMPT_BUCKETS[@]}"; do
+        echo -e "  ${CYAN}[prompt: $bucket]${NC}"
         while IFS=$'\t' read -r line_id text; do
             if generate_one "$voice_key" "$el_id" "$line_id" "$text"; then
                 SUCCESS=$((SUCCESS + 1))
             else
                 FAILURES=$((FAILURES + 1))
             fi
-        done < <(collect_lines "$bucket")
+        done < <(collect_lines "prompt_$bucket")
+    done
+
+    # Micro-responses (5 mood buckets)
+    for mood in "${MICRO_MOODS[@]}"; do
+        echo -e "  ${CYAN}[micro-response: $mood]${NC}"
+        while IFS=$'\t' read -r line_id text; do
+            if generate_one "$voice_key" "$el_id" "$line_id" "$text"; then
+                SUCCESS=$((SUCCESS + 1))
+            else
+                FAILURES=$((FAILURES + 1))
+            fi
+        done < <(collect_lines "micro_$mood")
     done
 
     echo ""
@@ -231,9 +320,10 @@ done
 
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "Results: ${GREEN}$SUCCESS generated${NC}, ${RED}$FAILURES failed${NC}"
+echo -e "Credits consumed: ${CYAN}~$CHARS_USED characters${NC}"
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 
-# Fail hard if any files are missing
+# Fail hard if any files failed
 if [[ $FAILURES -gt 0 ]]; then
     echo -e "${RED}ERROR: $FAILURES files failed to generate. Fix errors and re-run.${NC}" >&2
     exit 1
@@ -252,22 +342,24 @@ for voice_key in "${PAL_VOICES[@]}"; do
         fi
     done < <(collect_lines "preview")
 
-    # Greetings
-    while IFS=$'\t' read -r line_id _; do
-        if [[ ! -s "$OUTPUT_BASE/$voice_key/${line_id}.mp3" ]]; then
-            echo -e "  ${RED}MISSING${NC} $voice_key/${line_id}.mp3"
-            MISSING=$((MISSING + 1))
-        fi
-    done < <(collect_lines "greetings")
-
-    # Replies
-    for bucket in positive neutral negative; do
+    # Prompts
+    for bucket in "${PROMPT_BUCKETS[@]}"; do
         while IFS=$'\t' read -r line_id _; do
             if [[ ! -s "$OUTPUT_BASE/$voice_key/${line_id}.mp3" ]]; then
                 echo -e "  ${RED}MISSING${NC} $voice_key/${line_id}.mp3"
                 MISSING=$((MISSING + 1))
             fi
-        done < <(collect_lines "$bucket")
+        done < <(collect_lines "prompt_$bucket")
+    done
+
+    # Micro-responses
+    for mood in "${MICRO_MOODS[@]}"; do
+        while IFS=$'\t' read -r line_id _; do
+            if [[ ! -s "$OUTPUT_BASE/$voice_key/${line_id}.mp3" ]]; then
+                echo -e "  ${RED}MISSING${NC} $voice_key/${line_id}.mp3"
+                MISSING=$((MISSING + 1))
+            fi
+        done < <(collect_lines "micro_$mood")
     done
 done
 
@@ -287,3 +379,5 @@ fi
 echo -e "${GREEN}All $TOTAL_FILES audio files present and non-empty.${NC}"
 echo ""
 echo -e "${GREEN}Done! Assets are ready at: assets/pal/audio/${NC}"
+echo -e "  Model: $PAL_MODEL_ID"
+echo -e "  Credits: ~$CHARS_USED characters"

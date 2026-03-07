@@ -79,11 +79,11 @@ void main() {
       expect(find.text('Continue'), findsOneWidget);
     });
 
-    testWidgets('greeting display is rendered', (tester) async {
+    testWidgets('prompt subtitle is rendered', (tester) async {
       await tester.pumpWidget(buildTestApp());
       await tester.pumpAndSettle();
 
-      // GreetingDisplay should be present
+      // Subtitle text should be present
       expect(find.textContaining('Share how you\'re really doing'),
           findsOneWidget);
     });
@@ -111,6 +111,10 @@ void main() {
     testWidgets('tapping mic when STT unavailable shows snackbar',
         (tester) async {
       await tester.pumpWidget(buildTestApp());
+      await tester.pumpAndSettle();
+
+      // Scroll to make mic button visible (mood buttons push it off-screen)
+      await tester.ensureVisible(find.byKey(const Key('voice_mic_button')));
       await tester.pumpAndSettle();
 
       // Tap the mic button

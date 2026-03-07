@@ -99,8 +99,11 @@ elevenlabs_check_and_log() {
 }
 
 # elevenlabs_call: Make the actual ElevenLabs API call
-# Args: story_text output_file voice_id api_key
+# Args: story_text output_file voice_id api_key [model_id]
 # Returns: HTTP status code
+#
+# Optional 5th arg: model_id (default: "eleven_turbo_v2_5")
+#   PAL audio generation passes "eleven_v3" here.
 #
 # Robust curl invocation:
 #   - --connect-timeout 10: fail fast if server unreachable
@@ -112,16 +115,17 @@ elevenlabs_call() {
     local output_file="$2"
     local voice_id="$3"
     local api_key="$4"
+    local model_id="${5:-eleven_turbo_v2_5}"
     local timestamp=$(date +"%Y-%m-%d %H:%M:%S")
     local script_name=$(basename "$0")
 
-    echo -e "${BLUE}→ Calling ElevenLabs API...${NC}" >&2
+    echo -e "${BLUE}→ Calling ElevenLabs API (model: $model_id)...${NC}" >&2
 
     # Build JSON payload using jq for proper escaping
     local json_payload
-    json_payload=$(jq -n --arg text "$story_text" '{
+    json_payload=$(jq -n --arg text "$story_text" --arg model "$model_id" '{
         text: $text,
-        model_id: "eleven_turbo_v2_5",
+        model_id: $model,
         voice_settings: {
             stability: 0.6,
             similarity_boost: 0.8,

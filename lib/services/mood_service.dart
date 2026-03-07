@@ -143,54 +143,55 @@ class MoodService {
     );
   }
 
-  /// Generate a compassionate reply based on detected mood
-  /// Per SPEC.md Feature #3: Compassionate Reply System
-  String generateCompassionateReply(MoodResult moodResult) {
-    final replies = _compassionateReplies[moodResult.mood] ??
-        _compassionateReplies['neutral']!;
-    return replies[_random.nextInt(replies.length)];
+  /// Get a micro-response text for the given mood (text-only fallback).
+  /// Used when PAL audio is disabled (palGreetingsEnabled == false).
+  String getMicroResponseText(String mood) {
+    final responses = _microResponses[mood] ?? _microResponses['neutral']!;
+    return responses[_random.nextInt(responses.length)];
   }
 
-  static const Map<String, List<String>> _compassionateReplies = {
+  /// Micro-response fallback text (≤ 12 words each).
+  /// These match the content in pal_lines.json microResponses.
+  static const Map<String, List<String>> _microResponses = {
     'joyful': [
-      "That's wonderful to hear! Your joy is a gift. Let's explore a story that celebrates this moment.",
-      "I love that! Joy like yours is contagious. I have a story that matches your spirit.",
-      "What a blessing! Let's carry that joy into a story of gratitude together.",
-      "That makes me so glad to hear. Let's celebrate with a story that lifts the heart.",
-      "Your happiness shines through! I know just the story for a moment like this.",
-      "How beautiful! Let's hold onto that feeling with a story of thankfulness.",
+      "I'm grateful to hear that. Let's lean into that joy.",
+      "That's beautiful. I'll share a story that matches it.",
+      "Your joy matters. Let's listen to something uplifting.",
+      "Praise God. Here's a story to strengthen that light.",
+      "I'm glad for you. Let's hear something hopeful.",
+      "That's a gift. I'll play a joyful story.",
     ],
     'weary': [
-      "I hear that you're feeling weary. Rest is sacred. Let's find a story that offers you comfort and renewal.",
-      "It sounds like you've been carrying a lot. Let me share a story about finding rest.",
-      "Weariness is real, and it's okay to feel it. I have a gentle story for you tonight.",
-      "You've been giving so much of yourself. Let's slow down together with a story of renewal.",
-      "I understand that tiredness. Let me bring you a story that feels like a deep breath.",
-      "Being weary doesn't mean you're weak. Let's rest together in a story of comfort.",
+      "That sounds tiring. I'll share something steady for you.",
+      "You've carried a lot. Let's rest in a story.",
+      "I hear that. I'll play something strengthening now.",
+      "It's okay to be weary. Here's something gentle.",
+      "You're not alone in this. Let's listen together.",
+      "Let's breathe. I'll play a steady story.",
     ],
     'anxious': [
-      "I understand that things feel overwhelming right now. You're not alone. Let's journey together through a story of peace.",
-      "Worry can feel so heavy. Let me share a story that reminds us where peace comes from.",
-      "I hear you. Those anxious feelings are real. I have a story that brings calm.",
-      "You don't have to carry that worry alone. Let's breathe together through a story of trust.",
-      "It's okay to feel unsettled. Let me bring you a story about finding stillness.",
-      "I'm right here with you. Let's quiet those worries with a story of hope and peace.",
+      "I hear the worry. Let's settle with something grounding.",
+      "That's a lot to carry. Let's listen to something steady.",
+      "It's okay. Let's slow down with a steady story.",
+      "I'm here with you. Let's listen and breathe.",
+      "Let's quiet the noise. I'll share something peaceful.",
+      "We'll take this moment gently. Here's a calm story.",
     ],
     'hurting': [
-      "I'm so sorry you're going through this pain. Your feelings are valid. Let me share a story that holds space for healing.",
-      "My heart goes out to you. Let me bring you a story that speaks to that tender place.",
-      "Pain like that deserves to be heard. I have a story about finding light in the darkness.",
-      "I wish I could take that hurt away. Let's sit together with a story of healing and hope.",
-      "You don't have to face this alone. Let me share a story that wraps around you like a comfort.",
-      "That sounds really hard. I'm here, and I have a story that gently holds space for what you're feeling.",
+      "I'm so sorry. You're not alone\u2014listen with me.",
+      "That pain matters. I'll play something gentle now.",
+      "I'm here. Let's hold this quietly with a story.",
+      "God sees you. I'll share comfort through a story.",
+      "You don't have to carry this alone. Let's listen.",
+      "I hear you. I'll play a tender story now.",
     ],
     'neutral': [
-      "Thank you for sharing. Let's spend this time together with a meaningful story.",
-      "I'm glad you're here. Let me find a story that speaks to where you are right now.",
-      "Good to have you. I have a story I think you'll really enjoy.",
-      "Thanks for checking in. Let's make this moment count with a great story.",
-      "I'm happy you stopped by. Let me share something meaningful with you.",
-      "Welcome! I've got a story ready that I think will really resonate.",
+      "Thank you for sharing. I'll play a fitting story.",
+      "I'm with you. Let's listen to something steady.",
+      "I hear you. I'll choose something wise for you.",
+      "Let's take a moment\u2026 I'll play a calm story.",
+      "Thanks for saying that. I'll share something steady.",
+      "Alright. I'll play a story that meets you here.",
     ],
   };
 

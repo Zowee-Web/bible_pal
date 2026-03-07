@@ -16,7 +16,11 @@ void main() {
       expect(females.length, 2);
     });
 
-    test('default voice key exists in the list', () {
+    test('default voice key is VOICE_GRACE', () {
+      expect(PalVoiceRegistry.defaultVoiceKey, 'VOICE_GRACE');
+    });
+
+    test('default voice exists in the list', () {
       expect(
         PalVoiceRegistry.voices
             .any((v) => v.voiceKey == PalVoiceRegistry.defaultVoiceKey),
@@ -35,19 +39,33 @@ void main() {
       expect(keys.length, PalVoiceRegistry.voices.length);
     });
 
-    test('all voices have non-empty display names and descriptions', () {
+    test('all voices have non-empty display names, descriptions, and emojis',
+        () {
       for (final voice in PalVoiceRegistry.voices) {
         expect(voice.displayName.isNotEmpty, true,
             reason: '${voice.voiceKey} displayName is empty');
         expect(voice.description.isNotEmpty, true,
             reason: '${voice.voiceKey} description is empty');
+        expect(voice.emoji.isNotEmpty, true,
+            reason: '${voice.voiceKey} emoji is empty');
       }
     });
 
+    test('voice keys match expected PAL V2 canonical keys', () {
+      final expected = {
+        'VOICE_GRACE',
+        'VOICE_SHEPHERD',
+        'VOICE_HOPE',
+        'VOICE_STILLWATER',
+      };
+      final actual = PalVoiceRegistry.voices.map((v) => v.voiceKey).toSet();
+      expect(actual, expected);
+    });
+
     test('getVoice returns correct voice for valid key', () {
-      final voice = PalVoiceRegistry.getVoice('VOICE_JAMES_HUSKY');
-      expect(voice.voiceKey, 'VOICE_JAMES_HUSKY');
-      expect(voice.displayName, 'James');
+      final voice = PalVoiceRegistry.getVoice('VOICE_SHEPHERD');
+      expect(voice.voiceKey, 'VOICE_SHEPHERD');
+      expect(voice.displayName, 'Shepherd');
     });
 
     test('getVoice returns default for unknown key', () {
@@ -70,16 +88,47 @@ void main() {
     test('isValid returns false for unknown key', () {
       expect(PalVoiceRegistry.isValid('VOICE_UNKNOWN'), false);
     });
+  });
 
-    test('voice keys match expected canonical keys', () {
-      final expected = {
-        'VOICE_SARAH_STORYTELLER',
-        'VOICE_HANNAH_HOPE',
-        'VOICE_JAMES_HUSKY',
-        'VOICE_DAVID_SHEPHERD',
-      };
-      final actual = PalVoiceRegistry.voices.map((v) => v.voiceKey).toSet();
-      expect(actual, expected);
+  group('PalVoiceRegistry voice key migration', () {
+    test('old voice keys are recognized as legacy', () {
+      expect(PalVoiceRegistry.isLegacyKey('VOICE_SARAH_STORYTELLER'), true);
+      expect(PalVoiceRegistry.isLegacyKey('VOICE_HANNAH_HOPE'), true);
+      expect(PalVoiceRegistry.isLegacyKey('VOICE_JAMES_HUSKY'), true);
+      expect(PalVoiceRegistry.isLegacyKey('VOICE_DAVID_SHEPHERD'), true);
+    });
+
+    test('new voice keys are not legacy', () {
+      expect(PalVoiceRegistry.isLegacyKey('VOICE_GRACE'), false);
+      expect(PalVoiceRegistry.isLegacyKey('VOICE_SHEPHERD'), false);
+      expect(PalVoiceRegistry.isLegacyKey('VOICE_HOPE'), false);
+      expect(PalVoiceRegistry.isLegacyKey('VOICE_STILLWATER'), false);
+    });
+
+    test('migrateVoiceKey maps old keys to default', () {
+      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_SARAH_STORYTELLER'),
+          'VOICE_GRACE');
+      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_HANNAH_HOPE'),
+          'VOICE_GRACE');
+      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_JAMES_HUSKY'),
+          'VOICE_GRACE');
+      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_DAVID_SHEPHERD'),
+          'VOICE_GRACE');
+    });
+
+    test('migrateVoiceKey preserves valid new keys', () {
+      expect(
+          PalVoiceRegistry.migrateVoiceKey('VOICE_GRACE'), 'VOICE_GRACE');
+      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_SHEPHERD'),
+          'VOICE_SHEPHERD');
+      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_HOPE'), 'VOICE_HOPE');
+      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_STILLWATER'),
+          'VOICE_STILLWATER');
+    });
+
+    test('migrateVoiceKey maps unknown keys to default', () {
+      expect(
+          PalVoiceRegistry.migrateVoiceKey('VOICE_UNKNOWN'), 'VOICE_GRACE');
     });
   });
 }

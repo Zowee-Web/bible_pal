@@ -1,20 +1,19 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:bible_pal/services/greeting_service.dart';
+import 'package:bible_pal/services/pal_prompt_service.dart';
 import 'package:bible_pal/services/mood_service.dart';
-import 'package:bible_pal/services/pal_audio_service.dart';
-import 'package:bible_pal/providers/service_providers.dart' show nameAudioServiceProvider, palAudioServiceProvider;
+import 'package:bible_pal/providers/service_providers.dart'
+    show nameAudioServiceProvider, palAudioServiceProvider, sessionLengthBucketProvider;
 import 'package:bible_pal/services/verse_service.dart';
 import 'package:bible_pal/services/stt_service.dart';
 import 'package:bible_pal/providers/app_state_notifier.dart';
 import 'package:bible_pal/providers/parable_player_notifier.dart';
 import 'package:bible_pal/widgets/greeting_display.dart';
-import 'package:bible_pal/widgets/story_length_radio_selector.dart';
 import 'package:bible_pal/core/app_logger.dart';
-import 'package:bible_pal/core/story_length_bucket.dart';
 
 /// Voice input states for the PAL Voice Mood Input flow (Feature 2.2).
 ///
@@ -32,13 +31,13 @@ enum VoiceInputState {
   /// Final transcript inserted into TextField. User can edit/re-record.
   confirming,
 
-  /// Mood detected, proceeding with compassionate reply + verse + length selection.
+  /// Mood detected, proceeding with micro-response + verse + auto-story start.
   proceeding,
 }
 
 /// PAL's Parables Screen
 /// Based on SPEC.md Features 2, 2.1, 2.2, 3, 4, 5, 14, 16
-/// Complete flow: greeting → mood input (type or voice) → compassionate reply + verse → auto-transition to parable playback
+/// Complete flow: prompt → mood input (button, type, or voice) → micro-response + verse → auto-transition to parable playback
 class PalsParablesScreen extends ConsumerStatefulWidget {
   const PalsParablesScreen({super.key, this.sttService, this.textOnly = false});
 
@@ -55,36 +54,40 @@ class PalsParablesScreen extends ConsumerStatefulWidget {
 
 class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
   final TextEditingController _moodController = TextEditingController();
-  final GreetingService _greetingService = GreetingService();
+  final PalPromptService _promptService = PalPromptService();
   final VerseService _verseService = VerseService();
+  final Random _random = Random();
 
   late final SttService _sttService;
 
-  String? _greeting;
-  String? _emoji;
-  String? _compassionateReply;
+  String? _promptText;
+  String? _promptTimeWindow;
+  String? _microResponseText;
   MoodResult? _moodResult;
   VerseResponse? _verse;
   bool _isSelectingParable = false;
-  StoryLengthBucket _selectedLengthBucket = StoryLengthBucket.short;
 
   // Voice input state (Feature 2.2)
   VoiceInputState _voiceState = VoiceInputState.idle;
   String _partialTranscript = '';
   bool _sttAvailable = false;
 
+  // Auto-start timer (cancellable)
+  Timer? _autoStartTimer;
+
+  // Micro-response ring buffer (session-only, per mood)
+  final Map<String, List<String>> _recentMicroResponseIds = {};
+
   @override
   void initState() {
     super.initState();
     _sttService = widget.sttService ?? SttService();
-    _greeting = _greetingService.getGreeting();
-    _emoji = _greetingService.getTimeWindowEmoji();
 
     // Log screen view
     logEvent('screen_view', {'screen_name': 'pals_parables'});
 
-    // Play PAL greeting audio and use its text for display
-    _playPalGreeting();
+    // Load prompt and play audio
+    _loadAndPlayPrompt();
 
     // Initialize STT engine (non-blocking) to check availability
     if (!widget.textOnly) {
@@ -92,17 +95,40 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     }
   }
 
-  Future<void> _playPalGreeting() async {
+  Future<void> _loadAndPlayPrompt() async {
+    try {
+      final prompt = await _promptService.getPrompt();
+      if (mounted) {
+        setState(() {
+          _promptText = prompt.text;
+          _promptTimeWindow = prompt.timeWindow;
+        });
+      }
+
+      // Play PAL prompt audio
+      _playPalPrompt(prompt);
+    } catch (e) {
+      debugPrint('[PalsParables] Failed to load prompt: $e');
+      if (mounted) {
+        setState(() {
+          _promptText = 'How are you doing today?';
+          _promptTimeWindow = 'morning';
+        });
+      }
+    }
+  }
+
+  Future<void> _playPalPrompt(PalPrompt prompt) async {
     final appState = ref.read(appStateProvider).valueOrNull;
-    // Skip audio if PAL greetings are disabled
+    // Skip audio if PAL greetings are disabled — text still displays
     if (appState?.userPreferences.palGreetingsEnabled == false) return;
 
-    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_SARAH_STORYTELLER';
+    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_GRACE';
     final userName = appState?.userPreferences.userName ?? '';
     final palAudio = ref.read(palAudioServiceProvider);
     final nameAudio = ref.read(nameAudioServiceProvider);
 
-    // Try to get a cached name clip for personalized greeting
+    // Try to get a cached name clip for personalized prompt
     final nameClip = userName.isNotEmpty
         ? await nameAudio.getRandomNameClip(userName, voiceKey)
         : null;
@@ -113,17 +139,27 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     }
 
     try {
-      final text = await palAudio.playGreeting(
+      final text = await palAudio.playPrompt(
+        prompt.id,
         voiceKey,
         nameClipFile: nameClip?.file,
         nameClipText: nameClip?.text,
       );
+
+      // Log telemetry
+      logEvent('pal_line_played', {
+        'line_id': prompt.id,
+        'type': 'prompt',
+        'time_window': prompt.timeWindow,
+        'voice_key': voiceKey,
+        'name_prefix_used': text != prompt.text,
+      });
+
       if (mounted && text.isNotEmpty) {
-        setState(() => _greeting = text);
+        setState(() => _promptText = text);
       }
     } catch (e) {
-      debugPrint('[PalsParables] PAL greeting audio failed: $e');
-      // Text-only fallback — _greeting already set from GreetingService
+      debugPrint('[PalsParables] PAL prompt audio failed: $e');
     }
   }
 
@@ -136,9 +172,56 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
 
   @override
   void dispose() {
+    _autoStartTimer?.cancel();
     _moodController.dispose();
     _sttService.dispose();
     super.dispose();
+  }
+
+  // ---------------------------------------------------------------------------
+  // Emoji helper for time window
+  // ---------------------------------------------------------------------------
+
+  String _getTimeWindowEmoji() {
+    switch (_promptTimeWindow) {
+      case 'morning':
+        return '\u{1F305}'; // 🌅
+      case 'afternoon':
+        return '\u{1F324}\u{FE0F}'; // 🌤️
+      case 'evening':
+        return '\u{1F307}'; // 🌇
+      case 'lateNight':
+        return '\u{1F319}'; // 🌙
+      default:
+        return '\u{2728}'; // ✨
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Mood button handler
+  // ---------------------------------------------------------------------------
+
+  /// Handle mood button tap. Bypasses detectMood() — directly sets mood.
+  Future<void> _handleMoodButtonTap(String mood) async {
+    if (_microResponseText != null) return; // Already proceeded
+
+    // Show thinking state
+    setState(() => _voiceState = VoiceInputState.proceeding);
+
+    // Brief thinking delay (800-1500ms randomized) to feel human
+    final delay = 800 + _random.nextInt(701); // 800..1500
+    await Future.delayed(Duration(milliseconds: delay));
+
+    if (!mounted) return;
+
+    // Create mood result directly (no keyword detection needed)
+    final moodResult = MoodResult(
+      mood: mood,
+      emotionalTags: [mood],
+      confidenceScore: 1.0,
+    );
+
+    await _processMoodResult(moodResult, userText: '');
   }
 
   // ---------------------------------------------------------------------------
@@ -150,7 +233,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
   Future<void> _onMicTap() async {
     if (_voiceState != VoiceInputState.idle) return;
 
-    // Auto-stop greeting audio if still playing (SPEC 2.2)
+    // Auto-stop prompt audio if still playing (SPEC 2.2)
     ref.read(palAudioServiceProvider).stop();
 
     // Check if STT is available
@@ -218,10 +301,8 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
       onResult: (result) {
         if (!mounted) return;
         if (result.isFinal) {
-          // Final result: place into TextField and transition to confirming
           final transcript = result.text;
           if (transcript.isEmpty) {
-            // Silence timeout — 0 words detected
             setState(() {
               _voiceState = VoiceInputState.idle;
               _partialTranscript = '';
@@ -234,13 +315,11 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
             );
             logEvent('voice_input_cancelled', {'reason': 'timeout'});
           } else {
-            // Voice transcript → TextField (Invariant 17: input equivalence)
             _moodController.text = transcript;
             setState(() {
               _voiceState = VoiceInputState.confirming;
               _partialTranscript = '';
             });
-            // Log completion with word count only — no transcript (Invariant 17)
             logEvent('voice_input_completed', {
               'input_method': 'voice',
               'word_count': transcript.split(RegExp(r'\s+')).length,
@@ -248,7 +327,6 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
           }
           if (!completer.isCompleted) completer.complete();
         } else {
-          // Partial result: show preview below mic indicator
           setState(() => _partialTranscript = result.text);
         }
       },
@@ -263,12 +341,11 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
       },
     );
 
-    // Timeout fallback: if no final result within listen duration + buffer
+    // Timeout fallback
     unawaited(
       Future.delayed(const Duration(seconds: SttService.defaultListenSeconds + 1))
           .then((_) {
         if (!completer.isCompleted) {
-          // Use partial transcript if we have one
           if (_partialTranscript.isNotEmpty && mounted) {
             _moodController.text = _partialTranscript;
             setState(() {
@@ -299,7 +376,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     );
   }
 
-  /// Cancel voice input and return to idle (typing fallback).
+  /// Cancel voice input and return to idle.
   Future<void> _cancelVoiceInput() async {
     await _sttService.stopListening();
     if (mounted) {
@@ -321,8 +398,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
   // Mood submission (shared by typed and voice input — Invariant 17)
   // ---------------------------------------------------------------------------
 
-  /// Handle mood detection, show verse, and display length selection.
-  /// This is the SAME handler for both typed and voice input (Invariant 17: input equivalence).
+  /// Handle mood detection from text input.
   Future<void> _handleMoodSubmission() async {
     if (_moodController.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -334,61 +410,123 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     final appNotifier = ref.read(appStateProvider.notifier);
     final moodService = appNotifier.moodService;
     final result = moodService.detectMood(_moodController.text);
+
+    await _processMoodResult(result, userText: _moodController.text);
+  }
+
+  /// Process a mood result (from button, text, or voice) and continue the flow.
+  Future<void> _processMoodResult(MoodResult result, {required String userText}) async {
     final verse = _verseService.getVerseForMood(result.mood);
 
     // Persist mood for thematic Daily Bread alignment (SPEC Feature #21)
+    final appNotifier = ref.read(appStateProvider.notifier);
     appNotifier.updateLastDetectedMood(result.mood);
 
-    // Play PAL compassionate reply audio and use its text
+    // Select a micro-response from the mood bucket (non-repeat)
+    final responseId = _pickMicroResponseId(result.mood);
+
+    // Play PAL micro-response audio and get display text
     final appState = ref.read(appStateProvider).valueOrNull;
-    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_SARAH_STORYTELLER';
+    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_GRACE';
     final userName = appState?.userPreferences.userName ?? '';
 
-    String reply;
+    String responseText;
     if (appState?.userPreferences.palGreetingsEnabled == false) {
-      // PAL greetings disabled — text-only
-      reply = moodService.generateCompassionateReply(result);
+      // PAL greetings disabled — text-only fallback
+      responseText = appNotifier.moodService.getMicroResponseText(result.mood);
     } else {
       final palAudio = ref.read(palAudioServiceProvider);
       final nameAudio = ref.read(nameAudioServiceProvider);
-      final moodBucket = PalAudioService.moodToBucket(result.mood);
 
-      // Try to get a cached name clip for personalized reply
       final nameClip = userName.isNotEmpty
           ? await nameAudio.getRandomNameClip(userName, voiceKey)
           : null;
 
       try {
-        reply = await palAudio.playCompassionateReply(
-          moodBucket,
+        responseText = await palAudio.playMicroResponse(
+          responseId,
+          result.mood,
           voiceKey,
           nameClipFile: nameClip?.file,
           nameClipText: nameClip?.text,
+          timeWindow: _promptTimeWindow,
         );
+
+        // Log telemetry
+        logEvent('pal_line_played', {
+          'line_id': responseId,
+          'type': 'micro_response',
+          'time_window': _promptTimeWindow ?? 'unknown',
+          'mood': result.mood,
+          'voice_key': voiceKey,
+          'name_prefix_used': nameClip != null && responseText.contains(nameClip.text),
+        });
       } catch (e) {
-        debugPrint('[PalsParables] PAL reply audio failed: $e');
-        // Fallback to MoodService text
-        reply = moodService.generateCompassionateReply(result);
+        debugPrint('[PalsParables] PAL micro-response audio failed: $e');
+        responseText = appNotifier.moodService.getMicroResponseText(result.mood);
       }
     }
 
+    if (!mounted) return;
+
     setState(() {
       _moodResult = result;
-      _compassionateReply = reply;
+      _microResponseText = responseText;
       _verse = verse;
       _voiceState = VoiceInputState.proceeding;
     });
+
+    // Start auto-story timer (~2s cancellable delay)
+    _startAutoStoryTimer(userText);
   }
 
-  /// Handle length bucket selection and parable loading
-  Future<void> _handleLengthSelection(StoryLengthBucket lengthBucket) async {
-    if (_moodResult == null) {
-      debugPrint('No mood result available');
-      return;
+  /// Pick a micro-response ID from the mood bucket with non-repeat logic.
+  String _pickMicroResponseId(String mood) {
+    const microResponseIds = {
+      'joyful': ['RESP_JOY_01', 'RESP_JOY_02', 'RESP_JOY_03', 'RESP_JOY_04', 'RESP_JOY_05', 'RESP_JOY_06'],
+      'weary': ['RESP_WEARY_01', 'RESP_WEARY_02', 'RESP_WEARY_03', 'RESP_WEARY_04', 'RESP_WEARY_05', 'RESP_WEARY_06'],
+      'anxious': ['RESP_ANX_01', 'RESP_ANX_02', 'RESP_ANX_03', 'RESP_ANX_04', 'RESP_ANX_05', 'RESP_ANX_06'],
+      'hurting': ['RESP_HURT_01', 'RESP_HURT_02', 'RESP_HURT_03', 'RESP_HURT_04', 'RESP_HURT_05', 'RESP_HURT_06'],
+      'neutral': ['RESP_NEU_01', 'RESP_NEU_02', 'RESP_NEU_03', 'RESP_NEU_04', 'RESP_NEU_05', 'RESP_NEU_06'],
+    };
+
+    final pool = microResponseIds[mood] ?? microResponseIds['neutral']!;
+    final recentIds = _recentMicroResponseIds.putIfAbsent(mood, () => []);
+
+    var candidates = pool.where((id) => !recentIds.contains(id)).toList();
+    if (candidates.isEmpty) {
+      recentIds.clear();
+      candidates = pool;
     }
 
-    // Log length selection (no user text logged!)
-    // NOTE: length_bucket is canonical - no minute-based fields in telemetry (INVARIANTS.md)
+    final picked = candidates[_random.nextInt(candidates.length)];
+
+    recentIds.add(picked);
+    if (recentIds.length > pool.length) {
+      recentIds.removeAt(0);
+    }
+
+    return picked;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Auto-story start
+  // ---------------------------------------------------------------------------
+
+  void _startAutoStoryTimer(String userText) {
+    _autoStartTimer?.cancel();
+    _autoStartTimer = Timer(const Duration(seconds: 2), () {
+      if (mounted) {
+        _autoSelectStory(userText);
+      }
+    });
+  }
+
+  Future<void> _autoSelectStory(String userText) async {
+    if (_moodResult == null) return;
+
+    final lengthBucket = ref.read(sessionLengthBucketProvider);
+
     logEvent('length_selected', {
       'length_bucket': lengthBucket.name,
       'detected_mood': _moodResult!.mood,
@@ -396,7 +534,6 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
 
     setState(() => _isSelectingParable = true);
 
-    // Log PAL tap event
     logEvent('pal_tap', {
       'length_bucket': lengthBucket.name,
       'detected_mood': _moodResult!.mood,
@@ -405,11 +542,10 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     try {
       final appStateNotifier = ref.read(appStateProvider.notifier);
 
-      // Select parable based on mood, length bucket, and user's text for relatability
       final parable = await appStateNotifier.selectParable(
         mood: _moodResult!.mood,
         lengthBucket: lengthBucket,
-        userText: _moodController.text,
+        userText: userText,
       );
 
       if (!mounted) return;
@@ -426,10 +562,8 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
         return;
       }
 
-      // Add to history
       await appStateNotifier.addToHistory(parable);
 
-      // Load into player
       if (!mounted) return;
       final playerNotifier = ref.read(parablePlayerProvider.notifier);
       await playerNotifier.loadParable(parable);
@@ -437,7 +571,6 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
       if (!mounted) return;
       setState(() => _isSelectingParable = false);
 
-      // Navigate to player screen
       if (!mounted) return;
       Navigator.of(context).pushNamed('/parable_player');
     } catch (e) {
@@ -470,10 +603,10 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          // Greeting Display
+          // Prompt Display
           GreetingDisplay(
-            greeting: _greeting ?? '',
-            emoji: _emoji ?? '✨',
+            greeting: _promptText ?? '',
+            emoji: _getTimeWindowEmoji(),
           ),
           const SizedBox(height: 12),
 
@@ -487,56 +620,79 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
           ),
           const SizedBox(height: 24),
 
-          // Mood Input Section
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // TextField (always visible per SPEC 2.2)
-                  TextField(
-                    controller: _moodController,
-                    maxLines: 3,
-                    autofocus: false,
-                    keyboardType: TextInputType.multiline,
-                    textInputAction: TextInputAction.newline,
-                    enabled: !isVoiceActive,
-                    onTap: () {
-                      // Tapping TextField cancels voice input (SPEC 2.2)
-                      if (_voiceState == VoiceInputState.listening) {
-                        _cancelVoiceInput();
-                      }
-                    },
-                    decoration: InputDecoration(
-                      labelText: 'Share how you\'re doing',
-                      hintText: _voiceState == VoiceInputState.confirming
-                          ? 'Edit your response or tap Continue'
-                          : 'Type a few words about your day or night...',
-                      border: const OutlineInputBorder(),
+          // Mood Input Section (hidden after mood is set)
+          if (_microResponseText == null) ...[
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    // Quick mood buttons
+                    _buildMoodButtons(theme),
+                    const SizedBox(height: 16),
+
+                    // Divider with "or" label
+                    Row(
+                      children: [
+                        const Expanded(child: Divider()),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: Text(
+                            'Or tell PAL in your own words:',
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: theme.colorScheme.onSurfaceVariant,
+                            ),
+                          ),
+                        ),
+                        const Expanded(child: Divider()),
+                      ],
                     ),
-                  ),
-                  const SizedBox(height: 12),
+                    const SizedBox(height: 12),
 
-                  // Voice input controls (Feature 2.2)
-                  _buildVoiceControls(theme),
+                    // TextField
+                    TextField(
+                      controller: _moodController,
+                      maxLines: 3,
+                      autofocus: false,
+                      keyboardType: TextInputType.multiline,
+                      textInputAction: TextInputAction.newline,
+                      enabled: !isVoiceActive,
+                      onTap: () {
+                        if (_voiceState == VoiceInputState.listening) {
+                          _cancelVoiceInput();
+                        }
+                      },
+                      decoration: InputDecoration(
+                        labelText: 'Share how you\'re doing',
+                        hintText: _voiceState == VoiceInputState.confirming
+                            ? 'Edit your response or tap Continue'
+                            : 'Type a few words about your day or night...',
+                        border: const OutlineInputBorder(),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
 
-                  const SizedBox(height: 12),
+                    // Voice input controls (Feature 2.2)
+                    _buildVoiceControls(theme),
 
-                  // Continue button
-                  ElevatedButton(
-                    onPressed: _compassionateReply != null
-                        ? null
-                        : _handleMoodSubmission,
-                    child: const Text('Continue'),
-                  ),
-                ],
+                    const SizedBox(height: 12),
+
+                    // Continue button
+                    ElevatedButton(
+                      onPressed: _microResponseText != null
+                          ? null
+                          : _handleMoodSubmission,
+                      child: const Text('Continue'),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
+          ],
 
-          // Compassionate Reply with Verse Section
-          if (_compassionateReply != null) ...[
+          // Micro-Response with Verse Section
+          if (_microResponseText != null) ...[
             const SizedBox(height: 24),
             Card(
               elevation: 2,
@@ -546,7 +702,6 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // PAL's Response Header
                     Row(
                       children: [
                         Icon(
@@ -566,21 +721,18 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                     ),
                     const SizedBox(height: 12),
 
-                    // Compassionate Reply
                     Text(
-                      _compassionateReply!,
+                      _microResponseText!,
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: theme.colorScheme.onPrimaryContainer,
                       ),
                     ),
 
-                    // Verse Section
                     if (_verse != null) ...[
                       const SizedBox(height: 20),
                       const Divider(),
                       const SizedBox(height: 16),
 
-                      // Verse Reference with Translation Label
                       Text(
                         '${_verse!.reference} (${_verse!.translation})',
                         style: theme.textTheme.titleSmall?.copyWith(
@@ -590,7 +742,6 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                       ),
                       const SizedBox(height: 8),
 
-                      // Verse Text
                       Text(
                         '"${_verse!.text}"',
                         style: theme.textTheme.bodyMedium?.copyWith(
@@ -600,7 +751,6 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                       ),
                       const SizedBox(height: 12),
 
-                      // Verse Context
                       Text(
                         _verse!.context,
                         style: theme.textTheme.bodyMedium?.copyWith(
@@ -610,7 +760,6 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                       ),
                       const SizedBox(height: 16),
 
-                      // Length Selection or Loading State
                       if (_isSelectingParable) ...[
                         const Divider(),
                         const SizedBox(height: 12),
@@ -631,34 +780,6 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                             ),
                           ],
                         ),
-                      ] else ...[
-                        const Divider(),
-                        const SizedBox(height: 16),
-                        Center(
-                          child: Text(
-                            'Choose a story length:',
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              color: theme.colorScheme.onPrimaryContainer,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        StoryLengthRadioSelector(
-                          selectedBucket: _selectedLengthBucket,
-                          onBucketChanged: (bucket) =>
-                              setState(() => _selectedLengthBucket = bucket),
-                        ),
-                        const SizedBox(height: 16),
-                        ElevatedButton(
-                          onPressed: () => _handleLengthSelection(_selectedLengthBucket),
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(vertical: 14),
-                            backgroundColor: theme.colorScheme.primary,
-                            foregroundColor: theme.colorScheme.onPrimary,
-                          ),
-                          child: const Text('Start Story'),
-                        ),
                       ],
                     ],
                   ],
@@ -668,6 +789,35 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
           ],
         ],
       ),
+    );
+  }
+
+  /// Build the quick mood button row.
+  Widget _buildMoodButtons(ThemeData theme) {
+    const moods = [
+      ('\u{1F642} Joyful', 'joyful'),
+      ('\u{1F610} Neutral', 'neutral'),
+      ('\u{1F614} Weary', 'weary'),
+      ('\u{1F61F} Anxious', 'anxious'),
+      ('\u{1F494} Hurting', 'hurting'),
+    ];
+
+    return Wrap(
+      spacing: 12,
+      runSpacing: 12,
+      alignment: WrapAlignment.center,
+      children: moods.map((entry) {
+        final (label, moodKey) = entry;
+        return ElevatedButton(
+          onPressed: _voiceState == VoiceInputState.proceeding
+              ? null
+              : () => _handleMoodButtonTap(moodKey),
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          ),
+          child: Text(label),
+        );
+      }).toList(),
     );
   }
 
@@ -688,7 +838,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
             const SizedBox(width: 8),
             IconButton(
               key: const Key('voice_mic_button'),
-              onPressed: _compassionateReply != null ? null : _onMicTap,
+              onPressed: _microResponseText != null ? null : _onMicTap,
               icon: const Icon(Icons.mic),
               tooltip: _sttAvailable
                   ? 'Tap to speak'
@@ -717,7 +867,6 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
       case VoiceInputState.listening:
         return Column(
           children: [
-            // Pulsing mic indicator
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -742,7 +891,6 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                 ),
               ],
             ),
-            // Partial transcript preview (NOT in TextField per SPEC 2.2)
             if (_partialTranscript.isNotEmpty) ...[
               const SizedBox(height: 8),
               Text(

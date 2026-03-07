@@ -18,28 +18,19 @@ class PalLine {
 
 // Offline PAL audio playback service.
 // Loads curated lines from pal_lines.json and plays pre-rendered MP3 assets.
-// Name-prefix clips (generated via proxy TTS) can be stitched before greetings.
+// Name-prefix clips (generated via proxy TTS) can be stitched before prompts.
 class PalAudioService {
   final Random _random;
   final AudioPlayer _player;
 
   // Loaded line pools (lazy-init)
-  List<PalLine> _greetings = [];
+  Map<String, List<PalLine>> _prompts = {};
+  Map<String, List<PalLine>> _microResponses = {};
   List<PalLine> _preview = [];
-  Map<String, List<PalLine>> _replies = {};
-
-  // Ring buffers to avoid repeats (last 5 per category)
-  static const int _ringSize = 5;
-  final List<String> _recentGreetings = [];
-  final Map<String, List<String>> _recentReplies = {
-    'positive': [],
-    'neutral': [],
-    'negative': [],
-  };
 
   // Last selected lines (for UI text display)
-  PalLine? _lastGreeting;
-  PalLine? _lastReply;
+  PalLine? _lastPrompt;
+  PalLine? _lastMicroResponse;
 
   // Lazy init
   Completer<void>? _initCompleter;
@@ -47,13 +38,28 @@ class PalAudioService {
   // Playback lock — prevents overlapping audio
   Completer<void>? _playbackLock;
 
+  // Name prefix allowlist for micro-responses (only these IDs may get a name prefix)
+  static const Set<String> _nameAllowedMicroResponses = {
+    'RESP_NEU_02',
+    'RESP_NEU_04',
+    'RESP_WEARY_06',
+    'RESP_ANX_04',
+    'RESP_JOY_06',
+  };
+
+  // Phrases that must never get a name prefix
+  static const List<String> _nameBlockedPhrases = [
+    'God sees you',
+    "You're not alone",
+  ];
+
   PalAudioService({Random? random, AudioPlayer? player})
       : _random = random ?? Random(),
         _player = player ?? AudioPlayer();
 
   /// Ensure pal_lines.json is loaded. Safe to call multiple times.
   Future<void> _ensureInit() async {
-    if (_greetings.isNotEmpty) return; // Already loaded
+    if (_prompts.isNotEmpty) return; // Already loaded
 
     if (_initCompleter != null) {
       await _initCompleter!.future;
@@ -66,16 +72,23 @@ class PalAudioService {
           await rootBundle.loadString('assets/pal/pal_lines.json');
       final data = jsonDecode(jsonStr) as Map<String, dynamic>;
 
-      _greetings = _parseLines(data['greetings'] as List<dynamic>);
       _preview = _parseLines(data['preview'] as List<dynamic>);
 
-      final repliesData =
-          data['compassionateReplies'] as Map<String, dynamic>;
-      _replies = {
-        'positive': _parseLines(repliesData['positive'] as List<dynamic>),
-        'neutral': _parseLines(repliesData['neutral'] as List<dynamic>),
-        'negative': _parseLines(repliesData['negative'] as List<dynamic>),
-      };
+      // Load prompts (16 buckets)
+      final promptsData = data['prompts'] as Map<String, dynamic>;
+      _prompts = {};
+      for (final entry in promptsData.entries) {
+        _prompts[entry.key] =
+            _parseLines(entry.value as List<dynamic>);
+      }
+
+      // Load micro-responses (5 mood buckets)
+      final microData = data['microResponses'] as Map<String, dynamic>;
+      _microResponses = {};
+      for (final entry in microData.entries) {
+        _microResponses[entry.key] =
+            _parseLines(entry.value as List<dynamic>);
+      }
 
       _initCompleter!.complete();
     } catch (e) {
@@ -94,49 +107,9 @@ class PalAudioService {
         .toList();
   }
 
-  /// Map the 5 detected moods to 3 PAL reply buckets.
-  static String moodToBucket(String mood) {
-    switch (mood) {
-      case 'joyful':
-        return 'positive';
-      case 'weary':
-      case 'anxious':
-      case 'hurting':
-        return 'negative';
-      case 'neutral':
-      default:
-        return 'neutral';
-    }
-  }
-
   /// Build the deterministic asset path for a line + voice.
   static String assetPath(String voiceKey, String lineId) {
     return 'assets/pal/audio/$voiceKey/$lineId.mp3';
-  }
-
-  /// Pick a random line from a pool, avoiding recent IDs (ring buffer).
-  PalLine _pickRandom(List<PalLine> pool, List<String> recentIds) {
-    if (pool.isEmpty) {
-      return const PalLine(id: 'fallback', text: '');
-    }
-
-    // Filter out recently used
-    var candidates = pool.where((l) => !recentIds.contains(l.id)).toList();
-    if (candidates.isEmpty) {
-      // Ring exhausted — reset and use full pool
-      recentIds.clear();
-      candidates = pool;
-    }
-
-    final picked = candidates[_random.nextInt(candidates.length)];
-
-    // Update ring buffer
-    recentIds.add(picked.id);
-    if (recentIds.length > _ringSize) {
-      recentIds.removeAt(0);
-    }
-
-    return picked;
   }
 
   /// Acquire the playback lock. Waits if another playback is in progress.
@@ -153,94 +126,124 @@ class PalAudioService {
     _playbackLock = null;
   }
 
-  /// Play a greeting in the selected voice. Returns the display text.
-  ///
-  /// If [nameClipFile] and [nameClipText] are provided, there's a 30% chance
-  /// the name prefix clip is stitched before the greeting using
-  /// ConcatenatingAudioSource for gapless playback.
-  Future<String> playGreeting(
+  /// Play a specific prompt line. Returns display text.
+  /// Name prefix splicing: 30% probability (unchanged from greetings).
+  Future<String> playPrompt(
+    String lineId,
     String voiceKey, {
     File? nameClipFile,
     String? nameClipText,
   }) async {
     await _ensureInit();
 
-    final line = _pickRandom(_greetings, _recentGreetings);
-    _lastGreeting = line;
+    // Find the line text from loaded data
+    final lineText = _findLineText(lineId, _prompts);
+    _lastPrompt = PalLine(id: lineId, text: lineText);
 
-    final includeName = nameClipFile != null &&
+    final clipFile = nameClipFile;
+    final includeName = clipFile != null &&
         nameClipText != null &&
-        await nameClipFile.exists() &&
+        await clipFile.exists() &&
         _random.nextDouble() < 0.30;
 
     await _acquireLock();
     try {
       if (includeName) {
-        await _playWithNamePrefix(voiceKey, line.id, nameClipFile);
-        return '$nameClipText ${line.text}';
+        await _playWithNamePrefix(voiceKey, lineId, clipFile);
+        return '$nameClipText $lineText';
       } else {
-        await _playAsset(voiceKey, line.id);
-        return line.text;
+        await _playAsset(voiceKey, lineId);
+        return lineText;
       }
     } finally {
       _releaseLock();
     }
   }
 
-  /// Play a compassionate reply for the given mood bucket. Returns the display text.
-  ///
-  /// If [nameClipFile] and [nameClipText] are provided, there's a 20% chance
-  /// the name prefix clip is stitched before the reply.
-  Future<String> playCompassionateReply(
-    String moodBucket,
+  /// Play a specific micro-response line. Returns display text.
+  /// Name prefix splicing: beta-calibrated with allowlist.
+  Future<String> playMicroResponse(
+    String lineId,
+    String mood,
     String voiceKey, {
     File? nameClipFile,
     String? nameClipText,
+    String? timeWindow,
   }) async {
     await _ensureInit();
 
-    final pool = _replies[moodBucket] ?? _replies['neutral']!;
-    final recentIds = _recentReplies[moodBucket] ?? [];
-    final line = _pickRandom(pool, recentIds);
-    _lastReply = line;
+    // Find the line text from loaded data
+    final lineText = _findLineText(lineId, _microResponses);
+    _lastMicroResponse = PalLine(id: lineId, text: lineText);
 
-    final includeName = nameClipFile != null &&
+    // Check allowlist first, then apply probability
+    final isAllowed = _isNamePrefixAllowed(lineId, lineText);
+    final probability = (timeWindow == 'lateNight') ? 0.10 : 0.12;
+
+    final clipFile = nameClipFile;
+    final includeName = isAllowed &&
+        clipFile != null &&
         nameClipText != null &&
-        await nameClipFile.exists() &&
-        _random.nextDouble() < 0.20;
+        await clipFile.exists() &&
+        _random.nextDouble() < probability;
 
     await _acquireLock();
     try {
       if (includeName) {
-        await _playWithNamePrefix(voiceKey, line.id, nameClipFile);
-        return '$nameClipText ${line.text}';
+        await _playWithNamePrefix(voiceKey, lineId, clipFile);
+        return '$nameClipText $lineText';
       } else {
-        await _playAsset(voiceKey, line.id);
-        return line.text;
+        await _playAsset(voiceKey, lineId);
+        return lineText;
       }
     } finally {
       _releaseLock();
     }
   }
 
-  /// Stitch a name-prefix clip (local file) + greeting/reply asset into one
+  /// Check if a micro-response line is allowed to have a name prefix.
+  bool _isNamePrefixAllowed(String lineId, String lineText) {
+    // Never apply to any RESP_HURT_*
+    if (lineId.startsWith('RESP_HURT_')) return false;
+
+    // Never apply if text contains blocked phrases
+    for (final phrase in _nameBlockedPhrases) {
+      if (lineText.contains(phrase)) return false;
+    }
+
+    // Only apply to explicitly allowed IDs
+    return _nameAllowedMicroResponses.contains(lineId);
+  }
+
+  /// Find line text by ID across all buckets in a map.
+  String _findLineText(
+      String lineId, Map<String, List<PalLine>> lineMap) {
+    for (final pool in lineMap.values) {
+      for (final line in pool) {
+        if (line.id == lineId) return line.text;
+      }
+    }
+    return '';
+  }
+
+  /// Stitch a name-prefix clip (local file) + prompt/response asset into one
   /// gapless sequence using ConcatenatingAudioSource.
   Future<void> _playWithNamePrefix(
     String voiceKey,
     String lineId,
     File nameClipFile,
   ) async {
-    final greetingPath = assetPath(voiceKey, lineId);
+    final path = assetPath(voiceKey, lineId);
     try {
       final playlist = ConcatenatingAudioSource(children: [
         AudioSource.file(nameClipFile.path),
-        AudioSource.asset(greetingPath),
+        AudioSource.asset(path),
       ]);
       await _player.setAudioSource(playlist);
       await _player.play();
     } catch (e) {
       debugPrint('[PalAudioService] Name prefix playback failed: $e');
-      // Fallback: play greeting only
+      // Fallback: play line only
       await _playAsset(voiceKey, lineId);
     }
   }
@@ -256,11 +259,11 @@ class PalAudioService {
     await _playAsset(voiceKey, line.id);
   }
 
-  /// Get the text of the last played greeting.
-  String? getLastGreetingText() => _lastGreeting?.text;
+  /// Get the text of the last played prompt.
+  String? getLastPromptText() => _lastPrompt?.text;
 
-  /// Get the text of the last played reply.
-  String? getLastReplyText() => _lastReply?.text;
+  /// Get the text of the last played micro-response.
+  String? getLastMicroResponseText() => _lastMicroResponse?.text;
 
   /// Play an asset with fallback chain: selected voice → default voice → silent.
   Future<void> _playAsset(String voiceKey, String lineId) async {

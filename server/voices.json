@@ -1,7 +1,7 @@
 {
   "_comment": "Canonical voice pool for Bible PAL narrator variety. DO NOT expose ElevenLabs IDs to mobile app.",
-  "_version": "1.0.1",
-  "_updated": "2026-01-11",
+  "_version": "1.1.0",
+  "_updated": "2026-02-27",
   "_forbiddenVoices": {
     "_comment": "These ElevenLabs voices are GLOBALLY BANNED from Bible PAL. Never add them to the voice pool.",
     "voices": ["Grace", "Abilene", "Grant"],
@@ -166,6 +166,41 @@
       "displayName": "Mary (Pondering Heart)",
       "description": "Contemplative, reverent female voice. Treasures meaning.",
       "tags": ["contemplative", "reverent", "female", "thoughtful"],
+      "audience": ["adult", "kid"]
+    }
+  ],
+  "_palVoices_comment": "PAL conversation voices (separate from narrator pool). Used by generate_pal_audio_batch.sh. Display name 'Grace' maps to ElevenLabs 'Juniper', NOT the forbidden ElevenLabs voice 'Grace' (see ADR-002).",
+  "palVoices": [
+    {
+      "voiceKey": "VOICE_GRACE",
+      "elevenLabsId": "n8D8FqNGSQv0iyOXW0sb",
+      "displayName": "Grace (Gentle Comforter)",
+      "description": "Gentle, comforting female voice. Warm and calming.",
+      "tags": ["gentle", "comforting", "female", "warm"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_SHEPHERD",
+      "elevenLabsId": "EkK5I93UQWFDigLMpZcX",
+      "displayName": "Shepherd (Wise Storyteller)",
+      "description": "Wise, grounded male voice. Warm storyteller tone.",
+      "tags": ["wise", "storyteller", "male", "warm"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_HOPE",
+      "elevenLabsId": "qBDvhofpxp92JgXJxDjB",
+      "displayName": "Hope (Bright Encourager)",
+      "description": "Bright, encouraging female voice. Uplifting energy.",
+      "tags": ["bright", "encouraging", "female", "uplifting"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_STILLWATER",
+      "elevenLabsId": "uju3wxzG5OhpWcoi3SMy",
+      "displayName": "Stillwater (Calm Companion)",
+      "description": "Calm, grounded male voice. Steady companion.",
+      "tags": ["calm", "companion", "male", "grounded"],
       "audience": ["adult", "kid"]
     }
   ],

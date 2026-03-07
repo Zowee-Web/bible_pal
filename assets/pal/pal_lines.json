@@ -1,84 +1,181 @@
 {
-  "version": 1,
+  "version": 2,
   "onboarding": [
     { "id": "onboard_01", "text": "Hi, I'm PAL. I'm here to walk with you." }
   ],
   "preview": [
     { "id": "preview_01", "text": "Hi, friend. Whenever you're ready, we can listen to a story together." }
   ],
-  "greetings": [
-    { "id": "greeting_01", "text": "Hi, friend. I'm really glad you're here." },
-    { "id": "greeting_02", "text": "Hello. Want a story today?" },
-    { "id": "greeting_03", "text": "Welcome back. Let's take a calm moment together." },
-    { "id": "greeting_04", "text": "Hey there. How's your day going?" },
-    { "id": "greeting_05", "text": "Good to see you. Ready for something encouraging?" },
-    { "id": "greeting_06", "text": "You made it. I'm proud of you for showing up." },
-    { "id": "greeting_07", "text": "Hello, friend. Short story or longer one today?" },
-    { "id": "greeting_08", "text": "Welcome. Let's find a story that fits your day." },
-    { "id": "greeting_09", "text": "Hi, friend. We can go at a gentle pace." },
-    { "id": "greeting_10", "text": "Hey. Let's choose something peaceful and strong." },
-    { "id": "greeting_11", "text": "Hello again. A story is ready whenever you are." },
-    { "id": "greeting_12", "text": "Hi there. You're not alone in this moment." },
-    { "id": "greeting_13", "text": "Welcome back. Want something that lifts your heart?" },
-    { "id": "greeting_14", "text": "Hi. Let's take one small step forward together." },
-    { "id": "greeting_15", "text": "Hello. Want a story that brings comfort?" },
-    { "id": "greeting_16", "text": "Hey, friend. Ready for something hopeful?" },
-    { "id": "greeting_17", "text": "Hi. Let's pause, breathe, and begin." },
-    { "id": "greeting_18", "text": "Hello, friend. Let's listen for what's good and true." },
-    { "id": "greeting_19", "text": "Welcome. I'm here to help you feel steady." },
-    { "id": "greeting_20", "text": "Hi there. Let's find the right story for today." }
-  ],
-  "compassionateReplies": {
-    "positive": [
-      { "id": "comp_pos_01", "text": "That's wonderful to hear. Want a story that matches that joy?" },
-      { "id": "comp_pos_02", "text": "I'm really glad for you. Want a story that keeps that hope strong?" },
-      { "id": "comp_pos_03", "text": "That sounds like a bright moment. Want a story to carry that light forward?" },
-      { "id": "comp_pos_04", "text": "That's a gift of a day. Want a thankful kind of story?" },
-      { "id": "comp_pos_05", "text": "That's a win. Want a story about courage and gratitude?" },
-      { "id": "comp_pos_06", "text": "I love hearing that. Want a story that feels steady and joyful?" },
-      { "id": "comp_pos_07", "text": "That's encouraging. Want a story that helps you stay grounded in that good?" },
-      { "id": "comp_pos_08", "text": "That's beautiful. Want a story that celebrates goodness in a calm way?" },
-      { "id": "comp_pos_09", "text": "That sounds peaceful. Want a story that keeps your heart calm and strong?" },
-      { "id": "comp_pos_10", "text": "I'm smiling with you. Want a story that stays uplifting and gentle?" },
-      { "id": "comp_pos_11", "text": "That's great news. Want a story that builds brave joy?" },
-      { "id": "comp_pos_12", "text": "That's so good to hear. Want a story that helps you hold on to that?" },
-      { "id": "comp_pos_13", "text": "That sounds refreshing. Want a story that feels like sunshine and strength?" },
-      { "id": "comp_pos_14", "text": "That's a good feeling. Want a story that keeps things peaceful and bright?" },
-      { "id": "comp_pos_15", "text": "I'm glad your day has some light in it. Want a story that matches that warmth?" }
+  "prompts": {
+    "morning_day": [
+      { "id": "MORNING_DAY_01", "text": "How's your morning starting out?" },
+      { "id": "MORNING_DAY_02", "text": "How are you feeling as today begins?" },
+      { "id": "MORNING_DAY_03", "text": "What kind of day is it shaping up to be?" },
+      { "id": "MORNING_DAY_04", "text": "How's your day looking so far?" },
+      { "id": "MORNING_DAY_05", "text": "Did you wake up feeling peace\u2026 or pressure today?" },
+      { "id": "MORNING_DAY_06", "text": "What's your energy like this morning?" }
+    ],
+    "morning_heart": [
+      { "id": "MORNING_HEART_01", "text": "How's your heart this morning?" },
+      { "id": "MORNING_HEART_02", "text": "What's on your heart as you start today?" },
+      { "id": "MORNING_HEART_03", "text": "Is your heart feeling light or heavy?" },
+      { "id": "MORNING_HEART_04", "text": "What's stirring inside you this morning?" },
+      { "id": "MORNING_HEART_05", "text": "What does your soul need most today?" },
+      { "id": "MORNING_HEART_06", "text": "How's your spirit doing right now?" }
+    ],
+    "morning_burden": [
+      { "id": "MORNING_BURDEN_01", "text": "Is anything weighing on you this morning?" },
+      { "id": "MORNING_BURDEN_02", "text": "Did you wake up carrying something heavy?" },
+      { "id": "MORNING_BURDEN_03", "text": "Is today already feeling like a lot?" },
+      { "id": "MORNING_BURDEN_04", "text": "What's been hardest to carry lately?" },
+      { "id": "MORNING_BURDEN_05", "text": "Is there something you're worried about today?" },
+      { "id": "MORNING_BURDEN_06", "text": "What's the heavy thing on your mind?" }
+    ],
+    "morning_gratitude": [
+      { "id": "MORNING_GRAT_01", "text": "What's one good thing you're grateful for today?" },
+      { "id": "MORNING_GRAT_02", "text": "What's a small bright spot this morning?" },
+      { "id": "MORNING_GRAT_03", "text": "Is there something you're thankful for right now?" },
+      { "id": "MORNING_GRAT_04", "text": "What's one gift you can see today?" },
+      { "id": "MORNING_GRAT_05", "text": "What's one thing you don't want to forget today?" },
+      { "id": "MORNING_GRAT_06", "text": "Where have you seen kindness lately?" }
+    ],
+    "afternoon_day": [
+      { "id": "AFT_DAY_01", "text": "How's your day going so far?" },
+      { "id": "AFT_DAY_02", "text": "How are you holding up today?" },
+      { "id": "AFT_DAY_03", "text": "How's your afternoon treating you?" },
+      { "id": "AFT_DAY_04", "text": "What's today been like for you?" },
+      { "id": "AFT_DAY_05", "text": "Has today been smooth or stressful?" },
+      { "id": "AFT_DAY_06", "text": "How's your pace feeling right now?" }
+    ],
+    "afternoon_heart": [
+      { "id": "AFT_HEART_01", "text": "How's your heart doing right now?" },
+      { "id": "AFT_HEART_02", "text": "What's sitting on your heart today?" },
+      { "id": "AFT_HEART_03", "text": "What's been on your mind the most today?" },
+      { "id": "AFT_HEART_04", "text": "Are you feeling steady today?" },
+      { "id": "AFT_HEART_05", "text": "What do you need most right now?" },
+      { "id": "AFT_HEART_06", "text": "Is your heart resting or restless?" }
+    ],
+    "afternoon_burden": [
+      { "id": "AFT_BURDEN_01", "text": "Has anything felt heavy today?" },
+      { "id": "AFT_BURDEN_02", "text": "Is the day feeling like a lot?" },
+      { "id": "AFT_BURDEN_03", "text": "What's been stressful today?" },
+      { "id": "AFT_BURDEN_04", "text": "Is there something you're carrying quietly?" },
+      { "id": "AFT_BURDEN_05", "text": "What's been weighing on you?" },
+      { "id": "AFT_BURDEN_06", "text": "Is there a worry you can't shake?" }
+    ],
+    "afternoon_gratitude": [
+      { "id": "AFT_GRAT_01", "text": "Has there been a small win today?" },
+      { "id": "AFT_GRAT_02", "text": "What's been good today, even if it's small?" },
+      { "id": "AFT_GRAT_03", "text": "What's something you're thankful for today?" },
+      { "id": "AFT_GRAT_04", "text": "Did anything encourage you today?" },
+      { "id": "AFT_GRAT_05", "text": "What's one moment you'd keep from today?" },
+      { "id": "AFT_GRAT_06", "text": "Where did you feel supported today?" }
+    ],
+    "evening_day": [
+      { "id": "EVE_DAY_01", "text": "How did today go for you?" },
+      { "id": "EVE_DAY_02", "text": "How are you feeling as the day winds down?" },
+      { "id": "EVE_DAY_03", "text": "What kind of day was it?" },
+      { "id": "EVE_DAY_04", "text": "How's your evening going?" },
+      { "id": "EVE_DAY_05", "text": "Did today take more than it gave?" },
+      { "id": "EVE_DAY_06", "text": "Where has your mind been wandering tonight?" }
+    ],
+    "evening_heart": [
+      { "id": "EVE_HEART_01", "text": "How's your heart tonight?" },
+      { "id": "EVE_HEART_02", "text": "What's lingering on your heart from today?" },
+      { "id": "EVE_HEART_03", "text": "Is your heart at peace tonight?" },
+      { "id": "EVE_HEART_04", "text": "What are you feeling most\u2026 right now?" },
+      { "id": "EVE_HEART_05", "text": "What do you need to lay down tonight?" },
+      { "id": "EVE_HEART_06", "text": "Is your spirit tired or calm?" }
+    ],
+    "evening_burden": [
+      { "id": "EVE_BURDEN_01", "text": "Is anything still weighing on you tonight?" },
+      { "id": "EVE_BURDEN_02", "text": "Did today leave you worn down?" },
+      { "id": "EVE_BURDEN_03", "text": "What's been hardest about today?" },
+      { "id": "EVE_BURDEN_04", "text": "Is there something you wish was different?" },
+      { "id": "EVE_BURDEN_05", "text": "Is there something you're still carrying?" },
+      { "id": "EVE_BURDEN_06", "text": "What's the heavy thought tonight?" }
+    ],
+    "evening_gratitude": [
+      { "id": "EVE_GRAT_01", "text": "Was there a moment you're thankful for today?" },
+      { "id": "EVE_GRAT_02", "text": "What was the best part of today?" },
+      { "id": "EVE_GRAT_03", "text": "Did anything bring you peace today?" },
+      { "id": "EVE_GRAT_04", "text": "Where did you see goodness today?" },
+      { "id": "EVE_GRAT_05", "text": "What's one thing worth thanking God for today?" },
+      { "id": "EVE_GRAT_06", "text": "What kindness did you notice today?" }
+    ],
+    "lateNight_day": [
+      { "id": "LN_DAY_01", "text": "Hey\u2026 how are you doing tonight?" },
+      { "id": "LN_DAY_02", "text": "How are you holding up this late?" },
+      { "id": "LN_DAY_03", "text": "How's your night going?" },
+      { "id": "LN_DAY_04", "text": "What's your mind doing right now?" },
+      { "id": "LN_DAY_05", "text": "Are you feeling tired or wired?" },
+      { "id": "LN_DAY_06", "text": "Is tonight quiet or restless?" }
+    ],
+    "lateNight_heart": [
+      { "id": "LN_HEART_01", "text": "How's your heart right now?" },
+      { "id": "LN_HEART_02", "text": "What's on your heart tonight?" },
+      { "id": "LN_HEART_03", "text": "Is your heart feeling safe tonight?" },
+      { "id": "LN_HEART_04", "text": "What do you need to hear tonight?" },
+      { "id": "LN_HEART_05", "text": "Is your spirit heavy tonight?" },
+      { "id": "LN_HEART_06", "text": "Do you feel peace or pressure?" }
+    ],
+    "lateNight_burden": [
+      { "id": "LN_BURDEN_01", "text": "Is something keeping you up?" },
+      { "id": "LN_BURDEN_02", "text": "Are you carrying something heavy right now?" },
+      { "id": "LN_BURDEN_03", "text": "Is there a worry looping in your mind?" },
+      { "id": "LN_BURDEN_04", "text": "What's the hardest thought tonight?" },
+      { "id": "LN_BURDEN_05", "text": "Is your heart hurting tonight?" },
+      { "id": "LN_BURDEN_06", "text": "Do you feel overwhelmed right now?" }
+    ],
+    "lateNight_gratitude": [
+      { "id": "LN_GRAT_01", "text": "What's one gentle good thing from today?" },
+      { "id": "LN_GRAT_02", "text": "Is there a small thing you're thankful for tonight?" },
+      { "id": "LN_GRAT_03", "text": "What's one blessing you can name right now?" },
+      { "id": "LN_GRAT_04", "text": "Did anything comfort you today?" },
+      { "id": "LN_GRAT_05", "text": "What's one good memory from today?" },
+      { "id": "LN_GRAT_06", "text": "Where did you feel cared for today?" }
+    ]
+  },
+  "microResponses": {
+    "joyful": [
+      { "id": "RESP_JOY_01", "text": "I'm grateful to hear that. Let's lean into that joy." },
+      { "id": "RESP_JOY_02", "text": "That's beautiful. I'll share a story that matches it." },
+      { "id": "RESP_JOY_03", "text": "Your joy matters. Let's listen to something uplifting." },
+      { "id": "RESP_JOY_04", "text": "Praise God. Here's a story to strengthen that light." },
+      { "id": "RESP_JOY_05", "text": "I'm glad for you. Let's hear something hopeful." },
+      { "id": "RESP_JOY_06", "text": "That's a gift. I'll play a joyful story." }
+    ],
+    "weary": [
+      { "id": "RESP_WEARY_01", "text": "That sounds tiring. I'll share something steady for you." },
+      { "id": "RESP_WEARY_02", "text": "You've carried a lot. Let's rest in a story." },
+      { "id": "RESP_WEARY_03", "text": "I hear that. I'll play something strengthening now." },
+      { "id": "RESP_WEARY_04", "text": "It's okay to be weary. Here's something gentle." },
+      { "id": "RESP_WEARY_05", "text": "You're not alone in this. Let's listen together." },
+      { "id": "RESP_WEARY_06", "text": "Let's breathe. I'll play a steady story." }
+    ],
+    "anxious": [
+      { "id": "RESP_ANX_01", "text": "I hear the worry. Let's settle with something grounding." },
+      { "id": "RESP_ANX_02", "text": "That's a lot to carry. Let's listen to something steady." },
+      { "id": "RESP_ANX_03", "text": "It's okay. Let's slow down with a steady story." },
+      { "id": "RESP_ANX_04", "text": "I'm here with you. Let's listen and breathe." },
+      { "id": "RESP_ANX_05", "text": "Let's quiet the noise. I'll share something peaceful." },
+      { "id": "RESP_ANX_06", "text": "We'll take this moment gently. Here's a calm story." }
+    ],
+    "hurting": [
+      { "id": "RESP_HURT_01", "text": "I'm so sorry. You're not alone\u2014listen with me." },
+      { "id": "RESP_HURT_02", "text": "That pain matters. I'll play something gentle now." },
+      { "id": "RESP_HURT_03", "text": "I'm here. Let's hold this quietly with a story." },
+      { "id": "RESP_HURT_04", "text": "God sees you. I'll share comfort through a story." },
+      { "id": "RESP_HURT_05", "text": "You don't have to carry this alone. Let's listen." },
+      { "id": "RESP_HURT_06", "text": "I hear you. I'll play a tender story now." }
     ],
     "neutral": [
-      { "id": "comp_neu_01", "text": "Thanks for telling me. Want a steady story to help your day feel grounded?" },
-      { "id": "comp_neu_02", "text": "I hear you. Want a calm story that helps you reset?" },
-      { "id": "comp_neu_03", "text": "That makes sense. Want a story that's peaceful and clear?" },
-      { "id": "comp_neu_04", "text": "Okay. Want a story that brings quiet strength?" },
-      { "id": "comp_neu_05", "text": "Thanks for sharing. Want a story that helps you feel steady?" },
-      { "id": "comp_neu_06", "text": "Got it. Want a story that's gentle, simple, and true?" },
-      { "id": "comp_neu_07", "text": "Alright. Want a story that brings a little peace?" },
-      { "id": "comp_neu_08", "text": "That's okay. Want a story that helps you take the next step?" },
-      { "id": "comp_neu_09", "text": "I'm listening. Want a story that's calm and encouraging?" },
-      { "id": "comp_neu_10", "text": "Thanks. Want a story that helps your heart feel settled?" },
-      { "id": "comp_neu_11", "text": "Understood. Want a story that feels steady like a safe path?" },
-      { "id": "comp_neu_12", "text": "Okay, friend. Want a story that brings quiet hope?" },
-      { "id": "comp_neu_13", "text": "That's fair. Want a story that helps you breathe a little easier?" },
-      { "id": "comp_neu_14", "text": "Thanks for being honest. Want a story that's gentle and strong?" },
-      { "id": "comp_neu_15", "text": "Got you. Want a story that keeps things simple and comforting?" }
-    ],
-    "negative": [
-      { "id": "comp_neg_01", "text": "I'm sorry it's been heavy. Want a gentle story for comfort?" },
-      { "id": "comp_neg_02", "text": "That sounds really hard. Want a story that helps you feel safe and steady?" },
-      { "id": "comp_neg_03", "text": "I hear you. Want a quiet story that brings strength?" },
-      { "id": "comp_neg_04", "text": "You don't have to carry this alone. Want a story that brings peace?" },
-      { "id": "comp_neg_05", "text": "That's a lot to hold. Want a story that feels like a warm light?" },
-      { "id": "comp_neg_06", "text": "I'm sorry your day hurts. Want a story that helps you breathe again?" },
-      { "id": "comp_neg_07", "text": "Thanks for telling me. Want a story that reminds you you're cared for?" },
-      { "id": "comp_neg_08", "text": "That sounds exhausting. Want a story for courage, one step at a time?" },
-      { "id": "comp_neg_09", "text": "I hear the weight in that. Want a story that brings comfort and calm?" },
-      { "id": "comp_neg_10", "text": "I'm sorry it's been rough. Want a story that helps you feel held up?" },
-      { "id": "comp_neg_11", "text": "It's okay to feel this. Want a story that brings quiet strength?" },
-      { "id": "comp_neg_12", "text": "That's painful. Want a story that helps your heart rest a little?" },
-      { "id": "comp_neg_13", "text": "I'm sorry, friend. Want a story that brings hope without rushing you?" },
-      { "id": "comp_neg_14", "text": "That's a stormy kind of day. Want a story that feels like shelter?" },
-      { "id": "comp_neg_15", "text": "Thanks for sharing that. Want a story that gently reminds you you're not alone?" }
+      { "id": "RESP_NEU_01", "text": "Thank you for sharing. I'll play a fitting story." },
+      { "id": "RESP_NEU_02", "text": "I'm with you. Let's listen to something steady." },
+      { "id": "RESP_NEU_03", "text": "I hear you. I'll choose something wise for you." },
+      { "id": "RESP_NEU_04", "text": "Let's take a moment\u2026 I'll play a calm story." },
+      { "id": "RESP_NEU_05", "text": "Thanks for saying that. I'll share something steady." },
+      { "id": "RESP_NEU_06", "text": "Alright. I'll play a story that meets you here." }
     ]
   }
 }

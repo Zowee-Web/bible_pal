@@ -1,4 +1,5 @@
 import '../core/bible_translation_registry.dart';
+import '../core/pal_voice_registry.dart';
 
 /// User Preferences model
 /// Stores user settings from onboarding and settings screen
@@ -84,7 +85,7 @@ class UserPreferences {
     this.storyNarrationEnabled, // null = not asked
     this.palGreetingsEnabled, // null = not asked
     this.voiceConsentVersion, // null = never consented
-    this.palVoiceKey = 'VOICE_SARAH_STORYTELLER',
+    this.palVoiceKey = 'VOICE_GRACE',
     this.lastDetectedMood,
   });
 
@@ -140,8 +141,8 @@ class UserPreferences {
       storyNarrationEnabled: json['storyNarrationEnabled'] as bool? ?? true,
       palGreetingsEnabled: json['palGreetingsEnabled'] as bool? ?? true,
       voiceConsentVersion: json['voiceConsentVersion'] as int?,
-      palVoiceKey:
-          json['palVoiceKey'] as String? ?? 'VOICE_SARAH_STORYTELLER',
+      palVoiceKey: PalVoiceRegistry.migrateVoiceKey(
+          json['palVoiceKey'] as String? ?? 'VOICE_GRACE'),
       lastDetectedMood:
           _validateMood(json['lastDetectedMood'] as String?),
     );

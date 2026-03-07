@@ -1,7 +1,7 @@
 # Bible PAL - Technical Specification
 
-**Version:** 1.3
-**Last Updated:** 2026-01-12
+**Version:** 2.0
+**Last Updated:** 2026-02-27
 
 This document is the single source of truth for Bible PAL's features and behavior. All code must follow this specification. Changes to app behavior require explicit updates to this document.
 
@@ -26,63 +26,67 @@ This document is the single source of truth for Bible PAL's features and behavio
 **1. PAL's Parables Button**
 - Main button on the home screen to start the parable experience
 
-**2. Context-Aware Emotional Check-In Greeting (Feature 2.1)**
-- After tapping PAL's Parables, PAL greets the user with a time-appropriate emotional check-in question
-- The greeting adjusts based on current time of day
-- Randomly selects from 3-5 phrasing variations for naturalness
-- Avoids sounding robotic or repetitive
-- This greeting leads directly into mood detection
+**2. PAL Check-In Prompt System (Feature 2.1)**
+- After tapping PAL's Parables, PAL asks a time-aware, category-weighted check-in question
+- The prompt adjusts based on current time of day and a weighted random category
+- 96 total prompts: 16 buckets (4 time windows × 4 categories) × 6 lines each
+- No repeat within a bucket until all 6 lines are used (session-only freshness)
+- This prompt leads directly into mood input
 
-**Time Windows and Greeting Options:**
+**Time Windows:**
+- 🌅 **Morning:** 05:00–11:59
+- 🌤️ **Afternoon:** 12:00–16:59
+- 🌇 **Evening:** 17:00–21:59
+- 🌙 **Late Night:** 22:00–04:59
 
-🌅 **Morning (5 AM – 11:59 AM)**
-- "Good morning! How's your day starting out?"
-- "Morning! How are you feeling so far today?"
-- "Hi there — how's your morning going?"
-- "Good morning! What's on your heart today?"
+**Prompt Categories:**
+- `day` — general day check-in
+- `heart` — emotional/spiritual state
+- `burden` — what's weighing on the user
+- `gratitude` — thankfulness and bright spots
 
-🌤️ **Afternoon (12 PM – 4:59 PM)**
-- "How's your afternoon going?"
-- "I'm glad you're here — how are you doing today?"
-- "How's your day been so far?"
-- "Checking in — how are you feeling this afternoon?"
+**Weighted Category Distribution:**
 
-🌇 **Evening (5 PM – 8:59 PM)**
-- "How's your evening going?"
-- "Good to see you — how are you feeling tonight?"
-- "How has your day been winding down?"
-- "How are you doing this evening?"
+| Time Window | day | heart | burden | gratitude |
+|-------------|-----|-------|--------|-----------|
+| Morning     | 35% | 25%   | 15%    | 25%       |
+| Afternoon   | 30% | 30%   | 25%    | 15%       |
+| Evening     | 20% | 35%   | 30%    | 15%       |
+| LateNight   | 15% | 40%   | 35%    | 10%       |
 
-🌙 **Late Night (9 PM – 4:59 AM)**
-- "How's your night going?"
-- "It's a quiet hour — how are you feeling?"
-- "How are you doing tonight?"
-- "Is everything going okay this late? How are you feeling?"
+**Mood Input Methods:**
+Users respond to the check-in prompt using one of three input paths:
+- **Quick mood buttons:** Tap one of 5 mood buttons (Joyful, Neutral, Weary, Anxious, Hurting) — bypasses keyword detection, directly sets mood
+- **Text input:** Type feelings into TextField → `MoodService.detectMood()` analyzes text
+- **Voice input:** Speak feelings via STT → transcript placed in TextField → same detection pipeline as text
+
+When a mood button is tapped, a brief thinking delay (800–1500ms randomized) is shown before continuing the flow, to make PAL feel conversational rather than mechanical.
 
 **Implementation Notes:**
-- App randomly selects one greeting from the appropriate time window
-- Displayed on PAL's Parables mood check-in screen
-- Choice of greeting does not affect mood classification, only UX
-- This is the first step before mood detection
+- `PalPromptService` owns prompt selection and non-repeat logic
+- `PalAudioService` only plays by `lineId` and returns display text
+- Prompt bucket key format: `${timeWindow}_${category}` (e.g. `morning_day`, `lateNight_burden`)
+- All prompt content defined in `assets/pal/pal_lines.json` under `"prompts"` key
+- Choice of prompt does not affect mood classification, only UX
 
 **2.2 PAL Voice Mood Input (Feature 2.2)**
 - User can optionally speak their mood response instead of typing (Milestone 1 = single-turn voice input only)
 - A mic button appears on the PAL's Parables mood check-in screen near the mood TextField
 - Voice input is never automatic; it only starts after an explicit mic tap
-- If the PAL greeting audio is still playing and the user taps the mic, the app auto-stops the greeting and immediately proceeds to permission/listening
+- If the PAL prompt audio is still playing and the user taps the mic, the app auto-stops the prompt and immediately proceeds to permission/listening
 - SoLoud playback must be fully stopped before STT activation to avoid audio session conflicts
 - Voice transcription is placed into the same TextField used for typed input
 - User can edit the transcript before continuing
 - Voice transcripts go through the identical pipeline as typed text: _handleMoodSubmission() → MoodService.detectMood()
 - Fallback is always available: user can cancel voice and type at any time
-- Compassionate reply remains text-only in Milestone 1 (TTS reading of PAL's reply is deferred)
+- Micro-response is audio + text in PAL V2 (played via pre-generated PAL voice audio)
 
 **Voice Conversation States (Milestone 1):**
 - `idle` — TextField visible, mic available
 - `awaiting_permission` — system permission request in progress
 - `listening` — mic active, partial transcript shown (preview only)
 - `confirming` — final transcript inserted into TextField, user can edit/re-record
-- `proceeding` — same as existing flow after Continue (mood result → compassionate reply → verse → length selection)
+- `proceeding` — same as existing flow after Continue (mood result → micro-response → verse → auto-story start)
 
 **Listening Behavior:**
 - `listenFor`: 10 seconds max
@@ -118,9 +122,15 @@ This document is the single source of truth for Bible PAL's features and behavio
 - Text is analyzed to detect mood (positive / neutral / negative plus finer emotional tags)
 - Voice input places transcribed text into the TextField, then follows the identical detection pipeline
 
-**4. Compassionate Reply System**
-- After mood detection, app shows a short, caring text reply that matches the mood
-- This reply appears before the parable starts
+**4. Micro-Response System**
+- After mood input, PAL plays a short, mood-specific micro-response (audio + text)
+- 30 total micro-responses: 5 mood buckets (joyful, weary, anxious, hurting, neutral) × 6 lines each
+- All micro-responses must be ≤ 12 words
+- No repeat within a mood bucket until all 6 lines are used (session-only freshness)
+- Micro-response selection logic lives in the service layer, not the audio layer
+- After micro-response + verse display, a ~2 second cancellable delay triggers automatic story selection and navigation
+- If `palGreetingsEnabled == false`, micro-response text still displays and auto-start flow still works; only audio playback is skipped
+- All micro-response content defined in `assets/pal/pal_lines.json` under `"microResponses"` key
 
 **5. Parable Generation / Selection Engine**
 - Chooses or generates a parable based on:
@@ -143,7 +153,9 @@ Implementation notes:
 - UI presents descriptive labels only (Short/Full/Long), not minutes
 - Selection filters by `StoryLengthBucket` enum (short/full/long)
 - Word ranges are for generation validation; selection uses bucket mapping
-- Length selection is stateless (chosen fresh each session after mood detection)
+- Length selector is on the main menu screen (below PAL's Parables button)
+- Session-scoped: user picks length before entering PAL flow; selection persists for the session but resets on app restart
+- Not persisted to SharedPreferences
 
 **Compatibility with existing assets:**
 - New stories use `storyLength` field directly ("short", "full", "long")
@@ -450,6 +462,42 @@ Golden Prompt mode is a specialized generation strategy for adult traditional SH
 - SSML tags for enhanced narration
 - Pre-generated audio files (not live streaming TTS)
 - High-quality playback from stored audio files
+
+**17b. PAL Voices**
+
+Four selectable PAL conversation voices for check-in prompts, micro-responses, and previews:
+
+| Voice Key | Display Name | Emoji | Description | ElevenLabs Voice |
+|-----------|-------------|-------|-------------|-----------------|
+| `VOICE_GRACE` | Grace | 🌿 | Gentle & comforting | Juniper |
+| `VOICE_SHEPHERD` | Shepherd | 📖 | Wise storyteller | Mark |
+| `VOICE_HOPE` | Hope | ☀️ | Bright encouragement | Hope |
+| `VOICE_STILLWATER` | Stillwater | 🌙 | Calm companion | James |
+
+- Default voice: `VOICE_GRACE`
+- Audio asset path: `assets/pal/audio/{VOICE_KEY}/{line_id}.mp3`
+- Fallback chain: selected voice → default voice (Grace) → text-only display
+- PAL voices are separate from the narrator voice pool used for story narration
+
+**Voice Quality Guardrails:**
+
+PAL voices should sound:
+- conversational, warm, calm, grounded, storyteller-like, emotionally supportive
+
+PAL voices should NOT sound:
+- announcer-like, corporate, metallic, dominating, trailer-style, overly theatrical
+
+Spoken cadence guidance:
+- Preserve punctuation and ellipses (these aid natural pauses)
+- Prefer short and medium-length sentences
+- Allow commas for breathing room
+- Avoid flattening punctuation or overlong run-on sentences
+
+Category tone personalization (content/voice-direction, not inference):
+- `day` = neutral / steady
+- `heart` = warmer / more intimate
+- `burden` = gentler / softer
+- `gratitude` = brighter / lighter
 
 ---
 

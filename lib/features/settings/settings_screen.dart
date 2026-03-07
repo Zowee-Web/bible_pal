@@ -368,7 +368,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           ),
           for (final voice in PalVoiceRegistry.voices)
             RadioListTile<String>(
-              title: Text(voice.displayName),
+              title: Text('${voice.emoji} ${voice.displayName}'),
               subtitle: Text(voice.description),
               value: voice.voiceKey,
               groupValue: _palVoiceKey,

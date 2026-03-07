@@ -3,9 +3,8 @@ import 'package:bible_pal/services/voice_consent_gate.dart';
 import 'package:bible_pal/models/user_preferences.dart';
 
 void main() {
-  group('PAL Greeting Voice Consent', () {
+  group('PAL Voice Consent', () {
     test('checkPalGreetings returns needsConsent when palGreetingsEnabled is null', () {
-      // User hasn't been asked yet
       const prefs = UserPreferences(
         bibleTranslation: 'WEB',
         palGreetingsEnabled: null,
@@ -17,7 +16,6 @@ void main() {
     });
 
     test('checkPalGreetings returns blocked when palGreetingsEnabled is false', () {
-      // User explicitly disabled PAL greetings
       const prefs = UserPreferences(
         bibleTranslation: 'WEB',
         palGreetingsEnabled: false,
@@ -29,7 +27,6 @@ void main() {
     });
 
     test('checkPalGreetings returns allowed when palGreetingsEnabled is true', () {
-      // User has enabled PAL greetings
       const prefs = UserPreferences(
         bibleTranslation: 'WEB',
         palGreetingsEnabled: true,
@@ -47,33 +44,43 @@ void main() {
     });
   });
 
-  group('PAL Greeting Asset Path', () {
-    test('greeting asset path is correct', () {
-      // SoLoud uses WAV format for instant playback
-      const expectedPath = 'assets/audio/pal_test_greeting.wav';
+  group('PAL Line Asset Path', () {
+    test('prompt asset path follows convention', () {
+      const path = 'assets/pal/audio/VOICE_GRACE/MORNING_DAY_01.mp3';
+      expect(path, startsWith('assets/pal/audio/'));
+      expect(path, endsWith('.mp3'));
+      expect(path, contains('VOICE_GRACE'));
+    });
 
-      // Verify the path follows the expected pattern
-      expect(expectedPath.startsWith('assets/audio/'), isTrue);
-      expect(expectedPath.endsWith('.wav'), isTrue);
-      expect(expectedPath.contains('pal_test_greeting'), isTrue);
+    test('micro-response asset path follows convention', () {
+      const path = 'assets/pal/audio/VOICE_SHEPHERD/RESP_JOY_01.mp3';
+      expect(path, startsWith('assets/pal/audio/'));
+      expect(path, endsWith('.mp3'));
+      expect(path, contains('VOICE_SHEPHERD'));
     });
   });
 
-  group('PAL Greeting Breadcrumb Privacy', () {
-    test('pal_greeting_played breadcrumb uses only whitelisted keys', () {
-      // Expected breadcrumb structure (now triggered from PAL button tap)
+  group('PAL Line Breadcrumb Privacy', () {
+    test('pal_line_played breadcrumb uses only whitelisted keys', () {
       final breadcrumb = {
-        'event': 'pal_greeting_played',
-        'source': 'pal_button_tap',
+        'event': 'pal_line_played',
+        'line_id': 'MORNING_DAY_01',
+        'type': 'prompt',
+        'time_window': 'morning',
+        'voice_key': 'VOICE_GRACE',
+        'name_prefix_used': false,
       };
 
-      // Verify all keys are in the known whitelist
-      // From crash_log_store.dart: event, source are explicitly whitelisted
       const whitelistedKeys = {
-        'event', // Core field
-        'source', // Mode/state flag
-        'level', // Core field (auto-added)
-        'ts', // Core field (auto-added)
+        'event',
+        'line_id',
+        'type',
+        'time_window',
+        'mood',
+        'voice_key',
+        'name_prefix_used',
+        'level',
+        'ts',
       };
 
       expect(
@@ -83,42 +90,37 @@ void main() {
       );
     });
 
-    test('pal_greeting_played breadcrumb has minimal payload', () {
+    test('pal_line_played breadcrumb does not contain PII', () {
       final breadcrumb = {
-        'event': 'pal_greeting_played',
-        'source': 'pal_button_tap',
+        'event': 'pal_line_played',
+        'line_id': 'RESP_JOY_01',
+        'type': 'micro_response',
+        'mood': 'joyful',
+        'voice_key': 'VOICE_GRACE',
+        'name_prefix_used': false,
       };
 
-      // Verify minimal payload (only 2 user-specified fields)
-      expect(breadcrumb.length, 2);
-
-      // Verify no PII or sensitive data
       expect(breadcrumb.containsKey('user_text'), isFalse);
       expect(breadcrumb.containsKey('user_name'), isFalse);
-      expect(breadcrumb.containsKey('greeting_text'), isFalse);
+      expect(breadcrumb.containsKey('response_text'), isFalse);
     });
   });
 
-  group('PAL Greeting Error Handling', () {
-    test('greeting failure should not throw', () {
-      // This test documents expected behavior:
-      // If greeting playback fails, it should be caught and logged,
-      // but NOT rethrow to avoid blocking the story selection flow.
-
-      // Simulate error scenario
+  group('PAL Audio Error Handling', () {
+    test('audio failure should not throw', () {
       expect(
         () {
           try {
             throw Exception('Audio file not found');
           } catch (e) {
-            // Error is caught in _maybePlayPalGreeting's try-catch
+            // Error is caught in PAL audio playback try-catch
             // and logged via debugPrint, but not rethrown
             // ignore: avoid_print
-            print('[PalGreeting] Failed to play: $e');
+            print('[PalAudio] Failed to play: $e');
           }
         },
         returnsNormally,
-        reason: 'Greeting failures must be caught and must not block flow',
+        reason: 'PAL audio failures must be caught and must not block flow',
       );
     });
   });

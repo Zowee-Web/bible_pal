@@ -5,12 +5,14 @@
 class PalVoice {
   final String voiceKey;
   final String displayName;
+  final String emoji;
   final String description;
   final String gender;
 
   const PalVoice({
     required this.voiceKey,
     required this.displayName,
+    required this.emoji,
     required this.description,
     required this.gender,
   });
@@ -19,31 +21,43 @@ class PalVoice {
 class PalVoiceRegistry {
   PalVoiceRegistry._();
 
-  static const String defaultVoiceKey = 'VOICE_SARAH_STORYTELLER';
+  static const String defaultVoiceKey = 'VOICE_GRACE';
+
+  /// Old voice keys that should be migrated to the default.
+  static const List<String> _legacyVoiceKeys = [
+    'VOICE_SARAH_STORYTELLER',
+    'VOICE_HANNAH_HOPE',
+    'VOICE_JAMES_HUSKY',
+    'VOICE_DAVID_SHEPHERD',
+  ];
 
   static const List<PalVoice> voices = [
     PalVoice(
-      voiceKey: 'VOICE_SARAH_STORYTELLER',
-      displayName: 'Sarah',
-      description: 'Warm and nurturing',
+      voiceKey: 'VOICE_GRACE',
+      displayName: 'Grace',
+      emoji: '\u{1F33F}', // 🌿
+      description: 'Gentle & comforting',
       gender: 'female',
     ),
     PalVoice(
-      voiceKey: 'VOICE_HANNAH_HOPE',
-      displayName: 'Hannah',
-      description: 'Bright and encouraging',
-      gender: 'female',
-    ),
-    PalVoice(
-      voiceKey: 'VOICE_JAMES_HUSKY',
-      displayName: 'James',
-      description: 'Calm and reflective',
+      voiceKey: 'VOICE_SHEPHERD',
+      displayName: 'Shepherd',
+      emoji: '\u{1F4D6}', // 📖
+      description: 'Wise storyteller',
       gender: 'male',
     ),
     PalVoice(
-      voiceKey: 'VOICE_DAVID_SHEPHERD',
-      displayName: 'David',
-      description: 'Warm and protective',
+      voiceKey: 'VOICE_HOPE',
+      displayName: 'Hope',
+      emoji: '\u{2600}\u{FE0F}', // ☀️
+      description: 'Bright encouragement',
+      gender: 'female',
+    ),
+    PalVoice(
+      voiceKey: 'VOICE_STILLWATER',
+      displayName: 'Stillwater',
+      emoji: '\u{1F319}', // 🌙
+      description: 'Calm companion',
       gender: 'male',
     ),
   ];
@@ -60,5 +74,17 @@ class PalVoiceRegistry {
   /// Check if a voice key is valid.
   static bool isValid(String key) {
     return voices.any((v) => v.voiceKey == key);
+  }
+
+  /// Check if a voice key is a legacy key that needs migration.
+  static bool isLegacyKey(String key) {
+    return _legacyVoiceKeys.contains(key);
+  }
+
+  /// Migrate a voice key: if legacy, return default; otherwise return as-is.
+  static String migrateVoiceKey(String key) {
+    if (isLegacyKey(key)) return defaultVoiceKey;
+    if (!isValid(key)) return defaultVoiceKey;
+    return key;
   }
 }

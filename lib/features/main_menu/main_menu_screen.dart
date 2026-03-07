@@ -5,29 +5,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../providers/app_state_notifier.dart';
 import '../../services/typewriter_click_service.dart';
 import '../../providers/service_providers.dart';
-import '../../services/pal_audio_service.dart';
-import '../../services/voice_consent_gate.dart';
 import '../../theme/app_theme.dart';
 import '../onboarding/first_launch_screen.dart' show kPalIntroShownKey;
 import '../settings/settings_screen.dart';
-import '../../core/app_logger.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/services.dart' show HapticFeedback;
 import '../../providers/parable_player_notifier.dart';
 import '../../models/parable.dart';
 import '../../widgets/story_length_radio_selector.dart';
-import '../../core/story_length_bucket.dart';
 import '../consent/voice_consent_dialog.dart';
 import '../../services/reflection_service.dart';
 import '../my_pals/select_pals_dialog.dart';
 import '../../models/share_record.dart';
 import 'package:uuid/uuid.dart';
-import '../../services/stt_service.dart';
-import 'package:permission_handler/permission_handler.dart' show openAppSettings;
-
-/// File-private tap counter for cross-widget PAL tap signaling.
-/// Incremented by [_PalButtonWithIntro], watched by [_ReservedPanel].
-final _palTapProvider = StateProvider<int>((ref) => 0);
 
 /// Main Menu Screen
 /// Based on UI/UX Design Spec Section 4: Home Screen
@@ -168,6 +158,17 @@ class MainMenuScreen extends ConsumerWidget {
                           // PAL's Parables Button (Centerpiece - Large, Gold Outline)
                           // Wrapped with intro overlay for first-launch experience
                           _PalButtonWithIntro(theme: theme),
+
+                          const SizedBox(height: 16),
+
+                          // Session-scoped story length picker
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
+                            child: StoryLengthRadioSelector(
+                              selectedBucket: ref.watch(sessionLengthBucketProvider),
+                              onBucketChanged: (b) => ref.read(sessionLengthBucketProvider.notifier).state = b,
+                            ),
+                          ),
 
                           const SizedBox(height: 16),
 
@@ -475,38 +476,8 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       });
     }
 
-    // Play PAL greeting (non-blocking, consent-aware)
-    _maybePlayPalGreeting();
-
-    // Signal the reserved panel to start voice-first STT flow
-    ref.read(_palTapProvider.notifier).state++;
-  }
-
-  /// Play PAL greeting audio if voice consent allows (non-blocking, fail-safe)
-  void _maybePlayPalGreeting() {
-    // Check voice consent
-    final appState = ref.read(appStateProvider).valueOrNull;
-    final prefs = appState?.userPreferences;
-    final consentResult = VoiceConsentGate.checkPalGreetings(prefs);
-
-    if (consentResult != VoiceGateResult.allowed) {
-      // Silently skip - respect user preference
-      return;
-    }
-
-    // Play greeting via PalAudioService (fire-and-forget with error handling)
-    final voiceKey = prefs?.palVoiceKey ?? 'VOICE_SARAH_STORYTELLER';
-    final palAudio = ref.read(palAudioServiceProvider);
-    palAudio.playGreeting(voiceKey).catchError((error) {
-      debugPrint('[PAL Greeting] Playback error: $error');
-      return '';
-    });
-
-    // Log success
-    logEvent('pal_greeting_played', {
-      'source': 'pal_button_tap',
-      'voice': voiceKey,
-    });
+    // Navigate to PAL's Parables for the full prompt + mood flow
+    Navigator.of(context).pushNamed('/pals_parables');
   }
 
   @override
@@ -648,7 +619,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 // ---------------------------------------------------------------------------
 
 /// Panel mode derived from [ParablePlayerState].
-enum _PanelMode { idle, listening, nowPlaying, finished }
+enum _PanelMode { idle, nowPlaying, finished }
 
 /// Reserved panel directly under the PAL hero button.
 /// Uses [AnimatedSwitcher] to crossfade between three content states.
@@ -660,25 +631,12 @@ class _ReservedPanel extends ConsumerStatefulWidget {
 }
 
 class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
-  StoryLengthBucket _selectedBucket = StoryLengthBucket.short;
   bool _reflectionExpanded = false;
   final ReflectionService _reflectionService = ReflectionService();
-
-  // Voice-first STT state
-  SttService? _sttService;
-  bool _isVoiceActive = false;
-  String _partialTranscript = '';
-
-  @override
-  void dispose() {
-    _sttService?.dispose();
-    super.dispose();
-  }
 
   // --------------- state derivation ---------------
 
   _PanelMode _deriveMode(ParablePlayerState s) {
-    if (_isVoiceActive) return _PanelMode.listening;
     if (s.currentParable == null) return _PanelMode.idle;
     if (s.playbackCompleted) return _PanelMode.finished;
     return _PanelMode.nowPlaying;
@@ -755,221 +713,10 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
     );
   }
 
-  // --------------- voice-first STT flow ---------------
-
-  Future<void> _handlePalTap() async {
-    // Stop current playback if active
-    final playerNotifier = ref.read(parablePlayerProvider.notifier);
-    if (playerNotifier.isPlaying || playerNotifier.isPaused) {
-      await playerNotifier.stop();
-    }
-
-    // Create STT service if needed
-    _sttService ??= SttService();
-
-    setState(() {
-      _isVoiceActive = true;
-      _partialTranscript = '';
-    });
-
-    final permResult = await _sttService!.checkPermissions();
-    if (!mounted) return;
-
-    switch (permResult) {
-      case SttPermissionResult.granted:
-        _startListening();
-
-      case SttPermissionResult.denied:
-        setState(() => _isVoiceActive = false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("Voice input isn't available \u2014 tap Text PAL"),
-            duration: Duration(seconds: 3),
-          ),
-        );
-
-      case SttPermissionResult.permanentlyDenied:
-        setState(() => _isVoiceActive = false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content:
-                const Text("Voice input isn't available \u2014 tap Text PAL"),
-            duration: const Duration(seconds: 4),
-            action: SnackBarAction(
-              label: 'Settings',
-              onPressed: () => openAppSettings(),
-            ),
-          ),
-        );
-    }
-  }
-
-  Future<void> _startListening() async {
-    final completer = Completer<void>();
-
-    await _sttService!.startListening(
-      onResult: (result) {
-        if (!mounted) return;
-        if (result.isFinal) {
-          final transcript = result.text;
-          if (transcript.isEmpty) {
-            setState(() {
-              _isVoiceActive = false;
-              _partialTranscript = '';
-            });
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content:
-                    Text("I didn't catch that. Try again or tap Text PAL."),
-                duration: Duration(seconds: 3),
-              ),
-            );
-            logEvent('voice_input_cancelled', {'reason': 'timeout'});
-          } else {
-            logEvent('voice_input_completed', {
-              'input_method': 'voice',
-              'word_count': transcript.split(RegExp(r'\s+')).length,
-            });
-            _processVoiceMood(transcript);
-          }
-          if (!completer.isCompleted) completer.complete();
-        } else {
-          setState(() => _partialTranscript = result.text);
-        }
-      },
-      onError: (error) {
-        if (!mounted) return;
-        setState(() {
-          _isVoiceActive = false;
-          _partialTranscript = '';
-        });
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("Voice input isn't available \u2014 tap Text PAL"),
-            duration: Duration(seconds: 3),
-          ),
-        );
-        logEvent('voice_input_cancelled', {'reason': 'stt_error'});
-        if (!completer.isCompleted) completer.complete();
-      },
-    );
-
-    // Timeout fallback: use partial transcript if available
-    unawaited(
-      Future.delayed(
-              const Duration(seconds: SttService.defaultListenSeconds + 1))
-          .then((_) {
-        if (!completer.isCompleted) {
-          if (_partialTranscript.isNotEmpty && mounted) {
-            logEvent('voice_input_completed', {
-              'input_method': 'voice',
-              'word_count': _partialTranscript.split(RegExp(r'\s+')).length,
-            });
-            _processVoiceMood(_partialTranscript);
-          } else if (mounted) {
-            setState(() {
-              _isVoiceActive = false;
-              _partialTranscript = '';
-            });
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content:
-                    Text("I didn't catch that. Try again or tap Text PAL."),
-                duration: Duration(seconds: 3),
-              ),
-            );
-            logEvent('voice_input_cancelled', {'reason': 'timeout'});
-          }
-          completer.complete();
-        }
-      }),
-    );
-  }
-
-  Future<void> _processVoiceMood(String transcript) async {
-    final appNotifier = ref.read(appStateProvider.notifier);
-    final moodResult = appNotifier.moodService.detectMood(transcript);
-
-    // Persist mood for thematic Daily Bread alignment (SPEC Feature #21)
-    appNotifier.updateLastDetectedMood(moodResult.mood);
-
-    logEvent('mood_detected', {
-      'mood': moodResult.mood,
-      'confidence': moodResult.confidenceScore,
-      'input_method': 'voice',
-    });
-
-    // Play compassionate reply audio (fire-and-forget so story selection proceeds)
-    final appState = ref.read(appStateProvider).valueOrNull;
-    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_SARAH_STORYTELLER';
-    final palAudio = ref.read(palAudioServiceProvider);
-    final moodBucket = PalAudioService.moodToBucket(moodResult.mood);
-    palAudio.playCompassionateReply(moodBucket, voiceKey).catchError((e) {
-      debugPrint('[PAL Reply] Playback error: $e');
-      return '';
-    });
-
-    // Select parable based on mood + current length bucket
-    final parable = await appNotifier.selectParable(
-      mood: moodResult.mood,
-      lengthBucket: _selectedBucket,
-      userText: transcript,
-    );
-
-    if (!mounted) return;
-
-    if (parable == null) {
-      setState(() {
-        _isVoiceActive = false;
-        _partialTranscript = '';
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('No story found for that mood. Try again.'),
-          duration: Duration(seconds: 3),
-        ),
-      );
-      return;
-    }
-
-    // Load parable into player
-    final playerNotifier = ref.read(parablePlayerProvider.notifier);
-    await playerNotifier.loadParable(parable);
-
-    // Add to history
-    await appNotifier.addToHistory(parable);
-
-    // Stop PAL reply audio before story plays (prevent overlap)
-    await palAudio.stop();
-
-    // Voice flow complete — panel transitions to NOW PLAYING via _deriveMode
-    setState(() {
-      _isVoiceActive = false;
-      _partialTranscript = '';
-    });
-
-    // Auto-play
-    await _handlePlay(playerNotifier);
-  }
-
-  void _cancelListening() {
-    _sttService?.cancel();
-    setState(() {
-      _isVoiceActive = false;
-      _partialTranscript = '';
-    });
-    logEvent('voice_input_cancelled', {'reason': 'user_cancelled'});
-  }
-
   // --------------- build ---------------
 
   @override
   Widget build(BuildContext context) {
-    // React to PAL button taps from the hero button widget
-    ref.listen<int>(_palTapProvider, (prev, next) {
-      if (prev != next) _handlePalTap();
-    });
-
     final playerState = ref.watch(parablePlayerProvider);
     final mode = _deriveMode(playerState);
     final theme = Theme.of(context);
@@ -993,8 +740,6 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
     switch (mode) {
       case _PanelMode.idle:
         return _buildIdlePanel(theme);
-      case _PanelMode.listening:
-        return _buildListeningPanel(theme);
       case _PanelMode.nowPlaying:
         return _buildNowPlayingPanel(state, theme);
       case _PanelMode.finished:
@@ -1009,11 +754,6 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
       key: const ValueKey('idle'),
       mainAxisSize: MainAxisSize.min,
       children: [
-        StoryLengthRadioSelector(
-          selectedBucket: _selectedBucket,
-          onBucketChanged: (b) => setState(() => _selectedBucket = b),
-        ),
-        const SizedBox(height: 16),
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
@@ -1054,54 +794,6 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
                   ),
                 ),
               ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  // --------------- LISTENING ---------------
-
-  Widget _buildListeningPanel(ThemeData theme) {
-    return Column(
-      key: const ValueKey('listening'),
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const SizedBox(height: 24),
-        Icon(
-          Icons.mic,
-          size: 56,
-          color: Colors.red.shade400,
-        ),
-        const SizedBox(height: 12),
-        Text(
-          'Listening...',
-          style: theme.textTheme.titleMedium?.copyWith(
-            color: AppTheme.deepCharcoal,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        if (_partialTranscript.isNotEmpty) ...[
-          const SizedBox(height: 12),
-          Text(
-            _partialTranscript,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: AppTheme.deepCharcoal.withOpacity(0.7),
-              fontStyle: FontStyle.italic,
-            ),
-            textAlign: TextAlign.center,
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
-        const SizedBox(height: 16),
-        TextButton(
-          onPressed: _cancelListening,
-          child: Text(
-            'Cancel',
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: AppTheme.deepCharcoal.withOpacity(0.6),
             ),
           ),
         ),

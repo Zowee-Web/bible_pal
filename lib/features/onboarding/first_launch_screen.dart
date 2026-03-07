@@ -116,7 +116,7 @@ class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen> {
       await sp.setBool(kFirstLaunchCompleteKey, true);
 
       // Fire-and-forget: generate name audio clips for personalized greetings
-      final palVoiceKey = currentState?.userPreferences.palVoiceKey ?? 'VOICE_SARAH_STORYTELLER';
+      final palVoiceKey = currentState?.userPreferences.palVoiceKey ?? 'VOICE_GRACE';
       ref.read(nameAudioServiceProvider).generateNamePhrases(
             name: name,
             voiceKey: palVoiceKey,

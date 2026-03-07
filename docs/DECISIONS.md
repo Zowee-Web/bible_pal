@@ -57,6 +57,8 @@ This document logs key design decisions and trade-offs made during development.
 - Grace, Grant, and Abilene voices removed from .env
 - Default voice changed from Grace to James Husky in gen_one_audio.sh
 
+**PAL V2 Clarification (2026-02-27):** The PAL V2 update introduces a voice display name "Grace" (`VOICE_GRACE`) which maps to ElevenLabs voice **Juniper** — NOT the forbidden ElevenLabs voice named "Grace." The forbidden "Grace" voice remains banned. The display name was chosen for the user-facing persona; the underlying ElevenLabs voice is different.
+
 ---
 
 ## ADR-003: Kid Bedtime Safe Harness (Prompt Constraints + Validator)
@@ -863,6 +865,43 @@ python3 scripts/story_factory/batch_generate_creative.py \
 python3 scripts/story_factory/batch_generate_creative.py \
   --lane web --voice_key VOICE_JAMES_HUSKY --skip-audio
 ```
+
+---
+
+## ADR-015: PAL V2 — Check-In Prompts, Micro-Responses, and New Voices
+
+**Date:** 2026-02-27
+**Status:** Accepted
+**Context:** The original PAL greeting system used 32 hardcoded time-windowed strings (GreetingService) + 20 audio-backed generic greetings + 45 compassionate replies across 3 mood buckets (positive/neutral/negative). This system felt repetitive and lacked emotional depth. PAL V2 replaces it with a more emotionally intelligent system.
+
+**Decision:**
+1. Replace `GreetingService` with `PalPromptService` — 96 time-aware, category-weighted check-in prompts (4 time windows × 4 categories × 6 lines)
+2. Replace compassionate replies with micro-responses — 30 mood-specific responses (5 moods × 6 lines, all ≤ 12 words)
+3. Add quick mood buttons (Joyful, Neutral, Weary, Anxious, Hurting) as an input method alongside text and voice
+4. Replace 4 PAL voices (Sarah, Hannah, James, David) with new voices (Grace, Shepherd, Hope, Stillwater)
+5. Move story length selector to main menu (session-scoped, not persisted)
+6. Auto-start story after micro-response + verse display (~2s cancellable delay)
+7. Use ElevenLabs Eleven v3 engine for PAL audio generation
+8. Map 5 detected moods directly to 5 micro-response buckets (eliminating the previous 5→3 mood-to-bucket mapping)
+
+**Rationale:**
+- Category-weighted prompts make PAL feel more emotionally aware and less robotic
+- Shorter micro-responses (≤12 words) feel more natural for a conversational companion
+- Quick mood buttons reduce friction for users who don't want to type or speak
+- Direct 5-mood mapping provides more targeted emotional responses
+- Auto-start flow eliminates extra taps between mood input and story playback
+- New voices tested against voice quality guardrails (conversational, warm, calm, grounded)
+
+**Consequences:**
+- `lib/services/greeting_service.dart` deleted
+- `lib/services/pal_prompt_service.dart` created
+- `assets/pal/pal_lines.json` schema updated to v2 (old keys removed, new keys added)
+- `MoodService._compassionateReplies` replaced with ≤12-word micro-response text
+- `PalAudioService` updated: `playGreeting()` → `playPrompt()`, `playCompassionateReply()` → `playMicroResponse()`, `moodToBucket()` removed
+- `PalVoiceRegistry` updated with 4 new voices + emoji field; default changed to `VOICE_GRACE`
+- Old PAL audio assets (greeting_*.mp3, comp_*.mp3) to be deleted in Phase 2
+- 509 new MP3 files to be generated in Phase 2
+- SPEC.md updated: Features 2.1, 4, 6, 17b
 
 ---
 

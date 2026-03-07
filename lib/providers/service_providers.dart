@@ -9,6 +9,7 @@ import 'package:bible_pal/services/share_service.dart';
 import 'package:bible_pal/services/pal_audio_service.dart';
 import 'package:bible_pal/services/pal_tts_client.dart';
 import 'package:bible_pal/services/name_audio_service.dart';
+import 'package:bible_pal/core/story_length_bucket.dart';
 
 /// Service Providers for Riverpod
 /// These providers manage the lifecycle of singleton services
@@ -76,3 +77,8 @@ final nameAudioServiceProvider = Provider<NameAudioService>((ref) {
   final ttsClient = ref.read(palTtsClientProvider);
   return NameAudioService(ttsClient: ttsClient);
 });
+
+// Session-scoped story length bucket (not persisted, resets on app restart)
+final sessionLengthBucketProvider = StateProvider<StoryLengthBucket>(
+  (ref) => StoryLengthBucket.short,
+);

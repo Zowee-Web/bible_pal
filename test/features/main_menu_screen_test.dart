@@ -149,12 +149,9 @@ void main() {
       await tester.pumpWidget(_buildScreen());
       await tester.pumpAndSettle();
 
-      // Tap triggers glow + haptic + voice-first STT flow.
-      // Pump past the 8s permission timeout so the timer completes
-      // in the test VM (no real permission handler available).
+      // Tap navigates to /pals_parables.
       await tester.tap(find.text('PAL'));
-      await tester.pump(const Duration(seconds: 9));
-      await tester.pump(const Duration(milliseconds: 100));
+      await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
     });
   });
@@ -336,20 +333,17 @@ void main() {
       expect(tester.takeException(), isNull);
     });
 
-    testWidgets('PAL button does NOT push a route (voice-first)',
-        (tester) async {
+    testWidgets('PAL button navigates to /pals_parables', (tester) async {
       final observer = _PushCountObserver();
       await tester.pumpWidget(_buildScreen(observer: observer));
       await tester.pumpAndSettle();
 
       final pushesBefore = observer.pushCount;
       await tester.tap(find.text('PAL'));
-      // Pump past the 8s permission timeout so the timer completes
-      await tester.pump(const Duration(seconds: 9));
-      await tester.pump(const Duration(milliseconds: 100));
+      await tester.pumpAndSettle();
 
-      expect(observer.pushCount, pushesBefore,
-          reason: 'PAL button must NOT navigate — it triggers voice STT');
+      expect(observer.pushCount, greaterThan(pushesBefore),
+          reason: 'PAL button MUST push a route to /pals_parables');
       expect(tester.takeException(), isNull);
     });
 

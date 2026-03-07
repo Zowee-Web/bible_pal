@@ -11,8 +11,8 @@ void main() {
       final client = PalTtsClient();
       // localhost:8080 is not running in test — should return null, not throw
       final result = await client.synthesizeNamePrefix(
-        voiceKey: 'VOICE_SARAH_STORYTELLER',
-        text: 'Hey, Sarah!',
+        voiceKey: 'VOICE_GRACE',
+        text: 'Hey, Grace!',
       );
       expect(result, isNull,
           reason: 'Should return null when server is unavailable');
@@ -23,7 +23,7 @@ void main() {
       final client = PalTtsClient();
       final result = await client.synthesizeNamePrefix(
         voiceKey: '',
-        text: 'Hey, Sarah!',
+        text: 'Hey, Grace!',
       );
       expect(result, isNull,
           reason: 'Should return null for empty voiceKey');
@@ -33,7 +33,7 @@ void main() {
     test('synthesizeNamePrefix rejects empty text', () async {
       final client = PalTtsClient();
       final result = await client.synthesizeNamePrefix(
-        voiceKey: 'VOICE_SARAH_STORYTELLER',
+        voiceKey: 'VOICE_GRACE',
         text: '',
       );
       expect(result, isNull,

@@ -138,6 +138,7 @@ void main() {
         '.DISABLED', // Disabled scripts
         '.env', // Config files define voices, not use them
         'voice_selector.sh', // The selector itself uses variables like VOICE_SELECTOR_DIR
+        'generate_pal_audio_batch.sh', // PAL script uses palVoices (VOICE_GRACE etc.), not narrator voices
       ];
 
       // Legacy scripts not yet migrated to voice_selector.sh
