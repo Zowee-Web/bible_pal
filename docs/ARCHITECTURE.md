@@ -1,367 +1,163 @@
-# Bible PAL - Architecture Documentation
+# Bible PAL — Architecture
 
-**Version:** 1.0
-**Last Updated:** 2025-12-04
+**Last Updated:** 2026-03-09
 
-This document describes the technical architecture and code organization of Bible PAL.
-
----
-
-## Table of Contents
-
-1. [Project Structure](#project-structure)
-2. [Architecture Overview](#architecture-overview)
-3. [Data Models](#data-models)
-4. [Services Layer](#services-layer)
-5. [State Management](#state-management)
-6. [Screens & Features](#screens--features)
-7. [Data Flow](#data-flow)
-8. [File Organization](#file-organization)
+This document describes the real system architecture derived from the repository. For product behavior, see [SPEC.md](SPEC.md). For invariants, see [INVARIANTS.md](INVARIANTS.md).
 
 ---
 
-## Project Structure
+## Overview
+
+Bible PAL is a Flutter app that delivers personalized audio parables. The user flow:
+
+1. PAL greets the user with a time-aware check-in prompt
+2. User responds (text, voice, or quick-tap mood buttons)
+3. Mood is detected from the response
+4. PAL plays a mood-specific micro-response
+5. A parable is selected based on mood, length, and storytelling mode
+6. Pre-generated audio plays with scripture references displayed
+
+Stories and audio are pre-generated offline via a Node.js/bash server pipeline, then bundled as assets.
+
+---
+
+## Layers
 
 ```
-lib/
-├── models/              # Data models
-│   ├── parable.dart
-│   ├── user_preferences.dart
-│   ├── favorite.dart
-│   ├── history_entry.dart
-│   └── daily_bread.dart
-│
-├── services/            # Business logic and data operations
-│   ├── storage_service.dart
-│   ├── parable_service.dart
-│   ├── audio_service.dart
-│   ├── greeting_service.dart
-│   ├── mood_service.dart
-│   ├── daily_bread_service.dart
-│   └── eleven_labs_tts.dart
-│
-├── providers/           # State management (Provider pattern)
-│   ├── app_state_provider.dart
-│   └── parable_player_provider.dart
-│
-├── features/            # Feature-based screen organization
-│   ├── onboarding/
-│   │   └── tradition_setup_screen.dart
-│   ├── main_menu/
-│   │   └── main_menu_screen.dart
-│   ├── settings/
-│   │   └── settings_screen.dart
-│   └── whisper/
-│       └── whisper_screen.dart
-│
-├── widgets/             # Reusable UI components
-│
-├── utils/               # Utility functions and helpers
-│
-├── app_router.dart      # App routing configuration
-└── main.dart            # App entry point
+┌─────────────────────────────────────────┐
+│  Presentation (lib/features/*)          │
+│  Screens organized by feature module    │
+├─────────────────────────────────────────┤
+│  State (lib/providers/)                 │
+│  Riverpod notifiers + service providers │
+├─────────────────────────────────────────┤
+│  Services (lib/services/)               │
+│  Business logic, audio, TTS, mood, etc. │
+├─────────────────────────────────────────┤
+│  Core (lib/core/)                       │
+│  Registries, logging, config, safety    │
+├─────────────────────────────────────────┤
+│  Models (lib/models/)                   │
+│  Immutable data classes with JSON serde │
+└─────────────────────────────────────────┘
 ```
 
----
-
-## Architecture Overview
-
-Bible PAL follows a **layered architecture** pattern:
-
-1. **Presentation Layer** (Screens & Widgets)
-   - User interface components
-   - Consumes state from providers
-   - Triggers actions via providers
-
-2. **State Management Layer** (Providers)
-   - Manages application state
-   - Coordinates between services
-   - Notifies UI of state changes
-
-3. **Business Logic Layer** (Services)
-   - Core business logic
-   - Data operations
-   - External integrations (audio, storage, APIs)
-
-4. **Data Layer** (Models)
-   - Data structures
-   - JSON serialization/deserialization
-   - Immutable data classes
-
-### Key Architectural Principles
-
-- **Separation of Concerns**: Each layer has a distinct responsibility
-- **Dependency Injection**: Services are injected into providers
-- **Unidirectional Data Flow**: State flows down, events flow up
-- **Single Source of Truth**: SPEC.md defines all features and behavior
-- **Immutability**: Models use copyWith() for updates
+**State management:** Riverpod (not Provider). Providers are defined in `lib/providers/service_providers.dart`. Key notifiers:
+- `AppStateNotifier` — user prefs, favorites, history, daily bread
+- `ParablePlayerNotifier` — playback state, current parable, audio position
 
 ---
 
-## Data Models
+## Feature Modules (lib/features/)
 
-All models are located in `lib/models/` and implement:
-- `fromJson()` factory constructor for deserialization
-- `toJson()` method for serialization
-- `copyWith()` method for immutable updates
-
-### Core Models
-
-1. **Parable** (`parable.dart`)
-   - Represents a single parable/story
-   - Contains metadata: storyId, title, mood, length, faith tradition, etc.
-   - Based on SPEC.md Feature #7
-
-2. **UserPreferences** (`user_preferences.dart`)
-   - User settings and onboarding state
-   - Faith tradition, Bible translation, storytelling mode
-   - Based on SPEC.md Features #17, #18, #21-23
-
-3. **Favorite** (`favorite.dart`)
-   - User's favorited parables (unlimited)
-   - Stores metadata only, not full parable content
-   - Based on SPEC.md Feature #9
-
-4. **HistoryEntry** (`history_entry.dart`)
-   - Parable listening history (last 100, FIFO)
-   - Based on SPEC.md Feature #10
-
-5. **DailyBread** (`daily_bread.dart`)
-   - Daily verse display
-   - Based on SPEC.md Features #19-20
+| Module | Purpose |
+|--------|---------|
+| `onboarding/` | First-launch Bible translation selection |
+| `main_menu/` | Home screen, Daily Bread, PAL's Parables entry |
+| `pals_parables/` | Mood check-in, micro-response, story playback |
+| `favorites/` | Saved parables |
+| `history/` | Recently played parables (20-item FIFO) |
+| `settings/` | User preferences (mode, translation, voice, etc.) |
+| `diagnostics/` | Debug breadcrumb viewer (opt-in via compile flag) |
+| `my_pals/` | PAL voice selection |
+| `consent/` | User consent flows |
+| `whisper/` | Legacy prototype screen |
 
 ---
 
-## Services Layer
+## Key Services (lib/services/)
 
-Services encapsulate business logic and data operations. They are stateless and can be reused across the app.
-
-### Service Descriptions
-
-1. **StorageService** (`storage_service.dart`)
-   - Manages local data persistence using SharedPreferences
-   - Handles: user preferences, favorites, history, edited titles
-   - Based on SPEC.md Feature #25 (encryption/secure storage)
-
-2. **ParableService** (`parable_service.dart`)
-   - Manages parable library and selection
-   - Implements non-repeat serving rule (SPEC.md Feature #14)
-   - Supports local and external storage (SPEC.md Feature #15)
-   - Loads parables from manifest.json
-
-3. **AudioService** (`audio_service.dart`)
-   - Handles audio playback using just_audio package
-   - Manages play/pause/seek/stop operations
-   - Based on SPEC.md Feature #16 (ElevenLabs audio playback)
-
-4. **GreetingService** (`greeting_service.dart`)
-   - Provides context-aware emotional check-in greetings
-   - Time-appropriate greetings with 3-5 variations per time window
-   - Based on SPEC.md Feature 2.1 (Context-Aware Emotional Check-In Greeting)
-
-5. **MoodService** (`mood_service.dart`)
-   - Detects user mood from text input
-   - Generates compassionate replies
-   - Based on SPEC.md Features #3-4
-
-6. **DailyBreadService** (`daily_bread_service.dart`)
-   - Manages daily verse selection and display
-   - Supports thematic alignment with parables
-   - Based on SPEC.md Features #20-21
-
-7. **ElevenLabsTts** (`eleven_labs_tts.dart`)
-   - Integrates with ElevenLabs API for voice synthesis
-   - Used for generating parable audio (server-side)
-   - Based on SPEC.md Feature #17
+| Service | Responsibility |
+|---------|---------------|
+| `parable_service.dart` | Story selection, non-repeat logic, pool filtering |
+| `audio_service.dart` | just_audio playback (play/pause/seek/stop) |
+| `mood_service.dart` | Text-based mood detection (keyword analysis) |
+| `pal_prompt_service.dart` | Time-aware check-in prompt selection with non-repeat |
+| `pal_audio_service.dart` | PAL voice audio playback (prompts, micro-responses) |
+| `greeting_audio_service.dart` | Greeting audio coordination |
+| `daily_bread_service.dart` | Daily verse selection and rotation |
+| `eleven_labs_tts.dart` | ElevenLabs v3 API client for audio generation |
+| `storage_service.dart` | SQLite + SharedPreferences persistence |
+| `reflection_service.dart` | Post-story reflection content and playback |
+| `stt_service.dart` | Speech-to-text for voice mood input |
+| `name_audio_service.dart` | Personalized name audio (TTS name prefix splicing) |
+| `kid_safety_service.dart` | Kid-mode content filtering |
+| `share_service.dart` | Story sharing |
 
 ---
 
-## State Management
+## Core Registries & Safety (lib/core/)
 
-Bible PAL uses the **Provider** pattern for state management.
-
-### Provider Classes
-
-1. **AppStateProvider** (`app_state_provider.dart`)
-   - Main app state container
-   - Manages: user preferences, favorites, history, daily bread
-   - Coordinates between multiple services
-   - Used by: most screens for global state access
-
-2. **ParablePlayerProvider** (`parable_player_provider.dart`)
-   - Manages parable playback state
-   - Controls: current parable, audio playback, position, duration
-   - Used by: parable player screen
-
-### Provider Setup
-
-Providers are initialized in `main.dart` using `MultiProvider`:
-
-```dart
-MultiProvider(
-  providers: [
-    ChangeNotifierProvider(create: (_) => AppStateProvider(...)),
-    ChangeNotifierProvider(create: (_) => ParablePlayerProvider(...)),
-  ],
-  child: MyApp(),
-)
-```
+| File | Purpose |
+|------|---------|
+| `bible_translation_registry.dart` | **Translation allowlist — the #1 invariant** |
+| `pal_voice_registry.dart` | PAL voice definitions (Grace, Shepherd, Hope, Stillwater) |
+| `traditional_canonical_story_map.dart` | One Bible story per mood for Traditional mode |
+| `story_length_bucket.dart` | Short/Full/Long bucket system (strict word-count ranges, see SPEC.md) |
+| `app_logger.dart` | Structured JSON logging with breadcrumb ring buffer |
+| `analytics_events.dart` | Privacy-safe telemetry event builders |
+| `feature_flags.dart` | Runtime feature flags |
+| `diagnostics_config.dart` | Compile-time diagnostics toggle |
 
 ---
 
-## Screens & Features
+## Story Generation Pipeline (server/)
 
-Screens are organized by feature in `lib/features/`.
+Stories are generated offline, not at runtime. The pipeline:
 
-### Current Screens
+1. **Batch generation scripts** (`generate_v2_batch.sh`, `generate_batch_parables.sh`) call Ollama/Gemma to produce story text
+2. **Kid safety harness** (`kid_bedtime_harness.sh` + `kid_bedtime_validator.sh`) validates kid-mode stories against forbidden vocabulary
+3. **Audio generation** (`generate_audio_from_text.sh`, `generate_reflection_audio.sh`) calls ElevenLabs to produce MP3s
+4. **Quality gates** (`quality_gates.sh`, `validate_manifest.sh`) verify word counts, metadata, and manifest integrity
+5. **Nightly automation** (`nightly_generate.sh`) automates batch story and audio generation on a daily schedule
+6. **Output** lands in `assets/stories/` as text + metadata, with audio as MP3 files
 
-1. **TraditionSetupScreen** (`features/onboarding/`)
-   - Onboarding: faith tradition selection
-   - Based on SPEC.md Feature #17
-
-2. **MainMenuScreen** (`features/main_menu/`)
-   - Home screen with Daily Bread verse
-   - Entry point to PAL's Parables
-   - Based on SPEC.md Features #1, #19
-
-3. **SettingsScreen** (`features/settings/`)
-   - User preferences management
-   - Based on SPEC.md Features #21-24
-
-4. **WhisperScreen** (`features/whisper/`)
-   - Existing prototype for mood detection + story playback
-   - Will be refactored to align with SPEC.md
-
-### Screens to Build
-
-Based on SPEC.md, the following screens need to be implemented:
-
-1. **Bible Translation Setup Screen** (Onboarding Feature #18)
-2. **PAL's Parables Flow Screen** (Features #2-4: mood detection, compassionate reply, parable selection)
-3. **Parable Player Screen** (Features #11, #16: playback with scripture panel)
-4. **Favorites Screen** (Feature #9)
-5. **History Screen** (Feature #10)
-6. **Length Selection Screen** (Feature #5: 5, 10, 15, 20 minute options)
+Key server files:
+- `server/prompts/` — Generation prompt templates
+- `server/contracts/` — Story mode contracts (Traditional/Creative)
+- `server/kid_bedtime_forbidden.txt` — Forbidden vocabulary for kid mode
+- `server/voices.json` — ElevenLabs voice configuration
 
 ---
 
-## Data Flow
+## Two Story Modes (LOCKED Contract)
 
-### Typical User Flow Example: Listening to a Parable
+**Traditional** (default): Faithful retellings of real Bible stories. Requires `bibleSourceRef` and `bibleStoryKey`. One canonical Bible story per mood.
 
-1. **User Input**
-   - User taps "PAL's Parables" button on main screen
-   - Navigates to mood detection screen
+**Creative**: Original stories with biblical themes. `bibleSourceRef` must be absent. MoDC (Model of Digital Companionship) rules apply — non-directive, non-prescriptive.
 
-2. **Mood Detection**
-   - User types/speaks how their day is going
-   - `MoodService.detectMood()` analyzes input
-   - Returns MoodResult (mood, emotional tags, confidence)
-
-3. **Compassionate Reply**
-   - `MoodService.generateCompassionateReply()` creates caring response
-   - UI displays reply to user
-
-4. **Parable Selection**
-   - User selects desired length (5, 10, 15, or 20 minutes)
-   - `AppStateProvider.selectParable()` calls `ParableService`
-   - `ParableService` filters by mood, length, tradition, mode
-   - Implements non-repeat rule using history
-   - Returns selected Parable
-
-5. **Audio Playback**
-   - `ParablePlayerProvider.loadParable()` loads audio file
-   - User presses play
-   - `AudioService` handles playback
-   - Scripture panel displays verse references
-
-6. **Post-Playback**
-   - `AppStateProvider.addToHistory()` records in history
-   - User can favorite the parable
-   - User can share with a friend (Feature #13)
+These modes must never blur. See SPEC.md "Story Mode Contracts v2" for full rules.
 
 ---
 
-## File Organization
+## Story Length Buckets
 
-### Naming Conventions
+Story lengths use a strict Short / Full / Long bucket system enforced by `lib/core/story_length_bucket.dart`:
+- **Short**: 250–600 words
+- **Full**: 601–1200 words
+- **Long**: 1201–2000 words
 
-- **Models**: Singular noun (e.g., `parable.dart`, `favorite.dart`)
-- **Services**: `<noun>_service.dart` (e.g., `storage_service.dart`)
-- **Providers**: `<noun>_provider.dart` (e.g., `app_state_provider.dart`)
-- **Screens**: `<feature>_screen.dart` (e.g., `main_menu_screen.dart`)
-- **Widgets**: `<description>_widget.dart` (e.g., `scripture_panel_widget.dart`)
-
-### Import Organization
-
-Imports should be organized in this order:
-1. Dart/Flutter SDK imports
-2. Package imports (alphabetical)
-3. Local imports (relative paths, alphabetical)
-
-Example:
-```dart
-import 'dart:convert';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../models/parable.dart';
-import '../services/storage_service.dart';
-```
+Word ranges are locked in SPEC.md. The UI shows descriptive labels only (no minute estimates).
 
 ---
 
-## Next Steps
+## Testing Strategy
 
-### Immediate Tasks
+- **Compliance tests** (`test/core/`) — Bible translation allowlist enforcement, repo-wide scan for banned translations
+- **Model tests** (`test/models/`) — JSON serialization, validation
+- **Service tests** (`test/services/`) — Business logic, mood detection, parable selection
+- **Feature tests** (`test/features/`) — Screen-level widget tests
+- **Safety tests** (`test/safety/`, `test/kid_bedtime_safe/`) — Kid mode content validation
+- **Provider tests** (`test/providers/`) — State management logic
 
-1. **Refactor Existing Screens**
-   - Update screens to use new providers and services
-   - Align with SPEC.md requirements
-
-2. **Build Missing Screens**
-   - Parable flow screens (mood detection, selection, playback)
-   - Favorites and History screens
-   - Length selection screen
-
-3. **Implement Parable Library System**
-   - Create manifest.json structure
-   - Implement server-side batch generation script (Feature #6)
-   - Set up T9 external storage integration
-
-4. **Audio Integration**
-   - Integrate ElevenLabs API for audio generation
-   - Test multi-voice playback with SSML
-
-5. **Testing**
-   - Unit tests for services
-   - Widget tests for screens
-   - Integration tests for user flows
+Diagnostics-gated tests require `--dart-define=DIAGNOSTICS_ENABLED=true` and auto-skip otherwise.
 
 ---
 
-## Development Guidelines
+## Important Boundaries
 
-1. **Always refer to SPEC.md** before implementing features
-2. **Update SPEC.md** if requirements intentionally change
-3. **Keep services stateless** - state belongs in providers
-4. **Use dependency injection** - pass services to providers
-5. **Write tests** for business logic in services
-6. **Document complex logic** with comments
-7. **Follow Flutter/Dart best practices** (linting enabled)
-
----
-
-## Dependencies
-
-Key packages used in this project:
-
-- **provider**: State management
-- **just_audio**: Audio playback
-- **speech_to_text**: Voice input for mood detection
-- **flutter_tts**: Text-to-speech (for prototype)
-- **shared_preferences**: Local data persistence
-- **path_provider**: File system access
-- **http**: API calls (ElevenLabs, future features)
-- **sqflite**: SQLite database (for future enhancements)
-
-See `pubspec.yaml` for complete dependency list.
+1. **Translation compliance is enforced at multiple layers** — registry, runtime guards, tests, CI. Do not bypass any layer.
+2. **Story modes are mutually exclusive** — Traditional and Creative have different validation rules and must never cross-serve.
+3. **PAL voices are separate from narrator voices** — PAL voices (check-in, micro-response) are distinct from story narration voices.
+4. **Stories are pre-generated, not runtime** — The app plays bundled audio; it does not call LLMs or TTS at runtime (except for name audio).
+5. **Privacy boundary** — No user text, PII, or mood input is ever logged or persisted beyond the current session.

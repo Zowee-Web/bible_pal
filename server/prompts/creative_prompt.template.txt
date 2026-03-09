@@ -69,6 +69,13 @@ When using KJV/classical language style in Creative mode:
 - 4-6 paragraphs depending on length bucket
 - End with quiet hope or gentle resolution (no preaching)
 
+## NARRATION STYLE
+- Write for spoken narration (these stories are read aloud by a voice narrator)
+- Keep most sentences under about 22 words
+- Prefer natural pause points (commas, periods, short phrases)
+- Avoid dense clauses and punctuation that reads awkwardly aloud (semicolons, parentheticals, em-dashes)
+- Use vivid but clear language
+
 ## OUTPUT RULES (CRITICAL)
 - Write ONLY the story prose
 - No preamble ("Here is your story:")
