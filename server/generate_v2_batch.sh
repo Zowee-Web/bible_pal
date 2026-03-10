@@ -131,6 +131,7 @@ build_prompt() {
     local length_bucket="$3"
     local is_kid="$4"
     local bible_ref="$5"
+    local bible_key="${6:-}"
 
     local template_file
     if [[ "$mode" == "creative" ]]; then
@@ -151,6 +152,36 @@ build_prompt() {
     prompt="${prompt//\{\{LENGTH_BUCKET\}\}/$length_bucket}"
     prompt="${prompt//\{\{LANGUAGE_STYLE\}\}/WEB}"
     prompt="${prompt//\{\{BIBLE_SOURCE_REF\}\}/$bible_ref}"
+
+    # Inject narrative anchors from story seed (Traditional mode only)
+    local anchors_block=""
+    local seeds_file="$SCRIPT_DIR/seeds/traditional_seeds.json"
+    if [[ "$mode" == "traditional" && -n "$bible_key" && -f "$seeds_file" ]]; then
+        local seed
+        seed=$(jq -r --arg key "$bible_key" '.[$key] // empty' "$seeds_file" 2>/dev/null)
+        if [[ -n "$seed" ]]; then
+            local chars setting conflict tp theme sensory
+            chars=$(echo "$seed" | jq -r '.characters | join(", ")')
+            setting=$(echo "$seed" | jq -r '.setting')
+            conflict=$(echo "$seed" | jq -r '.conflict')
+            tp=$(echo "$seed" | jq -r '.turning_point')
+            theme=$(echo "$seed" | jq -r '.theme')
+            sensory=$(echo "$seed" | jq -r '.sensory_atmosphere // empty')
+            anchors_block="## NARRATIVE ANCHORS
+Characters: $chars
+Setting: $setting
+Conflict: $conflict
+Turning point: $tp
+Theme: $theme"
+            if [[ -n "$sensory" ]]; then
+                anchors_block="$anchors_block
+Sensory atmosphere: $sensory"
+            fi
+            anchors_block="$anchors_block
+"
+        fi
+    fi
+    prompt="${prompt//\{\{NARRATIVE_ANCHORS\}\}/$anchors_block}"
 
     # Remove conditional KJV block (we're WEB only)
     prompt=$(echo "$prompt" | sed '/{{#if LANGUAGE_STYLE == KJV}}/,/{{\/if}}/d')
@@ -506,7 +537,7 @@ process_story() {
                 wc_attempt=$((wc_attempt + 1))
 
                 local prompt
-                prompt=$(build_prompt "$mode" "$mood" "$length" "$is_kid" "$bible_ref")
+                prompt=$(build_prompt "$mode" "$mood" "$length" "$is_kid" "$bible_ref" "$bible_key")
 
                 # Add explicit minimum word count instruction
                 prompt="$prompt

@@ -1,0 +1,74 @@
+{
+  "jesus_calms_storm": {
+    "bibleSourceRef": "Mark 4:35-41",
+    "characters": ["Jesus", "the disciples"],
+    "setting": "A boat on the Sea of Galilee, evening",
+    "conflict": "A violent storm threatens to capsize the boat while Jesus sleeps",
+    "turning_point": "Jesus wakes and speaks to the wind and waves, and they obey",
+    "theme": "Trust in the midst of fear",
+    "sensory_atmosphere": "dark water, strong wind, crashing waves, rocking boat, sudden stillness"
+  },
+  "woman_at_well": {
+    "bibleSourceRef": "John 4:4-26",
+    "characters": ["Jesus", "the Samaritan woman"],
+    "setting": "Jacob's well near the town of Sychar, midday",
+    "conflict": "A woman draws water alone at noon, avoiding others; a Jewish stranger asks her for a drink",
+    "turning_point": "Jesus reveals he knows her past, and offers living water that never runs dry",
+    "theme": "Being truly known and accepted",
+    "sensory_atmosphere": "bright midday sun, dry dust, stone well, cool water, quiet road"
+  },
+  "road_to_emmaus": {
+    "bibleSourceRef": "Luke 24:13-35",
+    "characters": ["Cleopas", "a companion", "a stranger (Jesus)"],
+    "setting": "The road from Jerusalem to Emmaus, late afternoon",
+    "conflict": "Two grieving disciples walk away from Jerusalem, crushed by the crucifixion",
+    "turning_point": "A stranger walks with them, explains the scriptures, and is recognized when he breaks bread",
+    "theme": "Recognizing hope in unexpected company",
+    "sensory_atmosphere": "dusty road, fading sunlight, quiet footsteps, warm lamplight at table, broken bread"
+  },
+  "lost_sheep": {
+    "bibleSourceRef": "Luke 15:3-7",
+    "characters": ["a shepherd", "the lost sheep"],
+    "setting": "Open hillside and rough wilderness",
+    "conflict": "One sheep wanders away from the flock of ninety-nine",
+    "turning_point": "The shepherd leaves the flock to search and finds the lost sheep",
+    "theme": "Every one matters and is worth finding",
+    "sensory_atmosphere": "open grass, rocky terrain, bleating, wind across the hills, warm wool"
+  },
+  "daniel_lions_den": {
+    "bibleSourceRef": "Daniel 6",
+    "characters": ["Daniel", "King Darius", "the royal officials"],
+    "setting": "The royal court of Babylon and the lions' den",
+    "conflict": "Officials trap Daniel with a law forbidding prayer to anyone but the king",
+    "turning_point": "Daniel is thrown to the lions but God shuts their mouths; he emerges unharmed",
+    "theme": "Faithfulness under pressure",
+    "sensory_atmosphere": "stone palace, sealed pit, growling lions, cold night air, morning light"
+  },
+  "samuel_listens": {
+    "bibleSourceRef": "1 Samuel 3",
+    "characters": ["Samuel", "Eli the priest"],
+    "setting": "The tabernacle at Shiloh, nighttime",
+    "conflict": "A young boy hears a voice calling in the night but does not know who speaks",
+    "turning_point": "Eli recognizes the voice as God's and teaches Samuel to answer",
+    "theme": "Learning to listen",
+    "sensory_atmosphere": "warm lamplight, hushed room, soft nighttime stillness, a voice in the dark"
+  },
+  "queen_esther": {
+    "bibleSourceRef": "Esther 4-7",
+    "characters": ["Esther", "Mordecai", "King Xerxes", "Haman"],
+    "setting": "The Persian royal palace",
+    "conflict": "A decree threatens to destroy Esther's people; approaching the king uninvited risks death",
+    "turning_point": "Esther risks her life to speak, and the king extends his scepter",
+    "theme": "Courage for such a time as this",
+    "sensory_atmosphere": "gold throne room, heavy curtains, silent courtyard, held breath, extended scepter"
+  },
+  "rest_for_the_weary": {
+    "bibleSourceRef": "Matthew 11:28-30",
+    "characters": ["Jesus", "a weary crowd"],
+    "setting": "An open gathering place in Galilee",
+    "conflict": "People carry heavy burdens of labor, law, and exhaustion",
+    "turning_point": "Jesus invites them to lay down their burdens and take his yoke instead",
+    "theme": "Rest is offered, not earned",
+    "sensory_atmosphere": "warm afternoon, tired bodies, dusty sandals, gentle voice, easing shoulders"
+  }
+}
