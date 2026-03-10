@@ -1,0 +1,5 @@
+# Python dependencies for the Universal Model Router API prototype.
+# Core router (cli.py, router.py) uses stdlib only — no pip install needed.
+# These are only required for the FastAPI server (api.py).
+fastapi>=0.104.0
+uvicorn>=0.24.0

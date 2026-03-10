@@ -117,6 +117,17 @@ Key server files:
 - `server/contracts/` — Story mode contracts (Traditional/Creative)
 - `server/kid_bedtime_forbidden.txt` — Forbidden vocabulary for kid mode
 - `server/voices.json` — ElevenLabs voice configuration
+- `server/model_router/` — Universal Model Router (task-driven AI model selection)
+
+### Model Router (server/model_router/)
+
+A config-driven Python module that resolves task types to AI models. Generation scripts call the router CLI to select the best available Ollama model for creative story generation, title generation, and developer tasks (coding, reasoning). Traditional stories bypass the router entirely (locked to gpt-4.1 per ADR-014).
+
+- **Registry**: `model_registry.json` defines models, task types, and fallback chains
+- **CLI**: `python3 -m server.model_router.cli resolve <task>` returns JSON with selected model
+- **API**: FastAPI prototype on port 8181 for future app integration
+- **Telemetry**: Privacy-safe structured logging (no prompt/content logging)
+- **Integration**: `generate_v2_batch.sh` tries the router first, falls back to hardcoded logic if unavailable
 
 ---
 

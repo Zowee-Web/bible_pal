@@ -905,6 +905,72 @@ python3 scripts/story_factory/batch_generate_creative.py \
 
 ---
 
+## ADR-016: Universal Model Router
+
+**Date:** 2026-03-10
+**Status:** Accepted
+**Context:** Bible PAL's AI model selection is hardcoded in multiple places:
+- `server/generate_v2_batch.sh` has `get_creative_model()` with a hardcoded fallback chain (mistral-nemo → llama3.1:8b → qwen2.5:7b → gemma:7b)
+- `scripts/story_factory/generate_creative_story.py` hardcodes `MODEL = "gemma:7b"`
+- Traditional stories hardcode `gpt-4.1` (correctly, as a locked requirement)
+
+As the project grows to support new task types (coding assistance, reasoning, title generation, experimental generation), hardcoding model names in each script creates:
+1. Duplication — every new script reinvents model selection
+2. Drift — different scripts may fall out of sync on preferred models
+3. Opacity — no central place to see or audit which models serve which tasks
+4. Inflexibility — changing a model requires editing multiple scripts
+
+**Decision:** Implement a Universal Model Router with:
+
+1. **Config-driven model registry** (`server/model_router/model_registry.json`)
+   - Declares all available models (local Ollama + remote OpenAI)
+   - Defines task types with ordered fallback chains
+   - Marks locked tasks (e.g., `traditional_story_remote`) that must never fall back
+
+2. **Python router module** (`server/model_router/`)
+   - Core resolution: task name → best available model
+   - Ollama availability checking via `/api/tags`
+   - Privacy-safe telemetry (no prompt/content logging)
+   - CLI entry point for bash script integration
+   - FastAPI prototype for future app integration
+
+3. **Backward-compatible integration**
+   - `generate_v2_batch.sh` tries the router first, falls back to existing hardcoded logic
+   - Traditional pipeline is never touched — remains locked to gpt-4.1
+   - All existing scripts continue to work if the router is not installed
+
+4. **Task-driven routing** — scripts ask for a task (e.g., `creative_story`), not a model.
+   The router decides which model to use based on availability and the registry.
+
+**Key constraints:**
+- `traditional_story_remote` is `locked: true` — hard-fails if gpt-4.1 is unavailable (no local fallback)
+- Router decisions are logged but never include prompt content or user text
+- The router is server-side infrastructure; no changes to the Flutter app
+
+**Rationale:**
+- **Config over code**: Model assignments in a JSON file are auditable, diffable, and changeable without editing scripts
+- **Task abstraction**: Future scripts (title gen, coding tools, reasoning) can use the router without knowing model names
+- **Fallback resilience**: If a preferred model is unloaded or unavailable, the router automatically selects the next best option
+- **Preserves locks**: Traditional pipeline lockdown is enforced by the registry's `locked` flag, not just by convention
+- **Local-first**: All Ollama routing happens on localhost; no new external dependencies
+
+**Alternatives Considered:**
+1. **Keep hardcoding per script** — Rejected. Doesn't scale as task types grow. Model preferences drift.
+2. **Environment variables per model** — Rejected. Still requires each script to read/interpret env vars. No fallback logic.
+3. **Docker-based orchestration** — Rejected. Adds complexity without clear benefit for a single-machine local setup.
+4. **Integrate routing into Flutter app** — Rejected. Stories are pre-generated, not runtime. Router belongs in the server pipeline.
+
+**Consequences:**
+- New directory: `server/model_router/` (router module, registry, CLI, API, tests)
+- New dependency: `requirements.txt` (fastapi, uvicorn — for API prototype only)
+- Modified: `server/generate_v2_batch.sh` (augmented `get_creative_model()` with router-first + fallback)
+- Modified: `docs/STORY_FACTORY.md` (Section 0 and 12 updated to reflect mistral-nemo as primary Creative model)
+- New invariant: Model Router Traditional Engine Lock
+- No changes to Flutter/Dart code
+- No changes to Traditional pipeline behavior
+
+---
+
 ## Template for Future Decisions
 
 ```

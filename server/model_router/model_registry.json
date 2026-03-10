@@ -1,0 +1,165 @@
+{
+  "_version": "1.0.0",
+  "_updated": "2026-03-10",
+  "_doc": "Model registry for Bible PAL Universal Model Router. See docs/DECISIONS.md ADR-016.",
+
+  "models": {
+    "mistral-nemo": {
+      "provider": "ollama",
+      "tag": "mistral-nemo:latest",
+      "params": "12B",
+      "strengths": ["storytelling", "creative_prose", "title_generation"],
+      "context_window": 131072,
+      "local": true,
+      "experimental": false,
+      "notes": "Primary creative model. Strong narrative quality."
+    },
+    "llama3.1:8b": {
+      "provider": "ollama",
+      "tag": "llama3.1:8b",
+      "params": "8B",
+      "strengths": ["storytelling", "general"],
+      "context_window": 131072,
+      "local": true,
+      "experimental": false,
+      "notes": "Fallback creative model. Good general quality."
+    },
+    "qwen2.5:7b": {
+      "provider": "ollama",
+      "tag": "qwen2.5:7b",
+      "params": "7B",
+      "strengths": ["general", "coding", "reasoning"],
+      "context_window": 32768,
+      "local": true,
+      "experimental": false,
+      "notes": "Balanced model. Good for reasoning and coding."
+    },
+    "mixtral": {
+      "provider": "ollama",
+      "tag": "mixtral:latest",
+      "params": "8x7B",
+      "strengths": ["longform", "reasoning", "storytelling"],
+      "context_window": 32768,
+      "local": true,
+      "experimental": false,
+      "notes": "MoE model. Best for long-form and complex reasoning. Large footprint (26GB)."
+    },
+    "gemma:7b": {
+      "provider": "ollama",
+      "tag": "gemma:7b",
+      "params": "7B",
+      "strengths": ["storytelling", "creative_prose"],
+      "context_window": 8192,
+      "local": true,
+      "experimental": false,
+      "notes": "Legacy creative model. Preserved as fallback per ADR-014."
+    },
+    "deepseek-coder": {
+      "provider": "ollama",
+      "tag": "deepseek-coder:latest",
+      "params": "6.7B",
+      "strengths": ["coding_flutter", "coding_general"],
+      "context_window": 16384,
+      "local": true,
+      "experimental": false,
+      "notes": "Code-specialized model. Not for story generation."
+    },
+    "codellama": {
+      "provider": "ollama",
+      "tag": "codellama:latest",
+      "params": "7B",
+      "strengths": ["coding_flutter", "coding_general"],
+      "context_window": 16384,
+      "local": true,
+      "experimental": false,
+      "notes": "Meta code model. Fallback for coding tasks."
+    },
+    "phi3": {
+      "provider": "ollama",
+      "tag": "phi3:latest",
+      "params": "3.8B",
+      "strengths": ["reasoning_fast", "general"],
+      "context_window": 4096,
+      "local": true,
+      "experimental": false,
+      "notes": "Small fast model for quick reasoning tasks."
+    },
+    "gpt-4.1": {
+      "provider": "openai",
+      "tag": "gpt-4.1",
+      "params": "cloud",
+      "strengths": ["traditional_story", "scripture_fidelity"],
+      "context_window": 1000000,
+      "local": false,
+      "experimental": false,
+      "notes": "LOCKED for Traditional stories. Requires OPENAI_API_KEY."
+    }
+  },
+
+  "tasks": {
+    "creative_story": {
+      "description": "Generate Creative mode stories (original faith-themed parables)",
+      "provider_constraint": "ollama",
+      "models": ["mistral-nemo", "llama3.1:8b", "qwen2.5:7b", "gemma:7b"],
+      "locked": false,
+      "default_temperature": 0.8,
+      "notes": "Fallback chain matches generate_v2_batch.sh get_creative_model()"
+    },
+    "traditional_story_remote": {
+      "description": "Generate Traditional mode stories (Bible retellings via OpenAI)",
+      "provider_constraint": "openai",
+      "models": ["gpt-4.1"],
+      "locked": true,
+      "default_temperature": 0.7,
+      "notes": "LOCKED per STORY_FACTORY.md Section 0 and INVARIANTS.md. No substitution."
+    },
+    "story_title": {
+      "description": "Generate story titles from story text",
+      "provider_constraint": "ollama",
+      "models": ["mistral-nemo", "qwen2.5:7b", "llama3.1:8b", "gemma:7b"],
+      "locked": false,
+      "default_temperature": 0.6,
+      "notes": "Title generation. Smaller models work well for this."
+    },
+    "coding_flutter": {
+      "description": "Flutter/Dart code assistance",
+      "provider_constraint": "ollama",
+      "models": ["deepseek-coder", "codellama", "qwen2.5:7b"],
+      "locked": false,
+      "default_temperature": 0.3,
+      "notes": "Code-optimized models preferred."
+    },
+    "coding_general": {
+      "description": "General purpose coding assistance",
+      "provider_constraint": "ollama",
+      "models": ["deepseek-coder", "codellama", "qwen2.5:7b", "llama3.1:8b"],
+      "locked": false,
+      "default_temperature": 0.3,
+      "notes": "Code models first, general models as fallback."
+    },
+    "reasoning_fast": {
+      "description": "Quick reasoning tasks (classification, summarization)",
+      "provider_constraint": "ollama",
+      "models": ["phi3", "qwen2.5:7b", "llama3.1:8b"],
+      "locked": false,
+      "default_temperature": 0.3,
+      "notes": "Smallest/fastest model preferred for latency."
+    },
+    "reasoning_balanced": {
+      "description": "Balanced reasoning (analysis, planning)",
+      "provider_constraint": "ollama",
+      "models": ["qwen2.5:7b", "llama3.1:8b", "mistral-nemo"],
+      "locked": false,
+      "default_temperature": 0.5,
+      "notes": "Balanced quality and speed."
+    },
+    "longform_experimental": {
+      "description": "Long-form experimental generation (drafts, outlines)",
+      "provider_constraint": "ollama",
+      "models": ["mixtral", "mistral-nemo", "llama3.1:8b"],
+      "locked": false,
+      "default_temperature": 0.7,
+      "notes": "Models with large context windows and strong generation quality."
+    }
+  }
+}

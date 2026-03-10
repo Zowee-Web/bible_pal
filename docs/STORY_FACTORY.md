@@ -15,14 +15,15 @@ before implementation.
 Bible PAL uses a **locked dual-engine** architecture for story generation.
 Each engine is assigned to exactly one storytelling mode. No substitutions.
 
-| Mode        | Engine                   | Generator Script                    |
-|-------------|--------------------------|-------------------------------------|
-| Traditional | OpenAI gpt-4.1 (Cloud)   | `generate_traditional_story.py`     |
-| Creative    | Gemma 7B via Ollama (Local) | `generate_creative_story.py`     |
+| Mode        | Engine                          | Generator Script                                                   |
+|-------------|--------------------------------|--------------------------------------------------------------------|
+| Traditional | OpenAI gpt-4.1 (Cloud)         | `generate_traditional_story.py`                                    |
+| Creative    | mistral-nemo via Ollama (Local) | `generate_v2_batch.sh` (primary), `generate_creative_story.py` (legacy) |
 
 **Engine Assignment Rules:**
-- Traditional mode MUST use gpt-4.1 via OpenAI Responses API. Forbidden: Gemma, local models, substitution engines.
-- Creative mode MUST use Gemma 7B via Ollama (local). Forbidden: OpenAI API, cloud LLMs, external generators.
+- Traditional mode MUST use gpt-4.1 via OpenAI Responses API. Forbidden: local models, substitution engines.
+- Creative mode MUST use Ollama (local). Primary model: mistral-nemo. Fallback chain: llama3.1:8b → qwen2.5:7b → gemma:7b (legacy). Forbidden: OpenAI API, cloud LLMs, external generators.
+- Model selection for Creative tasks is managed by the Universal Model Router (`server/model_router/`). See ADR-016.
 - Registries are separate: `used_scripture_anchors.json` (Traditional) vs `used_creative_themes.json` (Creative).
 - Output directories are separate: `assets/stories/traditional/` vs `assets/stories/creative/`.
 - No cross-engine content. No cross-registry reads. No blurring.
@@ -274,13 +275,17 @@ Creative stories are original faith-themed narratives — NOT Bible retellings.
 
 ## 12. Creative Canonical Story Author
 
-- Canonical author model: **Gemma 7B** (via Ollama, local)
+- Canonical author model: **mistral-nemo** (via Ollama, local)
+- Fallback chain: llama3.1:8b → qwen2.5:7b → gemma:7b (legacy)
+- Model selection is managed by the Universal Model Router (`server/model_router/`).
+  See `model_registry.json` for the current fallback chain configuration.
 - All creative story and reflection prose MUST be generated via the Ollama API
-  using the `gemma:7b` model running locally.
-- No cloud LLM (OpenAI, Anthropic, Google Cloud, etc.) may author Creative prose
-  unless this spec is explicitly revised.
+  using a local model. No cloud LLM (OpenAI, Anthropic, Google Cloud, etc.)
+  may author Creative prose unless this spec is explicitly revised.
 - Generation scripts MUST NOT contain hard-coded prose, fallback prose,
   or template expansions.
+- The `createdByModel` metadata field dynamically captures whichever model
+  was actually used for each story.
 
 **Invariant:**
 The generator may orchestrate, validate, and persist content —
@@ -406,7 +411,7 @@ Same `schemaVersion: 2` as Traditional, with these differences:
 
 - `"mode": "creative"` (not `"traditional"`)
 - `"theme": "..."` (theme string, replaces `scriptureAnchor`)
-- `"createdByModel": "gemma:7b"` (not `"gpt-4.1"`)
+- `"createdByModel": "<model_used>"` (e.g., `"mistral-nemo"`, `"gemma:7b"` — captured dynamically)
 - NO `scriptureAnchor` field (Creative mode forbids it)
 
 ---

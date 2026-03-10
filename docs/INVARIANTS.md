@@ -1828,6 +1828,65 @@ flutter test
 
 ---
 
+## 🔒 Model Router Traditional Engine Lock (NON-NEGOTIABLE)
+
+**Invariant**: The Universal Model Router MUST NEVER route `traditional_story_remote` tasks to any model other than gpt-4.1 via OpenAI. The router MUST hard-fail (not silently fall back) if gpt-4.1 is unavailable for Traditional tasks.
+
+### Why This Exists
+
+**Scripture fidelity and doctrinal trust are paramount.**
+
+- Traditional stories require proven scripture accuracy from gpt-4.1
+- Substituting a local model risks doctrinal inaccuracy in Bible retellings
+- The dual-engine architecture is a locked design decision (ADR-014)
+- Silent degradation to a weaker model would violate user trust
+
+### The Contract
+
+1. **`traditional_story_remote` MUST have `locked: true`** in `model_registry.json`
+2. **Router MUST raise an error** (not silently degrade) if locked task cannot be fulfilled
+3. **Router MUST NOT allow fallback** to Ollama models for Traditional tasks
+4. **`provider_constraint: "openai"` MUST be set** for `traditional_story_remote`
+5. **Router is not used by the Traditional pipeline today** — Traditional scripts call OpenAI directly. This invariant prevents future misuse.
+
+### Enforcement Mechanisms
+
+#### 1. Registry Validation
+**File**: `server/model_router/model_registry.json`
+
+The `traditional_story_remote` task definition includes `"locked": true` and `"provider_constraint": "openai"`.
+
+#### 2. Router Logic
+**File**: `server/model_router/router.py`
+
+Locked tasks hard-fail with an explicit error when the required model is unavailable. No fallback chain is attempted.
+
+#### 3. Unit Tests
+**File**: `server/model_router/tests/test_router.py`
+
+- Registry validation test checks `locked` flag on `traditional_story_remote`
+- Router test verifies hard-fail behavior for unavailable locked tasks
+- Router test verifies no local model is ever returned for Traditional tasks
+
+### Testing
+
+```bash
+# Run router unit tests
+cd /Volumes/T9-AI/bible_pal && python3 -m pytest server/model_router/tests/ -v
+
+# Verify Traditional lock in registry
+python3 -c "import json; r=json.load(open('server/model_router/model_registry.json')); assert r['tasks']['traditional_story_remote']['locked']==True; print('✅ Traditional lock verified')"
+```
+
+### Maintenance Rules
+
+1. **NEVER** remove the `locked: true` flag from `traditional_story_remote`
+2. **NEVER** add Ollama models to the `traditional_story_remote` fallback chain
+3. **NEVER** change the router to silently degrade locked tasks
+4. **DO NOT** modify the Traditional pipeline to call the router for model selection
+
+---
+
 ## Future Invariants
 
 As the project evolves, additional invariants may be added here. Each invariant must:
@@ -1838,5 +1897,5 @@ As the project evolves, additional invariants may be added here. Each invariant 
 
 ---
 
-**Last Updated**: 2026-02-18
+**Last Updated**: 2026-03-10
 **Maintained By**: Bible PAL Development Team

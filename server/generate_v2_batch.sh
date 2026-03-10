@@ -16,14 +16,15 @@
 #   --skip-existing   Skip stories that already have text files
 #
 # PREREQUISITES:
-#   - Ollama running with gemma:7b model loaded (for Creative stories)
+#   - Ollama running with mistral-nemo model loaded (for Creative stories)
+#     Fallback chain: llama3.1:8b → qwen2.5:7b → gemma:7b
 #   - .env with OPENAI_API_KEY (for Traditional stories — gpt-4.1)
 #   - .env with ELEVENLABS_API_KEY (for audio generation)
 #   - jq installed
 #
 # ENGINE POLICY (STORY_FACTORY.md Section 0 — LOCKED):
 #   Traditional → OpenAI gpt-4.1 ONLY (hard fail otherwise)
-#   Creative    → Gemma 7B via Ollama (local)
+#   Creative    → mistral-nemo via Ollama (local, with fallback chain)
 #
 # =============================================================================
 
@@ -247,12 +248,84 @@ $pacing_note"
 }
 
 # =============================================================================
+# Creative Model Selection
+# =============================================================================
+# Primary: mistral-nemo (strongest storytelling model at 12B params)
+# Fallback chain: llama3.1:8b → qwen2.5:7b → gemma:7b
+#
+# All creative lengths use mistral-nemo by default.
+# Mixtral (8x7b) available as optional long-story model if installed.
+
+CREATIVE_MODEL_PRIMARY="mistral-nemo"
+CREATIVE_MODEL_FALLBACK="llama3.1:8b"
+CREATIVE_MODEL_FALLBACK2="qwen2.5:7b"
+CREATIVE_MODEL_LEGACY="gemma:7b"
+
+# Returns the best available creative model for a given length bucket.
+# Tries the Universal Model Router first (server/model_router/); if unavailable
+# or errored, falls back to the original hardcoded logic. See ADR-016.
+# NOTE: Uses grep without -q to avoid pipefail+SIGPIPE race condition
+get_creative_model() {
+    local length_bucket="${1:-short}"
+
+    # --- Try Universal Model Router first ---
+    if command -v python3 >/dev/null 2>&1 && \
+       [[ -f "${SCRIPT_DIR}/../server/model_router/cli.py" ]]; then
+        local router_result
+        router_result=$(cd "${SCRIPT_DIR}/.." && python3 -m server.model_router.cli resolve creative_story 2>/dev/null) || true
+        if [[ -n "$router_result" ]]; then
+            local model
+            model=$(echo "$router_result" | python3 -c "import sys,json; print(json.load(sys.stdin).get('model',''))" 2>/dev/null) || true
+            if [[ -n "$model" ]]; then
+                local is_fb
+                is_fb=$(echo "$router_result" | python3 -c "import sys,json; print(json.load(sys.stdin).get('is_fallback',False))" 2>/dev/null) || true
+                if [[ "$is_fb" == "True" ]]; then
+                    echo -e "${YELLOW}  Router selected (fallback): $model${NC}" >&2
+                else
+                    echo -e "${BLUE}  Router selected: $model${NC}" >&2
+                fi
+                echo "$model"
+                return 0
+            fi
+        fi
+        echo -e "${YELLOW}  Router unavailable, using hardcoded fallback chain${NC}" >&2
+    fi
+
+    # --- Hardcoded fallback (original logic, preserved for backward compat) ---
+    local model_list
+    model_list=$(ollama list 2>/dev/null) || true
+
+    # Check if primary model is available
+    if echo "$model_list" | grep "^${CREATIVE_MODEL_PRIMARY}" >/dev/null 2>&1; then
+        echo "$CREATIVE_MODEL_PRIMARY"
+        return 0
+    fi
+
+    # Fallback chain
+    if echo "$model_list" | grep "^${CREATIVE_MODEL_FALLBACK}" >/dev/null 2>&1; then
+        echo -e "${YELLOW}  Model fallback: $CREATIVE_MODEL_PRIMARY unavailable, using $CREATIVE_MODEL_FALLBACK${NC}" >&2
+        echo "$CREATIVE_MODEL_FALLBACK"
+        return 0
+    fi
+
+    if echo "$model_list" | grep "^${CREATIVE_MODEL_FALLBACK2}" >/dev/null 2>&1; then
+        echo -e "${YELLOW}  Model fallback: using $CREATIVE_MODEL_FALLBACK2${NC}" >&2
+        echo "$CREATIVE_MODEL_FALLBACK2"
+        return 0
+    fi
+
+    echo -e "${YELLOW}  Model fallback: using legacy $CREATIVE_MODEL_LEGACY${NC}" >&2
+    echo "$CREATIVE_MODEL_LEGACY"
+}
+
+# =============================================================================
 # Text Generation via Ollama HTTP API
 # =============================================================================
 
 generate_text_ollama() {
     local prompt="$1"
     local num_predict="${2:-4096}"  # Token limit: ~3000 tokens = ~2000 words
+    local model="${3:-$CREATIVE_MODEL_PRIMARY}"  # Model override (default: mistral-nemo)
     local max_retries=2
     local attempt=0
 
@@ -263,7 +336,7 @@ generate_text_ollama() {
         response=$(curl -s --connect-timeout 10 --max-time 600 \
             -X POST "http://localhost:11434/api/generate" \
             -H "Content-Type: application/json" \
-            -d "$(jq -n --arg model "gemma:7b" --arg prompt "$prompt" --argjson np "$num_predict" \
+            -d "$(jq -n --arg model "$model" --arg prompt "$prompt" --argjson np "$num_predict" \
                 '{model: $model, prompt: $prompt, stream: false, options: {num_predict: $np, temperature: 0.8}}')" \
             2>/dev/null)
 
@@ -386,6 +459,7 @@ generate_text() {
     local mode="$1"
     local prompt="$2"
     local num_predict="$3"
+    local length_bucket="${4:-short}"  # Used for creative model selection
     local engine
     engine=$(get_engine_for_mode "$mode")
 
@@ -394,7 +468,10 @@ generate_text() {
             generate_text_openai "$prompt" "$num_predict"
             ;;
         ollama)
-            generate_text_ollama "$prompt" "$num_predict"
+            local model
+            model=$(get_creative_model "$length_bucket")
+            echo -e "${BLUE}  Ollama model: $model${NC}" >&2
+            generate_text_ollama "$prompt" "$num_predict" "$model"
             ;;
         *)
             echo -e "${RED}  FATAL: Unknown engine '$engine'${NC}" >&2
@@ -408,7 +485,11 @@ get_model_label_for_mode() {
     local mode="$1"
     case "$mode" in
         traditional) echo "gpt-4.1" ;;
-        creative)    echo "gemma:7b" ;;
+        creative)
+            local model
+            model=$(get_creative_model "short" 2>/dev/null)
+            echo "$model"
+            ;;
         *)           echo "unknown" ;;
     esac
 }
@@ -427,8 +508,10 @@ $(echo "$story_text" | head -20)
 
 Title:"
 
+    local model
+    model=$(get_creative_model "short" 2>/dev/null)
     local title
-    title=$(generate_text_ollama "$prompt" 2>/dev/null | head -1 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | sed 's/^"//;s/"$//' | sed 's/^\*\*//;s/\*\*$//')
+    title=$(generate_text_ollama "$prompt" 64 "$model" 2>/dev/null | head -1 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | sed 's/^"//;s/"$//' | sed 's/^\*\*//;s/\*\*$//')
 
     if [[ -z "$title" ]] || [[ ${#title} -gt 80 ]]; then
         echo "Untitled Story"
@@ -588,7 +671,7 @@ process_story() {
 
 CRITICAL: This story MUST be at least $min_wc words and no more than $max_wc words. Write a complete, detailed story with rich descriptions and fully developed scenes. Do not stop early."
 
-                text=$(generate_text "$mode" "$prompt" "$num_predict" 2>/dev/null) || true
+                text=$(generate_text "$mode" "$prompt" "$num_predict" "$length" 2>/dev/null) || true
 
                 if [[ -z "$text" ]]; then
                     echo -e "${RED}  ✗ Attempt $wc_attempt: text generation returned empty${NC}"
@@ -606,13 +689,23 @@ CRITICAL: This story MUST be at least $min_wc words and no more than $max_wc wor
                 # If too short, try extending by feeding partial text back
                 if [[ $wc -lt $min_wc ]] && [[ $wc_attempt -lt $max_wc_attempts ]]; then
                     echo -e "${YELLOW}  Too short ($wc < $min_wc), attempting continuation...${NC}"
-                    local continue_prompt="Continue this story. Write at least $((min_wc - wc)) more words to reach the required minimum of $min_wc words. Maintain the same tone, characters, and narrative style. Pick up exactly where this left off:
+                    local words_remaining=$((min_wc - wc))
+                    local continue_prompt="You are continuing a story that was cut short. The story so far is ${wc} words and needs to reach at least ${min_wc} words total. Write approximately ${words_remaining} more words.
 
+IMPORTANT RULES FOR CONTINUATION:
+- Pick up exactly where the story left off — do NOT restart or summarize
+- Maintain the same characters, setting, tone, and narrative voice
+- Write continuous prose paragraphs (no headings, no bullets)
+- Write for spoken narration — keep sentences under 22 words
+- Build toward a satisfying resolution with quiet hope
+- Do NOT repeat any content from the existing story
+
+STORY SO FAR:
 $text
 
-Continue the story:"
+CONTINUE THE STORY FROM HERE:"
                     local continuation
-                    continuation=$(generate_text "$mode" "$continue_prompt" "$num_predict" 2>/dev/null) || true
+                    continuation=$(generate_text "$mode" "$continue_prompt" "$num_predict" "$length" 2>/dev/null) || true
                     if [[ -n "$continuation" ]]; then
                         text="$text
 
