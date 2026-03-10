@@ -25,9 +25,9 @@ Read the scripture passage carefully. Your story MUST faithfully retell this exa
 - Mode: Traditional (faithful Bible retelling)
 - Mood: {{MOOD}}
 - Length: {{LENGTH_BUCKET}} bucket
-  - short: 250-600 words
-  - full: 601-1200 words
-  - long: 1201-2000 words
+  - short: aim for 350-450 words
+  - full: aim for 700-850 words
+  - long: aim for 1201-1400 words
 - Language Style: {{LANGUAGE_STYLE}}
   - WEB: Modern, contemporary English
   - KJV: Classical, archaic English (thee/thou/hath)

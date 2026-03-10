@@ -107,28 +107,30 @@ compute_story_length() {
 # Used by generate_v2_batch.sh for generation-time validation.
 # ============================================================
 
-# Traditional (STORY_FACTORY.md Section 5)
-readonly TRAD_MIN_SHORT=300
-readonly TRAD_MAX_SHORT=500
-readonly TRAD_MIN_FULL=501
-readonly TRAD_MAX_FULL=900
-readonly TRAD_MIN_LONG=901
-readonly TRAD_MAX_LONG=1500
+# Traditional — tighter generation targets to center output
+# IMPORTANT: These must stay within canonical bucket boundaries
+#   short ≤ 600, full 601–1200, long ≥ 1201
+readonly TRAD_MIN_SHORT=350
+readonly TRAD_MAX_SHORT=450
+readonly TRAD_MIN_FULL=700
+readonly TRAD_MAX_FULL=850
+readonly TRAD_MIN_LONG=1201
+readonly TRAD_MAX_LONG=1400
 
-# Creative Adult (STORY_FACTORY.md Section 15)
-readonly CREATIVE_ADULT_MIN_SHORT=200
+# Creative Adult — tighter generation targets
+readonly CREATIVE_ADULT_MIN_SHORT=250
 readonly CREATIVE_ADULT_MAX_SHORT=400
-readonly CREATIVE_ADULT_MIN_FULL=401
-readonly CREATIVE_ADULT_MAX_FULL=700
-readonly CREATIVE_ADULT_MIN_LONG=701
-readonly CREATIVE_ADULT_MAX_LONG=1100
+readonly CREATIVE_ADULT_MIN_FULL=650
+readonly CREATIVE_ADULT_MAX_FULL=900
+readonly CREATIVE_ADULT_MIN_LONG=1201
+readonly CREATIVE_ADULT_MAX_LONG=1400
 
-# Creative Kid (STORY_FACTORY.md Section 15)
-readonly CREATIVE_KID_MIN_SHORT=200
+# Creative Kid — tighter generation targets
+readonly CREATIVE_KID_MIN_SHORT=300
 readonly CREATIVE_KID_MAX_SHORT=500
-readonly CREATIVE_KID_MIN_FULL=501
+readonly CREATIVE_KID_MIN_FULL=650
 readonly CREATIVE_KID_MAX_FULL=900
-readonly CREATIVE_KID_MIN_LONG=901
+readonly CREATIVE_KID_MIN_LONG=1201
 readonly CREATIVE_KID_MAX_LONG=1400
 
 # Mode-aware min words: get_min_words_for_mode <bucket> <mode> [is_kid]
