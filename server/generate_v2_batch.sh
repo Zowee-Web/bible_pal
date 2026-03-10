@@ -53,7 +53,7 @@ command -v curl >/dev/null 2>&1 || { echo -e "${RED}Error: curl required${NC}" >
 
 # Load .env
 if [[ -f "$ENV_FILE" ]]; then
-    while IFS='=' read -r key value; do
+    while IFS='=' read -r key value || [[ -n "$key" ]]; do
         [[ -z "$key" || "$key" =~ ^[[:space:]]*# ]] && continue
         value=$(echo "$value" | sed 's/[[:space:]]*#.*//')
         export "$key=$value"
@@ -796,12 +796,6 @@ update_manifest() {
             *)       emotional_tags='[]' ;;
         esac
 
-        # Legacy minute values by length
-        declare -A length_to_minutes
-        length_to_minutes[short]=5
-        length_to_minutes[full]=15
-        length_to_minutes[long]=20
-
         local rel_dir
         if [[ "$mode" == "creative" ]]; then
             rel_dir="creative/$story_id"
@@ -810,7 +804,12 @@ update_manifest() {
         fi
 
         for length in "${lengths[@]}"; do
-            local minutes=${length_to_minutes[$length]}
+            local minutes
+            case "$length" in
+                short) minutes=5 ;;
+                full)  minutes=15 ;;
+                long)  minutes=20 ;;
+            esac
 
             # Build storyId string
             local manifest_id
@@ -837,16 +836,17 @@ update_manifest() {
             local audio_path="${rel_dir}/${audio_file_name}"
             local reflection_path="${rel_dir}/${reflection_audio_name}"
 
-            # Check if text file actually exists
-            local has_text="true"
-            [[ ! -s "$STORIES_DIR/$text_path" ]] && has_text="false"
+            # Skip manifest entry if text file does not exist (generation failed)
+            if [[ ! -s "$STORIES_DIR/$text_path" ]]; then
+                echo -e "${YELLOW}  Skipping manifest entry for $manifest_id (no text file)${NC}"
+                continue
+            fi
 
             # Check if audio file exists
             local actual_audio="null"
             [[ -s "$STORIES_DIR/$audio_path" ]] && actual_audio="\"$audio_path\""
 
-            local actual_text="null"
-            [[ "$has_text" == "true" ]] && actual_text="\"$text_path\""
+            local actual_text="\"$text_path\""
 
             local actual_reflection="null"
             [[ -s "$STORIES_DIR/$reflection_path" ]] && actual_reflection="\"$reflection_path\""

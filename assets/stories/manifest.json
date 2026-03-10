@@ -1178,24 +1178,6 @@
       "reflectionQuestion": "What moment today filled you with unexpected gratitude?"
     },
     {
-      "storyId": "story_504_joyful_long_creative",
-      "title": "Journey's Light",
-      "mood": "joyful",
-      "emotionalTags": [
-        "grateful"
-      ],
-      "storytellingMode": "creative",
-      "kidFriendly": false,
-      "translationId": "WEB",
-      "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
-      "storyLength": "long",
-      "audioFilePath": "creative/504/audio_504_story_long.mp3",
-      "textFilePath": "creative/504/story_504_creative_web_long.txt",
-      "reflectionAudioPath": "creative/504/audio_504_reflection.mp3",
-      "reflectionQuestion": "What moment today filled you with unexpected gratitude?"
-    },
-    {
       "storyId": "story_505_anxious_short_creative",
       "title": "Faith's Embrace",
       "mood": "anxious",
@@ -1228,24 +1210,6 @@
       "storyLength": "full",
       "audioFilePath": "creative/505/audio_505_story_full.mp3",
       "textFilePath": "creative/505/story_505_creative_web_full.txt",
-      "reflectionAudioPath": "creative/505/audio_505_reflection.mp3",
-      "reflectionQuestion": "What feels most uncertain in your life right now?"
-    },
-    {
-      "storyId": "story_505_anxious_long_creative",
-      "title": "Faith's Embrace",
-      "mood": "anxious",
-      "emotionalTags": [
-        "anxious"
-      ],
-      "storytellingMode": "creative",
-      "kidFriendly": false,
-      "translationId": "WEB",
-      "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
-      "storyLength": "long",
-      "audioFilePath": "creative/505/audio_505_story_long.mp3",
-      "textFilePath": "creative/505/story_505_creative_web_long.txt",
       "reflectionAudioPath": "creative/505/audio_505_reflection.mp3",
       "reflectionQuestion": "What feels most uncertain in your life right now?"
     },

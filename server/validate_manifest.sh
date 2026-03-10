@@ -23,33 +23,17 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-# LOCKED SPEC: storyLength word count ranges
-declare -A MIN_WORDS_BUCKET=(
-    [short]=250
-    [full]=601
-    [long]=1201
-)
-
-declare -A MAX_WORDS_BUCKET=(
-    [short]=600
-    [full]=1200
-    [long]=2000
-)
-
-# Legacy minute-based ranges (for backwards compat validation)
-declare -A MIN_WORDS=(
-    [5]=250
-    [10]=250
-    [15]=601
-    [20]=1201
-)
-
-declare -A MAX_WORDS=(
-    [5]=600
-    [10]=600
-    [15]=1200
-    [20]=2000
-)
+# LOCKED SPEC: storyLength word count ranges (bash 3.2 compatible)
+get_min_words_bucket() {
+    case "$1" in
+        short) echo 250 ;; full) echo 601 ;; long) echo 1201 ;; *) echo 250 ;;
+    esac
+}
+get_max_words_bucket() {
+    case "$1" in
+        short) echo 600 ;; full) echo 1200 ;; long) echo 2000 ;; *) echo 600 ;;
+    esac
+}
 
 # Check dependencies
 command -v jq >/dev/null 2>&1 || { echo -e "${RED}❌ Error: jq required${NC}" >&2; exit 1; }
@@ -113,8 +97,8 @@ for i in $(seq 0 $((TOTAL_STORIES - 1))); do
         WORD_COUNT=$(wc -w < "$STORIES_DIR/$TEXT_FILE" | tr -d ' ')
 
         if [[ -n "$STORY_LENGTH" && "$STORY_LENGTH" =~ ^(short|full|long)$ ]]; then
-            MIN=${MIN_WORDS_BUCKET[$STORY_LENGTH]:-250}
-            MAX=${MAX_WORDS_BUCKET[$STORY_LENGTH]:-600}
+            MIN=$(get_min_words_bucket "$STORY_LENGTH")
+            MAX=$(get_max_words_bucket "$STORY_LENGTH")
 
             if (( WORD_COUNT < MIN || WORD_COUNT > MAX )); then
                 echo -e "  ${YELLOW}⚠ Word count mismatch: $WORD_COUNT words (storyLength=$STORY_LENGTH expects $MIN-$MAX)${NC}"
