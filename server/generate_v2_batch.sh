@@ -183,6 +183,50 @@ Sensory atmosphere: $sensory"
     fi
     prompt="${prompt//\{\{NARRATIVE_ANCHORS\}\}/$anchors_block}"
 
+    # Inject scene blueprint for full/long stories (skip for short)
+    # Long stories get expanded pacing notes to allow each scene to breathe
+    local blueprint_block=""
+    local pacing_note=""
+    if [[ "$length_bucket" == "long" ]]; then
+        pacing_note="Let each scene breathe — use sensory detail, transitions, and unhurried pacing."
+    fi
+    if [[ "$length_bucket" == "full" || "$length_bucket" == "long" ]]; then
+        if [[ "$mode" == "traditional" && -n "$conflict" && -n "$tp" ]]; then
+            # Traditional with seed: use conflict and turning point from seed
+            blueprint_block="
+## SCENE BLUEPRINT (follow this pacing)
+Scene 1 – Establish the setting and characters
+Scene 2 – $conflict
+Scene 3 – Tension deepens
+Scene 4 – $tp
+Scene 5 – Resolution and scriptural conclusion"
+        elif [[ "$mode" == "traditional" ]]; then
+            blueprint_block="
+## SCENE BLUEPRINT (follow this pacing)
+Scene 1 – Establish the setting and characters
+Scene 2 – Tension or need appears
+Scene 3 – Conflict deepens
+Scene 4 – Turning point from scripture
+Scene 5 – Resolution and scriptural conclusion"
+        else
+            # Creative mode
+            blueprint_block="
+## SCENE BLUEPRINT (follow this pacing)
+Scene 1 – Ground the listener in setting and character
+Scene 2 – Tension or need appears
+Scene 3 – Conflict deepens
+Scene 4 – Turning point or moment of clarity
+Scene 5 – Quiet resolution with gentle hope"
+        fi
+        if [[ -n "$pacing_note" ]]; then
+            blueprint_block="$blueprint_block
+$pacing_note"
+        fi
+        blueprint_block="$blueprint_block
+"
+    fi
+    prompt="${prompt//\{\{SCENE_BLUEPRINT\}\}/$blueprint_block}"
+
     # Remove conditional KJV block (we're WEB only)
     prompt=$(echo "$prompt" | sed '/{{#if LANGUAGE_STYLE == KJV}}/,/{{\/if}}/d')
 

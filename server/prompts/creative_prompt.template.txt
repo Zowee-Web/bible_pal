@@ -68,7 +68,7 @@ When using KJV/classical language style in Creative mode:
 - Prose paragraphs only
 - 4-6 paragraphs depending on length bucket
 - End with quiet hope or gentle resolution (no preaching)
-
+{{SCENE_BLUEPRINT}}
 ## NARRATION STYLE
 - Write for spoken narration (these stories are read aloud by a voice narrator)
 - Keep most sentences under about 22 words
