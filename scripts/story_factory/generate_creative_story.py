@@ -30,6 +30,10 @@ import time
 import urllib.error
 import urllib.request
 
+# Router client for POST /generate calls
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "lib"))
+from router_client import router_generate, RouterError
+
 # ── Constants ──────────────────────────────────────────────────────────────
 
 LOCKED_RANGES = {
@@ -1055,7 +1059,18 @@ def main() -> int:
                 f"The question should connect the story's theme to everyday life. "
                 f"Return ONLY the question, or an empty string if none fits."
             )
-        reflection_question = call_ollama_with_retry(rq_system, rq_prompt, 200).strip()
+        try:
+            reflection_question = router_generate(
+                task="creative_story",
+                prompt=rq_prompt,
+                system_prompt=rq_system,
+                temperature=0.7,
+                max_tokens=200,
+                timeout=60,
+            ).strip()
+        except (RouterError, Exception) as exc:
+            print(f"  Router error [{getattr(exc, 'code', 'unknown')}]: {exc}")
+            reflection_question = ""
 
         # Validate: must be 0 or 1 question
         if "\n" in reflection_question:
