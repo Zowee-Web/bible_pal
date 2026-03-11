@@ -1195,7 +1195,16 @@ Key design questions:
 - Auth middleware applies to dashboard routes (localhost bypass works for local dev)
 - No changes to `router.py`, `model_registry.json`, or generation scripts
 
-**Phase 2 (deferred):** Logs page (requires telemetry file persistence), Story Activity page (requires structured generation logging), Storage analysis page. These will be added once their data sources exist.
+**Phase 1 frozen:** 2026-03-11 — commit `af8b442`. Three pages live, 14 tests, zero regressions.
+
+**Phase 2 backlog** (do not implement until prerequisites exist):
+1. **Router Logs page** — prerequisite: persist telemetry to file/SQLite instead of stderr-only
+2. **Story Activity page** — prerequisite: add structured generation event logging to story scripts
+3. **Storage deep-dive page** — model storage breakdown, story asset sizes by mode/bucket
+4. **Alerts panel** — surface warnings when Ollama is down, disk > 90%, or models missing from fallback chains
+5. **Story Factory page** — batch generation status, last run results, queue visibility
+
+Each item should only be built when its data source exists and a real operational need is demonstrated.
 
 ---
 
