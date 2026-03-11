@@ -35,6 +35,31 @@ def log_resolution(
     _emit(event)
 
 
+def log_generation(
+    task: str,
+    model: str,
+    provider: str,
+    duration_ms: float,
+    prompt_tokens: int = 0,
+    completion_tokens: int = 0,
+) -> None:
+    """Log a generation completion event to stderr.
+
+    Never logs prompt content, system prompts, user text, or API keys.
+    """
+    event = {
+        "event": "model_generation_completed",
+        "ts": datetime.now(timezone.utc).isoformat(),
+        "task": task,
+        "model": model,
+        "provider": provider,
+        "duration_ms": round(duration_ms, 1),
+        "prompt_tokens": prompt_tokens,
+        "completion_tokens": completion_tokens,
+    }
+    _emit(event)
+
+
 def log_error(task: str, error: str) -> None:
     """Log a routing error to stderr."""
     event = {

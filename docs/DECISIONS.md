@@ -971,6 +971,72 @@ As the project grows to support new task types (coding assistance, reasoning, ti
 
 ---
 
+## ADR-017: Model Router Phase 2A — Resolution to Execution Gateway
+
+**Date:** 2026-03-10
+**Status:** Accepted
+
+**Context:** ADR-016 established the Universal Model Router as a resolution-only system — it maps task names to model names but never calls any AI provider. Generation scripts still independently implement HTTP calls to Ollama and OpenAI, creating duplication in error handling, timeout management, and response parsing.
+
+Phase 2A answers the question: should the router also execute the model call, or remain resolution-only?
+
+**Decision:** Evolve the router from "resolution-only" into a "resolution + controlled synchronous execution gateway" with:
+
+1. **Provider abstraction layer** (`server/model_router/providers.py`)
+   - `BaseProvider` ABC with `generate()` method
+   - `OllamaProvider`: calls Ollama `/api/generate` via stdlib `urllib`
+   - `OpenAIProvider`: calls OpenAI `/v1/chat/completions` via stdlib `urllib`
+   - `get_provider()` factory function
+   - Providers are thin transport adapters — no business logic, no prompt construction
+   - No external HTTP libraries (consistent with `availability.py`)
+
+2. **POST /generate endpoint** in the FastAPI API
+   - Accepts task + prompt, routes through existing router, calls provider, returns result
+   - Synchronous only, non-streaming
+   - Input validation via Pydantic (max prompt 32k chars, temperature 0.0-2.0, max_tokens 1-4096)
+   - Provider error mapping: 502 for upstream HTTP errors, 503 for unreachable providers, 500 for unknown providers
+
+3. **API hardening**
+   - **Breaking change**: All HTTP API responses now wrapped in `{"ok": true/false, ...}` envelopes
+   - CLI output format is unchanged — only HTTP API contracts changed
+   - API key auth middleware (`MODEL_ROUTER_API_KEY` env var)
+   - Strict localhost bypass: only `request.client.host` in `{127.0.0.1, ::1}`, no forwarded header trust
+   - If key not set, auth is disabled (dev mode)
+
+4. **Traditional lock preserved**
+   - Lock is enforced at the router level (unchanged from ADR-016)
+   - Provider layer executes whatever the router resolves — cannot override model or provider
+   - `traditional_story_remote` → `gpt-4.1` → `OpenAIProvider` — the only path
+
+**What is NOT in Phase 2A:**
+- Response caching (deferred)
+- Job queue / async generation (deferred)
+- Streaming responses (deferred)
+- "ZauwieTech AI Core" rebranding (deferred)
+- Docker orchestration (out of scope)
+- Redis / Celery (out of scope)
+
+**Rationale:**
+- **Centralized execution reduces duplication**: Scripts can call one endpoint instead of implementing provider calls independently
+- **Provider abstraction enables testing**: Mock providers in tests without mocking HTTP
+- **Execution boundary at the router maintains lock enforcement**: The provider cannot choose a different model
+- **stdlib-only providers**: Consistent with existing availability.py (no requests/httpx dependency)
+- **Synchronous-first**: Matches existing batch generation patterns
+
+**Consequences:**
+- New file: `server/model_router/providers.py`
+- Modified: `server/model_router/api.py` (auth, envelopes, /generate) — version bumped to 2.0.0
+- Modified: `server/model_router/telemetry.py` (added `log_generation` event)
+- New test files: `tests/test_providers.py`, `tests/test_api.py`
+- Modified: `scripts/ai_health_check.sh` (envelope-aware parsing)
+- Modified: `docs/ARCHITECTURE.md`, `server/model_router/README.md`
+- HTTP API response shapes changed (breaking) — `{"ok": true, "data": ...}` envelopes
+- CLI output format unchanged
+- No changes to `router.py` core resolution logic
+- No changes to `model_registry.json`
+
+---
+
 ## Template for Future Decisions
 
 ```

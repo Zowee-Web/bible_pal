@@ -121,13 +121,21 @@ Key server files:
 
 ### Model Router (server/model_router/)
 
-A config-driven Python module that resolves task types to AI models. Generation scripts call the router CLI to select the best available Ollama model for creative story generation, title generation, and developer tasks (coding, reasoning). Traditional stories bypass the router entirely (locked to gpt-4.1 per ADR-014).
+A config-driven Python module that resolves task types to AI models and executes generation through provider abstraction. Generation scripts call the router CLI for model selection, or use the FastAPI endpoint for resolution + execution in a single call. Traditional stories are locked to gpt-4.1 per ADR-014 and ADR-016.
 
 - **Registry**: `model_registry.json` defines models, task types, and fallback chains
 - **CLI**: `python3 -m server.model_router.cli resolve <task>` returns JSON with selected model
-- **API**: FastAPI prototype on port 8181 for future app integration
+- **API**: FastAPI server on port 8181 with auth, structured envelopes, and POST /generate
+- **Providers**: `providers.py` — thin transport adapters for Ollama and OpenAI (stdlib urllib only)
 - **Telemetry**: Privacy-safe structured logging (no prompt/content logging)
 - **Integration**: `generate_v2_batch.sh` tries the router first, falls back to hardcoded logic if unavailable
+
+API endpoints:
+- `GET /health` — System health + Ollama connectivity
+- `GET /models` — Registered models with availability
+- `GET /tasks` — Defined task types
+- `GET /resolve/{task}` — Resolve task to model (resolution only)
+- `POST /generate` — Resolve task + call provider + return generated text
 
 ---
 

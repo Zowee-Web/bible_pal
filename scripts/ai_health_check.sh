@@ -133,7 +133,7 @@ echo "5. FastAPI Prototype (port 8181)"
 # -------------------------------------------------------------------
 if curl -s http://127.0.0.1:8181/health >/dev/null 2>&1; then
     ok "FastAPI is running at 127.0.0.1:8181"
-    HEALTH=$(curl -s http://127.0.0.1:8181/health 2>/dev/null | python3 -c "import sys,json; d=json.load(sys.stdin); print(f\"Ollama: {'up' if d.get('ollama_running') else 'down'}, Models: {len(d.get('installed_models',[]))}\")" 2>/dev/null || echo "parse error")
+    HEALTH=$(curl -s http://127.0.0.1:8181/health 2>/dev/null | python3 -c "import sys,json; r=json.load(sys.stdin); d=r.get('data',r); print(f\"Ollama: {'up' if d.get('ollama_running') else 'down'}, Models: {len(d.get('installed_models',[]))}\")" 2>/dev/null || echo "parse error")
     echo -e "       $HEALTH"
 else
     warn "FastAPI is NOT running (start with: uvicorn server.model_router.api:app --host 127.0.0.1 --port 8181)"
