@@ -39,6 +39,7 @@ MANIFEST_FILE="$STORIES_DIR/manifest.json"
 # Source shared utilities
 source "$SCRIPT_DIR/story_calibration.sh"
 source "$SCRIPT_DIR/voice_selector.sh"
+source "$PROJECT_ROOT/scripts/lib/router_client.sh"
 
 # Colors
 RED='\033[0;31m'
@@ -508,37 +509,14 @@ $(echo "$story_text" | head -20)
 
 Title:"
 
-    local api_response
-    api_response=$(curl -s --connect-timeout 5 --max-time 30 \
-        -X POST "http://127.0.0.1:8181/generate" \
-        -H "Content-Type: application/json" \
-        -d "$(jq -n --arg task "story_title" --arg prompt "$prompt" \
-            '{task: $task, prompt: $prompt, temperature: 0.8, max_tokens: 64}')" \
-        2>/dev/null)
-
-    if [[ $? -ne 0 ]] || [[ -z "$api_response" ]]; then
-        echo -e "${RED}  Title generation failed: Model Router API unreachable at 127.0.0.1:8181${NC}" >&2
+    local raw_text
+    raw_text=$(router_generate "story_title" "$prompt" 0.8 64 30) || {
         echo "Untitled Story"
         return 1
-    fi
-
-    local ok
-    ok=$(echo "$api_response" | jq -r '.ok // empty' 2>/dev/null)
-    if [[ "$ok" != "true" ]]; then
-        local err_code err_msg
-        err_code=$(echo "$api_response" | jq -r '.error.code // "unknown"' 2>/dev/null)
-        err_msg=$(echo "$api_response" | jq -r '.error.message // "unknown error"' 2>/dev/null)
-        echo -e "${RED}  Title generation failed [$err_code]: $err_msg${NC}" >&2
-        echo "Untitled Story"
-        return 1
-    fi
-
-    local route_model
-    route_model=$(echo "$api_response" | jq -r '.data.route.model // empty' 2>/dev/null)
-    echo -e "${BLUE}  Title via router ($route_model)${NC}" >&2
+    }
 
     local title
-    title=$(echo "$api_response" | jq -r '.data.text // empty' 2>/dev/null \
+    title=$(echo "$raw_text" \
         | head -1 \
         | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' \
         | sed 's/^"//;s/"$//' \
