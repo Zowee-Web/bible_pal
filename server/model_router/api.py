@@ -64,6 +64,7 @@ app = FastAPI(
 )
 
 _router = ModelRouter()
+app.state.router = _router
 
 
 # ---------------------------------------------------------------------------
@@ -273,3 +274,11 @@ async def generate(request: GenerateRequest):
             "duration_ms": round(result.duration_ms, 1),
         },
     })
+
+
+# ---------------------------------------------------------------------------
+# Dashboard (dev tooling)
+# ---------------------------------------------------------------------------
+from server.dashboard.routes import router as dashboard_router  # noqa: E402
+
+app.include_router(dashboard_router)

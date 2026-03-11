@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% set active_page = "models" %}
+{% block title %}Models — AI Command Center{% endblock %}
+{% block content %}
+<h1>Registered Models</h1>
+
+<div class="card">
+    <table>
+        <thead>
+            <tr>
+                <th>Model</th>
+                <th>Provider</th>
+                <th>Params</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in models %}
+            <tr>
+                <td>{{ m.model }}</td>
+                <td>{{ m.provider }}</td>
+                <td>{{ m.params }}</td>
+                <td>
+                    {% if m.available is none %}
+                        <span class="badge remote">Remote</span>
+                    {% elif m.available %}
+                        <span class="badge available">Available</span>
+                    {% else %}
+                        <span class="badge unavailable">Not Installed</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% set active_page = "router" %}
+{% block title %}Router — AI Command Center{% endblock %}
+{% block content %}
+<h1>Task Router</h1>
+
+<div class="card">
+    <h2>Resolve a Task</h2>
+    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 16px;">
+        <select id="task-select">
+            <option value="">-- Select a task --</option>
+            {% for t in tasks %}
+            <option value="{{ t.task }}">{{ t.task }}{% if t.locked %} (locked){% endif %}</option>
+            {% endfor %}
+        </select>
+        <button onclick="resolveTask()">Resolve</button>
+    </div>
+    <pre id="resolve-output" style="min-height: 100px;">Select a task and click Resolve...</pre>
+</div>
+
+<div class="card">
+    <h2>All Tasks</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Description</th>
+                <th>Model Chain</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in tasks %}
+            <tr>
+                <td>{{ t.task }}</td>
+                <td>{{ t.description }}</td>
+                <td>{{ t.models | join(" → ") }}</td>
+                <td>
+                    {% if t.locked %}
+                        <span class="badge locked">Locked</span>
+                    {% else %}
+                        <span class="badge available">Open</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+async function resolveTask() {
+    const task = document.getElementById("task-select").value;
+    const output = document.getElementById("resolve-output");
+    if (!task) {
+        output.textContent = "Please select a task.";
+        return;
+    }
+    output.textContent = "Resolving...";
+    try {
+        const resp = await fetch("/resolve/" + encodeURIComponent(task));
+        const data = await resp.json();
+        output.textContent = JSON.stringify(data, null, 2);
+    } catch (e) {
+        output.textContent = "Error: " + e.message;
+    }
+}
+</script>
+{% endblock %}

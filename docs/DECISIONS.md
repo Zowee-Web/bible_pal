@@ -1035,6 +1035,168 @@ Phase 2A answers the question: should the router also execute the model call, or
 - No changes to `router.py` core resolution logic
 - No changes to `model_registry.json`
 
+**Freeze:** Verified 2026-03-10
+
+- 77/77 tests passing
+- smoke tests passing
+- health check passing (API warning only when not started)
+
+This freeze establishes the Phase 2A baseline:
+- router.py remains the single source of truth for task resolution
+- providers.py remains a thin transport-adapter layer
+- the API layer performs controlled synchronous execution
+- the Traditional OpenAI lock remains enforced by the router
+
+Future work must preserve these guarantees unless explicitly revised by a later ADR.
+
+---
+
+## ADR-018: Model Router Phase 2B — Execution Enhancements Evaluation
+
+**Date:** 2026-03-10
+**Status:** Proposed
+
+**Context:** Phase 2A (ADR-017) established the Model Router as a controlled synchronous execution gateway. The current architecture:
+
+- `router.py` owns all task-to-model resolution (unchanged since ADR-016)
+- `providers.py` contains thin transport adapters for Ollama and OpenAI (stdlib urllib only)
+- `POST /generate` performs synchronous, non-streaming generation
+- All responses use structured `{"ok": true/false, ...}` envelopes
+- The Traditional OpenAI lock is enforced by the router, not the providers
+- There is no response caching
+- There is no job queue or async execution
+- The module remains `server/model_router/` (no rebranding)
+
+This ADR evaluates whether Phase 2B enhancements are justified now, or whether the current synchronous architecture is sufficient.
+
+**Question to Decide:** Should Phase 2B introduce:
+- Response caching
+- Job lifecycle / async execution
+- Both
+- Or neither
+
+### Option A — No Phase 2B Yet
+
+The synchronous `POST /generate` endpoint may already be sufficient for current workloads:
+
+- Bible PAL stories are batch-generated offline, not requested in real time by users
+- The primary consumer is `generate_v2_batch.sh`, which processes stories sequentially
+- Title generation and reasoning tasks complete in seconds
+- There are no concurrent callers competing for the endpoint
+- No repeated identical requests have been observed in practice
+
+If no real performance or reliability problem exists, adding caching or async execution creates maintenance cost without delivering value. The simplest correct architecture is the one that already works.
+
+### Option B — Minimal File-Based Caching
+
+A small, reversible file-based cache could reduce redundant provider calls for safe, idempotent tasks.
+
+**Design sketch:**
+- Cache keyed on: task + normalized input hash + resolved model + provider
+- Cache stored as JSON files in a local directory (e.g., `server/model_router/.cache/`)
+- TTL-based expiration (e.g., 24 hours for `story_title`, no caching for story generation)
+- Bypass flag: `"use_cache": false` in request options
+- Only cache tasks explicitly marked as cacheable in the registry
+- Never cache `traditional_story_remote` or `creative_story` unless explicitly safe
+
+**When this would be justified:**
+- Telemetry shows repeated identical `story_title` or `reasoning_fast` calls with the same input
+- A batch run is restarted and re-processes already-completed items
+- Provider latency is measurably impacting batch throughput
+
+**When this is NOT justified:**
+- Speculative "it might help someday" reasoning
+- Hypothetical future apps that don't exist yet
+
+### Option C — Minimal Job Lifecycle
+
+A small, reversible job tracking layer could support longer-running generation tasks that don't fit synchronous request/response.
+
+**Design sketch:**
+- Job registry as an in-memory dict (no database, no Redis)
+- Job states: `pending`, `running`, `completed`, `failed`
+- `POST /generate` returns inline for fast tasks; returns a `job_id` for long tasks
+- `GET /jobs/{job_id}` returns job status and result when complete
+- Background execution via Python `threading` or `concurrent.futures` (no Celery, no external queue)
+- Job results expire after a configurable TTL
+
+**When this would be justified:**
+- `longform_experimental` tasks with mixtral consistently exceed HTTP timeout thresholds
+- A caller needs to fire-and-forget a generation and poll for results
+- Synchronous generation blocks batch scripts for unacceptable durations
+
+**When this is NOT justified:**
+- All current tasks complete within the existing timeout windows (120s Ollama, 180s OpenAI)
+- No caller currently needs async semantics
+
+### Risks and Tradeoffs
+
+1. **Premature scaffolding decays.** Code built for hypothetical workloads tends to rot. If caching or jobs are built now but not used for months, they become untested assumptions baked into the architecture.
+
+2. **Complexity has maintenance cost.** Cache invalidation is a known source of subtle bugs. Job lifecycle state machines require careful error handling. Both increase the surface area that must be tested and understood.
+
+3. **YAGNI applies strongly here.** The current synchronous architecture handles all known workloads. Adding infrastructure for workloads that don't exist yet violates the project's minimal-diff discipline.
+
+4. **Reversibility is key.** If Phase 2B is eventually needed, both options (B and C) can be implemented as additive, single-file additions without modifying `router.py` or `providers.py`. There is no architectural reason to build them now to "prepare" — the current design already accommodates them.
+
+### Recommendation
+
+**Option A — No Phase 2B yet.**
+
+The synchronous execution gateway is sufficient for all current Bible PAL workloads. No caching or async execution should be built until real-world evidence demonstrates a concrete need.
+
+The strongest argument for waiting: both caching and jobs can be added later as additive, reversible changes. Nothing in the Phase 2A architecture forecloses them. Building them now would add code that passes tests against its own contract but has no real callers — the definition of speculative scaffolding.
+
+### Revisit Triggers
+
+Phase 2B should be reconsidered when any of these conditions are observed:
+
+1. **Repeated identical requests:** Telemetry logs show the same task + input combination being sent to a provider multiple times in a batch run (caching signal)
+2. **User-facing latency:** A generation task consistently exceeds acceptable response time for its caller, and the bottleneck is provider round-trip time rather than prompt quality (caching or async signal)
+3. **Provider outages:** Ollama or OpenAI intermittent failures cause batch runs to fail without retry, and the failure rate is high enough to matter (retry/async signal)
+4. **Timeout exhaustion:** `longform_experimental` or future tasks routinely hit the 120s/180s timeout limits (async signal)
+5. **Concurrent callers:** Multiple scripts or services begin calling `POST /generate` simultaneously, creating contention (async signal)
+
+Until at least one of these triggers fires with real data, Phase 2B should remain Proposed.
+
+---
+
+## ADR-019: AI Command Center Developer Dashboard
+
+**Date:** 2026-03-11
+**Status:** Accepted
+
+**Context:** The Model Router infrastructure (ADR-016, ADR-017) provides JSON API endpoints for health, models, tasks, and routing — but developers must use CLI commands or raw `curl` calls to inspect system state. A simple read-only dashboard would make operational status visible at a glance during development.
+
+Key design questions:
+1. How should the dashboard access the `ModelRouter` instance without circular imports?
+2. Should it be a separate service or part of the existing FastAPI app?
+3. What rendering approach (SPA, server-rendered, templates)?
+
+**Decision:** Implement a Jinja2-based developer dashboard mounted on the existing FastAPI app at `/dashboard`:
+
+1. **Three pages (Phase 1):** Mission Control (system status + disk usage), Models (table), Router (interactive task resolution)
+2. **`app.state` dependency injection:** Dashboard routes access the `ModelRouter` via `request.app.state.router`, avoiding circular imports between `api.py` and the dashboard module
+3. **Server-rendered HTML:** Jinja2 templates with embedded CSS, no frontend framework
+4. **Hybrid data access:** Pages call `ModelRouter` directly for server-rendered content; Router page uses vanilla JS `fetch()` to call the existing `/resolve/{task}` API for interactive resolution
+5. **Read-only:** No mutations, no configuration changes, no model management
+
+**Rationale:**
+- **`app.state` over direct import:** Idiomatic FastAPI pattern. No circular imports. Dashboard modules import `ModelRouter` type from `server.model_router.router` for type hints, never from `api.py`.
+- **Mount on existing app:** Shares auth middleware, avoids port conflicts, simpler deployment. Dashboard is just 3 additional routes.
+- **Jinja2 over SPA:** Three static pages with one interactive element. A full SPA framework would be overengineered.
+- **No CSS framework:** Internal tool with cards and tables. Embedded styles are sufficient.
+
+**Consequences:**
+- New module: `server/dashboard/` (routes, views, templates, tests)
+- Modified: `server/model_router/api.py` (add `app.state.router`, mount dashboard router — 4 lines)
+- Modified: `server/model_router/requirements.txt` (add `jinja2>=3.1.0`)
+- Dashboard at `http://127.0.0.1:8181/dashboard/` when API server is running
+- Auth middleware applies to dashboard routes (localhost bypass works for local dev)
+- No changes to `router.py`, `model_registry.json`, or generation scripts
+
+**Phase 2 (deferred):** Logs page (requires telemetry file persistence), Story Activity page (requires structured generation logging), Storage analysis page. These will be added once their data sources exist.
+
 ---
 
 ## Template for Future Decisions

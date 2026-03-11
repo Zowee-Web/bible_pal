@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% set active_page = "dashboard" %}
+{% block title %}Mission Control — AI Command Center{% endblock %}
+{% block content %}
+<h1>Mission Control</h1>
+
+<div class="grid-4">
+    <div class="card">
+        <h2>Ollama</h2>
+        <div class="stat {{ 'green' if availability.ollama_running else 'red' }}">
+            {{ "Online" if availability.ollama_running else "Offline" }}
+        </div>
+    </div>
+    <div class="card">
+        <h2>Installed Models</h2>
+        <div class="stat {{ 'green' if availability.installed_models else 'red' }}">{{ availability.installed_models | length }}</div>
+    </div>
+    <div class="card">
+        <h2>Registered Models</h2>
+        <div class="stat">{{ model_count }}</div>
+    </div>
+    <div class="card">
+        <h2>Tasks</h2>
+        <div class="stat">{{ task_count }}</div>
+    </div>
+</div>
+
+<div class="grid-2">
+    {% for disk in disks %}
+    <div class="card">
+        <h2>{{ disk.path }}</h2>
+        {% if disk.error %}
+            <div class="stat yellow" style="font-size: 1rem;">{{ disk.error }}</div>
+        {% else %}
+            <div>{{ disk.used_gb }} GB / {{ disk.total_gb }} GB ({{ disk.percent_used }}%)</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: {{ disk.percent_used }}%; background: {{ '#4ade80' if disk.percent_used < 80 else '#facc15' if disk.percent_used < 95 else '#f87171' }};"></div>
+            </div>
+            <div style="margin-top: 4px; color: #6b7280; font-size: 0.85rem;">{{ disk.free_gb }} GB free</div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+<div class="card">
+    <h2>Installed Ollama Models</h2>
+    {% if availability.installed_models %}
+        <p>{{ availability.installed_models | join(", ") }}</p>
+    {% else %}
+        <p style="color: #6b7280;">No models installed or Ollama not running</p>
+    {% endif %}
+</div>
+
+<p class="timestamp">Last refreshed: {{ timestamp }}</p>
+{% endblock %}
