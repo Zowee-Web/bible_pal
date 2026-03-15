@@ -382,7 +382,18 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     final playerNotifier = ref.watch(parablePlayerProvider.notifier);
     final theme = Theme.of(context);
 
-    return Scaffold(
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, _) async {
+        if (didPop) return;
+        // Stop audio and clear story state so the story fully ends
+        await playerNotifier.clear();
+        _stopReflectionAudio();
+        if (context.mounted) {
+          Navigator.of(context).pop();
+        }
+      },
+      child: Scaffold(
       appBar: AppBar(
         title: const Text('PAL\'s Story'),
       ),
@@ -632,6 +643,7 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                 _buildReflectionSection(theme),
               ],
             ),
+    ),
     );
   }
 
