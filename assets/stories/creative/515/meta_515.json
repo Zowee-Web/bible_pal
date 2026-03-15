@@ -41,10 +41,10 @@
   },
   "generationContractVersion": "STORY_FACTORY_v2.3",
   "storyDna": {
-    "opening_type": "dialogue",
-    "structure_type": "flashback",
+    "opening_type": "conflict",
+    "structure_type": "journey",
     "setting_emphasis": "medium",
-    "character_archetype": "farmer",
-    "tone": "bittersweet"
+    "character_archetype": "shepherd",
+    "tone": "solemn"
   }
 }

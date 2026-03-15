@@ -41,10 +41,10 @@
   },
   "generationContractVersion": "STORY_FACTORY_v2.3",
   "storyDna": {
-    "opening_type": "dialogue",
-    "structure_type": "flashback",
-    "setting_emphasis": "medium",
-    "character_archetype": "farmer",
-    "tone": "bittersweet"
+    "opening_type": "emotional_reflection",
+    "structure_type": "parallel_lives",
+    "setting_emphasis": "low",
+    "character_archetype": "traveling merchant",
+    "tone": "solemn"
   }
 }

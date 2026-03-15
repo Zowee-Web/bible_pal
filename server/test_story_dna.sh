@@ -279,6 +279,30 @@ for i in $(seq 0 7); do
 done
 assert_lt "fewer than 3 narrator/tone lockstep pairs in first 8" "$lockstep_nt" 3
 
+# --- Test 15: compute_creative_ordinal (single-story index regression) ---
+echo "Test 15: compute_creative_ordinal (single-story index regression)"
+
+test_batch=(
+    "504|creative|false|joyful|V1||"
+    "505|creative|false|anxious|V2||"
+    "809|traditional|false|anxious|V3|Mark 4|key1"
+    "506|creative|false|hurting|V4||"
+    "810|traditional|false|hurting|V5|John 4|key2"
+    "514|creative|false|calm|V6||"
+)
+
+ordinal_504=$(compute_creative_ordinal "504" "${test_batch[@]}")
+assert_eq "story 504 is creative ordinal 0" "0" "$ordinal_504"
+
+ordinal_505=$(compute_creative_ordinal "505" "${test_batch[@]}")
+assert_eq "story 505 is creative ordinal 1" "1" "$ordinal_505"
+
+ordinal_506=$(compute_creative_ordinal "506" "${test_batch[@]}")
+assert_eq "story 506 is creative ordinal 2 (traditional skipped)" "2" "$ordinal_506"
+
+ordinal_514=$(compute_creative_ordinal "514" "${test_batch[@]}")
+assert_eq "story 514 is creative ordinal 3 (traditional skipped)" "3" "$ordinal_514"
+
 # --- Cleanup ---
 rm -f "${SCRIPT_DIR}/.dna_history.json"
 

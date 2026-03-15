@@ -221,3 +221,33 @@ get_story_dna() {
     record_dna "$dna"
     echo "$dna"
 }
+
+# ============================================================
+# Batch Ordinal Computation
+# ============================================================
+# Compute the ordinal position of a story among creative entries in a batch.
+# Usage: compute_creative_ordinal <target_id> <story_def1> [story_def2 ...]
+# Prints the 0-based ordinal index to stdout.
+# Returns non-zero if the story ID is not found.
+
+compute_creative_ordinal() {
+    local target_id="$1"
+    shift
+    local ordinal=0
+
+    for story_def in "$@"; do
+        IFS='|' read -r id mode _ <<< "$story_def"
+
+        if [[ "$id" == "$target_id" ]]; then
+            echo "$ordinal"
+            return 0
+        fi
+
+        if [[ "$mode" == "creative" ]]; then
+            ordinal=$((ordinal + 1))
+        fi
+    done
+
+    echo "ERROR: story $target_id not found in batch definition" >&2
+    return 1
+}

@@ -1414,6 +1414,16 @@ CURRENT_STORY_DNA=""
 init_dna_guard
 seed_dna_guard_from_metadata "$STORIES_DIR"
 
+# For single-story mode, compute the creative ordinal that this story
+# would have in a full batch run. Without this, every --story run
+# incorrectly uses index 0 (DNA collision bug).
+if [[ -n "$SINGLE_STORY" ]]; then
+    if ! CREATIVE_STORY_INDEX=$(compute_creative_ordinal "$SINGLE_STORY" "${BATCH_STORIES[@]}"); then
+        echo "ERROR: Failed to compute creative ordinal for story $SINGLE_STORY" >&2
+        exit 1
+    fi
+fi
+
 # Process stories
 for story_def in "${BATCH_STORIES[@]}"; do
     if [[ -n "$SINGLE_STORY" ]]; then
