@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 819,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "languageStyle": "WEB",
+  "mood": "encouraging",
+  "scriptureAnchor": "Esther 4-7",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "voiceKeys": {
+    "short": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+    "full": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+    "long": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+    "reflection": "VOICE_REVEREND_MICHAEL_C_VINCENT"
+  },
+  "createdByModel": "gpt-4.1",
+  "generationBatch": "PAL_V2_BATCH_3",
+  "reflectionQuestion": "Can you think of a time when someone's kind words made you feel braver?",
+  "files": {
+    "short": {
+      "storyText": "story_819_traditional_web_short.txt",
+      "storyAudio": "audio_819_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_819_traditional_web_full.txt",
+      "storyAudio": "audio_819_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_819_traditional_web_long.txt",
+      "storyAudio": "audio_819_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_819_traditional_web.txt",
+      "reflectionAudio": "audio_819_reflection.mp3"
+    }
+  },
+  "generationContractVersion": "STORY_FACTORY_v2.3"
+}

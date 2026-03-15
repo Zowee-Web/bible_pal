@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 823,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "mood": "encouraging",
+  "scriptureAnchor": "Esther 4-7",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_MARY_PONDER",
+  "voiceKeys": {
+    "short": "VOICE_MARY_PONDER",
+    "full": "VOICE_MARY_PONDER",
+    "long": "VOICE_MARY_PONDER",
+    "reflection": "VOICE_MARY_PONDER"
+  },
+  "createdByModel": "gpt-4.1",
+  "generationBatch": "PAL_V2_BATCH_45",
+  "reflectionQuestion": "Stories of encouragement often reflect moments when someone steps up for another. These narratives show how a single act of support can change the course of events. And even a small step forward can be enough for today.",
+  "files": {
+    "short": {
+      "storyText": "story_823_traditional_web_short.txt",
+      "storyAudio": "audio_823_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_823_traditional_web_full.txt",
+      "storyAudio": "audio_823_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_823_traditional_web_long.txt",
+      "storyAudio": "audio_823_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_823_traditional_web.txt",
+      "reflectionAudio": "audio_823_reflection.mp3"
+    }
+  },
+  "generationContractVersion": "STORY_FACTORY_v2.3"
+}

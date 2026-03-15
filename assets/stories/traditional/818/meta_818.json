@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 818,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "languageStyle": "WEB",
+  "mood": "calm_peaceful",
+  "scriptureAnchor": "1 Samuel 3",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_ARABELLA",
+  "voiceKeys": {
+    "short": "VOICE_ARABELLA",
+    "full": "VOICE_ARABELLA",
+    "long": "VOICE_ARABELLA",
+    "reflection": "VOICE_ARABELLA"
+  },
+  "createdByModel": "gpt-4.1",
+  "generationBatch": "PAL_V2_BATCH_3",
+  "reflectionQuestion": "What is something quiet that makes you feel peaceful and safe?",
+  "files": {
+    "short": {
+      "storyText": "story_818_traditional_web_short.txt",
+      "storyAudio": "audio_818_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_818_traditional_web_full.txt",
+      "storyAudio": "audio_818_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_818_traditional_web_long.txt",
+      "storyAudio": "audio_818_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_818_traditional_web.txt",
+      "reflectionAudio": "audio_818_reflection.mp3"
+    }
+  },
+  "generationContractVersion": "STORY_FACTORY_v2.3"
+}

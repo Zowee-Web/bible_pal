@@ -6,7 +6,11 @@
   "languageStyle": "WEB",
   "mood": "neutral",
   "scriptureAnchor": "Luke 24:13-35",
-  "lengths": ["short", "full", "long"],
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
   "voiceKey": "VOICE_PETER_BOLD",
   "voiceKeys": {
     "short": "VOICE_PETER_BOLD",
@@ -14,7 +18,7 @@
     "long": "VOICE_PETER_BOLD",
     "reflection": "VOICE_PETER_BOLD"
   },
-  "createdByModel": "gemma:7b",
+  "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_44",
   "reflectionQuestion": "What small thing might you notice differently tomorrow?",
   "files": {
@@ -34,5 +38,6 @@
       "reflectionText": "reflection_811_traditional_web.txt",
       "reflectionAudio": "audio_811_reflection.mp3"
     }
-  }
+  },
+  "generationContractVersion": "STORY_FACTORY_v2.3"
 }

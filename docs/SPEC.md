@@ -341,6 +341,17 @@ When `languageStyle=KJV` in Creative mode, treat as **poetic diction only**. Add
 - Stories with advice/prescription/dependency language fail validation
 - Creative+KJV stories with scripture-claim markers fail validation
 
+**Creative Story DNA (Pipeline Diversity — ADR-020):**
+
+Creative stories use a deterministic "Story DNA" planner to inject structural variety before generation. Each story is assigned attributes from rotating pools:
+- **Opening type** (8): dialogue, action, question, emotional_reflection, memory, object_focus, conflict, setting
+- **Structure type** (8): conversation, journey, witness, flashback, unexpected_encounter, problem_solution, parallel_lives, object_lesson
+- **Setting emphasis** (3, weighted low): low (no place description), medium, high
+- **Character archetype** (10): traveling merchant, shepherd, fisherman, widow, child, craftsman, teacher, farmer, healer, stranger
+- **Tone** (8): hopeful, reflective, warm, bittersweet, wonder, gentle, solemn, tender
+
+A repetition guard prevents 3+ consecutive stories from sharing the same opening_type or structure_type. A place-name avoidance list prevents reuse of overused fictional location names. Story DNA is stored in `meta_*.json` under the `storyDna` key (pipeline metadata only — the Flutter app does not read it).
+
 ---
 
 #### Global Invariants (Story Mode)

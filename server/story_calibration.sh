@@ -117,20 +117,20 @@ readonly TRAD_MAX_FULL=850
 readonly TRAD_MIN_LONG=1201
 readonly TRAD_MAX_LONG=1400
 
-# Creative Adult — tighter generation targets
-readonly CREATIVE_ADULT_MIN_SHORT=250
+# Creative Adult — aligned with STORY_FACTORY.md Section 15
+readonly CREATIVE_ADULT_MIN_SHORT=200
 readonly CREATIVE_ADULT_MAX_SHORT=400
-readonly CREATIVE_ADULT_MIN_FULL=650
-readonly CREATIVE_ADULT_MAX_FULL=900
-readonly CREATIVE_ADULT_MIN_LONG=1201
-readonly CREATIVE_ADULT_MAX_LONG=1400
+readonly CREATIVE_ADULT_MIN_FULL=401
+readonly CREATIVE_ADULT_MAX_FULL=700
+readonly CREATIVE_ADULT_MIN_LONG=701
+readonly CREATIVE_ADULT_MAX_LONG=1100
 
-# Creative Kid — tighter generation targets
-readonly CREATIVE_KID_MIN_SHORT=300
+# Creative Kid — aligned with STORY_FACTORY.md Section 15
+readonly CREATIVE_KID_MIN_SHORT=200
 readonly CREATIVE_KID_MAX_SHORT=500
-readonly CREATIVE_KID_MIN_FULL=650
+readonly CREATIVE_KID_MIN_FULL=501
 readonly CREATIVE_KID_MAX_FULL=900
-readonly CREATIVE_KID_MIN_LONG=1201
+readonly CREATIVE_KID_MIN_LONG=901
 readonly CREATIVE_KID_MAX_LONG=1400
 
 # Mode-aware min words: get_min_words_for_mode <bucket> <mode> [is_kid]

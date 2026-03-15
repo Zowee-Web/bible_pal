@@ -9,9 +9,10 @@ import 'package:flutter_test/flutter_test.dart';
 /// Only checks stories that appear in the production manifest (manifest.json).
 /// Quarantined or orphaned stories on disk are ignored.
 ///
-/// Engine policy (LOCKED):
+/// Engine policy (LOCKED per STORY_FACTORY.md Section 0):
 ///   Traditional → createdByModel MUST be "gpt-4.1"
-///   Creative    → createdByModel MUST be "gemma:7b"
+///   Creative    → createdByModel MUST be one of the fallback chain:
+///                  mistral-nemo (primary), llama3.1:8b, qwen2.5:7b, gemma:7b (legacy)
 void main() {
   group('CRITICAL: Story Engine Compliance (STORY_FACTORY.md)', () {
     test('all production meta.json files have correct createdByModel', () {
@@ -56,14 +57,28 @@ void main() {
           final mode = meta['mode'] as String? ?? modeDir;
           final model = meta['createdByModel'] as String? ?? 'MISSING';
 
-          final expectedModel =
-              mode == 'traditional' ? 'gpt-4.1' : 'gemma:7b';
+          // STORY_FACTORY.md Section 0: Creative uses model router fallback chain
+          const creativeAllowedModels = {
+            'mistral-nemo',  // primary (via Ollama)
+            'llama3.1:8b',   // fallback 1
+            'qwen2.5:7b',    // fallback 2
+            'gemma:7b',      // legacy fallback
+          };
 
-          if (model != expectedModel) {
-            violations.add(
-              '$mode/$storyId: createdByModel="$model" '
-              '(expected "$expectedModel")',
-            );
+          if (mode == 'traditional') {
+            if (model != 'gpt-4.1') {
+              violations.add(
+                '$mode/$storyId: createdByModel="$model" '
+                '(expected "gpt-4.1")',
+              );
+            }
+          } else {
+            if (!creativeAllowedModels.contains(model)) {
+              violations.add(
+                '$mode/$storyId: createdByModel="$model" '
+                '(expected one of: ${creativeAllowedModels.join(", ")})',
+              );
+            }
           }
         }
       }

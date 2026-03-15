@@ -1,7 +1,7 @@
 {
   "_comment": "Canonical voice pool for Bible PAL narrator variety. DO NOT expose ElevenLabs IDs to mobile app.",
-  "_version": "1.1.0",
-  "_updated": "2026-02-27",
+  "_version": "1.2.0",
+  "_updated": "2026-03-13",
   "_forbiddenVoices": {
     "_comment": "These ElevenLabs voices are GLOBALLY BANNED from Bible PAL. Never add them to the voice pool.",
     "voices": ["Grace", "Abilene", "Grant"],
@@ -149,7 +149,7 @@
       "elevenLabsId": "XB0fDUnXU5powFXDhCwa",
       "displayName": "Priscilla (Faithful Teacher)",
       "description": "Clear, instructive female voice. Patient educator.",
-      "tags": ["clear", "instructive", "female", "patient"],
+      "tags": ["clear", "instructive", "female", "patient", "encouraging"],
       "audience": ["adult", "kid"]
     },
     {
@@ -166,6 +166,70 @@
       "displayName": "Mary (Pondering Heart)",
       "description": "Contemplative, reverent female voice. Treasures meaning.",
       "tags": ["contemplative", "reverent", "female", "thoughtful"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_ARCHER",
+      "elevenLabsId": "oQV06a7Gn8pbCJh5DXcO",
+      "displayName": "Archer (Bold Guide)",
+      "description": "Bold, adventurous male voice. Steady and inspiring.",
+      "tags": ["bold", "adventurous", "male", "inspiring"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_LILY_WOLFF",
+      "elevenLabsId": "qBDvhofpxp92JgXJxDjB",
+      "displayName": "Lily (Spirited Uplift)",
+      "description": "Energetic, uplifting female voice. Spirited and bright.",
+      "tags": ["energetic", "uplifting", "female", "spirited"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "elevenLabsId": "fATgBRI8wg5KkDFg8vBd",
+      "displayName": "James British (Reassuring Father)",
+      "description": "Reassuring fatherly male voice. Deep, steady, calming.",
+      "tags": ["reassuring", "fatherly", "male", "steady", "calm"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+      "elevenLabsId": "h2sm0NbeIZXHBzJOMYcQ",
+      "displayName": "Natasha (Warm Strength)",
+      "description": "Warm, strong female voice. Deep emotional depth and resilience.",
+      "tags": ["warm", "strong", "female", "resilient"],
+      "audience": ["adult"]
+    },
+    {
+      "voiceKey": "VOICE_ARABELLA",
+      "elevenLabsId": "Z3R5wn05IrDiVCyEkUrK",
+      "displayName": "Arabella (Tender Nurturer)",
+      "description": "Nurturing, tender female voice. Soft and comforting.",
+      "tags": ["nurturing", "tender", "female", "comforting"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_BRADFORD",
+      "elevenLabsId": "NNl6r8mD7vthiJatiJt1",
+      "displayName": "Bradford (Passionate Disciple)",
+      "description": "Passionate, bold male voice. Fiery conviction and courage.",
+      "tags": ["passionate", "bold", "male", "courageous"],
+      "audience": ["adult"]
+    },
+    {
+      "voiceKey": "VOICE_JANE_PROFESSIONAL",
+      "elevenLabsId": "RILOU7YmBhvwJGDGjNmP",
+      "displayName": "Jane (Courageous Leader)",
+      "description": "Confident, regal female voice. Courageous and empowering.",
+      "tags": ["confident", "regal", "female", "courageous"],
+      "audience": ["adult", "kid"]
+    },
+    {
+      "voiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "elevenLabsId": "uju3wxzG5OhpWcoi3SMy",
+      "displayName": "Reverend Michael (Pastoral Voice)",
+      "description": "Pastoral, rich male voice. Resonant sermon-like delivery.",
+      "tags": ["pastoral", "rich", "male", "resonant", "encouraging"],
       "audience": ["adult", "kid"]
     }
   ],
@@ -210,7 +274,10 @@
     "weary": ["calm", "pastoral", "gentle", "patient"],
     "anxious": ["reassuring", "steady", "grounded", "warm"],
     "hurting": ["compassionate", "empathetic", "soft", "loving"],
-    "neutral": ["warm", "clear", "trustworthy", "pastoral"]
+    "neutral": ["warm", "clear", "trustworthy", "pastoral"],
+    "brave_courage": ["bold", "courageous", "adventurous", "inspiring"],
+    "calm_peaceful": ["calm", "nurturing", "steady", "reassuring"],
+    "encouraging": ["uplifting", "pastoral", "encouraging", "spirited"]
   },
   "selectionAlgorithm": {
     "_comment": "Voice selection rules",

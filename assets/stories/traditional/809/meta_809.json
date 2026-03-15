@@ -6,7 +6,11 @@
   "languageStyle": "WEB",
   "mood": "anxious",
   "scriptureAnchor": "Mark 4:35-41",
-  "lengths": ["short", "full", "long"],
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
   "voiceKey": "VOICE_NOAH_PATIENT",
   "voiceKeys": {
     "short": "VOICE_NOAH_PATIENT",
@@ -14,7 +18,7 @@
     "long": "VOICE_NOAH_PATIENT",
     "reflection": "VOICE_NOAH_PATIENT"
   },
-  "createdByModel": "gemma:7b",
+  "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_44",
   "reflectionQuestion": "What feels most uncertain in your life right now?",
   "files": {
@@ -34,5 +38,6 @@
       "reflectionText": "reflection_809_traditional_web.txt",
       "reflectionAudio": "audio_809_reflection.mp3"
     }
-  }
+  },
+  "generationContractVersion": "STORY_FACTORY_v2.3"
 }

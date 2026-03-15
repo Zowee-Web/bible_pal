@@ -6,14 +6,17 @@
   "languageStyle": "WEB",
   "mood": "joyful",
   "scriptureAnchor": "Luke 15:3-7",
-  "lengths": ["full", "long"],
+  "lengths": [
+    "full",
+    "long"
+  ],
   "voiceKey": "VOICE_LYDIA_GRACIOUS",
   "voiceKeys": {
     "full": "VOICE_LYDIA_GRACIOUS",
     "long": "VOICE_LYDIA_GRACIOUS",
     "reflection": "VOICE_LYDIA_GRACIOUS"
   },
-  "createdByModel": "gemma:7b",
+  "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_44",
   "reflectionQuestion": "",
   "files": {
@@ -29,5 +32,6 @@
       "reflectionText": "reflection_812_traditional_web.txt",
       "reflectionAudio": "audio_812_reflection.mp3"
     }
-  }
+  },
+  "generationContractVersion": "STORY_FACTORY_v2.3"
 }

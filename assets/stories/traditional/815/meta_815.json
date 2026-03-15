@@ -6,7 +6,11 @@
   "languageStyle": "WEB",
   "mood": "neutral",
   "scriptureAnchor": "Luke 24:13-35",
-  "lengths": ["short", "full", "long"],
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
   "voiceKey": "VOICE_BARNABAS_ENCOURAGER",
   "voiceKeys": {
     "short": "VOICE_BARNABAS_ENCOURAGER",
@@ -14,7 +18,7 @@
     "long": "VOICE_BARNABAS_ENCOURAGER",
     "reflection": "VOICE_BARNABAS_ENCOURAGER"
   },
-  "createdByModel": "gemma:7b",
+  "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_44",
   "reflectionQuestion": "",
   "files": {
@@ -34,5 +38,6 @@
       "reflectionText": "reflection_815_traditional_web.txt",
       "reflectionAudio": "audio_815_reflection.mp3"
     }
-  }
+  },
+  "generationContractVersion": "STORY_FACTORY_v2.3"
 }

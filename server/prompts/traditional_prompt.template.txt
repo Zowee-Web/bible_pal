@@ -60,15 +60,37 @@ FORBIDDEN:
 ## STRUCTURE
 - No headings, bullets, or numbered lists
 - Prose paragraphs only
-- 4-6 paragraphs depending on length bucket
+- Use short paragraphs (1-3 sentences each) — more paragraphs, smaller beats
 - End with the scriptural conclusion (no added moral)
 {{SCENE_BLUEPRINT}}
-## NARRATION STYLE
-- Write for spoken narration (these stories are read aloud by a voice narrator)
-- Keep most sentences under about 22 words
-- Prefer natural pause points (commas, periods, short phrases)
-- Avoid dense clauses and punctuation that reads awkwardly aloud (semicolons, parentheticals, em-dashes)
-- Use vivid but clear language
+## NARRATION RHYTHM (CRITICAL — stories are read aloud by a TTS narrator)
+
+Stories must be written for SPOKEN narration, not silent reading.
+
+SENTENCE LENGTH:
+- Prefer sentences between 8 and 18 words
+- Avoid sentences longer than 25 words unless absolutely necessary
+- Use short emphasis sentences periodically (1-5 words)
+
+PARAGRAPH STRUCTURE:
+- Paragraphs should contain 1-3 sentences, not large blocks
+- Break long exposition into smaller beats
+- Insert natural pauses using punctuation (periods, commas, ellipses)
+
+PACING:
+- Dialogue and action must interrupt exposition to maintain pacing
+- Vary sentence lengths to create rhythm — alternate short and medium
+- Avoid repeating the same sentence structure back-to-back
+- Include moments of dialogue whenever the passage supports it
+
+GOOD pacing example:
+  The shepherd stopped. He listened. A faint cry echoed from the rocks.
+  "There," he whispered. He moved toward the sound.
+
+BAD pacing example:
+  The shepherd stopped and listened carefully as a faint cry echoed from among the rocks and he wondered where it might be coming from while the wind blew around him.
+
+The goal is narration that sounds natural and alive when spoken aloud.
 
 ## OUTPUT RULES (CRITICAL)
 - Write ONLY the story prose
@@ -76,5 +98,10 @@ FORBIDDEN:
 - No word count announcements
 - No sign-offs or "The End"
 - Begin directly with the first sentence
+- NEVER include any of these patterns:
+  - "Word count:" or "Word Count:" or "Total words:"
+  - Bold title headers like **Title Here**
+  - "(source: ...)" citations
+  - Story metadata of any kind
 
 Write the faithful retelling now:

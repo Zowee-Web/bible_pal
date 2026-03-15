@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 821,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "mood": "weary",
+  "scriptureAnchor": "Matthew 11:28-30",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_SAMUEL_EARNEST",
+  "voiceKeys": {
+    "short": "VOICE_SAMUEL_EARNEST",
+    "full": "VOICE_SAMUEL_EARNEST",
+    "long": "VOICE_SAMUEL_EARNEST",
+    "reflection": "VOICE_SAMUEL_EARNEST"
+  },
+  "createdByModel": "gpt-4.1",
+  "generationBatch": "PAL_V2_BATCH_45",
+  "reflectionQuestion": "Weariness in stories often looks like carrying burdens over long stretches. These narratives show that rest and renewal are part of the natural rhythm of life. And even a small step forward can be enough for today.",
+  "files": {
+    "short": {
+      "storyText": "story_821_traditional_web_short.txt",
+      "storyAudio": "audio_821_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_821_traditional_web_full.txt",
+      "storyAudio": "audio_821_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_821_traditional_web_long.txt",
+      "storyAudio": "audio_821_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_821_traditional_web.txt",
+      "reflectionAudio": "audio_821_reflection.mp3"
+    }
+  },
+  "generationContractVersion": "STORY_FACTORY_v2.3"
+}

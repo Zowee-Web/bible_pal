@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 817,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "languageStyle": "WEB",
+  "mood": "brave_courage",
+  "scriptureAnchor": "Daniel 6",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_JANE_PROFESSIONAL",
+  "voiceKeys": {
+    "short": "VOICE_JANE_PROFESSIONAL",
+    "full": "VOICE_JANE_PROFESSIONAL",
+    "long": "VOICE_JANE_PROFESSIONAL",
+    "reflection": "VOICE_JANE_PROFESSIONAL"
+  },
+  "createdByModel": "gpt-4.1",
+  "generationBatch": "PAL_V2_BATCH_3",
+  "reflectionQuestion": "Can you think of a time when you were afraid but did something brave anyway?",
+  "files": {
+    "short": {
+      "storyText": "story_817_traditional_web_short.txt",
+      "storyAudio": "audio_817_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_817_traditional_web_full.txt",
+      "storyAudio": "audio_817_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_817_traditional_web_long.txt",
+      "storyAudio": "audio_817_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_817_traditional_web.txt",
+      "reflectionAudio": "audio_817_reflection.mp3"
+    }
+  },
+  "generationContractVersion": "STORY_FACTORY_v2.3"
+}

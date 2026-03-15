@@ -14,6 +14,7 @@
 #   --story ID        Generate only the specified base story ID (e.g., --story 504)
 #   --dry-run         Show what would be generated without doing anything
 #   --skip-existing   Skip stories that already have text files
+#   --style VALUE     Override ElevenLabs style (expressiveness: 0.0-1.0, default 0.0)
 #
 # PREREQUISITES:
 #   - Ollama running with mistral-nemo model loaded (for Creative stories)
@@ -39,7 +40,48 @@ MANIFEST_FILE="$STORIES_DIR/manifest.json"
 # Source shared utilities
 source "$SCRIPT_DIR/story_calibration.sh"
 source "$SCRIPT_DIR/voice_selector.sh"
+source "$SCRIPT_DIR/story_dna.sh"
 source "$PROJECT_ROOT/scripts/lib/router_client.sh"
+
+# ElevenLabs audio defaults
+# Bakeoff finding: text rhythm matters more than TTS model/style settings.
+# turbo_v2_5 with well-paced text sounds better than v3 with flat prose.
+STORY_STYLE_DEFAULT="0.0"
+REFLECTION_STYLE_DEFAULT="0.0"
+ELEVENLABS_MODEL="eleven_turbo_v2_5"
+ELEVENLABS_STABILITY="0.6"
+ELEVENLABS_SIMILARITY="0.8"
+
+# Creative character name pool (avoids "Lily" / "Eli" repetition)
+CREATIVE_NAME_POOL=(
+    "Abigail" "Caleb" "Hannah" "Levi" "Micah" "Naomi"
+    "Ezra" "Miriam" "Jonah" "Eliana" "Silas" "Tobias"
+    "Aria" "Theo" "Mila" "Rowan" "Kai" "Iris" "Nova"
+    "Leo" "Sage" "Luca" "Zara" "Nadia" "Finn" "Clara"
+)
+CREATIVE_NAMES_USED=()
+
+select_creative_name() {
+    # Pick a name not yet used in this batch run
+    local available=()
+    for name in "${CREATIVE_NAME_POOL[@]}"; do
+        local used=false
+        for u in "${CREATIVE_NAMES_USED[@]+"${CREATIVE_NAMES_USED[@]}"}"; do
+            if [[ "$u" == "$name" ]]; then used=true; break; fi
+        done
+        if [[ "$used" == "false" ]]; then available+=("$name"); fi
+    done
+    # If all names used, reset pool
+    if [[ ${#available[@]} -eq 0 ]]; then
+        CREATIVE_NAMES_USED=()
+        available=("${CREATIVE_NAME_POOL[@]}")
+    fi
+    # Pick random name from available
+    local idx=$((RANDOM % ${#available[@]}))
+    local picked="${available[$idx]}"
+    CREATIVE_NAMES_USED+=("$picked")
+    echo "$picked"
+}
 
 # Colors
 RED='\033[0;31m'
@@ -63,7 +105,7 @@ if [[ -f "$ENV_FILE" ]]; then
 fi
 
 # =============================================================================
-# Batch Definition — All 16 base stories
+# Batch Definition — All 26 base stories
 # =============================================================================
 # Format: ID|MODE|KID|MOOD|VOICE|BIBLE_REF|BIBLE_KEY
 # For creative stories, BIBLE_REF and BIBLE_KEY are empty.
@@ -72,15 +114,21 @@ BATCH_STORIES=(
     # Creative Adult WEB
     "504|creative|false|joyful|VOICE_MIRIAM_JOYFUL||"
     "505|creative|false|anxious|VOICE_MARCUS_ANCHOR||"
-    "506|creative|false|hurting|VOICE_RUTH_COMFORT||"
-    "507|creative|false|neutral|VOICE_ELIJAH_SAGE||"
+    "506|creative|false|hurting|VOICE_NATASHA_AFRICAN_AMERICAN||"
+    "507|creative|false|neutral|VOICE_JAMES_BRITISH_PROFESSIONAL||"
+    "518|creative|false|weary|VOICE_ELIJAH_SAGE||"
     # Creative Kid WEB
-    "508|creative|true|weary|VOICE_MARY_PONDER||"
+    "508|creative|true|weary|VOICE_ARABELLA||"
     "509|creative|true|anxious|VOICE_DAVID_SHEPHERD||"
     "510|creative|true|hurting|VOICE_HANNAH_HOPE||"
     "511|creative|true|neutral|VOICE_PRISCILLA_TEACHER||"
+    "519|creative|true|joyful|VOICE_RUTH_COMFORT||"
     # Traditional Adult WEB
     "809|traditional|false|anxious|VOICE_NOAH_PATIENT|Mark 4:35-41|jesus_calms_storm"
+    "820|traditional|false|joyful|VOICE_SARAH_STORYTELLER|Luke 15:3-7|lost_sheep"
+    "821|traditional|false|weary|VOICE_SAMUEL_EARNEST|Matthew 11:28-30|rest_for_the_weary"
+    "822|traditional|false|calm_peaceful|VOICE_JOHN_BELOVED|1 Samuel 3|samuel_listens"
+    "823|traditional|false|encouraging|VOICE_MARY_PONDER|Esther 4-7|queen_esther"
     "810|traditional|false|hurting|VOICE_DEBORAH_WISE|John 4:4-26|woman_at_well"
     "811|traditional|false|neutral|VOICE_PETER_BOLD|Luke 24:13-35|road_to_emmaus"
     # Traditional Kid WEB
@@ -88,6 +136,22 @@ BATCH_STORIES=(
     "813|traditional|true|anxious|VOICE_ESTHER_BRAVE|Mark 4:35-41|jesus_calms_storm"
     "814|traditional|true|hurting|VOICE_MARTHA_CARING|John 4:4-26|woman_at_well"
     "815|traditional|true|neutral|VOICE_BARNABAS_ENCOURAGER|Luke 24:13-35|road_to_emmaus"
+    # --- Batch 3: Coverage gap fill (brave_courage, calm_peaceful, encouraging) ---
+    # Creative Adult WEB
+    "512|creative|false|brave_courage|VOICE_NATASHA_AFRICAN_AMERICAN||"
+    "514|creative|false|calm_peaceful|VOICE_JAMES_HUSKY||"
+    "516|creative|false|encouraging|VOICE_PRISCILLA_TEACHER||"
+    # Creative Kid WEB
+    "513|creative|true|brave_courage|VOICE_ARCHER||"
+    "515|creative|true|calm_peaceful|VOICE_JAMES_BRITISH_PROFESSIONAL||"
+    "517|creative|true|encouraging|VOICE_LILY_WOLFF||"
+    # Traditional Adult WEB
+    "816|traditional|false|brave_courage|VOICE_BRADFORD|Daniel 6|daniel_lions_den"
+    # Traditional Kid WEB
+    "817|traditional|true|brave_courage|VOICE_JANE_PROFESSIONAL|Daniel 6|daniel_lions_den"
+    "818|traditional|true|calm_peaceful|VOICE_ARABELLA|1 Samuel 3|samuel_listens"
+    "819|traditional|true|encouraging|VOICE_REVEREND_MICHAEL_C_VINCENT|Esther 4-7|queen_esther"
+    "824|traditional|true|weary|VOICE_SARAH_STORYTELLER|Matthew 11:28-30|rest_for_the_weary"
 )
 
 # 812 is special — only full and long (short already exists as parable_502)
@@ -109,6 +173,9 @@ get_reflection_text() {
             anxious) echo "This story shows that even when things feel scary, we are not alone. Even one small brave thing counts." ;;
             hurting) echo "This story shows that being kind matters, even when things feel unfair. Even one small kindness helps." ;;
             neutral) echo "This story shows that every day has moments worth noticing. Even one small thing can be special." ;;
+            brave_courage) echo "This story shows that being brave does not mean being unafraid. Even one small brave thing counts." ;;
+            calm_peaceful) echo "This story shows that being still and listening can bring us peace. Even one quiet moment matters." ;;
+            encouraging) echo "This story shows that standing up for others takes courage and love. Even one kind word can make a difference." ;;
             *)       echo "This story shows that every day has moments worth noticing. Even one small thing can be special." ;;
         esac
     else
@@ -118,9 +185,172 @@ get_reflection_text() {
             anxious) echo "Stories about worry often reflect the tension between what we can control and what we cannot. These narratives show that peace sometimes comes from releasing our grip on outcomes. And even a small step forward can be enough for today." ;;
             hurting) echo "Pain in stories often looks like walking through seasons of loss or disappointment. These narratives show that sorrow and hope can exist together. And even a small step forward can be enough for today." ;;
             neutral) echo "Stories of ordinary days often reflect the steady rhythm of daily faithfulness. These narratives show that meaning can be found in quiet, unremarkable moments. And even a small step forward can be enough for today." ;;
+            brave_courage) echo "Stories of courage often reflect moments when fear meets faith. These narratives show how ordinary resolve can carry someone through extraordinary circumstances. And even a small step forward can be enough for today." ;;
+            calm_peaceful) echo "Stories of stillness often reflect moments when silence speaks louder than noise. These narratives show how peace can be found by simply being present. And even a small step forward can be enough for today." ;;
+            encouraging) echo "Stories of encouragement often reflect moments when someone steps up for another. These narratives show how a single act of support can change the course of events. And even a small step forward can be enough for today." ;;
             *)       echo "Stories of ordinary days often reflect the steady rhythm of daily faithfulness. These narratives show that meaning can be found in quiet, unremarkable moments. And even a small step forward can be enough for today." ;;
         esac
     fi
+}
+
+# =============================================================================
+# Story Text Sanitizer (strips LLM metadata leakage)
+# =============================================================================
+
+sanitize_story_text() {
+    local text="$1"
+    # Remove word count variants (with or without markdown bold)
+    text=$(echo "$text" | sed '/^[[:space:]]*\*\{0,2\}[Ww]ord [Cc]ount[:\*].*$/d')
+    text=$(echo "$text" | sed '/^[[:space:]]*\*\{0,2\}[Tt]otal [Ww]ords[:\*].*$/d')
+    text=$(echo "$text" | sed '/^[[:space:]]*\*\{0,2\}[Aa]pproximate [Ww]ord [Cc]ount[:\*].*$/d')
+    # Remove title-like markdown bold headers on first line (e.g. **Title Here** or **Title:** Something)
+    # BSD sed requires -e splitting for commands inside braces
+    text=$(echo "$text" | sed -e '1{' -e '/^\*\*.*\*\*/d' -e '}')
+    # Remove source citations like "(source: ...)"
+    text=$(echo "$text" | sed '/^[[:space:]]*(source:.*)/d')
+    # Remove other metadata markers
+    text=$(echo "$text" | sed '/^[[:space:]]*Story ID:/d; /^[[:space:]]*Model:/d; /^[[:space:]]*Generated by/d')
+    # Remove exact consecutive duplicate paragraphs (continuation artifacts)
+    text=$(echo "$text" | awk -v RS='\n\n' -v ORS='\n\n' '!seen[$0]++ || $0 ~ /^[[:space:]]*$/')
+    # Strip leading/trailing blank lines (BSD sed compatible)
+    text=$(echo "$text" | sed -n '/./,$p' | sed -e :a -e '/^[[:space:]]*$/{' -e '$d' -e N -e ba -e '}')
+    echo "$text"
+}
+
+# =============================================================================
+# Opening Type Validation + Retry
+# =============================================================================
+# Validates first sentence against the DNA opening type.
+# Only checks types where regex is reliable: dialogue, question, memory.
+# If validation fails, regenerates once with a forceful anchor instruction.
+
+extract_first_sentence() {
+    local text="$1"
+    # Normalize: strip leading whitespace/newlines
+    text=$(echo "$text" | sed -e 's/^[[:space:]]*//')
+    # Extract up to first sentence-ending punctuation followed by space or EOL.
+    # Use ". " or "! " or "? " to avoid splitting on "..." or "Wait..."
+    # Also handle sentence ending at end of line (no trailing space).
+    echo "$text" | sed -n '1,/[.!?][[:space:]]/{ s/\([.!?]\)[[:space:]].*/\1/p; }' | head -1
+}
+
+check_opening_compliance() {
+    local text="$1"
+    local opening_type="$2"
+
+    # Normalize: strip leading whitespace/newlines
+    local clean
+    clean=$(echo "$text" | sed -e 's/^[[:space:]]*//')
+
+    case "$opening_type" in
+        dialogue)
+            # First line's first non-blank character must be a quotation mark
+            echo "$clean" | head -1 | grep -q '^[""'"'"']'
+            return $?
+            ;;
+        question)
+            # First sentence must contain a question mark
+            local first_sent
+            first_sent=$(extract_first_sentence "$clean")
+            # Fallback: if extraction failed, check first 200 chars
+            [[ -z "$first_sent" ]] && first_sent=$(echo "$clean" | head -c 200)
+            echo "$first_sent" | grep -q '?'
+            return $?
+            ;;
+        memory)
+            # First sentence must reference the past
+            local first_sent
+            first_sent=$(extract_first_sentence "$clean")
+            [[ -z "$first_sent" ]] && first_sent=$(echo "$clean" | head -c 200)
+            echo "$first_sent" | grep -qi 'years ago\|remember\|recalled\|once,\|long before\|back when\|long ago\|he once\|she once\|used to'
+            return $?
+            ;;
+        *)
+            # Skip validation for action, emotional_reflection, object_focus, conflict, setting
+            return 0
+            ;;
+    esac
+}
+
+get_opening_anchor() {
+    local opening_type="$1"
+    case "$opening_type" in
+        dialogue)
+            echo 'a quotation mark ("). The very first character of the story must be "'
+            ;;
+        question)
+            echo 'a question word (What, Why, How, Where, When, Who, Is, Can, Did, Would, Could)'
+            ;;
+        memory)
+            echo 'a time reference (Years ago, Long before, Once, He remembered)'
+            ;;
+        *)
+            echo ''
+            ;;
+    esac
+}
+
+validate_and_retry_opening() {
+    local text="$1"
+    local opening_type="$2"
+    local original_prompt="$3"
+    local num_predict="$4"
+    local length="$5"
+    local min_wc="${6:-0}"
+    local max_wc="${7:-999999}"
+
+    # Only validate types we can reliably check
+    local anchor
+    anchor=$(get_opening_anchor "$opening_type")
+    [[ -z "$anchor" ]] && echo "$text" && return 0
+
+    if check_opening_compliance "$text" "$opening_type"; then
+        echo -e "${GREEN}  Opening validation: PASS${NC}" >&2
+        echo "$text"
+        return 0
+    fi
+
+    echo -e "${YELLOW}  Opening validation: FAIL (opening_type=$opening_type) → retry${NC}" >&2
+
+    # Retry with forceful anchor instruction
+    local retry_prompt="$original_prompt
+
+CRITICAL RETRY RULE:
+Your first sentence must begin with $anchor.
+Do not write any introductory setting or context sentence before it."
+
+    local retry_text
+    retry_text=$(generate_text "creative" "$retry_prompt" "$num_predict" "$length" 2>/dev/null) || true
+
+    if [[ -n "$retry_text" ]]; then
+        retry_text=$(sanitize_story_text "$retry_text")
+        local retry_wc
+        retry_wc=$(echo "$retry_text" | wc -w | tr -d ' ')
+
+        # Guard: never accept a retry that breaks word count compliance
+        if [[ $retry_wc -lt $min_wc ]] || [[ $retry_wc -gt $max_wc ]]; then
+            local orig_wc
+            orig_wc=$(echo "$text" | wc -w | tr -d ' ')
+            echo -e "${YELLOW}  Opening retry: $retry_wc words outside range $min_wc–$max_wc — keeping original ($orig_wc words)${NC}" >&2
+            echo "$text"
+            return 0
+        fi
+
+        if check_opening_compliance "$retry_text" "$opening_type"; then
+            echo -e "${GREEN}  Opening validation: PASS after retry ($retry_wc words)${NC}" >&2
+            echo "$retry_text"
+            return 0
+        else
+            echo -e "${YELLOW}  Opening validation: FAIL after retry — accepted ($retry_wc words)${NC}" >&2
+            echo "$retry_text"
+            return 0
+        fi
+    fi
+
+    # Retry failed entirely, keep original
+    echo -e "${YELLOW}  Opening validation: retry failed — keeping original${NC}" >&2
+    echo "$text"
+    return 0
 }
 
 # =============================================================================
@@ -154,6 +384,43 @@ build_prompt() {
     prompt="${prompt//\{\{LENGTH_BUCKET\}\}/$length_bucket}"
     prompt="${prompt//\{\{LANGUAGE_STYLE\}\}/WEB}"
     prompt="${prompt//\{\{BIBLE_SOURCE_REF\}\}/$bible_ref}"
+
+    # Inject character name for creative stories (avoids "Lily" repetition)
+    if [[ "$mode" == "creative" ]]; then
+        local char_name
+        char_name=$(select_creative_name)
+        prompt="${prompt//\{\{CHARACTER_NAME\}\}/$char_name}"
+        echo -e "  Character name: ${CYAN}$char_name${NC}" >&2
+
+        # Inject Story DNA variables (computed in process_story before length loop)
+        if [[ -n "${CURRENT_STORY_DNA:-}" ]]; then
+            local dna_ot dna_st dna_se dna_ca dna_tn dna_nv
+            dna_ot=$(echo "$CURRENT_STORY_DNA" | jq -r '.opening_type')
+            dna_st=$(echo "$CURRENT_STORY_DNA" | jq -r '.structure_type')
+            dna_se=$(echo "$CURRENT_STORY_DNA" | jq -r '.setting_emphasis')
+            dna_ca=$(echo "$CURRENT_STORY_DNA" | jq -r '.character_archetype')
+            dna_tn=$(echo "$CURRENT_STORY_DNA" | jq -r '.tone')
+            dna_nv=$(echo "$CURRENT_STORY_DNA" | jq -r '.narrator_voice')
+            prompt="${prompt//\{\{OPENING_TYPE\}\}/$dna_ot}"
+            prompt="${prompt//\{\{STRUCTURE_TYPE\}\}/$dna_st}"
+            prompt="${prompt//\{\{SETTING_EMPHASIS\}\}/$dna_se}"
+            prompt="${prompt//\{\{CHARACTER_ARCHETYPE\}\}/$dna_ca}"
+            prompt="${prompt//\{\{TONE\}\}/$dna_tn}"
+            prompt="${prompt//\{\{NARRATOR_VOICE\}\}/$dna_nv}"
+
+            # Inject place-name avoidance list
+            local avoid_file="$SCRIPT_DIR/data/creative_place_names_avoid.txt"
+            local avoid_block=""
+            if [[ -f "$avoid_file" ]]; then
+                local avoid_names
+                avoid_names=$(tr '\n' ', ' < "$avoid_file" | sed 's/,*$//')
+                if [[ -n "$avoid_names" ]]; then
+                    avoid_block="Do NOT use these fictional place names: $avoid_names"
+                fi
+            fi
+            prompt="${prompt//\{\{PLACE_NAMES_AVOID\}\}/$avoid_block}"
+        fi
+    fi
 
     # Inject narrative anchors from story seed (Traditional mode only)
     local anchors_block=""
@@ -537,6 +804,7 @@ generate_audio_elevenlabs() {
     local text="$1"
     local voice_key="$2"
     local output_file="$3"
+    local style="${4:-$STORY_STYLE_DEFAULT}"
 
     local voice_id
     voice_id=$(get_voice_id "$voice_key")
@@ -546,7 +814,14 @@ generate_audio_elevenlabs() {
     fi
 
     local char_count=${#text}
-    echo -e "${BLUE}  Audio: ${char_count} chars → $output_file${NC}"
+    # eleven_v3 has ~5000 char limit; fall back to eleven_multilingual_v2 for longer texts
+    local model="$ELEVENLABS_MODEL"
+    if [[ "$char_count" -gt 5000 && "$model" == "eleven_v3" ]]; then
+        model="eleven_multilingual_v2"
+        echo -e "${YELLOW}  Audio: ${char_count} chars (>5000, using $model fallback) → $output_file${NC}"
+    else
+        echo -e "${BLUE}  Audio: ${char_count} chars → $output_file${NC}"
+    fi
 
     # Source ElevenLabs guard for safety
     if [[ -f "$SCRIPT_DIR/elevenlabs_guard.sh" ]]; then
@@ -558,13 +833,19 @@ generate_audio_elevenlabs() {
         -X POST "https://api.elevenlabs.io/v1/text-to-speech/${voice_id}" \
         -H "xi-api-key: ${ELEVENLABS_API_KEY}" \
         -H "Content-Type: application/json" \
-        -d "$(jq -n --arg text "$text" '{
+        -d "$(jq -n \
+            --arg text "$text" \
+            --arg style "$style" \
+            --arg model "$model" \
+            --arg stability "$ELEVENLABS_STABILITY" \
+            --arg similarity "$ELEVENLABS_SIMILARITY" \
+            '{
             text: $text,
-            model_id: "eleven_turbo_v2_5",
+            model_id: $model,
             voice_settings: {
-                stability: 0.6,
-                similarity_boost: 0.8,
-                style: 0.0,
+                stability: ($stability | tonumber),
+                similarity_boost: ($similarity | tonumber),
+                style: ($style | tonumber),
                 use_speaker_boost: true
             }
         }')" \
@@ -631,6 +912,22 @@ process_story() {
 
     mkdir -p "$story_dir"
 
+    # --- Compute Story DNA for Creative stories (once per base story) ---
+    if [[ "$mode" == "creative" ]]; then
+        CURRENT_STORY_DNA=$(get_story_dna "$CREATIVE_STORY_INDEX" "$story_id")
+        CREATIVE_STORY_INDEX=$((CREATIVE_STORY_INDEX + 1))
+        local dna_opening dna_structure dna_setting dna_archetype dna_tone dna_narrator
+        dna_opening=$(echo "$CURRENT_STORY_DNA" | jq -r '.opening_type')
+        dna_structure=$(echo "$CURRENT_STORY_DNA" | jq -r '.structure_type')
+        dna_setting=$(echo "$CURRENT_STORY_DNA" | jq -r '.setting_emphasis')
+        dna_archetype=$(echo "$CURRENT_STORY_DNA" | jq -r '.character_archetype')
+        dna_tone=$(echo "$CURRENT_STORY_DNA" | jq -r '.tone')
+        dna_narrator=$(echo "$CURRENT_STORY_DNA" | jq -r '.narrator_voice')
+        echo -e "  ${CYAN}DNA: opening=$dna_opening structure=$dna_structure setting=$dna_setting archetype=$dna_archetype tone=$dna_tone narrator=$dna_narrator${NC}"
+    else
+        CURRENT_STORY_DNA=""
+    fi
+
     # --- PHASE 1: Generate text for each length ---
     if [[ "$AUDIO_ONLY" != "true" ]]; then
         for length in "${lengths[@]}"; do
@@ -688,6 +985,9 @@ CRITICAL: This story MUST be at least $min_wc words and no more than $max_wc wor
                     continue
                 fi
 
+                # Sanitize LLM output (remove metadata, titles, word counts)
+                text=$(sanitize_story_text "$text")
+
                 wc=$(echo "$text" | wc -w | tr -d ' ')
                 echo -e "  Attempt $wc_attempt: $wc words (need $min_wc-$max_wc)"
 
@@ -698,8 +998,7 @@ CRITICAL: This story MUST be at least $min_wc words and no more than $max_wc wor
                 # If too short, try extending by feeding partial text back
                 if [[ $wc -lt $min_wc ]] && [[ $wc_attempt -lt $max_wc_attempts ]]; then
                     echo -e "${YELLOW}  Too short ($wc < $min_wc), attempting continuation...${NC}"
-                    local words_remaining=$((min_wc - wc))
-                    local continue_prompt="You are continuing a story that was cut short. The story so far is ${wc} words and needs to reach at least ${min_wc} words total. Write approximately ${words_remaining} more words.
+                    local continue_prompt="You are continuing a story that was cut short. Continue with several more paragraphs to bring it to a satisfying conclusion.
 
 IMPORTANT RULES FOR CONTINUATION:
 - Pick up exactly where the story left off — do NOT restart or summarize
@@ -708,6 +1007,8 @@ IMPORTANT RULES FOR CONTINUATION:
 - Write for spoken narration — keep sentences under 22 words
 - Build toward a satisfying resolution with quiet hope
 - Do NOT repeat any content from the existing story
+- Do NOT include word counts, metadata, titles, or \"The End\"
+- Write ONLY story prose
 
 STORY SO FAR:
 $text
@@ -719,6 +1020,8 @@ CONTINUE THE STORY FROM HERE:"
                         text="$text
 
 $continuation"
+                        # Sanitize combined text (remove any metadata from continuation)
+                        text=$(sanitize_story_text "$text")
                         wc=$(echo "$text" | wc -w | tr -d ' ')
                         echo -e "  After continuation: $wc words"
                         if [[ $wc -ge $min_wc ]]; then
@@ -745,6 +1048,15 @@ $continuation"
             # Warn if over max (save as-is — could be trimmed in future)
             if [[ $wc -gt $max_wc ]]; then
                 echo -e "${YELLOW}  ⚠ Word count $wc exceeds max $max_wc (saving as-is)${NC}"
+            fi
+
+            # Opening type validation + retry (creative stories only)
+            if [[ "$mode" == "creative" ]] && [[ -n "${CURRENT_STORY_DNA:-}" ]]; then
+                local dna_opening_type
+                dna_opening_type=$(echo "$CURRENT_STORY_DNA" | jq -r '.opening_type')
+                text=$(validate_and_retry_opening "$text" "$dna_opening_type" "$prompt" "$num_predict" "$length" "$min_wc" "$max_wc")
+                # Update word count after potential retry
+                wc=$(echo "$text" | wc -w | tr -d ' ')
             fi
 
             echo "$text" > "$text_file"
@@ -814,7 +1126,7 @@ $continuation"
 
             local text
             text=$(cat "$text_file")
-            generate_audio_elevenlabs "$text" "$voice_key" "$audio_file" || true
+            generate_audio_elevenlabs "$text" "$voice_key" "$audio_file" "$STORY_STYLE_DEFAULT" || true
             sleep 2  # Pace ElevenLabs requests
         done
 
@@ -825,7 +1137,7 @@ $continuation"
         if [[ -s "$reflection_file" ]] && { [[ "$SKIP_EXISTING" != "true" ]] || [[ ! -s "$reflection_audio" ]]; }; then
             local reflection_text
             reflection_text=$(cat "$reflection_file")
-            generate_audio_elevenlabs "$reflection_text" "$voice_key" "$reflection_audio" || true
+            generate_audio_elevenlabs "$reflection_text" "$voice_key" "$reflection_audio" "$REFLECTION_STYLE_DEFAULT" || true
             sleep 1
         fi
     elif [[ "$TEXT_ONLY" != "true" ]]; then
@@ -846,6 +1158,13 @@ $continuation"
         local updated_meta
         updated_meta=$(jq --arg model "$expected_model" --arg contract "STORY_FACTORY_v2.3" \
             '.createdByModel = $model | .generationContractVersion = $contract' "$meta_file")
+
+        # Add storyDna to meta.json for creative stories
+        if [[ "$mode" == "creative" ]] && [[ -n "${CURRENT_STORY_DNA:-}" ]]; then
+            updated_meta=$(echo "$updated_meta" | jq --argjson dna "$CURRENT_STORY_DNA" \
+                '.storyDna = {opening_type: $dna.opening_type, structure_type: $dna.structure_type, setting_emphasis: $dna.setting_emphasis, character_archetype: $dna.character_archetype, tone: $dna.tone}')
+        fi
+
         echo "$updated_meta" > "$meta_file"
         echo -e "${GREEN}  ✓ meta.json: createdByModel=$expected_model, contract=STORY_FACTORY_v2.3${NC}"
     else
@@ -1041,6 +1360,7 @@ AUDIO_ONLY="false"
 DRY_RUN="false"
 SKIP_EXISTING="false"
 SINGLE_STORY=""
+STYLE_OVERRIDE=""
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -1049,12 +1369,20 @@ while [[ $# -gt 0 ]]; do
         --dry-run)     DRY_RUN="true"; shift ;;
         --skip-existing) SKIP_EXISTING="true"; shift ;;
         --story)       SINGLE_STORY="$2"; shift 2 ;;
+        --style)       STYLE_OVERRIDE="$2"; shift 2 ;;
         -h|--help)
-            echo "Usage: $0 [--text-only] [--audio-only] [--story ID] [--dry-run] [--skip-existing]"
+            echo "Usage: $0 [--text-only] [--audio-only] [--story ID] [--dry-run] [--skip-existing] [--style VALUE]"
             exit 0 ;;
         *) echo "Unknown option: $1"; exit 1 ;;
     esac
 done
+
+# Apply style override if set
+if [[ -n "$STYLE_OVERRIDE" ]]; then
+    echo -e "${CYAN}[audio] Using style override: $STYLE_OVERRIDE${NC}"
+    STORY_STYLE_DEFAULT="$STYLE_OVERRIDE"
+    REFLECTION_STYLE_DEFAULT="$STYLE_OVERRIDE"
+fi
 
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "${BLUE}  Bible PAL — V2 Batch Story Generator${NC}"
@@ -1079,6 +1407,12 @@ if [[ "$DRY_RUN" == "true" ]]; then
     echo -e "Total manifest entries: ${GREEN}44${NC}"
     exit 0
 fi
+
+# Initialize Story DNA diversity system (Creative stories only)
+CREATIVE_STORY_INDEX=0
+CURRENT_STORY_DNA=""
+init_dna_guard
+seed_dna_guard_from_metadata "$STORIES_DIR"
 
 # Process stories
 for story_def in "${BATCH_STORIES[@]}"; do

@@ -6,7 +6,11 @@
   "languageStyle": "WEB",
   "mood": "hurting",
   "scriptureAnchor": "John 4:4-26",
-  "lengths": ["short", "full", "long"],
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
   "voiceKey": "VOICE_DEBORAH_WISE",
   "voiceKeys": {
     "short": "VOICE_DEBORAH_WISE",
@@ -14,7 +18,7 @@
     "long": "VOICE_DEBORAH_WISE",
     "reflection": "VOICE_DEBORAH_WISE"
   },
-  "createdByModel": "gemma:7b",
+  "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_44",
   "reflectionQuestion": "Where do you feel the weight of pain or loss today?",
   "files": {
@@ -34,5 +38,6 @@
       "reflectionText": "reflection_810_traditional_web.txt",
       "reflectionAudio": "audio_810_reflection.mp3"
     }
-  }
+  },
+  "generationContractVersion": "STORY_FACTORY_v2.3"
 }
