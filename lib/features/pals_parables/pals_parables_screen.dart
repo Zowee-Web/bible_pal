@@ -515,7 +515,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
 
   void _startAutoStoryTimer(String userText) {
     _autoStartTimer?.cancel();
-    _autoStartTimer = Timer(const Duration(seconds: 5), () {
+    _autoStartTimer = Timer(const Duration(seconds: 3), () {
       if (mounted) {
         _autoSelectStory(userText);
       }
