@@ -51,11 +51,15 @@ server/node_modules/
 .DS_Store
 
 # Bible PAL generated audio + temp stitching
-assets/stories/**/*.mp3
+assets/stories/*.mp3
 assets/stories/temp_segments/
 assets/stories/temp_segments/**
 assets/stories/.temp_generation/
 assets/stories/.temp_generation/**
+
+# ALLOW 500-series and 800-series audio (needed for app build)
+!assets/stories/creative/**/*.mp3
+!assets/stories/traditional/**/*.mp3
 
 # Bible PAL generation quarantine (failed stories)
 assets/stories_failed/
