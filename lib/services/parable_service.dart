@@ -70,30 +70,10 @@ class ParableService {
             continue;
           }
 
-          // Check if audio file exists (only if audioFilePath is not null)
-          if (parable.audioFilePath != null) {
-            try {
-              await rootBundle.load('assets/stories/${parable.audioFilePath}');
-              parables.add(parable);
-            } catch (e) {
-              debugPrint(
-                  '⚠️ Skipping ${parable.storyId}: audio file missing (${parable.audioFilePath})');
-
-              // Log audio asset missing
-              logEvent(
-                  'audio_asset_missing',
-                  {
-                    'story_id': parable.storyId,
-                    'expected_path': 'assets/stories/${parable.audioFilePath}',
-                  },
-                  level: LogLevel.warn);
-
-              skippedEntries++;
-            }
-          } else {
-            // Text-only story, include it
-            parables.add(parable);
-          }
+          // Bundled assets declared in pubspec.yaml are guaranteed to exist;
+          // skip heavy rootBundle.load() validation that loads entire MP3s into
+          // memory and can cause out-of-memory crashes on device.
+          parables.add(parable);
         }
 
         debugPrint(
@@ -492,6 +472,7 @@ class ParableService {
             await rootBundle.load('assets/stories/${parable.audioFilePath}');
         final tempDir = await getTemporaryDirectory();
         final tempFile = File('${tempDir.path}/${parable.audioFilePath}');
+        await tempFile.parent.create(recursive: true);
         await tempFile.writeAsBytes(audioData.buffer.asUint8List());
         debugPrint('Copied audio from assets to temp: ${tempFile.path}');
         return tempFile;

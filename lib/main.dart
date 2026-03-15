@@ -37,13 +37,6 @@ Future<void> main() async {
     debugPrint('dotenv: .env not loaded ($e) — continuing without it.');
   }
 
-  // Sanity check in debug builds only
-  assert(
-    (dotenv.env['ELEVENLABS_API_KEY'] ?? '').isNotEmpty,
-    'ELEVENLABS_API_KEY missing. Create a .env at project root and add it; '
-        'also list .env under flutter/assets in pubspec.yaml.',
-  );
-
   runApp(
     const ProviderScope(
       child: Bootstrap(),
