@@ -288,6 +288,13 @@ class PalAudioService {
     }
   }
 
+  /// Wait for current playback to complete.
+  Future<void> awaitPlaybackComplete() async {
+    await _player.playerStateStream.firstWhere(
+      (state) => state.processingState == ProcessingState.completed,
+    );
+  }
+
   /// Stop any currently playing audio.
   Future<void> stop() async {
     await _player.stop();

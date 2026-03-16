@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bible_pal/models/parable.dart';
 import 'package:bible_pal/services/audio_service.dart';
+import 'package:bible_pal/services/verse_service.dart';
 import 'package:bible_pal/services/voice_consent_gate.dart';
 import 'package:bible_pal/core/app_logger.dart';
 import 'service_providers.dart';
@@ -34,6 +35,8 @@ class ParablePlayerState {
   final bool isLoading;
   final String? errorMessage;
   final bool playbackCompleted;
+  final String? palResponseText;
+  final VerseResponse? verse;
 
   const ParablePlayerState({
     this.currentParable,
@@ -41,6 +44,8 @@ class ParablePlayerState {
     this.isLoading = false,
     this.errorMessage,
     this.playbackCompleted = false,
+    this.palResponseText,
+    this.verse,
   });
 
   ParablePlayerState copyWith({
@@ -49,6 +54,8 @@ class ParablePlayerState {
     bool? isLoading,
     String? errorMessage,
     bool? playbackCompleted,
+    String? palResponseText,
+    VerseResponse? verse,
   }) {
     return ParablePlayerState(
       currentParable: currentParable ?? this.currentParable,
@@ -56,6 +63,8 @@ class ParablePlayerState {
       isLoading: isLoading ?? this.isLoading,
       errorMessage: errorMessage ?? this.errorMessage,
       playbackCompleted: playbackCompleted ?? this.playbackCompleted,
+      palResponseText: palResponseText ?? this.palResponseText,
+      verse: verse ?? this.verse,
     );
   }
 
@@ -288,6 +297,11 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
 
     state = state.copyWith(playbackCompleted: true);
     ref.notifyListeners();
+  }
+
+  /// Store PAL's response text and verse for display on the player screen.
+  void setPalResponse(String? responseText, VerseResponse? verse) {
+    state = state.copyWith(palResponseText: responseText, verse: verse);
   }
 
   /// Clear current parable and reset player

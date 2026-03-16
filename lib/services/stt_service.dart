@@ -34,7 +34,7 @@ class SttService {
   static const int defaultListenSeconds = 10;
 
   /// Default pause-for-silence duration (seconds).
-  static const int defaultPauseSeconds = 3;
+  static const int defaultPauseSeconds = 5;
 
   /// Create with an optional [SpeechToText] instance for DI/testing.
   SttService({SpeechToText? speech}) : _speech = speech ?? SpeechToText();

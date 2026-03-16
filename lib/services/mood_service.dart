@@ -22,31 +22,19 @@ class MoodService {
 
     // Check for joyful/positive indicators
     if (_containsAny(normalizedText, [
-      'grateful',
-      'thankful',
-      'blessed',
-      'good',
-      'great',
-      'wonderful',
-      'amazing',
-      'encouraged',
-      'joyful',
-      'happy',
-      'excited',
-      'peaceful',
-      'hopeful',
+      'grateful', 'thankful', 'blessed', 'good', 'great', 'wonderful',
+      'amazing', 'encouraged', 'joyful', 'happy', 'excited', 'peaceful',
+      'hopeful', 'praise', 'joy', 'content', 'fulfilled', 'cheerful',
+      'uplifted', 'inspired', 'optimistic', 'relieved', 'celebration',
+      'celebrate', 'thriving', 'fantastic', 'awesome', 'loving',
+      'appreciated', 'confident', 'proud', 'victorious', 'free',
     ])) {
       return MoodResult(
         mood: 'joyful',
         emotionalTags: _extractTags(normalizedText, [
-          'grateful',
-          'thankful',
-          'blessed',
-          'encouraged',
-          'joyful',
-          'happy',
-          'peaceful',
-          'hopeful',
+          'grateful', 'thankful', 'blessed', 'encouraged', 'joyful',
+          'happy', 'peaceful', 'hopeful', 'inspired', 'relieved',
+          'confident', 'proud', 'fulfilled',
         ]),
         confidenceScore: 0.8,
       );
@@ -54,24 +42,18 @@ class MoodService {
 
     // Check for weary/tired indicators
     if (_containsAny(normalizedText, [
-      'tired',
-      'exhausted',
-      'weary',
-      'drained',
-      'worn',
-      'fatigued',
-      'overwhelmed',
-      'burnt out',
-      'burnout',
+      'tired', 'exhausted', 'weary', 'drained', 'worn', 'fatigued',
+      'overwhelmed', 'burnt out', 'burnout', 'running on empty',
+      'no energy', 'wiped out', 'beat', 'spent', 'run down',
+      'stretched thin', 'can barely', 'so much going on',
+      'nonstop', 'never ends', 'carrying a lot', 'heavy load',
+      'worn out', 'burned out', 'sleepless', 'restless',
     ])) {
       return MoodResult(
         mood: 'weary',
         emotionalTags: _extractTags(normalizedText, [
-          'tired',
-          'exhausted',
-          'weary',
-          'drained',
-          'overwhelmed',
+          'tired', 'exhausted', 'weary', 'drained', 'overwhelmed',
+          'fatigued', 'restless',
         ]),
         confidenceScore: 0.75,
       );
@@ -79,26 +61,19 @@ class MoodService {
 
     // Check for anxious/stressed indicators
     if (_containsAny(normalizedText, [
-      'stressed',
-      'anxious',
-      'worried',
-      'nervous',
-      'afraid',
-      'scared',
-      'tense',
-      'pressure',
-      'overwhelmed',
-      'panic',
+      'stressed', 'anxious', 'worried', 'nervous', 'afraid', 'scared',
+      'tense', 'pressure', 'overwhelmed', 'panic', 'fear', 'fearful',
+      'uneasy', 'on edge', 'can\'t relax', 'racing thoughts',
+      'overthinking', 'restless', 'apprehensive', 'dreading', 'dread',
+      'uncertain', 'unsettled', 'shaking', 'frantic', 'freaking out',
+      'losing my mind', 'spiraling', 'what if', 'terrified',
+      'keep thinking about', 'can\'t stop thinking',
     ])) {
       return MoodResult(
         mood: 'anxious',
         emotionalTags: _extractTags(normalizedText, [
-          'stressed',
-          'anxious',
-          'worried',
-          'nervous',
-          'afraid',
-          'tense',
+          'stressed', 'anxious', 'worried', 'nervous', 'afraid',
+          'tense', 'fearful', 'overwhelmed', 'overthinking',
         ]),
         confidenceScore: 0.8,
       );
@@ -106,30 +81,20 @@ class MoodService {
 
     // Check for hurting/sad indicators
     if (_containsAny(normalizedText, [
-      'sad',
-      'hurt',
-      'hurting',
-      'pain',
-      'lonely',
-      'alone',
-      'discouraged',
-      'down',
-      'upset',
-      'heartbroken',
-      'broken',
-      'depressed',
-      'grieving',
-      'loss',
+      'sad', 'hurt', 'hurting', 'pain', 'lonely', 'alone',
+      'discouraged', 'down', 'upset', 'heartbroken', 'broken',
+      'depressed', 'grieving', 'loss', 'lost', 'cry', 'crying',
+      'tears', 'empty', 'numb', 'hopeless', 'worthless', 'rejected',
+      'abandoned', 'betrayed', 'miserable', 'suffering', 'aching',
+      'devastated', 'crushed', 'let down', 'disappointed',
+      'miss them', 'miss him', 'miss her', 'passed away', 'died',
+      'struggling', 'falling apart', 'giving up',
     ])) {
       return MoodResult(
         mood: 'hurting',
         emotionalTags: _extractTags(normalizedText, [
-          'sad',
-          'hurt',
-          'lonely',
-          'discouraged',
-          'heartbroken',
-          'grieving',
+          'sad', 'hurt', 'lonely', 'discouraged', 'heartbroken',
+          'grieving', 'hopeless', 'rejected', 'empty', 'betrayed',
         ]),
         confidenceScore: 0.85,
       );

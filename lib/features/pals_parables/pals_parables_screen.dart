@@ -39,14 +39,17 @@ enum VoiceInputState {
 /// Based on SPEC.md Features 2, 2.1, 2.2, 3, 4, 5, 14, 16
 /// Complete flow: prompt → mood input (button, type, or voice) → micro-response + verse → auto-transition to parable playback
 class PalsParablesScreen extends ConsumerStatefulWidget {
-  const PalsParablesScreen({super.key, this.sttService, this.textOnly = false});
+  const PalsParablesScreen({super.key, this.sttService, this.textOnly = false, this.navigateToReader = false});
 
   /// Optional STT service for dependency injection (testing).
   final SttService? sttService;
 
-  /// When true, voice/mic input is hidden (text-only interaction with PAL).
-  /// Story audio playback is NOT affected — only input method changes.
+  /// When true, all PAL audio is suppressed (greeting + micro-response) and
+  /// voice/mic input is hidden. Story audio playback is NOT affected.
   final bool textOnly;
+
+  /// When true, navigate to story reader after selection; otherwise parable player.
+  final bool navigateToReader;
 
   @override
   ConsumerState<PalsParablesScreen> createState() => _PalsParablesScreenState();
@@ -105,8 +108,10 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
         });
       }
 
-      // Play PAL prompt audio
-      _playPalPrompt(prompt);
+      // Play PAL prompt audio (skip in text-only mode)
+      if (!widget.textOnly) {
+        _playPalPrompt(prompt);
+      }
     } catch (e) {
       debugPrint('[PalsParables] Failed to load prompt: $e');
       if (mounted) {
@@ -431,8 +436,8 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     final userName = appState?.userPreferences.userName ?? '';
 
     String responseText;
-    if (appState?.userPreferences.palGreetingsEnabled == false) {
-      // PAL greetings disabled — text-only fallback
+    if (widget.textOnly || appState?.userPreferences.palGreetingsEnabled == false) {
+      // Text-only mode or PAL greetings disabled — no audio
       responseText = appNotifier.moodService.getMicroResponseText(result.mood);
     } else {
       final palAudio = ref.read(palAudioServiceProvider);
@@ -476,8 +481,13 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
       _voiceState = VoiceInputState.proceeding;
     });
 
-    // Start auto-story timer (~2s cancellable delay)
-    _startAutoStoryTimer(userText);
+    if (widget.textOnly) {
+      // Text-only mode: skip the delay, go straight to story selection
+      _autoSelectStory(userText);
+    } else {
+      // Audio mode: wait for micro-response to finish before selecting
+      _startAutoStoryTimer(userText);
+    }
   }
 
   /// Pick a micro-response ID from the mood bucket with non-repeat logic.
@@ -568,11 +578,18 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
       final playerNotifier = ref.read(parablePlayerProvider.notifier);
       await playerNotifier.loadParable(parable);
 
+      // Store PAL's response and verse in player state for the player screen
+      if (_microResponseText != null || _verse != null) {
+        playerNotifier.setPalResponse(_microResponseText, _verse);
+      }
+
       if (!mounted) return;
       setState(() => _isSelectingParable = false);
 
       if (!mounted) return;
-      Navigator.of(context).pushNamed('/parable_player');
+      Navigator.of(context).pushReplacementNamed(
+        widget.navigateToReader ? '/story_reader' : '/parable_player',
+      );
     } catch (e) {
       setState(() => _isSelectingParable = false);
       if (!mounted) return;
@@ -691,98 +708,16 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
             ),
           ],
 
-          // Micro-Response with Verse Section
-          if (_microResponseText != null) ...[
+          // Loading indicator while story is being selected
+          if (_isSelectingParable) ...[
             const SizedBox(height: 24),
-            Card(
-              elevation: 2,
-              color: theme.colorScheme.primaryContainer,
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.favorite,
-                          color: theme.colorScheme.primary,
-                          size: 20,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          'PAL\'s Response',
-                          style: theme.textTheme.titleSmall?.copyWith(
-                            color: theme.colorScheme.onPrimaryContainer,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-
-                    Text(
-                      _microResponseText!,
-                      style: theme.textTheme.bodyLarge?.copyWith(
-                        color: theme.colorScheme.onPrimaryContainer,
-                      ),
-                    ),
-
-                    if (_verse != null) ...[
-                      const SizedBox(height: 20),
-                      const Divider(),
-                      const SizedBox(height: 16),
-
-                      Text(
-                        '${_verse!.reference} (${_verse!.translation})',
-                        style: theme.textTheme.titleSmall?.copyWith(
-                          color: theme.colorScheme.onPrimaryContainer,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-
-                      Text(
-                        '"${_verse!.text}"',
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.onPrimaryContainer,
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-
-                      Text(
-                        _verse!.context,
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.onPrimaryContainer
-                              .withOpacity(0.9),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-
-                      if (_isSelectingParable) ...[
-                        const Divider(),
-                        const SizedBox(height: 12),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const SizedBox(
-                              width: 16,
-                              height: 16,
-                              child: CircularProgressIndicator(strokeWidth: 2),
-                            ),
-                            const SizedBox(width: 12),
-                            Text(
-                              'Preparing your story...',
-                              style: theme.textTheme.bodySmall?.copyWith(
-                                color: theme.colorScheme.onPrimaryContainer,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ],
-                  ],
+            const Center(child: CircularProgressIndicator()),
+            const SizedBox(height: 12),
+            Center(
+              child: Text(
+                'Preparing your story...',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
                 ),
               ),
             ),

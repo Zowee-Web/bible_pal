@@ -7,6 +7,7 @@ import 'features/pals_parables/parable_player_screen.dart';
 import 'features/favorites/favorites_screen.dart';
 import 'features/history/history_screen.dart';
 import 'features/my_pals/my_pals_screen.dart';
+import 'features/story_reader/story_reader_screen.dart';
 import 'features/diagnostics/diagnostics_screen.dart';
 import 'core/diagnostics_config.dart';
 
@@ -31,8 +32,9 @@ class AppRouter extends StatelessWidget {
       case '/pals_parables':
         final args = settings.arguments as Map<String, dynamic>?;
         final textOnly = args?['textOnly'] as bool? ?? false;
+        final navigateToReader = args?['navigateToReader'] as bool? ?? false;
         return MaterialPageRoute(
-          builder: (_) => PalsParablesScreen(textOnly: textOnly),
+          builder: (_) => PalsParablesScreen(textOnly: textOnly, navigateToReader: navigateToReader),
         );
       case '/parable_player':
         return MaterialPageRoute(
@@ -53,6 +55,10 @@ class AppRouter extends StatelessWidget {
       case '/main_menu':
         return MaterialPageRoute(
           builder: (_) => const MainMenuScreen(),
+        );
+      case '/story_reader':
+        return MaterialPageRoute(
+          builder: (_) => const StoryReaderScreen(),
         );
       case '/first_launch':
         return MaterialPageRoute(

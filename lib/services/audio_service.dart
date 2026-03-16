@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:audio_session/audio_session.dart';
 import 'package:flutter/foundation.dart';
 import 'package:just_audio/just_audio.dart';
 import '../core/app_logger.dart';
@@ -9,7 +10,19 @@ class AudioService {
   final AudioPlayer _player;
   String? _currentStoryId;
 
-  AudioService() : _player = AudioPlayer();
+  AudioService() : _player = AudioPlayer() {
+    _initAudioSession();
+  }
+
+  /// Configure audio session for background playback
+  Future<void> _initAudioSession() async {
+    try {
+      final session = await AudioSession.instance;
+      await session.configure(const AudioSessionConfiguration.speech());
+    } catch (e) {
+      debugPrint('Audio session init failed: $e');
+    }
+  }
 
   /// Get the audio player instance
   AudioPlayer get player => _player;

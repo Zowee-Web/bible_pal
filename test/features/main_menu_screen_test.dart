@@ -333,17 +333,20 @@ void main() {
       expect(tester.takeException(), isNull);
     });
 
-    testWidgets('PAL button navigates to /pals_parables', (tester) async {
-      final observer = _PushCountObserver();
-      await tester.pumpWidget(_buildScreen(observer: observer));
+    testWidgets('PAL button starts voice conversation flow', (tester) async {
+      await tester.pumpWidget(_buildScreen());
       await tester.pumpAndSettle();
 
-      final pushesBefore = observer.pushCount;
       await tester.tap(find.text('PAL'));
-      await tester.pumpAndSettle();
+      await tester.pump();
 
-      expect(observer.pushCount, greaterThan(pushesBefore),
-          reason: 'PAL button MUST push a route to /pals_parables');
+      // PAL button now starts voice flow instead of navigating
+      // Verify the button subtitle changes to indicate flow started
+      expect(
+        find.textContaining('PAL is speaking'),
+        findsOneWidget,
+        reason: 'PAL button should start voice conversation flow',
+      );
       expect(tester.takeException(), isNull);
     });
 

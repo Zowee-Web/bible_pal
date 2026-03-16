@@ -1681,8 +1681,9 @@ flutter test
    - Transcripts may exist only in-memory for the current screen session and must be discarded when leaving the screen
 
 3. **Microphone Consent**
-   - Microphone capture must never start automatically
-   - Microphone capture must start only after an explicit user tap on a mic control
+   - Microphone capture must not start without user-initiated action
+   - On the PalsParablesScreen, capture requires an explicit tap on the mic control
+   - On the MainMenuScreen conversational flow, tapping the PAL button serves as consent; the mic may auto-activate after PAL's greeting audio completes
    - If permissions are denied, the system must fall back to typing without blocking the feature
 
 ### Enforcement Mechanisms

@@ -1,9 +1,15 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../providers/app_state_notifier.dart';
 import '../../services/typewriter_click_service.dart';
+import '../../services/pal_prompt_service.dart';
+import '../../services/mood_service.dart';
+import '../../services/verse_service.dart';
+import '../../services/stt_service.dart';
 import '../../providers/service_providers.dart';
 import '../../theme/app_theme.dart';
 import '../onboarding/first_launch_screen.dart' show kPalIntroShownKey;
@@ -14,9 +20,9 @@ import '../../providers/parable_player_notifier.dart';
 import '../../models/parable.dart';
 import '../../widgets/story_length_radio_selector.dart';
 import '../consent/voice_consent_dialog.dart';
-import '../../services/reflection_service.dart';
 import '../my_pals/select_pals_dialog.dart';
 import '../../models/share_record.dart';
+import '../../core/app_logger.dart';
 import 'package:uuid/uuid.dart';
 
 /// Main Menu Screen
@@ -100,7 +106,7 @@ class MainMenuScreen extends ConsumerWidget {
                           Align(
                             alignment: Alignment.topRight,
                             child: Padding(
-                              padding: const EdgeInsets.all(16),
+                              padding: const EdgeInsets.only(top: 4, right: 8),
                               child: IconButton(
                                 icon: Icon(
                                   Icons.settings_outlined,
@@ -116,10 +122,7 @@ class MainMenuScreen extends ConsumerWidget {
                             ),
                           ),
 
-                          // Flexible spacer to center content
-                          const Spacer(flex: 1),
-
-                          // Daily Bread Verse Section (Top Area - Fixed, Calm, Centered)
+                          // Daily Bread Verse Section
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 32),
                             child: Column(
@@ -132,16 +135,16 @@ class MainMenuScreen extends ConsumerWidget {
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                const SizedBox(height: 16),
+                                const SizedBox(height: 10),
                                 Text(
                                   dailyBread,
                                   style: theme.textTheme.headlineSmall?.copyWith(
                                     fontStyle: FontStyle.italic,
-                                    height: 1.5,
+                                    height: 1.4,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
-                                const SizedBox(height: 8),
+                                const SizedBox(height: 6),
                                 Text(
                                   '— $verseReference',
                                   style: theme.textTheme.bodyMedium?.copyWith(
@@ -153,13 +156,12 @@ class MainMenuScreen extends ConsumerWidget {
                             ),
                           ),
 
-                          const SizedBox(height: 32),
+                          const Spacer(),
 
                           // PAL's Parables Button (Centerpiece - Large, Gold Outline)
-                          // Wrapped with intro overlay for first-launch experience
                           _PalButtonWithIntro(theme: theme),
 
-                          const SizedBox(height: 16),
+                          const SizedBox(height: 10),
 
                           // Session-scoped story length picker
                           Padding(
@@ -170,114 +172,107 @@ class MainMenuScreen extends ConsumerWidget {
                             ),
                           ),
 
-                          const SizedBox(height: 16),
+                          const SizedBox(height: 10),
 
                           // Reserved panel: swaps IDLE / NOW PLAYING / FINISHED
                           const _ReservedPanel(),
 
-                          const SizedBox(height: 24),
+                          const Spacer(),
 
-                          // Secondary Buttons (Favorites, History & My PALs - Smaller, Softer)
+                          // Secondary Buttons (Favorites, History & My PALs - single row)
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 32),
-                            child: Column(
+                            padding: const EdgeInsets.only(left: 32, right: 32, bottom: 8),
+                            child: Row(
                               children: [
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: OutlinedButton.icon(
-                                        onPressed: () {
-                                          Navigator.of(context).pushNamed('/favorites');
-                                        },
-                                        style: OutlinedButton.styleFrom(
-                                          padding:
-                                              const EdgeInsets.symmetric(vertical: 16),
-                                          side: BorderSide(
-                                            color: AppTheme.lightBlue,
-                                            width: 1.5,
-                                          ),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(12),
-                                          ),
-                                        ),
-                                        icon: Icon(
-                                          Icons.favorite_outline,
-                                          size: 20,
-                                          color: AppTheme.softSkyBlue,
-                                        ),
-                                        label: Text(
-                                          'Favorites',
-                                          style: theme.textTheme.bodyLarge?.copyWith(
-                                            color: AppTheme.deepCharcoal,
-                                          ),
-                                        ),
+                                Expanded(
+                                  child: OutlinedButton.icon(
+                                    onPressed: () {
+                                      Navigator.of(context).pushNamed('/favorites');
+                                    },
+                                    style: OutlinedButton.styleFrom(
+                                      padding: const EdgeInsets.symmetric(vertical: 10),
+                                      side: BorderSide(
+                                        color: AppTheme.lightBlue,
+                                        width: 1.5,
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12),
                                       ),
                                     ),
-                                    const SizedBox(width: 16),
-                                    Expanded(
-                                      child: OutlinedButton.icon(
-                                        onPressed: () {
-                                          Navigator.of(context).pushNamed('/history');
-                                        },
-                                        style: OutlinedButton.styleFrom(
-                                          padding:
-                                              const EdgeInsets.symmetric(vertical: 16),
-                                          side: BorderSide(
-                                            color: AppTheme.lightBlue,
-                                            width: 1.5,
-                                          ),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(12),
-                                          ),
-                                        ),
-                                        icon: Icon(
-                                          Icons.history_outlined,
-                                          size: 20,
-                                          color: AppTheme.softSkyBlue,
-                                        ),
-                                        label: Text(
-                                          'History',
-                                          style: theme.textTheme.bodyLarge?.copyWith(
-                                            color: AppTheme.deepCharcoal,
-                                          ),
-                                        ),
+                                    icon: Icon(
+                                      Icons.favorite_outline,
+                                      size: 18,
+                                      color: AppTheme.softSkyBlue,
+                                    ),
+                                    label: Text(
+                                      'Favorites',
+                                      style: theme.textTheme.bodyMedium?.copyWith(
+                                        color: AppTheme.deepCharcoal,
                                       ),
                                     ),
-                                  ],
+                                  ),
                                 ),
-                                const SizedBox(height: 16),
-                                OutlinedButton.icon(
-                                  onPressed: () {
-                                    Navigator.of(context).pushNamed('/my_pals');
-                                  },
-                                  style: OutlinedButton.styleFrom(
-                                    padding: const EdgeInsets.symmetric(vertical: 16),
-                                    side: BorderSide(
-                                      color: AppTheme.lightBlue,
-                                      width: 1.5,
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: OutlinedButton.icon(
+                                    onPressed: () {
+                                      Navigator.of(context).pushNamed('/history');
+                                    },
+                                    style: OutlinedButton.styleFrom(
+                                      padding: const EdgeInsets.symmetric(vertical: 10),
+                                      side: BorderSide(
+                                        color: AppTheme.lightBlue,
+                                        width: 1.5,
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
                                     ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12),
+                                    icon: Icon(
+                                      Icons.history_outlined,
+                                      size: 18,
+                                      color: AppTheme.softSkyBlue,
+                                    ),
+                                    label: Text(
+                                      'History',
+                                      style: theme.textTheme.bodyMedium?.copyWith(
+                                        color: AppTheme.deepCharcoal,
+                                      ),
                                     ),
                                   ),
-                                  icon: Icon(
-                                    Icons.people_outline,
-                                    size: 20,
-                                    color: AppTheme.softSkyBlue,
-                                  ),
-                                  label: Text(
-                                    'My PALs',
-                                    style: theme.textTheme.bodyLarge?.copyWith(
-                                      color: AppTheme.deepCharcoal,
+                                ),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: OutlinedButton.icon(
+                                    onPressed: () {
+                                      Navigator.of(context).pushNamed('/my_pals');
+                                    },
+                                    style: OutlinedButton.styleFrom(
+                                      padding: const EdgeInsets.symmetric(vertical: 10),
+                                      side: BorderSide(
+                                        color: AppTheme.lightBlue,
+                                        width: 1.5,
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                    ),
+                                    icon: Icon(
+                                      Icons.people_outline,
+                                      size: 18,
+                                      color: AppTheme.softSkyBlue,
+                                    ),
+                                    label: Text(
+                                      'My PALs',
+                                      style: theme.textTheme.bodyMedium?.copyWith(
+                                        color: AppTheme.deepCharcoal,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-
-                          // Flexible spacer to center content
-                          const Spacer(flex: 2),
                         ],
                       ),
                     ),
@@ -292,8 +287,28 @@ class MainMenuScreen extends ConsumerWidget {
   }
 }
 
-/// PAL button with first-launch intro overlay.
-/// Shows a 3-line typewriter intro on first launch, then pulses the button.
+/// Voice mood flow states for the conversational PAL interaction on main menu.
+enum _VoiceFlowState {
+  /// Normal main menu, no conversation active.
+  inactive,
+
+  /// PAL greeting audio is playing.
+  playingGreeting,
+
+  /// STT is listening for user's mood response.
+  listening,
+
+  /// Mood detected, PAL micro-response audio playing.
+  responding,
+
+  /// Story being selected and loaded.
+  selectingStory,
+}
+
+/// PAL button with first-launch intro overlay and voice-first conversational flow.
+///
+/// Flow: Tap PAL → greeting plays → mic auto-activates → user speaks →
+/// mood detected → PAL micro-response → auto-select story → navigate to player.
 class _PalButtonWithIntro extends ConsumerStatefulWidget {
   final ThemeData theme;
 
@@ -320,6 +335,30 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   int _pulseCount = 0;
   late final AnimationController _glowController;
 
+  // Voice flow state
+  _VoiceFlowState _voiceFlow = _VoiceFlowState.inactive;
+  String? _greetingText;
+  String? _microResponseText;
+  String _partialTranscript = '';
+  String? _finalTranscript;
+  MoodResult? _moodResult;
+  VerseResponse? _moodVerse;
+  Timer? _autoStoryTimer;
+
+  // Services for voice flow
+  final PalPromptService _promptService = PalPromptService();
+  final SttService _sttService = SttService();
+  final Random _random = Random();
+
+  // Micro-response ring buffer (session-only, per mood)
+  final Map<String, List<String>> _recentMicroResponseIds = {};
+
+  // Mic pulse animation
+  late final AnimationController _micPulseController;
+
+  // Guard against double-navigation race
+  bool _navigatingToPlayer = false;
+
   static const _introLines = [
     'Meet PAL.',
     'Your guide to mood-based Bible stories.',
@@ -343,17 +382,34 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       vsync: this,
     );
 
+    _micPulseController = AnimationController(
+      duration: const Duration(milliseconds: 1000),
+      vsync: this,
+    );
+
     _checkIntroState();
+    _initStt();
   }
 
   @override
   void dispose() {
     _typingTimer?.cancel();
+    _autoStoryTimer?.cancel();
     _pulseController.removeStatusListener(_onPulseStatus);
     _pulseController.dispose();
     _glowController.dispose();
+    _micPulseController.dispose();
+    _sttService.dispose();
     super.dispose();
   }
+
+  Future<void> _initStt() async {
+    await _sttService.initialize();
+  }
+
+  // ---------------------------------------------------------------------------
+  // Intro logic (unchanged)
+  // ---------------------------------------------------------------------------
 
   Future<void> _checkIntroState() async {
     final sp = await SharedPreferences.getInstance();
@@ -364,7 +420,6 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       _showIntro = !alreadyShown;
     });
     if (_showIntro) {
-      // Pre-initialize audio for instant first-character click
       await _clickHelper.preInitialize();
       if (!mounted) return;
       _startTypingLine();
@@ -373,7 +428,6 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
   void _startTypingLine() {
     if (_currentLine >= _introLines.length) {
-      // All lines done, mark intro as shown
       _markIntroShown();
       return;
     }
@@ -387,9 +441,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         return;
       }
       if (_charIndex < line.length) {
-        // Get the next character BEFORE updating state
         final nextChar = line[_charIndex];
-        // Play click BEFORE setState for proper audio-visual sync
         _clickHelper.onCharAppended(nextChar);
         setState(() {
           _charIndex++;
@@ -397,12 +449,9 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         });
       } else {
         timer.cancel();
-        // Line complete
         if (_currentLine == _introLines.length - 1) {
-          // Last line ("Tap PAL to start.") - start pulse
           _startPulse();
         } else {
-          // Pause before next line
           Future.delayed(const Duration(milliseconds: 600), () {
             if (!mounted || !_showIntro) return;
             setState(() {
@@ -427,10 +476,8 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     } else if (status == AnimationStatus.dismissed) {
       _pulseCount++;
       if (_pulseCount < 2) {
-        // Start next pulse cycle
         _pulseController.forward();
       } else {
-        // Done pulsing - mark intro shown after a brief delay
         Future.delayed(const Duration(milliseconds: 500), () {
           if (mounted && _showIntro) {
             _markIntroShown();
@@ -441,7 +488,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   }
 
   Future<void> _markIntroShown() async {
-    _clickHelper.enabled = false; // Disable clicks when intro ends
+    _clickHelper.enabled = false;
     final sp = await SharedPreferences.getInstance();
     await sp.setBool(kPalIntroShownKey, true);
     if (!mounted) return;
@@ -450,23 +497,20 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     });
   }
 
-  void _onPalTap() {
-    // Soft glow (one-shot, fades out over 400ms)
-    _glowController.forward(from: 0.0);
+  // ---------------------------------------------------------------------------
+  // Voice-first conversational flow
+  // ---------------------------------------------------------------------------
 
-    // Light haptic feedback (no-op on web)
+  void _onPalTap() {
+    _glowController.forward(from: 0.0);
     if (!kIsWeb) {
       HapticFeedback.lightImpact();
     }
 
-    // Disable clicks immediately when user taps PAL
     _clickHelper.enabled = false;
-
-    // Cancel any running timers/animations
     _typingTimer?.cancel();
     _pulseController.stop();
 
-    // Mark intro as shown (fire and forget)
     if (_showIntro) {
       SharedPreferences.getInstance().then((sp) {
         sp.setBool(kPalIntroShownKey, true);
@@ -476,15 +520,366 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       });
     }
 
-    // Navigate to PAL's Parables for the full prompt + mood flow
-    Navigator.of(context).pushNamed('/pals_parables');
+    // Start the voice-first conversational flow
+    _startConversation();
   }
+
+  /// Cancel the voice flow and return to inactive state.
+  void _cancelConversation() {
+    _autoStoryTimer?.cancel();
+    _sttService.stopListening();
+    _micPulseController.stop();
+    ref.read(palAudioServiceProvider).stop();
+    _navigatingToPlayer = false;
+    setState(() {
+      _voiceFlow = _VoiceFlowState.inactive;
+      _greetingText = null;
+      _microResponseText = null;
+      _partialTranscript = '';
+      _finalTranscript = null;
+      _moodResult = null;
+      _moodVerse = null;
+    });
+  }
+
+  /// Start the full voice conversation: greeting → listen → respond → story.
+  Future<void> _startConversation() async {
+    setState(() => _voiceFlow = _VoiceFlowState.playingGreeting);
+
+    // Load and play PAL greeting
+    try {
+      final prompt = await _promptService.getPrompt();
+      if (!mounted) return;
+      setState(() => _greetingText = prompt.text);
+
+      final appState = ref.read(appStateProvider).valueOrNull;
+      if (appState?.userPreferences.palGreetingsEnabled != false) {
+        final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_GRACE';
+        final userName = appState?.userPreferences.userName ?? '';
+        final palAudio = ref.read(palAudioServiceProvider);
+        final nameAudio = ref.read(nameAudioServiceProvider);
+
+        final nameClip = userName.isNotEmpty
+            ? await nameAudio.getRandomNameClip(userName, voiceKey)
+            : null;
+
+        if (nameClip == null && userName.isNotEmpty) {
+          nameAudio.generateNamePhrases(name: userName, voiceKey: voiceKey);
+        }
+
+        try {
+          final text = await palAudio.playPrompt(
+            prompt.id,
+            voiceKey,
+            nameClipFile: nameClip?.file,
+            nameClipText: nameClip?.text,
+          );
+
+          logEvent('pal_line_played', {
+            'line_id': prompt.id,
+            'type': 'prompt',
+            'time_window': prompt.timeWindow,
+            'voice_key': voiceKey,
+            'name_prefix_used': text != prompt.text,
+          });
+
+          if (mounted && text.isNotEmpty) {
+            setState(() => _greetingText = text);
+          }
+        } catch (e) {
+          debugPrint('[MainMenu] PAL prompt audio failed: $e');
+        }
+      }
+    } catch (e) {
+      debugPrint('[MainMenu] Failed to load prompt: $e');
+      if (mounted) {
+        setState(() => _greetingText = 'How are you doing today?');
+      }
+    }
+
+    if (!mounted || _voiceFlow != _VoiceFlowState.playingGreeting) return;
+
+    // Greeting done — auto-activate mic
+    await _startListeningForMood();
+  }
+
+  /// Auto-activate STT after PAL greeting finishes.
+  Future<void> _startListeningForMood() async {
+    // Check permissions first
+    final permResult = await _sttService.checkPermissions();
+    if (!mounted || _voiceFlow != _VoiceFlowState.playingGreeting) return;
+
+    switch (permResult) {
+      case SttPermissionResult.granted:
+        break; // Continue to listening
+      case SttPermissionResult.denied:
+      case SttPermissionResult.permanentlyDenied:
+        // Fall back to text input screen
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: const Text('Microphone not available. Opening text input.'),
+              duration: const Duration(seconds: 2),
+              action: permResult == SttPermissionResult.permanentlyDenied
+                  ? SnackBarAction(
+                      label: 'Settings',
+                      onPressed: () => openAppSettings(),
+                    )
+                  : null,
+            ),
+          );
+          _cancelConversation();
+          Navigator.of(context).pushNamed('/pals_parables');
+        }
+        return;
+    }
+
+    setState(() {
+      _voiceFlow = _VoiceFlowState.listening;
+      _partialTranscript = '';
+    });
+    _micPulseController.repeat(reverse: true);
+
+    final completer = Completer<void>();
+
+    await _sttService.startListening(
+      onResult: (result) {
+        if (!mounted || _voiceFlow != _VoiceFlowState.listening) return;
+        if (result.isFinal) {
+          _micPulseController.stop();
+          final transcript = result.text;
+          if (transcript.isEmpty) {
+            // Nothing heard — retry or fall back
+            setState(() => _partialTranscript = '');
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("I didn't catch that. Try tapping PAL again."),
+                duration: Duration(seconds: 3),
+              ),
+            );
+            _cancelConversation();
+          } else {
+            _processMoodFromVoice(transcript);
+          }
+          if (!completer.isCompleted) completer.complete();
+        } else {
+          setState(() => _partialTranscript = result.text);
+        }
+      },
+      onError: (error) {
+        if (!mounted) return;
+        _micPulseController.stop();
+        _cancelConversation();
+        if (!completer.isCompleted) completer.complete();
+      },
+    );
+
+    // Timeout fallback
+    unawaited(
+      Future.delayed(const Duration(seconds: SttService.defaultListenSeconds + 1))
+          .then((_) {
+        if (!completer.isCompleted) {
+          if (_partialTranscript.isNotEmpty && mounted) {
+            _micPulseController.stop();
+            _processMoodFromVoice(_partialTranscript);
+          } else if (mounted && _voiceFlow == _VoiceFlowState.listening) {
+            _micPulseController.stop();
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("I didn't catch that. Try tapping PAL again."),
+                duration: Duration(seconds: 3),
+              ),
+            );
+            _cancelConversation();
+          }
+          completer.complete();
+        }
+      }),
+    );
+  }
+
+  /// Process mood from voice transcript, play micro-response, then start story.
+  Future<void> _processMoodFromVoice(String transcript) async {
+    final appNotifier = ref.read(appStateProvider.notifier);
+    final moodService = appNotifier.moodService;
+    final result = moodService.detectMood(transcript);
+
+    // Persist mood for thematic Daily Bread alignment
+    appNotifier.updateLastDetectedMood(result.mood);
+
+    // Fetch verse for this mood
+    final verseService = VerseService();
+    final verse = verseService.getVerseForMood(result.mood);
+
+    setState(() {
+      _voiceFlow = _VoiceFlowState.responding;
+      _moodResult = result;
+      _moodVerse = verse;
+      _finalTranscript = transcript;
+      _partialTranscript = '';
+    });
+
+    // Play PAL micro-response audio
+    final responseId = _pickMicroResponseId(result.mood);
+    final appState = ref.read(appStateProvider).valueOrNull;
+    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_GRACE';
+    final userName = appState?.userPreferences.userName ?? '';
+
+    String responseText;
+    if (appState?.userPreferences.palGreetingsEnabled == false) {
+      responseText = moodService.getMicroResponseText(result.mood);
+    } else {
+      final palAudio = ref.read(palAudioServiceProvider);
+      final nameAudio = ref.read(nameAudioServiceProvider);
+      final nameClip = userName.isNotEmpty
+          ? await nameAudio.getRandomNameClip(userName, voiceKey)
+          : null;
+
+      try {
+        responseText = await palAudio.playMicroResponse(
+          responseId,
+          result.mood,
+          voiceKey,
+          nameClipFile: nameClip?.file,
+          nameClipText: nameClip?.text,
+        );
+
+        logEvent('pal_line_played', {
+          'line_id': responseId,
+          'type': 'micro_response',
+          'mood': result.mood,
+          'voice_key': voiceKey,
+          'name_prefix_used': nameClip != null && responseText.contains(nameClip.text),
+        });
+
+        // Wait for micro-response audio to finish playing
+        await palAudio.awaitPlaybackComplete();
+      } catch (e) {
+        debugPrint('[MainMenu] PAL micro-response audio failed: $e');
+        responseText = moodService.getMicroResponseText(result.mood);
+      }
+    }
+
+    if (!mounted || _voiceFlow != _VoiceFlowState.responding) return;
+
+    setState(() => _microResponseText = responseText);
+
+    // Wait 2s after audio finishes, then select story
+    _autoStoryTimer?.cancel();
+    _autoStoryTimer = Timer(const Duration(seconds: 2), () {
+      if (mounted && _voiceFlow == _VoiceFlowState.responding) {
+        _selectAndPlayStory(transcript);
+      }
+    });
+  }
+
+  /// Select a story and navigate to the player.
+  Future<void> _selectAndPlayStory(String userText) async {
+    if (_moodResult == null || _navigatingToPlayer) return;
+    _navigatingToPlayer = true;
+
+    setState(() => _voiceFlow = _VoiceFlowState.selectingStory);
+
+    final lengthBucket = ref.read(sessionLengthBucketProvider);
+
+    logEvent('pal_tap', {
+      'length_bucket': lengthBucket.name,
+      'detected_mood': _moodResult!.mood,
+      'input_method': 'voice_main_menu',
+    });
+
+    try {
+      final appStateNotifier = ref.read(appStateProvider.notifier);
+      final parable = await appStateNotifier.selectParable(
+        mood: _moodResult!.mood,
+        lengthBucket: lengthBucket,
+        userText: userText,
+      );
+
+      if (!mounted) return;
+
+      if (parable == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('No story available for this mood and length yet.'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+        _cancelConversation();
+        return;
+      }
+
+      await appStateNotifier.addToHistory(parable);
+
+      if (!mounted) return;
+      final playerNotifier = ref.read(parablePlayerProvider.notifier);
+      await playerNotifier.loadParable(parable);
+
+      // Store PAL's response and verse for display on the player screen
+      playerNotifier.setPalResponse(_microResponseText, _moodVerse);
+
+      if (!mounted) return;
+
+      // Reset voice flow state before navigating
+      setState(() {
+        _voiceFlow = _VoiceFlowState.inactive;
+        _greetingText = null;
+        _microResponseText = null;
+        _finalTranscript = null;
+        _moodResult = null;
+        _moodVerse = null;
+      });
+
+      Navigator.of(context).pushNamed('/parable_player');
+      _navigatingToPlayer = false;
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error loading story: $e'),
+          duration: const Duration(seconds: 3),
+        ),
+      );
+      _cancelConversation();
+    }
+  }
+
+  /// Pick a micro-response ID with non-repeat logic.
+  String _pickMicroResponseId(String mood) {
+    const microResponseIds = {
+      'joyful': ['RESP_JOY_01', 'RESP_JOY_02', 'RESP_JOY_03', 'RESP_JOY_04', 'RESP_JOY_05', 'RESP_JOY_06'],
+      'weary': ['RESP_WEARY_01', 'RESP_WEARY_02', 'RESP_WEARY_03', 'RESP_WEARY_04', 'RESP_WEARY_05', 'RESP_WEARY_06'],
+      'anxious': ['RESP_ANX_01', 'RESP_ANX_02', 'RESP_ANX_03', 'RESP_ANX_04', 'RESP_ANX_05', 'RESP_ANX_06'],
+      'hurting': ['RESP_HURT_01', 'RESP_HURT_02', 'RESP_HURT_03', 'RESP_HURT_04', 'RESP_HURT_05', 'RESP_HURT_06'],
+      'neutral': ['RESP_NEU_01', 'RESP_NEU_02', 'RESP_NEU_03', 'RESP_NEU_04', 'RESP_NEU_05', 'RESP_NEU_06'],
+    };
+
+    final pool = microResponseIds[mood] ?? microResponseIds['neutral']!;
+    final recentIds = _recentMicroResponseIds.putIfAbsent(mood, () => []);
+
+    var candidates = pool.where((id) => !recentIds.contains(id)).toList();
+    if (candidates.isEmpty) {
+      recentIds.clear();
+      candidates = pool;
+    }
+
+    final picked = candidates[_random.nextInt(candidates.length)];
+    recentIds.add(picked);
+    if (recentIds.length > pool.length) {
+      recentIds.removeAt(0);
+    }
+
+    return picked;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Build
+  // ---------------------------------------------------------------------------
 
   @override
   Widget build(BuildContext context) {
     final theme = widget.theme;
 
-    // Don't show anything until we've checked intro state
     if (!_introChecked) {
       return const SizedBox(height: 140);
     }
@@ -504,7 +899,6 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Show completed lines
                     for (int i = 0; i < _currentLine; i++)
                       Padding(
                         padding: const EdgeInsets.only(bottom: 2),
@@ -517,7 +911,6 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
                           textAlign: TextAlign.center,
                         ),
                       ),
-                    // Current typing line
                     if (_currentLine < _introLines.length)
                       Text(
                         _displayedText + (_charIndex < _introLines[_currentLine].length ? '▋' : ''),
@@ -531,6 +924,12 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
                 ),
               ),
             ),
+
+          // Voice flow status (above PAL button)
+          if (_voiceFlow != _VoiceFlowState.inactive) ...[
+            _buildVoiceFlowOverlay(theme),
+            const SizedBox(height: 12),
+          ],
 
           // PAL Button with pulse animation + tap glow
           ScaleTransition(
@@ -569,33 +968,53 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
                 color: AppTheme.softSkyBlue,
                 borderRadius: BorderRadius.circular(18),
                 child: InkWell(
-                  onTap: _onPalTap,
+                  onTap: _voiceFlow == _VoiceFlowState.inactive ? _onPalTap : null,
                   borderRadius: BorderRadius.circular(18),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 32,
-                      vertical: 28,
+                      vertical: 20,
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(
-                          Icons.auto_stories_outlined,
-                          size: 48,
-                          color: Colors.white,
-                        ),
-                        const SizedBox(height: 16),
+                        // Show mic icon when listening
+                        if (_voiceFlow == _VoiceFlowState.listening) ...[
+                          AnimatedBuilder(
+                            animation: _micPulseController,
+                            builder: (context, child) {
+                              return Opacity(
+                                opacity: 0.5 + (_micPulseController.value * 0.5),
+                                child: const Icon(
+                                  Icons.mic,
+                                  size: 48,
+                                  color: Colors.white,
+                                ),
+                              );
+                            },
+                          ),
+                          const SizedBox(height: 8),
+                        ],
                         Text(
                           'PAL',
-                          style: theme.textTheme.headlineMedium?.copyWith(
+                          style: theme.textTheme.headlineLarge?.copyWith(
                             color: Colors.white,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 40,
                           ),
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          'Tap for a mood based story',
+                          _voiceFlow == _VoiceFlowState.inactive
+                              ? 'Tap for a mood based story'
+                              : _voiceFlow == _VoiceFlowState.playingGreeting
+                                  ? 'PAL is speaking...'
+                                  : _voiceFlow == _VoiceFlowState.listening
+                                      ? 'Listening...'
+                                      : _voiceFlow == _VoiceFlowState.responding
+                                          ? 'PAL is responding...'
+                                          : 'Preparing your story...',
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: Colors.white.withOpacity(0.9),
                           ),
@@ -608,9 +1027,122 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
               ),
             ),
           ),
+
+          // Cancel button during voice flow
+          if (_voiceFlow != _VoiceFlowState.inactive) ...[
+            const SizedBox(height: 8),
+            TextButton(
+              onPressed: _cancelConversation,
+              child: Text(
+                'Cancel',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: AppTheme.deepCharcoal.withOpacity(0.6),
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );
+  }
+
+  /// Build the voice flow overlay showing greeting text, transcript, or response.
+  Widget _buildVoiceFlowOverlay(ThemeData theme) {
+    switch (_voiceFlow) {
+      case _VoiceFlowState.inactive:
+        return const SizedBox.shrink();
+
+      case _VoiceFlowState.playingGreeting:
+        return Text(
+          _greetingText ?? '...',
+          style: theme.textTheme.titleMedium?.copyWith(
+            color: AppTheme.deepCharcoal,
+            fontStyle: FontStyle.italic,
+          ),
+          textAlign: TextAlign.center,
+        );
+
+      case _VoiceFlowState.listening:
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (_greetingText != null)
+              Text(
+                _greetingText!,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: AppTheme.deepCharcoal.withOpacity(0.5),
+                  fontStyle: FontStyle.italic,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            if (_partialTranscript.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Text(
+                _partialTranscript,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: AppTheme.deepCharcoal,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ],
+        );
+
+      case _VoiceFlowState.responding:
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (_finalTranscript != null)
+              Text(
+                '"${_finalTranscript!}"',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: AppTheme.deepCharcoal.withOpacity(0.6),
+                ),
+                textAlign: TextAlign.center,
+              ),
+            if (_microResponseText != null) ...[
+              const SizedBox(height: 6),
+              Text(
+                _microResponseText!,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  color: AppTheme.deepCharcoal,
+                  fontStyle: FontStyle.italic,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ],
+        );
+
+      case _VoiceFlowState.selectingStory:
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (_finalTranscript != null)
+              Text(
+                '"${_finalTranscript!}"',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: AppTheme.deepCharcoal.withOpacity(0.6),
+                ),
+                textAlign: TextAlign.center,
+              ),
+            const SizedBox(height: 8),
+            const SizedBox(
+              width: 20,
+              height: 20,
+              child: CircularProgressIndicator(strokeWidth: 2),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Preparing your story...',
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: AppTheme.deepCharcoal,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        );
+    }
   }
 }
 
@@ -631,8 +1163,8 @@ class _ReservedPanel extends ConsumerStatefulWidget {
 }
 
 class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
-  bool _reflectionExpanded = false;
-  final ReflectionService _reflectionService = ReflectionService();
+  bool _isDraggingSlider = false;
+  double _dragValue = 0;
 
   // --------------- state derivation ---------------
 
@@ -700,17 +1232,17 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
   void _onReadTodaysStory() {
     final ps = ref.read(parablePlayerProvider);
     if (ps.currentParable != null) {
-      Navigator.of(context).pushNamed('/parable_player');
+      Navigator.of(context).pushNamed('/story_reader');
     } else {
-      Navigator.of(context).pushNamed('/pals_parables');
+      Navigator.of(context).pushNamed(
+        '/pals_parables',
+        arguments: {'textOnly': true, 'navigateToReader': true},
+      );
     }
   }
 
   void _onTextPal() {
-    Navigator.of(context).pushNamed(
-      '/pals_parables',
-      arguments: {'textOnly': true},
-    );
+    Navigator.of(context).pushNamed('/pals_parables', arguments: {'textOnly': true});
   }
 
   // --------------- build ---------------
@@ -724,7 +1256,7 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32),
       child: ConstrainedBox(
-        constraints: const BoxConstraints(minHeight: 280),
+        constraints: const BoxConstraints(minHeight: 120),
         child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 280),
           switchInCurve: Curves.easeInOut,
@@ -759,41 +1291,30 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
           child: ElevatedButton(
             onPressed: _onReadTodaysStory,
             style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 14),
+              padding: const EdgeInsets.symmetric(vertical: 12),
               backgroundColor: theme.colorScheme.primary,
               foregroundColor: theme.colorScheme.onPrimary,
             ),
             child: const Text("Read Today's Story"),
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 8),
         SizedBox(
           width: double.infinity,
           child: OutlinedButton(
             onPressed: _onTextPal,
             style: OutlinedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 12),
+              padding: const EdgeInsets.symmetric(vertical: 10),
               side: BorderSide(color: AppTheme.lightBlue, width: 1.5),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Text PAL',
-                  style: theme.textTheme.bodyLarge?.copyWith(
-                    color: AppTheme.deepCharcoal,
-                  ),
-                ),
-                Text(
-                  '(No audio)',
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: AppTheme.deepCharcoal.withOpacity(0.7),
-                  ),
-                ),
-              ],
+            child: Text(
+              'Text PAL',
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: AppTheme.deepCharcoal,
+              ),
             ),
           ),
         ),
@@ -862,24 +1383,39 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
             final position = snapshot.data ?? Duration.zero;
             final duration = notifier.duration ?? Duration.zero;
             final max = duration.inMilliseconds.toDouble();
-            final value =
-                position.inMilliseconds.toDouble().clamp(0.0, max);
+            final displayValue = _isDraggingSlider
+                ? _dragValue
+                : position.inMilliseconds.toDouble().clamp(0.0, max);
 
             return Column(
               children: [
                 Slider(
-                  value: value,
+                  value: displayValue,
                   max: max > 0 ? max : 1,
-                  onChanged: (v) =>
-                      notifier.seek(Duration(milliseconds: v.toInt())),
+                  onChangeStart: (v) {
+                    setState(() {
+                      _isDraggingSlider = true;
+                      _dragValue = v;
+                    });
+                  },
+                  onChanged: (v) {
+                    setState(() => _dragValue = v);
+                  },
+                  onChangeEnd: (v) {
+                    notifier.seek(Duration(milliseconds: v.toInt()));
+                    setState(() => _isDraggingSlider = false);
+                  },
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(_fmt(position),
-                          style: theme.textTheme.bodySmall),
+                      Text(_fmt(
+                        _isDraggingSlider
+                            ? Duration(milliseconds: _dragValue.toInt())
+                            : position,
+                      ), style: theme.textTheme.bodySmall),
                       Text(_fmt(duration),
                           style: theme.textTheme.bodySmall),
                     ],
@@ -900,30 +1436,13 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
       key: const ValueKey('finished'),
       mainAxisSize: MainAxisSize.min,
       children: [
-        // Reflection — inline expand/collapse, NO navigation
-        SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () =>
-                setState(() => _reflectionExpanded = !_reflectionExpanded),
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 14),
-              backgroundColor: theme.colorScheme.primary,
-              foregroundColor: theme.colorScheme.onPrimary,
-            ),
-            child: const Text('Reflection'),
-          ),
-        ),
-        if (_reflectionExpanded) _buildInlineReflection(state, theme),
-        const SizedBox(height: 12),
-
-        // Save to Favorites — direct action (unchanged)
+        // Save to Favorites
         SizedBox(
           width: double.infinity,
           child: OutlinedButton(
             onPressed: () => _saveFavorite(state.currentParable!),
             style: OutlinedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 14),
+              padding: const EdgeInsets.symmetric(vertical: 10),
               side: BorderSide(color: AppTheme.lightBlue, width: 1.5),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -932,7 +1451,7 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
             child: const Text('Save to Favorites'),
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 8),
 
         // Share with a PAL — dialog, NO navigation
         SizedBox(
@@ -940,7 +1459,7 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
           child: OutlinedButton(
             onPressed: () => _shareWithPals(state.currentParable!),
             style: OutlinedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 14),
+              padding: const EdgeInsets.symmetric(vertical: 10),
               side: BorderSide(color: AppTheme.lightBlue, width: 1.5),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -950,86 +1469,6 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
           ),
         ),
       ],
-    );
-  }
-
-  // --------------- inline reflection ---------------
-
-  Widget _buildInlineReflection(ParablePlayerState state, ThemeData theme) {
-    final appState = ref.read(appStateProvider).valueOrNull;
-    if (appState == null) return const SizedBox.shrink();
-
-    if (!appState.userPreferences.showEverydayReflections) {
-      return Padding(
-        padding: const EdgeInsets.only(top: 8),
-        child: Text(
-          'Reflections are disabled in Settings.',
-          style: theme.textTheme.bodySmall,
-        ),
-      );
-    }
-
-    final isKidMode = appState.userPreferences.kidFriendlyOnly;
-    final reflection = _reflectionService.getReflectionForParable(
-      parable: state.currentParable!,
-      isKidMode: isKidMode,
-    );
-
-    if (reflection == null) {
-      return Padding(
-        padding: const EdgeInsets.only(top: 8),
-        child: Text(
-          'No reflection available for this story.',
-          style: theme.textTheme.bodySmall,
-        ),
-      );
-    }
-
-    return Card(
-      margin: const EdgeInsets.only(top: 8),
-      color: theme.colorScheme.tertiaryContainer,
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              reflection.text,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.colorScheme.onTertiaryContainer,
-              ),
-            ),
-            if (reflection.question != null && !isKidMode) ...[
-              const SizedBox(height: 12),
-              Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.tertiary.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Icon(Icons.help_outline,
-                        size: 16,
-                        color: theme.colorScheme.onTertiaryContainer),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        reflection.question!,
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.onTertiaryContainer,
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ],
-        ),
-      ),
     );
   }
 

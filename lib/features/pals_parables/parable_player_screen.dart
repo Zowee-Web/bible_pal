@@ -27,6 +27,8 @@ class ParablePlayerScreen extends ConsumerStatefulWidget {
 
 class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
   bool _isFavorited = false;
+  bool _isDraggingSlider = false;
+  double _dragValue = 0;
   bool _showReflection = false;
   bool _reflectionDismissed = false;
   bool _reflectionExpanded = true;
@@ -395,7 +397,12 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
       },
       child: Scaffold(
       appBar: AppBar(
-        title: const Text('PAL\'s Story'),
+        title: Text(
+          playerState.currentParable?.title ?? 'Story',
+          style: theme.textTheme.headlineSmall?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: playerState.currentParable == null
           ? const Center(
@@ -404,25 +411,46 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
           : ListView(
               padding: const EdgeInsets.all(16),
               children: [
-                // Parable Title
-                Text(
-                  playerState.currentParable!.title,
-                  style: theme.textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 8),
 
-                // Metadata
-                Text(
-                  'Mood: ${playerState.currentParable!.mood} • ${playerState.currentParable!.lengthBucket.displayLabel}',
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
+                // Mood-flow verse (from PAL's mood response)
+                if (playerState.verse != null) ...[
+                  Card(
+                    elevation: 2,
+                    color: theme.colorScheme.primaryContainer,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${playerState.verse!.reference} (${playerState.verse!.translation})',
+                            style: theme.textTheme.titleSmall?.copyWith(
+                              color: theme.colorScheme.onPrimaryContainer,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            '"${playerState.verse!.text}"',
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.colorScheme.onPrimaryContainer,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          Text(
+                            playerState.verse!.context,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.colorScheme.onPrimaryContainer
+                                  .withOpacity(0.9),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 24),
+                  const SizedBox(height: 16),
+                ],
 
                 // Scripture Reference Panel (ADR-010)
                 // For Traditional stories: Show bibleSourceRef AFTER story completes
@@ -519,21 +547,31 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                             final duration =
                                 playerNotifier.duration ?? Duration.zero;
                             final max = duration.inMilliseconds.toDouble();
-                            final value = position.inMilliseconds
-                                .toDouble()
-                                .clamp(0.0, max);
+                            final displayValue = _isDraggingSlider
+                                ? _dragValue
+                                : position.inMilliseconds
+                                    .toDouble()
+                                    .clamp(0.0, max);
 
                             return Column(
                               children: [
                                 Slider(
-                                  value: value,
+                                  value: displayValue,
                                   max: max > 0 ? max : 1,
-                                  onChanged: (newValue) {
+                                  onChangeStart: (v) {
+                                    setState(() {
+                                      _isDraggingSlider = true;
+                                      _dragValue = v;
+                                    });
+                                  },
+                                  onChanged: (v) {
+                                    setState(() => _dragValue = v);
+                                  },
+                                  onChangeEnd: (v) {
                                     playerNotifier.seek(
-                                      Duration(
-                                        milliseconds: newValue.toInt(),
-                                      ),
+                                      Duration(milliseconds: v.toInt()),
                                     );
+                                    setState(() => _isDraggingSlider = false);
                                   },
                                 ),
                                 Padding(
@@ -544,7 +582,11 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(_formatDuration(position)),
+                                      Text(_formatDuration(
+                                        _isDraggingSlider
+                                            ? Duration(milliseconds: _dragValue.toInt())
+                                            : position,
+                                      )),
                                       Text(_formatDuration(duration)),
                                     ],
                                   ),
