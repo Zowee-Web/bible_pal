@@ -102,27 +102,120 @@ class MainMenuScreen extends ConsumerWidget {
                     child: IntrinsicHeight(
                       child: Column(
                         children: [
-                          // Settings Icon (top right, subtle)
-                          Align(
-                            alignment: Alignment.topRight,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 4, right: 8),
-                              child: IconButton(
-                                icon: Icon(
-                                  Icons.settings_outlined,
-                                  color: AppTheme.deepCharcoal.withOpacity(0.6),
-                                ),
-                                onPressed: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                        builder: (_) => const SettingsScreen()),
-                                  );
-                                },
-                              ),
+                          // Spacer pushes PAL button down so it sits
+                          // right above Story Length. Voice overlay text
+                          // appears in this space above the button.
+                          const Spacer(),
+
+                          // PAL's Parables Button
+                          _PalButtonWithIntro(theme: theme),
+
+                          const SizedBox(height: 10),
+
+                          // "Story Length" label
+                          Text(
+                            'Story Length',
+                            style: theme.textTheme.labelLarge?.copyWith(
+                              color: AppTheme.deepCharcoal.withOpacity(0.6),
+                              letterSpacing: 0.8,
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+
+                          // Session-scoped story length picker (horizontal)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
+                            child: StoryLengthRadioSelector(
+                              horizontal: true,
+                              selectedBucket: ref.watch(sessionLengthBucketProvider),
+                              onBucketChanged: (b) => ref.read(sessionLengthBucketProvider.notifier).state = b,
                             ),
                           ),
 
-                          // Daily Bread Verse Section
+                          const SizedBox(height: 10),
+
+                          // Reserved panel: swaps IDLE (mood buttons + text pal + read story) / NOW PLAYING / FINISHED
+                          const _ReservedPanel(),
+
+                          const SizedBox(height: 10),
+
+                          // Secondary Buttons (Favorites, History & My PALs - single row)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: ElevatedButton.icon(
+                                    onPressed: () {
+                                      Navigator.of(context).pushNamed('/favorites');
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      padding: const EdgeInsets.symmetric(vertical: 10),
+                                      backgroundColor: theme.colorScheme.primary,
+                                      foregroundColor: theme.colorScheme.onPrimary,
+                                      elevation: 2,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                    ),
+                                    icon: const Icon(
+                                      Icons.favorite_outline,
+                                      size: 18,
+                                    ),
+                                    label: const Text('Favorites'),
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: ElevatedButton.icon(
+                                    onPressed: () {
+                                      Navigator.of(context).pushNamed('/history');
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      padding: const EdgeInsets.symmetric(vertical: 10),
+                                      backgroundColor: theme.colorScheme.primary,
+                                      foregroundColor: theme.colorScheme.onPrimary,
+                                      elevation: 2,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                    ),
+                                    icon: const Icon(
+                                      Icons.history_outlined,
+                                      size: 18,
+                                    ),
+                                    label: const Text('History'),
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: ElevatedButton.icon(
+                                    onPressed: () {
+                                      Navigator.of(context).pushNamed('/my_pals');
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      padding: const EdgeInsets.symmetric(vertical: 10),
+                                      backgroundColor: theme.colorScheme.primary,
+                                      foregroundColor: theme.colorScheme.onPrimary,
+                                      elevation: 2,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                    ),
+                                    icon: const Icon(
+                                      Icons.people_outline,
+                                      size: 18,
+                                    ),
+                                    label: const Text('My PALs'),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          const SizedBox(height: 10),
+
+                          // Daily Bread Verse Section (bottom)
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 32),
                             child: Column(
@@ -156,121 +249,25 @@ class MainMenuScreen extends ConsumerWidget {
                             ),
                           ),
 
-                          const Spacer(),
+                          const SizedBox(height: 8),
 
-                          // PAL's Parables Button (Centerpiece - Large, Gold Outline)
-                          _PalButtonWithIntro(theme: theme),
-
-                          const SizedBox(height: 10),
-
-                          // Session-scoped story length picker
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 32),
-                            child: StoryLengthRadioSelector(
-                              selectedBucket: ref.watch(sessionLengthBucketProvider),
-                              onBucketChanged: (b) => ref.read(sessionLengthBucketProvider.notifier).state = b,
-                            ),
-                          ),
-
-                          const SizedBox(height: 10),
-
-                          // Reserved panel: swaps IDLE / NOW PLAYING / FINISHED
-                          const _ReservedPanel(),
-
-                          const Spacer(),
-
-                          // Secondary Buttons (Favorites, History & My PALs - single row)
-                          Padding(
-                            padding: const EdgeInsets.only(left: 32, right: 32, bottom: 8),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: OutlinedButton.icon(
-                                    onPressed: () {
-                                      Navigator.of(context).pushNamed('/favorites');
-                                    },
-                                    style: OutlinedButton.styleFrom(
-                                      padding: const EdgeInsets.symmetric(vertical: 10),
-                                      side: BorderSide(
-                                        color: AppTheme.lightBlue,
-                                        width: 1.5,
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                    ),
-                                    icon: Icon(
-                                      Icons.favorite_outline,
-                                      size: 18,
-                                      color: AppTheme.softSkyBlue,
-                                    ),
-                                    label: Text(
-                                      'Favorites',
-                                      style: theme.textTheme.bodyMedium?.copyWith(
-                                        color: AppTheme.deepCharcoal,
-                                      ),
-                                    ),
-                                  ),
+                          // Settings icon (bottom left)
+                          Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8, bottom: 4),
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.settings_outlined,
+                                  color: AppTheme.deepCharcoal.withOpacity(0.6),
                                 ),
-                                const SizedBox(width: 8),
-                                Expanded(
-                                  child: OutlinedButton.icon(
-                                    onPressed: () {
-                                      Navigator.of(context).pushNamed('/history');
-                                    },
-                                    style: OutlinedButton.styleFrom(
-                                      padding: const EdgeInsets.symmetric(vertical: 10),
-                                      side: BorderSide(
-                                        color: AppTheme.lightBlue,
-                                        width: 1.5,
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                    ),
-                                    icon: Icon(
-                                      Icons.history_outlined,
-                                      size: 18,
-                                      color: AppTheme.softSkyBlue,
-                                    ),
-                                    label: Text(
-                                      'History',
-                                      style: theme.textTheme.bodyMedium?.copyWith(
-                                        color: AppTheme.deepCharcoal,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(width: 8),
-                                Expanded(
-                                  child: OutlinedButton.icon(
-                                    onPressed: () {
-                                      Navigator.of(context).pushNamed('/my_pals');
-                                    },
-                                    style: OutlinedButton.styleFrom(
-                                      padding: const EdgeInsets.symmetric(vertical: 10),
-                                      side: BorderSide(
-                                        color: AppTheme.lightBlue,
-                                        width: 1.5,
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                    ),
-                                    icon: Icon(
-                                      Icons.people_outline,
-                                      size: 18,
-                                      color: AppTheme.softSkyBlue,
-                                    ),
-                                    label: Text(
-                                      'My PALs',
-                                      style: theme.textTheme.bodyMedium?.copyWith(
-                                        color: AppTheme.deepCharcoal,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                                onPressed: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (_) => const SettingsScreen()),
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ],
@@ -873,6 +870,65 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   }
 
   // ---------------------------------------------------------------------------
+  // Button content builders
+  // ---------------------------------------------------------------------------
+
+  /// Large pulsing mic icon shown while STT is listening.
+  Widget _buildMicContent(ThemeData theme) {
+    return Center(
+      key: const ValueKey('mic'),
+      child: AnimatedBuilder(
+        animation: _micPulseController,
+        builder: (context, child) {
+          return Opacity(
+            opacity: 0.5 + (_micPulseController.value * 0.5),
+            child: const Icon(
+              Icons.mic,
+              size: 64,
+              color: Colors.white,
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  /// Normal PAL button content shown in all states except listening.
+  Widget _buildPalContent(ThemeData theme) {
+    final subtitle = _voiceFlow == _VoiceFlowState.inactive
+        ? 'Tap for a mood based story'
+        : _voiceFlow == _VoiceFlowState.playingGreeting
+            ? 'PAL is speaking...'
+            : _voiceFlow == _VoiceFlowState.responding
+                ? 'PAL is responding...'
+                : 'Preparing your story...';
+
+    return Column(
+      key: const ValueKey('pal'),
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          'PAL',
+          style: theme.textTheme.headlineLarge?.copyWith(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 40,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          subtitle,
+          style: theme.textTheme.bodyMedium?.copyWith(
+            color: Colors.white.withOpacity(0.9),
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ],
+    );
+  }
+
+  // ---------------------------------------------------------------------------
   // Build
   // ---------------------------------------------------------------------------
 
@@ -932,7 +988,11 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
           ],
 
           // PAL Button with pulse animation + tap glow
-          ScaleTransition(
+          // SizedBox ensures the button always fills available width
+          // so it doesn't resize when switching between PAL text and mic icon.
+          SizedBox(
+            width: double.infinity,
+            child: ScaleTransition(
             scale: _pulseAnimation,
             child: AnimatedBuilder(
               animation: _glowController,
@@ -975,57 +1035,23 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
                       horizontal: 32,
                       vertical: 20,
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        // Show mic icon when listening
-                        if (_voiceFlow == _VoiceFlowState.listening) ...[
-                          AnimatedBuilder(
-                            animation: _micPulseController,
-                            builder: (context, child) {
-                              return Opacity(
-                                opacity: 0.5 + (_micPulseController.value * 0.5),
-                                child: const Icon(
-                                  Icons.mic,
-                                  size: 48,
-                                  color: Colors.white,
-                                ),
-                              );
-                            },
-                          ),
-                          const SizedBox(height: 8),
-                        ],
-                        Text(
-                          'PAL',
-                          style: theme.textTheme.headlineLarge?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 40,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          _voiceFlow == _VoiceFlowState.inactive
-                              ? 'Tap for a mood based story'
-                              : _voiceFlow == _VoiceFlowState.playingGreeting
-                                  ? 'PAL is speaking...'
-                                  : _voiceFlow == _VoiceFlowState.listening
-                                      ? 'Listening...'
-                                      : _voiceFlow == _VoiceFlowState.responding
-                                          ? 'PAL is responding...'
-                                          : 'Preparing your story...',
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            color: Colors.white.withOpacity(0.9),
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
+                    child: SizedBox(
+                      // Fixed height so the button never resizes between PAL / mic states.
+                      height: 80,
+                      child: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 300),
+                        switchInCurve: Curves.easeInOut,
+                        switchOutCurve: Curves.easeInOut,
+                        child: _voiceFlow == _VoiceFlowState.listening
+                            ? _buildMicContent(theme)
+                            : _buildPalContent(theme),
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
+          ),
           ),
 
           // Cancel button during voice flow
@@ -1165,6 +1191,7 @@ class _ReservedPanel extends ConsumerStatefulWidget {
 class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
   bool _isDraggingSlider = false;
   double _dragValue = 0;
+  bool _isSelectingFromMood = false;
 
   // --------------- state derivation ---------------
 
@@ -1229,6 +1256,96 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
     );
   }
 
+  Future<void> _handleMoodButtonTap(String mood) async {
+    if (_isSelectingFromMood) return;
+    setState(() => _isSelectingFromMood = true);
+
+    final lengthBucket = ref.read(sessionLengthBucketProvider);
+
+    logEvent('pal_tap', {
+      'length_bucket': lengthBucket.name,
+      'detected_mood': mood,
+      'input_method': 'mood_button_main_menu',
+    });
+
+    try {
+      final appStateNotifier = ref.read(appStateProvider.notifier);
+      appStateNotifier.updateLastDetectedMood(mood);
+
+      final parable = await appStateNotifier.selectParable(
+        mood: mood,
+        lengthBucket: lengthBucket,
+        userText: '',
+      );
+
+      if (!mounted) return;
+
+      if (parable == null) {
+        setState(() => _isSelectingFromMood = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('No story available for this mood and length yet.'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+        return;
+      }
+
+      await appStateNotifier.addToHistory(parable);
+
+      if (!mounted) return;
+      final playerNotifier = ref.read(parablePlayerProvider.notifier);
+      await playerNotifier.loadParable(parable);
+
+      if (!mounted) return;
+      setState(() => _isSelectingFromMood = false);
+
+      Navigator.of(context).pushNamed('/parable_player');
+    } catch (e) {
+      setState(() => _isSelectingFromMood = false);
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error loading story: $e'),
+          duration: const Duration(seconds: 3),
+        ),
+      );
+    }
+  }
+
+  Widget _buildMoodButtons(ThemeData theme) {
+    const moods = [
+      ('Joyful', 'joyful'),
+      ('Neutral', 'neutral'),
+      ('Weary', 'weary'),
+      ('Anxious', 'anxious'),
+      ('Hurting', 'hurting'),
+    ];
+
+    return Wrap(
+      spacing: 10,
+      runSpacing: 10,
+      alignment: WrapAlignment.center,
+      children: moods.map((entry) {
+        final (label, moodKey) = entry;
+        return ElevatedButton(
+          onPressed: _isSelectingFromMood
+              ? null
+              : () => _handleMoodButtonTap(moodKey),
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            backgroundColor: theme.colorScheme.primary,
+            foregroundColor: theme.colorScheme.onPrimary,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
+          child: Text(label),
+        );
+      }).toList(),
+    );
+  }
+
   void _onReadTodaysStory() {
     final ps = ref.read(parablePlayerProvider);
     if (ps.currentParable != null) {
@@ -1286,6 +1403,41 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
       key: const ValueKey('idle'),
       mainAxisSize: MainAxisSize.min,
       children: [
+        // Mood buttons for direct story selection
+        _buildMoodButtons(theme),
+        if (_isSelectingFromMood) ...[
+          const SizedBox(height: 12),
+          const Center(child: CircularProgressIndicator()),
+          const SizedBox(height: 4),
+          Center(
+            child: Text(
+              'Preparing your story...',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ),
+        ],
+        const SizedBox(height: 12),
+        // Text PAL button
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: _onTextPal,
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              backgroundColor: theme.colorScheme.primary,
+              foregroundColor: theme.colorScheme.onPrimary,
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            child: const Text('Text PAL'),
+          ),
+        ),
+        const SizedBox(height: 8),
+        // Read Today's Story button
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
@@ -1296,26 +1448,6 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
               foregroundColor: theme.colorScheme.onPrimary,
             ),
             child: const Text("Read Today's Story"),
-          ),
-        ),
-        const SizedBox(height: 8),
-        SizedBox(
-          width: double.infinity,
-          child: OutlinedButton(
-            onPressed: _onTextPal,
-            style: OutlinedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              side: BorderSide(color: AppTheme.lightBlue, width: 1.5),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            child: Text(
-              'Text PAL',
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: AppTheme.deepCharcoal,
-              ),
-            ),
           ),
         ),
       ],

@@ -64,6 +64,7 @@ flutter:
   uses-material-design: true
   assets:
     - .env
+    - assets/images/pal_bg_lake_boat.png
     - assets/stories/manifest.json
     # Creative stories (500-series)
     - assets/stories/creative/501/

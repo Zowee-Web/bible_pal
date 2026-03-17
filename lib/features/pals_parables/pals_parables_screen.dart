@@ -184,25 +184,6 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
   }
 
   // ---------------------------------------------------------------------------
-  // Emoji helper for time window
-  // ---------------------------------------------------------------------------
-
-  String _getTimeWindowEmoji() {
-    switch (_promptTimeWindow) {
-      case 'morning':
-        return '\u{1F305}'; // 🌅
-      case 'afternoon':
-        return '\u{1F324}\u{FE0F}'; // 🌤️
-      case 'evening':
-        return '\u{1F307}'; // 🌇
-      case 'lateNight':
-        return '\u{1F319}'; // 🌙
-      default:
-        return '\u{2728}'; // ✨
-    }
-  }
-
-  // ---------------------------------------------------------------------------
   // Mood button handler
   // ---------------------------------------------------------------------------
 
@@ -614,16 +595,29 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
         _voiceState == VoiceInputState.awaitingPermission;
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      extendBody: true,
       appBar: AppBar(
         title: const Text('PAL\'s Stories'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
+      body: Stack(
+        fit: StackFit.expand,
         children: [
+          SizedBox.expand(
+            child: Image.asset(
+              'assets/images/pal_bg_lake_boat.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+          ListView(
+            padding: EdgeInsets.fromLTRB(16, MediaQuery.of(context).padding.top + kToolbarHeight + 16, 16, 16),
+          children: [
           // Prompt Display
           GreetingDisplay(
             greeting: _promptText ?? '',
-            emoji: _getTimeWindowEmoji(),
+            emoji: '',
           ),
           const SizedBox(height: 12),
 
@@ -631,7 +625,11 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
           Text(
             'Share how you\'re really doing so PAL can choose a story for your heart.',
             style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+              shadows: const [
+                Shadow(offset: Offset(0, 1), blurRadius: 3, color: Colors.black54),
+              ],
             ),
             textAlign: TextAlign.center,
           ),
@@ -639,32 +637,34 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
 
           // Mood Input Section (hidden after mood is set)
           if (_microResponseText == null) ...[
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    // Quick mood buttons
-                    _buildMoodButtons(theme),
-                    const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // Quick mood buttons
+                  _buildMoodButtons(theme),
+                  const SizedBox(height: 16),
 
-                    // Divider with "or" label
-                    Row(
-                      children: [
-                        const Expanded(child: Divider()),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: Text(
-                            'Or tell PAL in your own words:',
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              color: theme.colorScheme.onSurfaceVariant,
-                            ),
+                  // Divider with "or" label
+                  Row(
+                    children: [
+                      const Expanded(child: Divider(color: Colors.white54)),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Text(
+                          'Or tell PAL in your own words:',
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: Colors.white,
+                            shadows: const [
+                              Shadow(offset: Offset(0, 1), blurRadius: 3, color: Colors.black54),
+                            ],
                           ),
                         ),
-                        const Expanded(child: Divider()),
-                      ],
-                    ),
+                      ),
+                      const Expanded(child: Divider(color: Colors.white54)),
+                    ],
+                  ),
                     const SizedBox(height: 12),
 
                     // TextField
@@ -705,7 +705,6 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                   ],
                 ),
               ),
-            ),
           ],
 
           // Loading indicator while story is being selected
@@ -723,6 +722,8 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
             ),
           ],
         ],
+        ),
+        ],
       ),
     );
   }
@@ -730,11 +731,11 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
   /// Build the quick mood button row.
   Widget _buildMoodButtons(ThemeData theme) {
     const moods = [
-      ('\u{1F642} Joyful', 'joyful'),
-      ('\u{1F610} Neutral', 'neutral'),
-      ('\u{1F614} Weary', 'weary'),
-      ('\u{1F61F} Anxious', 'anxious'),
-      ('\u{1F494} Hurting', 'hurting'),
+      ('Joyful', 'joyful'),
+      ('Neutral', 'neutral'),
+      ('Weary', 'weary'),
+      ('Anxious', 'anxious'),
+      ('Hurting', 'hurting'),
     ];
 
     return Wrap(

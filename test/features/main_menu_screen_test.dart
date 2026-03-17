@@ -165,16 +165,15 @@ void main() {
 
       expect(find.text("Read Today's Story"), findsOneWidget);
       expect(find.text('Text PAL'), findsOneWidget);
-      expect(find.text('(No audio)'), findsOneWidget);
     });
 
     testWidgets('shows length selector buckets', (tester) async {
       await tester.pumpWidget(_buildScreen());
       await tester.pumpAndSettle();
 
-      expect(find.text('Short Story'), findsOneWidget);
-      expect(find.text('Full Story'), findsOneWidget);
-      expect(find.text('Long Story'), findsOneWidget);
+      expect(find.text('Short'), findsOneWidget);
+      expect(find.text('Full'), findsOneWidget);
+      expect(find.text('Long'), findsOneWidget);
     });
   });
 
@@ -229,14 +228,13 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text("Read Today's Story"), findsNothing);
-      expect(find.text('(No audio)'), findsNothing);
     });
   });
 
   // --- FINISHED panel ---
 
   group('FINISHED panel (playback completed)', () {
-    testWidgets('shows Reflection, Save to Favorites, Share with a PAL',
+    testWidgets('shows Save to Favorites and Share with a PAL',
         (tester) async {
       final parable = _testParable(title: 'Finished Story');
       await tester.pumpWidget(_buildScreen(
@@ -247,7 +245,6 @@ void main() {
       ));
       await tester.pumpAndSettle();
 
-      expect(find.text('Reflection'), findsOneWidget);
       expect(find.text('Save to Favorites'), findsOneWidget);
       expect(find.text('Share with a PAL'), findsOneWidget);
     });
@@ -263,29 +260,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text("Read Today's Story"), findsNothing);
-      expect(find.text('(No audio)'), findsNothing);
       expect(find.byType(Slider), findsNothing);
-    });
-
-    testWidgets('Reflection does NOT push a route', (tester) async {
-      final observer = _PushCountObserver();
-      final parable = _testParable(title: 'Finished Story');
-      await tester.pumpWidget(_buildScreen(
-        playerState: ParablePlayerState(
-          currentParable: parable,
-          playbackCompleted: true,
-        ),
-        observer: observer,
-      ));
-      await tester.pumpAndSettle();
-
-      final pushesBefore = observer.pushCount;
-      await tester.tap(find.text('Reflection'));
-      await tester.pumpAndSettle();
-
-      expect(observer.pushCount, pushesBefore,
-          reason: 'Reflection must NOT navigate — it expands inline');
-      expect(tester.takeException(), isNull);
     });
 
     testWidgets('Share with a PAL does NOT push a named route',

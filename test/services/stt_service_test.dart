@@ -124,8 +124,8 @@ void main() {
       expect(SttService.defaultListenSeconds, 10);
     });
 
-    test('defaultPauseSeconds is 3', () {
-      expect(SttService.defaultPauseSeconds, 3);
+    test('defaultPauseSeconds is 5', () {
+      expect(SttService.defaultPauseSeconds, 5);
     });
   });
 }
