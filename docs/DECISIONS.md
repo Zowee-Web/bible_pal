@@ -491,10 +491,10 @@ The question was: What EXACTLY is Traditional mode, and how do we enforce it?
    - `bibleStoryKey`: Stable canonical identifier (e.g., "lost_sheep", "jesus_calms_storm")
    - `bibleSourceRef`: Scripture reference (e.g., "Mark 4:35-41") — already existed but now strictly enforced
 
-3. **One Bible Story Per Mood**
-   - Each mood maps to exactly ONE `bibleStoryKey` for Traditional stories
-   - Multiple renditions (kid/adult, short/long) share the same `bibleStoryKey`
-   - Ensures predictable user experience: "joyful" always tells the same Bible story
+3. **~~One Bible Story Per Mood~~** *(Superseded by ADR-022: Scripture Anchor Registry)*
+   - ~~Each mood maps to exactly ONE `bibleStoryKey` for Traditional stories~~
+   - Multiple renditions (kid/adult, short/long) of the same anchor share the same `bibleStoryKey`
+   - See ADR-022 for the current multi-story-per-mood architecture
 
 4. **"Pizzazz" Constraints**
    - Allowed: pacing, sensory detail, emotional texture implied by scripture
@@ -521,7 +521,7 @@ The question was: What EXACTLY is Traditional mode, and how do we enforce it?
 
 **Alternatives Considered:**
 1. **Allow devotional content in Traditional** — Rejected. Blurs the line, confuses users.
-2. **Multiple Bible stories per mood** — Rejected. Creates unpredictability; user can't learn "joyful = Lost Sheep".
+2. **Multiple Bible stories per mood** — ~~Rejected.~~ Now accepted via ADR-022. At scale (~1500 stories), variety outweighs predictability.
 3. **Auto-play reflection** — Rejected. Violates MoDC non-directive principle.
 4. **Different voice for reflection** — Rejected. Breaks immersion, adds complexity.
 5. **Scripture during story narration** — Rejected. Interrupts narrative flow.
@@ -529,7 +529,7 @@ The question was: What EXACTLY is Traditional mode, and how do we enforce it?
 **Consequences:**
 - New field `bibleStoryKey` added to Parable model
 - Manifest schema requires `bibleStoryKey` for Traditional stories
-- Build-failing tests enforce one-Bible-story-per-mood rule
+- Build-failing tests enforce scripture anchor uniqueness (see ADR-022)
 - Player UI shows scripture ref after completion (Traditional) and "Hear Reflection" button
 - Existing Traditional stories without `bibleStoryKey` need backfill
 - Server generation scripts updated to generate reflection audio alongside story
@@ -1277,6 +1277,200 @@ Phase 2 — Narrator Voice:
 ## Template for Future Decisions
 
 ```
+## ADR-022: Scripture Anchor Registry — Canonical Traditional Story System
+
+**Date:** 2026-03-18
+**Status:** Accepted (supersedes ADR-010 section 3 only)
+**Context:** ADR-010 established a 1:1 mapping between mood and `bibleStoryKey` for Traditional stories. This was appropriate for first-pass coverage (8 moods × 1 story each) but blocks scaling toward ~1500 unique Traditional stories. At scale, variety matters more than predictability — users should never hear the same Bible story twice until the pool is exhausted.
+
+The core question: How do we identify, track, and prevent reuse of Bible narratives across hundreds of Traditional stories?
+
+**Decision:**
+
+1. **Scripture Anchor Registry** — A standalone JSON file (`assets/stories/scripture_anchor_registry.json`) is the canonical source of truth for all approved Traditional Bible story anchors.
+
+2. **`scriptureAnchorId` is the primary uniqueness key** — A normalized identifier for one canonical narrative unit (e.g., `mark_4_35-41`, `1kgs_19_9-18`). No two registry entries may share the same `scriptureAnchorId`, even if `bibleStoryKey` wording differs. This is the true no-repeat identity.
+
+3. **Registry entries are minimal and declarative** — Each entry has exactly 4 fields:
+   - `scriptureAnchorId` — primary uniqueness key
+   - `bibleStoryKey` — human-readable label (globally unique)
+   - `bibleSourceRef` — display-friendly scripture reference
+   - `moodTags` — array of moods this anchor can serve (mood is a tag, not an identity)
+
+4. **No mutable or derived fields** — The registry stores no `status`, `priority`, `tier`, `complexity`, or `testament`. "Used" status is derived from whether `bibleStoryKey` appears in `manifest.json`.
+
+5. **Mood is a tag, not a grouping key** — One anchor may serve multiple moods via `moodTags`. Identity is the scripture anchor, not the mood. No mood-first assumptions in tests or tooling.
+
+6. **Dart code parses, does not own** — The JSON registry is canonical. Dart test helpers parse it for validation; the app runtime has zero dependency on loading it. Manifest entries retain a single `mood` field for runtime compatibility.
+
+**What stays from ADR-010:**
+- Traditional = real Bible story retelling (sections 1, 2, 4, 5, 6 unchanged)
+- `bibleStoryKey` and `bibleSourceRef` required on all Traditional stories
+- Pizzazz constraints, reflection system, mode persistence
+
+**What changes:**
+- Section 3 ("One Bible Story Per Mood") is **superseded** — multiple stories per mood are now allowed
+- The `Map<String, String>` canonical map (`traditional_canonical_story_map.dart`) is replaced by the JSON registry
+- Alternative #2 from ADR-010 ("Multiple Bible stories per mood — Rejected") is now the accepted path
+
+**Rationale:**
+- **Scale**: 1500 unique stories across 8 moods requires ~188 stories per mood — a 1:1 map cannot express this
+- **No-repeat guarantee**: `scriptureAnchorId` provides a machine-comparable uniqueness key that prevents reuse of the same narrative even under different names
+- **Declarative registry**: JSON is readable by both Dart tests and bash generation scripts (`jq`)
+- **Minimal runtime impact**: Manifest schema and serving logic are unchanged in this pass
+
+**Consequences:**
+- New file: `assets/stories/scripture_anchor_registry.json`
+- Deleted file: `lib/core/traditional_canonical_story_map.dart` (superseded)
+- New test helper: `test/helpers/scripture_anchor_registry_loader.dart`
+- Tests rewritten: `traditional_canonical_story_map_test.dart`, `traditional_bible_story_test.dart`
+- Docs updated: SPEC.md, INVARIANTS.md, ARCHITECTURE.md
+- Future path: `scriptureAnchorId` may be added to manifest/meta.json entries directly (separate change)
+
+---
+
+## ADR-023: Story Quality Over Strict Word Count Compliance
+
+**Date:** 2026-03-19
+**Status:** Accepted
+**Context:** Traditional stories generated by gpt-4.1 sometimes exceed their generation target word counts but produce high-quality, well-paced narrative. Story 826 (David and Goliath) landed at 588 words (short target: 550) and 1167 words (full target: 1000) — both excellent retellings that fit their intended bucket experience. The audio gate was rejecting these stories, wasting good text and blocking audio generation.
+
+**Decision:** Traditional stories should be generated toward their target word-count ranges, but final acceptance must prioritize story quality and bucket identity over strict count compliance. Stories must never be manually trimmed solely to satisfy target counts. If a generated story modestly exceeds its target yet still clearly fits its intended bucket experience, it should be accepted as-is and allowed through audio generation. Only stories that drift so far that they no longer match the intended bucket should be regenerated or flagged.
+
+**Implementation:**
+- **Prompt targets** (what the LLM is told to aim for): tighter sweet-spot ranges (short ≤500, full ≤950, long ≤1500)
+- **Acceptance ranges** (audio gate + validation): full canonical bucket boundaries (short ≤600, full ≤1200, long ≤1800)
+- **Word count flags**: when a story exceeds its prompt target but is accepted within the bucket, `meta_XXX.json` records a `wordCountFlags` entry with promptTarget, actual count, bucketMax, and acceptance status
+- **Generation log**: `.generation_log.json` in the stories directory appends one entry per generation run for batch-level trend tracking
+
+**Rationale:**
+- The canonical SPEC bucket boundaries (250-600, 601-1200, 1201-2000) define the user experience — a "short" story should feel short, not hit an exact number
+- gpt-4.1 produces rich traditional narrative; artificially tight ranges were cutting off strong passages
+- Trimming stories to hit arbitrary targets risks degrading quality — the LLM wrote the text as a coherent piece
+- The separation between prompt targets and acceptance ranges lets us aim for the sweet spot while accepting natural variation
+- Word count flags provide observability without blocking good stories
+
+**Consequences:**
+- `server/story_calibration.sh`: Traditional acceptance ranges widened to canonical bucket boundaries; new prompt target constants and `get_prompt_target_max_for_mode()` function added
+- `server/generate_v2_batch.sh`: Audio gate uses acceptance ranges; prompt injection uses prompt targets; word count flags tracked in meta.json and generation log
+- `meta_XXX.json`: New optional `wordCountFlags` field records per-length overages
+- `assets/stories/.generation_log.json`: New file, appended per generation run
+- No existing stories are affected — only future generations use the new ranges
+
+---
+
+## ADR-024: LLM-Generated Reflections with Template Fallback
+
+**Date:** 2026-03-19
+**Status:** Accepted
+**Context:** Post-story reflections were 16 hardcoded templates (8 moods x adult/kid) that read like category descriptions ("Stories of courage often reflect..."). They were generic, abstract, and disconnected from the specific story just heard. A David and Goliath story got the same reflection as a Daniel in the lion's den story — both just "brave_courage" bucket text.
+
+**Decision:** Two-phase improvement:
+1. Rewrite all 16 templates to be direct, personal, and grounded (Option 2 / "gentle exhale" style)
+2. Add LLM-generated reflections tied to the specific story content, with the rewritten templates as automatic fallback
+
+LLM reflections are generated after story text, validated strictly, and the final resolved text + source are stored in meta.json.
+
+**Implementation:**
+- **Rewritten templates**: `get_reflection_text()` in `generate_v2_batch.sh` — all 16 rewritten to be direct and personal
+- **Prompt template**: `server/prompts/reflection_prompt.template.txt` — grounded in specific story text, strict guardrails
+- **Validation**: `validate_reflection()` — 15-60 words, no theology/doctrine, no preaching, no questions, no exclamation marks
+- **Pipeline**: LLM generation attempted first (2 retries), falls back to template on validation failure
+- **Meta.json**: New fields `reflectionSource` ("llm" or "template") and `reflectionText` (final resolved text)
+- **Backward compatibility**: Existing `reflectionQuestion` field preserved; new fields added alongside
+
+**Validation guardrails:**
+- Word count: 15-60 words
+- Banned: theology ("God's plan", "His grace"), preaching ("We should", "You can learn"), story-shows openers, questions, exclamation marks
+- Must be grounded in something specific from the story
+- Written for spoken audio — natural rhythm, short sentences
+
+**Rationale:**
+- Reflections are the last thing a listener hears — they should feel personal, not templated
+- Story-specific reflections create a stronger emotional arc (David's stone, Elijah's whisper)
+- Strict validation prevents theological drift while allowing creative grounding
+- Template fallback ensures every story always has a reflection, even if LLM fails
+- Storing source + text in meta.json provides full observability
+
+**Consequences:**
+- `server/generate_v2_batch.sh`: Rewritten templates, new functions `validate_reflection()` + `generate_llm_reflection()`, updated PHASE 2
+- `server/prompts/reflection_prompt.template.txt`: New prompt template file
+- `meta_XXX.json`: New optional fields `reflectionSource` and `reflectionText`
+- Small additional LLM cost per story (~200 tokens for reflection generation)
+- Small additional ElevenLabs cost only if reflection text changes (same audio pipeline)
+
+---
+
+## ADR-025: Traditional Mode Boundary Enforcement
+
+**Date:** 2026-03-19
+**Status:** Accepted
+**Context:** Story 827 (Mary and Martha, Luke 10:38-42) exhibited boundary drift in full and long lengths. After Jesus' final words, the generated text continued with invented scenes: Martha sitting down next to Mary, sisters holding hands, Jesus teaching about lilies and sparrows (imported from other passages), evening departure, "in the days that followed" reflections. The short version was clean. Root cause: (1) no hard-stop rule in the Traditional prompt, and (2) the continuation prompt had zero Traditional guardrails — when a story was too short, the continuation naturally completed the narrative beyond the Scripture boundary.
+
+**Decision:** Traditional stories must stop at the Scripture passage boundary. Three-layer enforcement:
+1. **Prompt-level**: Hard stop rule in the prompt template with passage-specific final line
+2. **Continuation-level**: Traditional-aware continuation prompt that enforces the same boundary rules
+3. **Validation-level**: Post-generation boundary drift detector + Dart regression test
+
+**Implementation:**
+- `server/prompts/traditional_prompt.template.txt`: New SCRIPTURE BOUNDARY section with `{{PASSAGE_FINAL_LINE}}` variable and explicit DO NOT list
+- `server/seeds/traditional_seeds.json`: New `passageFinalLine` field on all 16 story seeds (WEB translation final verse text)
+- `server/generate_v2_batch.sh`: `passageFinalLine` injected into prompt; continuation prompt is now mode-aware with Traditional boundary rules; new `check_boundary_drift()` function scans for continuation phrases; results logged to `meta.json` as `boundaryValidation`
+- `test/critical/traditional_boundary_enforcement_test.dart`: Dart regression test — strict for post-ADR-025 stories (>= 826), informational audit for legacy stories
+
+**Boundary validator patterns:** "as evening fell", "later that day", "in the days that followed", "when they departed", "the lesson lingered", "long after", "from then on", "she/he would find herself/himself", and similar post-boundary continuation phrases.
+
+**Rationale:**
+- Traditional mode contract requires Scripture fidelity — extending past the passage is functionally Creative mode
+- The continuation prompt was the main failure point: it had no concept of Scripture boundaries
+- Providing the exact final line gives the LLM a concrete stopping point
+- Regex-based validation catches obvious drift without over-engineering
+- Non-blocking validation prevents false-positive rejection while maintaining observability
+
+**Consequences:**
+- Story 827 regenerated: all 3 lengths now pass boundary validation (short 502w, full 819w, long 1235w)
+- 8 legacy stories (pre-ADR-025) flagged for potential drift — informational only, future cleanup
+- All future Traditional stories run through boundary validation automatically
+- `meta_XXX.json`: New `boundaryValidation` field records per-length pass/flagged status
+
+---
+
+## ADR-026: Traditional Passage Length Capability System
+
+**Date:** 2026-03-20
+**Status:** Accepted
+**Context:** After implementing strict Scripture boundary enforcement (ADR-025) and termination rules, story 827 (Mary and Martha, Luke 10:38-42 — 5 verses) could only generate a clean short version (362-402 words). Full and long variants failed word count minimums because the model correctly stopped at the passage boundary but couldn't fill the required word count from 5 verses of source material. The model was doing the right thing — the bucket requirement was wrong for this passage.
+
+**Decision:** In Traditional mode, each Scripture anchor has a maximum supported length based on passage scope and proven generation quality. Requested lengths above that cap are intentionally unavailable, not generation failures. The app must only present lengths actually supported by the story anchor and must not silently substitute a different length.
+
+**Policy:** In Traditional mode, Scripture anchor integrity takes priority over bucket completeness. If a passage cannot naturally support a requested bucket length without padding, repetition, imported material, or post-boundary drift, that bucket must be omitted for that passage. Unsupported lengths are considered intentionally unavailable, not generation failures.
+
+**Implementation:**
+- `server/seeds/traditional_seeds.json`: New `supportedLengths` array per passage (e.g., `["short"]`, `["short", "full"]`, `["short", "full", "long"]`)
+- `server/generate_v2_batch.sh`: Pipeline reads `supportedLengths` from seed, skips unsupported lengths with clear logging, records skipped lengths in meta.json
+- `meta_XXX.json`: New `skippedLengths` field records intentionally unavailable lengths with reason
+- Manifest: Only generated lengths appear — unsupported lengths have no manifest entry
+- App selection: `ParableService.getEligibleParables()` already filters by `lengthBucket` — stories without a manifest entry for a given length are automatically excluded from selection
+
+**Length assignments (initial):**
+- Short only (1-5 verses): lost_sheep, rest_for_the_weary, mary_and_martha
+- Short + Full (6-10 verses): jesus_calms_storm, elijah_at_horeb, hagar_in_wilderness
+- All three (11+ verses): woman_at_well, road_to_emmaus, daniel_lions_den, samuel_listens, queen_esther, david_and_goliath, ruth_and_naomi, prodigal_son, joseph_interprets_pharaohs_dreams, moses_and_jethro
+
+**Rationale:**
+- A good 362-word Mary/Martha story is far better than a fake 1200-word one
+- Padding, repetition, and post-boundary drift are all symptoms of forcing a passage beyond its natural scope
+- The app selector naturally routes around missing lengths — user gets a different story of the right mood and length
+- No UI changes needed — the constraint is invisible to the user
+
+**Consequences:**
+- Story 827 regenerated as short-only (402 words, boundary PASS)
+- 3 passages marked short-only, 3 marked short+full, 10 marked all three
+- Future passages should be assessed for `supportedLengths` when added to the registry
+- Lengths can be upgraded if a post-termination-fix generation proves the passage can support it
+
+---
+
 ## ADR-XXX: [Title]
 
 **Date:** YYYY-MM-DD

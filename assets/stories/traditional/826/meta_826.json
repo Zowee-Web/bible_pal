@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 2,
+  "storyId": 826,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "mood": "brave_courage",
+  "scriptureAnchor": "1 Samuel 17:1-54",
+  "bibleStoryKey": "david_and_goliath",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_NOAH_PATIENT",
+  "voiceKeys": {
+    "short": "VOICE_NOAH_PATIENT",
+    "full": "VOICE_NOAH_PATIENT",
+    "long": "VOICE_NOAH_PATIENT",
+    "reflection": "VOICE_NOAH_PATIENT"
+  },
+  "createdByModel": "gpt-4.1",
+  "generationBatch": "PAL_V2_BATCH_46",
+  "generationContractVersion": "STORY_FACTORY_v2.3",
+  "reflectionQuestion": "Stories of courage often reflect moments when fear meets faith. These narratives show how ordinary resolve can carry someone through extraordinary circumstances. And even a small step forward can be enough for today.",
+  "files": {
+    "short": {
+      "storyText": "story_826_traditional_web_short.txt",
+      "storyAudio": "audio_826_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_826_traditional_web_full.txt",
+      "storyAudio": "audio_826_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_826_traditional_web_long.txt",
+      "storyAudio": "audio_826_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_826_traditional_web.txt",
+      "reflectionAudio": "audio_826_reflection.mp3"
+    }
+  },
+  "wordCountFlags": {
+    "short": {
+      "promptTarget": 500,
+      "actual": 588,
+      "bucketMax": 600,
+      "accepted": "within_bucket"
+    },
+    "full": {
+      "promptTarget": 950,
+      "actual": 1167,
+      "bucketMax": 1200,
+      "accepted": "within_bucket"
+    }
+  },
+  "reflectionSource": "llm",
+  "reflectionText": "The valley stretched silent, shields fluttering, while one young voice carried across the distance. Even a single stone in steady hands can meet a giant’s challenge. Let that be enough for today."
+}

@@ -1,0 +1,56 @@
+# Reflection Generation Prompt Template
+# ADR-024: LLM-generated reflections grounded in specific story content
+#
+# VARIABLES:
+# - {{MOOD}}: Target mood (joyful, weary, anxious, etc.)
+# - {{BIBLE_SOURCE_REF}}: Scripture reference (e.g., "1 Samuel 17:1-54")
+# - {{AUDIENCE}}: "adult" or "child"
+# - {{STORY_TEXT}}: The full story text to reflect on
+
+You are writing a brief spoken reflection to follow a Bible story that was just read aloud.
+
+## THE STORY
+Scripture: {{BIBLE_SOURCE_REF}}
+Mood: {{MOOD}}
+Audience: {{AUDIENCE}}
+
+{{STORY_TEXT}}
+
+## YOUR TASK
+Write a 2-3 sentence spoken reflection that a listener hears after the story ends. It should feel like a quiet exhale — a grounding moment, not a lesson.
+
+## RULES (STRICT)
+
+REQUIRED:
+- 2-3 sentences only (20-50 words total)
+- Ground the reflection in something specific from THIS story (a moment, image, or action)
+- End with a gentle closing line about "enough for today" or "one small step"
+- Write for spoken audio — natural rhythm, short sentences
+- Calm, direct, personal tone
+
+FORBIDDEN:
+- No theology or doctrine ("God's plan", "His grace", "the Lord works in...")
+- No direct references to God, Jesus, Yahweh, or the Holy Spirit
+- No preaching or "we/you" moral instruction ("We should...", "You can learn...")
+- No "This story teaches..." or "This story shows..." openers
+- No questions to the listener ("Have you ever...?", "What would you...?")
+- No exclamation marks
+- No titles, headers, or metadata
+- No quotation marks around the reflection
+
+## AUDIENCE STYLE
+- Adult: Reflective, slightly literary, uses em-dashes and natural pauses
+- Child: Simple words, short sentences, warm and clear
+
+## GOOD EXAMPLES (adult)
+"Courage doesn't always feel strong. Sometimes it looks like picking up a stone when everyone else stands still. Even that small step can be enough for today."
+
+"The well was just a well — until a conversation changed everything. Sometimes the most ordinary places hold what we need most. Even one honest moment can be enough for today."
+
+## GOOD EXAMPLES (child)
+"Sometimes being brave means doing something even when you feel small. Even one step forward counts."
+
+"Resting does not mean giving up. Even a short pause can help you feel ready again."
+
+## OUTPUT
+Write ONLY the reflection text. No preamble, no labels, no quotation marks.

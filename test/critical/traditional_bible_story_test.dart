@@ -3,25 +3,30 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bible_pal/models/parable.dart';
+import '../helpers/scripture_anchor_registry_loader.dart';
 
-/// Critical tests for Traditional Mode = Real Bible Story invariant (ADR-010)
+/// Critical tests for Traditional Mode = Real Bible Story invariant (ADR-010 + ADR-022)
 ///
 /// These tests enforce:
 /// 1. Traditional stories MUST have bibleStoryKey
 /// 2. Traditional stories MUST have bibleSourceRef
-/// 3. Each mood has exactly ONE bibleStoryKey for Traditional stories
-/// 4. Creative stories MUST NOT have bibleStoryKey
+/// 3. Creative stories MUST NOT have bibleStoryKey
+/// 4. Every Traditional story's bibleStoryKey is registered in the Scripture Anchor Registry
+/// 5. Every Traditional story's mood matches its anchor's moodTags
 ///
 /// See: docs/INVARIANTS.md - Traditional Mode = Real Bible Story Invariant
+/// See: docs/DECISIONS.md ADR-022 - Scripture Anchor Registry
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   late List<Parable> allParables;
   late List<Parable> traditionalParables;
   late List<Parable> creativeParables;
+  late ScriptureAnchorRegistry registry;
 
   setUpAll(() async {
-    // Load manifest from assets
+    registry = await ScriptureAnchorRegistry.load();
+
     final jsonContent =
         await rootBundle.loadString('assets/stories/manifest.json');
     final manifestData = jsonDecode(jsonContent) as Map<String, dynamic>;
@@ -40,15 +45,16 @@ void main() {
     print('Loaded ${allParables.length} total parables');
     print('  - ${traditionalParables.length} Traditional');
     print('  - ${creativeParables.length} Creative');
+    print('Registry: ${registry.anchors.length} anchors');
   });
 
-  group('Traditional Bible Story Invariant (ADR-010)', () {
+  group('Traditional Bible Story Invariant (ADR-010 + ADR-022)', () {
     test('CRITICAL: Traditional stories MUST have bibleStoryKey', () {
       final missingKey =
           traditionalParables.where((p) => !p.hasBibleStoryKey).toList();
 
       if (missingKey.isNotEmpty) {
-        print('\n🚨 VIOLATION: Traditional stories missing bibleStoryKey:');
+        print('\n\u{1f6a8} VIOLATION: Traditional stories missing bibleStoryKey:');
         for (final p in missingKey) {
           print('  - ${p.storyId} (${p.title})');
         }
@@ -67,7 +73,7 @@ void main() {
           traditionalParables.where((p) => !p.hasBibleSourceRef).toList();
 
       if (missingRef.isNotEmpty) {
-        print('\n🚨 VIOLATION: Traditional stories missing bibleSourceRef:');
+        print('\n\u{1f6a8} VIOLATION: Traditional stories missing bibleSourceRef:');
         for (final p in missingRef) {
           print('  - ${p.storyId} (${p.title})');
         }
@@ -86,7 +92,7 @@ void main() {
 
       if (hasKey.isNotEmpty) {
         print(
-            '\n🚨 VIOLATION: Creative stories should not have bibleStoryKey:');
+            '\n\u{1f6a8} VIOLATION: Creative stories should not have bibleStoryKey:');
         for (final p in hasKey) {
           print('  - ${p.storyId} has bibleStoryKey: ${p.bibleStoryKey}');
         }
@@ -101,92 +107,74 @@ void main() {
     });
 
     test(
-        'CRITICAL: Each mood has exactly ONE bibleStoryKey for Traditional (kid mode)',
+        'CRITICAL: Every Traditional story bibleStoryKey is registered (ADR-022)',
         () {
-      // Group Traditional kid stories by mood
-      final kidTraditional =
-          traditionalParables.where((p) => p.kidFriendly).toList();
+      final unregistered = <String>[];
 
-      final moodToKeys = <String, Set<String>>{};
-
-      for (final p in kidTraditional) {
+      for (final p in traditionalParables) {
         if (p.hasBibleStoryKey) {
-          moodToKeys.putIfAbsent(p.mood, () => <String>{});
-          moodToKeys[p.mood]!.add(p.bibleStoryKey!);
+          final entry = registry.getByStoryKey(p.bibleStoryKey!);
+          if (entry == null) {
+            unregistered.add(
+                '${p.storyId}: bibleStoryKey="${p.bibleStoryKey}"');
+          }
         }
       }
 
-      final violations = <String>[];
-      for (final entry in moodToKeys.entries) {
-        if (entry.value.length > 1) {
-          violations.add(
-            'Mood "${entry.key}" has multiple bibleStoryKeys: ${entry.value.join(", ")}',
-          );
-        }
-      }
-
-      if (violations.isNotEmpty) {
-        print('\n🚨 VIOLATION: Multiple bibleStoryKeys per mood (kid):');
-        for (final v in violations) {
-          print('  - $v');
+      if (unregistered.isNotEmpty) {
+        print(
+            '\n\u{1f6a8} VIOLATION: Traditional stories with unregistered bibleStoryKey:');
+        for (final u in unregistered) {
+          print('  - $u');
         }
       }
 
       expect(
-        violations,
+        unregistered,
         isEmpty,
         reason:
-            'Each mood must map to exactly ONE bibleStoryKey for Traditional kid stories (ADR-010). '
-            'Found ${violations.length} violations.',
+            'Every Traditional story bibleStoryKey must exist in the '
+            'Scripture Anchor Registry (ADR-022). '
+            'Unregistered: $unregistered',
       );
     });
 
     test(
-        'CRITICAL: Each mood has exactly ONE bibleStoryKey for Traditional (adult mode)',
+        'CRITICAL: Every Traditional story mood matches its anchor moodTags',
         () {
-      // Group Traditional adult stories by mood
-      final adultTraditional =
-          traditionalParables.where((p) => !p.kidFriendly).toList();
+      final mismatches = <String>[];
 
-      final moodToKeys = <String, Set<String>>{};
-
-      for (final p in adultTraditional) {
+      for (final p in traditionalParables) {
         if (p.hasBibleStoryKey) {
-          moodToKeys.putIfAbsent(p.mood, () => <String>{});
-          moodToKeys[p.mood]!.add(p.bibleStoryKey!);
+          final entry = registry.getByStoryKey(p.bibleStoryKey!);
+          if (entry != null && !entry.moodTags.contains(p.mood)) {
+            mismatches.add(
+                '${p.storyId}: mood="${p.mood}" not in '
+                'anchor "${entry.bibleStoryKey}" moodTags=${entry.moodTags}');
+          }
         }
       }
 
-      final violations = <String>[];
-      for (final entry in moodToKeys.entries) {
-        if (entry.value.length > 1) {
-          violations.add(
-            'Mood "${entry.key}" has multiple bibleStoryKeys: ${entry.value.join(", ")}',
-          );
-        }
-      }
-
-      if (violations.isNotEmpty) {
-        print('\n🚨 VIOLATION: Multiple bibleStoryKeys per mood (adult):');
-        for (final v in violations) {
-          print('  - $v');
+      if (mismatches.isNotEmpty) {
+        print('\n\u{1f6a8} VIOLATION: Manifest mood not in anchor moodTags:');
+        for (final m in mismatches) {
+          print('  - $m');
         }
       }
 
       expect(
-        violations,
+        mismatches,
         isEmpty,
         reason:
-            'Each mood must map to exactly ONE bibleStoryKey for Traditional adult stories (ADR-010). '
-            'Found ${violations.length} violations.',
+            'Each Traditional story mood must appear in its anchor moodTags (ADR-022). '
+            'Mismatches: $mismatches',
       );
     });
 
     test('INFO: List all Traditional stories with their bibleStoryKey mapping',
         () {
-      print('\n📚 Traditional stories by mood and bibleStoryKey:\n');
+      print('\n\u{1f4da} Traditional stories by mood and bibleStoryKey:\n');
 
-      // Group by mood, then by bibleStoryKey
       final moodGroups = <String, Map<String, List<Parable>>>{};
 
       for (final p in traditionalParables) {
@@ -209,7 +197,6 @@ void main() {
         print('');
       }
 
-      // This test always passes - it's just for documentation
       expect(true, isTrue);
     });
   });
@@ -219,13 +206,12 @@ void main() {
       final invalidFormat =
           traditionalParables.where((p) => p.hasBibleStoryKey).where((p) {
         final key = p.bibleStoryKey!;
-        // Check for snake_case: lowercase letters, numbers, underscores only
         final snakeCaseRegex = RegExp(r'^[a-z][a-z0-9_]*$');
         return !snakeCaseRegex.hasMatch(key);
       }).toList();
 
       if (invalidFormat.isNotEmpty) {
-        print('\n⚠️ bibleStoryKey format violations (should be snake_case):');
+        print('\n\u{26a0}\u{fe0f} bibleStoryKey format violations (should be snake_case):');
         for (final p in invalidFormat) {
           print('  - ${p.storyId}: "${p.bibleStoryKey}"');
         }
@@ -248,7 +234,7 @@ void main() {
           .toList();
 
       if (missingVoice.isNotEmpty) {
-        print('\n⚠️ Traditional stories missing narratorVoiceKey:');
+        print('\n\u{26a0}\u{fe0f} Traditional stories missing narratorVoiceKey:');
         for (final p in missingVoice) {
           print('  - ${p.storyId}');
         }

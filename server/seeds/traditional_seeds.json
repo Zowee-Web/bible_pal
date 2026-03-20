@@ -6,7 +6,9 @@
     "conflict": "A violent storm threatens to capsize the boat while Jesus sleeps",
     "turning_point": "Jesus wakes and speaks to the wind and waves, and they obey",
     "theme": "Trust in the midst of fear",
-    "sensory_atmosphere": "dark water, strong wind, crashing waves, rocking boat, sudden stillness"
+    "sensory_atmosphere": "dark water, strong wind, crashing waves, rocking boat, sudden stillness",
+    "passageFinalLine": "They were exceedingly afraid, and said to one another, 'Who then is this, that even the wind and the sea obey him?'",
+    "supportedLengths": ["short", "full"]
   },
   "woman_at_well": {
     "bibleSourceRef": "John 4:4-26",
@@ -15,7 +17,9 @@
     "conflict": "A woman draws water alone at noon, avoiding others; a Jewish stranger asks her for a drink",
     "turning_point": "Jesus reveals he knows her past, and offers living water that never runs dry",
     "theme": "Being truly known and accepted",
-    "sensory_atmosphere": "bright midday sun, dry dust, stone well, cool water, quiet road"
+    "sensory_atmosphere": "bright midday sun, dry dust, stone well, cool water, quiet road",
+    "passageFinalLine": "Jesus said to her, 'I am he, the one who speaks to you.'",
+    "supportedLengths": ["short", "full", "long"]
   },
   "road_to_emmaus": {
     "bibleSourceRef": "Luke 24:13-35",
@@ -24,7 +28,9 @@
     "conflict": "Two grieving disciples walk away from Jerusalem, crushed by the crucifixion",
     "turning_point": "A stranger walks with them, explains the scriptures, and is recognized when he breaks bread",
     "theme": "Recognizing hope in unexpected company",
-    "sensory_atmosphere": "dusty road, fading sunlight, quiet footsteps, warm lamplight at table, broken bread"
+    "sensory_atmosphere": "dusty road, fading sunlight, quiet footsteps, warm lamplight at table, broken bread",
+    "passageFinalLine": "They related the things that happened along the way, and how he was recognized by them in the breaking of the bread.",
+    "supportedLengths": ["short", "full", "long"]
   },
   "lost_sheep": {
     "bibleSourceRef": "Luke 15:3-7",
@@ -33,7 +39,9 @@
     "conflict": "One sheep wanders away from the flock of ninety-nine",
     "turning_point": "The shepherd leaves the flock to search and finds the lost sheep",
     "theme": "Every one matters and is worth finding",
-    "sensory_atmosphere": "open grass, rocky terrain, bleating, wind across the hills, warm wool"
+    "sensory_atmosphere": "open grass, rocky terrain, bleating, wind across the hills, warm wool",
+    "passageFinalLine": "I tell you that even so there will be more joy in heaven over one sinner who repents, than over ninety-nine righteous people who need no repentance.",
+    "supportedLengths": ["short"]
   },
   "daniel_lions_den": {
     "bibleSourceRef": "Daniel 6",
@@ -42,7 +50,9 @@
     "conflict": "Officials trap Daniel with a law forbidding prayer to anyone but the king",
     "turning_point": "Daniel is thrown to the lions but God shuts their mouths; he emerges unharmed",
     "theme": "Faithfulness under pressure",
-    "sensory_atmosphere": "stone palace, sealed pit, growling lions, cold night air, morning light"
+    "sensory_atmosphere": "stone palace, sealed pit, growling lions, cold night air, morning light",
+    "passageFinalLine": "So this Daniel prospered in the reign of Darius, and in the reign of Cyrus the Persian.",
+    "supportedLengths": ["short", "full", "long"]
   },
   "samuel_listens": {
     "bibleSourceRef": "1 Samuel 3",
@@ -51,7 +61,9 @@
     "conflict": "A young boy hears a voice calling in the night but does not know who speaks",
     "turning_point": "Eli recognizes the voice as God's and teaches Samuel to answer",
     "theme": "Learning to listen",
-    "sensory_atmosphere": "warm lamplight, hushed room, soft nighttime stillness, a voice in the dark"
+    "sensory_atmosphere": "warm lamplight, hushed room, soft nighttime stillness, a voice in the dark",
+    "passageFinalLine": "Yahweh revealed himself to Samuel in Shiloh by Yahweh's word.",
+    "supportedLengths": ["short", "full", "long"]
   },
   "queen_esther": {
     "bibleSourceRef": "Esther 4-7",
@@ -60,7 +72,9 @@
     "conflict": "A decree threatens to destroy Esther's people; approaching the king uninvited risks death",
     "turning_point": "Esther risks her life to speak, and the king extends his scepter",
     "theme": "Courage for such a time as this",
-    "sensory_atmosphere": "gold throne room, heavy curtains, silent courtyard, held breath, extended scepter"
+    "sensory_atmosphere": "gold throne room, heavy curtains, silent courtyard, held breath, extended scepter",
+    "passageFinalLine": "So they hanged Haman on the gallows that he had prepared for Mordecai. Then the king's wrath was pacified.",
+    "supportedLengths": ["short", "full", "long"]
   },
   "rest_for_the_weary": {
     "bibleSourceRef": "Matthew 11:28-30",
@@ -69,6 +83,96 @@
     "conflict": "People carry heavy burdens of labor, law, and exhaustion",
     "turning_point": "Jesus invites them to lay down their burdens and take his yoke instead",
     "theme": "Rest is offered, not earned",
-    "sensory_atmosphere": "warm afternoon, tired bodies, dusty sandals, gentle voice, easing shoulders"
+    "sensory_atmosphere": "warm afternoon, tired bodies, dusty sandals, gentle voice, easing shoulders",
+    "passageFinalLine": "For my yoke is easy, and my burden is light.",
+    "supportedLengths": ["short"]
+  },
+  "elijah_at_horeb": {
+    "bibleSourceRef": "1 Kings 19:9-18",
+    "characters": ["Elijah"],
+    "setting": "A cave on Mount Horeb, the mountain of God",
+    "conflict": "Elijah hides in a cave, terrified and alone, believing he is the last faithful one left",
+    "turning_point": "God passes by — not in the wind, earthquake, or fire, but in a still small voice",
+    "theme": "God meets us in our lowest moments, not with force but with gentleness",
+    "sensory_atmosphere": "dark cave mouth, howling wind, shaking ground, roaring fire, then sudden quiet whisper",
+    "passageFinalLine": "Yet I reserved seven thousand in Israel, all the knees which have not bowed to Baal, and every mouth which has not kissed him.",
+    "supportedLengths": ["short", "full"]
+  },
+  "david_and_goliath": {
+    "bibleSourceRef": "1 Samuel 17:1-54",
+    "characters": ["David", "Goliath", "King Saul", "the Israelite army"],
+    "setting": "The Valley of Elah between the Israelite and Philistine camps",
+    "conflict": "A giant champion challenges Israel daily and no soldier dares answer",
+    "turning_point": "A shepherd boy steps forward with a sling and five stones, and the giant falls",
+    "theme": "Courage comes not from size or armor but from trust in God",
+    "sensory_atmosphere": "wide valley, morning mist, clinking armor, shouting armies, a single smooth stone, silence after the fall",
+    "passageFinalLine": "David took the head of the Philistine and brought it to Jerusalem, but he put his armor in his tent.",
+    "supportedLengths": ["short", "full", "long"]
+  },
+  "mary_and_martha": {
+    "bibleSourceRef": "Luke 10:38-42",
+    "characters": ["Jesus", "Mary", "Martha"],
+    "setting": "Martha's home in Bethany",
+    "conflict": "Martha is distracted by preparations and frustrated that Mary sits listening instead of helping",
+    "turning_point": "Jesus gently tells Martha that Mary has chosen the better portion, which will not be taken away",
+    "theme": "Presence over productivity; stillness is not laziness",
+    "sensory_atmosphere": "warm kitchen, clattering dishes, fragrant bread, quiet room, seated at feet, gentle voice",
+    "passageFinalLine": "Mary has chosen the good part, which will not be taken away from her.",
+    "supportedLengths": ["short"]
+  },
+  "ruth_and_naomi": {
+    "bibleSourceRef": "Ruth 1:1-22",
+    "characters": ["Ruth", "Naomi", "Orpah"],
+    "setting": "The road from Moab to Bethlehem",
+    "conflict": "Three widows face destitution; Naomi urges her daughters-in-law to go back to their families",
+    "turning_point": "Ruth refuses to leave, declaring 'Where you go I will go; your people shall be my people'",
+    "theme": "Loyalty and love that chooses hardship over comfort",
+    "sensory_atmosphere": "dusty road, distant hills, tearful goodbye, two women walking together, empty fields ahead",
+    "passageFinalLine": "So Naomi returned, and Ruth the Moabitess, her daughter-in-law, with her, who returned out of the country of Moab. They came to Bethlehem in the beginning of barley harvest.",
+    "supportedLengths": ["short", "full", "long"]
+  },
+  "hagar_in_wilderness": {
+    "bibleSourceRef": "Genesis 21:14-21",
+    "characters": ["Hagar", "Ishmael"],
+    "setting": "The wilderness of Beersheba",
+    "conflict": "Cast out with her son, Hagar's water runs out and she places her child under a bush to die",
+    "turning_point": "God hears the boy crying, opens Hagar's eyes, and she sees a well of water",
+    "theme": "God sees the forgotten and provides in the wilderness",
+    "sensory_atmosphere": "scorching sand, empty waterskin, a child crying, shade of a bush, sudden glint of water",
+    "passageFinalLine": "He lived in the wilderness of Paran. His mother got a wife for him out of the land of Egypt.",
+    "supportedLengths": ["short", "full"]
+  },
+  "prodigal_son": {
+    "bibleSourceRef": "Luke 15:11-32",
+    "characters": ["the father", "the younger son", "the older son"],
+    "setting": "A family estate, then a far country, then home again",
+    "conflict": "A son demands his inheritance, wastes it in a far country, and ends up feeding pigs",
+    "turning_point": "The starving son decides to return home, and his father sees him from far off and runs to embrace him",
+    "theme": "No distance is too far for a father's love to reach",
+    "sensory_atmosphere": "rich feast, then empty fields, pig stench, torn clothes, dusty road home, running footsteps, warm embrace, music and celebration",
+    "passageFinalLine": "But it was appropriate to celebrate and be glad, for this, your brother, was dead, and is alive again. He was lost, and is found.",
+    "supportedLengths": ["short", "full", "long"]
+  },
+  "joseph_interprets_pharaohs_dreams": {
+    "bibleSourceRef": "Genesis 41:1-40",
+    "characters": ["Joseph", "Pharaoh", "the cupbearer"],
+    "setting": "Pharaoh's palace in Egypt",
+    "conflict": "Pharaoh is troubled by two dreams no one can interpret; a forgotten prisoner is remembered",
+    "turning_point": "Joseph interprets the dreams as seven years of plenty followed by seven years of famine, and Pharaoh puts him in charge",
+    "theme": "Faithfulness in forgotten seasons prepares you for the moment that matters",
+    "sensory_atmosphere": "prison darkness, then bright throne room, golden court, troubled king, calm voice, signet ring placed on a hand",
+    "passageFinalLine": "Pharaoh said to Joseph, 'See, I have set you over all the land of Egypt.'",
+    "supportedLengths": ["short", "full", "long"]
+  },
+  "moses_and_jethro": {
+    "bibleSourceRef": "Exodus 18:13-27",
+    "characters": ["Moses", "Jethro"],
+    "setting": "The Israelite camp in the wilderness",
+    "conflict": "Moses judges disputes from morning until evening, exhausting himself while the people wait in long lines",
+    "turning_point": "Jethro says 'What you are doing is not good' and counsels Moses to appoint others to share the burden",
+    "theme": "Wise rest is not weakness — carrying everything alone will wear you out",
+    "sensory_atmosphere": "long lines of waiting people, hot sun, tired voice, an elder's firm counsel, relief as others step forward",
+    "passageFinalLine": "Moses let his father-in-law depart, and he went his way into his own land.",
+    "supportedLengths": ["short", "full", "long"]
   }
 }

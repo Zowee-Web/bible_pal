@@ -92,7 +92,7 @@ Stories and audio are pre-generated offline via a Node.js/bash server pipeline, 
 |------|---------|
 | `bible_translation_registry.dart` | **Translation allowlist — the #1 invariant** |
 | `pal_voice_registry.dart` | PAL voice definitions (Grace, Shepherd, Hope, Stillwater) |
-| `traditional_canonical_story_map.dart` | One Bible story per mood for Traditional mode |
+| `scripture_anchor_registry.json` (in assets/stories/) | Scripture anchor registry for Traditional mode (ADR-022) |
 | `story_length_bucket.dart` | Short/Full/Long bucket system (strict word-count ranges, see SPEC.md) |
 | `app_logger.dart` | Structured JSON logging with breadcrumb ring buffer |
 | `analytics_events.dart` | Privacy-safe telemetry event builders |
@@ -141,7 +141,7 @@ API endpoints:
 
 ## Two Story Modes (LOCKED Contract)
 
-**Traditional** (default): Faithful retellings of real Bible stories. Requires `bibleSourceRef` and `bibleStoryKey`. One canonical Bible story per mood.
+**Traditional** (default): Faithful retellings of real Bible stories. Requires `bibleSourceRef` and `bibleStoryKey`. Multiple stories per mood; identity is the scripture anchor (`scriptureAnchorId`), not the mood. See ADR-022.
 
 **Creative**: Original stories with biblical themes. `bibleSourceRef` must be absent. MoDC (Model of Digital Companionship) rules apply — non-directive, non-prescriptive.
 

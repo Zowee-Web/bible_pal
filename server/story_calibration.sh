@@ -107,15 +107,25 @@ compute_story_length() {
 # Used by generate_v2_batch.sh for generation-time validation.
 # ============================================================
 
-# Traditional — tighter generation targets to center output
+# Traditional — generation targets within canonical bucket boundaries
 # IMPORTANT: These must stay within canonical bucket boundaries
 #   short ≤ 600, full 601–1200, long ≥ 1201
+# ADR-023: Story quality over strict count compliance. Prompt targets aim
+# for the sweet spot (350-450/700-850/1201-1400) but acceptance ranges use
+# full canonical bucket boundaries so good stories aren't rejected.
 readonly TRAD_MIN_SHORT=350
-readonly TRAD_MAX_SHORT=450
+readonly TRAD_MAX_SHORT=600
 readonly TRAD_MIN_FULL=700
-readonly TRAD_MAX_FULL=850
+readonly TRAD_MAX_FULL=1200
 readonly TRAD_MIN_LONG=1201
-readonly TRAD_MAX_LONG=1400
+readonly TRAD_MAX_LONG=1800
+
+# Traditional — prompt targets (what we ASK the LLM to aim for)
+# These are tighter than acceptance ranges to keep output in the sweet spot.
+# Stories that exceed these but stay within acceptance ranges are accepted as-is.
+readonly TRAD_PROMPT_TARGET_MAX_SHORT=500
+readonly TRAD_PROMPT_TARGET_MAX_FULL=950
+readonly TRAD_PROMPT_TARGET_MAX_LONG=1500
 
 # Creative Adult — aligned with STORY_FACTORY.md Section 15
 readonly CREATIVE_ADULT_MIN_SHORT=200
@@ -193,6 +203,25 @@ get_max_words_for_mode() {
     fi
 }
 
+# Prompt target max: what the LLM is told to aim for (tighter than acceptance)
+# For non-traditional modes, falls back to the acceptance max.
+get_prompt_target_max_for_mode() {
+    local bucket="$1"
+    local mode="$2"
+
+    if [[ "$mode" == "traditional" ]]; then
+        case "$bucket" in
+            short) echo "$TRAD_PROMPT_TARGET_MAX_SHORT" ;;
+            full)  echo "$TRAD_PROMPT_TARGET_MAX_FULL" ;;
+            long)  echo "$TRAD_PROMPT_TARGET_MAX_LONG" ;;
+            *)     echo "$TRAD_PROMPT_TARGET_MAX_SHORT" ;;
+        esac
+    else
+        # Creative modes: prompt target = acceptance max (no separation yet)
+        get_max_words_for_mode "$bucket" "$mode" "${3:-false}"
+    fi
+}
+
 # Export functions for use in scripts
 export -f get_min_words
 export -f get_max_words
@@ -201,3 +230,4 @@ export -f get_max_words_for_bucket
 export -f compute_story_length
 export -f get_min_words_for_mode
 export -f get_max_words_for_mode
+export -f get_prompt_target_max_for_mode

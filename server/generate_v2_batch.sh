@@ -105,7 +105,7 @@ if [[ -f "$ENV_FILE" ]]; then
 fi
 
 # =============================================================================
-# Batch Definition — All 26 base stories
+# Batch Definition — All 34 base stories
 # =============================================================================
 # Format: ID|MODE|KID|MOOD|VOICE|BIBLE_REF|BIBLE_KEY
 # For creative stories, BIBLE_REF and BIBLE_KEY are empty.
@@ -152,6 +152,15 @@ BATCH_STORIES=(
     "818|traditional|true|calm_peaceful|VOICE_ARABELLA|1 Samuel 3|samuel_listens"
     "819|traditional|true|encouraging|VOICE_REVEREND_MICHAEL_C_VINCENT|Esther 4-7|queen_esther"
     "824|traditional|true|weary|VOICE_SARAH_STORYTELLER|Matthew 11:28-30|rest_for_the_weary"
+    # --- Batch 46: Traditional Adult WEB (new scripture anchors, ADR-022) ---
+    "825|traditional|false|anxious|VOICE_MARCUS_ANCHOR|1 Kings 19:9-18|elijah_at_horeb"
+    "826|traditional|false|brave_courage|VOICE_NOAH_PATIENT|1 Samuel 17:1-54|david_and_goliath"
+    "827|traditional|false|calm_peaceful|VOICE_DEBORAH_WISE|Luke 10:38-42|mary_and_martha"
+    "828|traditional|false|encouraging|VOICE_SARAH_STORYTELLER|Ruth 1:1-22|ruth_and_naomi"
+    "829|traditional|false|hurting|VOICE_MARY_PONDER|Genesis 21:14-21|hagar_in_wilderness"
+    "830|traditional|false|joyful|VOICE_PETER_BOLD|Luke 15:11-32|prodigal_son"
+    "831|traditional|false|neutral|VOICE_SAMUEL_EARNEST|Genesis 41:1-40|joseph_interprets_pharaohs_dreams"
+    "832|traditional|false|weary|VOICE_JOHN_BELOVED|Exodus 18:13-27|moses_and_jethro"
 )
 
 # 812 is special — only full and long (short already exists as parable_502)
@@ -168,29 +177,203 @@ get_reflection_text() {
 
     if [[ "$is_kid" == "true" ]]; then
         case "$mood" in
-            joyful)  echo "This story shows that good things can happen when we share and care for others. Even one small kindness matters." ;;
-            weary)   echo "This story shows that it is okay to rest when we are tired. Even one small rest can help." ;;
-            anxious) echo "This story shows that even when things feel scary, we are not alone. Even one small brave thing counts." ;;
-            hurting) echo "This story shows that being kind matters, even when things feel unfair. Even one small kindness helps." ;;
-            neutral) echo "This story shows that every day has moments worth noticing. Even one small thing can be special." ;;
-            brave_courage) echo "This story shows that being brave does not mean being unafraid. Even one small brave thing counts." ;;
-            calm_peaceful) echo "This story shows that being still and listening can bring us peace. Even one quiet moment matters." ;;
-            encouraging) echo "This story shows that standing up for others takes courage and love. Even one kind word can make a difference." ;;
-            *)       echo "This story shows that every day has moments worth noticing. Even one small thing can be special." ;;
+            joyful)        echo "Good things grow when we share them. Even one small act of kindness can make a day brighter." ;;
+            weary)         echo "It is okay to rest when you are tired. Even a short rest can help you feel ready again." ;;
+            anxious)       echo "Feeling scared does not mean you are alone. Even one small brave thing can make a big difference." ;;
+            hurting)       echo "It is okay to feel sad sometimes. Even one kind moment can help your heart feel lighter." ;;
+            neutral)       echo "Every day has something worth noticing. Even one small thing can turn out to be special." ;;
+            brave_courage) echo "Being brave does not mean you are not afraid. It means you try anyway. Even one small step counts." ;;
+            calm_peaceful) echo "Being quiet and listening can help you feel calm inside. Even one still moment can bring you peace." ;;
+            encouraging)   echo "Standing up for someone else takes real courage. Even one kind word can change someone's day." ;;
+            *)             echo "Every day has something worth noticing. Even one small thing can turn out to be special." ;;
         esac
     else
         case "$mood" in
-            joyful)  echo "Stories of joy often reflect moments when gratitude and connection come together. These narratives show how small blessings can accumulate into a sense of abundance. And even a small step forward can be enough for today." ;;
-            weary)   echo "Weariness in stories often looks like carrying burdens over long stretches. These narratives show that rest and renewal are part of the natural rhythm of life. And even a small step forward can be enough for today." ;;
-            anxious) echo "Stories about worry often reflect the tension between what we can control and what we cannot. These narratives show that peace sometimes comes from releasing our grip on outcomes. And even a small step forward can be enough for today." ;;
-            hurting) echo "Pain in stories often looks like walking through seasons of loss or disappointment. These narratives show that sorrow and hope can exist together. And even a small step forward can be enough for today." ;;
-            neutral) echo "Stories of ordinary days often reflect the steady rhythm of daily faithfulness. These narratives show that meaning can be found in quiet, unremarkable moments. And even a small step forward can be enough for today." ;;
-            brave_courage) echo "Stories of courage often reflect moments when fear meets faith. These narratives show how ordinary resolve can carry someone through extraordinary circumstances. And even a small step forward can be enough for today." ;;
-            calm_peaceful) echo "Stories of stillness often reflect moments when silence speaks louder than noise. These narratives show how peace can be found by simply being present. And even a small step forward can be enough for today." ;;
-            encouraging) echo "Stories of encouragement often reflect moments when someone steps up for another. These narratives show how a single act of support can change the course of events. And even a small step forward can be enough for today." ;;
-            *)       echo "Stories of ordinary days often reflect the steady rhythm of daily faithfulness. These narratives show that meaning can be found in quiet, unremarkable moments. And even a small step forward can be enough for today." ;;
+            joyful)        echo "Joy often arrives quietly — in a shared meal, a moment of thanks, a small gift freely given. It grows when we notice it. Even one moment of gratitude can be enough for today." ;;
+            weary)         echo "Weariness runs deep when the road has been long. Rest is not giving up — it is part of the journey. Even a small pause can restore more than you expect." ;;
+            anxious)       echo "Anxiety tightens its grip when we try to hold everything at once. Sometimes peace begins with letting go of just one thing. Even a single breath can steady you for today." ;;
+            hurting)       echo "Pain does not always announce when it will ease. But sorrow and hope often share the same space. Even a small step forward, taken gently, can be enough for today." ;;
+            neutral)       echo "Not every day carries a dramatic lesson. Sometimes faithfulness looks like showing up quietly and doing the next thing. Even an ordinary moment can hold more than it seems." ;;
+            brave_courage) echo "Courage doesn't always feel strong. Sometimes it looks like taking one step forward while fear still lingers. Even that small step can be enough for today." ;;
+            calm_peaceful) echo "Stillness is not emptiness. Sometimes the quietest moment is where clarity arrives. Even one breath taken in peace can carry you further than you think." ;;
+            encouraging)   echo "One act of support can shift more than you realize. Standing beside someone — even silently — can change the weight of what they carry. Even a small gesture can be enough for today." ;;
+            *)             echo "Not every day carries a dramatic lesson. Sometimes faithfulness looks like showing up quietly and doing the next thing. Even an ordinary moment can hold more than it seems." ;;
         esac
     fi
+}
+
+# =============================================================================
+# LLM Reflection Generation + Validation (ADR-024)
+# =============================================================================
+# Generates a story-specific reflection via LLM, validates it, and falls back
+# to the deterministic template if validation fails.
+
+# =============================================================================
+# Traditional Boundary Drift Validator (ADR-025)
+# =============================================================================
+# Lightweight post-generation check for obvious post-boundary continuation.
+# Logs to meta.json but does NOT block generation — flagged stories are
+# generated but marked for human review.
+
+check_boundary_drift() {
+    local text="$1"
+
+    # Check last ~30% of text for continuation phrases
+    local total_lines
+    total_lines=$(echo "$text" | wc -l | tr -d ' ')
+    local tail_start=$(( total_lines * 70 / 100 ))
+    [[ $tail_start -lt 1 ]] && tail_start=1
+    local tail_text
+    tail_text=$(echo "$text" | tail -n +"$tail_start")
+
+    local drift_patterns=(
+        "as evening fell"
+        "as the evening"
+        "as dusk"
+        "as nighttime settled"
+        "as night fell"
+        "later that day"
+        "in the days that followed"
+        "in the hours that followed"
+        "from then on"
+        "from that day"
+        "when they departed"
+        "when the guests departed"
+        "when at last .* rose to leave"
+        "afterward"
+        "the lesson lingered"
+        "the lesson remained"
+        "long after"
+        "in the days ahead"
+        "in the weeks that followed"
+        "she would find herself"
+        "he would find himself"
+    )
+
+    for pattern in "${drift_patterns[@]}"; do
+        local match
+        match=$(echo "$tail_text" | grep -oi "$pattern" | head -1)
+        if [[ -n "$match" ]]; then
+            echo "flagged:$match"
+            return 0
+        fi
+    done
+
+    echo "pass"
+    return 0
+}
+
+validate_reflection() {
+    local text="$1"
+
+    # Strip leading/trailing whitespace
+    text=$(echo "$text" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+
+    # Remove surrounding quotes if LLM wrapped output in them
+    text=$(echo "$text" | sed -e 's/^["'"'"']//' -e 's/["'"'"']$//')
+
+    # Word count check: 15-60 words
+    local wc
+    wc=$(echo "$text" | wc -w | tr -d ' ')
+    if [[ $wc -lt 15 ]] || [[ $wc -gt 60 ]]; then
+        echo "FAIL:word_count:$wc" >&2
+        return 1
+    fi
+
+    # Banned patterns (case-insensitive)
+    local banned_patterns=(
+        "This story teaches"
+        "This story shows"
+        "We should"
+        "We can learn"
+        "You should"
+        "You can learn"
+        "Have you ever"
+        "What would you"
+        "God's plan"
+        "God's grace"
+        "His grace"
+        "the Lord works"
+        "the Lord has"
+        "Holy Spirit"
+        "Jesus Christ"
+        "Yahweh"
+        "God wants"
+        "God is"
+    )
+
+    for pattern in "${banned_patterns[@]}"; do
+        if echo "$text" | grep -qi "$pattern"; then
+            echo "FAIL:banned_pattern:$pattern" >&2
+            return 1
+        fi
+    done
+
+    # No exclamation marks
+    if echo "$text" | grep -q '!'; then
+        echo "FAIL:exclamation_mark" >&2
+        return 1
+    fi
+
+    # No question marks (no questions to listener)
+    if echo "$text" | grep -q '?'; then
+        echo "FAIL:question_mark" >&2
+        return 1
+    fi
+
+    echo "$text"
+    return 0
+}
+
+generate_llm_reflection() {
+    local mode="$1"
+    local mood="$2"
+    local bible_ref="$3"
+    local is_kid="$4"
+    local story_text="$5"
+
+    local template_file="$SCRIPT_DIR/prompts/reflection_prompt.template.txt"
+    if [[ ! -f "$template_file" ]]; then
+        echo "FAIL:no_template" >&2
+        return 1
+    fi
+
+    local audience="adult"
+    [[ "$is_kid" == "true" ]] && audience="child"
+
+    # Build prompt from template
+    local prompt
+    prompt=$(cat "$template_file")
+    prompt="${prompt//\{\{MOOD\}\}/$mood}"
+    prompt="${prompt//\{\{BIBLE_SOURCE_REF\}\}/$bible_ref}"
+    prompt="${prompt//\{\{AUDIENCE\}\}/$audience}"
+
+    # Use first ~500 words of story text to keep prompt size reasonable
+    local trimmed_story
+    trimmed_story=$(echo "$story_text" | head -c 3000)
+    prompt="${prompt//\{\{STORY_TEXT\}\}/$trimmed_story}"
+
+    # Generate with small token budget (reflections are short)
+    local raw_text
+    raw_text=$(generate_text "$mode" "$prompt" 200 "short" 2>/dev/null) || true
+
+    if [[ -z "$raw_text" ]]; then
+        echo "FAIL:empty_response" >&2
+        return 1
+    fi
+
+    # Sanitize: strip metadata, quotes, markdown
+    raw_text=$(echo "$raw_text" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+    raw_text=$(echo "$raw_text" | sed '/^[[:space:]]*$/d')  # Remove blank lines
+    raw_text=$(echo "$raw_text" | sed -e 's/^\*\*.*\*\*[[:space:]]*//' )  # Remove bold headers
+    raw_text=$(echo "$raw_text" | sed -e 's/^["'"'"']//' -e 's/["'"'"']$//')  # Remove wrapping quotes
+
+    # Validate
+    local validated
+    validated=$(validate_reflection "$raw_text") || return 1
+
+    echo "$validated"
+    return 0
 }
 
 # =============================================================================
@@ -448,9 +631,19 @@ Sensory atmosphere: $sensory"
             fi
             anchors_block="$anchors_block
 "
+            # Extract passage final line for boundary enforcement (ADR-025)
+            local final_line
+            final_line=$(echo "$seed" | jq -r '.passageFinalLine // empty')
+            if [[ -n "$final_line" ]]; then
+                local final_line_block="The passage ends with: \"$final_line\"
+The LAST SENTENCE of your story must convey this final line. No text is allowed after it. STOP writing immediately after this moment."
+                prompt="${prompt//\{\{PASSAGE_FINAL_LINE\}\}/$final_line_block}"
+            fi
         fi
     fi
     prompt="${prompt//\{\{NARRATIVE_ANCHORS\}\}/$anchors_block}"
+    # Fallback: if no passageFinalLine was injected, use generic instruction
+    prompt="${prompt//\{\{PASSAGE_FINAL_LINE\}\}/End the story at the last recorded event in the passage. Do not continue beyond it.}"
 
     # Inject scene blueprint for full/long stories (skip for short)
     # Long stories get expanded pacing notes to allow each scene to breathe
@@ -460,7 +653,7 @@ Sensory atmosphere: $sensory"
         pacing_note="Let each scene breathe — use sensory detail, transitions, and unhurried pacing."
     fi
     if [[ "$length_bucket" == "full" || "$length_bucket" == "long" ]]; then
-        if [[ "$mode" == "traditional" && -n "$conflict" && -n "$tp" ]]; then
+        if [[ "$mode" == "traditional" && -n "${conflict:-}" && -n "${tp:-}" ]]; then
             # Traditional with seed: use conflict and turning point from seed
             blueprint_block="
 ## SCENE BLUEPRINT (follow this pacing)
@@ -886,6 +1079,29 @@ process_story() {
         lengths=("${STORY_812_LENGTHS[@]}")
     fi
 
+    # ADR-026: Traditional passage length capability — only attempt supported lengths
+    local skipped_lengths_json="{}"
+    if [[ "$mode" == "traditional" && -n "$bible_key" ]]; then
+        local seeds_file="$SCRIPT_DIR/seeds/traditional_seeds.json"
+        if [[ -f "$seeds_file" ]]; then
+            local supported_lengths_json
+            supported_lengths_json=$(jq -r --arg key "$bible_key" '.[$key].supportedLengths // empty' "$seeds_file" 2>/dev/null)
+            if [[ -n "$supported_lengths_json" && "$supported_lengths_json" != "null" ]]; then
+                local filtered_lengths=()
+                for len in "${lengths[@]}"; do
+                    if echo "$supported_lengths_json" | jq -e --arg l "$len" 'index($l) != null' >/dev/null 2>&1; then
+                        filtered_lengths+=("$len")
+                    else
+                        echo -e "${YELLOW}  ⚠ Skipping $len: not supported for $bible_key (ADR-026)${NC}"
+                        skipped_lengths_json=$(echo "$skipped_lengths_json" | jq --arg len "$len" \
+                            '.[$len] = "intentionally_unavailable: exceeds_max_supported_length"')
+                    fi
+                done
+                lengths=("${filtered_lengths[@]}")
+            fi
+        fi
+    fi
+
     local audience="adult"
     [[ "$is_kid" == "true" ]] && audience="kid"
 
@@ -911,6 +1127,13 @@ process_story() {
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 
     mkdir -p "$story_dir"
+
+    # Word count flags: track when stories exceed prompt targets but are accepted
+    # ADR-023: quality over strict compliance
+    local wc_flags_json="{}"
+
+    # Boundary validation: track Traditional mode drift (ADR-025)
+    local boundary_validation_json="{}"
 
     # --- Compute Story DNA for Creative stories (once per base story) ---
     if [[ "$mode" == "creative" ]]; then
@@ -972,10 +1195,12 @@ process_story() {
                 local prompt
                 prompt=$(build_prompt "$mode" "$mood" "$length" "$is_kid" "$bible_ref" "$bible_key")
 
-                # Add explicit minimum word count instruction
+                # Add explicit word count instruction (prompt target is tighter than acceptance)
+                local prompt_target_max
+                prompt_target_max=$(get_prompt_target_max_for_mode "$length" "$mode" "$is_kid")
                 prompt="$prompt
 
-CRITICAL: This story MUST be at least $min_wc words and no more than $max_wc words. Write a complete, detailed story with rich descriptions and fully developed scenes. Do not stop early."
+CRITICAL: This story MUST be at least $min_wc words and no more than $prompt_target_max words. Write a complete, detailed story with rich descriptions and fully developed scenes. Do not stop early."
 
                 text=$(generate_text "$mode" "$prompt" "$num_predict" "$length" 2>/dev/null) || true
 
@@ -998,18 +1223,41 @@ CRITICAL: This story MUST be at least $min_wc words and no more than $max_wc wor
                 # If too short, try extending by feeding partial text back
                 if [[ $wc -lt $min_wc ]] && [[ $wc_attempt -lt $max_wc_attempts ]]; then
                     echo -e "${YELLOW}  Too short ($wc < $min_wc), attempting continuation...${NC}"
-                    local continue_prompt="You are continuing a story that was cut short. Continue with several more paragraphs to bring it to a satisfying conclusion.
+                    # Build continuation prompt — mode-aware (ADR-025)
+                    local trad_boundary_rules=""
+                    if [[ "$mode" == "traditional" ]]; then
+                        # Extract passageFinalLine for boundary enforcement
+                        local cont_final_line=""
+                        if [[ -n "$bible_key" && -f "$SCRIPT_DIR/seeds/traditional_seeds.json" ]]; then
+                            cont_final_line=$(jq -r --arg key "$bible_key" '.[$key].passageFinalLine // empty' "$SCRIPT_DIR/seeds/traditional_seeds.json" 2>/dev/null)
+                        fi
+                        trad_boundary_rules="
+TRADITIONAL MODE CONTINUATION RULES (NON-NEGOTIABLE):
+- This is a Traditional Bible story anchored to: $bible_ref
+- Continue ONLY within the events of that Scripture passage
+- You MUST stop at the passage boundary — do NOT add events after it
+- No aftermath, departure, evening scenes, or emotional resolution beyond what Scripture records
+- No imported teachings from other passages
+- No invented dialogue, reconciliation, or character change not in the passage
+- If you are near the end of the passage, finish at the exact boundary and stop
+- Do NOT add atmospheric closure, lingering silence, or repeat the final line after reaching it"
+                        if [[ -n "$cont_final_line" ]]; then
+                            trad_boundary_rules="$trad_boundary_rules
+- The passage ends with: \"$cont_final_line\" — this MUST be the last moment in the story. STOP immediately after it. No text after this line."
+                        fi
+                    fi
+
+                    local continue_prompt="You are continuing a story that was cut short. Continue with several more paragraphs to bring the story to its scriptural conclusion.
 
 IMPORTANT RULES FOR CONTINUATION:
 - Pick up exactly where the story left off — do NOT restart or summarize
 - Maintain the same characters, setting, tone, and narrative voice
 - Write continuous prose paragraphs (no headings, no bullets)
 - Write for spoken narration — keep sentences under 22 words
-- Build toward a satisfying resolution with quiet hope
 - Do NOT repeat any content from the existing story
 - Do NOT include word counts, metadata, titles, or \"The End\"
 - Write ONLY story prose
-
+$trad_boundary_rules
 STORY SO FAR:
 $text
 
@@ -1045,9 +1293,21 @@ $continuation"
                 continue
             fi
 
-            # Warn if over max (save as-is — could be trimmed in future)
-            if [[ $wc -gt $max_wc ]]; then
-                echo -e "${YELLOW}  ⚠ Word count $wc exceeds max $max_wc (saving as-is)${NC}"
+            # ADR-023: Track if story exceeds prompt target but fits canonical bucket
+            local prompt_tgt_max
+            prompt_tgt_max=$(get_prompt_target_max_for_mode "$length" "$mode" "$is_kid")
+            if [[ $wc -gt $prompt_tgt_max ]] && [[ $wc -le $max_wc ]]; then
+                echo -e "${YELLOW}  ⚠ Word count $wc exceeds prompt target $prompt_tgt_max but within bucket max $max_wc (accepted)${NC}"
+                wc_flags_json=$(echo "$wc_flags_json" | jq --arg len "$length" \
+                    --argjson tgt "$prompt_tgt_max" --argjson actual "$wc" \
+                    --argjson bmax "$max_wc" \
+                    '.[$len] = {promptTarget: $tgt, actual: $actual, bucketMax: $bmax, accepted: "within_bucket"}')
+            elif [[ $wc -gt $max_wc ]]; then
+                echo -e "${YELLOW}  ⚠ Word count $wc exceeds bucket max $max_wc (saving as-is, flagged)${NC}"
+                wc_flags_json=$(echo "$wc_flags_json" | jq --arg len "$length" \
+                    --argjson tgt "$prompt_tgt_max" --argjson actual "$wc" \
+                    --argjson bmax "$max_wc" \
+                    '.[$len] = {promptTarget: $tgt, actual: $actual, bucketMax: $bmax, accepted: "over_bucket"}')
             fi
 
             # Opening type validation + retry (creative stories only)
@@ -1061,6 +1321,19 @@ $continuation"
 
             echo "$text" > "$text_file"
             echo -e "${GREEN}  ✓ Saved: $text_file ($wc words)${NC}"
+
+            # ADR-025: Boundary drift check (Traditional mode only)
+            if [[ "$mode" == "traditional" ]]; then
+                local drift_result
+                drift_result=$(check_boundary_drift "$text")
+                if [[ "$drift_result" == "pass" ]]; then
+                    echo -e "${GREEN}  ✓ Boundary check: PASS${NC}"
+                else
+                    echo -e "${YELLOW}  ⚠ Boundary check: FLAGGED ($drift_result)${NC}"
+                fi
+                boundary_validation_json=$(echo "$boundary_validation_json" | jq --arg len "$length" --arg result "$drift_result" \
+                    '.[$len] = $result')
+            fi
 
             # Generate title from first length variant
             if [[ "$length" == "${lengths[0]}" ]]; then
@@ -1083,15 +1356,62 @@ $continuation"
             sleep 2  # Pace Ollama requests
         done
 
-        # --- PHASE 2: Create reflection text ---
+        # --- PHASE 2: Create reflection text (ADR-024: LLM-first with template fallback) ---
         local reflection_file="$story_dir/reflection_${story_id}_${mode}_web.txt"
-        local reflection_text
-        reflection_text=$(get_reflection_text "$mood" "$is_kid")
+        local reflection_text=""
+        local reflection_source="template"
+
+        # Try LLM-generated reflection using the "full" story text for best context
+        local full_text_file="$story_dir/story_${story_id}_${mode}_web_full.txt"
+        if [[ -s "$full_text_file" ]] && [[ -n "$bible_ref" ]]; then
+            local story_context
+            story_context=$(cat "$full_text_file")
+            echo -e "${BLUE}  Generating LLM reflection...${NC}"
+
+            local llm_reflection
+            local attempt=0
+            local max_attempts=2
+            while [[ $attempt -lt $max_attempts ]]; do
+                attempt=$((attempt + 1))
+                llm_reflection=$(generate_llm_reflection "$mode" "$mood" "$bible_ref" "$is_kid" "$story_context" 2>/dev/null) || true
+
+                if [[ -n "$llm_reflection" ]]; then
+                    # Validate
+                    local validated
+                    validated=$(validate_reflection "$llm_reflection" 2>/dev/null)
+                    if [[ $? -eq 0 ]] && [[ -n "$validated" ]]; then
+                        reflection_text="$validated"
+                        reflection_source="llm"
+                        echo -e "${GREEN}  ✓ LLM reflection (attempt $attempt): $reflection_text${NC}"
+                        break
+                    else
+                        local fail_reason
+                        fail_reason=$(validate_reflection "$llm_reflection" 2>&1 >/dev/null || true)
+                        echo -e "${YELLOW}  ⚠ LLM reflection attempt $attempt failed validation: $fail_reason${NC}"
+                    fi
+                else
+                    echo -e "${YELLOW}  ⚠ LLM reflection attempt $attempt returned empty${NC}"
+                fi
+                sleep 1
+            done
+        fi
+
+        # Fallback to template if LLM failed
+        if [[ -z "$reflection_text" ]]; then
+            reflection_text=$(get_reflection_text "$mood" "$is_kid")
+            reflection_source="template"
+            echo -e "${YELLOW}  Using template reflection (fallback)${NC}"
+        fi
+
         echo "$reflection_text" > "$reflection_file"
-        echo -e "${GREEN}  ✓ Reflection text saved${NC}"
+        echo -e "${GREEN}  ✓ Reflection text saved (source: $reflection_source)${NC}"
     fi
 
     # --- PHASE 3: Generate audio (if enabled) ---
+    # Track ElevenLabs character usage per length for credit logging
+    local el_credits_json="{}"
+    local el_credits_total=0
+
     if [[ "$TEXT_ONLY" != "true" ]] && [[ "${AUDIO_ENABLED:-0}" == "1" ]]; then
         if [[ -z "${ELEVENLABS_API_KEY:-}" ]]; then
             echo -e "${YELLOW}  ⚠ Skipping audio: no API key${NC}"
@@ -1126,7 +1446,10 @@ $continuation"
 
             local text
             text=$(cat "$text_file")
+            local char_count=${#text}
             generate_audio_elevenlabs "$text" "$voice_key" "$audio_file" "$STORY_STYLE_DEFAULT" || true
+            el_credits_json=$(echo "$el_credits_json" | jq --arg len "$length" --argjson cc "$char_count" '.[$len] = $cc')
+            el_credits_total=$((el_credits_total + char_count))
             sleep 2  # Pace ElevenLabs requests
         done
 
@@ -1137,8 +1460,16 @@ $continuation"
         if [[ -s "$reflection_file" ]] && { [[ "$SKIP_EXISTING" != "true" ]] || [[ ! -s "$reflection_audio" ]]; }; then
             local reflection_text
             reflection_text=$(cat "$reflection_file")
+            local refl_char_count=${#reflection_text}
             generate_audio_elevenlabs "$reflection_text" "$voice_key" "$reflection_audio" "$REFLECTION_STYLE_DEFAULT" || true
+            el_credits_json=$(echo "$el_credits_json" | jq --argjson cc "$refl_char_count" '.reflection = $cc')
+            el_credits_total=$((el_credits_total + refl_char_count))
             sleep 1
+        fi
+
+        if [[ $el_credits_total -gt 0 ]]; then
+            el_credits_json=$(echo "$el_credits_json" | jq --argjson t "$el_credits_total" '.total = $t')
+            echo -e "${CYAN}  ElevenLabs credits used: ${el_credits_total} chars${NC}"
         fi
     elif [[ "$TEXT_ONLY" != "true" ]]; then
         echo -e "${YELLOW}  ⚠ Audio skipped: set AUDIO_ENABLED=1 in .env${NC}"
@@ -1146,6 +1477,8 @@ $continuation"
 
     # --- PHASE 4: Validate/update meta.json (createdByModel + generationContractVersion) ---
     local meta_file="$story_dir/meta_${story_id}.json"
+    local updated_meta
+
     if [[ -f "$meta_file" ]]; then
         # Validate createdByModel matches expected engine
         local meta_model
@@ -1154,21 +1487,129 @@ $continuation"
             echo -e "${RED}  META MISMATCH: createdByModel='$meta_model' but expected '$expected_model'${NC}"
             echo -e "${YELLOW}  Updating meta.json to reflect correct engine...${NC}"
         fi
-        # Update createdByModel and add generationContractVersion
-        local updated_meta
         updated_meta=$(jq --arg model "$expected_model" --arg contract "STORY_FACTORY_v2.3" \
             '.createdByModel = $model | .generationContractVersion = $contract' "$meta_file")
-
-        # Add storyDna to meta.json for creative stories
-        if [[ "$mode" == "creative" ]] && [[ -n "${CURRENT_STORY_DNA:-}" ]]; then
-            updated_meta=$(echo "$updated_meta" | jq --argjson dna "$CURRENT_STORY_DNA" \
-                '.storyDna = {opening_type: $dna.opening_type, structure_type: $dna.structure_type, setting_emphasis: $dna.setting_emphasis, character_archetype: $dna.character_archetype, tone: $dna.tone}')
-        fi
-
-        echo "$updated_meta" > "$meta_file"
-        echo -e "${GREEN}  ✓ meta.json: createdByModel=$expected_model, contract=STORY_FACTORY_v2.3${NC}"
     else
-        echo -e "${YELLOW}  ⚠ No meta.json found for story $story_id (create separately)${NC}"
+        # Create meta.json from scratch
+        local reflection_text
+        reflection_text=$(get_reflection_text "$mood" "$is_kid")
+
+        # Build files object
+        local files_json="{}"
+        for len in "${lengths[@]}"; do
+            local txt_name="story_${story_id}_${mode}_web_${len}.txt"
+            local aud_name="audio_${story_id}_story_${len}.mp3"
+            if [[ -s "$story_dir/$txt_name" ]]; then
+                files_json=$(echo "$files_json" | jq --arg l "$len" --arg t "$txt_name" --arg a "$aud_name" \
+                    '.[$l] = {storyText: $t, storyAudio: $a}')
+            fi
+        done
+        local refl_txt="reflection_${story_id}_${mode}_web.txt"
+        local refl_aud="audio_${story_id}_reflection.mp3"
+        files_json=$(echo "$files_json" | jq --arg t "$refl_txt" --arg a "$refl_aud" \
+            '.reflection = {reflectionText: $t, reflectionAudio: $a}')
+
+        # Determine batch label from comment context
+        local batch_label="PAL_V2_BATCH_46"
+
+        updated_meta=$(jq -n \
+            --argjson schema 2 \
+            --argjson sid "$story_id" \
+            --arg mode "$mode" \
+            --argjson kid "$([ "$is_kid" = "true" ] && echo true || echo false)" \
+            --arg lang "WEB" \
+            --arg mood "$mood" \
+            --arg anchor "$bible_ref" \
+            --arg bkey "$bible_key" \
+            --argjson lengths "$(printf '%s\n' "${lengths[@]}" | jq -R . | jq -s .)" \
+            --arg vkey "$voice_key" \
+            --arg model "$expected_model" \
+            --arg batch "$batch_label" \
+            --arg contract "STORY_FACTORY_v2.3" \
+            --arg refl "$reflection_text" \
+            --argjson files "$files_json" \
+            '{
+                schemaVersion: $schema,
+                storyId: $sid,
+                mode: $mode,
+                kidFriendly: $kid,
+                languageStyle: $lang,
+                mood: $mood,
+                scriptureAnchor: $anchor,
+                bibleStoryKey: $bkey,
+                lengths: $lengths,
+                voiceKey: $vkey,
+                voiceKeys: {short: $vkey, full: $vkey, long: $vkey, reflection: $vkey},
+                createdByModel: $model,
+                generationBatch: $batch,
+                generationContractVersion: $contract,
+                reflectionQuestion: $refl,
+                files: $files
+            }')
+        echo -e "${GREEN}  ✓ Created meta.json for story $story_id${NC}"
+    fi
+
+    # Add storyDna to meta.json for creative stories
+    if [[ "$mode" == "creative" ]] && [[ -n "${CURRENT_STORY_DNA:-}" ]]; then
+        updated_meta=$(echo "$updated_meta" | jq --argjson dna "$CURRENT_STORY_DNA" \
+            '.storyDna = {opening_type: $dna.opening_type, structure_type: $dna.structure_type, setting_emphasis: $dna.setting_emphasis, character_archetype: $dna.character_archetype, tone: $dna.tone}')
+    fi
+
+    # ADR-023: Record word count flags in meta.json
+    local has_flags
+    has_flags=$(echo "$wc_flags_json" | jq 'length')
+    if [[ "$has_flags" -gt 0 ]]; then
+        updated_meta=$(echo "$updated_meta" | jq --argjson flags "$wc_flags_json" \
+            '.wordCountFlags = $flags')
+        echo -e "${YELLOW}  ✓ Recorded wordCountFlags for ${has_flags} length(s)${NC}"
+    fi
+    # Note: if no new flags were generated (e.g. audio-only run), preserve existing flags
+
+    # ADR-024: Record reflection source and resolved text in meta.json
+    if [[ -n "${reflection_source:-}" ]] && [[ -n "${reflection_text:-}" ]]; then
+        updated_meta=$(echo "$updated_meta" | jq \
+            --arg src "$reflection_source" \
+            --arg txt "$reflection_text" \
+            '.reflectionSource = $src | .reflectionText = $txt')
+    fi
+
+    # ADR-025: Record boundary validation results in meta.json (Traditional only)
+    local has_boundary
+    has_boundary=$(echo "$boundary_validation_json" | jq 'length')
+    if [[ "$has_boundary" -gt 0 ]]; then
+        updated_meta=$(echo "$updated_meta" | jq --argjson bv "$boundary_validation_json" \
+            '.boundaryValidation = $bv')
+    fi
+
+    # ADR-026: Record skipped lengths in meta.json
+    local has_skipped
+    has_skipped=$(echo "$skipped_lengths_json" | jq 'length')
+    if [[ "$has_skipped" -gt 0 ]]; then
+        updated_meta=$(echo "$updated_meta" | jq --argjson sl "$skipped_lengths_json" \
+            '.skippedLengths = $sl')
+    fi
+
+    echo "$updated_meta" > "$meta_file"
+    echo -e "${GREEN}  ✓ meta.json: createdByModel=$expected_model, contract=STORY_FACTORY_v2.3${NC}"
+
+    # --- PHASE 5: Append to generation log ---
+    local gen_log="$STORIES_DIR/.generation_log.json"
+    local log_entry
+    log_entry=$(jq -n \
+        --argjson sid "$story_id" \
+        --arg mode "$mode" \
+        --arg mood "$mood" \
+        --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+        --arg model "$expected_model" \
+        --argjson flags "$wc_flags_json" \
+        --argjson credits "$el_credits_json" \
+        '{storyId: $sid, mode: $mode, mood: $mood, timestamp: $ts, model: $model, wordCountFlags: $flags, elevenLabsCredits: $credits}')
+    if [[ -f "$gen_log" ]]; then
+        local updated_log
+        updated_log=$(jq --argjson entry "$log_entry" '. += [$entry]' "$gen_log")
+        echo "$updated_log" > "$gen_log"
+    else
+        echo "[$log_entry]" | jq '.' > "$gen_log"
     fi
 
     echo ""

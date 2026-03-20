@@ -66,6 +66,7 @@ flutter:
     - .env
     - assets/images/pal_bg_lake_boat.png
     - assets/stories/manifest.json
+    - assets/stories/scripture_anchor_registry.json
     # Creative stories (500-series)
     - assets/stories/creative/501/
     - assets/stories/creative/502/

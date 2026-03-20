@@ -98,7 +98,7 @@ Never hide failing tests. If tests fail, investigate and fix.
 |---------|------|
 | Translation allowlist | [lib/core/bible_translation_registry.dart](lib/core/bible_translation_registry.dart) |
 | PAL voice registry | [lib/core/pal_voice_registry.dart](lib/core/pal_voice_registry.dart) |
-| Traditional story map | [lib/core/traditional_canonical_story_map.dart](lib/core/traditional_canonical_story_map.dart) |
+| Scripture anchor registry | [assets/stories/scripture_anchor_registry.json](assets/stories/scripture_anchor_registry.json) |
 | Parable model | [lib/models/parable.dart](lib/models/parable.dart) |
 | User preferences | [lib/models/user_preferences.dart](lib/models/user_preferences.dart) |
 | Story selection | [lib/services/parable_service.dart](lib/services/parable_service.dart) |

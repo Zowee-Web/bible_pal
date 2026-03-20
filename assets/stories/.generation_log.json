@@ -1,0 +1,130 @@
+[
+  {
+    "storyId": 826,
+    "mode": "traditional",
+    "mood": "brave_courage",
+    "timestamp": "2026-03-20T01:17:00Z",
+    "model": "gpt-4.1",
+    "wordCountFlags": {
+      "short": {
+        "promptTarget": 500,
+        "actual": 588,
+        "bucketMax": 600,
+        "accepted": "within_bucket"
+      },
+      "full": {
+        "promptTarget": 950,
+        "actual": 1167,
+        "bucketMax": 1200,
+        "accepted": "within_bucket"
+      }
+    },
+    "elevenLabsCredits": {
+      "short": 3214,
+      "full": 6485,
+      "long": 7875,
+      "reflection": 216,
+      "total": 17790,
+      "wasted": 8091,
+      "wastedReason": "long + reflection regenerated without --skip-existing",
+      "effectiveTotal": 13000,
+      "note": "User-reported actual cost was ~13,000 credits"
+    }
+  },
+  {
+    "storyId": 826,
+    "mode": "traditional",
+    "mood": "brave_courage",
+    "timestamp": "2026-03-20T02:37:49Z",
+    "model": "gpt-4.1",
+    "wordCountFlags": {},
+    "elevenLabsCredits": {}
+  },
+  {
+    "storyId": 826,
+    "mode": "traditional",
+    "mood": "brave_courage",
+    "timestamp": "2026-03-20T02:38:09Z",
+    "model": "gpt-4.1",
+    "wordCountFlags": {},
+    "elevenLabsCredits": {}
+  },
+  {
+    "storyId": 826,
+    "mode": "traditional",
+    "mood": "brave_courage",
+    "timestamp": "2026-03-20T02:38:23Z",
+    "model": "gpt-4.1",
+    "wordCountFlags": {},
+    "elevenLabsCredits": {
+      "reflection": 197,
+      "total": 197
+    }
+  },
+  {
+    "storyId": 827,
+    "mode": "traditional",
+    "mood": "calm_peaceful",
+    "timestamp": "2026-03-20T02:46:25Z",
+    "model": "gpt-4.1",
+    "wordCountFlags": {
+      "full": {
+        "promptTarget": 950,
+        "actual": 1082,
+        "bucketMax": 1200,
+        "accepted": "within_bucket"
+      }
+    },
+    "elevenLabsCredits": {
+      "short": 2022,
+      "full": 6216,
+      "long": 7910,
+      "reflection": 215,
+      "total": 16363
+    }
+  },
+  {
+    "storyId": 827,
+    "mode": "traditional",
+    "mood": "calm_peaceful",
+    "timestamp": "2026-03-20T03:31:44Z",
+    "model": "gpt-4.1",
+    "wordCountFlags": {
+      "short": {
+        "promptTarget": 500,
+        "actual": 502,
+        "bucketMax": 600,
+        "accepted": "within_bucket"
+      }
+    },
+    "elevenLabsCredits": {
+      "short": 2834,
+      "full": 4724,
+      "long": 7272,
+      "reflection": 204,
+      "total": 15034
+    }
+  },
+  {
+    "storyId": 827,
+    "mode": "traditional",
+    "mood": "calm_peaceful",
+    "timestamp": "2026-03-20T03:53:29Z",
+    "model": "gpt-4.1",
+    "wordCountFlags": {},
+    "elevenLabsCredits": {}
+  },
+  {
+    "storyId": 827,
+    "mode": "traditional",
+    "mood": "calm_peaceful",
+    "timestamp": "2026-03-20T04:17:11Z",
+    "model": "gpt-4.1",
+    "wordCountFlags": {},
+    "elevenLabsCredits": {
+      "short": 2332,
+      "reflection": 152,
+      "total": 2484
+    }
+  }
+]

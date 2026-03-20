@@ -268,7 +268,7 @@ Traditional stories MUST be **real Bible stories retold faithfully**. They are n
 - Third-person narrative by default; biblical narrative posture
 - `bibleSourceRef` field is **REQUIRED** (e.g., "Luke 15:3-7", "Genesis 22:1-19")
 - `bibleStoryKey` field is **REQUIRED** — a stable canonical identifier for the Bible story (e.g., "lost_sheep", "jesus_calms_storm", "david_and_goliath")
-- **One Bible story per mood**: Each mood has exactly ONE canonical Bible story. This ensures users always hear the same Bible story for their emotional state.
+- **Scripture Anchor Registry**: Traditional stories are backed by a canonical registry (`assets/stories/scripture_anchor_registry.json`). Each anchor identifies one canonical narrative unit via `scriptureAnchorId` — the primary no-repeat key. An anchor may serve multiple moods via `moodTags`. No anchor is ever reused. See ADR-022.
 
 **Allowed ("Pizzazz"):**
 Scripture-faithful narrative enrichment is allowed:
@@ -298,7 +298,7 @@ Scripture-faithful narrative enrichment is allowed:
 - Stories with MoDC narrator patterns fail validation
 - Stories with invented inner-monologue markers fail validation
 - Stories that read as devotional commentary rather than narrative fail validation
-- Multiple Traditional stories sharing a mood but different `bibleStoryKey` fail validation
+
 
 ---
 

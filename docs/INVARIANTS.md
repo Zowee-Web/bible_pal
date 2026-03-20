@@ -1290,10 +1290,14 @@ flutter test
    - Every Traditional story MUST have a `bibleSourceRef` field
    - Format: Book Chapter:Verse-Verse (e.g., "Luke 15:3-7")
 
-4. **One Bible Story Per Mood**
-   - Each mood maps to exactly ONE `bibleStoryKey`
-   - Multiple Traditional stories may exist for a mood (different lengths, kid/adult), but they MUST share the same `bibleStoryKey`
-   - Prevents mood from being ambiguous about which Bible story is told
+4. **Scripture Anchor Registry** (ADR-022)
+   - Each anchor has a `scriptureAnchorId` identifying one canonical narrative unit
+   - No two registry entries share the same `scriptureAnchorId` (primary no-reuse invariant)
+   - No two registry entries share the same `bibleStoryKey`
+   - Each of the 8 moods appears in at least one entry's `moodTags`
+   - `bibleSourceRef` must be specific enough to represent one narrative unit
+   - Registry is declarative — no mutable state (no status, priority, etc.)
+   - Multiple Traditional stories may exist for a mood (different anchors, lengths, kid/adult)
 
 5. **"Pizzazz" is Style, Not License**
    - Allowed: pacing, sensory detail, emotional texture implied by text
@@ -1306,7 +1310,9 @@ flutter test
 **Critical Tests** (MUST PASS):
 - `CRITICAL: Traditional stories MUST have bibleStoryKey`
 - `CRITICAL: Traditional stories MUST have bibleSourceRef`
-- `CRITICAL: Each mood has exactly one bibleStoryKey for Traditional`
+- `CRITICAL: Each scriptureAnchorId is globally unique in registry`
+- `CRITICAL: Each bibleStoryKey is globally unique in registry`
+- `CRITICAL: Each Traditional story's bibleStoryKey exists in registry`
 - `CRITICAL: No Traditional story without valid bibleStoryKey in manifest`
 
 ### Testing

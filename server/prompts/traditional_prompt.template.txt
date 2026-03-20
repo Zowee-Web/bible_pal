@@ -56,6 +56,40 @@ FORBIDDEN:
 - Devotional commentary within the narrative ("This teaches us that...")
 - Modern slang or anachronisms
 - Fantasy elements or fictional additions
+- Invented dialogue beyond what is in the passage
+- Merged passages or imported teachings from other scripture
+- Theology or lesson explanation outside the direct scripture wording
+
+## SCRIPTURE BOUNDARY (NON-NEGOTIABLE)
+
+This story is anchored to a specific Scripture passage. The story MUST end at the passage boundary.
+
+{{PASSAGE_FINAL_LINE}}
+
+DO NOT:
+- Add events after the final recorded words or actions in the passage
+- Extend into evening, aftermath, or departure scenes
+- Add emotional resolution not stated in Scripture
+- Introduce new actions, dialogue, or outcomes beyond the passage
+- Import teachings or details from other Bible passages
+- Complete the story in a satisfying fictional way if Scripture itself ends earlier
+- Add reconciliation, silent gestures, or implied character change after the passage ends
+- Describe silence, atmosphere, or reactions AFTER the final line
+- Repeat the final line for emphasis or poetic closure
+
+If the passage ends abruptly, the story MUST also end abruptly.
+Only observable scene detail WITHIN the passage events is allowed.
+
+## TERMINATION RULE (CRITICAL)
+
+The FINAL SENTENCE of the story must be the final moment of the passage.
+
+Once you reach the passage's final line, STOP IMMEDIATELY.
+Do not write another sentence. Do not describe what follows.
+Do not add atmospheric closure, lingering silence, or emotional resolution.
+Do not repeat the final line.
+
+The story ends the instant the passage ends. Nothing comes after.
 
 ## STRUCTURE
 - No headings, bullets, or numbered lists
