@@ -209,6 +209,47 @@ get_reflection_text() {
 # to the deterministic template if validation fails.
 
 # =============================================================================
+# Traditional Passage Boundary Trim (ADR-025)
+# =============================================================================
+# Deterministic post-generation trim: find the passage's final line in the
+# generated text and truncate everything after it. This is the hard mechanical
+# stop that catches echo+linger patterns the LLM produces despite prompt rules.
+
+trim_to_passage_boundary() {
+    local text="$1"
+    local final_line="$2"
+
+    if [[ -z "$final_line" ]]; then
+        echo "$text"
+        return 0
+    fi
+
+    # Escape special regex chars in the final line for grep
+    local escaped_line
+    escaped_line=$(printf '%s' "$final_line" | sed 's/[.[\*^$()+?{|\\]/\\&/g')
+
+    # Find the last line number containing the final line text
+    local last_match_line
+    last_match_line=$(echo "$text" | grep -n -i "$escaped_line" | tail -1 | cut -d: -f1)
+
+    if [[ -z "$last_match_line" ]]; then
+        # Final line not found in text — return as-is (can't trim)
+        echo "$text"
+        return 0
+    fi
+
+    # Truncate everything after the line containing the final passage line
+    local trimmed
+    trimmed=$(echo "$text" | head -n "$last_match_line")
+
+    # Strip trailing blank lines
+    trimmed=$(echo "$trimmed" | sed -e :a -e '/^[[:space:]]*$/{' -e '$d' -e N -e ba -e '}')
+
+    echo "$trimmed"
+    return 0
+}
+
+# =============================================================================
 # Traditional Boundary Drift Validator (ADR-025)
 # =============================================================================
 # Lightweight post-generation check for obvious post-boundary continuation.
@@ -1135,6 +1176,15 @@ process_story() {
     # Boundary validation: track Traditional mode drift (ADR-025)
     local boundary_validation_json="{}"
 
+    # Extract passage final line for boundary trim (ADR-025)
+    local story_final_line=""
+    if [[ "$mode" == "traditional" && -n "$bible_key" ]]; then
+        local seeds_path="$SCRIPT_DIR/seeds/traditional_seeds.json"
+        if [[ -f "$seeds_path" ]]; then
+            story_final_line=$(jq -r --arg key "$bible_key" '.[$key].passageFinalLine // empty' "$seeds_path" 2>/dev/null)
+        fi
+    fi
+
     # --- Compute Story DNA for Creative stories (once per base story) ---
     if [[ "$mode" == "creative" ]]; then
         CURRENT_STORY_DNA=$(get_story_dna "$CREATIVE_STORY_INDEX" "$story_id")
@@ -1212,6 +1262,10 @@ CRITICAL: This story MUST be at least $min_wc words and no more than $prompt_tar
 
                 # Sanitize LLM output (remove metadata, titles, word counts)
                 text=$(sanitize_story_text "$text")
+                # ADR-025: Trim initial generation to passage boundary (Traditional mode)
+                if [[ "$mode" == "traditional" ]] && [[ -n "$story_final_line" ]]; then
+                    text=$(trim_to_passage_boundary "$text" "$story_final_line")
+                fi
 
                 wc=$(echo "$text" | wc -w | tr -d ' ')
                 echo -e "  Attempt $wc_attempt: $wc words (need $min_wc-$max_wc)"
@@ -1270,6 +1324,10 @@ CONTINUE THE STORY FROM HERE:"
 $continuation"
                         # Sanitize combined text (remove any metadata from continuation)
                         text=$(sanitize_story_text "$text")
+                        # ADR-025: Trim continuation to passage boundary (Traditional mode)
+                        if [[ "$mode" == "traditional" ]] && [[ -n "$story_final_line" ]]; then
+                            text=$(trim_to_passage_boundary "$text" "$story_final_line")
+                        fi
                         wc=$(echo "$text" | wc -w | tr -d ' ')
                         echo -e "  After continuation: $wc words"
                         if [[ $wc -ge $min_wc ]]; then
@@ -1287,10 +1345,17 @@ $continuation"
             fi
 
             if [[ $wc -lt $min_wc ]]; then
-                echo -e "${RED}  FAIL: Word count $wc below minimum $min_wc after $max_wc_attempts attempts${NC}"
-                echo -e "${RED}  Aborting $length variant for story $story_id — no file saved${NC}"
-                rm -f "$text_file"
-                continue
+                # ADR-026: Traditional stories with passage boundary constraints may be
+                # naturally shorter than the bucket minimum. Accept if story has content
+                # and boundary trim will be applied. Scripture integrity > word count.
+                if [[ "$mode" == "traditional" ]] && [[ -n "$story_final_line" ]] && [[ $wc -ge 150 ]]; then
+                    echo -e "${YELLOW}  ⚠ Word count $wc below minimum $min_wc but accepted (Traditional passage boundary priority)${NC}"
+                else
+                    echo -e "${RED}  FAIL: Word count $wc below minimum $min_wc after $max_wc_attempts attempts${NC}"
+                    echo -e "${RED}  Aborting $length variant for story $story_id — no file saved${NC}"
+                    rm -f "$text_file"
+                    continue
+                fi
             fi
 
             # ADR-023: Track if story exceeds prompt target but fits canonical bucket
@@ -1317,6 +1382,16 @@ $continuation"
                 text=$(validate_and_retry_opening "$text" "$dna_opening_type" "$prompt" "$num_predict" "$length" "$min_wc" "$max_wc")
                 # Update word count after potential retry
                 wc=$(echo "$text" | wc -w | tr -d ' ')
+            fi
+
+            # ADR-025: Trim Traditional stories to passage boundary (deterministic hard stop)
+            if [[ "$mode" == "traditional" ]] && [[ -n "$story_final_line" ]]; then
+                local pre_trim_wc=$wc
+                text=$(trim_to_passage_boundary "$text" "$story_final_line")
+                wc=$(echo "$text" | wc -w | tr -d ' ')
+                if [[ $wc -lt $pre_trim_wc ]]; then
+                    echo -e "${CYAN}  Boundary trim: $pre_trim_wc → $wc words (removed post-boundary text)${NC}"
+                fi
             fi
 
             echo "$text" > "$text_file"
@@ -1434,9 +1509,14 @@ $continuation"
             audio_min=$(get_min_words_for_mode "$length" "$mode" "$is_kid")
             audio_max=$(get_max_words_for_mode "$length" "$mode" "$is_kid")
             if [[ $text_wc -lt $audio_min ]] || [[ $text_wc -gt $audio_max ]]; then
-                echo -e "${RED}  AUDIO GATE FAIL: $length text has $text_wc words (need $audio_min-$audio_max)${NC}"
-                echo -e "${RED}  Skipping audio generation to avoid wasting ElevenLabs credits${NC}"
-                continue
+                # ADR-026: Traditional stories may be under minimum due to passage boundary trim
+                if [[ "$mode" == "traditional" ]] && [[ -n "${story_final_line:-}" ]] && [[ $text_wc -ge 150 ]]; then
+                    echo -e "${YELLOW}  Audio gate: $text_wc words below $audio_min but accepted (Traditional passage boundary)${NC}"
+                else
+                    echo -e "${RED}  AUDIO GATE FAIL: $length text has $text_wc words (need $audio_min-$audio_max)${NC}"
+                    echo -e "${RED}  Skipping audio generation to avoid wasting ElevenLabs credits${NC}"
+                    continue
+                fi
             fi
 
             if [[ "$SKIP_EXISTING" == "true" ]] && [[ -s "$audio_file" ]]; then
