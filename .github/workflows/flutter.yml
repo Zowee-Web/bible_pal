@@ -21,6 +21,9 @@ jobs:
         flutter-version: '3.27.1'
         channel: 'stable'
 
+    - name: Create .env placeholder (not committed, needed for asset bundle)
+      run: touch .env
+
     - name: Get dependencies
       run: flutter pub get
 
