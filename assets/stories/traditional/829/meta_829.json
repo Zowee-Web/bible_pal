@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 829,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "mood": "hurting",
+  "scriptureAnchor": "Genesis 21:14-21",
+  "bibleStoryKey": "hagar_in_wilderness",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_MARY_PONDER",
+  "voiceKeys": {
+    "short": "VOICE_MARY_PONDER",
+    "full": "VOICE_MARY_PONDER",
+    "long": "VOICE_MARY_PONDER",
+    "reflection": "VOICE_MARY_PONDER"
+  },
+  "createdByModel": "gpt-4.1",
+  "generationBatch": "PAL_V2_BATCH_46",
+  "generationContractVersion": "STORY_FACTORY_v2.3",
+  "reflectionQuestion": "Pain does not always announce when it will ease. But sorrow and hope often share the same space. Even a small step forward, taken gently, can be enough for today.",
+  "files": {
+    "short": {
+      "storyText": "story_829_traditional_web_short.txt",
+      "storyAudio": "audio_829_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_829_traditional_web_full.txt",
+      "storyAudio": "audio_829_story_full.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_829_traditional_web.txt",
+      "reflectionAudio": "audio_829_reflection.mp3"
+    }
+  },
+  "reflectionSource": "llm",
+  "reflectionText": "Pain does not always announce when it will ease. But sorrow and hope often share the same space. Even a small step forward, taken gently, can be enough for today.",
+  "boundaryValidation": {
+    "short": "pass",
+    "full": "pass"
+  },
+  "skippedLengths": {
+    "long": "intentionally_unavailable: exceeds_max_supported_length"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 2,
+  "storyId": 832,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "mood": "weary",
+  "scriptureAnchor": "Exodus 18:13-27",
+  "bibleStoryKey": "moses_and_jethro",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_JOHN_BELOVED",
+  "voiceKeys": {
+    "short": "VOICE_JOHN_BELOVED",
+    "full": "VOICE_JOHN_BELOVED",
+    "long": "VOICE_JOHN_BELOVED",
+    "reflection": "VOICE_JOHN_BELOVED"
+  },
+  "createdByModel": "gpt-4.1",
+  "generationBatch": "PAL_V2_BATCH_46",
+  "generationContractVersion": "STORY_FACTORY_v2.3",
+  "reflectionQuestion": "Weariness runs deep when the road has been long. Rest is not giving up — it is part of the journey. Even a small pause can restore more than you expect.",
+  "files": {
+    "short": {
+      "storyText": "story_832_traditional_web_short.txt",
+      "storyAudio": "audio_832_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_832_traditional_web_full.txt",
+      "storyAudio": "audio_832_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_832_traditional_web_long.txt",
+      "storyAudio": "audio_832_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_832_traditional_web.txt",
+      "reflectionAudio": "audio_832_reflection.mp3"
+    }
+  },
+  "wordCountFlags": {
+    "short": {
+      "promptTarget": 500,
+      "actual": 504,
+      "bucketMax": 600,
+      "accepted": "within_bucket"
+    }
+  },
+  "reflectionSource": "llm",
+  "reflectionText": "Weariness runs deep when the road has been long. Rest is not giving up — it is part of the journey. Even a small pause can restore more than you expect.",
+  "boundaryValidation": {
+    "short": "pass",
+    "full": "pass",
+    "long": "pass"
+  }
+}

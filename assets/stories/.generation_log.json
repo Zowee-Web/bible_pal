@@ -169,5 +169,101 @@
       "reflection": 152,
       "total": 1724
     }
+  },
+  {
+    "storyId": 828,
+    "mode": "traditional",
+    "mood": "encouraging",
+    "timestamp": "2026-03-20T13:47:22Z",
+    "model": "gpt-4.1",
+    "wordCountFlags": {
+      "short": {
+        "promptTarget": 500,
+        "actual": 554,
+        "bucketMax": 600,
+        "accepted": "within_bucket"
+      }
+    },
+    "elevenLabsCredits": {
+      "short": 3058,
+      "full": 4240,
+      "long": 6394,
+      "reflection": 211,
+      "total": 13903
+    }
+  },
+  {
+    "storyId": 829,
+    "mode": "traditional",
+    "mood": "hurting",
+    "timestamp": "2026-03-20T14:12:17Z",
+    "model": "gpt-4.1",
+    "wordCountFlags": {},
+    "elevenLabsCredits": {
+      "short": 1932,
+      "full": 3882,
+      "reflection": 226,
+      "total": 6040
+    }
+  },
+  {
+    "storyId": 830,
+    "mode": "traditional",
+    "mood": "joyful",
+    "timestamp": "2026-03-20T14:14:46Z",
+    "model": "gpt-4.1",
+    "wordCountFlags": {
+      "short": {
+        "promptTarget": 500,
+        "actual": 581,
+        "bucketMax": 600,
+        "accepted": "within_bucket"
+      }
+    },
+    "elevenLabsCredits": {
+      "short": 3102,
+      "full": 3934,
+      "long": 7047,
+      "reflection": 191,
+      "total": 14274
+    }
+  },
+  {
+    "storyId": 831,
+    "mode": "traditional",
+    "mood": "neutral",
+    "timestamp": "2026-03-20T14:22:45Z",
+    "model": "gpt-4.1",
+    "wordCountFlags": {
+      "short": {
+        "promptTarget": 500,
+        "actual": 502,
+        "bucketMax": 600,
+        "accepted": "within_bucket"
+      }
+    },
+    "elevenLabsCredits": {}
+  },
+  {
+    "storyId": 832,
+    "mode": "traditional",
+    "mood": "weary",
+    "timestamp": "2026-03-20T20:10:40Z",
+    "model": "gpt-4.1",
+    "wordCountFlags": {
+      "short": {
+        "promptTarget": 500,
+        "actual": 504,
+        "bucketMax": 600,
+        "accepted": "within_bucket"
+      }
+    },
+    "elevenLabsCredits": {
+      "short": 2827,
+      "full": 5203,
+      "long": 7843,
+      "reflection": 250,
+      "total": 16123
+    }
   }
 ]

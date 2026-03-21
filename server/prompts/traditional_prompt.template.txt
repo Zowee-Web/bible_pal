@@ -126,6 +126,23 @@ BAD pacing example:
 
 The goal is narration that sounds natural and alive when spoken aloud.
 
+## QUALITY STANDARD (Daniel Standard — locked benchmark)
+
+Every paragraph must contain observable action, movement, or progression — no filler.
+Write with calm confidence: reverent but readable, vivid but disciplined.
+Each scene should have physical clarity — what is seen, heard, smelled, touched.
+Avoid: sentimental padding, vague inspirational filler, repetitive sentence openings, overwriting, generic devotional tone, AI-sounding phrasing.
+
+STYLE REFERENCE (target this feel):
+  In the days when Darius was king, Daniel served with wisdom and integrity
+  in the courts of Babylon. The king set over his kingdom a hundred and
+  twenty leaders, and above them he appointed three high officials, one of
+  whom was Daniel. Because of Daniel's excellent spirit, the king considered
+  setting him over the whole realm. This stirred up envy among the other
+  officials. They looked for a fault in Daniel's service, but he was faithful.
+
+This is the quality bar. Match this level of grounded vividness and audio-readiness.
+
 ## OUTPUT RULES (CRITICAL)
 - Write ONLY the story prose
 - No preamble ("Here is your story:")
