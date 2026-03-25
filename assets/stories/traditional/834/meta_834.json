@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 2,
+  "storyId": 834,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "mood": "brave_courage",
+  "scriptureAnchor": "Judges 7:1-22",
+  "bibleStoryKey": "gideon_defeats_midian",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_ELIJAH_SAGE",
+  "voiceKeys": {
+    "short": "VOICE_ELIJAH_SAGE",
+    "full": "VOICE_ELIJAH_SAGE",
+    "long": "VOICE_ELIJAH_SAGE",
+    "reflection": "VOICE_ELIJAH_SAGE"
+  },
+  "createdByModel": "gpt-4.1",
+  "generationBatch": "PAL_V2_BATCH_46",
+  "generationContractVersion": "STORY_FACTORY_v2.3",
+  "reflectionQuestion": "Courage doesn't always feel strong. Sometimes it looks like taking one step forward while fear still lingers. Even that small step can be enough for today.",
+  "files": {
+    "short": {
+      "storyText": "story_834_traditional_web_short.txt",
+      "storyAudio": "audio_834_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_834_traditional_web_full.txt",
+      "storyAudio": "audio_834_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_834_traditional_web_long.txt",
+      "storyAudio": "audio_834_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_834_traditional_web.txt",
+      "reflectionAudio": "audio_834_reflection.mp3"
+    }
+  },
+  "wordCountFlags": {
+    "short": {
+      "promptTarget": 500,
+      "actual": 526,
+      "bucketMax": 600,
+      "accepted": "within_bucket"
+    }
+  },
+  "reflectionSource": "llm",
+  "reflectionText": "Courage doesn't always feel strong. Sometimes it looks like taking one step forward while fear still lingers. Even that small step can be enough for today.",
+  "boundaryValidation": {
+    "short": "pass",
+    "full": "pass",
+    "long": "pass"
+  }
+}

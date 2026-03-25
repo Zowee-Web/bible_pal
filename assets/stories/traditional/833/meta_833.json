@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 833,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "mood": "anxious",
+  "scriptureAnchor": "Matthew 14:22-33",
+  "bibleStoryKey": "peter_walks_on_water",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_HANNAH_HOPE",
+  "voiceKeys": {
+    "short": "VOICE_HANNAH_HOPE",
+    "full": "VOICE_HANNAH_HOPE",
+    "long": "VOICE_HANNAH_HOPE",
+    "reflection": "VOICE_HANNAH_HOPE"
+  },
+  "createdByModel": "gpt-4.1",
+  "generationBatch": "PAL_V2_BATCH_46",
+  "generationContractVersion": "STORY_FACTORY_v2.3",
+  "reflectionQuestion": "Anxiety tightens its grip when we try to hold everything at once. Sometimes peace begins with letting go of just one thing. Even a single breath can steady you for today.",
+  "files": {
+    "short": {
+      "storyText": "story_833_traditional_web_short.txt",
+      "storyAudio": "audio_833_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_833_traditional_web_full.txt",
+      "storyAudio": "audio_833_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_833_traditional_web_long.txt",
+      "storyAudio": "audio_833_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_833_traditional_web.txt",
+      "reflectionAudio": "audio_833_reflection.mp3"
+    }
+  },
+  "reflectionSource": "llm",
+  "reflectionText": "Anxiety tightens its grip when we try to hold everything at once. Sometimes peace begins with letting go of just one thing. Even a single breath can steady you for today.",
+  "boundaryValidation": {
+    "short": "pass",
+    "full": "pass",
+    "long": "pass"
+  }
+}
