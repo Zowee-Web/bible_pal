@@ -17,6 +17,7 @@ import '../settings/settings_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/services.dart' show HapticFeedback;
 import '../../providers/parable_player_notifier.dart';
+import '../../core/story_length_bucket.dart';
 import '../../models/parable.dart';
 import '../consent/voice_consent_dialog.dart';
 import '../my_pals/select_pals_dialog.dart';
@@ -270,6 +271,9 @@ enum _VoiceFlowState {
   /// Mood detected, PAL micro-response audio playing.
   responding,
 
+  /// Waiting for user to choose story length.
+  choosingLength,
+
   /// Story being selected and loaded.
   selectingStory,
 }
@@ -327,6 +331,9 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
   // Guard against double-navigation race
   bool _navigatingToPlayer = false;
+
+  // Holds transcript while user is choosing story length
+  String _pendingTranscript = '';
 
   static const _introLines = [
     'Meet PAL.',
@@ -505,6 +512,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       _greetingText = null;
       _microResponseText = null;
       _partialTranscript = '';
+      _pendingTranscript = '';
       _finalTranscript = null;
       _moodResult = null;
       _moodVerse = null;
@@ -731,15 +739,17 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
     if (!mounted || _voiceFlow != _VoiceFlowState.responding) return;
 
-    setState(() => _microResponseText = responseText);
-
-    // Wait 2s after audio finishes, then select story
-    _autoStoryTimer?.cancel();
-    _autoStoryTimer = Timer(const Duration(seconds: 2), () {
-      if (mounted && _voiceFlow == _VoiceFlowState.responding) {
-        _selectAndPlayStory(transcript);
-      }
+    setState(() {
+      _microResponseText = responseText;
+      _pendingTranscript = transcript;
+      _voiceFlow = _VoiceFlowState.choosingLength;
     });
+  }
+
+  /// Called when the user taps a length pill — sets bucket and starts story.
+  void _onLengthChosen(StoryLengthBucket bucket) {
+    ref.read(sessionLengthBucketProvider.notifier).state = bucket;
+    _selectAndPlayStory(_pendingTranscript);
   }
 
   /// Select a story and navigate to the player.
@@ -901,6 +911,8 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         return 'PAL is speaking...';
       case _VoiceFlowState.responding:
         return 'PAL is responding...';
+      case _VoiceFlowState.choosingLength:
+        return 'Choose your story length';
       default:
         return 'Preparing your story...';
     }
@@ -1055,6 +1067,21 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
             ],
           ),
 
+          // Length pills — appear below the orb when choosing
+          if (_voiceFlow == _VoiceFlowState.choosingLength) ...[
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _LengthPill(label: 'Short', onTap: () => _onLengthChosen(StoryLengthBucket.short)),
+                const SizedBox(width: 10),
+                _LengthPill(label: 'Full', onTap: () => _onLengthChosen(StoryLengthBucket.full)),
+                const SizedBox(width: 10),
+                _LengthPill(label: 'Long', onTap: () => _onLengthChosen(StoryLengthBucket.long)),
+              ],
+            ),
+          ],
+
           // Cancel button during voice flow
           if (_voiceFlow != _VoiceFlowState.inactive) ...[
             const SizedBox(height: 8),
@@ -1139,6 +1166,17 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
               ),
             ],
           ],
+        );
+
+      case _VoiceFlowState.choosingLength:
+        if (_microResponseText == null) return const SizedBox.shrink();
+        return Text(
+          _microResponseText!,
+          style: theme.textTheme.bodyMedium?.copyWith(
+            color: AppTheme.warmIvory.withOpacity(0.7),
+            fontStyle: FontStyle.italic,
+          ),
+          textAlign: TextAlign.center,
         );
 
       case _VoiceFlowState.selectingStory:
@@ -1543,3 +1581,45 @@ class _GlassNavButton extends StatelessWidget {
   }
 }
 
+
+// ---------------------------------------------------------------------------
+// Length pill — Short / Full / Long chooser in the PAL voice flow
+// ---------------------------------------------------------------------------
+
+class _LengthPill extends StatelessWidget {
+  final String label;
+  final VoidCallback onTap;
+
+  const _LengthPill({required this.label, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 11),
+        decoration: BoxDecoration(
+          color: AppTheme.glassCard,
+          borderRadius: BorderRadius.circular(999),
+          border: Border.all(color: AppTheme.celestialBlue.withOpacity(0.6), width: 1.5),
+          boxShadow: [
+            BoxShadow(
+              color: AppTheme.celestialBlue.withOpacity(0.2),
+              blurRadius: 10,
+              spreadRadius: 1,
+            ),
+          ],
+        ),
+        child: Text(
+          label,
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+            color: AppTheme.warmIvory,
+            letterSpacing: 0.5,
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -144,7 +144,7 @@ class PalAudioService {
     final includeName = clipFile != null &&
         nameClipText != null &&
         await clipFile.exists() &&
-        _random.nextDouble() < 0.30;
+        _random.nextDouble() < 0.70;
 
     await _acquireLock();
     try {
@@ -178,7 +178,7 @@ class PalAudioService {
 
     // Check allowlist first, then apply probability
     final isAllowed = _isNamePrefixAllowed(lineId, lineText);
-    final probability = (timeWindow == 'lateNight') ? 0.10 : 0.12;
+    final probability = (timeWindow == 'lateNight') ? 0.30 : 0.40;
 
     final clipFile = nameClipFile;
     final includeName = isAllowed &&

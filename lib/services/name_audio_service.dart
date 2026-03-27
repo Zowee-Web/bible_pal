@@ -39,6 +39,8 @@ class NameAudioService {
     'Good to see you, {name}!',
   ];
 
+  int? _lastPickedIndex;
+
   NameAudioService({required PalTtsClient ttsClient, Random? random})
       : _ttsClient = ttsClient,
         _random = random ?? Random();
@@ -109,7 +111,12 @@ class NameAudioService {
 
     if (available.isEmpty) return null;
 
-    final picked = available[_random.nextInt(available.length)];
+    // Exclude the last played clip to avoid back-to-back repeats.
+    final candidates = available.length > 1
+        ? available.where((i) => i != _lastPickedIndex).toList()
+        : available;
+    final picked = candidates[_random.nextInt(candidates.length)];
+    _lastPickedIndex = picked;
     return NameClipResult(
       file: File('${dir.path}/prefix_$picked.mp3'),
       text: phraseText(name.trim(), picked),

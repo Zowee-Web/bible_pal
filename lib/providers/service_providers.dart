@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bible_pal/services/storage_service.dart';
 import 'package:bible_pal/services/parable_service.dart';
@@ -67,7 +68,8 @@ final palAudioServiceProvider = Provider<PalAudioService>((ref) {
 
 // PalTtsClient provider - proxy HTTP client for name audio TTS
 final palTtsClientProvider = Provider<PalTtsClient>((ref) {
-  final client = PalTtsClient();
+  final apiKey = dotenv.maybeGet('ELEVENLABS_API_KEY');
+  final client = PalTtsClient(elevenLabsApiKey: apiKey);
   ref.onDispose(() => client.dispose());
   return client;
 });

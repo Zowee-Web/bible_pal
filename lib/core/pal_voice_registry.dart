@@ -8,6 +8,7 @@ class PalVoice {
   final String emoji;
   final String description;
   final String gender;
+  final String elevenLabsId;
 
   const PalVoice({
     required this.voiceKey,
@@ -15,6 +16,7 @@ class PalVoice {
     required this.emoji,
     required this.description,
     required this.gender,
+    required this.elevenLabsId,
   });
 }
 
@@ -38,6 +40,7 @@ class PalVoiceRegistry {
       emoji: '\u{1F33F}', // 🌿
       description: 'Gentle & comforting',
       gender: 'female',
+      elevenLabsId: 'n8D8FqNGSQv0iyOXW0sb',
     ),
     PalVoice(
       voiceKey: 'VOICE_SHEPHERD',
@@ -45,6 +48,7 @@ class PalVoiceRegistry {
       emoji: '\u{1F4D6}', // 📖
       description: 'Wise storyteller',
       gender: 'male',
+      elevenLabsId: 'EkK5I93UQWFDigLMpZcX',
     ),
     PalVoice(
       voiceKey: 'VOICE_HOPE',
@@ -52,6 +56,7 @@ class PalVoiceRegistry {
       emoji: '\u{2600}\u{FE0F}', // ☀️
       description: 'Bright encouragement',
       gender: 'female',
+      elevenLabsId: 'qBDvhofpxp92JgXJxDjB',
     ),
     PalVoice(
       voiceKey: 'VOICE_STILLWATER',
@@ -59,6 +64,7 @@ class PalVoiceRegistry {
       emoji: '\u{1F319}', // 🌙
       description: 'Calm companion',
       gender: 'male',
+      elevenLabsId: 'uju3wxzG5OhpWcoi3SMy',
     ),
   ];
 

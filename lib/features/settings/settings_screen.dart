@@ -30,6 +30,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   String _palVoiceKey = PalVoiceRegistry.defaultVoiceKey;
   // User name
   String _userName = '';
+  // Name audio status
+  bool _nameAudioReady = false;
+  bool _nameAudioGenerating = false;
 
   @override
   void initState() {
@@ -63,6 +66,12 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       _palVoiceKey = appState.userPreferences.palVoiceKey;
       // User name
       _userName = appState.userPreferences.userName;
+    }
+
+    // Check name audio status
+    if (_userName.isNotEmpty) {
+      final nameAudio = ref.read(nameAudioServiceProvider);
+      _nameAudioReady = await nameAudio.isAvailable(_userName, _palVoiceKey);
     }
 
     setState(() => _loaded = true);
@@ -209,6 +218,32 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     nameAudio.generateNamePhrases(name: result, voiceKey: _palVoiceKey);
   }
 
+  Future<void> _regenerateNameAudio() async {
+    if (_userName.isEmpty || _nameAudioGenerating) return;
+    setState(() => _nameAudioGenerating = true);
+    final nameAudio = ref.read(nameAudioServiceProvider);
+    await nameAudio.invalidateCache();
+    final success = await nameAudio.generateNamePhrases(
+      name: _userName,
+      voiceKey: _palVoiceKey,
+    );
+    if (!mounted) return;
+    setState(() {
+      _nameAudioReady = success;
+      _nameAudioGenerating = false;
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          success
+              ? 'Voice greeting generated! PAL will now say your name.'
+              : 'Generation failed — check your internet connection and API key in Settings.',
+        ),
+        duration: const Duration(seconds: 4),
+      ),
+    );
+  }
+
   Future<void> _previewVoice() async {
     final palAudio = ref.read(palAudioServiceProvider);
     await palAudio.playPreview(_palVoiceKey);
@@ -273,6 +308,33 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             trailing: const Icon(Icons.edit),
             onTap: _editUserName,
           ),
+          if (_userName.isNotEmpty)
+            ListTile(
+              leading: Icon(
+                _nameAudioReady ? Icons.record_voice_over : Icons.voice_over_off,
+                color: _nameAudioReady ? Colors.green : Colors.orange,
+              ),
+              title: Text(
+                _nameAudioReady
+                    ? 'Voice greeting ready'
+                    : 'Voice greeting not generated',
+              ),
+              subtitle: Text(
+                _nameAudioReady
+                    ? 'PAL will say your name when greeting you'
+                    : 'Tap to generate so PAL can say your name',
+              ),
+              trailing: _nameAudioGenerating
+                  ? const SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : TextButton(
+                      onPressed: _regenerateNameAudio,
+                      child: Text(_nameAudioReady ? 'Regenerate' : 'Generate'),
+                    ),
+            ),
           const Divider(),
           SwitchListTile(
             title: const Text('Background Sound'),
