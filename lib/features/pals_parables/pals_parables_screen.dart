@@ -14,6 +14,8 @@ import 'package:bible_pal/providers/app_state_notifier.dart';
 import 'package:bible_pal/providers/parable_player_notifier.dart';
 import 'package:bible_pal/widgets/greeting_display.dart';
 import 'package:bible_pal/core/app_logger.dart';
+import 'package:bible_pal/theme/app_theme.dart';
+import 'package:bible_pal/widgets/starfield_background.dart';
 
 /// Voice input states for the PAL Voice Mood Input flow (Feature 2.2).
 ///
@@ -605,12 +607,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          SizedBox.expand(
-            child: Image.asset(
-              'assets/images/pal_bg_lake_boat.png',
-              fit: BoxFit.cover,
-            ),
-          ),
+          const StarfieldBackground(),
           ListView(
             padding: EdgeInsets.fromLTRB(16, MediaQuery.of(context).padding.top + kToolbarHeight + 16, 16, 16),
           children: [
@@ -731,27 +728,56 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
   /// Build the quick mood button row.
   Widget _buildMoodButtons(ThemeData theme) {
     const moods = [
-      ('Joyful', 'joyful'),
-      ('Neutral', 'neutral'),
-      ('Weary', 'weary'),
-      ('Anxious', 'anxious'),
-      ('Hurting', 'hurting'),
+      ('☀️', 'Joyful',  'joyful',  Color(0xFF7A4F00), Color(0xFFF5A623)),
+      ('🕊️', 'Neutral', 'neutral', Color(0xFF1A2D4A), Color(0xFF4B7ABE)),
+      ('🌙', 'Weary',   'weary',   Color(0xFF1A2040), Color(0xFF3D5A9A)),
+      ('🌊', 'Anxious', 'anxious', Color(0xFF0A2A2A), Color(0xFF2D8A8A)),
+      ('💙', 'Hurting', 'hurting', Color(0xFF2A1040), Color(0xFF7B4FA0)),
     ];
+    final disabled = _voiceState == VoiceInputState.proceeding;
 
     return Wrap(
-      spacing: 12,
-      runSpacing: 12,
+      spacing: 10,
+      runSpacing: 10,
       alignment: WrapAlignment.center,
       children: moods.map((entry) {
-        final (label, moodKey) = entry;
-        return ElevatedButton(
-          onPressed: _voiceState == VoiceInputState.proceeding
-              ? null
-              : () => _handleMoodButtonTap(moodKey),
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        final (emoji, label, moodKey, bgColor, borderColor) = entry;
+        return GestureDetector(
+          onTap: disabled ? null : () => _handleMoodButtonTap(moodKey),
+          child: AnimatedOpacity(
+            opacity: disabled ? 0.4 : 1.0,
+            duration: const Duration(milliseconds: 200),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              decoration: BoxDecoration(
+                color: bgColor,
+                borderRadius: BorderRadius.circular(999),
+                border: Border.all(color: borderColor.withOpacity(0.7), width: 1),
+                boxShadow: [
+                  BoxShadow(
+                    color: borderColor.withOpacity(0.25),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(emoji, style: const TextStyle(fontSize: 16)),
+                  const SizedBox(width: 7),
+                  Text(
+                    label,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: AppTheme.warmIvory,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-          child: Text(label),
         );
       }).toList(),
     );

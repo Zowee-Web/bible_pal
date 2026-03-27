@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/user_preferences.dart' show currentVoiceConsentVersion;
 import '../../providers/app_state_notifier.dart';
 import '../../providers/service_providers.dart' show nameAudioServiceProvider;
+import '../../theme/app_theme.dart';
+import '../../widgets/starfield_background.dart';
 
 /// Key for tracking first-launch onboarding completion
 const kFirstLaunchCompleteKey = 'first_launch_complete';
@@ -40,8 +42,8 @@ class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen> {
       "I'm here to share meaningful stories that speak to your heart. "
       "What's your name?";
 
-  /// Typing speed (ms per character) - deliberate, readable pace
-  static const _typingDelayMs = 95;
+  /// Typing speed (ms per character)
+  static const _typingDelayMs = 40;
 
   @override
   void initState() {
@@ -143,92 +145,125 @@ class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const Spacer(flex: 1),
+      body: GestureDetector(
+        onTap: () {
+          if (!_typingComplete) {
+            _typingTimer?.cancel();
+            setState(() {
+              _displayedText = _introMessage;
+              _charIndex = _introMessage.length;
+              _typingComplete = true;
+            });
+          }
+        },
+        child: Stack(
+        children: [
+          const StarfieldBackground(),
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const Spacer(flex: 1),
 
-              // PAL avatar/icon
-              Icon(
-                Icons.auto_stories,
-                size: 80,
-                color: theme.colorScheme.primary,
-              ),
-              const SizedBox(height: 32),
-
-              // Typing text display
-              Container(
-                constraints: const BoxConstraints(minHeight: 120),
-                child: Text(
-                  _displayedText,
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    height: 1.5,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-
-              // Blinking cursor during typing
-              if (!_typingComplete)
-                Text(
-                  '▋',
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    color: theme.colorScheme.primary,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-
-              const SizedBox(height: 32),
-
-              // Name input (visible after typing completes)
-              AnimatedOpacity(
-                opacity: _typingComplete ? 1.0 : 0.0,
-                duration: const Duration(milliseconds: 300),
-                child: Column(
-                  children: [
-                    TextField(
-                      controller: _nameController,
-                      enabled: _typingComplete && !_isSaving,
-                      textCapitalization: TextCapitalization.words,
-                      textInputAction: TextInputAction.done,
-                      onSubmitted: (_) => _handleContinue(),
-                      decoration: InputDecoration(
-                        labelText: 'Your name',
-                        hintText: 'Enter your name',
-                        border: const OutlineInputBorder(),
-                        prefixIcon: const Icon(Icons.person_outline),
-                        filled: true,
-                        fillColor: theme.colorScheme.surfaceContainerHighest,
-                      ),
+                  // PAL avatar/icon — glowing celestial blue
+                  Center(child: Container(
+                    width: 96,
+                    height: 96,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppTheme.glassCard,
+                      border: Border.all(color: AppTheme.celestialBlue.withOpacity(0.5), width: 2),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppTheme.celestialBlue.withOpacity(0.3),
+                          blurRadius: 28,
+                          spreadRadius: 4,
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 24),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 48,
-                      child: ElevatedButton(
-                        onPressed: _typingComplete && !_isSaving
-                            ? _handleContinue
-                            : null,
-                        child: _isSaving
-                            ? const SizedBox(
-                                width: 20,
-                                height: 20,
-                                child:
-                                    CircularProgressIndicator(strokeWidth: 2),
-                              )
-                            : const Text('Continue'),
-                      ),
+                    child: const Icon(
+                      Icons.auto_stories,
+                      size: 44,
+                      color: AppTheme.celestialBlue,
                     ),
-                  ],
-                ),
-              ),
+                  )),
+                  const SizedBox(height: 36),
 
-              const Spacer(flex: 2),
-            ],
+                  // Typing text display
+                  Container(
+                    constraints: const BoxConstraints(minHeight: 120),
+                    child: Text(
+                      _displayedText,
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        height: 1.6,
+                        color: AppTheme.warmIvory,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+
+                  // Blinking cursor during typing
+                  if (!_typingComplete)
+                    Text(
+                      '▋',
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        color: AppTheme.celestialBlue,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+
+                  const SizedBox(height: 32),
+
+                  // Name input (visible after typing completes)
+                  AnimatedOpacity(
+                    opacity: _typingComplete ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 400),
+                    child: Column(
+                      children: [
+                        TextField(
+                          controller: _nameController,
+                          enabled: _typingComplete && !_isSaving,
+                          textCapitalization: TextCapitalization.words,
+                          textInputAction: TextInputAction.done,
+                          onSubmitted: (_) => _handleContinue(),
+                          style: const TextStyle(color: AppTheme.warmIvory),
+                          decoration: const InputDecoration(
+                            labelText: 'Your name',
+                            hintText: 'Enter your name',
+                            prefixIcon: Icon(Icons.person_outline, color: AppTheme.celestialBlue),
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 52,
+                          child: ElevatedButton(
+                            onPressed: _typingComplete && !_isSaving
+                                ? _handleContinue
+                                : null,
+                            child: _isSaving
+                                ? const SizedBox(
+                                    width: 20,
+                                    height: 20,
+                                    child: CircularProgressIndicator(
+                                        strokeWidth: 2, color: Colors.white),
+                                  )
+                                : const Text('Begin'),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const Spacer(flex: 2),
+                ],
+              ),
+            ),
           ),
+        ],
         ),
       ),
     );
