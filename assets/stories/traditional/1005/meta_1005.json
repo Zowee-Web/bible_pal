@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1005,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "mood": "joyful",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_JAMES_HUSKY",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_CLAUDE_BATCH_03",
+  "reflectionQuestion": "Have you ever felt like something was drawing you to take a small, unexpected step just to get a better look at what God might be doing in your life?",
+  "title": "The Little Man Who Found Big Joy",
+  "files": {
+    "short": {
+      "storyText": "story_1005_traditional_web_short.txt",
+      "storyAudio": "audio_1005_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1005_traditional_web_full.txt",
+      "storyAudio": "audio_1005_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_1005_traditional_web_long.txt",
+      "storyAudio": "audio_1005_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1005_traditional_web.txt",
+      "reflectionAudio": "audio_1005_reflection.mp3"
+    }
+  },
+  "scriptureAnchor": "Luke 19:1-10",
+  "bibleStoryKey": "zacchaeus"
+}

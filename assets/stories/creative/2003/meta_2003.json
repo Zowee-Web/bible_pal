@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2003,
+  "mode": "creative",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "mood": "grateful",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_ARABELLA",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_CLAUDE_BATCH_02",
+  "reflectionQuestion": "Is there something you've been quietly investing in \u2014 a relationship, a prayer, a small act of kindness \u2014 knowing the fruit of it may be for someone else to enjoy?",
+  "title": "Seeds of Shade for Tomorrow",
+  "files": {
+    "short": {
+      "storyText": "story_2003_creative_web_short.txt",
+      "storyAudio": "audio_2003_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_2003_creative_web_full.txt",
+      "storyAudio": "audio_2003_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_2003_creative_web_long.txt",
+      "storyAudio": "audio_2003_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2003_creative_web.txt",
+      "reflectionAudio": "audio_2003_reflection.mp3"
+    }
+  },
+  "theme": "an old woman who plants trees she will never sit under"
+}

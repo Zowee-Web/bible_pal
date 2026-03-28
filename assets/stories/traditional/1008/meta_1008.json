@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1008,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_JAMES_HUSKY",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_CLAUDE_BATCH_03",
+  "reflectionQuestion": "Have you ever faced a new beginning where you needed to remind yourself that you don't have to walk into it alone?",
+  "title": "Be Strong and Very Courageous",
+  "files": {
+    "short": {
+      "storyText": "story_1008_traditional_web_short.txt",
+      "storyAudio": "audio_1008_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1008_traditional_web_full.txt",
+      "storyAudio": "audio_1008_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_1008_traditional_web_long.txt",
+      "storyAudio": "audio_1008_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1008_traditional_web.txt",
+      "reflectionAudio": "audio_1008_reflection.mp3"
+    }
+  },
+  "scriptureAnchor": "Joshua 1:1-9",
+  "bibleStoryKey": "joshua_commissioned"
+}
