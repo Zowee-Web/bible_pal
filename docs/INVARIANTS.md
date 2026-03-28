@@ -1058,6 +1058,12 @@ Story Mode Contracts v2 defines two orthogonal axes:
    - Changed outcomes or reordered events
    - First/second-person spiritual guide posture
    - Devotional commentary within narrative
+   - **Reflective narrator endings** in story body text:
+     - Listener-directed comfort language ("rest now", "enough for today")
+     - Implied moral summary not in scripture ("it was enough", "at last, peace")
+     - Interpretive phrasing ("he felt", "she seemed", "rest at last") unless directly observable in scripture
+     - Poetic or emotionally summarizing closings that shift from retelling to reflection
+   - Reflective/poetic closing language belongs ONLY in reflection content (separate asset) or Creative mode
 
 #### Creative Mode Requirements
 
@@ -1123,6 +1129,17 @@ if (p.storytellingMode == 'traditional' &&
 - `CRITICAL: No silent cross-mode fallback`
 - `CRITICAL: Default storytellingMode is traditional`
 
+#### 5. Story Asset Consistency
+**File**: [`test/core/story_asset_consistency_test.dart`](../test/core/story_asset_consistency_test.dart)
+
+Validates structural integrity of committed story assets:
+- Every story directory has meta JSON with universal required fields (`storyId`, `mode`, `mood`, `languageStyle`, `voiceKey`, `files`, `lengths`)
+- Story text files referenced in `meta.files` exist and are non-empty
+- `meta.mode` matches directory lane (`traditional/` or `creative/`)
+- `meta.lengths` entries have corresponding `meta.files` entries
+- Traditional stories have `scriptureAnchor`
+- `meta.storyId` matches directory name
+
 ### Violation Response
 
 **Build Time**:
@@ -1142,7 +1159,10 @@ if (p.storytellingMode == 'traditional' &&
 # Run story mode contract tests
 flutter test test/critical/story_mode_contracts_test.dart
 
-# Run all tests (includes story mode)
+# Run story asset consistency tests
+flutter test test/core/story_asset_consistency_test.dart
+
+# Run all tests (includes both)
 flutter test
 ```
 
@@ -1362,10 +1382,29 @@ flutter test
    - User MUST tap to hear reflection
    - No automatic playback of reflection audio
 
-4. **Scripture Reference Display (Traditional Only)**
+4. **Reflection Content is Separate from Story Body**
+   - Reflection text is a distinct asset file, never merged into or appended to story body text
+   - Traditional story body MUST NOT contain reflective narrator language (see Story Mode Non-Blur Invariant)
+   - Poetic, emotionally resonant closing language is valid ONLY in reflection content or Creative mode
+   - Enforced by automated test scan of Traditional story text files
+
+5. **Scripture Reference Display (Traditional Only)**
    - Scripture reference shown AFTER story completes, NOT during
    - Display `bibleSourceRef` prominently
    - Scripture reference is NOT narrated
+
+6. **`meta.reflectionText` is Canonical**
+   - `meta_*.json.reflectionText` is the single source of truth for reflection content
+   - `reflection_*.txt` must exactly match `meta.reflectionText` (after trim)
+   - Active `reflectionAudioStale: true` flags must not be committed — regenerate audio first
+   - Enforced by [`test/core/reflection_consistency_test.dart`](../test/core/reflection_consistency_test.dart)
+
+7. **Audio Asset Consistency**
+   - Any audio path referenced in `meta.files` must resolve to a non-empty file in the repo
+   - Applies to both story audio (`meta.files.{length}.storyAudio`) and reflection audio
+   - Supports standard reflection pattern (`meta.files.reflection.reflectionAudio`) and legacy per-length pattern (`meta.files.{length}.reflectionAudio`)
+   - Active stale-audio flags are not allowed in committed content
+   - Enforced by [`test/core/audio_asset_consistency_test.dart`](../test/core/audio_asset_consistency_test.dart)
 
 ### Enforcement Mechanisms
 
@@ -1377,13 +1416,27 @@ flutter test
 - `CRITICAL: Reflection is never auto-played (UI test)`
 - `CRITICAL: Traditional stories show scripture ref after completion`
 
+**File**: [`test/core/reflection_consistency_test.dart`](../test/core/reflection_consistency_test.dart)
+
+**Critical Tests** (MUST PASS):
+- `CRITICAL: All meta JSON files have reflectionText`
+- `CRITICAL: Every story has a reflection .txt file`
+- `CRITICAL: Reflection .txt content exactly matches meta.reflectionText`
+- `CRITICAL: No active reflectionAudioStale flags in committed meta`
+
 ### Testing
 
 ```bash
 # Run reflection system tests
 flutter test test/critical/reflection_system_test.dart
 
-# Run all tests (includes reflection tests)
+# Run reflection consistency tests
+flutter test test/core/reflection_consistency_test.dart
+
+# Run audio asset consistency tests
+flutter test test/core/audio_asset_consistency_test.dart
+
+# Run all tests (includes all reflection + audio tests)
 flutter test
 ```
 
@@ -1894,6 +1947,92 @@ python3 -c "import json; r=json.load(open('server/model_router/model_registry.js
 
 ---
 
+## 🔒 Mood System Invariant (NON-NEGOTIABLE)
+
+**Invariant**: The allowed mood IDs are exactly: `joyful`, `grateful`, `weary`, `anxious`, `hurting`, `brave_courage`, `calm_peaceful`, `encouraging`. The legacy value `neutral` is no longer valid and must map to `calm_peaceful` in migration.
+
+### Why This Exists
+- Mood IDs flow through story generation, manifest entries, telemetry, and user preferences
+- Adding or removing moods without updating all touchpoints causes silent failures in story selection
+- `neutral` was removed because it produced generic stories — `calm_peaceful` better serves users who don't express a specific mood
+
+### Enforcement
+- `allowedMoodIds` in `user_preferences.dart` is the canonical allowlist
+- `MoodService.detectMood()` returns only allowed moods
+- Default mood for empty input is `calm_peaceful` (not neutral)
+- All micro-response maps must have entries for all 8 moods
+- Test: every micro-response must contain a transition indicator (story/listen/play/share/hear/something/here's)
+
+---
+
+## 🔒 Story Length Label Invariant (NON-NEGOTIABLE)
+
+**Invariant**: User-facing story length labels must be exactly: "A Quick Moment", "A Quiet Story", "A Longer Listen". Internal enum values remain `short`, `full`, `long`.
+
+### Why This Exists
+- Labels create emotional tone and set expectations — "Short Story" feels lesser, "A Quick Moment" feels intentional
+- Consistency between PAL picker and main menu selector prevents user confusion
+- Duration hints (~2 min, ~5 min, ~10 min) are approximate and live in `durationLabel`, separate from `displayLabel`
+
+### Enforcement
+- `StoryLengthBucket.displayLabel` getter is the single source of truth
+- Test: labels are exactly these three strings (no minutes, no parentheses, no notes)
+
+---
+
+## 🔒 Preferred Length Persistence Invariant (NON-NEGOTIABLE)
+
+**Invariant**: Once a user selects a story length via the PAL picker, their choice is persisted in `UserPreferences.preferredLengthBucket` and used automatically for all subsequent mood-to-story flows. The PAL picker only shows when no preference is saved.
+
+### Why This Exists
+- Reduces friction — the most-loved apps remember your preferences
+- The PAL picker is a first-impression moment, not a recurring gate
+- Session-scoped length still exists for manual override via the main menu selector
+
+---
+
+## 🔒 Journal Privacy Invariant (NON-NEGOTIABLE)
+
+**Invariant**: Reflection journal entries are local-only, write-once, and never synced, logged, or included in diagnostics/support bundles.
+
+### Why This Exists
+- Journal entries contain personal spiritual reflections — the most sensitive user data in the app
+- Users must trust that their private thoughts stay private
+- This follows the same principle as voice transcript privacy (Feature 2.2)
+
+### Enforcement
+- `StorageService.addJournalEntry()` writes to SharedPreferences only
+- No journal data in crash logs, analytics, or telemetry
+- No cloud sync of journal entries
+
+---
+
+## 🔒 Bedtime Mode Safety Invariant (NON-NEGOTIABLE)
+
+**Invariant**: Bedtime mode is always user-controlled (never auto-activates). Volume is always reset to 1.0 after fade-out. The dim overlay never blocks touch interaction.
+
+### Why This Exists
+- Auto-activating bedtime mode based on time could surprise users during legitimate evening use
+- If volume isn't reset, next playback would be silent — a confusing, hard-to-debug experience
+- If the overlay blocks touch, users can't dismiss/navigate
+
+---
+
+## 🔒 Pray With Me Non-Directive Invariant (NON-NEGOTIABLE)
+
+**Invariant**: Prayer text must be personal and non-prescriptive. Prayers are first-person ("Lord, I am tired"), never second-person directive ("You should pray"), never doctrinal ("According to theology X").
+
+### Why This Exists
+- Follows the same MoDC (Mode of Companionship) rules as story content
+- Users of diverse Christian traditions must feel welcome
+- Prayers model a posture, not a prescription
+
+### Enforcement
+- Prayer text is hardcoded (not generated) — each mood has exactly one reviewed prayer
+- No prayer contains commands, advice, or doctrinal claims
+
+---
+
 ## Future Invariants
 
 As the project evolves, additional invariants may be added here. Each invariant must:
@@ -1904,5 +2043,5 @@ As the project evolves, additional invariants may be added here. Each invariant 
 
 ---
 
-**Last Updated**: 2026-03-10
+**Last Updated**: 2026-03-28
 **Maintained By**: Bible PAL Development Team

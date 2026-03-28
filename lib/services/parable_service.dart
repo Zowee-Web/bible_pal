@@ -7,6 +7,7 @@ import '../models/parable.dart';
 import '../models/user_preferences.dart';
 import '../core/app_logger.dart';
 import '../core/story_length_bucket.dart';
+import '../core/seasonal_calendar.dart';
 import 'storage_service.dart';
 import 'relatability_matcher.dart';
 
@@ -417,8 +418,31 @@ class ParableService {
       }
     }
 
-    // Fallback: deterministic selection (least-recently-played, then storyId)
+    // Fallback: deterministic selection with time-of-day and seasonal soft preferences.
+    // Stories tagged for the current time window or season are preferred.
+    final hour = DateTime.now().hour;
+    final currentTimeWindow = (hour >= 5 && hour < 12)
+        ? 'morning'
+        : (hour >= 17 || hour < 5)
+            ? 'evening'
+            : null; // afternoon: no preference
+    final currentSeason = SeasonalCalendar.getCurrentSeason();
+
     candidates.sort((a, b) {
+      // Seasonal boost: matching stories come first
+      if (currentSeason != null) {
+        final aMatch = a.seasonTag == currentSeason ? 0 : 1;
+        final bMatch = b.seasonTag == currentSeason ? 0 : 1;
+        if (aMatch != bMatch) return aMatch.compareTo(bMatch);
+      }
+
+      // Time-of-day boost: matching stories come first
+      if (currentTimeWindow != null) {
+        final aMatch = a.timeOfDay == currentTimeWindow ? 0 : 1;
+        final bMatch = b.timeOfDay == currentTimeWindow ? 0 : 1;
+        if (aMatch != bMatch) return aMatch.compareTo(bMatch);
+      }
+
       final aTime = playHistory[a.storyId];
       final bTime = playHistory[b.storyId];
 

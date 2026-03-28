@@ -1,7 +1,7 @@
 # Bible PAL - Technical Specification
 
-**Version:** 2.0
-**Last Updated:** 2026-02-27
+**Version:** 3.0
+**Last Updated:** 2026-03-28
 
 This document is the single source of truth for Bible PAL's features and behavior. All code must follow this specification. Changes to app behavior require explicit updates to this document.
 
@@ -14,8 +14,14 @@ This document is the single source of truth for Bible PAL's features and behavio
 3. [Onboarding](#onboarding)
 4. [Daily Bread](#daily-bread)
 5. [Post-Story Everyday Life Reflection](#post-story-everyday-life-reflection)
-6. [Settings](#settings)
-7. [Security & Technical Architecture](#security--technical-architecture)
+6. [Bedtime Mode](#bedtime-mode)
+7. [Listening Streaks](#listening-streaks)
+8. [Reflection Journal](#reflection-journal)
+9. [Seasonal & Calendar Awareness](#seasonal--calendar-awareness)
+10. [Pray With Me](#pray-with-me)
+11. [Share Clips](#share-clips)
+12. [Settings](#settings)
+13. [Security & Technical Architecture](#security--technical-architecture)
 
 ---
 
@@ -56,7 +62,7 @@ This document is the single source of truth for Bible PAL's features and behavio
 
 **Mood Input Methods:**
 Users respond to the check-in prompt using one of three input paths:
-- **Quick mood buttons:** Tap one of 5 mood buttons (Joyful, Neutral, Weary, Anxious, Hurting) — bypasses keyword detection, directly sets mood
+- **Quick mood buttons:** Tap one of 8 mood buttons (Joyful, Grateful, Weary, Anxious, Hurting, Brave, Peaceful, Encouraged) — bypasses keyword detection, directly sets mood. Buttons reorder based on time of day (morning surfaces encouraging/joyful first; evening surfaces calm/grateful first).
 - **Text input:** Type feelings into TextField → `MoodService.detectMood()` analyzes text
 - **Voice input:** Speak feelings via STT → transcript placed in TextField → same detection pipeline as text
 
@@ -124,7 +130,7 @@ When a mood button is tapped, a brief thinking delay (800–1500ms randomized) i
 
 **4. Micro-Response System**
 - After mood input, PAL plays a short, mood-specific micro-response (audio + text)
-- 30 total micro-responses: 5 mood buckets (joyful, weary, anxious, hurting, neutral) × 6 lines each
+- 40 total micro-responses: 8 mood buckets (joyful, grateful, weary, anxious, hurting, brave_courage, calm_peaceful, encouraging) × 5 lines each
 - All micro-responses must be ≤ 12 words
 - No repeat within a mood bucket until all 6 lines are used (session-only freshness)
 - Micro-response selection logic lives in the service layer, not the audio layer
@@ -144,18 +150,27 @@ When a mood button is tapped, a brief thinking delay (800–1500ms randomized) i
 
 **6. Story Length Buckets**
 
-Three user-facing length options (no minute estimates shown to users):
-- **Short Story**: 250–600 words (LOCKED SPEC)
-- **Full Story**: 601–1200 words (LOCKED SPEC)
-- **Long Story**: 1201–2000 words (LOCKED SPEC)
+Three user-facing length options with warm labels and approximate durations:
+- **A Quick Moment** (~2 min): 250–600 words (LOCKED SPEC)
+- **A Quiet Story** (~5 min): 601–1200 words (LOCKED SPEC)
+- **A Longer Listen** (~10 min): 1201–2000 words (LOCKED SPEC)
+
+Each option has a subtitle hint:
+- A Quick Moment — "For a pause in your day"
+- A Quiet Story — "Settle in for a few minutes"
+- A Longer Listen — "When you have time to linger"
+
+**Length Selection Flow (PAL Conversational Picker):**
+- First time: After mood selection, PAL shows a bottom sheet ("I have a story for you.") with three tappable length options showing label, subtitle, and duration
+- User's choice is persisted in `UserPreferences.preferredLengthBucket`
+- Subsequent visits: saved preference is used automatically (no picker shown)
+- Manual override still available via the horizontal selector on the main menu
 
 Implementation notes:
-- UI presents descriptive labels only (Short/Full/Long), not minutes
 - Selection filters by `StoryLengthBucket` enum (short/full/long)
 - Word ranges are for generation validation; selection uses bucket mapping
-- Length selector is on the main menu screen (below PAL's Parables button)
-- Session-scoped: user picks length before entering PAL flow; selection persists for the session but resets on app restart
-- Not persisted to SharedPreferences
+- Preferred length persisted in UserPreferences (survives app restarts)
+- `sessionLengthBucketProvider` stays in sync for backwards compatibility
 
 **Compatibility with existing assets:**
 - New stories use `storyLength` field directly ("short", "full", "long")
@@ -291,6 +306,17 @@ Scripture-faithful narrative enrichment is allowed:
 - First/second-person spiritual guide posture
 - Commentary or devotional asides within the narrative
 - Blurring into Creative mode territory
+- **Reflective narrator endings** — no interpretive, poetic, or emotionally summarizing closure language in story body text. Traditional stories must end at the scripture boundary with observable action only. Forbidden patterns include:
+  - Listener-directed comfort language ("rest now", "enough for today", "one long breath")
+  - Implied moral summary not present in scripture ("it was enough", "at last, peace")
+  - Internal/interpretive phrasing ("he felt", "she seemed", "rest at last") unless directly warranted by observable scripture text
+  - Narrator commentary that shifts from retelling to reflection
+
+**Separation of Story Body and Reflection Content:**
+- **Story body** contains only the faithful scripture retelling — no reflective language
+- **Reflection content** (Feature 34) is a separate asset, displayed after the story via the Reflection UX
+- Poetic or emotionally resonant closing language belongs ONLY in reflection content or Creative mode, never in Traditional story body text
+- Reflection content must never be merged into or appended to the Traditional story body
 
 **Validation:**
 - Traditional stories without `bibleSourceRef` are **EXCLUDED** from the serving pool
@@ -298,6 +324,7 @@ Scripture-faithful narrative enrichment is allowed:
 - Stories with MoDC narrator patterns fail validation
 - Stories with invented inner-monologue markers fail validation
 - Stories that read as devotional commentary rather than narrative fail validation
+- Stories with reflective narrator ending patterns fail validation (see forbidden patterns above)
 
 
 ---
@@ -665,12 +692,22 @@ Reflections MUST:
 - Use descriptive, non-prescriptive language
 - Describe patterns, not instructions
 - Use phrases like "often looks like", "can reflect", "stories like this show..."
+- Be grounded in a specific moment, image, or action from the story
 
 Reflections MUST NOT:
 - Give advice ("you should", "try to")
 - Make diagnostic claims ("you are feeling...")
 - Promise outcomes ("this will help you...")
 - Use therapeutic language
+
+**35a. Reflection vs. Story Body Boundary (LOCKED)**
+
+Reflection content is the ONLY lane where gentle, emotionally resonant closing language is permitted. This includes phrases like "enough for today", "one small step", or poetic restatements of story themes.
+
+This language MUST NOT appear in Traditional story body text (see Traditional Mode Contract — Forbidden: Reflective narrator endings). The boundary is enforced by:
+- Generation prompt templates (Traditional prompt forbids reflective closings)
+- Automated test scans of Traditional story text files
+- The reflection prompt template, which produces reflection content as a separate asset
 
 **36. Kid Mode Reflection Constraints**
 
@@ -686,6 +723,229 @@ When `kidFriendlyOnly` is enabled:
 - Questions are open-ended, not leading
 - User may dismiss/skip without answering
 - No user response is stored or tracked
+
+---
+
+## Bedtime Mode
+
+**38. Bedtime Mode (Feature 38)**
+
+A toggle that transforms the listening experience for nighttime use.
+
+**Behavior:**
+- **Toggle**: Settings → "Bedtime Mode" (default: OFF)
+- **Sleep Timer**: Configurable delay after story ends (0 / 5 / 10 / 15 / 30 minutes, default: 5 min)
+- **Audio Fade-Out**: When sleep timer expires, audio volume fades to zero over 5 seconds, then playback stops
+- **Dim Overlay**: Player screen shows a semi-transparent dark overlay (30% opacity) when bedtime mode is active
+- **Reflection audio also stopped**: Sleep timer stops both story and reflection audio
+
+**Implementation:**
+- `UserPreferences.bedtimeModeEnabled` (bool, persisted)
+- `UserPreferences.sleepTimerMinutes` (int, persisted)
+- `AudioService.fadeOutAndStop()` — 20-step linear volume interpolation over configurable duration
+- Sleep timer starts in `ParablePlayerScreen` after `playbackCompletedStream` fires
+
+**Constraints:**
+- Bedtime mode does not auto-activate based on time of day — it is always user-controlled
+- The dim overlay does not block touch interaction (uses `IgnorePointer`)
+- Volume is reset to 1.0 after fade-out completes so next playback starts at full volume
+
+---
+
+## Listening Streaks
+
+**39. Listening Streaks (Feature 39)**
+
+Tracks consecutive days of story listening to encourage gentle daily habit formation.
+
+**Behavior:**
+- **Computed**: Streak is updated each time `addToHistory()` is called
+- **Display**: Shows "X day streak" on main menu when streak ≥ 2 days
+- **No guilt**: If user misses a day, streak resets to 1 silently — no "you lost your streak" messaging
+- **Warm tone**: Display uses warm gold color, small body text — visible but not attention-grabbing
+
+**Implementation:**
+- `UserPreferences.currentStreak` (int, default: 0)
+- `UserPreferences.lastListenDate` (String?, ISO date yyyy-MM-dd)
+- Logic: if `lastListenDate` is yesterday → increment. If today → no change. If older → reset to 1.
+- Updated inside `AppStateNotifier.addToHistory()` alongside history persistence
+
+**Constraints:**
+- Streaks are based on calendar days, not 24-hour windows
+- Only one streak increment per day (multiple listens same day don't over-count)
+- Streak display is hidden when streak < 2
+
+---
+
+## Reflection Journal
+
+**40. Reflection Journal (Feature 40)**
+
+After the post-story reflection, users can jot a one-line thought tied to the story.
+
+**Behavior:**
+- **Input**: Single-line text field ("Jot a thought...") appears in the reflection card after story playback
+- **Max length**: 200 characters
+- **Save**: Tap checkmark to save. Shows "Saved to your journal." confirmation
+- **Not shown in kid mode**: Journal input is hidden when `kidFriendlyOnly` is true
+- **Storage**: Last 100 entries persisted in SharedPreferences
+
+**Data Model:**
+- `JournalEntry`: id, storyId, storyTitle, mood, note, createdAt
+- Stored in `StorageService` under `journal_entries` key
+
+**Constraints:**
+- Journal entries are local-only (never synced, never logged)
+- No editing after save (write-once)
+- FIFO: oldest entries are trimmed when exceeding 100
+
+---
+
+## Seasonal & Calendar Awareness
+
+**41. Seasonal Story Surfacing (Feature 41)**
+
+Stories tagged with a liturgical/cultural season are soft-preferred during that season.
+
+**Supported Seasons:**
+- `advent` — Dec 1–24
+- `christmas` — Dec 25 – Jan 6
+- `lent` — Ash Wednesday to Holy Saturday (computed from Easter)
+- `easter` — Palm Sunday through Easter +7 days
+- `thanksgiving` — Nov 20–30
+
+**Behavior:**
+- `SeasonalCalendar.getCurrentSeason()` returns current season or null
+- Story selection sorts season-tagged stories before untagged ones (soft preference, not hard filter)
+- `SeasonalCalendar.getSeasonalGreeting()` provides optional PAL greeting text for special seasons
+- `Parable.seasonTag` field (nullable String) for story tagging
+
+**Implementation:**
+- Easter date computed via Anonymous Gregorian algorithm
+- Seasonal boost applied in `ParableService.selectParable()` sorting, after filtering
+- If no season-tagged stories exist for the current season, selection falls through to normal pool
+
+**Constraints:**
+- Season detection is date-based only (no user location or timezone heuristics)
+- Seasons are non-overlapping by design
+- Seasonal greeting is optional — PAL may or may not use it
+
+---
+
+## Morning vs. Evening Awareness
+
+**42. Time-of-Day Story Intelligence (Feature 42)**
+
+The app adjusts mood surfacing and story selection based on time of day.
+
+**Mood Button Reordering:**
+- Morning (05:00–11:59): encouraging, joyful, grateful first
+- Afternoon (12:00–16:59): default order (no reordering)
+- Evening (17:00–21:59): calm_peaceful, grateful, weary first
+- Late Night (22:00–04:59): calm_peaceful, weary, hurting first
+
+**Story Selection Boost:**
+- `Parable.timeOfDay` field (nullable: 'morning', 'evening', or null for any time)
+- Stories tagged for the current time window are soft-preferred in selection sorting
+- Morning = 05:00–11:59, Evening = 17:00–04:59, Afternoon = no preference
+
+**Constraints:**
+- Mood buttons always show all 8 moods — reordering only, never hiding
+- Time-of-day is a soft preference, not a hard filter
+- Uses `PalPromptService.getTimeWindow()` for consistent time classification
+
+---
+
+## Pray With Me
+
+**43. Pray With Me (Feature 43)**
+
+An optional, gentle guided prayer moment offered after the post-story reflection.
+
+**Behavior:**
+- **Offer**: After reflection section, a quiet text link appears: "Would you like to sit quietly for a moment?"
+- **Activation**: User taps → prayer card appears with a mood-matched short prayer (3 lines)
+- **Dismissal**: User taps "Amen" → prayer card hides permanently for that session
+- **Non-intrusive**: Link is subtle, low-contrast, easy to ignore
+
+**Prayer Content:**
+- One prayer per mood (8 total), hardcoded in player screen
+- Prayers are 3 lines, personal, non-prescriptive
+- Example (weary): "Lord, I am tired. / Give me rest. / Carry what I cannot."
+
+**Constraints:**
+- Prayer is text-only (no audio)
+- No prayer is shown if user dismisses before tapping
+- Prayer state (`_prayerActive`, `_prayerDismissed`) is session-only, not persisted
+- Available in kid mode (prayers are simple and appropriate)
+
+---
+
+## Share Clips
+
+**44. Share Clips (Feature 44)**
+
+Shareable story excerpts for social sharing and word-of-mouth growth.
+
+**Behavior:**
+- **Button**: "Share a clip" appears alongside existing "Share with a PAL" in the player
+- **Content**: Extracts 2-3 compelling sentences from the story's middle third
+- **Format**: Quoted excerpt, em-dash with story title, scripture ref (if Traditional), "Listen on Bible PAL"
+- **Platform**: Uses `share_plus` package to invoke native share sheet
+
+**Excerpt Algorithm:**
+- Split story into sentences (by `.!?` boundaries)
+- Skip first third (setup) and last third (resolution)
+- Take 2-3 sentences from the middle
+- Cap at 200 characters
+
+**Constraints:**
+- Excerpt is text-only (no audio clips in v1)
+- If story is very short (≤3 sentences), use the full text
+- Share action is fire-and-forget (no tracking of share success beyond platform callback)
+
+---
+
+## Favorites "Listen Again"
+
+**45. Favorites Listen Again (Feature 45)**
+
+Encourages users to revisit saved favorite stories.
+
+**Behavior:**
+- **Display**: "Listen to an old favorite" text link appears above mood buttons on main menu
+- **Visibility**: Only shows when user has ≥1 saved favorite
+- **Selection**: Picks a random favorite and loads it into the player
+- **Flow**: Favorite → addToHistory → loadParable → navigate to player
+
+**Constraints:**
+- Random selection uses current timestamp modulo for simplicity
+- Favorites list is read from app state (already loaded)
+- "Listen Again" does not bypass the mood detection flow — it's an alternative entry point
+
+---
+
+## Family / Kids Mode
+
+**46. Family / Kids Mode (Feature 46)**
+
+A first-class visual experience when kid-friendly mode is active.
+
+**Behavior:**
+- **Theme Switch**: When `kidFriendlyOnly` is true, the main menu uses a warmer color theme
+- **Colors**: Warm peach primary, sunshine gold accent, cream background, soft lavender containers
+- **Typography**: Slightly larger app bar title (22px vs 20px)
+- **Content**: All existing kid-safe content filtering still applies (kid-friendly stories only, age-appropriate reflections)
+
+**Implementation:**
+- `AppTheme.kidsTheme` — a `ThemeData` variant with warmer colors
+- Applied via `Theme()` widget wrapper on main menu when kid mode is active
+- Theme switch is immediate (no animation/transition)
+
+**Constraints:**
+- Kids theme only affects visual appearance, not behavior
+- All mood buttons, length selection, and PAL flows work identically in kid mode
+- Journal input is hidden in kid mode (Feature 40)
 
 ---
 
@@ -710,6 +970,13 @@ When `kidFriendlyOnly` is enabled:
 - Default: ON (enabled on first launch)
 - Controls whether post-story reflections are displayed
 - Persisted in UserPreferences
+
+**25a. Bedtime Mode Toggle**
+- Label: "Bedtime Mode"
+- Subtitle: "Dims the screen, fades audio after stories end"
+- Default: OFF
+- When enabled, shows sleep timer dropdown (0 / 5 / 10 / 15 / 30 min)
+- Persisted in UserPreferences (`bedtimeModeEnabled`, `sleepTimerMinutes`)
 
 ---
 

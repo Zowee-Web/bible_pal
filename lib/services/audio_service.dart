@@ -122,6 +122,20 @@ class AudioService {
     await _player.setVolume(volume.clamp(0.0, 1.0));
   }
 
+  /// Gradually fade volume to 0 over [duration], then stop playback.
+  Future<void> fadeOutAndStop({Duration duration = const Duration(seconds: 5)}) async {
+    const steps = 20;
+    final currentVolume = _player.volume;
+    final stepDuration = Duration(milliseconds: duration.inMilliseconds ~/ steps);
+    for (var i = 1; i <= steps; i++) {
+      final vol = currentVolume * (1.0 - (i / steps));
+      await _player.setVolume(vol.clamp(0.0, 1.0));
+      await Future.delayed(stepDuration);
+    }
+    await stop();
+    await _player.setVolume(1.0); // Reset volume for next playback
+  }
+
   /// Get current playback position
   Duration get position => _player.position;
 

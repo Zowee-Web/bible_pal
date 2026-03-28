@@ -22,7 +22,10 @@ const Set<String> allowedMoodIds = {
   'weary',
   'anxious',
   'hurting',
-  'neutral',
+  'grateful',
+  'brave_courage',
+  'calm_peaceful',
+  'encouraging',
 };
 
 /// Validates a mood ID, returning null if not in allowedMoodIds.
@@ -71,6 +74,18 @@ class UserPreferences {
   // null = no mood detected yet; only allowedMoodIds values are persisted.
   final String? lastDetectedMood;
 
+  // Preferred story length bucket (remembered from last selection)
+  // null = not yet chosen; user will be prompted. Once set, auto-selects.
+  final String? preferredLengthBucket;
+
+  // Bedtime mode: dims UI, fades audio after story, sleep timer
+  final bool bedtimeModeEnabled;
+  final int sleepTimerMinutes; // Minutes after story ends before app sleeps (0 = immediate)
+
+  // Listening streak tracking
+  final int currentStreak; // Consecutive days of listening
+  final String? lastListenDate; // ISO date string (yyyy-MM-dd) of last listen
+
   const UserPreferences({
     this.userName = '',
     required this.bibleTranslation,
@@ -87,6 +102,11 @@ class UserPreferences {
     this.voiceConsentVersion, // null = never consented
     this.palVoiceKey = 'VOICE_GRACE',
     this.lastDetectedMood,
+    this.preferredLengthBucket,
+    this.bedtimeModeEnabled = false,
+    this.sleepTimerMinutes = 5,
+    this.currentStreak = 0,
+    this.lastListenDate,
   });
 
   /// Default preferences for first-time users
@@ -145,6 +165,11 @@ class UserPreferences {
           json['palVoiceKey'] as String? ?? 'VOICE_GRACE'),
       lastDetectedMood:
           _validateMood(json['lastDetectedMood'] as String?),
+      preferredLengthBucket: json['preferredLengthBucket'] as String?,
+      bedtimeModeEnabled: json['bedtimeModeEnabled'] as bool? ?? false,
+      sleepTimerMinutes: json['sleepTimerMinutes'] as int? ?? 5,
+      currentStreak: json['currentStreak'] as int? ?? 0,
+      lastListenDate: json['lastListenDate'] as String?,
     );
   }
 
@@ -164,6 +189,11 @@ class UserPreferences {
       'voiceConsentVersion': voiceConsentVersion,
       'palVoiceKey': palVoiceKey,
       'lastDetectedMood': lastDetectedMood,
+      'preferredLengthBucket': preferredLengthBucket,
+      'bedtimeModeEnabled': bedtimeModeEnabled,
+      'sleepTimerMinutes': sleepTimerMinutes,
+      'currentStreak': currentStreak,
+      'lastListenDate': lastListenDate,
     };
   }
 
@@ -187,6 +217,11 @@ class UserPreferences {
     int? voiceConsentVersion,
     String? palVoiceKey,
     String? lastDetectedMood,
+    String? preferredLengthBucket,
+    bool? bedtimeModeEnabled,
+    int? sleepTimerMinutes,
+    int? currentStreak,
+    String? lastListenDate,
   }) {
     // RUNTIME GUARD: Validate translation if provided
     final validatedTranslation = bibleTranslation != null
@@ -216,6 +251,12 @@ class UserPreferences {
       voiceConsentVersion: voiceConsentVersion ?? this.voiceConsentVersion,
       palVoiceKey: palVoiceKey ?? this.palVoiceKey,
       lastDetectedMood: lastDetectedMood ?? this.lastDetectedMood,
+      preferredLengthBucket:
+          preferredLengthBucket ?? this.preferredLengthBucket,
+      bedtimeModeEnabled: bedtimeModeEnabled ?? this.bedtimeModeEnabled,
+      sleepTimerMinutes: sleepTimerMinutes ?? this.sleepTimerMinutes,
+      currentStreak: currentStreak ?? this.currentStreak,
+      lastListenDate: lastListenDate ?? this.lastListenDate,
     );
   }
 

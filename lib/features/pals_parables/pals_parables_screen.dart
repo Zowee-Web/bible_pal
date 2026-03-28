@@ -13,6 +13,8 @@ import 'package:bible_pal/services/stt_service.dart';
 import 'package:bible_pal/providers/app_state_notifier.dart';
 import 'package:bible_pal/providers/parable_player_notifier.dart';
 import 'package:bible_pal/widgets/greeting_display.dart';
+import 'package:bible_pal/widgets/pal_length_picker.dart';
+import 'package:bible_pal/core/story_length_bucket.dart';
 import 'package:bible_pal/core/app_logger.dart';
 import 'package:bible_pal/theme/app_theme.dart';
 import 'package:bible_pal/widgets/starfield_background.dart';
@@ -477,13 +479,16 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
   String _pickMicroResponseId(String mood) {
     const microResponseIds = {
       'joyful': ['RESP_JOY_01', 'RESP_JOY_02', 'RESP_JOY_03', 'RESP_JOY_04', 'RESP_JOY_05', 'RESP_JOY_06'],
+      'grateful': ['RESP_JOY_01', 'RESP_JOY_02', 'RESP_JOY_03', 'RESP_JOY_04', 'RESP_JOY_05', 'RESP_JOY_06'],
       'weary': ['RESP_WEARY_01', 'RESP_WEARY_02', 'RESP_WEARY_03', 'RESP_WEARY_04', 'RESP_WEARY_05', 'RESP_WEARY_06'],
       'anxious': ['RESP_ANX_01', 'RESP_ANX_02', 'RESP_ANX_03', 'RESP_ANX_04', 'RESP_ANX_05', 'RESP_ANX_06'],
       'hurting': ['RESP_HURT_01', 'RESP_HURT_02', 'RESP_HURT_03', 'RESP_HURT_04', 'RESP_HURT_05', 'RESP_HURT_06'],
-      'neutral': ['RESP_NEU_01', 'RESP_NEU_02', 'RESP_NEU_03', 'RESP_NEU_04', 'RESP_NEU_05', 'RESP_NEU_06'],
+      'brave_courage': ['RESP_JOY_01', 'RESP_JOY_02', 'RESP_JOY_03', 'RESP_JOY_04', 'RESP_JOY_05', 'RESP_JOY_06'],
+      'calm_peaceful': ['RESP_NEU_01', 'RESP_NEU_02', 'RESP_NEU_03', 'RESP_NEU_04', 'RESP_NEU_05', 'RESP_NEU_06'],
+      'encouraging': ['RESP_JOY_01', 'RESP_JOY_02', 'RESP_JOY_03', 'RESP_JOY_04', 'RESP_JOY_05', 'RESP_JOY_06'],
     };
 
-    final pool = microResponseIds[mood] ?? microResponseIds['neutral']!;
+    final pool = microResponseIds[mood] ?? microResponseIds['calm_peaceful']!;
     final recentIds = _recentMicroResponseIds.putIfAbsent(mood, () => []);
 
     var candidates = pool.where((id) => !recentIds.contains(id)).toList();
@@ -518,7 +523,24 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
   Future<void> _autoSelectStory(String userText) async {
     if (_moodResult == null) return;
 
-    final lengthBucket = ref.read(sessionLengthBucketProvider);
+    final appStateNotifier = ref.read(appStateProvider.notifier);
+    final userPrefs = ref.read(appStateProvider).requireValue.userPreferences;
+
+    // Determine length bucket: use saved preference or ask via PAL picker
+    StoryLengthBucket lengthBucket;
+    final savedPref = userPrefs.preferredLengthBucket;
+
+    if (savedPref != null) {
+      lengthBucket = StoryLengthBucket.fromJson(savedPref);
+    } else {
+      if (!mounted) return;
+      final picked = await showPalLengthPicker(context);
+      if (picked == null || !mounted) return;
+      lengthBucket = picked;
+      await appStateNotifier.updatePreferredLengthBucket(picked.name);
+    }
+
+    ref.read(sessionLengthBucketProvider.notifier).state = lengthBucket;
 
     logEvent('length_selected', {
       'length_bucket': lengthBucket.name,
@@ -533,8 +555,6 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     });
 
     try {
-      final appStateNotifier = ref.read(appStateProvider.notifier);
-
       final parable = await appStateNotifier.selectParable(
         mood: _moodResult!.mood,
         lengthBucket: lengthBucket,
@@ -728,11 +748,14 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
   /// Build the quick mood button row.
   Widget _buildMoodButtons(ThemeData theme) {
     const moods = [
-      ('☀️', 'Joyful',  'joyful',  Color(0xFF7A4F00), Color(0xFFF5A623)),
-      ('🕊️', 'Neutral', 'neutral', Color(0xFF1A2D4A), Color(0xFF4B7ABE)),
-      ('🌙', 'Weary',   'weary',   Color(0xFF1A2040), Color(0xFF3D5A9A)),
-      ('🌊', 'Anxious', 'anxious', Color(0xFF0A2A2A), Color(0xFF2D8A8A)),
-      ('💙', 'Hurting', 'hurting', Color(0xFF2A1040), Color(0xFF7B4FA0)),
+      ('☀️', 'Joyful',     'joyful',        Color(0xFF7A4F00), Color(0xFFF5A623)),
+      ('🙏', 'Grateful',   'grateful',      Color(0xFF3A2A00), Color(0xFFD4A520)),
+      ('🌙', 'Weary',      'weary',         Color(0xFF1A2040), Color(0xFF3D5A9A)),
+      ('🌊', 'Anxious',    'anxious',       Color(0xFF0A2A2A), Color(0xFF2D8A8A)),
+      ('💙', 'Hurting',    'hurting',       Color(0xFF2A1040), Color(0xFF7B4FA0)),
+      ('🦁', 'Brave',      'brave_courage', Color(0xFF4A2800), Color(0xFFD07020)),
+      ('🕊️', 'Peaceful',   'calm_peaceful', Color(0xFF1A2D4A), Color(0xFF4B7ABE)),
+      ('🌟', 'Encouraged', 'encouraging',   Color(0xFF2A3A10), Color(0xFF7AAA30)),
     ];
     final disabled = _voiceState == VoiceInputState.proceeding;
 

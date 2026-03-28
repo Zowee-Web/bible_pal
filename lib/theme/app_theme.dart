@@ -52,6 +52,13 @@ class AppTheme {
 
   // ── Theme ───────────────────────────────────────────────────────────────────
 
+  // Kids Mode Colors — warmer, softer, more playful
+  static const Color kidsWarmPeach = Color(0xFFFFA07A); // Primary - warm peach
+  static const Color kidsSunshine = Color(0xFFFFD700); // Secondary - sunshine gold
+  static const Color kidsCreamBg = Color(0xFFFFF8F0); // Background - warm cream
+  static const Color kidsLavender = Color(0xFFE6D5F5); // Container - soft lavender
+  static const Color kidsMintGreen = Color(0xFFB8E6C8); // Accent - gentle mint
+
   static ThemeData get theme {
     return ThemeData(
       useMaterial3: true,
@@ -306,6 +313,37 @@ class AppTheme {
           TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
           TargetPlatform.macOS: FadeUpwardsPageTransitionsBuilder(),
         },
+      ),
+    );
+  }
+
+  /// Kids Mode theme — warmer colors, bigger text, softer feel
+  static ThemeData get kidsTheme {
+    return theme.copyWith(
+      colorScheme: ColorScheme.light(
+        primary: kidsWarmPeach,
+        secondary: kidsSunshine,
+        surface: kidsCreamBg,
+        onPrimary: Colors.white,
+        onSecondary: deepCharcoal,
+        onSurface: deepCharcoal,
+        primaryContainer: kidsLavender,
+        onPrimaryContainer: deepCharcoal,
+        secondaryContainer: kidsMintGreen,
+        onSecondaryContainer: deepCharcoal,
+      ),
+      scaffoldBackgroundColor: kidsCreamBg,
+      appBarTheme: AppBarTheme(
+        backgroundColor: kidsCreamBg,
+        foregroundColor: deepCharcoal,
+        elevation: 0,
+        centerTitle: true,
+        titleTextStyle: TextStyle(
+          color: deepCharcoal,
+          fontSize: 22,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5,
+        ),
       ),
     );
   }

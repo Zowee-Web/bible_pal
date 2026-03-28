@@ -32,6 +32,10 @@ class Parable {
   final String?
       reflectionQuestion; // Optional gentle question (SPEC Feature 37, display-only)
   final DateTime? generatedAt;
+  final String?
+      timeOfDay; // 'morning', 'evening', or null (any time). Used for time-based story selection.
+  final String?
+      seasonTag; // 'advent', 'lent', 'easter', 'thanksgiving', or null. For seasonal story surfacing.
 
   const Parable({
     required this.storyId,
@@ -54,6 +58,8 @@ class Parable {
     this.narratorVoiceKey,
     this.reflectionQuestion,
     this.generatedAt,
+    this.timeOfDay,
+    this.seasonTag,
   });
 
   /// Create from JSON (for storage/retrieval)
@@ -98,6 +104,8 @@ class Parable {
       generatedAt: json['generatedAt'] != null
           ? DateTime.parse(json['generatedAt'] as String)
           : null,
+      timeOfDay: json['timeOfDay'] as String?,
+      seasonTag: json['seasonTag'] as String?,
     );
   }
 
@@ -122,6 +130,8 @@ class Parable {
       'narratorVoiceKey': narratorVoiceKey,
       'reflectionQuestion': reflectionQuestion,
       'generatedAt': generatedAt?.toIso8601String(),
+      if (timeOfDay != null) 'timeOfDay': timeOfDay,
+      if (seasonTag != null) 'seasonTag': seasonTag,
     };
     // Contracts v2: Only include bibleSourceRef if present (required for Traditional)
     if (bibleSourceRef != null && bibleSourceRef!.isNotEmpty) {
@@ -166,6 +176,8 @@ class Parable {
     String? narratorVoiceKey,
     String? reflectionQuestion,
     DateTime? generatedAt,
+    String? timeOfDay,
+    String? seasonTag,
   }) {
     return Parable(
       storyId: storyId ?? this.storyId,
@@ -187,6 +199,8 @@ class Parable {
       narratorVoiceKey: narratorVoiceKey ?? this.narratorVoiceKey,
       reflectionQuestion: reflectionQuestion ?? this.reflectionQuestion,
       generatedAt: generatedAt ?? this.generatedAt,
+      timeOfDay: timeOfDay ?? this.timeOfDay,
+      seasonTag: seasonTag ?? this.seasonTag,
     );
   }
 

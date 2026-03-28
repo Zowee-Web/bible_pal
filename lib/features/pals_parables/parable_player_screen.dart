@@ -11,8 +11,10 @@ import 'package:bible_pal/models/share_record.dart';
 import 'package:bible_pal/services/reflection_service.dart';
 import 'package:bible_pal/services/voice_consent_gate.dart';
 import 'package:bible_pal/core/app_logger.dart';
+import 'package:bible_pal/models/journal_entry.dart';
 import 'package:bible_pal/providers/service_providers.dart';
 import 'package:uuid/uuid.dart';
+import 'dart:async';
 
 /// Parable Player Screen
 /// Based on SPEC.md Features 11, 12, 16, 17, 34-37
@@ -40,6 +42,14 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
   // Separate audio player for reflection (to not interfere with story player)
   AudioPlayer? _reflectionPlayer;
 
+  // Bedtime mode sleep timer
+  Timer? _sleepTimer;
+
+  bool get _isBedtimeModeActive {
+    final appState = ref.read(appStateProvider).valueOrNull;
+    return appState?.userPreferences.bedtimeModeEnabled ?? false;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -63,6 +73,7 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
 
   @override
   void dispose() {
+    _sleepTimer?.cancel();
     _reflectionPlayer?.dispose();
     super.dispose();
   }
@@ -112,6 +123,30 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
         // Auto-play reflection if voice consent is granted and audio exists
         await _maybeAutoPlayReflection();
       }
+
+      // Bedtime mode: start sleep timer after story ends
+      if (mounted) {
+        _startBedtimeSleepTimerIfNeeded();
+      }
+    });
+  }
+
+  /// Start sleep timer if bedtime mode is enabled.
+  /// After the timer expires, fade out any playing audio and stop.
+  void _startBedtimeSleepTimerIfNeeded() {
+    final appState = ref.read(appStateProvider).valueOrNull;
+    if (appState == null) return;
+    if (!appState.userPreferences.bedtimeModeEnabled) return;
+
+    _sleepTimer?.cancel();
+    final minutes = appState.userPreferences.sleepTimerMinutes;
+
+    _sleepTimer = Timer(Duration(minutes: minutes), () async {
+      if (!mounted) return;
+      final playerNotifier = ref.read(parablePlayerProvider.notifier);
+      await playerNotifier.audioService.fadeOutAndStop();
+      // Also stop reflection audio if playing
+      _reflectionPlayer?.stop();
     });
   }
 
@@ -404,7 +439,9 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
           ),
         ),
       ),
-      body: playerState.currentParable == null
+      body: Stack(
+        children: [
+          playerState.currentParable == null
           ? const Center(
               child: Text('No parable loaded'),
             )
@@ -678,6 +715,21 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                       icon: const Icon(Icons.share),
                       label: const Text('Share with a PAL'),
                     ),
+
+                    // Share a clip (short excerpt for social sharing)
+                    OutlinedButton.icon(
+                      onPressed: () async {
+                        final playerState = ref.read(parablePlayerProvider);
+                        if (playerState.currentParable == null) return;
+                        final shareService = ref.read(shareServiceProvider);
+                        await shareService.shareClip(
+                          parable: playerState.currentParable!,
+                          storyText: playerState.parableText,
+                        );
+                      },
+                      icon: const Icon(Icons.format_quote, size: 18),
+                      label: const Text('Share a clip'),
+                    ),
                   ],
                 ),
 
@@ -685,6 +737,17 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                 _buildReflectionSection(theme),
               ],
             ),
+          // Bedtime mode dim overlay
+          if (_isBedtimeModeActive)
+            Positioned.fill(
+              child: IgnorePointer(
+                child: Container(
+                  color: Colors.black.withOpacity(0.3),
+                ),
+              ),
+            ),
+        ],
+      ),
     ),
     );
   }
@@ -848,6 +911,16 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                     const SizedBox(height: 16),
                     _buildReflectionAudioControls(theme),
                   ],
+
+                  // Journal entry input
+                  if (!isKidMode) ...[
+                    const SizedBox(height: 16),
+                    _buildJournalInput(theme, playerState.currentParable!),
+                  ],
+
+                  // "Pray With Me" offer
+                  const SizedBox(height: 16),
+                  _buildPrayWithMeSection(theme, playerState.currentParable!),
                 ],
               ],
             ),
@@ -855,6 +928,146 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
         ),
       ],
     );
+  }
+
+  // Journal input state
+  final TextEditingController _journalController = TextEditingController();
+  bool _journalSaved = false;
+
+  Widget _buildJournalInput(ThemeData theme, Parable parable) {
+    if (_journalSaved) {
+      return Text(
+        'Saved to your journal.',
+        style: theme.textTheme.bodySmall?.copyWith(
+          color: theme.colorScheme.onTertiaryContainer.withOpacity(0.6),
+          fontStyle: FontStyle.italic,
+        ),
+      );
+    }
+
+    return Row(
+      children: [
+        Expanded(
+          child: TextField(
+            controller: _journalController,
+            maxLength: 200,
+            maxLines: 1,
+            style: theme.textTheme.bodySmall,
+            decoration: InputDecoration(
+              hintText: 'Jot a thought...',
+              hintStyle: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onTertiaryContainer.withOpacity(0.4),
+              ),
+              isDense: true,
+              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: theme.colorScheme.outline.withOpacity(0.3)),
+              ),
+              counterText: '',
+            ),
+          ),
+        ),
+        const SizedBox(width: 8),
+        IconButton(
+          icon: Icon(Icons.check, size: 20, color: theme.colorScheme.primary),
+          onPressed: () async {
+            final text = _journalController.text.trim();
+            if (text.isEmpty) return;
+
+            final entry = JournalEntry(
+              id: const Uuid().v4(),
+              storyId: parable.storyId,
+              storyTitle: parable.title,
+              mood: parable.mood,
+              note: text,
+              createdAt: DateTime.now(),
+            );
+
+            final storage = await ref.read(storageServiceProvider.future);
+            await storage.addJournalEntry(entry);
+
+            if (mounted) {
+              setState(() => _journalSaved = true);
+              _journalController.clear();
+            }
+          },
+        ),
+      ],
+    );
+  }
+
+  bool _prayerActive = false;
+  bool _prayerDismissed = false;
+
+  Widget _buildPrayWithMeSection(ThemeData theme, Parable parable) {
+    if (_prayerDismissed) return const SizedBox.shrink();
+
+    if (_prayerActive) {
+      // Show the quiet prayer moment
+      return Card(
+        elevation: 1,
+        color: theme.colorScheme.secondaryContainer.withOpacity(0.5),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              Text(
+                _getPrayerText(parable.mood),
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  fontStyle: FontStyle.italic,
+                  height: 1.6,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 16),
+              TextButton(
+                onPressed: () => setState(() {
+                  _prayerActive = false;
+                  _prayerDismissed = true;
+                }),
+                child: const Text('Amen'),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    // Show the offer
+    return TextButton.icon(
+      onPressed: () => setState(() => _prayerActive = true),
+      icon: Icon(Icons.favorite_outline, size: 16, color: theme.colorScheme.primary.withOpacity(0.6)),
+      label: Text(
+        'Would you like to sit quietly for a moment?',
+        style: theme.textTheme.bodySmall?.copyWith(
+          color: theme.colorScheme.primary.withOpacity(0.6),
+        ),
+      ),
+    );
+  }
+
+  String _getPrayerText(String mood) {
+    switch (mood) {
+      case 'joyful':
+        return 'Thank you, Lord, for this joy.\nHelp me carry it gently\nand share it freely.';
+      case 'grateful':
+        return 'Lord, my heart is full.\nThank you for every gift,\nseen and unseen.';
+      case 'weary':
+        return 'Lord, I am tired.\nGive me rest.\nCarry what I cannot.';
+      case 'anxious':
+        return 'Lord, quiet my restless thoughts.\nYou are here.\nThat is enough.';
+      case 'hurting':
+        return 'Lord, you see my pain.\nSit with me here.\nI don\'t need answers, just your presence.';
+      case 'brave_courage':
+        return 'Lord, give me strength\nfor what lies ahead.\nI will not walk alone.';
+      case 'calm_peaceful':
+        return 'Lord, thank you for this peace.\nHelp me stay here a little longer\nand breathe.';
+      case 'encouraging':
+        return 'Lord, thank you for this spark.\nFan it into something good.\nUse me today.';
+      default:
+        return 'Lord, I am here.\nYou are here.\nThat is enough.';
+    }
   }
 
   /// Build audio control buttons for reflection

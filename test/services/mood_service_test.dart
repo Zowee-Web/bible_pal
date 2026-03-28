@@ -7,7 +7,7 @@ void main() {
     test('returns a non-empty response for each mood', () {
       final service = MoodService(random: Random(0));
 
-      for (final mood in ['joyful', 'weary', 'anxious', 'hurting', 'neutral']) {
+      for (final mood in ['joyful', 'grateful', 'weary', 'anxious', 'hurting', 'brave_courage', 'calm_peaceful', 'encouraging']) {
         final text = service.getMicroResponseText(mood);
         expect(text.isNotEmpty, true,
             reason: '$mood response should not be empty');
@@ -21,7 +21,7 @@ void main() {
     });
 
     test('all micro-response texts are 12 words or fewer', () {
-      for (final mood in ['joyful', 'weary', 'anxious', 'hurting', 'neutral']) {
+      for (final mood in ['joyful', 'grateful', 'weary', 'anxious', 'hurting', 'brave_courage', 'calm_peaceful', 'encouraging']) {
         for (var seed = 0; seed < 50; seed++) {
           final s = MoodService(random: Random(seed));
           final text = s.getMicroResponseText(mood);
@@ -33,7 +33,7 @@ void main() {
     });
 
     test('all micro-response texts contain a transition indicator', () {
-      for (final mood in ['joyful', 'weary', 'anxious', 'hurting', 'neutral']) {
+      for (final mood in ['joyful', 'grateful', 'weary', 'anxious', 'hurting', 'brave_courage', 'calm_peaceful', 'encouraging']) {
         for (var seed = 0; seed < 50; seed++) {
           final s = MoodService(random: Random(seed));
           final text = s.getMicroResponseText(mood);
@@ -61,10 +61,10 @@ void main() {
       expect(result.mood, isNotEmpty);
     });
 
-    test('returns neutral for empty input', () {
+    test('returns calm_peaceful for empty input', () {
       final service = MoodService(random: Random(0));
       final result = service.detectMood('');
-      expect(result.mood, 'neutral');
+      expect(result.mood, 'calm_peaceful');
     });
   });
 }
