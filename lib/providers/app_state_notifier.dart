@@ -221,6 +221,13 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
     await updateUserPreferences(prefs);
   }
 
+  Future<void> updatePreferredLengthBucket(String bucket) async {
+    final prefs = state.requireValue.userPreferences.copyWith(
+      preferredLengthBucket: bucket,
+    );
+    await updateUserPreferences(prefs);
+  }
+
   // Favorites Methods
   Future<void> addFavorite(Parable parable) async {
     state = await AsyncValue.guard(() async {
@@ -270,6 +277,43 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
       final entry = HistoryEntry.fromParable(parable);
       await _storage.addToHistory(entry);
       final history = await _storage.getHistory();
+
+      // Update listening streak
+      final prefs = state.requireValue.userPreferences;
+      final today = DateTime.now().toIso8601String().substring(0, 10);
+      final lastListen = prefs.lastListenDate;
+
+      int newStreak = prefs.currentStreak;
+      if (lastListen == today) {
+        // Already listened today — no change
+      } else if (lastListen != null) {
+        final lastDate = DateTime.parse(lastListen);
+        final todayDate = DateTime.parse(today);
+        final diff = todayDate.difference(lastDate).inDays;
+        if (diff == 1) {
+          // Consecutive day — increment streak
+          newStreak = prefs.currentStreak + 1;
+        } else {
+          // Missed a day — reset to 1
+          newStreak = 1;
+        }
+      } else {
+        // First ever listen
+        newStreak = 1;
+      }
+
+      if (newStreak != prefs.currentStreak || lastListen != today) {
+        final updatedPrefs = prefs.copyWith(
+          currentStreak: newStreak,
+          lastListenDate: today,
+        );
+        await _storage.saveUserPreferences(updatedPrefs);
+        return state.requireValue.copyWith(
+          history: history,
+          userPreferences: updatedPrefs,
+        );
+      }
+
       return state.requireValue.copyWith(history: history);
     });
   }

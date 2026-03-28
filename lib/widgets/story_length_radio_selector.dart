@@ -21,17 +21,18 @@ class StoryLengthRadioSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (horizontal) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+      // Use Wrap instead of Row to handle small screens gracefully
+      return Wrap(
+        alignment: WrapAlignment.center,
+        spacing: 8,
+        runSpacing: 8,
         children: [
-          for (int i = 0; i < StoryLengthBucket.values.length; i++) ...[
-            if (i > 0) const SizedBox(width: 8),
+          for (final bucket in StoryLengthBucket.values)
             _LengthChip(
-              bucket: StoryLengthBucket.values[i],
-              isSelected: selectedBucket == StoryLengthBucket.values[i],
-              onTap: () => onBucketChanged(StoryLengthBucket.values[i]),
+              bucket: bucket,
+              isSelected: selectedBucket == bucket,
+              onTap: () => onBucketChanged(bucket),
             ),
-          ],
         ],
       );
     }
@@ -149,9 +150,9 @@ class _LengthChip extends StatelessWidget {
 
   static const _duration = Duration(milliseconds: 150);
   static const _shortLabels = {
-    StoryLengthBucket.short: 'Short',
-    StoryLengthBucket.full: 'Full',
-    StoryLengthBucket.long: 'Long',
+    StoryLengthBucket.short: 'Quick Moment',
+    StoryLengthBucket.full: 'Quiet Story',
+    StoryLengthBucket.long: 'Longer Listen',
   };
 
   const _LengthChip({
@@ -173,7 +174,7 @@ class _LengthChip extends StatelessWidget {
         child: AnimatedContainer(
           duration: _duration,
           curve: Curves.easeOut,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
           decoration: BoxDecoration(
             color: isSelected
                 ? theme.colorScheme.primary.withOpacity(0.15)

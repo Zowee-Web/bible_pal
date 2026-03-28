@@ -7,6 +7,7 @@ import '../models/history_entry.dart';
 import '../models/pal.dart';
 import '../models/share_record.dart';
 import '../models/pending_share.dart';
+import '../models/journal_entry.dart';
 import '../features/onboarding/first_launch_screen.dart' show kFirstLaunchCompleteKey, kPalIntroShownKey;
 
 /// Storage Service - handles all local data persistence
@@ -20,6 +21,7 @@ class StorageService {
   static const String _keyShares = 'shares';
   static const String _keyPendingShares = 'pending_shares';
   static const String _keyLastInboxSync = 'last_inbox_sync';
+  static const String _keyJournal = 'journal_entries';
 
   final SharedPreferences _prefs;
 
@@ -139,6 +141,27 @@ class StorageService {
   /// Clear all history
   Future<void> clearHistory() async {
     await _prefs.remove(_keyHistory);
+  }
+
+  // ========== Reflection Journal ==========
+
+  /// Get all journal entries (most recent first)
+  Future<List<JournalEntry>> getJournalEntries() async {
+    final json = _prefs.getString(_keyJournal);
+    if (json == null) return [];
+    final list = jsonDecode(json) as List<dynamic>;
+    return list.map((e) => JournalEntry.fromJson(e as Map<String, dynamic>)).toList();
+  }
+
+  /// Add a journal entry (keeps last 100)
+  Future<void> addJournalEntry(JournalEntry entry) async {
+    final entries = await getJournalEntries();
+    entries.insert(0, entry);
+    if (entries.length > 100) {
+      entries.removeRange(100, entries.length);
+    }
+    final json = jsonEncode(entries.map((e) => e.toJson()).toList());
+    await _prefs.setString(_keyJournal, json);
   }
 
   // ========== Edited Titles ==========

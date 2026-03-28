@@ -41,4 +41,55 @@ class ShareService {
 
     return buffer.toString();
   }
+
+  /// Share a short, compelling clip — the best 2-3 sentences from the story.
+  /// Designed for social sharing (text messages, social media posts).
+  Future<bool> shareClip({
+    required Parable parable,
+    required String? storyText,
+  }) async {
+    final clip = _extractBestClip(storyText);
+    final buffer = StringBuffer();
+
+    buffer.writeln('"$clip"');
+    buffer.writeln();
+    buffer.writeln('— ${parable.title}');
+
+    if (parable.bibleSourceRef != null && parable.bibleSourceRef!.isNotEmpty) {
+      buffer.writeln('  ${parable.bibleSourceRef}');
+    }
+
+    buffer.writeln();
+    buffer.write('Listen on Bible PAL');
+
+    final result = await Share.share(buffer.toString());
+    return result.status == ShareResultStatus.success;
+  }
+
+  /// Extract 2-3 compelling sentences from the middle of the story.
+  /// Avoids the opening (often setup) and ending (often resolution).
+  String _extractBestClip(String? storyText) {
+    if (storyText == null || storyText.isEmpty) {
+      return 'A story worth hearing.';
+    }
+
+    // Split into sentences
+    final sentences = storyText
+        .replaceAll('\n', ' ')
+        .split(RegExp(r'(?<=[.!?])\s+'))
+        .where((s) => s.trim().length > 10)
+        .toList();
+
+    if (sentences.length <= 3) return sentences.join(' ');
+
+    // Pick 2-3 sentences from the middle third
+    final midStart = sentences.length ~/ 3;
+    final clip = sentences.skip(midStart).take(3).join(' ');
+
+    // Cap at ~200 chars
+    if (clip.length > 200) {
+      return '${clip.substring(0, 197)}...';
+    }
+    return clip;
+  }
 }

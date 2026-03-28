@@ -92,10 +92,10 @@ void main() {
   });
 
   group('StoryLengthBucket display labels', () {
-    test('labels are exactly: Short Story, Full Story, Long Story', () {
-      expect(StoryLengthBucket.short.displayLabel, 'Short Story');
-      expect(StoryLengthBucket.full.displayLabel, 'Full Story');
-      expect(StoryLengthBucket.long.displayLabel, 'Long Story');
+    test('labels are exactly: A Quick Moment, A Quiet Story, A Longer Listen', () {
+      expect(StoryLengthBucket.short.displayLabel, 'A Quick Moment');
+      expect(StoryLengthBucket.full.displayLabel, 'A Quiet Story');
+      expect(StoryLengthBucket.long.displayLabel, 'A Longer Listen');
     });
 
     test('no notes, descriptions, or minutes in labels', () {

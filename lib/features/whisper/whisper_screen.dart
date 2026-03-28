@@ -287,7 +287,7 @@ class _WhisperScreenState extends ConsumerState<WhisperScreen> {
     ])) {
       return 'hurting';
     }
-    return 'neutral';
+    return 'calm_peaceful';
   }
 
   String _buildTinyStory(String prompt) {

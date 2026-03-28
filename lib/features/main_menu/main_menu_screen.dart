@@ -19,6 +19,8 @@ import 'package:flutter/services.dart' show HapticFeedback;
 import '../../providers/parable_player_notifier.dart';
 import '../../models/parable.dart';
 import '../../widgets/story_length_radio_selector.dart';
+import '../../widgets/pal_length_picker.dart';
+import '../../core/story_length_bucket.dart';
 import '../consent/voice_consent_dialog.dart';
 import '../my_pals/select_pals_dialog.dart';
 import '../../models/share_record.dart';
@@ -87,9 +89,13 @@ class MainMenuScreen extends ConsumerWidget {
             ? '"${dailyVerse.verse}"'
             : '"In Your presence is fullness of joy."';
         final verseReference = dailyVerse?.reference ?? 'Psalm 16:11';
+        final isKidMode = appState.userPreferences.kidFriendlyOnly;
+        final effectiveTheme = isKidMode ? AppTheme.kidsTheme : theme;
 
-        return Scaffold(
-          backgroundColor: AppTheme.parchment,
+        return Theme(
+          data: effectiveTheme,
+          child: Scaffold(
+          backgroundColor: isKidMode ? AppTheme.kidsCreamBg : AppTheme.parchment,
           body: SafeArea(
             bottom: true,
             child: LayoutBuilder(
@@ -111,6 +117,22 @@ class MainMenuScreen extends ConsumerWidget {
                           _PalButtonWithIntro(theme: theme),
 
                           const SizedBox(height: 10),
+
+                          // Listening streak (quiet, non-gamified)
+                          Builder(builder: (context) {
+                            final streak = ref.watch(appStateProvider).valueOrNull?.userPreferences.currentStreak ?? 0;
+                            if (streak < 2) return const SizedBox.shrink();
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 8),
+                              child: Text(
+                                '$streak day streak',
+                                style: theme.textTheme.bodySmall?.copyWith(
+                                  color: AppTheme.warmGold,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            );
+                          }),
 
                           // "Story Length" label
                           Text(
@@ -278,6 +300,7 @@ class MainMenuScreen extends ConsumerWidget {
               },
             ),
           ),
+        ),
         );
       },
     );
@@ -845,13 +868,16 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   String _pickMicroResponseId(String mood) {
     const microResponseIds = {
       'joyful': ['RESP_JOY_01', 'RESP_JOY_02', 'RESP_JOY_03', 'RESP_JOY_04', 'RESP_JOY_05', 'RESP_JOY_06'],
+      'grateful': ['RESP_JOY_01', 'RESP_JOY_02', 'RESP_JOY_03', 'RESP_JOY_04', 'RESP_JOY_05', 'RESP_JOY_06'],
       'weary': ['RESP_WEARY_01', 'RESP_WEARY_02', 'RESP_WEARY_03', 'RESP_WEARY_04', 'RESP_WEARY_05', 'RESP_WEARY_06'],
       'anxious': ['RESP_ANX_01', 'RESP_ANX_02', 'RESP_ANX_03', 'RESP_ANX_04', 'RESP_ANX_05', 'RESP_ANX_06'],
       'hurting': ['RESP_HURT_01', 'RESP_HURT_02', 'RESP_HURT_03', 'RESP_HURT_04', 'RESP_HURT_05', 'RESP_HURT_06'],
-      'neutral': ['RESP_NEU_01', 'RESP_NEU_02', 'RESP_NEU_03', 'RESP_NEU_04', 'RESP_NEU_05', 'RESP_NEU_06'],
+      'brave_courage': ['RESP_JOY_01', 'RESP_JOY_02', 'RESP_JOY_03', 'RESP_JOY_04', 'RESP_JOY_05', 'RESP_JOY_06'],
+      'calm_peaceful': ['RESP_NEU_01', 'RESP_NEU_02', 'RESP_NEU_03', 'RESP_NEU_04', 'RESP_NEU_05', 'RESP_NEU_06'],
+      'encouraging': ['RESP_JOY_01', 'RESP_JOY_02', 'RESP_JOY_03', 'RESP_JOY_04', 'RESP_JOY_05', 'RESP_JOY_06'],
     };
 
-    final pool = microResponseIds[mood] ?? microResponseIds['neutral']!;
+    final pool = microResponseIds[mood] ?? microResponseIds['calm_peaceful']!;
     final recentIds = _recentMicroResponseIds.putIfAbsent(mood, () => []);
 
     var candidates = pool.where((id) => !recentIds.contains(id)).toList();
@@ -1260,17 +1286,41 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
     if (_isSelectingFromMood) return;
     setState(() => _isSelectingFromMood = true);
 
-    final lengthBucket = ref.read(sessionLengthBucketProvider);
-
-    logEvent('pal_tap', {
-      'length_bucket': lengthBucket.name,
-      'detected_mood': mood,
-      'input_method': 'mood_button_main_menu',
-    });
-
     try {
       final appStateNotifier = ref.read(appStateProvider.notifier);
+      final userPrefs = ref.read(appStateProvider).requireValue.userPreferences;
       appStateNotifier.updateLastDetectedMood(mood);
+
+      // Determine length bucket: use saved preference or ask via PAL picker
+      StoryLengthBucket lengthBucket;
+      final savedPref = userPrefs.preferredLengthBucket;
+
+      if (savedPref != null) {
+        // User has a saved preference — use it directly
+        lengthBucket = StoryLengthBucket.fromJson(savedPref);
+      } else {
+        // First time — show PAL length picker
+        if (!mounted) return;
+        final picked = await showPalLengthPicker(context);
+
+        if (picked == null || !mounted) {
+          setState(() => _isSelectingFromMood = false);
+          return;
+        }
+
+        lengthBucket = picked;
+        // Save their choice for next time
+        await appStateNotifier.updatePreferredLengthBucket(picked.name);
+      }
+
+      // Update session provider to stay in sync
+      ref.read(sessionLengthBucketProvider.notifier).state = lengthBucket;
+
+      logEvent('pal_tap', {
+        'length_bucket': lengthBucket.name,
+        'detected_mood': mood,
+        'input_method': 'mood_button_main_menu',
+      });
 
       final parable = await appStateNotifier.selectParable(
         mood: mood,
@@ -1314,17 +1364,69 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
   }
 
   Widget _buildMoodButtons(ThemeData theme) {
-    const moods = [
+    // Reorder moods based on time of day — surface contextually relevant moods first
+    final hour = DateTime.now().hour;
+    final timeWindow = PalPromptService.getTimeWindow(hour);
+
+    const allMoods = [
       ('Joyful', 'joyful'),
-      ('Neutral', 'neutral'),
+      ('Grateful', 'grateful'),
       ('Weary', 'weary'),
       ('Anxious', 'anxious'),
       ('Hurting', 'hurting'),
+      ('Brave', 'brave_courage'),
+      ('Peaceful', 'calm_peaceful'),
+      ('Encouraged', 'encouraging'),
     ];
 
-    return Wrap(
-      spacing: 10,
-      runSpacing: 10,
+    // Time-based ordering: surface most relevant moods first
+    const morningOrder = ['encouraging', 'joyful', 'grateful', 'brave_courage', 'anxious', 'calm_peaceful', 'weary', 'hurting'];
+    const eveningOrder = ['calm_peaceful', 'grateful', 'weary', 'hurting', 'anxious', 'joyful', 'encouraging', 'brave_courage'];
+    const lateNightOrder = ['calm_peaceful', 'weary', 'hurting', 'anxious', 'grateful', 'joyful', 'encouraging', 'brave_courage'];
+
+    List<String>? order;
+    if (timeWindow == 'morning') {
+      order = morningOrder;
+    } else if (timeWindow == 'evening') {
+      order = eveningOrder;
+    } else if (timeWindow == 'lateNight') {
+      order = lateNightOrder;
+    }
+
+    final List<(String, String)> moods;
+    if (order != null) {
+      final o = order;
+      moods = List.of(allMoods)..sort((a, b) => o.indexOf(a.$2).compareTo(o.indexOf(b.$2)));
+    } else {
+      moods = allMoods;
+    }
+
+    // "Listen Again" suggestion — show when user has favorites
+    final favorites = ref.watch(appStateProvider).valueOrNull?.favorites ?? [];
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (favorites.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: TextButton.icon(
+              onPressed: _isSelectingFromMood ? null : () => _playRandomFavorite(favorites),
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+              ),
+              icon: Icon(Icons.replay, size: 18, color: theme.colorScheme.primary.withOpacity(0.7)),
+              label: Text(
+                'Listen to an old favorite',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.primary.withOpacity(0.7),
+                ),
+              ),
+            ),
+          ),
+        Wrap(
+      spacing: 8,
+      runSpacing: 8,
       alignment: WrapAlignment.center,
       children: moods.map((entry) {
         final (label, moodKey) = entry;
@@ -1333,7 +1435,7 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
               ? null
               : () => _handleMoodButtonTap(moodKey),
           style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
             backgroundColor: theme.colorScheme.primary,
             foregroundColor: theme.colorScheme.onPrimary,
             shape: RoundedRectangleBorder(
@@ -1343,7 +1445,38 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
           child: Text(label),
         );
       }).toList(),
+    ),
+      ],
     );
+  }
+
+  Future<void> _playRandomFavorite(List<dynamic> favorites) async {
+    if (_isSelectingFromMood || favorites.isEmpty) return;
+    setState(() => _isSelectingFromMood = true);
+
+    try {
+      final appStateNotifier = ref.read(appStateProvider.notifier);
+      final randomFav = favorites[DateTime.now().millisecond % favorites.length];
+      final parableService = await ref.read(parableServiceProvider.future);
+      final parable = await parableService.getParableById(randomFav.storyId);
+
+      if (parable == null || !mounted) {
+        setState(() => _isSelectingFromMood = false);
+        return;
+      }
+
+      await appStateNotifier.addToHistory(parable);
+      if (!mounted) return;
+
+      final playerNotifier = ref.read(parablePlayerProvider.notifier);
+      await playerNotifier.loadParable(parable);
+      if (!mounted) return;
+
+      setState(() => _isSelectingFromMood = false);
+      Navigator.of(context).pushNamed('/parable_player');
+    } catch (e) {
+      setState(() => _isSelectingFromMood = false);
+    }
   }
 
   void _onReadTodaysStory() {

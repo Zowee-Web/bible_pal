@@ -30,6 +30,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   String _palVoiceKey = PalVoiceRegistry.defaultVoiceKey;
   // User name
   String _userName = '';
+  // Bedtime mode
+  bool _bedtimeModeEnabled = false;
+  int _sleepTimerMinutes = 5;
 
   @override
   void initState() {
@@ -63,6 +66,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       _palVoiceKey = appState.userPreferences.palVoiceKey;
       // User name
       _userName = appState.userPreferences.userName;
+      // Bedtime mode
+      _bedtimeModeEnabled = appState.userPreferences.bedtimeModeEnabled;
+      _sleepTimerMinutes = appState.userPreferences.sleepTimerMinutes;
     }
 
     setState(() => _loaded = true);
@@ -85,6 +91,20 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     setState(() => _kidFriendlyOnly = on);
     final appState = ref.read(appStateProvider.notifier);
     await appState.updateKidFriendlyOnly(on);
+  }
+
+  Future<void> _setBedtimeMode(bool on) async {
+    setState(() => _bedtimeModeEnabled = on);
+    final appState = ref.read(appStateProvider.notifier);
+    final prefs = ref.read(appStateProvider).requireValue.userPreferences;
+    await appState.updateUserPreferences(prefs.copyWith(bedtimeModeEnabled: on));
+  }
+
+  Future<void> _setSleepTimer(int minutes) async {
+    setState(() => _sleepTimerMinutes = minutes);
+    final appState = ref.read(appStateProvider.notifier);
+    final prefs = ref.read(appStateProvider).requireValue.userPreferences;
+    await appState.updateUserPreferences(prefs.copyWith(sleepTimerMinutes: minutes));
   }
 
   Future<void> _setShowEverydayReflections(bool on) async {
@@ -280,6 +300,32 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             value: _backgroundSoundOn,
             onChanged: _setBackgroundSound,
           ),
+          const Divider(),
+          SwitchListTile(
+            title: const Text('Bedtime Mode'),
+            subtitle: const Text('Dims the screen, fades audio after stories end'),
+            value: _bedtimeModeEnabled,
+            onChanged: _setBedtimeMode,
+          ),
+          if (_bedtimeModeEnabled) ...[
+            ListTile(
+              title: const Text('Sleep Timer'),
+              subtitle: Text('Fade out $_sleepTimerMinutes minutes after story ends'),
+              trailing: DropdownButton<int>(
+                value: _sleepTimerMinutes,
+                underline: const SizedBox(),
+                items: const [
+                  DropdownMenuItem(value: 0, child: Text('Immediately')),
+                  DropdownMenuItem(value: 5, child: Text('5 min')),
+                  DropdownMenuItem(value: 10, child: Text('10 min')),
+                  DropdownMenuItem(value: 15, child: Text('15 min')),
+                  DropdownMenuItem(value: 30, child: Text('30 min')),
+                ],
+                onChanged: (v) => _setSleepTimer(v ?? 5),
+              ),
+            ),
+          ],
+          const Divider(),
           SwitchListTile(
             title: const Text('Kid Friendly'),
             subtitle: const Text('Only show stories appropriate for children'),
