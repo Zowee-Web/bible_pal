@@ -21,11 +21,8 @@ import '../../core/story_length_bucket.dart';
 import '../../models/parable.dart';
 import '../../widgets/pal_length_picker.dart';
 import '../consent/voice_consent_dialog.dart';
-import '../my_pals/select_pals_dialog.dart';
-import '../../models/share_record.dart';
 import '../../core/app_logger.dart';
 import '../../widgets/starfield_background.dart';
-import 'package:uuid/uuid.dart';
 
 /// Main Menu Screen
 /// Based on UI/UX Design Spec Section 4: Home Screen
@@ -1740,49 +1737,6 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
     );
   }
 
-  // --------------- share (dialog, no navigation) ---------------
-
-  Future<void> _shareWithPals(Parable parable) async {
-    final appStateAsync = ref.read(appStateProvider);
-    final pals = appStateAsync.valueOrNull?.pals ?? [];
-
-    if (!mounted) return;
-
-    final selectedPalIds = await showDialog<List<String>>(
-      context: context,
-      builder: (context) => SelectPalsDialog(pals: pals),
-    );
-
-    if (selectedPalIds == null || selectedPalIds.isEmpty) return;
-
-    final appStateNotifier = ref.read(appStateProvider.notifier);
-
-    for (final palId in selectedPalIds) {
-      final shareId = const Uuid().v4();
-      final share = ShareRecord(
-        shareId: shareId,
-        storyId: parable.storyId,
-        storyTitle: parable.title,
-        toPalId: palId,
-        timestamp: DateTime.now(),
-        direction: ShareDirection.sent,
-      );
-      await appStateNotifier.shareStoryWithPal(share);
-    }
-
-    if (!mounted) return;
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          selectedPalIds.length == 1
-              ? 'Shared with 1 PAL'
-              : 'Shared with ${selectedPalIds.length} PALs',
-        ),
-        duration: const Duration(seconds: 2),
-      ),
-    );
-  }
 }
 
 // ---------------------------------------------------------------------------
