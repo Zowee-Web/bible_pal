@@ -3,47 +3,59 @@
 **Status:** LOCKED
 
 This document defines the canonical rules, invariants, and contracts for generating
-Bible PAL stories using the dual-engine Story Factory pipeline.
+Bible PAL stories using the Story Factory pipeline.
 
 Any change to this document requires an explicit spec update and approval
 before implementation.
 
 ---
 
-## 0. Dual-Engine Architecture (Locked)
+## 0. Engine Architecture (Locked — Revised 2026-03-28)
 
-Bible PAL uses a **locked dual-engine** architecture for story generation.
-Each engine is assigned to exactly one storytelling mode. No substitutions.
+### Active Engine: Claude Opus 4.6
 
-| Mode        | Engine                          | Generator Script                                                   |
-|-------------|--------------------------------|--------------------------------------------------------------------|
-| Traditional | OpenAI gpt-4.1 (Cloud)         | `generate_traditional_story.py`                                    |
-| Creative    | mistral-nemo via Ollama (Local) | `generate_v2_batch.sh` (primary), `generate_creative_story.py` (legacy) |
+All new story generation uses **Claude Opus 4.6** via the Anthropic API as the
+sole active engine for both Traditional and Creative modes.
 
-**Engine Assignment Rules:**
-- Traditional mode MUST use gpt-4.1 via OpenAI Responses API. Forbidden: local models, substitution engines.
-- Creative mode MUST use Ollama (local). Primary model: mistral-nemo. Fallback chain: llama3.1:8b → qwen2.5:7b → gemma:7b (legacy). Forbidden: OpenAI API, cloud LLMs, external generators.
-- Model selection for Creative tasks is managed by the Universal Model Router (`server/model_router/`). See ADR-016.
+| Mode        | Engine                  | Generator Script               | ID Range    |
+|-------------|------------------------|---------------------------------|-------------|
+| Traditional | Claude Opus 4.6 (Cloud) | `generate_story_claude.py`     | 1000–1999   |
+| Creative    | Claude Opus 4.6 (Cloud) | `generate_story_claude.py`     | 2000–2999   |
+
+**Active Engine Rules:**
+- Both modes MUST use `claude-opus-4-6` via the Anthropic Python SDK.
+- Metadata records `"createdByModel": "claude-opus-4-6"`.
 - Registries are separate: `used_scripture_anchors.json` (Traditional) vs `used_creative_themes.json` (Creative).
 - Output directories are separate: `assets/stories/traditional/` vs `assets/stories/creative/`.
 - No cross-engine content. No cross-registry reads. No blurring.
 
-**Why Dual-Engine:**
-- Preserves doctrinal trust (Traditional = scripture authority via proven cloud model)
-- Controls cost (Creative = local model, zero API cost)
-- Avoids vendor lock-in (local model for creative content)
-- Enables creativity (Gemma's style suits original storytelling)
-- Scales long-term (local model runs at any volume)
+### Retired Engines (Legacy)
+
+The following engines are retired. Their scripts remain in the repo but are no
+longer used for new content. Legacy stories (IDs 501–519, 801–834) remain in
+the app for testing and are never deleted.
+
+| Mode        | Engine (Retired)                | Generator Script (Retired)                                        | ID Range   |
+|-------------|--------------------------------|-------------------------------------------------------------------|------------|
+| Traditional | OpenAI gpt-4.1 (Cloud)         | `generate_traditional_story.py`                                   | 801–834    |
+| Creative    | mistral-nemo via Ollama (Local) | `generate_v2_batch.sh`, `generate_creative_story.py`              | 501–519    |
+
+**Why Single Engine:**
+- Consistent prose quality across both modes from a single best-in-class model
+- Eliminates continuation-stitching issues from local models
+- Simplifies tooling (one script, one API, one validation pipeline)
+- Preserves doctrinal trust (Opus 4.6 proven for faithful scripture retelling)
 
 ---
 
 ## 1. Canonical Story Author
 
-- Canonical author model: **gpt-4.1**
-- All story and reflection prose MUST be generated via the OpenAI Responses API
-  using gpt-4.1.
-- No other model (OpenAI, local, or third-party) may author Traditional Bible PAL prose
-  unless this spec is explicitly revised.
+- Canonical author model: **Claude Opus 4.6** (`claude-opus-4-6`)
+- All new story and reflection prose MUST be generated via the Anthropic API
+  using Claude Opus 4.6.
+- Legacy Traditional stories (801–834) were authored by gpt-4.1; legacy Creative
+  stories (501–519) were authored by Ollama models. These remain but are not
+  extended.
 - Generation scripts MUST NOT contain hard-coded prose, fallback prose,
   or template expansions.
 
@@ -146,7 +158,7 @@ Invariants:
 
 - Each story has exactly ONE canonical reflection.
 - Reflection applies to all three lengths.
-- Reflection is generated via gpt-4.1.
+- Reflection is generated via the active engine (Claude Opus 4.6 for new stories).
 - Reflection word count target: **120–220 words**.
 
 Reflection Guardrails:
@@ -275,17 +287,14 @@ Creative stories are original faith-themed narratives — NOT Bible retellings.
 
 ## 12. Creative Canonical Story Author
 
-- Canonical author model: **mistral-nemo** (via Ollama, local)
-- Fallback chain: llama3.1:8b → qwen2.5:7b → gemma:7b (legacy)
-- Model selection is managed by the Universal Model Router (`server/model_router/`).
-  See `model_registry.json` for the current fallback chain configuration.
-- All creative story and reflection prose MUST be generated via the Ollama API
-  using a local model. No cloud LLM (OpenAI, Anthropic, Google Cloud, etc.)
-  may author Creative prose unless this spec is explicitly revised.
+- Canonical author model: **Claude Opus 4.6** (`claude-opus-4-6`)
+- All new creative story and reflection prose MUST be generated via the Anthropic
+  API using Claude Opus 4.6.
+- Legacy Creative stories (501–519) were authored by Ollama models (mistral-nemo,
+  gemma:7b). These remain but are not extended.
 - Generation scripts MUST NOT contain hard-coded prose, fallback prose,
   or template expansions.
-- The `createdByModel` metadata field dynamically captures whichever model
-  was actually used for each story.
+- The `createdByModel` metadata field records `"claude-opus-4-6"` for new stories.
 
 **Invariant:**
 The generator may orchestrate, validate, and persist content —
@@ -371,7 +380,7 @@ Same rules as Traditional (Section 6):
 
 - Each story has exactly ONE canonical reflection.
 - Reflection applies to all three lengths.
-- Reflection is generated via **Gemma 7B** (not gpt-4.1).
+- Reflection is generated via the active engine (Claude Opus 4.6 for new stories).
 - Reflection word count target: **120–220 words** (adult), **60–120 words** (kid).
 - Same guardrails: no advice, no prescriptions, no theological interpretation.
 - Same optional reflection question rules (Section 6.1).
@@ -442,11 +451,17 @@ Max attempts: 5 (adult), 5 (kid).
 
 ---
 
-## 21. Creative ID Space
+## 21. Story ID Space
 
-- Creative story IDs start at **501**.
-- Traditional story IDs start at **801**.
-- These ranges MUST NOT overlap.
+### Active Ranges (Claude Opus 4.6)
+- Traditional story IDs: **1000–1999**
+- Creative story IDs: **2000–2999**
+
+### Legacy Ranges (Retired Engines)
+- Creative (Ollama): **501–519**
+- Traditional (gpt-4.1): **801–834**
+
+All ranges MUST NOT overlap.
 
 ---
 
