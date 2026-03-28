@@ -21,7 +21,6 @@ class StoryReaderScreen extends ConsumerWidget {
     final storyText = playerState.parableText ?? '';
 
     Future<void> goBack() async {
-      await ref.read(parablePlayerProvider.notifier).clear();
       if (context.mounted) {
         Navigator.of(context).pop();
       }

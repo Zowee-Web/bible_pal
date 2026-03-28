@@ -6,6 +6,7 @@ import '../../providers/service_providers.dart';
 import '../../core/app_logger.dart';
 import '../../core/diagnostics_config.dart';
 import '../../core/pal_voice_registry.dart';
+import '../../widgets/living_sky_background.dart';
 
 const _pkBackgroundSound = 'settings.backgroundSoundOn';
 
@@ -318,8 +319,17 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       );
     }
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings')),
-      body: ListView(
+      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: const Text('Settings'),
+      ),
+      body: Stack(
+        children: [
+          const LivingSkyBackground(),
+          SafeArea(
+            child: ListView(
         children: [
           ListTile(
             leading: const Icon(Icons.person_outline),
@@ -493,6 +503,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               onTap: () => Navigator.pushNamed(context, '/diagnostics'),
             ),
           ],
+        ],
+          ),
+          ),
         ],
       ),
     );

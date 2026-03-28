@@ -2,6 +2,7 @@
 // Implements SPEC.md Feature #14: Share With a PAL
 // Formats story content and invokes the platform share sheet.
 
+import 'dart:ui';
 import 'package:share_plus/share_plus.dart';
 import '../models/parable.dart';
 
@@ -47,6 +48,7 @@ class ShareService {
   Future<bool> shareClip({
     required Parable parable,
     required String? storyText,
+    Rect? sharePositionOrigin,
   }) async {
     final clip = _extractBestClip(storyText);
     final buffer = StringBuffer();
@@ -62,7 +64,10 @@ class ShareService {
     buffer.writeln();
     buffer.write('Listen on Bible PAL');
 
-    final result = await Share.share(buffer.toString());
+    final result = await Share.share(
+      buffer.toString(),
+      sharePositionOrigin: sharePositionOrigin,
+    );
     return result.status == ShareResultStatus.success;
   }
 

@@ -20,8 +20,10 @@ This document is the single source of truth for Bible PAL's features and behavio
 9. [Seasonal & Calendar Awareness](#seasonal--calendar-awareness)
 10. [Pray With Me](#pray-with-me)
 11. [Share Clips](#share-clips)
-12. [Settings](#settings)
-13. [Security & Technical Architecture](#security--technical-architecture)
+12. [Living Sky Theme](#living-sky-theme)
+13. [Sanctuary & Study Layout](#sanctuary--study-layout)
+14. [Settings](#settings)
+15. [Security & Technical Architecture](#security--technical-architecture)
 
 ---
 
@@ -946,6 +948,74 @@ A first-class visual experience when kid-friendly mode is active.
 - Kids theme only affects visual appearance, not behavior
 - All mood buttons, length selection, and PAL flows work identically in kid mode
 - Journal input is hidden in kid mode (Feature 40)
+
+---
+
+## Living Sky Theme
+
+**47. Living Sky Theme (Feature 47)**
+
+The app's visual identity shifts with the time of day through four phases, creating a living atmosphere.
+
+**Sky Phases:**
+
+| Phase | Time Window | Sky Gradient | Particles | PAL Orb Color | Text Color | Feeling |
+|-------|------------|-------------|-----------|---------------|------------|---------|
+| **Dawn** | 05:00–07:59 | Warm peach/rose | Soft golden light drifting upward | Warm amber | Deep warm brown (#3A2A1A) | Fresh start, new mercies |
+| **Day** | 08:00–16:59 | Bright warm cream/sky blue | Floating golden dust motes in sunlight | Warm gold | Deep charcoal (#2A2A2A) | Vibrant, alive |
+| **Golden Hour** | 17:00–19:59 | Rich amber/deep orange tones | Warm golden particles drifting slowly | Burnished amber | Warm ivory (#EEE8D5) | Reflection, gratitude |
+| **Night** | 20:00–04:59 | Deep navy (current Sacred Night theme) | Twinkling starfield | Celestial blue | Warm ivory (#EEE8D5) | Reverent, peaceful |
+
+**Behavior:**
+- Sky phase is determined by device local time, checked on each app resume and widget build
+- The Living Sky background replaces the static `StarfieldBackground` on the main menu
+- The starfield variant is retained and used during the Night phase
+- Other screens (settings, player, etc.) continue using the existing Sacred Night theme
+
+**Kid Mode Override:**
+- When `kidFriendlyOnly` is true, the kids theme palette (Feature 46) overrides Living Sky regardless of time of day
+
+**Constraints:**
+- Phase transitions are instant (no animated blending between phases)
+- Time classification uses device local time only (no timezone heuristics)
+- Living Sky applies to the main menu only — all other screens are unchanged
+
+---
+
+## Sanctuary & Study Layout
+
+**48. Sanctuary & Study Layout (Feature 48)**
+
+The main menu is restructured into a horizontal two-page `PageView`, splitting the experience into a contemplative landing page and a functional interaction page.
+
+**Page 1 — "The Sanctuary" (Home):**
+- Living Sky background (Feature 47) fills the entire screen
+- PAL orb is the sole hero element — 280×280px (up from 224×224), centered, with a slow breathing glow animation whose color changes with the sky phase
+- Daily Bread verse floats as faint atmospheric text in the lower portion (no card, no border — just text on the sky)
+- Streak counter appears as subtle warm gold text near the PAL orb when streak ≥ 2
+- A single soft animated chevron (›) at the right edge gently pulses to hint the page is swipeable
+- Settings gear icon remains top-right, faintly visible
+
+**Page 2 — "The Study" (Swipe Left):**
+- Same Living Sky background, continuous across both pages
+- 8 mood buttons with emoji+color pills, time-of-day reordered (Feature 42)
+- Text PAL / Read Story glass buttons
+- Now Playing / Finished panel (when active)
+- Favorites / History / My PALs glass navigation buttons
+- "Listen to an old favorite" link when favorites exist (Feature 45)
+- A soft chevron (‹) at the left edge hints back to the Sanctuary
+
+**Navigation:**
+- Smooth horizontal `PageView` with snap physics
+- Page indicator dots at bottom (subtle, warm gold)
+- Swipe gesture or tap chevron to navigate between pages
+
+**Constraints:**
+- Default landing page is always the Sanctuary (page 1)
+- PageView preserves state across swipes (no rebuild on page change)
+- Living Sky background is shared and continuous — no visible seam between pages
+- All existing main menu functionality is preserved on The Study page; nothing is removed
+- Kid mode still uses the kids theme palette (Feature 46) on both pages
 
 ---
 

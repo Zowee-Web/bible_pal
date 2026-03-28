@@ -15,6 +15,7 @@ import 'package:bible_pal/models/journal_entry.dart';
 import 'package:bible_pal/providers/service_providers.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:async';
+import '../../widgets/living_sky_background.dart';
 
 /// Parable Player Screen
 /// Based on SPEC.md Features 11, 12, 16, 17, 34-37
@@ -42,6 +43,9 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
   // Separate audio player for reflection (to not interfere with story player)
   AudioPlayer? _reflectionPlayer;
 
+  // Scroll controller for auto-scrolling to reflection
+  final ScrollController _scrollController = ScrollController();
+
   // Bedtime mode sleep timer
   Timer? _sleepTimer;
 
@@ -50,30 +54,19 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     return appState?.userPreferences.bedtimeModeEnabled ?? false;
   }
 
+  bool _completionListenerSet = false;
+
   @override
   void initState() {
     super.initState();
     _checkIfFavorited();
-    _listenForPlaybackCompletion();
     _checkReflectionAudioExists();
-    _autoPlayOnOpen();
-  }
-
-  /// Auto-play story audio when the player screen opens.
-  void _autoPlayOnOpen() {
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      if (!mounted) return;
-      final playerState = ref.read(parablePlayerProvider);
-      final playerNotifier = ref.read(parablePlayerProvider.notifier);
-      if (playerState.currentParable != null && !playerNotifier.isPlaying) {
-        await _handlePlay(playerNotifier);
-      }
-    });
   }
 
   @override
   void dispose() {
     _sleepTimer?.cancel();
+    _scrollController.dispose();
     _reflectionPlayer?.dispose();
     super.dispose();
   }
@@ -114,21 +107,26 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     return storyAudioPath.replaceAll('.mp3', '.reflection.mp3');
   }
 
-  void _listenForPlaybackCompletion() {
-    final playerNotifier = ref.read(parablePlayerProvider.notifier);
-    playerNotifier.audioService.playbackCompletedStream.listen((_) async {
-      if (mounted && !_reflectionDismissed) {
-        setState(() => _showReflection = true);
+  void _onPlaybackCompleted() async {
+    if (!_reflectionDismissed) {
+      setState(() => _showReflection = true);
 
-        // Auto-play reflection if voice consent is granted and audio exists
-        await _maybeAutoPlayReflection();
-      }
+      // Auto-scroll to show the reflection
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (_scrollController.hasClients) {
+          _scrollController.animateTo(
+            _scrollController.position.maxScrollExtent,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeOut,
+          );
+        }
+      });
 
-      // Bedtime mode: start sleep timer after story ends
-      if (mounted) {
-        _startBedtimeSleepTimerIfNeeded();
-      }
-    });
+      // Auto-play reflection if voice consent is granted and audio exists
+      await _maybeAutoPlayReflection();
+    }
+
+    _startBedtimeSleepTimerIfNeeded();
   }
 
   /// Start sleep timer if bedtime mode is enabled.
@@ -419,6 +417,17 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     final playerNotifier = ref.watch(parablePlayerProvider.notifier);
     final theme = Theme.of(context);
 
+    // Detect playback completion and trigger reflection
+    if (!_completionListenerSet) {
+      _completionListenerSet = true;
+      ref.listenManual(parablePlayerProvider, (prev, next) {
+        final wasCompleted = prev?.playbackCompleted ?? false;
+        if (!wasCompleted && next.playbackCompleted && mounted) {
+          _onPlaybackCompleted();
+        }
+      });
+    }
+
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, _) async {
@@ -431,324 +440,283 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
         }
       },
       child: Scaffold(
-      appBar: AppBar(
-        title: Text(
-          playerState.currentParable?.title ?? 'Story',
-          style: theme.textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+        backgroundColor: Colors.transparent,
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
         ),
-      ),
-      body: Stack(
-        children: [
-          playerState.currentParable == null
-          ? const Center(
-              child: Text('No parable loaded'),
-            )
-          : ListView(
-              padding: const EdgeInsets.all(16),
-              children: [
-
-                // Mood-flow verse (from PAL's mood response)
-                if (playerState.verse != null) ...[
-                  Card(
-                    elevation: 2,
-                    color: theme.colorScheme.primaryContainer,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
+        body: Stack(
+          children: [
+            const LivingSkyBackground(),
+            SafeArea(
+              child: playerState.currentParable == null
+                  ? Center(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            '${playerState.verse!.reference} (${playerState.verse!.translation})',
-                            style: theme.textTheme.titleSmall?.copyWith(
-                              color: theme.colorScheme.onPrimaryContainer,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            '"${playerState.verse!.text}"',
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              color: theme.colorScheme.onPrimaryContainer,
-                              fontStyle: FontStyle.italic,
-                            ),
-                          ),
-                          const SizedBox(height: 12),
-                          Text(
-                            playerState.verse!.context,
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              color: theme.colorScheme.onPrimaryContainer
-                                  .withOpacity(0.9),
-                            ),
+                          Icon(Icons.auto_stories, size: 48, color: theme.colorScheme.onSurfaceVariant),
+                          const SizedBox(height: 16),
+                          Text('Tap PAL to start a story', style: theme.textTheme.bodyLarge),
+                          const SizedBox(height: 16),
+                          ElevatedButton(
+                            onPressed: () => Navigator.of(context).pushNamedAndRemoveUntil('/main_menu', (_) => false),
+                            child: const Text('Back to PAL'),
                           ),
                         ],
                       ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                ],
-
-                // Scripture Reference Panel (ADR-010)
-                // For Traditional stories: Show bibleSourceRef AFTER story completes
-                // For Creative stories: Show scriptureSources if present (always visible)
-                if (_showReflection &&
-                    playerState.currentParable!.storytellingMode ==
-                        'traditional' &&
-                    playerState.currentParable!.hasBibleSourceRef) ...[
-                  Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.menu_book,
-                                color: theme.colorScheme.primary,
-                                size: 20,
-                              ),
-                              const SizedBox(width: 8),
-                              Text(
-                                'Scripture Reference',
-                                style: theme.textTheme.titleMedium?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 12),
-                          Text(
-                            playerState.currentParable!.bibleSourceRef!,
-                            style: theme.textTheme.bodyLarge?.copyWith(
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                ] else if (playerState.currentParable!.storytellingMode ==
-                        'creative' &&
-                    playerState
-                        .currentParable!.scriptureSources.isNotEmpty) ...[
-                  // Creative stories can show scriptureSources during playback
-                  Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.menu_book,
-                                color: theme.colorScheme.primary,
-                                size: 20,
-                              ),
-                              const SizedBox(width: 8),
-                              Text(
-                                'Scripture Sources',
-                                style: theme.textTheme.titleMedium?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 12),
-                          Text(
-                            playerState.currentParable!.scriptureSources
-                                .join(', '),
-                            style: theme.textTheme.bodyMedium,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                ],
-
-                // Audio Playback Controls
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
+                    )
+                  : Column(
                       children: [
-                        // Position Slider
-                        StreamBuilder<Duration>(
-                          stream: playerNotifier.positionStream,
-                          builder: (context, snapshot) {
-                            final position = snapshot.data ?? Duration.zero;
-                            final duration =
-                                playerNotifier.duration ?? Duration.zero;
-                            final max = duration.inMilliseconds.toDouble();
-                            final displayValue = _isDraggingSlider
-                                ? _dragValue
-                                : position.inMilliseconds
-                                    .toDouble()
-                                    .clamp(0.0, max);
-
-                            return Column(
+                        // Scrollable content area
+                        Expanded(
+                          child: SingleChildScrollView(
+                            controller: _scrollController,
+                            padding: const EdgeInsets.fromLTRB(24, 16, 24, 0),
+                            child: Column(
                               children: [
-                                Slider(
-                                  value: displayValue,
-                                  max: max > 0 ? max : 1,
-                                  onChangeStart: (v) {
-                                    setState(() {
-                                      _isDraggingSlider = true;
-                                      _dragValue = v;
-                                    });
+                                // Story title — large, centered
+                                Text(
+                                  playerState.currentParable!.title,
+                                  style: theme.textTheme.headlineMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+
+                                // Scripture source (if available)
+                                if (playerState.currentParable!.hasBibleSourceRef) ...[
+                                  const SizedBox(height: 6),
+                                  Text(
+                                    playerState.currentParable!.bibleSourceRef!,
+                                    style: theme.textTheme.bodySmall?.copyWith(
+                                      color: theme.colorScheme.onSurfaceVariant,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ] else if (playerState.currentParable!.scriptureSources.isNotEmpty) ...[
+                                  const SizedBox(height: 6),
+                                  Text(
+                                    playerState.currentParable!.scriptureSources.join(', '),
+                                    style: theme.textTheme.bodySmall?.copyWith(
+                                      color: theme.colorScheme.onSurfaceVariant,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+
+                                // Mood-flow verse (from PAL's mood response)
+                                if (playerState.verse != null) ...[
+                                  const SizedBox(height: 20),
+                                  Container(
+                                    padding: const EdgeInsets.all(16),
+                                    decoration: BoxDecoration(
+                                      color: theme.colorScheme.primaryContainer.withOpacity(0.3),
+                                      borderRadius: BorderRadius.circular(12),
+                                      border: Border.all(color: theme.colorScheme.outline.withOpacity(0.3)),
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          '"${playerState.verse!.text}"',
+                                          style: theme.textTheme.bodyMedium?.copyWith(
+                                            fontStyle: FontStyle.italic,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        const SizedBox(height: 8),
+                                        Text(
+                                          '— ${playerState.verse!.reference}',
+                                          style: theme.textTheme.labelSmall?.copyWith(
+                                            color: theme.colorScheme.onSurfaceVariant,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+
+                                const SizedBox(height: 32),
+
+                                // LARGE Play/Pause Button — the hero
+                                IconButton(
+                                  icon: Icon(
+                                    playerNotifier.isPlaying
+                                        ? Icons.pause_circle_filled
+                                        : Icons.play_circle_filled,
+                                    size: 80,
+                                  ),
+                                  color: theme.colorScheme.primary,
+                                  onPressed: () async {
+                                    if (playerNotifier.isPlaying) {
+                                      playerNotifier.pause();
+                                    } else {
+                                      await _handlePlay(playerNotifier);
+                                    }
                                   },
-                                  onChanged: (v) {
-                                    setState(() => _dragValue = v);
-                                  },
-                                  onChangeEnd: (v) {
-                                    playerNotifier.seek(
-                                      Duration(milliseconds: v.toInt()),
+                                ),
+
+                                const SizedBox(height: 8),
+
+                                // Seek slider
+                                StreamBuilder<Duration>(
+                                  stream: playerNotifier.positionStream,
+                                  builder: (context, snapshot) {
+                                    final position = snapshot.data ?? Duration.zero;
+                                    final duration =
+                                        playerNotifier.duration ?? Duration.zero;
+                                    final max = duration.inMilliseconds.toDouble();
+                                    final displayValue = _isDraggingSlider
+                                        ? _dragValue
+                                        : position.inMilliseconds
+                                            .toDouble()
+                                            .clamp(0.0, max);
+
+                                    return Column(
+                                      children: [
+                                        Slider(
+                                          value: displayValue,
+                                          max: max > 0 ? max : 1,
+                                          onChangeStart: (v) {
+                                            setState(() {
+                                              _isDraggingSlider = true;
+                                              _dragValue = v;
+                                            });
+                                          },
+                                          onChanged: (v) {
+                                            setState(() => _dragValue = v);
+                                          },
+                                          onChangeEnd: (v) {
+                                            playerNotifier.seek(
+                                              Duration(milliseconds: v.toInt()),
+                                            );
+                                            setState(() => _isDraggingSlider = false);
+                                          },
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 16,
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(_formatDuration(
+                                                _isDraggingSlider
+                                                    ? Duration(milliseconds: _dragValue.toInt())
+                                                    : position,
+                                              )),
+                                              Text(_formatDuration(duration)),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
                                     );
-                                    setState(() => _isDraggingSlider = false);
                                   },
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
+
+                                // Loading or Error State
+                                if (playerState.isLoading)
+                                  const Padding(
+                                    padding: EdgeInsets.only(top: 16),
+                                    child: CircularProgressIndicator(),
                                   ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(_formatDuration(
-                                        _isDraggingSlider
-                                            ? Duration(milliseconds: _dragValue.toInt())
-                                            : position,
-                                      )),
-                                      Text(_formatDuration(duration)),
-                                    ],
+                                if (playerState.errorMessage != null)
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 16),
+                                    child: Text(
+                                      playerState.errorMessage!,
+                                      style: TextStyle(color: theme.colorScheme.error),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
+
+                                const SizedBox(height: 24),
+
+                                // Action buttons — single row, compact
+                                Wrap(
+                                  spacing: 8,
+                                  runSpacing: 8,
+                                  alignment: WrapAlignment.center,
+                                  children: [
+                                    // Favorite
+                                    OutlinedButton.icon(
+                                      onPressed: _toggleFavorite,
+                                      icon: Icon(
+                                        _isFavorited ? Icons.favorite : Icons.favorite_border,
+                                        color: _isFavorited ? Colors.red : null,
+                                        size: 16,
+                                      ),
+                                      label: Text(_isFavorited ? 'Favorited' : 'Favorite'),
+                                    ),
+
+                                    // Read Story
+                                    OutlinedButton.icon(
+                                      onPressed: () => Navigator.of(context).pushNamed('/story_reader'),
+                                      icon: const Icon(Icons.menu_book_outlined, size: 16),
+                                      label: const Text('Read Story'),
+                                    ),
+
+                                    // Share with a PAL
+                                    OutlinedButton.icon(
+                                      onPressed: _shareWithPals,
+                                      icon: const Icon(Icons.share, size: 16),
+                                      label: const Text('Share with a PAL'),
+                                    ),
+
+                                    // Share a clip
+                                    Builder(builder: (context) {
+                                      return OutlinedButton.icon(
+                                        onPressed: () async {
+                                          final playerState = ref.read(parablePlayerProvider);
+                                          if (playerState.currentParable == null) return;
+                                          final box = context.findRenderObject() as RenderBox?;
+                                          final origin = box != null
+                                              ? box.localToGlobal(Offset.zero) & box.size
+                                              : null;
+                                          try {
+                                            final shareService = ref.read(shareServiceProvider);
+                                            await shareService.shareClip(
+                                              parable: playerState.currentParable!,
+                                              storyText: playerState.parableText,
+                                              sharePositionOrigin: origin,
+                                            );
+                                          } catch (e) {
+                                            if (!context.mounted) return;
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                              SnackBar(content: Text('Unable to share: $e')),
+                                            );
+                                          }
+                                        },
+                                        icon: const Icon(Icons.format_quote, size: 16),
+                                        label: const Text('Share a clip'),
+                                      );
+                                    }),
+                                  ],
                                 ),
+
+                                // Post-Story Reflection (SPEC.md Features #34-37)
+                                _buildReflectionSection(theme),
+
+                                const SizedBox(height: 24),
                               ],
-                            );
-                          },
-                        ),
-                        const SizedBox(height: 16),
-
-                        // Play/Pause/Stop Buttons
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            // Play/Pause Button
-                            IconButton(
-                              icon: Icon(
-                                playerNotifier.isPlaying
-                                    ? Icons.pause_circle_filled
-                                    : Icons.play_circle_filled,
-                                size: 64,
-                              ),
-                              color: theme.colorScheme.primary,
-                              onPressed: () async {
-                                if (playerNotifier.isPlaying) {
-                                  playerNotifier.pause();
-                                } else {
-                                  await _handlePlay(playerNotifier);
-                                }
-                              },
-                            ),
-                            const SizedBox(width: 24),
-
-                            // Stop Button
-                            IconButton(
-                              icon: const Icon(
-                                Icons.stop_circle,
-                                size: 48,
-                              ),
-                              color: theme.colorScheme.secondary,
-                              onPressed: () {
-                                playerNotifier.stop();
-                              },
-                            ),
-                          ],
-                        ),
-
-                        // Loading or Error State
-                        if (playerState.isLoading)
-                          const Padding(
-                            padding: EdgeInsets.only(top: 16),
-                            child: CircularProgressIndicator(),
-                          ),
-                        if (playerState.errorMessage != null)
-                          Padding(
-                            padding: const EdgeInsets.only(top: 16),
-                            child: Text(
-                              playerState.errorMessage!,
-                              style: TextStyle(
-                                color: theme.colorScheme.error,
-                              ),
-                              textAlign: TextAlign.center,
                             ),
                           ),
+                        ),
                       ],
                     ),
+            ),
+            // Bedtime mode dim overlay
+            if (_isBedtimeModeActive)
+              Positioned.fill(
+                child: IgnorePointer(
+                  child: Container(
+                    color: Colors.black.withOpacity(0.3),
                   ),
                 ),
-
-                const SizedBox(height: 24),
-
-                // Action Buttons
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    // Add to Favorites
-                    OutlinedButton.icon(
-                      onPressed: _toggleFavorite,
-                      icon: Icon(
-                        _isFavorited ? Icons.favorite : Icons.favorite_border,
-                        color: _isFavorited ? Colors.red : null,
-                      ),
-                      label: Text(_isFavorited ? 'Favorited' : 'Favorite'),
-                    ),
-
-                    // Share with a PAL (SPEC.md Feature #14)
-                    OutlinedButton.icon(
-                      onPressed: _shareWithPals,
-                      icon: const Icon(Icons.share),
-                      label: const Text('Share with a PAL'),
-                    ),
-
-                    // Share a clip (short excerpt for social sharing)
-                    OutlinedButton.icon(
-                      onPressed: () async {
-                        final playerState = ref.read(parablePlayerProvider);
-                        if (playerState.currentParable == null) return;
-                        final shareService = ref.read(shareServiceProvider);
-                        await shareService.shareClip(
-                          parable: playerState.currentParable!,
-                          storyText: playerState.parableText,
-                        );
-                      },
-                      icon: const Icon(Icons.format_quote, size: 18),
-                      label: const Text('Share a clip'),
-                    ),
-                  ],
-                ),
-
-                // Post-Story Reflection (SPEC.md Features #34-37)
-                _buildReflectionSection(theme),
-              ],
-            ),
-          // Bedtime mode dim overlay
-          if (_isBedtimeModeActive)
-            Positioned.fill(
-              child: IgnorePointer(
-                child: Container(
-                  color: Colors.black.withOpacity(0.3),
-                ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
-    ),
     );
   }
 
@@ -1037,11 +1005,11 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     // Show the offer
     return TextButton.icon(
       onPressed: () => setState(() => _prayerActive = true),
-      icon: Icon(Icons.favorite_outline, size: 16, color: theme.colorScheme.primary.withOpacity(0.6)),
+      icon: Icon(Icons.favorite_outline, size: 16, color: theme.colorScheme.onTertiaryContainer.withOpacity(0.7)),
       label: Text(
         'Would you like to sit quietly for a moment?',
         style: theme.textTheme.bodySmall?.copyWith(
-          color: theme.colorScheme.primary.withOpacity(0.6),
+          color: theme.colorScheme.onTertiaryContainer.withOpacity(0.7),
         ),
       ),
     );

@@ -7,30 +7,26 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../providers/app_state_notifier.dart';
 import '../../services/typewriter_click_service.dart';
 import '../../services/pal_prompt_service.dart';
-import '../../services/mood_service.dart';
-import '../../services/verse_service.dart';
 import '../../services/stt_service.dart';
 import '../../providers/service_providers.dart';
 import '../../theme/app_theme.dart';
+import '../../theme/living_sky.dart';
 import '../onboarding/first_launch_screen.dart' show kPalIntroShownKey;
 import '../settings/settings_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/services.dart' show HapticFeedback;
 import '../../providers/parable_player_notifier.dart';
-import '../../core/story_length_bucket.dart';
 import '../../models/parable.dart';
-import '../../widgets/pal_length_picker.dart';
 import '../consent/voice_consent_dialog.dart';
 import '../../core/app_logger.dart';
-import '../../widgets/starfield_background.dart';
+import '../../widgets/living_sky_background.dart';
 
 /// Main Menu Screen
 /// Based on UI/UX Design Spec Section 4: Home Screen
 ///
-/// Layout: Vertical, clean, centered, no scrolling required
-/// - Daily Bread Verse (top, fixed, calm)
-/// - PAL's Parables button (centerpiece, large, with gold outline)
-/// - Favorites & History buttons (secondary, smaller, softer)
+/// Layout: Two-page "Sanctuary & Study" design
+/// - Page 1 (Sanctuary): PAL orb hero, Daily Bread verse, swipe hint
+/// - Page 2 (Study): Mood buttons, Text PAL, Read Story, Favorites/History/My PALs
 class MainMenuScreen extends ConsumerWidget {
   const MainMenuScreen({super.key});
 
@@ -59,7 +55,7 @@ class MainMenuScreen extends ConsumerWidget {
                 Icon(
                   Icons.error_outline,
                   size: 64,
-                  color: AppTheme.deepCharcoal.withOpacity(0.5),
+                  color: LivingSky.getPalette(LivingSky.getPhase()).textColor.withOpacity(0.5),
                 ),
                 const SizedBox(height: 16),
                 Text(
@@ -71,7 +67,7 @@ class MainMenuScreen extends ConsumerWidget {
                 Text(
                   error.toString(),
                   style: theme.textTheme.bodyMedium?.copyWith(
-                    color: AppTheme.deepCharcoal.withOpacity(0.7),
+                    color: LivingSky.getPalette(LivingSky.getPhase()).textColor.withOpacity(0.7),
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -91,202 +87,466 @@ class MainMenuScreen extends ConsumerWidget {
 
         return Theme(
           data: effectiveTheme,
-          child: Scaffold(
-          backgroundColor: AppTheme.parchment,
-          body: Stack(
-            children: [
-              const StarfieldBackground(),
-              SafeArea(
-                bottom: true,
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    return SingleChildScrollView(
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(minHeight: constraints.maxHeight),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                    // Settings icon — top right
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 4, top: 4),
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.settings_outlined,
-                            color: AppTheme.warmIvory.withOpacity(0.45),
-                          ),
-                          onPressed: () => Navigator.of(context).push(
-                            MaterialPageRoute(builder: (_) => const SettingsScreen()),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    const SizedBox(height: 16),
-
-                    // PAL orb — hero of the screen
-                    _PalButtonWithIntro(theme: theme),
-
-                    const SizedBox(height: 8),
-
-                    // Listening streak (quiet, non-gamified)
-                    Builder(builder: (context) {
-                      final streak = ref.watch(appStateProvider).valueOrNull?.userPreferences.currentStreak ?? 0;
-                      if (streak < 2) return const SizedBox.shrink();
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
-                        child: Text(
-                          '$streak day streak',
-                          style: theme.textTheme.bodySmall?.copyWith(
-                            color: AppTheme.warmGold,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      );
-                    }),
-
-                    const SizedBox(height: 12),
-
-                    // Reserved panel: playing/finished states, mood buttons when idle
-                    const _ReservedPanel(),
-
-                    const SizedBox(height: 16),
-
-                    // Text PAL + Read Story — just above Daily Bread
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: OutlinedButton.icon(
-                              onPressed: () => Navigator.of(context).pushNamed('/pals_parables', arguments: {'textOnly': true}),
-                              style: OutlinedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(vertical: 12),
-                                foregroundColor: AppTheme.warmIvory,
-                                backgroundColor: AppTheme.glassCard.withOpacity(0.5),
-                                side: const BorderSide(color: AppTheme.glassBorder, width: 1),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                              ),
-                              icon: const Icon(Icons.chat_bubble_outline, size: 15, color: AppTheme.celestialBlue),
-                              label: const Text('Text PAL'),
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: OutlinedButton.icon(
-                              onPressed: () {
-                                final ps = ref.read(parablePlayerProvider);
-                                if (ps.currentParable != null) {
-                                  Navigator.of(context).pushNamed('/story_reader');
-                                } else {
-                                  Navigator.of(context).pushNamed('/pals_parables', arguments: {'textOnly': true, 'navigateToReader': true});
-                                }
-                              },
-                              style: OutlinedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(vertical: 12),
-                                foregroundColor: AppTheme.warmIvory,
-                                backgroundColor: AppTheme.glassCard.withOpacity(0.5),
-                                side: const BorderSide(color: AppTheme.glassBorder, width: 1),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                              ),
-                              icon: const Icon(Icons.menu_book_outlined, size: 15, color: AppTheme.celestialBlue),
-                              label: const Text('Read Story'),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    const SizedBox(height: 10),
-
-                    // Daily Bread card
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 28),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 18),
-                        decoration: BoxDecoration(
-                          color: AppTheme.glassCard.withOpacity(0.65),
-                          borderRadius: BorderRadius.circular(14),
-                          border: Border.all(color: AppTheme.glassBorder, width: 1),
-                        ),
-                        child: Column(
-                          children: [
-                            Text(
-                              '✦  Daily Bread  ✦',
-                              style: theme.textTheme.labelSmall?.copyWith(
-                                color: AppTheme.warmGold.withOpacity(0.8),
-                                letterSpacing: 1.4,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              dailyBread.replaceAll('"', '').replaceAll('\u201C', '').replaceAll('\u201D', ''),
-                              style: theme.textTheme.bodyLarge?.copyWith(
-                                fontStyle: FontStyle.italic,
-                                color: AppTheme.warmIvory,
-                                height: 1.55,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            const SizedBox(height: 6),
-                            Text(
-                              '— $verseReference',
-                              style: theme.textTheme.labelSmall?.copyWith(
-                                color: AppTheme.warmGold,
-                                letterSpacing: 0.6,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-
-                    const SizedBox(height: 12),
-
-                    // Bottom nav row — Favorites / History / My PALs
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
-                      child: Row(
-                        children: [
-                          Expanded(child: _GlassNavButton(
-                            icon: Icons.favorite_outline,
-                            label: 'Favorites',
-                            onTap: () => Navigator.of(context).pushNamed('/favorites'),
-                          )),
-                          const SizedBox(width: 8),
-                          Expanded(child: _GlassNavButton(
-                            icon: Icons.history_outlined,
-                            label: 'History',
-                            onTap: () => Navigator.of(context).pushNamed('/history'),
-                          )),
-                          const SizedBox(width: 8),
-                          Expanded(child: _GlassNavButton(
-                            icon: Icons.people_outline,
-                            label: 'My PALs',
-                            onTap: () => Navigator.of(context).pushNamed('/my_pals'),
-                          )),
-                        ],
-                      ),
-                    ),
-
-                    const SizedBox(height: 16),
-                  ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ],
+          child: _MainMenuBody(
+            theme: theme,
+            effectiveTheme: effectiveTheme,
+            dailyBread: dailyBread,
+            verseReference: verseReference,
           ),
-        ),
         );
       },
     );
   }
 }
+
+/// Stateful body that owns the [PageController] for the Sanctuary & Study pages.
+class _MainMenuBody extends ConsumerStatefulWidget {
+  final ThemeData theme;
+  final ThemeData effectiveTheme;
+  final String dailyBread;
+  final String verseReference;
+
+  const _MainMenuBody({
+    required this.theme,
+    required this.effectiveTheme,
+    required this.dailyBread,
+    required this.verseReference,
+  });
+
+  @override
+  ConsumerState<_MainMenuBody> createState() => _MainMenuBodyState();
+}
+
+class _MainMenuBodyState extends ConsumerState<_MainMenuBody> {
+  late final PageController _pageController;
+  int _currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+    _pageController.addListener(_onPageChanged);
+  }
+
+  void _onPageChanged() {
+    final page = _pageController.page?.round() ?? 0;
+    if (page != _currentPage) {
+      setState(() => _currentPage = page);
+    }
+  }
+
+  @override
+  void dispose() {
+    _pageController.removeListener(_onPageChanged);
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
+
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        children: [
+          // Living Sky fills entire background, continuous across pages
+          const LivingSkyBackground(),
+          SafeArea(
+            bottom: true,
+            child: Column(
+              children: [
+                // Settings gear — top right, always visible
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 4, top: 4),
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.settings_outlined,
+                        color: palette.subtitleColor.withOpacity(0.45),
+                      ),
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const SettingsScreen()),
+                      ),
+                    ),
+                  ),
+                ),
+                // PageView fills the rest
+                Expanded(
+                  child: PageView(
+                    controller: _pageController,
+                    children: [
+                      // Page 1: The Sanctuary
+                      _SanctuaryPage(
+                        theme: widget.theme,
+                        dailyBread: widget.dailyBread,
+                        verseReference: widget.verseReference,
+                      ),
+                      // Page 2: The Study
+                      _StudyPage(theme: widget.theme),
+                    ],
+                  ),
+                ),
+                // Page dots indicator at bottom
+                _PageDots(currentPage: _currentPage),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Page dots indicator
+// ---------------------------------------------------------------------------
+
+class _PageDots extends StatelessWidget {
+  final int currentPage;
+  const _PageDots({required this.currentPage});
+
+  @override
+  Widget build(BuildContext context) {
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12, top: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(2, (index) {
+          final isActive = index == currentPage;
+          return AnimatedContainer(
+            duration: const Duration(milliseconds: 250),
+            margin: const EdgeInsets.symmetric(horizontal: 4),
+            width: isActive ? 8 : 6,
+            height: isActive ? 8 : 6,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: isActive
+                  ? palette.accentColor.withOpacity(0.8)
+                  : palette.subtitleColor.withOpacity(0.3),
+            ),
+          );
+        }),
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Page 1: The Sanctuary — PAL orb hero, Daily Bread, swipe hint
+// ---------------------------------------------------------------------------
+
+class _SanctuaryPage extends ConsumerWidget {
+  final ThemeData theme;
+  final String dailyBread;
+  final String verseReference;
+
+  const _SanctuaryPage({
+    required this.theme,
+    required this.dailyBread,
+    required this.verseReference,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
+
+    return Column(
+      children: [
+        const Spacer(flex: 3),
+
+        // PAL orb — THE hero, bigger and bolder
+        _PalButtonWithIntro(theme: theme),
+
+        const SizedBox(height: 8),
+
+        // Streak (subtle)
+        Builder(builder: (context) {
+          final streak = ref.watch(appStateProvider).valueOrNull?.userPreferences.currentStreak ?? 0;
+          if (streak < 2) return const SizedBox.shrink();
+          return Text(
+            '$streak day streak',
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: palette.accentColor,
+              fontWeight: FontWeight.w500,
+            ),
+          );
+        }),
+
+        const Spacer(flex: 2),
+
+        // Daily Bread — atmospheric, no card
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40),
+          child: Column(
+            children: [
+              Text(
+                dailyBread.replaceAll('"', '').replaceAll('\u201C', '').replaceAll('\u201D', ''),
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  fontStyle: FontStyle.italic,
+                  color: palette.textColor.withOpacity(0.6),
+                  height: 1.55,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 4),
+              Text(
+                '— $verseReference',
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: palette.accentColor.withOpacity(0.5),
+                  letterSpacing: 0.6,
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        const SizedBox(height: 24),
+
+        // Swipe hint chevron
+        _SwipeHintChevron(palette: palette),
+
+        const SizedBox(height: 16),
+      ],
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Swipe hint chevron — animated "swipe >" at bottom of Sanctuary page
+// ---------------------------------------------------------------------------
+
+class _SwipeHintChevron extends StatefulWidget {
+  final SkyPalette palette;
+  const _SwipeHintChevron({required this.palette});
+  @override
+  State<_SwipeHintChevron> createState() => _SwipeHintChevronState();
+}
+
+class _SwipeHintChevronState extends State<_SwipeHintChevron> with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        return Opacity(
+          opacity: 0.3 + (_controller.value * 0.4),
+          child: Transform.translate(
+            offset: Offset(4 * _controller.value, 0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'swipe',
+                  style: TextStyle(
+                    color: widget.palette.chevronColor,
+                    fontSize: 11,
+                    letterSpacing: 1.5,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                const SizedBox(width: 4),
+                Icon(
+                  Icons.chevron_right,
+                  size: 16,
+                  color: widget.palette.chevronColor,
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Page 2: The Study — mood buttons, Text PAL, Read Story, nav buttons
+// ---------------------------------------------------------------------------
+
+class _StudyPage extends ConsumerStatefulWidget {
+  final ThemeData theme;
+  const _StudyPage({required this.theme});
+
+  @override
+  ConsumerState<_StudyPage> createState() => _StudyPageState();
+}
+
+class _StudyPageState extends ConsumerState<_StudyPage> {
+  final TextEditingController _textController = TextEditingController();
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
+  }
+
+  void _submitText() {
+    final text = _textController.text.trim();
+    if (text.isEmpty) return;
+    _textController.clear();
+    FocusScope.of(context).unfocus();
+
+    // Detect mood from text, then go to length picker
+    final appStateNotifier = ref.read(appStateProvider.notifier);
+    final moodResult = appStateNotifier.moodService.detectMood(text);
+    appStateNotifier.updateLastDetectedMood(moodResult.mood);
+
+    Navigator.of(context).pushNamed('/length_picker', arguments: {
+      'mood': moodResult.mood,
+      'userText': text,
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
+
+    return Column(
+      children: [
+        // Content area — centered vertically
+        Expanded(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 24),
+
+                      // Heading
+                      Text(
+                        'How are you feeling?',
+                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                          color: palette.textColor,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Tap a mood and PAL will find a story for you',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: palette.subtitleColor,
+                        ),
+                      ),
+
+                      const SizedBox(height: 24),
+
+                      // Mood buttons / now playing / finished
+                      const _ReservedPanel(),
+
+                      const SizedBox(height: 32),
+
+                      // Nav — Favorites / Journal / History / My PALs
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: Row(
+                          children: [
+                            Expanded(child: _GlassNavButton(
+                              icon: Icons.favorite_outline,
+                              label: 'Favorites',
+                              onTap: () => Navigator.of(context).pushNamed('/favorites'),
+                            )),
+                            const SizedBox(width: 6),
+                            Expanded(child: _GlassNavButton(
+                              icon: Icons.book_outlined,
+                              label: 'Journal',
+                              onTap: () => Navigator.of(context).pushNamed('/journal'),
+                            )),
+                            const SizedBox(width: 6),
+                            Expanded(child: _GlassNavButton(
+                              icon: Icons.history_outlined,
+                              label: 'History',
+                              onTap: () => Navigator.of(context).pushNamed('/history'),
+                            )),
+                            const SizedBox(width: 6),
+                            Expanded(child: _GlassNavButton(
+                              icon: Icons.people_outline,
+                              label: 'My PALs',
+                              onTap: () => Navigator.of(context).pushNamed('/my_pals'),
+                            )),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 24),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+
+        // Text PAL input — pinned to bottom
+        Padding(
+          padding: const EdgeInsets.fromLTRB(24, 8, 24, 16),
+          child: Container(
+            decoration: BoxDecoration(
+              color: palette.cardColor,
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(color: palette.cardBorder, width: 1),
+            ),
+            child: Row(
+              children: [
+                const SizedBox(width: 16),
+                Icon(Icons.chat_bubble_outline, size: 20, color: palette.subtitleColor),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: TextField(
+                    controller: _textController,
+                    style: TextStyle(color: palette.textColor, fontSize: 16),
+                    decoration: InputDecoration(
+                      hintText: 'Tell PAL how you\u2019re feeling...',
+                      hintStyle: TextStyle(color: palette.subtitleColor, fontSize: 16),
+                      border: InputBorder.none,
+                      contentPadding: const EdgeInsets.symmetric(vertical: 16),
+                      isDense: true,
+                    ),
+                    textInputAction: TextInputAction.send,
+                    onSubmitted: (_) => _submitText(),
+                    onChanged: (_) => setState(() {}),
+                  ),
+                ),
+                if (_textController.text.trim().isNotEmpty)
+                  IconButton(
+                    icon: Icon(Icons.arrow_upward, size: 20, color: palette.orbGlowColor),
+                    onPressed: _submitText,
+                    padding: const EdgeInsets.all(8),
+                    constraints: const BoxConstraints(),
+                  )
+                else
+                  const SizedBox(width: 12),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 
 /// Voice mood flow states for the conversational PAL interaction on main menu.
 enum _VoiceFlowState {
@@ -345,8 +605,6 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   String? _microResponseText;
   String _partialTranscript = '';
   String? _finalTranscript;
-  MoodResult? _moodResult;
-  VerseResponse? _moodVerse;
   Timer? _autoStoryTimer;
 
   // Services for voice flow
@@ -359,12 +617,6 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
   // Mic pulse animation
   late final AnimationController _micPulseController;
-
-  // Guard against double-navigation race
-  bool _navigatingToPlayer = false;
-
-  // Holds transcript while user is choosing story length
-  String _pendingTranscript = '';
 
   static const _introLines = [
     'Meet PAL.',
@@ -537,16 +789,12 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     _sttService.stopListening();
     _micPulseController.stop();
     ref.read(palAudioServiceProvider).stop();
-    _navigatingToPlayer = false;
     setState(() {
       _voiceFlow = _VoiceFlowState.inactive;
       _greetingText = null;
       _microResponseText = null;
       _partialTranscript = '';
-      _pendingTranscript = '';
       _finalTranscript = null;
-      _moodResult = null;
-      _moodVerse = null;
     });
   }
 
@@ -715,14 +963,8 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     // Persist mood for thematic Daily Bread alignment
     appNotifier.updateLastDetectedMood(result.mood);
 
-    // Fetch verse for this mood
-    final verseService = VerseService();
-    final verse = verseService.getVerseForMood(result.mood);
-
     setState(() {
       _voiceFlow = _VoiceFlowState.responding;
-      _moodResult = result;
-      _moodVerse = verse;
       _finalTranscript = transcript;
       _partialTranscript = '';
     });
@@ -770,88 +1012,13 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
     if (!mounted || _voiceFlow != _VoiceFlowState.responding) return;
 
-    setState(() {
-      _microResponseText = responseText;
-      _pendingTranscript = transcript;
-      _voiceFlow = _VoiceFlowState.choosingLength;
+    // Navigate to length picker with the detected mood
+    if (!mounted) return;
+    _cancelConversation();
+    Navigator.of(context).pushNamed('/length_picker', arguments: {
+      'mood': result.mood,
+      'userText': transcript,
     });
-  }
-
-  /// Called when the user taps a length pill — sets bucket and starts story.
-  void _onLengthChosen(StoryLengthBucket bucket) {
-    ref.read(sessionLengthBucketProvider.notifier).state = bucket;
-    _selectAndPlayStory(_pendingTranscript);
-  }
-
-  /// Select a story and navigate to the player.
-  Future<void> _selectAndPlayStory(String userText) async {
-    if (_moodResult == null || _navigatingToPlayer) return;
-    _navigatingToPlayer = true;
-
-    setState(() => _voiceFlow = _VoiceFlowState.selectingStory);
-
-    final lengthBucket = ref.read(sessionLengthBucketProvider);
-
-    logEvent('pal_tap', {
-      'length_bucket': lengthBucket.name,
-      'detected_mood': _moodResult!.mood,
-      'input_method': 'voice_main_menu',
-    });
-
-    try {
-      final appStateNotifier = ref.read(appStateProvider.notifier);
-      final parable = await appStateNotifier.selectParable(
-        mood: _moodResult!.mood,
-        lengthBucket: lengthBucket,
-        userText: userText,
-      );
-
-      if (!mounted) return;
-
-      if (parable == null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('No story available for this mood and length yet.'),
-            duration: Duration(seconds: 3),
-          ),
-        );
-        _cancelConversation();
-        return;
-      }
-
-      await appStateNotifier.addToHistory(parable);
-
-      if (!mounted) return;
-      final playerNotifier = ref.read(parablePlayerProvider.notifier);
-      await playerNotifier.loadParable(parable);
-
-      // Store PAL's response and verse for display on the player screen
-      playerNotifier.setPalResponse(_microResponseText, _moodVerse);
-
-      if (!mounted) return;
-
-      // Reset voice flow state before navigating
-      setState(() {
-        _voiceFlow = _VoiceFlowState.inactive;
-        _greetingText = null;
-        _microResponseText = null;
-        _finalTranscript = null;
-        _moodResult = null;
-        _moodVerse = null;
-      });
-
-      Navigator.of(context).pushNamed('/parable_player');
-      _navigatingToPlayer = false;
-    } catch (e) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error loading story: $e'),
-          duration: const Duration(seconds: 3),
-        ),
-      );
-      _cancelConversation();
-    }
   }
 
   /// Pick a micro-response ID with non-repeat logic.
@@ -940,7 +1107,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   String get _palSubtitle {
     switch (_voiceFlow) {
       case _VoiceFlowState.inactive:
-        return 'Tap for a mood‑based story';
+        return '';
       case _VoiceFlowState.playingGreeting:
         return 'PAL is speaking...';
       case _VoiceFlowState.responding:
@@ -959,6 +1126,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   @override
   Widget build(BuildContext context) {
     final theme = widget.theme;
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
 
     if (!_introChecked) {
       return const SizedBox(height: 140);
@@ -985,7 +1153,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
                         child: Text(
                           _introLines[i],
                           style: theme.textTheme.titleMedium?.copyWith(
-                            color: AppTheme.deepCharcoal,
+                            color: LivingSky.getPalette(LivingSky.getPhase()).textColor,
                             fontWeight: FontWeight.w500,
                           ),
                           textAlign: TextAlign.center,
@@ -993,9 +1161,9 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
                       ),
                     if (_currentLine < _introLines.length)
                       Text(
-                        _displayedText + (_charIndex < _introLines[_currentLine].length ? '▋' : ''),
+                        _displayedText + (_charIndex < _introLines[_currentLine].length ? '\u258B' : ''),
                         style: theme.textTheme.titleMedium?.copyWith(
-                          color: AppTheme.deepCharcoal,
+                          color: LivingSky.getPalette(LivingSky.getPhase()).textColor,
                           fontWeight: FontWeight.w500,
                         ),
                         textAlign: TextAlign.center,
@@ -1023,19 +1191,15 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
                     final tapGlow =
                         Curves.easeInOut.transform(1.0 - _glowController.value) * 0.6;
                     return Container(
-                      width: 224,
-                      height: 224,
+                      width: 280,
+                      height: 280,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        gradient: const RadialGradient(
-                          center: Alignment(-0.3, -0.4),
+                        gradient: RadialGradient(
+                          center: const Alignment(-0.3, -0.4),
                           radius: 1.1,
-                          colors: [
-                            Color(0xFF4A86C8), // bright celestial centre
-                            Color(0xFF1E4A80), // mid blue
-                            Color(0xFF0D1E3A), // deep navy edge
-                          ],
-                          stops: [0.0, 0.55, 1.0],
+                          colors: palette.orbGradientColors,
+                          stops: const [0.0, 0.55, 1.0],
                         ),
                         border: Border.all(
                           color: AppTheme.warmGold.withOpacity(0.7),
@@ -1044,13 +1208,13 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
                         boxShadow: [
                           // Ambient celestial glow
                           BoxShadow(
-                            color: AppTheme.celestialBlue.withOpacity(0.35),
+                            color: palette.orbGlowColor.withOpacity(0.35),
                             blurRadius: 32,
                             spreadRadius: 4,
                           ),
                           // Outer ring
                           BoxShadow(
-                            color: AppTheme.celestialBlue.withOpacity(0.15),
+                            color: palette.orbGlowColor.withOpacity(0.15),
                             blurRadius: 60,
                             spreadRadius: 12,
                           ),
@@ -1093,28 +1257,13 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
               Text(
                 _palSubtitle,
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: AppTheme.warmIvory.withOpacity(0.6),
+                  color: palette.subtitleColor.withOpacity(0.6),
                   letterSpacing: 0.3,
                 ),
                 textAlign: TextAlign.center,
               ),
             ],
           ),
-
-          // Length pills — appear below the orb when choosing
-          if (_voiceFlow == _VoiceFlowState.choosingLength) ...[
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _LengthPill(label: 'Short', onTap: () => _onLengthChosen(StoryLengthBucket.short)),
-                const SizedBox(width: 10),
-                _LengthPill(label: 'Full', onTap: () => _onLengthChosen(StoryLengthBucket.full)),
-                const SizedBox(width: 10),
-                _LengthPill(label: 'Long', onTap: () => _onLengthChosen(StoryLengthBucket.long)),
-              ],
-            ),
-          ],
 
           // Cancel button during voice flow
           if (_voiceFlow != _VoiceFlowState.inactive) ...[
@@ -1124,7 +1273,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
               child: Text(
                 'Cancel',
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: AppTheme.deepCharcoal.withOpacity(0.6),
+                  color: LivingSky.getPalette(LivingSky.getPhase()).textColor.withOpacity(0.6),
                 ),
               ),
             ),
@@ -1144,7 +1293,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         return Text(
           _greetingText ?? '...',
           style: theme.textTheme.titleMedium?.copyWith(
-            color: AppTheme.deepCharcoal,
+            color: LivingSky.getPalette(LivingSky.getPhase()).textColor,
             fontStyle: FontStyle.italic,
           ),
           textAlign: TextAlign.center,
@@ -1158,7 +1307,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
               Text(
                 _greetingText!,
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: AppTheme.deepCharcoal.withOpacity(0.5),
+                  color: LivingSky.getPalette(LivingSky.getPhase()).textColor.withOpacity(0.5),
                   fontStyle: FontStyle.italic,
                 ),
                 textAlign: TextAlign.center,
@@ -1168,7 +1317,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
               Text(
                 _partialTranscript,
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: AppTheme.deepCharcoal,
+                  color: LivingSky.getPalette(LivingSky.getPhase()).textColor,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -1184,7 +1333,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
               Text(
                 '"${_finalTranscript!}"',
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: AppTheme.deepCharcoal.withOpacity(0.6),
+                  color: LivingSky.getPalette(LivingSky.getPhase()).textColor.withOpacity(0.6),
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -1193,7 +1342,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
               Text(
                 _microResponseText!,
                 style: theme.textTheme.titleMedium?.copyWith(
-                  color: AppTheme.deepCharcoal,
+                  color: LivingSky.getPalette(LivingSky.getPhase()).textColor,
                   fontStyle: FontStyle.italic,
                 ),
                 textAlign: TextAlign.center,
@@ -1207,7 +1356,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         return Text(
           _microResponseText!,
           style: theme.textTheme.bodyMedium?.copyWith(
-            color: AppTheme.warmIvory.withOpacity(0.7),
+            color: LivingSky.getPalette(LivingSky.getPhase()).textColor.withOpacity(0.7),
             fontStyle: FontStyle.italic,
           ),
           textAlign: TextAlign.center,
@@ -1221,7 +1370,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
               Text(
                 '"${_finalTranscript!}"',
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: AppTheme.deepCharcoal.withOpacity(0.6),
+                  color: LivingSky.getPalette(LivingSky.getPhase()).textColor.withOpacity(0.6),
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -1235,7 +1384,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
             Text(
               'Preparing your story...',
               style: theme.textTheme.bodyMedium?.copyWith(
-                color: AppTheme.deepCharcoal,
+                color: LivingSky.getPalette(LivingSky.getPhase()).textColor,
               ),
               textAlign: TextAlign.center,
             ),
@@ -1329,90 +1478,19 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
     );
   }
 
-  bool _isSelectingFromMood = false;
+  void _handleMoodButtonTap(String mood) {
+    final appStateNotifier = ref.read(appStateProvider.notifier);
+    appStateNotifier.updateLastDetectedMood(mood);
 
-  Future<void> _handleMoodButtonTap(String mood) async {
-    if (_isSelectingFromMood) return;
-    setState(() => _isSelectingFromMood = true);
-
-    try {
-      final appStateNotifier = ref.read(appStateProvider.notifier);
-      final userPrefs = ref.read(appStateProvider).requireValue.userPreferences;
-      appStateNotifier.updateLastDetectedMood(mood);
-
-      // Determine length bucket: use saved preference or ask via PAL picker
-      StoryLengthBucket lengthBucket;
-      final savedPref = userPrefs.preferredLengthBucket;
-
-      if (savedPref != null) {
-        // User has a saved preference — use it directly
-        lengthBucket = StoryLengthBucket.fromJson(savedPref);
-      } else {
-        // First time — show PAL length picker
-        if (!mounted) return;
-        final picked = await showPalLengthPicker(context);
-
-        if (picked == null || !mounted) {
-          setState(() => _isSelectingFromMood = false);
-          return;
-        }
-
-        lengthBucket = picked;
-        // Save their choice for next time
-        await appStateNotifier.updatePreferredLengthBucket(picked.name);
-      }
-
-      // Update session provider to stay in sync
-      ref.read(sessionLengthBucketProvider.notifier).state = lengthBucket;
-
-      logEvent('pal_tap', {
-        'length_bucket': lengthBucket.name,
-        'detected_mood': mood,
-        'input_method': 'mood_button_main_menu',
-      });
-
-      final parable = await appStateNotifier.selectParable(
-        mood: mood,
-        lengthBucket: lengthBucket,
-        userText: '',
-      );
-
-      if (!mounted) return;
-
-      if (parable == null) {
-        setState(() => _isSelectingFromMood = false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('No story available for this mood and length yet.'),
-            duration: Duration(seconds: 3),
-          ),
-        );
-        return;
-      }
-
-      await appStateNotifier.addToHistory(parable);
-
-      if (!mounted) return;
-      final playerNotifier = ref.read(parablePlayerProvider.notifier);
-      await playerNotifier.loadParable(parable);
-
-      if (!mounted) return;
-      setState(() => _isSelectingFromMood = false);
-
-      Navigator.of(context).pushNamed('/parable_player');
-    } catch (e) {
-      setState(() => _isSelectingFromMood = false);
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error loading story: $e'),
-          duration: const Duration(seconds: 3),
-        ),
-      );
-    }
+    Navigator.of(context).pushNamed('/length_picker', arguments: {
+      'mood': mood,
+      'userText': '',
+    });
   }
 
   Widget _buildMoodButtons(ThemeData theme) {
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
+
     // Reorder moods based on time of day — surface contextually relevant moods first
     final hour = DateTime.now().hour;
     final timeWindow = PalPromptService.getTimeWindow(hour);
@@ -1450,82 +1528,27 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
       moods = allMoods;
     }
 
-    // "Listen Again" suggestion — show when user has favorites
-    final favorites = ref.watch(appStateProvider).valueOrNull?.favorites ?? [];
-
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (favorites.isNotEmpty)
-          Padding(
-            padding: const EdgeInsets.only(bottom: 12),
-            child: TextButton.icon(
-              onPressed: _isSelectingFromMood ? null : () => _playRandomFavorite(favorites),
-              style: TextButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-              ),
-              icon: Icon(Icons.replay, size: 18, color: theme.colorScheme.primary.withOpacity(0.7)),
-              label: Text(
-                'Listen to an old favorite',
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.primary.withOpacity(0.7),
-                ),
-              ),
-            ),
-          ),
-        Wrap(
-      spacing: 8,
-      runSpacing: 8,
+    return Wrap(
+      spacing: 10,
+      runSpacing: 10,
       alignment: WrapAlignment.center,
       children: moods.map((entry) {
         final (label, moodKey) = entry;
         return ElevatedButton(
-          onPressed: _isSelectingFromMood
-              ? null
-              : () => _handleMoodButtonTap(moodKey),
+          onPressed: () => _handleMoodButtonTap(moodKey),
           style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-            backgroundColor: theme.colorScheme.primary,
-            foregroundColor: theme.colorScheme.onPrimary,
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
+            backgroundColor: palette.orbGlowColor,
+            foregroundColor: palette.textColor,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(24),
             ),
+            textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           ),
           child: Text(label),
         );
       }).toList(),
-    ),
-      ],
     );
-  }
-
-  Future<void> _playRandomFavorite(List<dynamic> favorites) async {
-    if (_isSelectingFromMood || favorites.isEmpty) return;
-    setState(() => _isSelectingFromMood = true);
-
-    try {
-      final appStateNotifier = ref.read(appStateProvider.notifier);
-      final randomFav = favorites[DateTime.now().millisecond % favorites.length];
-      final parableService = await ref.read(parableServiceProvider.future);
-      final parable = await parableService.getParableById(randomFav.storyId);
-
-      if (parable == null || !mounted) {
-        setState(() => _isSelectingFromMood = false);
-        return;
-      }
-
-      await appStateNotifier.addToHistory(parable);
-      if (!mounted) return;
-
-      final playerNotifier = ref.read(parablePlayerProvider.notifier);
-      await playerNotifier.loadParable(parable);
-      if (!mounted) return;
-
-      setState(() => _isSelectingFromMood = false);
-      Navigator.of(context).pushNamed('/parable_player');
-    } catch (e) {
-      setState(() => _isSelectingFromMood = false);
-    }
   }
 
   // --------------- build ---------------
@@ -1684,6 +1707,7 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
   // --------------- FINISHED ---------------
 
   Widget _buildFinishedPanel(ParablePlayerState state, ThemeData theme) {
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
     final notifier = ref.read(parablePlayerProvider.notifier);
     return Column(
       key: const ValueKey('finished'),
@@ -1692,7 +1716,7 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
         Text(
           state.currentParable!.title,
           style: theme.textTheme.bodyMedium?.copyWith(
-            color: AppTheme.warmIvory.withOpacity(0.7),
+            color: palette.textColor.withOpacity(0.7),
           ),
           textAlign: TextAlign.center,
           maxLines: 1,
@@ -1706,12 +1730,12 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
               onPressed: () => _saveFavorite(state.currentParable!),
               style: OutlinedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                side: const BorderSide(color: AppTheme.glassBorder, width: 1),
+                side: BorderSide(color: palette.cardBorder, width: 1),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              icon: const Icon(Icons.favorite_outline, size: 16, color: AppTheme.celestialBlue),
+              icon: Icon(Icons.favorite_outline, size: 16, color: palette.orbGlowColor),
               label: const Text('Save'),
             ),
             const SizedBox(width: 10),
@@ -1723,12 +1747,12 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
               },
               style: OutlinedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                side: const BorderSide(color: AppTheme.glassBorder, width: 1),
+                side: BorderSide(color: palette.cardBorder, width: 1),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              icon: const Icon(Icons.replay, size: 16, color: AppTheme.celestialBlue),
+              icon: Icon(Icons.replay, size: 16, color: palette.orbGlowColor),
               label: const Text('Replay'),
             ),
           ],
@@ -1756,29 +1780,30 @@ class _GlassNavButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
     return Material(
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.symmetric(vertical: 14),
           decoration: BoxDecoration(
-            color: AppTheme.glassCard.withOpacity(0.7),
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppTheme.glassBorder, width: 1),
+            color: palette.cardColor,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: palette.cardBorder, width: 1),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(icon, size: 20, color: AppTheme.celestialBlue),
-              const SizedBox(height: 4),
+              Icon(icon, size: 26, color: palette.orbGlowColor),
+              const SizedBox(height: 6),
               Text(
                 label,
-                style: const TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w500,
-                  color: AppTheme.warmIvory,
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                  color: palette.textColor,
                   letterSpacing: 0.3,
                 ),
               ),
@@ -1793,42 +1818,3 @@ class _GlassNavButton extends StatelessWidget {
 
 // ---------------------------------------------------------------------------
 // Length pill — Short / Full / Long chooser in the PAL voice flow
-// ---------------------------------------------------------------------------
-
-class _LengthPill extends StatelessWidget {
-  final String label;
-  final VoidCallback onTap;
-
-  const _LengthPill({required this.label, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 11),
-        decoration: BoxDecoration(
-          color: AppTheme.glassCard,
-          borderRadius: BorderRadius.circular(999),
-          border: Border.all(color: AppTheme.celestialBlue.withOpacity(0.6), width: 1.5),
-          boxShadow: [
-            BoxShadow(
-              color: AppTheme.celestialBlue.withOpacity(0.2),
-              blurRadius: 10,
-              spreadRadius: 1,
-            ),
-          ],
-        ),
-        child: Text(
-          label,
-          style: const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-            color: AppTheme.warmIvory,
-            letterSpacing: 0.5,
-          ),
-        ),
-      ),
-    );
-  }
-}

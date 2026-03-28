@@ -43,7 +43,7 @@ enum VoiceInputState {
 /// Based on SPEC.md Features 2, 2.1, 2.2, 3, 4, 5, 14, 16
 /// Complete flow: prompt → mood input (button, type, or voice) → micro-response + verse → auto-transition to parable playback
 class PalsParablesScreen extends ConsumerStatefulWidget {
-  const PalsParablesScreen({super.key, this.sttService, this.textOnly = false, this.navigateToReader = false});
+  const PalsParablesScreen({super.key, this.sttService, this.textOnly = false, this.navigateToReader = false, this.initialText});
 
   /// Optional STT service for dependency injection (testing).
   final SttService? sttService;
@@ -54,6 +54,9 @@ class PalsParablesScreen extends ConsumerStatefulWidget {
 
   /// When true, navigate to story reader after selection; otherwise parable player.
   final bool navigateToReader;
+
+  /// Pre-filled mood text from the main menu. When set, auto-submits on load.
+  final String? initialText;
 
   @override
   ConsumerState<PalsParablesScreen> createState() => _PalsParablesScreenState();
@@ -99,6 +102,15 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     // Initialize STT engine (non-blocking) to check availability
     if (!widget.textOnly) {
       _initStt();
+    }
+
+    // Auto-submit pre-filled text from main menu
+    if (widget.initialText != null && widget.initialText!.trim().isNotEmpty) {
+      _moodController.text = widget.initialText!;
+      // Delay to let the widget tree settle before processing
+      Future.microtask(() {
+        if (mounted) _handleMoodSubmission();
+      });
     }
   }
 

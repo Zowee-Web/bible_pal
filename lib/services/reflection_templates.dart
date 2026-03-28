@@ -47,6 +47,34 @@ const Map<String, ReflectionContent> adultReflectionsByMood = {
         'And even a small step forward can be enough for today.',
     question: 'What would comfort look like today?',
   ),
+  'grateful': ReflectionContent(
+    text:
+        'Gratitude in stories often looks like noticing what was always there but easy to overlook. '
+        'These narratives show how thankfulness can shift the way we see even difficult seasons. '
+        'And even a small step forward can be enough for today.',
+    question: 'What is one thing you\'re grateful for right now?',
+  ),
+  'brave_courage': ReflectionContent(
+    text:
+        'Courage in stories often looks less like fearlessness and more like taking the next step anyway. '
+        'These narratives show that bravery is usually quieter than we expect. '
+        'And even a small step forward can be enough for today.',
+    question: 'Where might you be braver than you realize?',
+  ),
+  'calm_peaceful': ReflectionContent(
+    text:
+        'Peace in stories often arrives not when circumstances change, but when perspective does. '
+        'These narratives show that stillness can be its own kind of strength. '
+        'And even a small step forward can be enough for today.',
+    question: 'Where do you find stillness in your day?',
+  ),
+  'encouraging': ReflectionContent(
+    text:
+        'Encouragement in stories often comes from unexpected places — a word, a gesture, a memory. '
+        'These narratives show that hope has a way of showing up when we need it most. '
+        'And even a small step forward can be enough for today.',
+    question: 'Who has encouraged you recently?',
+  ),
   'neutral': ReflectionContent(
     text:
         'Stories of ordinary days often reflect the steady rhythm of daily faithfulness. '
@@ -222,6 +250,22 @@ const Map<String, ReflectionContent> kidReflectionsByMood = {
     text:
         'This story shows that being kind matters, even when things are hard. '
         'Even one small kindness helps.',
+  ),
+  'grateful': ReflectionContent(
+    text: 'This story shows that saying thank you can make us feel happy inside. '
+        'Even one small thank you matters.',
+  ),
+  'brave_courage': ReflectionContent(
+    text: 'This story shows that being brave does not mean not being scared. '
+        'Even one small brave step counts.',
+  ),
+  'calm_peaceful': ReflectionContent(
+    text: 'This story shows that being still and quiet can feel really good. '
+        'Even one deep breath can help.',
+  ),
+  'encouraging': ReflectionContent(
+    text: 'This story shows that kind words can make someone\'s whole day better. '
+        'Even one small encouragement helps.',
   ),
   'neutral': ReflectionContent(
     text: 'This story shows that every day has moments worth noticing. '
