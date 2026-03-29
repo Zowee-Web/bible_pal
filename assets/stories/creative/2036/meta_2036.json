@@ -4,9 +4,14 @@
   "mode": "creative",
   "kidFriendly": false,
   "primaryLanguageStyle": "WEB",
-  "lanes": ["web"],
+  "lanes": [
+    "web"
+  ],
   "mood": "grateful",
-  "lengths": ["short", "full"],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "voiceKey": "VOICE_RUTH_COMFORT",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
@@ -15,13 +20,16 @@
   "theme": "gratitude discovered through attention on a familiar journey",
   "files": {
     "short": {
-      "storyText": "story_2036_creative_web_short.txt"
+      "storyText": "story_2036_creative_web_short.txt",
+      "storyAudio": "audio_2036_story_short.mp3"
     },
     "full": {
-      "storyText": "story_2036_creative_web_full.txt"
+      "storyText": "story_2036_creative_web_full.txt",
+      "storyAudio": "audio_2036_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_2036_creative_web.txt"
+      "reflectionText": "reflection_2036_creative_web.txt",
+      "reflectionAudio": "audio_2036_reflection.mp3"
     }
   },
   "reflectionSource": "llm",

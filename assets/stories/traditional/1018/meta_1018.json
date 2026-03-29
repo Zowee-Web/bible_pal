@@ -22,13 +22,25 @@
   "title": "Jacob's Ladder at Bethel",
   "files": {
     "short": {
-      "storyText": "story_1018_traditional_web_short.txt"
+      "storyText": "story_1018_traditional_web_short.txt",
+      "storyAudio": "audio_1018_story_short.mp3"
     },
     "full": {
-      "storyText": "story_1018_traditional_web_full.txt"
+      "storyText": "story_1018_traditional_web_full.txt",
+      "storyAudio": "audio_1018_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_1018_traditional_web.txt"
+      "reflectionText": "reflection_1018_traditional_web.txt",
+      "reflectionAudio": "audio_1018_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyAudio": "audio_1018_story_kjv_short.mp3"
+    },
+    "full_kjv": {
+      "storyAudio": "audio_1018_story_kjv_full.mp3"
+    },
+    "reflection_kjv": {
+      "reflectionAudio": "audio_1018_reflection_kjv.mp3"
     }
   },
   "reflections": {

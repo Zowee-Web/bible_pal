@@ -4,11 +4,16 @@
   "mode": "traditional",
   "kidFriendly": true,
   "primaryLanguageStyle": "WEB",
-  "lanes": ["web"],
+  "lanes": [
+    "web"
+  ],
   "mood": "grateful",
   "scriptureAnchor": "Ruth 2:1-23",
   "bibleStoryKey": "ruth_gleans_in_boaz_field",
-  "lengths": ["short", "full"],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "voiceKey": "VOICE_MARTHA_CARING",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
@@ -16,13 +21,16 @@
   "title": "Ruth Gathers Grain in Boaz's Field",
   "files": {
     "short": {
-      "storyText": "story_1044_traditional_web_short.txt"
+      "storyText": "story_1044_traditional_web_short.txt",
+      "storyAudio": "audio_1044_story_short.mp3"
     },
     "full": {
-      "storyText": "story_1044_traditional_web_full.txt"
+      "storyText": "story_1044_traditional_web_full.txt",
+      "storyAudio": "audio_1044_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_1044_traditional_web.txt"
+      "reflectionText": "reflection_1044_traditional_web.txt",
+      "reflectionAudio": "audio_1044_reflection.mp3"
     }
   },
   "reflectionSource": "llm",

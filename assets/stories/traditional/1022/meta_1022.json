@@ -22,13 +22,25 @@
   "title": "David Anointed King",
   "files": {
     "short": {
-      "storyText": "story_1022_traditional_web_short.txt"
+      "storyText": "story_1022_traditional_web_short.txt",
+      "storyAudio": "audio_1022_story_short.mp3"
     },
     "full": {
-      "storyText": "story_1022_traditional_web_full.txt"
+      "storyText": "story_1022_traditional_web_full.txt",
+      "storyAudio": "audio_1022_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_1022_traditional_web.txt"
+      "reflectionText": "reflection_1022_traditional_web.txt",
+      "reflectionAudio": "audio_1022_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyAudio": "audio_1022_story_kjv_short.mp3"
+    },
+    "full_kjv": {
+      "storyAudio": "audio_1022_story_kjv_full.mp3"
+    },
+    "reflection_kjv": {
+      "reflectionAudio": "audio_1022_reflection_kjv.mp3"
     }
   },
   "reflections": {

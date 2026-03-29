@@ -4,9 +4,14 @@
   "mode": "creative",
   "kidFriendly": false,
   "primaryLanguageStyle": "WEB",
-  "lanes": ["web"],
+  "lanes": [
+    "web"
+  ],
   "mood": "calm_peaceful",
-  "lengths": ["short", "full"],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "voiceKey": "VOICE_LYDIA_GRACIOUS",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
@@ -15,13 +20,16 @@
   "theme": "finding peace in ordinary moments, witnessed calm in unlikely places",
   "files": {
     "short": {
-      "storyText": "story_2034_creative_web_short.txt"
+      "storyText": "story_2034_creative_web_short.txt",
+      "storyAudio": "audio_2034_story_short.mp3"
     },
     "full": {
-      "storyText": "story_2034_creative_web_full.txt"
+      "storyText": "story_2034_creative_web_full.txt",
+      "storyAudio": "audio_2034_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_2034_creative_web.txt"
+      "reflectionText": "reflection_2034_creative_web.txt",
+      "reflectionAudio": "audio_2034_reflection.mp3"
     }
   },
   "reflectionSource": "llm",

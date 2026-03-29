@@ -4,11 +4,16 @@
   "mode": "traditional",
   "kidFriendly": true,
   "primaryLanguageStyle": "WEB",
-  "lanes": ["web"],
+  "lanes": [
+    "web"
+  ],
   "mood": "brave_courage",
   "scriptureAnchor": "Exodus 2:1-10",
   "bibleStoryKey": "baby_moses_in_basket",
-  "lengths": ["short", "full"],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "voiceKey": "VOICE_ESTHER_BRAVE",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
@@ -16,13 +21,16 @@
   "title": "Baby Moses in the Basket",
   "files": {
     "short": {
-      "storyText": "story_1041_traditional_web_short.txt"
+      "storyText": "story_1041_traditional_web_short.txt",
+      "storyAudio": "audio_1041_story_short.mp3"
     },
     "full": {
-      "storyText": "story_1041_traditional_web_full.txt"
+      "storyText": "story_1041_traditional_web_full.txt",
+      "storyAudio": "audio_1041_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_1041_traditional_web.txt"
+      "reflectionText": "reflection_1041_traditional_web.txt",
+      "reflectionAudio": "audio_1041_reflection.mp3"
     }
   },
   "reflectionSource": "llm",

@@ -4,20 +4,44 @@
   "mode": "traditional",
   "kidFriendly": false,
   "primaryLanguageStyle": "WEB",
-  "lanes": ["web", "kjv"],
+  "lanes": [
+    "web",
+    "kjv"
+  ],
   "mood": "grateful",
   "scriptureAnchor": "Ruth 2:1-23",
   "bibleStoryKey": "ruth_gleans_in_boaz_field",
-  "lengths": ["short", "full"],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "voiceKey": "VOICE_HANNAH_HOPE",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
   "reflectionQuestion": "When has provision come to you in a form you did not expect or plan for?",
   "title": "Ruth Gleans in Boaz's Field",
   "files": {
-    "short": { "storyText": "story_1036_traditional_web_short.txt" },
-    "full": { "storyText": "story_1036_traditional_web_full.txt" },
-    "reflection": { "reflectionText": "reflection_1036_traditional_web.txt" }
+    "short": {
+      "storyText": "story_1036_traditional_web_short.txt",
+      "storyAudio": "audio_1036_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1036_traditional_web_full.txt",
+      "storyAudio": "audio_1036_story_full.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1036_traditional_web.txt",
+      "reflectionAudio": "audio_1036_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyAudio": "audio_1036_story_kjv_short.mp3"
+    },
+    "full_kjv": {
+      "storyAudio": "audio_1036_story_kjv_full.mp3"
+    },
+    "reflection_kjv": {
+      "reflectionAudio": "audio_1036_reflection_kjv.mp3"
+    }
   },
   "reflections": {
     "web": "reflection_1036_traditional_web.txt",

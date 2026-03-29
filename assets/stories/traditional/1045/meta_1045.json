@@ -4,11 +4,16 @@
   "mode": "traditional",
   "kidFriendly": true,
   "primaryLanguageStyle": "WEB",
-  "lanes": ["web"],
+  "lanes": [
+    "web"
+  ],
   "mood": "hurting",
   "scriptureAnchor": "Genesis 37:1-36",
   "bibleStoryKey": "joseph_sold_by_brothers",
-  "lengths": ["short", "full"],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "voiceKey": "VOICE_JANE_PROFESSIONAL",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
@@ -16,13 +21,16 @@
   "title": "Joseph and the Colorful Coat",
   "files": {
     "short": {
-      "storyText": "story_1045_traditional_web_short.txt"
+      "storyText": "story_1045_traditional_web_short.txt",
+      "storyAudio": "audio_1045_story_short.mp3"
     },
     "full": {
-      "storyText": "story_1045_traditional_web_full.txt"
+      "storyText": "story_1045_traditional_web_full.txt",
+      "storyAudio": "audio_1045_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_1045_traditional_web.txt"
+      "reflectionText": "reflection_1045_traditional_web.txt",
+      "reflectionAudio": "audio_1045_reflection.mp3"
     }
   },
   "reflectionSource": "llm",

@@ -4,11 +4,17 @@
   "mode": "traditional",
   "kidFriendly": false,
   "primaryLanguageStyle": "WEB",
-  "lanes": ["web", "kjv"],
+  "lanes": [
+    "web",
+    "kjv"
+  ],
   "mood": "brave_courage",
   "scriptureAnchor": "Exodus 2:1-10",
   "bibleStoryKey": "baby_moses_in_basket",
-  "lengths": ["short", "full"],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "voiceKey": "VOICE_PETER_BOLD",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
@@ -16,16 +22,40 @@
   "title": "Baby Moses in the Basket",
   "files": {
     "short": {
-      "web": { "storyText": "story_1033_traditional_web_short.txt" },
-      "kjv": { "storyText": "story_1033_traditional_kjv_short.txt" }
+      "web": {
+        "storyText": "story_1033_traditional_web_short.txt"
+      },
+      "kjv": {
+        "storyText": "story_1033_traditional_kjv_short.txt"
+      },
+      "storyAudio": "audio_1033_story_short.mp3"
     },
     "full": {
-      "web": { "storyText": "story_1033_traditional_web_full.txt" },
-      "kjv": { "storyText": "story_1033_traditional_kjv_full.txt" }
+      "web": {
+        "storyText": "story_1033_traditional_web_full.txt"
+      },
+      "kjv": {
+        "storyText": "story_1033_traditional_kjv_full.txt"
+      },
+      "storyAudio": "audio_1033_story_full.mp3"
     },
     "reflection": {
-      "web": { "reflectionText": "reflection_1033_traditional_web.txt" },
-      "kjv": { "reflectionText": "reflection_1033_traditional_kjv.txt" }
+      "web": {
+        "reflectionText": "reflection_1033_traditional_web.txt"
+      },
+      "kjv": {
+        "reflectionText": "reflection_1033_traditional_kjv.txt"
+      },
+      "reflectionAudio": "audio_1033_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyAudio": "audio_1033_story_kjv_short.mp3"
+    },
+    "full_kjv": {
+      "storyAudio": "audio_1033_story_kjv_full.mp3"
+    },
+    "reflection_kjv": {
+      "reflectionAudio": "audio_1033_reflection_kjv.mp3"
     }
   },
   "reflections": {

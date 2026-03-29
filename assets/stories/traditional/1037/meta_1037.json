@@ -4,20 +4,44 @@
   "mode": "traditional",
   "kidFriendly": false,
   "primaryLanguageStyle": "WEB",
-  "lanes": ["web", "kjv"],
+  "lanes": [
+    "web",
+    "kjv"
+  ],
   "mood": "hurting",
   "scriptureAnchor": "Genesis 37:1-36",
   "bibleStoryKey": "joseph_sold_by_brothers",
-  "lengths": ["short", "full"],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "voiceKey": "VOICE_MARCUS_ANCHOR",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
   "reflectionQuestion": "When has the hurt of being misunderstood or betrayed by those closest to you felt most real?",
   "title": "Joseph Sold by His Brothers",
   "files": {
-    "short": { "storyText": "story_1037_traditional_web_short.txt" },
-    "full": { "storyText": "story_1037_traditional_web_full.txt" },
-    "reflection": { "reflectionText": "reflection_1037_traditional_web.txt" }
+    "short": {
+      "storyText": "story_1037_traditional_web_short.txt",
+      "storyAudio": "audio_1037_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1037_traditional_web_full.txt",
+      "storyAudio": "audio_1037_story_full.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1037_traditional_web.txt",
+      "reflectionAudio": "audio_1037_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyAudio": "audio_1037_story_kjv_short.mp3"
+    },
+    "full_kjv": {
+      "storyAudio": "audio_1037_story_kjv_full.mp3"
+    },
+    "reflection_kjv": {
+      "reflectionAudio": "audio_1037_reflection_kjv.mp3"
+    }
   },
   "reflections": {
     "web": "reflection_1037_traditional_web.txt",

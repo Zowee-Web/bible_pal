@@ -4,11 +4,17 @@
   "mode": "traditional",
   "kidFriendly": false,
   "primaryLanguageStyle": "WEB",
-  "lanes": ["web", "kjv"],
+  "lanes": [
+    "web",
+    "kjv"
+  ],
   "mood": "calm_peaceful",
   "scriptureAnchor": "1 Kings 3:5-14",
   "bibleStoryKey": "solomon_asks_for_wisdom",
-  "lengths": ["short", "full"],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "voiceKey": "VOICE_SAMUEL_EARNEST",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
@@ -16,16 +22,40 @@
   "title": "Solomon Asks for Wisdom",
   "files": {
     "short": {
-      "web": { "storyText": "story_1034_traditional_web_short.txt" },
-      "kjv": { "storyText": "story_1034_traditional_kjv_short.txt" }
+      "web": {
+        "storyText": "story_1034_traditional_web_short.txt"
+      },
+      "kjv": {
+        "storyText": "story_1034_traditional_kjv_short.txt"
+      },
+      "storyAudio": "audio_1034_story_short.mp3"
     },
     "full": {
-      "web": { "storyText": "story_1034_traditional_web_full.txt" },
-      "kjv": { "storyText": "story_1034_traditional_kjv_full.txt" }
+      "web": {
+        "storyText": "story_1034_traditional_web_full.txt"
+      },
+      "kjv": {
+        "storyText": "story_1034_traditional_kjv_full.txt"
+      },
+      "storyAudio": "audio_1034_story_full.mp3"
     },
     "reflection": {
-      "web": { "reflectionText": "reflection_1034_traditional_web.txt" },
-      "kjv": { "reflectionText": "reflection_1034_traditional_kjv.txt" }
+      "web": {
+        "reflectionText": "reflection_1034_traditional_web.txt"
+      },
+      "kjv": {
+        "reflectionText": "reflection_1034_traditional_kjv.txt"
+      },
+      "reflectionAudio": "audio_1034_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyAudio": "audio_1034_story_kjv_short.mp3"
+    },
+    "full_kjv": {
+      "storyAudio": "audio_1034_story_kjv_full.mp3"
+    },
+    "reflection_kjv": {
+      "reflectionAudio": "audio_1034_reflection_kjv.mp3"
     }
   },
   "reflections": {

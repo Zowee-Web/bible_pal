@@ -21,13 +21,16 @@
   "title": "Abraham and the Three Visitors",
   "files": {
     "short": {
-      "storyText": "story_1028_traditional_web_short.txt"
+      "storyText": "story_1028_traditional_web_short.txt",
+      "storyAudio": "audio_1028_story_short.mp3"
     },
     "full": {
-      "storyText": "story_1028_traditional_web_full.txt"
+      "storyText": "story_1028_traditional_web_full.txt",
+      "storyAudio": "audio_1028_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_1028_traditional_web.txt"
+      "reflectionText": "reflection_1028_traditional_web.txt",
+      "reflectionAudio": "audio_1028_reflection.mp3"
     }
   },
   "reflectionSource": "llm",

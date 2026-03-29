@@ -4,11 +4,17 @@
   "mode": "traditional",
   "kidFriendly": false,
   "primaryLanguageStyle": "WEB",
-  "lanes": ["web", "kjv"],
+  "lanes": [
+    "web",
+    "kjv"
+  ],
   "mood": "anxious",
   "scriptureAnchor": "Genesis 22:1-19",
   "bibleStoryKey": "abraham_binding_of_isaac",
-  "lengths": ["short", "full"],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "voiceKey": "VOICE_MARY_PONDER",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
@@ -16,16 +22,40 @@
   "title": "The Binding of Isaac",
   "files": {
     "short": {
-      "web": { "storyText": "story_1032_traditional_web_short.txt" },
-      "kjv": { "storyText": "story_1032_traditional_kjv_short.txt" }
+      "web": {
+        "storyText": "story_1032_traditional_web_short.txt"
+      },
+      "kjv": {
+        "storyText": "story_1032_traditional_kjv_short.txt"
+      },
+      "storyAudio": "audio_1032_story_short.mp3"
     },
     "full": {
-      "web": { "storyText": "story_1032_traditional_web_full.txt" },
-      "kjv": { "storyText": "story_1032_traditional_kjv_full.txt" }
+      "web": {
+        "storyText": "story_1032_traditional_web_full.txt"
+      },
+      "kjv": {
+        "storyText": "story_1032_traditional_kjv_full.txt"
+      },
+      "storyAudio": "audio_1032_story_full.mp3"
     },
     "reflection": {
-      "web": { "reflectionText": "reflection_1032_traditional_web.txt" },
-      "kjv": { "reflectionText": "reflection_1032_traditional_kjv.txt" }
+      "web": {
+        "reflectionText": "reflection_1032_traditional_web.txt"
+      },
+      "kjv": {
+        "reflectionText": "reflection_1032_traditional_kjv.txt"
+      },
+      "reflectionAudio": "audio_1032_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyAudio": "audio_1032_story_kjv_short.mp3"
+    },
+    "full_kjv": {
+      "storyAudio": "audio_1032_story_kjv_full.mp3"
+    },
+    "reflection_kjv": {
+      "reflectionAudio": "audio_1032_reflection_kjv.mp3"
     }
   },
   "reflections": {

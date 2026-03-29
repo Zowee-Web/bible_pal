@@ -20,13 +20,16 @@
   "theme": "thankfulness, noticing good things, appreciation",
   "files": {
     "short": {
-      "storyText": "story_2028_creative_web_short.txt"
+      "storyText": "story_2028_creative_web_short.txt",
+      "storyAudio": "audio_2028_story_short.mp3"
     },
     "full": {
-      "storyText": "story_2028_creative_web_full.txt"
+      "storyText": "story_2028_creative_web_full.txt",
+      "storyAudio": "audio_2028_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_2028_creative_web.txt"
+      "reflectionText": "reflection_2028_creative_web.txt",
+      "reflectionAudio": "audio_2028_reflection.mp3"
     }
   },
   "reflectionSource": "llm",

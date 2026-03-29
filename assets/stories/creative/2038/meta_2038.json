@@ -20,13 +20,16 @@
   "theme": "unexpected joy through a chance encounter, the contagious nature of delight",
   "files": {
     "short": {
-      "storyText": "story_2038_creative_web_short.txt"
+      "storyText": "story_2038_creative_web_short.txt",
+      "storyAudio": "audio_2038_story_short.mp3"
     },
     "full": {
-      "storyText": "story_2038_creative_web_full.txt"
+      "storyText": "story_2038_creative_web_full.txt",
+      "storyAudio": "audio_2038_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_2038_creative_web.txt"
+      "reflectionText": "reflection_2038_creative_web.txt",
+      "reflectionAudio": "audio_2038_reflection.mp3"
     }
   },
   "reflectionSource": "llm",

@@ -21,13 +21,16 @@
   "title": "Jacob's Dream at Bethel",
   "files": {
     "short": {
-      "storyText": "story_1026_traditional_web_short.txt"
+      "storyText": "story_1026_traditional_web_short.txt",
+      "storyAudio": "audio_1026_story_short.mp3"
     },
     "full": {
-      "storyText": "story_1026_traditional_web_full.txt"
+      "storyText": "story_1026_traditional_web_full.txt",
+      "storyAudio": "audio_1026_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_1026_traditional_web.txt"
+      "reflectionText": "reflection_1026_traditional_web.txt",
+      "reflectionAudio": "audio_1026_reflection.mp3"
     }
   },
   "reflectionSource": "llm",

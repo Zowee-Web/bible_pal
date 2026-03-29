@@ -4,11 +4,16 @@
   "mode": "traditional",
   "kidFriendly": true,
   "primaryLanguageStyle": "WEB",
-  "lanes": ["web"],
+  "lanes": [
+    "web"
+  ],
   "mood": "anxious",
   "scriptureAnchor": "Genesis 22:1-19",
   "bibleStoryKey": "abraham_binding_of_isaac",
-  "lengths": ["short", "full"],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "voiceKey": "VOICE_LILY_WOLFF",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
@@ -16,13 +21,16 @@
   "title": "Abraham and Isaac on the Mountain",
   "files": {
     "short": {
-      "storyText": "story_1040_traditional_web_short.txt"
+      "storyText": "story_1040_traditional_web_short.txt",
+      "storyAudio": "audio_1040_story_short.mp3"
     },
     "full": {
-      "storyText": "story_1040_traditional_web_full.txt"
+      "storyText": "story_1040_traditional_web_full.txt",
+      "storyAudio": "audio_1040_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_1040_traditional_web.txt"
+      "reflectionText": "reflection_1040_traditional_web.txt",
+      "reflectionAudio": "audio_1040_reflection.mp3"
     }
   },
   "reflectionSource": "llm",

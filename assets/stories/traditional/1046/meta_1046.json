@@ -4,11 +4,16 @@
   "mode": "traditional",
   "kidFriendly": true,
   "primaryLanguageStyle": "WEB",
-  "lanes": ["web"],
+  "lanes": [
+    "web"
+  ],
   "mood": "joyful",
   "scriptureAnchor": "Genesis 1:1-31",
   "bibleStoryKey": "creation",
-  "lengths": ["short", "full"],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "voiceKey": "VOICE_DAVID_SHEPHERD",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
@@ -16,13 +21,16 @@
   "title": "God Makes the World",
   "files": {
     "short": {
-      "storyText": "story_1046_traditional_web_short.txt"
+      "storyText": "story_1046_traditional_web_short.txt",
+      "storyAudio": "audio_1046_story_short.mp3"
     },
     "full": {
-      "storyText": "story_1046_traditional_web_full.txt"
+      "storyText": "story_1046_traditional_web_full.txt",
+      "storyAudio": "audio_1046_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_1046_traditional_web.txt"
+      "reflectionText": "reflection_1046_traditional_web.txt",
+      "reflectionAudio": "audio_1046_reflection.mp3"
     }
   },
   "reflectionSource": "llm",

@@ -4,11 +4,17 @@
   "mode": "traditional",
   "kidFriendly": false,
   "primaryLanguageStyle": "WEB",
-  "lanes": ["web", "kjv"],
+  "lanes": [
+    "web",
+    "kjv"
+  ],
   "mood": "encouraging",
   "scriptureAnchor": "Judges 6:11-24",
   "bibleStoryKey": "gideon_called",
-  "lengths": ["short", "full"],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "voiceKey": "VOICE_DEBORAH_WISE",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
@@ -16,16 +22,40 @@
   "title": "Gideon Called",
   "files": {
     "short": {
-      "web": { "storyText": "story_1035_traditional_web_short.txt" },
-      "kjv": { "storyText": "story_1035_traditional_kjv_short.txt" }
+      "web": {
+        "storyText": "story_1035_traditional_web_short.txt"
+      },
+      "kjv": {
+        "storyText": "story_1035_traditional_kjv_short.txt"
+      },
+      "storyAudio": "audio_1035_story_short.mp3"
     },
     "full": {
-      "web": { "storyText": "story_1035_traditional_web_full.txt" },
-      "kjv": { "storyText": "story_1035_traditional_kjv_full.txt" }
+      "web": {
+        "storyText": "story_1035_traditional_web_full.txt"
+      },
+      "kjv": {
+        "storyText": "story_1035_traditional_kjv_full.txt"
+      },
+      "storyAudio": "audio_1035_story_full.mp3"
     },
     "reflection": {
-      "web": { "reflectionText": "reflection_1035_traditional_web.txt" },
-      "kjv": { "reflectionText": "reflection_1035_traditional_kjv.txt" }
+      "web": {
+        "reflectionText": "reflection_1035_traditional_web.txt"
+      },
+      "kjv": {
+        "reflectionText": "reflection_1035_traditional_kjv.txt"
+      },
+      "reflectionAudio": "audio_1035_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyAudio": "audio_1035_story_kjv_short.mp3"
+    },
+    "full_kjv": {
+      "storyAudio": "audio_1035_story_kjv_full.mp3"
+    },
+    "reflection_kjv": {
+      "reflectionAudio": "audio_1035_reflection_kjv.mp3"
     }
   },
   "reflections": {

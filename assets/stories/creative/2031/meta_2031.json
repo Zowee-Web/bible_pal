@@ -20,13 +20,16 @@
   "theme": "tiredness, feeling worn out, needing rest",
   "files": {
     "short": {
-      "storyText": "story_2031_creative_web_short.txt"
+      "storyText": "story_2031_creative_web_short.txt",
+      "storyAudio": "audio_2031_story_short.mp3"
     },
     "full": {
-      "storyText": "story_2031_creative_web_full.txt"
+      "storyText": "story_2031_creative_web_full.txt",
+      "storyAudio": "audio_2031_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_2031_creative_web.txt"
+      "reflectionText": "reflection_2031_creative_web.txt",
+      "reflectionAudio": "audio_2031_reflection.mp3"
     }
   },
   "reflectionSource": "llm",

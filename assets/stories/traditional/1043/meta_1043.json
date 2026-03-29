@@ -4,11 +4,16 @@
   "mode": "traditional",
   "kidFriendly": true,
   "primaryLanguageStyle": "WEB",
-  "lanes": ["web"],
+  "lanes": [
+    "web"
+  ],
   "mood": "encouraging",
   "scriptureAnchor": "Judges 6:11-24",
   "bibleStoryKey": "gideon_called",
-  "lengths": ["short", "full"],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "voiceKey": "VOICE_BARNABAS_ENCOURAGER",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
@@ -16,13 +21,16 @@
   "title": "Gideon and the Angel",
   "files": {
     "short": {
-      "storyText": "story_1043_traditional_web_short.txt"
+      "storyText": "story_1043_traditional_web_short.txt",
+      "storyAudio": "audio_1043_story_short.mp3"
     },
     "full": {
-      "storyText": "story_1043_traditional_web_full.txt"
+      "storyText": "story_1043_traditional_web_full.txt",
+      "storyAudio": "audio_1043_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_1043_traditional_web.txt"
+      "reflectionText": "reflection_1043_traditional_web.txt",
+      "reflectionAudio": "audio_1043_reflection.mp3"
     }
   },
   "reflectionSource": "llm",

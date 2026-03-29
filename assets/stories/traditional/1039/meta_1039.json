@@ -4,20 +4,44 @@
   "mode": "traditional",
   "kidFriendly": false,
   "primaryLanguageStyle": "WEB",
-  "lanes": ["web", "kjv"],
+  "lanes": [
+    "web",
+    "kjv"
+  ],
   "mood": "weary",
   "scriptureAnchor": "1 Kings 17:1-16",
   "bibleStoryKey": "elijah_and_widow_of_zarephath",
-  "lengths": ["short", "full"],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "voiceKey": "VOICE_BRADFORD",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
   "reflectionQuestion": "What does it feel like to have only enough for today and not know what tomorrow holds?",
   "title": "Elijah and the Widow of Zarephath",
   "files": {
-    "short": { "storyText": "story_1039_traditional_web_short.txt" },
-    "full": { "storyText": "story_1039_traditional_web_full.txt" },
-    "reflection": { "reflectionText": "reflection_1039_traditional_web.txt" }
+    "short": {
+      "storyText": "story_1039_traditional_web_short.txt",
+      "storyAudio": "audio_1039_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1039_traditional_web_full.txt",
+      "storyAudio": "audio_1039_story_full.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1039_traditional_web.txt",
+      "reflectionAudio": "audio_1039_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyAudio": "audio_1039_story_kjv_short.mp3"
+    },
+    "full_kjv": {
+      "storyAudio": "audio_1039_story_kjv_full.mp3"
+    },
+    "reflection_kjv": {
+      "reflectionAudio": "audio_1039_reflection_kjv.mp3"
+    }
   },
   "reflections": {
     "web": "reflection_1039_traditional_web.txt",

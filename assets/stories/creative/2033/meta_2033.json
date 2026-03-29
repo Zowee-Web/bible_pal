@@ -4,9 +4,14 @@
   "mode": "creative",
   "kidFriendly": false,
   "primaryLanguageStyle": "WEB",
-  "lanes": ["web"],
+  "lanes": [
+    "web"
+  ],
   "mood": "brave_courage",
-  "lengths": ["short", "full"],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "voiceKey": "VOICE_ELIJAH_SAGE",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
@@ -15,13 +20,16 @@
   "theme": "quiet moral courage in ordinary circumstances, doing right when nobody would notice if you didn't",
   "files": {
     "short": {
-      "storyText": "story_2033_creative_web_short.txt"
+      "storyText": "story_2033_creative_web_short.txt",
+      "storyAudio": "audio_2033_story_short.mp3"
     },
     "full": {
-      "storyText": "story_2033_creative_web_full.txt"
+      "storyText": "story_2033_creative_web_full.txt",
+      "storyAudio": "audio_2033_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_2033_creative_web.txt"
+      "reflectionText": "reflection_2033_creative_web.txt",
+      "reflectionAudio": "audio_2033_reflection.mp3"
     }
   },
   "reflectionSource": "llm",
