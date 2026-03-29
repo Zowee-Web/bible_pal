@@ -406,6 +406,7 @@ Never improvise or deviate from this system without explicit approval.
 | Batch              | IDs              | Date       | Notes                    |
 |--------------------|-----------------|------------|--------------------------|
 | PAL_OPUS_BATCH_01  | 1016–1031, 2016–2031 | 2026-03-29 | First batch under this system. 10 longs retained, 22 dropped for quality. |
+| PAL_OPUS_BATCH_02  | 1032–1047, 2032–2047 | 2026-03-29 | 8 new scripture anchors. 8 creative kid longs retained. Creative adult agent used wrong word count targets — corrected in review. |
 
 ---
 
