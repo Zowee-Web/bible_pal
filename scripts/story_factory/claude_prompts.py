@@ -164,6 +164,34 @@ _KID_SAFETY_RULES = (
 
 # ── System Prompts: Traditional Story ─────────────────────────────────────
 
+# KJV-specific audio storytelling rules — prevent Scripture reproduction
+_KJV_AUDIO_RULES = (
+    "\n\nKJV AUDIO STORYTELLING RULES (STRICT):\n"
+    "You are writing KJV-STYLE narrative retelling, NOT reproducing KJV text.\n"
+    "The goal: 'If the KJV were written for audio-first storytelling today.'\n\n"
+    "1. RETELL, do not reproduce. Convert direct Scripture quotation into "
+    "narrative retelling. Instead of copying dialogue verbatim from the Bible, "
+    "retell what was said in KJV-flavored narration.\n"
+    "   WRONG: 'O Nebuchadnezzar, we are not careful to answer thee in this matter...'\n"
+    "   RIGHT: 'They answered the king, their voices steady: they would not serve "
+    "his gods, nor bow to the image he had set up.'\n\n"
+    "2. BREAK dialogue into beats. Never write a long block of uninterrupted speech. "
+    "Interleave speech with physical reactions, movement, and environment.\n"
+    "   WRONG: [6 lines of continuous quoted speech]\n"
+    "   RIGHT: He spoke. The hall grew still. He spoke again, louder now. "
+    "The three stood together and answered him plainly.\n\n"
+    "3. NO inherited repetition. Do NOT repeat phrases or structures from the "
+    "source text just because the KJV repeats them. Every repetition must be "
+    "intentional for narrative effect, not carried over from the original.\n\n"
+    "4. SPOKEN KJV cadence, not printed KJV structure. Keep 'thee', 'ye', "
+    "'hath', 'walketh' — but reduce dense clause stacking and run-on sentences. "
+    "Every sentence must flow naturally when read aloud. If a sentence requires "
+    "rereading to parse, simplify its structure while keeping the diction.\n\n"
+    "5. SHORT direct quotes only. If a character must speak, keep quotes to "
+    "one or two sentences maximum. Convert longer speeches to narrated summary "
+    "in KJV style."
+)
+
 SYSTEM_PROMPTS_STORY_TRADITIONAL = {
     "kjv": (
         "You are Bible PAL in Traditional mode, Classic (KJV-style) lane. "
@@ -173,6 +201,7 @@ SYSTEM_PROMPTS_STORY_TRADITIONAL = {
         "Poetic style: Tier 3 (Elevated) — rich poetic language, complex rhythm. "
         "Meaning must remain scripture-accurate."
         + _TRADITIONAL_HARD_RULES
+        + _KJV_AUDIO_RULES
         + _NARRATION_STYLE_GUARDRAILS
         + _NARRATION_TRADITIONAL_EXTRA
         + _ANTI_REPETITION_RULES
@@ -435,9 +464,14 @@ KID_REFLECTION_WORD_RANGE = (60, 120)
 # ── User Prompt Builders ──────────────────────────────────────────────────
 
 def build_traditional_story_prompt(
-    anchor: str, length: str, lo: int, hi: int, is_kid: bool
+    anchor: str, length: str, lo: int, hi: int, is_kid: bool,
+    short_reference: str | None = None,
 ) -> str:
-    """Build the user prompt for a Traditional story generation call."""
+    """Build the user prompt for a Traditional story generation call.
+
+    For LONG versions, pass short_reference (the SHORT text) to enforce
+    discipline matching — the LONG must be the SHORT with a wider camera.
+    """
     prompt = (
         f"Create a {length.upper()} Traditional Bible PAL story "
         f"retelling {anchor}. "
@@ -458,11 +492,26 @@ def build_traditional_story_prompt(
             "Do not add new events beyond the passage."
         )
     else:  # long
-        prompt += (
-            "Slow the narrative, enrich scene detail with "
-            "concrete sensory description (sights, sounds, textures). "
-            "Introduce no new events or meaning beyond the passage."
-        )
+        if short_reference:
+            prompt += (
+                "CRITICAL: Below is the SHORT version of this story. "
+                "Your LONG version must follow the EXACT SAME writing discipline — "
+                "same tone, same dialogue handling, same narration style. "
+                "The ONLY difference is more scene detail.\n\n"
+                "Do NOT add commentary, interpretation, symbolism, figurative language, "
+                "or meta-narration. Do NOT introduce a different voice.\n\n"
+                "Expand ONLY through: physical scene detail, movement and positioning, "
+                "pacing (smaller observable steps), observable crowd behavior.\n\n"
+                f"SHORT VERSION (your reference standard):\n\"\"\"\n{short_reference}\n\"\"\"\n\n"
+                "Now write the LONG version matching this discipline exactly, "
+                "with more camera detail."
+            )
+        else:
+            prompt += (
+                "Slow the narrative, enrich scene detail with "
+                "concrete sensory description (sights, sounds, textures). "
+                "Introduce no new events or meaning beyond the passage."
+            )
 
     if is_kid:
         prompt += (
@@ -487,6 +536,7 @@ def build_traditional_story_prompt(
 def build_creative_story_prompt(
     theme: str, mood: str, length: str, lo: int, hi: int, is_kid: bool,
     used_names: list[str] | None = None,
+    short_reference: str | None = None,
 ) -> str:
     """Build the user prompt for a Creative story generation call."""
     prompt = (
@@ -518,21 +568,31 @@ def build_creative_story_prompt(
             "each with 4-6 sentences. Take your time and develop the story fully."
         )
     else:  # long
-        prompt += (
-            " This is a LONG story — take your time. "
-            "Structure: write AT LEAST 12 paragraphs, each paragraph "
-            "with 5-6 full sentences. "
-            "Develop the story in multiple scenes: "
-            "introduce the setting (2 paragraphs), "
-            "introduce the main character's situation (2 paragraphs), "
-            "develop the central challenge or journey (4 paragraphs), "
-            "show a turning point (2 paragraphs), "
-            "and provide a meaningful resolution (2 paragraphs). "
-            "Include rich sensory details — what characters see, hear, "
-            "smell, touch. Describe the environment in each scene. "
-            f"You MUST write at least {lo} words. "
-            "Do NOT rush to a conclusion. "
-            "Do NOT summarize — show every scene fully."
+        if short_reference:
+            prompt += (
+                " CRITICAL: Below is the SHORT version of this story. "
+                "Your LONG version must follow the EXACT SAME writing discipline — "
+                "same tone, same dialogue handling, same narration style, same character names. "
+                "The ONLY difference is more scene detail.\n\n"
+                "Do NOT add commentary, interpretation, symbolism, figurative language, "
+                "or meta-narration. Do NOT introduce a different voice.\n\n"
+                "Expand ONLY through: physical scene detail, movement and positioning, "
+                "pacing (smaller observable steps), observable behavior.\n\n"
+                f"SHORT VERSION (your reference standard):\n\"\"\"\n{short_reference}\n\"\"\"\n\n"
+                "Now write the LONG version matching this discipline exactly, "
+                f"with more camera detail. You MUST write at least {lo} words."
+            )
+        else:
+            prompt += (
+                " This is a LONG story — take your time. "
+                "Structure: write AT LEAST 12 paragraphs, each paragraph "
+                "with 5-6 full sentences. "
+                "Develop the story in multiple scenes. "
+                "Include rich sensory details — what characters see, hear, "
+                "smell, touch. Describe the environment in each scene. "
+                f"You MUST write at least {lo} words. "
+                "Do NOT rush to a conclusion. "
+                "Do NOT summarize — show every scene fully."
         )
 
     if is_kid:

@@ -14,7 +14,6 @@ Usage:
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import os
 import pathlib
@@ -24,84 +23,11 @@ import time
 import urllib.error
 import urllib.request
 
-# ── Voice rules (PERMANENT — NON-NEGOTIABLE) ─────────────────────────────
-
-BANNED_VOICES = {
-    "VOICE_GRACE",
-    "VOICE_ABILENE",
-    "VOICE_GRANT",
-    # PAL conversation voices — never for narration
-    "VOICE_SHEPHERD",
-    "VOICE_HOPE",
-    "VOICE_STILLWATER",
-}
-
-APPROVED_NARRATOR_VOICES = [
-    "VOICE_ARABELLA",
-    "VOICE_LILY_WOLFF",
-    "VOICE_CHARLOTTE_V3",
-    "VOICE_NATASHA_AFRICAN_AMERICAN",
-    "VOICE_SARAH_DEFAULT_VOICES",
-    "VOICE_JAMES_BRITISH_PROFESSIONAL",
-    "VOICE_REVEREND_MICHAEL_C_VINCENT",
-    "VOICE_CHRIS_DEFAULT",
-    "VOICE_JOHN_DOE",
-    "VOICE_ARCHER",
-    "VOICE_BRADFORD",
-]
-
-# Mood-to-voice mapping — best-fit voice for each mood
-# Uses tags from server/voices.json to match mood to voice character
-MOOD_VOICE_MAP = {
-    "joyful":        "VOICE_LILY_WOLFF",          # Spirited, uplifting
-    "grateful":      "VOICE_ARABELLA",             # Tender, nurturing
-    "weary":         "VOICE_JAMES_BRITISH_PROFESSIONAL",  # Reassuring, fatherly
-    "anxious":       "VOICE_REVEREND_MICHAEL_C_VINCENT",  # Pastoral, calming
-    "hurting":       "VOICE_SARAH_DEFAULT_VOICES",  # Warm, nurturing
-    "brave_courage": "VOICE_ARCHER",               # Bold, adventurous
-    "calm_peaceful": "VOICE_JOHN_DOE",             # Tender, loving
-    "encouraging":   "VOICE_CHARLOTTE_V3",         # Clear, patient
-}
-
-# Kid stories get gentler voices
-KID_MOOD_VOICE_MAP = {
-    "joyful":        "VOICE_ARABELLA",             # Tender, nurturing
-    "grateful":      "VOICE_ARABELLA",
-    "weary":         "VOICE_SARAH_DEFAULT_VOICES",  # Warm, gentle
-    "anxious":       "VOICE_SARAH_DEFAULT_VOICES",
-    "hurting":       "VOICE_ARABELLA",
-    "brave_courage": "VOICE_CHARLOTTE_V3",         # Clear, patient
-    "calm_peaceful": "VOICE_ARABELLA",
-    "encouraging":   "VOICE_CHARLOTTE_V3",
-}
-
-
-def select_voice(mood: str, is_kid: bool, voice_override: str | None = None) -> str:
-    """Select the narrator voice for a story based on mood.
-
-    Returns the voice key. Raises ValueError if voice is banned.
-    """
-    if voice_override:
-        if voice_override in BANNED_VOICES:
-            raise ValueError(
-                f"BANNED VOICE: {voice_override} is permanently banned from story narration. "
-                f"Approved voices: {', '.join(APPROVED_NARRATOR_VOICES)}"
-            )
-        if voice_override not in APPROVED_NARRATOR_VOICES:
-            raise ValueError(
-                f"UNAPPROVED VOICE: {voice_override} is not in the approved narrator pool. "
-                f"Approved voices: {', '.join(APPROVED_NARRATOR_VOICES)}"
-            )
-        return voice_override
-
-    voice_map = KID_MOOD_VOICE_MAP if is_kid else MOOD_VOICE_MAP
-    voice = voice_map.get(mood)
-    if not voice:
-        # Fallback: deterministic hash to pick from pool
-        h = int(hashlib.md5(mood.encode()).hexdigest(), 16)
-        voice = APPROVED_NARRATOR_VOICES[h % len(APPROVED_NARRATOR_VOICES)]
-
-    return voice
+from story_voice_registry import (
+    validate_story_voice,
+    validate_reflection_voice,
+    VoiceValidationError,
+)
 
 
 def load_env(root: pathlib.Path) -> None:
@@ -203,24 +129,19 @@ def main() -> int:
         print("ABORT: ELEVENLABS_API_KEY is missing or empty")
         return 1
 
-    # Select voice based on mood
-    mood = meta.get("mood", "calm_peaceful")
-    is_kid = meta.get("kidFriendly", False)
+    # Read voice from metadata — every story MUST explicitly define its voice
+    voice_key = args.voice_key or meta.get("storyVoiceKey") or meta.get("voiceKey")
 
+    # Validate voice through the registry (banned/missing/unknown all fail)
     try:
-        voice_key = select_voice(mood, is_kid, args.voice_key)
-    except ValueError as exc:
+        validate_story_voice(voice_key or "")
+    except VoiceValidationError as exc:
         print(f"ABORT: {exc}")
         return 1
 
     voice_id = os.environ.get(voice_key, "").strip()
     if not voice_id:
         print(f"ABORT: {voice_key} env var is missing or empty in .env")
-        return 1
-
-    # Final safety check: validate the voice key is not banned
-    if voice_key in BANNED_VOICES:
-        print(f"ABORT: {voice_key} is BANNED from story narration")
         return 1
 
     lane = meta.get("languageStyle", "WEB").lower()
@@ -263,11 +184,17 @@ def main() -> int:
         size = tts(text, mp3_path, voice_id)
         print(f"    {size:,} bytes")
 
-    # Update metadata with the voice key used
-    if meta.get("voiceKey") != voice_key:
-        meta["voiceKey"] = voice_key
+    # Update metadata with the voice keys used
+    updated = False
+    if meta.get("storyVoiceKey") != voice_key:
+        meta["storyVoiceKey"] = voice_key
+        updated = True
+    if meta.get("reflectionVoiceKey") != voice_key:
+        meta["reflectionVoiceKey"] = voice_key
+        updated = True
+    if updated:
         meta_file.write_text(json.dumps(meta, indent=2) + "\n")
-        print(f"\n  Updated metadata voiceKey to {voice_key}")
+        print(f"\n  Updated metadata storyVoiceKey/reflectionVoiceKey to {voice_key}")
 
     elapsed = time.time() - t0
     print(f"\nDONE. Audio for story {sid} ({mode}) generated in {elapsed:.1f}s.")

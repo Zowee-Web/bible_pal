@@ -150,6 +150,37 @@ def check_lyrical_drift(text: str) -> list[str]:
     return found
 
 
+# ── LONG version drift detection (hard-fail for LONG outputs) ─────────────
+# LONG versions must match SHORT discipline. These patterns indicate drift.
+
+LONG_VERSION_DRIFT_PHRASES = [
+    # Meta-narration
+    "the text declareth",
+    "it is written",
+    "it was known",
+    "as it is said",
+    "the scripture saith",
+    "the passage telleth",
+    # Commentary verbs (narrator stepping outside the camera)
+    " seemed to ",
+    " appeared to ",
+]
+
+
+def check_long_version_drift(text: str) -> list[str]:
+    """Check LONG version for drift from SHORT discipline.
+
+    Returns list of phrases found. These are hard violations for LONG outputs —
+    if any are found, regenerate using SHORT as reference.
+    """
+    found = []
+    lower = text.lower()
+    for phrase in LONG_VERSION_DRIFT_PHRASES:
+        if phrase in lower:
+            found.append(phrase)
+    return found
+
+
 def check_traditional_compliance(text: str) -> list[tuple[str, str]]:
     """Check story text for Traditional mode violations.
 

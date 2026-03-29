@@ -237,8 +237,8 @@ def main() -> int:
     parser.add_argument("--lane", type=str, default="web",
                         choices=["web", "kjv"],
                         help="web = modern WEB style, kjv = classic KJV style")
-    parser.add_argument("--voice_key", type=str, default="VOICE_JAMES_HUSKY",
-                        help="Voice key for metadata")
+    parser.add_argument("--voice_key", type=str, default=None,
+                        help="Voice key for metadata (required for audio, set after generation)")
     parser.add_argument("--batch", type=str, default="PAL_CLAUDE_BATCH_01",
                         help="Generation batch label")
     parser.add_argument("--kid", action="store_true",
@@ -279,6 +279,16 @@ def main() -> int:
         print(f"ABORT: Creative story ID must be 2000-2999, got {sid}")
         return 1
 
+    # 3b. KJV lane enforcement (STRICT)
+    # KJV is ONLY for adult Traditional stories. Kid KJV and Creative KJV must NEVER exist.
+    if lane == "kjv":
+        if mode == "creative":
+            print("ABORT: KJV lane is FORBIDDEN for Creative stories. KJV is Traditional adult only.")
+            return 1
+        if args.kid:
+            print("ABORT: KJV lane is FORBIDDEN for Kid stories. KJV is Traditional adult only.")
+            return 1
+
     # 4. Mode-specific validation
     if mode == "traditional":
         if not args.anchor:
@@ -303,12 +313,15 @@ def main() -> int:
         return 1
 
     # 6. Check registries for duplicates (--overwrite clears existing entry)
+    # When adding a KJV lane to an existing story, skip anchor check (already registered)
+    existing_story_dir = root / "assets" / "stories" / mode / str(sid)
+    adding_new_lane = existing_story_dir.exists() and lane != "web"
     if mode == "traditional":
         anchors_file = root / "used_scripture_anchors.json"
         if not anchors_file.exists():
             anchors_file.write_text("[]\n")
         anchors = json.loads(anchors_file.read_text())
-        if args.anchor in anchors:
+        if args.anchor in anchors and not adding_new_lane:
             if args.overwrite:
                 anchors = [a for a in anchors if a != args.anchor]
                 print(f"  Cleared anchor from registry for overwrite: {args.anchor}")
@@ -330,23 +343,35 @@ def main() -> int:
                 return 1
 
     # 7. Handle existing output dir
+    adding_lane = False
     if outdir.exists():
-        if args.overwrite:
-            print(f"  Overwriting existing: {outdir}")
-            shutil.rmtree(outdir)
-        else:
-            print(f"ABORT: output directory already exists: {outdir}")
+        # Check if we're adding a new lane to an existing story
+        existing_lane_file = outdir / f"story_{sid}_{mode}_{lane}_short.txt"
+        if existing_lane_file.exists() and not args.overwrite:
+            print(f"ABORT: {lane} lane files already exist for story {sid}")
             print(f"  Use --overwrite to replace.")
             return 1
-
-    # ── Create output dir ─────────────────────────────────────────────
-    outdir.mkdir(parents=True)
-    print(f"Created {outdir}")
+        if not existing_lane_file.exists():
+            # Directory exists with different lane — adding KJV alongside WEB
+            adding_lane = True
+            print(f"  Adding {lane.upper()} lane to existing story {sid}")
+        elif args.overwrite:
+            print(f"  Overwriting {lane.upper()} lane files for story {sid}")
+    else:
+        outdir.mkdir(parents=True)
+        print(f"Created {outdir}")
 
     def fail_clean(msg: str) -> int:
         print(f"FAIL: {msg}")
-        shutil.rmtree(outdir, ignore_errors=True)
-        print(f"Cleaned up {outdir}")
+        if not adding_lane:
+            # Only delete directory if we created it fresh (not adding to existing)
+            shutil.rmtree(outdir, ignore_errors=True)
+            print(f"Cleaned up {outdir}")
+        else:
+            # Clean up only the lane files we created
+            for f in outdir.glob(f"*_{lane}_*"):
+                f.unlink()
+            print(f"Cleaned up {lane.upper()} lane files")
         return 1
 
     try:
@@ -392,12 +417,19 @@ def main() -> int:
             print(f"Kid mode: loaded {len(forbidden)} forbidden words")
 
         # ── Generate 3 length variants ────────────────────────────────
+        # RULE: LONG is generated using SHORT as reference (wider camera, same discipline)
+        saved_short_text = None
+
         for length, (lo, hi) in ranges.items():
             print(f"\n=== Generating {length.upper()} {mode} story ===")
 
+            # For LONG, pass the SHORT text as reference
+            short_ref = saved_short_text if length == "long" else None
+
             if mode == "traditional":
                 base_prompt = build_traditional_story_prompt(
-                    args.anchor, length, lo, hi, is_kid
+                    args.anchor, length, lo, hi, is_kid,
+                    short_reference=short_ref,
                 )
             else:
                 # Load used character names to avoid repetition
@@ -408,6 +440,7 @@ def main() -> int:
                 base_prompt = build_creative_story_prompt(
                     args.theme, args.mood, length, lo, hi, is_kid,
                     used_names=used_names,
+                    short_reference=short_ref,
                 )
 
             text = None
@@ -491,6 +524,17 @@ def main() -> int:
             fname = f"story_{sid}_{mode}_{lane}_{length}.txt"
             (outdir / fname).write_text(text)
             print(f"  Saved {fname}")
+
+            # Save short text for use as LONG reference
+            if length == "short":
+                saved_short_text = text
+
+            # LONG version: hard-check for drift from SHORT discipline
+            if length == "long":
+                from claude_validator import check_long_version_drift
+                long_drift = check_long_version_drift(text)
+                if long_drift:
+                    print(f"  WARNING (LONG drift from SHORT discipline): {long_drift}")
 
             # Soft-flag: lyrical drift warnings (logged, not blocking)
             drift = check_lyrical_drift(text)
@@ -585,48 +629,75 @@ def main() -> int:
 
         # ── Write metadata ────────────────────────────────────────────
         print(f"\n=== Writing metadata ===")
-        meta = {
-            "schemaVersion": 2,
-            "storyId": sid,
-            "mode": mode,
-            "kidFriendly": is_kid,
-            "languageStyle": LANE_STYLE[lane],
-            "mood": args.mood,
-            "lengths": ["short", "full", "long"],
-            "voiceKey": args.voice_key,
-            "createdByModel": MODEL,
-            "generationBatch": args.batch,
-            "reflectionQuestion": reflection_question,
-            "title": title,
-            "files": {
-                "short": {
-                    "storyText": f"story_{sid}_{mode}_{lane}_short.txt",
-                    "storyAudio": f"audio_{sid}_story_short.mp3",
-                },
-                "full": {
-                    "storyText": f"story_{sid}_{mode}_{lane}_full.txt",
-                    "storyAudio": f"audio_{sid}_story_full.mp3",
-                },
-                "long": {
-                    "storyText": f"story_{sid}_{mode}_{lane}_long.txt",
-                    "storyAudio": f"audio_{sid}_story_long.mp3",
-                },
-                "reflection": {
-                    "reflectionText": f"reflection_{sid}_{mode}_{lane}.txt",
-                    "reflectionAudio": f"audio_{sid}_reflection.mp3",
-                },
-            },
-        }
-
-        # Mode-specific metadata
-        if mode == "traditional":
-            meta["scriptureAnchor"] = args.anchor
-            meta["bibleStoryKey"] = args.bible_story_key
-        else:
-            meta["theme"] = args.theme
-
         meta_fname = f"meta_{sid}.json"
-        (outdir / meta_fname).write_text(json.dumps(meta, indent=2) + "\n")
+        meta_path = outdir / meta_fname
+
+        if adding_lane and meta_path.exists():
+            # Adding KJV lane to existing story — merge into existing meta
+            meta = json.loads(meta_path.read_text())
+            meta["lanes"] = list(set(meta.get("lanes", ["web"]) + [lane]))
+            # Add KJV file entries alongside existing WEB entries
+            kjv_files = {
+                f"{lane}_short": {
+                    "storyText": f"story_{sid}_{mode}_{lane}_short.txt",
+                },
+                f"{lane}_full": {
+                    "storyText": f"story_{sid}_{mode}_{lane}_full.txt",
+                },
+                f"{lane}_long": {
+                    "storyText": f"story_{sid}_{mode}_{lane}_long.txt",
+                },
+                f"{lane}_reflection": {
+                    "reflectionText": f"reflection_{sid}_{mode}_{lane}.txt",
+                },
+            }
+            meta["files"].update(kjv_files)
+            meta[f"reflectionQuestion_{lane}"] = reflection_question
+            meta[f"title_{lane}"] = title
+        else:
+            # New story — create full meta
+            meta = {
+                "schemaVersion": 2,
+                "storyId": sid,
+                "mode": mode,
+                "kidFriendly": is_kid,
+                "languageStyle": LANE_STYLE[lane],
+                "lanes": [lane],
+                "mood": args.mood,
+                "lengths": ["short", "full", "long"],
+                "voiceKey": args.voice_key,
+                "createdByModel": MODEL,
+                "generationBatch": args.batch,
+                "reflectionQuestion": reflection_question,
+                "title": title,
+                "files": {
+                    "short": {
+                        "storyText": f"story_{sid}_{mode}_{lane}_short.txt",
+                        "storyAudio": f"audio_{sid}_story_short.mp3",
+                    },
+                    "full": {
+                        "storyText": f"story_{sid}_{mode}_{lane}_full.txt",
+                        "storyAudio": f"audio_{sid}_story_full.mp3",
+                    },
+                    "long": {
+                        "storyText": f"story_{sid}_{mode}_{lane}_long.txt",
+                        "storyAudio": f"audio_{sid}_story_long.mp3",
+                    },
+                    "reflection": {
+                        "reflectionText": f"reflection_{sid}_{mode}_{lane}.txt",
+                        "reflectionAudio": f"audio_{sid}_reflection.mp3",
+                    },
+                },
+            }
+
+            # Mode-specific metadata
+            if mode == "traditional":
+                meta["scriptureAnchor"] = args.anchor
+                meta["bibleStoryKey"] = args.bible_story_key
+            else:
+                meta["theme"] = args.theme
+
+        meta_path.write_text(json.dumps(meta, indent=2) + "\n")
         print(f"  Saved {meta_fname}")
 
         # ── Update manifest.json ──────────────────────────────────────
