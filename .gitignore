@@ -86,3 +86,7 @@ assets/audio/typewriter_click.mp3
 
 # Quarantined story batches (compliance violations)
 quarantine/
+
+# Audio compression working directories (originals backup + intermediate output)
+assets_audio_originals/
+assets_audio_compressed/
