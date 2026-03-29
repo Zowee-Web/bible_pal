@@ -7,6 +7,8 @@ import '../models/parable.dart';
 import '../models/user_preferences.dart';
 import '../core/app_logger.dart';
 import '../core/story_length_bucket.dart';
+import '../core/mood_similarity.dart';
+import '../core/mood_expansion_engine.dart';
 import '../core/seasonal_calendar.dart';
 import 'storage_service.dart';
 import 'relatability_matcher.dart';
@@ -320,155 +322,159 @@ class ParableService {
     return eligible;
   }
 
-  /// Select a parable using non-repeat serving rule and relatability matching.
-  /// Per SPEC.md Feature #14: Non-Repeat Story Serving Rule
+  /// Select a parable using mood expansion (SPEC 15b) and non-repeat serving.
+  /// Per SPEC.md Features #4 (Relatability), #14 (Non-Repeat), #15b (Mood Expansion).
   ///
   /// Selection algorithm:
-  /// 1. Filter by eligibility (mode, lengthBucket, kid mode)
-  /// 2. Exclude recently played (no-repeat invariant) if unplayed exist
-  /// 3. Rank by relatability score (if userText provided)
-  /// 4. Tie-break: least-recently-played, then stable storyId
+  /// 1. Build eligible pools for exact + similar moods (length, mode, kid safety, language)
+  /// 2. Apply 4-tier mood expansion via [MoodExpansionEngine] to pick winning tier
+  /// 3. Within the winning tier, rank by relatability score (if userText provided)
+  /// 4. Otherwise tie-break by seasonal/time-of-day boost, then LRP, then stable storyId
   Future<Parable?> selectParable({
     required String mood,
     required StoryLengthBucket lengthBucket,
     required UserPreferences userPrefs,
     String? userText,
   }) async {
-    final eligibleParables = await getEligibleParables(
+    // Build the full eligible pool across all moods that pass non-mood filters.
+    // getEligibleParables already filters by length, mode, language, kid safety.
+    final exactPool = await getEligibleParables(
       mood: mood,
       lengthBucket: lengthBucket,
       userPrefs: userPrefs,
     );
 
-    if (eligibleParables.isEmpty) {
-      debugPrint('No eligible parables found for criteria');
+    // Also fetch pools for similar moods
+    final similarMoods = MoodSimilarity.getSimilar(mood);
+    final similarPools = <Parable>[];
+    for (final similarMood in similarMoods) {
+      final pool = await getEligibleParables(
+        mood: similarMood,
+        lengthBucket: lengthBucket,
+        userPrefs: userPrefs,
+      );
+      similarPools.addAll(pool);
+    }
 
-      // Log pool exhausted (no matches)
+    // Combined pool for the engine (exact + similar, engine handles separation)
+    final combinedPool = [...exactPool, ...similarPools];
+
+    if (combinedPool.isEmpty) {
+      debugPrint('No eligible parables found for criteria (including expansion)');
       logEvent(
           'pool_exhausted',
           {
             'eligible_count': 0,
             'reason': 'no_matches_for_criteria',
+            'expansion_attempted': true,
           },
           level: LogLevel.warn);
-
       return null;
     }
 
-    // Get history to implement non-repeat rule
+    // Get history for non-repeat rule
     final history = await _storage.getHistory();
     final recentStoryIds = history.map((h) => h.storyId).toSet();
-
-    // Build play history map for tie-breaking (storyId -> last played time)
     final playHistory = <String, DateTime>{};
     for (final entry in history) {
-      // Keep only the most recent play time for each story
       if (!playHistory.containsKey(entry.storyId)) {
         playHistory[entry.storyId] = entry.timestamp;
       }
     }
 
-    // Find parables not recently played
-    final unplayedParables = eligibleParables
-        .where((p) => !recentStoryIds.contains(p.storyId))
-        .toList();
+    // Log pool sizes before/after expansion (SPEC 15b telemetry)
+    logEvent('mood_expansion_pool', {
+      'selected_mood': mood,
+      'exact_pool_size': exactPool.length,
+      'similar_pool_size': similarPools.length,
+      'combined_pool_size': combinedPool.length,
+    });
 
-    // Determine candidate pool: prefer unplayed, fall back to all eligible
-    List<Parable> candidates;
-    if (unplayedParables.isEmpty) {
-      debugPrint('All eligible parables played, using full pool with LRU');
+    // Use the 4-tier engine
+    const engine = MoodExpansionEngine();
+    final result = engine.select(
+      selectedMood: mood,
+      pool: combinedPool,
+      playedStoryIds: recentStoryIds,
+      playHistory: playHistory,
+    );
 
-      // Log pool exhausted with LRP strategy
-      logEvent('pool_exhausted', {
-        'eligible_count': eligibleParables.length,
-        'strategy': 'LRP',
-        'reason': 'all_stories_played',
-      });
-
-      candidates = eligibleParables;
-    } else {
-      candidates = unplayedParables;
+    if (result == null) {
+      debugPrint('MoodExpansionEngine returned null');
+      return null;
     }
 
-    // Apply relatability ranking if userText provided
-    if (userText != null && userText.isNotEmpty) {
+    // The engine picked a tier and sorted candidates by LRP.
+    // Apply secondary ranking within the tier: relatability, then seasonal/time-of-day.
+    var candidates = result.tierCandidates;
+    String selectionMethod;
+
+    if (userText != null && userText.isNotEmpty && candidates.length > 1) {
       final ranked = _matcher.rankByRelatability(
         userText,
         candidates,
         playHistory: playHistory,
       );
       if (ranked.isNotEmpty) {
-        debugPrint(
-            'Relatability ranking applied, top match: ${ranked.first.storyId}');
-
-        final selected = ranked.first;
-        // Log story selected with relatability ranking
-        // NOTE: length_bucket is canonical - no minute-based fields in telemetry (INVARIANTS.md)
-        logEvent('story_selected', {
-          'story_id': selected.storyId,
-          'mode':
-              '${userPrefs.kidFriendlyOnly ? "kid" : "adult"}_${selected.storytellingMode}',
-          'length_bucket': selected.lengthBucket.name,
-          'matched_tags': selected.emotionalTags,
-          'selection_method': 'relatability_ranking',
-          'repeat_allowed': unplayedParables.isEmpty,
-        });
-
-        return selected;
+        candidates = ranked;
+        selectionMethod = 'relatability_ranking';
+      } else {
+        selectionMethod = 'lrp';
       }
+    } else if (candidates.length > 1) {
+      // Apply seasonal/time-of-day soft preferences as tie-breakers
+      final hour = DateTime.now().hour;
+      final currentTimeWindow = (hour >= 5 && hour < 12)
+          ? 'morning'
+          : (hour >= 17 || hour < 5)
+              ? 'evening'
+              : null;
+      final currentSeason = SeasonalCalendar.getCurrentSeason();
+
+      if (currentSeason != null || currentTimeWindow != null) {
+        candidates = List<Parable>.from(candidates);
+        candidates.sort((a, b) {
+          if (currentSeason != null) {
+            final aMatch = a.seasonTag == currentSeason ? 0 : 1;
+            final bMatch = b.seasonTag == currentSeason ? 0 : 1;
+            if (aMatch != bMatch) return aMatch.compareTo(bMatch);
+          }
+          if (currentTimeWindow != null) {
+            final aMatch = a.timeOfDay == currentTimeWindow ? 0 : 1;
+            final bMatch = b.timeOfDay == currentTimeWindow ? 0 : 1;
+            if (aMatch != bMatch) return aMatch.compareTo(bMatch);
+          }
+          // Preserve LRP order for ties
+          final aTime = playHistory[a.storyId];
+          final bTime = playHistory[b.storyId];
+          if (aTime == null && bTime != null) return -1;
+          if (aTime != null && bTime == null) return 1;
+          if (aTime != null && bTime != null) {
+            final cmp = aTime.compareTo(bTime);
+            if (cmp != 0) return cmp;
+          }
+          return a.storyId.compareTo(b.storyId);
+        });
+      }
+      selectionMethod = 'deterministic_lrp';
+    } else {
+      selectionMethod = 'single_candidate';
     }
 
-    // Fallback: deterministic selection with time-of-day and seasonal soft preferences.
-    // Stories tagged for the current time window or season are preferred.
-    final hour = DateTime.now().hour;
-    final currentTimeWindow = (hour >= 5 && hour < 12)
-        ? 'morning'
-        : (hour >= 17 || hour < 5)
-            ? 'evening'
-            : null; // afternoon: no preference
-    final currentSeason = SeasonalCalendar.getCurrentSeason();
-
-    candidates.sort((a, b) {
-      // Seasonal boost: matching stories come first
-      if (currentSeason != null) {
-        final aMatch = a.seasonTag == currentSeason ? 0 : 1;
-        final bMatch = b.seasonTag == currentSeason ? 0 : 1;
-        if (aMatch != bMatch) return aMatch.compareTo(bMatch);
-      }
-
-      // Time-of-day boost: matching stories come first
-      if (currentTimeWindow != null) {
-        final aMatch = a.timeOfDay == currentTimeWindow ? 0 : 1;
-        final bMatch = b.timeOfDay == currentTimeWindow ? 0 : 1;
-        if (aMatch != bMatch) return aMatch.compareTo(bMatch);
-      }
-
-      final aTime = playHistory[a.storyId];
-      final bTime = playHistory[b.storyId];
-
-      // Never played comes first
-      if (aTime == null && bTime != null) return -1;
-      if (aTime != null && bTime == null) return 1;
-      if (aTime != null && bTime != null) {
-        final timeCompare = aTime.compareTo(bTime);
-        if (timeCompare != 0) return timeCompare;
-      }
-
-      // Stable tie-break by storyId
-      return a.storyId.compareTo(b.storyId);
-    });
-
     final selected = candidates.first;
-    // Log story selected via deterministic fallback
-    // NOTE: length_bucket is canonical - no minute-based fields in telemetry (INVARIANTS.md)
+    final servedMood = selected.mood;
+
+    // Log story selected with expansion metadata
     logEvent('story_selected', {
       'story_id': selected.storyId,
+      'selected_mood': mood,
+      'served_mood': servedMood,
+      'expansion_tier': result.tier,
       'mode':
           '${userPrefs.kidFriendlyOnly ? "kid" : "adult"}_${selected.storytellingMode}',
       'length_bucket': selected.lengthBucket.name,
       'matched_tags': selected.emotionalTags,
-      'selection_method': 'deterministic_lrp',
-      'repeat_allowed': unplayedParables.isEmpty,
+      'selection_method': selectionMethod,
     });
 
     return selected;

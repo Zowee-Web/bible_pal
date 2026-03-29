@@ -489,6 +489,62 @@ Golden Prompt mode is a specialized generation strategy for adult traditional SH
   - Other active criteria
 - After pool exhausted, stories repeat using "least recently played" ordering
 
+**15b. Mood Expansion Serving Rule**
+
+Bible PAL preserves the user's selected mood as the primary intent, while expanding the eligible story pool in a controlled way to reduce fast repetition.
+
+**Serving Priority Order**
+
+When a user selects a mood, the serving engine builds the eligible pool in this order:
+1. Exact selected mood + unseen stories
+2. Similar moods + unseen stories
+3. Exact selected mood + seen stories, sorted least-recently-played first
+4. Similar moods + seen stories, sorted least-recently-played first
+
+**Required Filters**
+
+At every stage above, the pool must also be filtered by:
+- Story must have the requested `StoryLengthBucket` available (no fallback to other lengths)
+- Active mode/settings must match
+- All existing serving invariants still apply
+
+**Exact Mood Protection**
+- The system must never silently switch to unrelated moods
+- The selected mood remains primary
+- Similar moods are only a fallback expansion layer, not a replacement of user intent
+
+**Expansion Trigger**
+- Always try exact mood first
+- If the exact unseen pool is empty, expand to similar moods
+- Optional future tuning: expand earlier if the exact unseen pool is below a threshold (e.g., 5 stories), but do not implement unless explicitly requested
+
+**Similar Mood Map**
+- `anxious` → `calm_peaceful`, `encouraging`, `weary`
+- `calm_peaceful` → `anxious`, `grateful`, `encouraging`
+- `brave_courage` → `encouraging`, `hurting`, `anxious`
+- `encouraging` → `brave_courage`, `calm_peaceful`, `grateful`
+- `grateful` → `joyful`, `calm_peaceful`, `encouraging`
+- `hurting` → `weary`, `encouraging`, `calm_peaceful`
+- `joyful` → `grateful`, `encouraging`, `calm_peaceful`
+- `weary` → `hurting`, `calm_peaceful`, `encouraging`
+
+**Tracking Requirements**
+
+For each served story, persist enough data to support repeat protection and analysis:
+- `storyId`
+- `selectedMood` — the mood the user chose
+- `servedMood` — the actual mood of the story returned (may differ from `selectedMood` when expansion is used)
+- `playedAt`
+- `length`
+- `mode`
+
+**Telemetry**
+- The system may log pool size before and after expansion for telemetry, enabling future threshold tuning without requiring a spec change
+
+**Behavioral Goal**
+
+This rule exists so Bible PAL can make a small story library feel much larger without violating user trust. The engine should: honor the chosen mood first, expand only to emotionally adjacent moods, avoid repeats until the pool is exhausted, then use least-recently-played ordering.
+
 ### Storage & Playback
 
 **16. Offline Local + External Storage**

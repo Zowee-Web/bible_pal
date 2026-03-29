@@ -1965,6 +1965,36 @@ python3 -c "import json; r=json.load(open('server/model_router/model_registry.js
 
 ---
 
+## 🔒 Mood Expansion Serving Invariant (NON-NEGOTIABLE)
+
+**Invariant**: When serving stories, the engine must follow this exact priority order: (1) exact selected mood + unseen, (2) similar moods + unseen, (3) exact selected mood + seen (least-recently-played), (4) similar moods + seen (least-recently-played). The system must never silently switch to unrelated moods.
+
+### Why This Exists
+- A small story library leads to fast repetition if serving is limited to exact mood matches
+- Users trust the mood they selected — expanding to unrelated moods violates that trust
+- Controlled expansion to emotionally adjacent moods makes the library feel larger without confusing the user
+- Tracking `selectedMood` vs `servedMood` separately enables analytics on expansion usage
+
+### Similar Mood Map (Canonical)
+- `anxious` → `calm_peaceful`, `encouraging`, `weary`
+- `calm_peaceful` → `anxious`, `grateful`, `encouraging`
+- `brave_courage` → `encouraging`, `hurting`, `anxious`
+- `encouraging` → `brave_courage`, `calm_peaceful`, `grateful`
+- `grateful` → `joyful`, `calm_peaceful`, `encouraging`
+- `hurting` → `weary`, `encouraging`, `calm_peaceful`
+- `joyful` → `grateful`, `encouraging`, `calm_peaceful`
+- `weary` → `hurting`, `calm_peaceful`, `encouraging`
+
+### Enforcement
+- Story must have the requested `StoryLengthBucket` available (no fallback to other lengths)
+- Active mode/settings must match at every priority stage
+- The selected mood remains primary — similar moods are a fallback expansion layer only
+- All existing serving invariants (Non-Repeat, Kid Safety, Mode Separation) still apply at every stage
+- `servedMood` must reflect the actual mood of the story returned, not the user's selection
+- Modifying the similar mood map requires owner approval
+
+---
+
 ## 🔒 Story Length Label Invariant (NON-NEGOTIABLE)
 
 **Invariant**: User-facing story length labels must be exactly: "A Quick Moment", "A Quiet Story", "A Longer Listen". Internal enum values remain `short`, `full`, `long`.
