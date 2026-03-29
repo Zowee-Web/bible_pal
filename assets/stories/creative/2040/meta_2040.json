@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2040,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "anxious",
+  "lengths": ["short", "full"],
+  "voiceKey": "VOICE_HANNAH_HOPE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "Have you ever been scared of something new and then discovered it wasn't as bad as you thought?",
+  "title": "The Pink Shell",
+  "theme": "anxiety, new experiences, discovering wonder through small things",
+  "files": {
+    "short": {
+      "storyText": "story_2040_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2040_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2040_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
+  "reflectionVoiceKey": "VOICE_HANNAH_HOPE"
+}

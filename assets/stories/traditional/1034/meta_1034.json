@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1034,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "calm_peaceful",
+  "scriptureAnchor": "1 Kings 3:5-14",
+  "bibleStoryKey": "solomon_asks_for_wisdom",
+  "lengths": ["short", "full"],
+  "voiceKey": "VOICE_SAMUEL_EARNEST",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "In a quiet moment, what would you ask for? What is the one thing that would help you serve well the people and responsibilities in your life?",
+  "title": "Solomon Asks for Wisdom",
+  "files": {
+    "short": {
+      "web": { "storyText": "story_1034_traditional_web_short.txt" },
+      "kjv": { "storyText": "story_1034_traditional_kjv_short.txt" }
+    },
+    "full": {
+      "web": { "storyText": "story_1034_traditional_web_full.txt" },
+      "kjv": { "storyText": "story_1034_traditional_kjv_full.txt" }
+    },
+    "reflection": {
+      "web": { "reflectionText": "reflection_1034_traditional_web.txt" },
+      "kjv": { "reflectionText": "reflection_1034_traditional_kjv.txt" }
+    }
+  },
+  "reflections": {
+    "web": "reflection_1034_traditional_web.txt",
+    "kjv": "reflection_1034_traditional_kjv.txt"
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "reflectionVoiceKey": "VOICE_SAMUEL_EARNEST"
+}

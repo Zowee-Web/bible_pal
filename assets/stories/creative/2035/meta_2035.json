@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2035,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "encouraging",
+  "lengths": ["short", "full", "long"],
+  "voiceKey": "VOICE_SARAH_STORYTELLER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "Is there a sentence someone said to you — maybe years ago, maybe in passing — that you still carry? And is there someone who might need to hear one from you?",
+  "title": "The Best Questions",
+  "theme": "encouragement through presence and plain truth, the lasting power of a single sentence",
+  "files": {
+    "short": {
+      "storyText": "story_2035_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2035_creative_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_2035_creative_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2035_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_SARAH_STORYTELLER",
+  "reflectionVoiceKey": "VOICE_SARAH_STORYTELLER"
+}

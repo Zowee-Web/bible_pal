@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2043,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "encouraging",
+  "lengths": ["short", "full", "long"],
+  "voiceKey": "VOICE_LILY_WOLFF",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "When has someone helped you in a way that made you feel stronger?",
+  "title": "Mr. Hadley's Garden",
+  "theme": "encouragement, helping others, kindness that restores dignity",
+  "files": {
+    "short": {
+      "storyText": "story_2043_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2043_creative_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_2043_creative_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2043_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF"
+}

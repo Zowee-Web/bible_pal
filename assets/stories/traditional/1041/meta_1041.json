@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1041,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "brave_courage",
+  "scriptureAnchor": "Exodus 2:1-10",
+  "bibleStoryKey": "baby_moses_in_basket",
+  "lengths": ["short", "full"],
+  "voiceKey": "VOICE_ESTHER_BRAVE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "Can you think of a time you did something brave to help someone you care about?",
+  "title": "Baby Moses in the Basket",
+  "files": {
+    "short": {
+      "storyText": "story_1041_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1041_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1041_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ESTHER_BRAVE",
+  "reflectionVoiceKey": "VOICE_ESTHER_BRAVE"
+}

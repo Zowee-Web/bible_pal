@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1047,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "weary",
+  "scriptureAnchor": "1 Kings 17:1-16",
+  "bibleStoryKey": "elijah_and_widow_of_zarephath",
+  "lengths": ["short", "full"],
+  "voiceKey": "VOICE_PRISCILLA_TEACHER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "When you feel really tired, what is something that helps you keep going?",
+  "title": "Elijah and the Kind Woman",
+  "files": {
+    "short": {
+      "storyText": "story_1047_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1047_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1047_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "reflectionVoiceKey": "VOICE_PRISCILLA_TEACHER"
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2033,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "brave_courage",
+  "lengths": ["short", "full"],
+  "voiceKey": "VOICE_ELIJAH_SAGE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "When have you known the right thing to do but hesitated because of what it might cost — and what helped you move forward?",
+  "title": "The Manila Folder",
+  "theme": "quiet moral courage in ordinary circumstances, doing right when nobody would notice if you didn't",
+  "files": {
+    "short": {
+      "storyText": "story_2033_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2033_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2033_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "reflectionVoiceKey": "VOICE_ELIJAH_SAGE"
+}

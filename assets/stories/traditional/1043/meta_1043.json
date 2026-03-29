@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1043,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "encouraging",
+  "scriptureAnchor": "Judges 6:11-24",
+  "bibleStoryKey": "gideon_called",
+  "lengths": ["short", "full"],
+  "voiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "What is something you are good at that you did not know you could do until you tried?",
+  "title": "Gideon and the Angel",
+  "files": {
+    "short": {
+      "storyText": "story_1043_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1043_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1043_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "reflectionVoiceKey": "VOICE_BARNABAS_ENCOURAGER"
+}

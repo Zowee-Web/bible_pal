@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2046,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "joyful",
+  "lengths": ["short", "full", "long"],
+  "voiceKey": "VOICE_ARCHER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "What is something you have made or done that filled you with happiness?",
+  "title": "The Rocking Horse",
+  "theme": "joy, creation, the delight of making something with your hands",
+  "files": {
+    "short": {
+      "storyText": "story_2046_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2046_creative_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_2046_creative_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2046_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "reflectionVoiceKey": "VOICE_ARCHER"
+}

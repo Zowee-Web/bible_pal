@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1040,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "anxious",
+  "scriptureAnchor": "Genesis 22:1-19",
+  "bibleStoryKey": "abraham_binding_of_isaac",
+  "lengths": ["short", "full"],
+  "voiceKey": "VOICE_LILY_WOLFF",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "Has there been a time you were really scared, but then everything turned out okay?",
+  "title": "Abraham and Isaac on the Mountain",
+  "files": {
+    "short": {
+      "storyText": "story_1040_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1040_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1040_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF"
+}

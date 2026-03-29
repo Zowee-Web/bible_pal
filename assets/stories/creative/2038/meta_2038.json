@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2038,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_MIRIAM_JOYFUL",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "When was the last time joy arrived from a direction you weren't looking — and what would it mean to stay open to that kind of surprise?",
+  "title": "The Paint Aisle",
+  "theme": "unexpected joy through a chance encounter, the contagious nature of delight",
+  "files": {
+    "short": {
+      "storyText": "story_2038_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2038_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2038_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "reflectionVoiceKey": "VOICE_MIRIAM_JOYFUL"
+}

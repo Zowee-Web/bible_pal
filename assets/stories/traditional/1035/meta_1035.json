@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1035,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "encouraging",
+  "scriptureAnchor": "Judges 6:11-24",
+  "bibleStoryKey": "gideon_called",
+  "lengths": ["short", "full"],
+  "voiceKey": "VOICE_DEBORAH_WISE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "What task in front of you feels too big today? What if you are not meant to do it alone?",
+  "title": "Gideon Called",
+  "files": {
+    "short": {
+      "web": { "storyText": "story_1035_traditional_web_short.txt" },
+      "kjv": { "storyText": "story_1035_traditional_kjv_short.txt" }
+    },
+    "full": {
+      "web": { "storyText": "story_1035_traditional_web_full.txt" },
+      "kjv": { "storyText": "story_1035_traditional_kjv_full.txt" }
+    },
+    "reflection": {
+      "web": { "reflectionText": "reflection_1035_traditional_web.txt" },
+      "kjv": { "reflectionText": "reflection_1035_traditional_kjv.txt" }
+    }
+  },
+  "reflections": {
+    "web": "reflection_1035_traditional_web.txt",
+    "kjv": "reflection_1035_traditional_kjv.txt"
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "reflectionVoiceKey": "VOICE_DEBORAH_WISE"
+}

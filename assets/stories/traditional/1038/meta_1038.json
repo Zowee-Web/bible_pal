@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1038,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "joyful",
+  "scriptureAnchor": "Genesis 1:1-31",
+  "bibleStoryKey": "creation",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_NOAH_PATIENT",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "When was the last time you paused to look at something you had made or been part of and saw that it was good?",
+  "title": "Creation",
+  "files": {
+    "short": {
+      "storyText": "story_1038_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1038_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1038_traditional_web.txt"
+    }
+  },
+  "reflections": {
+    "web": "reflection_1038_traditional_web.txt",
+    "kjv": "reflection_1038_traditional_kjv.txt"
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "reflectionVoiceKey": "VOICE_NOAH_PATIENT"
+}

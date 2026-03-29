@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2034,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "calm_peaceful",
+  "lengths": ["short", "full"],
+  "voiceKey": "VOICE_LYDIA_GRACIOUS",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "When was the last time you found peace in an unlikely place — not by seeking it, but by noticing it was already there?",
+  "title": "The Folding Table",
+  "theme": "finding peace in ordinary moments, witnessed calm in unlikely places",
+  "files": {
+    "short": {
+      "storyText": "story_2034_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2034_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2034_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_LYDIA_GRACIOUS",
+  "reflectionVoiceKey": "VOICE_LYDIA_GRACIOUS"
+}

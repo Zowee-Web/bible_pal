@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2047,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "weary",
+  "lengths": ["short", "full", "long"],
+  "voiceKey": "VOICE_PRISCILLA_TEACHER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "After a really long day, what helps you feel safe and rested?",
+  "title": "Theo's Long Thursday",
+  "theme": "weariness, rest, being cared for even when you're alone",
+  "files": {
+    "short": {
+      "storyText": "story_2047_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2047_creative_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_2047_creative_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2047_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "reflectionVoiceKey": "VOICE_PRISCILLA_TEACHER"
+}

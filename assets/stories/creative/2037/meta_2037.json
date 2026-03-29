@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2037,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_JOHN_BELOVED",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "Is there something you have turned toward the wall — a memory, a name, an object — that might be ready to face forward again?",
+  "title": "The Blue Mug",
+  "theme": "grief held in ordinary objects, letting memory face forward instead of hiding it",
+  "files": {
+    "short": {
+      "storyText": "story_2037_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2037_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2037_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "reflectionVoiceKey": "VOICE_JOHN_BELOVED"
+}

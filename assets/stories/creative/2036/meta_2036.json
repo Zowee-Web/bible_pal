@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2036,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "grateful",
+  "lengths": ["short", "full"],
+  "voiceKey": "VOICE_RUTH_COMFORT",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "What small, ordinary thing have you been passing by without noticing — and what might happen if you paused for thirty seconds to look at it?",
+  "title": "The 5:40 Bus",
+  "theme": "gratitude discovered through attention on a familiar journey",
+  "files": {
+    "short": {
+      "storyText": "story_2036_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2036_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2036_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "reflectionVoiceKey": "VOICE_RUTH_COMFORT"
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2042,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "calm_peaceful",
+  "lengths": ["short", "full", "long"],
+  "voiceKey": "VOICE_ARABELLA",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "Where is a place you go when you need to feel calm and quiet inside?",
+  "title": "The Fire Escape Tree",
+  "theme": "peace, stillness, finding calm in a noisy world",
+  "files": {
+    "short": {
+      "storyText": "story_2042_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2042_creative_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_2042_creative_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2042_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA"
+}

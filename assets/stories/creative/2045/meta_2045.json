@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2045,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "hurting",
+  "lengths": ["short", "full", "long"],
+  "voiceKey": "VOICE_MARTHA_CARING",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "Is there someone you miss? What is one thing they gave you that you still carry with you?",
+  "title": "Grandpa's Garden",
+  "theme": "grief, loss, finding comfort in what someone left behind",
+  "files": {
+    "short": {
+      "storyText": "story_2045_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2045_creative_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_2045_creative_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2045_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_MARTHA_CARING",
+  "reflectionVoiceKey": "VOICE_MARTHA_CARING"
+}

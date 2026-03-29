@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2032,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "anxious",
+  "lengths": ["short", "full"],
+  "voiceKey": "VOICE_JAMES_HUSKY",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "Is there a fear in your life that has outlasted the event that caused it — and what would it look like to drive the next six blocks anyway?",
+  "title": "Six Blocks",
+  "theme": "anxiety rooted in the past, presence that makes the next step possible",
+  "files": {
+    "short": {
+      "storyText": "story_2032_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2032_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2032_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "reflectionVoiceKey": "VOICE_JAMES_HUSKY"
+}

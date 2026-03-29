@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1044,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "grateful",
+  "scriptureAnchor": "Ruth 2:1-23",
+  "bibleStoryKey": "ruth_gleans_in_boaz_field",
+  "lengths": ["short", "full"],
+  "voiceKey": "VOICE_MARTHA_CARING",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "Who is someone who has been really kind to you, and how did it make you feel?",
+  "title": "Ruth Gathers Grain in Boaz's Field",
+  "files": {
+    "short": {
+      "storyText": "story_1044_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1044_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1044_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_MARTHA_CARING",
+  "reflectionVoiceKey": "VOICE_MARTHA_CARING"
+}

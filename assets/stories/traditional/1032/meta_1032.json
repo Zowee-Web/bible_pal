@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1032,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "anxious",
+  "scriptureAnchor": "Genesis 22:1-19",
+  "bibleStoryKey": "abraham_binding_of_isaac",
+  "lengths": ["short", "full"],
+  "voiceKey": "VOICE_MARY_PONDER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "When anxiety grips you, you do not need to see the whole road. You only need to take the step in front of you. What is one step you can take today, even without knowing what comes next?",
+  "title": "The Binding of Isaac",
+  "files": {
+    "short": {
+      "web": { "storyText": "story_1032_traditional_web_short.txt" },
+      "kjv": { "storyText": "story_1032_traditional_kjv_short.txt" }
+    },
+    "full": {
+      "web": { "storyText": "story_1032_traditional_web_full.txt" },
+      "kjv": { "storyText": "story_1032_traditional_kjv_full.txt" }
+    },
+    "reflection": {
+      "web": { "reflectionText": "reflection_1032_traditional_web.txt" },
+      "kjv": { "reflectionText": "reflection_1032_traditional_kjv.txt" }
+    }
+  },
+  "reflections": {
+    "web": "reflection_1032_traditional_web.txt",
+    "kjv": "reflection_1032_traditional_kjv.txt"
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "reflectionVoiceKey": "VOICE_MARY_PONDER"
+}

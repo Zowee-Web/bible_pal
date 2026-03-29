@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2041,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "brave_courage",
+  "lengths": ["short", "full", "long"],
+  "voiceKey": "VOICE_DAVID_SHEPHERD",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "Can you think of a time when you did something brave even though you felt scared inside?",
+  "title": "The Basketball Court",
+  "theme": "courage, standing up for others, doing the right thing when it's hard",
+  "files": {
+    "short": {
+      "storyText": "story_2041_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2041_creative_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_2041_creative_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2041_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD"
+}

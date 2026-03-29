@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2039,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "When you are carrying something heavy, what would it mean to know that someone nearby is carrying something too — and that neither of you has to explain?",
+  "title": "Mile Marker 141",
+  "theme": "shared weariness between strangers, rest that comes from being witnessed",
+  "files": {
+    "short": {
+      "storyText": "story_2039_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2039_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2039_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "reflectionVoiceKey": "VOICE_BARNABAS_ENCOURAGER"
+}

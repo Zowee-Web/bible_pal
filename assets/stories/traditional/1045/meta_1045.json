@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1045,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "hurting",
+  "scriptureAnchor": "Genesis 37:1-36",
+  "bibleStoryKey": "joseph_sold_by_brothers",
+  "lengths": ["short", "full"],
+  "voiceKey": "VOICE_JANE_PROFESSIONAL",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "Have you ever been hurt by someone and felt really alone? What helped you feel better?",
+  "title": "Joseph and the Colorful Coat",
+  "files": {
+    "short": {
+      "storyText": "story_1045_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1045_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1045_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_JANE_PROFESSIONAL",
+  "reflectionVoiceKey": "VOICE_JANE_PROFESSIONAL"
+}

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1046,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "joyful",
+  "scriptureAnchor": "Genesis 1:1-31",
+  "bibleStoryKey": "creation",
+  "lengths": ["short", "full"],
+  "voiceKey": "VOICE_DAVID_SHEPHERD",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "What is your favorite thing God made, and why do you think it is so amazing?",
+  "title": "God Makes the World",
+  "files": {
+    "short": {
+      "storyText": "story_1046_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1046_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1046_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD"
+}

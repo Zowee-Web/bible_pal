@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1042,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "calm_peaceful",
+  "scriptureAnchor": "1 Kings 3:5-14",
+  "bibleStoryKey": "solomon_asks_for_wisdom",
+  "lengths": ["short", "full"],
+  "voiceKey": "VOICE_ARABELLA",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "If God said you could ask for one thing, what would you ask for?",
+  "title": "Solomon Asks for Wisdom",
+  "files": {
+    "short": {
+      "storyText": "story_1042_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1042_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1042_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA"
+}

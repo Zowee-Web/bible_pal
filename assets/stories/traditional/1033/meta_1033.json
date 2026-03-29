@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1033,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "brave_courage",
+  "scriptureAnchor": "Exodus 2:1-10",
+  "bibleStoryKey": "baby_moses_in_basket",
+  "lengths": ["short", "full"],
+  "voiceKey": "VOICE_PETER_BOLD",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_02",
+  "reflectionQuestion": "Courage sometimes means releasing what you love into uncertain waters. What is one brave thing you could do today, even if the outcome is not yet clear?",
+  "title": "Baby Moses in the Basket",
+  "files": {
+    "short": {
+      "web": { "storyText": "story_1033_traditional_web_short.txt" },
+      "kjv": { "storyText": "story_1033_traditional_kjv_short.txt" }
+    },
+    "full": {
+      "web": { "storyText": "story_1033_traditional_web_full.txt" },
+      "kjv": { "storyText": "story_1033_traditional_kjv_full.txt" }
+    },
+    "reflection": {
+      "web": { "reflectionText": "reflection_1033_traditional_web.txt" },
+      "kjv": { "reflectionText": "reflection_1033_traditional_kjv.txt" }
+    }
+  },
+  "reflections": {
+    "web": "reflection_1033_traditional_web.txt",
+    "kjv": "reflection_1033_traditional_kjv.txt"
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "reflectionVoiceKey": "VOICE_PETER_BOLD"
+}
