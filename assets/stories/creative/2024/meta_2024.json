@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2024,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_ARCHER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "Have you ever felt worried about something new, and then it turned out better than you thought?",
+  "title": "The Catfish Named Potato",
+  "theme": "worry, nervousness, feeling scared about something unknown",
+  "files": {
+    "short": {
+      "storyText": "story_2024_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2024_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2024_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "reflectionVoiceKey": "VOICE_ARCHER"
+}

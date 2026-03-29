@@ -1,0 +1,170 @@
+## OPUS 4.6 BATCH REVIEW + CORRECTION
+
+Prerequisites: Batch generated via opus_batch_execution.txt.
+
+---
+
+### PHASE 1: FULL WORD COUNT AUDIT
+
+Run this audit on EVERY story in the batch. Do not skip any.
+
+```bash
+echo "TRADITIONAL (target: short 350-450, full 700-850, long 1201-1400)"
+for id in $(seq TRAD_START TRAD_END); do
+  for len in short full long; do
+    f="assets/stories/traditional/$id/story_${id}_traditional_web_${len}.txt"
+    if [ -f "$f" ]; then
+      wc=$(wc -w < "$f")
+      flag=""
+      case $len in
+        short) [ $wc -lt 350 -o $wc -gt 450 ] && flag="FAIL" ;;
+        full)  [ $wc -lt 700 -o $wc -gt 850 ] && flag="FAIL" ;;
+        long)  [ $wc -lt 1201 -o $wc -gt 1400 ] && flag="FAIL" ;;
+      esac
+      [ -n "$flag" ] && echo "  $id $len: ${wc}w — $flag"
+    fi
+  done
+done
+
+echo ""
+echo "CREATIVE (target: short 250-380, full 450-650, long 750-1050)"
+for id in $(seq CRTV_START CRTV_END); do
+  for len in short full long; do
+    f="assets/stories/creative/$id/story_${id}_creative_web_${len}.txt"
+    if [ -f "$f" ]; then
+      wc=$(wc -w < "$f")
+      flag=""
+      case $len in
+        short) [ $wc -lt 250 -o $wc -gt 380 ] && flag="FAIL" ;;
+        full)  [ $wc -lt 450 -o $wc -gt 650 ] && flag="FAIL" ;;
+        long)  [ $wc -lt 750 -o $wc -gt 1050 ] && flag="FAIL" ;;
+      esac
+      [ -n "$flag" ] && echo "  $id $len: ${wc}w — $flag"
+    fi
+  done
+done
+```
+
+---
+
+### PHASE 2: QUALITY SPOT CHECK
+
+Read at least 2 stories per category (8 total) and verify:
+
+- [ ] Scene-by-scene unfolding (not summarized)
+- [ ] Physical grounding (sensory detail, environment)
+- [ ] Audio-ready rhythm (varied sentence lengths, dialogue breaks)
+- [ ] Traditional: scripture-faithful, no added theology
+- [ ] Creative: no scripture claims, no commands, no advice
+- [ ] Kid: age-appropriate language, warm tone
+
+---
+
+### PHASE 3: CATEGORIZE FAILURES
+
+Sort all failures into these categories:
+
+**A. Under-length (traditional stories too short)**
+Action: FULLY REGENERATE the failing lengths. Expand scenes — add physical
+detail, movement, transitions. Do NOT invent new events or meaning.
+
+**B. Over-length (creative stories too long)**
+Action: For shorts and fulls, REGENERATE tighter. For longs, DROP the file
+if trimming would reduce quality. Update meta to remove "long" from lengths.
+
+**C. Quality failures (any story that doesn't meet Daniel Standard)**
+Action: FULL REWRITE. Never patch a bad story.
+
+**D. Over-length longs (any category)**
+Action: Either trim carefully (preserve rhythm and ending strength) or drop
+entirely. Update meta and remove the file.
+
+---
+
+### PHASE 4: EXECUTE CORRECTIONS
+
+1. Drop over-length longs first (quick bash operation):
+   ```bash
+   rm -f assets/stories/{type}/{id}/story_{id}_{type}_{lane}_long.txt
+   # Update meta: change lengths to ["short", "full"]
+   ```
+
+2. Launch regen agents for under-length and quality failures.
+   Include in each agent prompt:
+   - The specific word count target with "AIM FOR" value
+   - A quality reference story of the same type
+   - Instruction that this is a CORRECTION — hit the target precisely
+
+3. Verify corrections:
+   ```bash
+   wc -w assets/stories/{type}/{id}/story_{id}_{type}_web_{length}.txt
+   ```
+
+4. If corrections overcorrected (now over instead of under), run another pass.
+
+---
+
+### PHASE 5: UPDATE META FILES
+
+For all stories where longs were dropped:
+```python
+import json
+meta_path = f"assets/stories/{type}/{id}/meta_{id}.json"
+with open(meta_path) as f:
+    m = json.load(f)
+m['lengths'] = ['short', 'full']
+if 'long' in m.get('files', {}):
+    del m['files']['long']
+with open(meta_path, 'w') as f:
+    json.dump(m, f, indent=2, ensure_ascii=False)
+    f.write('\n')
+```
+
+---
+
+### PHASE 6: FINAL AUDIT
+
+Re-run the full word count audit from Phase 1.
+Confirm: ZERO failures (marginal +1-4w at boundaries is acceptable).
+
+---
+
+### PHASE 7: BUILD MANIFEST
+
+Only after all corrections pass:
+
+Build `manifest_opus.json` by scanning all on-disk Opus stories:
+- Scan traditional/{1000-1999} and creative/{2000-2999}
+- Include only stories with valid meta files
+- One entry per length per lane
+- audioFilePath: include only if audio exists, omit otherwise
+- availableLengths: reflect what actually exists on disk
+
+Verify:
+```bash
+python3 -c "
+import json
+m = json.load(open('assets/stories/manifest_opus.json'))
+print(f'Total entries: {len(m[\"parables\"])}')
+# Verify no new batch entries have audioFilePath
+import re
+for p in m['parables']:
+    match = re.search(r'story_(\d+)_', p['storyId'])
+    if match:
+        sid = int(match.group(1))
+        if sid >= NEW_BATCH_START and 'audioFilePath' in p:
+            print(f'ERROR: {p[\"storyId\"]} has audio path')
+"
+```
+
+---
+
+### PHASE 8: SUMMARY REPORT
+
+Provide a summary including:
+- All corrected story IDs and what was fixed
+- Final word count audit (all pass)
+- Confirmation that Daniel Standard is met
+- Confirmation that availableLengths is correct per story
+- Total manifest entry count
+- Breakdown by category, mood, and length availability

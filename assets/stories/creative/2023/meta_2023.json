@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2023,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_SAMUEL_EARNEST",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "When was the last time you let yourself stop — not because you were finished, but because you'd reached the limit of what you could carry in one stretch?",
+  "title": "Fancy Gap",
+  "theme": "weariness, exhaustion, the need for rest",
+  "files": {
+    "short": {
+      "storyText": "story_2023_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2023_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2023_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "reflectionVoiceKey": "VOICE_SAMUEL_EARNEST"
+}

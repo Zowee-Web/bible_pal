@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2018,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "calm_peaceful",
+  "lengths": ["short", "full", "long"],
+  "voiceKey": "VOICE_DEBORAH_WISE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "Where is the place you go — or could go — when you need to let the stillness do its work?",
+  "title": "The Stone Bench",
+  "theme": "peace, stillness, finding calm",
+  "files": {
+    "short": { "storyText": "story_2018_creative_web_short.txt" },
+    "full": { "storyText": "story_2018_creative_web_full.txt" },
+    "long": { "storyText": "story_2018_creative_web_long.txt" },
+    "reflection": { "reflectionText": "reflection_2018_creative_web.txt" }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "reflectionVoiceKey": "VOICE_DEBORAH_WISE"
+}

@@ -1,0 +1,96 @@
+## OPUS 4.6 BATCH EXECUTION
+
+Prerequisites: Session initialized via opus_batch_starter.txt.
+
+---
+
+### STEP 1: PLAN THE BATCH
+
+1. Assign scripture anchors (traditional stories):
+   - 1 unused anchor per mood from scripture_anchor_registry.json
+   - Kid stories reuse the same anchors as adult
+   - Verify no anchor is already used on disk
+
+2. Assign voices:
+   - No voice repeats within a batch category
+   - Rotate from recent batches to avoid overuse
+   - Record assignments before generating
+
+3. Plan creative stories:
+   - 1 per mood for adult, 1 per mood for kid
+   - Unique characters, settings, and situations across all 16 creative stories
+   - Vary opening types and story structures (dialogue, action, memory, etc.)
+   - No repeated character names within the batch
+
+4. Confirm ID assignments:
+   - Traditional adult: [next 8 IDs]
+   - Traditional kid: [next 8 IDs after adult]
+   - Creative adult: [next 8 IDs in 2000 range]
+   - Creative kid: [next 8 IDs after creative adult]
+
+5. Create all directories:
+   ```bash
+   for id in $(seq START END); do mkdir -p assets/stories/traditional/$id; done
+   for id in $(seq START END); do mkdir -p assets/stories/creative/$id; done
+   ```
+
+---
+
+### STEP 2: GENERATE STORIES
+
+Launch parallel agents (3-5 at a time) organized by category:
+
+**Agent assignments:**
+- Agent 1: Traditional adult batch A (4 stories, WEB + KJV)
+- Agent 2: Traditional adult batch B (4 stories, WEB + KJV)
+- Agent 3: Traditional kid (8 stories, WEB only)
+- Agent 4: Creative adult (8 stories, WEB only)
+- Agent 5: Creative kid (8 stories, WEB only)
+
+**Each agent MUST receive:**
+- The Daniel Standard quality reference (Story 816 or 1000 text)
+- An existing story of the same type as a style reference
+- Exact word count targets with "AIM FOR" middle values
+- The full traditional/creative guardrail rules
+- File naming conventions and directory paths
+- Instruction to write ONLY prose (no preamble, no metadata, no "The End")
+
+**Per story, each agent generates:**
+- Short text file (REQUIRED)
+- Full text file (REQUIRED)
+- Long text file (OPTIONAL — only if the passage/theme supports it)
+- Reflection text file
+- Meta JSON
+
+**For traditional adult:** Generate both WEB and KJV versions of each text file.
+
+---
+
+### STEP 3: VERIFY GENERATION
+
+After all agents complete:
+
+```bash
+# Count files per directory
+for id in $(seq TRAD_START TRAD_END); do
+  echo "$id: $(ls assets/stories/traditional/$id/ | wc -l) files"
+done
+for id in $(seq CRTV_START CRTV_END); do
+  echo "$id: $(ls assets/stories/creative/$id/ | wc -l) files"
+done
+```
+
+Confirm every directory has the expected file count:
+- Traditional adult: 9 files (6 texts + 2 reflections + 1 meta)
+- Traditional kid: 5 files (3 texts + 1 reflection + 1 meta)
+- Creative: 5 files (3 texts + 1 reflection + 1 meta)
+
+(Fewer if long was intentionally omitted.)
+
+---
+
+### STEP 4: PROCEED TO REVIEW
+
+Once generation is verified, proceed to opus_batch_review.txt.
+
+Do NOT build the manifest until the review phase is complete.

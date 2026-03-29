@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1026,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "scriptureAnchor": "Genesis 28:10-22",
+  "bibleStoryKey": "jacob_at_bethel",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_LILY_WOLFF",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "Have you ever felt God close to you in a surprising place or moment?",
+  "title": "Jacob's Dream at Bethel",
+  "files": {
+    "short": {
+      "storyText": "story_1026_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1026_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1026_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF"
+}

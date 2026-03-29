@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2027,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_HANNAH_HOPE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "Has anyone ever said something kind to you that made a hard day feel better?",
+  "title": "The Brick Wall",
+  "theme": "encouraging someone else, lifting up, kind words",
+  "files": {
+    "short": {
+      "storyText": "story_2027_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2027_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2027_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
+  "reflectionVoiceKey": "VOICE_HANNAH_HOPE"
+}

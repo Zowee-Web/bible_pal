@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1025,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "brave_courage",
+  "scriptureAnchor": "Genesis 6:9-22",
+  "bibleStoryKey": "noah_builds_the_ark",
+  "lengths": ["short", "full", "long"],
+  "voiceKey": "VOICE_DAVID_SHEPHERD",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "Can you think of a time when you kept doing something good, even though it was hard or nobody else was doing it?",
+  "title": "Noah Builds the Ark",
+  "files": {
+    "short": { "storyText": "story_1025_traditional_web_short.txt" },
+    "full": { "storyText": "story_1025_traditional_web_full.txt" },
+    "long": { "storyText": "story_1025_traditional_web_long.txt" },
+    "reflection": { "reflectionText": "reflection_1025_traditional_web.txt" }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD"
+}

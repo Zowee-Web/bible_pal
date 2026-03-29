@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2017,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "brave_courage",
+  "lengths": ["short", "full", "long"],
+  "voiceKey": "VOICE_BRADFORD",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "What does ordinary courage look like in the rooms and hallways of your own life?",
+  "title": "Six Words",
+  "theme": "courage, standing firm, doing what's right despite fear",
+  "files": {
+    "short": { "storyText": "story_2017_creative_web_short.txt" },
+    "full": { "storyText": "story_2017_creative_web_full.txt" },
+    "long": { "storyText": "story_2017_creative_web_long.txt" },
+    "reflection": { "reflectionText": "reflection_2017_creative_web.txt" }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "reflectionVoiceKey": "VOICE_BRADFORD"
+}

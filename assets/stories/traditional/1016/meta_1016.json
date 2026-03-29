@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1016,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "anxious",
+  "scriptureAnchor": "Genesis 12:1-9",
+  "bibleStoryKey": "abram_called",
+  "lengths": ["short", "full", "long"],
+  "voiceKey": "VOICE_RUTH_COMFORT",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "What does it look like to move forward when the destination has not yet been named?",
+  "title": "The Calling of Abram",
+  "files": {
+    "short": { "storyText": "story_1016_traditional_web_short.txt" },
+    "full": { "storyText": "story_1016_traditional_web_full.txt" },
+    "long": { "storyText": "story_1016_traditional_web_long.txt" },
+    "reflection": { "reflectionText": "reflection_1016_traditional_web.txt" }
+  },
+  "reflections": {
+    "web": "reflection_1016_traditional_web.txt",
+    "kjv": "reflection_1016_traditional_kjv.txt"
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "reflectionVoiceKey": "VOICE_RUTH_COMFORT"
+}

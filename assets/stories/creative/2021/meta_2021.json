@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2021,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "When has comfort found you in a place or moment you weren't expecting — not fixing the hurt, but simply sitting with you in it?",
+  "title": "Hatch Street",
+  "theme": "pain, grief, sitting with loss",
+  "files": {
+    "short": {
+      "storyText": "story_2021_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2021_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2021_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "reflectionVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN"
+}

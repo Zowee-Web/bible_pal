@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1017,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "brave_courage",
+  "scriptureAnchor": "Genesis 6:9-22",
+  "bibleStoryKey": "noah_builds_the_ark",
+  "lengths": ["short", "full", "long"],
+  "voiceKey": "VOICE_ELIJAH_SAGE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "What does it look like to begin building something when the reason for it is not yet visible to anyone but you?",
+  "title": "Noah Builds the Ark",
+  "files": {
+    "short": { "storyText": "story_1017_traditional_web_short.txt" },
+    "full": { "storyText": "story_1017_traditional_web_full.txt" },
+    "long": { "storyText": "story_1017_traditional_web_long.txt" },
+    "reflection": { "reflectionText": "reflection_1017_traditional_web.txt" }
+  },
+  "reflections": {
+    "web": "reflection_1017_traditional_web.txt",
+    "kjv": "reflection_1017_traditional_kjv.txt"
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "reflectionVoiceKey": "VOICE_ELIJAH_SAGE"
+}

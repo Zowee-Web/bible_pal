@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2022,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_JOSEPH_DREAMER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "What ordinary moment have you rushed through lately that might hold more sweetness if you gave it a little more time?",
+  "title": "The Slow Peel",
+  "theme": "joy, celebration, delight in simple things",
+  "files": {
+    "short": {
+      "storyText": "story_2022_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2022_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2022_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_JOSEPH_DREAMER",
+  "reflectionVoiceKey": "VOICE_JOSEPH_DREAMER"
+}

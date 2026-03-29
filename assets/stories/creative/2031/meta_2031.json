@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2031,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_RUTH_COMFORT",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "When you feel really tired, what helps you feel safe and cozy?",
+  "title": "The Heart-Shaped Rock",
+  "theme": "tiredness, feeling worn out, needing rest",
+  "files": {
+    "short": {
+      "storyText": "story_2031_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2031_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2031_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "reflectionVoiceKey": "VOICE_RUTH_COMFORT"
+}

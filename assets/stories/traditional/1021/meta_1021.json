@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1021,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "hurting",
+  "scriptureAnchor": "Genesis 32:22-32",
+  "bibleStoryKey": "jacob_wrestles_god",
+  "lengths": ["short", "full", "long"],
+  "voiceKey": "VOICE_JOHN_BELOVED",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "What does it mean to receive a blessing and a wound from the same encounter?",
+  "title": "Jacob Wrestles at the Jabbok",
+  "files": {
+    "short": { "storyText": "story_1021_traditional_web_short.txt" },
+    "full": { "storyText": "story_1021_traditional_web_full.txt" },
+    "long": { "storyText": "story_1021_traditional_web_long.txt" },
+    "reflection": { "reflectionText": "reflection_1021_traditional_web.txt" }
+  },
+  "reflections": {
+    "web": "reflection_1021_traditional_web.txt",
+    "kjv": "reflection_1021_traditional_kjv.txt"
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "reflectionVoiceKey": "VOICE_JOHN_BELOVED"
+}

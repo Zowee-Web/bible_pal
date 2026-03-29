@@ -137,20 +137,31 @@ Tier 2 guidance for prompts:
 
 ---
 
-## 5. Story Length System (Locked)
+## 5. Story Length System (Revised 2026-03-29)
 
-Story lengths are bucket-based only.
+Story lengths are bucket-based. Short and Full are REQUIRED. Long is OPTIONAL.
 
-| Bucket | Word Count |
-|--------|------------|
-| Short  | 300–500    |
-| Full   | 501–900    |
-| Long   | 901–1500   |
+### 5.1 Traditional Word Count Targets
+
+| Bucket | Word Count | Aim For |
+|--------|------------|---------|
+| Short  | 350–450    | 400     |
+| Full   | 700–850    | 780     |
+| Long   | 1201–1400  | 1300    |
+
+### 5.2 Long Story Policy (ADR-027)
+
+Long stories are optional. If a passage or theme cannot support a strong
+long version without padding, repetition, or quality loss, the long file
+is not created. Quality is always prioritized over length uniformity.
+
+Each story declares its available lengths via `lengths` in meta and
+`availableLengths` in manifest entries.
 
 Invariants:
 - Word counts must fall strictly within ranges.
-- No padding, trimming, or post-processing allowed.
-- Violations trigger fail-clean abort.
+- No padding or repetition to reach minimum word counts.
+- Violations trigger correction (regeneration, not patching).
 
 ---
 
@@ -349,28 +360,21 @@ Allowed:
 
 ---
 
-## 15. Creative Story Length System (Locked)
+## 15. Creative Story Length System (Revised 2026-03-29)
 
-Creative stories use **shorter ranges** than Traditional to match the parable format
-and Gemma 7B's natural output characteristics.
+Creative stories use shorter ranges than Traditional to match the parable format.
 
-| Bucket | Word Count |
-|--------|------------|
-| Short  | 200–400    |
-| Full   | 401–700    |
-| Long   | 701–1100   |
+| Bucket | Word Count | Aim For |
+|--------|------------|---------|
+| Short  | 250–380    | 320     |
+| Full   | 450–650    | 550     |
+| Long   | 750–1050   | 900     |
 
-Kid ranges:
-
-| Bucket | Kid Word Count |
-|--------|---------------|
-| Short  | 200–500       |
-| Full   | 501–900       |
-| Long   | 901–1400      |
+Long is OPTIONAL for Creative stories (same policy as Traditional, see Section 5.2).
 
 **Rationale:** Creative stories are original parables and metaphor narratives —
-naturally more concise than detailed Bible retellings. Shorter ranges also reduce
-the need for continuation stitching with the local model, preserving prose quality.
+naturally more concise than detailed Bible retellings. Tighter ranges (revised from
+the original wider buckets) produce better audio-ready prose.
 
 ---
 

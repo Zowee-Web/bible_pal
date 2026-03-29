@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1019,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "scriptureAnchor": "Exodus 3:1-15",
+  "bibleStoryKey": "moses_burning_bush",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "When have you been asked to step into something larger than yourself, carrying nothing but the assurance that you would not go alone?",
+  "title": "Moses and the Burning Bush",
+  "files": {
+    "short": {
+      "storyText": "story_1019_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1019_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1019_traditional_web.txt"
+    }
+  },
+  "reflections": {
+    "web": "reflection_1019_traditional_web.txt",
+    "kjv": "reflection_1019_traditional_kjv.txt"
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "reflectionVoiceKey": "VOICE_BARNABAS_ENCOURAGER"
+}

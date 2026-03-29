@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1024,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "scriptureAnchor": "Genesis 12:1-9",
+  "bibleStoryKey": "abram_called",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_ARABELLA",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "Have you ever had to do something new or go somewhere unfamiliar, even though it felt a little scary?",
+  "title": "Abram Leaves Home",
+  "files": {
+    "short": {
+      "storyText": "story_1024_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1024_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1024_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA"
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1031,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "scriptureAnchor": "Exodus 16:1-18",
+  "bibleStoryKey": "manna_from_heaven",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_JANE_PROFESSIONAL",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "When you feel tired or worried, what is something that helps you feel taken care of?",
+  "title": "Bread from Heaven",
+  "files": {
+    "short": {
+      "storyText": "story_1031_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1031_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1031_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_JANE_PROFESSIONAL",
+  "reflectionVoiceKey": "VOICE_JANE_PROFESSIONAL"
+}

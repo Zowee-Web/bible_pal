@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2016,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web"],
+  "mood": "anxious",
+  "lengths": ["short", "full", "long"],
+  "voiceKey": "VOICE_MARCUS_ANCHOR",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "When was the last time something small and unplanned shifted the weight you were carrying, even just for a moment?",
+  "title": "Four Times",
+  "theme": "anxiety, worry, the weight of uncertainty",
+  "files": {
+    "short": { "storyText": "story_2016_creative_web_short.txt" },
+    "full": { "storyText": "story_2016_creative_web_full.txt" },
+    "long": { "storyText": "story_2016_creative_web_long.txt" },
+    "reflection": { "reflectionText": "reflection_2016_creative_web.txt" }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "reflectionVoiceKey": "VOICE_MARCUS_ANCHOR"
+}

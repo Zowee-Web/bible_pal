@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2020,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_PETER_BOLD",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "What quiet, unremarkable thing have you witnessed lately that you almost didn't notice — and what shifted when you did?",
+  "title": "The 41 Crosstown",
+  "theme": "gratitude, noticing abundance, thanksgiving",
+  "files": {
+    "short": {
+      "storyText": "story_2020_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2020_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2020_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "reflectionVoiceKey": "VOICE_PETER_BOLD"
+}

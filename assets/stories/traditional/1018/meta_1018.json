@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1018,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "scriptureAnchor": "Genesis 28:10-22",
+  "bibleStoryKey": "jacob_at_bethel",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_LYDIA_GRACIOUS",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "Have you ever discovered that a place you thought was empty turned out to hold something you did not expect?",
+  "title": "Jacob's Ladder at Bethel",
+  "files": {
+    "short": {
+      "storyText": "story_1018_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1018_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1018_traditional_web.txt"
+    }
+  },
+  "reflections": {
+    "web": "reflection_1018_traditional_web.txt",
+    "kjv": "reflection_1018_traditional_kjv.txt"
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_LYDIA_GRACIOUS",
+  "reflectionVoiceKey": "VOICE_LYDIA_GRACIOUS"
+}

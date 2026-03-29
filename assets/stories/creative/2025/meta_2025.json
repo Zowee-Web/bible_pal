@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2025,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_ARABELLA",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "Can you think of a time you did something even though it felt scary?",
+  "title": "The High Dive",
+  "theme": "bravery, standing up, doing something hard",
+  "files": {
+    "short": {
+      "storyText": "story_2025_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2025_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2025_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA"
+}

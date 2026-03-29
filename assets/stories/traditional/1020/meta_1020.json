@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1020,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "grateful",
+  "scriptureAnchor": "Genesis 18:1-15",
+  "bibleStoryKey": "abraham_and_the_three_visitors",
+  "lengths": ["short", "full", "long"],
+  "voiceKey": "VOICE_SARAH_STORYTELLER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "When has something you had given up hoping for arrived at a time you least expected it?",
+  "title": "Abraham and the Three Visitors",
+  "files": {
+    "short": { "storyText": "story_1020_traditional_web_short.txt" },
+    "full": { "storyText": "story_1020_traditional_web_full.txt" },
+    "long": { "storyText": "story_1020_traditional_web_long.txt" },
+    "reflection": { "reflectionText": "reflection_1020_traditional_web.txt" }
+  },
+  "reflections": {
+    "web": "reflection_1020_traditional_web.txt",
+    "kjv": "reflection_1020_traditional_kjv.txt"
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_SARAH_STORYTELLER",
+  "reflectionVoiceKey": "VOICE_SARAH_STORYTELLER"
+}

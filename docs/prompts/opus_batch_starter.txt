@@ -1,0 +1,78 @@
+## OPUS 4.6 SESSION INITIALIZATION
+
+You are starting a Bible PAL story generation session using the Opus 4.6 system.
+
+Before doing ANY work, load and confirm the following:
+
+### 1. Read the system docs (in order of authority):
+- docs/INVARIANTS.md
+- docs/SPEC.md
+- docs/STORY_FACTORY.md
+- docs/OPUS_BATCH_SYSTEM.md
+- CLAUDE.md
+
+### 2. Confirm the active system:
+- Opus system ONLY (IDs 1000-2999)
+- Manifest: manifest_opus.json
+- Engine: Claude Opus 4.6 (direct generation, no script routing)
+- Legacy system (500s/800s, manifest.json) is FROZEN — never touch
+
+### 3. Determine next available IDs:
+```bash
+# Traditional — scan for highest ID in 1000-1999
+ls assets/stories/traditional/ | sort -n | awk '$1 >= 1000 && $1 <= 1999' | tail -1
+
+# Creative — scan for highest ID in 2000-2999
+ls assets/stories/creative/ | sort -n | awk '$1 >= 2000 && $1 <= 2999' | tail -1
+```
+Next batch starts at the IDs after these.
+
+### 4. Check scripture anchor availability:
+```bash
+python3 -c "
+import json, os
+used = set()
+for d in os.listdir('assets/stories/traditional'):
+    meta = f'assets/stories/traditional/{d}/meta_{d}.json'
+    if os.path.exists(meta):
+        with open(meta) as f:
+            m = json.load(f)
+            a = m.get('scriptureAnchor', '')
+            if a: used.add(a)
+reg = json.load(open('assets/stories/scripture_anchor_registry.json'))
+unused = [a for a in reg['anchors'] if a['bibleSourceRef'] not in used]
+print(f'Used: {len(used)}, Unused: {len(unused)}')
+from collections import defaultdict
+by_mood = defaultdict(list)
+for a in unused:
+    for mood in a['moodTags']:
+        by_mood[mood].append(a['bibleSourceRef'])
+for mood in sorted(by_mood):
+    print(f'  {mood}: {len(by_mood[mood])} available')
+"
+```
+
+### 5. Check recent voice usage:
+Review the last 2 batches of meta files to avoid repeating voice-mood assignments.
+
+### 6. Confirm batch structure:
+Every batch = 32 story IDs:
+- 8 traditional adult (WEB + KJV lanes)
+- 8 traditional kid (WEB only)
+- 8 creative adult (WEB only)
+- 8 creative kid (WEB only)
+- 1 story per mood per category
+
+### 7. Confirm quality standard:
+- Daniel Standard (Story 816 benchmark)
+- Word counts: Traditional short 350-450, full 700-850, long 1201-1400
+- Word counts: Creative short 250-380, full 450-650, long 750-1050
+- Long is OPTIONAL — quality > length uniformity
+
+### 8. Confirm batch name:
+Use sequential naming: PAL_OPUS_BATCH_01, PAL_OPUS_BATCH_02, etc.
+
+---
+
+Once all confirmations are complete, proceed to batch execution
+(see opus_batch_execution.txt).

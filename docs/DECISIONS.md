@@ -1471,6 +1471,50 @@ LLM reflections are generated after story text, validated strictly, and the fina
 
 ---
 
+## ADR-027: Opus Batch System — Long Stories Optional
+
+**Date:** 2026-03-29
+**Status:** Accepted
+**Context:** During PAL_OPUS_BATCH_01 generation, many stories exceeded long word count targets (some creative kids hit 1800w vs 1050 max). Forcing every story to have a long version led to padding, repetition, and quality degradation. Some Bible passages are too concise to support a 1201-1400 word retelling without invention.
+
+**Decision:** Long stories are now OPTIONAL. Short and Full remain required. If a story cannot support a strong long version without padding or quality loss, the long file is not created. Each story declares `availableLengths` in meta and manifest.
+
+**Rationale:**
+- Quality is the top priority — padded stories sound worse in TTS
+- Some passages (e.g., Genesis 32:22-32 for kids) can't sustain 1200+ words
+- The serving system can skip stories that don't support the requested length
+- This matches real-world usage: most listeners use short or full
+
+**Consequences:**
+- Meta JSON `lengths` field reflects only available lengths
+- Manifest entries include `availableLengths` for each story
+- PAL_OPUS_BATCH_01: 10 of 32 stories retained long, 22 dropped for quality
+- Future batches should evaluate long viability per-story during generation
+
+---
+
+## ADR-028: Opus Batch System — Permanent Generation Contract
+
+**Date:** 2026-03-29
+**Status:** Accepted
+**Context:** Bible PAL story generation was ad-hoc across sessions, leading to inconsistency in quality, word counts, file structure, and manifest management. The Opus 4.6 system needed a locked, repeatable contract.
+
+**Decision:** Created `docs/OPUS_BATCH_SYSTEM.md` as the permanent source of truth for all Opus story generation. Created reusable prompt files (`docs/prompts/opus_batch_*.txt`) for session initialization, execution, and review. All future batches must follow this system exactly.
+
+**Rationale:**
+- Zero drift across sessions — every batch follows identical rules
+- Explicit review pipeline catches quality and word count issues before manifest build
+- Separation from legacy system prevents accidental modification of production stories
+- Reusable prompts ensure Claude starts each session with the full context
+
+**Consequences:**
+- `docs/OPUS_BATCH_SYSTEM.md` is the authoritative document for batch generation
+- Three prompt files standardize the workflow: starter, execution, review
+- Any deviation requires stopping and requesting clarification
+- The system is versioned and tracked in DECISIONS.md
+
+---
+
 ## ADR-XXX: [Title]
 
 **Date:** YYYY-MM-DD

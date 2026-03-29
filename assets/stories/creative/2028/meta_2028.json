@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2028,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_ARABELLA",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "If you had to name three good things about today, what would they be?",
+  "title": "Three Good Things",
+  "theme": "thankfulness, noticing good things, appreciation",
+  "files": {
+    "short": {
+      "storyText": "story_2028_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2028_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2028_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA"
+}

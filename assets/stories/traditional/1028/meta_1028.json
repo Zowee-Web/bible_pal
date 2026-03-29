@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1028,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "scriptureAnchor": "Genesis 18:1-15",
+  "bibleStoryKey": "abraham_three_visitors",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_HANNAH_HOPE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "What is something you have been really happy to share with someone else?",
+  "title": "Abraham and the Three Visitors",
+  "files": {
+    "short": {
+      "storyText": "story_1028_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1028_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1028_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
+  "reflectionVoiceKey": "VOICE_HANNAH_HOPE"
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1027,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "scriptureAnchor": "Exodus 3:1-15",
+  "bibleStoryKey": "moses_burning_bush",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_PRISCILLA_TEACHER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "When something feels too big for you, who do you talk to about it?",
+  "title": "Moses and the Burning Bush",
+  "files": {
+    "short": {
+      "storyText": "story_1027_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1027_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1027_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "reflectionVoiceKey": "VOICE_PRISCILLA_TEACHER"
+}

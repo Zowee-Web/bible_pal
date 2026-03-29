@@ -2033,6 +2033,51 @@ python3 -c "import json; r=json.load(open('server/model_router/model_registry.js
 
 ---
 
+## Story Length Availability Invariant (NON-NEGOTIABLE)
+
+**Invariant**: Each story MUST explicitly declare its available lengths, and declarations MUST match what exists on disk.
+
+### Rules
+- If a length file is not present on disk, it MUST NOT appear in `availableLengths` or `lengths`
+- If a length file exists on disk, it MUST be listed in `availableLengths` and `lengths`
+- The serving system MUST only select stories that support the requested length
+- Short and Full are REQUIRED for every story; Long is OPTIONAL (ADR-027)
+
+### Why This Exists
+- Prevents the app from requesting a story length that doesn't exist
+- Ensures manifest and meta files are always in sync with actual content
+- Long stories were made optional (2026-03-29) because forcing length caused quality degradation
+
+### Enforcement
+- Manifest build script scans on-disk files to determine available lengths
+- Meta JSON `lengths` field must match files in the story directory
+- Manifest `availableLengths` field must match meta `lengths`
+
+---
+
+## File Integrity Invariant (NON-NEGOTIABLE)
+
+**Invariant**: All files referenced in `manifest_opus.json` MUST exist on disk.
+
+### Rules
+- No manifest entry may reference a missing text file via `textFilePath`
+- No manifest entry may reference a missing reflection file
+- No manifest entry may reference a missing audio file via `audioFilePath`
+- No manifest entry may reference a length that does not exist on disk
+- If a file is removed (e.g., long dropped for quality), the manifest MUST be updated accordingly
+
+### Why This Exists
+- Broken file references cause runtime crashes in the app
+- During the review pipeline, long files may be dropped — the manifest must stay in sync
+- The legacy system had known issues with broken file references — the Opus system must not repeat this
+
+### Enforcement
+- Manifest is built by scanning on-disk files (never from assumptions)
+- Post-build validation checks every `textFilePath` and `audioFilePath` reference
+- Any broken reference is a hard failure that blocks the batch
+
+---
+
 ## Future Invariants
 
 As the project evolves, additional invariants may be added here. Each invariant must:
@@ -2043,5 +2088,5 @@ As the project evolves, additional invariants may be added here. Each invariant 
 
 ---
 
-**Last Updated**: 2026-03-28
+**Last Updated**: 2026-03-29
 **Maintained By**: Bible PAL Development Team

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1022,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "joyful",
+  "scriptureAnchor": "1 Samuel 16:1-13",
+  "bibleStoryKey": "david_anointed_king",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_MIRIAM_JOYFUL",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "What does it look like when value is found in the place no one thought to look?",
+  "title": "David Anointed King",
+  "files": {
+    "short": {
+      "storyText": "story_1022_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1022_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1022_traditional_web.txt"
+    }
+  },
+  "reflections": {
+    "web": "reflection_1022_traditional_web.txt",
+    "kjv": "reflection_1022_traditional_kjv.txt"
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "reflectionVoiceKey": "VOICE_MIRIAM_JOYFUL"
+}

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2026,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_LILY_WOLFF",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_01",
+  "reflectionQuestion": "Where is your favorite quiet place, and what do you notice when you sit still there?",
+  "title": "The Bench and the Spider Web",
+  "theme": "peace, quiet, feeling safe and still",
+  "files": {
+    "short": {
+      "storyText": "story_2026_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2026_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2026_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF"
+}
