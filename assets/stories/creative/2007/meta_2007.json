@@ -10,7 +10,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_CHARLOTTE_V3",
+  "voiceKey": "VOICE_ARABELLA",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_CLAUDE_BATCH_03",
   "reflectionQuestion": "Is there someone from your past whose life you quietly shaped, and who might still carry a word of encouragement you once offered them?",
@@ -33,5 +33,7 @@
       "reflectionAudio": "audio_2007_reflection.mp3"
     }
   },
-  "theme": "a retired teacher who writes one letter a week to students she has not seen in years"
+  "theme": "a retired teacher who writes one letter a week to students she has not seen in years",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA"
 }

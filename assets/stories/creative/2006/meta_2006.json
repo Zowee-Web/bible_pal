@@ -10,7 +10,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_JAMES_HUSKY",
+  "voiceKey": "VOICE_ARCHER",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_CLAUDE_BATCH_03",
   "reflectionQuestion": "Have you ever felt a quiet pull to go a little further than felt comfortable because someone nearby needed help?",
@@ -33,5 +33,7 @@
       "reflectionAudio": "audio_2006_reflection.mp3"
     }
   },
-  "theme": "a young fisherman who rows past the last buoy because something in the water needs help"
+  "theme": "a young fisherman who rows past the last buoy because something in the water needs help",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "reflectionVoiceKey": "VOICE_ARCHER"
 }

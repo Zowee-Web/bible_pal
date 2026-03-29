@@ -10,7 +10,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_JAMES_HUSKY",
+  "voiceKey": "VOICE_LILY_WOLFF",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_CLAUDE_BATCH_03",
   "reflectionQuestion": "",
@@ -34,5 +34,7 @@
     }
   },
   "scriptureAnchor": "Psalm 23",
-  "bibleStoryKey": "the_lord_is_my_shepherd"
+  "bibleStoryKey": "the_lord_is_my_shepherd",
+  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF"
 }

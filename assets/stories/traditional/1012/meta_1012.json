@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1012,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_LILY_WOLFF",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_CLAUDE_KID_01",
+  "reflectionQuestion": "Can you think of a time when someone you love surprised you with something nice, like a yummy meal or a special visit?",
+  "title": "Breakfast on the Shore of Broken Hearts",
+  "files": {
+    "short": {
+      "storyText": "story_1012_traditional_web_short.txt",
+      "storyAudio": "audio_1012_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1012_traditional_web_full.txt",
+      "storyAudio": "audio_1012_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_1012_traditional_web_long.txt",
+      "storyAudio": "audio_1012_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1012_traditional_web.txt",
+      "reflectionAudio": "audio_1012_reflection.mp3"
+    }
+  },
+  "scriptureAnchor": "John 21:1-14",
+  "bibleStoryKey": "breakfast_on_the_shore",
+  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF"
+}

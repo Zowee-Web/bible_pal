@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2015,
+  "mode": "creative",
+  "kidFriendly": true,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_CLAUDE_KID_01",
+  "reflectionQuestion": "Can you think of a time when you felt really small but then something helped you feel brave and strong?",
+  "title": "Little Seed, Big Rain, Beautiful Growth",
+  "files": {
+    "short": {
+      "storyText": "story_2015_creative_web_short.txt",
+      "storyAudio": "audio_2015_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_2015_creative_web_full.txt",
+      "storyAudio": "audio_2015_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_2015_creative_web_long.txt",
+      "storyAudio": "audio_2015_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2015_creative_web.txt",
+      "reflectionAudio": "audio_2015_reflection.mp3"
+    }
+  },
+  "theme": "a tiny seed who is afraid it is too small until the rain comes and it grows",
+  "storyVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+  "reflectionVoiceKey": "VOICE_SARAH_DEFAULT_VOICES"
+}

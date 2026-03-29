@@ -67,51 +67,40 @@ flutter:
     - assets/images/pal_bg_lake_boat.png
     - assets/stories/manifest.json
     - assets/stories/scripture_anchor_registry.json
-    # Creative stories (500-series)
-    - assets/stories/creative/501/
-    - assets/stories/creative/502/
-    - assets/stories/creative/503/
-    - assets/stories/creative/504/
-    - assets/stories/creative/505/
-    - assets/stories/creative/506/
-    - assets/stories/creative/507/
-    - assets/stories/creative/508/
-    - assets/stories/creative/509/
-    - assets/stories/creative/510/
-    - assets/stories/creative/511/
-    - assets/stories/creative/512/
-    - assets/stories/creative/513/
-    - assets/stories/creative/514/
-    - assets/stories/creative/515/
-    - assets/stories/creative/516/
-    - assets/stories/creative/517/
-    - assets/stories/creative/518/
-    - assets/stories/creative/519/
-    # Traditional stories (800-series)
-    - assets/stories/traditional/801/
-    - assets/stories/traditional/802/
-    - assets/stories/traditional/803/
-    - assets/stories/traditional/804/
-    - assets/stories/traditional/805/
-    - assets/stories/traditional/806/
-    - assets/stories/traditional/807/
-    - assets/stories/traditional/808/
-    - assets/stories/traditional/809/
-    - assets/stories/traditional/810/
-    - assets/stories/traditional/811/
-    - assets/stories/traditional/812/
-    - assets/stories/traditional/813/
-    - assets/stories/traditional/814/
-    - assets/stories/traditional/815/
-    - assets/stories/traditional/816/
-    - assets/stories/traditional/817/
-    - assets/stories/traditional/818/
-    - assets/stories/traditional/819/
-    - assets/stories/traditional/820/
-    - assets/stories/traditional/821/
-    - assets/stories/traditional/822/
-    - assets/stories/traditional/823/
-    - assets/stories/traditional/824/
+    # Traditional stories (Opus 4.6, 1000-series)
+    - assets/stories/traditional/1000/
+    - assets/stories/traditional/1001/
+    - assets/stories/traditional/1002/
+    - assets/stories/traditional/1003/
+    - assets/stories/traditional/1004/
+    - assets/stories/traditional/1005/
+    - assets/stories/traditional/1006/
+    - assets/stories/traditional/1007/
+    - assets/stories/traditional/1008/
+    - assets/stories/traditional/1009/
+    - assets/stories/traditional/1010/
+    - assets/stories/traditional/1011/
+    - assets/stories/traditional/1012/
+    - assets/stories/traditional/1013/
+    - assets/stories/traditional/1014/
+    - assets/stories/traditional/1015/
+    # Creative stories (Opus 4.6, 2000-series)
+    - assets/stories/creative/2000/
+    - assets/stories/creative/2001/
+    - assets/stories/creative/2002/
+    - assets/stories/creative/2003/
+    - assets/stories/creative/2004/
+    - assets/stories/creative/2005/
+    - assets/stories/creative/2006/
+    - assets/stories/creative/2007/
+    - assets/stories/creative/2008/
+    - assets/stories/creative/2009/
+    - assets/stories/creative/2010/
+    - assets/stories/creative/2011/
+    - assets/stories/creative/2012/
+    - assets/stories/creative/2013/
+    - assets/stories/creative/2014/
+    - assets/stories/creative/2015/
     - assets/audio/
     - assets/safety/kid_safety_blocklist.txt
     - assets/safety/content_filter_blocklist.txt

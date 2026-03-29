@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1010,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_ARABELLA",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_CLAUDE_KID_01",
+  "reflectionQuestion": "Can you think of a time when you felt safe because someone was watching over you and taking care of you?",
+  "title": "Eyes Lifted Toward the Distant Hills",
+  "files": {
+    "short": {
+      "storyText": "story_1010_traditional_web_short.txt",
+      "storyAudio": "audio_1010_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1010_traditional_web_full.txt",
+      "storyAudio": "audio_1010_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_1010_traditional_web_long.txt",
+      "storyAudio": "audio_1010_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1010_traditional_web.txt",
+      "reflectionAudio": "audio_1010_reflection.mp3"
+    }
+  },
+  "scriptureAnchor": "Psalm 121",
+  "bibleStoryKey": "i_lift_my_eyes_to_the_hills",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA"
+}

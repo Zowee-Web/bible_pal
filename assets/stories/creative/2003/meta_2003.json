@@ -33,5 +33,7 @@
       "reflectionAudio": "audio_2003_reflection.mp3"
     }
   },
-  "theme": "an old woman who plants trees she will never sit under"
+  "theme": "an old woman who plants trees she will never sit under",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA"
 }

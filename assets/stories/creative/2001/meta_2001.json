@@ -10,7 +10,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_JAMES_HUSKY",
+  "voiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_CLAUDE_BATCH_02",
   "reflectionQuestion": "Is there something in your life right now where loosening your grip on the outcome might actually allow something more beautiful to take shape?",
@@ -33,5 +33,7 @@
       "reflectionAudio": "audio_2001_reflection.mp3"
     }
   },
-  "theme": "a weaver whose loom keeps unraveling until she stops trying to control the pattern"
+  "theme": "a weaver whose loom keeps unraveling until she stops trying to control the pattern",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "reflectionVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN"
 }

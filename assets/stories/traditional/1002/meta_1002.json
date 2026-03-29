@@ -4,35 +4,41 @@
   "mode": "traditional",
   "kidFriendly": false,
   "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
   "mood": "brave_courage",
   "lengths": [
     "short",
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_ARCHER",
+  "voiceKey": "VOICE_BRADFORD",
   "createdByModel": "claude-opus-4-6",
-  "generationBatch": "PAL_CLAUDE_BATCH_02",
-  "reflectionQuestion": "Have you ever felt called to stand firm in something you believed was right, even when the pressure to go along with everyone else felt overwhelming?",
-  "title": "Standing Tall in the Fiery Furnace",
+  "generationBatch": "PAL_CLAUDE_KJV_02",
+  "reflectionQuestion": "Have you ever felt called to stand firm in something you believed was right, even when everything around you seemed to push against it?",
+  "title": "Standing Tall in the Flames",
   "files": {
     "short": {
-      "storyText": "story_1002_traditional_web_short.txt",
+      "storyText": "story_1002_traditional_kjv_short.txt",
       "storyAudio": "audio_1002_story_short.mp3"
     },
     "full": {
-      "storyText": "story_1002_traditional_web_full.txt",
+      "storyText": "story_1002_traditional_kjv_full.txt",
       "storyAudio": "audio_1002_story_full.mp3"
     },
     "long": {
-      "storyText": "story_1002_traditional_web_long.txt",
+      "storyText": "story_1002_traditional_kjv_long.txt",
       "storyAudio": "audio_1002_story_long.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_1002_traditional_web.txt",
+      "reflectionText": "reflection_1002_traditional_kjv.txt",
       "reflectionAudio": "audio_1002_reflection.mp3"
     }
   },
   "scriptureAnchor": "Daniel 3:13-27",
-  "bibleStoryKey": "fiery_furnace"
+  "bibleStoryKey": "fiery_furnace",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "reflectionVoiceKey": "VOICE_BRADFORD"
 }

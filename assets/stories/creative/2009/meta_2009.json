@@ -10,7 +10,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_JAMES_HUSKY",
+  "voiceKey": "VOICE_ARABELLA",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_CLAUDE_BATCH_03",
   "reflectionQuestion": "Can you think of a time when you shared something with a friend and it made you both feel happy?",
@@ -33,5 +33,7 @@
       "reflectionAudio": "audio_2009_reflection.mp3"
     }
   },
-  "theme": "a puppy who shares his favorite stick and gets a whole pile back"
+  "theme": "a puppy who shares his favorite stick and gets a whole pile back",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA"
 }

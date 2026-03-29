@@ -4,35 +4,41 @@
   "mode": "traditional",
   "kidFriendly": false,
   "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
   "mood": "hurting",
   "lengths": [
     "short",
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+  "voiceKey": "VOICE_JOHN_DOE",
   "createdByModel": "claude-opus-4-6",
-  "generationBatch": "PAL_CLAUDE_BATCH_02",
-  "reflectionQuestion": "Have you ever experienced a moment where letting go of a long-held hurt opened the door to an unexpected reconnection with someone you love?",
-  "title": "Tears That Broke the Silence",
+  "generationBatch": "PAL_CLAUDE_KJV_03",
+  "reflectionQuestion": "Have you ever experienced a moment where letting go of an old hurt opened the door to a deeper connection with someone you love?",
+  "title": "Tears That Shattered the Silence",
   "files": {
     "short": {
-      "storyText": "story_1003_traditional_web_short.txt",
+      "storyText": "story_1003_traditional_kjv_short.txt",
       "storyAudio": "audio_1003_story_short.mp3"
     },
     "full": {
-      "storyText": "story_1003_traditional_web_full.txt",
+      "storyText": "story_1003_traditional_kjv_full.txt",
       "storyAudio": "audio_1003_story_full.mp3"
     },
     "long": {
-      "storyText": "story_1003_traditional_web_long.txt",
+      "storyText": "story_1003_traditional_kjv_long.txt",
       "storyAudio": "audio_1003_story_long.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_1003_traditional_web.txt",
+      "reflectionText": "reflection_1003_traditional_kjv.txt",
       "reflectionAudio": "audio_1003_reflection.mp3"
     }
   },
   "scriptureAnchor": "Genesis 45:1-15",
-  "bibleStoryKey": "joseph_reveals_himself"
+  "bibleStoryKey": "joseph_reveals_himself",
+  "storyVoiceKey": "VOICE_JOHN_DOE",
+  "reflectionVoiceKey": "VOICE_JOHN_DOE"
 }

@@ -10,7 +10,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_JAMES_HUSKY",
+  "voiceKey": "VOICE_SARAH_DEFAULT_VOICES",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_CLAUDE_BATCH_02",
   "reflectionQuestion": "Is there an area of your life where stepping back and resting might actually allow something beautiful to rise on its own?",
@@ -33,5 +33,7 @@
       "reflectionAudio": "audio_2002_reflection.mp3"
     }
   },
-  "theme": "a night baker who discovers the bread rises better when he rests"
+  "theme": "a night baker who discovers the bread rises better when he rests",
+  "storyVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+  "reflectionVoiceKey": "VOICE_SARAH_DEFAULT_VOICES"
 }

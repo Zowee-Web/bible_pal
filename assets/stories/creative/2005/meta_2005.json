@@ -10,7 +10,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_JAMES_HUSKY",
+  "voiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_CLAUDE_BATCH_03",
   "reflectionQuestion": "Is there something you keep faithfully tending to in your life, even when it seems like no one notices or it doesn't seem to matter yet?",
@@ -33,5 +33,7 @@
       "reflectionAudio": "audio_2005_reflection.mp3"
     }
   },
-  "theme": "a carpenter who keeps repairing a bench no one sits on until the day someone does"
+  "theme": "a carpenter who keeps repairing a bench no one sits on until the day someone does",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "reflectionVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL"
 }

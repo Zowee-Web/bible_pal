@@ -4,35 +4,41 @@
   "mode": "traditional",
   "kidFriendly": false,
   "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
   "mood": "grateful",
   "lengths": [
     "short",
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_JAMES_HUSKY",
+  "voiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "createdByModel": "claude-opus-4-6",
-  "generationBatch": "PAL_CLAUDE_BATCH_03",
-  "reflectionQuestion": "Have you ever paused to notice a moment of kindness or help that you might otherwise have hurried past without a second thought?",
-  "title": "One Thankful Heart Among Ten",
+  "generationBatch": "PAL_CLAUDE_KJV_03",
+  "reflectionQuestion": "Have you ever paused to notice a blessing you almost let slip by without a word of thanks?",
+  "title": "One Man Who Came Back",
   "files": {
     "short": {
-      "storyText": "story_1006_traditional_web_short.txt",
+      "storyText": "story_1006_traditional_kjv_short.txt",
       "storyAudio": "audio_1006_story_short.mp3"
     },
     "full": {
-      "storyText": "story_1006_traditional_web_full.txt",
+      "storyText": "story_1006_traditional_kjv_full.txt",
       "storyAudio": "audio_1006_story_full.mp3"
     },
     "long": {
-      "storyText": "story_1006_traditional_web_long.txt",
+      "storyText": "story_1006_traditional_kjv_long.txt",
       "storyAudio": "audio_1006_story_long.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_1006_traditional_web.txt",
+      "reflectionText": "reflection_1006_traditional_kjv.txt",
       "reflectionAudio": "audio_1006_reflection.mp3"
     }
   },
   "scriptureAnchor": "Luke 17:11-19",
-  "bibleStoryKey": "ten_lepers"
+  "bibleStoryKey": "ten_lepers",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "reflectionVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL"
 }

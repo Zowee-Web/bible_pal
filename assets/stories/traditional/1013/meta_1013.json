@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1013,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_CHARLOTTE_V3",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_CLAUDE_KID_01",
+  "reflectionQuestion": "Can you think of a time when you had to be brave and trust that everything would be okay?",
+  "title": "Crossing the Jordan with Brave Hearts",
+  "files": {
+    "short": {
+      "storyText": "story_1013_traditional_web_short.txt",
+      "storyAudio": "audio_1013_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1013_traditional_web_full.txt",
+      "storyAudio": "audio_1013_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_1013_traditional_web_long.txt",
+      "storyAudio": "audio_1013_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1013_traditional_web.txt",
+      "reflectionAudio": "audio_1013_reflection.mp3"
+    }
+  },
+  "scriptureAnchor": "Joshua 3:1-17",
+  "bibleStoryKey": "crossing_the_jordan",
+  "storyVoiceKey": "VOICE_CHARLOTTE_V3",
+  "reflectionVoiceKey": "VOICE_CHARLOTTE_V3"
+}

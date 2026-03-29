@@ -10,7 +10,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_JAMES_HUSKY",
+  "voiceKey": "VOICE_LILY_WOLFF",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_CLAUDE_BATCH_02",
   "reflectionQuestion": "Can you think of a time when you had to let go of something you loved because it was the right thing to do?",
@@ -33,5 +33,7 @@
       "reflectionAudio": "audio_2004_reflection.mp3"
     }
   },
-  "theme": "a little girl who finds a lost bird and learns to let it fly"
+  "theme": "a little girl who finds a lost bird and learns to let it fly",
+  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF"
 }

@@ -10,7 +10,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_JAMES_HUSKY",
+  "voiceKey": "VOICE_JOHN_DOE",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_CLAUDE_BATCH_03",
   "reflectionQuestion": "Is there a quiet, small place in your life where you feel you can tend to something good, even when everything around you feels loud and busy?",
@@ -33,5 +33,7 @@
       "reflectionAudio": "audio_2008_reflection.mp3"
     }
   },
-  "theme": "an old man who tends a garden on a rooftop above a noisy city"
+  "theme": "an old man who tends a garden on a rooftop above a noisy city",
+  "storyVoiceKey": "VOICE_JOHN_DOE",
+  "reflectionVoiceKey": "VOICE_JOHN_DOE"
 }

@@ -4,35 +4,41 @@
   "mode": "traditional",
   "kidFriendly": false,
   "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
   "mood": "anxious",
   "lengths": [
     "short",
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "voiceKey": "VOICE_ARCHER",
   "createdByModel": "claude-opus-4-6",
-  "generationBatch": "PAL_CLAUDE_BATCH_03",
-  "reflectionQuestion": "Have you ever found yourself in a situation where running from something you knew you needed to do only seemed to make things harder for the people around you?",
-  "title": "Storm on the Restless Sea",
+  "generationBatch": "PAL_CLAUDE_KJV_03",
+  "reflectionQuestion": "Have you ever found yourself in a storm of circumstances and wondered if God might be trying to get your attention about something you've been avoiding?",
+  "title": "Storm on the Raging Sea",
   "files": {
     "short": {
-      "storyText": "story_1007_traditional_web_short.txt",
+      "storyText": "story_1007_traditional_kjv_short.txt",
       "storyAudio": "audio_1007_story_short.mp3"
     },
     "full": {
-      "storyText": "story_1007_traditional_web_full.txt",
+      "storyText": "story_1007_traditional_kjv_full.txt",
       "storyAudio": "audio_1007_story_full.mp3"
     },
     "long": {
-      "storyText": "story_1007_traditional_web_long.txt",
+      "storyText": "story_1007_traditional_kjv_long.txt",
       "storyAudio": "audio_1007_story_long.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_1007_traditional_web.txt",
+      "reflectionText": "reflection_1007_traditional_kjv.txt",
       "reflectionAudio": "audio_1007_reflection.mp3"
     }
   },
   "scriptureAnchor": "Jonah 1:4-15",
-  "bibleStoryKey": "jonah_flees"
+  "bibleStoryKey": "jonah_flees",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "reflectionVoiceKey": "VOICE_ARCHER"
 }
