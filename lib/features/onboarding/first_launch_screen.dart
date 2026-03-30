@@ -6,7 +6,8 @@ import '../../models/user_preferences.dart' show currentVoiceConsentVersion;
 import '../../providers/app_state_notifier.dart';
 import '../../providers/service_providers.dart' show nameAudioServiceProvider;
 import '../../theme/app_theme.dart';
-import '../../widgets/starfield_background.dart';
+import '../../theme/living_sky.dart';
+import '../../widgets/living_sky_background.dart';
 
 /// Key for tracking first-launch onboarding completion
 const kFirstLaunchCompleteKey = 'first_launch_complete';
@@ -27,61 +28,90 @@ class FirstLaunchScreen extends ConsumerStatefulWidget {
   ConsumerState<FirstLaunchScreen> createState() => _FirstLaunchScreenState();
 }
 
-class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen> {
+class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen>
+    with TickerProviderStateMixin {
   final TextEditingController _nameController = TextEditingController();
 
-  // Typing animation state
-  String _displayedText = '';
-  int _charIndex = 0;
-  Timer? _typingTimer;
+  // Line-by-line fade-in animation state
   bool _typingComplete = false;
   bool _isSaving = false;
 
-  static const _introMessage =
-      "Hi there! I'm PAL, your Personal Audio Listener. "
-      "I'm here to share meaningful stories that speak to your heart. "
-      "What's your name?";
+  static const _introLines = [
+    "Hi there! I'm PAL, your Personal Audio Listener.",
+    "I'm here to share meaningful stories that speak to your heart.",
+    "What's your name?",
+  ];
 
-  /// Typing speed (ms per character)
-  static const _typingDelayMs = 40;
+  late final List<AnimationController> _lineControllers;
+  late final List<Animation<double>> _lineAnimations;
+  int _revealedLines = 0;
+  Timer? _lineTimer;
+
+  /// Pause between each line appearing (ms)
+  static const _lineDelayMs = 690;
+
+  /// Duration of each line's fade-in (ms)
+  static const _lineFadeDurationMs = 920;
 
   @override
   void initState() {
     super.initState();
-    _startTyping();
+    _lineControllers = List.generate(
+      _introLines.length,
+      (_) => AnimationController(
+        duration: const Duration(milliseconds: _lineFadeDurationMs),
+        vsync: this,
+      ),
+    );
+    _lineAnimations = _lineControllers
+        .map((c) => CurvedAnimation(parent: c, curve: Curves.easeIn))
+        .toList();
+    _startLineFadeIn();
   }
 
   @override
   void dispose() {
-    _typingTimer?.cancel();
+    _lineTimer?.cancel();
+    for (final c in _lineControllers) {
+      c.dispose();
+    }
     _nameController.dispose();
     super.dispose();
   }
 
-  /// Start the typing animation with fixed interval
-  void _startTyping() {
-    _typingTimer = Timer.periodic(
-      const Duration(milliseconds: _typingDelayMs),
+  /// Reveal lines one at a time with a staggered fade-in
+  void _startLineFadeIn() {
+    // Reveal the first line immediately
+    _lineControllers[0].forward();
+    _revealedLines = 1;
+    setState(() {});
+
+    _lineTimer = Timer.periodic(
+      const Duration(milliseconds: _lineDelayMs + _lineFadeDurationMs),
       (timer) {
         if (!mounted) {
           timer.cancel();
           return;
         }
-
-        if (_charIndex >= _introMessage.length) {
+        if (_revealedLines >= _introLines.length) {
           timer.cancel();
-          setState(() {
-            _typingComplete = true;
-          });
+          setState(() => _typingComplete = true);
           return;
         }
-
-        setState(() {
-          _charIndex++;
-          _displayedText = _introMessage.substring(0, _charIndex);
-        });
+        _lineControllers[_revealedLines].forward();
+        _revealedLines++;
+        setState(() {});
       },
     );
+  }
+
+  void _skipToEnd() {
+    _lineTimer?.cancel();
+    for (final c in _lineControllers) {
+      c.value = 1.0;
+    }
+    _revealedLines = _introLines.length;
+    setState(() => _typingComplete = true);
   }
 
   Future<void> _handleContinue() async {
@@ -143,22 +173,18 @@ class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
 
     return Scaffold(
       body: GestureDetector(
         onTap: () {
           if (!_typingComplete) {
-            _typingTimer?.cancel();
-            setState(() {
-              _displayedText = _introMessage;
-              _charIndex = _introMessage.length;
-              _typingComplete = true;
-            });
+            _skipToEnd();
           }
         },
         child: Stack(
         children: [
-          const StarfieldBackground(),
+          const LivingSkyBackground(),
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(24),
@@ -192,28 +218,30 @@ class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen> {
                   )),
                   const SizedBox(height: 36),
 
-                  // Typing text display
+                  // Line-by-line fade-in text display
                   Container(
                     constraints: const BoxConstraints(minHeight: 120),
-                    child: Text(
-                      _displayedText,
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        height: 1.6,
-                        color: AppTheme.warmIvory,
-                      ),
-                      textAlign: TextAlign.center,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        for (int i = 0; i < _revealedLines; i++)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: FadeTransition(
+                              opacity: _lineAnimations[i],
+                              child: Text(
+                                _introLines[i],
+                                style: theme.textTheme.titleLarge?.copyWith(
+                                  height: 1.6,
+                                  color: palette.textColor,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                      ],
                     ),
                   ),
-
-                  // Blinking cursor during typing
-                  if (!_typingComplete)
-                    Text(
-                      '▋',
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        color: AppTheme.celestialBlue,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
 
                   const SizedBox(height: 32),
 
@@ -229,7 +257,7 @@ class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen> {
                           textCapitalization: TextCapitalization.words,
                           textInputAction: TextInputAction.done,
                           onSubmitted: (_) => _handleContinue(),
-                          style: const TextStyle(color: AppTheme.warmIvory),
+                          style: TextStyle(color: palette.textColor),
                           decoration: const InputDecoration(
                             labelText: 'Your name',
                             hintText: 'Enter your name',

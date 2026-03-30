@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../providers/app_state_notifier.dart';
-import '../../services/typewriter_click_service.dart';
 import '../../services/pal_prompt_service.dart';
 import '../../services/stt_service.dart';
 import '../../providers/service_providers.dart';
@@ -630,23 +629,25 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                 decoration: InputDecoration(
                   hintText: _hints[_currentHintIndex],
                   hintStyle: TextStyle(
-                    color: palette.subtitleColor.withValues(
-                      alpha: _userIsTyping ? 0.0 : _hintFadeAnimation.value,
+                    color: palette.textColor.withValues(
+                      alpha: _userIsTyping ? 0.0 : _hintFadeAnimation.value * 0.7,
                     ),
                     fontSize: 17,
                     height: 1.4,
                   ),
+                  filled: true,
+                  fillColor: palette.cardColor,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(24),
-                    borderSide: BorderSide(color: palette.cardBorder, width: 1),
+                    borderSide: BorderSide(color: palette.cardBorder, width: 1.5),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(24),
-                    borderSide: BorderSide(color: palette.cardBorder, width: 1),
+                    borderSide: BorderSide(color: palette.cardBorder, width: 1.5),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(24),
-                    borderSide: BorderSide(color: palette.cardBorder, width: 1),
+                    borderSide: BorderSide(color: palette.textColor.withValues(alpha: 0.4), width: 1.5),
                   ),
                   contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                   suffixIcon: _userIsTyping
@@ -718,11 +719,13 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   // Intro state
   bool _showIntro = false;
   bool _introChecked = false;
-  String _displayedText = '';
-  int _charIndex = 0;
-  int _currentLine = 0;
-  Timer? _typingTimer;
-  final _clickHelper = TypewriterClickHelper();
+  Timer? _wordTimer;
+
+  // Line-by-line fade-in animation for intro
+  List<String> _introLines = [];
+  List<AnimationController> _lineControllers = [];
+  List<Animation<double>> _lineAnimations = [];
+  int _revealedLines = 0;
 
   // Pulse animation
   late final AnimationController _pulseController;
@@ -749,7 +752,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   // Mic pulse animation
   late final AnimationController _micPulseController;
 
-  static const _introLines = [
+  static const _defaultIntroLines = [
     'Meet PAL.',
     'Your guide to mood-based Bible stories.',
     'Tap PAL to start.',
@@ -783,8 +786,11 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
   @override
   void dispose() {
-    _typingTimer?.cancel();
+    _wordTimer?.cancel();
     _autoStoryTimer?.cancel();
+    for (final c in _lineControllers) {
+      c.dispose();
+    }
     _pulseController.removeStatusListener(_onPulseStatus);
     _pulseController.dispose();
     _glowController.dispose();
@@ -805,54 +811,73 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     final sp = await SharedPreferences.getInstance();
     final alreadyShown = sp.getBool(kPalIntroShownKey) ?? false;
     if (!mounted) return;
+
+    if (!alreadyShown) {
+      // Build intro lines with personalised greeting
+      final appState = ref.read(appStateProvider).valueOrNull;
+      final userName = appState?.userPreferences.userName ?? '';
+      _introLines = [
+        if (userName.isNotEmpty) 'HI, ${userName.toUpperCase()}',
+        ..._defaultIntroLines,
+      ];
+
+      _lineControllers = List.generate(
+        _introLines.length,
+        (_) => AnimationController(
+          duration: const Duration(milliseconds: 920),
+          vsync: this,
+        ),
+      );
+      _lineAnimations = _lineControllers
+          .map((c) => CurvedAnimation(parent: c, curve: Curves.easeIn))
+          .toList();
+    }
+
     setState(() {
       _introChecked = true;
       _showIntro = !alreadyShown;
     });
+
     if (_showIntro) {
-      await _clickHelper.preInitialize();
       if (!mounted) return;
-      _startTypingLine();
+      _startLineFadeIn();
     }
   }
 
-  void _startTypingLine() {
-    if (_currentLine >= _introLines.length) {
-      _markIntroShown();
-      return;
-    }
+  /// Reveal lines one at a time with a staggered fade-in
+  void _startLineFadeIn() {
+    // Reveal the first line immediately
+    _lineControllers[0].forward();
+    _revealedLines = 1;
+    setState(() {});
 
-    final line = _introLines[_currentLine];
-    _charIndex = 0;
-
-    _typingTimer = Timer.periodic(const Duration(milliseconds: 35), (timer) {
-      if (!mounted) {
-        timer.cancel();
-        return;
-      }
-      if (_charIndex < line.length) {
-        final nextChar = line[_charIndex];
-        _clickHelper.onCharAppended(nextChar);
-        setState(() {
-          _charIndex++;
-          _displayedText = line.substring(0, _charIndex);
-        });
-      } else {
-        timer.cancel();
-        if (_currentLine == _introLines.length - 1) {
-          _startPulse();
-        } else {
-          Future.delayed(const Duration(milliseconds: 600), () {
-            if (!mounted || !_showIntro) return;
-            setState(() {
-              _currentLine++;
-              _displayedText = '';
-            });
-            _startTypingLine();
-          });
+    _wordTimer = Timer.periodic(
+      const Duration(milliseconds: 1610), // 920ms fade + 690ms pause
+      (timer) {
+        if (!mounted || !_showIntro) {
+          timer.cancel();
+          return;
         }
-      }
-    });
+        if (_revealedLines >= _introLines.length) {
+          timer.cancel();
+          _startPulse();
+          return;
+        }
+        _lineControllers[_revealedLines].forward();
+        _revealedLines++;
+        setState(() {});
+      },
+    );
+  }
+
+  void _skipIntroToEnd() {
+    _wordTimer?.cancel();
+    for (final c in _lineControllers) {
+      c.value = 1.0;
+    }
+    _revealedLines = _introLines.length;
+    setState(() {});
+    _startPulse();
   }
 
   void _startPulse() {
@@ -878,7 +903,6 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   }
 
   Future<void> _markIntroShown() async {
-    _clickHelper.enabled = false;
     final sp = await SharedPreferences.getInstance();
     await sp.setBool(kPalIntroShownKey, true);
     if (!mounted) return;
@@ -897,8 +921,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       HapticFeedback.lightImpact();
     }
 
-    _clickHelper.enabled = false;
-    _typingTimer?.cancel();
+    _wordTimer?.cancel();
     _pulseController.stop();
 
     if (_showIntro) {
@@ -1270,34 +1293,36 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         children: [
           // Intro text overlay (above button)
           if (_showIntro)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 16),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(minHeight: 60, maxHeight: 80),
+            GestureDetector(
+              onTap: () {
+                if (_revealedLines < _introLines.length) {
+                  _skipIntroToEnd();
+                }
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 32),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    for (int i = 0; i < _currentLine; i++)
+                    for (int i = 0; i < _revealedLines; i++)
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 2),
-                        child: Text(
-                          _introLines[i],
-                          style: theme.textTheme.titleMedium?.copyWith(
-                            color: LivingSky.getPalette(LivingSky.getPhase()).textColor,
-                            fontWeight: FontWeight.w500,
+                        padding: const EdgeInsets.only(bottom: 6),
+                        child: FadeTransition(
+                          opacity: _lineAnimations[i],
+                          child: Text(
+                            _introLines[i],
+                            style: (i == 0 && _introLines[0].startsWith('HI,')
+                                    ? theme.textTheme.headlineSmall
+                                    : theme.textTheme.titleMedium)
+                                ?.copyWith(
+                              color: palette.textColor,
+                              fontWeight: i == 0 && _introLines[0].startsWith('HI,')
+                                  ? FontWeight.w700
+                                  : FontWeight.w500,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
-                          textAlign: TextAlign.center,
                         ),
-                      ),
-                    if (_currentLine < _introLines.length)
-                      Text(
-                        _displayedText + (_charIndex < _introLines[_currentLine].length ? '\u258B' : ''),
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          color: LivingSky.getPalette(LivingSky.getPhase()).textColor,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        textAlign: TextAlign.center,
                       ),
                   ],
                 ),
