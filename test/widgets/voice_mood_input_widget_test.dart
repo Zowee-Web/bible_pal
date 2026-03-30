@@ -92,8 +92,11 @@ void main() {
       await tester.pumpWidget(buildTestApp());
       await tester.pumpAndSettle();
 
-      expect(find.text('Type a few words about your day or night...'),
-          findsOneWidget);
+      // Hint text rotates between time-aware prompts; verify the TextField has one
+      final textField = tester.widget<TextField>(find.byType(TextField));
+      final hintText = textField.decoration?.hintText ?? '';
+      expect(hintText.isNotEmpty, isTrue,
+          reason: 'TextField should have a rotating hint');
     });
 
     testWidgets('mic button has correct tooltip when STT unavailable',

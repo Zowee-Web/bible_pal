@@ -85,6 +85,34 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
   // Auto-start timer (cancellable)
   Timer? _autoStartTimer;
 
+  // Rotating hint text
+  Timer? _hintRotationTimer;
+  int _currentHintIndex = 0;
+  double _hintOpacity = 1.0;
+
+  static const _morningHints = [
+    'Tell me how you\u2019re feeling\u2026',
+    'What\u2019s on your heart today?',
+    'How are you starting your day?',
+    'What\u2019s ahead for you today?',
+    'What are you grateful for today?',
+    'How\u2019s your spirit doing?',
+  ];
+
+  static const _eveningHints = [
+    'Tell me how you\u2019re feeling\u2026',
+    'What\u2019s on your heart tonight?',
+    'How did your day go?',
+    'What\u2019s on your mind tonight?',
+    'What\u2019s weighing on you?',
+    'Anything you need to lay down today?',
+  ];
+
+  List<String> get _hints {
+    final hour = DateTime.now().hour;
+    return hour < 17 ? _morningHints : _eveningHints;
+  }
+
   // Micro-response ring buffer (session-only, per mood)
   final Map<String, List<String>> _recentMicroResponseIds = {};
 
@@ -103,6 +131,10 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     if (!widget.textOnly) {
       _initStt();
     }
+
+    // Start rotating hint text
+    _currentHintIndex = _random.nextInt(_hints.length);
+    _startHintRotation();
 
     // Auto-submit pre-filled text from main menu
     if (widget.initialText != null && widget.initialText!.trim().isNotEmpty) {
@@ -191,8 +223,25 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     }
   }
 
+  void _startHintRotation() {
+    _hintRotationTimer = Timer.periodic(const Duration(seconds: 8), (_) {
+      if (!mounted) return;
+      // Fade out
+      setState(() => _hintOpacity = 0.0);
+      // After fade-out, swap text and fade in
+      Future.delayed(const Duration(milliseconds: 600), () {
+        if (!mounted) return;
+        setState(() {
+          _currentHintIndex = (_currentHintIndex + 1) % _hints.length;
+          _hintOpacity = 1.0;
+        });
+      });
+    });
+  }
+
   @override
   void dispose() {
+    _hintRotationTimer?.cancel();
     _autoStartTimer?.cancel();
     _moodController.dispose();
     _sttService.dispose();
@@ -671,38 +720,15 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Quick mood buttons
-                  _buildMoodButtons(theme),
-                  const SizedBox(height: 16),
-
-                  // Divider with "or" label
-                  Row(
-                    children: [
-                      const Expanded(child: Divider(color: Colors.white54)),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        child: Text(
-                          'Or tell PAL in your own words:',
-                          style: theme.textTheme.bodySmall?.copyWith(
-                            color: Colors.white,
-                            shadows: const [
-                              Shadow(offset: Offset(0, 1), blurRadius: 3, color: Colors.black54),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const Expanded(child: Divider(color: Colors.white54)),
-                    ],
-                  ),
-                    const SizedBox(height: 12),
-
-                    // TextField
+                    // TextField (primary input, positioned first)
                     TextField(
                       controller: _moodController,
-                      maxLines: 3,
+                      maxLines: 4,
+                      minLines: 3,
                       autofocus: false,
                       keyboardType: TextInputType.multiline,
                       textInputAction: TextInputAction.newline,
+                      style: const TextStyle(fontSize: 18, color: Colors.white),
                       enabled: !isVoiceActive,
                       onTap: () {
                         if (_voiceState == VoiceInputState.listening) {
@@ -710,11 +736,28 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                         }
                       },
                       decoration: InputDecoration(
-                        labelText: 'Share how you\'re doing',
                         hintText: _voiceState == VoiceInputState.confirming
                             ? 'Edit your response or tap Continue'
-                            : 'Type a few words about your day or night...',
-                        border: const OutlineInputBorder(),
+                            : _hints[_currentHintIndex],
+                        hintStyle: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white.withValues(alpha: _hintOpacity * 0.5),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: const BorderSide(color: Colors.white38),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: const BorderSide(color: Colors.white38),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: const BorderSide(color: Colors.white70, width: 1.5),
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+                        filled: true,
+                        fillColor: Colors.white.withValues(alpha: 0.08),
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -731,6 +774,32 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                           : _handleMoodSubmission,
                       child: const Text('Continue'),
                     ),
+
+                    const SizedBox(height: 20),
+
+                    // Divider with "or" label
+                    Row(
+                      children: [
+                        const Expanded(child: Divider(color: Colors.white54)),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: Text(
+                            'Or pick a mood:',
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: Colors.white,
+                              shadows: const [
+                                Shadow(offset: Offset(0, 1), blurRadius: 3, color: Colors.black54),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const Expanded(child: Divider(color: Colors.white54)),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+
+                    // Quick mood buttons
+                    _buildMoodButtons(theme),
                   ],
                 ),
               ),

@@ -120,12 +120,25 @@ class _MainMenuBody extends ConsumerStatefulWidget {
 class _MainMenuBodyState extends ConsumerState<_MainMenuBody> {
   late final PageController _pageController;
   int _currentPage = 0;
+  final GlobalKey<_StudyPageState> _studyPageKey = GlobalKey<_StudyPageState>();
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
     _pageController.addListener(_onPageChanged);
+
+    // Listen for player state changes — reset study page when story ends
+    ref.listenManual(parablePlayerProvider, (prev, next) {
+      final hadParable = prev?.currentParable != null;
+      final hasParable = next.currentParable != null;
+      if (hadParable && !hasParable) {
+        // Player cleared — user returned from story
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _studyPageKey.currentState?._resetInputState();
+        });
+      }
+    });
   }
 
   void _onPageChanged() {
@@ -184,7 +197,7 @@ class _MainMenuBodyState extends ConsumerState<_MainMenuBody> {
                         verseReference: widget.verseReference,
                       ),
                       // Page 2: The Study
-                      _StudyPage(theme: widget.theme),
+                      _StudyPage(key: _studyPageKey, theme: widget.theme),
                     ],
                   ),
                 ),
@@ -385,17 +398,120 @@ class _SwipeHintChevronState extends State<_SwipeHintChevron> with SingleTickerP
 
 class _StudyPage extends ConsumerStatefulWidget {
   final ThemeData theme;
-  const _StudyPage({required this.theme});
+  const _StudyPage({super.key, required this.theme});
 
   @override
   ConsumerState<_StudyPage> createState() => _StudyPageState();
 }
 
-class _StudyPageState extends ConsumerState<_StudyPage> {
+class _StudyPageState extends ConsumerState<_StudyPage>
+    with SingleTickerProviderStateMixin {
   final TextEditingController _textController = TextEditingController();
+
+  // Animated placeholder
+  late final AnimationController _hintFadeController;
+  late final Animation<double> _hintFadeAnimation;
+  Timer? _hintCycleTimer;
+  int _currentHintIndex = 0;
+  bool _userIsTyping = false;
+
+  static const _morningHints = [
+    'Tell me how you\u2019re feeling\u2026',
+    'What\u2019s on your heart today?',
+    'How are you starting your day?',
+    'What are you grateful for today?',
+    'How\u2019s your spirit doing?',
+  ];
+
+  static const _eveningHints = [
+    'Tell me how you\u2019re feeling\u2026',
+    'What\u2019s on your heart tonight?',
+    'How did your day go?',
+    'What\u2019s weighing on you?',
+    'Anything you need to lay down today?',
+  ];
+
+  List<String> get _hints {
+    final hour = DateTime.now().hour;
+    return hour < 17 ? _morningHints : _eveningHints;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _currentHintIndex = Random().nextInt(_hints.length);
+
+    _hintFadeController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 3000),
+    );
+    _hintFadeAnimation = CurvedAnimation(
+      parent: _hintFadeController,
+      curve: Curves.easeInOut,
+    );
+    _hintFadeController.value = 1.0; // start visible
+
+    _textController.addListener(_onTextChanged);
+    _scheduleNextHint();
+  }
+
+  void _onTextChanged() {
+    final typing = _textController.text.trim().isNotEmpty;
+    if (typing != _userIsTyping) {
+      setState(() => _userIsTyping = typing);
+      if (typing) {
+        _hintCycleTimer?.cancel();
+        _hintFadeController.stop();
+      } else {
+        _resetHintAnimation();
+      }
+    }
+  }
+
+  /// Single source of truth for resetting the text field and hint animation.
+  void _resetInputState() {
+    _textController.clear();
+    FocusScope.of(context).unfocus();
+    setState(() => _userIsTyping = false);
+    _resetHintAnimation();
+  }
+
+  /// Fully reset hint animation to a clean starting state.
+  void _resetHintAnimation() {
+    _hintCycleTimer?.cancel();
+    _hintFadeController.stop();
+    _currentHintIndex = Random().nextInt(_hints.length);
+    _hintFadeController.value = 1.0;
+    _scheduleNextHint();
+  }
+
+  void _scheduleNextHint() {
+    _hintCycleTimer?.cancel();
+    _hintCycleTimer = Timer(const Duration(seconds: 6), () {
+      if (!mounted || _userIsTyping) return;
+      // Fade out over 3s
+      _hintFadeController.reverse().then((_) {
+        if (!mounted || _userIsTyping) return;
+        setState(() {
+          _currentHintIndex = (_currentHintIndex + 1) % _hints.length;
+        });
+        // Pause briefly, then fade in over 3s
+        Future.delayed(const Duration(milliseconds: 800), () {
+          if (!mounted || _userIsTyping) return;
+          _hintFadeController.forward().then((_) {
+            if (!mounted || _userIsTyping) return;
+            _scheduleNextHint();
+          });
+        });
+      });
+    });
+  }
 
   @override
   void dispose() {
+    _textController.removeListener(_onTextChanged);
+    _hintCycleTimer?.cancel();
+    _hintFadeController.dispose();
     _textController.dispose();
     super.dispose();
   }
@@ -403,10 +519,10 @@ class _StudyPageState extends ConsumerState<_StudyPage> {
   void _submitText() {
     final text = _textController.text.trim();
     if (text.isEmpty) return;
-    _textController.clear();
-    FocusScope.of(context).unfocus();
 
-    // Detect mood from text, then go to length picker
+    // Capture text, then reset field immediately
+    _resetInputState();
+
     final appStateNotifier = ref.read(appStateProvider.notifier);
     final moodResult = appStateNotifier.moodService.detectMood(text);
     appStateNotifier.updateLastDetectedMood(moodResult.mood);
@@ -501,45 +617,60 @@ class _StudyPageState extends ConsumerState<_StudyPage> {
 
         // Text PAL input — pinned to bottom
         Padding(
-          padding: const EdgeInsets.fromLTRB(24, 8, 24, 16),
-          child: Container(
-            decoration: BoxDecoration(
-              color: palette.cardColor,
-              borderRadius: BorderRadius.circular(24),
-              border: Border.all(color: palette.cardBorder, width: 1),
-            ),
-            child: Row(
-              children: [
-                const SizedBox(width: 16),
-                Icon(Icons.chat_bubble_outline, size: 20, color: palette.subtitleColor),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: TextField(
-                    controller: _textController,
-                    style: TextStyle(color: palette.textColor, fontSize: 16),
-                    decoration: InputDecoration(
-                      hintText: 'Tell PAL how you\u2019re feeling...',
-                      hintStyle: TextStyle(color: palette.subtitleColor, fontSize: 16),
-                      border: InputBorder.none,
-                      contentPadding: const EdgeInsets.symmetric(vertical: 16),
-                      isDense: true,
+          padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
+          child: AnimatedBuilder(
+            animation: _hintFadeController,
+            builder: (context, _) {
+              return TextField(
+                controller: _textController,
+                style: TextStyle(color: palette.textColor, fontSize: 17, height: 1.4),
+                maxLines: 4,
+                minLines: 1,
+                textCapitalization: TextCapitalization.sentences,
+                decoration: InputDecoration(
+                  hintText: _hints[_currentHintIndex],
+                  hintStyle: TextStyle(
+                    color: palette.subtitleColor.withValues(
+                      alpha: _userIsTyping ? 0.0 : _hintFadeAnimation.value,
                     ),
-                    textInputAction: TextInputAction.send,
-                    onSubmitted: (_) => _submitText(),
-                    onChanged: (_) => setState(() {}),
+                    fontSize: 17,
+                    height: 1.4,
                   ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(24),
+                    borderSide: BorderSide(color: palette.cardBorder, width: 1),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(24),
+                    borderSide: BorderSide(color: palette.cardBorder, width: 1),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(24),
+                    borderSide: BorderSide(color: palette.cardBorder, width: 1),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                  suffixIcon: _userIsTyping
+                      ? Padding(
+                          padding: const EdgeInsets.only(right: 6),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: palette.orbGlowColor,
+                              shape: BoxShape.circle,
+                            ),
+                            child: IconButton(
+                              icon: const Icon(Icons.arrow_upward_rounded, size: 20, color: Colors.white),
+                              onPressed: _submitText,
+                              padding: const EdgeInsets.all(8),
+                              constraints: const BoxConstraints(),
+                            ),
+                          ),
+                        )
+                      : null,
                 ),
-                if (_textController.text.trim().isNotEmpty)
-                  IconButton(
-                    icon: Icon(Icons.arrow_upward, size: 20, color: palette.orbGlowColor),
-                    onPressed: _submitText,
-                    padding: const EdgeInsets.all(8),
-                    constraints: const BoxConstraints(),
-                  )
-                else
-                  const SizedBox(width: 12),
-              ],
-            ),
+                textInputAction: TextInputAction.send,
+                onSubmitted: (_) => _submitText(),
+              );
+            },
           ),
         ),
       ],
