@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2049,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "Eight people watched. One kid moved. What makes the difference between the person who acts and the person who stands still?",
+  "title": "The Bus Stop",
+  "theme": "witnessing courage in someone else and reckoning with your own stillness",
+  "files": {
+    "short": {
+      "storyText": "story_2049_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2049_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2049_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "reflectionVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN"
+}

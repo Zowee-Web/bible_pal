@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1059,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_ESTHER_BRAVE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "Nehemiah was afraid to ask the king but he asked anyway. Have you ever been scared to ask for something important — and then found out the answer was yes?",
+  "title": "Nehemiah Rebuilds the Wall",
+  "files": {
+    "short": {
+      "storyText": "story_1059_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1059_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1059_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ESTHER_BRAVE",
+  "reflectionVoiceKey": "VOICE_ESTHER_BRAVE",
+  "scriptureAnchor": "Nehemiah 2:1-18",
+  "bibleStoryKey": "nehemiah_rebuilds_jerusalem"
+}

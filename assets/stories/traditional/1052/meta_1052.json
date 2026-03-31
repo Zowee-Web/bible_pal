@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1052,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_SARAH_STORYTELLER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "A prince gave away everything that marked him as royalty to a shepherd he had just met. What moves a person to hand over their identity to someone else?",
+  "title": "David and Jonathan's Covenant",
+  "files": {
+    "short": {
+      "storyText": "story_1052_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1052_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1052_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1052_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1052_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1052_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_SARAH_STORYTELLER",
+  "reflectionVoiceKey": "VOICE_SARAH_STORYTELLER",
+  "scriptureAnchor": "1 Samuel 18:1-4",
+  "bibleStoryKey": "david_and_jonathan_covenant",
+  "reflections": {
+    "web": "reflection_1052_traditional_web.txt",
+    "kjv": "reflection_1052_traditional_kjv.txt"
+  }
+}

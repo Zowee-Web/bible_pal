@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1048,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "scriptureAnchor": "Exodus 14:10-31",
+  "bibleStoryKey": "red_sea_crossing",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_ELIJAH_SAGE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "The sea stood before them and the army behind. There was no way through and no way back. What does it mean to stand still when every instinct says to run?",
+  "title": "The Crossing of the Red Sea",
+  "files": {
+    "short": {
+      "storyText": "story_1048_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1048_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1048_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1048_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1048_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1048_traditional_kjv.txt"
+    }
+  },
+  "reflections": {
+    "web": "reflection_1048_traditional_web.txt",
+    "kjv": "reflection_1048_traditional_kjv.txt"
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "reflectionVoiceKey": "VOICE_ELIJAH_SAGE"
+}

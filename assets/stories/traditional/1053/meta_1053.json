@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1053,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_JOHN_BELOVED",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "He expected fire and spectacle but was told to wash in a muddy river. What happens when the answer to your deepest need looks nothing like what you imagined?",
+  "title": "Naaman Washes in the Jordan",
+  "files": {
+    "short": {
+      "storyText": "story_1053_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1053_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1053_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1053_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1053_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1053_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "reflectionVoiceKey": "VOICE_JOHN_BELOVED",
+  "scriptureAnchor": "2 Kings 5:1-14",
+  "bibleStoryKey": "naaman_healed",
+  "reflections": {
+    "web": "reflection_1053_traditional_web.txt",
+    "kjv": "reflection_1053_traditional_kjv.txt"
+  }
+}

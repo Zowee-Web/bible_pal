@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1056,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_ARABELLA",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "The sea was in front of them and the army was behind them. Have you ever been stuck in a scary place with no way out, and then someone helped you in a way you didn't expect?",
+  "title": "Crossing the Red Sea",
+  "files": {
+    "short": {
+      "storyText": "story_1056_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1056_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1056_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA",
+  "scriptureAnchor": "Exodus 14:10-31",
+  "bibleStoryKey": "red_sea_crossing"
+}

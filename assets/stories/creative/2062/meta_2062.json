@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2062,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_ARCHER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "When was the last time you jumped into something just because it looked fun — even if you knew you'd get in trouble?",
+  "title": "The Puddle",
+  "theme": "pure uncomplicated joy found in something simple and messy",
+  "files": {
+    "short": {
+      "storyText": "story_2062_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2062_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2062_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "reflectionVoiceKey": "VOICE_ARCHER"
+}

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2052,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_SAMUEL_EARNEST",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "A woman left bread for a stranger decades ago and the gratitude is still moving. What act of kindness from your past still echoes in ways you might not see?",
+  "title": "The Windowsill",
+  "theme": "gratitude that connects strangers across time without their knowing",
+  "files": {
+    "short": {
+      "storyText": "story_2052_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2052_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2052_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "reflectionVoiceKey": "VOICE_SAMUEL_EARNEST"
+}

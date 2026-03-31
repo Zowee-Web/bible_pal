@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2051,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_DEBORAH_WISE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "She had been writing for three years without knowing anyone was reading. What quiet thing do you do that might matter more than you realize?",
+  "title": "The Herald",
+  "theme": "discovering that unseen work has been making a difference all along",
+  "files": {
+    "short": {
+      "storyText": "story_2051_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2051_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2051_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "reflectionVoiceKey": "VOICE_DEBORAH_WISE"
+}

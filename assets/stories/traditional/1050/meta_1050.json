@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1050,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_LYDIA_GRACIOUS",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "The vessel was marred and the potter made it again. What does it feel like to be reshaped by hands you cannot see but have chosen to trust?",
+  "title": "The Potter's Wheel",
+  "files": {
+    "short": {
+      "storyText": "story_1050_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1050_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1050_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1050_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1050_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1050_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_LYDIA_GRACIOUS",
+  "reflectionVoiceKey": "VOICE_LYDIA_GRACIOUS",
+  "scriptureAnchor": "Jeremiah 18:1-6",
+  "bibleStoryKey": "potter_and_clay",
+  "reflections": {
+    "web": "reflection_1050_traditional_web.txt",
+    "kjv": "reflection_1050_traditional_kjv.txt"
+  }
+}

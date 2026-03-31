@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2050,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_JOSEPH_DREAMER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "He drove through a valley that asked nothing of him and something loosened inside. Where is the place — or the silence — that holds you without gripping?",
+  "title": "The Valley",
+  "theme": "finding unexpected peace in stillness during movement",
+  "files": {
+    "short": {
+      "storyText": "story_2050_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2050_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2050_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_JOSEPH_DREAMER",
+  "reflectionVoiceKey": "VOICE_JOSEPH_DREAMER"
+}

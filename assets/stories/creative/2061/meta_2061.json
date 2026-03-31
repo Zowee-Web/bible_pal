@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2061,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_HANNAH_HOPE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "Have you ever had to say goodbye to someone you didn't want to leave? What did you do to hold on?",
+  "title": "The Bracelet",
+  "theme": "sitting with the pain of a goodbye you can't prevent",
+  "files": {
+    "short": {
+      "storyText": "story_2061_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2061_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2061_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
+  "reflectionVoiceKey": "VOICE_HANNAH_HOPE"
+}

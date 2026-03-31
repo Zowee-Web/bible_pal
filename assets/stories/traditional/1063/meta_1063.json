@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1063,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_JANE_PROFESSIONAL",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "Job lost everything in one day — his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?",
+  "title": "Job's Terrible Day",
+  "files": {
+    "short": {
+      "storyText": "story_1063_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1063_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1063_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_JANE_PROFESSIONAL",
+  "reflectionVoiceKey": "VOICE_JANE_PROFESSIONAL",
+  "scriptureAnchor": "Job 1:1-22",
+  "bibleStoryKey": "job_loses_everything"
+}

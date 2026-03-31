@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1060,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_MARTHA_CARING",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "Jonathan gave away everything that made him a prince — just because his heart told him to. What is the most generous thing someone has ever done for you? What made it special?",
+  "title": "David and Jonathan Become Friends",
+  "files": {
+    "short": {
+      "storyText": "story_1060_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1060_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1060_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_MARTHA_CARING",
+  "reflectionVoiceKey": "VOICE_MARTHA_CARING",
+  "scriptureAnchor": "1 Samuel 18:1-4",
+  "bibleStoryKey": "david_and_jonathan_covenant"
+}

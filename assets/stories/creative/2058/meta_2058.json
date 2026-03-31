@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2058,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_LILY_WOLFF",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "Have you ever found a spot where the world got quieter and you could just breathe? Where is your hidden place?",
+  "title": "The Gap Behind the Library",
+  "theme": "finding a hidden pocket of stillness in a noisy world",
+  "files": {
+    "short": {
+      "storyText": "story_2058_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2058_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2058_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF"
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1049,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "scriptureAnchor": "Numbers 13:25-33",
+  "bibleStoryKey": "report_of_the_spies",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_NOAH_PATIENT",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "They held the fruit of the promised land in their hands and still could not believe. When has abundance stood before you and fear kept you from reaching for it?",
+  "title": "The Report of the Spies",
+  "files": {
+    "short": {
+      "storyText": "story_1049_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1049_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1049_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1049_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1049_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1049_traditional_kjv.txt"
+    }
+  },
+  "reflections": {
+    "web": "reflection_1049_traditional_web.txt",
+    "kjv": "reflection_1049_traditional_kjv.txt"
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "reflectionVoiceKey": "VOICE_NOAH_PATIENT"
+}

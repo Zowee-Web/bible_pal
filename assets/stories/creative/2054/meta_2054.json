@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2054,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_JAMES_HUSKY",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "A mango in a garage on a Tuesday afternoon. Where does joy find you when you're not looking for it?",
+  "title": "Tuesday Mango",
+  "theme": "joy arriving through honest, simple connection between two people",
+  "files": {
+    "short": {
+      "storyText": "story_2054_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2054_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2054_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "reflectionVoiceKey": "VOICE_JAMES_HUSKY"
+}

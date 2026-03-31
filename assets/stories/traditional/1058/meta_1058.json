@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1058,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_LILY_WOLFF",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "The potter didn't throw the clay away when it broke — he made it into something new. Have you ever felt broken and then been surprised that something good still came from it?",
+  "title": "The Potter's Wheel",
+  "files": {
+    "short": {
+      "storyText": "story_1058_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1058_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1058_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF",
+  "scriptureAnchor": "Jeremiah 18:1-6",
+  "bibleStoryKey": "potter_and_clay"
+}

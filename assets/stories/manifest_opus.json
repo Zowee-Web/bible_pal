@@ -4033,6 +4033,966 @@
       "bibleStoryKey": "elijah_and_widow_of_zarephath"
     },
     {
+      "storyId": "story_1048_anxious_short_traditional",
+      "title": "The Crossing of the Red Sea",
+      "mood": "anxious",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1048/story_1048_traditional_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "The sea stood before them and the army behind. There was no way through and no way back. What does it mean to stand still when every instinct says to run?",
+      "bibleSourceRef": "Exodus 14:10-31",
+      "bibleStoryKey": "red_sea_crossing"
+    },
+    {
+      "storyId": "story_1048_anxious_full_traditional",
+      "title": "The Crossing of the Red Sea",
+      "mood": "anxious",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1048/story_1048_traditional_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "The sea stood before them and the army behind. There was no way through and no way back. What does it mean to stand still when every instinct says to run?",
+      "bibleSourceRef": "Exodus 14:10-31",
+      "bibleStoryKey": "red_sea_crossing"
+    },
+    {
+      "storyId": "story_1048_anxious_short_traditional",
+      "title": "The Crossing of the Red Sea",
+      "mood": "anxious",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1048/story_1048_traditional_kjv_short.txt",
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "The sea stood before them and the army behind. There was no way through and no way back. What does it mean to stand still when every instinct says to run?",
+      "bibleSourceRef": "Exodus 14:10-31",
+      "bibleStoryKey": "red_sea_crossing"
+    },
+    {
+      "storyId": "story_1048_anxious_full_traditional",
+      "title": "The Crossing of the Red Sea",
+      "mood": "anxious",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1048/story_1048_traditional_kjv_full.txt",
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "The sea stood before them and the army behind. There was no way through and no way back. What does it mean to stand still when every instinct says to run?",
+      "bibleSourceRef": "Exodus 14:10-31",
+      "bibleStoryKey": "red_sea_crossing"
+    },
+    {
+      "storyId": "story_1049_brave_courage_short_traditional",
+      "title": "The Report of the Spies",
+      "mood": "brave_courage",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1049/story_1049_traditional_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "They held the fruit of the promised land in their hands and still could not believe. When has abundance stood before you and fear kept you from reaching for it?",
+      "bibleSourceRef": "Numbers 13:25-33",
+      "bibleStoryKey": "report_of_the_spies"
+    },
+    {
+      "storyId": "story_1049_brave_courage_full_traditional",
+      "title": "The Report of the Spies",
+      "mood": "brave_courage",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1049/story_1049_traditional_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "They held the fruit of the promised land in their hands and still could not believe. When has abundance stood before you and fear kept you from reaching for it?",
+      "bibleSourceRef": "Numbers 13:25-33",
+      "bibleStoryKey": "report_of_the_spies"
+    },
+    {
+      "storyId": "story_1049_brave_courage_short_traditional",
+      "title": "The Report of the Spies",
+      "mood": "brave_courage",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1049/story_1049_traditional_kjv_short.txt",
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "They held the fruit of the promised land in their hands and still could not believe. When has abundance stood before you and fear kept you from reaching for it?",
+      "bibleSourceRef": "Numbers 13:25-33",
+      "bibleStoryKey": "report_of_the_spies"
+    },
+    {
+      "storyId": "story_1049_brave_courage_full_traditional",
+      "title": "The Report of the Spies",
+      "mood": "brave_courage",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1049/story_1049_traditional_kjv_full.txt",
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "They held the fruit of the promised land in their hands and still could not believe. When has abundance stood before you and fear kept you from reaching for it?",
+      "bibleSourceRef": "Numbers 13:25-33",
+      "bibleStoryKey": "report_of_the_spies"
+    },
+    {
+      "storyId": "story_1050_calm_peaceful_short_traditional",
+      "title": "The Potter's Wheel",
+      "mood": "calm_peaceful",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1050/story_1050_traditional_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "The vessel was marred and the potter made it again. What does it feel like to be reshaped by hands you cannot see but have chosen to trust?",
+      "bibleSourceRef": "Jeremiah 18:1-6",
+      "bibleStoryKey": "potter_and_clay"
+    },
+    {
+      "storyId": "story_1050_calm_peaceful_full_traditional",
+      "title": "The Potter's Wheel",
+      "mood": "calm_peaceful",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1050/story_1050_traditional_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "The vessel was marred and the potter made it again. What does it feel like to be reshaped by hands you cannot see but have chosen to trust?",
+      "bibleSourceRef": "Jeremiah 18:1-6",
+      "bibleStoryKey": "potter_and_clay"
+    },
+    {
+      "storyId": "story_1050_calm_peaceful_short_traditional",
+      "title": "The Potter's Wheel",
+      "mood": "calm_peaceful",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1050/story_1050_traditional_kjv_short.txt",
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "The vessel was marred and the potter made it again. What does it feel like to be reshaped by hands you cannot see but have chosen to trust?",
+      "bibleSourceRef": "Jeremiah 18:1-6",
+      "bibleStoryKey": "potter_and_clay"
+    },
+    {
+      "storyId": "story_1050_calm_peaceful_full_traditional",
+      "title": "The Potter's Wheel",
+      "mood": "calm_peaceful",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1050/story_1050_traditional_kjv_full.txt",
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "The vessel was marred and the potter made it again. What does it feel like to be reshaped by hands you cannot see but have chosen to trust?",
+      "bibleSourceRef": "Jeremiah 18:1-6",
+      "bibleStoryKey": "potter_and_clay"
+    },
+    {
+      "storyId": "story_1051_encouraging_short_traditional",
+      "title": "Nehemiah Rebuilds Jerusalem",
+      "mood": "encouraging",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1051/story_1051_traditional_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole — and what would it take to say 'let us build'?",
+      "bibleSourceRef": "Nehemiah 2:1-18",
+      "bibleStoryKey": "nehemiah_rebuilds_jerusalem"
+    },
+    {
+      "storyId": "story_1051_encouraging_full_traditional",
+      "title": "Nehemiah Rebuilds Jerusalem",
+      "mood": "encouraging",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1051/story_1051_traditional_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole — and what would it take to say 'let us build'?",
+      "bibleSourceRef": "Nehemiah 2:1-18",
+      "bibleStoryKey": "nehemiah_rebuilds_jerusalem"
+    },
+    {
+      "storyId": "story_1051_encouraging_short_traditional",
+      "title": "Nehemiah Rebuilds Jerusalem",
+      "mood": "encouraging",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1051/story_1051_traditional_kjv_short.txt",
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole — and what would it take to say 'let us build'?",
+      "bibleSourceRef": "Nehemiah 2:1-18",
+      "bibleStoryKey": "nehemiah_rebuilds_jerusalem"
+    },
+    {
+      "storyId": "story_1051_encouraging_full_traditional",
+      "title": "Nehemiah Rebuilds Jerusalem",
+      "mood": "encouraging",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1051/story_1051_traditional_kjv_full.txt",
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole — and what would it take to say 'let us build'?",
+      "bibleSourceRef": "Nehemiah 2:1-18",
+      "bibleStoryKey": "nehemiah_rebuilds_jerusalem"
+    },
+    {
+      "storyId": "story_1052_grateful_short_traditional",
+      "title": "David and Jonathan's Covenant",
+      "mood": "grateful",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1052/story_1052_traditional_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "A prince gave away everything that marked him as royalty to a shepherd he had just met. What moves a person to hand over their identity to someone else?",
+      "bibleSourceRef": "1 Samuel 18:1-4",
+      "bibleStoryKey": "david_and_jonathan_covenant"
+    },
+    {
+      "storyId": "story_1052_grateful_full_traditional",
+      "title": "David and Jonathan's Covenant",
+      "mood": "grateful",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1052/story_1052_traditional_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "A prince gave away everything that marked him as royalty to a shepherd he had just met. What moves a person to hand over their identity to someone else?",
+      "bibleSourceRef": "1 Samuel 18:1-4",
+      "bibleStoryKey": "david_and_jonathan_covenant"
+    },
+    {
+      "storyId": "story_1052_grateful_short_traditional",
+      "title": "David and Jonathan's Covenant",
+      "mood": "grateful",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1052/story_1052_traditional_kjv_short.txt",
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "A prince gave away everything that marked him as royalty to a shepherd he had just met. What moves a person to hand over their identity to someone else?",
+      "bibleSourceRef": "1 Samuel 18:1-4",
+      "bibleStoryKey": "david_and_jonathan_covenant"
+    },
+    {
+      "storyId": "story_1052_grateful_full_traditional",
+      "title": "David and Jonathan's Covenant",
+      "mood": "grateful",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1052/story_1052_traditional_kjv_full.txt",
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "A prince gave away everything that marked him as royalty to a shepherd he had just met. What moves a person to hand over their identity to someone else?",
+      "bibleSourceRef": "1 Samuel 18:1-4",
+      "bibleStoryKey": "david_and_jonathan_covenant"
+    },
+    {
+      "storyId": "story_1053_hurting_short_traditional",
+      "title": "Naaman Washes in the Jordan",
+      "mood": "hurting",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1053/story_1053_traditional_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "He expected fire and spectacle but was told to wash in a muddy river. What happens when the answer to your deepest need looks nothing like what you imagined?",
+      "bibleSourceRef": "2 Kings 5:1-14",
+      "bibleStoryKey": "naaman_healed"
+    },
+    {
+      "storyId": "story_1053_hurting_full_traditional",
+      "title": "Naaman Washes in the Jordan",
+      "mood": "hurting",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1053/story_1053_traditional_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "He expected fire and spectacle but was told to wash in a muddy river. What happens when the answer to your deepest need looks nothing like what you imagined?",
+      "bibleSourceRef": "2 Kings 5:1-14",
+      "bibleStoryKey": "naaman_healed"
+    },
+    {
+      "storyId": "story_1053_hurting_short_traditional",
+      "title": "Naaman Washes in the Jordan",
+      "mood": "hurting",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1053/story_1053_traditional_kjv_short.txt",
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "He expected fire and spectacle but was told to wash in a muddy river. What happens when the answer to your deepest need looks nothing like what you imagined?",
+      "bibleSourceRef": "2 Kings 5:1-14",
+      "bibleStoryKey": "naaman_healed"
+    },
+    {
+      "storyId": "story_1053_hurting_full_traditional",
+      "title": "Naaman Washes in the Jordan",
+      "mood": "hurting",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1053/story_1053_traditional_kjv_full.txt",
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "He expected fire and spectacle but was told to wash in a muddy river. What happens when the answer to your deepest need looks nothing like what you imagined?",
+      "bibleSourceRef": "2 Kings 5:1-14",
+      "bibleStoryKey": "naaman_healed"
+    },
+    {
+      "storyId": "story_1054_joyful_short_traditional",
+      "title": "Mephibosheth at David's Table",
+      "mood": "joyful",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1054/story_1054_traditional_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "He expected judgment and received a seat at the table. When has kindness arrived in a place where you only expected to be forgotten?",
+      "bibleSourceRef": "2 Samuel 9:1-13",
+      "bibleStoryKey": "mephibosheth_at_davids_table"
+    },
+    {
+      "storyId": "story_1054_joyful_full_traditional",
+      "title": "Mephibosheth at David's Table",
+      "mood": "joyful",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1054/story_1054_traditional_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "He expected judgment and received a seat at the table. When has kindness arrived in a place where you only expected to be forgotten?",
+      "bibleSourceRef": "2 Samuel 9:1-13",
+      "bibleStoryKey": "mephibosheth_at_davids_table"
+    },
+    {
+      "storyId": "story_1054_joyful_short_traditional",
+      "title": "Mephibosheth at David's Table",
+      "mood": "joyful",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1054/story_1054_traditional_kjv_short.txt",
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "He expected judgment and received a seat at the table. When has kindness arrived in a place where you only expected to be forgotten?",
+      "bibleSourceRef": "2 Samuel 9:1-13",
+      "bibleStoryKey": "mephibosheth_at_davids_table"
+    },
+    {
+      "storyId": "story_1054_joyful_full_traditional",
+      "title": "Mephibosheth at David's Table",
+      "mood": "joyful",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1054/story_1054_traditional_kjv_full.txt",
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "He expected judgment and received a seat at the table. When has kindness arrived in a place where you only expected to be forgotten?",
+      "bibleSourceRef": "2 Samuel 9:1-13",
+      "bibleStoryKey": "mephibosheth_at_davids_table"
+    },
+    {
+      "storyId": "story_1055_weary_short_traditional",
+      "title": "Job Loses Everything",
+      "mood": "weary",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1055/story_1055_traditional_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Everything was taken in a single afternoon — the animals, the servants, the children. What remains when everything you built is gone and the only thing left is the ground beneath you?",
+      "bibleSourceRef": "Job 1:1-22",
+      "bibleStoryKey": "job_loses_everything"
+    },
+    {
+      "storyId": "story_1055_weary_full_traditional",
+      "title": "Job Loses Everything",
+      "mood": "weary",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1055/story_1055_traditional_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Everything was taken in a single afternoon — the animals, the servants, the children. What remains when everything you built is gone and the only thing left is the ground beneath you?",
+      "bibleSourceRef": "Job 1:1-22",
+      "bibleStoryKey": "job_loses_everything"
+    },
+    {
+      "storyId": "story_1055_weary_short_traditional",
+      "title": "Job Loses Everything",
+      "mood": "weary",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1055/story_1055_traditional_kjv_short.txt",
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Everything was taken in a single afternoon — the animals, the servants, the children. What remains when everything you built is gone and the only thing left is the ground beneath you?",
+      "bibleSourceRef": "Job 1:1-22",
+      "bibleStoryKey": "job_loses_everything"
+    },
+    {
+      "storyId": "story_1055_weary_full_traditional",
+      "title": "Job Loses Everything",
+      "mood": "weary",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1055/story_1055_traditional_kjv_full.txt",
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Everything was taken in a single afternoon — the animals, the servants, the children. What remains when everything you built is gone and the only thing left is the ground beneath you?",
+      "bibleSourceRef": "Job 1:1-22",
+      "bibleStoryKey": "job_loses_everything"
+    },
+    {
+      "storyId": "story_1056_anxious_short_kid_traditional",
+      "title": "Crossing the Red Sea",
+      "mood": "anxious",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "textFilePath": "traditional/1056/story_1056_traditional_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARABELLA",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "The sea was in front of them and the army was behind them. Have you ever been stuck in a scary place with no way out, and then someone helped you in a way you didn't expect?",
+      "bibleSourceRef": "Exodus 14:10-31",
+      "bibleStoryKey": "red_sea_crossing"
+    },
+    {
+      "storyId": "story_1056_anxious_full_kid_traditional",
+      "title": "Crossing the Red Sea",
+      "mood": "anxious",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "textFilePath": "traditional/1056/story_1056_traditional_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARABELLA",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "The sea was in front of them and the army was behind them. Have you ever been stuck in a scary place with no way out, and then someone helped you in a way you didn't expect?",
+      "bibleSourceRef": "Exodus 14:10-31",
+      "bibleStoryKey": "red_sea_crossing"
+    },
+    {
+      "storyId": "story_1057_brave_courage_short_kid_traditional",
+      "title": "The Spies and the Big Grapes",
+      "mood": "brave_courage",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "textFilePath": "traditional/1057/story_1057_traditional_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Caleb saw the same giants as everyone else but he wasn't afraid. Have you ever had to be the one person who believed something good when everyone else was scared?",
+      "bibleSourceRef": "Numbers 13:25-33",
+      "bibleStoryKey": "report_of_the_spies"
+    },
+    {
+      "storyId": "story_1057_brave_courage_full_kid_traditional",
+      "title": "The Spies and the Big Grapes",
+      "mood": "brave_courage",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "textFilePath": "traditional/1057/story_1057_traditional_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Caleb saw the same giants as everyone else but he wasn't afraid. Have you ever had to be the one person who believed something good when everyone else was scared?",
+      "bibleSourceRef": "Numbers 13:25-33",
+      "bibleStoryKey": "report_of_the_spies"
+    },
+    {
+      "storyId": "story_1058_calm_peaceful_short_kid_traditional",
+      "title": "The Potter's Wheel",
+      "mood": "calm_peaceful",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "textFilePath": "traditional/1058/story_1058_traditional_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_LILY_WOLFF",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "The potter didn't throw the clay away when it broke — he made it into something new. Have you ever felt broken and then been surprised that something good still came from it?",
+      "bibleSourceRef": "Jeremiah 18:1-6",
+      "bibleStoryKey": "potter_and_clay"
+    },
+    {
+      "storyId": "story_1058_calm_peaceful_full_kid_traditional",
+      "title": "The Potter's Wheel",
+      "mood": "calm_peaceful",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "textFilePath": "traditional/1058/story_1058_traditional_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_LILY_WOLFF",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "The potter didn't throw the clay away when it broke — he made it into something new. Have you ever felt broken and then been surprised that something good still came from it?",
+      "bibleSourceRef": "Jeremiah 18:1-6",
+      "bibleStoryKey": "potter_and_clay"
+    },
+    {
+      "storyId": "story_1059_encouraging_short_kid_traditional",
+      "title": "Nehemiah Rebuilds the Wall",
+      "mood": "encouraging",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "textFilePath": "traditional/1059/story_1059_traditional_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Nehemiah was afraid to ask the king but he asked anyway. Have you ever been scared to ask for something important — and then found out the answer was yes?",
+      "bibleSourceRef": "Nehemiah 2:1-18",
+      "bibleStoryKey": "nehemiah_rebuilds_jerusalem"
+    },
+    {
+      "storyId": "story_1059_encouraging_full_kid_traditional",
+      "title": "Nehemiah Rebuilds the Wall",
+      "mood": "encouraging",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "textFilePath": "traditional/1059/story_1059_traditional_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Nehemiah was afraid to ask the king but he asked anyway. Have you ever been scared to ask for something important — and then found out the answer was yes?",
+      "bibleSourceRef": "Nehemiah 2:1-18",
+      "bibleStoryKey": "nehemiah_rebuilds_jerusalem"
+    },
+    {
+      "storyId": "story_1060_grateful_short_kid_traditional",
+      "title": "David and Jonathan Become Friends",
+      "mood": "grateful",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "textFilePath": "traditional/1060/story_1060_traditional_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Jonathan gave away everything that made him a prince — just because his heart told him to. What is the most generous thing someone has ever done for you? What made it special?",
+      "bibleSourceRef": "1 Samuel 18:1-4",
+      "bibleStoryKey": "david_and_jonathan_covenant"
+    },
+    {
+      "storyId": "story_1060_grateful_full_kid_traditional",
+      "title": "David and Jonathan Become Friends",
+      "mood": "grateful",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "textFilePath": "traditional/1060/story_1060_traditional_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Jonathan gave away everything that made him a prince — just because his heart told him to. What is the most generous thing someone has ever done for you? What made it special?",
+      "bibleSourceRef": "1 Samuel 18:1-4",
+      "bibleStoryKey": "david_and_jonathan_covenant"
+    },
+    {
+      "storyId": "story_1061_hurting_short_kid_traditional",
+      "title": "Naaman Gets Clean",
+      "mood": "hurting",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "textFilePath": "traditional/1061/story_1061_traditional_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Naaman wanted something big and impressive, but the answer was simple and small. Have you ever been surprised that the right answer was easier than you expected?",
+      "bibleSourceRef": "2 Kings 5:1-14",
+      "bibleStoryKey": "naaman_healed"
+    },
+    {
+      "storyId": "story_1061_hurting_full_kid_traditional",
+      "title": "Naaman Gets Clean",
+      "mood": "hurting",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "textFilePath": "traditional/1061/story_1061_traditional_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Naaman wanted something big and impressive, but the answer was simple and small. Have you ever been surprised that the right answer was easier than you expected?",
+      "bibleSourceRef": "2 Kings 5:1-14",
+      "bibleStoryKey": "naaman_healed"
+    },
+    {
+      "storyId": "story_1062_joyful_short_kid_traditional",
+      "title": "A Seat at the King's Table",
+      "mood": "joyful",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "textFilePath": "traditional/1062/story_1062_traditional_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Mephibosheth thought he was nobody, but the king gave him a seat at his own table. Have you ever felt like you didn't belong somewhere, and then someone made you feel welcome anyway?",
+      "bibleSourceRef": "2 Samuel 9:1-13",
+      "bibleStoryKey": "mephibosheth_at_davids_table"
+    },
+    {
+      "storyId": "story_1062_joyful_full_kid_traditional",
+      "title": "A Seat at the King's Table",
+      "mood": "joyful",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "textFilePath": "traditional/1062/story_1062_traditional_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Mephibosheth thought he was nobody, but the king gave him a seat at his own table. Have you ever felt like you didn't belong somewhere, and then someone made you feel welcome anyway?",
+      "bibleSourceRef": "2 Samuel 9:1-13",
+      "bibleStoryKey": "mephibosheth_at_davids_table"
+    },
+    {
+      "storyId": "story_1063_weary_short_kid_traditional",
+      "title": "Job's Terrible Day",
+      "mood": "weary",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "textFilePath": "traditional/1063/story_1063_traditional_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JANE_PROFESSIONAL",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Job lost everything in one day — his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?",
+      "bibleSourceRef": "Job 1:1-22",
+      "bibleStoryKey": "job_loses_everything"
+    },
+    {
+      "storyId": "story_1063_weary_full_kid_traditional",
+      "title": "Job's Terrible Day",
+      "mood": "weary",
+      "emotionalTags": [],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "textFilePath": "traditional/1063/story_1063_traditional_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JANE_PROFESSIONAL",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Job lost everything in one day — his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?",
+      "bibleSourceRef": "Job 1:1-22",
+      "bibleStoryKey": "job_loses_everything"
+    },
+    {
       "storyId": "story_2000_joyful_short_creative",
       "title": "The Keeper Whose Light Grew Brighter",
       "mood": "joyful",
@@ -6684,6 +7644,614 @@
       "reflectionQuestion": "After a really long day, what helps you feel safe and rested?",
       "reflectionAudioPath": "creative/2047/audio_2047_reflection.mp3",
       "theme": "weariness, rest, being cared for even when you're alone"
+    },
+    {
+      "storyId": "story_2048_anxious_short_creative",
+      "title": "The Envelope",
+      "mood": "anxious",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "textFilePath": "creative/2048/story_2048_creative_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PETER_BOLD",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "She waited three days to open the letter because the last one had changed everything. What envelope — real or invisible — have you been afraid to open?",
+      "theme": "anxiety and the weight of waiting for uncertain news"
+    },
+    {
+      "storyId": "story_2048_anxious_full_creative",
+      "title": "The Envelope",
+      "mood": "anxious",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "textFilePath": "creative/2048/story_2048_creative_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PETER_BOLD",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "She waited three days to open the letter because the last one had changed everything. What envelope — real or invisible — have you been afraid to open?",
+      "theme": "anxiety and the weight of waiting for uncertain news"
+    },
+    {
+      "storyId": "story_2049_brave_courage_short_creative",
+      "title": "The Bus Stop",
+      "mood": "brave_courage",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "textFilePath": "creative/2049/story_2049_creative_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Eight people watched. One kid moved. What makes the difference between the person who acts and the person who stands still?",
+      "theme": "witnessing courage in someone else and reckoning with your own stillness"
+    },
+    {
+      "storyId": "story_2049_brave_courage_full_creative",
+      "title": "The Bus Stop",
+      "mood": "brave_courage",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "textFilePath": "creative/2049/story_2049_creative_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Eight people watched. One kid moved. What makes the difference between the person who acts and the person who stands still?",
+      "theme": "witnessing courage in someone else and reckoning with your own stillness"
+    },
+    {
+      "storyId": "story_2050_calm_peaceful_short_creative",
+      "title": "The Valley",
+      "mood": "calm_peaceful",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "textFilePath": "creative/2050/story_2050_creative_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOSEPH_DREAMER",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "He drove through a valley that asked nothing of him and something loosened inside. Where is the place — or the silence — that holds you without gripping?",
+      "theme": "finding unexpected peace in stillness during movement"
+    },
+    {
+      "storyId": "story_2050_calm_peaceful_full_creative",
+      "title": "The Valley",
+      "mood": "calm_peaceful",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "textFilePath": "creative/2050/story_2050_creative_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOSEPH_DREAMER",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "He drove through a valley that asked nothing of him and something loosened inside. Where is the place — or the silence — that holds you without gripping?",
+      "theme": "finding unexpected peace in stillness during movement"
+    },
+    {
+      "storyId": "story_2051_encouraging_short_creative",
+      "title": "The Herald",
+      "mood": "encouraging",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "textFilePath": "creative/2051/story_2051_creative_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "She had been writing for three years without knowing anyone was reading. What quiet thing do you do that might matter more than you realize?",
+      "theme": "discovering that unseen work has been making a difference all along"
+    },
+    {
+      "storyId": "story_2051_encouraging_full_creative",
+      "title": "The Herald",
+      "mood": "encouraging",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "textFilePath": "creative/2051/story_2051_creative_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "She had been writing for three years without knowing anyone was reading. What quiet thing do you do that might matter more than you realize?",
+      "theme": "discovering that unseen work has been making a difference all along"
+    },
+    {
+      "storyId": "story_2052_grateful_short_creative",
+      "title": "The Windowsill",
+      "mood": "grateful",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "textFilePath": "creative/2052/story_2052_creative_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_SAMUEL_EARNEST",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "A woman left bread for a stranger decades ago and the gratitude is still moving. What act of kindness from your past still echoes in ways you might not see?",
+      "theme": "gratitude that connects strangers across time without their knowing"
+    },
+    {
+      "storyId": "story_2052_grateful_full_creative",
+      "title": "The Windowsill",
+      "mood": "grateful",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "textFilePath": "creative/2052/story_2052_creative_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_SAMUEL_EARNEST",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "A woman left bread for a stranger decades ago and the gratitude is still moving. What act of kindness from your past still echoes in ways you might not see?",
+      "theme": "gratitude that connects strangers across time without their knowing"
+    },
+    {
+      "storyId": "story_2053_hurting_short_creative",
+      "title": "The Garden Gloves",
+      "mood": "hurting",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "textFilePath": "creative/2053/story_2053_creative_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "She put on gloves that didn't fit and knelt in a garden that wasn't hers anymore. What object carries someone you've lost — and what happens when you finally pick it up?",
+      "theme": "grief held in a physical object that slowly becomes a carrier of continuation"
+    },
+    {
+      "storyId": "story_2053_hurting_full_creative",
+      "title": "The Garden Gloves",
+      "mood": "hurting",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "textFilePath": "creative/2053/story_2053_creative_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "She put on gloves that didn't fit and knelt in a garden that wasn't hers anymore. What object carries someone you've lost — and what happens when you finally pick it up?",
+      "theme": "grief held in a physical object that slowly becomes a carrier of continuation"
+    },
+    {
+      "storyId": "story_2054_joyful_short_creative",
+      "title": "Tuesday Mango",
+      "mood": "joyful",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "textFilePath": "creative/2054/story_2054_creative_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "A mango in a garage on a Tuesday afternoon. Where does joy find you when you're not looking for it?",
+      "theme": "joy arriving through honest, simple connection between two people"
+    },
+    {
+      "storyId": "story_2054_joyful_full_creative",
+      "title": "Tuesday Mango",
+      "mood": "joyful",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "textFilePath": "creative/2054/story_2054_creative_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "A mango in a garage on a Tuesday afternoon. Where does joy find you when you're not looking for it?",
+      "theme": "joy arriving through honest, simple connection between two people"
+    },
+    {
+      "storyId": "story_2055_weary_short_creative",
+      "title": "The Watering Can",
+      "mood": "weary",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "textFilePath": "creative/2055/story_2055_creative_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "She fought the hose for twenty minutes before her neighbor handed her a watering can. What fight are you in that might have a simpler answer?",
+      "theme": "exhaustion met by the simplest possible solution"
+    },
+    {
+      "storyId": "story_2055_weary_full_creative",
+      "title": "The Watering Can",
+      "mood": "weary",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": false,
+      "textFilePath": "creative/2055/story_2055_creative_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "She fought the hose for twenty minutes before her neighbor handed her a watering can. What fight are you in that might have a simpler answer?",
+      "theme": "exhaustion met by the simplest possible solution"
+    },
+    {
+      "storyId": "story_2056_anxious_short_kid_creative",
+      "title": "Room 14",
+      "mood": "anxious",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "textFilePath": "creative/2056/story_2056_creative_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "What was the last new place you walked into where you didn't know anyone? What helped you feel less alone?",
+      "theme": "first-day anxiety eased by unexpected connection"
+    },
+    {
+      "storyId": "story_2056_anxious_full_kid_creative",
+      "title": "Room 14",
+      "mood": "anxious",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "textFilePath": "creative/2056/story_2056_creative_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "What was the last new place you walked into where you didn't know anyone? What helped you feel less alone?",
+      "theme": "first-day anxiety eased by unexpected connection"
+    },
+    {
+      "storyId": "story_2057_brave_courage_short_kid_creative",
+      "title": "The Wrapper",
+      "mood": "brave_courage",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "textFilePath": "creative/2057/story_2057_creative_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARABELLA",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Have you ever seen something that wasn't right and had to decide whether to say something or stay quiet? What did you do?",
+      "theme": "speaking up when staying quiet would be easier"
+    },
+    {
+      "storyId": "story_2057_brave_courage_full_kid_creative",
+      "title": "The Wrapper",
+      "mood": "brave_courage",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "textFilePath": "creative/2057/story_2057_creative_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARABELLA",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Have you ever seen something that wasn't right and had to decide whether to say something or stay quiet? What did you do?",
+      "theme": "speaking up when staying quiet would be easier"
+    },
+    {
+      "storyId": "story_2058_calm_peaceful_short_kid_creative",
+      "title": "The Gap Behind the Library",
+      "mood": "calm_peaceful",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "textFilePath": "creative/2058/story_2058_creative_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_LILY_WOLFF",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Have you ever found a spot where the world got quieter and you could just breathe? Where is your hidden place?",
+      "theme": "finding a hidden pocket of stillness in a noisy world"
+    },
+    {
+      "storyId": "story_2058_calm_peaceful_full_kid_creative",
+      "title": "The Gap Behind the Library",
+      "mood": "calm_peaceful",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "textFilePath": "creative/2058/story_2058_creative_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_LILY_WOLFF",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Have you ever found a spot where the world got quieter and you could just breathe? Where is your hidden place?",
+      "theme": "finding a hidden pocket of stillness in a noisy world"
+    },
+    {
+      "storyId": "story_2059_encouraging_short_kid_creative",
+      "title": "Some Notes",
+      "mood": "encouraging",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "textFilePath": "creative/2059/story_2059_creative_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Have you ever said something small to someone that helped them try again? What was it?",
+      "theme": "a child's simple words helping someone rediscover what they'd given up"
+    },
+    {
+      "storyId": "story_2059_encouraging_full_kid_creative",
+      "title": "Some Notes",
+      "mood": "encouraging",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "textFilePath": "creative/2059/story_2059_creative_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Have you ever said something small to someone that helped them try again? What was it?",
+      "theme": "a child's simple words helping someone rediscover what they'd given up"
+    },
+    {
+      "storyId": "story_2060_grateful_short_kid_creative",
+      "title": "The Yellow Note",
+      "mood": "grateful",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "textFilePath": "creative/2060/story_2060_creative_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "What is something in your daily life that you might not notice until it was gone? Who puts it there for you?",
+      "theme": "recognizing a daily gift you've been taking for granted"
+    },
+    {
+      "storyId": "story_2060_grateful_full_kid_creative",
+      "title": "The Yellow Note",
+      "mood": "grateful",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "textFilePath": "creative/2060/story_2060_creative_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "What is something in your daily life that you might not notice until it was gone? Who puts it there for you?",
+      "theme": "recognizing a daily gift you've been taking for granted"
+    },
+    {
+      "storyId": "story_2061_hurting_short_kid_creative",
+      "title": "The Bracelet",
+      "mood": "hurting",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "textFilePath": "creative/2061/story_2061_creative_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Have you ever had to say goodbye to someone you didn't want to leave? What did you do to hold on?",
+      "theme": "sitting with the pain of a goodbye you can't prevent"
+    },
+    {
+      "storyId": "story_2061_hurting_full_kid_creative",
+      "title": "The Bracelet",
+      "mood": "hurting",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "textFilePath": "creative/2061/story_2061_creative_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "Have you ever had to say goodbye to someone you didn't want to leave? What did you do to hold on?",
+      "theme": "sitting with the pain of a goodbye you can't prevent"
+    },
+    {
+      "storyId": "story_2062_joyful_short_kid_creative",
+      "title": "The Puddle",
+      "mood": "joyful",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "textFilePath": "creative/2062/story_2062_creative_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "When was the last time you jumped into something just because it looked fun — even if you knew you'd get in trouble?",
+      "theme": "pure uncomplicated joy found in something simple and messy"
+    },
+    {
+      "storyId": "story_2062_joyful_full_kid_creative",
+      "title": "The Puddle",
+      "mood": "joyful",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "textFilePath": "creative/2062/story_2062_creative_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "When was the last time you jumped into something just because it looked fun — even if you knew you'd get in trouble?",
+      "theme": "pure uncomplicated joy found in something simple and messy"
+    },
+    {
+      "storyId": "story_2063_weary_short_kid_creative",
+      "title": "The Solar System",
+      "mood": "weary",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "textFilePath": "creative/2063/story_2063_creative_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "storyLength": "short",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "When was the last time someone helped you carry something without being asked? How did it feel to not have to do it alone?",
+      "theme": "letting someone help when you've been carrying too much alone"
+    },
+    {
+      "storyId": "story_2063_weary_full_kid_creative",
+      "title": "The Solar System",
+      "mood": "weary",
+      "emotionalTags": [],
+      "storytellingMode": "creative",
+      "kidFriendly": true,
+      "textFilePath": "creative/2063/story_2063_creative_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "storyLength": "full",
+      "availableLengths": [
+        "short",
+        "full"
+      ],
+      "reflectionQuestion": "When was the last time someone helped you carry something without being asked? How did it feel to not have to do it alone?",
+      "theme": "letting someone help when you've been carrying too much alone"
     }
   ]
 }

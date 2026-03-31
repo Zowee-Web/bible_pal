@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1057,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_DAVID_SHEPHERD",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "Caleb saw the same giants as everyone else but he wasn't afraid. Have you ever had to be the one person who believed something good when everyone else was scared?",
+  "title": "The Spies and the Big Grapes",
+  "files": {
+    "short": {
+      "storyText": "story_1057_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1057_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1057_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "scriptureAnchor": "Numbers 13:25-33",
+  "bibleStoryKey": "report_of_the_spies"
+}

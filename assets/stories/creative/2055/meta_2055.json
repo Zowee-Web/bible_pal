@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2055,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_LYDIA_GRACIOUS",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_03",
+  "reflectionQuestion": "She fought the hose for twenty minutes before her neighbor handed her a watering can. What fight are you in that might have a simpler answer?",
+  "title": "The Watering Can",
+  "theme": "exhaustion met by the simplest possible solution",
+  "files": {
+    "short": {
+      "storyText": "story_2055_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2055_creative_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2055_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_LYDIA_GRACIOUS",
+  "reflectionVoiceKey": "VOICE_LYDIA_GRACIOUS"
+}
