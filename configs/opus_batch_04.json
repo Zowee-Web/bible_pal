@@ -1,0 +1,165 @@
+{
+  "batch": "PAL_OPUS_BATCH_04",
+  "stories": [
+    {
+      "id": 1064, "mode": "traditional", "mood": "anxious",
+      "voice": "VOICE_MARY_PONDER", "title": "TBD",
+      "anchor": "TBD", "bibleKey": "TBD", "kid": false
+    },
+    {
+      "id": 1065, "mode": "traditional", "mood": "brave_courage",
+      "voice": "VOICE_PETER_BOLD", "title": "TBD",
+      "anchor": "TBD", "bibleKey": "TBD", "kid": false
+    },
+    {
+      "id": 1066, "mode": "traditional", "mood": "calm_peaceful",
+      "voice": "VOICE_SAMUEL_EARNEST", "title": "TBD",
+      "anchor": "TBD", "bibleKey": "TBD", "kid": false
+    },
+    {
+      "id": 1067, "mode": "traditional", "mood": "encouraging",
+      "voice": "VOICE_DEBORAH_WISE", "title": "TBD",
+      "anchor": "TBD", "bibleKey": "TBD", "kid": false
+    },
+    {
+      "id": 1068, "mode": "traditional", "mood": "grateful",
+      "voice": "VOICE_HANNAH_HOPE", "title": "TBD",
+      "anchor": "TBD", "bibleKey": "TBD", "kid": false
+    },
+    {
+      "id": 1069, "mode": "traditional", "mood": "hurting",
+      "voice": "VOICE_MARCUS_ANCHOR", "title": "TBD",
+      "anchor": "TBD", "bibleKey": "TBD", "kid": false
+    },
+    {
+      "id": 1070, "mode": "traditional", "mood": "joyful",
+      "voice": "VOICE_NOAH_PATIENT", "title": "TBD",
+      "anchor": "TBD", "bibleKey": "TBD", "kid": false
+    },
+    {
+      "id": 1071, "mode": "traditional", "mood": "weary",
+      "voice": "VOICE_BRADFORD", "title": "TBD",
+      "anchor": "TBD", "bibleKey": "TBD", "kid": false
+    },
+    {
+      "id": 1072, "mode": "traditional", "mood": "anxious",
+      "voice": "VOICE_LILY_WOLFF", "title": "TBD",
+      "anchor": "TBD", "bibleKey": "TBD", "kid": true
+    },
+    {
+      "id": 1073, "mode": "traditional", "mood": "brave_courage",
+      "voice": "VOICE_ESTHER_BRAVE", "title": "TBD",
+      "anchor": "TBD", "bibleKey": "TBD", "kid": true
+    },
+    {
+      "id": 1074, "mode": "traditional", "mood": "calm_peaceful",
+      "voice": "VOICE_ARABELLA", "title": "TBD",
+      "anchor": "TBD", "bibleKey": "TBD", "kid": true
+    },
+    {
+      "id": 1075, "mode": "traditional", "mood": "encouraging",
+      "voice": "VOICE_BARNABAS_ENCOURAGER", "title": "TBD",
+      "anchor": "TBD", "bibleKey": "TBD", "kid": true
+    },
+    {
+      "id": 1076, "mode": "traditional", "mood": "grateful",
+      "voice": "VOICE_MARTHA_CARING", "title": "TBD",
+      "anchor": "TBD", "bibleKey": "TBD", "kid": true
+    },
+    {
+      "id": 1077, "mode": "traditional", "mood": "hurting",
+      "voice": "VOICE_JANE_PROFESSIONAL", "title": "TBD",
+      "anchor": "TBD", "bibleKey": "TBD", "kid": true
+    },
+    {
+      "id": 1078, "mode": "traditional", "mood": "joyful",
+      "voice": "VOICE_DAVID_SHEPHERD", "title": "TBD",
+      "anchor": "TBD", "bibleKey": "TBD", "kid": true
+    },
+    {
+      "id": 1079, "mode": "traditional", "mood": "weary",
+      "voice": "VOICE_PRISCILLA_TEACHER", "title": "TBD",
+      "anchor": "TBD", "bibleKey": "TBD", "kid": true
+    },
+    {
+      "id": 2064, "mode": "creative", "mood": "anxious",
+      "voice": "VOICE_JAMES_HUSKY", "title": "TBD",
+      "kid": false, "theme": "TBD"
+    },
+    {
+      "id": 2065, "mode": "creative", "mood": "brave_courage",
+      "voice": "VOICE_ELIJAH_SAGE", "title": "TBD",
+      "kid": false, "theme": "TBD"
+    },
+    {
+      "id": 2066, "mode": "creative", "mood": "calm_peaceful",
+      "voice": "VOICE_LYDIA_GRACIOUS", "title": "TBD",
+      "kid": false, "theme": "TBD"
+    },
+    {
+      "id": 2067, "mode": "creative", "mood": "encouraging",
+      "voice": "VOICE_SARAH_STORYTELLER", "title": "TBD",
+      "kid": false, "theme": "TBD"
+    },
+    {
+      "id": 2068, "mode": "creative", "mood": "grateful",
+      "voice": "VOICE_RUTH_COMFORT", "title": "TBD",
+      "kid": false, "theme": "TBD"
+    },
+    {
+      "id": 2069, "mode": "creative", "mood": "hurting",
+      "voice": "VOICE_JOHN_BELOVED", "title": "TBD",
+      "kid": false, "theme": "TBD"
+    },
+    {
+      "id": 2070, "mode": "creative", "mood": "joyful",
+      "voice": "VOICE_MIRIAM_JOYFUL", "title": "TBD",
+      "kid": false, "theme": "TBD"
+    },
+    {
+      "id": 2071, "mode": "creative", "mood": "weary",
+      "voice": "VOICE_BARNABAS_ENCOURAGER", "title": "TBD",
+      "kid": false, "theme": "TBD"
+    },
+    {
+      "id": 2072, "mode": "creative", "mood": "anxious",
+      "voice": "VOICE_HANNAH_HOPE", "title": "TBD",
+      "kid": true, "theme": "TBD"
+    },
+    {
+      "id": 2073, "mode": "creative", "mood": "brave_courage",
+      "voice": "VOICE_DAVID_SHEPHERD", "title": "TBD",
+      "kid": true, "theme": "TBD"
+    },
+    {
+      "id": 2074, "mode": "creative", "mood": "calm_peaceful",
+      "voice": "VOICE_ARABELLA", "title": "TBD",
+      "kid": true, "theme": "TBD"
+    },
+    {
+      "id": 2075, "mode": "creative", "mood": "encouraging",
+      "voice": "VOICE_LILY_WOLFF", "title": "TBD",
+      "kid": true, "theme": "TBD"
+    },
+    {
+      "id": 2076, "mode": "creative", "mood": "grateful",
+      "voice": "VOICE_ESTHER_BRAVE", "title": "TBD",
+      "kid": true, "theme": "TBD"
+    },
+    {
+      "id": 2077, "mode": "creative", "mood": "hurting",
+      "voice": "VOICE_MARTHA_CARING", "title": "TBD",
+      "kid": true, "theme": "TBD"
+    },
+    {
+      "id": 2078, "mode": "creative", "mood": "joyful",
+      "voice": "VOICE_ARCHER", "title": "TBD",
+      "kid": true, "theme": "TBD"
+    },
+    {
+      "id": 2079, "mode": "creative", "mood": "weary",
+      "voice": "VOICE_PRISCILLA_TEACHER", "title": "TBD",
+      "kid": true, "theme": "TBD"
+    }
+  ]
+}
