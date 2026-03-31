@@ -232,11 +232,15 @@ Each parable includes:
   - `timestamp`
 
 **12. Scripture Sources Panel**
-- Displays during parable playback
-- Lists all Bible verses used in the story
-- Uses user's selected Bible translation
-- Source list saved per `storyId`
-- Reused in Favorites and History views
+- Collapsible panel below story title on player screen
+- Collapsed by default; expands on tap to show:
+  - Scripture reference(s) (e.g., "Mark 4:35-41")
+  - Bible translation label (e.g., "World English Bible (WEB)")
+- "Read Scripture" button appears after playback completes
+  - Opens bottom sheet with reference, translation, and verse text (when available)
+- Hidden for Creative stories (no scripture reference)
+- Scripture reference display is driven by story metadata for the current `storyId`
+- Reused in Favorites and History views (future)
 
 ### Storytelling Modes
 

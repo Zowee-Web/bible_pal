@@ -16,6 +16,8 @@ import 'package:bible_pal/providers/service_providers.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:async';
 import '../../widgets/living_sky_background.dart';
+import '../../widgets/scripture_sources_panel.dart';
+import '../../widgets/scripture_bottom_sheet.dart';
 
 /// Parable Player Screen
 /// Based on SPEC.md Features 11, 12, 16, 17, 34-37
@@ -483,26 +485,14 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                   textAlign: TextAlign.center,
                                 ),
 
-                                // Scripture source (if available)
-                                if (playerState.currentParable!.hasBibleSourceRef) ...[
-                                  const SizedBox(height: 6),
-                                  Text(
-                                    playerState.currentParable!.bibleSourceRef!,
-                                    style: theme.textTheme.bodySmall?.copyWith(
-                                      color: theme.colorScheme.onSurfaceVariant,
-                                    ),
-                                    textAlign: TextAlign.center,
+                                // Scripture Sources panel (SPEC.md Feature 12)
+                                ScriptureSourcesPanel(
+                                  parable: playerState.currentParable!,
+                                  playbackCompleted: playerState.playbackCompleted,
+                                  onReadScriptureTapped: () => showScriptureBottomSheet(
+                                    context, playerState.currentParable!,
                                   ),
-                                ] else if (playerState.currentParable!.scriptureSources.isNotEmpty) ...[
-                                  const SizedBox(height: 6),
-                                  Text(
-                                    playerState.currentParable!.scriptureSources.join(', '),
-                                    style: theme.textTheme.bodySmall?.copyWith(
-                                      color: theme.colorScheme.onSurfaceVariant,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
+                                ),
 
                                 // Mood-flow verse (from PAL's mood response)
                                 if (playerState.verse != null) ...[
