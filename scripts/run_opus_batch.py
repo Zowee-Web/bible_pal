@@ -173,14 +173,26 @@ def main():
         stories = [s for s in stories if s["id"] in failed_ids]
         print(f"Retrying {len(stories)} failed stories: {sorted(s['id'] for s in stories)}")
 
-    # Validate: skip stories with TBD fields
+    # Validate: skip stories with TBD or missing required fields
     ready = []
     skipped_tbd = []
     for s in stories:
-        if s.get("title") == "TBD" or s.get("anchor") == "TBD":
-            skipped_tbd.append(s["id"])
+        title_ok = s.get("title") and s["title"] != "TBD"
+        if s["mode"] == "traditional":
+            # Traditional requires: title, anchor, bibleKey
+            anchor_ok = s.get("anchor") and s["anchor"] != "TBD"
+            key_ok = s.get("bibleKey") and s["bibleKey"] != "TBD"
+            if title_ok and anchor_ok and key_ok:
+                ready.append(s)
+            else:
+                skipped_tbd.append(s["id"])
         else:
-            ready.append(s)
+            # Creative requires: title, theme
+            theme_ok = s.get("theme") and s["theme"] != "TBD"
+            if title_ok and theme_ok:
+                ready.append(s)
+            else:
+                skipped_tbd.append(s["id"])
 
     if skipped_tbd:
         print(f"Skipping {len(skipped_tbd)} stories with TBD fields: {skipped_tbd}")
