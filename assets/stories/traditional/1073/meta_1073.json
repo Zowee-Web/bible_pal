@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1073,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_ESTHER_BRAVE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "What do you think it felt like for Elijah to stand all by himself and trust that God would answer him?",
+  "title": "Elijah and the Fire from Heaven",
+  "files": {
+    "short": {
+      "storyText": "story_1073_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1073_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1073_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1073_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ESTHER_BRAVE",
+  "reflectionVoiceKey": "VOICE_ESTHER_BRAVE",
+  "scriptureAnchor": "1 Kings 18:20-39",
+  "bibleStoryKey": "elijah_on_carmel"
+}

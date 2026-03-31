@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1074,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_ARABELLA",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "What helps you feel peaceful when you're worried about something that hasn't happened yet?",
+  "title": "Don't Worry About Tomorrow",
+  "files": {
+    "short": {
+      "storyText": "story_1074_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1074_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1074_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1074_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA",
+  "scriptureAnchor": "Matthew 6:25-34",
+  "bibleStoryKey": "lilies_of_the_field"
+}

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1077,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_JANE_PROFESSIONAL",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "What is something that hurts inside you right now that you wish someone really understood?",
+  "title": "God Knows Everything About Me",
+  "files": {
+    "short": {
+      "storyText": "story_1077_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1077_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1077_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1077_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_JANE_PROFESSIONAL",
+  "reflectionVoiceKey": "VOICE_JANE_PROFESSIONAL",
+  "scriptureAnchor": "Psalm 139:1-18",
+  "bibleStoryKey": "psalm_139_searched_and_known"
+}

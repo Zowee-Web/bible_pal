@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2075,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_LILY_WOLFF",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "What is something you made that you felt really proud of, even if it wasn't perfect?",
+  "title": "The Painting on the Fridge",
+  "files": {
+    "short": {
+      "storyText": "story_2075_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2075_creative_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_2075_creative_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2075_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF",
+  "theme": "a child whose painting gets put on the fridge by someone who really sees it"
+}

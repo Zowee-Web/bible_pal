@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2074,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_ARABELLA",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "What does it feel like when you find a quiet, cozy spot where you can just rest and be still?",
+  "title": "The Hammock",
+  "files": {
+    "short": {
+      "storyText": "story_2074_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2074_creative_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_2074_creative_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2074_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA",
+  "theme": "a child lying in a backyard hammock watching clouds change shape"
+}

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2064,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_JAMES_HUSKY",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "What message have you been carrying — received or unsent — that still hums quietly in the background of your days, and what would it mean to finally let yourself hear it all the way through?",
+  "title": "The Voicemail",
+  "files": {
+    "short": {
+      "storyText": "story_2064_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2064_creative_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_2064_creative_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2064_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "reflectionVoiceKey": "VOICE_JAMES_HUSKY",
+  "theme": "a phone message that has been sitting unlistened to, and the weight of not knowing"
+}

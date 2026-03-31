@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1068,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_HANNAH_HOPE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "When you think about a time you received back something you thought was lost forever—whether a relationship, a sense of purpose, or a part of yourself—what did that restoration stir in you that simple relief alone cannot explain?",
+  "title": "Job Restored",
+  "files": {
+    "short": {
+      "storyText": "story_1068_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1068_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1068_traditional_web_long.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1068_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1068_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1068_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1068_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1068_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
+  "reflectionVoiceKey": "VOICE_HANNAH_HOPE",
+  "scriptureAnchor": "Job 42:1-17",
+  "bibleStoryKey": "job_restored",
+  "reflections": {
+    "web": "reflection_1068_traditional_web.txt",
+    "kjv": "reflection_1068_traditional_kjv.txt"
+  }
+}

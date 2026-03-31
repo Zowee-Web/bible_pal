@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1076,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_MARTHA_CARING",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "What is something you feel really thankful for today?",
+  "title": "Job Gets Everything Back",
+  "files": {
+    "short": {
+      "storyText": "story_1076_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1076_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1076_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1076_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_MARTHA_CARING",
+  "reflectionVoiceKey": "VOICE_MARTHA_CARING",
+  "scriptureAnchor": "Job 42:1-17",
+  "bibleStoryKey": "job_restored"
+}

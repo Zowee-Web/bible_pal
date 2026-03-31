@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1075,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "What is something kind or helpful you could do if someone around you needed help today?",
+  "title": "Here Am I, Send Me",
+  "files": {
+    "short": {
+      "storyText": "story_1075_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1075_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1075_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1075_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "reflectionVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "scriptureAnchor": "Isaiah 6:1-8",
+  "bibleStoryKey": "isaiah_temple_vision"
+}

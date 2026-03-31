@@ -3,163 +3,259 @@
   "stories": [
     {
       "id": 1064, "mode": "traditional", "mood": "anxious",
-      "voice": "VOICE_MARY_PONDER", "title": "TBD",
-      "anchor": "TBD", "bibleKey": "TBD", "kid": false
+      "voice": "VOICE_MARY_PONDER",
+      "title": "Elisha and the Army of Fire",
+      "anchor": "2 Kings 6:8-23",
+      "bibleKey": "elisha_army_of_fire",
+      "passageSummary": "King of Syria sends army to capture Elisha. Servant panics at the surrounding army. Elisha prays — Lord opens servant's eyes to see hills full of horses and chariots of fire. Elisha prays for blindness on the army. Leads them to Samaria. Eyes opened. King of Israel asks to strike them. Elisha says feed them instead. They feast and go home. Raids stop.",
+      "kid": false
     },
     {
       "id": 1065, "mode": "traditional", "mood": "brave_courage",
-      "voice": "VOICE_PETER_BOLD", "title": "TBD",
-      "anchor": "TBD", "bibleKey": "TBD", "kid": false
+      "voice": "VOICE_PETER_BOLD",
+      "title": "Elijah on Mount Carmel",
+      "anchor": "1 Kings 18:20-39",
+      "bibleKey": "elijah_on_carmel",
+      "passageSummary": "Elijah vs 450 prophets of Baal on Carmel. Two bulls, two altars. 'The god who answers by fire is God.' Baal's prophets cry out all day — no answer. Elijah mocks them. Evening: Elijah rebuilds the Lord's altar, digs trench, drenches wood with water three times. Prays once. Fire falls and consumes everything — burnt offering, wood, stones, water in trench. People fall on faces: 'The Lord, he is God.'",
+      "kid": false
     },
     {
       "id": 1066, "mode": "traditional", "mood": "calm_peaceful",
-      "voice": "VOICE_SAMUEL_EARNEST", "title": "TBD",
-      "anchor": "TBD", "bibleKey": "TBD", "kid": false
+      "voice": "VOICE_SAMUEL_EARNEST",
+      "title": "The Lilies of the Field",
+      "anchor": "Matthew 6:25-34",
+      "bibleKey": "lilies_of_the_field",
+      "passageSummary": "Jesus teaches: do not be anxious about food or clothing. Look at the birds — they don't sow or reap but the Father feeds them. Consider the lilies — they don't toil or spin yet Solomon in all his glory wasn't arrayed like one. If God clothes the grass, how much more you? Don't worry about tomorrow. Tomorrow will worry about itself.",
+      "kid": false
     },
     {
       "id": 1067, "mode": "traditional", "mood": "encouraging",
-      "voice": "VOICE_DEBORAH_WISE", "title": "TBD",
-      "anchor": "TBD", "bibleKey": "TBD", "kid": false
+      "voice": "VOICE_DEBORAH_WISE",
+      "title": "Isaiah's Vision in the Temple",
+      "anchor": "Isaiah 6:1-8",
+      "bibleKey": "isaiah_temple_vision",
+      "passageSummary": "Isaiah sees the Lord seated on a throne, high and lifted up. Seraphim above with six wings — Holy holy holy. Doorposts shake, temple fills with smoke. Isaiah: 'Woe is me, I am undone, a man of unclean lips.' Seraph touches his mouth with a live coal from the altar. 'Your iniquity is taken away.' The Lord asks: 'Whom shall I send?' Isaiah: 'Here am I. Send me.'",
+      "kid": false
     },
     {
       "id": 1068, "mode": "traditional", "mood": "grateful",
-      "voice": "VOICE_HANNAH_HOPE", "title": "TBD",
-      "anchor": "TBD", "bibleKey": "TBD", "kid": false
+      "voice": "VOICE_HANNAH_HOPE",
+      "title": "Job Restored",
+      "anchor": "Job 42:1-17",
+      "bibleKey": "job_restored",
+      "passageSummary": "Job answers the Lord: 'I spoke of things I did not understand.' God rebukes Job's friends. Job prays for them. The Lord restores Job's fortunes — gives him twice what he had before. Brothers and sisters come and comfort him. 14,000 sheep, 6,000 camels, 1,000 yoke of oxen. Seven sons and three daughters. Job lives 140 more years. Dies old and full of days.",
+      "kid": false
     },
     {
       "id": 1069, "mode": "traditional", "mood": "hurting",
-      "voice": "VOICE_MARCUS_ANCHOR", "title": "TBD",
-      "anchor": "TBD", "bibleKey": "TBD", "kid": false
+      "voice": "VOICE_MARCUS_ANCHOR",
+      "title": "You Have Searched Me and Known Me",
+      "anchor": "Psalm 139:1-18",
+      "bibleKey": "psalm_139_searched_and_known",
+      "passageSummary": "David's psalm. 'O Lord, you have searched me and known me. You know when I sit and when I rise. You discern my thoughts from afar. You hem me in, behind and before. Where shall I go from your Spirit? If I ascend to heaven, you are there. If I make my bed in Sheol, you are there. If I take the wings of the morning, the darkness is not dark to you. You formed my inward parts. I am fearfully and wonderfully made. Your thoughts toward me are more than the sand.'",
+      "kid": false
     },
     {
       "id": 1070, "mode": "traditional", "mood": "joyful",
-      "voice": "VOICE_NOAH_PATIENT", "title": "TBD",
-      "anchor": "TBD", "bibleKey": "TBD", "kid": false
+      "voice": "VOICE_NOAH_PATIENT",
+      "title": "The Wise Men Follow the Star",
+      "anchor": "Matthew 2:1-12",
+      "bibleKey": "wise_men_follow_star",
+      "passageSummary": "Wise men from the east come to Jerusalem: 'Where is he who is born king of the Jews? We saw his star.' Herod is troubled. Scribes say Bethlehem. Herod sends them: 'Search carefully and bring me word.' The star goes before them and stops over the place where the child is. They rejoice. They enter the house, see the child with Mary, fall down, worship. Open treasures: gold, frankincense, myrrh. Warned in a dream, they go home another way.",
+      "kid": false
     },
     {
       "id": 1071, "mode": "traditional", "mood": "weary",
-      "voice": "VOICE_BRADFORD", "title": "TBD",
-      "anchor": "TBD", "bibleKey": "TBD", "kid": false
+      "voice": "VOICE_BRADFORD",
+      "title": "They Shall Mount Up with Wings",
+      "anchor": "Isaiah 40:28-31",
+      "bibleKey": "mount_up_with_wings",
+      "passageSummary": "Have you not known? The Lord is the everlasting God, the Creator. He does not faint or grow weary. His understanding is unsearchable. He gives power to the faint. Even youths shall faint. But they who wait for the Lord shall renew their strength. They shall mount up with wings like eagles. They shall run and not be weary. They shall walk and not faint.",
+      "kid": false
     },
     {
       "id": 1072, "mode": "traditional", "mood": "anxious",
-      "voice": "VOICE_LILY_WOLFF", "title": "TBD",
-      "anchor": "TBD", "bibleKey": "TBD", "kid": true
+      "voice": "VOICE_LILY_WOLFF",
+      "title": "Elisha and the Invisible Army",
+      "anchor": "2 Kings 6:8-23",
+      "bibleKey": "elisha_army_of_fire",
+      "kid": true,
+      "passageSummary": "A bad king sends soldiers to capture Elisha. Elisha's helper wakes up and sees the army all around them. He's terrified. Elisha says 'Don't be afraid — there are more with us than with them.' He prays and the helper's eyes are opened — the hills are full of horses and chariots made of fire, protecting them."
     },
     {
       "id": 1073, "mode": "traditional", "mood": "brave_courage",
-      "voice": "VOICE_ESTHER_BRAVE", "title": "TBD",
-      "anchor": "TBD", "bibleKey": "TBD", "kid": true
+      "voice": "VOICE_ESTHER_BRAVE",
+      "title": "Elijah and the Fire from Heaven",
+      "anchor": "1 Kings 18:20-39",
+      "bibleKey": "elijah_on_carmel",
+      "kid": true,
+      "passageSummary": "Elijah stands alone against 450 men who worship a pretend god called Baal. They each build an altar and ask their god to send fire. Baal's men shout all day but nothing happens. Elijah pours water all over his altar — then prays once. Fire falls from the sky and burns up everything, even the water."
     },
     {
       "id": 1074, "mode": "traditional", "mood": "calm_peaceful",
-      "voice": "VOICE_ARABELLA", "title": "TBD",
-      "anchor": "TBD", "bibleKey": "TBD", "kid": true
+      "voice": "VOICE_ARABELLA",
+      "title": "Don't Worry About Tomorrow",
+      "anchor": "Matthew 6:25-34",
+      "bibleKey": "lilies_of_the_field",
+      "kid": true,
+      "passageSummary": "Jesus tells people not to worry. Look at the birds — God feeds them. Look at the flowers — they're more beautiful than a king's clothes, and they don't even try. If God takes care of birds and flowers, he'll take care of you too. Don't worry about tomorrow."
     },
     {
       "id": 1075, "mode": "traditional", "mood": "encouraging",
-      "voice": "VOICE_BARNABAS_ENCOURAGER", "title": "TBD",
-      "anchor": "TBD", "bibleKey": "TBD", "kid": true
+      "voice": "VOICE_BARNABAS_ENCOURAGER",
+      "title": "Here Am I, Send Me",
+      "anchor": "Isaiah 6:1-8",
+      "bibleKey": "isaiah_temple_vision",
+      "kid": true,
+      "passageSummary": "Isaiah sees something amazing — God sitting on a huge throne. Angels with six wings fly around saying 'Holy, holy, holy!' The whole building shakes. Isaiah is scared — he says he's not good enough. An angel touches his lips with a hot coal and says he's forgiven. Then God asks 'Who will go for me?' Isaiah raises his hand: 'Here I am! Send me!'"
     },
     {
       "id": 1076, "mode": "traditional", "mood": "grateful",
-      "voice": "VOICE_MARTHA_CARING", "title": "TBD",
-      "anchor": "TBD", "bibleKey": "TBD", "kid": true
+      "voice": "VOICE_MARTHA_CARING",
+      "title": "Job Gets Everything Back",
+      "anchor": "Job 42:1-17",
+      "bibleKey": "job_restored",
+      "kid": true,
+      "passageSummary": "After losing everything, Job talks to God. Then God gives Job back MORE than he had before — twice as many animals, seven new sons and three new daughters. His family comes and eats dinner with him. Job lives a very long life and gets to see his grandchildren and great-grandchildren."
     },
     {
       "id": 1077, "mode": "traditional", "mood": "hurting",
-      "voice": "VOICE_JANE_PROFESSIONAL", "title": "TBD",
-      "anchor": "TBD", "bibleKey": "TBD", "kid": true
+      "voice": "VOICE_JANE_PROFESSIONAL",
+      "title": "God Knows Everything About Me",
+      "anchor": "Psalm 139:1-18",
+      "bibleKey": "psalm_139_searched_and_known",
+      "kid": true,
+      "passageSummary": "David writes a song to God. 'You know everything about me — when I sit down and when I get up. You know what I'm going to say before I say it. I can't go anywhere without you being there. You made me. You put me together inside my mom.' David says God's thoughts about him are more than all the grains of sand."
     },
     {
       "id": 1078, "mode": "traditional", "mood": "joyful",
-      "voice": "VOICE_DAVID_SHEPHERD", "title": "TBD",
-      "anchor": "TBD", "bibleKey": "TBD", "kid": true
+      "voice": "VOICE_DAVID_SHEPHERD",
+      "title": "Following the Star",
+      "anchor": "Matthew 2:1-12",
+      "bibleKey": "wise_men_follow_star",
+      "kid": true,
+      "passageSummary": "Wise men from far away see a special star in the sky. They follow it all the way to where baby Jesus is. When they find him, they're so happy they bow down. They open their treasure boxes and give him gold, frankincense, and myrrh — the best gifts they have."
     },
     {
       "id": 1079, "mode": "traditional", "mood": "weary",
-      "voice": "VOICE_PRISCILLA_TEACHER", "title": "TBD",
-      "anchor": "TBD", "bibleKey": "TBD", "kid": true
+      "voice": "VOICE_PRISCILLA_TEACHER",
+      "title": "Wings Like Eagles",
+      "anchor": "Isaiah 40:28-31",
+      "bibleKey": "mount_up_with_wings",
+      "kid": true,
+      "passageSummary": "God never gets tired. Even strong young people get worn out sometimes. But people who wait for God get new strength. They fly up high like eagles. They run without getting tired. They walk without giving up."
     },
     {
       "id": 2064, "mode": "creative", "mood": "anxious",
-      "voice": "VOICE_JAMES_HUSKY", "title": "TBD",
-      "kid": false, "theme": "TBD"
+      "voice": "VOICE_JAMES_HUSKY",
+      "title": "The Voicemail",
+      "kid": false,
+      "theme": "a phone message that has been sitting unlistened to, and the weight of not knowing"
     },
     {
       "id": 2065, "mode": "creative", "mood": "brave_courage",
-      "voice": "VOICE_ELIJAH_SAGE", "title": "TBD",
-      "kid": false, "theme": "TBD"
+      "voice": "VOICE_ELIJAH_SAGE",
+      "title": "The Testimony",
+      "kid": false,
+      "theme": "someone standing up in a room full of people and telling the truth that costs them something"
     },
     {
       "id": 2066, "mode": "creative", "mood": "calm_peaceful",
-      "voice": "VOICE_LYDIA_GRACIOUS", "title": "TBD",
-      "kid": false, "theme": "TBD"
+      "voice": "VOICE_LYDIA_GRACIOUS",
+      "title": "The Rocking Chair",
+      "kid": false,
+      "theme": "an elderly woman sitting on a porch at dusk, watching the street go quiet"
     },
     {
       "id": 2067, "mode": "creative", "mood": "encouraging",
-      "voice": "VOICE_SARAH_STORYTELLER", "title": "TBD",
-      "kid": false, "theme": "TBD"
+      "voice": "VOICE_SARAH_STORYTELLER",
+      "title": "The Substitute",
+      "kid": false,
+      "theme": "a substitute teacher who says one sentence that a student carries for years"
     },
     {
       "id": 2068, "mode": "creative", "mood": "grateful",
-      "voice": "VOICE_RUTH_COMFORT", "title": "TBD",
-      "kid": false, "theme": "TBD"
+      "voice": "VOICE_RUTH_COMFORT",
+      "title": "The Thermos",
+      "kid": false,
+      "theme": "a construction worker who brings soup every day for a coworker who never asks for it"
     },
     {
       "id": 2069, "mode": "creative", "mood": "hurting",
-      "voice": "VOICE_JOHN_BELOVED", "title": "TBD",
-      "kid": false, "theme": "TBD"
+      "voice": "VOICE_JOHN_BELOVED",
+      "title": "The Empty Chair",
+      "kid": false,
+      "theme": "a family dinner with one seat that will never be filled again"
     },
     {
       "id": 2070, "mode": "creative", "mood": "joyful",
-      "voice": "VOICE_MIRIAM_JOYFUL", "title": "TBD",
-      "kid": false, "theme": "TBD"
+      "voice": "VOICE_MIRIAM_JOYFUL",
+      "title": "The Dance Lesson",
+      "kid": false,
+      "theme": "a father learning to dance from his daughter for her wedding"
     },
     {
       "id": 2071, "mode": "creative", "mood": "weary",
-      "voice": "VOICE_BARNABAS_ENCOURAGER", "title": "TBD",
-      "kid": false, "theme": "TBD"
+      "voice": "VOICE_BARNABAS_ENCOURAGER",
+      "title": "The Night Shift",
+      "kid": false,
+      "theme": "a nurse at 3am who has been on her feet for 14 hours and finds one small good thing"
     },
     {
       "id": 2072, "mode": "creative", "mood": "anxious",
-      "voice": "VOICE_HANNAH_HOPE", "title": "TBD",
-      "kid": true, "theme": "TBD"
+      "voice": "VOICE_HANNAH_HOPE",
+      "title": "The Spelling Bee",
+      "kid": true,
+      "theme": "a child standing at a microphone with hundreds of people watching"
     },
     {
       "id": 2073, "mode": "creative", "mood": "brave_courage",
-      "voice": "VOICE_DAVID_SHEPHERD", "title": "TBD",
-      "kid": true, "theme": "TBD"
+      "voice": "VOICE_DAVID_SHEPHERD",
+      "title": "The New Kid's Table",
+      "kid": true,
+      "theme": "a child who sits with the kid nobody else sits with at lunch"
     },
     {
       "id": 2074, "mode": "creative", "mood": "calm_peaceful",
-      "voice": "VOICE_ARABELLA", "title": "TBD",
-      "kid": true, "theme": "TBD"
+      "voice": "VOICE_ARABELLA",
+      "title": "The Hammock",
+      "kid": true,
+      "theme": "a child lying in a backyard hammock watching clouds change shape"
     },
     {
       "id": 2075, "mode": "creative", "mood": "encouraging",
-      "voice": "VOICE_LILY_WOLFF", "title": "TBD",
-      "kid": true, "theme": "TBD"
+      "voice": "VOICE_LILY_WOLFF",
+      "title": "The Painting on the Fridge",
+      "kid": true,
+      "theme": "a child whose painting gets put on the fridge by someone who really sees it"
     },
     {
       "id": 2076, "mode": "creative", "mood": "grateful",
-      "voice": "VOICE_ESTHER_BRAVE", "title": "TBD",
-      "kid": true, "theme": "TBD"
+      "voice": "VOICE_ESTHER_BRAVE",
+      "title": "The Last Slice",
+      "kid": true,
+      "theme": "a child who gives away the last slice of pizza and gets something better back"
     },
     {
       "id": 2077, "mode": "creative", "mood": "hurting",
-      "voice": "VOICE_MARTHA_CARING", "title": "TBD",
-      "kid": true, "theme": "TBD"
+      "voice": "VOICE_MARTHA_CARING",
+      "title": "The Moving Truck",
+      "kid": true,
+      "theme": "watching your best friend's house get packed into boxes"
     },
     {
       "id": 2078, "mode": "creative", "mood": "joyful",
-      "voice": "VOICE_ARCHER", "title": "TBD",
-      "kid": true, "theme": "TBD"
+      "voice": "VOICE_ARCHER",
+      "title": "The Snow Day",
+      "kid": true,
+      "theme": "waking up to unexpected snow and the whole day being suddenly free"
     },
     {
       "id": 2079, "mode": "creative", "mood": "weary",
-      "voice": "VOICE_PRISCILLA_TEACHER", "title": "TBD",
-      "kid": true, "theme": "TBD"
+      "voice": "VOICE_PRISCILLA_TEACHER",
+      "title": "The Longest Hike",
+      "kid": true,
+      "theme": "a child who thought they couldn't make it to the top but did"
     }
   ]
 }

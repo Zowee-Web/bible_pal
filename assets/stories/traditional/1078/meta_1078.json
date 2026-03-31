@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1078,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_DAVID_SHEPHERD",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "What made you feel happy inside as you listened to this story?",
+  "title": "Following the Star",
+  "files": {
+    "short": {
+      "storyText": "story_1078_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1078_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1078_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1078_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "scriptureAnchor": "Matthew 2:1-12",
+  "bibleStoryKey": "wise_men_follow_star"
+}

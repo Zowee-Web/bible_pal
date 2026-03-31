@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2066,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_LYDIA_GRACIOUS",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "What is it about the simple, rhythmic motion of something familiar—a chair, a breath, a quiet habit—that can bring you back to a version of yourself you almost forgot was still there?",
+  "title": "The Rocking Chair",
+  "files": {
+    "short": {
+      "storyText": "story_2066_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2066_creative_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_2066_creative_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2066_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_LYDIA_GRACIOUS",
+  "reflectionVoiceKey": "VOICE_LYDIA_GRACIOUS",
+  "theme": "an elderly woman sitting on a porch at dusk, watching the street go quiet"
+}

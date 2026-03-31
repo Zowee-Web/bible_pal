@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2078,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_ARCHER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "What was a moment in the story that made you feel warm and happy inside?",
+  "title": "The Snow Day",
+  "files": {
+    "short": {
+      "storyText": "story_2078_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2078_creative_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_2078_creative_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2078_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "reflectionVoiceKey": "VOICE_ARCHER",
+  "theme": "waking up to unexpected snow and the whole day being suddenly free"
+}

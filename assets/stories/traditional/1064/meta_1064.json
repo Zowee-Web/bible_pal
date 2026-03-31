@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1064,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_MARY_PONDER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "When you think about the moments in your own life where you felt surrounded and outnumbered by forces beyond your control, what might it mean to consider that there could be something present in that situation that you simply couldn't yet see?",
+  "title": "Elisha and the Army of Fire",
+  "files": {
+    "short": {
+      "storyText": "story_1064_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1064_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1064_traditional_web_long.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1064_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1064_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1064_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1064_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1064_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "reflectionVoiceKey": "VOICE_MARY_PONDER",
+  "scriptureAnchor": "2 Kings 6:8-23",
+  "bibleStoryKey": "elisha_army_of_fire",
+  "reflections": {
+    "web": "reflection_1064_traditional_web.txt",
+    "kjv": "reflection_1064_traditional_kjv.txt"
+  }
+}

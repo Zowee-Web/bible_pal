@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1079,
+  "mode": "traditional",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_PRISCILLA_TEACHER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "Have you ever felt so tired that you wished someone strong could carry you for a while?",
+  "title": "Wings Like Eagles",
+  "files": {
+    "short": {
+      "storyText": "story_1079_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1079_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1079_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1079_traditional_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "reflectionVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "scriptureAnchor": "Isaiah 40:28-31",
+  "bibleStoryKey": "mount_up_with_wings"
+}

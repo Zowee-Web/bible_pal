@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1069,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_MARCUS_ANCHOR",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "What does it feel like to be fully known — every hidden wound, every unspoken thought — and to wonder whether being that deeply seen is something you long for or something you fear?",
+  "title": "You Have Searched Me and Known Me",
+  "files": {
+    "short": {
+      "storyText": "story_1069_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1069_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1069_traditional_web_long.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1069_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1069_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1069_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1069_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1069_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "reflectionVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "scriptureAnchor": "Psalm 139:1-18",
+  "bibleStoryKey": "psalm_139_searched_and_known",
+  "reflections": {
+    "web": "reflection_1069_traditional_web.txt",
+    "kjv": "reflection_1069_traditional_kjv.txt"
+  }
+}

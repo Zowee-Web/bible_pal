@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2067,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_SARAH_STORYTELLER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "What part of yourself have you discovered not by stepping into a role you chose, but by unexpectedly filling a space someone else left open?",
+  "title": "The Substitute",
+  "files": {
+    "short": {
+      "storyText": "story_2067_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2067_creative_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_2067_creative_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2067_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_SARAH_STORYTELLER",
+  "reflectionVoiceKey": "VOICE_SARAH_STORYTELLER",
+  "theme": "a substitute teacher who says one sentence that a student carries for years"
+}

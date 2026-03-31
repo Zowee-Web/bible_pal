@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2076,
+  "mode": "creative",
+  "kidFriendly": true,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_ESTHER_BRAVE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "What is something small, like a last slice, that made you feel really thankful?",
+  "title": "The Last Slice",
+  "files": {
+    "short": {
+      "storyText": "story_2076_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2076_creative_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_2076_creative_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2076_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ESTHER_BRAVE",
+  "reflectionVoiceKey": "VOICE_ESTHER_BRAVE",
+  "theme": "a child who gives away the last slice of pizza and gets something better back"
+}

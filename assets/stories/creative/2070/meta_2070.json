@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2070,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_MIRIAM_JOYFUL",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "What is it about letting your body move without judgment that seems to unlock a kind of joy your thinking mind could never quite arrange on its own?",
+  "title": "The Dance Lesson",
+  "files": {
+    "short": {
+      "storyText": "story_2070_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2070_creative_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_2070_creative_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2070_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "reflectionVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "theme": "a father learning to dance from his daughter for her wedding"
+}

@@ -261,11 +261,22 @@ Voice: {voice}
 {mode_rules}
 {kid_rules}
 
-## WORD COUNT TARGETS (HARD)
+## WORD COUNT TARGETS (HARD — YOU MUST HIT THESE)
 {chr(10).join(length_instructions)}
 
-If the scripture passage is structurally short (< 6 verses), it is acceptable
-to fall below full target. Do NOT add padding or interpretation to meet targets.
+WORD COUNT IS A HARD REQUIREMENT. Count your words. If you are under target:
+- Traditional SHORT (350-450): expand scene transitions, physical environment,
+  crowd/character reactions, sensory detail (sounds, smells, textures).
+- Traditional FULL (700-850): this is a LONG story. Slow the pacing. Expand
+  every scene. Add environmental detail between dialogue. Describe arrivals,
+  departures, weather, terrain, clothing, tools, animals. Each verse of
+  scripture should expand to 2-4 paragraphs of physical narration.
+- Creative SHORT (250-380): tight and vivid. Every sentence earns its place.
+- Creative FULL (450-650): more scene detail, more dialogue, more sensory
+  moments than the short. But DO NOT exceed 650.
+
+Exception: if the passage is structurally very short (< 4 verses), the full
+version may fall below 700. Do NOT add interpretation to compensate.
 
 ## NARRATION RHYTHM
 - Sentences 8-18 words preferred

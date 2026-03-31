@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1067,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_DEBORAH_WISE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "What would it be like to be fully seen—every hidden and imperfect part of you laid bare—and to find that the response waiting for you is not rejection, but an invitation?",
+  "title": "Isaiah's Vision in the Temple",
+  "files": {
+    "short": {
+      "storyText": "story_1067_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1067_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1067_traditional_web_long.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1067_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1067_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1067_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1067_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1067_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "reflectionVoiceKey": "VOICE_DEBORAH_WISE",
+  "scriptureAnchor": "Isaiah 6:1-8",
+  "bibleStoryKey": "isaiah_temple_vision",
+  "reflections": {
+    "web": "reflection_1067_traditional_web.txt",
+    "kjv": "reflection_1067_traditional_kjv.txt"
+  }
+}

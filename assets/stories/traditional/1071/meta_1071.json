@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1071,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_BRADFORD",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "What does it feel like in your body right now to consider that the promise of renewed strength was spoken not to those who were already soaring, but specifically to those who were tired?",
+  "title": "They Shall Mount Up with Wings",
+  "files": {
+    "short": {
+      "storyText": "story_1071_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1071_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1071_traditional_web_long.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1071_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1071_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1071_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1071_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1071_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "reflectionVoiceKey": "VOICE_BRADFORD",
+  "scriptureAnchor": "Isaiah 40:28-31",
+  "bibleStoryKey": "mount_up_with_wings",
+  "reflections": {
+    "web": "reflection_1071_traditional_web.txt",
+    "kjv": "reflection_1071_traditional_kjv.txt"
+  }
+}

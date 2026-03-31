@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 2,
+  "storyId": 2071,
+  "mode": "creative",
+  "kidFriendly": false,
+  "primaryLanguageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_04",
+  "reflectionQuestion": "What is it that keeps you going during those quiet, heavy hours when the world is asleep and your weariness feels like the only honest thing left — and what, if anything, do you find yourself creating in that stillness?",
+  "title": "The Night Shift",
+  "files": {
+    "short": {
+      "storyText": "story_2071_creative_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_2071_creative_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_2071_creative_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_2071_creative_web.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "reflectionVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "theme": "a nurse at 3am who has been on her feet for 14 hours and finds one small good thing"
+}
