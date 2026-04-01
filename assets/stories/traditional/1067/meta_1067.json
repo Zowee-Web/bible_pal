@@ -21,28 +21,34 @@
   "title": "Isaiah's Vision in the Temple",
   "files": {
     "short": {
-      "storyText": "story_1067_traditional_web_short.txt"
+      "storyText": "story_1067_traditional_web_short.txt",
+      "storyAudio": "audio_1067_story_short.mp3"
     },
     "full": {
-      "storyText": "story_1067_traditional_web_full.txt"
+      "storyText": "story_1067_traditional_web_full.txt",
+      "storyAudio": "audio_1067_story_full.mp3"
     },
     "long": {
       "storyText": "story_1067_traditional_web_long.txt"
     },
     "short_kjv": {
-      "storyText": "story_1067_traditional_kjv_short.txt"
+      "storyText": "story_1067_traditional_kjv_short.txt",
+      "storyAudio": "audio_1067_story_kjv_short.mp3"
     },
     "full_kjv": {
-      "storyText": "story_1067_traditional_kjv_full.txt"
+      "storyText": "story_1067_traditional_kjv_full.txt",
+      "storyAudio": "audio_1067_story_kjv_full.mp3"
     },
     "long_kjv": {
       "storyText": "story_1067_traditional_kjv_long.txt"
     },
     "reflection": {
-      "reflectionText": "reflection_1067_traditional_web.txt"
+      "reflectionText": "reflection_1067_traditional_web.txt",
+      "reflectionAudio": "audio_1067_reflection.mp3"
     },
     "reflection_kjv": {
-      "reflectionText": "reflection_1067_traditional_kjv.txt"
+      "reflectionText": "reflection_1067_traditional_kjv.txt",
+      "reflectionAudio": "audio_1067_reflection_kjv.mp3"
     }
   },
   "reflectionSource": "llm",
