@@ -20,13 +20,16 @@
   "theme": "finding a hidden pocket of stillness in a noisy world",
   "files": {
     "short": {
-      "storyText": "story_2058_creative_web_short.txt"
+      "storyText": "story_2058_creative_web_short.txt",
+      "storyAudio": "audio_2058_story_short.mp3"
     },
     "full": {
-      "storyText": "story_2058_creative_web_full.txt"
+      "storyText": "story_2058_creative_web_full.txt",
+      "storyAudio": "audio_2058_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_2058_creative_web.txt"
+      "reflectionText": "reflection_2058_creative_web.txt",
+      "reflectionAudio": "audio_2058_reflection.mp3"
     }
   },
   "reflectionSource": "llm",

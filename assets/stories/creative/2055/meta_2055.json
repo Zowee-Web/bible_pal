@@ -20,13 +20,16 @@
   "theme": "exhaustion met by the simplest possible solution",
   "files": {
     "short": {
-      "storyText": "story_2055_creative_web_short.txt"
+      "storyText": "story_2055_creative_web_short.txt",
+      "storyAudio": "audio_2055_story_short.mp3"
     },
     "full": {
-      "storyText": "story_2055_creative_web_full.txt"
+      "storyText": "story_2055_creative_web_full.txt",
+      "storyAudio": "audio_2055_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_2055_creative_web.txt"
+      "reflectionText": "reflection_2055_creative_web.txt",
+      "reflectionAudio": "audio_2055_reflection.mp3"
     }
   },
   "reflectionSource": "llm",

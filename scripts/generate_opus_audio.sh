@@ -275,16 +275,16 @@ if [[ -n "$RETRY_FILE" ]]; then
         generate_audio "$text_file" "$output_file" "$voice_key"
     done < "$RETRY_FILE"
 else
-    # Process traditional stories (1016-1047)
-    for story_id in $(ls "$STORIES_DIR/traditional/" | sort -n | awk '$1 >= 1016 && $1 <= 1047'); do
+    # Process all Opus traditional stories (1000+)
+    for story_id in $(ls "$STORIES_DIR/traditional/" | sort -n | awk '$1 >= 1000'); do
         if [[ -n "$SINGLE_STORY" && "$story_id" != "$SINGLE_STORY" ]]; then
             continue
         fi
         process_story "traditional" "$story_id"
     done
 
-    # Process creative stories (2016-2047)
-    for story_id in $(ls "$STORIES_DIR/creative/" | sort -n | awk '$1 >= 2016 && $1 <= 2047'); do
+    # Process all Opus creative stories (2000+)
+    for story_id in $(ls "$STORIES_DIR/creative/" | sort -n | awk '$1 >= 2000'); do
         if [[ -n "$SINGLE_STORY" && "$story_id" != "$SINGLE_STORY" ]]; then
             continue
         fi

@@ -20,13 +20,16 @@
   "theme": "first-day anxiety eased by unexpected connection",
   "files": {
     "short": {
-      "storyText": "story_2056_creative_web_short.txt"
+      "storyText": "story_2056_creative_web_short.txt",
+      "storyAudio": "audio_2056_story_short.mp3"
     },
     "full": {
-      "storyText": "story_2056_creative_web_full.txt"
+      "storyText": "story_2056_creative_web_full.txt",
+      "storyAudio": "audio_2056_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_2056_creative_web.txt"
+      "reflectionText": "reflection_2056_creative_web.txt",
+      "reflectionAudio": "audio_2056_reflection.mp3"
     }
   },
   "reflectionSource": "llm",

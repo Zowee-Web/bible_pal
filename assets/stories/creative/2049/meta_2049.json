@@ -20,13 +20,16 @@
   "theme": "witnessing courage in someone else and reckoning with your own stillness",
   "files": {
     "short": {
-      "storyText": "story_2049_creative_web_short.txt"
+      "storyText": "story_2049_creative_web_short.txt",
+      "storyAudio": "audio_2049_story_short.mp3"
     },
     "full": {
-      "storyText": "story_2049_creative_web_full.txt"
+      "storyText": "story_2049_creative_web_full.txt",
+      "storyAudio": "audio_2049_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_2049_creative_web.txt"
+      "reflectionText": "reflection_2049_creative_web.txt",
+      "reflectionAudio": "audio_2049_reflection.mp3"
     }
   },
   "reflectionSource": "llm",

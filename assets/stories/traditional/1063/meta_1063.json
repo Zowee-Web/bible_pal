@@ -19,13 +19,16 @@
   "title": "Job's Terrible Day",
   "files": {
     "short": {
-      "storyText": "story_1063_traditional_web_short.txt"
+      "storyText": "story_1063_traditional_web_short.txt",
+      "storyAudio": "audio_1063_story_short.mp3"
     },
     "full": {
-      "storyText": "story_1063_traditional_web_full.txt"
+      "storyText": "story_1063_traditional_web_full.txt",
+      "storyAudio": "audio_1063_story_full.mp3"
     },
     "reflection": {
-      "reflectionText": "reflection_1063_traditional_web.txt"
+      "reflectionText": "reflection_1063_traditional_web.txt",
+      "reflectionAudio": "audio_1063_reflection.mp3"
     }
   },
   "reflectionSource": "llm",
