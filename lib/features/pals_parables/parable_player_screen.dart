@@ -489,9 +489,16 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                 ScriptureSourcesPanel(
                                   parable: playerState.currentParable!,
                                   playbackCompleted: playerState.playbackCompleted,
-                                  onReadScriptureTapped: () => showScriptureBottomSheet(
-                                    context, playerState.currentParable!,
-                                  ),
+                                  onReadScriptureTapped: () async {
+                                    final parable = playerState.currentParable!;
+                                    final service = await ref.read(parableServiceProvider.future);
+                                    final text = await service.getScriptureText(parable);
+                                    if (!context.mounted) return;
+                                    showScriptureBottomSheet(
+                                      context, parable,
+                                      scriptureText: text,
+                                    );
+                                  },
                                 ),
 
                                 // Mood-flow verse (from PAL's mood response)

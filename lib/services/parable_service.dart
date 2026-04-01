@@ -546,6 +546,29 @@ class ParableService {
     return null;
   }
 
+  /// Get scripture text file for a parable (lazy-loaded on demand)
+  Future<String?> getScriptureText(Parable parable) async {
+    if (parable.scriptureTextFilePath == null) return null;
+
+    try {
+      if (_useAssets) {
+        return await rootBundle
+            .loadString('assets/stories/${parable.scriptureTextFilePath}');
+      }
+
+      final dir = await _getParableLibraryDir();
+      final textFile = File('${dir.path}/${parable.scriptureTextFilePath}');
+
+      if (await textFile.exists()) {
+        return await textFile.readAsString();
+      }
+    } catch (e) {
+      debugPrint('Error reading scripture text: $e');
+    }
+
+    return null;
+  }
+
   /// Get count of available parables by criteria
   Future<int> getAvailableCount({
     String? mood,

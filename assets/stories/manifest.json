@@ -14,7 +14,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "short",
-      "reflectionQuestion": "Is there a moment in your life where sharing something you had \u2014 encouragement, kindness, or hope \u2014 seemed to make it grow rather than run out?"
+      "reflectionQuestion": "Is there a moment in your life where sharing something you had — encouragement, kindness, or hope — seemed to make it grow rather than run out?"
     },
     {
       "storyId": "story_2000_joyful_full_creative",
@@ -30,7 +30,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "full",
-      "reflectionQuestion": "Is there a moment in your life where sharing something you had \u2014 encouragement, kindness, or hope \u2014 seemed to make it grow rather than run out?"
+      "reflectionQuestion": "Is there a moment in your life where sharing something you had — encouragement, kindness, or hope — seemed to make it grow rather than run out?"
     },
     {
       "storyId": "story_2000_joyful_long_creative",
@@ -46,7 +46,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "long",
-      "reflectionQuestion": "Is there a moment in your life where sharing something you had \u2014 encouragement, kindness, or hope \u2014 seemed to make it grow rather than run out?"
+      "reflectionQuestion": "Is there a moment in your life where sharing something you had — encouragement, kindness, or hope — seemed to make it grow rather than run out?"
     },
     {
       "storyId": "story_2001_anxious_short_creative",
@@ -110,7 +110,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "short",
-      "reflectionQuestion": "Is there something you've been quietly investing in \u2014 a relationship, a prayer, a small act of kindness \u2014 knowing the fruit of it may be for someone else to enjoy?"
+      "reflectionQuestion": "Is there something you've been quietly investing in — a relationship, a prayer, a small act of kindness — knowing the fruit of it may be for someone else to enjoy?"
     },
     {
       "storyId": "story_2003_grateful_full_creative",
@@ -126,7 +126,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "full",
-      "reflectionQuestion": "Is there something you've been quietly investing in \u2014 a relationship, a prayer, a small act of kindness \u2014 knowing the fruit of it may be for someone else to enjoy?"
+      "reflectionQuestion": "Is there something you've been quietly investing in — a relationship, a prayer, a small act of kindness — knowing the fruit of it may be for someone else to enjoy?"
     },
     {
       "storyId": "story_2003_grateful_long_creative",
@@ -142,7 +142,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "long",
-      "reflectionQuestion": "Is there something you've been quietly investing in \u2014 a relationship, a prayer, a small act of kindness \u2014 knowing the fruit of it may be for someone else to enjoy?"
+      "reflectionQuestion": "Is there something you've been quietly investing in — a relationship, a prayer, a small act of kindness — knowing the fruit of it may be for someone else to enjoy?"
     },
     {
       "storyId": "story_2002_weary_short_creative",
@@ -256,7 +256,8 @@
       "storyLength": "short",
       "reflectionQuestion": "Can you think of a time when you heard really exciting news and wanted to tell everyone about it?",
       "bibleSourceRef": "Luke 2:1-20",
-      "bibleStoryKey": "nativity"
+      "bibleStoryKey": "nativity",
+      "scriptureTextFilePath": "traditional/1004/scripture_1004_web.txt"
     },
     {
       "storyId": "story_1004_joyful_full_kid_traditional",
@@ -274,7 +275,8 @@
       "storyLength": "full",
       "reflectionQuestion": "Can you think of a time when you heard really exciting news and wanted to tell everyone about it?",
       "bibleSourceRef": "Luke 2:1-20",
-      "bibleStoryKey": "nativity"
+      "bibleStoryKey": "nativity",
+      "scriptureTextFilePath": "traditional/1004/scripture_1004_web.txt"
     },
     {
       "storyId": "story_1004_joyful_long_kid_traditional",
@@ -292,7 +294,8 @@
       "storyLength": "long",
       "reflectionQuestion": "Can you think of a time when you heard really exciting news and wanted to tell everyone about it?",
       "bibleSourceRef": "Luke 2:1-20",
-      "bibleStoryKey": "nativity"
+      "bibleStoryKey": "nativity",
+      "scriptureTextFilePath": "traditional/1004/scripture_1004_web.txt"
     },
     {
       "storyId": "story_2005_hurting_short_creative",
@@ -454,7 +457,8 @@
       "storyLength": "short",
       "reflectionQuestion": "",
       "bibleSourceRef": "Psalm 23",
-      "bibleStoryKey": "the_lord_is_my_shepherd"
+      "bibleStoryKey": "the_lord_is_my_shepherd",
+      "scriptureTextFilePath": "traditional/1009/scripture_1009_web.txt"
     },
     {
       "storyId": "story_1009_calm_peaceful_full_kid_traditional",
@@ -472,7 +476,8 @@
       "storyLength": "full",
       "reflectionQuestion": "",
       "bibleSourceRef": "Psalm 23",
-      "bibleStoryKey": "the_lord_is_my_shepherd"
+      "bibleStoryKey": "the_lord_is_my_shepherd",
+      "scriptureTextFilePath": "traditional/1009/scripture_1009_web.txt"
     },
     {
       "storyId": "story_1009_calm_peaceful_long_kid_traditional",
@@ -490,7 +495,8 @@
       "storyLength": "long",
       "reflectionQuestion": "",
       "bibleSourceRef": "Psalm 23",
-      "bibleStoryKey": "the_lord_is_my_shepherd"
+      "bibleStoryKey": "the_lord_is_my_shepherd",
+      "scriptureTextFilePath": "traditional/1009/scripture_1009_web.txt"
     },
     {
       "storyId": "story_2009_joyful_short_kid_creative",
@@ -604,7 +610,8 @@
       "storyLength": "short",
       "reflectionQuestion": "Have you ever felt called to stand firm in something you believed was right, even when everything around you seemed to push against it?",
       "bibleSourceRef": "Daniel 3:13-27",
-      "bibleStoryKey": "fiery_furnace"
+      "bibleStoryKey": "fiery_furnace",
+      "scriptureTextFilePath": "traditional/1002/scripture_1002_web.txt"
     },
     {
       "storyId": "story_1002_brave_courage_full_traditional",
@@ -622,7 +629,8 @@
       "storyLength": "full",
       "reflectionQuestion": "Have you ever felt called to stand firm in something you believed was right, even when everything around you seemed to push against it?",
       "bibleSourceRef": "Daniel 3:13-27",
-      "bibleStoryKey": "fiery_furnace"
+      "bibleStoryKey": "fiery_furnace",
+      "scriptureTextFilePath": "traditional/1002/scripture_1002_web.txt"
     },
     {
       "storyId": "story_1002_brave_courage_long_traditional",
@@ -640,7 +648,8 @@
       "storyLength": "long",
       "reflectionQuestion": "Have you ever felt called to stand firm in something you believed was right, even when everything around you seemed to push against it?",
       "bibleSourceRef": "Daniel 3:13-27",
-      "bibleStoryKey": "fiery_furnace"
+      "bibleStoryKey": "fiery_furnace",
+      "scriptureTextFilePath": "traditional/1002/scripture_1002_web.txt"
     },
     {
       "storyId": "story_1005_joyful_short_traditional",
@@ -658,7 +667,8 @@
       "storyLength": "short",
       "reflectionQuestion": "Have you ever felt like something was holding you back from getting a closer look at who Jesus really is?",
       "bibleSourceRef": "Luke 19:1-10",
-      "bibleStoryKey": "zacchaeus"
+      "bibleStoryKey": "zacchaeus",
+      "scriptureTextFilePath": "traditional/1005/scripture_1005_web.txt"
     },
     {
       "storyId": "story_1005_joyful_full_traditional",
@@ -676,7 +686,8 @@
       "storyLength": "full",
       "reflectionQuestion": "Have you ever felt like something was holding you back from getting a closer look at who Jesus really is?",
       "bibleSourceRef": "Luke 19:1-10",
-      "bibleStoryKey": "zacchaeus"
+      "bibleStoryKey": "zacchaeus",
+      "scriptureTextFilePath": "traditional/1005/scripture_1005_web.txt"
     },
     {
       "storyId": "story_1005_joyful_long_traditional",
@@ -694,7 +705,8 @@
       "storyLength": "long",
       "reflectionQuestion": "Have you ever felt like something was holding you back from getting a closer look at who Jesus really is?",
       "bibleSourceRef": "Luke 19:1-10",
-      "bibleStoryKey": "zacchaeus"
+      "bibleStoryKey": "zacchaeus",
+      "scriptureTextFilePath": "traditional/1005/scripture_1005_web.txt"
     },
     {
       "storyId": "story_1008_encouraging_short_traditional",
@@ -712,7 +724,8 @@
       "storyLength": "short",
       "reflectionQuestion": "Have you ever faced a moment where you needed to step forward into something new, even though the path ahead felt uncertain and unfamiliar?",
       "bibleSourceRef": "Joshua 1:1-9",
-      "bibleStoryKey": "joshua_commissioned"
+      "bibleStoryKey": "joshua_commissioned",
+      "scriptureTextFilePath": "traditional/1008/scripture_1008_web.txt"
     },
     {
       "storyId": "story_1008_encouraging_full_traditional",
@@ -730,7 +743,8 @@
       "storyLength": "full",
       "reflectionQuestion": "Have you ever faced a moment where you needed to step forward into something new, even though the path ahead felt uncertain and unfamiliar?",
       "bibleSourceRef": "Joshua 1:1-9",
-      "bibleStoryKey": "joshua_commissioned"
+      "bibleStoryKey": "joshua_commissioned",
+      "scriptureTextFilePath": "traditional/1008/scripture_1008_web.txt"
     },
     {
       "storyId": "story_1008_encouraging_long_traditional",
@@ -748,7 +762,8 @@
       "storyLength": "long",
       "reflectionQuestion": "Have you ever faced a moment where you needed to step forward into something new, even though the path ahead felt uncertain and unfamiliar?",
       "bibleSourceRef": "Joshua 1:1-9",
-      "bibleStoryKey": "joshua_commissioned"
+      "bibleStoryKey": "joshua_commissioned",
+      "scriptureTextFilePath": "traditional/1008/scripture_1008_web.txt"
     },
     {
       "storyId": "story_1000_weary_short_traditional",
@@ -766,7 +781,8 @@
       "storyLength": "short",
       "reflectionQuestion": "Is there a burden you've been carrying on your own that you might, even for a moment, allow yourself to lay down and find rest?",
       "bibleSourceRef": "Matthew 11:28-30",
-      "bibleStoryKey": "rest_for_the_weary"
+      "bibleStoryKey": "rest_for_the_weary",
+      "scriptureTextFilePath": "traditional/1000/scripture_1000_web.txt"
     },
     {
       "storyId": "story_1000_weary_full_traditional",
@@ -784,7 +800,8 @@
       "storyLength": "full",
       "reflectionQuestion": "Is there a burden you've been carrying on your own that you might, even for a moment, allow yourself to lay down and find rest?",
       "bibleSourceRef": "Matthew 11:28-30",
-      "bibleStoryKey": "rest_for_the_weary"
+      "bibleStoryKey": "rest_for_the_weary",
+      "scriptureTextFilePath": "traditional/1000/scripture_1000_web.txt"
     },
     {
       "storyId": "story_1000_weary_long_traditional",
@@ -802,7 +819,8 @@
       "storyLength": "long",
       "reflectionQuestion": "Is there a burden you've been carrying on your own that you might, even for a moment, allow yourself to lay down and find rest?",
       "bibleSourceRef": "Matthew 11:28-30",
-      "bibleStoryKey": "rest_for_the_weary"
+      "bibleStoryKey": "rest_for_the_weary",
+      "scriptureTextFilePath": "traditional/1000/scripture_1000_web.txt"
     },
     {
       "storyId": "story_1006_grateful_short_traditional",
@@ -820,7 +838,8 @@
       "storyLength": "short",
       "reflectionQuestion": "Have you ever paused to notice a blessing you almost let slip by without a word of thanks?",
       "bibleSourceRef": "Luke 17:11-19",
-      "bibleStoryKey": "ten_lepers"
+      "bibleStoryKey": "ten_lepers",
+      "scriptureTextFilePath": "traditional/1006/scripture_1006_web.txt"
     },
     {
       "storyId": "story_1006_grateful_full_traditional",
@@ -838,7 +857,8 @@
       "storyLength": "full",
       "reflectionQuestion": "Have you ever paused to notice a blessing you almost let slip by without a word of thanks?",
       "bibleSourceRef": "Luke 17:11-19",
-      "bibleStoryKey": "ten_lepers"
+      "bibleStoryKey": "ten_lepers",
+      "scriptureTextFilePath": "traditional/1006/scripture_1006_web.txt"
     },
     {
       "storyId": "story_1006_grateful_long_traditional",
@@ -856,7 +876,8 @@
       "storyLength": "long",
       "reflectionQuestion": "Have you ever paused to notice a blessing you almost let slip by without a word of thanks?",
       "bibleSourceRef": "Luke 17:11-19",
-      "bibleStoryKey": "ten_lepers"
+      "bibleStoryKey": "ten_lepers",
+      "scriptureTextFilePath": "traditional/1006/scripture_1006_web.txt"
     },
     {
       "storyId": "story_1001_calm_peaceful_short_traditional",
@@ -874,7 +895,8 @@
       "storyLength": "short",
       "reflectionQuestion": "Is there a moment in your daily life where you have felt a quiet, steady presence guiding you through an uncertain path?",
       "bibleSourceRef": "Psalm 23",
-      "bibleStoryKey": "the_lord_is_my_shepherd"
+      "bibleStoryKey": "the_lord_is_my_shepherd",
+      "scriptureTextFilePath": "traditional/1001/scripture_1001_web.txt"
     },
     {
       "storyId": "story_1001_calm_peaceful_full_traditional",
@@ -892,7 +914,8 @@
       "storyLength": "full",
       "reflectionQuestion": "Is there a moment in your daily life where you have felt a quiet, steady presence guiding you through an uncertain path?",
       "bibleSourceRef": "Psalm 23",
-      "bibleStoryKey": "the_lord_is_my_shepherd"
+      "bibleStoryKey": "the_lord_is_my_shepherd",
+      "scriptureTextFilePath": "traditional/1001/scripture_1001_web.txt"
     },
     {
       "storyId": "story_1001_calm_peaceful_long_traditional",
@@ -910,7 +933,8 @@
       "storyLength": "long",
       "reflectionQuestion": "Is there a moment in your daily life where you have felt a quiet, steady presence guiding you through an uncertain path?",
       "bibleSourceRef": "Psalm 23",
-      "bibleStoryKey": "the_lord_is_my_shepherd"
+      "bibleStoryKey": "the_lord_is_my_shepherd",
+      "scriptureTextFilePath": "traditional/1001/scripture_1001_web.txt"
     },
     {
       "storyId": "story_1003_hurting_short_traditional",
@@ -928,7 +952,8 @@
       "storyLength": "short",
       "reflectionQuestion": "Have you ever experienced a moment where letting go of an old hurt opened the door to a deeper connection with someone you love?",
       "bibleSourceRef": "Genesis 45:1-15",
-      "bibleStoryKey": "joseph_reveals_himself"
+      "bibleStoryKey": "joseph_reveals_himself",
+      "scriptureTextFilePath": "traditional/1003/scripture_1003_web.txt"
     },
     {
       "storyId": "story_1003_hurting_full_traditional",
@@ -946,7 +971,8 @@
       "storyLength": "full",
       "reflectionQuestion": "Have you ever experienced a moment where letting go of an old hurt opened the door to a deeper connection with someone you love?",
       "bibleSourceRef": "Genesis 45:1-15",
-      "bibleStoryKey": "joseph_reveals_himself"
+      "bibleStoryKey": "joseph_reveals_himself",
+      "scriptureTextFilePath": "traditional/1003/scripture_1003_web.txt"
     },
     {
       "storyId": "story_1003_hurting_long_traditional",
@@ -964,7 +990,8 @@
       "storyLength": "long",
       "reflectionQuestion": "Have you ever experienced a moment where letting go of an old hurt opened the door to a deeper connection with someone you love?",
       "bibleSourceRef": "Genesis 45:1-15",
-      "bibleStoryKey": "joseph_reveals_himself"
+      "bibleStoryKey": "joseph_reveals_himself",
+      "scriptureTextFilePath": "traditional/1003/scripture_1003_web.txt"
     },
     {
       "storyId": "story_1007_anxious_short_traditional",
@@ -982,7 +1009,8 @@
       "storyLength": "short",
       "reflectionQuestion": "Have you ever found yourself in a storm of circumstances and wondered if God might be trying to get your attention about something you've been avoiding?",
       "bibleSourceRef": "Jonah 1:4-15",
-      "bibleStoryKey": "jonah_flees"
+      "bibleStoryKey": "jonah_flees",
+      "scriptureTextFilePath": "traditional/1007/scripture_1007_web.txt"
     },
     {
       "storyId": "story_1007_anxious_full_traditional",
@@ -1000,7 +1028,8 @@
       "storyLength": "full",
       "reflectionQuestion": "Have you ever found yourself in a storm of circumstances and wondered if God might be trying to get your attention about something you've been avoiding?",
       "bibleSourceRef": "Jonah 1:4-15",
-      "bibleStoryKey": "jonah_flees"
+      "bibleStoryKey": "jonah_flees",
+      "scriptureTextFilePath": "traditional/1007/scripture_1007_web.txt"
     },
     {
       "storyId": "story_1007_anxious_long_traditional",
@@ -1018,7 +1047,8 @@
       "storyLength": "long",
       "reflectionQuestion": "Have you ever found yourself in a storm of circumstances and wondered if God might be trying to get your attention about something you've been avoiding?",
       "bibleSourceRef": "Jonah 1:4-15",
-      "bibleStoryKey": "jonah_flees"
+      "bibleStoryKey": "jonah_flees",
+      "scriptureTextFilePath": "traditional/1007/scripture_1007_web.txt"
     },
     {
       "storyId": "story_2010_weary_short_kid_creative",
@@ -1084,7 +1114,8 @@
       "storyLength": "short",
       "reflectionQuestion": "Can you think of a time when you felt safe because someone was watching over you and taking care of you?",
       "bibleSourceRef": "Psalm 121",
-      "bibleStoryKey": "i_lift_my_eyes_to_the_hills"
+      "bibleStoryKey": "i_lift_my_eyes_to_the_hills",
+      "scriptureTextFilePath": "traditional/1010/scripture_1010_web.txt"
     },
     {
       "storyId": "story_1010_weary_full_kid_traditional",
@@ -1102,7 +1133,8 @@
       "storyLength": "full",
       "reflectionQuestion": "Can you think of a time when you felt safe because someone was watching over you and taking care of you?",
       "bibleSourceRef": "Psalm 121",
-      "bibleStoryKey": "i_lift_my_eyes_to_the_hills"
+      "bibleStoryKey": "i_lift_my_eyes_to_the_hills",
+      "scriptureTextFilePath": "traditional/1010/scripture_1010_web.txt"
     },
     {
       "storyId": "story_1010_weary_long_kid_traditional",
@@ -1120,7 +1152,8 @@
       "storyLength": "long",
       "reflectionQuestion": "Can you think of a time when you felt safe because someone was watching over you and taking care of you?",
       "bibleSourceRef": "Psalm 121",
-      "bibleStoryKey": "i_lift_my_eyes_to_the_hills"
+      "bibleStoryKey": "i_lift_my_eyes_to_the_hills",
+      "scriptureTextFilePath": "traditional/1010/scripture_1010_web.txt"
     },
     {
       "storyId": "story_2014_grateful_short_kid_creative",
@@ -1186,7 +1219,8 @@
       "storyLength": "short",
       "reflectionQuestion": "Can you think of something beautiful in nature, like a flower or a bird, that reminds you God takes care of you too?",
       "bibleSourceRef": "Luke 12:22-31",
-      "bibleStoryKey": "consider_the_lilies"
+      "bibleStoryKey": "consider_the_lilies",
+      "scriptureTextFilePath": "traditional/1011/scripture_1011_web.txt"
     },
     {
       "storyId": "story_1011_anxious_full_kid_traditional",
@@ -1204,7 +1238,8 @@
       "storyLength": "full",
       "reflectionQuestion": "Can you think of something beautiful in nature, like a flower or a bird, that reminds you God takes care of you too?",
       "bibleSourceRef": "Luke 12:22-31",
-      "bibleStoryKey": "consider_the_lilies"
+      "bibleStoryKey": "consider_the_lilies",
+      "scriptureTextFilePath": "traditional/1011/scripture_1011_web.txt"
     },
     {
       "storyId": "story_1011_anxious_long_kid_traditional",
@@ -1222,7 +1257,8 @@
       "storyLength": "long",
       "reflectionQuestion": "Can you think of something beautiful in nature, like a flower or a bird, that reminds you God takes care of you too?",
       "bibleSourceRef": "Luke 12:22-31",
-      "bibleStoryKey": "consider_the_lilies"
+      "bibleStoryKey": "consider_the_lilies",
+      "scriptureTextFilePath": "traditional/1011/scripture_1011_web.txt"
     },
     {
       "storyId": "story_1015_encouraging_short_kid_traditional",
@@ -1240,7 +1276,8 @@
       "storyLength": "short",
       "reflectionQuestion": "Can you think of a time when you helped someone who really needed it, and how did that make you feel?",
       "bibleSourceRef": "Acts 3:1-10",
-      "bibleStoryKey": "peter_heals_lame_man"
+      "bibleStoryKey": "peter_heals_lame_man",
+      "scriptureTextFilePath": "traditional/1015/scripture_1015_web.txt"
     },
     {
       "storyId": "story_1015_encouraging_full_kid_traditional",
@@ -1258,7 +1295,8 @@
       "storyLength": "full",
       "reflectionQuestion": "Can you think of a time when you helped someone who really needed it, and how did that make you feel?",
       "bibleSourceRef": "Acts 3:1-10",
-      "bibleStoryKey": "peter_heals_lame_man"
+      "bibleStoryKey": "peter_heals_lame_man",
+      "scriptureTextFilePath": "traditional/1015/scripture_1015_web.txt"
     },
     {
       "storyId": "story_1015_encouraging_long_kid_traditional",
@@ -1276,7 +1314,8 @@
       "storyLength": "long",
       "reflectionQuestion": "Can you think of a time when you helped someone who really needed it, and how did that make you feel?",
       "bibleSourceRef": "Acts 3:1-10",
-      "bibleStoryKey": "peter_heals_lame_man"
+      "bibleStoryKey": "peter_heals_lame_man",
+      "scriptureTextFilePath": "traditional/1015/scripture_1015_web.txt"
     },
     {
       "storyId": "story_1012_hurting_short_kid_traditional",
@@ -1294,7 +1333,8 @@
       "storyLength": "short",
       "reflectionQuestion": "Can you think of a time when someone you love surprised you with something nice, like a yummy meal or a special visit?",
       "bibleSourceRef": "John 21:1-14",
-      "bibleStoryKey": "breakfast_on_the_shore"
+      "bibleStoryKey": "breakfast_on_the_shore",
+      "scriptureTextFilePath": "traditional/1012/scripture_1012_web.txt"
     },
     {
       "storyId": "story_1012_hurting_full_kid_traditional",
@@ -1312,7 +1352,8 @@
       "storyLength": "full",
       "reflectionQuestion": "Can you think of a time when someone you love surprised you with something nice, like a yummy meal or a special visit?",
       "bibleSourceRef": "John 21:1-14",
-      "bibleStoryKey": "breakfast_on_the_shore"
+      "bibleStoryKey": "breakfast_on_the_shore",
+      "scriptureTextFilePath": "traditional/1012/scripture_1012_web.txt"
     },
     {
       "storyId": "story_1012_hurting_long_kid_traditional",
@@ -1330,7 +1371,8 @@
       "storyLength": "long",
       "reflectionQuestion": "Can you think of a time when someone you love surprised you with something nice, like a yummy meal or a special visit?",
       "bibleSourceRef": "John 21:1-14",
-      "bibleStoryKey": "breakfast_on_the_shore"
+      "bibleStoryKey": "breakfast_on_the_shore",
+      "scriptureTextFilePath": "traditional/1012/scripture_1012_web.txt"
     },
     {
       "storyId": "story_2012_hurting_short_kid_creative",
@@ -1492,7 +1534,8 @@
       "storyLength": "short",
       "reflectionQuestion": "Can you think of a time when you had to be brave and trust that everything would be okay?",
       "bibleSourceRef": "Joshua 3:1-17",
-      "bibleStoryKey": "crossing_the_jordan"
+      "bibleStoryKey": "crossing_the_jordan",
+      "scriptureTextFilePath": "traditional/1013/scripture_1013_web.txt"
     },
     {
       "storyId": "story_1013_brave_courage_full_kid_traditional",
@@ -1510,7 +1553,8 @@
       "storyLength": "full",
       "reflectionQuestion": "Can you think of a time when you had to be brave and trust that everything would be okay?",
       "bibleSourceRef": "Joshua 3:1-17",
-      "bibleStoryKey": "crossing_the_jordan"
+      "bibleStoryKey": "crossing_the_jordan",
+      "scriptureTextFilePath": "traditional/1013/scripture_1013_web.txt"
     },
     {
       "storyId": "story_1013_brave_courage_long_kid_traditional",
@@ -1528,7 +1572,8 @@
       "storyLength": "long",
       "reflectionQuestion": "Can you think of a time when you had to be brave and trust that everything would be okay?",
       "bibleSourceRef": "Joshua 3:1-17",
-      "bibleStoryKey": "crossing_the_jordan"
+      "bibleStoryKey": "crossing_the_jordan",
+      "scriptureTextFilePath": "traditional/1013/scripture_1013_web.txt"
     },
     {
       "storyId": "story_1014_grateful_short_kid_traditional",
@@ -1546,7 +1591,8 @@
       "storyLength": "short",
       "reflectionQuestion": "Can you think of a time when someone asked you to try something that seemed really hard, but you did it anyway and were surprised by what happened?",
       "bibleSourceRef": "Luke 5:1-11",
-      "bibleStoryKey": "miraculous_catch_of_fish"
+      "bibleStoryKey": "miraculous_catch_of_fish",
+      "scriptureTextFilePath": "traditional/1014/scripture_1014_web.txt"
     },
     {
       "storyId": "story_1014_grateful_full_kid_traditional",
@@ -1564,7 +1610,8 @@
       "storyLength": "full",
       "reflectionQuestion": "Can you think of a time when someone asked you to try something that seemed really hard, but you did it anyway and were surprised by what happened?",
       "bibleSourceRef": "Luke 5:1-11",
-      "bibleStoryKey": "miraculous_catch_of_fish"
+      "bibleStoryKey": "miraculous_catch_of_fish",
+      "scriptureTextFilePath": "traditional/1014/scripture_1014_web.txt"
     },
     {
       "storyId": "story_1014_grateful_long_kid_traditional",
@@ -1582,7 +1629,8 @@
       "storyLength": "long",
       "reflectionQuestion": "Can you think of a time when someone asked you to try something that seemed really hard, but you did it anyway and were surprised by what happened?",
       "bibleSourceRef": "Luke 5:1-11",
-      "bibleStoryKey": "miraculous_catch_of_fish"
+      "bibleStoryKey": "miraculous_catch_of_fish",
+      "scriptureTextFilePath": "traditional/1014/scripture_1014_web.txt"
     },
     {
       "storyId": "story_2013_brave_courage_short_kid_creative",
