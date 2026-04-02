@@ -14,8 +14,9 @@ void showScriptureBottomSheet(
       ? parable.bibleSourceRef!
       : parable.scriptureSources.join(', ');
 
+  final displayStyle = parable.languageStyle;
   final translation =
-      BibleTranslationRegistry.getById(parable.translationId);
+      BibleTranslationRegistry.getById(displayStyle);
   final translationLabel = translation != null
       ? '${translation.name} (${translation.id})'
       : 'World English Bible (WEB)';

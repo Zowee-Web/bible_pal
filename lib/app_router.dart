@@ -9,6 +9,7 @@ import 'features/favorites/favorites_screen.dart';
 import 'features/history/history_screen.dart';
 import 'features/my_pals/my_pals_screen.dart';
 import 'features/story_reader/story_reader_screen.dart';
+import 'features/scripture_reader/scripture_reader_screen.dart';
 import 'features/journal/journal_screen.dart';
 import 'features/length_picker/length_picker_screen.dart';
 import 'features/diagnostics/diagnostics_screen.dart';
@@ -101,6 +102,10 @@ class _AppRouterState extends State<AppRouter> with WidgetsBindingObserver {
       case '/story_reader':
         return MaterialPageRoute(
           builder: (_) => const StoryReaderScreen(),
+        );
+      case '/scripture_reader':
+        return MaterialPageRoute(
+          builder: (_) => const ScriptureReaderScreen(),
         );
       case '/first_launch':
         return MaterialPageRoute(

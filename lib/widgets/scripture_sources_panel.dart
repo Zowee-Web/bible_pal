@@ -40,7 +40,7 @@ class _ScriptureSourcesPanelState extends State<ScriptureSourcesPanel> {
 
   String get _translationLabel {
     final translation =
-        BibleTranslationRegistry.getById(widget.parable.translationId);
+        BibleTranslationRegistry.getById(widget.parable.languageStyle);
     if (translation != null) {
       return '${translation.name} (${translation.id})';
     }
@@ -113,19 +113,16 @@ class _ScriptureSourcesPanelState extends State<ScriptureSourcesPanel> {
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
                 ),
-                // "Read Scripture" button — post-completion only
-                if (widget.playbackCompleted) ...[
-                  const SizedBox(height: 12),
-                  TextButton.icon(
-                    onPressed: widget.onReadScriptureTapped,
-                    icon: const Icon(Icons.open_in_new, size: 16),
-                    label: const Text('Read Scripture'),
-                    style: TextButton.styleFrom(
-                      foregroundColor:
-                          theme.colorScheme.onTertiaryContainer,
-                    ),
+                const SizedBox(height: 12),
+                TextButton.icon(
+                  onPressed: widget.onReadScriptureTapped,
+                  icon: const Icon(Icons.open_in_new, size: 16),
+                  label: const Text('Read Scripture'),
+                  style: TextButton.styleFrom(
+                    foregroundColor:
+                        theme.colorScheme.onTertiaryContainer,
                   ),
-                ],
+                ),
               ],
             ],
           ),

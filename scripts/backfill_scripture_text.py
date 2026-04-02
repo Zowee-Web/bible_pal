@@ -115,43 +115,52 @@ def main():
 
         sid = meta.get("storyId", "?")
         ref_str = meta.get("scriptureAnchor", "")
-        lang = get_lang_for_story(meta)
+        primary_lang = get_lang_for_story(meta)
         story_dir = os.path.dirname(meta_path)
+
+        # Build list of languages to generate: primary + any additional lanes
+        lanes = meta.get("lanes", [])
+        langs_to_generate = [primary_lang]
+        for lane in lanes:
+            lane_lower = lane.lower()
+            if lane_lower in ("web", "kjv") and lane_lower != primary_lang:
+                langs_to_generate.append(lane_lower)
 
         if not ref_str:
             print(f"  {sid}: SKIP (no scriptureAnchor)")
             skip_count += 1
             continue
 
-        if lang not in bibles:
-            msg = f"Bible data for {lang.upper()} not available"
-            print(f"  {sid}: FAIL — {msg}")
-            failures.append((sid, ref_str, msg))
-            failure_count += 1
-            continue
+        for lang in langs_to_generate:
+            if lang not in bibles:
+                msg = f"Bible data for {lang.upper()} not available"
+                print(f"  {sid}: FAIL — {msg}")
+                failures.append((sid, ref_str, msg))
+                failure_count += 1
+                continue
 
-        try:
-            ref = parse_bible_ref(ref_str)
-            verses = extract_verses(bibles[lang], ref)
-            text = format_scripture_text(ref, verses, lang.upper())
+            try:
+                ref = parse_bible_ref(ref_str)
+                verses = extract_verses(bibles[lang], ref)
+                text = format_scripture_text(ref, verses, lang.upper())
 
-            output_file = f"scripture_{sid}_{lang}.txt"
-            output_path = os.path.join(story_dir, output_file)
+                output_file = f"scripture_{sid}_{lang}.txt"
+                output_path = os.path.join(story_dir, output_file)
 
-            if args.dry_run:
-                print(f"  {sid}: OK — {ref_str} ({lang.upper()}, {len(verses)} verses) → {output_file}")
-            else:
-                with open(output_path, "w", encoding="utf-8") as f:
-                    f.write(text)
-                print(f"  {sid}: WROTE {output_file} ({len(verses)} verses)")
+                if args.dry_run:
+                    print(f"  {sid}: OK — {ref_str} ({lang.upper()}, {len(verses)} verses) → {output_file}")
+                else:
+                    with open(output_path, "w", encoding="utf-8") as f:
+                        f.write(text)
+                    print(f"  {sid}: WROTE {output_file} ({len(verses)} verses)")
 
-            success_count += 1
+                success_count += 1
 
-        except ValueError as e:
-            msg = str(e)
-            print(f"  {sid}: FAIL — {msg}")
-            failures.append((sid, ref_str, msg))
-            failure_count += 1
+            except ValueError as e:
+                msg = str(e)
+                print(f"  {sid}: FAIL — {msg}")
+                failures.append((sid, ref_str, msg))
+                failure_count += 1
 
     # Update manifest if not dry run
     if not args.dry_run and success_count > 0:

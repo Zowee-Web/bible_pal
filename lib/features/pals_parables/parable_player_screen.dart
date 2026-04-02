@@ -17,7 +17,6 @@ import 'package:uuid/uuid.dart';
 import 'dart:async';
 import '../../widgets/living_sky_background.dart';
 import '../../widgets/scripture_sources_panel.dart';
-import '../../widgets/scripture_bottom_sheet.dart';
 
 /// Parable Player Screen
 /// Based on SPEC.md Features 11, 12, 16, 17, 34-37
@@ -485,22 +484,6 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                   textAlign: TextAlign.center,
                                 ),
 
-                                // Scripture Sources panel (SPEC.md Feature 12)
-                                ScriptureSourcesPanel(
-                                  parable: playerState.currentParable!,
-                                  playbackCompleted: playerState.playbackCompleted,
-                                  onReadScriptureTapped: () async {
-                                    final parable = playerState.currentParable!;
-                                    final service = await ref.read(parableServiceProvider.future);
-                                    final text = await service.getScriptureText(parable);
-                                    if (!context.mounted) return;
-                                    showScriptureBottomSheet(
-                                      context, parable,
-                                      scriptureText: text,
-                                    );
-                                  },
-                                ),
-
                                 // Mood-flow verse (from PAL's mood response)
                                 if (playerState.verse != null) ...[
                                   const SizedBox(height: 20),
@@ -689,6 +672,15 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                       );
                                     }),
                                   ],
+                                ),
+
+                                // Scripture Sources panel (SPEC.md Feature 12)
+                                ScriptureSourcesPanel(
+                                  parable: playerState.currentParable!,
+                                  playbackCompleted: playerState.playbackCompleted,
+                                  onReadScriptureTapped: () {
+                                    Navigator.of(context).pushNamed('/scripture_reader');
+                                  },
                                 ),
 
                                 // Post-Story Reflection (SPEC.md Features #34-37)
