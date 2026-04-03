@@ -17,7 +17,7 @@ import 'package:bible_pal/widgets/pal_length_picker.dart';
 import 'package:bible_pal/core/story_length_bucket.dart';
 import 'package:bible_pal/core/app_logger.dart';
 import 'package:bible_pal/theme/app_theme.dart';
-import 'package:bible_pal/widgets/starfield_background.dart';
+import '../../widgets/living_sky_background.dart';
 
 /// Voice input states for the PAL Voice Mood Input flow (Feature 2.2).
 ///
@@ -688,7 +688,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          const StarfieldBackground(),
+          const LivingSkyBackground(),
           ListView(
             padding: EdgeInsets.fromLTRB(16, MediaQuery.of(context).padding.top + kToolbarHeight + 16, 16, 16),
           children: [

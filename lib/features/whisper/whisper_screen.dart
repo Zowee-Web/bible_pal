@@ -9,6 +9,7 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:bible_pal/providers/app_state_notifier.dart';
 import 'package:bible_pal/services/voice_consent_gate.dart';
 import 'package:bible_pal/features/consent/voice_consent_dialog.dart';
+import '../../widgets/living_sky_background.dart';
 
 class WhisperScreen extends ConsumerStatefulWidget {
   const WhisperScreen({super.key});
@@ -369,8 +370,14 @@ Step into the rest of your day knowing you are held and guided.
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(title: const Text('Whisper')),
-      body: ListView(
+      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(backgroundColor: Colors.transparent, title: const Text('Whisper')),
+      body: Stack(
+        children: [
+          const LivingSkyBackground(),
+          SafeArea(
+            child: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           Card(
@@ -439,6 +446,9 @@ Step into the rest of your day knowing you are held and guided.
             Text('Status', style: theme.textTheme.titleSmall),
             Text(_lastStatus, style: theme.textTheme.bodySmall),
           ],
+        ],
+      ),
+          ),
         ],
       ),
     );

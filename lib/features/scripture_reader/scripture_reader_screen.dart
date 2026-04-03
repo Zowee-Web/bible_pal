@@ -4,6 +4,8 @@ import 'package:bible_pal/providers/parable_player_notifier.dart';
 import 'package:bible_pal/providers/service_providers.dart';
 import 'package:bible_pal/core/bible_translation_registry.dart';
 import 'package:bible_pal/core/app_logger.dart';
+import '../../widgets/living_sky_background.dart';
+import '../../widgets/scripture_verse_block.dart';
 
 /// Scripture Reader Screen — scrollable full-text scripture display.
 ///
@@ -73,14 +75,21 @@ class _ScriptureReaderScreenState extends ConsumerState<ScriptureReaderScreen> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: const Text('Read Scripture'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-      body: _loading
+      body: Stack(
+        children: [
+          const LivingSkyBackground(),
+          SafeArea(
+            child: _loading
           ? const Center(child: CircularProgressIndicator())
           : verseBody == null || verseBody.isEmpty
               ? Center(
@@ -96,40 +105,16 @@ class _ScriptureReaderScreenState extends ConsumerState<ScriptureReaderScreen> {
                   ),
                 )
               : SingleChildScrollView(
-                  padding: const EdgeInsets.fromLTRB(20, 16, 20, 40),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Reference and translation
-                      if (reference.isNotEmpty) ...[
-                        Text(
-                          reference,
-                          style: theme.textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          translationLabel,
-                          style: theme.textTheme.bodySmall?.copyWith(
-                            color: theme.colorScheme.onSurfaceVariant,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        const Divider(),
-                        const SizedBox(height: 16),
-                      ],
-                      // Scripture text
-                      SelectableText(
-                        verseBody,
-                        style: theme.textTheme.bodyLarge?.copyWith(
-                          height: 1.8,
-                          fontSize: 17,
-                        ),
-                      ),
-                    ],
+                  padding: const EdgeInsets.fromLTRB(28, 16, 28, 48),
+                  child: ScripturePassageView(
+                    rawScriptureText: verseBody,
+                    reference: reference.isNotEmpty ? reference : null,
+                    translationLabel: translationLabel,
                   ),
                 ),
+          ),
+        ],
+      ),
     );
   }
 }

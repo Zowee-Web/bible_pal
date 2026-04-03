@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/app_state_notifier.dart';
 import '../../providers/parable_player_notifier.dart';
+import '../../widgets/living_sky_background.dart';
 
 /// Favorites Screen
 /// Based on SPEC.md Feature #10: Favorites System
@@ -87,10 +88,17 @@ class FavoritesScreen extends ConsumerWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
+      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: const Text('Favorites'),
       ),
-      body: favorites.isEmpty
+      body: Stack(
+        children: [
+          const LivingSkyBackground(),
+          SafeArea(
+            child: favorites.isEmpty
           ? Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -174,6 +182,9 @@ class FavoritesScreen extends ConsumerWidget {
                 );
               },
             ),
+          ),
+        ],
+      ),
     );
   }
 }

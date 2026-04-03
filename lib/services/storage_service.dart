@@ -153,6 +153,14 @@ class StorageService {
     return list.map((e) => JournalEntry.fromJson(e as Map<String, dynamic>)).toList();
   }
 
+  /// Delete a journal entry by ID
+  Future<void> deleteJournalEntry(String id) async {
+    final entries = await getJournalEntries();
+    entries.removeWhere((e) => e.id == id);
+    final json = jsonEncode(entries.map((e) => e.toJson()).toList());
+    await _prefs.setString(_keyJournal, json);
+  }
+
   /// Add a journal entry (keeps last 100)
   Future<void> addJournalEntry(JournalEntry entry) async {
     final entries = await getJournalEntries();

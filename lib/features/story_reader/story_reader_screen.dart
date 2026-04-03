@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bible_pal/providers/parable_player_notifier.dart';
 import 'package:bible_pal/core/app_logger.dart';
+import '../../widgets/living_sky_background.dart';
 
 /// Story Reader Screen — scrollable text-only story display.
 ///
@@ -33,35 +34,45 @@ class StoryReaderScreen extends ConsumerWidget {
         await goBack();
       },
       child: Scaffold(
+        backgroundColor: Colors.transparent,
+        extendBodyBehindAppBar: true,
         appBar: AppBar(
+          backgroundColor: Colors.transparent,
           title: Text(parable?.title ?? 'Story'),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: goBack,
           ),
         ),
-        body: storyText.isEmpty
-            ? Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: Text(
-                    'No story text available.',
-                    style: theme.textTheme.bodyLarge?.copyWith(
-                      color: theme.colorScheme.onSurfaceVariant,
+        body: Stack(
+          children: [
+            const LivingSkyBackground(),
+            SafeArea(
+              child: storyText.isEmpty
+                  ? Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(24),
+                        child: Text(
+                          'No story text available.',
+                          style: theme.textTheme.bodyLarge?.copyWith(
+                            color: theme.colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ),
+                    )
+                  : SingleChildScrollView(
+                      padding: const EdgeInsets.fromLTRB(20, 16, 20, 40),
+                      child: Text(
+                        storyText,
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          height: 1.8,
+                          fontSize: 17,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              )
-            : SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(20, 16, 20, 40),
-                child: Text(
-                  storyText,
-                  style: theme.textTheme.bodyLarge?.copyWith(
-                    height: 1.8,
-                    fontSize: 17,
-                  ),
-                ),
-              ),
+            ),
+          ],
+        ),
       ),
     );
   }

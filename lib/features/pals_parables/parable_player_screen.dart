@@ -17,6 +17,7 @@ import 'package:uuid/uuid.dart';
 import 'dart:async';
 import '../../widgets/living_sky_background.dart';
 import '../../widgets/scripture_sources_panel.dart';
+import '../../theme/app_theme.dart';
 
 /// Parable Player Screen
 /// Based on SPEC.md Features 11, 12, 16, 17, 34-37
@@ -35,7 +36,6 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
   double _dragValue = 0;
   bool _showReflection = false;
   bool _reflectionDismissed = false;
-  bool _reflectionExpanded = true;
   bool _isReflectionPlaying = false;
   bool _reflectionAudioPlayed = false;
   bool _hasReflectionAudio = false;
@@ -62,6 +62,7 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     super.initState();
     _checkIfFavorited();
     _checkReflectionAudioExists();
+    _journalFocusNode.addListener(_onJournalFocusChange);
   }
 
   @override
@@ -69,6 +70,9 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     _sleepTimer?.cancel();
     _scrollController.dispose();
     _reflectionPlayer?.dispose();
+    _journalFocusNode.removeListener(_onJournalFocusChange);
+    _journalFocusNode.dispose();
+    _journalController.dispose();
     super.dispose();
   }
 
@@ -610,7 +614,18 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                     ),
                                   ),
 
-                                const SizedBox(height: 24),
+                                const SizedBox(height: 16),
+
+                                // Scripture Sources panel (SPEC.md Feature 12)
+                                ScriptureSourcesPanel(
+                                  parable: playerState.currentParable!,
+                                  playbackCompleted: playerState.playbackCompleted,
+                                  onReadScriptureTapped: () {
+                                    Navigator.of(context).pushNamed('/scripture_reader');
+                                  },
+                                ),
+
+                                const SizedBox(height: 16),
 
                                 // Action buttons — single row, compact
                                 Wrap(
@@ -627,6 +642,12 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                         size: 16,
                                       ),
                                       label: Text(_isFavorited ? 'Favorited' : 'Favorite'),
+                                      style: OutlinedButton.styleFrom(
+                                        foregroundColor: AppTheme.warmIvory,
+                                        side: BorderSide(
+                                          color: AppTheme.warmIvory.withOpacity(0.5),
+                                        ),
+                                      ),
                                     ),
 
                                     // Read Story
@@ -634,6 +655,12 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                       onPressed: () => Navigator.of(context).pushNamed('/story_reader'),
                                       icon: const Icon(Icons.menu_book_outlined, size: 16),
                                       label: const Text('Read Story'),
+                                      style: OutlinedButton.styleFrom(
+                                        foregroundColor: AppTheme.warmIvory,
+                                        side: BorderSide(
+                                          color: AppTheme.warmIvory.withOpacity(0.5),
+                                        ),
+                                      ),
                                     ),
 
                                     // Share with a PAL
@@ -641,6 +668,12 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                       onPressed: _shareWithPals,
                                       icon: const Icon(Icons.share, size: 16),
                                       label: const Text('Share with a PAL'),
+                                      style: OutlinedButton.styleFrom(
+                                        foregroundColor: AppTheme.warmIvory,
+                                        side: BorderSide(
+                                          color: AppTheme.warmIvory.withOpacity(0.5),
+                                        ),
+                                      ),
                                     ),
 
                                     // Share a clip
@@ -669,21 +702,18 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                         },
                                         icon: const Icon(Icons.format_quote, size: 16),
                                         label: const Text('Share a clip'),
+                                        style: OutlinedButton.styleFrom(
+                                          foregroundColor: AppTheme.warmIvory,
+                                          side: BorderSide(
+                                            color: AppTheme.warmIvory.withOpacity(0.5),
+                                          ),
+                                        ),
                                       );
                                     }),
                                   ],
                                 ),
 
-                                // Scripture Sources panel (SPEC.md Feature 12)
-                                ScriptureSourcesPanel(
-                                  parable: playerState.currentParable!,
-                                  playbackCompleted: playerState.playbackCompleted,
-                                  onReadScriptureTapped: () {
-                                    Navigator.of(context).pushNamed('/scripture_reader');
-                                  },
-                                ),
-
-                                // Post-Story Reflection (SPEC.md Features #34-37)
+                                // Post-Story Reflection (SPEC.md Features #34-36)
                                 _buildReflectionSection(theme),
 
                                 const SizedBox(height: 24),
@@ -746,285 +776,132 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
 
     return Column(
       children: [
-        const SizedBox(height: 24),
-        Card(
-          elevation: 2,
-          color: theme.colorScheme.tertiaryContainer,
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Header with expand/collapse and dismiss buttons
-                Row(
-                  children: [
-                    Icon(
-                      Icons.lightbulb_outline,
-                      color: theme.colorScheme.onTertiaryContainer,
-                      size: 20,
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        'A moment to reflect',
-                        style: theme.textTheme.titleSmall?.copyWith(
-                          color: theme.colorScheme.onTertiaryContainer,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    // Expand/collapse toggle
-                    IconButton(
-                      icon: Icon(
-                        _reflectionExpanded
-                            ? Icons.expand_less
-                            : Icons.expand_more,
-                        size: 20,
-                        color: theme.colorScheme.onTertiaryContainer,
-                      ),
-                      onPressed: () {
-                        setState(
-                            () => _reflectionExpanded = !_reflectionExpanded);
-                      },
-                      tooltip: _reflectionExpanded ? 'Collapse' : 'Expand',
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(),
-                    ),
-                    const SizedBox(width: 8),
-                    IconButton(
-                      icon: Icon(
-                        Icons.close,
-                        size: 20,
-                        color: theme.colorScheme.onTertiaryContainer,
-                      ),
-                      onPressed: () {
-                        _stopReflectionAudio();
-                        setState(() => _reflectionDismissed = true);
-                      },
-                      tooltip: 'Dismiss',
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(),
-                    ),
-                  ],
-                ),
+        // Standalone reflection audio button
+        if (_hasReflectionAudio) ...[
+          const SizedBox(height: 16),
+          _buildReflectionAudioControls(theme),
+        ],
 
-                // Collapsible content
-                if (_reflectionExpanded) ...[
-                  const SizedBox(height: 12),
-
-                  // Reflection text
-                  Text(
-                    reflection.text,
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.colorScheme.onTertiaryContainer,
-                    ),
-                  ),
-
-                  // Optional reflection question (SPEC Feature 37, not shown in kid mode)
-                  // Prefer pipeline-generated question; fall back to template for legacy stories
-                  if (!isKidMode) ...[
-                    () {
-                      final pq = playerState.currentParable!.reflectionQuestion;
-                      // Pipeline: non-empty → use it; "" → suppress; null → template fallback
-                      final questionText = pq != null
-                          ? (pq.isNotEmpty ? pq : null)
-                          : reflection.question;
-                      if (questionText == null) return const SizedBox.shrink();
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 16),
-                        child: Container(
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: theme.colorScheme.tertiary.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Icon(
-                                Icons.help_outline,
-                                size: 18,
-                                color: theme.colorScheme.onTertiaryContainer,
-                              ),
-                              const SizedBox(width: 8),
-                              Expanded(
-                                child: Text(
-                                  questionText,
-                                  style: theme.textTheme.bodyMedium?.copyWith(
-                                    color: theme.colorScheme.onTertiaryContainer,
-                                    fontStyle: FontStyle.italic,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    }(),
-                  ],
-
-                  // Audio controls (if pre-generated reflection audio exists)
-                  if (_hasReflectionAudio) ...[
-                    const SizedBox(height: 16),
-                    _buildReflectionAudioControls(theme),
-                  ],
-
-                  // Journal entry input
-                  if (!isKidMode) ...[
-                    const SizedBox(height: 16),
-                    _buildJournalInput(theme, playerState.currentParable!),
-                  ],
-
-                  // "Pray With Me" offer
-                  const SizedBox(height: 16),
-                  _buildPrayWithMeSection(theme, playerState.currentParable!),
-                ],
-              ],
-            ),
-          ),
-        ),
+        // Standalone journal input (adult only)
+        if (!isKidMode) ...[
+          const SizedBox(height: 12),
+          _buildJournalInput(theme, playerState.currentParable!),
+        ],
       ],
     );
   }
 
   // Journal input state
   final TextEditingController _journalController = TextEditingController();
+  final FocusNode _journalFocusNode = FocusNode();
+  bool _journalEditing = false;
   bool _journalSaved = false;
+
+  void _onJournalFocusChange() {
+    if (!_journalFocusNode.hasFocus && _journalEditing) {
+      final parable = ref.read(parablePlayerProvider).currentParable;
+      if (parable != null) _saveJournal(parable);
+    }
+  }
+
+  void _saveJournal(Parable parable) async {
+    final text = _journalController.text.trim();
+    if (text.isEmpty) {
+      if (mounted) setState(() => _journalEditing = false);
+      return;
+    }
+
+    final entry = JournalEntry(
+      id: const Uuid().v4(),
+      storyId: parable.storyId,
+      storyTitle: parable.title,
+      mood: parable.mood,
+      note: text,
+      createdAt: DateTime.now(),
+    );
+
+    final storage = await ref.read(storageServiceProvider.future);
+    await storage.addJournalEntry(entry);
+
+    if (mounted) {
+      setState(() {
+        _journalSaved = true;
+        _journalEditing = false;
+      });
+      _journalController.clear();
+    }
+  }
 
   Widget _buildJournalInput(ThemeData theme, Parable parable) {
     if (_journalSaved) {
       return Text(
         'Saved to your journal.',
         style: theme.textTheme.bodySmall?.copyWith(
-          color: theme.colorScheme.onTertiaryContainer.withOpacity(0.6),
+          color: AppTheme.warmIvory.withOpacity(0.6),
           fontStyle: FontStyle.italic,
         ),
       );
     }
 
-    return Row(
-      children: [
-        Expanded(
-          child: TextField(
-            controller: _journalController,
-            maxLength: 200,
-            maxLines: 1,
-            style: theme.textTheme.bodySmall,
-            decoration: InputDecoration(
-              hintText: 'Jot a thought...',
-              hintStyle: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onTertiaryContainer.withOpacity(0.4),
+    if (!_journalEditing) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          OutlinedButton.icon(
+            onPressed: () {
+              setState(() => _journalEditing = true);
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                _journalFocusNode.requestFocus();
+              });
+            },
+            icon: const Icon(Icons.edit_note, size: 18),
+            label: const Text('Jot a thought'),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: AppTheme.warmIvory,
+              side: BorderSide(
+                color: AppTheme.warmIvory.withOpacity(0.5),
               ),
-              isDense: true,
-              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(color: theme.colorScheme.outline.withOpacity(0.3)),
-              ),
-              counterText: '',
             ),
           ),
-        ),
-        const SizedBox(width: 8),
-        IconButton(
-          icon: Icon(Icons.check, size: 20, color: theme.colorScheme.primary),
-          onPressed: () async {
-            final text = _journalController.text.trim();
-            if (text.isEmpty) return;
-
-            final entry = JournalEntry(
-              id: const Uuid().v4(),
-              storyId: parable.storyId,
-              storyTitle: parable.title,
-              mood: parable.mood,
-              note: text,
-              createdAt: DateTime.now(),
-            );
-
-            final storage = await ref.read(storageServiceProvider.future);
-            await storage.addJournalEntry(entry);
-
-            if (mounted) {
-              setState(() => _journalSaved = true);
-              _journalController.clear();
-            }
-          },
-        ),
-      ],
-    );
-  }
-
-  bool _prayerActive = false;
-  bool _prayerDismissed = false;
-
-  Widget _buildPrayWithMeSection(ThemeData theme, Parable parable) {
-    if (_prayerDismissed) return const SizedBox.shrink();
-
-    if (_prayerActive) {
-      // Show the quiet prayer moment
-      return Card(
-        elevation: 1,
-        color: theme.colorScheme.secondaryContainer.withOpacity(0.5),
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Text(
-                _getPrayerText(parable.mood),
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  fontStyle: FontStyle.italic,
-                  height: 1.6,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 16),
-              TextButton(
-                onPressed: () => setState(() {
-                  _prayerActive = false;
-                  _prayerDismissed = true;
-                }),
-                child: const Text('Amen'),
-              ),
-            ],
-          ),
-        ),
+        ],
       );
     }
 
-    // Show the offer
-    return TextButton.icon(
-      onPressed: () => setState(() => _prayerActive = true),
-      icon: Icon(Icons.favorite_outline, size: 16, color: theme.colorScheme.onTertiaryContainer.withOpacity(0.7)),
-      label: Text(
-        'Would you like to sit quietly for a moment?',
-        style: theme.textTheme.bodySmall?.copyWith(
-          color: theme.colorScheme.onTertiaryContainer.withOpacity(0.7),
+    return AnimatedSize(
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.easeInOut,
+      child: TextField(
+        controller: _journalController,
+        focusNode: _journalFocusNode,
+        maxLength: 200,
+        maxLines: 1,
+        textInputAction: TextInputAction.done,
+        onSubmitted: (_) => _saveJournal(parable),
+        cursorColor: AppTheme.warmIvory,
+        style: const TextStyle(
+          color: AppTheme.warmIvory,
+          fontSize: 14,
+        ),
+        decoration: InputDecoration(
+          hintText: 'Jot a thought...',
+          hintStyle: TextStyle(
+            color: AppTheme.warmIvory.withOpacity(0.4),
+            fontSize: 14,
+          ),
+          isDense: true,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: AppTheme.glassBorder.withOpacity(0.5)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: AppTheme.warmIvory),
+          ),
+          counterText: '',
         ),
       ),
     );
-  }
-
-  String _getPrayerText(String mood) {
-    switch (mood) {
-      case 'joyful':
-        return 'Thank you, Lord, for this joy.\nHelp me carry it gently\nand share it freely.';
-      case 'grateful':
-        return 'Lord, my heart is full.\nThank you for every gift,\nseen and unseen.';
-      case 'weary':
-        return 'Lord, I am tired.\nGive me rest.\nCarry what I cannot.';
-      case 'anxious':
-        return 'Lord, quiet my restless thoughts.\nYou are here.\nThat is enough.';
-      case 'hurting':
-        return 'Lord, you see my pain.\nSit with me here.\nI don\'t need answers, just your presence.';
-      case 'brave_courage':
-        return 'Lord, give me strength\nfor what lies ahead.\nI will not walk alone.';
-      case 'calm_peaceful':
-        return 'Lord, thank you for this peace.\nHelp me stay here a little longer\nand breathe.';
-      case 'encouraging':
-        return 'Lord, thank you for this spark.\nFan it into something good.\nUse me today.';
-      default:
-        return 'Lord, I am here.\nYou are here.\nThat is enough.';
-    }
   }
 
   /// Build audio control buttons for reflection
@@ -1039,9 +916,9 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
             icon: const Icon(Icons.stop, size: 18),
             label: const Text('Stop'),
             style: OutlinedButton.styleFrom(
-              foregroundColor: theme.colorScheme.onTertiaryContainer,
+              foregroundColor: AppTheme.warmIvory,
               side: BorderSide(
-                color: theme.colorScheme.onTertiaryContainer.withOpacity(0.5),
+                color: AppTheme.warmIvory.withOpacity(0.5),
               ),
             ),
           )
@@ -1051,9 +928,9 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
             icon: const Icon(Icons.replay, size: 18),
             label: const Text('Replay'),
             style: OutlinedButton.styleFrom(
-              foregroundColor: theme.colorScheme.onTertiaryContainer,
+              foregroundColor: AppTheme.warmIvory,
               side: BorderSide(
-                color: theme.colorScheme.onTertiaryContainer.withOpacity(0.5),
+                color: AppTheme.warmIvory.withOpacity(0.5),
               ),
             ),
           )
@@ -1063,9 +940,9 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
             icon: const Icon(Icons.play_arrow, size: 18),
             label: const Text('Hear Reflection'), // ADR-010: User taps to hear
             style: OutlinedButton.styleFrom(
-              foregroundColor: theme.colorScheme.onTertiaryContainer,
+              foregroundColor: AppTheme.warmIvory,
               side: BorderSide(
-                color: theme.colorScheme.onTertiaryContainer.withOpacity(0.5),
+                color: AppTheme.warmIvory.withOpacity(0.5),
               ),
             ),
           ),

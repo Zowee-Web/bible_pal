@@ -3,12 +3,47 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/service_providers.dart';
 import '../../models/journal_entry.dart';
 import '../../widgets/living_sky_background.dart';
+import '../../theme/app_theme.dart';
 
-class JournalScreen extends ConsumerWidget {
+class JournalScreen extends ConsumerStatefulWidget {
   const JournalScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<JournalScreen> createState() => _JournalScreenState();
+}
+
+class _JournalScreenState extends ConsumerState<JournalScreen> {
+  int _rebuildKey = 0;
+
+  Future<void> _confirmDelete(String id) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppTheme.glassCard,
+        title: const Text('Delete entry?', style: TextStyle(color: AppTheme.warmIvory)),
+        content: const Text('This cannot be undone.', style: TextStyle(color: AppTheme.warmIvory)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            style: TextButton.styleFrom(foregroundColor: AppTheme.warmIvory),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            style: TextButton.styleFrom(foregroundColor: AppTheme.warmIvory),
+            child: const Text('Delete'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+    final storage = await ref.read(storageServiceProvider.future);
+    await storage.deleteJournalEntry(id);
+    if (mounted) setState(() => _rebuildKey++);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -23,6 +58,7 @@ class JournalScreen extends ConsumerWidget {
           const LivingSkyBackground(),
           SafeArea(
             child: FutureBuilder<List<JournalEntry>>(
+              key: ValueKey(_rebuildKey),
               future: ref.watch(storageServiceProvider.future).then((s) => s.getJournalEntries()),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
@@ -78,7 +114,7 @@ class JournalScreen extends ConsumerWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Date and mood
+                            // Date, mood, and delete
                             Row(
                               children: [
                                 Text(
@@ -100,6 +136,18 @@ class JournalScreen extends ConsumerWidget {
                                       color: theme.colorScheme.onSurface.withOpacity(0.7),
                                     ),
                                   ),
+                                ),
+                                const SizedBox(width: 4),
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.delete_outline,
+                                    size: 18,
+                                    color: theme.colorScheme.onSurfaceVariant.withOpacity(0.6),
+                                  ),
+                                  onPressed: () => _confirmDelete(entry.id),
+                                  padding: EdgeInsets.zero,
+                                  constraints: const BoxConstraints(),
+                                  tooltip: 'Delete entry',
                                 ),
                               ],
                             ),

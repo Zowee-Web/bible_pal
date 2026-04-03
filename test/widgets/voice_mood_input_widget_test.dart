@@ -43,7 +43,7 @@ void main() {
   group('Voice mood input widget', () {
     testWidgets('mic button is visible on PalsParablesScreen', (tester) async {
       await tester.pumpWidget(buildTestApp());
-      await tester.pumpAndSettle();
+      await tester.pump(const Duration(seconds: 1));
 
       // Mic button should be present (key: voice_mic_button)
       expect(find.byKey(const Key('voice_mic_button')), findsOneWidget);
@@ -51,7 +51,7 @@ void main() {
 
     testWidgets('mic button shows mic icon', (tester) async {
       await tester.pumpWidget(buildTestApp());
-      await tester.pumpAndSettle();
+      await tester.pump(const Duration(seconds: 1));
 
       expect(find.byIcon(Icons.mic), findsOneWidget);
     });
@@ -59,7 +59,7 @@ void main() {
     testWidgets('TextField is always visible regardless of voice state',
         (tester) async {
       await tester.pumpWidget(buildTestApp());
-      await tester.pumpAndSettle();
+      await tester.pump(const Duration(seconds: 1));
 
       // TextField should be present for typing
       expect(find.byType(TextField), findsOneWidget);
@@ -67,21 +67,21 @@ void main() {
 
     testWidgets('"or" label is visible in idle state', (tester) async {
       await tester.pumpWidget(buildTestApp());
-      await tester.pumpAndSettle();
+      await tester.pump(const Duration(seconds: 1));
 
       expect(find.text('or'), findsOneWidget);
     });
 
     testWidgets('Continue button is visible', (tester) async {
       await tester.pumpWidget(buildTestApp());
-      await tester.pumpAndSettle();
+      await tester.pump(const Duration(seconds: 1));
 
       expect(find.text('Continue'), findsOneWidget);
     });
 
     testWidgets('prompt subtitle is rendered', (tester) async {
       await tester.pumpWidget(buildTestApp());
-      await tester.pumpAndSettle();
+      await tester.pump(const Duration(seconds: 1));
 
       // Subtitle text should be present
       expect(find.textContaining('Share how you\'re really doing'),
@@ -90,7 +90,7 @@ void main() {
 
     testWidgets('TextField hint text is correct in idle state', (tester) async {
       await tester.pumpWidget(buildTestApp());
-      await tester.pumpAndSettle();
+      await tester.pump(const Duration(seconds: 1));
 
       // Hint text rotates between time-aware prompts; verify the TextField has one
       final textField = tester.widget<TextField>(find.byType(TextField));
@@ -103,7 +103,7 @@ void main() {
         (tester) async {
       // In test environment, STT is unavailable
       await tester.pumpWidget(buildTestApp());
-      await tester.pumpAndSettle();
+      await tester.pump(const Duration(seconds: 1));
 
       final micButton = tester.widget<IconButton>(
         find.byKey(const Key('voice_mic_button')),
@@ -114,11 +114,11 @@ void main() {
     testWidgets('tapping mic when STT unavailable shows snackbar',
         (tester) async {
       await tester.pumpWidget(buildTestApp());
-      await tester.pumpAndSettle();
+      await tester.pump(const Duration(seconds: 1));
 
       // Scroll to make mic button visible (mood buttons push it off-screen)
       await tester.ensureVisible(find.byKey(const Key('voice_mic_button')));
-      await tester.pumpAndSettle();
+      await tester.pump(const Duration(seconds: 1));
 
       // Tap the mic button
       await tester.tap(find.byKey(const Key('voice_mic_button')));

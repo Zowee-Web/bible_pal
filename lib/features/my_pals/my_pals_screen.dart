@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/app_state_notifier.dart';
 import '../../models/pal.dart';
 import 'add_pal_dialog.dart';
+import '../../widgets/living_sky_background.dart';
 
 /// My PALs Screen - Manage friends and view shared stories
 /// v1.0: Simple list with add/remove, shows shared stories per PAL
@@ -123,10 +124,17 @@ class MyPalsScreen extends ConsumerWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
+      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: const Text('My PALs'),
       ),
-      body: pals.isEmpty
+      body: Stack(
+        children: [
+          const LivingSkyBackground(),
+          SafeArea(
+            child: pals.isEmpty
           ? Center(
               child: Padding(
                 padding: const EdgeInsets.all(32),
@@ -280,6 +288,9 @@ class MyPalsScreen extends ConsumerWidget {
                 );
               },
             ),
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _addPal(context, ref),
         icon: const Icon(Icons.person_add),

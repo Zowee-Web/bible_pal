@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../core/bible_translation_registry.dart';
 import '../models/parable.dart';
+import 'scripture_verse_block.dart';
 
 /// Opens a bottom sheet displaying the scripture reference, translation label,
 /// and the actual verse text if available.
@@ -52,47 +53,13 @@ void showScriptureBottomSheet(
             child: CustomScrollView(
               controller: scrollController,
               slivers: [
-                SliverToBoxAdapter(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Title
-                      Text(
-                        'Read Scripture',
-                        style: theme.textTheme.titleLarge,
-                      ),
-                      const SizedBox(height: 12),
-
-                      // Reference
-                      Text(
-                        reference,
-                        style: theme.textTheme.bodyLarge,
-                      ),
-                      const SizedBox(height: 4),
-
-                      // Translation label
-                      Text(
-                        translationLabel,
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: theme.colorScheme.onSurfaceVariant,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-
-                      const Divider(),
-                      const SizedBox(height: 16),
-                    ],
-                  ),
-                ),
-
                 // Scripture text or placeholder
                 SliverToBoxAdapter(
                   child: verseBody != null
-                      ? SelectableText(
-                          verseBody,
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            height: 1.6,
-                          ),
+                      ? ScripturePassageView(
+                          rawScriptureText: verseBody,
+                          reference: reference,
+                          translationLabel: translationLabel,
                         )
                       : Container(
                           width: double.infinity,

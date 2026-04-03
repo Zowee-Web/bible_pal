@@ -18,11 +18,10 @@ This document is the single source of truth for Bible PAL's features and behavio
 7. [Listening Streaks](#listening-streaks)
 8. [Reflection Journal](#reflection-journal)
 9. [Seasonal & Calendar Awareness](#seasonal--calendar-awareness)
-10. [Pray With Me](#pray-with-me)
-11. [Share Clips](#share-clips)
-12. [Living Sky Theme](#living-sky-theme)
-13. [Sanctuary & Study Layout](#sanctuary--study-layout)
-14. [Settings](#settings)
+10. [Share Clips](#share-clips)
+11. [Living Sky Theme](#living-sky-theme)
+12. [Sanctuary & Study Layout](#sanctuary--study-layout)
+13. [Settings](#settings)
 15. [Security & Technical Architecture](#security--technical-architecture)
 
 ---
@@ -740,9 +739,10 @@ After a PAL's Story finishes playing, an optional reflection connects the story'
 **UI Flow:**
 1. Story playback completes
 2. For Traditional stories: Display scripture reference (e.g., "Mark 4:35-41")
-3. Show "Hear Reflection" button (if reflection audio exists)
-4. User taps button → play reflection audio
-5. User may dismiss at any time
+3. Show standalone reflection controls (no card/container):
+   - "Hear Reflection" button (if reflection audio exists)
+   - "Jot a thought..." journal input (adult mode only)
+4. User may dismiss at any time
 
 **When Disabled:**
 - No reflection UI, audio, or questions appear
@@ -778,13 +778,6 @@ When `kidFriendlyOnly` is enabled:
 - No abstract concepts or emotional probing
 - Age-appropriate vocabulary (5-9 year olds)
 - Example tone: "This story shows that being kind matters, even when things feel unfair."
-
-**37. Reflection Question (Optional)**
-
-- A single, gentle reflection question may follow the reflection text
-- Questions are open-ended, not leading
-- User may dismiss/skip without answering
-- No user response is stored or tracked
 
 ---
 
@@ -915,31 +908,6 @@ The app adjusts mood surfacing and story selection based on time of day.
 - Mood buttons always show all 8 moods — reordering only, never hiding
 - Time-of-day is a soft preference, not a hard filter
 - Uses `PalPromptService.getTimeWindow()` for consistent time classification
-
----
-
-## Pray With Me
-
-**43. Pray With Me (Feature 43)**
-
-An optional, gentle guided prayer moment offered after the post-story reflection.
-
-**Behavior:**
-- **Offer**: After reflection section, a quiet text link appears: "Would you like to sit quietly for a moment?"
-- **Activation**: User taps → prayer card appears with a mood-matched short prayer (3 lines)
-- **Dismissal**: User taps "Amen" → prayer card hides permanently for that session
-- **Non-intrusive**: Link is subtle, low-contrast, easy to ignore
-
-**Prayer Content:**
-- One prayer per mood (8 total), hardcoded in player screen
-- Prayers are 3 lines, personal, non-prescriptive
-- Example (weary): "Lord, I am tired. / Give me rest. / Carry what I cannot."
-
-**Constraints:**
-- Prayer is text-only (no audio)
-- No prayer is shown if user dismisses before tapping
-- Prayer state (`_prayerActive`, `_prayerDismissed`) is session-only, not persisted
-- Available in kid mode (prayers are simple and appropriate)
 
 ---
 

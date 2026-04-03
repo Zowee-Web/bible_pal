@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/app_state_notifier.dart';
 import '../../providers/parable_player_notifier.dart';
+import '../../widgets/living_sky_background.dart';
 
 /// History Screen
 /// Based on SPEC.md Feature #11: History System
@@ -139,7 +140,10 @@ class HistoryScreen extends ConsumerWidget {
     }());
 
     return Scaffold(
+      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: const Text('History'),
         actions: history.isNotEmpty
             ? [
@@ -151,7 +155,11 @@ class HistoryScreen extends ConsumerWidget {
               ]
             : null,
       ),
-      body: history.isEmpty
+      body: Stack(
+        children: [
+          const LivingSkyBackground(),
+          SafeArea(
+            child: history.isEmpty
           ? Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -223,6 +231,9 @@ class HistoryScreen extends ConsumerWidget {
                 );
               },
             ),
+          ),
+        ],
+      ),
     );
   }
 }
