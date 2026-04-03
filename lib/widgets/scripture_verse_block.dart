@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme/app_theme.dart';
+
 
 /// A single parsed verse: number + text.
 class ScriptureVerse {
@@ -74,10 +74,10 @@ class ScriptureVerseBlock extends StatelessWidget {
             width: 28,
             child: Text(
               verse.number,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
-                color: AppTheme.mutedSlate,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
                 height: 2.0,
               ),
             ),
@@ -86,10 +86,10 @@ class ScriptureVerseBlock extends StatelessWidget {
           Expanded(
             child: SelectableText(
               verse.text,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 height: 2.0,
-                color: AppTheme.warmIvory,
+                color: Theme.of(context).colorScheme.onSurface,
                 letterSpacing: 0.2,
               ),
             ),
@@ -124,10 +124,10 @@ class ScripturePassageView extends StatelessWidget {
     if (verses.isEmpty) {
       return SelectableText(
         rawScriptureText,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 18,
           height: 2.0,
-          color: AppTheme.warmIvory,
+          color: Theme.of(context).colorScheme.onSurface,
         ),
       );
     }
@@ -142,10 +142,10 @@ class ScripturePassageView extends StatelessWidget {
             if (reference != null && reference!.isNotEmpty) ...[
               Text(
                 reference!,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
-                  color: AppTheme.warmIvory,
+                  color: Theme.of(context).colorScheme.onSurface,
                   letterSpacing: 0.3,
                 ),
               ),
@@ -153,9 +153,9 @@ class ScripturePassageView extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   translationLabel!,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 13,
-                    color: AppTheme.mutedSlate,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 ),
               ],

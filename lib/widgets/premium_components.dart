@@ -149,6 +149,7 @@ class _GlassButtonState extends State<GlassButton>
     with SingleTickerProviderStateMixin {
   late final AnimationController _scaleController;
   late final Animation<double> _scale;
+  bool _pressed = false;
 
   @override
   void initState() {
@@ -173,12 +174,19 @@ class _GlassButtonState extends State<GlassButton>
     final palette = LivingSky.getPalette(LivingSky.getPhase());
 
     return GestureDetector(
-      onTapDown: (_) => _scaleController.forward(),
+      onTapDown: (_) {
+        _scaleController.forward();
+        setState(() => _pressed = true);
+      },
       onTapUp: (_) {
         _scaleController.reverse();
+        setState(() => _pressed = false);
         widget.onPressed();
       },
-      onTapCancel: () => _scaleController.reverse(),
+      onTapCancel: () {
+        _scaleController.reverse();
+        setState(() => _pressed = false);
+      },
       child: AnimatedBuilder(
         animation: _scale,
         builder: (context, child) {
@@ -187,13 +195,19 @@ class _GlassButtonState extends State<GlassButton>
             child: child,
           );
         },
-        child: Container(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 120),
           padding: widget.padding ??
               const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
-            color: palette.cardColor,
+            color: _pressed
+                ? palette.orbGlowColor.withOpacity(0.25)
+                : palette.cardColor,
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: palette.cardBorder, width: 1),
+            border: Border.all(
+              color: _pressed ? palette.orbGlowColor.withOpacity(0.6) : palette.cardBorder,
+              width: 1,
+            ),
           ),
           child: DefaultTextStyle(
             style: TextStyle(
@@ -237,6 +251,7 @@ class _GlassTileState extends State<GlassTile>
     with SingleTickerProviderStateMixin {
   late final AnimationController _scaleController;
   late final Animation<double> _scale;
+  bool _pressed = false;
 
   @override
   void initState() {
@@ -262,12 +277,19 @@ class _GlassTileState extends State<GlassTile>
     final glow = palette.glowIntensity;
 
     return GestureDetector(
-      onTapDown: (_) => _scaleController.forward(),
+      onTapDown: (_) {
+        _scaleController.forward();
+        setState(() => _pressed = true);
+      },
       onTapUp: (_) {
         _scaleController.reverse();
+        setState(() => _pressed = false);
         widget.onTap();
       },
-      onTapCancel: () => _scaleController.reverse(),
+      onTapCancel: () {
+        _scaleController.reverse();
+        setState(() => _pressed = false);
+      },
       child: AnimatedBuilder(
         animation: _scale,
         builder: (context, child) {
@@ -276,12 +298,18 @@ class _GlassTileState extends State<GlassTile>
             child: child,
           );
         },
-        child: Container(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 120),
           padding: const EdgeInsets.symmetric(vertical: 14),
           decoration: BoxDecoration(
-            color: palette.cardColor,
+            color: _pressed
+                ? palette.orbGlowColor.withOpacity(0.25)
+                : palette.cardColor,
             borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: palette.cardBorder, width: 1),
+            border: Border.all(
+              color: _pressed ? palette.orbGlowColor.withOpacity(0.6) : palette.cardBorder,
+              width: 1,
+            ),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,

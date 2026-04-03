@@ -660,8 +660,9 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                   runSpacing: 8,
                                   alignment: WrapAlignment.center,
                                   children: [
-                                    // Read Story — primary action
-                                    PrimaryGlowButton(
+                                    // Read Story — glass (same style as siblings)
+                                    GlassButton.icon(
+                                      icon: Icons.menu_book,
                                       label: 'Read Story',
                                       onPressed: () => Navigator.of(context).pushNamed('/story_reader'),
                                     ),
