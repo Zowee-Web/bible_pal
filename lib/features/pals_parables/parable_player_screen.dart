@@ -17,7 +17,10 @@ import 'package:uuid/uuid.dart';
 import 'dart:async';
 import '../../widgets/living_sky_background.dart';
 import '../../widgets/scripture_sources_panel.dart';
+import '../../widgets/name_prompt_overlay.dart';
+import '../../widgets/premium_components.dart';
 import '../../theme/app_theme.dart';
+import '../../theme/living_sky.dart';
 
 /// Parable Player Screen
 /// Based on SPEC.md Features 11, 12, 16, 17, 34-37
@@ -56,6 +59,7 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
   }
 
   bool _completionListenerSet = false;
+  bool _showNamePrompt = false;
 
   @override
   void initState() {
@@ -113,6 +117,16 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
   }
 
   void _onPlaybackCompleted() async {
+    // Check if we should show the post-first-story name prompt
+    final appState = ref.read(appStateProvider).valueOrNull;
+    if (appState != null) {
+      final userName = appState.userPreferences.userName;
+      final shouldShow = await NamePromptOverlay.shouldShow(userName);
+      if (shouldShow && mounted) {
+        setState(() => _showNamePrompt = true);
+      }
+    }
+
     if (!_reflectionDismissed) {
       setState(() => _showReflection = true);
 
@@ -521,15 +535,12 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
 
                                 const SizedBox(height: 32),
 
-                                // LARGE Play/Pause Button — the hero
-                                IconButton(
-                                  icon: Icon(
-                                    playerNotifier.isPlaying
-                                        ? Icons.pause_circle_filled
-                                        : Icons.play_circle_filled,
-                                    size: 80,
-                                  ),
-                                  color: theme.colorScheme.primary,
+                                // LARGE Play/Pause Button — glowing orb style
+                                GlowingOrbButton(
+                                  icon: playerNotifier.isPlaying
+                                      ? Icons.pause_rounded
+                                      : Icons.play_arrow_rounded,
+                                  size: 80,
                                   onPressed: () async {
                                     if (playerNotifier.isPlaying) {
                                       playerNotifier.pause();
@@ -555,26 +566,38 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                             .toDouble()
                                             .clamp(0.0, max);
 
+                                    final sliderPalette = LivingSky.getPalette(LivingSky.getPhase());
                                     return Column(
                                       children: [
-                                        Slider(
-                                          value: displayValue,
-                                          max: max > 0 ? max : 1,
-                                          onChangeStart: (v) {
-                                            setState(() {
-                                              _isDraggingSlider = true;
-                                              _dragValue = v;
-                                            });
-                                          },
-                                          onChanged: (v) {
-                                            setState(() => _dragValue = v);
-                                          },
-                                          onChangeEnd: (v) {
-                                            playerNotifier.seek(
-                                              Duration(milliseconds: v.toInt()),
-                                            );
-                                            setState(() => _isDraggingSlider = false);
-                                          },
+                                        SliderTheme(
+                                          data: SliderThemeData(
+                                            activeTrackColor: sliderPalette.orbGlowColor,
+                                            inactiveTrackColor: sliderPalette.cardBorder,
+                                            thumbColor: sliderPalette.orbGlowColor,
+                                            overlayColor: sliderPalette.orbGlowColor.withOpacity(0.2),
+                                            trackHeight: 4,
+                                            thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 7),
+                                            trackShape: const RoundedRectSliderTrackShape(),
+                                          ),
+                                          child: Slider(
+                                            value: displayValue,
+                                            max: max > 0 ? max : 1,
+                                            onChangeStart: (v) {
+                                              setState(() {
+                                                _isDraggingSlider = true;
+                                                _dragValue = v;
+                                              });
+                                            },
+                                            onChanged: (v) {
+                                              setState(() => _dragValue = v);
+                                            },
+                                            onChangeEnd: (v) {
+                                              playerNotifier.seek(
+                                                Duration(milliseconds: v.toInt()),
+                                              );
+                                              setState(() => _isDraggingSlider = false);
+                                            },
+                                          ),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(
@@ -616,69 +639,52 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
 
                                 const SizedBox(height: 16),
 
-                                // Scripture Sources panel (SPEC.md Feature 12)
-                                ScriptureSourcesPanel(
-                                  parable: playerState.currentParable!,
-                                  playbackCompleted: playerState.playbackCompleted,
-                                  onReadScriptureTapped: () {
-                                    Navigator.of(context).pushNamed('/scripture_reader');
-                                  },
+                                // Scripture Sources panel (SPEC.md Feature 12) — glass capsule
+                                GlassCapsule(
+                                  padding: const EdgeInsets.all(4),
+                                  borderRadius: 16,
+                                  child: ScriptureSourcesPanel(
+                                    parable: playerState.currentParable!,
+                                    playbackCompleted: playerState.playbackCompleted,
+                                    onReadScriptureTapped: () {
+                                      Navigator.of(context).pushNamed('/scripture_reader');
+                                    },
+                                  ),
                                 ),
 
                                 const SizedBox(height: 16),
 
-                                // Action buttons — single row, compact
+                                // Action buttons — primary + glass hierarchy
                                 Wrap(
                                   spacing: 8,
                                   runSpacing: 8,
                                   alignment: WrapAlignment.center,
                                   children: [
-                                    // Favorite
-                                    OutlinedButton.icon(
-                                      onPressed: _toggleFavorite,
-                                      icon: Icon(
-                                        _isFavorited ? Icons.favorite : Icons.favorite_border,
-                                        color: _isFavorited ? Colors.red : null,
-                                        size: 16,
-                                      ),
-                                      label: Text(_isFavorited ? 'Favorited' : 'Favorite'),
-                                      style: OutlinedButton.styleFrom(
-                                        foregroundColor: AppTheme.warmIvory,
-                                        side: BorderSide(
-                                          color: AppTheme.warmIvory.withOpacity(0.5),
-                                        ),
-                                      ),
-                                    ),
-
-                                    // Read Story
-                                    OutlinedButton.icon(
+                                    // Read Story — primary action
+                                    PrimaryGlowButton(
+                                      label: 'Read Story',
                                       onPressed: () => Navigator.of(context).pushNamed('/story_reader'),
-                                      icon: const Icon(Icons.menu_book_outlined, size: 16),
-                                      label: const Text('Read Story'),
-                                      style: OutlinedButton.styleFrom(
-                                        foregroundColor: AppTheme.warmIvory,
-                                        side: BorderSide(
-                                          color: AppTheme.warmIvory.withOpacity(0.5),
-                                        ),
-                                      ),
                                     ),
 
-                                    // Share with a PAL
-                                    OutlinedButton.icon(
+                                    // Favorite — glass
+                                    GlassButton.icon(
+                                      icon: _isFavorited ? Icons.favorite : Icons.favorite_border,
+                                      label: _isFavorited ? 'Favorited' : 'Favorite',
+                                      onPressed: _toggleFavorite,
+                                    ),
+
+                                    // Share with a PAL — glass
+                                    GlassButton.icon(
+                                      icon: Icons.share,
+                                      label: 'Share with a PAL',
                                       onPressed: _shareWithPals,
-                                      icon: const Icon(Icons.share, size: 16),
-                                      label: const Text('Share with a PAL'),
-                                      style: OutlinedButton.styleFrom(
-                                        foregroundColor: AppTheme.warmIvory,
-                                        side: BorderSide(
-                                          color: AppTheme.warmIvory.withOpacity(0.5),
-                                        ),
-                                      ),
                                     ),
 
-                                    // Share a clip
+                                    // Share a clip — glass
                                     Builder(builder: (context) {
-                                      return OutlinedButton.icon(
+                                      return GlassButton.icon(
+                                        icon: Icons.format_quote,
+                                        label: 'Share a clip',
                                         onPressed: () async {
                                           final playerState = ref.read(parablePlayerProvider);
                                           if (playerState.currentParable == null) return;
@@ -700,14 +706,6 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                             );
                                           }
                                         },
-                                        icon: const Icon(Icons.format_quote, size: 16),
-                                        label: const Text('Share a clip'),
-                                        style: OutlinedButton.styleFrom(
-                                          foregroundColor: AppTheme.warmIvory,
-                                          side: BorderSide(
-                                            color: AppTheme.warmIvory.withOpacity(0.5),
-                                          ),
-                                        ),
                                       );
                                     }),
                                   ],
@@ -730,6 +728,20 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                 child: IgnorePointer(
                   child: Container(
                     color: Colors.black.withOpacity(0.3),
+                  ),
+                ),
+              ),
+            // Post-first-story name prompt
+            if (_showNamePrompt)
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: SafeArea(
+                  child: NamePromptOverlay(
+                    onDismiss: () {
+                      if (mounted) setState(() => _showNamePrompt = false);
+                    },
                   ),
                 ),
               ),
@@ -847,26 +859,21 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          OutlinedButton.icon(
+          GlassButton.icon(
+            icon: Icons.edit_note,
+            label: 'Jot a thought',
             onPressed: () {
               setState(() => _journalEditing = true);
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 _journalFocusNode.requestFocus();
               });
             },
-            icon: const Icon(Icons.edit_note, size: 18),
-            label: const Text('Jot a thought'),
-            style: OutlinedButton.styleFrom(
-              foregroundColor: AppTheme.warmIvory,
-              side: BorderSide(
-                color: AppTheme.warmIvory.withOpacity(0.5),
-              ),
-            ),
           ),
         ],
       );
     }
 
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
     return AnimatedSize(
       duration: const Duration(milliseconds: 200),
       curve: Curves.easeInOut,
@@ -877,26 +884,28 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
         maxLines: 1,
         textInputAction: TextInputAction.done,
         onSubmitted: (_) => _saveJournal(parable),
-        cursorColor: AppTheme.warmIvory,
-        style: const TextStyle(
-          color: AppTheme.warmIvory,
+        cursorColor: palette.textColor,
+        style: TextStyle(
+          color: palette.textColor,
           fontSize: 14,
         ),
         decoration: InputDecoration(
           hintText: 'Jot a thought...',
           hintStyle: TextStyle(
-            color: AppTheme.warmIvory.withOpacity(0.4),
+            color: palette.subtitleColor.withOpacity(0.5),
             fontSize: 14,
           ),
           isDense: true,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+          filled: true,
+          fillColor: palette.cardColor,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: AppTheme.glassBorder.withOpacity(0.5)),
+            borderRadius: BorderRadius.circular(24),
+            borderSide: BorderSide(color: palette.cardBorder),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(color: AppTheme.warmIvory),
+            borderRadius: BorderRadius.circular(24),
+            borderSide: BorderSide(color: palette.orbGlowColor.withOpacity(0.5), width: 1.5),
           ),
           counterText: '',
         ),
@@ -909,42 +918,24 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // Play/Stop/Replay button
+        // Play/Stop/Replay button — glass style
         if (_isReflectionPlaying)
-          OutlinedButton.icon(
+          GlassButton.icon(
+            icon: Icons.stop,
+            label: 'Stop',
             onPressed: _stopReflectionAudio,
-            icon: const Icon(Icons.stop, size: 18),
-            label: const Text('Stop'),
-            style: OutlinedButton.styleFrom(
-              foregroundColor: AppTheme.warmIvory,
-              side: BorderSide(
-                color: AppTheme.warmIvory.withOpacity(0.5),
-              ),
-            ),
           )
         else if (_reflectionAudioPlayed)
-          OutlinedButton.icon(
+          GlassButton.icon(
+            icon: Icons.replay,
+            label: 'Replay',
             onPressed: _replayReflectionAudio,
-            icon: const Icon(Icons.replay, size: 18),
-            label: const Text('Replay'),
-            style: OutlinedButton.styleFrom(
-              foregroundColor: AppTheme.warmIvory,
-              side: BorderSide(
-                color: AppTheme.warmIvory.withOpacity(0.5),
-              ),
-            ),
           )
         else
-          OutlinedButton.icon(
+          GlassButton.icon(
+            icon: Icons.play_arrow,
+            label: 'Hear Reflection', // ADR-010: User taps to hear
             onPressed: _handlePlayReflection,
-            icon: const Icon(Icons.play_arrow, size: 18),
-            label: const Text('Hear Reflection'), // ADR-010: User taps to hear
-            style: OutlinedButton.styleFrom(
-              foregroundColor: AppTheme.warmIvory,
-              side: BorderSide(
-                color: AppTheme.warmIvory.withOpacity(0.5),
-              ),
-            ),
           ),
       ],
     );

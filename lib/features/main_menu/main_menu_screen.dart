@@ -19,6 +19,7 @@ import '../../models/parable.dart';
 import '../consent/voice_consent_dialog.dart';
 import '../../core/app_logger.dart';
 import '../../widgets/living_sky_background.dart';
+import '../../widgets/premium_components.dart';
 
 /// Main Menu Screen
 /// Based on UI/UX Design Spec Section 4: Home Screen
@@ -571,32 +572,32 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                       // Mood buttons / now playing / finished
                       const _ReservedPanel(),
 
-                      const SizedBox(height: 32),
+                      const SizedBox(height: 36),
 
                       // Nav — Favorites / Journal / History / My PALs
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24),
                         child: Row(
                           children: [
-                            Expanded(child: _GlassNavButton(
+                            Expanded(child: GlassTile(
                               icon: Icons.favorite_outline,
                               label: 'Favorites',
                               onTap: () => Navigator.of(context).pushNamed('/favorites'),
                             )),
                             const SizedBox(width: 6),
-                            Expanded(child: _GlassNavButton(
+                            Expanded(child: GlassTile(
                               icon: Icons.book_outlined,
                               label: 'Journal',
                               onTap: () => Navigator.of(context).pushNamed('/journal'),
                             )),
                             const SizedBox(width: 6),
-                            Expanded(child: _GlassNavButton(
+                            Expanded(child: GlassTile(
                               icon: Icons.history_outlined,
                               label: 'History',
                               onTap: () => Navigator.of(context).pushNamed('/history'),
                             )),
                             const SizedBox(width: 6),
-                            Expanded(child: _GlassNavButton(
+                            Expanded(child: GlassTile(
                               icon: Icons.people_outline,
                               label: 'My PALs',
                               onTap: () => Navigator.of(context).pushNamed('/my_pals'),
@@ -647,7 +648,7 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(24),
-                    borderSide: BorderSide(color: palette.textColor.withValues(alpha: 0.4), width: 1.5),
+                    borderSide: BorderSide(color: palette.orbGlowColor.withOpacity(0.5), width: 1.5),
                   ),
                   contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                   suffixIcon: _userIsTyping
@@ -752,6 +753,11 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   // Mic pulse animation
   late final AnimationController _micPulseController;
 
+  // Breathing animation — continuous subtle scale + glow oscillation
+  late final AnimationController _breathController;
+  late final Animation<double> _breathScale;
+  late final Animation<double> _breathGlow;
+
   static const _defaultIntroLines = [
     'Meet PAL.',
     'Your guide to mood-based Bible stories.',
@@ -780,6 +786,18 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       vsync: this,
     );
 
+    // Breathing animation — 4s cycle, subtle scale + glow oscillation
+    _breathController = AnimationController(
+      duration: const Duration(seconds: 4),
+      vsync: this,
+    )..repeat(reverse: true);
+    _breathScale = Tween<double>(begin: 1.0, end: 1.03).animate(
+      CurvedAnimation(parent: _breathController, curve: Curves.easeInOut),
+    );
+    _breathGlow = Tween<double>(begin: 0.25, end: 0.45).animate(
+      CurvedAnimation(parent: _breathController, curve: Curves.easeInOut),
+    );
+
     _checkIntroState();
     _initStt();
   }
@@ -791,6 +809,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     for (final c in _lineControllers) {
       c.dispose();
     }
+    _breathController.dispose();
     _pulseController.removeStatusListener(_onPulseStatus);
     _pulseController.dispose();
     _glowController.dispose();
@@ -943,6 +962,10 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     _sttService.stopListening();
     _micPulseController.stop();
     ref.read(palAudioServiceProvider).stop();
+    // Resume breathing animation
+    if (!_breathController.isAnimating) {
+      _breathController.repeat(reverse: true);
+    }
     setState(() {
       _voiceFlow = _VoiceFlowState.inactive;
       _greetingText = null;
@@ -954,6 +977,8 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
   /// Start the full voice conversation: greeting → listen → respond → story.
   Future<void> _startConversation() async {
+    // Pause breathing during voice flow
+    _breathController.stop();
     setState(() => _voiceFlow = _VoiceFlowState.playingGreeting);
 
     // Load and play PAL greeting
@@ -1335,57 +1360,66 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
             const SizedBox(height: 12),
           ],
 
-          // PAL Orb — circular glowing celestial button
+          // PAL Orb — circular glowing celestial button with breathing animation
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ScaleTransition(
-                scale: _pulseAnimation,
-                child: AnimatedBuilder(
-                  animation: _glowController,
-                  builder: (context, child) {
-                    final tapGlow =
-                        Curves.easeInOut.transform(1.0 - _glowController.value) * 0.6;
-                    return Container(
-                      width: 280,
-                      height: 280,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: RadialGradient(
-                          center: const Alignment(-0.3, -0.4),
-                          radius: 1.1,
-                          colors: palette.orbGradientColors,
-                          stops: const [0.0, 0.55, 1.0],
-                        ),
-                        border: Border.all(
-                          color: AppTheme.warmGold.withOpacity(0.7),
-                          width: 1.5,
-                        ),
-                        boxShadow: [
-                          // Ambient celestial glow
-                          BoxShadow(
-                            color: palette.orbGlowColor.withOpacity(0.35),
-                            blurRadius: 32,
-                            spreadRadius: 4,
+              AnimatedBuilder(
+                animation: _breathScale,
+                builder: (context, child) {
+                  return Transform.scale(
+                    scale: _breathScale.value,
+                    child: child,
+                  );
+                },
+                child: ScaleTransition(
+                  scale: _pulseAnimation,
+                  child: AnimatedBuilder(
+                    animation: Listenable.merge([_glowController, _breathGlow]),
+                    builder: (context, child) {
+                      final tapGlow =
+                          Curves.easeInOut.transform(1.0 - _glowController.value) * 0.6;
+                      final ambientGlow = _breathGlow.value;
+                      return Container(
+                        width: 280,
+                        height: 280,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: RadialGradient(
+                            center: const Alignment(-0.3, -0.4),
+                            radius: 1.1,
+                            colors: palette.orbGradientColors,
+                            stops: const [0.0, 0.55, 1.0],
                           ),
-                          // Outer ring
-                          BoxShadow(
-                            color: palette.orbGlowColor.withOpacity(0.15),
-                            blurRadius: 60,
-                            spreadRadius: 12,
+                          border: Border.all(
+                            color: AppTheme.warmGold.withOpacity(0.7),
+                            width: 1.5,
                           ),
-                          // Tap flash
-                          if (tapGlow > 0.01)
+                          boxShadow: [
+                            // Ambient celestial glow — driven by breathing
                             BoxShadow(
-                              color: AppTheme.warmGold.withOpacity(tapGlow),
-                              blurRadius: 48,
-                              spreadRadius: 10,
+                              color: palette.orbGlowColor.withOpacity(ambientGlow),
+                              blurRadius: 32,
+                              spreadRadius: 4,
                             ),
-                        ],
-                      ),
-                      child: child,
-                    );
-                  },
+                            // Outer ring
+                            BoxShadow(
+                              color: palette.orbGlowColor.withOpacity(ambientGlow * 0.4),
+                              blurRadius: 60,
+                              spreadRadius: 12,
+                            ),
+                            // Tap flash
+                            if (tapGlow > 0.01)
+                              BoxShadow(
+                                color: AppTheme.warmGold.withOpacity(tapGlow),
+                                blurRadius: 48,
+                                spreadRadius: 10,
+                              ),
+                          ],
+                        ),
+                        child: child,
+                      );
+                    },
                   child: Material(
                     color: Colors.transparent,
                     shape: const CircleBorder(),
@@ -1407,6 +1441,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
                     ),
                   ),
                 ),
+              ),
               ),
               const SizedBox(height: 10),
               // Subtitle below the orb
@@ -1645,8 +1680,6 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
   }
 
   Widget _buildMoodButtons(ThemeData theme) {
-    final palette = LivingSky.getPalette(LivingSky.getPhase());
-
     // Reorder moods based on time of day — surface contextually relevant moods first
     final hour = DateTime.now().hour;
     final timeWindow = PalPromptService.getTimeWindow(hour);
@@ -1690,18 +1723,9 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
       alignment: WrapAlignment.center,
       children: moods.map((entry) {
         final (label, moodKey) = entry;
-        return ElevatedButton(
+        return PrimaryGlowButton(
+          label: label,
           onPressed: () => _handleMoodButtonTap(moodKey),
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
-            backgroundColor: palette.orbGlowColor,
-            foregroundColor: palette.textColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(24),
-            ),
-            textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-          ),
-          child: Text(label),
         );
       }).toList(),
     );
@@ -1918,59 +1942,6 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
   }
 
 }
-
-// ---------------------------------------------------------------------------
-// Glass nav button — Favorites / History / My PALs
-// ---------------------------------------------------------------------------
-
-class _GlassNavButton extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final VoidCallback onTap;
-
-  const _GlassNavButton({
-    required this.icon,
-    required this.label,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final palette = LivingSky.getPalette(LivingSky.getPhase());
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 14),
-          decoration: BoxDecoration(
-            color: palette.cardColor,
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: palette.cardBorder, width: 1),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(icon, size: 26, color: palette.orbGlowColor),
-              const SizedBox(height: 6),
-              Text(
-                label,
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                  color: palette.textColor,
-                  letterSpacing: 0.3,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 
 // ---------------------------------------------------------------------------
 // Length pill — Short / Full / Long chooser in the PAL voice flow

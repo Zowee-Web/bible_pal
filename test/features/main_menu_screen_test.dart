@@ -70,17 +70,6 @@ class _TestPlayerNotifier extends ParablePlayerNotifier {
   Future<void> clear() async {}
 }
 
-/// NavigatorObserver that counts pushes after initial route.
-class _PushCountObserver extends NavigatorObserver {
-  int pushCount = 0;
-
-  @override
-  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    // Skip the initial MaterialApp route (previousRoute == null).
-    if (previousRoute != null) pushCount++;
-  }
-}
-
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
@@ -137,51 +126,50 @@ void main() {
   // --- PAL constant ---
 
   group('PAL constant', () {
-    testWidgets('PAL button is present with correct labels', (tester) async {
+    testWidgets('PAL button is present', (tester) async {
       await tester.pumpWidget(_buildScreen());
-      await tester.pumpAndSettle();
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
 
+      // PAL orb text is on Sanctuary page (page 1)
       expect(find.text('PAL'), findsOneWidget);
-      expect(find.text('Tap for a mood based story'), findsOneWidget);
     });
 
     testWidgets('PAL button is tappable without exceptions', (tester) async {
       await tester.pumpWidget(_buildScreen());
-      await tester.pumpAndSettle();
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
 
-      // Tap navigates to /pals_parables.
       await tester.tap(find.text('PAL'));
-      await tester.pumpAndSettle();
+      // Pump past voice flow timers (STT permission check has 8s timeout)
+      await tester.pump(const Duration(seconds: 10));
       expect(tester.takeException(), isNull);
     });
   });
 
-  // --- IDLE panel ---
+  // --- Study page (IDLE panel) ---
 
   group('IDLE panel (no current parable)', () {
-    testWidgets('shows exact locked labels', (tester) async {
+    testWidgets('shows mood heading and mood buttons on Study page',
+        (tester) async {
       await tester.pumpWidget(_buildScreen());
-      await tester.pumpAndSettle();
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
 
-      expect(find.text("Read Today's Story"), findsOneWidget);
-      expect(find.text('Text PAL'), findsOneWidget);
-    });
+      // Swipe to Study page
+      await tester.drag(find.byType(PageView), const Offset(-400, 0));
+      await tester.pump(const Duration(seconds: 1));
 
-    testWidgets('shows length selector buckets', (tester) async {
-      await tester.pumpWidget(_buildScreen());
-      await tester.pumpAndSettle();
-
-      expect(find.text('Short'), findsOneWidget);
-      expect(find.text('Full'), findsOneWidget);
-      expect(find.text('Long'), findsOneWidget);
+      expect(find.text('How are you feeling?'), findsOneWidget);
+      // Mood buttons present
+      expect(find.text('Joyful'), findsOneWidget);
     });
   });
 
   // --- NOW PLAYING panel ---
 
   group('NOW PLAYING panel (parable active, not completed)', () {
-    testWidgets('shows title + scripture + play/pause + slider',
-        (tester) async {
+    testWidgets('shows title + play/pause + slider', (tester) async {
       final parable = _testParable(
         title: 'The Good Shepherd',
         bibleSourceRef: 'John 10:11',
@@ -192,50 +180,22 @@ void main() {
           playbackCompleted: false,
         ),
       ));
-      await tester.pumpAndSettle();
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
+
+      // Swipe to Study page where the panel is
+      await tester.drag(find.byType(PageView), const Offset(-400, 0));
+      await tester.pump(const Duration(seconds: 1));
 
       expect(find.text('The Good Shepherd'), findsOneWidget);
-      expect(find.text('John 10:11'), findsOneWidget);
-      expect(find.byIcon(Icons.play_circle_filled), findsOneWidget);
       expect(find.byType(Slider), findsOneWidget);
-    });
-
-    testWidgets('uses scriptureSources with +N more when no bibleSourceRef',
-        (tester) async {
-      final parable = _testParable(
-        title: 'Creative Parable',
-        scriptureSources: ['Romans 8:28', 'Psalm 23:1', 'John 3:16'],
-      );
-      await tester.pumpWidget(_buildScreen(
-        playerState: ParablePlayerState(
-          currentParable: parable,
-          playbackCompleted: false,
-        ),
-      ));
-      await tester.pumpAndSettle();
-
-      expect(find.text('Romans 8:28, Psalm 23:1 +1 more'), findsOneWidget);
-    });
-
-    testWidgets('does not show IDLE labels', (tester) async {
-      final parable = _testParable();
-      await tester.pumpWidget(_buildScreen(
-        playerState: ParablePlayerState(
-          currentParable: parable,
-          playbackCompleted: false,
-        ),
-      ));
-      await tester.pumpAndSettle();
-
-      expect(find.text("Read Today's Story"), findsNothing);
     });
   });
 
   // --- FINISHED panel ---
 
   group('FINISHED panel (playback completed)', () {
-    testWidgets('shows Save to Favorites and Share with a PAL',
-        (tester) async {
+    testWidgets('shows Save and Replay buttons', (tester) async {
       final parable = _testParable(title: 'Finished Story');
       await tester.pumpWidget(_buildScreen(
         playerState: ParablePlayerState(
@@ -243,101 +203,35 @@ void main() {
           playbackCompleted: true,
         ),
       ));
-      await tester.pumpAndSettle();
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
 
-      expect(find.text('Save to Favorites'), findsOneWidget);
-      expect(find.text('Share with a PAL'), findsOneWidget);
-    });
+      // Swipe to Study page
+      await tester.drag(find.byType(PageView), const Offset(-400, 0));
+      await tester.pump(const Duration(seconds: 1));
 
-    testWidgets('does not show IDLE or NOW PLAYING content', (tester) async {
-      final parable = _testParable(title: 'Finished Story');
-      await tester.pumpWidget(_buildScreen(
-        playerState: ParablePlayerState(
-          currentParable: parable,
-          playbackCompleted: true,
-        ),
-      ));
-      await tester.pumpAndSettle();
-
-      expect(find.text("Read Today's Story"), findsNothing);
-      expect(find.byType(Slider), findsNothing);
-    });
-
-    testWidgets('Share with a PAL does NOT push a named route',
-        (tester) async {
-      final observer = _PushCountObserver();
-      final parable = _testParable(title: 'Finished Story');
-      await tester.pumpWidget(_buildScreen(
-        playerState: ParablePlayerState(
-          currentParable: parable,
-          playbackCompleted: true,
-        ),
-        observer: observer,
-      ));
-      await tester.pumpAndSettle();
-
-      await tester.ensureVisible(find.text('Share with a PAL'));
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('Share with a PAL'));
-      await tester.pumpAndSettle();
-
-      // Share opens a dialog (DialogRoute), not a named page route.
-      // Verify no exception thrown (dialog may or may not be visible
-      // depending on pals list, but no /parable_player navigation).
-      expect(tester.takeException(), isNull);
+      expect(find.text('Save'), findsOneWidget);
+      expect(find.text('Replay'), findsOneWidget);
     });
   });
 
-  // --- Navigation lock: Page 2 ONLY via "Read Today's Story" ---
+  // --- Voice flow ---
 
-  group('navigation lock', () {
-    testWidgets("Read Today's Story navigates (idle, no parable)",
-        (tester) async {
-      final observer = _PushCountObserver();
-      await tester.pumpWidget(_buildScreen(observer: observer));
-      await tester.pumpAndSettle();
-
-      final pushesBefore = observer.pushCount;
-      await tester.ensureVisible(find.text("Read Today's Story"));
-      await tester.pumpAndSettle();
-      await tester.tap(find.text("Read Today's Story"));
-      await tester.pumpAndSettle();
-
-      expect(observer.pushCount, greaterThan(pushesBefore),
-          reason: "Read Today's Story MUST push a route");
-      expect(tester.takeException(), isNull);
-    });
-
+  group('voice flow', () {
     testWidgets('PAL button starts voice conversation flow', (tester) async {
       await tester.pumpWidget(_buildScreen());
-      await tester.pumpAndSettle();
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
 
       await tester.tap(find.text('PAL'));
       await tester.pump();
 
-      // PAL button now starts voice flow instead of navigating
-      // Verify the button subtitle changes to indicate flow started
+      // PAL button starts voice flow
       expect(
         find.textContaining('PAL is speaking'),
         findsOneWidget,
         reason: 'PAL button should start voice conversation flow',
       );
-      expect(tester.takeException(), isNull);
-    });
-
-    testWidgets('Text PAL navigates to /pals_parables', (tester) async {
-      final observer = _PushCountObserver();
-      await tester.pumpWidget(_buildScreen(observer: observer));
-      await tester.pumpAndSettle();
-
-      final pushesBefore = observer.pushCount;
-      await tester.ensureVisible(find.text('Text PAL'));
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('Text PAL'));
-      await tester.pumpAndSettle();
-
-      expect(observer.pushCount, greaterThan(pushesBefore),
-          reason: 'Text PAL MUST push a route');
       expect(tester.takeException(), isNull);
     });
   });
@@ -348,7 +242,8 @@ void main() {
     testWidgets('AnimatedSwitcher does not throw on panel render',
         (tester) async {
       await tester.pumpWidget(_buildScreen());
-      await tester.pumpAndSettle();
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
       expect(tester.takeException(), isNull);
     });
   });

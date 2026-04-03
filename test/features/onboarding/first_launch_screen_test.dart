@@ -1,10 +1,9 @@
 /// First-launch onboarding screen tests
 ///
 /// Verifies:
-/// - First launch shows typing animation + name prompt
-/// - No audio or voice consent is triggered
-/// - Name is persisted
-/// - User lands on PAL's Stories after completion
+/// - Silent first launch shows Living Sky + PAL orb + mood buttons
+/// - No audio, voice consent, or name prompt during onboarding
+/// - Mood tap marks onboarding complete and navigates to main menu
 library;
 
 import 'package:flutter/material.dart';
@@ -25,27 +24,7 @@ void main() {
       SharedPreferences.setMockInitialValues({});
     });
 
-    testWidgets('shows typing animation on first launch', (tester) async {
-      await tester.pumpWidget(
-        const ProviderScope(
-          child: MaterialApp(
-            home: FirstLaunchScreen(),
-          ),
-        ),
-      );
-
-      // Initially, the text should start appearing (typing animation)
-      expect(find.byType(FirstLaunchScreen), findsOneWidget);
-
-      // Wait for some typing animation frames (70ms per char)
-      // Pump enough for at least 2-3 chars to appear
-      await tester.pump(const Duration(milliseconds: 250));
-
-      // Should find partial text (typing in progress)
-      expect(find.textContaining('Hi'), findsOneWidget);
-    });
-
-    testWidgets('shows name input field after typing completes',
+    testWidgets('shows PAL orb and mood buttons after staggered fade-in',
         (tester) async {
       await tester.pumpWidget(
         const ProviderScope(
@@ -55,19 +34,26 @@ void main() {
         ),
       );
 
-      // Wait for typing animation to complete (95ms * ~120 chars = ~12 seconds)
-      await tester.pump(const Duration(seconds: 13));
+      // Initially present
+      expect(find.byType(FirstLaunchScreen), findsOneWidget);
 
-      // Name input should be visible
-      expect(find.byType(TextField), findsOneWidget);
-      expect(find.text('Your name'), findsOneWidget);
+      // Advance past all fade-in stages (1.5s fade + 1s orb + 1s text + 1s moods)
+      await tester.pump(const Duration(milliseconds: 4000));
+      await tester.pump(const Duration(milliseconds: 500));
 
-      // Continue button should be enabled
-      final continueButton = find.widgetWithText(ElevatedButton, 'Continue');
-      expect(continueButton, findsOneWidget);
+      // "How are you feeling?" should be visible
+      expect(find.text('How are you feeling?'), findsOneWidget);
+
+      // PAL text in orb should be visible
+      expect(find.text('PAL'), findsOneWidget);
+
+      // Mood buttons should be visible
+      expect(find.text('Joyful'), findsOneWidget);
+      expect(find.text('Grateful'), findsOneWidget);
+      expect(find.text('Peaceful'), findsOneWidget);
     });
 
-    testWidgets('does NOT show voice consent dialog', (tester) async {
+    testWidgets('does NOT show name input or voice consent', (tester) async {
       await tester.pumpWidget(
         const ProviderScope(
           child: MaterialApp(
@@ -76,18 +62,20 @@ void main() {
         ),
       );
 
-      // Wait for typing animation to complete (95ms * ~120 chars = ~12 seconds)
-      await tester.pump(const Duration(seconds: 13));
+      // Advance past all animations
+      await tester.pump(const Duration(seconds: 5));
 
-      // No voice consent dialog should appear
+      // No name input
+      expect(find.byType(TextField), findsNothing);
+      expect(find.text('Your name'), findsNothing);
+      expect(find.text('Begin'), findsNothing);
+
+      // No voice consent
       expect(find.text('Enable Voice Features'), findsNothing);
       expect(find.text('Voice Consent'), findsNothing);
-      expect(find.text('Story Narration'), findsNothing);
-      expect(find.text('PAL Greetings'), findsNothing);
     });
 
     testWidgets('does NOT play any audio during onboarding', (tester) async {
-      // This test verifies the screen structure has no audio-related widgets
       await tester.pumpWidget(
         const ProviderScope(
           child: MaterialApp(
@@ -96,68 +84,16 @@ void main() {
         ),
       );
 
-      // Wait for typing animation to complete (95ms * ~120 chars = ~12 seconds)
-      await tester.pump(const Duration(seconds: 13));
+      await tester.pump(const Duration(seconds: 5));
 
-      // No audio player widgets should be present
-      // The screen is purely text-based with typing animation
+      // No audio player widgets
       expect(find.byIcon(Icons.play_arrow), findsNothing);
       expect(find.byIcon(Icons.pause), findsNothing);
       expect(find.byIcon(Icons.volume_up), findsNothing);
     });
 
-    testWidgets('requires name before continuing', (tester) async {
-      await tester.pumpWidget(
-        const ProviderScope(
-          child: MaterialApp(
-            home: FirstLaunchScreen(),
-          ),
-        ),
-      );
-
-      // Wait for typing animation to complete (95ms * ~120 chars = ~12 seconds)
-      await tester.pump(const Duration(seconds: 13));
-
-      // Try to continue without entering name
-      await tester.tap(find.widgetWithText(ElevatedButton, 'Continue'));
-      await tester.pump(); // Allow snackbar to appear
-
-      // Should show error snackbar
-      expect(find.text('Please enter your name'), findsOneWidget);
-    });
-
-    testWidgets('persists name and marks onboarding complete', (tester) async {
-      await tester.pumpWidget(
-        ProviderScope(
-          child: MaterialApp(
-            home: const FirstLaunchScreen(),
-            routes: {
-              '/pals_parables': (_) => const Scaffold(
-                    body: Text('PAL\'s Stories Screen'),
-                  ),
-            },
-          ),
-        ),
-      );
-
-      // Wait for typing animation to complete (95ms * ~120 chars = ~12 seconds)
-      await tester.pump(const Duration(seconds: 13));
-
-      // Enter name
-      await tester.enterText(find.byType(TextField), 'TestUser');
-      await tester.pump();
-
-      // Tap continue
-      await tester.tap(find.widgetWithText(ElevatedButton, 'Continue'));
-      await tester.pump(); // Allow navigation to begin
-      await tester.pump(const Duration(milliseconds: 100)); // Allow async to complete
-
-      // Verify first launch flag is set
-      final sp = await SharedPreferences.getInstance();
-      expect(sp.getBool(kFirstLaunchCompleteKey), true);
-    });
-
-    testWidgets('navigates to Main Menu after name entry', (tester) async {
+    testWidgets('mood tap marks onboarding complete and navigates',
+        (tester) async {
       await tester.pumpWidget(
         ProviderScope(
           child: MaterialApp(
@@ -171,19 +107,19 @@ void main() {
         ),
       );
 
-      // Wait for typing animation to complete (95ms * ~120 chars = ~12 seconds)
-      await tester.pump(const Duration(seconds: 13));
+      // Advance past all fade-in stages
+      await tester.pump(const Duration(seconds: 5));
 
-      // Enter name
-      await tester.enterText(find.byType(TextField), 'TestUser');
+      // Tap a mood button
+      await tester.tap(find.text('Joyful'));
       await tester.pump();
+      await tester.pump(const Duration(milliseconds: 200));
 
-      // Tap continue
-      await tester.tap(find.widgetWithText(ElevatedButton, 'Continue'));
-      await tester.pump(); // Allow navigation to begin
-      await tester.pump(const Duration(milliseconds: 100)); // Allow async to complete
+      // Verify first launch flag is set
+      final sp = await SharedPreferences.getInstance();
+      expect(sp.getBool(kFirstLaunchCompleteKey), true);
 
-      // Should navigate to Main Menu (where PAL intro overlay will show)
+      // Should navigate to Main Menu
       expect(find.text('Main Menu Screen'), findsOneWidget);
     });
   });
@@ -201,14 +137,15 @@ void main() {
         ),
       );
 
+      // Pump past staggered animation delays in FirstLaunchScreen._startSequence
       await tester.pump();
+      await tester.pump(const Duration(seconds: 5));
 
       expect(find.byType(FirstLaunchScreen), findsOneWidget);
     });
 
     testWidgets('AppRouter shows MainMenuScreen when showFirstLaunch=false',
         (tester) async {
-      // Set up preferences to prevent any redirect
       SharedPreferences.setMockInitialValues({
         kFirstLaunchCompleteKey: true,
       });
@@ -219,16 +156,12 @@ void main() {
         ),
       );
 
-      // Just pump once - don't wait for all async operations to settle
-      // since MainMenuScreen has async providers
       await tester.pump();
 
-      // Should not show FirstLaunchScreen
       expect(find.byType(FirstLaunchScreen), findsNothing);
     });
 
     testWidgets('subsequent launches skip onboarding', (tester) async {
-      // Simulate completed onboarding
       SharedPreferences.setMockInitialValues({
         kFirstLaunchCompleteKey: true,
       });
@@ -239,11 +172,8 @@ void main() {
         ),
       );
 
-      // Just pump once - don't wait for all async operations to settle
-      // since MainMenuScreen has async providers
       await tester.pump();
 
-      // FirstLaunchScreen should not appear
       expect(find.byType(FirstLaunchScreen), findsNothing);
     });
   });

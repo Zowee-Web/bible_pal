@@ -4,10 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/user_preferences.dart' show currentVoiceConsentVersion;
 import '../../providers/app_state_notifier.dart';
-import '../../providers/service_providers.dart' show nameAudioServiceProvider;
-import '../../theme/app_theme.dart';
 import '../../theme/living_sky.dart';
 import '../../widgets/living_sky_background.dart';
+import '../../widgets/premium_components.dart';
 
 /// Key for tracking first-launch onboarding completion
 const kFirstLaunchCompleteKey = 'first_launch_complete';
@@ -15,12 +14,19 @@ const kFirstLaunchCompleteKey = 'first_launch_complete';
 /// Key for tracking if the PAL intro overlay has been shown (first-launch only)
 const kPalIntroShownKey = 'pal_intro_shown';
 
-/// First-launch onboarding screen with silent typing animation.
+/// Silent first-launch onboarding screen.
+///
+/// Flow:
+/// 1. Fade in from black → Living Sky appears
+/// 2. PAL orb fades in with breathing animation
+/// 3. "How are you feeling?" fades in
+/// 4. Mood buttons appear with staggered fade-in
+/// 5. User taps mood → mark complete → navigate to main menu
 ///
 /// Hard invariants:
 /// - NO voice/TTS audio plays during this screen
 /// - NO voice consent dialog is shown
-/// - User is routed to Main Menu after name entry (PAL intro shows there)
+/// - NO name input — name is collected post-first-story
 class FirstLaunchScreen extends ConsumerStatefulWidget {
   const FirstLaunchScreen({super.key});
 
@@ -30,271 +36,283 @@ class FirstLaunchScreen extends ConsumerStatefulWidget {
 
 class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen>
     with TickerProviderStateMixin {
-  final TextEditingController _nameController = TextEditingController();
+  // Master fade-in from black
+  late final AnimationController _fadeController;
 
-  // Line-by-line fade-in animation state
-  bool _typingComplete = false;
-  bool _isSaving = false;
+  // Orb appearance
+  late final AnimationController _orbFadeController;
 
-  static const _introLines = [
-    "Hi there! I'm PAL, your Personal Audio Listener.",
-    "I'm here to share meaningful stories that speak to your heart.",
-    "What's your name?",
+  // Orb breathing
+  late final AnimationController _breathController;
+  late final Animation<double> _breathScale;
+  late final Animation<double> _breathGlow;
+
+  // Orb glow pulse cue
+  late final AnimationController _orbPulseController;
+  late final Animation<double> _orbPulse;
+
+  // Text appearance
+  late final AnimationController _textFadeController;
+
+  // Mood button stagger
+  late final AnimationController _moodFadeController;
+
+  static const _moods = [
+    ('Joyful', 'joyful'),
+    ('Grateful', 'grateful'),
+    ('Weary', 'weary'),
+    ('Anxious', 'anxious'),
+    ('Hurting', 'hurting'),
+    ('Peaceful', 'calm_peaceful'),
   ];
-
-  late final List<AnimationController> _lineControllers;
-  late final List<Animation<double>> _lineAnimations;
-  int _revealedLines = 0;
-  Timer? _lineTimer;
-
-  /// Pause between each line appearing (ms)
-  static const _lineDelayMs = 690;
-
-  /// Duration of each line's fade-in (ms)
-  static const _lineFadeDurationMs = 920;
 
   @override
   void initState() {
     super.initState();
-    _lineControllers = List.generate(
-      _introLines.length,
-      (_) => AnimationController(
-        duration: const Duration(milliseconds: _lineFadeDurationMs),
-        vsync: this,
-      ),
+
+    // 1. Master fade from black (~1.5s)
+    _fadeController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
     );
-    _lineAnimations = _lineControllers
-        .map((c) => CurvedAnimation(parent: c, curve: Curves.easeIn))
-        .toList();
-    _startLineFadeIn();
+
+    // 2. Orb fade-in (starts after ~1s)
+    _orbFadeController = AnimationController(
+      duration: const Duration(milliseconds: 800),
+      vsync: this,
+    );
+
+    // Orb breathing — continuous
+    _breathController = AnimationController(
+      duration: const Duration(seconds: 4),
+      vsync: this,
+    );
+    _breathScale = Tween<double>(begin: 1.0, end: 1.03).animate(
+      CurvedAnimation(parent: _breathController, curve: Curves.easeInOut),
+    );
+    _breathGlow = Tween<double>(begin: 0.25, end: 0.45).animate(
+      CurvedAnimation(parent: _breathController, curve: Curves.easeInOut),
+    );
+
+    // Orb glow pulse cue (single stronger pulse)
+    _orbPulseController = AnimationController(
+      duration: const Duration(milliseconds: 600),
+      vsync: this,
+    );
+    _orbPulse = Tween<double>(begin: 1.0, end: 1.06).animate(
+      CurvedAnimation(parent: _orbPulseController, curve: Curves.easeInOut),
+    );
+
+    // 3. Text fade-in (starts after ~2s)
+    _textFadeController = AnimationController(
+      duration: const Duration(milliseconds: 800),
+      vsync: this,
+    );
+
+    // 4. Mood buttons stagger (starts after ~3s)
+    _moodFadeController = AnimationController(
+      duration: const Duration(milliseconds: 900),
+      vsync: this,
+    );
+
+    _startSequence();
+  }
+
+  void _startSequence() async {
+    // Step 1: Fade in from black
+    _fadeController.forward();
+
+    // Step 2: Orb appears after 1s
+    await Future.delayed(const Duration(milliseconds: 1000));
+    if (!mounted) return;
+    _orbFadeController.forward();
+    _breathController.repeat(reverse: true);
+
+    // Step 3: Text appears after 2s
+    await Future.delayed(const Duration(milliseconds: 1000));
+    if (!mounted) return;
+    _textFadeController.forward();
+
+    // Step 4: Mood buttons appear after 3s
+    await Future.delayed(const Duration(milliseconds: 1000));
+    if (!mounted) return;
+    _moodFadeController.forward();
+
+    // Step 5: Orb glow pulse cue after buttons are visible
+    await Future.delayed(const Duration(milliseconds: 500));
+    if (!mounted) return;
+    _orbPulseController.forward().then((_) {
+      if (mounted) _orbPulseController.reverse();
+    });
   }
 
   @override
   void dispose() {
-    _lineTimer?.cancel();
-    for (final c in _lineControllers) {
-      c.dispose();
-    }
-    _nameController.dispose();
+    _fadeController.dispose();
+    _orbFadeController.dispose();
+    _breathController.dispose();
+    _orbPulseController.dispose();
+    _textFadeController.dispose();
+    _moodFadeController.dispose();
     super.dispose();
   }
 
-  /// Reveal lines one at a time with a staggered fade-in
-  void _startLineFadeIn() {
-    // Reveal the first line immediately
-    _lineControllers[0].forward();
-    _revealedLines = 1;
-    setState(() {});
+  Future<void> _handleMoodTap(String mood) async {
+    // Save onboarding-complete state + consent defaults
+    final notifier = ref.read(appStateProvider.notifier);
+    final currentState = ref.read(appStateProvider).valueOrNull;
 
-    _lineTimer = Timer.periodic(
-      const Duration(milliseconds: _lineDelayMs + _lineFadeDurationMs),
-      (timer) {
-        if (!mounted) {
-          timer.cancel();
-          return;
-        }
-        if (_revealedLines >= _introLines.length) {
-          timer.cancel();
-          setState(() => _typingComplete = true);
-          return;
-        }
-        _lineControllers[_revealedLines].forward();
-        _revealedLines++;
-        setState(() {});
-      },
+    if (currentState != null) {
+      final updatedPrefs = currentState.userPreferences.copyWith(
+        hasCompletedOnboarding: true,
+        storyNarrationEnabled: true,
+        palGreetingsEnabled: true,
+        voiceConsentVersion: currentVoiceConsentVersion,
+      );
+      await notifier.updateUserPreferences(updatedPrefs);
+    }
+
+    // Mark first launch complete
+    final sp = await SharedPreferences.getInstance();
+    await sp.setBool(kFirstLaunchCompleteKey, true);
+
+    // Persist detected mood (guard: state may not be loaded in test)
+    if (currentState != null) {
+      notifier.updateLastDetectedMood(mood);
+    }
+
+    if (!mounted) return;
+
+    // Navigate to main menu — user will start their first story from there
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      '/main_menu',
+      (_) => false,
     );
-  }
-
-  void _skipToEnd() {
-    _lineTimer?.cancel();
-    for (final c in _lineControllers) {
-      c.value = 1.0;
-    }
-    _revealedLines = _introLines.length;
-    setState(() => _typingComplete = true);
-  }
-
-  Future<void> _handleContinue() async {
-
-    final name = _nameController.text.trim();
-    if (name.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter your name')),
-      );
-      return;
-    }
-
-    setState(() => _isSaving = true);
-
-    try {
-      // Save user name and mark onboarding complete
-      final notifier = ref.read(appStateProvider.notifier);
-      final currentState = ref.read(appStateProvider).valueOrNull;
-
-      if (currentState != null) {
-        final updatedPrefs = currentState.userPreferences.copyWith(
-          userName: name,
-          hasCompletedOnboarding: true,
-          // Fresh install: enable voice features by default
-          storyNarrationEnabled: true,
-          palGreetingsEnabled: true,
-          voiceConsentVersion: currentVoiceConsentVersion,
-        );
-        await notifier.updateUserPreferences(updatedPrefs);
-      }
-
-      // Mark first launch complete in SharedPreferences
-      final sp = await SharedPreferences.getInstance();
-      await sp.setBool(kFirstLaunchCompleteKey, true);
-
-      // Fire-and-forget: generate name audio clips for personalized greetings
-      final palVoiceKey = currentState?.userPreferences.palVoiceKey ?? 'VOICE_GRACE';
-      ref.read(nameAudioServiceProvider).generateNamePhrases(
-            name: name,
-            voiceKey: palVoiceKey,
-          );
-
-      if (!mounted) return;
-
-      // Navigate to main menu (where PAL intro overlay will show)
-      Navigator.of(context).pushNamedAndRemoveUntil(
-        '/main_menu',
-        (_) => false,
-      );
-    } catch (e) {
-      setState(() => _isSaving = false);
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error saving: $e')),
-      );
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final palette = LivingSky.getPalette(LivingSky.getPhase());
+    final glow = palette.glowIntensity;
 
     return Scaffold(
-      body: GestureDetector(
-        onTap: () {
-          if (!_typingComplete) {
-            _skipToEnd();
-          }
-        },
+      backgroundColor: Colors.black,
+      body: FadeTransition(
+        opacity: _fadeController,
         child: Stack(
-        children: [
-          const LivingSkyBackground(),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const Spacer(flex: 1),
+          children: [
+            const LivingSkyBackground(),
+            SafeArea(
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Spacer(flex: 2),
 
-                  // PAL avatar/icon — glowing celestial blue
-                  Center(child: Container(
-                    width: 96,
-                    height: 96,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppTheme.glassCard,
-                      border: Border.all(color: AppTheme.celestialBlue.withOpacity(0.5), width: 2),
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppTheme.celestialBlue.withOpacity(0.3),
-                          blurRadius: 28,
-                          spreadRadius: 4,
-                        ),
-                      ],
-                    ),
-                    child: const Icon(
-                      Icons.auto_stories,
-                      size: 44,
-                      color: AppTheme.celestialBlue,
-                    ),
-                  )),
-                  const SizedBox(height: 36),
-
-                  // Line-by-line fade-in text display
-                  Container(
-                    constraints: const BoxConstraints(minHeight: 120),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        for (int i = 0; i < _revealedLines; i++)
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8),
-                            child: FadeTransition(
-                              opacity: _lineAnimations[i],
-                              child: Text(
-                                _introLines[i],
-                                style: theme.textTheme.titleLarge?.copyWith(
-                                  height: 1.6,
-                                  color: palette.textColor,
+                      // PAL orb with breathing + pulse cue
+                      FadeTransition(
+                        opacity: _orbFadeController,
+                        child: AnimatedBuilder(
+                          animation: Listenable.merge([_breathScale, _orbPulse]),
+                          builder: (context, child) {
+                            final scale = _breathScale.value *
+                                _orbPulse.value;
+                            return Transform.scale(
+                              scale: scale,
+                              child: child,
+                            );
+                          },
+                          child: AnimatedBuilder(
+                            animation: _breathGlow,
+                            builder: (context, child) {
+                              return Container(
+                                width: 160,
+                                height: 160,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: RadialGradient(
+                                    center: const Alignment(-0.3, -0.4),
+                                    radius: 1.1,
+                                    colors: palette.orbGradientColors,
+                                    stops: const [0.0, 0.55, 1.0],
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: palette.orbGlowColor
+                                          .withOpacity(_breathGlow.value * glow),
+                                      blurRadius: 32,
+                                      spreadRadius: 4,
+                                    ),
+                                    BoxShadow(
+                                      color: palette.orbGlowColor
+                                          .withOpacity(_breathGlow.value * 0.4 * glow),
+                                      blurRadius: 60,
+                                      spreadRadius: 12,
+                                    ),
+                                  ],
                                 ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
-                  ),
-
-                  const SizedBox(height: 32),
-
-                  // Name input (visible after typing completes)
-                  AnimatedOpacity(
-                    opacity: _typingComplete ? 1.0 : 0.0,
-                    duration: const Duration(milliseconds: 400),
-                    child: Column(
-                      children: [
-                        TextField(
-                          controller: _nameController,
-                          enabled: _typingComplete && !_isSaving,
-                          textCapitalization: TextCapitalization.words,
-                          textInputAction: TextInputAction.done,
-                          onSubmitted: (_) => _handleContinue(),
-                          style: TextStyle(color: palette.textColor),
-                          decoration: const InputDecoration(
-                            labelText: 'Your name',
-                            hintText: 'Enter your name',
-                            prefixIcon: Icon(Icons.person_outline, color: AppTheme.celestialBlue),
+                                child: Center(
+                                  child: Text(
+                                    'PAL',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 36,
+                                      letterSpacing: 6,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         ),
-                        const SizedBox(height: 24),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 52,
-                          child: ElevatedButton(
-                            onPressed: _typingComplete && !_isSaving
-                                ? _handleContinue
-                                : null,
-                            child: _isSaving
-                                ? const SizedBox(
-                                    width: 20,
-                                    height: 20,
-                                    child: CircularProgressIndicator(
-                                        strokeWidth: 2, color: Colors.white),
-                                  )
-                                : const Text('Begin'),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                      ),
 
-                  const Spacer(flex: 2),
-                ],
+                      const SizedBox(height: 48),
+
+                      // "How are you feeling?"
+                      FadeTransition(
+                        opacity: _textFadeController,
+                        child: Text(
+                          'How are you feeling?',
+                          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                            color: palette.textColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+
+                      const SizedBox(height: 32),
+
+                      // Mood buttons with staggered fade
+                      FadeTransition(
+                        opacity: _moodFadeController,
+                        child: Wrap(
+                          spacing: 10,
+                          runSpacing: 10,
+                          alignment: WrapAlignment.center,
+                          children: _moods.map((entry) {
+                            final (label, moodKey) = entry;
+                            return PrimaryGlowButton(
+                              label: label,
+                              onPressed: () => _handleMoodTap(moodKey),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+
+                      const Spacer(flex: 3),
+                    ],
+                  ),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
         ),
       ),
     );
   }
 }
-

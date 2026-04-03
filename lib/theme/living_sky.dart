@@ -53,6 +53,10 @@ class SkyPalette {
   /// Swipe hint chevron color.
   final Color chevronColor;
 
+  /// Glow intensity multiplier for premium UI elements.
+  /// Night = strongest (1.0), Day = most restrained (0.6).
+  final double glowIntensity;
+
   const SkyPalette({
     required this.gradientColors,
     required this.gradientStops,
@@ -66,6 +70,7 @@ class SkyPalette {
     required this.cardColor,
     required this.cardBorder,
     required this.chevronColor,
+    this.glowIntensity = 0.8,
   });
 }
 
@@ -128,6 +133,7 @@ class LivingSky {
     cardColor: Color(0x30FFFFFF),
     cardBorder: Color(0x40FFFFFF),
     chevronColor: Color(0xFF6B5A4A),
+    glowIntensity: 0.8,
   );
 
   /// Sky blue to warm cream.
@@ -148,6 +154,7 @@ class LivingSky {
     cardColor: Color(0x25000000),
     cardBorder: Color(0x20000000),
     chevronColor: Color(0xFF5A5A5A),
+    glowIntensity: 0.6,
   );
 
   /// Deep purple to amber-orange.
@@ -168,6 +175,7 @@ class LivingSky {
     cardColor: Color(0x30000000),
     cardBorder: Color(0x25FFFFFF),
     chevronColor: Color(0xFFBBA888),
+    glowIntensity: 0.8,
   );
 
   /// Builds a full [ThemeData] from the given [phase]'s palette.
@@ -360,5 +368,6 @@ class LivingSky {
     cardColor: Color(0xFF132035),
     cardBorder: Color(0xFF2A4A70),
     chevronColor: Color(0xFFAABBCC),
+    glowIntensity: 1.0,
   );
 }
