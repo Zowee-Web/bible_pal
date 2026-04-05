@@ -92,23 +92,39 @@ void main() {
   });
 
   group('StoryLengthBucket display labels', () {
-    test('labels are exactly: A Quick Moment, A Quiet Story, A Longer Listen', () {
-      expect(StoryLengthBucket.short.displayLabel, 'A Quick Moment');
-      expect(StoryLengthBucket.full.displayLabel, 'A Quiet Story');
-      expect(StoryLengthBucket.long.displayLabel, 'A Longer Listen');
+    test('labels are exactly: Short Story, Full Story, Long Story', () {
+      expect(StoryLengthBucket.short.displayLabel, 'Short Story');
+      expect(StoryLengthBucket.full.displayLabel, 'Full Story');
+      expect(StoryLengthBucket.long.displayLabel, 'Long Story');
     });
 
-    test('no notes, descriptions, or minutes in labels', () {
+    test('no notes, durations, or minutes in labels', () {
       for (final bucket in StoryLengthBucket.values) {
         final label = bucket.displayLabel;
         expect(label.contains('min'), false,
             reason: 'Label should not contain "min"');
         expect(label.contains('minute'), false,
             reason: 'Label should not contain "minute"');
-        expect(label.contains('note'), false,
-            reason: 'Label should not contain "note"');
+        expect(label.contains('~'), false,
+            reason: 'Label should not contain duration estimate');
         expect(label.contains('('), false,
             reason: 'Label should not contain parentheses');
+      }
+    });
+
+    test('subtitles match spec', () {
+      expect(StoryLengthBucket.short.subtitle, 'A quick moment to pause');
+      expect(StoryLengthBucket.full.subtitle, 'A complete story experience');
+      expect(StoryLengthBucket.long.subtitle, 'When you have time to settle in');
+    });
+
+    test('no minute references in subtitles', () {
+      for (final bucket in StoryLengthBucket.values) {
+        final sub = bucket.subtitle;
+        expect(sub.contains('min'), false,
+            reason: 'Subtitle should not contain "min"');
+        expect(sub.contains('~'), false,
+            reason: 'Subtitle should not contain duration estimate');
       }
     });
   });

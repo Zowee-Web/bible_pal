@@ -533,6 +533,90 @@ class _StudyPageState extends ConsumerState<_StudyPage>
     });
   }
 
+  Widget _buildKidModePill(BuildContext context, SkyPalette palette) {
+    final appState = ref.watch(appStateProvider).valueOrNull;
+    final isOn = appState?.userPreferences.kidFriendlyOnly ?? false;
+
+    return GestureDetector(
+      onTap: () {
+        HapticFeedback.lightImpact();
+        ref.read(appStateProvider.notifier).updateKidFriendlyOnly(!isOn);
+      },
+      behavior: HitTestBehavior.opaque,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        decoration: BoxDecoration(
+          color: palette.cardColor,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: palette.cardBorder, width: 1),
+        ),
+        child: RichText(
+          text: TextSpan(
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+              color: isOn ? palette.textColor : palette.subtitleColor,
+            ),
+            children: [
+              const TextSpan(text: 'Kid Mode: '),
+              TextSpan(
+                text: isOn ? 'ON' : 'OFF',
+                style: TextStyle(
+                  color: isOn ? palette.orbGlowColor : palette.subtitleColor,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStoryModeToggle(BuildContext context, SkyPalette palette) {
+    final appState = ref.watch(appStateProvider).valueOrNull;
+    final currentMode = appState?.userPreferences.storytellingMode ?? 'traditional';
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Container(
+        decoration: BoxDecoration(
+          color: palette.cardColor,
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: palette.cardBorder, width: 1),
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: _StoryModeTab(
+                label: 'Traditional',
+                subtitle: 'Scripture-based',
+                icon: Icons.menu_book_outlined,
+                selected: currentMode == 'traditional',
+                palette: palette,
+                onTap: () {
+                  ref.read(appStateProvider.notifier).updateStorytellingMode('traditional');
+                },
+              ),
+            ),
+            Expanded(
+              child: _StoryModeTab(
+                label: 'Creative',
+                subtitle: 'Inspired storytelling',
+                icon: Icons.auto_awesome_outlined,
+                selected: currentMode == 'creative',
+                palette: palette,
+                onTap: () {
+                  ref.read(appStateProvider.notifier).updateStorytellingMode('creative');
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final palette = LivingSky.getPalette(LivingSky.getPhase());
@@ -551,19 +635,26 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                     children: [
                       const SizedBox(height: 24),
 
-                      // Heading
+                      // Heading — fixed style to prevent shifts on theme change (kid mode)
                       Text(
                         'How are you feeling?',
-                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                          color: palette.textColor,
+                        style: TextStyle(
+                          fontSize: 24,
                           fontWeight: FontWeight.w600,
+                          color: palette.textColor,
+                          letterSpacing: 0.3,
+                          height: 1.3,
                         ),
                       ),
                       const SizedBox(height: 8),
                       Text(
                         'Tap a mood and PAL will find a story for you',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
                           color: palette.subtitleColor,
+                          letterSpacing: 0.2,
+                          height: 1.5,
                         ),
                       ),
 
@@ -605,6 +696,16 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                           ],
                         ),
                       ),
+
+                      const SizedBox(height: 14),
+
+                      // Story mode toggle — Traditional / Creative
+                      _buildStoryModeToggle(context, palette),
+
+                      const SizedBox(height: 10),
+
+                      // Kid Mode pill
+                      Center(child: _buildKidModePill(context, palette)),
 
                       const SizedBox(height: 24),
                     ],
@@ -1941,6 +2042,84 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
     );
   }
 
+}
+
+// ---------------------------------------------------------------------------
+// Story mode tab — used in the Traditional / Creative toggle
+// ---------------------------------------------------------------------------
+
+class _StoryModeTab extends StatelessWidget {
+  final String label;
+  final String subtitle;
+  final IconData icon;
+  final bool selected;
+  final SkyPalette palette;
+  final VoidCallback onTap;
+
+  const _StoryModeTab({
+    required this.label,
+    required this.subtitle,
+    required this.icon,
+    required this.selected,
+    required this.palette,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        curve: Curves.easeOut,
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(13),
+          border: selected
+              ? Border.all(color: palette.orbGlowColor, width: 1.5)
+              : null,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  icon,
+                  size: 18,
+                  color: selected ? palette.orbGlowColor : palette.subtitleColor,
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+                    color: selected ? palette.textColor : palette.subtitleColor,
+                    letterSpacing: 0.3,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 3),
+            Text(
+              subtitle,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w400,
+                color: palette.subtitleColor.withOpacity(selected ? 0.9 : 0.65),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 // ---------------------------------------------------------------------------

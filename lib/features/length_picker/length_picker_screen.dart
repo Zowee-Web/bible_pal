@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show HapticFeedback;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/story_length_bucket.dart';
 import '../../core/app_logger.dart';
@@ -7,6 +8,7 @@ import '../../providers/parable_player_notifier.dart';
 import '../../providers/service_providers.dart';
 import '../../theme/living_sky.dart';
 import '../../widgets/living_sky_background.dart';
+import '../pals_parables/parable_player_screen.dart';
 
 /// Full-screen story length picker shown before the audio player.
 ///
@@ -28,9 +30,19 @@ class LengthPickerScreen extends ConsumerStatefulWidget {
 
 class _LengthPickerScreenState extends ConsumerState<LengthPickerScreen> {
   bool _isLoading = false;
+  StoryLengthBucket? _selectedBucket;
 
   Future<void> _pickLength(StoryLengthBucket bucket) async {
     if (_isLoading) return;
+
+    // Visual selection + haptic
+    HapticFeedback.lightImpact();
+    setState(() => _selectedBucket = bucket);
+
+    // Brief pause to let glow animation show before navigating
+    await Future.delayed(const Duration(milliseconds: 180));
+    if (!mounted) return;
+
     setState(() => _isLoading = true);
 
     try {
@@ -52,7 +64,10 @@ class _LengthPickerScreenState extends ConsumerState<LengthPickerScreen> {
       if (!mounted) return;
 
       if (parable == null) {
-        setState(() => _isLoading = false);
+        setState(() {
+          _isLoading = false;
+          _selectedBucket = null;
+        });
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('No story available for this mood and length yet.')),
         );
@@ -66,9 +81,29 @@ class _LengthPickerScreenState extends ConsumerState<LengthPickerScreen> {
       await playerNotifier.loadParable(parable);
 
       if (!mounted) return;
-      Navigator.of(context).pushReplacementNamed('/parable_player');
+
+      // Smooth fade + scale transition into player
+      Navigator.of(context).pushReplacement(
+        PageRouteBuilder(
+          pageBuilder: (_, __, ___) => const ParablePlayerScreen(),
+          transitionsBuilder: (_, animation, __, child) {
+            final curved = CurvedAnimation(parent: animation, curve: Curves.easeInOut);
+            return FadeTransition(
+              opacity: curved,
+              child: ScaleTransition(
+                scale: Tween<double>(begin: 0.98, end: 1.0).animate(curved),
+                child: child,
+              ),
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 260),
+        ),
+      );
     } catch (e) {
-      setState(() => _isLoading = false);
+      setState(() {
+        _isLoading = false;
+        _selectedBucket = null;
+      });
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error: $e')),
@@ -78,7 +113,6 @@ class _LengthPickerScreenState extends ConsumerState<LengthPickerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final palette = LivingSky.getPalette(LivingSky.getPhase());
 
     return Scaffold(
@@ -100,7 +134,10 @@ class _LengthPickerScreenState extends ConsumerState<LengthPickerScreen> {
                         const SizedBox(height: 16),
                         Text(
                           'Finding your story...',
-                          style: theme.textTheme.bodyLarge,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: palette.textColor,
+                          ),
                         ),
                       ],
                     ),
@@ -111,8 +148,10 @@ class _LengthPickerScreenState extends ConsumerState<LengthPickerScreen> {
 
                       Text(
                         'How long would you like\nyour story?',
-                        style: theme.textTheme.headlineMedium?.copyWith(
+                        style: TextStyle(
+                          fontSize: 24,
                           fontWeight: FontWeight.w600,
+                          color: palette.textColor,
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -121,50 +160,11 @@ class _LengthPickerScreenState extends ConsumerState<LengthPickerScreen> {
 
                       // Three length cards
                       for (final bucket in StoryLengthBucket.values) ...[
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 6),
-                          child: GestureDetector(
-                            onTap: () => _pickLength(bucket),
-                            child: Container(
-                              width: double.infinity,
-                              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-                              decoration: BoxDecoration(
-                                color: palette.cardColor,
-                                borderRadius: BorderRadius.circular(16),
-                                border: Border.all(color: palette.cardBorder, width: 1),
-                              ),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          bucket.displayLabel,
-                                          style: theme.textTheme.titleMedium?.copyWith(
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 4),
-                                        Text(
-                                          bucket.subtitle,
-                                          style: theme.textTheme.bodySmall?.copyWith(
-                                            color: palette.subtitleColor,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Text(
-                                    bucket.durationLabel,
-                                    style: theme.textTheme.titleSmall?.copyWith(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                        _LengthCard(
+                          bucket: bucket,
+                          isSelected: _selectedBucket == bucket,
+                          palette: palette,
+                          onTap: () => _pickLength(bucket),
                         ),
                       ],
 
@@ -173,6 +173,84 @@ class _LengthPickerScreenState extends ConsumerState<LengthPickerScreen> {
                   ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Individual length card with glow + scale on selection.
+class _LengthCard extends StatelessWidget {
+  final StoryLengthBucket bucket;
+  final bool isSelected;
+  final SkyPalette palette;
+  final VoidCallback onTap;
+
+  const _LengthCard({
+    required this.bucket,
+    required this.isSelected,
+    required this.palette,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final glow = palette.glowIntensity;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 6),
+      child: GestureDetector(
+        onTap: onTap,
+        child: AnimatedScale(
+          scale: isSelected ? 1.04 : 1.0,
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeOut,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.easeOut,
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+            decoration: BoxDecoration(
+              color: palette.cardColor,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: isSelected
+                    ? palette.orbGlowColor.withOpacity(0.6)
+                    : palette.cardBorder,
+                width: isSelected ? 1.5 : 1,
+              ),
+              boxShadow: isSelected
+                  ? [
+                      BoxShadow(
+                        color: palette.orbGlowColor.withOpacity(0.2 * glow),
+                        blurRadius: 16,
+                        spreadRadius: 1,
+                      ),
+                    ]
+                  : null,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  bucket.displayLabel,
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w600,
+                    color: palette.textColor,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  bucket.subtitle,
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: palette.subtitleColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

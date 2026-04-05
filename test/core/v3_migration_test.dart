@@ -100,16 +100,10 @@ void main() {
   });
 
   group('v3 Migration: display labels', () {
-    test('length labels are the new warm labels', () {
-      expect(StoryLengthBucket.short.displayLabel, 'A Quick Moment');
-      expect(StoryLengthBucket.full.displayLabel, 'A Quiet Story');
-      expect(StoryLengthBucket.long.displayLabel, 'A Longer Listen');
-    });
-
-    test('duration labels exist', () {
-      expect(StoryLengthBucket.short.durationLabel, '~2 min');
-      expect(StoryLengthBucket.full.durationLabel, '~5 min');
-      expect(StoryLengthBucket.long.durationLabel, '~10 min');
+    test('length labels are the canonical bucket labels', () {
+      expect(StoryLengthBucket.short.displayLabel, 'Short Story');
+      expect(StoryLengthBucket.full.displayLabel, 'Full Story');
+      expect(StoryLengthBucket.long.displayLabel, 'Long Story');
     });
 
     test('subtitles exist', () {

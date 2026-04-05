@@ -150,9 +150,9 @@ class _LengthChip extends StatelessWidget {
 
   static const _duration = Duration(milliseconds: 150);
   static const _shortLabels = {
-    StoryLengthBucket.short: 'Quick Moment',
-    StoryLengthBucket.full: 'Quiet Story',
-    StoryLengthBucket.long: 'Longer Listen',
+    StoryLengthBucket.short: 'Short',
+    StoryLengthBucket.full: 'Full',
+    StoryLengthBucket.long: 'Long',
   };
 
   const _LengthChip({

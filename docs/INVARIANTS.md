@@ -1997,12 +1997,12 @@ python3 -c "import json; r=json.load(open('server/model_router/model_registry.js
 
 ## 🔒 Story Length Label Invariant (NON-NEGOTIABLE)
 
-**Invariant**: User-facing story length labels must be exactly: "A Quick Moment", "A Quiet Story", "A Longer Listen". Internal enum values remain `short`, `full`, `long`.
+**Invariant**: User-facing story length labels must be exactly: "Short Story", "Full Story", "Long Story". Internal enum values remain `short`, `full`, `long`. No duration or minute-based text may appear in the UI.
 
 ### Why This Exists
-- Labels create emotional tone and set expectations — "Short Story" feels lesser, "A Quick Moment" feels intentional
+- Clear bucket labels match the internal system and reduce ambiguity
 - Consistency between PAL picker and main menu selector prevents user confusion
-- Duration hints (~2 min, ~5 min, ~10 min) are approximate and live in `durationLabel`, separate from `displayLabel`
+- No duration estimates — word count ranges define length, not minutes
 
 ### Enforcement
 - `StoryLengthBucket.displayLabel` getter is the single source of truth

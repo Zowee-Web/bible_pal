@@ -151,18 +151,18 @@ When a mood button is tapped, a brief thinking delay (800–1500ms randomized) i
 
 **6. Story Length Buckets**
 
-Three user-facing length options with warm labels and approximate durations:
-- **A Quick Moment** (~2 min): 250–600 words (LOCKED SPEC)
-- **A Quiet Story** (~5 min): 601–1200 words (LOCKED SPEC)
-- **A Longer Listen** (~10 min): 1201–2000 words (LOCKED SPEC)
+Three user-facing length options with clear bucket labels:
+- **Short Story**: 250–600 words (LOCKED SPEC)
+- **Full Story**: 601–1200 words (LOCKED SPEC)
+- **Long Story**: 1201–2000 words (LOCKED SPEC)
 
 Each option has a subtitle hint:
-- A Quick Moment — "For a pause in your day"
-- A Quiet Story — "Settle in for a few minutes"
-- A Longer Listen — "When you have time to linger"
+- Short Story — "A quick moment to pause"
+- Full Story — "A complete story experience"
+- Long Story — "When you have time to settle in"
 
 **Length Selection Flow (PAL Conversational Picker):**
-- First time: After mood selection, PAL shows a bottom sheet ("I have a story for you.") with three tappable length options showing label, subtitle, and duration
+- First time: After mood selection, PAL shows a bottom sheet ("I have a story for you.") with three tappable length options showing label and subtitle
 - User's choice is persisted in `UserPreferences.preferredLengthBucket`
 - Subsequent visits: saved preference is used automatically (no picker shown)
 - Manual override still available via the horizontal selector on the main menu

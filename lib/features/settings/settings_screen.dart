@@ -6,6 +6,7 @@ import '../../providers/service_providers.dart';
 import '../../core/app_logger.dart';
 import '../../core/diagnostics_config.dart';
 import '../../core/pal_voice_registry.dart';
+import '../../theme/living_sky.dart';
 import '../../widgets/living_sky_background.dart';
 
 const _pkBackgroundSound = 'settings.backgroundSoundOn';
@@ -19,14 +20,7 @@ class SettingsScreen extends ConsumerStatefulWidget {
 class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   bool _loaded = false;
   bool _backgroundSoundOn = false;
-  bool _kidFriendlyOnly = false;
-  bool _showEverydayReflections = true;
-  String _storytellingMode =
-      'traditional'; // Default is Traditional per Contracts v2
   String _languageStyle = 'WEB'; // Story presentation diction (Contracts v2)
-  // Voice consent (Phase 3)
-  bool? _storyNarrationEnabled;
-  bool? _palGreetingsEnabled;
   // PAL voice selection
   String _palVoiceKey = PalVoiceRegistry.defaultVoiceKey;
   // User name
@@ -34,9 +28,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   // Name audio status
   bool _nameAudioReady = false;
   bool _nameAudioGenerating = false;
-  // Bedtime mode
-  bool _bedtimeModeEnabled = false;
-  int _sleepTimerMinutes = 5;
 
   @override
   void initState() {
@@ -55,24 +46,12 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       _backgroundSoundOn = backgroundSound;
     }
 
-    // Load kid-friendly mode, reflections, storytelling mode, story language, and voice consent from UserPreferences
+    // Load kid-friendly mode, language style, voice, and name from UserPreferences
     final appState = ref.read(appStateProvider).valueOrNull;
     if (appState != null) {
-      _kidFriendlyOnly = appState.userPreferences.kidFriendlyOnly;
-      _showEverydayReflections =
-          appState.userPreferences.showEverydayReflections;
-      _storytellingMode = appState.userPreferences.storytellingMode;
       _languageStyle = appState.userPreferences.languageStyle;
-      // Voice consent (Phase 3)
-      _storyNarrationEnabled = appState.userPreferences.storyNarrationEnabled;
-      _palGreetingsEnabled = appState.userPreferences.palGreetingsEnabled;
-      // PAL voice selection
       _palVoiceKey = appState.userPreferences.palVoiceKey;
-      // User name
       _userName = appState.userPreferences.userName;
-      // Bedtime mode
-      _bedtimeModeEnabled = appState.userPreferences.bedtimeModeEnabled;
-      _sleepTimerMinutes = appState.userPreferences.sleepTimerMinutes;
     }
 
     // Check name audio status
@@ -90,87 +69,15 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     await sp.setBool(_pkBackgroundSound, on);
   }
 
-  Future<void> _setKidFriendlyOnly(bool on) async {
-    // Log mode change
-    logEvent('mode_changed', {
-      'setting': 'kid_friendly',
-      'from': _kidFriendlyOnly,
-      'to': on,
-    });
-
-    setState(() => _kidFriendlyOnly = on);
-    final appState = ref.read(appStateProvider.notifier);
-    await appState.updateKidFriendlyOnly(on);
-  }
-
-  Future<void> _setBedtimeMode(bool on) async {
-    setState(() => _bedtimeModeEnabled = on);
-    final appState = ref.read(appStateProvider.notifier);
-    final prefs = ref.read(appStateProvider).requireValue.userPreferences;
-    await appState.updateUserPreferences(prefs.copyWith(bedtimeModeEnabled: on));
-  }
-
-  Future<void> _setSleepTimer(int minutes) async {
-    setState(() => _sleepTimerMinutes = minutes);
-    final appState = ref.read(appStateProvider.notifier);
-    final prefs = ref.read(appStateProvider).requireValue.userPreferences;
-    await appState.updateUserPreferences(prefs.copyWith(sleepTimerMinutes: minutes));
-  }
-
-  Future<void> _setShowEverydayReflections(bool on) async {
-    setState(() => _showEverydayReflections = on);
-    final appState = ref.read(appStateProvider.notifier);
-    await appState.updateShowEverydayReflections(on);
-  }
-
-  Future<void> _setStorytellingMode(String mode) async {
-    // Log mode change
-    logEvent('mode_changed', {
-      'setting': 'storytelling_mode',
-      'from': _storytellingMode,
-      'to': mode,
-    });
-
-    setState(() => _storytellingMode = mode);
-    final appState = ref.read(appStateProvider.notifier);
-    await appState.updateStorytellingMode(mode);
-  }
-
   Future<void> _setLanguageStyle(String style) async {
-    // Log language style change (Contracts v2: presentation diction)
     logEvent('language_style_changed', {
       'from': _languageStyle,
       'to': style,
-      'kid_mode': _kidFriendlyOnly,
     });
 
     setState(() => _languageStyle = style);
     final appState = ref.read(appStateProvider.notifier);
     await appState.updateLanguageStyle(style);
-  }
-
-  Future<void> _setStoryNarrationEnabled(bool enabled) async {
-    logEvent('voice_consent_changed', {
-      'feature': 'story_narration',
-      'from': _storyNarrationEnabled,
-      'to': enabled,
-    });
-
-    setState(() => _storyNarrationEnabled = enabled);
-    final appState = ref.read(appStateProvider.notifier);
-    await appState.updateStoryNarrationConsent(enabled);
-  }
-
-  Future<void> _setPalGreetingsEnabled(bool enabled) async {
-    logEvent('voice_consent_changed', {
-      'feature': 'pal_greetings',
-      'from': _palGreetingsEnabled,
-      'to': enabled,
-    });
-
-    setState(() => _palGreetingsEnabled = enabled);
-    final appState = ref.read(appStateProvider.notifier);
-    await appState.updatePalGreetingsConsent(enabled);
   }
 
   Future<void> _setPalVoiceKey(String voiceKey) async {
@@ -265,11 +172,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     );
   }
 
-  Future<void> _previewVoice() async {
-    final palAudio = ref.read(palAudioServiceProvider);
-    await palAudio.playPreview(_palVoiceKey);
-  }
-
   Future<void> _resetOnboarding() async {
     // Show confirmation dialog
     final confirmed = await showDialog<bool>(
@@ -312,12 +214,15 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
+
     if (!_loaded) {
       return Scaffold(
         appBar: AppBar(title: const Text('Settings')),
         body: const Center(child: CircularProgressIndicator()),
       );
     }
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       extendBodyBehindAppBar: true,
@@ -330,183 +235,242 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           const LivingSkyBackground(),
           SafeArea(
             child: ListView(
-        children: [
-          ListTile(
-            leading: const Icon(Icons.person_outline),
-            title: const Text('Your Name'),
-            subtitle: Text(_userName.isEmpty ? 'Not set' : _userName),
-            trailing: const Icon(Icons.edit),
-            onTap: _editUserName,
-          ),
-          if (_userName.isNotEmpty)
-            ListTile(
-              leading: Icon(
-                _nameAudioReady ? Icons.record_voice_over : Icons.voice_over_off,
-                color: _nameAudioReady ? Colors.green : Colors.orange,
-              ),
-              title: Text(
-                _nameAudioReady
-                    ? 'Voice greeting ready'
-                    : 'Voice greeting not generated',
-              ),
-              subtitle: Text(
-                _nameAudioReady
-                    ? 'PAL will say your name when greeting you'
-                    : 'Tap to generate so PAL can say your name',
-              ),
-              trailing: _nameAudioGenerating
-                  ? const SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                  : TextButton(
-                      onPressed: _regenerateNameAudio,
-                      child: Text(_nameAudioReady ? 'Regenerate' : 'Generate'),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              children: [
+
+                // ── 1. Story Language Style ──
+                _SectionHeader(title: 'Story Language Style', palette: palette),
+                const SizedBox(height: 4),
+                _SettingRow(
+                  title: 'Modern (WEB)',
+                  subtitle: 'Contemporary language style',
+                  palette: palette,
+                  trailing: Radio<String>(
+                    value: 'WEB',
+                    groupValue: _languageStyle,
+                    onChanged: (v) => _setLanguageStyle(v!),
+                    activeColor: palette.orbGlowColor,
+                  ),
+                  onTap: () => _setLanguageStyle('WEB'),
+                ),
+                _SettingRow(
+                  title: 'Classic (KJV)',
+                  subtitle: 'Traditional / poetic language style',
+                  palette: palette,
+                  trailing: Radio<String>(
+                    value: 'KJV',
+                    groupValue: _languageStyle,
+                    onChanged: (v) => _setLanguageStyle(v!),
+                    activeColor: palette.orbGlowColor,
+                  ),
+                  onTap: () => _setLanguageStyle('KJV'),
+                ),
+
+                const SizedBox(height: 20),
+
+                // ── 2. PAL's Voice ──
+                _SectionHeader(title: "PAL's Voice", palette: palette),
+                const SizedBox(height: 4),
+                for (final voice in PalVoiceRegistry.voices)
+                  _SettingRow(
+                    title: '${voice.emoji} ${voice.displayName}',
+                    subtitle: voice.description,
+                    palette: palette,
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.play_circle_outline, size: 22, color: palette.subtitleColor),
+                          tooltip: 'Preview ${voice.displayName}',
+                          onPressed: () {
+                            final palAudio = ref.read(palAudioServiceProvider);
+                            palAudio.playPreview(voice.voiceKey);
+                          },
+                          visualDensity: VisualDensity.compact,
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
+                        ),
+                        Radio<String>(
+                          value: voice.voiceKey,
+                          groupValue: _palVoiceKey,
+                          onChanged: (v) => _setPalVoiceKey(v!),
+                          activeColor: palette.orbGlowColor,
+                          visualDensity: VisualDensity.compact,
+                        ),
+                      ],
                     ),
-            ),
-          const Divider(),
-          SwitchListTile(
-            title: const Text('Background Sound'),
-            subtitle: const Text('Play ambient audio during stories'),
-            value: _backgroundSoundOn,
-            onChanged: _setBackgroundSound,
-          ),
-          const Divider(),
-          SwitchListTile(
-            title: const Text('Bedtime Mode'),
-            subtitle: const Text('Dims the screen, fades audio after stories end'),
-            value: _bedtimeModeEnabled,
-            onChanged: _setBedtimeMode,
-          ),
-          if (_bedtimeModeEnabled) ...[
-            ListTile(
-              title: const Text('Sleep Timer'),
-              subtitle: Text('Fade out $_sleepTimerMinutes minutes after story ends'),
-              trailing: DropdownButton<int>(
-                value: _sleepTimerMinutes,
-                underline: const SizedBox(),
-                items: const [
-                  DropdownMenuItem(value: 0, child: Text('Immediately')),
-                  DropdownMenuItem(value: 5, child: Text('5 min')),
-                  DropdownMenuItem(value: 10, child: Text('10 min')),
-                  DropdownMenuItem(value: 15, child: Text('15 min')),
-                  DropdownMenuItem(value: 30, child: Text('30 min')),
+                    onTap: () => _setPalVoiceKey(voice.voiceKey),
+                  ),
+
+                const SizedBox(height: 20),
+
+                // ── 3. Background Sound ──
+                _SectionHeader(title: 'Background Sound', palette: palette),
+                const SizedBox(height: 4),
+                _SettingRow(
+                  title: 'Ambient audio',
+                  subtitle: 'Play soft background sound during stories',
+                  palette: palette,
+                  trailing: Switch.adaptive(
+                    value: _backgroundSoundOn,
+                    onChanged: _setBackgroundSound,
+                    activeColor: palette.orbGlowColor,
+                  ),
+                  onTap: () => _setBackgroundSound(!_backgroundSoundOn),
+                ),
+
+                const SizedBox(height: 20),
+
+                // ── 4. Your Name ──
+                _SectionHeader(title: 'Your Name', palette: palette),
+                const SizedBox(height: 4),
+                _SettingRow(
+                  title: _userName.isEmpty ? 'Not set' : _userName,
+                  subtitle: null,
+                  palette: palette,
+                  trailing: Icon(Icons.edit_outlined, size: 20, color: palette.subtitleColor),
+                  onTap: _editUserName,
+                ),
+                if (_userName.isNotEmpty) ...[
+                  const SizedBox(height: 2),
+                  _SettingRow(
+                    title: 'Voice Greeting',
+                    subtitle: _nameAudioReady
+                        ? 'PAL will say your name when greeting you'
+                        : 'Tap to generate so PAL can say your name',
+                    palette: palette,
+                    trailing: _nameAudioGenerating
+                        ? const SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          )
+                        : TextButton(
+                            onPressed: _regenerateNameAudio,
+                            child: Text(
+                              _nameAudioReady ? 'Regenerate' : 'Generate',
+                              style: TextStyle(color: palette.orbGlowColor),
+                            ),
+                          ),
+                  ),
                 ],
-                onChanged: (v) => _setSleepTimer(v ?? 5),
+
+                const SizedBox(height: 20),
+
+                // ── 5. Reset Onboarding ──
+                _SettingRow(
+                  title: 'Reset Onboarding',
+                  subtitle: "Return to PAL's introduction",
+                  palette: palette,
+                  trailing: Icon(Icons.chevron_right, color: palette.subtitleColor),
+                  onTap: _resetOnboarding,
+                ),
+
+                // ── Diagnostics (debug only) ──
+                if (kDiagnosticsEnabled) ...[
+                  const SizedBox(height: 20),
+                  _SettingRow(
+                    title: 'Diagnostics',
+                    subtitle: 'View logs and export support bundle',
+                    palette: palette,
+                    trailing: Icon(Icons.chevron_right, color: palette.subtitleColor),
+                    onTap: () => Navigator.pushNamed(context, '/diagnostics'),
+                  ),
+                ],
+
+                const SizedBox(height: 32),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Reusable setting widgets
+// ---------------------------------------------------------------------------
+
+class _SectionHeader extends StatelessWidget {
+  final String title;
+  final SkyPalette palette;
+
+  const _SectionHeader({required this.title, required this.palette});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 4, top: 4, bottom: 2),
+      child: Text(
+        title,
+        style: TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.w600,
+          color: palette.subtitleColor,
+          letterSpacing: 0.5,
+        ),
+      ),
+    );
+  }
+}
+
+class _SettingRow extends StatelessWidget {
+  final String title;
+  final String? subtitle;
+  final SkyPalette palette;
+  final Widget? trailing;
+  final VoidCallback? onTap;
+
+  const _SettingRow({
+    required this.title,
+    required this.subtitle,
+    required this.palette,
+    this.trailing,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 10),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: palette.textColor,
+                      ),
+                    ),
+                    if (subtitle != null) ...[
+                      const SizedBox(height: 2),
+                      Text(
+                        subtitle!,
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                          color: palette.subtitleColor,
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
               ),
-            ),
-          ],
-          const Divider(),
-          SwitchListTile(
-            title: const Text('Kid Friendly'),
-            subtitle: const Text('Only show stories appropriate for children'),
-            value: _kidFriendlyOnly,
-            onChanged: _setKidFriendlyOnly,
+              if (trailing != null) trailing!,
+            ],
           ),
-          SwitchListTile(
-            title: const Text('Relate stories to everyday life'),
-            subtitle: const Text('Show a brief reflection after each story'),
-            value: _showEverydayReflections,
-            onChanged: _setShowEverydayReflections,
-          ),
-          const Divider(),
-          const ListTile(
-            title: Text('Story Mode'),
-            subtitle: Text(
-                'Choose between creative stories or traditional Bible retellings'),
-          ),
-          RadioListTile<String>(
-            title: const Text('Traditional Stories'),
-            subtitle: const Text('Actual Bible stories faithfully retold'),
-            value: 'traditional',
-            groupValue: _storytellingMode,
-            onChanged: (value) => _setStorytellingMode(value!),
-          ),
-          RadioListTile<String>(
-            title: const Text('Creative Stories'),
-            subtitle: const Text('Original faith-inspired stories'),
-            value: 'creative',
-            groupValue: _storytellingMode,
-            onChanged: (value) => _setStorytellingMode(value!),
-          ),
-          const Divider(),
-          const ListTile(
-            title: Text('Story Language Style'),
-            subtitle: Text('Choose the language style for story narration'),
-          ),
-          RadioListTile<String>(
-            title: const Text('Modern (WEB)'),
-            subtitle: const Text('Contemporary language style'),
-            value: 'WEB',
-            groupValue: _languageStyle,
-            onChanged: (value) => _setLanguageStyle(value!),
-          ),
-          RadioListTile<String>(
-            title: const Text('Classic (KJV)'),
-            subtitle: const Text('Traditional/poetic language style'),
-            value: 'KJV',
-            groupValue: _languageStyle,
-            onChanged: (value) => _setLanguageStyle(value!),
-          ),
-          const Divider(),
-          ListTile(
-            leading: const Icon(Icons.refresh),
-            title: const Text('Reset Onboarding'),
-            subtitle: const Text('Return to PAL\'s introduction'),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: _resetOnboarding,
-          ),
-          const Divider(),
-          const ListTile(
-            title: Text('Voice Features'),
-            subtitle: Text('Control audio narration and voice greetings'),
-          ),
-          SwitchListTile(
-            title: const Text('Story Narration'),
-            subtitle: const Text('Audio playback of stories'),
-            value: _storyNarrationEnabled ?? true,
-            onChanged: (value) => _setStoryNarrationEnabled(value),
-          ),
-          SwitchListTile(
-            title: const Text('PAL Greetings'),
-            subtitle: const Text('Voice greetings from your PAL'),
-            value: _palGreetingsEnabled ?? true,
-            onChanged: (value) => _setPalGreetingsEnabled(value),
-          ),
-          const Divider(),
-          ListTile(
-            title: const Text("PAL's Voice"),
-            subtitle: const Text('Choose a voice for PAL'),
-            trailing: IconButton(
-              icon: const Icon(Icons.play_circle_outline),
-              tooltip: 'Preview voice',
-              onPressed: _previewVoice,
-            ),
-          ),
-          for (final voice in PalVoiceRegistry.voices)
-            RadioListTile<String>(
-              title: Text('${voice.emoji} ${voice.displayName}'),
-              subtitle: Text(voice.description),
-              value: voice.voiceKey,
-              groupValue: _palVoiceKey,
-              onChanged: (value) => _setPalVoiceKey(value!),
-            ),
-          // Diagnostics entry - only visible when diagnostics are enabled
-          if (kDiagnosticsEnabled) ...[
-            const Divider(),
-            ListTile(
-              leading: const Icon(Icons.bug_report),
-              title: const Text('Diagnostics'),
-              subtitle: const Text('View logs and export support bundle'),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () => Navigator.pushNamed(context, '/diagnostics'),
-            ),
-          ],
-        ],
-          ),
-          ),
-        ],
+        ),
       ),
     );
   }

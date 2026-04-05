@@ -14,11 +14,11 @@ enum StoryLengthBucket {
   String get displayLabel {
     switch (this) {
       case StoryLengthBucket.short:
-        return 'A Quick Moment';
+        return 'Short Story';
       case StoryLengthBucket.full:
-        return 'A Quiet Story';
+        return 'Full Story';
       case StoryLengthBucket.long:
-        return 'A Longer Listen';
+        return 'Long Story';
     }
   }
 
@@ -26,23 +26,11 @@ enum StoryLengthBucket {
   String get subtitle {
     switch (this) {
       case StoryLengthBucket.short:
-        return 'For a pause in your day';
+        return 'A quick moment to pause';
       case StoryLengthBucket.full:
-        return 'Settle in for a few minutes';
+        return 'A complete story experience';
       case StoryLengthBucket.long:
-        return 'When you have time to linger';
-    }
-  }
-
-  /// Approximate duration label
-  String get durationLabel {
-    switch (this) {
-      case StoryLengthBucket.short:
-        return '~2 min';
-      case StoryLengthBucket.full:
-        return '~5 min';
-      case StoryLengthBucket.long:
-        return '~10 min';
+        return 'When you have time to settle in';
     }
   }
 

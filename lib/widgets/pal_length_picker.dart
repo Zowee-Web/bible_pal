@@ -132,12 +132,6 @@ class _LengthOption extends StatelessWidget {
                   ],
                 ),
               ),
-              Text(
-                bucket.durationLabel,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.onSurfaceVariant,
-                ),
-              ),
             ],
           ),
         ),
