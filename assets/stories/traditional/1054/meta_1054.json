@@ -3,7 +3,7 @@
   "storyId": 1054,
   "mode": "traditional",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web",
     "kjv"
@@ -48,9 +48,10 @@
   "storyVoiceKey": "VOICE_HANNAH_HOPE",
   "reflectionVoiceKey": "VOICE_HANNAH_HOPE",
   "scriptureAnchor": "2 Samuel 9:1-13",
-  "bibleStoryKey": "mephibosheth_at_davids_table",
+  "bibleStoryKey": "david_and_mephibosheth",
   "reflections": {
     "web": "reflection_1054_traditional_web.txt",
     "kjv": "reflection_1054_traditional_kjv.txt"
-  }
+  },
+  "reflectionText": "He looked for judgment but received a seat at the king's board. When hath kindness come unto thee in a place where thou didst expect only to be forgotten?"
 }

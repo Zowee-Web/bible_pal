@@ -3,7 +3,7 @@
   "storyId": 2045,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_MARTHA_CARING",
-  "reflectionVoiceKey": "VOICE_MARTHA_CARING"
+  "reflectionVoiceKey": "VOICE_MARTHA_CARING",
+  "reflectionText": "Is there someone you miss? What is one thing they gave you that you still carry with you?"
 }

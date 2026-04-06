@@ -3,7 +3,7 @@
   "storyId": 2079,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
   "reflectionVoiceKey": "VOICE_PRISCILLA_TEACHER",
-  "theme": "a child who thought they couldn't make it to the top but did"
+  "theme": "a child who thought they couldn't make it to the top but did",
+  "reflectionText": "How did your body and heart feel during the longest or hardest part of the hike?"
 }

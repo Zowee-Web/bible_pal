@@ -13,7 +13,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+  "voiceKey": "VOICE_SARAH_STORYTELLER",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_CLAUDE_KID_01",
   "reflectionQuestion": "Can you think of a time when you felt really small but then something helped you feel brave and strong?",
@@ -38,5 +38,6 @@
   },
   "theme": "a tiny seed who is afraid it is too small until the rain comes and it grows",
   "storyVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
-  "reflectionVoiceKey": "VOICE_SARAH_DEFAULT_VOICES"
+  "reflectionVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+  "reflectionText": "Sometimes the smallest things hold the biggest surprises inside. A little seed sits quietly in the dark dirt, wondering if anything will ever happen. Then the rain comes, soft and steady. Drop by drop, something begins to change. A tiny green shoot pushes up toward the sunlight. That small seed was never too small at all. It just needed time and a little help from the rain. Growing happens like that sometimes — slowly, quietly, when nobody is even watching. Every flower in every garden started out just as tiny. And every kid was once very, very small too."
 }

@@ -3,7 +3,7 @@
   "storyId": 1077,
   "mode": "traditional",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -39,5 +39,6 @@
   "storyVoiceKey": "VOICE_JANE_PROFESSIONAL",
   "reflectionVoiceKey": "VOICE_JANE_PROFESSIONAL",
   "scriptureAnchor": "Psalm 139:1-18",
-  "bibleStoryKey": "psalm_139_searched_and_known"
+  "bibleStoryKey": "fearfully_and_wonderfully_made",
+  "reflectionText": "What is something that hurts inside you right now that you wish someone really understood?"
 }

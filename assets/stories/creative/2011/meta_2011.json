@@ -13,7 +13,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+  "voiceKey": "VOICE_SARAH_STORYTELLER",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_CLAUDE_KID_01",
   "reflectionQuestion": "Can you think of a time when having a friend nearby helped you feel braver about doing something new?",
@@ -38,5 +38,6 @@
   },
   "theme": "a small turtle who is nervous about crossing a big meadow but a friendly deer walks beside her",
   "storyVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
-  "reflectionVoiceKey": "VOICE_SARAH_DEFAULT_VOICES"
+  "reflectionVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+  "reflectionText": "Sometimes a path looks so big and wide that even taking one small step feels tricky. The little turtle looked out at that meadow and her heart beat fast. But then the deer came alongside her, step by step, not rushing, not pushing. Just walking together. That changes things, doesn't it? A friend beside you can make a big open space feel a little smaller. The grass is still tall. The meadow is still wide. But somehow your feet keep moving when someone is right there with you. And before you know it, you look back and see just how far you have come."
 }

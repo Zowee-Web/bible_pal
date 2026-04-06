@@ -3,7 +3,7 @@
   "storyId": 2075,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_LILY_WOLFF",
   "reflectionVoiceKey": "VOICE_LILY_WOLFF",
-  "theme": "a child whose painting gets put on the fridge by someone who really sees it"
+  "theme": "a child whose painting gets put on the fridge by someone who really sees it",
+  "reflectionText": "What is something you made that you felt really proud of, even if it wasn't perfect?"
 }

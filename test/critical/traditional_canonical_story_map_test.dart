@@ -134,9 +134,9 @@ void main() {
     test('All moodTags are valid moods', () {
       const validMoods = {
         'joyful',
+        'grateful',
         'anxious',
         'hurting',
-        'neutral',
         'weary',
         'brave_courage',
         'calm_peaceful',
@@ -162,9 +162,9 @@ void main() {
     test('CRITICAL: Every mood has at least one anchor', () {
       const requiredMoods = {
         'joyful',
+        'grateful',
         'anxious',
         'hurting',
-        'neutral',
         'weary',
         'brave_courage',
         'calm_peaceful',

@@ -3,7 +3,7 @@
   "storyId": 2068,
   "mode": "creative",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_RUTH_COMFORT",
   "reflectionVoiceKey": "VOICE_RUTH_COMFORT",
-  "theme": "a construction worker who brings soup every day for a coworker who never asks for it"
+  "theme": "a construction worker who brings soup every day for a coworker who never asks for it",
+  "reflectionText": "What small, ordinary object in your life has quietly held something warm for you—something you might not have fully noticed or thanked?"
 }

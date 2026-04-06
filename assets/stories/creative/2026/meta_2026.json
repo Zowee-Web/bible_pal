@@ -3,7 +3,7 @@
   "storyId": 2026,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_LILY_WOLFF",
-  "reflectionVoiceKey": "VOICE_LILY_WOLFF"
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionText": "Suki found something wonderful just sitting still in her own backyard. A spider web full of raindrops, a robin singing the same song over and over, a single drop of water letting go.\n\nSometimes the quietest moments are the fullest ones. Peace isn't always far away — sometimes it's waiting right outside the back door."
 }

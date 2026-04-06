@@ -3,14 +3,14 @@
   "storyId": 1049,
   "mode": "traditional",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web",
     "kjv"
   ],
   "mood": "brave_courage",
   "scriptureAnchor": "Numbers 13:25-33",
-  "bibleStoryKey": "report_of_the_spies",
+  "bibleStoryKey": "spies_return_from_canaan",
   "lengths": [
     "short",
     "full"
@@ -52,5 +52,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_NOAH_PATIENT",
-  "reflectionVoiceKey": "VOICE_NOAH_PATIENT"
+  "reflectionVoiceKey": "VOICE_NOAH_PATIENT",
+  "reflectionText": "They held the fruit of the promised land in their hands and believed it not. When hath abundance stood before thee and fear kept thine hand from reaching?"
 }

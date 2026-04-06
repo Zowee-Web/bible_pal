@@ -3,7 +3,7 @@
   "storyId": 1043,
   "mode": "traditional",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -35,5 +35,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "reflectionVoiceKey": "VOICE_BARNABAS_ENCOURAGER"
+  "reflectionVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "reflectionText": "Gideon did not think he was strong or important. He was hiding, and he felt small. But God called him a mighty warrior and chose him for a big job. Sometimes God sees something in us that we cannot see in ourselves yet.\n\nWhat is something you are good at that you did not know you could do until you tried?"
 }

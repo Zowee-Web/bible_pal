@@ -3,7 +3,7 @@
   "storyId": 2049,
   "mode": "creative",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
-  "reflectionVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN"
+  "reflectionVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "reflectionText": "Eight people watched. One kid moved. What makes the difference between the person who acts and the person who stands still?"
 }

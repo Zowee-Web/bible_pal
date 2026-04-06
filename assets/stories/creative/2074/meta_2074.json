@@ -3,7 +3,7 @@
   "storyId": 2074,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ARABELLA",
   "reflectionVoiceKey": "VOICE_ARABELLA",
-  "theme": "a child lying in a backyard hammock watching clouds change shape"
+  "theme": "a child lying in a backyard hammock watching clouds change shape",
+  "reflectionText": "What does it feel like when you find a quiet, cozy spot where you can just rest and be still?"
 }

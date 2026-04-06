@@ -10,9 +10,9 @@ import 'package:flutter_test/flutter_test.dart';
 /// Quarantined or orphaned stories on disk are ignored.
 ///
 /// Engine policy (LOCKED per STORY_FACTORY.md Section 0):
-///   Traditional → createdByModel MUST be "gpt-4.1"
-///   Creative    → createdByModel MUST be one of the fallback chain:
-///                  mistral-nemo (primary), llama3.1:8b, qwen2.5:7b, gemma:7b (legacy)
+///   Legacy Traditional (801-834)  → "gpt-4.1"
+///   Legacy Creative (500s)        → mistral-nemo / llama3.1:8b / qwen2.5:7b / gemma:7b
+///   Opus system (1000+, both)     → "claude-opus-4-6"
 void main() {
   group('CRITICAL: Story Engine Compliance (STORY_FACTORY.md)', () {
     test('all production meta.json files have correct createdByModel', () {
@@ -57,19 +57,27 @@ void main() {
           final mode = meta['mode'] as String? ?? modeDir;
           final model = meta['createdByModel'] as String? ?? 'MISSING';
 
-          // STORY_FACTORY.md Section 0: Creative uses model router fallback chain
+          // STORY_FACTORY.md: dual-engine architecture
+          //   Legacy Traditional (801-834): gpt-4.1
+          //   Legacy Creative (500s): mistral-nemo / llama3.1:8b / qwen2.5:7b / gemma:7b
+          //   Opus system (1000+): claude-opus-4-6 (both modes)
+          const traditionalAllowedModels = {
+            'gpt-4.1',           // legacy traditional engine
+            'claude-opus-4-6',   // Opus batch system (STORY_FACTORY.md Section 0)
+          };
           const creativeAllowedModels = {
-            'mistral-nemo',  // primary (via Ollama)
-            'llama3.1:8b',   // fallback 1
-            'qwen2.5:7b',    // fallback 2
-            'gemma:7b',      // legacy fallback
+            'mistral-nemo',      // primary (via Ollama)
+            'llama3.1:8b',       // fallback 1
+            'qwen2.5:7b',        // fallback 2
+            'gemma:7b',          // legacy fallback
+            'claude-opus-4-6',   // Opus batch system (STORY_FACTORY.md Section 0)
           };
 
           if (mode == 'traditional') {
-            if (model != 'gpt-4.1') {
+            if (!traditionalAllowedModels.contains(model)) {
               violations.add(
                 '$mode/$storyId: createdByModel="$model" '
-                '(expected "gpt-4.1")',
+                '(expected one of: ${traditionalAllowedModels.join(", ")})',
               );
             }
           } else {

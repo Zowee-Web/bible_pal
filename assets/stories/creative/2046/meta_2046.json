@@ -3,7 +3,7 @@
   "storyId": 2046,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ARCHER",
-  "reflectionVoiceKey": "VOICE_ARCHER"
+  "reflectionVoiceKey": "VOICE_ARCHER",
+  "reflectionText": "What is something you have made or done that filled you with happiness?"
 }

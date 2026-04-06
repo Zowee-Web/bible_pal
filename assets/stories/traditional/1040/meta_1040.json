@@ -3,13 +3,13 @@
   "storyId": 1040,
   "mode": "traditional",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
   "mood": "anxious",
   "scriptureAnchor": "Genesis 22:1-19",
-  "bibleStoryKey": "abraham_binding_of_isaac",
+  "bibleStoryKey": "binding_of_isaac",
   "lengths": [
     "short",
     "full"
@@ -35,5 +35,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_LILY_WOLFF",
-  "reflectionVoiceKey": "VOICE_LILY_WOLFF"
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionText": "Abraham was scared about what God asked him to do. But he trusted God even when he did not understand. And God provided a ram at just the right moment. When God asks us to trust him, he always takes care of us — even when we feel worried.\n\nHas there been a time you were really scared, but then everything turned out okay?"
 }

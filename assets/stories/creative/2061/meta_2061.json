@@ -3,7 +3,7 @@
   "storyId": 2061,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_HANNAH_HOPE",
-  "reflectionVoiceKey": "VOICE_HANNAH_HOPE"
+  "reflectionVoiceKey": "VOICE_HANNAH_HOPE",
+  "reflectionText": "Have you ever had to say goodbye to someone you didn't want to leave? What did you do to hold on?"
 }

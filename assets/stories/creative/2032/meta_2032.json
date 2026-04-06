@@ -3,7 +3,7 @@
   "storyId": 2032,
   "mode": "creative",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
-  "reflectionVoiceKey": "VOICE_JAMES_HUSKY"
+  "reflectionVoiceKey": "VOICE_JAMES_HUSKY",
+  "reflectionText": "There is something honest about fear that outlasts its cause. The accident is over. The road is dry. The daughter is safe. And still the hands shake.\n\nNadine's anxiety wasn't irrational — it was faithful, in its own blunt way. Her body remembered what her mind had filed away, and it kept sounding the alarm long after the danger had passed. That kind of fear doesn't respond to logic. It doesn't care that the statistics are in your favor or that the forecast only says maybe.\n\nWhat shifted for Nadine wasn't the absence of fear. It was the presence of someone who didn't try to fix it. Opal stood in the parking lot without advice, without impatience, without the need to make Nadine's anxiety smaller or more manageable. She just stayed. And sometimes that staying is the thing that makes the next step possible.\n\nSix blocks is not a long drive. But when your hands are shaking and the sky looks like it might turn, six blocks is the whole journey. The courage isn't in the distance. It's in turning the key.\n\nThere may be a version of this in your own life — a fear that has overstayed its welcome, a loop that plays in the background even when the present moment is calm. And there may be an Opal somewhere, or a chance to be one. Not fixing. Not explaining. Just standing nearby while someone finds their way to the next six blocks."
 }

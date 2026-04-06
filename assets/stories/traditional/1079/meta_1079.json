@@ -3,7 +3,7 @@
   "storyId": 1079,
   "mode": "traditional",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -39,5 +39,6 @@
   "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
   "reflectionVoiceKey": "VOICE_PRISCILLA_TEACHER",
   "scriptureAnchor": "Isaiah 40:28-31",
-  "bibleStoryKey": "mount_up_with_wings"
+  "bibleStoryKey": "wings_like_eagles",
+  "reflectionText": "Have you ever felt so tired that you wished someone strong could carry you for a while?"
 }

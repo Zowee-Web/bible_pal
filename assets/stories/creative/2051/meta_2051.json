@@ -3,7 +3,7 @@
   "storyId": 2051,
   "mode": "creative",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_DEBORAH_WISE",
-  "reflectionVoiceKey": "VOICE_DEBORAH_WISE"
+  "reflectionVoiceKey": "VOICE_DEBORAH_WISE",
+  "reflectionText": "She had been writing for three years without knowing anyone was reading. What quiet thing do you do that might matter more than you realize?"
 }

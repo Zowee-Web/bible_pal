@@ -3,7 +3,7 @@
   "storyId": 2027,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_HANNAH_HOPE",
-  "reflectionVoiceKey": "VOICE_HANNAH_HOPE"
+  "reflectionVoiceKey": "VOICE_HANNAH_HOPE",
+  "reflectionText": "Marcus remembered how it felt to be new and alone. So when he saw Juliet sitting by herself, he walked over. He didn't do anything big or fancy. He just sat down and talked.\n\nSometimes the most encouraging thing we can do is simply show up for someone and say, \"I know how that feels.\""
 }

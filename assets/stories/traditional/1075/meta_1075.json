@@ -3,7 +3,7 @@
   "storyId": 1075,
   "mode": "traditional",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -39,5 +39,6 @@
   "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
   "reflectionVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
   "scriptureAnchor": "Isaiah 6:1-8",
-  "bibleStoryKey": "isaiah_temple_vision"
+  "bibleStoryKey": "isaiahs_vision",
+  "reflectionText": "What is something kind or helpful you could do if someone around you needed help today?"
 }

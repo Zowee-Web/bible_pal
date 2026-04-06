@@ -3,7 +3,7 @@
   "storyId": 2071,
   "mode": "creative",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
   "reflectionVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "theme": "a nurse at 3am who has been on her feet for 14 hours and finds one small good thing"
+  "theme": "a nurse at 3am who has been on her feet for 14 hours and finds one small good thing",
+  "reflectionText": "What is it that keeps you going during those quiet, heavy hours when the world is asleep and your weariness feels like the only honest thing left — and what, if anything, do you find yourself creating in that stillness?"
 }

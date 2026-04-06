@@ -3,7 +3,7 @@
   "storyId": 1050,
   "mode": "traditional",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web",
     "kjv"
@@ -52,5 +52,6 @@
   "reflections": {
     "web": "reflection_1050_traditional_web.txt",
     "kjv": "reflection_1050_traditional_kjv.txt"
-  }
+  },
+  "reflectionText": "The vessel was marred and the potter made it again. What doth it mean to be fashioned anew by hands thou canst not see but hast chosen to trust?"
 }

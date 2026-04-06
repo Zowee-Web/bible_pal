@@ -3,7 +3,7 @@
   "storyId": 1062,
   "mode": "traditional",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -35,5 +35,6 @@
   "storyVoiceKey": "VOICE_HANNAH_HOPE",
   "reflectionVoiceKey": "VOICE_HANNAH_HOPE",
   "scriptureAnchor": "2 Samuel 9:1-13",
-  "bibleStoryKey": "mephibosheth_at_davids_table"
+  "bibleStoryKey": "david_and_mephibosheth",
+  "reflectionText": "Mephibosheth thought he was nobody, but the king gave him a seat at his own table. Have you ever felt like you didn't belong somewhere, and then someone made you feel welcome anyway?"
 }

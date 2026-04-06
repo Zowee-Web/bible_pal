@@ -3,7 +3,7 @@
   "storyId": 2053,
   "mode": "creative",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_MARY_PONDER",
-  "reflectionVoiceKey": "VOICE_MARY_PONDER"
+  "reflectionVoiceKey": "VOICE_MARY_PONDER",
+  "reflectionText": "She put on gloves that didn't fit and knelt in a garden that wasn't hers anymore. What object carries someone you've lost — and what happens when you finally pick it up?"
 }

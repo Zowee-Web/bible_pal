@@ -3,7 +3,7 @@
   "storyId": 2070,
   "mode": "creative",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
   "reflectionVoiceKey": "VOICE_MIRIAM_JOYFUL",
-  "theme": "a father learning to dance from his daughter for her wedding"
+  "theme": "a father learning to dance from his daughter for her wedding",
+  "reflectionText": "What is it about letting your body move without judgment that seems to unlock a kind of joy your thinking mind could never quite arrange on its own?"
 }

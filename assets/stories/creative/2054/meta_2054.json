@@ -3,7 +3,7 @@
   "storyId": 2054,
   "mode": "creative",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
-  "reflectionVoiceKey": "VOICE_JAMES_HUSKY"
+  "reflectionVoiceKey": "VOICE_JAMES_HUSKY",
+  "reflectionText": "A mango in a garage on a Tuesday afternoon. Where does joy find you when you're not looking for it?"
 }

@@ -3,7 +3,7 @@
   "storyId": 2041,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD"
+  "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "reflectionText": "Can you think of a time when you did something brave even though you felt scared inside?"
 }

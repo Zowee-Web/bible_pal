@@ -3,7 +3,7 @@
   "storyId": 2059,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD"
+  "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "reflectionText": "Have you ever said something small to someone that helped them try again? What was it?"
 }

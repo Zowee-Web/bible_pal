@@ -8,536 +8,777 @@
       "scriptureAnchorId": "mark_4_35-41",
       "bibleStoryKey": "jesus_calms_storm",
       "bibleSourceRef": "Mark 4:35-41",
-      "moodTags": ["anxious"]
+      "moodTags": [
+        "anxious"
+      ]
     },
     {
       "scriptureAnchorId": "dan_6",
       "bibleStoryKey": "daniel_lions_den",
       "bibleSourceRef": "Daniel 6",
-      "moodTags": ["brave_courage"]
+      "moodTags": [
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "1sam_3",
       "bibleStoryKey": "samuel_listens",
       "bibleSourceRef": "1 Samuel 3",
-      "moodTags": ["calm_peaceful"]
+      "moodTags": [
+        "calm_peaceful"
+      ]
     },
     {
       "scriptureAnchorId": "esth_4-7",
       "bibleStoryKey": "queen_esther",
       "bibleSourceRef": "Esther 4-7",
-      "moodTags": ["encouraging"]
+      "moodTags": [
+        "encouraging"
+      ]
     },
     {
       "scriptureAnchorId": "john_4_4-26",
       "bibleStoryKey": "woman_at_well",
       "bibleSourceRef": "John 4:4-26",
-      "moodTags": ["hurting"]
+      "moodTags": [
+        "hurting"
+      ]
     },
     {
       "scriptureAnchorId": "luke_15_3-7",
       "bibleStoryKey": "lost_sheep",
       "bibleSourceRef": "Luke 15:3-7",
-      "moodTags": ["joyful"]
+      "moodTags": [
+        "joyful"
+      ]
     },
     {
       "scriptureAnchorId": "luke_24_13-35",
       "bibleStoryKey": "road_to_emmaus",
       "bibleSourceRef": "Luke 24:13-35",
-      "moodTags": ["encouraging"]
+      "moodTags": [
+        "encouraging"
+      ]
     },
     {
       "scriptureAnchorId": "matt_11_28-30",
       "bibleStoryKey": "rest_for_the_weary",
       "bibleSourceRef": "Matthew 11:28-30",
-      "moodTags": ["weary"]
+      "moodTags": [
+        "weary"
+      ]
     },
     {
       "scriptureAnchorId": "1kgs_19_9-18",
       "bibleStoryKey": "elijah_at_horeb",
       "bibleSourceRef": "1 Kings 19:9-18",
-      "moodTags": ["anxious"]
+      "moodTags": [
+        "anxious"
+      ]
     },
     {
       "scriptureAnchorId": "1sam_17_1-54",
       "bibleStoryKey": "david_and_goliath",
       "bibleSourceRef": "1 Samuel 17:1-54",
-      "moodTags": ["brave_courage"]
+      "moodTags": [
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "luke_10_38-42",
       "bibleStoryKey": "mary_and_martha",
       "bibleSourceRef": "Luke 10:38-42",
-      "moodTags": ["calm_peaceful"]
+      "moodTags": [
+        "calm_peaceful"
+      ]
     },
     {
       "scriptureAnchorId": "ruth_1_1-22",
       "bibleStoryKey": "ruth_and_naomi",
       "bibleSourceRef": "Ruth 1:1-22",
-      "moodTags": ["encouraging"]
+      "moodTags": [
+        "encouraging"
+      ]
     },
     {
       "scriptureAnchorId": "gen_21_14-21",
       "bibleStoryKey": "hagar_in_wilderness",
       "bibleSourceRef": "Genesis 21:14-21",
-      "moodTags": ["hurting"]
+      "moodTags": [
+        "hurting"
+      ]
     },
     {
       "scriptureAnchorId": "luke_15_11-32",
       "bibleStoryKey": "prodigal_son",
       "bibleSourceRef": "Luke 15:11-32",
-      "moodTags": ["joyful"]
+      "moodTags": [
+        "joyful"
+      ]
     },
     {
       "scriptureAnchorId": "gen_41_1-40",
       "bibleStoryKey": "joseph_interprets_pharaohs_dreams",
       "bibleSourceRef": "Genesis 41:1-40",
-      "moodTags": ["encouraging"]
+      "moodTags": [
+        "encouraging"
+      ]
     },
     {
       "scriptureAnchorId": "exod_18_13-27",
       "bibleStoryKey": "moses_and_jethro",
       "bibleSourceRef": "Exodus 18:13-27",
-      "moodTags": ["weary"]
+      "moodTags": [
+        "weary"
+      ]
     },
-
     {
       "scriptureAnchorId": "gen_1_1-31",
       "bibleStoryKey": "creation",
       "bibleSourceRef": "Genesis 1:1-31",
-      "moodTags": ["joyful", "grateful"]
+      "moodTags": [
+        "joyful",
+        "grateful"
+      ]
     },
     {
       "scriptureAnchorId": "gen_6_9-22",
       "bibleStoryKey": "noah_builds_the_ark",
       "bibleSourceRef": "Genesis 6:9-22",
-      "moodTags": ["brave_courage"]
+      "moodTags": [
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "gen_12_1-9",
       "bibleStoryKey": "abram_called",
       "bibleSourceRef": "Genesis 12:1-9",
-      "moodTags": ["brave_courage", "anxious"]
+      "moodTags": [
+        "brave_courage",
+        "anxious"
+      ]
     },
     {
       "scriptureAnchorId": "gen_18_1-15",
       "bibleStoryKey": "three_visitors_at_mamre",
       "bibleSourceRef": "Genesis 18:1-15",
-      "moodTags": ["joyful", "grateful"]
+      "moodTags": [
+        "joyful",
+        "grateful"
+      ]
     },
     {
       "scriptureAnchorId": "gen_22_1-19",
       "bibleStoryKey": "binding_of_isaac",
       "bibleSourceRef": "Genesis 22:1-19",
-      "moodTags": ["anxious", "brave_courage"]
+      "moodTags": [
+        "anxious",
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "gen_28_10-22",
       "bibleStoryKey": "jacobs_ladder",
       "bibleSourceRef": "Genesis 28:10-22",
-      "moodTags": ["anxious", "calm_peaceful"]
+      "moodTags": [
+        "anxious",
+        "calm_peaceful"
+      ]
     },
     {
       "scriptureAnchorId": "gen_32_22-32",
       "bibleStoryKey": "jacob_wrestles_at_peniel",
       "bibleSourceRef": "Genesis 32:22-32",
-      "moodTags": ["brave_courage", "hurting"]
+      "moodTags": [
+        "brave_courage",
+        "hurting"
+      ]
     },
     {
       "scriptureAnchorId": "gen_37_1-36",
       "bibleStoryKey": "joseph_sold_by_brothers",
       "bibleSourceRef": "Genesis 37:1-36",
-      "moodTags": ["hurting"]
+      "moodTags": [
+        "hurting"
+      ]
     },
     {
       "scriptureAnchorId": "gen_45_1-15",
       "bibleStoryKey": "joseph_reveals_himself",
       "bibleSourceRef": "Genesis 45:1-15",
-      "moodTags": ["joyful", "hurting"]
+      "moodTags": [
+        "joyful",
+        "hurting"
+      ]
     },
     {
       "scriptureAnchorId": "exod_2_1-10",
       "bibleStoryKey": "baby_moses_in_the_nile",
       "bibleSourceRef": "Exodus 2:1-10",
-      "moodTags": ["anxious", "brave_courage"]
+      "moodTags": [
+        "anxious",
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "exod_3_1-15",
       "bibleStoryKey": "burning_bush",
       "bibleSourceRef": "Exodus 3:1-15",
-      "moodTags": ["anxious", "encouraging"]
+      "moodTags": [
+        "anxious",
+        "encouraging"
+      ]
     },
     {
       "scriptureAnchorId": "exod_14_10-31",
       "bibleStoryKey": "crossing_the_red_sea",
       "bibleSourceRef": "Exodus 14:10-31",
-      "moodTags": ["anxious", "brave_courage"]
+      "moodTags": [
+        "anxious",
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "exod_16_1-18",
       "bibleStoryKey": "manna_from_heaven",
       "bibleSourceRef": "Exodus 16:1-18",
-      "moodTags": ["weary", "grateful"]
+      "moodTags": [
+        "weary",
+        "grateful"
+      ]
     },
     {
       "scriptureAnchorId": "num_13_25-33",
       "bibleStoryKey": "spies_return_from_canaan",
       "bibleSourceRef": "Numbers 13:25-33",
-      "moodTags": ["anxious", "brave_courage"]
+      "moodTags": [
+        "anxious",
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "josh_1_1-9",
       "bibleStoryKey": "joshua_commissioned",
       "bibleSourceRef": "Joshua 1:1-9",
-      "moodTags": ["brave_courage", "encouraging"]
+      "moodTags": [
+        "brave_courage",
+        "encouraging"
+      ]
     },
     {
       "scriptureAnchorId": "josh_3_1-17",
       "bibleStoryKey": "crossing_the_jordan",
       "bibleSourceRef": "Joshua 3:1-17",
-      "moodTags": ["brave_courage"]
+      "moodTags": [
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "judg_6_11-24",
       "bibleStoryKey": "gideon_called",
       "bibleSourceRef": "Judges 6:11-24",
-      "moodTags": ["anxious", "encouraging"]
+      "moodTags": [
+        "anxious",
+        "encouraging"
+      ]
     },
     {
       "scriptureAnchorId": "judg_7_1-22",
       "bibleStoryKey": "gideons_three_hundred",
       "bibleSourceRef": "Judges 7:1-22",
-      "moodTags": ["brave_courage"]
+      "moodTags": [
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "ruth_2_1-23",
       "bibleStoryKey": "ruth_gleans_in_boaz_field",
       "bibleSourceRef": "Ruth 2:1-23",
-      "moodTags": ["grateful", "encouraging"]
+      "moodTags": [
+        "grateful",
+        "encouraging"
+      ]
     },
     {
       "scriptureAnchorId": "1sam_16_1-13",
       "bibleStoryKey": "david_anointed",
       "bibleSourceRef": "1 Samuel 16:1-13",
-      "moodTags": ["encouraging", "joyful"]
+      "moodTags": [
+        "encouraging",
+        "joyful"
+      ]
     },
     {
       "scriptureAnchorId": "1sam_18_1-4",
       "bibleStoryKey": "david_and_jonathan",
       "bibleSourceRef": "1 Samuel 18:1-4",
-      "moodTags": ["joyful", "grateful"]
+      "moodTags": [
+        "joyful",
+        "grateful"
+      ]
     },
     {
       "scriptureAnchorId": "2sam_9_1-13",
       "bibleStoryKey": "david_and_mephibosheth",
       "bibleSourceRef": "2 Samuel 9:1-13",
-      "moodTags": ["grateful", "joyful"]
+      "moodTags": [
+        "grateful",
+        "joyful"
+      ]
     },
     {
       "scriptureAnchorId": "1kgs_3_5-14",
       "bibleStoryKey": "solomon_asks_for_wisdom",
       "bibleSourceRef": "1 Kings 3:5-14",
-      "moodTags": ["calm_peaceful", "grateful"]
+      "moodTags": [
+        "calm_peaceful",
+        "grateful"
+      ]
     },
     {
       "scriptureAnchorId": "1kgs_17_1-16",
       "bibleStoryKey": "elijah_and_widow_of_zarephath",
       "bibleSourceRef": "1 Kings 17:1-16",
-      "moodTags": ["weary", "brave_courage"]
+      "moodTags": [
+        "weary",
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "1kgs_18_20-39",
       "bibleStoryKey": "elijah_on_mount_carmel",
       "bibleSourceRef": "1 Kings 18:20-39",
-      "moodTags": ["brave_courage"]
+      "moodTags": [
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "2kgs_5_1-14",
       "bibleStoryKey": "naaman_healed",
       "bibleSourceRef": "2 Kings 5:1-14",
-      "moodTags": ["hurting", "grateful"]
+      "moodTags": [
+        "hurting",
+        "grateful"
+      ]
     },
     {
       "scriptureAnchorId": "2kgs_6_8-23",
       "bibleStoryKey": "elisha_and_the_army",
       "bibleSourceRef": "2 Kings 6:8-23",
-      "moodTags": ["anxious", "brave_courage"]
+      "moodTags": [
+        "anxious",
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "2chr_20_1-30",
       "bibleStoryKey": "jehoshaphat_praise_battle",
       "bibleSourceRef": "2 Chronicles 20:1-30",
-      "moodTags": ["anxious", "brave_courage"]
+      "moodTags": [
+        "anxious",
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "neh_2_1-18",
       "bibleStoryKey": "nehemiah_rebuilds_the_wall",
       "bibleSourceRef": "Nehemiah 2:1-18",
-      "moodTags": ["encouraging", "brave_courage"]
+      "moodTags": [
+        "encouraging",
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "job_1_1-22",
       "bibleStoryKey": "job_tested",
       "bibleSourceRef": "Job 1:1-22",
-      "moodTags": ["hurting", "weary"]
+      "moodTags": [
+        "hurting",
+        "weary"
+      ]
     },
     {
       "scriptureAnchorId": "job_42_1-17",
       "bibleStoryKey": "job_restored",
       "bibleSourceRef": "Job 42:1-17",
-      "moodTags": ["grateful", "joyful"]
+      "moodTags": [
+        "grateful",
+        "joyful"
+      ]
     },
     {
       "scriptureAnchorId": "ps_23",
       "bibleStoryKey": "the_lord_is_my_shepherd",
       "bibleSourceRef": "Psalm 23",
-      "moodTags": ["calm_peaceful", "weary"]
+      "moodTags": [
+        "calm_peaceful",
+        "weary"
+      ]
     },
     {
       "scriptureAnchorId": "ps_46",
       "bibleStoryKey": "god_is_our_refuge",
       "bibleSourceRef": "Psalm 46",
-      "moodTags": ["anxious", "calm_peaceful"]
+      "moodTags": [
+        "anxious",
+        "calm_peaceful"
+      ]
     },
     {
       "scriptureAnchorId": "ps_121",
       "bibleStoryKey": "i_lift_my_eyes_to_the_hills",
       "bibleSourceRef": "Psalm 121",
-      "moodTags": ["anxious", "calm_peaceful"]
+      "moodTags": [
+        "anxious",
+        "calm_peaceful",
+        "weary"
+      ]
     },
     {
       "scriptureAnchorId": "ps_139_1-18",
       "bibleStoryKey": "fearfully_and_wonderfully_made",
       "bibleSourceRef": "Psalm 139:1-18",
-      "moodTags": ["grateful", "hurting"]
+      "moodTags": [
+        "grateful",
+        "hurting"
+      ]
     },
     {
       "scriptureAnchorId": "isa_6_1-8",
       "bibleStoryKey": "isaiahs_vision",
       "bibleSourceRef": "Isaiah 6:1-8",
-      "moodTags": ["encouraging", "brave_courage"]
+      "moodTags": [
+        "encouraging",
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "isa_40_28-31",
       "bibleStoryKey": "wings_like_eagles",
       "bibleSourceRef": "Isaiah 40:28-31",
-      "moodTags": ["weary", "encouraging"]
+      "moodTags": [
+        "weary",
+        "encouraging"
+      ]
     },
     {
       "scriptureAnchorId": "isa_43_1-7",
       "bibleStoryKey": "i_have_called_you_by_name",
       "bibleSourceRef": "Isaiah 43:1-7",
-      "moodTags": ["hurting", "encouraging"]
+      "moodTags": [
+        "hurting",
+        "encouraging"
+      ]
     },
     {
       "scriptureAnchorId": "jer_18_1-6",
       "bibleStoryKey": "potter_and_clay",
       "bibleSourceRef": "Jeremiah 18:1-6",
-      "moodTags": ["weary", "calm_peaceful"]
+      "moodTags": [
+        "weary",
+        "calm_peaceful"
+      ]
     },
     {
       "scriptureAnchorId": "jer_29_11-14",
       "bibleStoryKey": "plans_to_prosper",
       "bibleSourceRef": "Jeremiah 29:11-14",
-      "moodTags": ["anxious", "encouraging"]
+      "moodTags": [
+        "anxious",
+        "encouraging"
+      ]
     },
     {
       "scriptureAnchorId": "dan_3_1-30",
       "bibleStoryKey": "fiery_furnace",
       "bibleSourceRef": "Daniel 3:1-30",
-      "moodTags": ["brave_courage"]
+      "moodTags": [
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "jonah_1_1-17",
       "bibleStoryKey": "jonah_flees",
       "bibleSourceRef": "Jonah 1:1-17",
-      "moodTags": ["anxious"]
+      "moodTags": [
+        "anxious"
+      ]
     },
     {
       "scriptureAnchorId": "jonah_3_1-10",
       "bibleStoryKey": "jonah_in_nineveh",
       "bibleSourceRef": "Jonah 3:1-10",
-      "moodTags": ["encouraging", "brave_courage"]
+      "moodTags": [
+        "encouraging",
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "matt_2_1-12",
       "bibleStoryKey": "the_magi",
       "bibleSourceRef": "Matthew 2:1-12",
-      "moodTags": ["joyful", "grateful"]
+      "moodTags": [
+        "joyful",
+        "grateful"
+      ]
     },
     {
       "scriptureAnchorId": "matt_6_25-34",
       "bibleStoryKey": "do_not_worry",
       "bibleSourceRef": "Matthew 6:25-34",
-      "moodTags": ["anxious", "calm_peaceful"]
+      "moodTags": [
+        "anxious",
+        "calm_peaceful"
+      ]
     },
     {
       "scriptureAnchorId": "matt_8_23-27",
       "bibleStoryKey": "jesus_calms_storm_matthew",
       "bibleSourceRef": "Matthew 8:23-27",
-      "moodTags": ["anxious"]
+      "moodTags": [
+        "anxious"
+      ]
     },
     {
       "scriptureAnchorId": "matt_14_22-33",
       "bibleStoryKey": "peter_walks_on_water",
       "bibleSourceRef": "Matthew 14:22-33",
-      "moodTags": ["anxious", "brave_courage"]
+      "moodTags": [
+        "anxious",
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "matt_14_13-21",
       "bibleStoryKey": "feeding_five_thousand",
       "bibleSourceRef": "Matthew 14:13-21",
-      "moodTags": ["grateful", "joyful"]
+      "moodTags": [
+        "grateful",
+        "joyful"
+      ]
     },
     {
       "scriptureAnchorId": "matt_25_14-30",
       "bibleStoryKey": "parable_of_talents",
       "bibleSourceRef": "Matthew 25:14-30",
-      "moodTags": ["encouraging"]
+      "moodTags": [
+        "encouraging"
+      ]
     },
     {
       "scriptureAnchorId": "mark_2_1-12",
       "bibleStoryKey": "paralytic_through_roof",
       "bibleSourceRef": "Mark 2:1-12",
-      "moodTags": ["hurting", "joyful"]
+      "moodTags": [
+        "hurting",
+        "joyful"
+      ]
     },
     {
       "scriptureAnchorId": "mark_5_25-34",
       "bibleStoryKey": "woman_touches_jesus_garment",
       "bibleSourceRef": "Mark 5:25-34",
-      "moodTags": ["hurting", "brave_courage"]
+      "moodTags": [
+        "hurting",
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "mark_10_46-52",
       "bibleStoryKey": "blind_bartimaeus",
       "bibleSourceRef": "Mark 10:46-52",
-      "moodTags": ["hurting", "brave_courage"]
+      "moodTags": [
+        "hurting",
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "luke_1_26-38",
       "bibleStoryKey": "annunciation_to_mary",
       "bibleSourceRef": "Luke 1:26-38",
-      "moodTags": ["anxious", "joyful"]
+      "moodTags": [
+        "anxious",
+        "joyful"
+      ]
     },
     {
       "scriptureAnchorId": "luke_2_1-20",
       "bibleStoryKey": "nativity",
       "bibleSourceRef": "Luke 2:1-20",
-      "moodTags": ["joyful", "calm_peaceful"]
+      "moodTags": [
+        "joyful",
+        "calm_peaceful"
+      ]
     },
     {
       "scriptureAnchorId": "luke_5_1-11",
       "bibleStoryKey": "miraculous_catch_of_fish",
       "bibleSourceRef": "Luke 5:1-11",
-      "moodTags": ["encouraging", "grateful"]
+      "moodTags": [
+        "encouraging",
+        "grateful"
+      ]
     },
     {
       "scriptureAnchorId": "luke_7_36-50",
       "bibleStoryKey": "woman_anoints_jesus_feet",
       "bibleSourceRef": "Luke 7:36-50",
-      "moodTags": ["hurting", "grateful"]
+      "moodTags": [
+        "hurting",
+        "grateful"
+      ]
     },
     {
       "scriptureAnchorId": "luke_8_40-56",
       "bibleStoryKey": "jairus_daughter",
       "bibleSourceRef": "Luke 8:40-56",
-      "moodTags": ["hurting", "anxious"]
+      "moodTags": [
+        "hurting",
+        "anxious"
+      ]
     },
     {
       "scriptureAnchorId": "luke_10_25-37",
       "bibleStoryKey": "good_samaritan",
       "bibleSourceRef": "Luke 10:25-37",
-      "moodTags": ["encouraging", "hurting"]
+      "moodTags": [
+        "encouraging",
+        "hurting"
+      ]
     },
     {
       "scriptureAnchorId": "luke_17_11-19",
       "bibleStoryKey": "ten_lepers",
       "bibleSourceRef": "Luke 17:11-19",
-      "moodTags": ["grateful"]
+      "moodTags": [
+        "grateful"
+      ]
     },
     {
       "scriptureAnchorId": "luke_19_1-10",
       "bibleStoryKey": "zacchaeus",
       "bibleSourceRef": "Luke 19:1-10",
-      "moodTags": ["joyful", "hurting"]
+      "moodTags": [
+        "joyful",
+        "hurting"
+      ]
     },
     {
       "scriptureAnchorId": "john_5_1-15",
       "bibleStoryKey": "healing_at_bethesda",
       "bibleSourceRef": "John 5:1-15",
-      "moodTags": ["weary", "hurting"]
+      "moodTags": [
+        "weary",
+        "hurting"
+      ]
     },
     {
       "scriptureAnchorId": "john_6_1-14",
       "bibleStoryKey": "feeding_five_thousand_john",
       "bibleSourceRef": "John 6:1-14",
-      "moodTags": ["grateful"]
+      "moodTags": [
+        "grateful"
+      ]
     },
     {
       "scriptureAnchorId": "john_8_1-11",
       "bibleStoryKey": "woman_caught_in_adultery",
       "bibleSourceRef": "John 8:1-11",
-      "moodTags": ["hurting", "grateful"]
+      "moodTags": [
+        "hurting",
+        "grateful"
+      ]
     },
     {
       "scriptureAnchorId": "john_9_1-41",
       "bibleStoryKey": "man_born_blind",
       "bibleSourceRef": "John 9:1-41",
-      "moodTags": ["hurting", "joyful"]
+      "moodTags": [
+        "hurting",
+        "joyful"
+      ]
     },
     {
       "scriptureAnchorId": "john_11_1-44",
       "bibleStoryKey": "raising_of_lazarus",
       "bibleSourceRef": "John 11:1-44",
-      "moodTags": ["hurting", "joyful"]
+      "moodTags": [
+        "hurting",
+        "joyful"
+      ]
     },
     {
       "scriptureAnchorId": "john_13_1-17",
       "bibleStoryKey": "jesus_washes_disciples_feet",
       "bibleSourceRef": "John 13:1-17",
-      "moodTags": ["grateful", "calm_peaceful"]
+      "moodTags": [
+        "grateful",
+        "calm_peaceful"
+      ]
     },
     {
       "scriptureAnchorId": "john_20_1-18",
       "bibleStoryKey": "mary_at_empty_tomb",
       "bibleSourceRef": "John 20:1-18",
-      "moodTags": ["joyful", "hurting"]
+      "moodTags": [
+        "joyful",
+        "hurting"
+      ]
     },
     {
       "scriptureAnchorId": "john_21_1-14",
       "bibleStoryKey": "breakfast_on_the_shore",
       "bibleSourceRef": "John 21:1-14",
-      "moodTags": ["weary", "grateful"]
+      "moodTags": [
+        "weary",
+        "grateful",
+        "hurting"
+      ]
     },
     {
       "scriptureAnchorId": "acts_3_1-10",
       "bibleStoryKey": "peter_heals_lame_man",
       "bibleSourceRef": "Acts 3:1-10",
-      "moodTags": ["joyful", "encouraging"]
+      "moodTags": [
+        "joyful",
+        "encouraging"
+      ]
     },
     {
       "scriptureAnchorId": "acts_9_1-19",
       "bibleStoryKey": "saul_on_road_to_damascus",
       "bibleSourceRef": "Acts 9:1-19",
-      "moodTags": ["encouraging", "brave_courage"]
+      "moodTags": [
+        "encouraging",
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "acts_12_1-19",
       "bibleStoryKey": "peter_freed_from_prison",
       "bibleSourceRef": "Acts 12:1-19",
-      "moodTags": ["anxious", "joyful"]
+      "moodTags": [
+        "anxious",
+        "joyful"
+      ]
     },
     {
       "scriptureAnchorId": "acts_16_25-34",
       "bibleStoryKey": "paul_and_silas_in_prison",
       "bibleSourceRef": "Acts 16:25-34",
-      "moodTags": ["hurting", "brave_courage"]
+      "moodTags": [
+        "hurting",
+        "brave_courage"
+      ]
     },
     {
       "scriptureAnchorId": "acts_27_13-44",
       "bibleStoryKey": "pauls_shipwreck",
       "bibleSourceRef": "Acts 27:13-44",
-      "moodTags": ["anxious", "brave_courage"]
+      "moodTags": [
+        "anxious",
+        "brave_courage"
+      ]
     }
   ]
 }

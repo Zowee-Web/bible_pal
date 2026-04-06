@@ -3,13 +3,13 @@
   "storyId": 1028,
   "mode": "traditional",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
   "mood": "grateful",
   "scriptureAnchor": "Genesis 18:1-15",
-  "bibleStoryKey": "abraham_three_visitors",
+  "bibleStoryKey": "three_visitors_at_mamre",
   "lengths": [
     "short",
     "full"
@@ -35,5 +35,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_HANNAH_HOPE",
-  "reflectionVoiceKey": "VOICE_HANNAH_HOPE"
+  "reflectionVoiceKey": "VOICE_HANNAH_HOPE",
+  "reflectionText": "Abraham saw three visitors and did not wait to be asked. He ran to greet them, brought water to wash their feet, and gave them the very best food he had. He was happy to share. When we give gladly, wonderful things can happen — sometimes things we never expected.\n\nWhat is something you have been really happy to share with someone else?"
 }

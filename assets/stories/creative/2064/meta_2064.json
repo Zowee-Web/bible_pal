@@ -3,7 +3,7 @@
   "storyId": 2064,
   "mode": "creative",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
   "reflectionVoiceKey": "VOICE_JAMES_HUSKY",
-  "theme": "a phone message that has been sitting unlistened to, and the weight of not knowing"
+  "theme": "a phone message that has been sitting unlistened to, and the weight of not knowing",
+  "reflectionText": "What message have you been carrying — received or unsent — that still hums quietly in the background of your days, and what would it mean to finally let yourself hear it all the way through?"
 }

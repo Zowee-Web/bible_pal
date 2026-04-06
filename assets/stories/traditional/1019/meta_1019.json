@@ -3,14 +3,14 @@
   "storyId": 1019,
   "mode": "traditional",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web",
     "kjv"
   ],
   "mood": "encouraging",
   "scriptureAnchor": "Exodus 3:1-15",
-  "bibleStoryKey": "moses_burning_bush",
+  "bibleStoryKey": "burning_bush",
   "lengths": [
     "short",
     "full"
@@ -49,5 +49,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "reflectionVoiceKey": "VOICE_BARNABAS_ENCOURAGER"
+  "reflectionVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "reflectionText": "The bush was a common thing. It was such scrub as grew in every gully of the waste, passed without regard by every shepherd who walked those hills. That which made it wondrous was not its nature but what dwelt therein. The fire consumed not. It revealed.\n\nMoses asked for a name, and the word he received was unlike any name he had known. Not a title. Not an office. Only being itself — I AM. There is something in that name which resisteth all taming, all setting in order. It abideth, like the bush, burning and not consumed, as present now as it was upon that still hillside."
 }

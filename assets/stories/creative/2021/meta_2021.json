@@ -3,7 +3,7 @@
   "storyId": 2021,
   "mode": "creative",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
-  "reflectionVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN"
+  "reflectionVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "reflectionText": "Grief doesn't follow a schedule. It doesn't check the calendar and decide it's been long enough. Some days the door to the house is manageable, and some days it isn't, and there may be no explaining the difference.\n\nWhat's curious is where comfort finds us when we stop trying to find it — a warm room we didn't plan to enter, a stranger's steady hands, the simple rhythm of something being folded with care. Nobody sets out to be rescued by a laundromat. But sometimes the body knows what the mind hasn't figured out yet, and the legs carry us to the place where the air is warm enough to breathe in."
 }

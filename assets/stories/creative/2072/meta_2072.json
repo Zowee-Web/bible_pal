@@ -3,7 +3,7 @@
   "storyId": 2072,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_HANNAH_HOPE",
   "reflectionVoiceKey": "VOICE_HANNAH_HOPE",
-  "theme": "a child standing at a microphone with hundreds of people watching"
+  "theme": "a child standing at a microphone with hundreds of people watching",
+  "reflectionText": "How do you think the character in the story was feeling inside their body when it was their turn to spell a word in front of everyone?"
 }

@@ -3,14 +3,14 @@
   "storyId": 1032,
   "mode": "traditional",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web",
     "kjv"
   ],
   "mood": "anxious",
   "scriptureAnchor": "Genesis 22:1-19",
-  "bibleStoryKey": "abraham_binding_of_isaac",
+  "bibleStoryKey": "binding_of_isaac",
   "lengths": [
     "short",
     "full"
@@ -64,5 +64,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_MARY_PONDER",
-  "reflectionVoiceKey": "VOICE_MARY_PONDER"
+  "reflectionVoiceKey": "VOICE_MARY_PONDER",
+  "reflectionText": "Abraham walked three days bearing a burden none could see. He knew not how the matter would end. He knew only the step before him.\n\nWhen fear layeth hold upon thee, thou needest not see the whole road. Thou needest only take the step that lieth before thee. What is one step thou canst take this day, though thou knowest not what cometh next?"
 }

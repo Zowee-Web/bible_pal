@@ -3,7 +3,7 @@
   "storyId": 2056,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ESTHER_BRAVE",
-  "reflectionVoiceKey": "VOICE_ESTHER_BRAVE"
+  "reflectionVoiceKey": "VOICE_ESTHER_BRAVE",
+  "reflectionText": "What was the last new place you walked into where you didn't know anyone? What helped you feel less alone?"
 }

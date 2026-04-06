@@ -3,7 +3,7 @@
   "storyId": 2067,
   "mode": "creative",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_SARAH_STORYTELLER",
   "reflectionVoiceKey": "VOICE_SARAH_STORYTELLER",
-  "theme": "a substitute teacher who says one sentence that a student carries for years"
+  "theme": "a substitute teacher who says one sentence that a student carries for years",
+  "reflectionText": "What part of yourself have you discovered not by stepping into a role you chose, but by unexpectedly filling a space someone else left open?"
 }

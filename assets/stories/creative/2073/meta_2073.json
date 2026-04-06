@@ -3,7 +3,7 @@
   "storyId": 2073,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
   "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "theme": "a child who sits with the kid nobody else sits with at lunch"
+  "theme": "a child who sits with the kid nobody else sits with at lunch",
+  "reflectionText": "Have you ever had to sit with someone new or be the new person somewhere, and what helped you feel a little braver in that moment?"
 }

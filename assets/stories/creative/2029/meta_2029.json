@@ -3,7 +3,7 @@
   "storyId": 2029,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ESTHER_BRAVE",
-  "reflectionVoiceKey": "VOICE_ESTHER_BRAVE"
+  "reflectionVoiceKey": "VOICE_ESTHER_BRAVE",
+  "reflectionText": "Tomas lost someone he loved very much. The house felt empty and the silence felt loud. But a golden leaf landed right where he needed it, like the world was whispering that love doesn't disappear — it just gets quieter.\n\nWhen we lose someone we care about, the sadness shows us how big our love really was."
 }

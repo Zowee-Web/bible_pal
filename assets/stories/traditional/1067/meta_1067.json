@@ -3,7 +3,7 @@
   "storyId": 1067,
   "mode": "traditional",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web",
     "kjv"
@@ -55,9 +55,10 @@
   "storyVoiceKey": "VOICE_DEBORAH_WISE",
   "reflectionVoiceKey": "VOICE_DEBORAH_WISE",
   "scriptureAnchor": "Isaiah 6:1-8",
-  "bibleStoryKey": "isaiah_temple_vision",
+  "bibleStoryKey": "isaiahs_vision",
   "reflections": {
     "web": "reflection_1067_traditional_web.txt",
     "kjv": "reflection_1067_traditional_kjv.txt"
-  }
+  },
+  "reflectionText": "What would it be to be fully seen—every hidden and imperfect part of thee laid bare—and to find that the response awaiting thee is not rejection, but an invitation?"
 }

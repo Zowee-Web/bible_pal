@@ -3,7 +3,7 @@
   "storyId": 1057,
   "mode": "traditional",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -35,5 +35,6 @@
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
   "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD",
   "scriptureAnchor": "Numbers 13:25-33",
-  "bibleStoryKey": "report_of_the_spies"
+  "bibleStoryKey": "spies_return_from_canaan",
+  "reflectionText": "Caleb saw the same giants as everyone else but he wasn't afraid. Have you ever had to be the one person who believed something good when everyone else was scared?"
 }

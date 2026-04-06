@@ -3,7 +3,7 @@
   "storyId": 2062,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ARCHER",
-  "reflectionVoiceKey": "VOICE_ARCHER"
+  "reflectionVoiceKey": "VOICE_ARCHER",
+  "reflectionText": "When was the last time you jumped into something just because it looked fun — even if you knew you'd get in trouble?"
 }

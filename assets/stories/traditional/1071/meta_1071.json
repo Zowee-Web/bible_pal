@@ -3,7 +3,7 @@
   "storyId": 1071,
   "mode": "traditional",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web",
     "kjv"
@@ -55,9 +55,10 @@
   "storyVoiceKey": "VOICE_BRADFORD",
   "reflectionVoiceKey": "VOICE_BRADFORD",
   "scriptureAnchor": "Isaiah 40:28-31",
-  "bibleStoryKey": "mount_up_with_wings",
+  "bibleStoryKey": "wings_like_eagles",
   "reflections": {
     "web": "reflection_1071_traditional_web.txt",
     "kjv": "reflection_1071_traditional_kjv.txt"
-  }
+  },
+  "reflectionText": "What doth it feel like in thy body at this very moment to consider that the promise of renewed strength was spoken not unto those who were already soaring, but specifically unto those who were weary?"
 }

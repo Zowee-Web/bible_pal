@@ -3,7 +3,7 @@
   "storyId": 2055,
   "mode": "creative",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_LYDIA_GRACIOUS",
-  "reflectionVoiceKey": "VOICE_LYDIA_GRACIOUS"
+  "reflectionVoiceKey": "VOICE_LYDIA_GRACIOUS",
+  "reflectionText": "She fought the hose for twenty minutes before her neighbor handed her a watering can. What fight are you in that might have a simpler answer?"
 }

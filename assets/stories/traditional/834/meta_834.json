@@ -6,7 +6,7 @@
   "languageStyle": "WEB",
   "mood": "brave_courage",
   "scriptureAnchor": "Judges 7:1-22",
-  "bibleStoryKey": "gideon_defeats_midian",
+  "bibleStoryKey": "gideons_three_hundred",
   "lengths": [
     "short",
     "full",
@@ -50,7 +50,7 @@
     }
   },
   "reflectionSource": "llm",
-  "reflectionText": "Courage doesn't always feel strong. Sometimes it looks like taking one step forward while fear still lingers. Even that small step can be enough for today.",
+  "reflectionText": "The sound of three hundred trumpets broke open the night, fear trembling in every heart—yet hands held fast to clay jars and a flicker of light. In the hush before dawn, sometimes a quiet courage is enough for today.",
   "boundaryValidation": {
     "short": "pass",
     "full": "pass",

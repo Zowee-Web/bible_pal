@@ -3,13 +3,13 @@
   "storyId": 1026,
   "mode": "traditional",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
   "mood": "calm_peaceful",
   "scriptureAnchor": "Genesis 28:10-22",
-  "bibleStoryKey": "jacob_at_bethel",
+  "bibleStoryKey": "jacobs_ladder",
   "lengths": [
     "short",
     "full"
@@ -35,5 +35,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_LILY_WOLFF",
-  "reflectionVoiceKey": "VOICE_LILY_WOLFF"
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionText": "Jacob was far from home, sleeping on the hard ground with just a stone for a pillow. But even there, in that lonely place, God was with him. Sometimes the most unexpected places turn out to be special, because God shows up right where we are.\n\nHave you ever felt God close to you in a surprising place or moment?"
 }

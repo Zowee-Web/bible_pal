@@ -26,11 +26,11 @@ void main() {
 
       // Simulate voice transcripts for each mood
       final testCases = {
-        'I am feeling really grateful and happy today': 'joyful',
+        'I am feeling really grateful and happy today': 'grateful',
         'I am so tired and worn out': 'weary',
         'I am stressed and worried about work': 'anxious',
         'I feel sad and alone tonight': 'hurting',
-        'just checking in': 'neutral',
+        'just checking in': 'calm_peaceful',
       };
 
       for (final entry in testCases.entries) {

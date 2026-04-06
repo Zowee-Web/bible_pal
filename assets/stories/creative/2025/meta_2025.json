@@ -3,7 +3,7 @@
   "storyId": 2025,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ARABELLA",
-  "reflectionVoiceKey": "VOICE_ARABELLA"
+  "reflectionVoiceKey": "VOICE_ARABELLA",
+  "reflectionText": "Wren stood at the bottom of that ladder for eighty-seven days before she climbed it. And when she finally did, she found out the scary part was smaller than she thought.\n\nBeing brave doesn't mean you stop feeling afraid. It means you take one step, and then another, even when your hands are shaking."
 }

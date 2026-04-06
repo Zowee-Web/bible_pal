@@ -3,7 +3,7 @@
   "storyId": 2042,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ARABELLA",
-  "reflectionVoiceKey": "VOICE_ARABELLA"
+  "reflectionVoiceKey": "VOICE_ARABELLA",
+  "reflectionText": "Where is a place you go when you need to feel calm and quiet inside?"
 }

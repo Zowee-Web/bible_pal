@@ -3,7 +3,7 @@
   "storyId": 2024,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ARCHER",
-  "reflectionVoiceKey": "VOICE_ARCHER"
+  "reflectionVoiceKey": "VOICE_ARCHER",
+  "reflectionText": "Amos felt a big knot of worry inside him. Everything looked too large and too new. But then someone kind showed up, and the worry started to get smaller all on its own.\n\nSometimes the things we are most afraid of turn out to hold unexpected gifts — a friendly voice, a funny name, a feeling of belonging we didn't expect."
 }

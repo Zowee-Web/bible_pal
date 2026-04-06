@@ -3,7 +3,7 @@
   "storyId": 2043,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_LILY_WOLFF",
-  "reflectionVoiceKey": "VOICE_LILY_WOLFF"
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionText": "When has someone helped you in a way that made you feel stronger?"
 }

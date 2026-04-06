@@ -3,7 +3,7 @@
   "storyId": 1078,
   "mode": "traditional",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -39,5 +39,6 @@
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
   "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD",
   "scriptureAnchor": "Matthew 2:1-12",
-  "bibleStoryKey": "wise_men_follow_star"
+  "bibleStoryKey": "the_magi",
+  "reflectionText": "What made you feel happy inside as you listened to this story?"
 }

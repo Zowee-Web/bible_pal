@@ -3,7 +3,7 @@
   "storyId": 2048,
   "mode": "creative",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_PETER_BOLD",
-  "reflectionVoiceKey": "VOICE_PETER_BOLD"
+  "reflectionVoiceKey": "VOICE_PETER_BOLD",
+  "reflectionText": "She waited three days to open the letter because the last one had changed everything. What envelope — real or invisible — have you been afraid to open?"
 }

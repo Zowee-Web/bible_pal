@@ -3,14 +3,14 @@
   "storyId": 1020,
   "mode": "traditional",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web",
     "kjv"
   ],
   "mood": "grateful",
   "scriptureAnchor": "Genesis 18:1-15",
-  "bibleStoryKey": "abraham_and_the_three_visitors",
+  "bibleStoryKey": "three_visitors_at_mamre",
   "lengths": [
     "short",
     "full",
@@ -53,5 +53,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_SARAH_STORYTELLER",
-  "reflectionVoiceKey": "VOICE_SARAH_STORYTELLER"
+  "reflectionVoiceKey": "VOICE_SARAH_STORYTELLER",
+  "reflectionText": "There is something striking in laughter spoken before a promise. Sarah laughed not from scorn but from the weight of long years — years of waiting, years in which her body had given its own answer. Yet the promise did not waver because she laughed. It stood, firm as the oaks above.\n\nAt times the most honest answer to an impossible gift is disbelief. And at times the gift cometh still, heedless of whether we were ready to receive it."
 }

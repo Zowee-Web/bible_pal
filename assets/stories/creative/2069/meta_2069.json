@@ -3,7 +3,7 @@
   "storyId": 2069,
   "mode": "creative",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_JOHN_BELOVED",
   "reflectionVoiceKey": "VOICE_JOHN_BELOVED",
-  "theme": "a family dinner with one seat that will never be filled again"
+  "theme": "a family dinner with one seat that will never be filled again",
+  "reflectionText": "What is it like to sit with the weight of that empty chair in your own life — not to fill it or explain it, but simply to let yourself feel the shape of what's no longer there?"
 }

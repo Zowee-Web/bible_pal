@@ -3,7 +3,7 @@
   "storyId": 2039,
   "mode": "creative",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "reflectionVoiceKey": "VOICE_BARNABAS_ENCOURAGER"
+  "reflectionVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "reflectionText": "There is a particular kind of weariness that doesn't come from work or sleeplessness or physical exertion. It comes from the sustained effort of loving in conditions where love is not returned in the form you gave it. Pouring tea for someone who doesn't know your name. Sitting beside confusion and calling it company. Driving three hours to be present for a person who can't acknowledge your presence.\n\nIlene's tiredness was real and deep and nobody else could see it. She carried it the way most people carry their heaviest things — alone, in transit, between the place where the burden was gathered and the place where it would be set down for a few days before being picked up again.\n\nAnd Kenji carried his own version. A different weight, a different shape, but the same fundamental experience: the loneliness of being depleted in a world that keeps moving.\n\nWhat happened between them at the rest stop wasn't dramatic. It was barely visible. A paper picked up from the floor. Two words exchanged. But something in the geometry of that moment — two tired people, briefly still, in the same fluorescent room — created a transfer that neither of them planned or understood.\n\nThis is how rest sometimes works. Not as escape or sleep or the cessation of effort, but as the quiet recognition that someone else is also carrying something heavy, and neither of you needs to explain. The weight doesn't disappear. But it shifts. It distributes. It becomes, for a moment, a shared thing instead of a solitary one.\n\nYou may be in your own version of that rest stop — between the place you've been and the place you're going, carrying something that nobody can see. It might be worth looking up. There may be someone at the next table who needs nothing from you except the knowledge that they're not alone in being tired."
 }

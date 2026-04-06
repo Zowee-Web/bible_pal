@@ -3,7 +3,7 @@
   "storyId": 2076,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ESTHER_BRAVE",
   "reflectionVoiceKey": "VOICE_ESTHER_BRAVE",
-  "theme": "a child who gives away the last slice of pizza and gets something better back"
+  "theme": "a child who gives away the last slice of pizza and gets something better back",
+  "reflectionText": "What is something small, like a last slice, that made you feel really thankful?"
 }

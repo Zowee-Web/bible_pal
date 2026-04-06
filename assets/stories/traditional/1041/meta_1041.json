@@ -3,13 +3,13 @@
   "storyId": 1041,
   "mode": "traditional",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
   "mood": "brave_courage",
   "scriptureAnchor": "Exodus 2:1-10",
-  "bibleStoryKey": "baby_moses_in_basket",
+  "bibleStoryKey": "baby_moses_in_the_nile",
   "lengths": [
     "short",
     "full"
@@ -35,5 +35,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ESTHER_BRAVE",
-  "reflectionVoiceKey": "VOICE_ESTHER_BRAVE"
+  "reflectionVoiceKey": "VOICE_ESTHER_BRAVE",
+  "reflectionText": "Moses' big sister was scared to talk to a princess. But she stepped out of her hiding place and spoke up anyway, because she wanted to help her baby brother. Sometimes being brave means doing something that scares you because someone you love needs you.\n\nCan you think of a time you did something brave to help someone you care about?"
 }

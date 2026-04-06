@@ -3,7 +3,7 @@
   "storyId": 2077,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -37,5 +37,6 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_MARTHA_CARING",
   "reflectionVoiceKey": "VOICE_MARTHA_CARING",
-  "theme": "watching your best friend's house get packed into boxes"
+  "theme": "watching your best friend's house get packed into boxes",
+  "reflectionText": "How does it feel inside when you have to say goodbye to a place you love?"
 }

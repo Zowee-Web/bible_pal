@@ -3,14 +3,14 @@
   "storyId": 1048,
   "mode": "traditional",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web",
     "kjv"
   ],
   "mood": "anxious",
   "scriptureAnchor": "Exodus 14:10-31",
-  "bibleStoryKey": "red_sea_crossing",
+  "bibleStoryKey": "crossing_the_red_sea",
   "lengths": [
     "short",
     "full"
@@ -52,5 +52,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ELIJAH_SAGE",
-  "reflectionVoiceKey": "VOICE_ELIJAH_SAGE"
+  "reflectionVoiceKey": "VOICE_ELIJAH_SAGE",
+  "reflectionText": "The sea stood before them and the host behind. There was no passage through and no returning back. What meaneth it to stand still when every part of thee would flee?"
 }

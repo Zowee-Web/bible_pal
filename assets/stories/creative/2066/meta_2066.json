@@ -3,7 +3,7 @@
   "storyId": 2066,
   "mode": "creative",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_LYDIA_GRACIOUS",
   "reflectionVoiceKey": "VOICE_LYDIA_GRACIOUS",
-  "theme": "an elderly woman sitting on a porch at dusk, watching the street go quiet"
+  "theme": "an elderly woman sitting on a porch at dusk, watching the street go quiet",
+  "reflectionText": "What is it about the simple, rhythmic motion of something familiar—a chair, a breath, a quiet habit—that can bring you back to a version of yourself you almost forgot was still there?"
 }

@@ -3,7 +3,7 @@
   "storyId": 1064,
   "mode": "traditional",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web",
     "kjv"
@@ -55,9 +55,10 @@
   "storyVoiceKey": "VOICE_MARY_PONDER",
   "reflectionVoiceKey": "VOICE_MARY_PONDER",
   "scriptureAnchor": "2 Kings 6:8-23",
-  "bibleStoryKey": "elisha_army_of_fire",
+  "bibleStoryKey": "elisha_and_the_army",
   "reflections": {
     "web": "reflection_1064_traditional_web.txt",
     "kjv": "reflection_1064_traditional_kjv.txt"
-  }
+  },
+  "reflectionText": "When thou dost call to mind those moments in thine own life wherein thou didst feel thyself encompassed and outnumbered by forces beyond thy governance, what might it signify to consider that there could be something present in that situation which thou simply couldst not yet behold?"
 }

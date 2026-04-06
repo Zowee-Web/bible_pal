@@ -3,7 +3,7 @@
   "storyId": 2057,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ARABELLA",
-  "reflectionVoiceKey": "VOICE_ARABELLA"
+  "reflectionVoiceKey": "VOICE_ARABELLA",
+  "reflectionText": "Have you ever seen something that wasn't right and had to decide whether to say something or stay quiet? What did you do?"
 }

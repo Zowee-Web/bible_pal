@@ -3,13 +3,13 @@
   "storyId": 1027,
   "mode": "traditional",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
   "mood": "encouraging",
   "scriptureAnchor": "Exodus 3:1-15",
-  "bibleStoryKey": "moses_burning_bush",
+  "bibleStoryKey": "burning_bush",
   "lengths": [
     "short",
     "full"
@@ -35,5 +35,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
-  "reflectionVoiceKey": "VOICE_PRISCILLA_TEACHER"
+  "reflectionVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "reflectionText": "Moses was just a shepherd watching sheep when God called him for a very big job. He felt small and unsure. But God did not say, \"You can do it because you are strong.\" God said, \"I will be with you.\" Sometimes the most encouraging thing is knowing you do not have to do hard things alone.\n\nWhen something feels too big for you, who do you talk to about it?"
 }

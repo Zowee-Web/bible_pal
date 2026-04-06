@@ -3,7 +3,7 @@
   "storyId": 1047,
   "mode": "traditional",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -35,5 +35,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
-  "reflectionVoiceKey": "VOICE_PRISCILLA_TEACHER"
+  "reflectionVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "reflectionText": "Elijah was tired and hungry. The woman had almost nothing left. But when she shared her last bit of food, God made sure the flour and oil never ran out. Sometimes when we feel like we have nothing left to give, God provides in ways we do not expect.\n\nWhen you feel really tired, what is something that helps you keep going?"
 }

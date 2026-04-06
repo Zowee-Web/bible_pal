@@ -3,7 +3,7 @@
   "storyId": 2030,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD"
+  "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "reflectionText": "All it took was a sprinkler and some sunshine. Noel and Rosa didn't need anything fancy to have the best day ever. They just needed water, light, and each other.\n\nSometimes the happiest moments come from the simplest things — a warm afternoon, a cold splash, and someone to hold hands with."
 }

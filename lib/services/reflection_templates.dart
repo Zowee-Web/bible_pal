@@ -252,7 +252,7 @@ const Map<String, ReflectionContent> kidReflectionsByMood = {
         'Even one small kindness helps.',
   ),
   'grateful': ReflectionContent(
-    text: 'This story shows that saying thank you can make us feel happy inside. '
+    text: 'This story shows that saying thank you can make us feel happy. '
         'Even one small thank you matters.',
   ),
   'brave_courage': ReflectionContent(
@@ -261,10 +261,10 @@ const Map<String, ReflectionContent> kidReflectionsByMood = {
   ),
   'calm_peaceful': ReflectionContent(
     text: 'This story shows that being still and quiet can feel really good. '
-        'Even one deep breath can help.',
+        'Even one small quiet moment helps.',
   ),
   'encouraging': ReflectionContent(
-    text: 'This story shows that kind words can make someone\'s whole day better. '
+    text: 'This story shows that kind words can make someone\'s day better. '
         'Even one small encouragement helps.',
   ),
   'neutral': ReflectionContent(

@@ -13,16 +13,16 @@ void main() {
   });
 
   group('CRITICAL: Voice transcript routes through MoodService identically', () {
-    test('CRITICAL: "I feel grateful" → joyful', () {
+    test('CRITICAL: "I feel grateful" → grateful', () {
       // ARRANGE: Simulated voice transcript
       const transcript = 'I feel grateful';
 
       // ACT: Same detectMood() call used for typed input
       final result = moodService.detectMood(transcript);
 
-      // ASSERT
-      expect(result.mood, 'joyful',
-          reason: 'Voice transcript containing "grateful" must detect joyful mood');
+      // ASSERT: grateful is a canonical mood (SPEC.md: 8 mood buttons)
+      expect(result.mood, 'grateful',
+          reason: 'Voice transcript containing "grateful" must detect grateful mood');
     });
 
     test('CRITICAL: "I am so tired" → weary', () {
@@ -40,11 +40,12 @@ void main() {
           reason: 'Filler words should not prevent mood detection of "stressed"');
     });
 
-    test('CRITICAL: empty transcript → neutral', () {
+    test('CRITICAL: empty transcript → calm_peaceful', () {
       const transcript = '';
       final result = moodService.detectMood(transcript);
-      expect(result.mood, 'neutral',
-          reason: 'Empty voice transcript must fall back to neutral');
+      // calm_peaceful is the default fallback (neutral is not a canonical mood)
+      expect(result.mood, 'calm_peaceful',
+          reason: 'Empty voice transcript must fall back to calm_peaceful');
     });
 
     test('voice and typed text produce identical MoodResult', () {

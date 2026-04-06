@@ -3,7 +3,7 @@
   "storyId": 1061,
   "mode": "traditional",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -35,5 +35,6 @@
   "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
   "reflectionVoiceKey": "VOICE_PRISCILLA_TEACHER",
   "scriptureAnchor": "2 Kings 5:1-14",
-  "bibleStoryKey": "naaman_healed"
+  "bibleStoryKey": "naaman_healed",
+  "reflectionText": "Naaman wanted something big and impressive, but the answer was simple and small. Have you ever been surprised that the right answer was easier than you expected?"
 }

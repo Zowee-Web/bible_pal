@@ -3,7 +3,7 @@
   "storyId": 2065,
   "mode": "creative",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -38,5 +38,6 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ELIJAH_SAGE",
   "reflectionVoiceKey": "VOICE_ELIJAH_SAGE",
-  "theme": "someone standing up in a room full of people and telling the truth that costs them something"
+  "theme": "someone standing up in a room full of people and telling the truth that costs them something",
+  "reflectionText": "What moment in your own life asked you to speak a truth that frightened you — and what did it cost you to say it, or to hold it back?"
 }

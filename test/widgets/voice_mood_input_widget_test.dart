@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:bible_pal/features/pals_parables/pals_parables_screen.dart';
 import 'package:bible_pal/services/stt_service.dart';
@@ -16,6 +17,9 @@ void main() {
 
   setUpAll(() {
     TestWidgetsFlutterBinding.ensureInitialized();
+    // Load empty env so dotenv.maybeGet() doesn't throw NotInitializedError
+    // when providers like PalTtsClient read ELEVENLABS_API_KEY at init.
+    dotenv.testLoad(fileInput: '');
   });
 
   setUp(() {

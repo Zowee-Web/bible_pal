@@ -3,7 +3,7 @@
   "storyId": 2078,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -36,5 +36,6 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ARCHER",
   "reflectionVoiceKey": "VOICE_ARCHER",
-  "theme": "waking up to unexpected snow and the whole day being suddenly free"
+  "theme": "waking up to unexpected snow and the whole day being suddenly free",
+  "reflectionText": "What was a moment in the story that made you feel warm and happy inside?"
 }

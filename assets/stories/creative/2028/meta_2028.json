@@ -3,7 +3,7 @@
   "storyId": 2028,
   "mode": "creative",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -34,5 +34,6 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ARABELLA",
-  "reflectionVoiceKey": "VOICE_ARABELLA"
+  "reflectionVoiceKey": "VOICE_ARABELLA",
+  "reflectionText": "Priya thought her day had nothing good in it. But when she looked harder, good things were everywhere — warm light, gentle rain, a sticky hug from her little sister, honey on toast.\n\nSometimes the best things in a day are the small ones we almost miss. What good things might be hiding in your day right now?"
 }

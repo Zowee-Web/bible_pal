@@ -3,7 +3,7 @@
   "storyId": 1066,
   "mode": "traditional",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web",
     "kjv"
@@ -55,9 +55,10 @@
   "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
   "reflectionVoiceKey": "VOICE_SAMUEL_EARNEST",
   "scriptureAnchor": "Matthew 6:25-34",
-  "bibleStoryKey": "lilies_of_the_field",
+  "bibleStoryKey": "do_not_worry",
   "reflections": {
     "web": "reflection_1066_traditional_web.txt",
     "kjv": "reflection_1066_traditional_kjv.txt"
-  }
+  },
+  "reflectionText": "What would it feel like unto thee to release, even for a moment, the burden of the morrow's cares, and simply to trust that thou art already upheld by something greater than thyself?"
 }

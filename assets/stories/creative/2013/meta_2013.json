@@ -13,7 +13,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_CHARLOTTE_V3",
+  "voiceKey": "VOICE_HANNAH_HOPE",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_CLAUDE_KID_01",
   "reflectionQuestion": "Can you think of a time when you were able to help with something even though you felt small?",
@@ -38,5 +38,6 @@
   },
   "theme": "a little mouse who rings the village bell when nobody else can reach it",
   "storyVoiceKey": "VOICE_CHARLOTTE_V3",
-  "reflectionVoiceKey": "VOICE_CHARLOTTE_V3"
+  "reflectionVoiceKey": "VOICE_CHARLOTTE_V3",
+  "reflectionText": "Sometimes the smallest hands do the most surprising things. A tiny mouse climbed where no one else could go. The bell needed ringing, and the mouse was just the right size. Isn't that wonderful? Being small doesn't mean being less important. A little person can hold a big door open. A quiet voice can say just the right word at just the right time. A small act of kindness can make a whole room feel warmer. Every village needs all kinds of helpers — tall ones, short ones, loud ones, and quiet ones too. Each one matters. Each one belongs."
 }

@@ -3,7 +3,7 @@
   "storyId": 1052,
   "mode": "traditional",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web",
     "kjv"
@@ -48,9 +48,10 @@
   "storyVoiceKey": "VOICE_SARAH_STORYTELLER",
   "reflectionVoiceKey": "VOICE_SARAH_STORYTELLER",
   "scriptureAnchor": "1 Samuel 18:1-4",
-  "bibleStoryKey": "david_and_jonathan_covenant",
+  "bibleStoryKey": "david_and_jonathan",
   "reflections": {
     "web": "reflection_1052_traditional_web.txt",
     "kjv": "reflection_1052_traditional_kjv.txt"
-  }
+  },
+  "reflectionText": "A prince gave away all that marked him heir unto a shepherd he had but newly known. What moveth a man to place his very self into another's hands?"
 }

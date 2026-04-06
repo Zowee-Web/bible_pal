@@ -3,7 +3,7 @@
   "storyId": 1055,
   "mode": "traditional",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web",
     "kjv"
@@ -48,9 +48,10 @@
   "storyVoiceKey": "VOICE_BRADFORD",
   "reflectionVoiceKey": "VOICE_BRADFORD",
   "scriptureAnchor": "Job 1:1-22",
-  "bibleStoryKey": "job_loses_everything",
+  "bibleStoryKey": "job_tested",
   "reflections": {
     "web": "reflection_1055_traditional_web.txt",
     "kjv": "reflection_1055_traditional_kjv.txt"
-  }
+  },
+  "reflectionText": "All was taken in a single afternoon — the beasts, the servants, the children. What remaineth when all thou hast built is gone, and nought is left thee save the earth beneath thy feet?"
 }

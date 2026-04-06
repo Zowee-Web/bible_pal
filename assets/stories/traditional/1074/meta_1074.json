@@ -3,7 +3,7 @@
   "storyId": 1074,
   "mode": "traditional",
   "kidFriendly": true,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web"
   ],
@@ -39,5 +39,6 @@
   "storyVoiceKey": "VOICE_ARABELLA",
   "reflectionVoiceKey": "VOICE_ARABELLA",
   "scriptureAnchor": "Matthew 6:25-34",
-  "bibleStoryKey": "lilies_of_the_field"
+  "bibleStoryKey": "do_not_worry",
+  "reflectionText": "What helps you feel peaceful when you're worried about something that hasn't happened yet?"
 }

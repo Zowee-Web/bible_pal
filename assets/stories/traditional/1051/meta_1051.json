@@ -3,7 +3,7 @@
   "storyId": 1051,
   "mode": "traditional",
   "kidFriendly": false,
-  "primaryLanguageStyle": "WEB",
+  "languageStyle": "WEB",
   "lanes": [
     "web",
     "kjv"
@@ -48,9 +48,10 @@
   "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
   "reflectionVoiceKey": "VOICE_MARCUS_ANCHOR",
   "scriptureAnchor": "Nehemiah 2:1-18",
-  "bibleStoryKey": "nehemiah_rebuilds_jerusalem",
+  "bibleStoryKey": "nehemiah_rebuilds_the_wall",
   "reflections": {
     "web": "reflection_1051_traditional_web.txt",
     "kjv": "reflection_1051_traditional_kjv.txt"
-  }
+  },
+  "reflectionText": "The walls lay broken and the gates consumed with fire. What stirreth in thee when thou seest that which was whole now lying in ruin — and what must needs move thee to say, let us build?"
 }
