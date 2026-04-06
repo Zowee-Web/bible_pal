@@ -24,9 +24,9 @@ dependencies:
   # Desktop SFX (low-latency typewriter clicks)
   flutter_soloud: ^3.1.1
 
-  # Speech-to-text and TTS for mood detection
+  # Speech-to-text for mood detection
   speech_to_text: ^7.0.0
-  flutter_tts: ^4.2.0
+  # flutter_tts: ^4.2.0  # DISABLED: crashes on iOS plugin registration (EXC_BAD_ACCESS nil registrar)
 
   # Core utils
   path_provider: ^2.1.5
@@ -230,6 +230,7 @@ flutter:
     - assets/stories/creative/2078/
     - assets/stories/creative/2079/
     - assets/audio/
+    - assets/audio/ambient/
     - assets/safety/kid_safety_blocklist.txt
     - assets/safety/content_filter_blocklist.txt
     - assets/daily_bread/daily_bread_verses.json

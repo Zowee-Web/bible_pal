@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../providers/app_state_notifier.dart';
 import '../../providers/service_providers.dart';
 import '../../core/app_logger.dart';
@@ -8,8 +7,6 @@ import '../../core/diagnostics_config.dart';
 import '../../core/pal_voice_registry.dart';
 import '../../theme/living_sky.dart';
 import '../../widgets/living_sky_background.dart';
-
-const _pkBackgroundSound = 'settings.backgroundSoundOn';
 
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
@@ -19,7 +16,6 @@ class SettingsScreen extends ConsumerStatefulWidget {
 
 class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   bool _loaded = false;
-  bool _backgroundSoundOn = false;
   String _languageStyle = 'WEB'; // Story presentation diction (Contracts v2)
   // PAL voice selection
   String _palVoiceKey = PalVoiceRegistry.defaultVoiceKey;
@@ -36,17 +32,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 
   Future<void> _load() async {
-    final sp = await SharedPreferences.getInstance();
-
-    final backgroundSound = sp.getBool(_pkBackgroundSound);
-    if (backgroundSound == null) {
-      await sp.setBool(_pkBackgroundSound, false);
-      _backgroundSoundOn = false;
-    } else {
-      _backgroundSoundOn = backgroundSound;
-    }
-
-    // Load kid-friendly mode, language style, voice, and name from UserPreferences
+    // Load language style, voice, and name from UserPreferences
     final appState = ref.read(appStateProvider).valueOrNull;
     if (appState != null) {
       _languageStyle = appState.userPreferences.languageStyle;
@@ -61,12 +47,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     }
 
     setState(() => _loaded = true);
-  }
-
-  Future<void> _setBackgroundSound(bool on) async {
-    setState(() => _backgroundSoundOn = on);
-    final sp = await SharedPreferences.getInstance();
-    await sp.setBool(_pkBackgroundSound, on);
   }
 
   Future<void> _setLanguageStyle(String style) async {
@@ -304,24 +284,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
                 const SizedBox(height: 20),
 
-                // ── 3. Background Sound ──
-                _SectionHeader(title: 'Background Sound', palette: palette),
-                const SizedBox(height: 4),
-                _SettingRow(
-                  title: 'Ambient audio',
-                  subtitle: 'Play soft background sound during stories',
-                  palette: palette,
-                  trailing: Switch.adaptive(
-                    value: _backgroundSoundOn,
-                    onChanged: _setBackgroundSound,
-                    activeColor: palette.orbGlowColor,
-                  ),
-                  onTap: () => _setBackgroundSound(!_backgroundSoundOn),
-                ),
-
-                const SizedBox(height: 20),
-
-                // ── 4. Your Name ──
+                // ── 3. Your Name ──
                 _SectionHeader(title: 'Your Name', palette: palette),
                 const SizedBox(height: 4),
                 _SettingRow(

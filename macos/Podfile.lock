@@ -6,8 +6,6 @@ PODS:
   - CwlCatchExceptionSupport (2.2.1)
   - flutter_soloud (0.0.1):
     - FlutterMacOS
-  - flutter_tts (0.0.1):
-    - FlutterMacOS
   - FlutterMacOS (1.0.0)
   - just_audio (0.0.1):
     - Flutter
@@ -33,7 +31,6 @@ PODS:
 DEPENDENCIES:
   - audio_session (from `Flutter/ephemeral/.symlinks/plugins/audio_session/macos`)
   - flutter_soloud (from `Flutter/ephemeral/.symlinks/plugins/flutter_soloud/macos`)
-  - flutter_tts (from `Flutter/ephemeral/.symlinks/plugins/flutter_tts/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - just_audio (from `Flutter/ephemeral/.symlinks/plugins/just_audio/darwin`)
   - package_info_plus (from `Flutter/ephemeral/.symlinks/plugins/package_info_plus/macos`)
@@ -53,8 +50,6 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/audio_session/macos
   flutter_soloud:
     :path: Flutter/ephemeral/.symlinks/plugins/flutter_soloud/macos
-  flutter_tts:
-    :path: Flutter/ephemeral/.symlinks/plugins/flutter_tts/macos
   FlutterMacOS:
     :path: Flutter/ephemeral
   just_audio:
@@ -73,19 +68,18 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/sqflite_darwin/darwin
 
 SPEC CHECKSUMS:
-  audio_session: eaca2512cf2b39212d724f35d11f46180ad3a33e
+  audio_session: 728ae3823d914f809c485d390274861a24b0904e
   CwlCatchException: 7acc161b299a6de7f0a46a6ed741eae2c8b4d75a
   CwlCatchExceptionSupport: 54ccab8d8c78907b57f99717fb19d4cc3bce02dc
-  flutter_soloud: cb69d77c6ca89760429201880cf416b72d4d0c6a
-  flutter_tts: ae915565cc6948444b513acc8ee021993281e027
-  FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
-  just_audio: 4e391f57b79cad2b0674030a00453ca5ce817eed
-  package_info_plus: f0052d280d17aa382b932f399edf32507174e870
-  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
-  share_plus: 510bf0af1a42cd602274b4629920c9649c52f4cc
-  shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
-  speech_to_text: 3b313d98516d3d0406cea424782ec25470c59d19
-  sqflite_darwin: 20b2a3a3b70e43edae938624ce550a3cbf66a3d0
+  flutter_soloud: 6487a1bee397951f3f15f4a855d4da3812e1c3a8
+  FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
+  just_audio: a42c63806f16995daf5b219ae1d679deb76e6a79
+  package_info_plus: 12f1c5c2cfe8727ca46cbd0b26677728972d9a5b
+  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
+  share_plus: 1fa619de8392a4398bfaf176d441853922614e89
+  shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
+  speech_to_text: 87bf9298952e8d9073be1b6aade6d5758db5170c
+  sqflite_darwin: 5a7236e3b501866c1c9befc6771dfd73ffb8702d
 
 PODFILE CHECKSUM: c2e95c8c0fe03c5c57e438583cae4cc732296009
 

@@ -15,6 +15,8 @@ import 'package:bible_pal/models/journal_entry.dart';
 import 'package:bible_pal/providers/service_providers.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:async';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../core/ambient_sound_type.dart';
 import '../../widgets/living_sky_background.dart';
 import '../../widgets/scripture_sources_panel.dart';
 import '../../widgets/name_prompt_overlay.dart';
@@ -50,6 +52,11 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
   // Scroll controller for auto-scrolling to reflection
   final ScrollController _scrollController = ScrollController();
 
+  // Ambient audio local UI state
+  bool _ambientOn = false;
+  AmbientSoundType _ambientType = AmbientSoundType.defaultType;
+  double _ambientVol = 0.08;
+
   // Bedtime mode sleep timer
   Timer? _sleepTimer;
 
@@ -67,6 +74,17 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     _checkIfFavorited();
     _checkReflectionAudioExists();
     _journalFocusNode.addListener(_onJournalFocusChange);
+    _loadAmbientState();
+  }
+
+  Future<void> _loadAmbientState() async {
+    final sp = await SharedPreferences.getInstance();
+    if (!mounted) return;
+    setState(() {
+      _ambientOn = sp.getBool('settings.backgroundSoundOn') ?? false;
+      _ambientType = AmbientSoundType.fromString(sp.getString('settings.ambientSoundType'));
+      _ambientVol = sp.getDouble('settings.ambientVolume') ?? 0.08;
+    });
   }
 
   @override
@@ -712,6 +730,9 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                   ],
                                 ),
 
+                                // Ambient Sound Controls
+                                _buildAmbientControls(theme),
+
                                 // Post-Story Reflection (SPEC.md Features #34-36)
                                 _buildReflectionSection(theme),
 
@@ -755,6 +776,112 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
   /// Build the post-story reflection section
   /// Only shows when:
   /// - Playback has completed
+  /// Ambient sound controls — toggle, type selector, volume slider.
+  Widget _buildAmbientControls(ThemeData theme) {
+    final ambient = ref.read(ambientAudioServiceProvider);
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(Icons.music_note, size: 16, color: palette.subtitleColor),
+              const SizedBox(width: 6),
+              Text('Ambient Sound',
+                  style: TextStyle(
+                      color: palette.subtitleColor,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500)),
+              const Spacer(),
+              SizedBox(
+                height: 28,
+                child: Switch.adaptive(
+                  value: _ambientOn,
+                  activeColor: palette.orbGlowColor,
+                  onChanged: (on) async {
+                    final sp = await SharedPreferences.getInstance();
+                    await sp.setBool('settings.backgroundSoundOn', on);
+                    if (on) {
+                      // Only start if story is currently playing
+                      final player = ref.read(parablePlayerProvider.notifier);
+                      if (player.isPlaying) {
+                        await ambient.forceStart();
+                      }
+                    } else {
+                      await ambient.forceStop();
+                    }
+                    if (!mounted) return;
+                    setState(() => _ambientOn = on);
+                  },
+                ),
+              ),
+            ],
+          ),
+          if (_ambientOn) ...[
+            const SizedBox(height: 4),
+            Wrap(
+              spacing: 6,
+              children: AmbientSoundType.values.map((t) {
+                return ChoiceChip(
+                  label: Text(t.displayName,
+                      style: TextStyle(fontSize: 11, color: palette.textColor)),
+                  selected: _ambientType == t,
+                  selectedColor: palette.orbGlowColor.withOpacity(0.3),
+                  backgroundColor: palette.cardColor,
+                  side: BorderSide.none,
+                  visualDensity: VisualDensity.compact,
+                  onSelected: (_) async {
+                    final sp = await SharedPreferences.getInstance();
+                    await sp.setString('settings.ambientSoundType', t.assetName);
+                    await ambient.forceStop();
+                    setState(() => _ambientType = t);
+                    // Only restart if story is currently playing
+                    final player = ref.read(parablePlayerProvider.notifier);
+                    if (player.isPlaying) {
+                      await ambient.forceStart();
+                    }
+                  },
+                );
+              }).toList(),
+            ),
+            const SizedBox(height: 2),
+            Row(
+              children: [
+                Icon(Icons.volume_down, size: 16, color: palette.subtitleColor),
+                Expanded(
+                  child: SliderTheme(
+                    data: SliderThemeData(
+                      trackHeight: 2,
+                      thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
+                      overlayShape: const RoundSliderOverlayShape(overlayRadius: 12),
+                      activeTrackColor: palette.orbGlowColor,
+                      inactiveTrackColor: palette.subtitleColor.withOpacity(0.3),
+                      thumbColor: palette.orbGlowColor,
+                    ),
+                    child: Slider(
+                      value: _ambientVol.clamp(0.01, 0.25),
+                      min: 0.01,
+                      max: 0.25,
+                      onChanged: (v) async {
+                        setState(() => _ambientVol = v);
+                        final sp = await SharedPreferences.getInstance();
+                        await sp.setDouble('settings.ambientVolume', v);
+                        ambient.setVolume(v);
+                      },
+                    ),
+                  ),
+                ),
+                Icon(Icons.volume_up, size: 16, color: palette.subtitleColor),
+              ],
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
   /// - User has showEverydayReflections enabled
   /// - Reflection has not been dismissed
   Widget _buildReflectionSection(ThemeData theme) {

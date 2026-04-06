@@ -1047,6 +1047,38 @@ The main menu is restructured into a horizontal two-page `PageView`, splitting t
 
 ---
 
+## Ambient Background Sound
+
+**49. Ambient Background Sound (Feature 49)**
+
+Optional background audio that plays alongside story narration to create a calm, immersive atmosphere.
+
+**Behavior:**
+- **Toggle**: Settings → "Background Sound" (default: OFF)
+- **Sound Type Selector**: Visible when toggle is ON. Options: Rain (default), Soft Wind, Night Ambience, Soft Pads
+- **Playback**: Ambient audio starts when story narration starts (if enabled), loops continuously
+- **Volume**: Fixed at 0.15 — always below narration volume (1.0). No dynamic ducking in v1
+- **Fade-In**: 300ms linear fade-in on start
+- **Fade-Out**: 300ms linear fade-out on stop
+- **Stop Conditions**: Ambient stops on playback complete, pause, stop, clear, or screen exit
+- **Resume**: When narration resumes after pause, ambient restarts if still enabled
+- **Post-Story**: Ambient does NOT continue into reflection playback
+
+**Implementation:**
+- `AmbientAudioService` — dedicated `just_audio` player for ambient loops
+- `AmbientSoundType` enum: rain, wind, night, pads
+- Settings persisted in SharedPreferences (`settings.backgroundSoundOn`, `settings.ambientSoundType`)
+- Assets: `assets/audio/ambient/{type}.mp3`
+
+**Constraints:**
+- Ambient does not auto-play outside of story playback
+- Ambient does not play during reflection, PAL audio, or any non-narration audio
+- No new dependencies (uses existing `just_audio`)
+- Exactly 4 sound types in v1 — no dynamic additions
+- Duplicate-start guard prevents concurrent playback of the same or overlapping sounds
+
+---
+
 ## Settings
 
 **22. Creative/Traditional Mode Toggle**
@@ -1075,6 +1107,13 @@ The main menu is restructured into a horizontal two-page `PageView`, splitting t
 - Default: OFF
 - When enabled, shows sleep timer dropdown (0 / 5 / 10 / 15 / 30 min)
 - Persisted in UserPreferences (`bedtimeModeEnabled`, `sleepTimerMinutes`)
+
+**25b. Background Sound Settings**
+- Label: "Background Sound"
+- Subtitle: "Play ambient audio during stories"
+- Default: OFF
+- When enabled, shows sound type selector: Rain / Soft Wind / Night Ambience / Soft Pads
+- Persisted in SharedPreferences (`settings.backgroundSoundOn`, `settings.ambientSoundType`)
 
 ---
 
@@ -1148,6 +1187,9 @@ Bible PAL implements minimal, privacy-safe structured logging for diagnostics an
 - `audio_play_pause` — Playback paused (with position_ms)
 - `audio_play_complete` — Playback finished
 - `audio_error` — Playback error occurred
+- `ambient_started` — Ambient audio started (`sound_type`)
+- `ambient_stopped` — Ambient audio stopped (`sound_type`)
+- `ambient_type_changed` — Sound type changed in settings (`from`, `to`)
 
 **App Lifecycle Events:**
 - `app_started` — App launched (version, build)

@@ -7,8 +7,6 @@ PODS:
   - Flutter (1.0.0)
   - flutter_soloud (0.0.1):
     - Flutter
-  - flutter_tts (0.0.1):
-    - Flutter
   - just_audio (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -36,7 +34,6 @@ DEPENDENCIES:
   - audio_session (from `.symlinks/plugins/audio_session/ios`)
   - Flutter (from `Flutter`)
   - flutter_soloud (from `.symlinks/plugins/flutter_soloud/ios`)
-  - flutter_tts (from `.symlinks/plugins/flutter_tts/ios`)
   - just_audio (from `.symlinks/plugins/just_audio/darwin`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
@@ -58,8 +55,6 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_soloud:
     :path: ".symlinks/plugins/flutter_soloud/ios"
-  flutter_tts:
-    :path: ".symlinks/plugins/flutter_tts/ios"
   just_audio:
     :path: ".symlinks/plugins/just_audio/darwin"
   package_info_plus:
@@ -78,20 +73,19 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sqflite_darwin/darwin"
 
 SPEC CHECKSUMS:
-  audio_session: 9bb7f6c970f21241b19f5a3658097ae459681ba0
+  audio_session: 19e9480dbdd4e5f6c4543826b2e8b0e4ab6145fe
   CwlCatchException: 7acc161b299a6de7f0a46a6ed741eae2c8b4d75a
   CwlCatchExceptionSupport: 54ccab8d8c78907b57f99717fb19d4cc3bce02dc
-  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
-  flutter_soloud: b9794594289c65e65d1759abe202dd82527ee4d6
-  flutter_tts: b88dbc8655d3dc961bc4a796e4e16a4cc1795833
-  just_audio: 4e391f57b79cad2b0674030a00453ca5ce817eed
-  package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499
-  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
-  permission_handler_apple: 4ed2196e43d0651e8ff7ca3483a069d469701f2d
-  share_plus: 50da8cb520a8f0f65671c6c6a99b3617ed10a58a
-  shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
-  speech_to_text: 3b313d98516d3d0406cea424782ec25470c59d19
-  sqflite_darwin: 20b2a3a3b70e43edae938624ce550a3cbf66a3d0
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_soloud: 1f5ba78506351cbd64f6993d13e548af29648ae6
+  just_audio: a42c63806f16995daf5b219ae1d679deb76e6a79
+  package_info_plus: c0502532a26c7662a62a356cebe2692ec5fe4ec4
+  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
+  permission_handler_apple: 9878588469a2b0d0fc1e048d9f43605f92e6cec2
+  share_plus: 8b6f8b3447e494cca5317c8c3073de39b3600d1f
+  shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
+  speech_to_text: 87bf9298952e8d9073be1b6aade6d5758db5170c
+  sqflite_darwin: 5a7236e3b501866c1c9befc6771dfd73ffb8702d
 
 PODFILE CHECKSUM: fb5ca7b8fb1e2995775b40a1c37cf8c1cf691730
 

@@ -2,6 +2,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bible_pal/services/storage_service.dart';
 import 'package:bible_pal/services/parable_service.dart';
+import 'package:bible_pal/services/ambient_audio_service.dart';
 import 'package:bible_pal/services/audio_service.dart';
 import 'package:bible_pal/services/mood_service.dart';
 import 'package:bible_pal/services/daily_bread_service.dart';
@@ -37,6 +38,13 @@ final parableServiceProvider = FutureProvider<ParableService>((ref) async {
 // AudioService provider - singleton
 final audioServiceProvider = Provider<AudioService>((ref) {
   return AudioService();
+});
+
+// AmbientAudioService provider - background sound during story playback
+final ambientAudioServiceProvider = Provider<AmbientAudioService>((ref) {
+  final service = AmbientAudioService();
+  ref.onDispose(() => service.dispose());
+  return service;
 });
 
 // MoodService provider - singleton

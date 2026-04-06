@@ -103,6 +103,8 @@ Never hide failing tests. If tests fail, investigate and fix.
 | User preferences | [lib/models/user_preferences.dart](lib/models/user_preferences.dart) |
 | Story selection | [lib/services/parable_service.dart](lib/services/parable_service.dart) |
 | Audio playback | [lib/services/audio_service.dart](lib/services/audio_service.dart) |
+| Ambient sound types | [lib/core/ambient_sound_type.dart](lib/core/ambient_sound_type.dart) |
+| Ambient audio playback | [lib/services/ambient_audio_service.dart](lib/services/ambient_audio_service.dart) |
 | ElevenLabs TTS | [lib/services/eleven_labs_tts.dart](lib/services/eleven_labs_tts.dart) |
 | Mood detection | [lib/services/mood_service.dart](lib/services/mood_service.dart) |
 | App state | [lib/providers/app_state_notifier.dart](lib/providers/app_state_notifier.dart) |

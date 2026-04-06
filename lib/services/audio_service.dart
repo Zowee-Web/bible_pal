@@ -14,11 +14,17 @@ class AudioService {
     _initAudioSession();
   }
 
-  /// Configure audio session for background playback
+  /// Configure audio session for background playback with mixing support.
+  /// mixWithOthers allows ambient audio to play alongside narration.
   Future<void> _initAudioSession() async {
     try {
       final session = await AudioSession.instance;
-      await session.configure(const AudioSessionConfiguration.speech());
+      await session.configure(const AudioSessionConfiguration(
+        avAudioSessionCategory: AVAudioSessionCategory.playback,
+        avAudioSessionMode: AVAudioSessionMode.defaultMode,
+        avAudioSessionCategoryOptions:
+            AVAudioSessionCategoryOptions.mixWithOthers,
+      ));
     } catch (e) {
       debugPrint('Audio session init failed: $e');
     }

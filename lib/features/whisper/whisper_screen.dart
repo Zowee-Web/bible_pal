@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_to_text/speech_to_text.dart';
-import 'package:flutter_tts/flutter_tts.dart';
+// flutter_tts disabled — crashes iOS plugin registration (EXC_BAD_ACCESS nil registrar)
+// import 'package:flutter_tts/flutter_tts.dart';
+import '../../core/flutter_tts_stub.dart';
 import 'package:bible_pal/providers/app_state_notifier.dart';
 import 'package:bible_pal/services/voice_consent_gate.dart';
 import 'package:bible_pal/features/consent/voice_consent_dialog.dart';

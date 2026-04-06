@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bible_pal/models/parable.dart';
+import 'package:bible_pal/services/ambient_audio_service.dart';
 import 'package:bible_pal/services/audio_service.dart';
 import 'package:bible_pal/services/verse_service.dart';
 import 'package:bible_pal/services/voice_consent_gate.dart';
@@ -76,11 +77,13 @@ class ParablePlayerState {
 /// Parable Player Notifier - manages parable playback state
 class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
   late AudioService _audioService;
+  late AmbientAudioService _ambientService;
 
   @override
   ParablePlayerState build() {
     // Get services
     _audioService = ref.watch(audioServiceProvider);
+    _ambientService = ref.watch(ambientAudioServiceProvider);
     // ParableService is FutureProvider - we'll await it when needed in async methods
 
     // Listen to audio state changes
@@ -235,6 +238,7 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
 
     try {
       await _audioService.play();
+      await _ambientService.startIfEnabled();
 
       logEvent('audio_play_start', {
         'story_id': state.currentParable?.storyId,
@@ -257,12 +261,14 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
   /// Pause playback
   Future<void> pause() async {
     await _audioService.pause();
+    await _ambientService.stop();
     ref.notifyListeners();
   }
 
   /// Stop playback
   Future<void> stop() async {
     await _audioService.stop();
+    await _ambientService.stop();
     ref.notifyListeners();
   }
 
@@ -285,7 +291,10 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
   }
 
   /// Handle playback completion
-  void _onPlaybackCompleted() {
+  Future<void> _onPlaybackCompleted() async {
+    // Stop ambient audio — no ambient during reflection (v1)
+    await _ambientService.stop();
+
     // Log playback complete
     final storyId = state.currentParable?.storyId;
     final durationMs = _audioService.duration?.inMilliseconds;
@@ -307,6 +316,7 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
   /// Clear current parable and reset player
   Future<void> clear() async {
     await _audioService.stop();
+    await _ambientService.stop();
     state = state.clearParable();
   }
 }
