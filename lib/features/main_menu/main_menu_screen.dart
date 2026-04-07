@@ -308,8 +308,11 @@ class _SanctuaryPage extends ConsumerWidget {
               Text(
                 '— $verseReference',
                 style: theme.textTheme.labelSmall?.copyWith(
-                  color: palette.accentColor.withOpacity(0.5),
+                  color: palette.accentColor.withOpacity(
+                    palette.isBrightBackground ? 0.85 : 0.6,
+                  ),
                   letterSpacing: 0.6,
+                  shadows: palette.adaptiveTextShadow,
                 ),
               ),
             ],
@@ -371,17 +374,22 @@ class _SwipeHintChevronState extends State<_SwipeHintChevron> with SingleTickerP
                 Text(
                   'swipe',
                   style: TextStyle(
-                    color: widget.palette.chevronColor,
+                    color: widget.palette.subtitleColor.withOpacity(
+                      widget.palette.isBrightBackground ? 0.8 : 0.6,
+                    ),
                     fontSize: 11,
                     letterSpacing: 1.5,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w500,
+                    shadows: widget.palette.adaptiveTextShadow,
                   ),
                 ),
                 const SizedBox(width: 4),
                 Icon(
                   Icons.chevron_right,
                   size: 16,
-                  color: widget.palette.chevronColor,
+                  color: widget.palette.subtitleColor.withOpacity(
+                    widget.palette.isBrightBackground ? 0.8 : 0.6,
+                  ),
                 ),
               ],
             ),
@@ -577,16 +585,26 @@ class _StudyPageState extends ConsumerState<_StudyPage>
     final appState = ref.watch(appStateProvider).valueOrNull;
     final currentStyle = appState?.userPreferences.languageStyle ?? 'WEB';
     final isTraditional = (appState?.userPreferences.storytellingMode ?? 'traditional') == 'traditional';
+    final isKidMode = appState?.userPreferences.kidFriendlyOnly ?? false;
+
+    // Auto-correct: if kid mode is on and KJV is selected, switch to WEB
+    if (isKidMode && currentStyle == 'KJV') {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ref.read(appStateProvider.notifier).updateLanguageStyle('WEB');
+      });
+    }
+
+    final showRow = isTraditional && !isKidMode;
 
     return AnimatedSize(
       duration: const Duration(milliseconds: 200),
       curve: Curves.easeOut,
       alignment: Alignment.topCenter,
       child: AnimatedOpacity(
-        opacity: isTraditional ? 1.0 : 0.0,
+        opacity: showRow ? 1.0 : 0.0,
         duration: const Duration(milliseconds: 150),
         curve: Curves.easeOut,
-        child: isTraditional
+        child: showRow
             ? Padding(
                 padding: const EdgeInsets.fromLTRB(24, 8, 24, 0),
                 child: Container(

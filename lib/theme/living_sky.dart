@@ -72,6 +72,25 @@ class SkyPalette {
     required this.chevronColor,
     this.glowIntensity = 0.8,
   });
+
+  /// Background luminance (0.0 = black, 1.0 = white) computed from the
+  /// middle gradient color — the region where lower-screen text sits.
+  /// Use this to drive adaptive text opacity and shadow for readability.
+  double get backgroundLuminance => gradientColors[1].computeLuminance();
+
+  /// Whether the background midpoint is bright (luminance > 0.35).
+  bool get isBrightBackground => backgroundLuminance > 0.35;
+
+  /// Adaptive text shadow for readability on varying backgrounds.
+  /// Returns a subtle dark shadow on bright backgrounds, none on dark.
+  List<Shadow> get adaptiveTextShadow => isBrightBackground
+      ? [
+          Shadow(
+            color: Color(0xFF000000).withOpacity(0.3),
+            blurRadius: 4,
+          ),
+        ]
+      : [];
 }
 
 /// Determines the current sky phase and returns the corresponding palette.
