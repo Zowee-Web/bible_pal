@@ -16,7 +16,6 @@ class SettingsScreen extends ConsumerStatefulWidget {
 
 class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   bool _loaded = false;
-  String _languageStyle = 'WEB'; // Story presentation diction (Contracts v2)
   // PAL voice selection
   String _palVoiceKey = PalVoiceRegistry.defaultVoiceKey;
   // User name
@@ -32,10 +31,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 
   Future<void> _load() async {
-    // Load language style, voice, and name from UserPreferences
+    // Load voice and name from UserPreferences
     final appState = ref.read(appStateProvider).valueOrNull;
     if (appState != null) {
-      _languageStyle = appState.userPreferences.languageStyle;
       _palVoiceKey = appState.userPreferences.palVoiceKey;
       _userName = appState.userPreferences.userName;
     }
@@ -47,17 +45,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     }
 
     setState(() => _loaded = true);
-  }
-
-  Future<void> _setLanguageStyle(String style) async {
-    logEvent('language_style_changed', {
-      'from': _languageStyle,
-      'to': style,
-    });
-
-    setState(() => _languageStyle = style);
-    final appState = ref.read(appStateProvider.notifier);
-    await appState.updateLanguageStyle(style);
   }
 
   Future<void> _setPalVoiceKey(String voiceKey) async {
@@ -218,37 +205,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               children: [
 
-                // ── 1. Story Language Style ──
-                _SectionHeader(title: 'Story Language Style', palette: palette),
-                const SizedBox(height: 4),
-                _SettingRow(
-                  title: 'Modern (WEB)',
-                  subtitle: 'Contemporary language style',
-                  palette: palette,
-                  trailing: Radio<String>(
-                    value: 'WEB',
-                    groupValue: _languageStyle,
-                    onChanged: (v) => _setLanguageStyle(v!),
-                    activeColor: palette.orbGlowColor,
-                  ),
-                  onTap: () => _setLanguageStyle('WEB'),
-                ),
-                _SettingRow(
-                  title: 'Classic (KJV)',
-                  subtitle: 'Traditional / poetic language style',
-                  palette: palette,
-                  trailing: Radio<String>(
-                    value: 'KJV',
-                    groupValue: _languageStyle,
-                    onChanged: (v) => _setLanguageStyle(v!),
-                    activeColor: palette.orbGlowColor,
-                  ),
-                  onTap: () => _setLanguageStyle('KJV'),
-                ),
-
-                const SizedBox(height: 20),
-
-                // ── 2. PAL's Voice ──
+                // ── 1. PAL's Voice ──
                 _SectionHeader(title: "PAL's Voice", palette: palette),
                 const SizedBox(height: 4),
                 for (final voice in PalVoiceRegistry.voices)
@@ -284,7 +241,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
                 const SizedBox(height: 20),
 
-                // ── 3. Your Name ──
+                // ── 2. Your Name ──
                 _SectionHeader(title: 'Your Name', palette: palette),
                 const SizedBox(height: 4),
                 _SettingRow(

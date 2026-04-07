@@ -40,7 +40,7 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
   bool _isDraggingSlider = false;
   double _dragValue = 0;
   bool _showReflection = false;
-  bool _reflectionDismissed = false;
+  final bool _reflectionDismissed = false;
   bool _isReflectionPlaying = false;
   bool _reflectionAudioPlayed = false;
   bool _hasReflectionAudio = false;

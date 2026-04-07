@@ -179,7 +179,7 @@ class _LengthPickerScreenState extends ConsumerState<LengthPickerScreen> {
 }
 
 /// Individual length card with glow + scale on selection.
-class _LengthCard extends StatelessWidget {
+class _LengthCard extends StatefulWidget {
   final StoryLengthBucket bucket;
   final bool isSelected;
   final SkyPalette palette;
@@ -193,16 +193,37 @@ class _LengthCard extends StatelessWidget {
   });
 
   @override
+  State<_LengthCard> createState() => _LengthCardState();
+}
+
+class _LengthCardState extends State<_LengthCard> {
+  bool _pressed = false;
+
+  double get _scale {
+    if (_pressed) return 0.97;
+    if (widget.isSelected) return 1.03;
+    return 1.0;
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final palette = widget.palette;
+    final bucket = widget.bucket;
+    final isSelected = widget.isSelected;
     final glow = palette.glowIntensity;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 6),
       child: GestureDetector(
-        onTap: onTap,
+        onTapDown: (_) => setState(() => _pressed = true),
+        onTapUp: (_) {
+          setState(() => _pressed = false);
+          widget.onTap();
+        },
+        onTapCancel: () => setState(() => _pressed = false),
         child: AnimatedScale(
-          scale: isSelected ? 1.04 : 1.0,
-          duration: const Duration(milliseconds: 200),
+          scale: _scale,
+          duration: const Duration(milliseconds: 150),
           curve: Curves.easeOut,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
@@ -229,22 +250,23 @@ class _LengthCard extends StatelessWidget {
                   : null,
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   bucket.displayLabel,
                   style: TextStyle(
-                    fontSize: 17,
+                    fontSize: 19,
                     fontWeight: FontWeight.w600,
                     color: palette.textColor,
+                    letterSpacing: 0.3,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 3),
                 Text(
                   bucket.subtitle,
                   style: TextStyle(
                     fontSize: 13,
-                    color: palette.subtitleColor,
+                    color: palette.subtitleColor.withOpacity(0.8),
                   ),
                 ),
               ],

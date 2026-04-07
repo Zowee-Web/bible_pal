@@ -573,6 +573,59 @@ class _StudyPageState extends ConsumerState<_StudyPage>
     );
   }
 
+  Widget _buildLanguageStyleRow(BuildContext context, SkyPalette palette) {
+    final appState = ref.watch(appStateProvider).valueOrNull;
+    final currentStyle = appState?.userPreferences.languageStyle ?? 'WEB';
+    final isTraditional = (appState?.userPreferences.storytellingMode ?? 'traditional') == 'traditional';
+
+    return AnimatedSize(
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.easeOut,
+      alignment: Alignment.topCenter,
+      child: AnimatedOpacity(
+        opacity: isTraditional ? 1.0 : 0.0,
+        duration: const Duration(milliseconds: 150),
+        curve: Curves.easeOut,
+        child: isTraditional
+            ? Padding(
+                padding: const EdgeInsets.fromLTRB(24, 8, 24, 0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: palette.cardColor.withOpacity(0.6),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: palette.cardBorder.withOpacity(0.7), width: 1),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: _LanguageTab(
+                          label: 'Modern (WEB)',
+                          selected: currentStyle == 'WEB',
+                          palette: palette,
+                          onTap: () {
+                            ref.read(appStateProvider.notifier).updateLanguageStyle('WEB');
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: _LanguageTab(
+                          label: 'Classic (KJV)',
+                          selected: currentStyle == 'KJV',
+                          palette: palette,
+                          onTap: () {
+                            ref.read(appStateProvider.notifier).updateLanguageStyle('KJV');
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            : const SizedBox.shrink(),
+      ),
+    );
+  }
+
   Widget _buildStoryModeToggle(BuildContext context, SkyPalette palette) {
     final appState = ref.watch(appStateProvider).valueOrNull;
     final currentMode = appState?.userPreferences.storytellingMode ?? 'traditional';
@@ -701,6 +754,9 @@ class _StudyPageState extends ConsumerState<_StudyPage>
 
                       // Story mode toggle — Traditional / Creative
                       _buildStoryModeToggle(context, palette),
+
+                      // Language style — WEB / KJV (Traditional only)
+                      _buildLanguageStyleRow(context, palette),
 
                       const SizedBox(height: 10),
 
@@ -2116,6 +2172,55 @@ class _StoryModeTab extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Language style tab — used in the WEB / KJV toggle
+// ---------------------------------------------------------------------------
+
+class _LanguageTab extends StatelessWidget {
+  final String label;
+  final bool selected;
+  final SkyPalette palette;
+  final VoidCallback onTap;
+
+  const _LanguageTab({
+    required this.label,
+    required this.selected,
+    required this.palette,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        curve: Curves.easeOut,
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(11),
+          border: selected
+              ? Border.all(color: palette.orbGlowColor.withOpacity(0.5), width: 1)
+              : null,
+        ),
+        child: Center(
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
+              color: selected ? palette.textColor : palette.subtitleColor,
+              letterSpacing: 0.2,
+            ),
+          ),
         ),
       ),
     );
