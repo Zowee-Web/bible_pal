@@ -55,7 +55,7 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
   // Ambient audio local UI state
   bool _ambientOn = false;
   AmbientSoundType _ambientType = AmbientSoundType.defaultType;
-  double _ambientVol = 0.08;
+  double _ambientVol = 0.10;
 
   // Bedtime mode sleep timer
   Timer? _sleepTimer;
@@ -83,7 +83,7 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     setState(() {
       _ambientOn = sp.getBool('settings.backgroundSoundOn') ?? false;
       _ambientType = AmbientSoundType.fromString(sp.getString('settings.ambientSoundType'));
-      _ambientVol = sp.getDouble('settings.ambientVolume') ?? 0.08;
+      _ambientVol = sp.getDouble('settings.ambientVolume') ?? 0.10;
     });
   }
 
@@ -861,8 +861,8 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                       thumbColor: palette.orbGlowColor,
                     ),
                     child: Slider(
-                      value: _ambientVol.clamp(0.01, 0.25),
-                      min: 0.01,
+                      value: _ambientVol.clamp(0.02, 0.25),
+                      min: 0.02,
                       max: 0.25,
                       onChanged: (v) async {
                         setState(() => _ambientVol = v);

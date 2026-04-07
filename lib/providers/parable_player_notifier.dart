@@ -261,14 +261,14 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
   /// Pause playback
   Future<void> pause() async {
     await _audioService.pause();
-    await _ambientService.stop();
+    await _ambientService.forceStop();
     ref.notifyListeners();
   }
 
   /// Stop playback
   Future<void> stop() async {
     await _audioService.stop();
-    await _ambientService.stop();
+    await _ambientService.forceStop();
     ref.notifyListeners();
   }
 
@@ -293,7 +293,7 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
   /// Handle playback completion
   Future<void> _onPlaybackCompleted() async {
     // Stop ambient audio — no ambient during reflection (v1)
-    await _ambientService.stop();
+    await _ambientService.forceStop();
 
     // Log playback complete
     final storyId = state.currentParable?.storyId;
@@ -316,7 +316,7 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
   /// Clear current parable and reset player
   Future<void> clear() async {
     await _audioService.stop();
-    await _ambientService.stop();
+    await _ambientService.forceStop();
     state = state.clearParable();
   }
 }

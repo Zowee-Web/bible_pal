@@ -16,7 +16,7 @@ const _pkAmbientVolume = 'settings.ambientVolume';
 class AmbientAudioService {
   final AudioPlayer _player;
 
-  static const double defaultVolume = 0.08;
+  static const double defaultVolume = 0.10;
 
   AmbientSoundType? _activeType;
   bool _isStarting = false;
