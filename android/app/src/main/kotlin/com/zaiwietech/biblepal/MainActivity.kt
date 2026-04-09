@@ -1,4 +1,4 @@
-package com.example.bible_pal
+package com.zaiwietech.biblepal
 
 import io.flutter.embedding.android.FlutterActivity
 

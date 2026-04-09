@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.bible_pal">
+    package="com.zaiwietech.biblepal">
     
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
 
     <application
-        android:label="bible_pal"
+        android:label="Bible PAL"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
