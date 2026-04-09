@@ -1139,6 +1139,44 @@ Optional background audio that plays alongside story narration to create a calm,
 - Android works offline with bundled and previously cached audio
 - No Firebase, no auth, no Firestore, no messaging — R2 is a dumb file host accessed via HTTP only
 
+**Smart Offline Library v1** (extends Cloud Foundation v1, Android only)
+- Cached story audio is automatically managed within a soft 600 MB target.
+  The 600 MB target is a goal, not a hard cap — the system may temporarily
+  exceed it (for example, when favorited audio alone is larger than the target).
+- When a user favorites a story, its audio is silently downloaded if not
+  already cached, and is protected from auto-eviction. There is no new
+  user-facing affordance for this behavior — no "Download" button, no
+  "Available offline" label, and no new explanatory UI about offline
+  storage. Existing playback download progress UI from Cloud Foundation v1
+  may still appear when audio must be fetched on demand.
+- Listened-but-not-favorited audio is treated as disposable cache. It may
+  be auto-evicted by the cache management routine to keep total cache size
+  near the soft target.
+- Cache management is recency-based for v1. The eviction routine prefers
+  to keep audio that was most recently read or written, using filesystem
+  modified-time (mtime) updated by normal cache reads and writes. v1 does
+  NOT distinguish "recently replayed" from "recently completed" as
+  separate ranked concepts — both are captured by the same recency signal.
+- Richer ranking — predictive prefetch driven by behavior signals (length
+  preference, mood patterns, time-of-day usage, replay frequency,
+  predicted-interest scoring) — is RESERVED for v2.
+- Removing a favorite does NOT immediately delete that story's local
+  audio. It only removes the eviction-protection flag. The audio remains
+  cached and continues to play offline until a future cache-management
+  pass evicts it as part of normal recency-based cleanup.
+- The Smart Offline Library is intentionally invisible to the user:
+  - No "Downloaded", "Offline", or "Saved locally" labels
+  - No tooltips or copy explaining offline behavior
+  - No settings toggles for offline storage or cache size
+  - No storage usage indicators
+  - No "Download" buttons
+  The product principle is "the app just works, even offline" — not
+  "the app is managing storage."
+- All cached audio resides inside the app sandbox
+  (`getApplicationDocumentsDirectory()/audio_cache/`) and is removed
+  automatically by the OS on app uninstall. Shared/external storage is
+  not used.
+
 ---
 
 ## Observability & Logging (v1)

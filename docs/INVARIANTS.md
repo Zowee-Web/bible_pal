@@ -2092,6 +2092,7 @@ python3 -c "import json; r=json.load(open('server/model_router/model_registry.js
 ### Rules
 - **iOS**: All manifest-referenced audio MUST exist in bundled assets (text, reflection, audio)
 - **Android**: All manifest-referenced audio MUST be resolvable via local cache, bundled asset, or the configured R2 URL (`AUDIO_BASE_URL`)
+- On Android, audio cached under `audio_cache/` is the authoritative source for offline playback. Cache lifecycle (eviction, favorite protection, soft budget) is governed by the Favorited Audio Protection Invariant.
 - Runtime network failure on Android is a handled runtime condition (return null + error UI), NOT an invariant violation
 - No manifest entry may reference a missing text file via `textFilePath` (text files are bundled on both platforms)
 - No manifest entry may reference a missing reflection file on iOS (reflections are bundled on both platforms for seed stories on Android)
@@ -2108,6 +2109,32 @@ python3 -c "import json; r=json.load(open('server/model_router/model_registry.js
 - Post-build validation checks every `textFilePath` and `audioFilePath` reference
 - For Android R2 audio: validation occurs at upload time (R2 object existence verified after upload), not at app runtime
 - Any broken reference in iOS bundled assets is a hard failure that blocks the batch
+
+---
+
+## Favorited Audio Protection Invariant (NON-NEGOTIABLE)
+
+**Invariant**: Audio for any story currently in the user's favorites list MUST NEVER be auto-deleted by the cache-management routine.
+
+### Rules
+- Cache eviction MUST query the favorites list (via the existing `StorageService` favorites API) at the start of every eviction pass and exclude any cached file whose `storyId` is currently favorited.
+- The 600 MB cache target is SOFT. If favorited audio alone exceeds the target, no eviction occurs and the overrun is honored on a best-effort basis. The eviction routine MUST NOT delete favorited content to make room for the target.
+- Favoriting a story MUST trigger an audio download if the audio is not already cached. On Android, this happens silently after the favorite is persisted. On iOS, audio is always bundled, so this is a no-op.
+- Removing a favorite MUST NOT immediately delete the underlying cached audio file. The audio remains in the cache and continues to be playable offline. Eviction protection is removed only for the purposes of future cache-management passes — the file becomes a normal recency-ranked cache entry from that point on.
+- Cache eviction MUST never delete a file that is currently being read (audio playback in progress).
+- Cache management is automatic and invisible. There MUST NOT be any UI surface (button, label, tooltip, settings toggle, storage meter) that exposes download state, offline state, eviction behavior, or storage usage to the user.
+
+### Why This Exists
+- Favorites are the user's only explicit signal of "I want this available." Silent deletion of favorited content would break the offline guarantee and erode trust.
+- The product principle is that the system feels invisible. Any UI affordance for offline state would contradict that principle and create expectations the system is not designed to meet (e.g., manual control, per-story toggles, storage management screens).
+- Unfavoriting is a low-cost gesture that users may reverse. Immediate deletion would feel punitive and force a re-download on re-favorite.
+
+### Enforcement
+- The cache-eviction routine in `lib/services/parable_service.dart` queries favorites before any deletion and skips matching `storyId`s.
+- Unit tests verify favorited audio survives an over-budget eviction pass.
+- Unit tests verify favoriting a story triggers an Android download when the audio is not yet cached.
+- Unit tests verify unfavoriting does not delete the cached file.
+- Code review enforces the no-UI-affordance rule for any change touching favorites, cache, or audio resolution.
 
 ---
 

@@ -19,11 +19,35 @@ import 'relatability_matcher.dart';
 /// Parable Service - handles parable selection, generation, and management
 /// Based on SPEC.md Features #4, #6, #14, #15
 class ParableService {
+  /// Soft cache budget for the managed Android audio cache (SPEC Feature 27,
+  /// Smart Offline Library v1). The eviction routine works toward this target
+  /// but may exceed it when favorited audio alone is larger.
+  static const int kAudioCacheBudgetBytes = 600 * 1024 * 1024;
+
+  /// Mutable budget used by the eviction routine. Defaults to the public
+  /// constant; tests override via [setAudioCacheBudgetForTesting] to avoid
+  /// allocating real 600 MB fixtures.
+  static int _audioCacheBudgetBytes = kAudioCacheBudgetBytes;
+
   final StorageService _storage;
   final String? _externalStoragePath;
   bool _useAssets = false;
   final bool testMode;
   final RelatabilityMatcher _matcher = RelatabilityMatcher();
+
+  /// Smart Offline Library v1: cache-relative path of the most recent file
+  /// returned by [getAudioFile]. Excluded from eviction so the currently-
+  /// playing track is never deleted underneath just_audio.
+  ///
+  /// CONSTRAINT: this field exists for ONE purpose — protect the in-use
+  /// audio file from eviction. It must NOT grow into a playback-state
+  /// system (no Set, no preload list, no public getters, no AudioService
+  /// coordination). See plan: "Constraint: _currentAudioRelativePath Stays
+  /// Minimal".
+  String? _currentAudioRelativePath;
+
+  /// Reentrancy guard for [_evictIfOverBudget].
+  bool _evictionInProgress = false;
 
   ParableService(this._storage,
       [this._externalStoragePath, this.testMode = false]);
@@ -573,6 +597,12 @@ class ParableService {
     final cacheDir = await _getAudioCacheDir();
     final cachedFile = File('${cacheDir.path}/$relativePath');
     if (await cachedFile.exists()) {
+      // Smart Offline Library v1: touch mtime so the eviction routine ranks
+      // this file as freshly accessed. Best-effort — silent failure is fine.
+      try {
+        await cachedFile.setLastModified(DateTime.now());
+      } catch (_) {/* mtime touch is best-effort */}
+      _currentAudioRelativePath = relativePath;
       logEvent('story_cache_hit', {'story_id': parable.storyId});
       return cachedFile;
     }
@@ -583,18 +613,23 @@ class ParableService {
       final audioData = await rootBundle.load('assets/stories/$relativePath');
       await cachedFile.parent.create(recursive: true);
       await cachedFile.writeAsBytes(audioData.buffer.asUint8List());
+      _currentAudioRelativePath = relativePath;
       return cachedFile;
     } catch (_) {
       // Not bundled — fall through to R2 download.
     }
 
     // Tier 3: download from R2.
-    return _downloadAudio(
+    final downloaded = await _downloadAudio(
       relativePath,
       storyId: parable.storyId,
       lengthBucket: parable.lengthBucket.name,
       onProgress: onProgress,
     );
+    if (downloaded != null) {
+      _currentAudioRelativePath = relativePath;
+    }
+    return downloaded;
   }
 
   /// Returns (and lazily creates) the Android audio cache directory.
@@ -605,6 +640,152 @@ class ParableService {
       await cacheDir.create(recursive: true);
     }
     return cacheDir;
+  }
+
+  /// Smart Offline Library v1: silently ensure a story's audio is cached
+  /// when the user favorites it. Reuses the existing Android resolver, which
+  /// performs the cache → bundled asset → R2 cascade and writes into
+  /// `audio_cache/`.
+  ///
+  /// - Android: idempotent. No-op if already cached. Downloads if needed.
+  /// - iOS: no-op (audio is bundled).
+  /// - Other platforms (test/desktop): no-op.
+  ///
+  /// Errors (network failure, missing AUDIO_BASE_URL) are swallowed —
+  /// favoriting must never fail because the network was unreliable.
+  Future<void> ensureCachedForFavorite(Parable parable) async {
+    if (!Platform.isAndroid) return;
+    if (parable.audioFilePath == null) return;
+    try {
+      await _getAudioFileAndroid(parable);
+    } catch (_) {/* silent — favoriting must not fail on network */}
+  }
+
+  /// Walks the audio cache directory and returns total bytes consumed.
+  /// Cheap on a small cache (~300 files at 600 MB max).
+  Future<int> _getAudioCacheTotalBytes() async {
+    final cacheDir = await _getAudioCacheDir();
+    if (!await cacheDir.exists()) return 0;
+    var total = 0;
+    await for (final entity
+        in cacheDir.list(recursive: true, followLinks: false)) {
+      if (entity is File) {
+        try {
+          total += await entity.length();
+        } catch (_) {/* file vanished mid-walk */}
+      }
+    }
+    return total;
+  }
+
+  /// Resolves the set of cache-relative audio paths that are currently
+  /// favorited and MUST NOT be evicted. Reuses the existing manifest +
+  /// favorites APIs — no new persistence.
+  Future<Set<String>> _getProtectedAudioPaths() async {
+    final favorites = await _storage.getFavorites();
+    if (favorites.isEmpty) return const <String>{};
+    final manifest = await _loadManifest();
+    final byId = <String, Parable>{
+      for (final p in manifest) p.storyId: p,
+    };
+    final protected = <String>{};
+    for (final fav in favorites) {
+      final p = byId[fav.storyId];
+      if (p?.audioFilePath != null) {
+        protected.add(p!.audioFilePath!);
+      }
+    }
+    return protected;
+  }
+
+  /// Cache management pass. Runs after every successful Android download.
+  /// No-op if total cache size is within the soft budget.
+  ///
+  /// Eviction rules (SPEC Feature 27, INVARIANT: Favorited Audio Protection):
+  /// - Favorited audio is NEVER deleted
+  /// - The currently-playing audio file is NEVER deleted
+  /// - Among evictable files, oldest mtime is removed first
+  /// - If only favorites remain and they exceed the budget, the overrun is
+  ///   honored (soft budget, not a hard cap)
+  Future<void> _evictIfOverBudget() async {
+    if (_evictionInProgress) return;
+    _evictionInProgress = true;
+    try {
+      final totalBytes = await _getAudioCacheTotalBytes();
+      if (totalBytes <= _audioCacheBudgetBytes) return;
+
+      final protectedPaths = await _getProtectedAudioPaths();
+      final cacheDir = await _getAudioCacheDir();
+      final cacheRoot = cacheDir.path;
+
+      // Build evictable candidates: (file, mtime, size).
+      final candidates = <({File file, DateTime mtime, int size})>[];
+      await for (final entity
+          in cacheDir.list(recursive: true, followLinks: false)) {
+        if (entity is! File) continue;
+        // Cache-relative path, e.g. "creative/2000/audio_2000_story_short.mp3".
+        final rel = entity.path.substring(cacheRoot.length + 1);
+        if (protectedPaths.contains(rel)) continue; // favorite — skip
+        if (rel == _currentAudioRelativePath) continue; // in use — skip
+        try {
+          final stat = await entity.stat();
+          candidates
+              .add((file: entity, mtime: stat.modified, size: stat.size));
+        } catch (_) {/* skip vanished */}
+      }
+
+      // Oldest first.
+      candidates.sort((a, b) => a.mtime.compareTo(b.mtime));
+
+      var freedBytes = 0;
+      var removedCount = 0;
+      var currentTotal = totalBytes;
+      for (final c in candidates) {
+        if (currentTotal <= _audioCacheBudgetBytes) break;
+        try {
+          await c.file.delete();
+          freedBytes += c.size;
+          currentTotal -= c.size;
+          removedCount += 1;
+        } catch (_) {/* file vanished */}
+      }
+
+      logEvent('cache_eviction', {
+        'bytes_before': totalBytes,
+        'bytes_freed': freedBytes,
+        'files_removed': removedCount,
+        'favorites_protected': protectedPaths.length,
+        'within_budget': currentTotal <= _audioCacheBudgetBytes,
+      });
+    } finally {
+      _evictionInProgress = false;
+    }
+  }
+
+  /// Test-only entry point for the eviction routine.
+  @visibleForTesting
+  Future<void> evictIfOverBudgetForTesting() => _evictIfOverBudget();
+
+  /// Test-only accessor for the cache total-bytes helper.
+  @visibleForTesting
+  Future<int> getAudioCacheTotalBytesForTesting() => _getAudioCacheTotalBytes();
+
+  /// Test-only accessor for the protected-audio-paths helper.
+  @visibleForTesting
+  Future<Set<String>> getProtectedAudioPathsForTesting() =>
+      _getProtectedAudioPaths();
+
+  /// Test-only setter to override the soft cache budget. Tests use this to
+  /// avoid creating real 600 MB fixtures. Restore in tearDown.
+  @visibleForTesting
+  static void setAudioCacheBudgetForTesting(int bytes) {
+    _audioCacheBudgetBytes = bytes;
+  }
+
+  /// Test-only reset of the cache budget back to the production default.
+  @visibleForTesting
+  static void resetAudioCacheBudgetForTesting() {
+    _audioCacheBudgetBytes = kAudioCacheBudgetBytes;
   }
 
   /// Downloads an audio file from R2 to the local cache.
@@ -681,6 +862,9 @@ class ParableService {
             'story_id': storyId,
             'bytes': receivedBytes,
           });
+          // Smart Offline Library v1: keep cache near the soft budget.
+          // Fire-and-forget — eviction must never block playback.
+          unawaited(_evictIfOverBudget());
           return targetFile;
         } finally {
           client.close();

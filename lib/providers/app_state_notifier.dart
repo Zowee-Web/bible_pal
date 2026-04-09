@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bible_pal/models/user_preferences.dart';
 import 'package:bible_pal/models/parable.dart';
@@ -237,6 +239,12 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
 
       // Analytics: fire-and-forget after successful storage
       AnalyticsEvents.logStoryFavorited(parable);
+
+      // Smart Offline Library v1: silently ensure favorited audio is cached.
+      // Fire-and-forget. Failures are swallowed inside
+      // ensureCachedForFavorite — this MUST NOT block or fail the favorite.
+      // No-op on iOS (audio is bundled).
+      unawaited(_parableService.ensureCachedForFavorite(parable));
 
       return state.requireValue.copyWith(favorites: favorites);
     });
