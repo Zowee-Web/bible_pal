@@ -1,7 +1,10 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import '../models/parable.dart';
 import '../models/user_preferences.dart';
@@ -490,36 +493,239 @@ class ParableService {
     }
   }
 
-  /// Get audio file for a parable
-  Future<File?> getAudioFile(Parable parable) async {
+  /// Get audio file for a parable.
+  ///
+  /// Platform-specific delivery (SPEC Feature 27, Cloud Foundation v1):
+  /// - iOS: fully bundled assets (no cache, no network)
+  /// - Android: cache → bundled asset → R2 download
+  ///
+  /// [onProgress] is invoked during R2 download with values in [0.0, 1.0].
+  /// Only Android passes a non-null callback.
+  Future<File?> getAudioFile(
+    Parable parable, {
+    void Function(double progress)? onProgress,
+  }) async {
     if (parable.audioFilePath == null) return null;
 
-    // If using bundled assets, return a special file path that audio player can handle
+    // iOS: existing fully-bundled behavior. No cache, no network.
+    if (Platform.isIOS) {
+      return _getAudioFileFromAssets(parable);
+    }
+
+    // Android: cache → bundled asset → R2.
+    if (Platform.isAndroid) {
+      return _getAudioFileAndroid(parable, onProgress: onProgress);
+    }
+
+    // Other platforms (desktop/test): preserve legacy behavior.
     if (_useAssets) {
-      // For bundled assets, we need to copy to temp directory for just_audio to play
+      return _getAudioFileFromAssets(parable);
+    }
+    final dir = await _getParableLibraryDir();
+    final audioFile = File('${dir.path}/${parable.audioFilePath}');
+    if (await audioFile.exists()) return audioFile;
+    return null;
+  }
+
+  /// iOS / asset-mode helper: copy bundled asset to temp dir for just_audio.
+  @visibleForTesting
+  Future<File?> getAudioFileFromAssetsForTesting(Parable parable) =>
+      _getAudioFileFromAssets(parable);
+
+  Future<File?> _getAudioFileFromAssets(Parable parable) async {
+    if (parable.audioFilePath == null) return null;
+    try {
+      final audioData =
+          await rootBundle.load('assets/stories/${parable.audioFilePath}');
+      final tempDir = await getTemporaryDirectory();
+      final tempFile = File('${tempDir.path}/${parable.audioFilePath}');
+      await tempFile.parent.create(recursive: true);
+      await tempFile.writeAsBytes(audioData.buffer.asUint8List());
+      debugPrint('Copied audio from assets to temp: ${tempFile.path}');
+      return tempFile;
+    } catch (e) {
+      debugPrint('Error loading audio from assets: $e');
+      return null;
+    }
+  }
+
+  /// Test-only entry point for the Android three-tier resolution path.
+  /// In production this is reached via [getAudioFile] when Platform.isAndroid.
+  @visibleForTesting
+  Future<File?> getAudioFileAndroidForTesting(
+    Parable parable, {
+    void Function(double progress)? onProgress,
+  }) =>
+      _getAudioFileAndroid(parable, onProgress: onProgress);
+
+  /// Test-only accessor for the Android cache directory.
+  @visibleForTesting
+  Future<Directory> getAudioCacheDirForTesting() => _getAudioCacheDir();
+
+  /// Android helper: three-tier resolution (cache → bundled asset → R2).
+  Future<File?> _getAudioFileAndroid(
+    Parable parable, {
+    void Function(double progress)? onProgress,
+  }) async {
+    final relativePath = parable.audioFilePath!;
+
+    // Tier 1: local cache hit.
+    final cacheDir = await _getAudioCacheDir();
+    final cachedFile = File('${cacheDir.path}/$relativePath');
+    if (await cachedFile.exists()) {
+      logEvent('story_cache_hit', {'story_id': parable.storyId});
+      return cachedFile;
+    }
+
+    // Tier 2: bundled asset (seed story). Copy to cache so subsequent plays
+    // are simple file reads instead of rootBundle loads.
+    try {
+      final audioData = await rootBundle.load('assets/stories/$relativePath');
+      await cachedFile.parent.create(recursive: true);
+      await cachedFile.writeAsBytes(audioData.buffer.asUint8List());
+      return cachedFile;
+    } catch (_) {
+      // Not bundled — fall through to R2 download.
+    }
+
+    // Tier 3: download from R2.
+    return _downloadAudio(
+      relativePath,
+      storyId: parable.storyId,
+      lengthBucket: parable.lengthBucket.name,
+      onProgress: onProgress,
+    );
+  }
+
+  /// Returns (and lazily creates) the Android audio cache directory.
+  Future<Directory> _getAudioCacheDir() async {
+    final appDir = await getApplicationDocumentsDirectory();
+    final cacheDir = Directory('${appDir.path}/audio_cache');
+    if (!await cacheDir.exists()) {
+      await cacheDir.create(recursive: true);
+    }
+    return cacheDir;
+  }
+
+  /// Downloads an audio file from R2 to the local cache.
+  ///
+  /// - 30 second timeout
+  /// - 1 retry for transient network failures (timeout, connection reset)
+  /// - No retry for 404
+  /// - Streams to a `.tmp` file, atomic rename on success
+  /// - Deletes `.tmp` on any failure (partial files never count as cache hits)
+  Future<File?> _downloadAudio(
+    String relativePath, {
+    required String storyId,
+    required String lengthBucket,
+    void Function(double progress)? onProgress,
+  }) async {
+    final baseUrl = dotenv.maybeGet('AUDIO_BASE_URL');
+    if (baseUrl == null || baseUrl.isEmpty) {
+      logEvent(
+        'story_download_failed',
+        {'story_id': storyId, 'error_type': 'missing_base_url'},
+        level: LogLevel.warn,
+      );
+      return null;
+    }
+
+    final url = Uri.parse('$baseUrl/$relativePath');
+    final cacheDir = await _getAudioCacheDir();
+    final targetFile = File('${cacheDir.path}/$relativePath');
+    final tmpFile = File('${targetFile.path}.tmp');
+
+    logEvent('story_download_started', {
+      'story_id': storyId,
+      'length_bucket': lengthBucket,
+    });
+
+    Future<File?> attempt() async {
+      IOSink? sink;
       try {
-        final audioData =
-            await rootBundle.load('assets/stories/${parable.audioFilePath}');
-        final tempDir = await getTemporaryDirectory();
-        final tempFile = File('${tempDir.path}/${parable.audioFilePath}');
-        await tempFile.parent.create(recursive: true);
-        await tempFile.writeAsBytes(audioData.buffer.asUint8List());
-        debugPrint('Copied audio from assets to temp: ${tempFile.path}');
-        return tempFile;
-      } catch (e) {
-        debugPrint('Error loading audio from assets: $e');
-        return null;
+        await tmpFile.parent.create(recursive: true);
+        if (await tmpFile.exists()) {
+          await tmpFile.delete();
+        }
+
+        final client = http.Client();
+        try {
+          final request = http.Request('GET', url);
+          final response =
+              await client.send(request).timeout(const Duration(seconds: 30));
+
+          if (response.statusCode == 404) {
+            throw _PermanentDownloadException('http_404');
+          }
+          if (response.statusCode != 200) {
+            throw Exception('http_${response.statusCode}');
+          }
+
+          final totalBytes = response.contentLength ?? 0;
+          var receivedBytes = 0;
+          sink = tmpFile.openWrite();
+
+          await for (final chunk in response.stream) {
+            sink.add(chunk);
+            receivedBytes += chunk.length;
+            if (totalBytes > 0 && onProgress != null) {
+              onProgress(receivedBytes / totalBytes);
+            }
+          }
+          await sink.flush();
+          await sink.close();
+          sink = null;
+
+          await tmpFile.rename(targetFile.path);
+          logEvent('story_download_completed', {
+            'story_id': storyId,
+            'bytes': receivedBytes,
+          });
+          return targetFile;
+        } finally {
+          client.close();
+        }
+      } finally {
+        try {
+          await sink?.close();
+        } catch (_) {/* ignore */}
+        if (await tmpFile.exists()) {
+          try {
+            await tmpFile.delete();
+          } catch (_) {/* ignore */}
+        }
       }
     }
 
-    final dir = await _getParableLibraryDir();
-    final audioFile = File('${dir.path}/${parable.audioFilePath}');
-
-    if (await audioFile.exists()) {
-      return audioFile;
+    try {
+      return await attempt();
+    } on _PermanentDownloadException catch (e) {
+      logEvent(
+        'story_download_failed',
+        {'story_id': storyId, 'error_type': e.code},
+        level: LogLevel.warn,
+      );
+      return null;
+    } catch (e) {
+      // Transient failure — one retry.
+      try {
+        final result = await attempt();
+        if (result != null) return result;
+      } catch (e2) {
+        logEvent(
+          'story_download_failed',
+          {'story_id': storyId, 'error_type': e2.runtimeType.toString()},
+          level: LogLevel.warn,
+        );
+        return null;
+      }
+      logEvent(
+        'story_download_failed',
+        {'story_id': storyId, 'error_type': e.runtimeType.toString()},
+        level: LogLevel.warn,
+      );
+      return null;
     }
-
-    return null;
   }
 
   /// Get text file for a parable
@@ -586,4 +792,12 @@ class ParableService {
       return true;
     }).length;
   }
+}
+
+/// Marker exception for HTTP errors that must NOT be retried (e.g. 404).
+class _PermanentDownloadException implements Exception {
+  final String code;
+  _PermanentDownloadException(this.code);
+  @override
+  String toString() => 'PermanentDownloadException($code)';
 }

@@ -1132,6 +1132,13 @@ Optional background audio that plays alongside story narration to create a calm,
 - Only story libraries and story-related metadata sync
 - User preferences, favorites, and history stay on-device
 
+**Platform-specific audio delivery (Cloud Foundation v1):**
+- iOS uses fully bundled audio assets for playback
+- Android uses bundled seed assets plus Cloudflare R2 HTTP audio delivery with persistent local caching
+- Android includes a bundled seed set of 32 short stories covering all mood × mode × audience combinations
+- Android works offline with bundled and previously cached audio
+- No Firebase, no auth, no Firestore, no messaging — R2 is a dumb file host accessed via HTTP only
+
 ---
 
 ## Observability & Logging (v1)

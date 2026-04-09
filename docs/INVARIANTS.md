@@ -2087,24 +2087,27 @@ python3 -c "import json; r=json.load(open('server/model_router/model_registry.js
 
 ## File Integrity Invariant (NON-NEGOTIABLE)
 
-**Invariant**: All files referenced in `manifest_opus.json` MUST exist on disk.
+**Invariant**: All files referenced in `manifest_opus.json` MUST be resolvable.
 
 ### Rules
-- No manifest entry may reference a missing text file via `textFilePath`
-- No manifest entry may reference a missing reflection file
-- No manifest entry may reference a missing audio file via `audioFilePath`
-- No manifest entry may reference a length that does not exist on disk
+- **iOS**: All manifest-referenced audio MUST exist in bundled assets (text, reflection, audio)
+- **Android**: All manifest-referenced audio MUST be resolvable via local cache, bundled asset, or the configured R2 URL (`AUDIO_BASE_URL`)
+- Runtime network failure on Android is a handled runtime condition (return null + error UI), NOT an invariant violation
+- No manifest entry may reference a missing text file via `textFilePath` (text files are bundled on both platforms)
+- No manifest entry may reference a missing reflection file on iOS (reflections are bundled on both platforms for seed stories on Android)
 - If a file is removed (e.g., long dropped for quality), the manifest MUST be updated accordingly
 
 ### Why This Exists
 - Broken file references cause runtime crashes in the app
 - During the review pipeline, long files may be dropped — the manifest must stay in sync
 - The legacy system had known issues with broken file references — the Opus system must not repeat this
+- The Android hybrid delivery (R2 + cache) trades absolute on-disk presence for the ability to ship under Play Store size limits, while preserving graceful failure on network issues
 
 ### Enforcement
 - Manifest is built by scanning on-disk files (never from assumptions)
 - Post-build validation checks every `textFilePath` and `audioFilePath` reference
-- Any broken reference is a hard failure that blocks the batch
+- For Android R2 audio: validation occurs at upload time (R2 object existence verified after upload), not at app runtime
+- Any broken reference in iOS bundled assets is a hard failure that blocks the batch
 
 ---
 

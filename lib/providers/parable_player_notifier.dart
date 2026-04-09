@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bible_pal/models/parable.dart';
 import 'package:bible_pal/services/ambient_audio_service.dart';
@@ -39,6 +41,10 @@ class ParablePlayerState {
   final String? palResponseText;
   final VerseResponse? verse;
 
+  /// Android-only: progress of an in-flight R2 audio download in [0.0, 1.0].
+  /// Null when no download is in progress (cache hit, bundled asset, or iOS).
+  final double? downloadProgress;
+
   const ParablePlayerState({
     this.currentParable,
     this.parableText,
@@ -47,6 +53,7 @@ class ParablePlayerState {
     this.playbackCompleted = false,
     this.palResponseText,
     this.verse,
+    this.downloadProgress,
   });
 
   ParablePlayerState copyWith({
@@ -57,6 +64,8 @@ class ParablePlayerState {
     bool? playbackCompleted,
     String? palResponseText,
     VerseResponse? verse,
+    double? downloadProgress,
+    bool clearDownloadProgress = false,
   }) {
     return ParablePlayerState(
       currentParable: currentParable ?? this.currentParable,
@@ -66,6 +75,9 @@ class ParablePlayerState {
       playbackCompleted: playbackCompleted ?? this.playbackCompleted,
       palResponseText: palResponseText ?? this.palResponseText,
       verse: verse ?? this.verse,
+      downloadProgress: clearDownloadProgress
+          ? null
+          : (downloadProgress ?? this.downloadProgress),
     );
   }
 
@@ -129,8 +141,21 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
       // Get ParableService
       final parableService = await ref.read(parableServiceProvider.future);
 
-      // Load audio file
-      final audioFile = await parableService.getAudioFile(parable);
+      // Load audio file. On Android, R2 downloads report progress to update
+      // a download indicator in the UI. iOS uses bundled assets only and
+      // never receives a progress callback (SPEC Feature 27).
+      final audioFile = await parableService.getAudioFile(
+        parable,
+        onProgress: Platform.isAndroid
+            ? (progress) {
+                state = state.copyWith(downloadProgress: progress);
+              }
+            : null,
+      );
+      // Clear download progress regardless of how the audio was resolved.
+      if (state.downloadProgress != null) {
+        state = state.copyWith(clearDownloadProgress: true);
+      }
       if (audioFile == null) {
         logEvent(
             'audio_asset_missing',
@@ -193,6 +218,7 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
       state = state.copyWith(
         isLoading: false,
         errorMessage: 'Error loading parable: $e',
+        clearDownloadProgress: true,
       );
       rethrow;
     }

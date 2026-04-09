@@ -639,8 +639,30 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                   },
                                 ),
 
-                                // Loading or Error State
-                                if (playerState.isLoading)
+                                // Download progress (Android-only, R2 audio
+                                // delivery — SPEC Feature 27, Cloud Foundation v1).
+                                if (playerState.downloadProgress != null)
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 16),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        SizedBox(
+                                          width: 48,
+                                          height: 48,
+                                          child: CircularProgressIndicator(
+                                            value: playerState.downloadProgress,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 8),
+                                        Text(
+                                          'Downloading ${(playerState.downloadProgress! * 100).round()}%',
+                                          style: theme.textTheme.bodySmall,
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                else if (playerState.isLoading)
                                   const Padding(
                                     padding: EdgeInsets.only(top: 16),
                                     child: CircularProgressIndicator(),
