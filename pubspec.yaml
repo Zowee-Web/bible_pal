@@ -67,6 +67,7 @@ flutter:
     - assets/images/pal_bg_lake_boat.png
     - assets/stories/manifest.json
     - assets/stories/scripture_anchor_registry.json
+    - assets/stories/biblical_figure_registry.json
     # Traditional stories (Opus 4.6, 1000-series)
     - assets/stories/traditional/1000/
     - assets/stories/traditional/1001/

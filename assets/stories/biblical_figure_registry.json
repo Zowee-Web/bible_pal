@@ -1,0 +1,142 @@
+{
+  "$schema": "biblical_figure_registry_schema",
+  "version": 1,
+  "description": "Maps bibleStoryKey to biblical figures and framing lines. Traditional stories only.",
+  "entries": [
+    {
+      "bibleStoryKey": "joseph_sold_by_brothers",
+      "primaryFigure": "Joseph",
+      "secondaryFigures": [],
+      "framingLines": [
+        "Joseph knew what it felt like to be abandoned by the people closest to him.",
+        "Before Joseph became someone great, he went through something that nearly broke him."
+      ]
+    },
+    {
+      "bibleStoryKey": "david_anointed",
+      "primaryFigure": "David",
+      "secondaryFigures": ["Samuel"],
+      "framingLines": [
+        "David was the one nobody thought to call \u2014 until God did.",
+        "Everyone overlooked David. But being overlooked isn't the same as being forgotten."
+      ]
+    },
+    {
+      "bibleStoryKey": "rest_for_the_weary",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        "Jesus once spoke directly to people who were worn out and carrying too much.",
+        "When the weight felt impossible, Jesus offered an invitation that still stands."
+      ]
+    },
+    {
+      "bibleStoryKey": "the_lord_is_my_shepherd",
+      "primaryFigure": "David",
+      "secondaryFigures": [],
+      "framingLines": [
+        "David wrote these words from a place that knew both darkness and comfort.",
+        "Even in the valley, David found he wasn't walking alone."
+      ]
+    },
+    {
+      "bibleStoryKey": "burning_bush",
+      "primaryFigure": "Moses",
+      "secondaryFigures": [],
+      "framingLines": [
+        "Moses had every reason to doubt himself \u2014 and God called him anyway.",
+        "Before Moses led anyone, he stood barefoot, unsure, and full of questions."
+      ]
+    },
+    {
+      "bibleStoryKey": "gideon_called",
+      "primaryFigure": "Gideon",
+      "secondaryFigures": [],
+      "framingLines": [
+        "Gideon called himself the least in his family. God called him something else.",
+        "Gideon was sure he wasn't enough. God saw something different."
+      ]
+    },
+    {
+      "bibleStoryKey": "job_tested",
+      "primaryFigure": "Job",
+      "secondaryFigures": [],
+      "framingLines": [
+        "Job lost nearly everything and still had the courage to ask why.",
+        "What Job went through would have broken most people. It nearly broke him too."
+      ]
+    },
+    {
+      "bibleStoryKey": "ruth_gleans_in_boaz_field",
+      "primaryFigure": "Ruth",
+      "secondaryFigures": ["Boaz"],
+      "framingLines": [
+        "Ruth was a foreigner with nothing \u2014 and she found kindness where she least expected it.",
+        "After losing everything, Ruth took the smallest step forward. It changed her story."
+      ]
+    },
+    {
+      "bibleStoryKey": "zacchaeus",
+      "primaryFigure": "Zacchaeus",
+      "secondaryFigures": ["Jesus"],
+      "framingLines": [
+        "Zacchaeus was used to being on the outside. Then someone saw him.",
+        "Everyone had already made up their mind about Zacchaeus \u2014 except one person."
+      ]
+    },
+    {
+      "bibleStoryKey": "breakfast_on_the_shore",
+      "primaryFigure": "Peter",
+      "secondaryFigures": ["Jesus"],
+      "framingLines": [
+        "Peter had failed in the worst way. And then Jesus made him breakfast.",
+        "After his worst moment, Peter didn't get a lecture. He got a meal."
+      ]
+    },
+    {
+      "bibleStoryKey": "jacobs_ladder",
+      "primaryFigure": "Jacob",
+      "secondaryFigures": [],
+      "framingLines": [
+        "Jacob was alone, running, and afraid. That's where the dream found him.",
+        "In the loneliest night of Jacob's life, a promise found him."
+      ]
+    },
+    {
+      "bibleStoryKey": "joshua_commissioned",
+      "primaryFigure": "Joshua",
+      "secondaryFigures": ["Moses"],
+      "framingLines": [
+        "Joshua was told 'be strong and courageous' \u2014 because he needed to hear it.",
+        "Stepping into Moses' shoes terrified Joshua. God knew that."
+      ]
+    },
+    {
+      "bibleStoryKey": "fiery_furnace",
+      "primaryFigure": "Shadrach, Meshach, and Abednego",
+      "secondaryFigures": [],
+      "framingLines": [
+        "Three men were told to bow. They chose the fire instead.",
+        "Shadrach, Meshach, and Abednego didn't know they'd survive. They stood anyway."
+      ]
+    },
+    {
+      "bibleStoryKey": "crossing_the_red_sea",
+      "primaryFigure": "Moses",
+      "secondaryFigures": [],
+      "framingLines": [
+        "Israel was trapped \u2014 water ahead, army behind. And then the impossible happened.",
+        "Moses and Israel stood at the edge of the sea with nowhere left to go."
+      ]
+    },
+    {
+      "bibleStoryKey": "fearfully_and_wonderfully_made",
+      "primaryFigure": "David",
+      "secondaryFigures": [],
+      "framingLines": [
+        "These words were written by someone who needed to be reminded of his own worth.",
+        "David looked inward and found something worth celebrating. It took courage to see it."
+      ]
+    }
+  ]
+}
