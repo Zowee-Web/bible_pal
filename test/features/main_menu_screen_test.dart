@@ -65,7 +65,7 @@ class _TestPlayerNotifier extends ParablePlayerNotifier {
   @override
   Future<void> setVolume(double v) async {}
   @override
-  Future<void> loadParable(Parable p) async {}
+  Future<bool> loadParable(Parable p) async => true;
   @override
   Future<void> clear() async {}
 }

@@ -78,9 +78,21 @@ class _LengthPickerScreenState extends ConsumerState<LengthPickerScreen> {
       if (!mounted) return;
 
       final playerNotifier = ref.read(parablePlayerProvider.notifier);
-      await playerNotifier.loadParable(parable);
+      final success = await playerNotifier.loadParable(parable);
 
       if (!mounted) return;
+
+      if (!success) {
+        final playerState = ref.read(parablePlayerProvider);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(playerState.errorMessage ??
+                'This story needs an internet connection the first time you play it.'),
+            duration: const Duration(seconds: 4),
+          ),
+        );
+        return;
+      }
 
       // Smooth fade + scale transition into player
       Navigator.of(context).pushReplacement(

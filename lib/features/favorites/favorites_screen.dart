@@ -34,9 +34,21 @@ class FavoritesScreen extends ConsumerWidget {
     }
 
     // Load into player
-    await player.loadParable(parable);
+    final success = await player.loadParable(parable);
 
     if (!context.mounted) return;
+
+    if (!success) {
+      final playerState = ref.read(parablePlayerProvider);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(playerState.errorMessage ??
+              'This story needs an internet connection the first time you play it.'),
+          duration: const Duration(seconds: 4),
+        ),
+      );
+      return;
+    }
 
     // Navigate to player screen
     Navigator.of(context).pushNamed('/parable_player');

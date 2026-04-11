@@ -493,7 +493,24 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                         children: [
                           Icon(Icons.auto_stories, size: 48, color: theme.colorScheme.onSurfaceVariant),
                           const SizedBox(height: 16),
-                          Text('Tap PAL to start a story', style: theme.textTheme.bodyLarge),
+                          if (playerState.errorMessage != null) ...[
+                            Text(
+                              playerState.errorMessage!,
+                              style: theme.textTheme.bodyMedium,
+                              textAlign: TextAlign.center,
+                            ),
+                            if (playerState.canRetry)
+                              Padding(
+                                padding: const EdgeInsets.only(top: 12),
+                                child: TextButton(
+                                  onPressed: () => Navigator.of(context)
+                                      .pushNamedAndRemoveUntil(
+                                          '/main_menu', (_) => false),
+                                  child: const Text('Try Again'),
+                                ),
+                              ),
+                          ] else
+                            Text('Tap PAL to start a story', style: theme.textTheme.bodyLarge),
                           const SizedBox(height: 16),
                           ElevatedButton(
                             onPressed: () => Navigator.of(context).pushNamedAndRemoveUntil('/main_menu', (_) => false),
@@ -670,10 +687,30 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                 if (playerState.errorMessage != null)
                                   Padding(
                                     padding: const EdgeInsets.only(top: 16),
-                                    child: Text(
-                                      playerState.errorMessage!,
-                                      style: TextStyle(color: theme.colorScheme.error),
-                                      textAlign: TextAlign.center,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          playerState.errorMessage!,
+                                          style: TextStyle(
+                                              color: theme.colorScheme.error),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        if (playerState.canRetry &&
+                                            playerState.currentParable != null)
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 12),
+                                            child: TextButton(
+                                              onPressed: () {
+                                                playerNotifier.loadParable(
+                                                    playerState
+                                                        .currentParable!);
+                                              },
+                                              child: const Text('Try Again'),
+                                            ),
+                                          ),
+                                      ],
                                     ),
                                   ),
 

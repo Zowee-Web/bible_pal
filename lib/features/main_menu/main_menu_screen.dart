@@ -2096,8 +2096,19 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
             const SizedBox(width: 10),
             OutlinedButton.icon(
               onPressed: () async {
-                await notifier.loadParable(state.currentParable!);
+                final success = await notifier.loadParable(state.currentParable!);
                 if (!mounted) return;
+                if (!success) {
+                  final playerState = ref.read(parablePlayerProvider);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(playerState.errorMessage ??
+                          'This story needs an internet connection the first time you play it.'),
+                      duration: const Duration(seconds: 4),
+                    ),
+                  );
+                  return;
+                }
                 await _handlePlay(notifier);
               },
               style: OutlinedButton.styleFrom(

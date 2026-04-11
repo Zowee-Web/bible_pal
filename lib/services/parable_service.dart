@@ -16,6 +16,15 @@ import '../core/seasonal_calendar.dart';
 import 'storage_service.dart';
 import 'relatability_matcher.dart';
 
+/// Why the last audio resolution attempt failed (Android only).
+/// Read via [ParableService.lastAudioError] after [getAudioFile] returns null.
+enum AudioResolveError {
+  none,
+  offlineNotCached,
+  downloadFailed,
+  remoteNotFound,
+}
+
 /// Parable Service - handles parable selection, generation, and management
 /// Based on SPEC.md Features #4, #6, #14, #15
 class ParableService {
@@ -45,6 +54,10 @@ class ParableService {
   /// coordination). See plan: "Constraint: _currentAudioRelativePath Stays
   /// Minimal".
   String? _currentAudioRelativePath;
+
+  /// Why the last [getAudioFile] call returned null (Android only).
+  AudioResolveError _lastAudioError = AudioResolveError.none;
+  AudioResolveError get lastAudioError => _lastAudioError;
 
   /// Reentrancy guard for [_evictIfOverBudget].
   bool _evictionInProgress = false;
@@ -591,6 +604,7 @@ class ParableService {
     Parable parable, {
     void Function(double progress)? onProgress,
   }) async {
+    _lastAudioError = AudioResolveError.none;
     final relativePath = parable.audioFilePath!;
 
     // Tier 1: local cache hit.
@@ -806,6 +820,7 @@ class ParableService {
   }) async {
     final baseUrl = dotenv.maybeGet('AUDIO_BASE_URL');
     if (baseUrl == null || baseUrl.isEmpty) {
+      _lastAudioError = AudioResolveError.downloadFailed;
       logEvent(
         'story_download_failed',
         {'story_id': storyId, 'error_type': 'missing_base_url'},
@@ -887,6 +902,7 @@ class ParableService {
     try {
       return await attempt();
     } on _PermanentDownloadException catch (e) {
+      _lastAudioError = AudioResolveError.remoteNotFound;
       logEvent(
         'story_download_failed',
         {'story_id': storyId, 'error_type': e.code},
@@ -899,6 +915,9 @@ class ParableService {
         final result = await attempt();
         if (result != null) return result;
       } catch (e2) {
+        _lastAudioError = _isOfflineError(e2)
+            ? AudioResolveError.offlineNotCached
+            : AudioResolveError.downloadFailed;
         logEvent(
           'story_download_failed',
           {'story_id': storyId, 'error_type': e2.runtimeType.toString()},
@@ -906,6 +925,9 @@ class ParableService {
         );
         return null;
       }
+      _lastAudioError = _isOfflineError(e)
+          ? AudioResolveError.offlineNotCached
+          : AudioResolveError.downloadFailed;
       logEvent(
         'story_download_failed',
         {'story_id': storyId, 'error_type': e.runtimeType.toString()},
@@ -978,6 +1000,12 @@ class ParableService {
       }
       return true;
     }).length;
+  }
+
+  /// Returns true if [error] indicates no network connectivity.
+  bool _isOfflineError(Object error) {
+    return error is SocketException ||
+        error.runtimeType.toString() == '_ClientSocketException';
   }
 }
 

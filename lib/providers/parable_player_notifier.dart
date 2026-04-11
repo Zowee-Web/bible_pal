@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bible_pal/models/parable.dart';
 import 'package:bible_pal/services/ambient_audio_service.dart';
 import 'package:bible_pal/services/audio_service.dart';
+import 'package:bible_pal/services/parable_service.dart' show AudioResolveError;
 import 'package:bible_pal/services/verse_service.dart';
 import 'package:bible_pal/services/voice_consent_gate.dart';
 import 'package:bible_pal/core/app_logger.dart';
@@ -45,6 +46,9 @@ class ParablePlayerState {
   /// Null when no download is in progress (cache hit, bundled asset, or iOS).
   final double? downloadProgress;
 
+  /// Whether the current error is retryable (e.g. offline or download failed).
+  final bool canRetry;
+
   const ParablePlayerState({
     this.currentParable,
     this.parableText,
@@ -54,6 +58,7 @@ class ParablePlayerState {
     this.palResponseText,
     this.verse,
     this.downloadProgress,
+    this.canRetry = false,
   });
 
   ParablePlayerState copyWith({
@@ -66,6 +71,7 @@ class ParablePlayerState {
     VerseResponse? verse,
     double? downloadProgress,
     bool clearDownloadProgress = false,
+    bool? canRetry,
   }) {
     return ParablePlayerState(
       currentParable: currentParable ?? this.currentParable,
@@ -78,6 +84,7 @@ class ParablePlayerState {
       downloadProgress: clearDownloadProgress
           ? null
           : (downloadProgress ?? this.downloadProgress),
+      canRetry: canRetry ?? this.canRetry,
     );
   }
 
@@ -129,8 +136,9 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
   }
 
   /// Load and prepare a parable for playback
-  Future<void> loadParable(Parable parable) async {
-    state = state.copyWith(isLoading: true, errorMessage: null);
+  /// Returns true if audio loaded successfully, false on error.
+  Future<bool> loadParable(Parable parable) async {
+    state = state.copyWith(isLoading: true, errorMessage: null, canRetry: false);
 
     logEvent('story_load_start', {
       'story_id': parable.storyId,
@@ -157,15 +165,41 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
         state = state.copyWith(clearDownloadProgress: true);
       }
       if (audioFile == null) {
+        final reason = parableService.lastAudioError;
         logEvent(
             'audio_asset_missing',
             {
               'story_id': parable.storyId,
               'expected_path': parable.audioFilePath,
+              'resolve_error': reason.name,
             },
             level: LogLevel.error);
 
-        throw Exception('Audio file not found for parable: ${parable.storyId}');
+        final (message, retryable) = switch (reason) {
+          AudioResolveError.offlineNotCached => (
+              'This story needs an internet connection the first time you play it.',
+              true,
+            ),
+          AudioResolveError.downloadFailed => (
+              "Couldn't download this story. Check your connection and try again.",
+              true,
+            ),
+          AudioResolveError.remoteNotFound => (
+              "This story isn't available right now. Try a different one.",
+              false,
+            ),
+          AudioResolveError.none => (
+              "Couldn't load this story right now.",
+              true,
+            ),
+        };
+        state = state.copyWith(
+          isLoading: false,
+          errorMessage: message,
+          canRetry: retryable,
+          clearDownloadProgress: true,
+        );
+        return false;
       }
 
       await _audioService.loadAudio(audioFile, storyId: parable.storyId);
@@ -190,7 +224,7 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
               errorMessage:
                   'This story was blocked by the content filter. Please try another story.',
             );
-            return;
+            return false;
           }
         }
       }
@@ -206,6 +240,7 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
         'length_bucket': parable.lengthBucket.name,
         'kid_friendly': parable.kidFriendly,
       });
+      return true;
     } catch (e) {
       logEvent('story_load_fail', {
         'story_id': parable.storyId,
