@@ -7,7 +7,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:bible_pal/services/pal_prompt_service.dart';
 import 'package:bible_pal/services/mood_service.dart';
 import 'package:bible_pal/providers/service_providers.dart'
-    show nameAudioServiceProvider, palAudioServiceProvider, sessionLengthBucketProvider;
+    show nameAudioServiceProvider, palAudioServiceProvider, parableServiceProvider, sessionLengthBucketProvider;
 import 'package:bible_pal/services/verse_service.dart';
 import 'package:bible_pal/services/stt_service.dart';
 import 'package:bible_pal/providers/app_state_notifier.dart';
@@ -589,7 +589,28 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     final appStateNotifier = ref.read(appStateProvider.notifier);
     final userPrefs = ref.read(appStateProvider).requireValue.userPreferences;
 
-    // Determine length bucket: use saved preference or ask via PAL picker
+    // --- PAL framing response: show BEFORE length picker (text-input only) ---
+    if (userText.isNotEmpty && userPrefs.storytellingMode == 'traditional') {
+      final parableService = await ref.read(parableServiceProvider.future);
+      final previewKey = await parableService.previewBibleStoryKey(
+        mood: _moodResult!.mood,
+        userPrefs: userPrefs,
+        userText: userText,
+      );
+      if (previewKey != null && mounted) {
+        await BiblicalFigureRegistry.ensureLoaded();
+        final framingLine = BiblicalFigureRegistry.getFramingLine(previewKey);
+        if (framingLine != null && mounted) {
+          setState(() => _framingLine = framingLine);
+          final holdMs = 1600 + (framingLine.length * 12).clamp(0, 1000);
+          await Future.delayed(Duration(milliseconds: holdMs));
+          if (!mounted) return;
+          setState(() => _framingLine = null);
+        }
+      }
+    }
+
+    // --- Length bucket: use saved preference or ask via PAL picker ---
     StoryLengthBucket lengthBucket;
     final savedPref = userPrefs.preferredLengthBucket;
 
@@ -638,27 +659,6 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
         return;
       }
 
-      // Show PAL framing response on mood screen (text-input Traditional only)
-      String? framingLine;
-      if (userText.isNotEmpty &&
-          parable.storytellingMode == 'traditional' &&
-          parable.bibleStoryKey != null) {
-        await BiblicalFigureRegistry.ensureLoaded();
-        framingLine =
-            BiblicalFigureRegistry.getFramingLine(parable.bibleStoryKey);
-      }
-
-      if (framingLine != null && mounted) {
-        setState(() {
-          _isSelectingParable = false;
-          _framingLine = framingLine;
-        });
-        // Adaptive hold: longer lines get more reading time
-        final holdMs = 1600 + (framingLine.length * 12).clamp(0, 1000);
-        await Future.delayed(Duration(milliseconds: holdMs));
-        if (!mounted) return;
-      }
-
       await appStateNotifier.addToHistory(parable);
 
       if (!mounted) return;
@@ -671,10 +671,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
       }
 
       if (!mounted) return;
-      setState(() {
-        _isSelectingParable = false;
-        _framingLine = null;
-      });
+      setState(() => _isSelectingParable = false);
 
       if (!mounted) return;
       Navigator.of(context).pushReplacementNamed(

@@ -362,6 +362,56 @@ class ParableService {
     return eligible;
   }
 
+  /// Preview the best-matching bibleStoryKey for a mood and user text,
+  /// ignoring story length. Used to retrieve a framing line before the
+  /// length picker is shown.
+  ///
+  /// Filters by mood, storytelling mode, language style, and kid safety
+  /// (same as [getEligibleParables] minus the length constraint).
+  /// Deduplicates by bibleStoryKey, then ranks by relatability if
+  /// [userText] is provided.
+  Future<String?> previewBibleStoryKey({
+    required String mood,
+    required UserPreferences userPrefs,
+    String? userText,
+  }) async {
+    final allParables = await _loadManifest();
+    final languageStyle = userPrefs.languageStyle;
+
+    final candidates = allParables.where((p) {
+      if (p.mood != mood) return false;
+      if (p.storytellingMode != userPrefs.storytellingMode) return false;
+      if (p.languageStyle != languageStyle) return false;
+      if (p.storytellingMode == 'traditional' && !p.hasBibleStoryKey) {
+        return false;
+      }
+      if (userPrefs.kidFriendlyOnly) {
+        if (!p.kidFriendly) return false;
+      } else {
+        if (p.kidFriendly) return false;
+      }
+      return true;
+    }).toList();
+
+    if (candidates.isEmpty) return null;
+
+    // Deduplicate by bibleStoryKey (same key exists across lengths)
+    final seen = <String>{};
+    final unique = candidates
+        .where((p) => p.bibleStoryKey != null && seen.add(p.bibleStoryKey!))
+        .toList();
+
+    if (unique.isEmpty) return null;
+
+    // Rank by relatability if user text provided
+    if (userText != null && userText.isNotEmpty && unique.length > 1) {
+      final ranked = _matcher.rankByRelatability(userText, unique);
+      return ranked.first.bibleStoryKey;
+    }
+
+    return unique.first.bibleStoryKey;
+  }
+
   /// Select a parable using mood expansion (SPEC 15b) and non-repeat serving.
   /// Per SPEC.md Features #4 (Relatability), #14 (Non-Repeat), #15b (Mood Expansion).
   ///
