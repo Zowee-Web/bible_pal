@@ -143,6 +143,20 @@ void main() {
           reason:
               'Registry keys not in manifest: ${missing.join(', ')}');
     });
+
+    test('every traditional bibleStoryKey in manifest has a registry entry',
+        () {
+      final registryKeys = entries
+          .map((e) => (e as Map<String, dynamic>)['bibleStoryKey'] as String)
+          .toSet();
+      final missing = manifestBibleStoryKeys
+          .where((key) => !registryKeys.contains(key))
+          .toList()
+        ..sort();
+      expect(missing, isEmpty,
+          reason:
+              'Traditional keys without registry entry: ${missing.join(', ')}');
+    });
   });
 
   group('Biblical Figure Registry — Dart loader', () {
