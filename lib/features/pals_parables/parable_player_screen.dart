@@ -537,18 +537,6 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                   textAlign: TextAlign.center,
                                 ),
 
-                                // Biblical figure framing line (Traditional only)
-                                if (playerState.framingLine != null) ...[
-                                  const SizedBox(height: 12),
-                                  Text(
-                                    playerState.framingLine!,
-                                    style: theme.textTheme.bodyMedium?.copyWith(
-                                      color: theme.colorScheme.onSurfaceVariant,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-
                                 // Mood-flow verse (from PAL's mood response)
                                 if (playerState.verse != null) ...[
                                   const SizedBox(height: 20),

@@ -16,6 +16,7 @@ import 'package:bible_pal/widgets/greeting_display.dart';
 import 'package:bible_pal/widgets/pal_length_picker.dart';
 import 'package:bible_pal/core/story_length_bucket.dart';
 import 'package:bible_pal/core/app_logger.dart';
+import 'package:bible_pal/core/biblical_figure_registry.dart';
 import 'package:bible_pal/theme/app_theme.dart';
 import '../../widgets/living_sky_background.dart';
 
@@ -76,6 +77,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
   MoodResult? _moodResult;
   VerseResponse? _verse;
   bool _isSelectingParable = false;
+  String? _framingLine;
 
   // Voice input state (Feature 2.2)
   VoiceInputState _voiceState = VoiceInputState.idle;
@@ -636,6 +638,27 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
         return;
       }
 
+      // Show PAL framing response on mood screen (text-input Traditional only)
+      String? framingLine;
+      if (userText.isNotEmpty &&
+          parable.storytellingMode == 'traditional' &&
+          parable.bibleStoryKey != null) {
+        await BiblicalFigureRegistry.ensureLoaded();
+        framingLine =
+            BiblicalFigureRegistry.getFramingLine(parable.bibleStoryKey);
+      }
+
+      if (framingLine != null && mounted) {
+        setState(() {
+          _isSelectingParable = false;
+          _framingLine = framingLine;
+        });
+        // Adaptive hold: longer lines get more reading time
+        final holdMs = 1600 + (framingLine.length * 12).clamp(0, 1000);
+        await Future.delayed(Duration(milliseconds: holdMs));
+        if (!mounted) return;
+      }
+
       await appStateNotifier.addToHistory(parable);
 
       if (!mounted) return;
@@ -648,7 +671,10 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
       }
 
       if (!mounted) return;
-      setState(() => _isSelectingParable = false);
+      setState(() {
+        _isSelectingParable = false;
+        _framingLine = null;
+      });
 
       if (!mounted) return;
       Navigator.of(context).pushReplacementNamed(
@@ -816,6 +842,20 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
+              ),
+            ),
+          ]
+          // PAL framing response (text-input Traditional only)
+          else if (_framingLine != null) ...[
+            const SizedBox(height: 24),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: Text(
+                _framingLine!,
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  color: theme.colorScheme.onSurface,
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
           ],
