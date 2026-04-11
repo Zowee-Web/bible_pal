@@ -403,6 +403,129 @@ class _SwipeHintChevronState extends State<_SwipeHintChevron> with SingleTickerP
 }
 
 // ---------------------------------------------------------------------------
+// PAL framing overlay — user-controlled dismiss with animated continue hint
+// ---------------------------------------------------------------------------
+
+class _PalFramingOverlay extends StatefulWidget {
+  final String displayText;
+  final VoidCallback onContinue;
+
+  const _PalFramingOverlay({
+    required this.displayText,
+    required this.onContinue,
+  });
+
+  @override
+  State<_PalFramingOverlay> createState() => _PalFramingOverlayState();
+}
+
+class _PalFramingOverlayState extends State<_PalFramingOverlay>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _pulseController;
+  bool _hintVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _pulseController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    )..repeat(reverse: true);
+
+    // Show continue hint immediately with the text — feels intentional
+    _hintVisible = true;
+  }
+
+  @override
+  void dispose() {
+    _pulseController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: widget.onContinue,
+      onVerticalDragEnd: (details) {
+        if (details.primaryVelocity != null && details.primaryVelocity! < -100) {
+          widget.onContinue();
+        }
+      },
+      child: Material(
+        color: Colors.black.withValues(alpha: 0.88),
+        child: SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: Text(
+                      widget.displayText,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        height: 1.5,
+                        letterSpacing: 0.3,
+                        shadows: [
+                          Shadow(
+                            offset: Offset(0, 2),
+                            blurRadius: 8,
+                            color: Colors.black45,
+                          ),
+                        ],
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ),
+              AnimatedOpacity(
+                opacity: _hintVisible ? 1.0 : 0.0,
+                duration: const Duration(milliseconds: 800),
+                child: AnimatedBuilder(
+                  animation: _pulseController,
+                  builder: (context, child) {
+                    return Opacity(
+                      opacity: 0.3 + (_pulseController.value * 0.4),
+                      child: Transform.translate(
+                        offset: Offset(0, -4 * _pulseController.value),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.keyboard_arrow_up_rounded,
+                              size: 28,
+                              color: Colors.white.withValues(alpha: 0.7),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              'continue',
+                              style: TextStyle(
+                                color: Colors.white.withValues(alpha: 0.6),
+                                fontSize: 11,
+                                letterSpacing: 1.5,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: 32),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Page 2: The Study — mood buttons, Text PAL, Read Story, nav buttons
 // ---------------------------------------------------------------------------
 
@@ -417,6 +540,7 @@ class _StudyPage extends ConsumerStatefulWidget {
 class _StudyPageState extends ConsumerState<_StudyPage>
     with SingleTickerProviderStateMixin {
   final TextEditingController _textController = TextEditingController();
+  final FocusNode _textFocusNode = FocusNode();
 
   // Animated placeholder
   late final AnimationController _hintFadeController;
@@ -481,7 +605,7 @@ class _StudyPageState extends ConsumerState<_StudyPage>
   /// Single source of truth for resetting the text field and hint animation.
   void _resetInputState() {
     _textController.clear();
-    FocusScope.of(context).unfocus();
+    _textFocusNode.unfocus();
     setState(() => _userIsTyping = false);
     _resetHintAnimation();
   }
@@ -523,6 +647,7 @@ class _StudyPageState extends ConsumerState<_StudyPage>
     _hintCycleTimer?.cancel();
     _hintFadeController.dispose();
     _textController.dispose();
+    _textFocusNode.dispose();
     super.dispose();
   }
 
@@ -558,10 +683,9 @@ class _StudyPageState extends ConsumerState<_StudyPage>
           final displayText = transitionLine != null
               ? '$framingLine\n\n$transitionLine'
               : framingLine;
-          final holdMs = 6000 + (displayText.length * 20).clamp(0, 2500);
           const fadeDuration = Duration(milliseconds: 1500);
 
-          // Show a fullscreen fade overlay with the composed PAL response
+          // Show user-controlled overlay with swipe/tap to continue
           await showGeneralDialog(
             context: context,
             barrierDismissible: false,
@@ -571,37 +695,13 @@ class _StudyPageState extends ConsumerState<_StudyPage>
               return FadeTransition(opacity: animation, child: child);
             },
             pageBuilder: (ctx, _, __) {
-              // Auto-dismiss after hold
-              Future.delayed(Duration(milliseconds: holdMs), () {
-                if (ctx.mounted && Navigator.of(ctx).canPop()) {
-                  Navigator.of(ctx).pop();
-                }
-              });
-              return Material(
-                color: Colors.black.withValues(alpha: 0.88),
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: Text(
-                      displayText,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                        height: 1.5,
-                        letterSpacing: 0.3,
-                        shadows: [
-                          Shadow(
-                            offset: Offset(0, 2),
-                            blurRadius: 8,
-                            color: Colors.black45,
-                          ),
-                        ],
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
+              return _PalFramingOverlay(
+                displayText: displayText,
+                onContinue: () {
+                  if (ctx.mounted && Navigator.of(ctx).canPop()) {
+                    Navigator.of(ctx).pop();
+                  }
+                },
               );
             },
           );
@@ -611,10 +711,12 @@ class _StudyPageState extends ConsumerState<_StudyPage>
     }
 
     if (!mounted) return;
-    Navigator.of(context).pushNamed('/length_picker', arguments: {
+    await Navigator.of(context).pushNamed('/length_picker', arguments: {
       'mood': moodResult.mood,
       'userText': text,
     });
+    // Dismiss keyboard when returning from length picker / player
+    if (mounted) _textFocusNode.unfocus();
   }
 
   Widget _buildKidModePill(BuildContext context, SkyPalette palette) {
@@ -874,6 +976,7 @@ class _StudyPageState extends ConsumerState<_StudyPage>
             builder: (context, _) {
               return TextField(
                 controller: _textController,
+                focusNode: _textFocusNode,
                 style: TextStyle(color: palette.textColor, fontSize: 17, height: 1.4),
                 maxLines: 4,
                 minLines: 1,
@@ -1445,10 +1548,11 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     // Navigate to length picker with the detected mood
     if (!mounted) return;
     _cancelConversation();
-    Navigator.of(context).pushNamed('/length_picker', arguments: {
+    await Navigator.of(context).pushNamed('/length_picker', arguments: {
       'mood': result.mood,
       'userText': transcript,
     });
+    if (mounted) FocusScope.of(context).unfocus();
   }
 
   /// Pick a micro-response ID with non-repeat logic.
@@ -1920,14 +2024,15 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
     );
   }
 
-  void _handleMoodButtonTap(String mood) {
+  Future<void> _handleMoodButtonTap(String mood) async {
     final appStateNotifier = ref.read(appStateProvider.notifier);
     appStateNotifier.updateLastDetectedMood(mood);
 
-    Navigator.of(context).pushNamed('/length_picker', arguments: {
+    await Navigator.of(context).pushNamed('/length_picker', arguments: {
       'mood': mood,
       'userText': '',
     });
+    if (mounted) FocusScope.of(context).unfocus();
   }
 
   Widget _buildMoodButtons(ThemeData theme) {
