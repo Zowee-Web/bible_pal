@@ -9,6 +9,7 @@ import '../../services/pal_prompt_service.dart';
 import '../../services/stt_service.dart';
 import '../../providers/service_providers.dart';
 import '../../core/biblical_figure_registry.dart';
+import '../../core/pal_transition_lines.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/living_sky.dart';
 import '../onboarding/first_launch_screen.dart' show kPalIntroShownKey;
@@ -547,13 +548,20 @@ class _StudyPageState extends ConsumerState<_StudyPage>
       );
       if (previewKey != null && mounted) {
         await BiblicalFigureRegistry.ensureLoaded();
+        await PalTransitionLines.ensureLoaded();
         final framingLine =
             BiblicalFigureRegistry.getFramingLine(previewKey);
+        final transitionLine =
+            PalTransitionLines.getLine(previewKey);
         if (framingLine != null && mounted) {
-          final holdMs = 6000 + (framingLine.length * 25).clamp(0, 2500);
+          // Compose: framing line + optional transition line
+          final displayText = transitionLine != null
+              ? '$framingLine\n\n$transitionLine'
+              : framingLine;
+          final holdMs = 6000 + (displayText.length * 20).clamp(0, 2500);
           const fadeDuration = Duration(milliseconds: 1500);
 
-          // Show a fullscreen fade overlay with the framing line
+          // Show a fullscreen fade overlay with the composed PAL response
           await showGeneralDialog(
             context: context,
             barrierDismissible: false,
@@ -575,7 +583,7 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Text(
-                      framingLine,
+                      displayText,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,
