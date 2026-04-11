@@ -95,3 +95,6 @@ assets_audio_compressed/
 
 # Wrangler local config
 .wrangler/
+
+# Android build script temporary backup
+.android_build_backup_*

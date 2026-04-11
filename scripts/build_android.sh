@@ -19,6 +19,18 @@
 #
 set -euo pipefail
 
+# ---------------------------------------------------------------------------
+# 0. Parse arguments
+# ---------------------------------------------------------------------------
+BUILD_MODE="aab"  # default: Play Store AAB
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --apk) BUILD_MODE="apk"; shift ;;
+    --aab) BUILD_MODE="aab"; shift ;;
+    *) echo "Usage: $0 [--aab|--apk]" >&2; exit 1 ;;
+  esac
+done
+
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$REPO_ROOT"
 
@@ -199,20 +211,32 @@ flutter clean >/dev/null
 log "Running: flutter pub get"
 flutter pub get >/dev/null
 
-log "Running: flutter build appbundle --release"
-flutter build appbundle --release
+if [ "$BUILD_MODE" = "apk" ]; then
+  log "Running: flutter build apk --release"
+  flutter build apk --release
+else
+  log "Running: flutter build appbundle --release"
+  flutter build appbundle --release
+fi
 
 # ---------------------------------------------------------------------------
 # 6. Report
 # ---------------------------------------------------------------------------
-aab_path="$REPO_ROOT/build/app/outputs/bundle/release/app-release.aab"
-if [ -f "$aab_path" ]; then
-  size_human=$(du -h "$aab_path" | cut -f1)
-  size_bytes=$(stat -f%z "$aab_path" 2>/dev/null || stat -c%s "$aab_path" 2>/dev/null)
-  log "BUILD SUCCESS"
-  log "  AAB:  $aab_path"
-  log "  Size: $size_human ($size_bytes bytes)"
-  log "Before: 32 seed dirs bundled (full/long stripped) | After: AAB built."
+if [ "$BUILD_MODE" = "apk" ]; then
+  output_path="$REPO_ROOT/build/app/outputs/flutter-apk/app-release.apk"
+  output_label="APK"
 else
-  die "Build did not produce $aab_path"
+  output_path="$REPO_ROOT/build/app/outputs/bundle/release/app-release.aab"
+  output_label="AAB"
+fi
+
+if [ -f "$output_path" ]; then
+  size_human=$(du -h "$output_path" | cut -f1)
+  size_bytes=$(stat -f%z "$output_path" 2>/dev/null || stat -c%s "$output_path" 2>/dev/null)
+  log "BUILD SUCCESS"
+  log "  $output_label: $output_path"
+  log "  Size: $size_human ($size_bytes bytes)"
+  log "Before: 32 seed dirs bundled (full/long stripped) | After: $output_label built."
+else
+  die "Build did not produce $output_path"
 fi
