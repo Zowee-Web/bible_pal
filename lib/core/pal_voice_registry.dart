@@ -40,7 +40,7 @@ class PalVoiceRegistry {
       emoji: '\u{1F33F}', // 🌿
       description: 'Gentle & comforting',
       gender: 'female',
-      elevenLabsId: 'n8D8FqNGSQv0iyOXW0sb',
+      elevenLabsId: 'Z3R5wn05IrDiVCyEkUrK',
     ),
     PalVoice(
       voiceKey: 'VOICE_SHEPHERD',
