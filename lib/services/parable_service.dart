@@ -604,6 +604,7 @@ class ParableService {
       } catch (_) {/* mtime touch is best-effort */}
       _currentAudioRelativePath = relativePath;
       logEvent('story_cache_hit', {'story_id': parable.storyId});
+      logEvent('audio_source', {'source': 'cache', 'story_id': parable.storyId});
       return cachedFile;
     }
 
@@ -614,6 +615,7 @@ class ParableService {
       await cachedFile.parent.create(recursive: true);
       await cachedFile.writeAsBytes(audioData.buffer.asUint8List());
       _currentAudioRelativePath = relativePath;
+      logEvent('audio_source', {'source': 'asset', 'story_id': parable.storyId});
       return cachedFile;
     } catch (_) {
       // Not bundled — fall through to R2 download.
@@ -628,6 +630,7 @@ class ParableService {
     );
     if (downloaded != null) {
       _currentAudioRelativePath = relativePath;
+      logEvent('audio_source', {'source': 'r2', 'story_id': parable.storyId});
     }
     return downloaded;
   }
