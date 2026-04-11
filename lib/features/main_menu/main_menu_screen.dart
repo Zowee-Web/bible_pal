@@ -8,6 +8,7 @@ import '../../providers/app_state_notifier.dart';
 import '../../services/pal_prompt_service.dart';
 import '../../services/stt_service.dart';
 import '../../providers/service_providers.dart';
+import '../../core/biblical_figure_registry.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/living_sky.dart';
 import '../onboarding/first_launch_screen.dart' show kPalIntroShownKey;
@@ -524,7 +525,7 @@ class _StudyPageState extends ConsumerState<_StudyPage>
     super.dispose();
   }
 
-  void _submitText() {
+  Future<void> _submitText() async {
     final text = _textController.text.trim();
     if (text.isEmpty) return;
 
@@ -535,6 +536,73 @@ class _StudyPageState extends ConsumerState<_StudyPage>
     final moodResult = appStateNotifier.moodService.detectMood(text);
     appStateNotifier.updateLastDetectedMood(moodResult.mood);
 
+    // PAL framing response: show before navigating (text-input Traditional only)
+    final userPrefs = ref.read(appStateProvider).valueOrNull?.userPreferences;
+    if (userPrefs != null && userPrefs.storytellingMode == 'traditional') {
+      final parableService = await ref.read(parableServiceProvider.future);
+      final previewKey = await parableService.previewBibleStoryKey(
+        mood: moodResult.mood,
+        userPrefs: userPrefs,
+        userText: text,
+      );
+      if (previewKey != null && mounted) {
+        await BiblicalFigureRegistry.ensureLoaded();
+        final framingLine =
+            BiblicalFigureRegistry.getFramingLine(previewKey);
+        if (framingLine != null && mounted) {
+          final holdMs = 6000 + (framingLine.length * 25).clamp(0, 2500);
+          const fadeDuration = Duration(milliseconds: 1500);
+
+          // Show a fullscreen fade overlay with the framing line
+          await showGeneralDialog(
+            context: context,
+            barrierDismissible: false,
+            barrierColor: Colors.transparent,
+            transitionDuration: fadeDuration,
+            transitionBuilder: (ctx, animation, _, child) {
+              return FadeTransition(opacity: animation, child: child);
+            },
+            pageBuilder: (ctx, _, __) {
+              // Auto-dismiss after hold
+              Future.delayed(Duration(milliseconds: holdMs), () {
+                if (ctx.mounted && Navigator.of(ctx).canPop()) {
+                  Navigator.of(ctx).pop();
+                }
+              });
+              return Material(
+                color: Colors.black.withValues(alpha: 0.88),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: Text(
+                      framingLine,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        height: 1.5,
+                        letterSpacing: 0.3,
+                        shadows: [
+                          Shadow(
+                            offset: Offset(0, 2),
+                            blurRadius: 8,
+                            color: Colors.black45,
+                          ),
+                        ],
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+          if (!mounted) return;
+        }
+      }
+    }
+
+    if (!mounted) return;
     Navigator.of(context).pushNamed('/length_picker', arguments: {
       'mood': moodResult.mood,
       'userText': text,

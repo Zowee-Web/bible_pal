@@ -781,6 +781,11 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                         contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
                         filled: true,
                         fillColor: Colors.white.withValues(alpha: 0.08),
+                        suffixIcon: IconButton(
+                          icon: const Icon(Icons.arrow_upward_rounded, color: Colors.white70),
+                          onPressed: _handleMoodSubmission,
+                          tooltip: 'Submit',
+                        ),
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -841,16 +846,19 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                 ),
               ),
             ),
-          ]
+          ],
           // PAL framing response (text-input Traditional only)
-          else if (_framingLine != null) ...[
+          if (_framingLine != null) ...[
             const SizedBox(height: 24),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: Text(
                 _framingLine!,
                 style: theme.textTheme.bodyLarge?.copyWith(
-                  color: theme.colorScheme.onSurface,
+                  color: Colors.white,
+                  shadows: const [
+                    Shadow(offset: Offset(0, 1), blurRadius: 3, color: Colors.black54),
+                  ],
                 ),
                 textAlign: TextAlign.center,
               ),
