@@ -8,6 +8,7 @@ import 'package:bible_pal/services/parable_service.dart' show AudioResolveError;
 import 'package:bible_pal/services/verse_service.dart';
 import 'package:bible_pal/services/voice_consent_gate.dart';
 import 'package:bible_pal/core/app_logger.dart';
+import 'package:bible_pal/core/biblical_figure_registry.dart';
 import 'service_providers.dart';
 import 'app_state_notifier.dart';
 
@@ -49,6 +50,10 @@ class ParablePlayerState {
   /// Whether the current error is retryable (e.g. offline or download failed).
   final bool canRetry;
 
+  /// Pre-authored biblical figure framing line (Traditional stories only).
+  /// Null for Creative stories or Traditional stories without a registry entry.
+  final String? framingLine;
+
   const ParablePlayerState({
     this.currentParable,
     this.parableText,
@@ -59,6 +64,7 @@ class ParablePlayerState {
     this.verse,
     this.downloadProgress,
     this.canRetry = false,
+    this.framingLine,
   });
 
   ParablePlayerState copyWith({
@@ -72,6 +78,7 @@ class ParablePlayerState {
     double? downloadProgress,
     bool clearDownloadProgress = false,
     bool? canRetry,
+    String? framingLine,
   }) {
     return ParablePlayerState(
       currentParable: currentParable ?? this.currentParable,
@@ -85,6 +92,7 @@ class ParablePlayerState {
           ? null
           : (downloadProgress ?? this.downloadProgress),
       canRetry: canRetry ?? this.canRetry,
+      framingLine: framingLine ?? this.framingLine,
     );
   }
 
@@ -229,10 +237,20 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
         }
       }
 
+      // Look up biblical figure framing line (Traditional stories only).
+      String? framingLine;
+      if (parable.storytellingMode == 'traditional' &&
+          parable.bibleStoryKey != null) {
+        await BiblicalFigureRegistry.ensureLoaded();
+        framingLine =
+            BiblicalFigureRegistry.getFramingLine(parable.bibleStoryKey);
+      }
+
       state = ParablePlayerState(
         currentParable: parable,
         parableText: parableText,
         isLoading: false,
+        framingLine: framingLine,
       );
 
       logEvent('story_load_success', {
