@@ -21,7 +21,6 @@ import '../../widgets/living_sky_background.dart';
 import '../../widgets/scripture_sources_panel.dart';
 import '../../widgets/name_prompt_overlay.dart';
 import '../../widgets/premium_components.dart';
-import '../../theme/app_theme.dart';
 import '../../theme/living_sky.dart';
 
 /// Parable Player Screen
@@ -839,26 +838,32 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
   Widget _buildAmbientControls(ThemeData theme) {
     final ambient = ref.read(ambientAudioServiceProvider);
     final palette = LivingSky.getPalette(LivingSky.getPhase());
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      decoration: BoxDecoration(
+        color: palette.foreground.scrimColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(Icons.music_note, size: 16, color: palette.subtitleColor),
+              Icon(Icons.music_note, size: 16, color: palette.foreground.secondaryIcon),
               const SizedBox(width: 6),
               Text('Ambient Sound',
                   style: TextStyle(
-                      color: palette.subtitleColor,
+                      color: palette.foreground.secondaryText,
                       fontSize: 13,
-                      fontWeight: FontWeight.w500)),
+                      fontWeight: FontWeight.w500,
+                      shadows: palette.foreground.subtitleShadow)),
               const Spacer(),
               SizedBox(
                 height: 28,
                 child: Switch.adaptive(
                   value: _ambientOn,
-                  activeColor: palette.orbGlowColor,
+                  activeColor: palette.warmHighlight,
                   onChanged: (on) async {
                     final sp = await SharedPreferences.getInstance();
                     await sp.setBool('settings.backgroundSoundOn', on);
@@ -883,13 +888,25 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
             Wrap(
               spacing: 6,
               children: AmbientSoundType.values.map((t) {
+                final isChipSelected = _ambientType == t;
                 return ChoiceChip(
                   label: Text(t.displayName,
-                      style: TextStyle(fontSize: 11, color: palette.textColor)),
-                  selected: _ambientType == t,
-                  selectedColor: palette.orbGlowColor.withOpacity(0.3),
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: isChipSelected
+                            ? palette.foreground.primaryText
+                            : palette.foreground.secondaryText,
+                        fontWeight: isChipSelected ? FontWeight.w600 : FontWeight.w400,
+                      )),
+                  selected: isChipSelected,
+                  selectedColor: palette.warmHighlight.withOpacity(0.25),
                   backgroundColor: palette.cardColor,
-                  side: BorderSide.none,
+                  side: BorderSide(
+                    color: isChipSelected
+                        ? palette.warmHighlight.withOpacity(0.7)
+                        : palette.cardBorder,
+                    width: isChipSelected ? 1.5 : 0.5,
+                  ),
                   visualDensity: VisualDensity.compact,
                   onSelected: (_) async {
                     final sp = await SharedPreferences.getInstance();
@@ -908,16 +925,16 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
             const SizedBox(height: 2),
             Row(
               children: [
-                Icon(Icons.volume_down, size: 16, color: palette.subtitleColor),
+                Icon(Icons.volume_down, size: 16, color: palette.foreground.secondaryIcon),
                 Expanded(
                   child: SliderTheme(
                     data: SliderThemeData(
                       trackHeight: 2,
                       thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
                       overlayShape: const RoundSliderOverlayShape(overlayRadius: 12),
-                      activeTrackColor: palette.orbGlowColor,
-                      inactiveTrackColor: palette.subtitleColor.withOpacity(0.3),
-                      thumbColor: palette.orbGlowColor,
+                      activeTrackColor: palette.warmHighlight,
+                      inactiveTrackColor: palette.foreground.mutedText,
+                      thumbColor: palette.warmHighlight,
                     ),
                     child: Slider(
                       value: _ambientVol.clamp(0.02, 0.25),
@@ -932,7 +949,7 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                     ),
                   ),
                 ),
-                Icon(Icons.volume_up, size: 16, color: palette.subtitleColor),
+                Icon(Icons.volume_up, size: 16, color: palette.foreground.secondaryIcon),
               ],
             ),
           ],
@@ -1036,7 +1053,7 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
       return Text(
         'Saved to your journal.',
         style: theme.textTheme.bodySmall?.copyWith(
-          color: AppTheme.warmIvory.withOpacity(0.6),
+          color: LivingSky.getPalette(LivingSky.getPhase()).foreground.tertiaryText,
           fontStyle: FontStyle.italic,
         ),
       );
@@ -1079,7 +1096,7 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
         decoration: InputDecoration(
           hintText: 'Jot a thought...',
           hintStyle: TextStyle(
-            color: palette.subtitleColor.withOpacity(0.5),
+            color: palette.foreground.tertiaryText,
             fontSize: 14,
           ),
           isDense: true,
@@ -1092,7 +1109,7 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(24),
-            borderSide: BorderSide(color: palette.orbGlowColor.withOpacity(0.5), width: 1.5),
+            borderSide: BorderSide(color: palette.warmHighlight.withOpacity(0.5), width: 1.5),
           ),
           counterText: '',
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/living_sky.dart';
 
 /// Greeting Display Widget
 /// Displays time-appropriate greeting with emoji
@@ -16,6 +17,7 @@ class GreetingDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final fg = LivingSky.getPalette(LivingSky.getPhase()).foreground;
 
     return Padding(
       padding: const EdgeInsets.all(24),
@@ -34,10 +36,8 @@ class GreetingDisplay extends StatelessWidget {
             greeting,
             style: theme.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.w600,
-              color: Colors.white,
-              shadows: const [
-                Shadow(offset: Offset(0, 1), blurRadius: 3, color: Colors.black54),
-              ],
+              color: fg.primaryText,
+              shadows: fg.textShadow,
             ),
             textAlign: TextAlign.center,
           ),

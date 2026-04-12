@@ -200,6 +200,18 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       body: Stack(
         children: [
           const LivingSkyBackground(),
+          // Subtle scrim behind content for readability on medium backgrounds
+          Positioned.fill(
+            child: SafeArea(
+              child: Container(
+                margin: const EdgeInsets.only(top: 8),
+                decoration: BoxDecoration(
+                  color: palette.foreground.scrimColor,
+                  borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+                ),
+              ),
+            ),
+          ),
           SafeArea(
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -231,7 +243,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                           value: voice.voiceKey,
                           groupValue: _palVoiceKey,
                           onChanged: (v) => _setPalVoiceKey(v!),
-                          activeColor: palette.orbGlowColor,
+                          activeColor: palette.warmHighlight,
                           visualDensity: VisualDensity.compact,
                         ),
                       ],
@@ -269,7 +281,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                             onPressed: _regenerateNameAudio,
                             child: Text(
                               _nameAudioReady ? 'Regenerate' : 'Generate',
-                              style: TextStyle(color: palette.orbGlowColor),
+                              style: TextStyle(color: palette.warmHighlight),
                             ),
                           ),
                   ),
@@ -327,8 +339,9 @@ class _SectionHeader extends StatelessWidget {
         style: TextStyle(
           fontSize: 13,
           fontWeight: FontWeight.w600,
-          color: palette.subtitleColor,
+          color: palette.foreground.secondaryText,
           letterSpacing: 0.5,
+          shadows: palette.foreground.subtitleShadow,
         ),
       ),
     );
@@ -370,7 +383,8 @@ class _SettingRow extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
-                        color: palette.textColor,
+                        color: palette.foreground.primaryText,
+                        shadows: palette.foreground.textShadow,
                       ),
                     ),
                     if (subtitle != null) ...[
@@ -380,7 +394,8 @@ class _SettingRow extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w400,
-                          color: palette.subtitleColor,
+                          color: palette.foreground.tertiaryText,
+                          shadows: palette.foreground.subtitleShadow,
                         ),
                       ),
                     ],

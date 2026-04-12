@@ -163,7 +163,7 @@ class _NamePromptOverlayState extends ConsumerState<NamePromptOverlay>
                   decoration: InputDecoration(
                     hintText: 'Your name',
                     hintStyle: TextStyle(
-                      color: palette.subtitleColor.withOpacity(0.6),
+                      color: palette.foreground.tertiaryText,
                     ),
                     filled: true,
                     fillColor: palette.cardColor,
@@ -178,7 +178,7 @@ class _NamePromptOverlayState extends ConsumerState<NamePromptOverlay>
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(24),
                       borderSide: BorderSide(
-                        color: palette.orbGlowColor.withOpacity(0.5),
+                        color: palette.warmHighlight.withOpacity(0.5),
                         width: 1.5,
                       ),
                     ),
@@ -197,7 +197,7 @@ class _NamePromptOverlayState extends ConsumerState<NamePromptOverlay>
                       child: Text(
                         'Skip',
                         style: TextStyle(
-                          color: palette.subtitleColor.withOpacity(0.6),
+                          color: palette.foreground.tertiaryText,
                         ),
                       ),
                     ),
@@ -207,7 +207,7 @@ class _NamePromptOverlayState extends ConsumerState<NamePromptOverlay>
                       child: ElevatedButton(
                         onPressed: _isSaving ? null : _handleSubmit,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: palette.orbGlowColor,
+                          backgroundColor: palette.warmHighlight,
                           foregroundColor: palette.textColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),

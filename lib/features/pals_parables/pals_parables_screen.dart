@@ -17,7 +17,7 @@ import 'package:bible_pal/widgets/pal_length_picker.dart';
 import 'package:bible_pal/core/story_length_bucket.dart';
 import 'package:bible_pal/core/app_logger.dart';
 import 'package:bible_pal/core/biblical_figure_registry.dart';
-import 'package:bible_pal/theme/app_theme.dart';
+import '../../theme/living_sky.dart';
 import '../../widgets/living_sky_background.dart';
 
 /// Voice input states for the PAL Voice Mood Input flow (Feature 2.2).
@@ -697,6 +697,8 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
+    final fg = palette.foreground;
     final isVoiceActive = _voiceState == VoiceInputState.listening ||
         _voiceState == VoiceInputState.awaitingPermission;
 
@@ -726,11 +728,9 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
           Text(
             'Share how you\'re really doing so PAL can choose a story for your heart.',
             style: theme.textTheme.bodyMedium?.copyWith(
-              color: Colors.white,
+              color: fg.primaryText,
               fontWeight: FontWeight.w600,
-              shadows: const [
-                Shadow(offset: Offset(0, 1), blurRadius: 3, color: Colors.black54),
-              ],
+              shadows: fg.textShadow,
             ),
             textAlign: TextAlign.center,
           ),
@@ -738,8 +738,13 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
 
           // Mood Input Section (hidden after mood is set)
           if (_microResponseText == null) ...[
-            Padding(
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 8),
               padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: palette.foreground.scrimColor,
+                borderRadius: BorderRadius.circular(24),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -751,7 +756,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                       autofocus: false,
                       keyboardType: TextInputType.multiline,
                       textInputAction: TextInputAction.newline,
-                      style: const TextStyle(fontSize: 18, color: Colors.white),
+                      style: TextStyle(fontSize: 18, color: fg.primaryText),
                       enabled: !isVoiceActive,
                       onTap: () {
                         if (_voiceState == VoiceInputState.listening) {
@@ -764,25 +769,25 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                             : _hints[_currentHintIndex],
                         hintStyle: TextStyle(
                           fontSize: 18,
-                          color: Colors.white.withValues(alpha: _hintOpacity * 0.5),
+                          color: fg.tertiaryText.withValues(alpha: _hintOpacity),
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16),
-                          borderSide: const BorderSide(color: Colors.white38),
+                          borderSide: BorderSide(color: palette.cardBorder),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16),
-                          borderSide: const BorderSide(color: Colors.white38),
+                          borderSide: BorderSide(color: palette.cardBorder),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16),
-                          borderSide: const BorderSide(color: Colors.white70, width: 1.5),
+                          borderSide: BorderSide(color: palette.warmHighlight.withOpacity(0.6), width: 1.5),
                         ),
                         contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
                         filled: true,
-                        fillColor: Colors.white.withValues(alpha: 0.08),
+                        fillColor: palette.cardColor,
                         suffixIcon: IconButton(
-                          icon: const Icon(Icons.arrow_upward_rounded, color: Colors.white70),
+                          icon: Icon(Icons.arrow_upward_rounded, color: fg.secondaryIcon),
                           onPressed: _handleMoodSubmission,
                           tooltip: 'Submit',
                         ),
@@ -808,20 +813,18 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                     // Divider with "or" label
                     Row(
                       children: [
-                        const Expanded(child: Divider(color: Colors.white54)),
+                        Expanded(child: Divider(color: fg.divider)),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 12),
                           child: Text(
                             'Or pick a mood:',
                             style: theme.textTheme.bodySmall?.copyWith(
-                              color: Colors.white,
-                              shadows: const [
-                                Shadow(offset: Offset(0, 1), blurRadius: 3, color: Colors.black54),
-                              ],
+                              color: fg.secondaryText,
+                              shadows: fg.subtitleShadow,
                             ),
                           ),
                         ),
-                        const Expanded(child: Divider(color: Colors.white54)),
+                        Expanded(child: Divider(color: fg.divider)),
                       ],
                     ),
                     const SizedBox(height: 12),
@@ -855,10 +858,8 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
               child: Text(
                 _framingLine!,
                 style: theme.textTheme.bodyLarge?.copyWith(
-                  color: Colors.white,
-                  shadows: const [
-                    Shadow(offset: Offset(0, 1), blurRadius: 3, color: Colors.black54),
-                  ],
+                  color: fg.primaryText,
+                  shadows: fg.textShadow,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -873,6 +874,8 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
 
   /// Build the quick mood button row.
   Widget _buildMoodButtons(ThemeData theme) {
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
+    final fg = palette.foreground;
     const moods = [
       ('☀️', 'Joyful',     'joyful',        Color(0xFF7A4F00), Color(0xFFF5A623)),
       ('🙏', 'Grateful',   'grateful',      Color(0xFF3A2A00), Color(0xFFD4A520)),
@@ -901,11 +904,11 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
               decoration: BoxDecoration(
                 color: bgColor,
                 borderRadius: BorderRadius.circular(999),
-                border: Border.all(color: borderColor.withOpacity(0.7), width: 1),
+                border: Border.all(color: borderColor.withOpacity(0.9), width: 1.5),
                 boxShadow: [
                   BoxShadow(
-                    color: borderColor.withOpacity(0.25),
-                    blurRadius: 8,
+                    color: borderColor.withOpacity(0.40),
+                    blurRadius: 10,
                     offset: const Offset(0, 2),
                   ),
                 ],
@@ -917,10 +920,11 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
                   const SizedBox(width: 7),
                   Text(
                     label,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color: AppTheme.warmIvory,
+                      color: fg.primaryText,
+                      shadows: fg.subtitleShadow,
                     ),
                   ),
                 ],

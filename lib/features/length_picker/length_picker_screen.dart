@@ -163,7 +163,8 @@ class _LengthPickerScreenState extends ConsumerState<LengthPickerScreen> {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
-                          color: palette.textColor,
+                          color: palette.foreground.primaryText,
+                          shadows: palette.foreground.textShadow,
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -243,20 +244,22 @@ class _LengthCardState extends State<_LengthCard> {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
             decoration: BoxDecoration(
-              color: palette.cardColor,
+              color: isSelected
+                  ? palette.warmHighlight.withOpacity(0.12)
+                  : palette.cardColor,
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
                 color: isSelected
-                    ? palette.orbGlowColor.withOpacity(0.6)
+                    ? palette.warmHighlight
                     : palette.cardBorder,
-                width: isSelected ? 1.5 : 1,
+                width: isSelected ? 2 : 1,
               ),
               boxShadow: isSelected
                   ? [
                       BoxShadow(
-                        color: palette.orbGlowColor.withOpacity(0.2 * glow),
-                        blurRadius: 16,
-                        spreadRadius: 1,
+                        color: palette.warmHighlight.withOpacity(0.40 * glow),
+                        blurRadius: 22,
+                        spreadRadius: 3,
                       ),
                     ]
                   : null,
@@ -269,8 +272,9 @@ class _LengthCardState extends State<_LengthCard> {
                   style: TextStyle(
                     fontSize: 19,
                     fontWeight: FontWeight.w600,
-                    color: palette.textColor,
+                    color: palette.foreground.primaryText,
                     letterSpacing: 0.3,
+                    shadows: palette.foreground.textShadow,
                   ),
                 ),
                 const SizedBox(height: 3),
@@ -278,7 +282,8 @@ class _LengthCardState extends State<_LengthCard> {
                   bucket.subtitle,
                   style: TextStyle(
                     fontSize: 13,
-                    color: palette.subtitleColor.withOpacity(0.8),
+                    color: palette.foreground.secondaryText,
+                    shadows: palette.foreground.subtitleShadow,
                   ),
                 ),
               ],

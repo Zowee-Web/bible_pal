@@ -57,7 +57,7 @@ class MainMenuScreen extends ConsumerWidget {
                 Icon(
                   Icons.error_outline,
                   size: 64,
-                  color: LivingSky.getPalette(LivingSky.getPhase()).textColor.withOpacity(0.5),
+                  color: LivingSky.getPalette(LivingSky.getPhase()).foreground.mutedText,
                 ),
                 const SizedBox(height: 16),
                 Text(
@@ -69,7 +69,7 @@ class MainMenuScreen extends ConsumerWidget {
                 Text(
                   error.toString(),
                   style: theme.textTheme.bodyMedium?.copyWith(
-                    color: LivingSky.getPalette(LivingSky.getPhase()).textColor.withOpacity(0.7),
+                    color: LivingSky.getPalette(LivingSky.getPhase()).foreground.secondaryText,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -179,7 +179,7 @@ class _MainMenuBodyState extends ConsumerState<_MainMenuBody> {
                     child: IconButton(
                       icon: Icon(
                         Icons.settings_outlined,
-                        color: palette.subtitleColor.withOpacity(0.45),
+                        color: palette.foreground.secondaryIcon,
                       ),
                       onPressed: () => Navigator.of(context).push(
                         MaterialPageRoute(builder: (_) => const SettingsScreen()),
@@ -239,8 +239,8 @@ class _PageDots extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: isActive
-                  ? palette.accentColor.withOpacity(0.8)
-                  : palette.subtitleColor.withOpacity(0.3),
+                  ? palette.accentColor.withOpacity(0.85)
+                  : palette.foreground.mutedText,
             ),
           );
         }),
@@ -292,32 +292,40 @@ class _SanctuaryPage extends ConsumerWidget {
 
         const Spacer(flex: 2),
 
-        // Daily Bread — atmospheric, no card
+        // Daily Bread — atmospheric, with subtle scrim on medium backgrounds
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Column(
-            children: [
-              Text(
-                dailyBread.replaceAll('"', '').replaceAll('\u201C', '').replaceAll('\u201D', ''),
-                style: theme.textTheme.bodyLarge?.copyWith(
-                  fontStyle: FontStyle.italic,
-                  color: palette.textColor.withOpacity(0.6),
-                  height: 1.55,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 4),
-              Text(
-                '— $verseReference',
-                style: theme.textTheme.labelSmall?.copyWith(
-                  color: palette.accentColor.withOpacity(
-                    palette.isBrightBackground ? 0.85 : 0.6,
+          padding: const EdgeInsets.symmetric(horizontal: 36),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: palette.foreground.scrimColor,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: Column(
+                children: [
+                  Text(
+                    dailyBread.replaceAll('"', '').replaceAll('\u201C', '').replaceAll('\u201D', ''),
+                    style: theme.textTheme.bodyLarge?.copyWith(
+                      fontStyle: FontStyle.italic,
+                      color: palette.foreground.secondaryText,
+                      height: 1.55,
+                      shadows: palette.foreground.subtitleShadow,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  letterSpacing: 0.6,
-                  shadows: palette.adaptiveTextShadow,
-                ),
+                  const SizedBox(height: 4),
+                  Text(
+                    '— $verseReference',
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: palette.accentColor.withOpacity(0.90),
+                      letterSpacing: 0.6,
+                      shadows: palette.foreground.subtitleShadow,
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
 
@@ -376,22 +384,18 @@ class _SwipeHintChevronState extends State<_SwipeHintChevron> with SingleTickerP
                 Text(
                   'swipe',
                   style: TextStyle(
-                    color: widget.palette.subtitleColor.withOpacity(
-                      widget.palette.isBrightBackground ? 0.8 : 0.6,
-                    ),
+                    color: widget.palette.foreground.mutedText,
                     fontSize: 11,
                     letterSpacing: 1.5,
                     fontWeight: FontWeight.w500,
-                    shadows: widget.palette.adaptiveTextShadow,
+                    shadows: widget.palette.foreground.subtitleShadow,
                   ),
                 ),
                 const SizedBox(width: 4),
                 Icon(
                   Icons.chevron_right,
                   size: 16,
-                  color: widget.palette.subtitleColor.withOpacity(
-                    widget.palette.isBrightBackground ? 0.8 : 0.6,
-                  ),
+                  color: widget.palette.foreground.mutedText,
                 ),
               ],
             ),
@@ -729,26 +733,38 @@ class _StudyPageState extends ConsumerState<_StudyPage>
         ref.read(appStateProvider.notifier).updateKidFriendlyOnly(!isOn);
       },
       behavior: HitTestBehavior.opaque,
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        curve: Curves.easeOut,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
-          color: palette.cardColor,
+          color: isOn
+              ? palette.warmHighlight.withOpacity(0.08)
+              : palette.cardColor,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: palette.cardBorder, width: 1),
+          border: Border.all(
+            color: isOn
+                ? palette.warmHighlight.withOpacity(0.8)
+                : palette.cardBorder,
+            width: isOn ? 2 : 1,
+          ),
         ),
         child: RichText(
           text: TextSpan(
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w500,
-              color: isOn ? palette.textColor : palette.subtitleColor,
+              color: isOn
+                  ? palette.foreground.primaryText
+                  : palette.foreground.secondaryText,
+              shadows: palette.foreground.subtitleShadow,
             ),
             children: [
               const TextSpan(text: 'Kid Mode: '),
               TextSpan(
                 text: isOn ? 'ON' : 'OFF',
                 style: TextStyle(
-                  color: isOn ? palette.orbGlowColor : palette.subtitleColor,
+                  color: isOn ? palette.warmHighlight : palette.foreground.tertiaryText,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -786,16 +802,22 @@ class _StudyPageState extends ConsumerState<_StudyPage>
             ? Padding(
                 padding: const EdgeInsets.fromLTRB(24, 8, 24, 0),
                 child: Container(
+                  padding: const EdgeInsets.all(3),
                   decoration: BoxDecoration(
-                    color: palette.cardColor.withOpacity(0.6),
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: palette.cardBorder.withOpacity(0.7), width: 1),
+                    color: palette.foreground.scrimColor != Colors.transparent
+                        ? palette.foreground.scrimColor
+                        : palette.cardColor.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(13),
+                    border: Border.all(
+                      color: palette.cardBorder.withOpacity(0.5),
+                      width: 1,
+                    ),
                   ),
                   child: Row(
                     children: [
                       Expanded(
                         child: _LanguageTab(
-                          label: 'Modern (WEB)',
+                          label: 'World English Bible',
                           selected: currentStyle == 'WEB',
                           palette: palette,
                           onTap: () {
@@ -805,7 +827,7 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                       ),
                       Expanded(
                         child: _LanguageTab(
-                          label: 'Classic (KJV)',
+                          label: 'King James Version',
                           selected: currentStyle == 'KJV',
                           palette: palette,
                           onTap: () {
@@ -984,8 +1006,8 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                 decoration: InputDecoration(
                   hintText: _hints[_currentHintIndex],
                   hintStyle: TextStyle(
-                    color: palette.textColor.withValues(
-                      alpha: _userIsTyping ? 0.0 : _hintFadeAnimation.value * 0.7,
+                    color: palette.foreground.tertiaryText.withValues(
+                      alpha: _userIsTyping ? 0.0 : _hintFadeAnimation.value,
                     ),
                     fontSize: 17,
                     height: 1.4,
@@ -1002,7 +1024,7 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(24),
-                    borderSide: BorderSide(color: palette.orbGlowColor.withOpacity(0.5), width: 1.5),
+                    borderSide: BorderSide(color: palette.warmHighlight.withOpacity(0.5), width: 1.5),
                   ),
                   contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                   suffixIcon: _userIsTyping
@@ -1010,7 +1032,7 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                           padding: const EdgeInsets.only(right: 6),
                           child: Container(
                             decoration: BoxDecoration(
-                              color: palette.orbGlowColor,
+                              color: palette.warmHighlight,
                               shape: BoxShape.circle,
                             ),
                             child: IconButton(
@@ -1803,8 +1825,9 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
               Text(
                 _palSubtitle,
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: palette.subtitleColor.withOpacity(0.6),
+                  color: palette.foreground.tertiaryText,
                   letterSpacing: 0.3,
+                  shadows: palette.foreground.subtitleShadow,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -1819,7 +1842,8 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
               child: Text(
                 'Cancel',
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: LivingSky.getPalette(LivingSky.getPhase()).textColor.withOpacity(0.6),
+                  color: palette.foreground.tertiaryText,
+                  shadows: palette.foreground.subtitleShadow,
                 ),
               ),
             ),
@@ -1831,6 +1855,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
   /// Build the voice flow overlay showing greeting text, transcript, or response.
   Widget _buildVoiceFlowOverlay(ThemeData theme) {
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
     switch (_voiceFlow) {
       case _VoiceFlowState.inactive:
         return const SizedBox.shrink();
@@ -1839,8 +1864,9 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         return Text(
           _greetingText ?? '...',
           style: theme.textTheme.titleMedium?.copyWith(
-            color: LivingSky.getPalette(LivingSky.getPhase()).textColor,
+            color: palette.foreground.primaryText,
             fontStyle: FontStyle.italic,
+            shadows: palette.foreground.textShadow,
           ),
           textAlign: TextAlign.center,
         );
@@ -1853,8 +1879,9 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
               Text(
                 _greetingText!,
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: LivingSky.getPalette(LivingSky.getPhase()).textColor.withOpacity(0.5),
+                  color: palette.foreground.mutedText,
                   fontStyle: FontStyle.italic,
+                  shadows: palette.foreground.subtitleShadow,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -1863,7 +1890,8 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
               Text(
                 _partialTranscript,
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: LivingSky.getPalette(LivingSky.getPhase()).textColor,
+                  color: palette.foreground.primaryText,
+                  shadows: palette.foreground.textShadow,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -1879,7 +1907,8 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
               Text(
                 '"${_finalTranscript!}"',
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: LivingSky.getPalette(LivingSky.getPhase()).textColor.withOpacity(0.6),
+                  color: palette.foreground.tertiaryText,
+                  shadows: palette.foreground.subtitleShadow,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -1888,8 +1917,9 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
               Text(
                 _microResponseText!,
                 style: theme.textTheme.titleMedium?.copyWith(
-                  color: LivingSky.getPalette(LivingSky.getPhase()).textColor,
+                  color: palette.foreground.primaryText,
                   fontStyle: FontStyle.italic,
+                  shadows: palette.foreground.textShadow,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -1902,8 +1932,9 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         return Text(
           _microResponseText!,
           style: theme.textTheme.bodyMedium?.copyWith(
-            color: LivingSky.getPalette(LivingSky.getPhase()).textColor.withOpacity(0.7),
+            color: palette.foreground.secondaryText,
             fontStyle: FontStyle.italic,
+            shadows: palette.foreground.subtitleShadow,
           ),
           textAlign: TextAlign.center,
         );
@@ -1916,7 +1947,8 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
               Text(
                 '"${_finalTranscript!}"',
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: LivingSky.getPalette(LivingSky.getPhase()).textColor.withOpacity(0.6),
+                  color: palette.foreground.tertiaryText,
+                  shadows: palette.foreground.subtitleShadow,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -1930,7 +1962,8 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
             Text(
               'Preparing your story...',
               style: theme.textTheme.bodyMedium?.copyWith(
-                color: LivingSky.getPalette(LivingSky.getPhase()).textColor,
+                color: palette.foreground.primaryText,
+                shadows: palette.foreground.textShadow,
               ),
               textAlign: TextAlign.center,
             ),
@@ -2252,7 +2285,8 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
         Text(
           state.currentParable!.title,
           style: theme.textTheme.bodyMedium?.copyWith(
-            color: palette.textColor.withOpacity(0.7),
+            color: palette.foreground.secondaryText,
+            shadows: palette.foreground.subtitleShadow,
           ),
           textAlign: TextAlign.center,
           maxLines: 1,
@@ -2271,7 +2305,7 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              icon: Icon(Icons.favorite_outline, size: 16, color: palette.orbGlowColor),
+              icon: Icon(Icons.favorite_outline, size: 16, color: palette.warmHighlight),
               label: const Text('Save'),
             ),
             const SizedBox(width: 10),
@@ -2299,7 +2333,7 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              icon: Icon(Icons.replay, size: 16, color: palette.orbGlowColor),
+              icon: Icon(Icons.replay, size: 16, color: palette.warmHighlight),
               label: const Text('Replay'),
             ),
           ],
@@ -2341,10 +2375,21 @@ class _StoryModeTab extends StatelessWidget {
         curve: Curves.easeOut,
         padding: const EdgeInsets.symmetric(vertical: 16),
         decoration: BoxDecoration(
-          color: Colors.transparent,
+          color: selected
+              ? palette.warmHighlight.withOpacity(0.15)
+              : Colors.transparent,
           borderRadius: BorderRadius.circular(13),
           border: selected
-              ? Border.all(color: palette.orbGlowColor, width: 1.5)
+              ? Border.all(color: palette.warmHighlight, width: 2)
+              : null,
+          boxShadow: selected
+              ? [
+                  BoxShadow(
+                    color: palette.warmHighlight.withOpacity(0.20 * palette.glowIntensity),
+                    blurRadius: 14,
+                    spreadRadius: 2,
+                  ),
+                ]
               : null,
         ),
         child: Column(
@@ -2356,7 +2401,7 @@ class _StoryModeTab extends StatelessWidget {
                 Icon(
                   icon,
                   size: 18,
-                  color: selected ? palette.orbGlowColor : palette.subtitleColor,
+                  color: selected ? palette.warmHighlight : palette.foreground.secondaryIcon,
                 ),
                 const SizedBox(width: 6),
                 Text(
@@ -2364,8 +2409,11 @@ class _StoryModeTab extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                    color: selected ? palette.textColor : palette.subtitleColor,
+                    color: selected
+                        ? palette.foreground.primaryText
+                        : palette.foreground.secondaryText,
                     letterSpacing: 0.3,
+                    shadows: palette.foreground.subtitleShadow,
                   ),
                 ),
               ],
@@ -2378,7 +2426,10 @@ class _StoryModeTab extends StatelessWidget {
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.w400,
-                color: palette.subtitleColor.withOpacity(selected ? 0.9 : 0.65),
+                color: selected
+                    ? palette.foreground.secondaryText
+                    : palette.foreground.tertiaryText,
+                shadows: palette.foreground.subtitleShadow,
               ),
             ),
           ],
@@ -2407,28 +2458,47 @@ class _LanguageTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final glow = palette.glowIntensity;
     return GestureDetector(
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 180),
         curve: Curves.easeOut,
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
         decoration: BoxDecoration(
-          color: Colors.transparent,
-          borderRadius: BorderRadius.circular(11),
-          border: selected
-              ? Border.all(color: palette.orbGlowColor.withOpacity(0.5), width: 1)
+          color: selected
+              ? palette.warmHighlight.withOpacity(0.18)
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: selected
+                ? palette.warmHighlight
+                : Colors.transparent,
+            width: selected ? 2 : 0,
+          ),
+          boxShadow: selected
+              ? [
+                  BoxShadow(
+                    color: palette.warmHighlight.withOpacity(0.25 * glow),
+                    blurRadius: 12,
+                    spreadRadius: 2,
+                  ),
+                ]
               : null,
         ),
         child: Center(
           child: Text(
             label,
+            textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 13,
+              fontSize: 12,
               fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
-              color: selected ? palette.textColor : palette.subtitleColor,
-              letterSpacing: 0.2,
+              color: selected
+                  ? palette.foreground.primaryText
+                  : palette.foreground.secondaryText,
+              letterSpacing: 0.1,
+              shadows: palette.foreground.subtitleShadow,
             ),
           ),
         ),
