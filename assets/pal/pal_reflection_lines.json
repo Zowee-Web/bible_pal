@@ -1,46 +1,54 @@
 {
-  "version": 1,
-  "description": "Mood-scoped reflection lines for the typed-input PAL overlay. One sentence acknowledging the user's emotional state.",
+  "version": 2,
+  "description": "Refined, radio-style reflection lines. Personal, spoken, emotionally grounded.",
   "moods": {
     "joyful": [
       "I'm really glad you noticed that moment.",
-      "That kind of joy is worth slowing down long enough to feel.",
-      "It's good when something bright finds its way into the day."
+      "That kind of joy is worth sitting in for a second.",
+      "It's good when something bright finds its way into the day.",
+      "I like that you didn't let that moment pass by."
     ],
     "grateful": [
       "There's something really good about you noticing that.",
       "I'm glad you stopped long enough to name that.",
-      "That kind of gratitude can do something beautiful in a moment."
+      "That kind of gratitude can shift a whole moment.",
+      "Not everyone slows down enough to see that\u2014you did."
     ],
     "weary": [
-      "That kind of tiredness goes deeper than just today, doesn't it.",
-      "It sounds like you've been carrying more than people can see.",
-      "That kind of weariness can settle in deeper than the day itself."
+      "That sounds like a lot to keep carrying.",
+      "I can hear how tired that feels.",
+      "Some kinds of tired don't go away with rest.",
+      "That kind of weariness can sit deeper than the day."
     ],
     "anxious": [
-      "When your mind keeps going back to the same fear, it's hard to find any rest.",
-      "That kind of fear can make it hard to settle anywhere.",
-      "When something keeps pressing on your mind, it can feel hard to breathe."
+      "That kind of fear can be hard to quiet down.",
+      "When something keeps pressing like that, it's hard to settle.",
+      "That sounds like it's been sitting on your mind for a while.",
+      "It's hard when your mind won't let something go."
     ],
     "hurting": [
-      "Sometimes that kind of pain stays closer than anyone else can see.",
-      "That sounds like a hard thing to keep carrying.",
-      "Some hurts stay quiet on the outside and heavy underneath."
+      "That sounds like a hard thing to carry.",
+      "Some hurts stay closer than people can see.",
+      "That kind of pain doesn't just disappear quickly.",
+      "I'm really glad you said that out loud."
     ],
     "brave_courage": [
-      "Stepping forward like that takes more courage than it feels like.",
-      "That took real courage, even if it didn't feel strong in the moment.",
-      "Sometimes bravery feels a lot quieter than people expect."
+      "That took real courage, even if it didn't feel strong.",
+      "Stepping forward like that isn't easy.",
+      "That says more about you than you probably think.",
+      "Sometimes courage feels quieter than people expect."
     ],
     "calm_peaceful": [
-      "That kind of peace is worth staying with for a moment.",
       "I'm glad you let yourself notice that quiet.",
-      "Some peaceful moments feel small, but they matter."
+      "That kind of peace is worth staying in for a moment.",
+      "Not every day gives you that\u2014I'm glad this one did.",
+      "There's something really good about a moment like that."
     ],
     "encouraging": [
       "Something in you is still moving forward.",
-      "That kind of spark matters more than it seems.",
-      "I'm glad something in you still feels alive to this."
+      "That kind of energy matters more than it feels like.",
+      "I like where your heart is right now.",
+      "There's something good building in that."
     ]
   }
 }
