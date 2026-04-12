@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "description": "Mood-scoped reflection lines for the typed-input PAL overlay. One sentence acknowledging the user's emotional state.",
+  "moods": {
+    "joyful": [
+      "That kind of gladness is worth holding onto.",
+      "There's something really beautiful about noticing that.",
+      "It's good to name the bright moments when they come."
+    ],
+    "grateful": [
+      "That kind of thankfulness can change the shape of a whole day.",
+      "Noticing what you're grateful for says something about where your heart is.",
+      "There's real strength in stopping to say thank you."
+    ],
+    "weary": [
+      "That kind of weight can build quietly over time.",
+      "It can be exhausting carrying that for so long.",
+      "That kind of tiredness runs deeper than just the day."
+    ],
+    "anxious": [
+      "That feeling can get heavy when it lingers like that.",
+      "When your mind keeps pressing on the same fear, it's hard to settle.",
+      "That kind of pressure can feel bigger than it looks from the outside."
+    ],
+    "hurting": [
+      "That kind of hurt can stay with you longer than people realize.",
+      "Sometimes that pain sits closer than anyone else can see.",
+      "That's a hard thing to carry, and it matters that you said it."
+    ],
+    "brave_courage": [
+      "That kind of courage doesn't always feel as brave as it is.",
+      "Stepping forward when it's hard says more than most people know.",
+      "There's something steady in you, even when it doesn't feel that way."
+    ],
+    "calm_peaceful": [
+      "That kind of stillness is a gift worth sitting in.",
+      "There's something good about letting a quiet moment just be.",
+      "Peace doesn't always come easy, so it's worth noticing when it does."
+    ],
+    "encouraging": [
+      "That kind of energy can carry you further than you think.",
+      "There's something alive in that feeling worth leaning into.",
+      "Momentum like that doesn't come from nowhere."
+    ]
+  }
+}

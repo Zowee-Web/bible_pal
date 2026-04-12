@@ -9,6 +9,7 @@ import '../../services/pal_prompt_service.dart';
 import '../../services/stt_service.dart';
 import '../../providers/service_providers.dart';
 import '../../core/biblical_figure_registry.dart';
+import '../../core/pal_reflection_lines.dart';
 import '../../core/pal_transition_lines.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/living_sky.dart';
@@ -678,15 +679,24 @@ class _StudyPageState extends ConsumerState<_StudyPage>
       if (previewKey != null && mounted) {
         await BiblicalFigureRegistry.ensureLoaded();
         await PalTransitionLines.ensureLoaded();
+        await PalReflectionLines.ensureLoaded();
         final framingLine =
             BiblicalFigureRegistry.getFramingLine(previewKey);
         final transitionLine =
             PalTransitionLines.getLine(previewKey);
+        final reflectionLine =
+            PalReflectionLines.getLine(moodResult.mood);
         if (framingLine != null && mounted) {
-          // Compose: framing line + optional transition line
-          final displayText = transitionLine != null
-              ? '$framingLine\n\n$transitionLine'
-              : framingLine;
+          // Compose: reflection + framing + transition
+          // Reflection + framing feel like one thought; transition is the invitation.
+          final parts = <String>[
+            if (reflectionLine != null) reflectionLine,
+            framingLine,
+            if (transitionLine != null) transitionLine,
+          ];
+          final displayText = parts.length <= 2
+              ? parts.join('\n\n')
+              : '${parts[0]}\n${parts[1]}\n\n${parts.last}';
           const fadeDuration = Duration(milliseconds: 1500);
 
           // Show user-controlled overlay with swipe/tap to continue
