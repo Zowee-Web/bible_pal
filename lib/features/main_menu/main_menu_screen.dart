@@ -688,15 +688,13 @@ class _StudyPageState extends ConsumerState<_StudyPage>
             PalReflectionLines.getLine(moodResult.mood);
         if (framingLine != null && mounted) {
           // Compose: reflection + framing + transition
-          // Reflection + framing feel like one thought; transition is the invitation.
+          // Each line breathes separately for emotional pacing.
           final parts = <String>[
             if (reflectionLine != null) reflectionLine,
             framingLine,
             if (transitionLine != null) transitionLine,
           ];
-          final displayText = parts.length <= 2
-              ? parts.join('\n\n')
-              : '${parts[0]}\n${parts[1]}\n\n${parts.last}';
+          final displayText = parts.join('\n\n');
           const fadeDuration = Duration(milliseconds: 1500);
 
           // Show user-controlled overlay with swipe/tap to continue
