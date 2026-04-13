@@ -1015,10 +1015,10 @@ The app's visual identity shifts with the time of day through four phases, creat
 
 Text color is determined deterministically by a two-bucket phase classifier, not by per-component heuristics or background luminance math. This replaces the prior Phase 3.2 global contrast pass which rendered white-at-opacity text across every phase.
 
-- **Bright phases** — Dawn, Day, Golden Hour — ALL UI text uses dark tones:
-  - Primary text: `#1A1A1A`
-  - Secondary text: `#4A4A4A`
-  - Tertiary text: `#6B6B6B`
+- **Bright phases** — Dawn, Day, Golden Hour — ALL UI text uses black/near-black tones:
+  - Primary text: `#000000`
+  - Secondary text: `#000000`
+  - Tertiary text: `#000000`
 
 - **Night phase** — ALL UI text uses light tones:
   - Primary text: `#FFFFFF`

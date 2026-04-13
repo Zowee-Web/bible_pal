@@ -218,7 +218,7 @@ class SkyPalette {
   /// the `SkyPalette` constants below:
   ///
   /// - **Bright phases** — Dawn, Day, Golden Hour
-  ///   Dark text: `#1A1A1A` / `#4A4A4A` / `#6B6B6B`. No shadow.
+  ///   Black text: `#000000` / `#000000` / `#000000`. No shadow.
   ///
   /// - **Night phase** — white text: `#FFFFFF` / white@0.85 / white@0.65.
   ///   Hero text gets a faint drop shadow for lift over the starfield.
@@ -255,21 +255,21 @@ class SkyPalette {
       );
     }
 
-    // Bright phases — Dawn, Day, Golden Hour. Locked dark tones.
+    // Bright phases — Dawn, Day, Golden Hour. Locked black/near-black tones.
     return ForegroundPalette(
-      primaryText: const Color(0xFF1A1A1A),
-      secondaryText: const Color(0xFF4A4A4A),
-      tertiaryText: const Color(0xFF6B6B6B),
-      mutedText: const Color(0xFF8A8A8A),
-      primaryIcon: const Color(0xFF1A1A1A),
-      secondaryIcon: const Color(0xFF4A4A4A),
-      divider: const Color(0x1A1A1A1A), // #1A1A1A @ 10%
+      primaryText: const Color(0xFF000000),
+      secondaryText: const Color(0xFF000000),
+      tertiaryText: const Color(0xFF000000),
+      mutedText: const Color(0xFF1A1A1A),
+      primaryIcon: const Color(0xFF000000),
+      secondaryIcon: const Color(0xFF000000),
+      divider: const Color(0x1A000000), // #000000 @ 10%
       textShadow: const [],
       subtitleShadow: const [],
       captionShadow: const [],
       scrimColor: const Color(0x00000000),
-      subtleSurface: const Color(0x141A1A1A), // #1A1A1A @ ~8%
-      subtleBorder: const Color(0x331A1A1A), // #1A1A1A @ 20%
+      subtleSurface: const Color(0x14000000), // #000000 @ ~8%
+      subtleBorder: const Color(0x33000000), // #000000 @ 20%
     );
   }
 }
@@ -315,7 +315,7 @@ class LivingSky {
   // Palettes
   // ---------------------------------------------------------------------------
 
-  /// Purple-pink-gold sunrise. Locked bright-phase dark text.
+  /// Purple-pink-gold sunrise. Locked bright-phase black text.
   static const _dawn = SkyPalette(
     gradientColors: [Color(0xFF2D1B3D), Color(0xFFE8896B), Color(0xFFFFC87A)],
     gradientStops: [0.0, 0.5, 1.0],
@@ -327,8 +327,8 @@ class LivingSky {
       Color(0xFFC06848),
       Color(0xFF8B3A3A),
     ],
-    textColor: Color(0xFF1A1A1A),
-    subtitleColor: Color(0xFF4A4A4A),
+    textColor: Color(0xFF000000),
+    subtitleColor: Color(0xFF000000),
     accentColor: Color(0xFFD4AF37),
     cardColor: Color(0x30FFFFFF),
     cardBorder: Color(0x40FFFFFF),
@@ -337,7 +337,7 @@ class LivingSky {
     glowIntensity: 0.8,
   );
 
-  /// Sky blue to warm cream. Locked bright-phase dark text.
+  /// Sky blue to warm cream. Locked bright-phase black text.
   static const _day = SkyPalette(
     gradientColors: [Color(0xFF87CEEB), Color(0xFFB8E0F0), Color(0xFFF5F0E8)],
     gradientStops: [0.0, 0.5, 1.0],
@@ -349,8 +349,8 @@ class LivingSky {
       Color(0xFFB8941E),
       Color(0xFF8B6914),
     ],
-    textColor: Color(0xFF1A1A1A),
-    subtitleColor: Color(0xFF4A4A4A),
+    textColor: Color(0xFF000000),
+    subtitleColor: Color(0xFF000000),
     accentColor: Color(0xFFB8941E),
     cardColor: Color(0x25000000),
     cardBorder: Color(0x20000000),
@@ -359,7 +359,7 @@ class LivingSky {
     glowIntensity: 0.6,
   );
 
-  /// Deep purple to amber-orange. Locked bright-phase dark text (Golden
+  /// Deep purple to amber-orange. Locked bright-phase black text (Golden
   /// Hour intentionally joins the bright bucket per SPEC Feature 47).
   static const _goldenHour = SkyPalette(
     gradientColors: [Color(0xFF1A1040), Color(0xFFD4652A), Color(0xFFFFAA50)],
@@ -372,8 +372,8 @@ class LivingSky {
       Color(0xFFA04820),
       Color(0xFF6B2A10),
     ],
-    textColor: Color(0xFF1A1A1A),
-    subtitleColor: Color(0xFF4A4A4A),
+    textColor: Color(0xFF000000),
+    subtitleColor: Color(0xFF000000),
     accentColor: Color(0xFFFFAA50),
     cardColor: Color(0x30000000),
     cardBorder: Color(0x25FFFFFF),
@@ -495,7 +495,7 @@ class LivingSky {
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: p.warmHighlight, width: 2),
         ),
-        labelStyle: TextStyle(color: p.textColor.withOpacity(0.7)),
+        labelStyle: TextStyle(color: p.subtitleColor),
         hintStyle: TextStyle(color: p.subtitleColor),
       ),
       sliderTheme: SliderThemeData(

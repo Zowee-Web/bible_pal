@@ -6,10 +6,10 @@ import 'package:bible_pal/theme/living_sky.dart';
 /// (SPEC Feature 47 Living Sky — LOCKED).
 ///
 /// The contract:
-/// - **Bright phases** (Dawn, Day, Golden Hour) — dark text only:
-///     primary   #1A1A1A
-///     secondary #4A4A4A
-///     tertiary  #6B6B6B
+/// - **Bright phases** (Dawn, Day, Golden Hour) — black text only:
+///     primary   #000000
+///     secondary #000000
+///     tertiary  #000000
 ///   No luminance heuristic, no per-component override, no shadows on
 ///   body text. Golden Hour is explicitly part of the bright bucket.
 /// - **Night phase** — light text only:
@@ -24,9 +24,9 @@ import 'package:bible_pal/theme/living_sky.dart';
 /// text MUST update this contract deliberately — silent drift is a
 /// regression.
 void main() {
-  const Color kBrightPrimary = Color(0xFF1A1A1A);
-  const Color kBrightSecondary = Color(0xFF4A4A4A);
-  const Color kBrightTertiary = Color(0xFF6B6B6B);
+  const Color kBrightPrimary = Color(0xFF000000);
+  const Color kBrightSecondary = Color(0xFF000000);
+  const Color kBrightTertiary = Color(0xFF000000);
 
   const Color kNightPrimary = Color(0xFFFFFFFF);
   const Color kNightSecondary = Color(0xD9FFFFFF); // white @ 0.85
@@ -45,15 +45,15 @@ void main() {
     for (final phase in [SkyPhase.dawn, SkyPhase.day, SkyPhase.goldenHour]) {
       final fg = LivingSky.getPalette(phase).foreground;
 
-      test('$phase primaryText is locked #1A1A1A', () {
+      test('$phase primaryText is locked #000000', () {
         expect(fg.primaryText, kBrightPrimary);
       });
 
-      test('$phase secondaryText is locked #4A4A4A', () {
+      test('$phase secondaryText is locked #000000', () {
         expect(fg.secondaryText, kBrightSecondary);
       });
 
-      test('$phase tertiaryText is locked #6B6B6B', () {
+      test('$phase tertiaryText is locked #000000', () {
         expect(fg.tertiaryText, kBrightTertiary);
       });
 
