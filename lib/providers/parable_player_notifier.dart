@@ -1,13 +1,18 @@
+import 'dart:async';
 import 'dart:io' show Platform;
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bible_pal/models/parable.dart';
 import 'package:bible_pal/services/ambient_audio_service.dart';
 import 'package:bible_pal/services/audio_service.dart';
+import 'package:bible_pal/services/completed_stories_store.dart';
 import 'package:bible_pal/services/parable_service.dart' show AudioResolveError;
 import 'package:bible_pal/services/verse_service.dart';
 import 'package:bible_pal/services/voice_consent_gate.dart';
+import 'package:bible_pal/core/analytics_events.dart';
 import 'package:bible_pal/core/app_logger.dart';
+import 'package:bible_pal/features/paths/path_launch_context.dart';
+import 'package:bible_pal/features/paths/path_type.dart';
 import 'service_providers.dart';
 import 'app_state_notifier.dart';
 
@@ -49,6 +54,14 @@ class ParablePlayerState {
   /// Whether the current error is retryable (e.g. offline or download failed).
   final bool canRetry;
 
+  /// PALs Paths launch context (SPEC Feature 50.6 — LOCKED). Non-null when
+  /// the player was opened from a path; null for mood, favorite, history,
+  /// or standalone search launches. The canonical player uses this to
+  /// decide whether to render "Next in Your Journey" — rendered only when
+  /// this field is non-null. Path order is sacred: advancement does NOT
+  /// skip completed stories.
+  final PathLaunchContext? launchContext;
+
   const ParablePlayerState({
     this.currentParable,
     this.parableText,
@@ -59,6 +72,7 @@ class ParablePlayerState {
     this.verse,
     this.downloadProgress,
     this.canRetry = false,
+    this.launchContext,
   });
 
   ParablePlayerState copyWith({
@@ -72,6 +86,8 @@ class ParablePlayerState {
     double? downloadProgress,
     bool clearDownloadProgress = false,
     bool? canRetry,
+    PathLaunchContext? launchContext,
+    bool clearLaunchContext = false,
   }) {
     return ParablePlayerState(
       currentParable: currentParable ?? this.currentParable,
@@ -85,6 +101,9 @@ class ParablePlayerState {
           ? null
           : (downloadProgress ?? this.downloadProgress),
       canRetry: canRetry ?? this.canRetry,
+      launchContext: clearLaunchContext
+          ? null
+          : (launchContext ?? this.launchContext),
     );
   }
 
@@ -98,6 +117,20 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
   late AudioService _audioService;
   late AmbientAudioService _ambientService;
 
+  /// True once the ≥ 90% completion hook has fired for the currently
+  /// loaded story. Reset on every [loadParable] so the next story gets a
+  /// fresh one-shot. Gates both `story_completed` telemetry and
+  /// `CompletedStoriesStore.markCompleted()` (idempotency is also enforced
+  /// inside the store, but this flag avoids the round-trip per tick).
+  /// SPEC Feature 50.4 — LOCKED.
+  bool _completionFiredForCurrentLoad = false;
+
+  /// Subscription to the main audio position stream used to detect the
+  /// story-body ≥ 90% completion threshold (SPEC Feature 50.4). Story body
+  /// only — reflection audio plays through a separate AudioPlayer on the
+  /// player screen and does NOT pass through [_audioService].
+  StreamSubscription<Duration>? _completionPositionSub;
+
   @override
   ParablePlayerState build() {
     // Get services
@@ -107,6 +140,10 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
 
     // Listen to audio state changes
     _listenToAudioState();
+
+    ref.onDispose(() {
+      _completionPositionSub?.cancel();
+    });
 
     return const ParablePlayerState();
   }
@@ -135,10 +172,32 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
     });
   }
 
-  /// Load and prepare a parable for playback
+  /// Load and prepare a parable for playback.
+  ///
+  /// [launchContext] is optional and defaults to null. Non-null values are
+  /// passed by PALs Paths launches (SPEC Feature 50.6) so the player can
+  /// render "Next in Your Journey" and so `story_completed` telemetry
+  /// records the launch source.
+  ///
   /// Returns true if audio loaded successfully, false on error.
-  Future<bool> loadParable(Parable parable) async {
-    state = state.copyWith(isLoading: true, errorMessage: null, canRetry: false);
+  Future<bool> loadParable(
+    Parable parable, {
+    PathLaunchContext? launchContext,
+  }) async {
+    // Reset the one-shot completion flag and tear down any stale
+    // position listener from a previous load. Each loadParable() call
+    // starts a fresh ≥ 90% completion window.
+    _completionFiredForCurrentLoad = false;
+    await _completionPositionSub?.cancel();
+    _completionPositionSub = null;
+
+    state = state.copyWith(
+      isLoading: true,
+      errorMessage: null,
+      canRetry: false,
+      launchContext: launchContext,
+      clearLaunchContext: launchContext == null,
+    );
 
     logEvent('story_load_start', {
       'story_id': parable.storyId,
@@ -233,7 +292,14 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
         currentParable: parable,
         parableText: parableText,
         isLoading: false,
+        launchContext: launchContext,
       );
+
+      // Attach the ≥ 90% story-body completion listener for this load.
+      // Story body only — reflection audio uses a separate AudioPlayer
+      // instance on the player screen and is invisible to _audioService.
+      // Write-once per load; idempotent with CompletedStoriesStore.
+      _attachCompletionWatcher(parable, launchContext);
 
       logEvent('story_load_success', {
         'story_id': parable.storyId,
@@ -365,8 +431,138 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
       'duration_ms': durationMs,
     });
 
+    // Natural playback-complete also counts as ≥ 90% for the purposes of
+    // SPEC Feature 50.4 (story body only, reflection ignored). The
+    // position-stream listener usually fires first, but on some codecs
+    // position reporting can stop short of exact duration — catch that
+    // here. Guarded by the one-shot flag, so this is a no-op if the
+    // position listener already triggered completion.
+    final parable = state.currentParable;
+    if (parable != null) {
+      await _maybeFireStoryCompleted(parable, state.launchContext);
+    }
+
     state = state.copyWith(playbackCompleted: true);
     ref.notifyListeners();
+  }
+
+  /// Attach the ≥ 90% story-body completion watcher (SPEC Feature 50.4 —
+  /// LOCKED). Samples the main audio position stream; fires once when
+  /// `position / duration ≥ 0.90`. Write-once per load via
+  /// [_completionFiredForCurrentLoad], and idempotent against
+  /// [CompletedStoriesStore] as a second safety net.
+  ///
+  /// Reflection audio is orthogonal — it plays through a separate
+  /// [AudioPlayer] instance owned by the player screen, not through
+  /// [_audioService], so this listener samples story-body playback only.
+  void _attachCompletionWatcher(
+    Parable parable,
+    PathLaunchContext? launchContext,
+  ) {
+    _completionPositionSub = _audioService.positionStream.listen((position) {
+      if (_completionFiredForCurrentLoad) return;
+
+      final duration = _audioService.duration;
+      if (duration == null || duration.inMilliseconds <= 0) return;
+
+      final ratio = position.inMilliseconds / duration.inMilliseconds;
+      if (ratio >= 0.90) {
+        // Fire-and-forget — never block audio thread on persistence.
+        unawaited(_maybeFireStoryCompleted(parable, launchContext));
+      }
+    });
+  }
+
+  /// Idempotently mark a story completed and fire `story_completed`
+  /// telemetry. Write-once per loadParable() call. Safe-fail — exceptions
+  /// in persistence or telemetry MUST NEVER break the player.
+  ///
+  /// Phase 3 additions:
+  /// 1. When `launchContext != null`, compute the `willCompletePath`
+  ///    predicate BEFORE marking the current story completed. This
+  ///    detects whether the current story is the last remaining
+  ///    incomplete story in the active path (SPEC Feature 50.10,
+  ///    strict transition semantics).
+  /// 2. After `markCompleted`, invalidate `completedStoryIdsProvider`
+  ///    so `pathServiceProvider` rebuilds with the fresh set and UI
+  ///    completion markers update reactively.
+  /// 3. If `willCompletePath` was true, fire `path_completed`
+  ///    telemetry once.
+  Future<void> _maybeFireStoryCompleted(
+    Parable parable,
+    PathLaunchContext? launchContext,
+  ) async {
+    if (_completionFiredForCurrentLoad) return;
+    _completionFiredForCurrentLoad = true;
+
+    // Phase 3: compute path-completion transition BEFORE markCompleted.
+    // This lets us detect "path was at <1.0 and will now be at 1.0"
+    // without needing persistent path-progress state. Safe-fail —
+    // telemetry detection is non-critical and must not block
+    // persistence or the fire of story_completed.
+    bool willCompletePath = false;
+    if (launchContext != null) {
+      try {
+        final pathService = await ref.read(pathServiceProvider.future);
+        final stories = pathService.getPathStories(
+          launchContext.pathType,
+          launchContext.pathId,
+        );
+        final inThisPath =
+            stories.any((s) => s.storyId == parable.storyId);
+        final currentlyIncomplete =
+            !pathService.isStoryCompleted(parable.storyId);
+        final otherIncompleteCount = stories
+            .where((s) =>
+                s.storyId != parable.storyId &&
+                !pathService.isStoryCompleted(s.storyId))
+            .length;
+        willCompletePath =
+            inThisPath && currentlyIncomplete && otherIncompleteCount == 0;
+      } catch (e) {
+        // Detection failure is non-fatal — log and continue.
+        logEvent('path_completion_detect_fail', {
+          'story_id': parable.storyId,
+          'path_type': launchContext.pathType.wireId,
+          'path_id': launchContext.pathId,
+          'error_type': e.runtimeType.toString(),
+        }, level: LogLevel.warn);
+      }
+    }
+
+    try {
+      final store = await ref.read(completedStoriesStoreProvider.future);
+      await store.markCompleted(parable.storyId);
+      // Phase 3: invalidate the reactive snapshot so pathServiceProvider
+      // rebuilds with the fresh set. UI widgets reading completion
+      // state re-render on the next frame.
+      ref.invalidate(completedStoryIdsProvider);
+    } catch (e) {
+      // Persistence failure is non-fatal — log and continue.
+      logEvent('completion_persist_fail', {
+        'story_id': parable.storyId,
+        'error_type': e.runtimeType.toString(),
+      }, level: LogLevel.warn);
+    }
+
+    // SPEC Feature 50.10: `source` enum is one of
+    // mood | path | favorite | history | search. Phase 1 infers two
+    // values: `path` when launched from PALs Paths (launchContext
+    // present), `mood` otherwise. Later phases can widen the inference
+    // as additional entry points explicitly declare themselves.
+    final source = launchContext != null ? 'path' : 'mood';
+    AnalyticsEvents.logStoryCompleted(parable, source: source);
+
+    // Phase 3: fire path_completed telemetry on the <1.0 → 1.0
+    // transition detected above. Strict: fires only when the active
+    // launch context belongs to the path that just transitioned.
+    if (willCompletePath && launchContext != null) {
+      AnalyticsEvents.logPathCompleted(
+        pathType: launchContext.pathType.wireId,
+        pathId: launchContext.pathId,
+        completionPct: 1.0,
+      );
+    }
   }
 
   /// Store PAL's response text and verse for display on the player screen.

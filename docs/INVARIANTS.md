@@ -189,6 +189,8 @@ The following hard caps are enforced:
 | **History** | 20 | Storage + Migration | FIFO (newest first) |
 | **Favorites** | 100 | Storage + Migration | User-managed |
 | **Pending Shares** | 50 | Storage + Migration | FIFO (oldest first) |
+| **Completed Stories** | 1000 | Storage + Migration | Insertion order (set) |
+| **Awarded Badges** | 200 | Storage + Migration | Insertion order (set) |
 
 ### Enforcement Mechanisms
 
@@ -261,6 +263,11 @@ Comprehensive tests verify:
 - `should heal History cap violation (>20 entries)` (migration test)
 - `should heal Favorites cap violation (>100 entries)` (migration test)
 - `should enforce 50-share cap (FIFO)` (pending shares)
+- `should enforce 1000-entry cap on completedStories`
+- `should enforce 200-entry cap on awardedBadges`
+- `should heal completedStories cap violation (>1000 entries)`
+- `should heal awardedBadges cap violation (>200 entries)`
+- `markCompleted is write-once idempotent`
 
 ### Behavior Specifications
 
@@ -280,6 +287,17 @@ Comprehensive tests verify:
 - **Oldest first**: Retry logic processes oldest shares first
 - **Auto-trim**: Oldest entries removed when cap exceeded
 - **Transport-dependent**: Only populated if transport layer enabled
+
+#### Completed Stories (1000 entries, set semantics)
+- **Set semantics**: `completedStories` is a set of `storyId` values — no duplicates possible. `CompletedStoriesStore.markCompleted(storyId)` is write-once idempotent.
+- **Eviction**: If the set exceeds 1000, oldest entries are evicted FIFO on migration. The 1000 cap is intentionally high; hitting it is a signal that the library has grown substantially, not a user-facing limit.
+- **Write trigger**: A story is added to the set when playback position reaches ≥ 90% of duration, regardless of launch source.
+- **Not history**: This collection is NOT the same as History (20-entry FIFO). History records plays; Completed Stories records completions. Both coexist.
+
+#### Awarded Badges (200 entries, set semantics)
+- **Set semantics**: `awardedBadges` is a set of `badge_id` values — no duplicates possible. `BadgeService.awardBadge(badge_id)` is write-once idempotent.
+- **Eviction**: If the set exceeds 200, oldest entries are evicted FIFO on migration. 200 is intentionally high for v1 (the total possible badge count fits comfortably below this cap).
+- **Phase 4**: v1 does not award any badges; the storage shape lands in Phase 1 so Phase 4 can enable the subsystem without data migration.
 
 ### Testing Caps
 
@@ -416,6 +434,19 @@ if (userPrefs.kidFriendlyOnly) {
 - Run post-filter safety check to catch bugs
 - Throw assertion in debug mode if violation detected
 - Emergency-filter in production as last resort
+
+#### 3a. PALs Paths Runtime Filtering (Feature 50)
+
+The kid-mode filter is applied at the PALs Paths service layer exactly as it is applied in `ParableService`:
+
+- `PathService.getPathStories()` MUST filter by `kidFriendlyOnly` before returning
+- `PathService.getNextInPath()` MUST filter by `kidFriendlyOnly` before returning. It advances by canonical position (per Feature 50.6) and MUST NOT filter by completion state — a kid-mode user sees the next story in sequence, never an adult-only story, regardless of whether they've heard it before.
+- `PathService.getResumePoint()` MUST filter by `kidFriendlyOnly` before returning. It MAY filter by completion state (per Feature 50.6b) to jump to a sensible resume point on the path detail screen.
+- `SearchService.search()` MUST filter by `kidFriendlyOnly` before ranking
+- Path completion percentage (`PathService.getCompletionPercentage()`) MUST compute its denominator over the kid-mode-filtered eligible set, not the raw manifest. A kid-mode user cannot see a path stuck at "50% complete" because the remaining stories are adult-only.
+- Empty paths (paths with zero eligible stories after kid-mode filtering) MUST be hidden from the path list in kid mode, not shown empty.
+
+These rules are tested by `test/features/paths/kid_mode_paths_test.dart` and fail the build on violation.
 
 #### 4. Build-Failing Tests
 
@@ -1140,6 +1171,15 @@ Validates structural integrity of committed story assets:
 - Traditional stories have `scriptureAnchor`
 - `meta.storyId` matches directory name
 
+#### 6. PALs Paths Traditional-Only Enforcement (Feature 50)
+
+PALs Paths operates only on Traditional stories. Creative stories are invisible to every path type and every search result. This extends the Non-Blur invariant into the path/search layer:
+
+- `PathService.getPathStories()` MUST filter out every story with `storytellingMode != 'traditional'` before applying any other filter
+- `SearchService.search()` MUST filter out every story with `storytellingMode != 'traditional'` before ranking
+- The 8 new metadata fields from Feature 50 (`primaryCharacterId`, `characterIds`, `bibleOrderIndex`, `timelineEra`, `themeTags`, `characterPathOrder`, `primaryCharacterDisplayName`, `characterDisplayNames`) MUST NOT appear on any Creative story. Presence of any of them on a Creative story is a manifest validation failure.
+- The `manifest_validation_test.dart` suite is extended to scan for the inverse: Creative stories carrying any PALs Paths metadata field fail the build.
+
 ### Violation Response
 
 **Build Time**:
@@ -1836,10 +1876,18 @@ flutter test test/critical/voice_privacy_scan_test.dart
 
 ```dart
 const Set<String> analyticsAllowedKeys = {
+  // Story core (v1)
   'story_id', 'mood', 'mode', 'length_bucket',
   'kid_friendly', 'translation_id', 'language_style', 'voice_key',
+  // PALs Paths (Feature 50)
+  'path_type', 'path_id', 'completion_pct',
+  'badge_id', 'badge_category', 'source',
 };
 ```
+
+**PALs Paths scoping:** The six new keys (`path_type`, `path_id`, `completion_pct`, `badge_id`, `badge_category`, `source`) MAY appear ONLY in events defined in SPEC Feature 50.10. They MUST NOT appear in `story_favorited` or other pre-existing events. Tests enforce both directions: the new events contain only their declared keys, and the old events do not drift to include the new keys.
+
+**Search query privacy:** The PALs Paths search input (Feature 50.7) accepts free-form user text. That text MUST NEVER be logged, persisted to telemetry, or included in breadcrumbs. `path_opened` and related events contain `path_type` and `path_id` only — never a `query`, `q`, `search_term`, or equivalent key. This is the same posture as voice input transcripts (Voice Transcript Privacy & Input Equivalence Invariant).
 
 #### 2. Build-Failing Tests
 **File**: [`test/core/analytics_events_test.dart`](../test/core/analytics_events_test.dart)
@@ -1992,6 +2040,9 @@ python3 -c "import json; r=json.load(open('server/model_router/model_registry.js
 - All existing serving invariants (Non-Repeat, Kid Safety, Mode Separation) still apply at every stage
 - `servedMood` must reflect the actual mood of the story returned, not the user's selection
 - Modifying the similar mood map requires owner approval
+- Mood Expansion governs mood-launched serving only. Path-launched, search-launched, and explicit-by-`storyId` launches (Feature 50) bypass the expansion engine. For those launches, `selectedMood` must be `null` on the served-story record; `servedMood` must be the story's own mood tag.
+- `ParableService.selectParable()` remains the ONLY entry point that invokes the Mood Expansion engine. Any new serving entry point that calls the engine from a non-mood context is a violation.
+- `PathService.getPathStories()`, `PathService.getNextInPath()`, and `PathService.getResumePoint()` MUST NOT call `selectParable()` internally. Path traversal is deterministic by canonical path order; resume is deterministic by first-incomplete lookup.
 
 ---
 

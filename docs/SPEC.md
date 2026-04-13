@@ -199,6 +199,21 @@ Each parable includes:
 - `storytellingMode` (creative or traditional)
 - `scriptureSources` (array of verse references)
 
+**PALs Paths metadata (optional, Traditional stories only — Feature 50):**
+
+These fields are all optional. Stories without them remain fully servable via mood flow, favorites, history, and keyword search. See Feature 50.9 for the partial-coverage rules.
+
+- `primaryCharacterId` (string, OPTIONAL) — canonical `snake_case` character ID from `assets/stories/character_registry.json`
+- `primaryCharacterDisplayName` (string, OPTIONAL) — display name matching the registry entry for `primaryCharacterId`
+- `characterIds` (array<string>, OPTIONAL) — additional character IDs appearing in the story (secondary path membership)
+- `characterDisplayNames` (array<string>, OPTIONAL) — display names parallel to `characterIds`
+- `bibleOrderIndex` (int, OPTIONAL) — canonical-order rank for the Bible Order path (unique per story)
+- `timelineEra` (string, OPTIONAL) — one of the nine canonical eras in Feature 50.2
+- `themeTags` (array<string>, OPTIONAL) — theme path memberships
+- `characterPathOrder` (int, OPTIONAL) — per-character sort order within a character path (unique per `primaryCharacterId`)
+
+Creative stories MUST NOT carry any of these fields. Presence of any of them on a Creative story fails Story Mode contract validation.
+
 **9. AI-Generated Story Titles (Editable)**
 - Each parable has an AI-generated title by default
 - User can rename any title
@@ -495,6 +510,8 @@ Golden Prompt mode is a specialized generation strategy for adult traditional SH
 **15b. Mood Expansion Serving Rule**
 
 Bible PAL preserves the user's selected mood as the primary intent, while expanding the eligible story pool in a controlled way to reduce fast repetition.
+
+**Scope:** Mood Expansion governs mood-launched serving only. Stories launched via PALs Paths (Feature 50), search results, favorites, history, or any explicit-by-`storyId` entry point are served deterministically by the caller and DO NOT pass through the Mood Expansion engine. For those launches, `selectedMood` is `null` on the served-story record and `servedMood` is the story's own mood tag.
 
 **Serving Priority Order**
 
@@ -1010,40 +1027,52 @@ The app's visual identity shifts with the time of day through four phases, creat
 
 ---
 
-## Sanctuary & Study Layout
+## Main Horizontal Navigation
 
-**48. Sanctuary & Study Layout (Feature 48)**
+**48. Main Horizontal Navigation (Feature 48) — LOCKED**
 
-The main menu is restructured into a horizontal two-page `PageView`, splitting the experience into a contemplative landing page and a functional interaction page.
+The main menu is a horizontal three-page `PageView`. Pages are ordered left-to-right by index. Default landing page is always the PAL Sanctuary at index 0. Each page preserves state across swipes (no rebuild on page change). Living Sky background is shared and continuous across all three pages — no visible seam.
 
-**Page 1 — "The Sanctuary" (Home):**
+**Page 0 — "PAL Sanctuary" (Default Landing, LOCKED):**
 - Living Sky background (Feature 47) fills the entire screen
-- PAL orb is the sole hero element — 280×280px (up from 224×224), centered, with a slow breathing glow animation whose color changes with the sky phase
+- PAL orb is the sole hero element — 280×280px, centered, with a slow breathing glow animation whose color changes with the sky phase
 - Daily Bread verse floats as faint atmospheric text in the lower portion (no card, no border — just text on the sky)
 - Streak counter appears as subtle warm gold text near the PAL orb when streak ≥ 2
 - A single soft animated chevron (›) at the right edge gently pulses to hint the page is swipeable
 - Settings gear icon remains top-right, faintly visible
 
-**Page 2 — "The Study" (Swipe Left):**
-- Same Living Sky background, continuous across both pages
+**Page 1 — "Mood" (One Page Forward from PAL Sanctuary):**
+- Same Living Sky background, continuous from page 0
 - 8 mood buttons with emoji+color pills, time-of-day reordered (Feature 42)
 - Text PAL / Read Story glass buttons
 - Now Playing / Finished panel (when active)
 - Favorites / History / My PALs glass navigation buttons
 - "Listen to an old favorite" link when favorites exist (Feature 45)
-- A soft chevron (‹) at the left edge hints back to the Sanctuary
+- Soft chevrons (‹ ›) at both edges hint at adjacent pages
+
+**Page 2 — "PALs Paths" (Two Pages Forward from PAL Sanctuary):**
+- Same Living Sky background, continuous from pages 0 and 1
+- Path-type selector at top:
+  - **Featured tile: The Life of Jesus** (`jesus_life`) — visually distinct, positioned above or prominently separated from the four standard tiles. Not buried under Characters.
+  - Four standard tiles: Bible Order, Timeline, Themes, Characters
+- Main content area (path list / search results / path detail) between the selector and the search input
+- **Bottom-anchored search input** matching the Mood page input style (glass surface, keyboard-safe, does not scroll with the content area) — placeholder: "Search scripture, character, or story"
+- Soft chevron (‹) at the left edge hints back to Mood
+- Full behavior is defined in Feature 50
 
 **Navigation:**
 - Smooth horizontal `PageView` with snap physics
-- Page indicator dots at bottom (subtle, warm gold)
+- Page indicator dots at bottom (three dots, subtle warm gold) — at rest on PAL Sanctuary the dots read ● ○ ○
 - Swipe gesture or tap chevron to navigate between pages
+- Nested horizontal scroll widgets inside any page (e.g. horizontal mood pill rows, path lists) MUST NOT consume the outer `PageView` horizontal drag; inner horizontal scrollers must yield to the outer page drag on overscroll
 
 **Constraints:**
-- Default landing page is always the Sanctuary (page 1)
+- Default landing page is always PAL Sanctuary (page 0) — LOCKED
 - PageView preserves state across swipes (no rebuild on page change)
-- Living Sky background is shared and continuous — no visible seam between pages
-- All existing main menu functionality is preserved on The Study page; nothing is removed
-- Kid mode still uses the kids theme palette (Feature 46) on both pages
+- Living Sky background is shared and continuous — no visible seam
+- All existing main menu functionality is preserved on the Mood page; nothing is removed from the pre-Feature-50 experience
+- Kid mode still uses the kids theme palette (Feature 46) on all three pages
+- On entry, the PageView always resets to page 0; deep links do not override the default landing page
 
 ---
 
@@ -1076,6 +1105,344 @@ Optional background audio that plays alongside story narration to create a calm,
 - No new dependencies (uses existing `just_audio`)
 - Exactly 4 sound types in v1 — no dynamic additions
 - Duplicate-start guard prevents concurrent playback of the same or overlapping sounds
+
+---
+
+## PALs Paths
+
+**50. PALs Paths (Feature 50)**
+
+PALs Paths is a top-level Scripture exploration and progression system that complements the mood-driven serving engine. It lives on page 2 of the main horizontal nav (Feature 48). It operates **only on Traditional stories** — Creative stories are invisible to every path type and every search result.
+
+### Purpose
+
+- Give users a structured way to explore Scripture through five path types: the featured **Life of Jesus** curated journey, plus Bible Order, Timeline, Themes, and Characters — in addition to the mood check-in
+- Track long-horizon progression across a path ("David's Journey" completion, "The Life of Jesus" completion) without disturbing the 20-entry history cap
+- Surface "what's next" in a deterministic, ordered way for path-launched sessions, without replacing mood expansion for mood-launched sessions
+- Preserve path order as sacred: stories are traversed in canonical sequence and are never auto-skipped based on completion state (Feature 50.6)
+
+### Access
+
+- Enter via page 2 of the main horizontal nav (Feature 48)
+- No other entry points in v1 (no deep links, no push notifications, no onboarding branch into a path)
+
+### 50.1 Path Types (LOCKED)
+
+Five path types. The enum is LOCKED for v1.
+
+1. **`jesus_life`** — SPECIAL. The Life of Jesus (see 50.1b). Featured in the PALs Paths UI; visually distinguished from the other four path types and positioned at the top of the path-type selector (not buried in the Characters list).
+2. **`bible_order`** — canonical Bible order, grouped by book. Ordering by `bibleOrderIndex` on each Traditional story; ties broken by `characterPathOrder`, then `storyId`.
+3. **`timeline`** — grouped by one of 9 canonical eras (see 50.2).
+4. **`themes`** — grouped by `themeTags[]` entries.
+5. **`characters`** — grouped by `primaryCharacterId` (primary path membership) with `characterIds[]` as secondary membership. Ordered within a character path by `characterPathOrder`. **Jesus is NEVER a character path entry** — stories with Jesus as the primary figure are surfaced exclusively through `jesus_life` and `timeline` (`jesus_ministry` era).
+
+### 50.1b The Life of Jesus (Special Path — LOCKED)
+
+`jesus_life` is a **curated, chronologically ordered** journey through the life and ministry of Jesus. It is NOT auto-derived from metadata like the other path types.
+
+**Curation rules:**
+
+- The sequence is defined by a curated index asset: `assets/stories/jesus_life_index.json`, a single ordered list of `storyId` values. Editing the list is an owner-approved change (same posture as the timeline era list).
+- Only stories where `primaryCharacterId == "jesus"` are eligible. Stories where Jesus is a secondary figure (`characterIds` contains `"jesus"` but `primaryCharacterId` is someone else) are NOT included.
+- Order is manual — authored by the owner, not derived from `bibleOrderIndex`, `characterPathOrder`, or any other metadata field.
+- The index is versioned; adding a story later appends it at the editor's chosen position, not automatically at the end.
+
+**Canonical v1 sequence (reference — actual story IDs filled in during annotation):**
+
+1. Birth of Jesus
+2. Early life
+3. Baptism
+4. Wilderness temptation
+5. Calling the disciples
+6. Miracles
+7. Teachings & parables
+8. Key encounters (Zacchaeus, Samaritan woman, etc.)
+9. Transfiguration
+10. Triumphal entry
+11. Last Supper
+12. Crucifixion
+13. Resurrection
+14. Ascension
+
+The v1 sequence is expected to grow as annotation batches land. The per-stage entries are ordering anchors, not hard stage labels shown to the user — the UI shows each story individually in sequence, not grouped by stage.
+
+**Completion and progression:**
+
+- Uses the exact same completion rule as every other path (Feature 50.4): story body completed at ≥ 90% playback. Reflection playback does not affect completion.
+- Inside the canonical player during a `jesus_life` session, "Next in Your Journey" advances to the next entry in the curated index **by position** (Feature 50.6 — sequence rule). Completed entries are NOT skipped.
+- On the `jesus_life` detail screen, "Continue Your Journey" uses the resume heuristic (Feature 50.6b): it jumps to the first entry in the curated index not yet in `CompletedStoriesStore`, or to the first entry if every story has been completed.
+- `PathService.getCompletionPercentage('jesus_life', 'default')` is computed over the curated index, after kid-mode eligibility filtering.
+- A Phase 4 completion badge (`badge_id: "life_of_jesus_complete"`, `badge_category: "path"`) is awarded when every eligible story in the curated index is completed. The badge is reserved in the allowlist for v1 but not awarded until Phase 4.
+
+**UI prominence:**
+
+- In the PALs Paths page (Feature 48 page 2), the path-type selector renders `jesus_life` as a visually distinct featured tile at the top of the selector, separated from the four standard path types. Exact visual treatment is owner-designed; the SPEC fixes only the position (top / featured) and the semantic distinction (not under Characters).
+- When the user selects `jesus_life`, the main content area shows the curated sequence as a vertical list in order, with a "Continue Your Journey" affordance at the top when progress > 0.
+
+**Kid mode:**
+
+- If the curated sequence contains zero kid-eligible stories, the `jesus_life` featured tile is hidden entirely in kid mode (same rule as other empty paths).
+- If the sequence contains a mix of kid-eligible and adult-only stories, `PathService` filters adult-only stories out before returning — kid-mode users see a shorter sequence, and the completion percentage denominator shrinks accordingly.
+
+**Traditional only:**
+
+- `jesus_life` follows the same Story Mode Non-Blur rule as all other path types: only Traditional stories. Creative stories with Jesus themes are never surfaced in `jesus_life`.
+
+### 50.2 Canonical Timeline Eras (LOCKED)
+
+The timeline path uses these nine era IDs. The list is LOCKED for v1 and requires owner approval to change.
+
+- `creation`
+- `patriarchs`
+- `exodus`
+- `judges`
+- `kingdom`
+- `exile`
+- `return`
+- `jesus_ministry`
+- `early_church`
+
+### 50.3 Character Path Disambiguation (LOCKED)
+
+Characters with the same given name MUST use distinct `snake_case` IDs. A canonical registry at `assets/stories/character_registry.json` holds the disambiguated IDs plus `displayName` and a short descriptor. Seed IDs for v1 are listed in Feature 50.8.
+
+Required rules:
+
+- Each `primaryCharacterId` must exist in the registry
+- Each entry in `characterIds[]` must exist in the registry
+- A story's `primaryCharacterDisplayName` must match the registry's `displayName` for that ID
+- Renaming a character ID after it ships requires a documented migration path (character IDs are an API contract once shipped)
+
+### 50.4 Completion Rule (LOCKED)
+
+A story is marked **completed** when **story body** playback position reaches **≥ 90%** of the **story body** duration, measured from the existing `just_audio` position stream in [ParablePlayerNotifier](../lib/providers/parable_player_notifier.dart).
+
+- Completion is write-once idempotent: calling `CompletedStoriesStore.markCompleted(storyId)` twice for the same `storyId` is a no-op
+- Completion persists across app restarts (separate from History)
+- Completion is recorded regardless of launch source (mood, path, favorite, history, search) — any story-body playback reaching ≥ 90% counts
+- Completion drives path progress; History (20-entry FIFO) is unchanged
+
+**Story body only — LOCKED:**
+
+- **Completion is measured on the story body only.** Reflection audio (Feature 34) is opt-in and plays after the story body finishes. Reflection playback position is NEVER used to compute completion.
+- A user who skips reflection entirely gets the exact same completion signal as a user who plays it. Tying completion to reflection would penalize users who opt out of Feature 34, which is not acceptable.
+- The "Read Scripture" bottom sheet (Feature 12) is similarly orthogonal — it does not affect completion.
+
+**Non-goals for v1:**
+- No scrub-gaming prevention. If users scrub past 90% of the story body immediately, the story is marked completed. This is an accepted v1 simplification.
+
+**Deferred to v2 (flagged, not implemented):** a more robust completion definition combining ≥ 90% position with a minimum "actively playing" duration threshold, to prevent scrub-to-end abuse. Tracked as an open follow-up in the SPEC.
+
+### 50.5 Path Completion Percentage
+
+`PathService.getCompletionPercentage(pathType, pathId)` returns a value in `[0.0, 1.0]` computed as:
+
+```
+completed_eligible / total_eligible
+```
+
+where `eligible` means the story passes all currently active filters (kid_mode, translation compliance, content filter) — the same filter layer [ParableService](../lib/services/parable_service.dart) uses today. Ineligible stories never count toward the denominator, so a kid-mode user does not see "50% complete" on a path whose remaining stories are adult-only.
+
+### 50.6 Next-in-Journey Rule (LOCKED — path order is sacred)
+
+When a story is launched from a path, the launch call carries a `PathLaunchContext { pathType, pathId, positionInPath }`. The canonical player reads this context and renders a "Next in Your Journey" block at the bottom of the player screen **only when `launchContext != null`**.
+
+**Rendering conditions:**
+
+- Renders only when `launchContext != null`
+- Standalone search launches that do not carry a path context do not render it
+- Mood, favorite, and history launches do not render it UNLESS the launch explicitly carries a `PathLaunchContext` (a later phase may allow explicit hand-offs into a path from a non-path entry point — the rule is "context-driven, not source-driven")
+
+**Content (LOCKED — path order is sacred):**
+
+- Shows the title and scripture reference of the **next story in exact canonical path order** — i.e. the story at `positionInPath + 1` within `pathType + pathId`
+- **Does NOT skip stories that have been previously listened to or completed.** Completed stories remain in sequence and are visually marked as completed in the path list, but path traversal from the player NEVER auto-skips them. This is the central rule of PALs Paths: a guided Scripture journey, not a "what haven't you heard yet" checklist.
+- Shows exactly one "next" story — never a recommendation list
+- Hides entirely only when the current story is the final entry in the path (`positionInPath + 1 >= pathLength`)
+- A completed next story is shown with a subtle completion marker (soft gold check or similar — visual treatment deferred) but remains the active "next" affordance; tapping it replays the story and advances path position normally
+
+**Distinction from Continue Your Journey (Feature 50.6b):**
+
+"Next in Your Journey" inside the Story Player is a **sequence rule**: it advances along the canonical path order regardless of completion state. "Continue Your Journey" on the path detail screen is a **resume rule**: it jumps to a sensible resume point based on completion. The two are intentionally different and must not be conflated.
+
+### 50.6b Continue Your Journey Rule
+
+When a user lands on a path detail screen (not the player), a "Continue Your Journey" affordance appears at the top of the content area. Unlike "Next in Your Journey", this affordance uses a **resume** heuristic:
+
+- Jumps to the first story in the path (in canonical order) whose `storyId` is NOT in `CompletedStoriesStore`
+- If every story in the path is already completed, jumps to the first story in the path — the user is free to replay the journey from the beginning
+- Is hidden only if the user has zero progress on this path yet (no interactions at all) AND the path has at least one story — in that case the user should simply tap the first story in the visible list
+
+**Two "next" behaviors — do not merge:**
+
+| Affordance | Location | Rule | Filters by completion? |
+|---|---|---|---|
+| Continue Your Journey | Path detail screen (path page 2) | Resume heuristic | YES — jumps to first incomplete |
+| Next in Your Journey | Inside the Story Player | Sequence rule | NO — advances by canonical position |
+
+`PathService` exposes these as two distinct methods:
+
+- `getNextInPath(pathType, pathId, positionInPath)` — for the player. Advances by position. Kid-mode filtered. NEVER filtered by completion.
+- `getResumePoint(pathType, pathId)` — for the path detail screen. Returns the first incomplete story after kid-mode filtering, or the first story if all complete.
+
+### 50.7 Search
+
+- **Scope:** Traditional stories only. Creative stories are invisible to search.
+- **Query types:** verse ("John 3:16"), chapter ("Psalm 23"), book ("Genesis"), character ("David"), event ("burning bush"), keyword ("faith")
+- **Priority order (LOCKED):**
+  1. Scripture anchor match (`bibleSourceRef` / `bibleStoryKey`)
+  2. Chapter or book match parsed from the query
+  3. Metadata match (title, `themeTags[]`, `characterIds[]`, `characterDisplayNames[]`)
+- **Kid mode:** search respects `kidFriendlyOnly` at the same filter layer as ParableService. Adult-only stories never surface in kid-mode search.
+- **Empty paths / empty results:** hidden entirely rather than shown empty (avoids confusing child users with "no results")
+- **Privacy:** the raw query string is NEVER persisted, logged, or sent in telemetry. Only the fact that a search was performed may be logged, via an opaque event count — see 50.10.
+
+### 50.8 Character Registry Seed (v1)
+
+The v1 seed registry is intentionally conservative and high-confidence. It ships at `assets/stories/character_registry.json`. Additions require owner approval. All IDs are `snake_case`.
+
+**Old Testament:**
+- `adam`
+- `eve`
+- `noah`
+- `abraham`
+- `sarah`
+- `isaac`
+- `rebekah`
+- `jacob`
+- `joseph_son_of_jacob`
+- `moses`
+- `aaron`
+- `joshua`
+- `deborah`
+- `gideon`
+- `samson`
+- `ruth`
+- `samuel`
+- `saul_king`
+- `david`
+- `solomon`
+- `elijah`
+- `elisha`
+- `daniel`
+- `jonah`
+- `esther`
+
+**New Testament (with disambiguation where names collide):**
+- `john_baptist`
+- `john_disciple`
+- `mary_mother_jesus`
+- `mary_magdalene`
+- `mary_sister_of_martha`
+- `james_son_zebedee`
+- `james_son_alphaeus`
+- `james_brother_of_jesus`
+- `simon_peter`
+- `simon_zealot`
+- `judas_iscariot`
+- `judas_thaddaeus`
+- `paul_apostle` (a.k.a. Saul of Tarsus — stored under `paul_apostle` post-conversion; pre-conversion appearances map to the same ID for path purposes)
+- `stephen_martyr`
+- `barnabas`
+- `lydia`
+- `priscilla`
+- `aquila`
+- `timothy`
+
+**Jesus (special case — LOCKED):**
+- `jesus` is a **reserved character ID**. Stories with Jesus as the primary figure use `primaryCharacterId: "jesus"`. Jesus is never a "secondary" in `characterIds[]` when he is also the primary.
+- `jesus` **NEVER appears as a Character Path** in the Characters path list. The Characters path enumerates every `primaryCharacterId` present in the manifest **except** `"jesus"`.
+- Stories with `primaryCharacterId: "jesus"` are surfaced exclusively through:
+  1. `jesus_life` (Feature 50.1b), the curated Life of Jesus path
+  2. `timeline` — specifically the `jesus_ministry` era
+  3. Keyword/scripture/book search results (Feature 50.7)
+  4. Mood flow, favorites, history, and `bible_order` path (unchanged)
+- A story where Jesus is a secondary figure (`characterIds` contains `"jesus"` but `primaryCharacterId` is someone else, e.g. a Peter-centric narrative where Jesus appears) is handled normally under that other character's path — the `jesus` ID in `characterIds` does NOT promote the story into `jesus_life`.
+
+### 50.9 Partial Metadata Coverage (LOCKED)
+
+The 8 new metadata fields added to Feature 8 are all **optional**. The following rules govern partial coverage:
+
+- A story missing `primaryCharacterId` does not appear in any Characters path
+- A story missing `bibleOrderIndex` does not appear in the Bible Order path
+- A story missing `timelineEra` does not appear in the Timeline path
+- A story missing `themeTags[]` (or with an empty list) does not appear in any Themes path
+- A story with none of these fields still serves normally via mood flow, favorites, and history. It remains searchable only through baseline searchable fields such as `title`, `bibleSourceRef`, and `bibleStoryKey` where present — it will NOT surface via character, theme, or timeline filters until those fields are populated. This keeps the promise precise: the minimum search surface is the baseline fields, and structured path membership is opt-in via annotation.
+- `PathService` MUST NOT crash or warn on missing optional fields
+- `PathService` MUST NOT surface an empty path in the UI — paths with zero eligible stories are hidden from the path list
+
+This lets PALs Paths ship the moment the navigation and service layer land, and lets content coverage grow over time without blocking releases.
+
+### 50.10 Telemetry (allowlisted)
+
+Six new events. All payloads are fire-and-forget via `AppLogger.logEvent()` and pass through the existing allowlist. New allowlisted payload keys are added to the canonical allowlist in `lib/core/analytics_events.dart`:
+
+| Event | Allowed payload fields |
+|---|---|
+| `path_opened` | `path_type`, `path_id` |
+| `character_path_selected` | `path_type` (always `"characters"`), `path_id` (character_id), `language_style` |
+| `continue_journey_clicked` | `path_type`, `path_id` |
+| `story_completed` | `story_id`, `mood`, `mode`, `length_bucket`, `kid_friendly`, `translation_id`, `language_style`, `voice_key`, `source` |
+| `path_completed` | `path_type`, `path_id`, `completion_pct` |
+| `badge_awarded` | `badge_id`, `badge_category` |
+
+**Path type enum** (valid values for `path_type`): `jesus_life`, `bible_order`, `timeline`, `themes`, `characters`.
+
+**Path ID conventions:**
+- For `jesus_life`: `path_id` is always `"default"` (single curated sequence)
+- For `bible_order`: `path_id` is a book slug (e.g. `"genesis"`)
+- For `timeline`: `path_id` is one of the 9 era IDs (e.g. `"kingdom"`)
+- For `themes`: `path_id` is a theme tag (e.g. `"faith"`)
+- For `characters`: `path_id` is a `primaryCharacterId` from the registry (NEVER `"jesus"` — see 50.8)
+
+New allowlist keys (added to `analyticsAllowedKeys`):
+- `path_type`
+- `path_id`
+- `completion_pct`
+- `badge_id`
+- `badge_category`
+- `source` (one of: `mood`, `path`, `favorite`, `history`, `search`)
+
+Forbidden in all path-related payloads (consistent with existing invariants):
+- Raw search query strings
+- User text of any kind
+- Minute-based length fields
+- Tradition / denomination fields
+- PII
+
+### 50.11 Data Capacity
+
+Two new persisted collections. Both are capped and healed by `StorageService.validateAndHealInvariants()` on startup.
+
+| Collection | Max Entries | Enforcement | Ordering |
+|---|---|---|---|
+| `completedStories` | 1000 | Storage + Migration | Insertion order (set semantics) |
+| `awardedBadges` | 200 | Storage + Migration | Insertion order (set semantics) |
+
+`completedStories` is a set of `storyId` values — no duplicates possible. `awardedBadges` is a set of `badge_id` values — no duplicates possible. Both caps are high enough that hitting them is unlikely; if hit, oldest entries are evicted FIFO.
+
+### 50.12 Canonical Player Contract (LOCKED)
+
+All story launches — from PAL Sanctuary, Mood, PALs Paths, search, character paths, Continue Journey, Favorites, History — MUST route to the single canonical [ParablePlayerScreen](../lib/features/pals_parables/parable_player_screen.dart). No duplicate player implementations are permitted. This contract is enforced by repo-wide test: any new `...PlayerScreen` widget outside the canonical path fails the test suite.
+
+### 50.13 Badges (Phase 4 — NOT v1)
+
+The badge subsystem (BadgeService, BadgeRegistry, overlay widget, award-once semantics, Character → Path → Progress → Engagement priority) is defined here for completeness but is **deferred to Phase 4**. v1 ships the telemetry event `badge_awarded` and the capacity cap, so the event stream and storage shape are stable before the subsystem lands. No badge is awarded in v1.
+
+Badge categories (for the Phase 4 implementation):
+1. **Character completion** — all stories in a character path completed
+2. **Path completion** — all stories in a non-character path completed
+3. **Progress milestones** — 1, 10, 25, 50, 100 stories completed
+4. **Engagement** — first favorite, first reflection, first share, streak thresholds
+
+Award priority (when multiple would trigger simultaneously): Character → Path → Progress → Engagement. Badges are shown in the canonical player as a soft gold glow overlay with minimal animation. No gamification language, no points, no leaderboards.
+
+### 50.14 Open Questions (v1 draft)
+
+- Does the Themes path use a LOCKED theme vocabulary (e.g. `faith`, `fear`, `grief`, `provision`, `mercy`, `courage`) or a free-form tag set? v1 leans toward LOCKED — requires owner approval of the vocabulary before first annotation batch lands.
+- Should search query strings be hashed + counted for aggregate "what are users searching for" insight, or not persisted at all? v1 defaults to not persisted at all.
+- Scrub-to-end abuse — follow-up for v2 per §50.4.
+- Visual treatment of the `jesus_life` featured tile in the path-type selector (color, size, position relative to other tiles). SPEC fixes only the position (top/featured) and the semantic distinction. Exact visual design deferred to owner.
 
 ---
 
@@ -1355,6 +1722,27 @@ When a user adds a story to favorites, a single `story_favorited` event is emitt
 | `translation_id` | `Parable.translationId` | `"WEB"` |
 | `language_style` | `Parable.languageStyle` | `"KJV"` |
 | `voice_key` | `Parable.narratorVoiceKey` | `"VOICE_JAMES_HUSKY"` |
+
+**45. PALs Paths Events (Feature 50.10)**
+
+Six additional allowlisted events introduced by Feature 50. All share the same privacy guarantees as `story_favorited`: fire-and-forget, safe-fail, allowlist-validated, never blocks user action.
+
+| Event | Field | Example |
+|---|---|---|
+| `path_opened` | `path_type` | `"characters"` |
+| `path_opened` | `path_id` | `"david"` |
+| `character_path_selected` | `path_type` | `"characters"` |
+| `character_path_selected` | `path_id` | `"david"` |
+| `character_path_selected` | `language_style` | `"WEB"` |
+| `continue_journey_clicked` | `path_type` | `"timeline"` |
+| `continue_journey_clicked` | `path_id` | `"kingdom"` |
+| `story_completed` | `story_id`, `mood`, `mode`, `length_bucket`, `kid_friendly`, `translation_id`, `language_style`, `voice_key`, `source` | (same shape as `story_favorited` plus `source`) |
+| `path_completed` | `path_type`, `path_id`, `completion_pct` | `"themes"`, `"faith"`, `1.0` |
+| `badge_awarded` | `badge_id`, `badge_category` | `"davids_journey_complete"`, `"character"` |
+
+**New allowlist keys added to `analyticsAllowedKeys`:** `path_type`, `path_id`, `completion_pct`, `badge_id`, `badge_category`, `source`.
+
+All existing forbidden keys (user text, PII, minute-based length, tradition) remain forbidden. The raw search query string is NEVER logged.
 
 **Privacy Constraints:**
 - NO user text, titles, scripture content, or PII

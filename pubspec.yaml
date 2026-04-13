@@ -68,6 +68,10 @@ flutter:
     - assets/stories/manifest.json
     - assets/stories/scripture_anchor_registry.json
     - assets/stories/biblical_figure_registry.json
+    # PALs Paths (SPEC Feature 50) — seed assets, populated in Phase 2
+    - assets/stories/character_registry.json
+    - assets/stories/paths_index.json
+    - assets/stories/jesus_life_index.json
     # Traditional stories (Opus 4.6, 1000-series)
     - assets/stories/traditional/1000/
     - assets/stories/traditional/1001/

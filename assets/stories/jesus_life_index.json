@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "description": "Curated sequence for The Life of Jesus special path (SPEC Feature 50.1b). Order is manually authored, not derived from any metadata field. Only stories where primaryCharacterId == 'jesus' are eligible. Phase 2 seeds the first 4 entries in canonical chronological order; additional entries append as Jesus-centric stories are annotated in later batches.",
+  "sequence": [
+    "story_1004_joyful_short_kid_traditional",
+    "story_1000_weary_short_traditional",
+    "story_1006_grateful_short_traditional",
+    "story_1005_joyful_short_traditional"
+  ]
+}

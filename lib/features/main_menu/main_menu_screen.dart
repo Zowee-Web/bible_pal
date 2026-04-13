@@ -21,15 +21,20 @@ import '../../providers/parable_player_notifier.dart';
 import '../../models/parable.dart';
 import '../consent/voice_consent_dialog.dart';
 import '../../core/app_logger.dart';
+import '../../widgets/glass_input_decoration.dart';
 import '../../widgets/living_sky_background.dart';
 import '../../widgets/premium_components.dart';
+import '../paths/paths_page.dart';
 
 /// Main Menu Screen
-/// Based on UI/UX Design Spec Section 4: Home Screen
+/// Based on SPEC Feature 48 — Main Horizontal Navigation (LOCKED 3 pages).
 ///
-/// Layout: Two-page "Sanctuary & Study" design
-/// - Page 1 (Sanctuary): PAL orb hero, Daily Bread verse, swipe hint
-/// - Page 2 (Study): Mood buttons, Text PAL, Read Story, Favorites/History/My PALs
+/// Layout: three-page horizontal PageView. Default landing page is PAL
+/// Sanctuary at index 0.
+/// - Page 0 (PAL Sanctuary): PAL orb hero, Daily Bread verse, swipe hint
+/// - Page 1 (Mood): Mood buttons, Text PAL, Read Story, Favorites/History/My PALs
+///   (class name retained as `_StudyPage` internally to minimize diff)
+/// - Page 2 (PALs Paths): Path-type selector + search (SPEC Feature 50)
 class MainMenuScreen extends ConsumerWidget {
   const MainMenuScreen({super.key});
 
@@ -124,11 +129,14 @@ class _MainMenuBodyState extends ConsumerState<_MainMenuBody> {
   late final PageController _pageController;
   int _currentPage = 0;
   final GlobalKey<_StudyPageState> _studyPageKey = GlobalKey<_StudyPageState>();
+  final GlobalKey<PathsPageState> _pathsPageKey = GlobalKey<PathsPageState>();
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController();
+    // SPEC Feature 48 — LOCKED: default landing page is always index 0
+    // (PAL Sanctuary). Mood is index 1, PALs Paths is index 2.
+    _pageController = PageController(initialPage: 0);
     _pageController.addListener(_onPageChanged);
 
     // Listen for player state changes — reset study page when story ends
@@ -188,23 +196,49 @@ class _MainMenuBodyState extends ConsumerState<_MainMenuBody> {
                     ),
                   ),
                 ),
-                // PageView fills the rest
+                // PageView fills the rest. SPEC Feature 48 — LOCKED
+                // three-page layout: PAL Sanctuary (0, default) → Mood
+                // (1) → PALs Paths (2). Inner horizontal scrollers on any
+                // page must yield to the outer drag on overscroll.
+                //
+                // Phase 3.2 polish — dismiss keyboard on horizontal swipe.
+                // When the user starts dragging the outer PageView with
+                // a TextField focused (Mood or PALs Paths search), we
+                // immediately drop focus so the keyboard doesn't follow
+                // them to the destination page. The `depth == 0` filter
+                // ensures nested vertical scrollables inside each page
+                // (e.g. the PALs Paths home scroll, path detail lists,
+                // mood mood-text scroll) don't trigger false dismissals.
+                // Returning `false` leaves the notification unconsumed
+                // so the PageView drag proceeds normally.
                 Expanded(
-                  child: PageView(
-                    controller: _pageController,
-                    children: [
-                      // Page 1: The Sanctuary
-                      _SanctuaryPage(
-                        theme: widget.theme,
-                        dailyBread: widget.dailyBread,
-                        verseReference: widget.verseReference,
-                      ),
-                      // Page 2: The Study
-                      _StudyPage(key: _studyPageKey, theme: widget.theme),
-                    ],
+                  child: NotificationListener<ScrollStartNotification>(
+                    onNotification: (notification) {
+                      if (notification.depth == 0) {
+                        FocusManager.instance.primaryFocus?.unfocus();
+                      }
+                      return false;
+                    },
+                    child: PageView(
+                      controller: _pageController,
+                      children: [
+                        // Page 0: PAL Sanctuary (default landing)
+                        _SanctuaryPage(
+                          theme: widget.theme,
+                          dailyBread: widget.dailyBread,
+                          verseReference: widget.verseReference,
+                        ),
+                        // Page 1: Mood (internal class name retained as
+                        // _StudyPage to minimize diff — user-facing copy
+                        // is "Mood")
+                        _StudyPage(key: _studyPageKey, theme: widget.theme),
+                        // Page 2: PALs Paths (SPEC Feature 50)
+                        PathsPage(key: _pathsPageKey, theme: widget.theme),
+                      ],
+                    ),
                   ),
                 ),
-                // Page dots indicator at bottom
+                // Page dots indicator at bottom (3 dots)
                 _PageDots(currentPage: _currentPage),
               ],
             ),
@@ -230,7 +264,8 @@ class _PageDots extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 12, top: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: List.generate(2, (index) {
+        // SPEC Feature 48: 3 dots for PAL / Mood / PALs Paths.
+        children: List.generate(3, (index) {
           final isActive = index == currentPage;
           return AnimatedContainer(
             duration: const Duration(milliseconds: 250),
@@ -900,7 +935,14 @@ class _StudyPageState extends ConsumerState<_StudyPage>
   Widget build(BuildContext context) {
     final palette = LivingSky.getPalette(LivingSky.getPhase());
 
-    return Column(
+    // Tap-outside-to-dismiss (Phase 3.2 polish). Opaque hit-test lets
+    // taps on empty regions dismiss the keyboard while interactive
+    // children (mood buttons, text field, nav tiles) still absorb
+    // their own taps first.
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Column(
       children: [
         // Content area — centered vertically
         Expanded(
@@ -914,15 +956,17 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                     children: [
                       const SizedBox(height: 24),
 
-                      // Heading — fixed style to prevent shifts on theme change (kid mode)
+                      // Heading — routes through foreground palette for
+                      // phase-aware contrast (Phase 3.2 global pass).
                       Text(
                         'How are you feeling?',
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
-                          color: palette.textColor,
+                          color: palette.foreground.primaryText,
                           letterSpacing: 0.3,
                           height: 1.3,
+                          shadows: palette.foreground.textShadow,
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -931,9 +975,10 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
-                          color: palette.subtitleColor,
+                          color: palette.foreground.secondaryText,
                           letterSpacing: 0.2,
                           height: 1.5,
+                          shadows: palette.foreground.subtitleShadow,
                         ),
                       ),
 
@@ -1007,34 +1052,18 @@ class _StudyPageState extends ConsumerState<_StudyPage>
               return TextField(
                 controller: _textController,
                 focusNode: _textFocusNode,
-                style: TextStyle(color: palette.textColor, fontSize: 17, height: 1.4),
+                style: glassInputTextStyle(palette),
                 maxLines: 4,
                 minLines: 1,
                 textCapitalization: TextCapitalization.sentences,
-                decoration: InputDecoration(
+                // Shared glass input decoration (see lib/widgets/
+                // glass_input_decoration.dart). The PALs Paths search
+                // field uses the same helper so both surfaces stay
+                // visually identical (SPEC Feature 48 page 2).
+                decoration: glassInputDecoration(
+                  palette: palette,
                   hintText: _hints[_currentHintIndex],
-                  hintStyle: TextStyle(
-                    color: palette.foreground.tertiaryText.withValues(
-                      alpha: _userIsTyping ? 0.0 : _hintFadeAnimation.value,
-                    ),
-                    fontSize: 17,
-                    height: 1.4,
-                  ),
-                  filled: true,
-                  fillColor: palette.cardColor,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(24),
-                    borderSide: BorderSide(color: palette.cardBorder, width: 1.5),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(24),
-                    borderSide: BorderSide(color: palette.cardBorder, width: 1.5),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(24),
-                    borderSide: BorderSide(color: palette.warmHighlight.withOpacity(0.5), width: 1.5),
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                  hintAlpha: _userIsTyping ? 0.0 : _hintFadeAnimation.value,
                   suffixIcon: _userIsTyping
                       ? Padding(
                           padding: const EdgeInsets.only(right: 6),
@@ -1060,6 +1089,7 @@ class _StudyPageState extends ConsumerState<_StudyPage>
           ),
         ),
       ],
+      ),
     );
   }
 }
@@ -1725,10 +1755,11 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
                                     ? theme.textTheme.headlineSmall
                                     : theme.textTheme.titleMedium)
                                 ?.copyWith(
-                              color: palette.textColor,
+                              color: palette.foreground.primaryText,
                               fontWeight: i == 0 && _introLines[0].startsWith('HI,')
                                   ? FontWeight.w700
                                   : FontWeight.w500,
+                              shadows: palette.foreground.textShadow,
                             ),
                             textAlign: TextAlign.center,
                           ),

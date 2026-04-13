@@ -93,8 +93,9 @@ class _PrimaryGlowButtonState extends State<PrimaryGlowButton>
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              color: palette.textColor,
+              color: palette.foreground.primaryText,
               letterSpacing: 0.3,
+              shadows: palette.foreground.textShadow,
             ),
           ),
         ),
@@ -213,10 +214,14 @@ class _GlassButtonState extends State<GlassButton>
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
-              color: palette.textColor,
+              color: palette.foreground.primaryText,
+              shadows: palette.foreground.subtitleShadow,
             ),
             child: IconTheme(
-              data: IconThemeData(color: palette.textColor, size: 16),
+              data: IconThemeData(
+                color: palette.foreground.primaryText,
+                size: 16,
+              ),
               child: widget.child,
             ),
           ),
@@ -334,8 +339,9 @@ class _GlassTileState extends State<GlassTile>
                 style: TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.w600,
-                  color: palette.textColor,
+                  color: palette.foreground.primaryText,
                   letterSpacing: 0.3,
+                  shadows: palette.foreground.subtitleShadow,
                 ),
               ),
             ],

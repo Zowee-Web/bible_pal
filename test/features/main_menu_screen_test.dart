@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:bible_pal/features/main_menu/main_menu_screen.dart';
+import 'package:bible_pal/features/paths/path_launch_context.dart';
 import 'package:bible_pal/providers/app_state_notifier.dart';
 import 'package:bible_pal/providers/parable_player_notifier.dart';
 import 'package:bible_pal/services/audio_service.dart';
@@ -65,7 +66,11 @@ class _TestPlayerNotifier extends ParablePlayerNotifier {
   @override
   Future<void> setVolume(double v) async {}
   @override
-  Future<bool> loadParable(Parable p) async => true;
+  Future<bool> loadParable(
+    Parable p, {
+    PathLaunchContext? launchContext,
+  }) async =>
+      true;
   @override
   Future<void> clear() async {}
 }

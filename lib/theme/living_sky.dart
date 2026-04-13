@@ -7,9 +7,26 @@ import 'package:flutter/material.dart';
 // ---------------------------------------------------------------------------
 
 /// Semantic foreground colors derived from a [SkyPalette]'s background
-/// brightness.  Use these instead of manually calling `.withOpacity()` on
-/// palette colors — the values are tuned per brightness bucket (bright /
-/// medium / dark) so text stays readable across every time of day.
+/// brightness — the single source of truth for text and icon contrast
+/// across every screen in Bible PAL.
+///
+/// **Enforced contrast system (Phase 3.2 global pass).** Every text
+/// rendering in the app MUST route through a `ForegroundPalette`
+/// instance obtained via `palette.foreground`. No widget is allowed to
+/// hardcode text colors or use raw `.withOpacity()` on palette fields.
+/// The values below are tuned to the Living Sky gradient so text stays
+/// readable in all four sky phases (Dawn, Day, Golden Hour, Night).
+///
+/// Three text levels + three shadow levels:
+/// - [primaryText] / [textShadow] — titles, headings, important labels
+/// - [secondaryText] / [subtitleShadow] — subtitles, helper text, labels
+/// - [tertiaryText] / [captionShadow] — hints, scripture refs, captions
+/// - [mutedText] — decorative captions (muted state)
+///
+/// The foreground values are computed by `SkyPalette.foreground`, which
+/// selects between a "bright" bucket (shadows required — Dawn, Day,
+/// Golden Hour) and a "dark" bucket (no shadow needed — Night). See
+/// that getter for the threshold logic.
 class ForegroundPalette {
   /// Full-strength primary text — titles, headings, important content.
   final Color primaryText;
@@ -18,8 +35,8 @@ class ForegroundPalette {
   /// Always clearly readable against the background.
   final Color secondaryText;
 
-  /// Softer tertiary text — hints, placeholders, captions.
-  /// Visible but not prominent.
+  /// Softer tertiary text — hints, placeholders, captions, scripture
+  /// references. Visible but not prominent.
   final Color tertiaryText;
 
   /// Very subtle text — UI hints like "swipe", decorative captions.
@@ -40,6 +57,10 @@ class ForegroundPalette {
   /// Slightly stronger shadow for secondary / smaller text.
   final List<Shadow> subtitleShadow;
 
+  /// Subtle shadow for tertiary / caption text. Tuned narrower than
+  /// [subtitleShadow] so small text reads cleanly without blur halo.
+  final List<Shadow> captionShadow;
+
   /// Subtle local contrast layer for content regions on medium-luminance
   /// backgrounds (golden hour / sunset).  Transparent on bright and dark
   /// backgrounds where text already has sufficient contrast.
@@ -56,6 +77,7 @@ class ForegroundPalette {
     required this.divider,
     required this.textShadow,
     required this.subtitleShadow,
+    this.captionShadow = const [],
     this.scrimColor = const Color(0x00000000),
   });
 }
@@ -171,73 +193,84 @@ class SkyPalette {
     return const [];
   }
 
-  /// Semantic foreground palette computed from background luminance.
+  /// Enforced semantic foreground palette (Phase 3.2 global contrast pass).
   ///
-  /// Three buckets:
-  /// - **bright** (luminance > 0.35) — dark text, subtle dark shadows
-  /// - **medium** (0.08 – 0.35) — text with polarity-aware shadows
-  /// - **dark**  (< 0.08) — light text, no shadows needed
+  /// Two-bucket system keyed on [backgroundLuminance]:
+  ///
+  /// - **Bright bucket** — Dawn, Day, Golden Hour (`lum > 0.08`)
+  ///   White text with phase-aware shadows. Shadows are essential on
+  ///   Golden Hour especially, where warm-on-warm otherwise creates
+  ///   low contrast. Shadows are subtle on Day / Dawn but still help
+  ///   decorative captions read cleanly against particle systems.
+  ///
+  /// - **Dark bucket** — Night only (`lum <= 0.08`)
+  ///   White text, no shadows. Deep navy background provides
+  ///   sufficient contrast without any halo effect.
+  ///
+  /// Note on threshold choice: the original spec called for
+  /// `lum > 0.35`, but Golden Hour's middle gradient luminance is
+  /// ~0.24, which would drop it into the "dark" bucket and strip its
+  /// shadows — exactly the readability regression this pass is trying
+  /// to fix. The `lum > 0.08` threshold honors the user's stated
+  /// intent (Day + Golden Hour need shadows, Night doesn't) rather
+  /// than the literal number.
   ForegroundPalette get foreground {
     final lum = backgroundLuminance;
+    final isBrightBackground = lum > 0.08;
 
-    if (lum > 0.35) {
-      // ── Bright backgrounds (day, dawn) ──
+    if (isBrightBackground) {
+      // Dawn / Day / Golden Hour — enforce white text + shadow across
+      // every brightness level. Matches the Phase 3.2 spec:
+      //   primary:   white @ 0.95 + shadow (0x66000000, blur 6, y+2)
+      //   secondary: white @ 0.80 + shadow (0x55000000, blur 4)
+      //   tertiary:  white @ 0.65 + shadow (0x44000000, blur 3)
+      //
+      // scrimColor stays nonzero ONLY for medium-luminance backgrounds
+      // where a rounded card fill adds extra local contrast (golden
+      // hour / sunset). Bright-bright phases (day) don't need it.
+      final needsScrim = lum < 0.35;
       return ForegroundPalette(
-        primaryText: textColor,
-        secondaryText: textColor.withOpacity(0.82),
-        tertiaryText: subtitleColor,
-        mutedText: subtitleColor.withOpacity(0.72),
+        primaryText: Colors.white.withOpacity(0.95),
+        secondaryText: Colors.white.withOpacity(0.80),
+        tertiaryText: Colors.white.withOpacity(0.65),
+        mutedText: Colors.white.withOpacity(0.50),
         primaryIcon: warmHighlight,
-        secondaryIcon: subtitleColor.withOpacity(0.70),
-        divider: subtitleColor.withOpacity(0.25),
-        textShadow: const [Shadow(color: Color(0x28000000), blurRadius: 4)],
-        subtitleShadow: const [Shadow(color: Color(0x38000000), blurRadius: 6)],
+        secondaryIcon: Colors.white.withOpacity(0.75),
+        divider: Colors.white.withOpacity(0.22),
+        textShadow: const [
+          Shadow(
+            color: Color(0x66000000),
+            blurRadius: 6,
+            offset: Offset(0, 2),
+          ),
+        ],
+        subtitleShadow: const [
+          Shadow(color: Color(0x55000000), blurRadius: 4),
+        ],
+        captionShadow: const [
+          Shadow(color: Color(0x44000000), blurRadius: 3),
+        ],
+        scrimColor: needsScrim
+            ? const Color(0x26000000) // ~15% black
+            : const Color(0x00000000),
       );
     }
 
-    if (lum > 0.08) {
-      // ── Medium backgrounds (golden hour / sunset) ──
-      // Use pure white for maximum contrast on warm mid-tones.
-      // Double-layer shadows: tight inner halo + wider outer spread.
-      const bright = Color(0xFFFFFFFF);
-      final textIsLight = textColor.computeLuminance() > 0.5;
-      final innerShadow = textIsLight
-          ? const Color(0x88000000)
-          : const Color(0x66FFFFFF);
-      final outerShadow = textIsLight
-          ? const Color(0x55000000)
-          : const Color(0x44FFFFFF);
-      return ForegroundPalette(
-        primaryText: textIsLight ? bright : textColor,
-        secondaryText: (textIsLight ? bright : textColor).withOpacity(0.95),
-        tertiaryText: (textIsLight ? bright : textColor).withOpacity(0.84),
-        mutedText: (textIsLight ? bright : textColor).withOpacity(0.66),
-        primaryIcon: warmHighlight,
-        secondaryIcon: (textIsLight ? bright : textColor).withOpacity(0.72),
-        divider: (textIsLight ? bright : textColor).withOpacity(0.24),
-        textShadow: [
-          Shadow(color: innerShadow, blurRadius: 4),
-          Shadow(color: outerShadow, blurRadius: 12),
-        ],
-        subtitleShadow: [
-          Shadow(color: innerShadow, blurRadius: 3),
-          Shadow(color: outerShadow, blurRadius: 14),
-        ],
-        scrimColor: const Color(0x26000000), // ~15% black
-      );
-    }
-
-    // ── Dark backgrounds (night) ──
+    // Night — deep navy background, white text without shadow.
+    //   primary:   white @ 0.92
+    //   secondary: white @ 0.70
+    //   tertiary:  white @ 0.55
     return ForegroundPalette(
-      primaryText: textColor,
-      secondaryText: textColor.withOpacity(0.82),
-      tertiaryText: subtitleColor,
-      mutedText: subtitleColor.withOpacity(0.70),
+      primaryText: Colors.white.withOpacity(0.92),
+      secondaryText: Colors.white.withOpacity(0.70),
+      tertiaryText: Colors.white.withOpacity(0.55),
+      mutedText: Colors.white.withOpacity(0.42),
       primaryIcon: orbGlowColor,
-      secondaryIcon: subtitleColor,
+      secondaryIcon: Colors.white.withOpacity(0.70),
       divider: cardBorder.withOpacity(0.50),
       textShadow: const [],
       subtitleShadow: const [],
+      captionShadow: const [],
     );
   }
 }

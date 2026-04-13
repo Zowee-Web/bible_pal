@@ -22,6 +22,12 @@ class StorageService {
   static const String _keyPendingShares = 'pending_shares';
   static const String _keyLastInboxSync = 'last_inbox_sync';
   static const String _keyJournal = 'journal_entries';
+  // PALs Paths (Feature 50) — completion + badge persistence. See
+  // SPEC 50.11 / INVARIANTS Data Capacity Invariants for caps.
+  static const String _keyCompletedStories = 'completed_stories';
+  static const String _keyAwardedBadges = 'awarded_badges';
+  static const int _completedStoriesCap = 1000;
+  static const int _awardedBadgesCap = 200;
 
   final SharedPreferences _prefs;
 
@@ -204,11 +210,65 @@ class StorageService {
     return map.map((key, value) => MapEntry(key, value as String));
   }
 
+  // ========== Completed Stories (PALs Paths, Feature 50.11) ==========
+
+  /// Return the set of completed story IDs as a list (insertion order).
+  /// Empty if nothing has been completed yet. Capped at 1000 entries.
+  Future<List<String>> getCompletedStories() async {
+    final json = _prefs.getString(_keyCompletedStories);
+    if (json == null) return <String>[];
+    final list = jsonDecode(json) as List<dynamic>;
+    return list.map((e) => e as String).toList();
+  }
+
+  /// Mark a story as completed. Write-once idempotent — calling twice for
+  /// the same `storyId` is a no-op. FIFO eviction when the 1000-entry cap
+  /// is exceeded (oldest entry dropped). See SPEC Feature 50.4 + 50.11.
+  Future<void> addCompletedStory(String storyId) async {
+    final list = await getCompletedStories();
+    if (list.contains(storyId)) return; // Idempotent.
+    list.add(storyId);
+    if (list.length > _completedStoriesCap) {
+      list.removeRange(0, list.length - _completedStoriesCap);
+    }
+    await _prefs.setString(_keyCompletedStories, jsonEncode(list));
+  }
+
+  /// True if the given story has been completed (≥ 90% story-body playback).
+  Future<bool> isStoryCompleted(String storyId) async {
+    final list = await getCompletedStories();
+    return list.contains(storyId);
+  }
+
+  // ========== Awarded Badges (PALs Paths, Feature 50.11) ==========
+
+  /// Return the set of awarded badge IDs as a list (insertion order).
+  /// Empty until Phase 4 (badges are reserved in v1 but not yet awarded).
+  Future<List<String>> getAwardedBadges() async {
+    final json = _prefs.getString(_keyAwardedBadges);
+    if (json == null) return <String>[];
+    final list = jsonDecode(json) as List<dynamic>;
+    return list.map((e) => e as String).toList();
+  }
+
+  /// Award a badge. Write-once idempotent. FIFO eviction at 200-entry cap.
+  Future<void> addAwardedBadge(String badgeId) async {
+    final list = await getAwardedBadges();
+    if (list.contains(badgeId)) return; // Idempotent.
+    list.add(badgeId);
+    if (list.length > _awardedBadgesCap) {
+      list.removeRange(0, list.length - _awardedBadgesCap);
+    }
+    await _prefs.setString(_keyAwardedBadges, jsonEncode(list));
+  }
+
   // ========== Data Migration & Invariant Healing ==========
 
-  /// Validate and heal data invariants (called during app initialization)
-  /// Enforces caps on History (20), Favorites (100), and Pending Shares (50)
-  /// Returns a report of what was healed for debugging/logging
+  /// Validate and heal data invariants (called during app initialization).
+  /// Enforces caps on History (20), Favorites (100), Pending Shares (50),
+  /// Completed Stories (1000, Feature 50.11), and Awarded Badges (200,
+  /// Feature 50.11). Returns a report of what was healed for
+  /// debugging/logging.
   Future<Map<String, int>> validateAndHealInvariants() async {
     final report = <String, int>{};
 
@@ -242,6 +302,30 @@ class StorageService {
         final trimmed = list.take(50).toList();
         await _prefs.setString(_keyPendingShares, jsonEncode(trimmed));
         report['pending_shares_trimmed'] = list.length - 50;
+      }
+    }
+
+    // Heal Completed Stories cap (1000 entries, FIFO oldest-first)
+    final completedJson = _prefs.getString(_keyCompletedStories);
+    if (completedJson != null) {
+      final list = jsonDecode(completedJson) as List<dynamic>;
+      if (list.length > _completedStoriesCap) {
+        final excess = list.length - _completedStoriesCap;
+        final trimmed = list.skip(excess).toList();
+        await _prefs.setString(_keyCompletedStories, jsonEncode(trimmed));
+        report['completed_stories_trimmed'] = excess;
+      }
+    }
+
+    // Heal Awarded Badges cap (200 entries, FIFO oldest-first)
+    final badgesJson = _prefs.getString(_keyAwardedBadges);
+    if (badgesJson != null) {
+      final list = jsonDecode(badgesJson) as List<dynamic>;
+      if (list.length > _awardedBadgesCap) {
+        final excess = list.length - _awardedBadgesCap;
+        final trimmed = list.skip(excess).toList();
+        await _prefs.setString(_keyAwardedBadges, jsonEncode(trimmed));
+        report['awarded_badges_trimmed'] = excess;
       }
     }
 

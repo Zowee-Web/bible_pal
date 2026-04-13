@@ -22,6 +22,7 @@ import '../../widgets/scripture_sources_panel.dart';
 import '../../widgets/name_prompt_overlay.dart';
 import '../../widgets/premium_components.dart';
 import '../../theme/living_sky.dart';
+import '../paths/next_in_journey_block.dart';
 
 /// Parable Player Screen
 /// Based on SPEC.md Features 11, 12, 16, 17, 34-37
@@ -452,6 +453,10 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     final playerState = ref.watch(parablePlayerProvider);
     final playerNotifier = ref.watch(parablePlayerProvider.notifier);
     final theme = Theme.of(context);
+    // Phase 3.2 global contrast pass — resolve the sky palette once at
+    // build time so text surfaces below route through the enforced
+    // foreground palette (primary/secondary/tertiary + shadows).
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
 
     // Detect playback completion and trigger reflection
     if (!_completionListenerSet) {
@@ -468,12 +473,31 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
       canPop: false,
       onPopInvokedWithResult: (didPop, _) async {
         if (didPop) return;
-        // Stop audio and clear story state so the story fully ends
+        // CRITICAL back-nav ordering (Phase 3.2 polish pass):
+        // POP the route FIRST, then tear audio + state down AFTER.
+        //
+        // If we call `clear()` before `pop()`, Riverpod flips
+        // `currentParable` to null and the widget rebuilds with
+        // its "Tap PAL to start a story" empty state before the
+        // pop transition completes. The user briefly sees that
+        // empty state and perceives it as a broken back-nav
+        // (appearing on a wrong screen). Popping first disposes
+        // the widget before Riverpod can trigger the rebuild, so
+        // the empty-state flash never paints.
+        //
+        // The notifier + reflection player live OUTSIDE the
+        // widget tree, so calling them after pop is safe — their
+        // cleanup just runs in the background while the user is
+        // already on the previous route.
+        final nav = Navigator.of(context);
+        nav.pop();
+        // Fire-and-forget cleanup. Reflection player doesn't need
+        // setState (_stopReflectionAudio would, so we call stop()
+        // directly to skip the setState branch on a disposing widget).
+        _reflectionPlayer?.stop();
+        // Story audio + ambient + clear parable state — runs on the
+        // Riverpod notifier, not the widget.
         await playerNotifier.clear();
-        _stopReflectionAudio();
-        if (context.mounted) {
-          Navigator.of(context).pop();
-        }
       },
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -527,11 +551,17 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                             padding: const EdgeInsets.fromLTRB(24, 16, 24, 0),
                             child: Column(
                               children: [
-                                // Story title — large, centered
+                                // Story title — large, centered.
+                                // Phase 3.2 contrast pass: routes
+                                // through foreground palette for
+                                // phase-aware white + shadow on all
+                                // sky phases.
                                 Text(
                                   playerState.currentParable!.title,
                                   style: theme.textTheme.headlineMedium?.copyWith(
                                     fontWeight: FontWeight.bold,
+                                    color: palette.foreground.primaryText,
+                                    shadows: palette.foreground.textShadow,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
@@ -552,6 +582,8 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                           '"${playerState.verse!.text}"',
                                           style: theme.textTheme.bodyMedium?.copyWith(
                                             fontStyle: FontStyle.italic,
+                                            color: palette.foreground.primaryText,
+                                            shadows: palette.foreground.subtitleShadow,
                                           ),
                                           textAlign: TextAlign.center,
                                         ),
@@ -559,7 +591,8 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                         Text(
                                           '— ${playerState.verse!.reference}',
                                           style: theme.textTheme.labelSmall?.copyWith(
-                                            color: theme.colorScheme.onSurfaceVariant,
+                                            color: palette.foreground.tertiaryText,
+                                            shadows: palette.foreground.captionShadow,
                                           ),
                                         ),
                                       ],
@@ -641,12 +674,28 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Text(_formatDuration(
-                                                _isDraggingSlider
-                                                    ? Duration(milliseconds: _dragValue.toInt())
-                                                    : position,
-                                              )),
-                                              Text(_formatDuration(duration)),
+                                              Text(
+                                                _formatDuration(
+                                                  _isDraggingSlider
+                                                      ? Duration(milliseconds: _dragValue.toInt())
+                                                      : position,
+                                                ),
+                                                style: TextStyle(
+                                                  color: palette.foreground.secondaryText,
+                                                  fontSize: 13,
+                                                  fontFeatures: const [FontFeature.tabularFigures()],
+                                                  shadows: palette.foreground.subtitleShadow,
+                                                ),
+                                              ),
+                                              Text(
+                                                _formatDuration(duration),
+                                                style: TextStyle(
+                                                  color: palette.foreground.secondaryText,
+                                                  fontSize: 13,
+                                                  fontFeatures: const [FontFeature.tabularFigures()],
+                                                  shadows: palette.foreground.subtitleShadow,
+                                                ),
+                                              ),
                                             ],
                                           ),
                                         ),
@@ -673,7 +722,10 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                         const SizedBox(height: 8),
                                         Text(
                                           'Downloading ${(playerState.downloadProgress! * 100).round()}%',
-                                          style: theme.textTheme.bodySmall,
+                                          style: theme.textTheme.bodySmall?.copyWith(
+                                            color: palette.foreground.secondaryText,
+                                            shadows: palette.foreground.subtitleShadow,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -793,6 +845,15 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
 
                                 // Post-Story Reflection (SPEC.md Features #34-36)
                                 _buildReflectionSection(theme),
+
+                                // Next in Your Journey (SPEC Feature 50.6 —
+                                // LOCKED). Rendered ONLY when the current
+                                // story was launched with a non-null
+                                // PathLaunchContext, playback has completed,
+                                // and PathService.getNextInPath() returns a
+                                // non-null next story. Path order is sacred:
+                                // advancement does NOT skip completed stories.
+                                const NextInJourneyBlock(),
 
                                 const SizedBox(height: 24),
                               ],
@@ -1088,9 +1149,9 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
         maxLines: 1,
         textInputAction: TextInputAction.done,
         onSubmitted: (_) => _saveJournal(parable),
-        cursorColor: palette.textColor,
+        cursorColor: palette.foreground.primaryText,
         style: TextStyle(
-          color: palette.textColor,
+          color: palette.foreground.primaryText,
           fontSize: 14,
         ),
         decoration: InputDecoration(

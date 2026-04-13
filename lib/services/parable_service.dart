@@ -205,6 +205,22 @@ class ParableService {
     }
   }
 
+  /// Return every Traditional parable in the loaded manifest.
+  ///
+  /// Minimal read-only surface introduced for PALs Paths (Phase 2, SPEC
+  /// Feature 50). This method MUST NOT invoke mood expansion, non-repeat
+  /// logic, or any other serving filter — it is a pure snapshot of
+  /// `storytellingMode == "traditional"` entries, used by [PathService]
+  /// and [SearchService] to build their own deterministic filters.
+  ///
+  /// Creative stories are filtered out at this layer so downstream
+  /// consumers cannot accidentally serve them via a path or search
+  /// (Story Mode Non-Blur Invariant #6).
+  Future<List<Parable>> getAllTraditionalParables() async {
+    final all = await _loadManifest();
+    return all.where((p) => p.storytellingMode == 'traditional').toList();
+  }
+
   /// Get eligible parables based on user preferences and mood
   /// Per SPEC.md Feature #4: Parable Generation / Selection Engine
   /// Updated for Story Mode Contracts v2 (SPEC.md)

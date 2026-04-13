@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "description": "PALs Paths derived index. Phase 1 ships this as an empty seed — Phase 2 populates it as Traditional stories gain PALs Paths metadata. See SPEC Feature 50.9 (partial metadata coverage is allowed).",
+  "bible_order": [],
+  "timeline": {},
+  "themes": {},
+  "characters": {}
+}

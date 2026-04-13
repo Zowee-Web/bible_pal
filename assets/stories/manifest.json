@@ -2788,7 +2788,13 @@
       "reflectionQuestion": "Is there a burden you've been carrying on your own that you might, even for a moment, allow yourself to lay down and find rest?",
       "bibleSourceRef": "Matthew 11:28-30",
       "bibleStoryKey": "rest_for_the_weary",
-      "scriptureTextFilePath": "traditional/1000/scripture_1000_web.txt"
+      "scriptureTextFilePath": "traditional/1000/scripture_1000_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "bibleOrderIndex": 650,
+      "timelineEra": "jesus_ministry",
+      "themeTags": ["mercy", "hope"],
+      "characterPathOrder": 8
     },
     {
       "storyId": "story_1000_weary_full_traditional",
@@ -3322,7 +3328,13 @@
       "reflectionQuestion": "Can you think of a time when you heard really exciting news and wanted to tell everyone about it?",
       "bibleSourceRef": "Luke 2:1-20",
       "bibleStoryKey": "nativity",
-      "scriptureTextFilePath": "traditional/1004/scripture_1004_web.txt"
+      "scriptureTextFilePath": "traditional/1004/scripture_1004_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "bibleOrderIndex": 620,
+      "timelineEra": "jesus_ministry",
+      "themeTags": ["hope", "faith"],
+      "characterPathOrder": 1
     },
     {
       "storyId": "story_1004_joyful_full_kid_traditional",
@@ -3388,7 +3400,13 @@
       "reflectionQuestion": "Have you ever felt like something was holding you back from getting a closer look at who Jesus really is?",
       "bibleSourceRef": "Luke 19:1-10",
       "bibleStoryKey": "zacchaeus",
-      "scriptureTextFilePath": "traditional/1005/scripture_1005_web.txt"
+      "scriptureTextFilePath": "traditional/1005/scripture_1005_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "bibleOrderIndex": 640,
+      "timelineEra": "jesus_ministry",
+      "themeTags": ["mercy", "faith"],
+      "characterPathOrder": 6
     },
     {
       "storyId": "story_1005_joyful_full_traditional",
@@ -3520,7 +3538,13 @@
       "reflectionQuestion": "Have you ever paused to notice a blessing you almost let slip by without a word of thanks?",
       "bibleSourceRef": "Luke 17:11-19",
       "bibleStoryKey": "ten_lepers",
-      "scriptureTextFilePath": "traditional/1006/scripture_1006_web.txt"
+      "scriptureTextFilePath": "traditional/1006/scripture_1006_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "bibleOrderIndex": 635,
+      "timelineEra": "jesus_ministry",
+      "themeTags": ["mercy", "faith"],
+      "characterPathOrder": 5
     },
     {
       "storyId": "story_1006_grateful_full_traditional",
@@ -4378,7 +4402,13 @@
       "reflectionQuestion": "What does it look like to move forward when the destination has not yet been named?",
       "bibleSourceRef": "Genesis 12:1-9",
       "bibleStoryKey": "abram_called",
-      "scriptureTextFilePath": "traditional/1016/scripture_1016_web.txt"
+      "scriptureTextFilePath": "traditional/1016/scripture_1016_web.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "bibleOrderIndex": 12,
+      "timelineEra": "patriarchs",
+      "themeTags": ["obedience", "faith"],
+      "characterPathOrder": 1
     },
     {
       "storyId": "story_1016_anxious_full_traditional",
@@ -4686,7 +4716,13 @@
       "reflectionQuestion": "When have you been asked to step into something larger than yourself, carrying nothing but the assurance that you would not go alone?",
       "bibleSourceRef": "Exodus 3:1-15",
       "bibleStoryKey": "burning_bush",
-      "scriptureTextFilePath": "traditional/1019/scripture_1019_web.txt"
+      "scriptureTextFilePath": "traditional/1019/scripture_1019_web.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "bibleOrderIndex": 50,
+      "timelineEra": "exodus",
+      "themeTags": ["obedience", "faith"],
+      "characterPathOrder": 1
     },
     {
       "storyId": "story_1019_encouraging_full_traditional",
@@ -4774,7 +4810,13 @@
       "reflectionQuestion": "When has something you had given up hoping for arrived at a time you least expected it?",
       "bibleSourceRef": "Genesis 18:1-15",
       "bibleStoryKey": "three_visitors_at_mamre",
-      "scriptureTextFilePath": "traditional/1020/scripture_1020_web.txt"
+      "scriptureTextFilePath": "traditional/1020/scripture_1020_web.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "bibleOrderIndex": 18,
+      "timelineEra": "patriarchs",
+      "themeTags": ["hope", "faith"],
+      "characterPathOrder": 2
     },
     {
       "storyId": "story_1020_grateful_full_traditional",
@@ -4994,7 +5036,13 @@
       "reflectionQuestion": "What does it look like when value is found in the place no one thought to look?",
       "bibleSourceRef": "1 Samuel 16:1-13",
       "bibleStoryKey": "david_anointed",
-      "scriptureTextFilePath": "traditional/1022/scripture_1022_web.txt"
+      "scriptureTextFilePath": "traditional/1022/scripture_1022_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "bibleOrderIndex": 200,
+      "timelineEra": "kingdom",
+      "themeTags": ["faith", "provision"],
+      "characterPathOrder": 1
     },
     {
       "storyId": "story_1022_joyful_full_traditional",
@@ -5918,7 +5966,13 @@
       "reflectionQuestion": "When has provision come to you in a form you did not expect or plan for?",
       "bibleSourceRef": "Ruth 2:1-23",
       "bibleStoryKey": "ruth_gleans_in_boaz_field",
-      "scriptureTextFilePath": "traditional/1036/scripture_1036_web.txt"
+      "scriptureTextFilePath": "traditional/1036/scripture_1036_web.txt",
+      "primaryCharacterId": "ruth",
+      "primaryCharacterDisplayName": "Ruth",
+      "bibleOrderIndex": 180,
+      "timelineEra": "kingdom",
+      "themeTags": ["provision", "mercy"],
+      "characterPathOrder": 1
     },
     {
       "storyId": "story_1036_grateful_full_traditional",
@@ -6622,7 +6676,13 @@
       "reflectionQuestion": "The sea stood before them and the army behind. There was no way through and no way back. What does it mean to stand still when every instinct says to run?",
       "bibleSourceRef": "Exodus 14:10-31",
       "bibleStoryKey": "crossing_the_red_sea",
-      "scriptureTextFilePath": "traditional/1048/scripture_1048_web.txt"
+      "scriptureTextFilePath": "traditional/1048/scripture_1048_web.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "bibleOrderIndex": 52,
+      "timelineEra": "exodus",
+      "themeTags": ["courage", "faith"],
+      "characterPathOrder": 2
     },
     {
       "storyId": "story_1048_anxious_full_traditional",

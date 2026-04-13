@@ -38,6 +38,19 @@ class Parable {
   final String?
       seasonTag; // 'advent', 'lent', 'easter', 'thanksgiving', or null. For seasonal story surfacing.
 
+  // PALs Paths metadata (Feature 50, Traditional stories only). All nullable —
+  // stories without these fields remain fully servable via mood flow, favorites,
+  // history, and baseline search (title / bibleSourceRef / bibleStoryKey). They
+  // are opt-in for structured path membership. See SPEC 50.9.
+  final String? primaryCharacterId;
+  final String? primaryCharacterDisplayName;
+  final List<String>? characterIds;
+  final List<String>? characterDisplayNames;
+  final int? bibleOrderIndex;
+  final String? timelineEra;
+  final List<String>? themeTags;
+  final int? characterPathOrder;
+
   const Parable({
     required this.storyId,
     required this.title,
@@ -62,6 +75,14 @@ class Parable {
     this.generatedAt,
     this.timeOfDay,
     this.seasonTag,
+    this.primaryCharacterId,
+    this.primaryCharacterDisplayName,
+    this.characterIds,
+    this.characterDisplayNames,
+    this.bibleOrderIndex,
+    this.timelineEra,
+    this.themeTags,
+    this.characterPathOrder,
   });
 
   /// Create from JSON (for storage/retrieval)
@@ -109,6 +130,22 @@ class Parable {
           : null,
       timeOfDay: json['timeOfDay'] as String?,
       seasonTag: json['seasonTag'] as String?,
+      // PALs Paths metadata (Feature 50) — all optional, all nullable.
+      primaryCharacterId: json['primaryCharacterId'] as String?,
+      primaryCharacterDisplayName:
+          json['primaryCharacterDisplayName'] as String?,
+      characterIds: (json['characterIds'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      characterDisplayNames: (json['characterDisplayNames'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      bibleOrderIndex: json['bibleOrderIndex'] as int?,
+      timelineEra: json['timelineEra'] as String?,
+      themeTags: (json['themeTags'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      characterPathOrder: json['characterPathOrder'] as int?,
     );
   }
 
@@ -144,6 +181,33 @@ class Parable {
     // ADR-010: Only include bibleStoryKey if present (required for Traditional)
     if (bibleStoryKey != null && bibleStoryKey!.isNotEmpty) {
       json['bibleStoryKey'] = bibleStoryKey;
+    }
+    // PALs Paths metadata (Feature 50) — only serialize when present so
+    // legacy manifests remain byte-identical and Creative stories never
+    // acquire path fields on round-trip.
+    if (primaryCharacterId != null) {
+      json['primaryCharacterId'] = primaryCharacterId;
+    }
+    if (primaryCharacterDisplayName != null) {
+      json['primaryCharacterDisplayName'] = primaryCharacterDisplayName;
+    }
+    if (characterIds != null) {
+      json['characterIds'] = characterIds;
+    }
+    if (characterDisplayNames != null) {
+      json['characterDisplayNames'] = characterDisplayNames;
+    }
+    if (bibleOrderIndex != null) {
+      json['bibleOrderIndex'] = bibleOrderIndex;
+    }
+    if (timelineEra != null) {
+      json['timelineEra'] = timelineEra;
+    }
+    if (themeTags != null) {
+      json['themeTags'] = themeTags;
+    }
+    if (characterPathOrder != null) {
+      json['characterPathOrder'] = characterPathOrder;
     }
     return json;
   }
@@ -183,6 +247,14 @@ class Parable {
     DateTime? generatedAt,
     String? timeOfDay,
     String? seasonTag,
+    String? primaryCharacterId,
+    String? primaryCharacterDisplayName,
+    List<String>? characterIds,
+    List<String>? characterDisplayNames,
+    int? bibleOrderIndex,
+    String? timelineEra,
+    List<String>? themeTags,
+    int? characterPathOrder,
   }) {
     return Parable(
       storyId: storyId ?? this.storyId,
@@ -208,6 +280,16 @@ class Parable {
       generatedAt: generatedAt ?? this.generatedAt,
       timeOfDay: timeOfDay ?? this.timeOfDay,
       seasonTag: seasonTag ?? this.seasonTag,
+      primaryCharacterId: primaryCharacterId ?? this.primaryCharacterId,
+      primaryCharacterDisplayName:
+          primaryCharacterDisplayName ?? this.primaryCharacterDisplayName,
+      characterIds: characterIds ?? this.characterIds,
+      characterDisplayNames:
+          characterDisplayNames ?? this.characterDisplayNames,
+      bibleOrderIndex: bibleOrderIndex ?? this.bibleOrderIndex,
+      timelineEra: timelineEra ?? this.timelineEra,
+      themeTags: themeTags ?? this.themeTags,
+      characterPathOrder: characterPathOrder ?? this.characterPathOrder,
     );
   }
 

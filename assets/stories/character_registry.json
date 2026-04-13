@@ -1,0 +1,187 @@
+{
+  "version": 1,
+  "description": "PALs Paths character registry (SPEC Feature 50.3 + 50.8). Canonical disambiguated snake_case IDs for Traditional story character path membership. Editing this file is an owner-approved change — character IDs are an API contract once shipped. The `jesus` entry is reserved for the special jesus_life path and must NEVER appear in the Characters path list.",
+  "characters": {
+    "adam": {
+      "displayName": "Adam",
+      "descriptor": "First man, Genesis"
+    },
+    "eve": {
+      "displayName": "Eve",
+      "descriptor": "First woman, Genesis"
+    },
+    "noah": {
+      "displayName": "Noah",
+      "descriptor": "Ark builder, Genesis"
+    },
+    "abraham": {
+      "displayName": "Abraham",
+      "descriptor": "Father of nations, Genesis"
+    },
+    "sarah": {
+      "displayName": "Sarah",
+      "descriptor": "Wife of Abraham, mother of Isaac"
+    },
+    "isaac": {
+      "displayName": "Isaac",
+      "descriptor": "Son of Abraham and Sarah"
+    },
+    "rebekah": {
+      "displayName": "Rebekah",
+      "descriptor": "Wife of Isaac"
+    },
+    "jacob": {
+      "displayName": "Jacob",
+      "descriptor": "Son of Isaac, renamed Israel"
+    },
+    "joseph_son_of_jacob": {
+      "displayName": "Joseph",
+      "descriptor": "Son of Jacob, dreamer in Egypt"
+    },
+    "moses": {
+      "displayName": "Moses",
+      "descriptor": "Leader of the Exodus"
+    },
+    "aaron": {
+      "displayName": "Aaron",
+      "descriptor": "Brother of Moses, first high priest"
+    },
+    "joshua": {
+      "displayName": "Joshua",
+      "descriptor": "Successor to Moses, led Israel into Canaan"
+    },
+    "deborah": {
+      "displayName": "Deborah",
+      "descriptor": "Prophetess and judge of Israel"
+    },
+    "gideon": {
+      "displayName": "Gideon",
+      "descriptor": "Judge of Israel, defeated Midianites"
+    },
+    "samson": {
+      "displayName": "Samson",
+      "descriptor": "Judge of Israel, Nazirite"
+    },
+    "ruth": {
+      "displayName": "Ruth",
+      "descriptor": "Moabite ancestor of David"
+    },
+    "samuel": {
+      "displayName": "Samuel",
+      "descriptor": "Prophet who anointed Saul and David"
+    },
+    "saul_king": {
+      "displayName": "Saul",
+      "descriptor": "First king of Israel"
+    },
+    "david": {
+      "displayName": "David",
+      "descriptor": "Shepherd king of Israel"
+    },
+    "solomon": {
+      "displayName": "Solomon",
+      "descriptor": "Wise king of Israel, David's son"
+    },
+    "elijah": {
+      "displayName": "Elijah",
+      "descriptor": "Prophet of the northern kingdom"
+    },
+    "elisha": {
+      "displayName": "Elisha",
+      "descriptor": "Successor to Elijah"
+    },
+    "daniel": {
+      "displayName": "Daniel",
+      "descriptor": "Prophet in Babylonian exile"
+    },
+    "jonah": {
+      "displayName": "Jonah",
+      "descriptor": "Prophet sent to Nineveh"
+    },
+    "esther": {
+      "displayName": "Esther",
+      "descriptor": "Queen of Persia, saved her people"
+    },
+    "john_baptist": {
+      "displayName": "John the Baptist",
+      "descriptor": "Prophet who baptized Jesus"
+    },
+    "john_disciple": {
+      "displayName": "John",
+      "descriptor": "Disciple of Jesus, son of Zebedee"
+    },
+    "mary_mother_jesus": {
+      "displayName": "Mary",
+      "descriptor": "Mother of Jesus"
+    },
+    "mary_magdalene": {
+      "displayName": "Mary Magdalene",
+      "descriptor": "Disciple who witnessed the resurrection"
+    },
+    "mary_sister_of_martha": {
+      "displayName": "Mary of Bethany",
+      "descriptor": "Sister of Martha and Lazarus"
+    },
+    "james_son_zebedee": {
+      "displayName": "James",
+      "descriptor": "Disciple, son of Zebedee, brother of John"
+    },
+    "james_son_alphaeus": {
+      "displayName": "James",
+      "descriptor": "Disciple, son of Alphaeus"
+    },
+    "james_brother_of_jesus": {
+      "displayName": "James",
+      "descriptor": "Brother of Jesus, leader of early Jerusalem church"
+    },
+    "simon_peter": {
+      "displayName": "Peter",
+      "descriptor": "Disciple of Jesus, Simon son of Jonah"
+    },
+    "simon_zealot": {
+      "displayName": "Simon",
+      "descriptor": "Disciple of Jesus, the Zealot"
+    },
+    "judas_iscariot": {
+      "displayName": "Judas Iscariot",
+      "descriptor": "Disciple who betrayed Jesus"
+    },
+    "judas_thaddaeus": {
+      "displayName": "Judas",
+      "descriptor": "Disciple also called Thaddaeus"
+    },
+    "paul_apostle": {
+      "displayName": "Paul",
+      "descriptor": "Apostle to the Gentiles, formerly Saul of Tarsus"
+    },
+    "stephen_martyr": {
+      "displayName": "Stephen",
+      "descriptor": "First martyr of the early church"
+    },
+    "barnabas": {
+      "displayName": "Barnabas",
+      "descriptor": "Missionary companion of Paul"
+    },
+    "lydia": {
+      "displayName": "Lydia",
+      "descriptor": "Seller of purple, early convert in Philippi"
+    },
+    "priscilla": {
+      "displayName": "Priscilla",
+      "descriptor": "Teacher and co-worker with Paul"
+    },
+    "aquila": {
+      "displayName": "Aquila",
+      "descriptor": "Husband of Priscilla, co-worker with Paul"
+    },
+    "timothy": {
+      "displayName": "Timothy",
+      "descriptor": "Young companion of Paul"
+    },
+    "jesus": {
+      "displayName": "Jesus",
+      "descriptor": "Jesus of Nazareth — reserved for The Life of Jesus path (SPEC Feature 50.1b / 50.8). NEVER appears in the Characters path list.",
+      "reserved_for_jesus_life": true
+    }
+  }
+}

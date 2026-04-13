@@ -3,26 +3,66 @@ import 'package:flutter/services.dart' show HapticFeedback;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/story_length_bucket.dart';
 import '../../core/app_logger.dart';
+import '../../models/parable.dart';
 import '../../providers/app_state_notifier.dart';
 import '../../providers/parable_player_notifier.dart';
 import '../../providers/service_providers.dart';
 import '../../theme/living_sky.dart';
 import '../../widgets/living_sky_background.dart';
 import '../pals_parables/parable_player_screen.dart';
+import '../paths/path_launch_context.dart';
 
 /// Full-screen story length picker shown before the audio player.
 ///
-/// Receives a detected mood and optional user text, presents three
-/// length options, selects a story, and navigates to the player.
+/// Two modes (SPEC Feature 6 + Feature 50.12 — one canonical length
+/// picker, one canonical player):
+///
+/// 1. **Mood mode** (existing): receives a detected `mood` and optional
+///    `userText`, calls `selectParable()` to resolve a story for the
+///    chosen length bucket, then loads the player.
+///
+/// 2. **Path mode** (Phase 3.1): receives a `fixedParable` already
+///    chosen by the user from a PALs Paths flow plus a non-null
+///    `launchContext`. The user picks a length, the length picker
+///    resolves the matching variant of the same story by
+///    `(bibleStoryKey, languageStyle, kidFriendly, storyLength)`, then
+///    loads the player with the original `launchContext` preserved so
+///    "Next in Your Journey" still advances correctly.
+///
+/// Exactly one mode is active per push:
+/// - Mood mode:  `fixedParable == null && launchContext == null`
+/// - Path mode:  `fixedParable != null && launchContext != null`
 class LengthPickerScreen extends ConsumerStatefulWidget {
   final String mood;
   final String userText;
 
+  /// When set, the picker operates in PATH mode — the user has already
+  /// chosen a specific story from a path, and the picker just selects
+  /// a length variant of it. The story's [Parable.bibleStoryKey],
+  /// [Parable.languageStyle], and [Parable.kidFriendly] are used to
+  /// find the matching variant.
+  final Parable? fixedParable;
+
+  /// Required in PATH mode. Carries the launch context through to the
+  /// player so `Next in Your Journey` advances by canonical position.
+  final PathLaunchContext? launchContext;
+
+  /// Optional subtitle shown in PATH mode (e.g. "From PALs Paths • David").
+  final String? pathSubtitle;
+
   const LengthPickerScreen({
     super.key,
-    required this.mood,
+    this.mood = '',
     this.userText = '',
-  });
+    this.fixedParable,
+    this.launchContext,
+    this.pathSubtitle,
+  }) : assert(
+          (fixedParable == null && launchContext == null) ||
+              (fixedParable != null && launchContext != null),
+          'fixedParable and launchContext must be set together (path mode) '
+          'or both null (mood mode).',
+        );
 
   @override
   ConsumerState<LengthPickerScreen> createState() => _LengthPickerScreenState();
@@ -31,6 +71,38 @@ class LengthPickerScreen extends ConsumerStatefulWidget {
 class _LengthPickerScreenState extends ConsumerState<LengthPickerScreen> {
   bool _isLoading = false;
   StoryLengthBucket? _selectedBucket;
+
+  /// PATH-MODE variant resolver (SPEC Feature 6 + Feature 50.12).
+  ///
+  /// Given the user's [fixedParable] and the chosen [bucket], find the
+  /// variant of the same story whose `storyLength == bucket.name`. The
+  /// variant must match the original's `bibleStoryKey`,
+  /// `languageStyle`, `kidFriendly`, and `storytellingMode` so the
+  /// user always gets the same story in the same presentation —
+  /// only the length differs.
+  ///
+  /// If no matching variant exists (e.g. the story was only authored
+  /// as Short), returns null and the caller shows a snackbar.
+  ///
+  /// This method does NOT invoke `selectParable()` — Mood Expansion
+  /// is scope-protected and path launches are deterministic.
+  Future<Parable?> _resolvePathVariant(StoryLengthBucket bucket) async {
+    final fixed = widget.fixedParable!;
+    final parableService = await ref.read(parableServiceProvider.future);
+    final all = await parableService.getAllTraditionalParables();
+
+    // Prefer exact variant match on all 4 identity axes.
+    for (final p in all) {
+      if (p.bibleStoryKey == fixed.bibleStoryKey &&
+          p.storytellingMode == fixed.storytellingMode &&
+          p.languageStyle == fixed.languageStyle &&
+          p.kidFriendly == fixed.kidFriendly &&
+          p.storyLength == bucket.name) {
+        return p;
+      }
+    }
+    return null;
+  }
 
   Future<void> _pickLength(StoryLengthBucket bucket) async {
     if (_isLoading) return;
@@ -55,11 +127,34 @@ class _LengthPickerScreenState extends ConsumerState<LengthPickerScreen> {
         'detected_mood': widget.mood,
       });
 
-      final parable = await appStateNotifier.selectParable(
-        mood: widget.mood,
-        lengthBucket: bucket,
-        userText: widget.userText,
-      );
+      // PATH MODE — resolve a variant of the fixed parable. Mood
+      // expansion is bypassed (Mood Expansion Serving Invariant scope —
+      // path launches are deterministic, not mood-driven).
+      Parable? parable;
+      if (widget.fixedParable != null) {
+        parable = await _resolvePathVariant(bucket);
+        if (parable == null) {
+          setState(() {
+            _isLoading = false;
+            _selectedBucket = null;
+          });
+          if (!mounted) return;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                  'No ${bucket.displayLabel.toLowerCase()} version of this story yet.'),
+            ),
+          );
+          return;
+        }
+      } else {
+        // MOOD MODE — existing flow (unchanged).
+        parable = await appStateNotifier.selectParable(
+          mood: widget.mood,
+          lengthBucket: bucket,
+          userText: widget.userText,
+        );
+      }
 
       if (!mounted) return;
 
@@ -77,8 +172,14 @@ class _LengthPickerScreenState extends ConsumerState<LengthPickerScreen> {
       await appStateNotifier.addToHistory(parable);
       if (!mounted) return;
 
+      // Preserve launchContext in PATH mode so the player renders
+      // "Next in Your Journey" and `story_completed` telemetry
+      // records `source: 'path'`.
       final playerNotifier = ref.read(parablePlayerProvider.notifier);
-      final success = await playerNotifier.loadParable(parable);
+      final success = await playerNotifier.loadParable(
+        parable,
+        launchContext: widget.launchContext,
+      );
 
       if (!mounted) return;
 
@@ -142,13 +243,16 @@ class _LengthPickerScreenState extends ConsumerState<LengthPickerScreen> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        CircularProgressIndicator(color: palette.textColor),
+                        CircularProgressIndicator(
+                          color: palette.foreground.primaryText,
+                        ),
                         const SizedBox(height: 16),
                         Text(
                           'Finding your story...',
                           style: TextStyle(
                             fontSize: 16,
-                            color: palette.textColor,
+                            color: palette.foreground.primaryText,
+                            shadows: palette.foreground.textShadow,
                           ),
                         ),
                       ],
@@ -168,6 +272,24 @@ class _LengthPickerScreenState extends ConsumerState<LengthPickerScreen> {
                         ),
                         textAlign: TextAlign.center,
                       ),
+
+                      // PATH-MODE subtitle (Phase 3.1 polish). Shows
+                      // "From PALs Paths • David" so the user knows
+                      // the length choice will load a specific path
+                      // story rather than a mood-driven pick.
+                      if (widget.pathSubtitle != null) ...[
+                        const SizedBox(height: 10),
+                        Text(
+                          widget.pathSubtitle!,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: palette.foreground.secondaryText,
+                            letterSpacing: 0.3,
+                            shadows: palette.foreground.subtitleShadow,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
 
                       const SizedBox(height: 32),
 
