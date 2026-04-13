@@ -130,17 +130,20 @@ class PathsPageState extends ConsumerState<PathsPage> {
           // balanced with the stack below. Raised slightly to reduce
           // dead space between the title and the rest of the content.
           Padding(
-            padding: const EdgeInsets.fromLTRB(20, 6, 20, 6),
-            child: Align(
-              alignment: Alignment.center,
-              child: Text(
-                'PALs Paths',
-                style: TextStyle(
-                  color: palette.foreground.primaryText,
-                  fontSize: 26,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: 0.2,
-                  shadows: palette.foreground.textShadow,
+            padding: const EdgeInsets.fromLTRB(0, 6, 0, 6),
+            child: Center(
+              child: SizedBox(
+                width: 170,
+                child: Text(
+                  'PALs Paths',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: palette.foreground.primaryText,
+                    fontSize: 26,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0.2,
+                    shadows: palette.foreground.textShadow,
+                  ),
                 ),
               ),
             ),
@@ -244,7 +247,7 @@ class _PathHomeContent extends StatelessWidget {
     // not a menu. Widths are fixed (not phase-aware) because the
     // composition is pure geometry.
     const double heroMaxWidth = 360;
-    const double spineMaxWidth = 200;
+    const double spineMaxWidth = 170;
 
     return SingleChildScrollView(
       physics: const ClampingScrollPhysics(),
