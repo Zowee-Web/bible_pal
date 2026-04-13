@@ -79,10 +79,18 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
 
   Future<void> _loadAmbientState() async {
     final sp = await SharedPreferences.getInstance();
+    // Ambient toggle is session-only — always starts OFF on every screen
+    // entry (SPEC Feature 49 session-reset). Clear the persisted key so
+    // startIfEnabled() (called by the player notifier on play) does not
+    // auto-resume ambient from a previous visit.
+    await sp.remove('settings.backgroundSoundOn');
+    final ambient = ref.read(ambientAudioServiceProvider);
+    await ambient.forceStop();
     if (!mounted) return;
     setState(() {
-      _ambientOn = sp.getBool('settings.backgroundSoundOn') ?? false;
-      _ambientType = AmbientSoundType.fromString(sp.getString('settings.ambientSoundType'));
+      // _ambientOn intentionally NOT restored — starts false.
+      _ambientType = AmbientSoundType.fromString(
+          sp.getString('settings.ambientSoundType'));
       _ambientVol = sp.getDouble('settings.ambientVolume') ?? 0.10;
     });
   }

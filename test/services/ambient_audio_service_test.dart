@@ -79,6 +79,78 @@ void main() {
     });
   });
 
+  // ---------------------------------------------------------------------------
+  // Player screen session-reset contract (SPEC Feature 49)
+  // ---------------------------------------------------------------------------
+  // These tests verify the two operations _loadAmbientState performs on every
+  // player screen entry so ambient never auto-resumes from a prior visit.
+
+  group('Player screen ambient session-reset contract', () {
+    setUpAll(() {
+      TestWidgetsFlutterBinding.ensureInitialized();
+    });
+
+    test(
+        'startIfEnabled does not start ambient after backgroundSoundOn is removed',
+        () async {
+      // Simulate: user left with ambient ON (persisted pref = true).
+      SharedPreferences.setMockInitialValues({
+        'settings.backgroundSoundOn': true,
+      });
+      final sp = await SharedPreferences.getInstance();
+
+      // _loadAmbientState clears the key on every screen entry.
+      await sp.remove('settings.backgroundSoundOn');
+
+      // Narration starts → startIfEnabled() must NOT auto-resume ambient.
+      final service = AmbientAudioService();
+      await service.startIfEnabled();
+      expect(service.isPlaying, false,
+          reason: 'ambient must not auto-resume after backgroundSoundOn removed');
+      await service.dispose();
+    });
+
+    test('forceStop ensures isPlaying is false on screen entry', () async {
+      // Simulate: ambient was somehow left playing from a previous visit.
+      SharedPreferences.setMockInitialValues({});
+      final service = AmbientAudioService();
+
+      // _loadAmbientState calls forceStop() unconditionally.
+      await service.forceStop();
+      expect(service.isPlaying, false,
+          reason: 'forceStop must guarantee isPlaying = false on entry');
+      await service.dispose();
+    });
+
+    test('backgroundSoundOn is absent after screen entry reset', () async {
+      SharedPreferences.setMockInitialValues({
+        'settings.backgroundSoundOn': true,
+      });
+      final sp = await SharedPreferences.getInstance();
+      await sp.remove('settings.backgroundSoundOn');
+
+      expect(sp.getBool('settings.backgroundSoundOn'), isNull,
+          reason: 'key must be absent so startIfEnabled defaults to disabled');
+    });
+
+    test('ambientSoundType and volume are still readable after reset', () async {
+      // Chip selection and volume persist across visits; only the toggle does not.
+      SharedPreferences.setMockInitialValues({
+        'settings.backgroundSoundOn': true,
+        'settings.ambientSoundType': 'pads',
+        'settings.ambientVolume': 0.18,
+      });
+      final sp = await SharedPreferences.getInstance();
+      await sp.remove('settings.backgroundSoundOn');
+
+      expect(AmbientSoundType.fromString(sp.getString('settings.ambientSoundType')),
+          AmbientSoundType.pads,
+          reason: 'chip selection survives the toggle reset');
+      expect(sp.getDouble('settings.ambientVolume'), closeTo(0.18, 0.001),
+          reason: 'volume survives the toggle reset');
+    });
+  });
+
   group('Sound selection persistence', () {
     setUpAll(() {
       TestWidgetsFlutterBinding.ensureInitialized();
