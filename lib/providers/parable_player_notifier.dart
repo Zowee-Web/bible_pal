@@ -131,6 +131,12 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
   /// player screen and does NOT pass through [_audioService].
   StreamSubscription<Duration>? _completionPositionSub;
 
+  /// Subscription to playerStateStream for UI-refresh notifications.
+  StreamSubscription<dynamic>? _playerStateSub;
+
+  /// Subscription to playbackCompletedStream for natural-end detection.
+  StreamSubscription<dynamic>? _playbackCompletedSub;
+
   @override
   ParablePlayerState build() {
     // Get services
@@ -143,6 +149,8 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
 
     ref.onDispose(() {
       _completionPositionSub?.cancel();
+      _playerStateSub?.cancel();
+      _playbackCompletedSub?.cancel();
     });
 
     return const ParablePlayerState();
@@ -159,15 +167,17 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
   Stream<Duration> get positionStream => _audioService.positionStream;
   Stream<Duration?> get durationStream => _audioService.durationStream;
 
-  /// Listen to audio state changes
+  /// Listen to audio state changes.
+  /// Subscriptions are stored so they can be cancelled in [ref.onDispose],
+  /// preventing stale listeners if the notifier is ever torn down.
   void _listenToAudioState() {
-    _audioService.playerStateStream.listen((_) {
-      // Notify listeners when audio state changes
-      // This triggers rebuilds for widgets watching playback state
+    _playerStateSub = _audioService.playerStateStream.listen((_) {
+      // Notify listeners when audio state changes so widgets watching
+      // playback state (play/pause button icon, seek slider) rebuild.
       ref.notifyListeners();
     });
 
-    _audioService.playbackCompletedStream.listen((_) {
+    _playbackCompletedSub = _audioService.playbackCompletedStream.listen((_) {
       _onPlaybackCompleted();
     });
   }

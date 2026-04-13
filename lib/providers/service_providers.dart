@@ -43,9 +43,14 @@ final parableServiceProvider = FutureProvider<ParableService>((ref) async {
   return ParableService(storageService);
 });
 
-// AudioService provider - singleton
+// AudioService provider - singleton, kept alive for the app lifetime so the
+// native audio player is never auto-disposed mid-playback (background audio
+// regression fix — SPEC background playback requirement).
 final audioServiceProvider = Provider<AudioService>((ref) {
-  return AudioService();
+  ref.keepAlive();
+  final service = AudioService();
+  ref.onDispose(() => service.dispose());
+  return service;
 });
 
 // AmbientAudioService provider - background sound during story playback

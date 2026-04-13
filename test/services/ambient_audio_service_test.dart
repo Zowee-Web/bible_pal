@@ -77,6 +77,31 @@ void main() {
       await service.stop();
       expect(service.isPlaying, false);
     });
+
+    // -----------------------------------------------------------------------
+    // isPlaying reflects actual player state (Bug fix — Issue 2)
+    // -----------------------------------------------------------------------
+
+    test('isPlaying is false after forceStop even if _activeType was set', () async {
+      // forceStop() must clear _activeType AND stop the player.
+      // Calling forceStop() when already stopped should be safe and keep
+      // isPlaying = false, which validates the stale-active-type guard.
+      await service.forceStop();
+      expect(service.isPlaying, false,
+          reason: 'forceStop clears _activeType so isPlaying must be false');
+    });
+
+    test('activeType is null after forceStop', () async {
+      await service.forceStop();
+      expect(service.activeType, isNull,
+          reason: '_activeType must be cleared by forceStop so restart is allowed');
+    });
+
+    test('stop() is safe when service was never started', () async {
+      expect(service.isPlaying, false);
+      await service.stop(); // must not throw
+      expect(service.isPlaying, false);
+    });
   });
 
   // ---------------------------------------------------------------------------

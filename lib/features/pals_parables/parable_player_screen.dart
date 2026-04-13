@@ -65,7 +65,6 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     return appState?.userPreferences.bedtimeModeEnabled ?? false;
   }
 
-  bool _completionListenerSet = false;
   bool _showNamePrompt = false;
 
   @override
@@ -466,16 +465,15 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     // foreground palette (primary/secondary/tertiary + shadows).
     final palette = LivingSky.getPalette(LivingSky.getPhase());
 
-    // Detect playback completion and trigger reflection
-    if (!_completionListenerSet) {
-      _completionListenerSet = true;
-      ref.listenManual(parablePlayerProvider, (prev, next) {
-        final wasCompleted = prev?.playbackCompleted ?? false;
-        if (!wasCompleted && next.playbackCompleted && mounted) {
-          _onPlaybackCompleted();
-        }
-      });
-    }
+    // Detect playback completion and trigger reflection.
+    // ref.listen inside build() is the correct Riverpod API — subscription is
+    // automatically managed (no manual guard or cancel needed).
+    ref.listen(parablePlayerProvider, (prev, next) {
+      final wasCompleted = prev?.playbackCompleted ?? false;
+      if (!wasCompleted && next.playbackCompleted && mounted) {
+        _onPlaybackCompleted();
+      }
+    });
 
     return PopScope(
       canPop: false,

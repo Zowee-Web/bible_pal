@@ -26,7 +26,10 @@ class AmbientAudioService {
           handleAudioSessionActivation: false,
         );
 
-  bool get isPlaying => _activeType != null;
+  /// True only when both the logical state and the underlying player agree.
+  /// Checking _player.playing prevents stale-active-type false positives (e.g.
+  /// if the player stopped due to an error after _activeType was set).
+  bool get isPlaying => _activeType != null && _player.playing;
   AmbientSoundType? get activeType => _activeType;
 
   /// Start ambient audio if background sound is enabled in settings.
@@ -54,8 +57,10 @@ class AmbientAudioService {
     final requestedType = AmbientSoundType.fromString(typeStr);
     final volume = sp.getDouble(_pkAmbientVolume) ?? defaultVolume;
 
-    // Already playing the same sound — no-op
-    if (_activeType == requestedType) return;
+    // Already playing the same sound and the player is actually running — no-op.
+    // If _activeType matches but the player stopped (e.g. after an error),
+    // fall through and restart so isPlaying reflects reality.
+    if (_activeType == requestedType && _player.playing) return;
 
     // Playing a different sound — stop first
     if (_activeType != null) {
