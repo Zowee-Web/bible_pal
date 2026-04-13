@@ -58,9 +58,9 @@ InputDecoration glassInputDecoration({
 }
 
 /// Default text style for content inside a glass input. Matches the
-/// Mood input exactly. Routes through the enforced foreground palette
-/// (Phase 3.2 contrast pass) so user-typed content always hits the
-/// primary text color regardless of sky phase.
+/// Mood input exactly. Routes through the locked foreground palette
+/// (SPEC Feature 47) so user-typed content always hits the primary
+/// text color regardless of sky phase.
 TextStyle glassInputTextStyle(SkyPalette palette) {
   return TextStyle(
     color: palette.foreground.primaryText,

@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 
 // ---------------------------------------------------------------------------
-// Foreground contrast palette — semantic text/icon/card colors computed from
-// the sky background luminance so every screen gets readable foreground values
-// without ad-hoc opacity guesses.
+// Foreground contrast palette — semantic text/icon colors locked by sky
+// phase. Every phase-aware surface in Bible PAL routes through this so the
+// app has exactly one source of truth for text color.
 // ---------------------------------------------------------------------------
 
-/// Semantic foreground colors derived from a [SkyPalette]'s background
-/// brightness — the single source of truth for text and icon contrast
-/// across every screen in Bible PAL.
+/// Semantic foreground colors locked to the current [SkyPhase] — the
+/// single source of truth for text and icon contrast across every
+/// screen in Bible PAL.
 ///
-/// **Enforced contrast system (Phase 3.2 global pass).** Every text
+/// **Locked phase-based text system (SPEC Feature 47).** Every text
 /// rendering in the app MUST route through a `ForegroundPalette`
 /// instance obtained via `palette.foreground`. No widget is allowed to
-/// hardcode text colors or use raw `.withOpacity()` on palette fields.
-/// The values below are tuned to the Living Sky gradient so text stays
-/// readable in all four sky phases (Dawn, Day, Golden Hour, Night).
+/// hardcode phase-aware text colors or use raw `.withOpacity()` chains
+/// to "guess" contrast per component.
+///
+/// Two-bucket contract:
+/// - **Bright phases** (Dawn, Day, Golden Hour) — dark text:
+///   `#1A1A1A` / `#4A4A4A` / `#6B6B6B`
+/// - **Night phase** — light text:
+///   `#FFFFFF` / white@0.85 / white@0.65
 ///
 /// Three text levels + three shadow levels:
 /// - [primaryText] / [textShadow] — titles, headings, important labels
@@ -23,10 +28,11 @@ import 'package:flutter/material.dart';
 /// - [tertiaryText] / [captionShadow] — hints, scripture refs, captions
 /// - [mutedText] — decorative captions (muted state)
 ///
-/// The foreground values are computed by `SkyPalette.foreground`, which
-/// selects between a "bright" bucket (shadows required — Dawn, Day,
-/// Golden Hour) and a "dark" bucket (no shadow needed — Night). See
-/// that getter for the threshold logic.
+/// Shadows are non-empty only for Night (the deep navy already has
+/// native contrast, but hero text over the starfield still benefits
+/// from a faint lift). For bright phases, text is dark on warm/light
+/// backgrounds — no shadow is required. See `SkyPalette.foreground`
+/// for the exact mapping.
 class ForegroundPalette {
   /// Full-strength primary text — titles, headings, important content.
   final Color primaryText;
@@ -61,11 +67,21 @@ class ForegroundPalette {
   /// [subtitleShadow] so small text reads cleanly without blur halo.
   final List<Shadow> captionShadow;
 
-  /// Subtle local contrast layer for content regions on medium-luminance
-  /// backgrounds (golden hour / sunset).  Transparent on bright and dark
-  /// backgrounds where text already has sufficient contrast.
-  /// Apply as a rounded Container fill behind content groups.
+  /// Subtle local contrast layer for content regions. Transparent by
+  /// default; reserved for rare cases that need a rounded darkening
+  /// pane over the sky gradient.
   final Color scrimColor;
+
+  /// Very light translucent fill for "subtle glass" surfaces — the
+  /// ambient container background, unselected chip backgrounds,
+  /// inactive pill tiles. Phase-adaptive: translucent dark on bright
+  /// phases, translucent white on Night. Always reads as "quietly
+  /// present" rather than washed-out or invisible.
+  final Color subtleSurface;
+
+  /// Matching border for [subtleSurface]. Slightly stronger than the
+  /// fill so the edge is visible without feeling heavy.
+  final Color subtleBorder;
 
   const ForegroundPalette({
     required this.primaryText,
@@ -79,6 +95,8 @@ class ForegroundPalette {
     required this.subtitleShadow,
     this.captionShadow = const [],
     this.scrimColor = const Color(0x00000000),
+    this.subtleSurface = const Color(0x00000000),
+    this.subtleBorder = const Color(0x00000000),
   });
 }
 
@@ -193,84 +211,65 @@ class SkyPalette {
     return const [];
   }
 
-  /// Enforced semantic foreground palette (Phase 3.2 global contrast pass).
+  /// Locked semantic foreground palette (SPEC Feature 47).
   ///
-  /// Two-bucket system keyed on [backgroundLuminance]:
+  /// Two-bucket contract, determined purely by whether [textColor] is a
+  /// dark tone or a light tone — which in turn is locked per phase in
+  /// the `SkyPalette` constants below:
   ///
-  /// - **Bright bucket** — Dawn, Day, Golden Hour (`lum > 0.08`)
-  ///   White text with phase-aware shadows. Shadows are essential on
-  ///   Golden Hour especially, where warm-on-warm otherwise creates
-  ///   low contrast. Shadows are subtle on Day / Dawn but still help
-  ///   decorative captions read cleanly against particle systems.
+  /// - **Bright phases** — Dawn, Day, Golden Hour
+  ///   Dark text: `#1A1A1A` / `#4A4A4A` / `#6B6B6B`. No shadow.
   ///
-  /// - **Dark bucket** — Night only (`lum <= 0.08`)
-  ///   White text, no shadows. Deep navy background provides
-  ///   sufficient contrast without any halo effect.
+  /// - **Night phase** — white text: `#FFFFFF` / white@0.85 / white@0.65.
+  ///   Hero text gets a faint drop shadow for lift over the starfield.
   ///
-  /// Note on threshold choice: the original spec called for
-  /// `lum > 0.35`, but Golden Hour's middle gradient luminance is
-  /// ~0.24, which would drop it into the "dark" bucket and strip its
-  /// shadows — exactly the readability regression this pass is trying
-  /// to fix. The `lum > 0.08` threshold honors the user's stated
-  /// intent (Day + Golden Hour need shadows, Night doesn't) rather
-  /// than the literal number.
+  /// There is no luminance-based heuristic and no per-component
+  /// override. If you need a different color, change the phase's
+  /// palette — the lock is the whole point.
   ForegroundPalette get foreground {
-    final lum = backgroundLuminance;
-    final isBrightBackground = lum > 0.08;
+    // Night is the only dark-text case; every other phase uses the
+    // locked bright-phase dark tones. We key on the palette's primary
+    // textColor tone rather than a luminance threshold so the bucket
+    // never drifts out of sync with the spec.
+    final isNight = textColor.computeLuminance() > 0.5;
 
-    if (isBrightBackground) {
-      // Dawn / Day / Golden Hour — enforce white text + shadow across
-      // every brightness level. Matches the Phase 3.2 spec:
-      //   primary:   white @ 0.95 + shadow (0x66000000, blur 6, y+2)
-      //   secondary: white @ 0.80 + shadow (0x55000000, blur 4)
-      //   tertiary:  white @ 0.65 + shadow (0x44000000, blur 3)
-      //
-      // scrimColor stays nonzero ONLY for medium-luminance backgrounds
-      // where a rounded card fill adds extra local contrast (golden
-      // hour / sunset). Bright-bright phases (day) don't need it.
-      final needsScrim = lum < 0.35;
+    if (isNight) {
+      // Night — white text on deep navy. Hero primary gets a faint
+      // shadow so landing verse / sanctuary titles lift off the
+      // starfield; regular body text has no shadow.
       return ForegroundPalette(
-        primaryText: Colors.white.withOpacity(0.95),
-        secondaryText: Colors.white.withOpacity(0.80),
-        tertiaryText: Colors.white.withOpacity(0.65),
-        mutedText: Colors.white.withOpacity(0.50),
-        primaryIcon: warmHighlight,
-        secondaryIcon: Colors.white.withOpacity(0.75),
-        divider: Colors.white.withOpacity(0.22),
+        primaryText: const Color(0xFFFFFFFF),
+        secondaryText: const Color(0xD9FFFFFF), // white @ 0.85
+        tertiaryText: const Color(0xA6FFFFFF), // white @ 0.65
+        mutedText: const Color(0x80FFFFFF), // white @ 0.50
+        primaryIcon: orbGlowColor,
+        secondaryIcon: const Color(0xD9FFFFFF),
+        divider: cardBorder.withValues(alpha: 0.50),
         textShadow: const [
-          Shadow(
-            color: Color(0x66000000),
-            blurRadius: 6,
-            offset: Offset(0, 2),
-          ),
+          Shadow(color: Color(0x66000000), blurRadius: 6, offset: Offset(0, 2)),
         ],
-        subtitleShadow: const [
-          Shadow(color: Color(0x55000000), blurRadius: 4),
-        ],
-        captionShadow: const [
-          Shadow(color: Color(0x44000000), blurRadius: 3),
-        ],
-        scrimColor: needsScrim
-            ? const Color(0x26000000) // ~15% black
-            : const Color(0x00000000),
+        subtitleShadow: const [],
+        captionShadow: const [],
+        subtleSurface: const Color(0x14FFFFFF), // white @ ~8%
+        subtleBorder: const Color(0x33FFFFFF), // white @ 20%
       );
     }
 
-    // Night — deep navy background, white text without shadow.
-    //   primary:   white @ 0.92
-    //   secondary: white @ 0.70
-    //   tertiary:  white @ 0.55
+    // Bright phases — Dawn, Day, Golden Hour. Locked dark tones.
     return ForegroundPalette(
-      primaryText: Colors.white.withOpacity(0.92),
-      secondaryText: Colors.white.withOpacity(0.70),
-      tertiaryText: Colors.white.withOpacity(0.55),
-      mutedText: Colors.white.withOpacity(0.42),
-      primaryIcon: orbGlowColor,
-      secondaryIcon: Colors.white.withOpacity(0.70),
-      divider: cardBorder.withOpacity(0.50),
+      primaryText: const Color(0xFF1A1A1A),
+      secondaryText: const Color(0xFF4A4A4A),
+      tertiaryText: const Color(0xFF6B6B6B),
+      mutedText: const Color(0xFF8A8A8A),
+      primaryIcon: const Color(0xFF1A1A1A),
+      secondaryIcon: const Color(0xFF4A4A4A),
+      divider: const Color(0x1A1A1A1A), // #1A1A1A @ 10%
       textShadow: const [],
       subtitleShadow: const [],
       captionShadow: const [],
+      scrimColor: const Color(0x00000000),
+      subtleSurface: const Color(0x141A1A1A), // #1A1A1A @ ~8%
+      subtleBorder: const Color(0x331A1A1A), // #1A1A1A @ 20%
     );
   }
 }
@@ -316,7 +315,7 @@ class LivingSky {
   // Palettes
   // ---------------------------------------------------------------------------
 
-  /// Purple-pink-gold sunrise.
+  /// Purple-pink-gold sunrise. Locked bright-phase dark text.
   static const _dawn = SkyPalette(
     gradientColors: [Color(0xFF2D1B3D), Color(0xFFE8896B), Color(0xFFFFC87A)],
     gradientStops: [0.0, 0.5, 1.0],
@@ -328,8 +327,8 @@ class LivingSky {
       Color(0xFFC06848),
       Color(0xFF8B3A3A),
     ],
-    textColor: Color(0xFF2A1A0A),
-    subtitleColor: Color(0xFF4A3A2A),
+    textColor: Color(0xFF1A1A1A),
+    subtitleColor: Color(0xFF4A4A4A),
     accentColor: Color(0xFFD4AF37),
     cardColor: Color(0x30FFFFFF),
     cardBorder: Color(0x40FFFFFF),
@@ -338,7 +337,7 @@ class LivingSky {
     glowIntensity: 0.8,
   );
 
-  /// Sky blue to warm cream.
+  /// Sky blue to warm cream. Locked bright-phase dark text.
   static const _day = SkyPalette(
     gradientColors: [Color(0xFF87CEEB), Color(0xFFB8E0F0), Color(0xFFF5F0E8)],
     gradientStops: [0.0, 0.5, 1.0],
@@ -351,7 +350,7 @@ class LivingSky {
       Color(0xFF8B6914),
     ],
     textColor: Color(0xFF1A1A1A),
-    subtitleColor: Color(0xFF3A3A3A),
+    subtitleColor: Color(0xFF4A4A4A),
     accentColor: Color(0xFFB8941E),
     cardColor: Color(0x25000000),
     cardBorder: Color(0x20000000),
@@ -360,7 +359,8 @@ class LivingSky {
     glowIntensity: 0.6,
   );
 
-  /// Deep purple to amber-orange.
+  /// Deep purple to amber-orange. Locked bright-phase dark text (Golden
+  /// Hour intentionally joins the bright bucket per SPEC Feature 47).
   static const _goldenHour = SkyPalette(
     gradientColors: [Color(0xFF1A1040), Color(0xFFD4652A), Color(0xFFFFAA50)],
     gradientStops: [0.0, 0.5, 1.0],
@@ -372,12 +372,12 @@ class LivingSky {
       Color(0xFFA04820),
       Color(0xFF6B2A10),
     ],
-    textColor: Color(0xFFFFF8F0),
-    subtitleColor: Color(0xFFEEDDBB),
+    textColor: Color(0xFF1A1A1A),
+    subtitleColor: Color(0xFF4A4A4A),
     accentColor: Color(0xFFFFAA50),
     cardColor: Color(0x30000000),
     cardBorder: Color(0x25FFFFFF),
-    chevronColor: Color(0xFFBBA888),
+    chevronColor: Color(0xFF6B5A4A),
     warmHighlight: Color(0xFFFFAA50),
     glowIntensity: 0.8,
   );
@@ -389,7 +389,10 @@ class LivingSky {
   /// text colors, button styles, card colors, etc.
   static ThemeData buildTheme(SkyPhase phase) {
     final p = getPalette(phase);
-    final isDark = phase == SkyPhase.night || phase == SkyPhase.goldenHour;
+    // Locked phase-based brightness: Night is the only dark-text phase.
+    // Golden Hour joins Dawn/Day in the bright-phase dark-text bucket
+    // per SPEC Feature 47.
+    final isDark = phase == SkyPhase.night;
     final brightness = isDark ? Brightness.dark : Brightness.light;
 
     return ThemeData(
@@ -554,7 +557,7 @@ class LivingSky {
     );
   }
 
-  /// Sacred Night — deep navy.
+  /// Sacred Night — deep navy. Locked night-phase white text.
   static const _night = SkyPalette(
     gradientColors: [Color(0xFF091422), Color(0xFF0D1827), Color(0xFF0F1E30)],
     gradientStops: [0.0, 0.5, 1.0],
@@ -566,8 +569,8 @@ class LivingSky {
       Color(0xFF1E4A80),
       Color(0xFF0D1E3A),
     ],
-    textColor: Color(0xFFF5F0E5),
-    subtitleColor: Color(0xFFAABBCC),
+    textColor: Color(0xFFFFFFFF),
+    subtitleColor: Color(0xD9FFFFFF), // white @ 0.85
     accentColor: Color(0xFFD4AF37),
     cardColor: Color(0xFF1A1812),
     cardBorder: Color(0xFF3A3228),

@@ -845,16 +845,10 @@ class _StudyPageState extends ConsumerState<_StudyPage>
             ? Padding(
                 padding: const EdgeInsets.fromLTRB(24, 8, 24, 0),
                 child: Container(
-                  padding: const EdgeInsets.all(3),
                   decoration: BoxDecoration(
-                    color: palette.foreground.scrimColor != Colors.transparent
-                        ? palette.foreground.scrimColor
-                        : palette.cardColor.withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(13),
-                    border: Border.all(
-                      color: palette.cardBorder.withOpacity(0.5),
-                      width: 1,
-                    ),
+                    color: palette.cardColor,
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: palette.cardBorder, width: 1),
                   ),
                   child: Row(
                     children: [
@@ -2497,30 +2491,27 @@ class _LanguageTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final glow = palette.glowIntensity;
     return GestureDetector(
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 180),
         curve: Curves.easeOut,
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
+        padding: const EdgeInsets.symmetric(vertical: 16),
         decoration: BoxDecoration(
           color: selected
-              ? palette.warmHighlight.withOpacity(0.18)
+              ? palette.warmHighlight.withOpacity(0.15)
               : Colors.transparent,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: selected
-                ? palette.warmHighlight
-                : Colors.transparent,
-            width: selected ? 2 : 0,
-          ),
+          borderRadius: BorderRadius.circular(13),
+          border: selected
+              ? Border.all(color: palette.warmHighlight, width: 2)
+              : null,
           boxShadow: selected
               ? [
                   BoxShadow(
-                    color: palette.warmHighlight.withOpacity(0.25 * glow),
-                    blurRadius: 12,
+                    color: palette.warmHighlight
+                        .withOpacity(0.20 * palette.glowIntensity),
+                    blurRadius: 14,
                     spreadRadius: 2,
                   ),
                 ]
@@ -2531,12 +2522,12 @@ class _LanguageTab extends StatelessWidget {
             label,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 12,
-              fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
+              fontSize: 14,
+              fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
               color: selected
                   ? palette.foreground.primaryText
                   : palette.foreground.secondaryText,
-              letterSpacing: 0.1,
+              letterSpacing: 0.3,
               shadows: palette.foreground.subtitleShadow,
             ),
           ),

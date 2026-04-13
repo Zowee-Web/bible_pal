@@ -273,11 +273,13 @@ class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen>
                                 ? _handleContinue
                                 : null,
                             child: _isSaving
-                                ? const SizedBox(
+                                ? SizedBox(
                                     width: 20,
                                     height: 20,
                                     child: CircularProgressIndicator(
-                                        strokeWidth: 2, color: Colors.white),
+                                      strokeWidth: 2,
+                                      color: palette.textColor,
+                                    ),
                                   )
                                 : const Text('Begin'),
                           ),

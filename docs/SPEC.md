@@ -998,24 +998,50 @@ A first-class visual experience when kid-friendly mode is active.
 
 ## Living Sky Theme
 
-**47. Living Sky Theme (Feature 47)**
+**47. Living Sky Theme (Feature 47) — LOCKED**
 
 The app's visual identity shifts with the time of day through four phases, creating a living atmosphere.
 
 **Sky Phases:**
 
-| Phase | Time Window | Sky Gradient | Particles | PAL Orb Color | Text Color | Feeling |
-|-------|------------|-------------|-----------|---------------|------------|---------|
-| **Dawn** | 05:00–07:59 | Warm peach/rose | Soft golden light drifting upward | Warm amber | Deep warm brown (#3A2A1A) | Fresh start, new mercies |
-| **Day** | 08:00–16:59 | Bright warm cream/sky blue | Floating golden dust motes in sunlight | Warm gold | Deep charcoal (#2A2A2A) | Vibrant, alive |
-| **Golden Hour** | 17:00–19:59 | Rich amber/deep orange tones | Warm golden particles drifting slowly | Burnished amber | Warm ivory (#EEE8D5) | Reflection, gratitude |
-| **Night** | 20:00–04:59 | Deep navy (current Sacred Night theme) | Twinkling starfield | Celestial blue | Warm ivory (#EEE8D5) | Reverent, peaceful |
+| Phase | Time Window | Sky Gradient | Particles | PAL Orb Color | Feeling |
+|-------|------------|-------------|-----------|---------------|---------|
+| **Dawn** | 05:00–07:59 | Warm peach/rose | Soft golden light drifting upward | Warm amber | Fresh start, new mercies |
+| **Day** | 08:00–16:59 | Bright warm cream/sky blue | Floating golden dust motes in sunlight | Warm gold | Vibrant, alive |
+| **Golden Hour** | 17:00–19:59 | Rich amber/deep orange tones | Warm golden particles drifting slowly | Burnished amber | Reflection, gratitude |
+| **Night** | 20:00–04:59 | Deep navy (current Sacred Night theme) | Twinkling starfield | Celestial blue | Reverent, peaceful |
+
+**Locked Text Color System — LOCKED (supersedes all prior per-phase text color definitions):**
+
+Text color is determined deterministically by a two-bucket phase classifier, not by per-component heuristics or background luminance math. This replaces the prior Phase 3.2 global contrast pass which rendered white-at-opacity text across every phase.
+
+- **Bright phases** — Dawn, Day, Golden Hour — ALL UI text uses dark tones:
+  - Primary text: `#1A1A1A`
+  - Secondary text: `#4A4A4A`
+  - Tertiary text: `#6B6B6B`
+
+- **Night phase** — ALL UI text uses light tones:
+  - Primary text: `#FFFFFF`
+  - Secondary text: `rgba(255, 255, 255, 0.85)`
+  - Tertiary text: `rgba(255, 255, 255, 0.65)`
+
+Golden Hour is intentionally grouped into the bright-phase dark-text bucket (not its own "warm ivory" case) so bright phases remain visually consistent.
+
+**Scope — application-wide:**
+
+The locked text color system applies to every Bible PAL screen, not just the main menu: PAL Sanctuary, Mood, PALs Paths, Player, Favorites, History, Settings, Scripture Sources panel, Scripture bottom sheet, Ambient Sound UI, and every shared button / chip / card / list-tile component. Per-widget color overrides, mixed dark/light text within the same phase, and opacity-based "guess the contrast" hacks are forbidden.
+
+Intentionally-dark modal surfaces (e.g. the full-screen voice input overlay) that are already unconditionally dark regardless of phase MAY continue to render white text directly on themselves — they are not "phase-aware UI surfaces" and are exempt from the phase rule.
+
+**Exception — hero text on raw background:**
+
+Text rendered directly on the sky background (no surface underneath) — Daily Bread verse, PAL Sanctuary hero titles — MAY use a subtle drop shadow for readability, but MUST still obey the phase color rule (dark in bright phases, white at night). Shadows are a readability assist, never a color override.
 
 **Behavior:**
 - Sky phase is determined by device local time, checked on each app resume and widget build
 - The Living Sky background replaces the static `StarfieldBackground` on the main menu
 - The starfield variant is retained and used during the Night phase
-- Other screens (settings, player, etc.) continue using the existing Sacred Night theme
+- Non–main-menu screens use the Sacred Night theme for surface/background (unchanged), but their text colors route through the same locked bright/night foreground system so the app remains internally consistent across phases
 
 **Kid Mode Override:**
 - When `kidFriendlyOnly` is true, the kids theme palette (Feature 46) overrides Living Sky regardless of time of day
@@ -1023,7 +1049,8 @@ The app's visual identity shifts with the time of day through four phases, creat
 **Constraints:**
 - Phase transitions are instant (no animated blending between phases)
 - Time classification uses device local time only (no timezone heuristics)
-- Living Sky applies to the main menu only — all other screens are unchanged
+- All text rendering in the app MUST route through `ForegroundPalette.primaryText / secondaryText / tertiaryText`. No widget may hardcode `Colors.white` / `Colors.black` for phase-aware text, nor use `.withOpacity()` chains to "guess" contrast per component.
+- The locked text system is contract-tested in `test/core/foreground_palette_test.dart`. Any change that loosens, bypasses, or re-introduces luminance-based heuristics for text is a regression.
 
 ---
 

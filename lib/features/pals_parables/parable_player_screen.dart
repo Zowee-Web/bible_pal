@@ -896,29 +896,45 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
   /// Only shows when:
   /// - Playback has completed
   /// Ambient sound controls — toggle, type selector, volume slider.
+  ///
+  /// Visual system (SPEC Feature 47 locked palette):
+  /// - Container reads as a single subtle glass pane via
+  ///   `foreground.subtleSurface` / `subtleBorder`.
+  /// - Selected chip: solid `warmHighlight` fill + dark w600 label —
+  ///   unmistakable across every phase.
+  /// - Unselected chip: same `subtleSurface` family as the container
+  ///   but with a slightly stronger border, so inactive chips read as
+  ///   "quietly present" rather than washed out.
+  /// - Slider and toggle both use `warmHighlight` so the whole block
+  ///   feels like one system.
   Widget _buildAmbientControls(ThemeData theme) {
     final ambient = ref.read(ambientAudioServiceProvider);
     final palette = LivingSky.getPalette(LivingSky.getPhase());
+    final fg = palette.foreground;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       decoration: BoxDecoration(
-        color: palette.foreground.scrimColor,
+        color: fg.subtleSurface,
         borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: fg.subtleBorder, width: 1),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(Icons.music_note, size: 16, color: palette.foreground.secondaryIcon),
-              const SizedBox(width: 6),
-              Text('Ambient Sound',
-                  style: TextStyle(
-                      color: palette.foreground.secondaryText,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
-                      shadows: palette.foreground.subtitleShadow)),
+              Icon(Icons.music_note, size: 16, color: fg.secondaryIcon),
+              const SizedBox(width: 8),
+              Text(
+                'Ambient Sound',
+                style: TextStyle(
+                  color: fg.secondaryText,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 0.2,
+                ),
+              ),
               const Spacer(),
               SizedBox(
                 height: 28,
@@ -929,7 +945,6 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                     final sp = await SharedPreferences.getInstance();
                     await sp.setBool('settings.backgroundSoundOn', on);
                     if (on) {
-                      // Only start if story is currently playing
                       final player = ref.read(parablePlayerProvider.notifier);
                       if (player.isPlaying) {
                         await ambient.forceStart();
@@ -945,36 +960,45 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
             ],
           ),
           if (_ambientOn) ...[
-            const SizedBox(height: 4),
+            const SizedBox(height: 10),
             Wrap(
-              spacing: 6,
+              spacing: 8,
+              runSpacing: 8,
               children: AmbientSoundType.values.map((t) {
                 final isChipSelected = _ambientType == t;
                 return ChoiceChip(
-                  label: Text(t.displayName,
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: isChipSelected
-                            ? palette.foreground.primaryText
-                            : palette.foreground.secondaryText,
-                        fontWeight: isChipSelected ? FontWeight.w600 : FontWeight.w400,
-                      )),
+                  label: Text(
+                    t.displayName,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: isChipSelected
+                          ? const Color(0xFF1A1A1A)
+                          : fg.secondaryText,
+                      fontWeight:
+                          isChipSelected ? FontWeight.w600 : FontWeight.w500,
+                      letterSpacing: 0.2,
+                    ),
+                  ),
                   selected: isChipSelected,
-                  selectedColor: palette.warmHighlight.withOpacity(0.25),
-                  backgroundColor: palette.cardColor,
+                  selectedColor: palette.warmHighlight,
+                  backgroundColor: fg.subtleSurface,
                   side: BorderSide(
                     color: isChipSelected
-                        ? palette.warmHighlight.withOpacity(0.7)
-                        : palette.cardBorder,
-                    width: isChipSelected ? 1.5 : 0.5,
+                        ? palette.warmHighlight
+                        : fg.subtleBorder,
+                    width: 1,
                   ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  showCheckmark: false,
                   visualDensity: VisualDensity.compact,
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   onSelected: (_) async {
                     final sp = await SharedPreferences.getInstance();
                     await sp.setString('settings.ambientSoundType', t.assetName);
                     await ambient.forceStop();
                     setState(() => _ambientType = t);
-                    // Only restart if story is currently playing
                     final player = ref.read(parablePlayerProvider.notifier);
                     if (player.isPlaying) {
                       await ambient.forceStart();
@@ -983,19 +1007,22 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                 );
               }).toList(),
             ),
-            const SizedBox(height: 2),
+            const SizedBox(height: 6),
             Row(
               children: [
-                Icon(Icons.volume_down, size: 16, color: palette.foreground.secondaryIcon),
+                Icon(Icons.volume_down, size: 16, color: fg.secondaryIcon),
                 Expanded(
                   child: SliderTheme(
                     data: SliderThemeData(
-                      trackHeight: 2,
-                      thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
-                      overlayShape: const RoundSliderOverlayShape(overlayRadius: 12),
+                      trackHeight: 3,
+                      thumbShape:
+                          const RoundSliderThumbShape(enabledThumbRadius: 7),
+                      overlayShape:
+                          const RoundSliderOverlayShape(overlayRadius: 14),
                       activeTrackColor: palette.warmHighlight,
-                      inactiveTrackColor: palette.foreground.mutedText,
+                      inactiveTrackColor: fg.subtleBorder,
                       thumbColor: palette.warmHighlight,
+                      overlayColor: palette.warmHighlight.withValues(alpha: 0.2),
                     ),
                     child: Slider(
                       value: _ambientVol.clamp(0.02, 0.25),
@@ -1010,7 +1037,7 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                     ),
                   ),
                 ),
-                Icon(Icons.volume_up, size: 16, color: palette.foreground.secondaryIcon),
+                Icon(Icons.volume_up, size: 16, color: fg.secondaryIcon),
               ],
             ),
           ],
