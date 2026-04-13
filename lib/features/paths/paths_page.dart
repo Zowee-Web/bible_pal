@@ -237,77 +237,83 @@ class _PathHomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Horizontal margins — hero keeps its wide bleed; the 4 secondary
-    // cards pull in significantly so the hero is visibly dominant and
-    // the secondary cards read as supporting options. 16pt differential
-    // on each side (32pt total) creates a clear hierarchy without
-    // feeling rigid.
-    const double heroHPadding = 14;
-    const double spineHPadding = 30;
+    // Centered vertical cross composition (Option A). Every card sits
+    // on a single vertical axis with a fixed width — the hero is
+    // slightly wider as the anchor, and the 4 spine cards share a
+    // uniform narrower width so the stack reads as a symbolic column,
+    // not a menu. Widths are fixed (not phase-aware) because the
+    // composition is pure geometry.
+    const double heroMaxWidth = 360;
+    const double spineMaxWidth = 200;
 
     return SingleChildScrollView(
       physics: const ClampingScrollPhysics(),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 6),
-
-          // Hero — The Life of Jesus (SPEC 50.1b — LOCKED).
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: heroHPadding),
-            child: _PathHeroCard(
-              palette: palette,
-              onTap: onTapJesusLife,
-            ),
-          ),
-
-          const SizedBox(height: 18),
-
-          // Secondary path cards — Characters first (directly under the
-          // hero), then the canonical three (Bible Order, Timeline,
-          // Themes). Spine padding is 16pt wider per side than the
-          // hero so these read as subordinate.
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: spineHPadding),
-            child: _PathStandardCard(
-              icon: Icons.people_outline,
-              label: PathType.characters.displayLabel,
-              subtitle: 'Voices of Scripture',
-              palette: palette,
-              onTap: onTapCharacters,
-            ),
-          ),
           const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: spineHPadding),
-            child: _PathStandardCard(
-              icon: Icons.menu_book_outlined,
-              label: PathType.bibleOrder.displayLabel,
-              subtitle: 'Book by book',
-              palette: palette,
-              onTap: onTapBibleOrder,
+
+          // Hero — The Life of Jesus (SPEC 50.1b — LOCKED position).
+          Center(
+            child: SizedBox(
+              width: heroMaxWidth,
+              child: _PathHeroCard(
+                palette: palette,
+                onTap: onTapJesusLife,
+              ),
             ),
           ),
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: spineHPadding),
-            child: _PathStandardCard(
-              icon: Icons.timeline_outlined,
-              label: PathType.timeline.displayLabel,
-              subtitle: 'Through the ages',
-              palette: palette,
-              onTap: onTapTimeline,
+
+          const SizedBox(height: 20),
+
+          // Spine — Characters first (directly under the hero), then
+          // Bible Order, Timeline, Themes. All uniform width, all on
+          // the same vertical axis as the hero.
+          Center(
+            child: SizedBox(
+              width: spineMaxWidth,
+              child: _PathStandardCard(
+                label: PathType.characters.displayLabel,
+                subtitle: 'Voices of Scripture',
+                palette: palette,
+                onTap: onTapCharacters,
+              ),
             ),
           ),
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: spineHPadding),
-            child: _PathStandardCard(
-              icon: Icons.interests_outlined,
-              label: PathType.themes.displayLabel,
-              subtitle: 'By what they teach',
-              palette: palette,
-              onTap: onTapThemes,
+          const SizedBox(height: 14),
+          Center(
+            child: SizedBox(
+              width: spineMaxWidth,
+              child: _PathStandardCard(
+                label: PathType.bibleOrder.displayLabel,
+                subtitle: 'Book by book',
+                palette: palette,
+                onTap: onTapBibleOrder,
+              ),
+            ),
+          ),
+          const SizedBox(height: 14),
+          Center(
+            child: SizedBox(
+              width: spineMaxWidth,
+              child: _PathStandardCard(
+                label: PathType.timeline.displayLabel,
+                subtitle: 'Through the ages',
+                palette: palette,
+                onTap: onTapTimeline,
+              ),
+            ),
+          ),
+          const SizedBox(height: 14),
+          Center(
+            child: SizedBox(
+              width: spineMaxWidth,
+              child: _PathStandardCard(
+                label: PathType.themes.displayLabel,
+                subtitle: 'By what they teach',
+                palette: palette,
+                onTap: onTapThemes,
+              ),
             ),
           ),
 
@@ -334,7 +340,8 @@ class _PathHomeContent extends StatelessWidget {
 }
 
 // ---------------------------------------------------------------------------
-// Hero card — The Life of Jesus (widest card in the cross-inspired stack)
+// Hero card — The Life of Jesus. Centered text, no icon, no chevron.
+// Dominance comes from width and typography, not decoration.
 // ---------------------------------------------------------------------------
 
 class _PathHeroCard extends StatelessWidget {
@@ -355,58 +362,39 @@ class _PathHeroCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         child: Container(
           padding:
-              const EdgeInsets.symmetric(horizontal: 22, vertical: 20),
+              const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
           decoration: BoxDecoration(
             color: palette.cardColor,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: palette.accentColor.withOpacity(0.55),
-              width: 1.5,
+              color: palette.foreground.primaryText,
+              width: 2,
             ),
-            boxShadow: [
-              BoxShadow(
-                color: palette.accentColor.withOpacity(0.18),
-                blurRadius: 16,
-                spreadRadius: 1,
-              ),
-            ],
           ),
-          child: Row(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(
-                Icons.auto_awesome,
-                color: palette.accentColor,
-                size: 30,
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'The Life of Jesus',
-                      style: TextStyle(
-                        color: palette.foreground.primaryText,
-                        fontSize: 19,
-                        fontWeight: FontWeight.w600,
-                        shadows: palette.foreground.textShadow,
-                      ),
-                    ),
-                    const SizedBox(height: 3),
-                    Text(
-                      'A guided journey',
-                      style: TextStyle(
-                        color: palette.foreground.secondaryText,
-                        fontSize: 13,
-                        shadows: palette.foreground.subtitleShadow,
-                      ),
-                    ),
-                  ],
+              Text(
+                'The Life of Jesus',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: palette.foreground.primaryText,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 0.2,
+                  shadows: palette.foreground.textShadow,
                 ),
               ),
-              Icon(
-                Icons.chevron_right,
-                color: palette.foreground.secondaryIcon,
+              const SizedBox(height: 3),
+              Text(
+                'A guided journey',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: palette.foreground.secondaryText,
+                  fontSize: 12,
+                  shadows: palette.foreground.subtitleShadow,
+                ),
               ),
             ],
           ),
@@ -420,19 +408,17 @@ class _PathHeroCard extends StatelessWidget {
 // Standard path card (Bible Order / Timeline / Themes / Characters)
 // ---------------------------------------------------------------------------
 
-/// Full-width rounded card used by the 4 standard path types in the
-/// cross-inspired vertical stack. Icon (left), label + subtitle
-/// (middle), chevron (right). No selection state — tapping navigates
-/// directly to the instance list.
+/// Narrow fixed-width rounded card used by the 4 standard path types
+/// in the centered vertical cross composition. Centered title +
+/// subtitle, no icon, no chevron — the composition carries all the
+/// weight, not the card internals.
 class _PathStandardCard extends StatelessWidget {
-  final IconData icon;
   final String label;
   final String subtitle;
   final SkyPalette palette;
   final VoidCallback onTap;
 
   const _PathStandardCard({
-    required this.icon,
     required this.label,
     required this.subtitle,
     required this.palette,
@@ -445,54 +431,42 @@ class _PathStandardCard extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(14),
         child: Container(
           padding:
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
           decoration: BoxDecoration(
             color: palette.cardColor,
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(14),
             border: Border.all(
-              color: palette.cardBorder,
-              width: 1.2,
+              color: palette.foreground.primaryText,
+              width: 2,
             ),
           ),
-          child: Row(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(
-                icon,
-                color: palette.foreground.primaryIcon,
-                size: 24,
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      label,
-                      style: TextStyle(
-                        color: palette.foreground.primaryText,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        shadows: palette.foreground.textShadow,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      subtitle,
-                      style: TextStyle(
-                        color: palette.foreground.secondaryText,
-                        fontSize: 12,
-                        shadows: palette.foreground.subtitleShadow,
-                      ),
-                    ),
-                  ],
+              Text(
+                label,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: palette.foreground.primaryText,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 0.2,
+                  shadows: palette.foreground.textShadow,
                 ),
               ),
-              Icon(
-                Icons.chevron_right,
-                color: palette.foreground.secondaryIcon,
+              const SizedBox(height: 2),
+              Text(
+                subtitle,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: palette.foreground.secondaryText,
+                  fontSize: 11,
+                  shadows: palette.foreground.subtitleShadow,
+                ),
               ),
             ],
           ),
