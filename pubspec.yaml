@@ -242,6 +242,7 @@ flutter:
     - assets/pal/pal_lines.json
     - assets/pal/pal_transition_lines.json
     - assets/pal/pal_reflection_lines.json
+    - assets/pal/pal_tone_biased_reflection_lines.json
     - assets/pal/audio/VOICE_GRACE/
     - assets/pal/audio/VOICE_SHEPHERD/
     - assets/pal/audio/VOICE_HOPE/

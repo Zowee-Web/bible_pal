@@ -2189,6 +2189,56 @@ python3 -c "import json; r=json.load(open('server/model_router/model_registry.js
 
 ---
 
+## 🔒 Delilah Opening Layer Invariant (NON-NEGOTIABLE)
+
+**Invariant**: The PAL opening layer must preserve audio sequencing, content integrity,
+and scope constraints at all times.
+
+### Why This Exists
+
+The opening layer creates emotional continuity between greeting and story. Violating
+sequencing produces audio overlap (broken UX). Scope violations — tone contaminating
+story selection or full-response rewriting — undermine the primary user-emotion driver.
+
+### Rules
+
+**Opening Library Integrity:**
+- Library MUST contain exactly 60 entries — enforced by test
+- All 60 lines MUST be unique (no duplicate text) — enforced by test
+- Every line MUST carry a valid `PalOpeningTone` — enforced by test
+- Each tone bucket MUST contain exactly 12 lines — enforced by test
+- Wording is locked; any change requires an explicit SPEC update
+
+**Audio Sequencing:**
+- Opening line TTS MUST complete before Feature 2.1 check-in prompt audio begins
+- Mic activation MUST NOT occur during opening line playback
+- No TTS or mic overlap across opening → check-in → listening sequence
+
+**Opening Tone Scope:**
+- `openingTone` MUST NOT be written to SharedPreferences, SQLite, or any persistent store
+- `openingTone` is cleared at end of interaction session
+- `openingTone` is never exposed outside the active PAL interaction
+
+**Tone Bias Scope:**
+- Tone bias MUST affect ONLY the first reflective sentence (Feature 5.1)
+- Framing line and transition line MUST NOT be affected by `openingTone`
+- Story selection MUST NOT read or be influenced by `openingTone`
+- Tone-biased content MUST be pre-written (no runtime modification, no AI)
+- Tone MUST NOT contradict detected user mood
+
+### Enforcement Checklist (tests MUST cover all of these)
+- [ ] Exactly 60 entries in opening library
+- [ ] All text unique
+- [ ] All text non-empty
+- [ ] Valid `PalOpeningTone` on every line
+- [ ] Exactly 12 lines per tone bucket
+- [ ] `openingTone` not written to persistent storage
+- [ ] Framing and transition lines unaffected by tone
+- [ ] Story selection unaffected by tone
+- [ ] TTS completion before mic activation (sequencing contract)
+
+---
+
 ## Future Invariants
 
 As the project evolves, additional invariants may be added here. Each invariant must:

@@ -224,20 +224,31 @@ void main() {
 
   group('voice flow', () {
     testWidgets('PAL button starts voice conversation flow', (tester) async {
+      // Use a generous surface so the opening line text (Feature 2.0)
+      // doesn't cause RenderFlex overflow in the constrained test viewport.
+      tester.view.physicalSize = const Size(800, 1400);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+
       await tester.pumpWidget(_buildScreen());
       await tester.pump();
       await tester.pump(const Duration(seconds: 1));
 
       await tester.tap(find.text('PAL'));
-      await tester.pump();
+      await tester.pump(); // starts _startConversation; enters playingOpeningLine
 
-      // PAL button starts voice flow
+      // Opening line state shows subtitle immediately.
       expect(
         find.textContaining('PAL is speaking'),
         findsOneWidget,
         reason: 'PAL button should start voice conversation flow',
       );
       expect(tester.takeException(), isNull);
+
+      // Drain the 1800ms opening-line display timer (Feature 2.0) so no
+      // pending timers remain when the test ends.
+      await tester.pump(const Duration(milliseconds: 1800));
     });
   });
 

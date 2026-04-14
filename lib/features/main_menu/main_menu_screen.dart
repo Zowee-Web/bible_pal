@@ -10,7 +10,9 @@ import '../../services/stt_service.dart';
 import '../../providers/service_providers.dart';
 import '../../core/biblical_figure_registry.dart';
 import '../../core/pal_reflection_lines.dart';
+import '../../core/pal_tone_biased_reflection_lines.dart';
 import '../../core/pal_transition_lines.dart';
+import '../pal/opening/pal_opening_lines.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/living_sky.dart';
 import '../onboarding/first_launch_screen.dart' show kPalIntroShownKey;
@@ -25,6 +27,10 @@ import '../../widgets/glass_input_decoration.dart';
 import '../../widgets/living_sky_background.dart';
 import '../../widgets/premium_components.dart';
 import '../paths/paths_page.dart';
+
+/// Session-only opening tone (Feature 2.0). Set when the PAL opening line is
+/// selected; reset at the start of the next tap. Never persisted to storage.
+final _palOpeningToneProvider = StateProvider<PalOpeningTone?>((ref) => null);
 
 /// Main Menu Screen
 /// Based on SPEC Feature 48 — Main Horizontal Navigation (LOCKED 3 pages).
@@ -715,11 +721,18 @@ class _StudyPageState extends ConsumerState<_StudyPage>
         await BiblicalFigureRegistry.ensureLoaded();
         await PalTransitionLines.ensureLoaded();
         await PalReflectionLines.ensureLoaded();
+        await PalToneBiasedReflectionLines.ensureLoaded();
         final framingLine =
             BiblicalFigureRegistry.getFramingLine(previewKey);
         final transitionLine =
             PalTransitionLines.getLine(previewKey);
-        final reflectionLine =
+        // Feature 5.1: use tone-biased first sentence when opening tone is
+        // active; fall back to standard reflection line if key not found.
+        final openingTone = ref.read(_palOpeningToneProvider);
+        final reflectionLine = (openingTone != null
+                ? PalToneBiasedReflectionLines.getLine(
+                    moodResult.mood, openingTone)
+                : null) ??
             PalReflectionLines.getLine(moodResult.mood);
         if (framingLine != null && mounted) {
           // Compose: reflection + framing + transition
@@ -1094,6 +1107,9 @@ enum _VoiceFlowState {
   /// Normal main menu, no conversation active.
   inactive,
 
+  /// PAL opening line is displaying (Feature 2.0).
+  playingOpeningLine,
+
   /// PAL greeting audio is playing.
   playingGreeting,
 
@@ -1387,9 +1403,24 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   Future<void> _startConversation() async {
     // Pause breathing during voice flow
     _breathController.stop();
+
+    // Feature 2.0 — Delilah pre-greeting opening line.
+    // Selected uniformly at random; tone stored session-only (never persisted).
+    ref.read(_palOpeningToneProvider.notifier).state = null; // reset from prior session
+    final opening = pickOpeningLine();
+    ref.read(_palOpeningToneProvider.notifier).state = opening.tone;
+    setState(() {
+      _voiceFlow = _VoiceFlowState.playingOpeningLine;
+      _greetingText = opening.text;
+    });
+    // Minimum display duration before Feature 2.1 activates.
+    // (Pre-generated audio for these lines is a separate production step.)
+    await Future.delayed(const Duration(milliseconds: 1800));
+    if (!mounted || _voiceFlow != _VoiceFlowState.playingOpeningLine) return;
+
     setState(() => _voiceFlow = _VoiceFlowState.playingGreeting);
 
-    // Load and play PAL greeting
+    // Load and play PAL greeting (Feature 2.1)
     try {
       final prompt = await _promptService.getPrompt();
       if (!mounted) return;
@@ -1696,6 +1727,8 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     switch (_voiceFlow) {
       case _VoiceFlowState.inactive:
         return '';
+      case _VoiceFlowState.playingOpeningLine:
+        return 'PAL is speaking...';
       case _VoiceFlowState.playingGreeting:
         return 'PAL is speaking...';
       case _VoiceFlowState.responding:
@@ -1892,6 +1925,17 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     switch (_voiceFlow) {
       case _VoiceFlowState.inactive:
         return const SizedBox.shrink();
+
+      case _VoiceFlowState.playingOpeningLine:
+        return Text(
+          _greetingText ?? '...',
+          style: theme.textTheme.titleMedium?.copyWith(
+            color: palette.foreground.primaryText,
+            fontStyle: FontStyle.italic,
+            shadows: palette.foreground.textShadow,
+          ),
+          textAlign: TextAlign.center,
+        );
 
       case _VoiceFlowState.playingGreeting:
         return Text(

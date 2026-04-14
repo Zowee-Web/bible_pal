@@ -1,7 +1,7 @@
 # Bible PAL - Technical Specification
 
-**Version:** 3.0
-**Last Updated:** 2026-03-28
+**Version:** 3.1
+**Last Updated:** 2026-04-13
 
 This document is the single source of truth for Bible PAL's features and behavior. All code must follow this specification. Changes to app behavior require explicit updates to this document.
 
@@ -32,6 +32,33 @@ This document is the single source of truth for Bible PAL's features and behavio
 
 **1. PAL's Parables Button**
 - Main button on the home screen to start the parable experience
+
+**2.0 Delilah Pre-Greeting Opening Layer (Feature 2.0)**
+- Immediately after the PAL's Parables button is tapped, PAL plays one randomly selected opening line
+  from a fixed 60-line library **before** the Feature 2.1 check-in prompt activates
+- Each opening line carries a tone tag: `gentle`, `encouraging`, `calm`, `weary`, or `warm`
+- Selection is uniformly random from the 60-line library — no time-awareness, no category weighting
+- TTS playback of the opening line **must complete** before Feature 2.1 begins — no overlap permitted
+- The selected `openingTone` is stored in **session-only state** (never persisted to SharedPreferences or SQLite)
+- Opening tone is discarded at end of the interaction session
+- Feature 2.1 and all subsequent steps remain unchanged
+
+**Opening Library:**
+- 60 lines total, 12 per tone bucket:
+  - `gentle` — lines 1–12 (soft, open, present)
+  - `encouraging` — lines 13–24 (supportive, affirming)
+  - `calm` — lines 25–36 (grounded, unhurried)
+  - `weary` — lines 37–48 (burden-aware, energy-sensitive)
+  - `warm` — lines 49–60 (light, steady, slightly uplifting)
+- All 60 lines are unique
+- Content is **locked as a Dart hardcoded constant** — no JSON asset, no AI generation
+- Wording changes require a SPEC update and explicit owner approval
+
+**Implementation Notes:**
+- `PalOpeningTone` enum: `gentle`, `encouraging`, `calm`, `weary`, `warm`
+- `PalOpeningLine`: `{String text, PalOpeningTone tone}` — const struct
+- Library defined in `lib/features/pal/opening/pal_opening_lines.dart`
+- Session tone held in local screen state (not in `UserPreferences`)
 
 **2. PAL Check-In Prompt System (Feature 2.1)**
 - After tapping PAL's Parables, PAL asks a time-aware, category-weighted check-in question
@@ -146,6 +173,52 @@ When a mood button is tapped, a brief thinking delay (800–1500ms randomized) i
   - Selected length
 - If pre-generated stories exist that match criteria, selects one
 - Otherwise generates a new one on demand
+
+**5.1 Framing Overlay + Tone-Biased First Reflection**
+- In flows where the PAL framing overlay is shown, after story selection (Feature 5) and before playback begins, PAL displays a full-screen framing overlay
+- The overlay is dismissed by user tap or swipe; story playback begins after dismissal
+- The overlay composes three parts separated by line breaks:
+  1. **First reflective sentence** — mood-scoped emotional acknowledgment (Delilah++ layer)
+  2. **Framing line** — from `BiblicalFigureRegistry.getFramingLine(previewKey)`
+  3. **Transition line** — from `PalTransitionLines.getLine(previewKey)`
+
+**First Reflective Sentence — Normal Path (no active opening tone):**
+- Selected from `assets/pal/pal_reflection_lines.json` via `PalReflectionLines.getLine(mood)`
+- 8 mood buckets × 4 lines each, deterministic rotation by `(mood.hashCode + currentDay)`
+
+**First Reflective Sentence — Tone-Biased Path (opening tone active in session):**
+- When a Feature 2.0 `openingTone` is present in session, the first reflective sentence is selected
+  from `assets/pal/pal_tone_biased_reflection_lines.json` via `PalToneBiasedReflectionLines.getLine(mood, tone)`
+- Asset structure: 8 mood buckets × 5 tone buckets × 2–4 pre-written variants each
+- Selection within a variant set uses the same deterministic rotation as the normal path
+- If the `(mood, tone)` key is absent, falls back silently to `PalReflectionLines.getLine(mood)`
+- Content is pre-written; no runtime string modification, no AI dependency
+
+**Tone Influence on Wording (pre-written variants):**
+
+| Tone | Character of first sentence |
+|------|-----------------------------|
+| `gentle` | soft, open, present framing |
+| `encouraging` | supportive, affirming framing |
+| `calm` | slowed pacing, grounding framing |
+| `weary` | burden-aware, energy-sensitive framing |
+| `warm` | light, steady, slightly uplifting framing |
+
+**Scope constraints (all are invariants — see INVARIANTS.md):**
+- Tone bias affects **only** the first reflective sentence
+- Framing line and transition line are **never** affected by `openingTone`
+- Story selection does **not** read `openingTone`
+- Tone must never contradict detected mood
+- Detected mood is the primary driver; opening tone is a subtle modifier only (~10–15%)
+- No forced positivity, no therapeutic framing, no implied knowledge PAL does not have
+
+**Implementation Notes:**
+- New class: `PalToneBiasedReflectionLines` in `lib/core/pal_tone_biased_reflection_lines.dart`
+  - Loads `assets/pal/pal_tone_biased_reflection_lines.json`
+  - `getLine(String mood, PalOpeningTone tone) → String?`
+  - Returns `null` on unknown key; caller falls back to `PalReflectionLines`
+- Integration: `main_menu_screen.dart` — replace single `PalReflectionLines.getLine(moodResult.mood)`
+  call with tone-aware selection when session carries `openingTone`
 
 ### Story Length & Generation
 
