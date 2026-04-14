@@ -152,6 +152,133 @@ void main() {
   });
 
   // ---------------------------------------------------------------------------
+  // Mood screen passive placeholder rotation (Feature 2.0 sub-section)
+  // ---------------------------------------------------------------------------
+
+  group('buildShuffledOpeningLineTexts', () {
+    test('returns exactly 60 texts', () {
+      final pool = buildShuffledOpeningLineTexts(random: Random(1));
+      expect(pool.length, equals(60));
+    });
+
+    test('returns the full library with no additional strings', () {
+      final pool = buildShuffledOpeningLineTexts(random: Random(2));
+      final libraryTexts = palOpeningLines.map((l) => l.text).toSet();
+      expect(pool.toSet(), equals(libraryTexts));
+    });
+
+    test('contains no old hardcoded placeholder strings', () {
+      // These are the old _StudyPageState / _PalsParablesScreenState hints
+      // that were removed from the mood screen rotation. If any of them
+      // appears in the pool, the rotation is still pulling from a mixed
+      // source.
+      const oldPlaceholders = [
+        'Tell me how you\u2019re feeling\u2026',
+        'What\u2019s on your heart today?',
+        'How are you starting your day?',
+        'What are you grateful for today?',
+        'How\u2019s your spirit doing?',
+        'What\u2019s on your heart tonight?',
+        'How did your day go?',
+        'What\u2019s ahead for you today?',
+        'What\u2019s on your mind tonight?',
+        'What\u2019s weighing on you?',
+        'Anything you need to lay down today?',
+      ];
+      final pool = buildShuffledOpeningLineTexts(random: Random(3));
+      for (final old in oldPlaceholders) {
+        expect(
+          pool,
+          isNot(contains(old)),
+          reason:
+              'Old placeholder "$old" must not appear in the mood screen rotation pool',
+        );
+      }
+    });
+
+    test('deterministic under seeded Random', () {
+      final a = buildShuffledOpeningLineTexts(random: Random(42));
+      final b = buildShuffledOpeningLineTexts(random: Random(42));
+      expect(a, equals(b));
+    });
+
+    test('different seeds produce different orderings', () {
+      final a = buildShuffledOpeningLineTexts(random: Random(1));
+      final b = buildShuffledOpeningLineTexts(random: Random(2));
+      // Same set, different order (with 60 items, seed 1 vs 2 should differ).
+      expect(a.toSet(), equals(b.toSet()));
+      expect(a, isNot(equals(b)));
+    });
+
+    test('avoidFirst moves matching first element out of index 0', () {
+      // Same seed produces the same shuffle order, so the first element of
+      // the base run is what avoidFirst should displace in the guarded run.
+      final base = buildShuffledOpeningLineTexts(random: Random(42));
+      final target = base.first;
+      final guarded = buildShuffledOpeningLineTexts(
+        random: Random(42),
+        avoidFirst: target,
+      );
+      expect(
+        guarded.first,
+        isNot(equals(target)),
+        reason: 'avoidFirst="$target" still appeared at index 0',
+      );
+      // The avoided line is still present, just not at the front.
+      expect(guarded, contains(target));
+    });
+
+    test('avoidFirst has no effect when first element already differs', () {
+      final base = buildShuffledOpeningLineTexts(random: Random(7));
+      final notFirst = base[5];
+      final guarded = buildShuffledOpeningLineTexts(
+        random: Random(7),
+        avoidFirst: notFirst,
+      );
+      expect(guarded, equals(base));
+    });
+
+    test('simulated multi-cycle rotation never produces immediate repeats', () {
+      // Simulate the _StudyPageState rotation: start with one pool, cycle
+      // through every index, reshuffle on wrap with avoidFirst, repeat.
+      final rng = Random(99);
+      var pool = buildShuffledOpeningLineTexts(random: rng);
+      var idx = 0;
+      String? prev;
+      for (int step = 0; step < 200; step++) {
+        final line = pool[idx];
+        if (prev != null) {
+          expect(
+            line,
+            isNot(equals(prev)),
+            reason: 'Immediate repeat at step $step',
+          );
+        }
+        prev = line;
+        idx++;
+        if (idx >= pool.length) {
+          pool = buildShuffledOpeningLineTexts(random: rng, avoidFirst: prev);
+          idx = 0;
+        }
+      }
+    });
+
+    test('full cycle visits every line before any repeat', () {
+      final pool = buildShuffledOpeningLineTexts(random: Random(11));
+      final seen = <String>{};
+      for (final line in pool) {
+        expect(
+          seen.contains(line),
+          isFalse,
+          reason: 'Line "$line" appeared twice before cycle wrap',
+        );
+        seen.add(line);
+      }
+      expect(seen.length, equals(60));
+    });
+  });
+
+  // ---------------------------------------------------------------------------
   // Session-only tone — no persistence API exists
   // ---------------------------------------------------------------------------
 

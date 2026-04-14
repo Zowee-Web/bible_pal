@@ -2208,6 +2208,9 @@ story selection or full-response rewriting — undermine the primary user-emotio
 - Every line MUST carry a valid `PalOpeningTone` — enforced by test
 - Each tone bucket MUST contain exactly 12 lines — enforced by test
 - Wording is locked; any change requires an explicit SPEC update
+- The mood screen TextField passive placeholder MUST source exclusively
+  from `palOpeningLines`. No alternate hardcoded placeholder pools, no
+  time-of-day fallback hints for this rotation.
 
 **Audio Sequencing:**
 - Opening line TTS MUST complete before Feature 2.1 check-in prompt audio begins

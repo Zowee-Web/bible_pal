@@ -595,31 +595,15 @@ class _StudyPageState extends ConsumerState<_StudyPage>
   int _currentHintIndex = 0;
   bool _userIsTyping = false;
 
-  static const _morningHints = [
-    'Tell me how you\u2019re feeling\u2026',
-    'What\u2019s on your heart today?',
-    'How are you starting your day?',
-    'What are you grateful for today?',
-    'How\u2019s your spirit doing?',
-  ];
-
-  static const _eveningHints = [
-    'Tell me how you\u2019re feeling\u2026',
-    'What\u2019s on your heart tonight?',
-    'How did your day go?',
-    'What\u2019s weighing on you?',
-    'Anything you need to lay down today?',
-  ];
-
-  List<String> get _hints {
-    final hour = DateTime.now().hour;
-    return hour < 17 ? _morningHints : _eveningHints;
-  }
+  /// Feature 2.0 passive placeholder rotation: a shuffled copy of the full
+  /// 60-line Delilah opening library. Reshuffled on each full-cycle wrap
+  /// to guarantee full-pool coverage with no immediate repeats.
+  List<String> _hints = buildShuffledOpeningLineTexts();
 
   @override
   void initState() {
     super.initState();
-    _currentHintIndex = Random().nextInt(_hints.length);
+    _currentHintIndex = 0;
 
     _hintFadeController = AnimationController(
       vsync: this,
@@ -673,7 +657,16 @@ class _StudyPageState extends ConsumerState<_StudyPage>
       _hintFadeController.reverse().then((_) {
         if (!mounted || _userIsTyping) return;
         setState(() {
-          _currentHintIndex = (_currentHintIndex + 1) % _hints.length;
+          final prevLine = _hints[_currentHintIndex];
+          final nextIndex = _currentHintIndex + 1;
+          if (nextIndex >= _hints.length) {
+            // Full-cycle wrap: reshuffle the whole pool and guarantee the
+            // new first line isn't a repeat of the line we just showed.
+            _hints = buildShuffledOpeningLineTexts(avoidFirst: prevLine);
+            _currentHintIndex = 0;
+          } else {
+            _currentHintIndex = nextIndex;
+          }
         });
         // Pause briefly, then fade in over 3s
         Future.delayed(const Duration(milliseconds: 800), () {

@@ -286,3 +286,36 @@ PalOpeningLine pickOpeningLine([Random? random]) {
   final rng = random ?? Random();
   return palOpeningLines[rng.nextInt(palOpeningLines.length)];
 }
+
+/// Returns all 60 opening-line texts in shuffled order, for passive
+/// rotation surfaces such as the mood screen TextField placeholder
+/// (Feature 2.0, "Mood Screen Passive Placeholder Rotation").
+///
+/// Every call produces a fresh permutation of the full library, so a
+/// caller that exhausts the returned list and then re-invokes this
+/// function is guaranteed to visit every line exactly once per cycle.
+///
+/// [avoidFirst], when non-null, prevents the returned list from starting
+/// with that text — useful across cycle boundaries to prevent the
+/// previously-displayed line from appearing twice in a row. If the
+/// shuffle happens to place [avoidFirst] at index 0, it is swapped with
+/// the last element.
+///
+/// [random] is injectable for deterministic tests.
+List<String> buildShuffledOpeningLineTexts({
+  Random? random,
+  String? avoidFirst,
+}) {
+  final rng = random ?? Random();
+  final pool = [for (final l in palOpeningLines) l.text];
+  pool.shuffle(rng);
+  if (avoidFirst != null &&
+      pool.isNotEmpty &&
+      pool.first == avoidFirst &&
+      pool.length > 1) {
+    final tmp = pool[0];
+    pool[0] = pool[pool.length - 1];
+    pool[pool.length - 1] = tmp;
+  }
+  return pool;
+}

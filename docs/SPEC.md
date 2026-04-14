@@ -60,6 +60,18 @@ This document is the single source of truth for Bible PAL's features and behavio
 - Library defined in `lib/features/pal/opening/pal_opening_lines.dart`
 - Session tone held in local screen state (not in `UserPreferences`)
 
+**Mood Screen Passive Placeholder Rotation (Visual Reuse):**
+- The mood screen TextField placeholder rotates through the same 60-line
+  Delilah opening library for passive visual discovery. This rotation is
+  fully decoupled from any PAL-tap interaction: it does not play TTS,
+  activate mic, or set `openingTone`.
+- Source of truth: `palOpeningLines` (Dart constant). No alternate
+  placeholder pools; no time-of-day branching for this rotation.
+- Rotation uses full-pool shuffle: every line is shown before any line
+  repeats. Immediate repeats across shuffle boundaries are avoided.
+- Helper: `buildShuffledOpeningLineTexts({Random? random, String? avoidFirst})`
+  in `lib/features/pal/opening/pal_opening_lines.dart`.
+
 **2. PAL Check-In Prompt System (Feature 2.1)**
 - After tapping PAL's Parables, PAL asks a time-aware, category-weighted check-in question
 - The prompt adjusts based on current time of day and a weighted random category
