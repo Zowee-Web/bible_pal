@@ -325,8 +325,8 @@ class _SanctuaryPage extends ConsumerWidget {
           if (streak < 2) return const SizedBox.shrink();
           return Text(
             '$streak day streak',
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: palette.accentColor,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: palette.foreground.primaryText,
               fontWeight: FontWeight.w500,
             ),
           );
@@ -359,8 +359,8 @@ class _SanctuaryPage extends ConsumerWidget {
                   const SizedBox(height: 4),
                   Text(
                     '— $verseReference',
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      color: palette.accentColor.withOpacity(0.90),
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      color: palette.foreground.secondaryText,
                       letterSpacing: 0.6,
                       shadows: palette.foreground.subtitleShadow,
                     ),
