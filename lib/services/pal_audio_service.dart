@@ -26,7 +26,6 @@ class PalAudioService {
   // Loaded line pools (lazy-init)
   Map<String, List<PalLine>> _prompts = {};
   Map<String, List<PalLine>> _microResponses = {};
-  List<PalLine> _preview = [];
 
   // Last selected lines (for UI text display)
   PalLine? _lastPrompt;
@@ -71,8 +70,6 @@ class PalAudioService {
       final jsonStr =
           await rootBundle.loadString('assets/pal/pal_lines.json');
       final data = jsonDecode(jsonStr) as Map<String, dynamic>;
-
-      _preview = _parseLines(data['preview'] as List<dynamic>);
 
       // Load prompts (16 buckets)
       final promptsData = data['prompts'] as Map<String, dynamic>;
@@ -248,15 +245,13 @@ class PalAudioService {
     }
   }
 
+  /// Preview line ID used for Settings voice preview.
+  /// Uses a new PAL opening line instead of the legacy preview_01 asset.
+  static const String previewLineId = 'OPENING_GENTLE_01';
+
   /// Play the preview line (for Settings voice preview).
   Future<void> playPreview(String voiceKey) async {
-    await _ensureInit();
-
-    final line = _preview.isNotEmpty
-        ? _preview.first
-        : const PalLine(id: 'preview_01', text: '');
-
-    await _playAsset(voiceKey, line.id);
+    await _playAsset(voiceKey, previewLineId);
   }
 
   /// Get the text of the last played prompt.
@@ -286,6 +281,82 @@ class PalAudioService {
         }
       }
     }
+  }
+
+  /// Play a single PAL line by its asset ID.
+  ///
+  /// Used for opening lines, framing overlay lines, etc.
+  /// Falls back silently to text-only if asset not found.
+  /// Returns true if audio played, false if asset was missing.
+  Future<bool> playLine(String lineId, String voiceKey) async {
+    await _acquireLock();
+    try {
+      final path = assetPath(voiceKey, lineId);
+      try {
+        await _player.setAsset(path);
+        await _player.play();
+        return true;
+      } catch (e) {
+        debugPrint('[PalAudioService] Asset not found: $path');
+        // Fallback: try default voice
+        if (voiceKey != PalVoiceRegistry.defaultVoiceKey) {
+          final fallbackPath =
+              assetPath(PalVoiceRegistry.defaultVoiceKey, lineId);
+          try {
+            await _player.setAsset(fallbackPath);
+            await _player.play();
+            return true;
+          } catch (e2) {
+            debugPrint(
+                '[PalAudioService] Fallback also missing: $fallbackPath');
+          }
+        }
+        return false;
+      }
+    } finally {
+      _releaseLock();
+    }
+  }
+
+  /// Play a sequence of PAL lines with short pauses between them.
+  ///
+  /// Used for framing overlay: reflection → framing → transition.
+  /// Caller can call [stop] to interrupt at any time; the sequence will
+  /// exit cleanly when the current line finishes or is stopped.
+  Future<void> playSequence(List<String> lineIds, String voiceKey) async {
+    await _acquireLock();
+    try {
+      for (var i = 0; i < lineIds.length; i++) {
+        final path = assetPath(voiceKey, lineIds[i]);
+        try {
+          await _player.setAsset(path);
+          await _player.play();
+        } catch (e) {
+          debugPrint('[PalAudioService] Sequence asset missing: $path');
+          continue; // Skip missing assets
+        }
+        // Wait for playback to complete or be stopped
+        final completed = await _awaitPlaybackDone();
+        if (!completed) return; // Stopped externally — exit sequence
+        // Short pause between lines (not after last)
+        if (i < lineIds.length - 1) {
+          await Future.delayed(const Duration(milliseconds: 400));
+        }
+      }
+    } finally {
+      _releaseLock();
+    }
+  }
+
+  /// Wait for current playback to complete or be stopped.
+  /// Returns true if playback completed naturally, false if stopped.
+  Future<bool> _awaitPlaybackDone() async {
+    final state = await _player.playerStateStream.firstWhere(
+      (s) =>
+          s.processingState == ProcessingState.completed ||
+          s.processingState == ProcessingState.idle,
+    );
+    return state.processingState == ProcessingState.completed;
   }
 
   /// Wait for current playback to complete.

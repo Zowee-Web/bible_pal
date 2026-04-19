@@ -64,6 +64,9 @@ class MoodService {
       'stretched thin', 'can barely', 'so much going on',
       'nonstop', 'never ends', 'carrying a lot', 'heavy load',
       'worn out', 'burned out', 'sleepless', 'restless',
+      'heavy', 'hard week', 'hard day', 'long week', 'long day',
+      'rough week', 'rough day', 'difficult', 'too much',
+      'tough day', 'tough week',
     ])) {
       return MoodResult(
         mood: 'weary',
@@ -77,13 +80,15 @@ class MoodService {
 
     // Check for anxious/stressed indicators
     if (_containsAny(normalizedText, [
-      'stressed', 'anxious', 'worried', 'nervous', 'afraid', 'scared',
+      'stressed', 'stress', 'stressing', 'anxious', 'worried', 'worrying',
+      'nervous', 'afraid', 'scared',
       'tense', 'pressure', 'overwhelmed', 'panic', 'fear', 'fearful',
-      'uneasy', 'on edge', 'can\'t relax', 'racing thoughts',
+      'uneasy', 'on edge', 'can\'t relax', 'racing thoughts', 'racing',
       'overthinking', 'restless', 'apprehensive', 'dreading', 'dread',
       'uncertain', 'unsettled', 'shaking', 'frantic', 'freaking out',
       'losing my mind', 'spiraling', 'what if', 'terrified',
       'keep thinking about', 'can\'t stop thinking',
+      'can\'t stop worrying', 'won\'t stop',
     ])) {
       return MoodResult(
         mood: 'anxious',
@@ -105,6 +110,7 @@ class MoodService {
       'devastated', 'crushed', 'let down', 'disappointed',
       'miss them', 'miss him', 'miss her', 'passed away', 'died',
       'struggling', 'falling apart', 'giving up',
+      'hard time', 'rough time', 'going through',
     ])) {
       return MoodResult(
         mood: 'hurting',
@@ -168,11 +174,13 @@ class MoodService {
       );
     }
 
-    // Default to calm_peaceful (gentler default than "neutral")
+    // Default to weary — an unmatched phrase is more likely someone
+    // struggling to express something heavy than someone feeling calm.
+    // This prevents mismatched positive reflection lines on missed input.
     return const MoodResult(
-      mood: 'calm_peaceful',
+      mood: 'weary',
       emotionalTags: [],
-      confidenceScore: 0.5,
+      confidenceScore: 0.4,
     );
   }
 

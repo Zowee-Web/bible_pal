@@ -56,7 +56,10 @@ This document is the single source of truth for Bible PAL's features and behavio
 
 **Implementation Notes:**
 - `PalOpeningTone` enum: `gentle`, `encouraging`, `calm`, `weary`, `warm`
-- `PalOpeningLine`: `{String text, PalOpeningTone tone}` — const struct
+- `PalOpeningLine`: `{String id, String text, PalOpeningTone tone}` — const struct
+- Each line carries a unique ID: `OPENING_{TONE}_{NN}` (e.g., `OPENING_GENTLE_01`)
+- Pre-generated audio assets at `assets/pal/audio/{voiceKey}/{lineId}.mp3`
+- When audio asset is missing, falls back to minimum display duration (1800ms)
 - Library defined in `lib/features/pal/opening/pal_opening_lines.dart`
 - Session tone held in local screen state (not in `UserPreferences`)
 
@@ -196,13 +199,13 @@ When a mood button is tapped, a brief thinking delay (800–1500ms randomized) i
 
 **First Reflective Sentence — Normal Path (no active opening tone):**
 - Selected from `assets/pal/pal_reflection_lines.json` via `PalReflectionLines.getLine(mood)`
-- 8 mood buckets × 4 lines each, deterministic rotation by `(mood.hashCode + currentDay)`
+- 8 mood buckets × 4 lines each, persistent recency-based rotation (cycles through all lines per mood before repeating, history survives app restarts via SharedPreferences)
 
 **First Reflective Sentence — Tone-Biased Path (opening tone active in session):**
 - When a Feature 2.0 `openingTone` is present in session, the first reflective sentence is selected
   from `assets/pal/pal_tone_biased_reflection_lines.json` via `PalToneBiasedReflectionLines.getLine(mood, tone)`
 - Asset structure: 8 mood buckets × 5 tone buckets × 2–4 pre-written variants each
-- Selection within a variant set uses the same deterministic rotation as the normal path
+- Selection within a variant set uses the same persistent recency-based rotation as the normal path
 - If the `(mood, tone)` key is absent, falls back silently to `PalReflectionLines.getLine(mood)`
 - Content is pre-written; no runtime string modification, no AI dependency
 
@@ -223,6 +226,28 @@ When a mood button is tapped, a brief thinking delay (800–1500ms randomized) i
 - Tone must never contradict detected mood
 - Detected mood is the primary driver; opening tone is a subtle modifier only (~10–15%)
 - No forced positivity, no therapeutic framing, no implied knowledge PAL does not have
+
+**PAL Spoken Response + Framing Overlay (Feature 5.1a):**
+- After mood detection and before the framing overlay, PAL speaks a single reflection line as a spoken response
+- The reflection line plays via `playLine(reflectionRef.id, voiceKey)` and completes before the overlay appears
+- A short pause (~300ms) follows the spoken reflection before the overlay fades in
+- The framing overlay itself is **text-only** — no audio plays during the overlay
+- Audio uses the user's selected PAL voice (`palVoiceKey`)
+- If audio asset is missing or audio is disabled, the flow degrades gracefully to text-only
+- In the voice-first path (PAL orb → mic → mood), the same spoken reflection plays after mood detection, before navigating to story selection
+- Audio assets are pre-generated via the PAL audio pipeline; no runtime TTS
+- Asset path convention: `assets/pal/audio/{voiceKey}/{lineId}.mp3`
+- **Creative mode**: Instead of a story-specific framing line, PAL plays a mood-based narrative opening line from `assets/pal/creative_opening_lines.json` via `CreativeOpeningLines.getLineRef(mood)`
+  - 8 mood buckets × 3 lines each, persistent recency-based rotation (same mechanism as reflection lines)
+  - Content is narrative and imaginative — NOT Scripture-based, no Bible characters or verse formatting
+  - Selection and playback follows the same pattern as the Traditional reflection line
+  - Creative opening lines do NOT replace the Traditional framing overlay (text-only) — Traditional mode is unchanged
+- Line ID conventions:
+  - Reflection: `REFL_{MOOD}_{NN}` (e.g., `REFL_JOYFUL_01`)
+  - Tone-biased reflection: `REFL_TB_{MOOD}_{TONE}_{NN}` (e.g., `REFL_TB_JOYFUL_GENTLE_01`)
+  - Framing: `FRAME_{BIBLE_STORY_KEY}_{NN}` (e.g., `FRAME_DAVID_ANOINTED_01`)
+  - Transition: `TRANS_{NN}` (e.g., `TRANS_01`)
+  - Creative opening: `CREATIVE_{MOOD}_{NN}` (e.g., `CREATIVE_WEARY_01`)
 
 **Implementation Notes:**
 - New class: `PalToneBiasedReflectionLines` in `lib/core/pal_tone_biased_reflection_lines.dart`

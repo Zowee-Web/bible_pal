@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:bible_pal/core/pal_transition_lines.dart';
 
 void main() {
@@ -27,27 +28,50 @@ void main() {
       expect(lines.length, greaterThanOrEqualTo(10));
     });
 
-    test('all lines are non-empty strings', () {
+    test('all lines are objects with id and text', () {
       for (final line in lines) {
-        expect(line, isA<String>());
-        expect((line as String).isNotEmpty, true);
+        final obj = line as Map<String, dynamic>;
+        expect(obj['id'], isA<String>());
+        expect((obj['id'] as String).isNotEmpty, true);
+        expect(obj['text'], isA<String>());
+        expect((obj['text'] as String).isNotEmpty, true);
       }
     });
 
-    test('all lines are <= 65 characters (shorter than framing lines)', () {
+    test('all line IDs follow TRANS_{NN} convention', () {
+      for (final line in lines) {
+        final id = (line as Map<String, dynamic>)['id'] as String;
+        expect(id, matches(RegExp(r'^TRANS_\d{2}$')),
+            reason: 'ID "$id" does not match TRANS_NN pattern');
+      }
+    });
+
+    test('all line IDs are unique', () {
+      final ids = <String>{};
+      for (final line in lines) {
+        final id = (line as Map<String, dynamic>)['id'] as String;
+        expect(ids.add(id), true, reason: 'Duplicate ID: $id');
+      }
+    });
+
+    test('all texts are <= 65 characters (shorter than framing lines)', () {
       final violations = <String>[];
       for (final line in lines) {
-        if ((line as String).length > 65) {
-          violations.add('"$line" (${line.length} chars)');
+        final text = (line as Map<String, dynamic>)['text'] as String;
+        if (text.length > 65) {
+          violations.add('"$text" (${text.length} chars)');
         }
       }
       expect(violations, isEmpty,
           reason: 'Transition lines over 65 chars:\n${violations.join('\n')}');
     });
 
-    test('no duplicate lines', () {
-      final unique = lines.toSet();
-      expect(unique.length, lines.length, reason: 'Duplicate transition lines found');
+    test('no duplicate texts', () {
+      final texts = lines
+          .map((l) => (l as Map<String, dynamic>)['text'] as String)
+          .toSet();
+      expect(texts.length, lines.length,
+          reason: 'Duplicate transition lines found');
     });
   });
 
@@ -63,10 +87,11 @@ void main() {
       ];
       final violations = <String>[];
       for (final line in lines) {
-        final lower = (line as String).toLowerCase();
+        final text = (line as Map<String, dynamic>)['text'] as String;
+        final lower = text.toLowerCase();
         for (final pattern in banned) {
           if (lower.contains(pattern)) {
-            violations.add('"$line" contains "$pattern"');
+            violations.add('"$text" contains "$pattern"');
           }
         }
       }
@@ -77,6 +102,7 @@ void main() {
 
   group('PAL Transition Lines — Dart loader', () {
     setUp(() {
+      SharedPreferences.setMockInitialValues({});
       PalTransitionLines.resetForTesting();
     });
 
@@ -123,6 +149,23 @@ void main() {
       // At least some variation (not all the same line)
       expect(results.length, greaterThan(1),
           reason: 'All keys returned the same transition line');
+    });
+
+    test('getLineRef returns PalLineRef with id and text', () async {
+      await PalTransitionLines.ensureLoaded();
+      final ref =
+          PalTransitionLines.getLineRef('joseph_sold_by_brothers');
+      expect(ref, isNotNull);
+      expect(ref!.id, startsWith('TRANS_'));
+      expect(ref.text.isNotEmpty, true);
+    });
+
+    test('getLineRef and getLine return consistent text', () async {
+      await PalTransitionLines.ensureLoaded();
+      final ref =
+          PalTransitionLines.getLineRef('joseph_sold_by_brothers');
+      expect(ref, isNotNull);
+      expect(PalTransitionLines.lines, contains(ref!.text));
     });
   });
 }

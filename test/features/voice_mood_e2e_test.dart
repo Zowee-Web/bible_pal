@@ -30,7 +30,8 @@ void main() {
         'I am so tired and worn out': 'weary',
         'I am stressed and worried about work': 'anxious',
         'I feel sad and alone tonight': 'hurting',
-        'just checking in': 'calm_peaceful',
+        'just checking in': 'weary', // unrecognized → safe weary default
+        'feeling peaceful and calm': 'calm_peaceful',
       };
 
       for (final entry in testCases.entries) {

@@ -153,6 +153,17 @@ flutter:
     - assets/stories/traditional/1077/
     - assets/stories/traditional/1078/
     - assets/stories/traditional/1079/
+    - assets/stories/traditional/1080/
+    - assets/stories/traditional/1081/
+    - assets/stories/traditional/1082/
+    - assets/stories/traditional/1083/
+    - assets/stories/traditional/1084/
+    - assets/stories/traditional/1085/
+    - assets/stories/traditional/1086/
+    - assets/stories/traditional/1087/
+    - assets/stories/traditional/1088/
+    - assets/stories/traditional/1089/
+    - assets/stories/traditional/1090/
     # Creative stories (Opus 4.6, 2000-series)
     - assets/stories/creative/2000/
     - assets/stories/creative/2001/
@@ -243,6 +254,7 @@ flutter:
     - assets/pal/pal_transition_lines.json
     - assets/pal/pal_reflection_lines.json
     - assets/pal/pal_tone_biased_reflection_lines.json
+    - assets/pal/creative_opening_lines.json
     - assets/pal/audio/VOICE_GRACE/
     - assets/pal/audio/VOICE_SHEPHERD/
     - assets/pal/audio/VOICE_HOPE/

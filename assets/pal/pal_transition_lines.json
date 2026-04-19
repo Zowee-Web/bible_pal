@@ -1,18 +1,18 @@
 {
-  "version": 1,
+  "version": 2,
   "description": "Shared PAL closing lines for the typed-input framing overlay. Not story-specific.",
   "lines": [
-    "There's a story that meets you right there.",
-    "Let's walk into a moment that feels close to this.",
-    "I think there's a story you'll connect with.",
-    "There's something in Scripture that understands that.",
-    "Let's move into a story that carries something similar.",
-    "I want to share something that sits in that same place.",
-    "There's a story that holds that kind of weight.",
-    "Let's step into a moment that reflects what you're carrying.",
-    "There's a story I think will meet you in this.",
-    "Let's go somewhere that touches that part of things.",
-    "I have a story that carries something close to that.",
-    "There's a moment in Scripture that knows that feeling."
+    {"id": "TRANS_01", "text": "There's a story that meets you right there."},
+    {"id": "TRANS_02", "text": "Let's walk into a moment that feels close to this."},
+    {"id": "TRANS_03", "text": "I think there's a story you'll connect with."},
+    {"id": "TRANS_04", "text": "There's something in Scripture that understands that."},
+    {"id": "TRANS_05", "text": "Let's move into a story that carries something similar."},
+    {"id": "TRANS_06", "text": "I want to share something that sits in that same place."},
+    {"id": "TRANS_07", "text": "There's a story that holds that kind of weight."},
+    {"id": "TRANS_08", "text": "Let's step into a moment that reflects what you're carrying."},
+    {"id": "TRANS_09", "text": "There's a story I think will meet you in this."},
+    {"id": "TRANS_10", "text": "Let's go somewhere that touches that part of things."},
+    {"id": "TRANS_11", "text": "I have a story that carries something close to that."},
+    {"id": "TRANS_12", "text": "There's a moment in Scripture that knows that feeling."}
   ]
 }

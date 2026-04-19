@@ -1,8 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../features/pal/opening/pal_opening_lines.dart';
+import 'pal_line_ref.dart';
+import 'pal_line_rotator.dart';
 
 /// Tone-biased first reflective sentence service (Feature 5.1).
 ///
@@ -12,11 +15,13 @@ import '../features/pal/opening/pal_opening_lines.dart';
 ///
 /// Content lives in assets/pal/pal_tone_biased_reflection_lines.json.
 /// No AI generation. No runtime string modification.
+/// Each line carries a unique ID for audio asset lookup (Feature 5.1a).
 class PalToneBiasedReflectionLines {
   PalToneBiasedReflectionLines._();
 
-  // mood → tone-name → List<String>
-  static Map<String, Map<String, List<String>>>? _data;
+  // mood → tone-name → List<PalLineRef>
+  static Map<String, Map<String, List<PalLineRef>>>? _data;
+  static final PalLineRotator _rotator = PalLineRotator();
 
   /// Load asset. Safe to call multiple times.
   static Future<void> ensureLoaded() async {
@@ -30,31 +35,44 @@ class PalToneBiasedReflectionLines {
       final tones = (toneMap as Map<String, dynamic>).map((tone, variants) {
         return MapEntry(
           tone,
-          (variants as List<dynamic>).map((e) => e as String).toList(),
+          (variants as List<dynamic>).map((e) {
+            final obj = e as Map<String, dynamic>;
+            return PalLineRef(obj['id'] as String, obj['text'] as String);
+          }).toList(),
         );
       });
       return MapEntry(mood, tones);
     });
+    final prefs = await SharedPreferences.getInstance();
+    _rotator.enablePersistence(prefs, 'tone_biased');
   }
 
-  /// Return a deterministic tone-biased first reflective sentence for the
-  /// given [mood] and [tone], or `null` if the combination is not found.
-  ///
-  /// Uses the same rotation strategy as [PalReflectionLines]: mood hash + day.
+  /// Return a tone-biased first reflective sentence for the given [mood]
+  /// and [tone], or `null` if the combination is not found.
   static String? getLine(String? mood, PalOpeningTone tone) {
+    return getLineRef(mood, tone)?.text;
+  }
+
+  /// Return a line ref (id + text) for the given [mood] and [tone].
+  ///
+  /// Uses persistent recency tracking keyed by mood+tone so each
+  /// combination cycles through all variants before repeating,
+  /// even across app restarts.
+  static PalLineRef? getLineRef(String? mood, PalOpeningTone tone) {
     if (mood == null || _data == null) return null;
     final toneMap = _data![mood];
     if (toneMap == null) return null;
     final toneName = tone.name; // enum name matches JSON key
     final variants = toneMap[toneName];
     if (variants == null || variants.isEmpty) return null;
-    final seed = mood.hashCode + DateTime.now().day;
-    return variants[seed.abs() % variants.length];
+    final key = '${mood}_$toneName';
+    return variants[_rotator.pick(key, variants.length)];
   }
 
   /// Reset internal state (for testing only).
   static void resetForTesting() {
     _data = null;
+    _rotator.clearPersistedHistory();
   }
 
   /// All loaded mood keys. Returns empty list if not yet loaded.

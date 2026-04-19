@@ -178,6 +178,10 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     // Skip audio if PAL greetings are disabled — text still displays
     if (appState?.userPreferences.palGreetingsEnabled == false) return;
 
+    // Skip old PROMPT_* audio when legacy PAL is disabled (new system active)
+    final useLegacy = appState?.userPreferences.useLegacyPal ?? false;
+    if (!useLegacy) return;
+
     final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_GRACE';
     final userName = appState?.userPreferences.userName ?? '';
     final palAudio = ref.read(palAudioServiceProvider);
@@ -483,11 +487,17 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_GRACE';
     final userName = appState?.userPreferences.userName ?? '';
 
+    final useLegacy = appState?.userPreferences.useLegacyPal ?? false;
+
     String responseText;
-    if (widget.textOnly || appState?.userPreferences.palGreetingsEnabled == false) {
-      // Text-only mode or PAL greetings disabled — no audio
+    if (widget.textOnly ||
+        !useLegacy ||
+        appState?.userPreferences.palGreetingsEnabled == false) {
+      // Text-only mode, legacy disabled, or PAL greetings disabled — no old audio.
+      // Framing overlay audio (new system) plays later in the flow.
       responseText = appNotifier.moodService.getMicroResponseText(result.mood);
     } else {
+      // Legacy path: play old RESP_* audio
       final palAudio = ref.read(palAudioServiceProvider);
       final nameAudio = ref.read(nameAudioServiceProvider);
 

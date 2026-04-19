@@ -1,221 +1,221 @@
 {
-  "version": 1,
+  "version": 2,
   "description": "Tone-biased first reflective sentence variants (Feature 5.1). Keyed by mood bucket then opening tone. 8 moods × 5 tones × 3 variants. Pre-written, no AI generation. Detected mood is primary; tone is a subtle modifier only.",
   "moods": {
     "joyful": {
       "gentle": [
-        "I'm really glad you let yourself feel that today.",
-        "That kind of moment is worth sitting with a little longer.",
-        "I like that you noticed it… those don't always stay long."
+        {"id": "REFL_TB_JOYFUL_GENTLE_01", "text": "I'm really glad you let yourself feel that today."},
+        {"id": "REFL_TB_JOYFUL_GENTLE_02", "text": "That kind of moment is worth sitting with a little longer."},
+        {"id": "REFL_TB_JOYFUL_GENTLE_03", "text": "I like that you noticed it\u2026 those don't always stay long."}
       ],
       "encouraging": [
-        "That kind of joy doesn't always come easy — I'm glad it found you.",
-        "Something like that can carry you further than you'd expect.",
-        "I'm really glad you caught that — hold onto it."
+        {"id": "REFL_TB_JOYFUL_ENCOURAGING_01", "text": "That kind of joy doesn't always come easy \u2014 I'm glad it found you."},
+        {"id": "REFL_TB_JOYFUL_ENCOURAGING_02", "text": "Something like that can carry you further than you'd expect."},
+        {"id": "REFL_TB_JOYFUL_ENCOURAGING_03", "text": "I'm really glad you caught that \u2014 hold onto it."}
       ],
       "calm": [
-        "There's something quietly good about a moment like that.",
-        "That kind of lightness… it's worth just letting it be.",
-        "I'm glad you paused long enough to feel that."
+        {"id": "REFL_TB_JOYFUL_CALM_01", "text": "There's something quietly good about a moment like that."},
+        {"id": "REFL_TB_JOYFUL_CALM_02", "text": "That kind of lightness\u2026 it's worth just letting it be."},
+        {"id": "REFL_TB_JOYFUL_CALM_03", "text": "I'm glad you paused long enough to feel that."}
       ],
       "weary": [
-        "I'm really glad something felt good today, even amid the tired.",
-        "That kind of moment matters more when the rest has been heavy.",
-        "Even on a hard day, that's something worth holding."
+        {"id": "REFL_TB_JOYFUL_WEARY_01", "text": "I'm really glad something felt good today, even amid the tired."},
+        {"id": "REFL_TB_JOYFUL_WEARY_02", "text": "That kind of moment matters more when the rest has been heavy."},
+        {"id": "REFL_TB_JOYFUL_WEARY_03", "text": "Even on a hard day, that's something worth holding."}
       ],
       "warm": [
-        "I'm really glad that found you today.",
-        "That's a good kind of thing to carry with you.",
-        "Something like that makes a day feel a little more whole."
+        {"id": "REFL_TB_JOYFUL_WARM_01", "text": "I'm really glad that found you today."},
+        {"id": "REFL_TB_JOYFUL_WARM_02", "text": "That's a good kind of thing to carry with you."},
+        {"id": "REFL_TB_JOYFUL_WARM_03", "text": "Something like that makes a day feel a little more whole."}
       ]
     },
     "grateful": {
       "gentle": [
-        "I'm really glad you noticed that… a lot of people would've missed it.",
-        "There's something steady about pausing to feel that.",
-        "That kind of gratitude… it changes the way a moment sits."
+        {"id": "REFL_TB_GRATEFUL_GENTLE_01", "text": "I'm really glad you noticed that\u2026 a lot of people would've missed it."},
+        {"id": "REFL_TB_GRATEFUL_GENTLE_02", "text": "There's something steady about pausing to feel that."},
+        {"id": "REFL_TB_GRATEFUL_GENTLE_03", "text": "That kind of gratitude\u2026 it changes the way a moment sits."}
       ],
       "encouraging": [
-        "Noticing something like that takes more intention than it sounds.",
-        "I'm glad you didn't let that pass without catching it.",
-        "That kind of gratitude is real — and it matters."
+        {"id": "REFL_TB_GRATEFUL_ENCOURAGING_01", "text": "Noticing something like that takes more intention than it sounds."},
+        {"id": "REFL_TB_GRATEFUL_ENCOURAGING_02", "text": "I'm glad you didn't let that pass without catching it."},
+        {"id": "REFL_TB_GRATEFUL_ENCOURAGING_03", "text": "That kind of gratitude is real \u2014 and it matters."}
       ],
       "calm": [
-        "There's something grounding about a moment like that.",
-        "I like that you let yourself settle into that feeling.",
-        "That kind of quiet thankfulness… it's a good thing to sit with."
+        {"id": "REFL_TB_GRATEFUL_CALM_01", "text": "There's something grounding about a moment like that."},
+        {"id": "REFL_TB_GRATEFUL_CALM_02", "text": "I like that you let yourself settle into that feeling."},
+        {"id": "REFL_TB_GRATEFUL_CALM_03", "text": "That kind of quiet thankfulness\u2026 it's a good thing to sit with."}
       ],
       "weary": [
-        "Even when things are heavy, finding something to be grateful for takes something.",
-        "I'm glad that was there for you today, even in the tired.",
-        "That kind of gratitude in a hard stretch means more than usual."
+        {"id": "REFL_TB_GRATEFUL_WEARY_01", "text": "Even when things are heavy, finding something to be grateful for takes something."},
+        {"id": "REFL_TB_GRATEFUL_WEARY_02", "text": "I'm glad that was there for you today, even in the tired."},
+        {"id": "REFL_TB_GRATEFUL_WEARY_03", "text": "That kind of gratitude in a hard stretch means more than usual."}
       ],
       "warm": [
-        "I'm really glad you paused long enough to feel that.",
-        "That kind of thankfulness has a warmth to it.",
-        "Something like that is worth holding onto a little longer."
+        {"id": "REFL_TB_GRATEFUL_WARM_01", "text": "I'm really glad you paused long enough to feel that."},
+        {"id": "REFL_TB_GRATEFUL_WARM_02", "text": "That kind of thankfulness has a warmth to it."},
+        {"id": "REFL_TB_GRATEFUL_WARM_03", "text": "Something like that is worth holding onto a little longer."}
       ]
     },
     "weary": {
       "gentle": [
-        "That sounds like it's been sitting on you for a while.",
-        "I can hear how tired that feels… not just physically.",
-        "Some kinds of tired go deeper than sleep fixes."
+        {"id": "REFL_TB_WEARY_GENTLE_01", "text": "That sounds like it's been sitting on you for a while."},
+        {"id": "REFL_TB_WEARY_GENTLE_02", "text": "I can hear how tired that feels\u2026 not just physically."},
+        {"id": "REFL_TB_WEARY_GENTLE_03", "text": "Some kinds of tired go deeper than sleep fixes."}
       ],
       "encouraging": [
-        "The fact that you're here at all says something about you.",
-        "That kind of tired is real — and you're still showing up.",
-        "You don't have to have it together right now. This is enough."
+        {"id": "REFL_TB_WEARY_ENCOURAGING_01", "text": "The fact that you're here at all says something about you."},
+        {"id": "REFL_TB_WEARY_ENCOURAGING_02", "text": "That kind of tired is real \u2014 and you're still showing up."},
+        {"id": "REFL_TB_WEARY_ENCOURAGING_03", "text": "You don't have to have it together right now. This is enough."}
       ],
       "calm": [
-        "There's no rush here. That weight can just be what it is for a moment.",
-        "You don't have to fix anything right now. Just let it be.",
-        "Sometimes the most honest thing is just saying you're tired."
+        {"id": "REFL_TB_WEARY_CALM_01", "text": "There's no rush here. That weight can just be what it is for a moment."},
+        {"id": "REFL_TB_WEARY_CALM_02", "text": "You don't have to fix anything right now. Just let it be."},
+        {"id": "REFL_TB_WEARY_CALM_03", "text": "Sometimes the most honest thing is just saying you're tired."}
       ],
       "weary": [
-        "That's the kind of weight people don't always see.",
-        "Some days just ask too much. That's worth naming.",
-        "I can hear it… and I'm not going to pretend it's nothing."
+        {"id": "REFL_TB_WEARY_WEARY_01", "text": "That's the kind of weight people don't always see."},
+        {"id": "REFL_TB_WEARY_WEARY_02", "text": "Some days just ask too much. That's worth naming."},
+        {"id": "REFL_TB_WEARY_WEARY_03", "text": "I can hear it\u2026 and I'm not going to pretend it's nothing."}
       ],
       "warm": [
-        "Even feeling that worn down, you still came here. That counts.",
-        "I'm glad you didn't carry that alone tonight.",
-        "There's something steady about just naming how tired you are."
+        {"id": "REFL_TB_WEARY_WARM_01", "text": "Even feeling that worn down, you still came here. That counts."},
+        {"id": "REFL_TB_WEARY_WARM_02", "text": "I'm glad you didn't carry that alone tonight."},
+        {"id": "REFL_TB_WEARY_WARM_03", "text": "There's something steady about just naming how tired you are."}
       ]
     },
     "anxious": {
       "gentle": [
-        "That kind of thought can be hard to turn down once it gets going.",
-        "When something keeps pressing like that… it's hard to settle anywhere.",
-        "I hear it. That's a real kind of weight to carry."
+        {"id": "REFL_TB_ANXIOUS_GENTLE_01", "text": "That kind of thought can be hard to turn down once it gets going."},
+        {"id": "REFL_TB_ANXIOUS_GENTLE_02", "text": "When something keeps pressing like that\u2026 it's hard to settle anywhere."},
+        {"id": "REFL_TB_ANXIOUS_GENTLE_03", "text": "I hear it. That's a real kind of weight to carry."}
       ],
       "encouraging": [
-        "You're here despite that spinning feeling — that's not nothing.",
-        "Naming it out loud is sometimes the first step to loosening its grip.",
-        "That kind of worry is exhausting, and you're still moving."
+        {"id": "REFL_TB_ANXIOUS_ENCOURAGING_01", "text": "You're here despite that spinning feeling \u2014 that's not nothing."},
+        {"id": "REFL_TB_ANXIOUS_ENCOURAGING_02", "text": "Naming it out loud is sometimes the first step to loosening its grip."},
+        {"id": "REFL_TB_ANXIOUS_ENCOURAGING_03", "text": "That kind of worry is exhausting, and you're still moving."}
       ],
       "calm": [
-        "Let's just slow it down for a second — you don't have to solve it right now.",
-        "That thought doesn't need an answer tonight. Just let it be.",
-        "We can sit with this without rushing anywhere."
+        {"id": "REFL_TB_ANXIOUS_CALM_01", "text": "Let's just slow it down for a second \u2014 you don't have to solve it right now."},
+        {"id": "REFL_TB_ANXIOUS_CALM_02", "text": "That thought doesn't need an answer tonight. Just let it be."},
+        {"id": "REFL_TB_ANXIOUS_CALM_03", "text": "We can sit with this without rushing anywhere."}
       ],
       "weary": [
-        "It's exhausting when your mind won't give you a quiet moment.",
-        "That kind of anxious tired… it runs deep.",
-        "You've been carrying that longer than it probably looks from the outside."
+        {"id": "REFL_TB_ANXIOUS_WEARY_01", "text": "It's exhausting when your mind won't give you a quiet moment."},
+        {"id": "REFL_TB_ANXIOUS_WEARY_02", "text": "That kind of anxious tired\u2026 it runs deep."},
+        {"id": "REFL_TB_ANXIOUS_WEARY_03", "text": "You've been carrying that longer than it probably looks from the outside."}
       ],
       "warm": [
-        "I'm glad you said it. Sometimes just getting it out makes it a little smaller.",
-        "That kind of worry is real — and you don't have to hold it alone.",
-        "Even feeling that way, something brought you here. That matters."
+        {"id": "REFL_TB_ANXIOUS_WARM_01", "text": "I'm glad you said it. Sometimes just getting it out makes it a little smaller."},
+        {"id": "REFL_TB_ANXIOUS_WARM_02", "text": "That kind of worry is real \u2014 and you don't have to hold it alone."},
+        {"id": "REFL_TB_ANXIOUS_WARM_03", "text": "Even feeling that way, something brought you here. That matters."}
       ]
     },
     "hurting": {
       "gentle": [
-        "That sounds like it really landed deeper than you expected.",
-        "I'm really glad you didn't keep that to yourself.",
-        "Some things hurt in ways that are hard to explain to anyone else."
+        {"id": "REFL_TB_HURTING_GENTLE_01", "text": "That sounds like it really landed deeper than you expected."},
+        {"id": "REFL_TB_HURTING_GENTLE_02", "text": "I'm really glad you didn't keep that to yourself."},
+        {"id": "REFL_TB_HURTING_GENTLE_03", "text": "Some things hurt in ways that are hard to explain to anyone else."}
       ],
       "encouraging": [
-        "Letting yourself say that took something. I'm glad you did.",
-        "You don't have to be okay right now. This is a safe place to not be.",
-        "That kind of pain doesn't mean you're broken — it means something mattered."
+        {"id": "REFL_TB_HURTING_ENCOURAGING_01", "text": "Letting yourself say that took something. I'm glad you did."},
+        {"id": "REFL_TB_HURTING_ENCOURAGING_02", "text": "You don't have to be okay right now. This is a safe place to not be."},
+        {"id": "REFL_TB_HURTING_ENCOURAGING_03", "text": "That kind of pain doesn't mean you're broken \u2014 it means something mattered."}
       ],
       "calm": [
-        "You don't have to move through this fast. Just let it be what it is.",
-        "There's no rush to get past this. It can just sit here for now.",
-        "I'm not going to try to fix it. I just want to be here with you in it."
+        {"id": "REFL_TB_HURTING_CALM_01", "text": "You don't have to move through this fast. Just let it be what it is."},
+        {"id": "REFL_TB_HURTING_CALM_02", "text": "There's no rush to get past this. It can just sit here for now."},
+        {"id": "REFL_TB_HURTING_CALM_03", "text": "I'm not going to try to fix it. I just want to be here with you in it."}
       ],
       "weary": [
-        "That kind of pain doesn't just pass through… it lingers.",
-        "When something hurts that deep, there's no quick way through it.",
-        "I can hear how much that's been sitting on you."
+        {"id": "REFL_TB_HURTING_WEARY_01", "text": "That kind of pain doesn't just pass through\u2026 it lingers."},
+        {"id": "REFL_TB_HURTING_WEARY_02", "text": "When something hurts that deep, there's no quick way through it."},
+        {"id": "REFL_TB_HURTING_WEARY_03", "text": "I can hear how much that's been sitting on you."}
       ],
       "warm": [
-        "I'm really glad you're here. You didn't have to come, and you did.",
-        "Something in you reached out tonight — and I think that matters.",
-        "Even in that pain, you're still reaching toward something. That counts."
+        {"id": "REFL_TB_HURTING_WARM_01", "text": "I'm really glad you're here. You didn't have to come, and you did."},
+        {"id": "REFL_TB_HURTING_WARM_02", "text": "Something in you reached out tonight \u2014 and I think that matters."},
+        {"id": "REFL_TB_HURTING_WARM_03", "text": "Even in that pain, you're still reaching toward something. That counts."}
       ]
     },
     "brave_courage": {
       "gentle": [
-        "That took more courage than it probably felt like in the moment.",
-        "I like that you did that, even quietly.",
-        "Stepping forward like that… even when it's small… that matters."
+        {"id": "REFL_TB_BRAVE_COURAGE_GENTLE_01", "text": "That took more courage than it probably felt like in the moment."},
+        {"id": "REFL_TB_BRAVE_COURAGE_GENTLE_02", "text": "I like that you did that, even quietly."},
+        {"id": "REFL_TB_BRAVE_COURAGE_GENTLE_03", "text": "Stepping forward like that\u2026 even when it's small\u2026 that matters."}
       ],
       "encouraging": [
-        "Not everyone would've done what you just did. Really.",
-        "That kind of move forward — even when it's scary — that's what it looks like.",
-        "You did the hard thing. I'm glad you let yourself see that."
+        {"id": "REFL_TB_BRAVE_COURAGE_ENCOURAGING_01", "text": "Not everyone would've done what you just did. Really."},
+        {"id": "REFL_TB_BRAVE_COURAGE_ENCOURAGING_02", "text": "That kind of move forward \u2014 even when it's scary \u2014 that's what it looks like."},
+        {"id": "REFL_TB_BRAVE_COURAGE_ENCOURAGING_03", "text": "You did the hard thing. I'm glad you let yourself see that."}
       ],
       "calm": [
-        "You don't have to make it big. What you did was enough.",
-        "That kind of quiet courage is real, even when it doesn't feel loud.",
-        "You stepped forward. That's the whole thing."
+        {"id": "REFL_TB_BRAVE_COURAGE_CALM_01", "text": "You don't have to make it big. What you did was enough."},
+        {"id": "REFL_TB_BRAVE_COURAGE_CALM_02", "text": "That kind of quiet courage is real, even when it doesn't feel loud."},
+        {"id": "REFL_TB_BRAVE_COURAGE_CALM_03", "text": "You stepped forward. That's the whole thing."}
       ],
       "weary": [
-        "Doing something brave when you're already tired is its own kind of strength.",
-        "That took more than it probably looked like from the outside.",
-        "Even running on empty, you still moved. That's worth something."
+        {"id": "REFL_TB_BRAVE_COURAGE_WEARY_01", "text": "Doing something brave when you're already tired is its own kind of strength."},
+        {"id": "REFL_TB_BRAVE_COURAGE_WEARY_02", "text": "That took more than it probably looked like from the outside."},
+        {"id": "REFL_TB_BRAVE_COURAGE_WEARY_03", "text": "Even running on empty, you still moved. That's worth something."}
       ],
       "warm": [
-        "That kind of strength doesn't always look loud — but it was there.",
-        "I'm really glad you did that.",
-        "Something in you kept moving even when it was hard. That's good."
+        {"id": "REFL_TB_BRAVE_COURAGE_WARM_01", "text": "That kind of strength doesn't always look loud \u2014 but it was there."},
+        {"id": "REFL_TB_BRAVE_COURAGE_WARM_02", "text": "I'm really glad you did that."},
+        {"id": "REFL_TB_BRAVE_COURAGE_WARM_03", "text": "Something in you kept moving even when it was hard. That's good."}
       ]
     },
     "calm_peaceful": {
       "gentle": [
-        "I'm really glad you let yourself sit in that for a moment.",
-        "That kind of quiet… it doesn't always come easy.",
-        "There's something really good about a moment like that."
+        {"id": "REFL_TB_CALM_PEACEFUL_GENTLE_01", "text": "I'm really glad you let yourself sit in that for a moment."},
+        {"id": "REFL_TB_CALM_PEACEFUL_GENTLE_02", "text": "That kind of quiet\u2026 it doesn't always come easy."},
+        {"id": "REFL_TB_CALM_PEACEFUL_GENTLE_03", "text": "There's something really good about a moment like that."}
       ],
       "encouraging": [
-        "Finding that kind of stillness in a full day takes something.",
-        "I'm glad you let yourself have that — you earned it.",
-        "That kind of peace is real. It's worth noticing."
+        {"id": "REFL_TB_CALM_PEACEFUL_ENCOURAGING_01", "text": "Finding that kind of stillness in a full day takes something."},
+        {"id": "REFL_TB_CALM_PEACEFUL_ENCOURAGING_02", "text": "I'm glad you let yourself have that \u2014 you earned it."},
+        {"id": "REFL_TB_CALM_PEACEFUL_ENCOURAGING_03", "text": "That kind of peace is real. It's worth noticing."}
       ],
       "calm": [
-        "I like that you noticed the stillness instead of rushing past it.",
-        "Let's just stay here for a moment. There's no hurry.",
-        "That kind of quiet is its own kind of gift."
+        {"id": "REFL_TB_CALM_PEACEFUL_CALM_01", "text": "I like that you noticed the stillness instead of rushing past it."},
+        {"id": "REFL_TB_CALM_PEACEFUL_CALM_02", "text": "Let's just stay here for a moment. There's no hurry."},
+        {"id": "REFL_TB_CALM_PEACEFUL_CALM_03", "text": "That kind of quiet is its own kind of gift."}
       ],
       "weary": [
-        "Even a moment of peace when you're tired goes a long way.",
-        "I'm glad something felt still, even if only for a bit.",
-        "That kind of rest — even small — matters more than it looks."
+        {"id": "REFL_TB_CALM_PEACEFUL_WEARY_01", "text": "Even a moment of peace when you're tired goes a long way."},
+        {"id": "REFL_TB_CALM_PEACEFUL_WEARY_02", "text": "I'm glad something felt still, even if only for a bit."},
+        {"id": "REFL_TB_CALM_PEACEFUL_WEARY_03", "text": "That kind of rest \u2014 even small \u2014 matters more than it looks."}
       ],
       "warm": [
-        "That's a good feeling to carry into whatever's next.",
-        "I'm really glad you had that today.",
-        "Something like that steadies everything around it."
+        {"id": "REFL_TB_CALM_PEACEFUL_WARM_01", "text": "That's a good feeling to carry into whatever's next."},
+        {"id": "REFL_TB_CALM_PEACEFUL_WARM_02", "text": "I'm really glad you had that today."},
+        {"id": "REFL_TB_CALM_PEACEFUL_WARM_03", "text": "Something like that steadies everything around it."}
       ]
     },
     "encouraging": {
       "gentle": [
-        "There's something in you that's still moving forward… I can hear it.",
-        "I like where that's coming from.",
-        "That kind of feeling usually means something's starting to shift."
+        {"id": "REFL_TB_ENCOURAGING_GENTLE_01", "text": "There's something in you that's still moving forward\u2026 I can hear it."},
+        {"id": "REFL_TB_ENCOURAGING_GENTLE_02", "text": "I like where that's coming from."},
+        {"id": "REFL_TB_ENCOURAGING_GENTLE_03", "text": "That kind of feeling usually means something's starting to shift."}
       ],
       "encouraging": [
-        "That forward pull you're feeling — trust it. It's real.",
-        "Something good is building in that, even if it's still small.",
-        "I'm really glad you're feeling that. Keep going."
+        {"id": "REFL_TB_ENCOURAGING_ENCOURAGING_01", "text": "That forward pull you're feeling \u2014 trust it. It's real."},
+        {"id": "REFL_TB_ENCOURAGING_ENCOURAGING_02", "text": "Something good is building in that, even if it's still small."},
+        {"id": "REFL_TB_ENCOURAGING_ENCOURAGING_03", "text": "I'm really glad you're feeling that. Keep going."}
       ],
       "calm": [
-        "There's no rush with that feeling — just let it come.",
-        "Something good is building there, and it doesn't need to be forced.",
-        "That kind of quiet hope is worth sitting with."
+        {"id": "REFL_TB_ENCOURAGING_CALM_01", "text": "There's no rush with that feeling \u2014 just let it come."},
+        {"id": "REFL_TB_ENCOURAGING_CALM_02", "text": "Something good is building there, and it doesn't need to be forced."},
+        {"id": "REFL_TB_ENCOURAGING_CALM_03", "text": "That kind of quiet hope is worth sitting with."}
       ],
       "weary": [
-        "Even tired, something in you is still reaching forward. That's significant.",
-        "That feeling doesn't always show up on hard days. I'm glad it did.",
-        "Something is still moving in you, even when the rest feels heavy."
+        {"id": "REFL_TB_ENCOURAGING_WEARY_01", "text": "Even tired, something in you is still reaching forward. That's significant."},
+        {"id": "REFL_TB_ENCOURAGING_WEARY_02", "text": "That feeling doesn't always show up on hard days. I'm glad it did."},
+        {"id": "REFL_TB_ENCOURAGING_WEARY_03", "text": "Something is still moving in you, even when the rest feels heavy."}
       ],
       "warm": [
-        "That's a good thing to be feeling right now.",
-        "Something good is starting there — I can hear it.",
-        "I really like where that's pointing."
+        {"id": "REFL_TB_ENCOURAGING_WARM_01", "text": "That's a good thing to be feeling right now."},
+        {"id": "REFL_TB_ENCOURAGING_WARM_02", "text": "Something good is starting there \u2014 I can hear it."},
+        {"id": "REFL_TB_ENCOURAGING_WARM_03", "text": "I really like where that's pointing."}
       ]
     }
   }

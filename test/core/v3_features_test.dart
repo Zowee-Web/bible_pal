@@ -34,9 +34,12 @@ void main() {
       expect(service.detectMood('so thankful').mood, 'grateful');
     });
 
-    test('default fallback is calm_peaceful not neutral', () {
+    test('empty input defaults to calm_peaceful', () {
       expect(service.detectMood('').mood, 'calm_peaceful');
-      expect(service.detectMood('hello there').mood, 'calm_peaceful');
+    });
+
+    test('unrecognized input defaults to weary (safe fallback)', () {
+      expect(service.detectMood('hello there').mood, 'weary');
     });
   });
 

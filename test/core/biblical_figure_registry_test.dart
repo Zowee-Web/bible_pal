@@ -75,27 +75,57 @@ void main() {
   });
 
   group('Biblical Figure Registry — framing lines', () {
-    test('all framing lines are non-empty strings', () {
+    test('all framing lines are objects with id and text', () {
       for (final raw in entries) {
         final e = raw as Map<String, dynamic>;
         final key = e['bibleStoryKey'] as String;
         for (final line in e['framingLines'] as List) {
-          expect(line, isA<String>(), reason: '$key has non-string line');
-          expect((line as String).isNotEmpty, true,
-              reason: '$key has empty framing line');
+          final obj = line as Map<String, dynamic>;
+          expect(obj['id'], isA<String>(), reason: '$key has non-string id');
+          expect((obj['id'] as String).isNotEmpty, true,
+              reason: '$key has empty framing line id');
+          expect(obj['text'], isA<String>(),
+              reason: '$key has non-string text');
+          expect((obj['text'] as String).isNotEmpty, true,
+              reason: '$key has empty framing line text');
         }
       }
     });
 
-    test('all framing lines are <= 150 characters', () {
+    test('all framing line IDs follow FRAME_{KEY}_{NN} convention', () {
+      for (final raw in entries) {
+        final e = raw as Map<String, dynamic>;
+        final key = e['bibleStoryKey'] as String;
+        final keyUpper = key.toUpperCase();
+        for (final line in e['framingLines'] as List) {
+          final id = (line as Map<String, dynamic>)['id'] as String;
+          expect(id, startsWith('FRAME_${keyUpper}_'),
+              reason: 'ID "$id" does not match key "$key"');
+        }
+      }
+    });
+
+    test('all framing line IDs are unique', () {
+      final ids = <String>{};
+      for (final raw in entries) {
+        final e = raw as Map<String, dynamic>;
+        for (final line in e['framingLines'] as List) {
+          final id = (line as Map<String, dynamic>)['id'] as String;
+          expect(ids.add(id), true, reason: 'Duplicate ID: $id');
+        }
+      }
+    });
+
+    test('all framing line texts are <= 150 characters', () {
       final violations = <String>[];
       for (final raw in entries) {
         final e = raw as Map<String, dynamic>;
         final key = e['bibleStoryKey'] as String;
         for (final line in e['framingLines'] as List) {
-          if ((line as String).length > 150) {
-            violations.add('$key: "${line.substring(0, 50)}..." '
-                '(${line.length} chars)');
+          final text = (line as Map<String, dynamic>)['text'] as String;
+          if (text.length > 150) {
+            violations.add('$key: "${text.substring(0, 50)}..." '
+                '(${text.length} chars)');
           }
         }
       }
@@ -115,10 +145,11 @@ void main() {
         final e = raw as Map<String, dynamic>;
         final key = e['bibleStoryKey'] as String;
         for (final line in e['framingLines'] as List) {
-          final lower = (line as String).toLowerCase();
+          final text = (line as Map<String, dynamic>)['text'] as String;
+          final lower = text.toLowerCase();
           for (final pattern in banned) {
             if (lower.contains(pattern)) {
-              violations.add('$key: "$line" contains "$pattern"');
+              violations.add('$key: "$text" contains "$pattern"');
             }
           }
         }

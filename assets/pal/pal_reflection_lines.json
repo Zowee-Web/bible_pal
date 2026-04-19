@@ -1,54 +1,54 @@
 {
-  "version": 3,
+  "version": 4,
   "description": "Delilah++ reflection lines. Spoken cadence, personal, emotionally present.",
   "moods": {
     "joyful": [
-      "I\u2019m really glad you caught that moment\u2026 those don\u2019t always stay long.",
-      "There\u2019s something about that kind of joy that feels a little deeper than usual.",
-      "I like that you didn\u2019t rush past that\u2026 that says a lot.",
-      "That kind of light in a day\u2026 it\u2019s worth holding onto a little longer."
+      {"id": "REFL_JOYFUL_01", "text": "I\u2019m really glad you caught that moment\u2026 those don\u2019t always stay long."},
+      {"id": "REFL_JOYFUL_02", "text": "There\u2019s something about that kind of joy that feels a little deeper than usual."},
+      {"id": "REFL_JOYFUL_03", "text": "I like that you didn\u2019t rush past that\u2026 that says a lot."},
+      {"id": "REFL_JOYFUL_04", "text": "That kind of light in a day\u2026 it\u2019s worth holding onto a little longer."}
     ],
     "grateful": [
-      "I\u2019m really glad you noticed that\u2026 a lot of people would\u2019ve missed it.",
-      "There\u2019s something steady about a moment like that.",
-      "I like that you paused long enough to feel that.",
-      "That kind of gratitude\u2026 it changes the way a moment sits."
+      {"id": "REFL_GRATEFUL_01", "text": "I\u2019m really glad you noticed that\u2026 a lot of people would\u2019ve missed it."},
+      {"id": "REFL_GRATEFUL_02", "text": "There\u2019s something steady about a moment like that."},
+      {"id": "REFL_GRATEFUL_03", "text": "I like that you paused long enough to feel that."},
+      {"id": "REFL_GRATEFUL_04", "text": "That kind of gratitude\u2026 it changes the way a moment sits."}
     ],
     "weary": [
-      "That sounds like it\u2019s been sitting on you for a while.",
-      "I can hear how tired that feels\u2026 not just physically.",
-      "Some kinds of tired go deeper than sleep fixes.",
-      "That\u2019s the kind of weight people don\u2019t always see."
+      {"id": "REFL_WEARY_01", "text": "That sounds like it\u2019s been sitting on you for a while."},
+      {"id": "REFL_WEARY_02", "text": "I can hear how tired that feels\u2026 not just physically."},
+      {"id": "REFL_WEARY_03", "text": "Some kinds of tired go deeper than sleep fixes."},
+      {"id": "REFL_WEARY_04", "text": "That\u2019s the kind of weight people don\u2019t always see."}
     ],
     "anxious": [
-      "That kind of thought can be hard to turn down once it gets going.",
-      "When something keeps pressing like that\u2026 it\u2019s hard to settle anywhere.",
-      "That sounds like it\u2019s been circling your mind for a while.",
-      "It\u2019s exhausting when your mind won\u2019t give you a quiet moment."
+      {"id": "REFL_ANXIOUS_01", "text": "That kind of thought can be hard to turn down once it gets going."},
+      {"id": "REFL_ANXIOUS_02", "text": "When something keeps pressing like that\u2026 it\u2019s hard to settle anywhere."},
+      {"id": "REFL_ANXIOUS_03", "text": "That sounds like it\u2019s been circling your mind for a while."},
+      {"id": "REFL_ANXIOUS_04", "text": "It\u2019s exhausting when your mind won\u2019t give you a quiet moment."}
     ],
     "hurting": [
-      "That sounds like it really landed deeper than you expected.",
-      "Some things hurt in ways that are hard to explain to anyone else.",
-      "I\u2019m really glad you didn\u2019t keep that to yourself.",
-      "That kind of pain doesn\u2019t just pass through\u2026 it lingers."
+      {"id": "REFL_HURTING_01", "text": "That sounds like it really landed deeper than you expected."},
+      {"id": "REFL_HURTING_02", "text": "Some things hurt in ways that are hard to explain to anyone else."},
+      {"id": "REFL_HURTING_03", "text": "I\u2019m really glad you didn\u2019t keep that to yourself."},
+      {"id": "REFL_HURTING_04", "text": "That kind of pain doesn\u2019t just pass through\u2026 it lingers."}
     ],
     "brave_courage": [
-      "That took more courage than it probably felt like in the moment.",
-      "Stepping forward like that\u2026 even quietly\u2026 that matters.",
-      "Not everyone would\u2019ve done what you just did.",
-      "That kind of strength doesn\u2019t always look loud."
+      {"id": "REFL_BRAVE_COURAGE_01", "text": "That took more courage than it probably felt like in the moment."},
+      {"id": "REFL_BRAVE_COURAGE_02", "text": "Stepping forward like that\u2026 even quietly\u2026 that matters."},
+      {"id": "REFL_BRAVE_COURAGE_03", "text": "Not everyone would\u2019ve done what you just did."},
+      {"id": "REFL_BRAVE_COURAGE_04", "text": "That kind of strength doesn\u2019t always look loud."}
     ],
     "calm_peaceful": [
-      "I\u2019m really glad you let yourself sit in that for a moment.",
-      "That kind of quiet\u2026 it doesn\u2019t always come easy.",
-      "There\u2019s something really good about a moment like that.",
-      "I like that you noticed the stillness instead of rushing past it."
+      {"id": "REFL_CALM_PEACEFUL_01", "text": "I\u2019m really glad you let yourself sit in that for a moment."},
+      {"id": "REFL_CALM_PEACEFUL_02", "text": "That kind of quiet\u2026 it doesn\u2019t always come easy."},
+      {"id": "REFL_CALM_PEACEFUL_03", "text": "I\u2019m glad you have a moment to just be here right now."},
+      {"id": "REFL_CALM_PEACEFUL_04", "text": "I like that you noticed the stillness instead of rushing past it."}
     ],
     "encouraging": [
-      "There\u2019s something in you that\u2019s still moving forward\u2026 I can hear it.",
-      "That kind of feeling usually means something\u2019s starting to shift.",
-      "I like where that\u2019s coming from.",
-      "There\u2019s something good building in that\u2026 even if it\u2019s small right now."
+      {"id": "REFL_ENCOURAGING_01", "text": "There\u2019s something in you that\u2019s still moving forward\u2026 I can hear it."},
+      {"id": "REFL_ENCOURAGING_02", "text": "That kind of feeling usually means something\u2019s starting to shift."},
+      {"id": "REFL_ENCOURAGING_03", "text": "I like where that\u2019s coming from."},
+      {"id": "REFL_ENCOURAGING_04", "text": "There\u2019s something good building in that\u2026 even if it\u2019s small right now."}
     ]
   }
 }

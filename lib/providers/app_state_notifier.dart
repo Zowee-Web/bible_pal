@@ -339,12 +339,14 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
     required String mood,
     required StoryLengthBucket lengthBucket,
     String? userText,
+    String? bibleStoryKey,
   }) async {
     return _parableService.selectParable(
       mood: mood,
       lengthBucket: lengthBucket,
       userPrefs: state.requireValue.userPreferences,
       userText: userText,
+      bibleStoryKey: bibleStoryKey,
     );
   }
 

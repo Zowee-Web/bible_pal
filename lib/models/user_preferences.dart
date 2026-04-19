@@ -66,6 +66,14 @@ class UserPreferences {
   final bool? palGreetingsEnabled; // PAL voice greetings (future)
   final int? voiceConsentVersion; // Schema version when consent was given
 
+  // PAL voice audio master switch (internal, no UI yet)
+  final bool palVoiceEnabled; // When false, all PAL audio falls back to text-only
+
+  // Legacy PAL audio flag (internal, no UI).
+  // When false (default), old PROMPT_*/RESP_* audio is disabled;
+  // the new opening + framing overlay system is the sole active flow.
+  final bool useLegacyPal;
+
   // PAL voice selection
   final String palVoiceKey; // Selected PAL conversation voice
 
@@ -100,6 +108,8 @@ class UserPreferences {
     this.storyNarrationEnabled, // null = not asked
     this.palGreetingsEnabled, // null = not asked
     this.voiceConsentVersion, // null = never consented
+    this.palVoiceEnabled = true, // internal master switch, default ON
+    this.useLegacyPal = false, // legacy PAL audio disabled by default
     this.palVoiceKey = 'VOICE_GRACE',
     this.lastDetectedMood,
     this.preferredLengthBucket,
@@ -127,6 +137,8 @@ class UserPreferences {
       storyNarrationEnabled: true, // ON by default
       palGreetingsEnabled: true, // ON by default
       voiceConsentVersion: currentVoiceConsentVersion,
+      palVoiceEnabled: true, // ON by default (internal, no UI)
+      useLegacyPal: false, // new PAL system active by default
     );
   }
 
@@ -161,6 +173,8 @@ class UserPreferences {
       storyNarrationEnabled: json['storyNarrationEnabled'] as bool? ?? true,
       palGreetingsEnabled: json['palGreetingsEnabled'] as bool? ?? true,
       voiceConsentVersion: json['voiceConsentVersion'] as int?,
+      palVoiceEnabled: json['palVoiceEnabled'] as bool? ?? true,
+      useLegacyPal: json['useLegacyPal'] as bool? ?? false,
       palVoiceKey: PalVoiceRegistry.migrateVoiceKey(
           json['palVoiceKey'] as String? ?? 'VOICE_GRACE'),
       lastDetectedMood:
@@ -187,6 +201,8 @@ class UserPreferences {
       'storyNarrationEnabled': storyNarrationEnabled,
       'palGreetingsEnabled': palGreetingsEnabled,
       'voiceConsentVersion': voiceConsentVersion,
+      'palVoiceEnabled': palVoiceEnabled,
+      'useLegacyPal': useLegacyPal,
       'palVoiceKey': palVoiceKey,
       'lastDetectedMood': lastDetectedMood,
       'preferredLengthBucket': preferredLengthBucket,
@@ -215,6 +231,8 @@ class UserPreferences {
     bool? storyNarrationEnabled,
     bool? palGreetingsEnabled,
     int? voiceConsentVersion,
+    bool? palVoiceEnabled,
+    bool? useLegacyPal,
     String? palVoiceKey,
     String? lastDetectedMood,
     String? preferredLengthBucket,
@@ -249,6 +267,8 @@ class UserPreferences {
           storyNarrationEnabled ?? this.storyNarrationEnabled,
       palGreetingsEnabled: palGreetingsEnabled ?? this.palGreetingsEnabled,
       voiceConsentVersion: voiceConsentVersion ?? this.voiceConsentVersion,
+      palVoiceEnabled: palVoiceEnabled ?? this.palVoiceEnabled,
+      useLegacyPal: useLegacyPal ?? this.useLegacyPal,
       palVoiceKey: palVoiceKey ?? this.palVoiceKey,
       lastDetectedMood: lastDetectedMood ?? this.lastDetectedMood,
       preferredLengthBucket:

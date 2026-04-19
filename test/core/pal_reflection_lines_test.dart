@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:bible_pal/core/pal_reflection_lines.dart';
 
 void main() {
@@ -42,22 +43,48 @@ void main() {
       }
     });
 
-    test('all lines are non-empty strings', () {
+    test('all lines are objects with id and text', () {
       for (final entry in moodsData.entries) {
         for (final line in entry.value as List<dynamic>) {
-          expect(line, isA<String>());
-          expect((line as String).isNotEmpty, true,
-              reason: '${entry.key} has empty line');
+          final obj = line as Map<String, dynamic>;
+          expect(obj['id'], isA<String>());
+          expect((obj['id'] as String).isNotEmpty, true,
+              reason: '${entry.key} has empty id');
+          expect(obj['text'], isA<String>());
+          expect((obj['text'] as String).isNotEmpty, true,
+              reason: '${entry.key} has empty text');
         }
       }
     });
 
-    test('all lines are <= 80 characters', () {
+    test('all line IDs follow REFL_{MOOD}_{NN} convention', () {
+      for (final entry in moodsData.entries) {
+        final moodUpper = entry.key.toUpperCase();
+        for (final line in entry.value as List<dynamic>) {
+          final id = (line as Map<String, dynamic>)['id'] as String;
+          expect(id, startsWith('REFL_${moodUpper}_'),
+              reason: 'ID "$id" does not match mood "${entry.key}"');
+        }
+      }
+    });
+
+    test('all line IDs are unique', () {
+      final ids = <String>{};
+      for (final entry in moodsData.entries) {
+        for (final line in entry.value as List<dynamic>) {
+          final id = (line as Map<String, dynamic>)['id'] as String;
+          expect(ids.add(id), true, reason: 'Duplicate ID: $id');
+        }
+      }
+    });
+
+    test('all texts are <= 80 characters', () {
       final violations = <String>[];
       for (final entry in moodsData.entries) {
         for (final line in entry.value as List<dynamic>) {
-          if ((line as String).length > 80) {
-            violations.add('${entry.key}: "$line" (${line.length} chars)');
+          final text = (line as Map<String, dynamic>)['text'] as String;
+          if (text.length > 80) {
+            violations.add('${entry.key}: "$text" (${text.length} chars)');
           }
         }
       }
@@ -75,10 +102,11 @@ void main() {
       final violations = <String>[];
       for (final entry in moodsData.entries) {
         for (final line in entry.value as List<dynamic>) {
-          final lower = (line as String).toLowerCase();
+          final text = (line as Map<String, dynamic>)['text'] as String;
+          final lower = text.toLowerCase();
           for (final pattern in banned) {
             if (lower.contains(pattern)) {
-              violations.add('${entry.key}: "$line" contains "$pattern"');
+              violations.add('${entry.key}: "$text" contains "$pattern"');
             }
           }
         }
@@ -90,6 +118,7 @@ void main() {
 
   group('PAL Reflection Lines — Dart loader', () {
     setUp(() {
+      SharedPreferences.setMockInitialValues({});
       PalReflectionLines.resetForTesting();
     });
 
@@ -129,6 +158,30 @@ void main() {
       await PalReflectionLines.ensureLoaded();
       final lines = PalReflectionLines.linesForMood('hurting');
       expect(lines.length, inInclusiveRange(3, 4));
+    });
+
+    test('getLineRef returns PalLineRef with id and text', () async {
+      await PalReflectionLines.ensureLoaded();
+      final ref = PalReflectionLines.getLineRef('joyful');
+      expect(ref, isNotNull);
+      expect(ref!.id, startsWith('REFL_JOYFUL_'));
+      expect(ref.text.isNotEmpty, true);
+    });
+
+    test('getLineRef returns null for null mood', () async {
+      await PalReflectionLines.ensureLoaded();
+      expect(PalReflectionLines.getLineRef(null), isNull);
+    });
+
+    test('getLineRef and getLine return consistent text', () async {
+      await PalReflectionLines.ensureLoaded();
+      for (final mood in PalReflectionLines.moods) {
+        final ref = PalReflectionLines.getLineRef(mood);
+        expect(ref, isNotNull, reason: '$mood returned null ref');
+        final allTexts = PalReflectionLines.linesForMood(mood);
+        expect(allTexts, contains(ref!.text),
+            reason: '$mood text not in pool');
+      }
     });
   });
 }

@@ -50,6 +50,11 @@ class LengthPickerScreen extends ConsumerStatefulWidget {
   /// Optional subtitle shown in PATH mode (e.g. "From PALs Paths • David").
   final String? pathSubtitle;
 
+  /// Optional hint: the bibleStoryKey pre-selected by PAL's preview.
+  /// In MOOD mode, constrains selectParable() to variants of this story.
+  /// Falls back to normal selection if no variant matches the chosen length.
+  final String? bibleStoryKey;
+
   const LengthPickerScreen({
     super.key,
     this.mood = '',
@@ -57,6 +62,7 @@ class LengthPickerScreen extends ConsumerStatefulWidget {
     this.fixedParable,
     this.launchContext,
     this.pathSubtitle,
+    this.bibleStoryKey,
   }) : assert(
           (fixedParable == null && launchContext == null) ||
               (fixedParable != null && launchContext != null),
@@ -148,11 +154,13 @@ class _LengthPickerScreenState extends ConsumerState<LengthPickerScreen> {
           return;
         }
       } else {
-        // MOOD MODE — existing flow (unchanged).
+        // MOOD MODE — select story for the chosen length.
+        // If bibleStoryKey hint is set (from PAL preview), constrain to that story.
         parable = await appStateNotifier.selectParable(
           mood: widget.mood,
           lengthBucket: bucket,
           userText: widget.userText,
+          bibleStoryKey: widget.bibleStoryKey,
         );
       }
 

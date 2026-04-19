@@ -2,20 +2,26 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 
+import 'pal_line_ref.dart';
+
 /// A single entry mapping a bibleStoryKey to its biblical figure(s) and
 /// pre-authored framing lines. Used for Traditional stories only.
 class BiblicalFigureEntry {
   final String bibleStoryKey;
   final String primaryFigure;
   final List<String> secondaryFigures;
-  final List<String> framingLines;
+  final List<PalLineRef> framingLineRefs;
 
   const BiblicalFigureEntry({
     required this.bibleStoryKey,
     required this.primaryFigure,
     required this.secondaryFigures,
-    required this.framingLines,
+    required this.framingLineRefs,
   });
+
+  /// Text-only access for backward compatibility.
+  List<String> get framingLines =>
+      framingLineRefs.map((r) => r.text).toList();
 
   factory BiblicalFigureEntry.fromJson(Map<String, dynamic> json) {
     return BiblicalFigureEntry(
@@ -24,9 +30,10 @@ class BiblicalFigureEntry {
       secondaryFigures: (json['secondaryFigures'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
-      framingLines: (json['framingLines'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
+      framingLineRefs: (json['framingLines'] as List<dynamic>).map((e) {
+        final obj = e as Map<String, dynamic>;
+        return PalLineRef(obj['id'] as String, obj['text'] as String);
+      }).toList(),
     );
   }
 }
@@ -61,11 +68,16 @@ class BiblicalFigureRegistry {
   /// Selection is deterministic: rotates by day-of-month so the same story
   /// shows the same line within a given day but varies across days.
   static String? getFramingLine(String? bibleStoryKey) {
+    return getFramingLineRef(bibleStoryKey)?.text;
+  }
+
+  /// Get a framing line ref (id + text) for the given [bibleStoryKey].
+  static PalLineRef? getFramingLineRef(String? bibleStoryKey) {
     if (bibleStoryKey == null || _byStoryKey == null) return null;
     final entry = _byStoryKey![bibleStoryKey];
-    if (entry == null || entry.framingLines.isEmpty) return null;
-    final index = DateTime.now().day % entry.framingLines.length;
-    return entry.framingLines[index];
+    if (entry == null || entry.framingLineRefs.isEmpty) return null;
+    final index = DateTime.now().day % entry.framingLineRefs.length;
+    return entry.framingLineRefs[index];
   }
 
   /// Get the full entry for a [bibleStoryKey]. Returns null if not found.

@@ -9,6 +9,7 @@ import '../../services/pal_prompt_service.dart';
 import '../../services/stt_service.dart';
 import '../../providers/service_providers.dart';
 import '../../core/biblical_figure_registry.dart';
+import '../../core/creative_opening_lines.dart';
 import '../../core/pal_reflection_lines.dart';
 import '../../core/pal_tone_biased_reflection_lines.dart';
 import '../../core/pal_transition_lines.dart';
@@ -702,10 +703,11 @@ class _StudyPageState extends ConsumerState<_StudyPage>
     appStateNotifier.updateLastDetectedMood(moodResult.mood);
 
     // PAL framing response: show before navigating (text-input Traditional only)
+    String? previewKey;
     final userPrefs = ref.read(appStateProvider).valueOrNull?.userPreferences;
     if (userPrefs != null && userPrefs.storytellingMode == 'traditional') {
       final parableService = await ref.read(parableServiceProvider.future);
-      final previewKey = await parableService.previewBibleStoryKey(
+      previewKey = await parableService.previewBibleStoryKey(
         mood: moodResult.mood,
         userPrefs: userPrefs,
         userText: text,
@@ -715,25 +717,58 @@ class _StudyPageState extends ConsumerState<_StudyPage>
         await PalTransitionLines.ensureLoaded();
         await PalReflectionLines.ensureLoaded();
         await PalToneBiasedReflectionLines.ensureLoaded();
-        final framingLine =
-            BiblicalFigureRegistry.getFramingLine(previewKey);
-        final transitionLine =
-            PalTransitionLines.getLine(previewKey);
+        final framingRef =
+            BiblicalFigureRegistry.getFramingLineRef(previewKey);
+        final transitionRef =
+            PalTransitionLines.getLineRef(previewKey);
         // Feature 5.1: use tone-biased first sentence when opening tone is
         // active; fall back to standard reflection line if key not found.
         final openingTone = ref.read(_palOpeningToneProvider);
-        final reflectionLine = (openingTone != null
-                ? PalToneBiasedReflectionLines.getLine(
+        final reflectionRef = (openingTone != null
+                ? PalToneBiasedReflectionLines.getLineRef(
                     moodResult.mood, openingTone)
                 : null) ??
-            PalReflectionLines.getLine(moodResult.mood);
-        if (framingLine != null && mounted) {
-          // Compose: reflection + framing + transition
-          // Each line breathes separately for emotional pacing.
+            PalReflectionLines.getLineRef(moodResult.mood);
+        if (framingRef != null && mounted) {
+          // Feature 5.1a — Speak the reflection line BEFORE the overlay.
+          // This is PAL's spoken response after the user shares their mood.
+          final palResponseEnabled =
+              userPrefs.palVoiceEnabled &&
+              userPrefs.palGreetingsEnabled != false;
+          if (palResponseEnabled && reflectionRef != null) {
+            final voiceKey = userPrefs.palVoiceKey;
+            final palAudio = ref.read(palAudioServiceProvider);
+            try {
+              final played =
+                  await palAudio.playLine(reflectionRef.id, voiceKey);
+              if (played) {
+                await palAudio.awaitPlaybackComplete();
+                logEvent('pal_audio_played', {
+                  'line_id': reflectionRef.id,
+                  'type': 'reflection_response',
+                  'voice_key': voiceKey,
+                });
+              }
+            } catch (e) {
+              debugPrint('[MainMenu] Reflection audio failed: $e');
+              logEvent('pal_audio_error', {
+                'line_id': reflectionRef.id,
+                'type': 'reflection_response',
+                'error': e.runtimeType.toString(),
+              });
+            }
+            if (!mounted) return;
+            // Short pause between spoken response and overlay
+            await Future.delayed(const Duration(milliseconds: 300));
+            if (!mounted) return;
+          }
+
+          // Compose overlay text: reflection + framing + transition.
+          // The overlay is text-only — no audio plays during it.
           final parts = <String>[
-            if (reflectionLine != null) reflectionLine,
-            framingLine,
-            if (transitionLine != null) transitionLine,
+            if (reflectionRef != null) reflectionRef.text,
+            framingRef.text,
+            if (transitionRef != null) transitionRef.text,
           ];
           final displayText = parts.join('\n\n');
           const fadeDuration = Duration(milliseconds: 1500);
@@ -761,12 +796,40 @@ class _StudyPageState extends ConsumerState<_StudyPage>
           if (!mounted) return;
         }
       }
+    } else if (userPrefs != null &&
+        userPrefs.storytellingMode == 'creative' &&
+        userPrefs.palVoiceEnabled &&
+        userPrefs.palGreetingsEnabled != false) {
+      // Creative mode: play a mood-based narrative opening line.
+      await CreativeOpeningLines.ensureLoaded();
+      final lineRef = CreativeOpeningLines.getLineRef(moodResult.mood);
+      if (lineRef != null && mounted) {
+        final palAudio = ref.read(palAudioServiceProvider);
+        try {
+          final played =
+              await palAudio.playLine(lineRef.id, userPrefs.palVoiceKey);
+          if (played) {
+            await palAudio.awaitPlaybackComplete();
+            logEvent('pal_audio_played', {
+              'line_id': lineRef.id,
+              'type': 'creative_opening',
+              'voice_key': userPrefs.palVoiceKey,
+            });
+          }
+        } catch (e) {
+          debugPrint('[MainMenu] Creative opening audio failed: $e');
+        }
+        if (!mounted) return;
+        await Future.delayed(const Duration(milliseconds: 300));
+        if (!mounted) return;
+      }
     }
 
     if (!mounted) return;
     await Navigator.of(context).pushNamed('/length_picker', arguments: {
       'mood': moodResult.mood,
       'userText': text,
+      if (previewKey != null) 'bibleStoryKey': previewKey,
     });
     // Dismiss keyboard when returning from length picker / player
     if (mounted) _textFocusNode.unfocus();
@@ -1406,21 +1469,58 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       _voiceFlow = _VoiceFlowState.playingOpeningLine;
       _greetingText = opening.text;
     });
-    // Minimum display duration before Feature 2.1 activates.
-    // (Pre-generated audio for these lines is a separate production step.)
-    await Future.delayed(const Duration(milliseconds: 1800));
+
+    // Feature 2.0a — Play opening line audio (pre-generated).
+    // Falls back to minimum display duration if audio is unavailable.
+    final appStateForOpening = ref.read(appStateProvider).valueOrNull;
+    final openingAudioEnabled =
+        appStateForOpening?.userPreferences.palVoiceEnabled == true &&
+        appStateForOpening?.userPreferences.palGreetingsEnabled != false;
+    if (openingAudioEnabled) {
+      final voiceKey =
+          appStateForOpening?.userPreferences.palVoiceKey ?? 'VOICE_GRACE';
+      final palAudio = ref.read(palAudioServiceProvider);
+      try {
+        final played = await palAudio.playLine(opening.id, voiceKey);
+        if (played) {
+          await palAudio.awaitPlaybackComplete();
+          logEvent('pal_audio_played', {
+            'line_id': opening.id,
+            'type': 'opening',
+            'voice_key': voiceKey,
+          });
+        } else {
+          await Future.delayed(const Duration(milliseconds: 1800));
+        }
+      } catch (e) {
+        debugPrint('[MainMenu] Opening line audio failed: $e');
+        logEvent('pal_audio_error', {
+          'line_id': opening.id,
+          'type': 'opening',
+          'error': e.runtimeType.toString(),
+        });
+        await Future.delayed(const Duration(milliseconds: 1800));
+      }
+    } else {
+      await Future.delayed(const Duration(milliseconds: 1800));
+    }
     if (!mounted || _voiceFlow != _VoiceFlowState.playingOpeningLine) return;
 
     setState(() => _voiceFlow = _VoiceFlowState.playingGreeting);
 
-    // Load and play PAL greeting (Feature 2.1)
+    // Load PAL greeting text (Feature 2.1) — always needed for display.
+    // Audio playback is gated behind useLegacyPal.
     try {
       final prompt = await _promptService.getPrompt();
       if (!mounted) return;
       setState(() => _greetingText = prompt.text);
 
       final appState = ref.read(appStateProvider).valueOrNull;
-      if (appState?.userPreferences.palGreetingsEnabled != false) {
+      final useLegacy = appState?.userPreferences.useLegacyPal ?? false;
+
+      if (useLegacy &&
+          appState?.userPreferences.palGreetingsEnabled != false) {
+        // Legacy path: play old PROMPT_* audio
         final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_GRACE';
         final userName = appState?.userPreferences.userName ?? '';
         final palAudio = ref.read(palAudioServiceProvider);
@@ -1457,6 +1557,8 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
           debugPrint('[MainMenu] PAL prompt audio failed: $e');
         }
       }
+      // New path (useLegacyPal == false): opening line audio already played
+      // above; greeting text displays without old PROMPT_* audio.
     } catch (e) {
       debugPrint('[MainMenu] Failed to load prompt: $e');
       if (mounted) {
@@ -1580,16 +1682,55 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       _partialTranscript = '';
     });
 
-    // Play PAL micro-response audio
-    final responseId = _pickMicroResponseId(result.mood);
+    // Micro-response: text always shown; audio gated behind useLegacyPal.
     final appState = ref.read(appStateProvider).valueOrNull;
+    final useLegacy = appState?.userPreferences.useLegacyPal ?? false;
     final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_GRACE';
-    final userName = appState?.userPreferences.userName ?? '';
 
     String responseText;
-    if (appState?.userPreferences.palGreetingsEnabled == false) {
+    if (!useLegacy ||
+        appState?.userPreferences.palGreetingsEnabled == false) {
+      // New path: spoken reflection line as PAL's response to the user.
       responseText = moodService.getMicroResponseText(result.mood);
+
+      // Feature 5.1a — Play a single reflection line as spoken response.
+      final palResponseEnabled =
+          appState?.userPreferences.palVoiceEnabled == true &&
+          appState?.userPreferences.palGreetingsEnabled != false;
+      if (palResponseEnabled) {
+        await PalReflectionLines.ensureLoaded();
+        await PalToneBiasedReflectionLines.ensureLoaded();
+        final openingTone = ref.read(_palOpeningToneProvider);
+        final reflectionRef = (openingTone != null
+                ? PalToneBiasedReflectionLines.getLineRef(
+                    result.mood, openingTone)
+                : null) ??
+            PalReflectionLines.getLineRef(result.mood);
+        if (reflectionRef != null && mounted) {
+          final palAudio = ref.read(palAudioServiceProvider);
+          try {
+            final played =
+                await palAudio.playLine(reflectionRef.id, voiceKey);
+            if (played) {
+              await palAudio.awaitPlaybackComplete();
+              logEvent('pal_audio_played', {
+                'line_id': reflectionRef.id,
+                'type': 'reflection_response',
+                'voice_key': voiceKey,
+              });
+            }
+          } catch (e) {
+            debugPrint('[MainMenu] Voice-path reflection audio failed: $e');
+          }
+          if (!mounted || _voiceFlow != _VoiceFlowState.responding) return;
+          // Short pause before navigating
+          await Future.delayed(const Duration(milliseconds: 300));
+        }
+      }
     } else {
+      // Legacy path: play old RESP_* audio
+      final responseId = _pickMicroResponseId(result.mood);
+      final userName = appState?.userPreferences.userName ?? '';
       final palAudio = ref.read(palAudioServiceProvider);
       final nameAudio = ref.read(nameAudioServiceProvider);
       final nameClip = userName.isNotEmpty
@@ -1623,12 +1764,82 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
     if (!mounted || _voiceFlow != _VoiceFlowState.responding) return;
 
-    // Navigate to length picker with the detected mood
+    // Play a mode-appropriate spoken line before the length picker.
+    // Traditional: story-specific framing line (from BiblicalFigureRegistry)
+    // Creative: mood-based narrative opening line
+    String? previewKey;
+    final userPrefs = appState?.userPreferences;
+    final palResponseEnabled = userPrefs != null &&
+        userPrefs.palVoiceEnabled &&
+        userPrefs.palGreetingsEnabled != false;
+
+    if (userPrefs != null && userPrefs.storytellingMode == 'traditional') {
+      final parableService = await ref.read(parableServiceProvider.future);
+      previewKey = await parableService.previewBibleStoryKey(
+        mood: result.mood,
+        userPrefs: userPrefs,
+        userText: transcript,
+      );
+
+      if (previewKey != null && mounted && palResponseEnabled) {
+        await BiblicalFigureRegistry.ensureLoaded();
+        final framingRef =
+            BiblicalFigureRegistry.getFramingLineRef(previewKey);
+        if (framingRef != null) {
+          final palAudio = ref.read(palAudioServiceProvider);
+          try {
+            final played =
+                await palAudio.playLine(framingRef.id, voiceKey);
+            if (played) {
+              await palAudio.awaitPlaybackComplete();
+              logEvent('pal_audio_played', {
+                'line_id': framingRef.id,
+                'type': 'framing_response',
+                'voice_key': voiceKey,
+                'bible_story_key': previewKey,
+              });
+            }
+          } catch (e) {
+            debugPrint('[MainMenu] Voice-path framing audio failed: $e');
+          }
+          if (!mounted || _voiceFlow != _VoiceFlowState.responding) return;
+          await Future.delayed(const Duration(milliseconds: 300));
+        }
+      }
+    } else if (userPrefs != null &&
+        userPrefs.storytellingMode == 'creative' &&
+        palResponseEnabled &&
+        mounted) {
+      // Creative mode: play a mood-based narrative opening line.
+      await CreativeOpeningLines.ensureLoaded();
+      final lineRef = CreativeOpeningLines.getLineRef(result.mood);
+      if (lineRef != null) {
+        final palAudio = ref.read(palAudioServiceProvider);
+        try {
+          final played = await palAudio.playLine(lineRef.id, voiceKey);
+          if (played) {
+            await palAudio.awaitPlaybackComplete();
+            logEvent('pal_audio_played', {
+              'line_id': lineRef.id,
+              'type': 'creative_opening',
+              'voice_key': voiceKey,
+            });
+          }
+        } catch (e) {
+          debugPrint('[MainMenu] Voice-path creative opening failed: $e');
+        }
+        if (!mounted || _voiceFlow != _VoiceFlowState.responding) return;
+        await Future.delayed(const Duration(milliseconds: 300));
+      }
+    }
+
+    // Navigate to length picker with the pre-selected story hint
     if (!mounted) return;
     _cancelConversation();
     await Navigator.of(context).pushNamed('/length_picker', arguments: {
       'mood': result.mood,
       'userText': transcript,
+      if (previewKey != null) 'bibleStoryKey': previewKey,
     });
     if (mounted) FocusScope.of(context).unfocus();
   }

@@ -89,7 +89,8 @@ PAL_VOICES=(
 )
 DEFAULT_VOICE="VOICE_GRACE"
 
-# ElevenLabs model for PAL audio (v3 engine)
+# PAL audio standard: eleven_v3 (premium voice experience).
+# Story audio uses eleven_turbo_v2_5 separately. Do not mix.
 PAL_MODEL_ID="eleven_v3"
 
 # Prompt bucket keys (4 time windows × 4 categories = 16 buckets)

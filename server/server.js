@@ -76,7 +76,7 @@ function readParams(req) {
     voice: (q.voice || "").trim(),
     text: (q.text || "").toString(),
     useSsml: q.use_ssml === "1" || q.use_ssml === "true" || q.use_ssml === 1 || q.use_ssml === true,
-    modelId: (q.model_id || "eleven_turbo_v2_5").trim(),
+    modelId: (q.model_id || "eleven_v3").trim(),
   };
 }
 

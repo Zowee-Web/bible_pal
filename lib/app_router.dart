@@ -121,6 +121,7 @@ class _AppRouterState extends State<AppRouter> with WidgetsBindingObserver {
           builder: (_) => LengthPickerScreen(
             mood: args['mood'] as String,
             userText: args['userText'] as String? ?? '',
+            bibleStoryKey: args['bibleStoryKey'] as String?,
           ),
         );
       case '/diagnostics':

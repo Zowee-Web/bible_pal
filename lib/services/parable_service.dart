@@ -441,6 +441,7 @@ class ParableService {
     required StoryLengthBucket lengthBucket,
     required UserPreferences userPrefs,
     String? userText,
+    String? bibleStoryKey,
   }) async {
     // Build the full eligible pool across all moods that pass non-mood filters.
     // getEligibleParables already filters by length, mode, language, kid safety.
@@ -463,7 +464,25 @@ class ParableService {
     }
 
     // Combined pool for the engine (exact + similar, engine handles separation)
-    final combinedPool = [...exactPool, ...similarPools];
+    var combinedPool = [...exactPool, ...similarPools];
+
+    // If a bibleStoryKey hint was provided (from previewBibleStoryKey), constrain
+    // to variants of that story. Falls back to full pool if no variants match.
+    if (bibleStoryKey != null) {
+      final hinted = combinedPool
+          .where((p) => p.bibleStoryKey == bibleStoryKey)
+          .toList();
+      if (hinted.isNotEmpty) {
+        combinedPool = hinted;
+        debugPrint(
+            '[ParableService] Constrained to bibleStoryKey=$bibleStoryKey '
+            '(${hinted.length} variant(s) for ${lengthBucket.name})');
+      } else {
+        debugPrint(
+            '[ParableService] bibleStoryKey=$bibleStoryKey has no '
+            '${lengthBucket.name} variant; falling back to full pool');
+      }
+    }
 
     if (combinedPool.isEmpty) {
       debugPrint('No eligible parables found for criteria (including expansion)');

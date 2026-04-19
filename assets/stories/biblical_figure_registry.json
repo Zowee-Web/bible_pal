@@ -1,6 +1,6 @@
 {
   "$schema": "biblical_figure_registry_schema",
-  "version": 1,
+  "version": 2,
   "description": "Maps bibleStoryKey to biblical figures and framing lines. Traditional stories only.",
   "entries": [
     {
@@ -8,8 +8,8 @@
       "primaryFigure": "Joseph",
       "secondaryFigures": [],
       "framingLines": [
-        "Joseph knew what it felt like to be abandoned by the people closest to him.",
-        "Before Joseph became someone great, he went through something that nearly broke him."
+        {"id": "FRAME_JOSEPH_SOLD_BY_BROTHERS_01", "text": "Joseph knew what it felt like to be abandoned by the people closest to him."},
+        {"id": "FRAME_JOSEPH_SOLD_BY_BROTHERS_02", "text": "Before Joseph became someone great, he went through something that nearly broke him."}
       ]
     },
     {
@@ -17,8 +17,8 @@
       "primaryFigure": "David",
       "secondaryFigures": ["Samuel"],
       "framingLines": [
-        "David was the one nobody thought to call \u2014 until God did.",
-        "Everyone overlooked David. But being overlooked isn't the same as being forgotten."
+        {"id": "FRAME_DAVID_ANOINTED_01", "text": "David was the one nobody thought to call \u2014 until God did."},
+        {"id": "FRAME_DAVID_ANOINTED_02", "text": "Everyone overlooked David. But being overlooked isn't the same as being forgotten."}
       ]
     },
     {
@@ -26,8 +26,8 @@
       "primaryFigure": "Jesus",
       "secondaryFigures": [],
       "framingLines": [
-        "Jesus once spoke directly to people who were worn out and carrying too much.",
-        "When the weight felt impossible, Jesus offered an invitation that still stands."
+        {"id": "FRAME_REST_FOR_THE_WEARY_01", "text": "Jesus once spoke directly to people who were worn out and carrying too much."},
+        {"id": "FRAME_REST_FOR_THE_WEARY_02", "text": "When the weight felt impossible, Jesus offered an invitation that still stands."}
       ]
     },
     {
@@ -35,8 +35,8 @@
       "primaryFigure": "David",
       "secondaryFigures": [],
       "framingLines": [
-        "David wrote these words from a place that knew both darkness and comfort.",
-        "Even in the valley, David found he wasn't walking alone."
+        {"id": "FRAME_THE_LORD_IS_MY_SHEPHERD_01", "text": "David wrote these words from a place that knew both darkness and comfort."},
+        {"id": "FRAME_THE_LORD_IS_MY_SHEPHERD_02", "text": "Even in the valley, David found he wasn't walking alone."}
       ]
     },
     {
@@ -44,8 +44,8 @@
       "primaryFigure": "Moses",
       "secondaryFigures": [],
       "framingLines": [
-        "Moses had every reason to doubt himself \u2014 and God called him anyway.",
-        "Before Moses led anyone, he stood barefoot, unsure, and full of questions."
+        {"id": "FRAME_BURNING_BUSH_01", "text": "Moses had every reason to doubt himself \u2014 and God called him anyway."},
+        {"id": "FRAME_BURNING_BUSH_02", "text": "Before Moses led anyone, he stood barefoot, unsure, and full of questions."}
       ]
     },
     {
@@ -53,8 +53,8 @@
       "primaryFigure": "Gideon",
       "secondaryFigures": [],
       "framingLines": [
-        "Gideon called himself the least in his family. God called him something else.",
-        "Gideon was sure he wasn't enough. God saw something different."
+        {"id": "FRAME_GIDEON_CALLED_01", "text": "Gideon called himself the least in his family. God called him something else."},
+        {"id": "FRAME_GIDEON_CALLED_02", "text": "Gideon was sure he wasn't enough. God saw something different."}
       ]
     },
     {
@@ -62,8 +62,8 @@
       "primaryFigure": "Job",
       "secondaryFigures": [],
       "framingLines": [
-        "Job lost nearly everything and still had the courage to ask why.",
-        "What Job went through would have broken most people. It nearly broke him too."
+        {"id": "FRAME_JOB_TESTED_01", "text": "Job lost nearly everything and still had the courage to ask why."},
+        {"id": "FRAME_JOB_TESTED_02", "text": "What Job went through would have broken most people. It nearly broke him too."}
       ]
     },
     {
@@ -71,8 +71,8 @@
       "primaryFigure": "Ruth",
       "secondaryFigures": ["Boaz"],
       "framingLines": [
-        "Ruth was a foreigner with nothing \u2014 and she found kindness where she least expected it.",
-        "After losing everything, Ruth took the smallest step forward. It changed her story."
+        {"id": "FRAME_RUTH_GLEANS_IN_BOAZ_FIELD_01", "text": "Ruth was a foreigner with nothing \u2014 and she found kindness where she least expected it."},
+        {"id": "FRAME_RUTH_GLEANS_IN_BOAZ_FIELD_02", "text": "After losing everything, Ruth took the smallest step forward. It changed her story."}
       ]
     },
     {
@@ -80,8 +80,8 @@
       "primaryFigure": "Zacchaeus",
       "secondaryFigures": ["Jesus"],
       "framingLines": [
-        "Zacchaeus was used to being on the outside. Then someone saw him.",
-        "Everyone had already made up their mind about Zacchaeus \u2014 except one person."
+        {"id": "FRAME_ZACCHAEUS_01", "text": "Zacchaeus was used to being on the outside. Then someone saw him."},
+        {"id": "FRAME_ZACCHAEUS_02", "text": "Everyone had already made up their mind about Zacchaeus \u2014 except one person."}
       ]
     },
     {
@@ -89,8 +89,8 @@
       "primaryFigure": "Peter",
       "secondaryFigures": ["Jesus"],
       "framingLines": [
-        "Peter had failed in the worst way. And then Jesus made him breakfast.",
-        "After his worst moment, Peter didn't get a lecture. He got a meal."
+        {"id": "FRAME_BREAKFAST_ON_THE_SHORE_01", "text": "Peter had failed in the worst way. And then Jesus made him breakfast."},
+        {"id": "FRAME_BREAKFAST_ON_THE_SHORE_02", "text": "After his worst moment, Peter didn't get a lecture. He got a meal."}
       ]
     },
     {
@@ -98,8 +98,8 @@
       "primaryFigure": "Jacob",
       "secondaryFigures": [],
       "framingLines": [
-        "Jacob was alone, running, and afraid. That's where the dream found him.",
-        "In the loneliest night of Jacob's life, a promise found him."
+        {"id": "FRAME_JACOBS_LADDER_01", "text": "Jacob was alone, running, and afraid. That's where the dream found him."},
+        {"id": "FRAME_JACOBS_LADDER_02", "text": "In the loneliest night of Jacob's life, a promise found him."}
       ]
     },
     {
@@ -107,8 +107,8 @@
       "primaryFigure": "Joshua",
       "secondaryFigures": ["Moses"],
       "framingLines": [
-        "Joshua was told 'be strong and courageous' \u2014 because he needed to hear it.",
-        "Stepping into Moses' shoes terrified Joshua. God knew that."
+        {"id": "FRAME_JOSHUA_COMMISSIONED_01", "text": "Joshua was told 'be strong and courageous' \u2014 because he needed to hear it."},
+        {"id": "FRAME_JOSHUA_COMMISSIONED_02", "text": "Stepping into Moses' shoes terrified Joshua. God knew that."}
       ]
     },
     {
@@ -116,8 +116,8 @@
       "primaryFigure": "Shadrach, Meshach, and Abednego",
       "secondaryFigures": [],
       "framingLines": [
-        "Three men were told to bow. They chose the fire instead.",
-        "Shadrach, Meshach, and Abednego didn't know they'd survive. They stood anyway."
+        {"id": "FRAME_FIERY_FURNACE_01", "text": "Three men were told to bow. They chose the fire instead."},
+        {"id": "FRAME_FIERY_FURNACE_02", "text": "Shadrach, Meshach, and Abednego didn't know they'd survive. They stood anyway."}
       ]
     },
     {
@@ -125,8 +125,8 @@
       "primaryFigure": "Moses",
       "secondaryFigures": [],
       "framingLines": [
-        "Israel was trapped \u2014 water ahead, army behind. And then the impossible happened.",
-        "Moses and Israel stood at the edge of the sea with nowhere left to go."
+        {"id": "FRAME_CROSSING_THE_RED_SEA_01", "text": "Israel was trapped \u2014 water ahead, army behind. And then the impossible happened."},
+        {"id": "FRAME_CROSSING_THE_RED_SEA_02", "text": "Moses and Israel stood at the edge of the sea with nowhere left to go."}
       ]
     },
     {
@@ -134,8 +134,8 @@
       "primaryFigure": "David",
       "secondaryFigures": [],
       "framingLines": [
-        "These words were written by someone who needed to be reminded of his own worth.",
-        "David looked inward and found something worth celebrating. It took courage to see it."
+        {"id": "FRAME_FEARFULLY_AND_WONDERFULLY_MADE_01", "text": "These words were written by someone who needed to be reminded of his own worth."},
+        {"id": "FRAME_FEARFULLY_AND_WONDERFULLY_MADE_02", "text": "David looked inward and found something worth celebrating. It took courage to see it."}
       ]
     },
     {
@@ -143,8 +143,8 @@
       "primaryFigure": "Abraham",
       "secondaryFigures": ["Sarah"],
       "framingLines": [
-        "Abram left everything familiar behind \u2014 with nothing but a promise to guide him.",
-        "Before he became Abraham, he was just a man asked to walk into the unknown."
+        {"id": "FRAME_ABRAM_CALLED_01", "text": "Abram left everything familiar behind \u2014 with nothing but a promise to guide him."},
+        {"id": "FRAME_ABRAM_CALLED_02", "text": "Before he became Abraham, he was just a man asked to walk into the unknown."}
       ]
     },
     {
@@ -152,8 +152,8 @@
       "primaryFigure": "Jochebed",
       "secondaryFigures": ["Moses", "Miriam"],
       "framingLines": [
-        "A mother placed her child in a basket on the river and trusted God with the rest.",
-        "Moses' life began with an act of desperate, courageous love."
+        {"id": "FRAME_BABY_MOSES_IN_THE_NILE_01", "text": "A mother placed her child in a basket on the river and trusted God with the rest."},
+        {"id": "FRAME_BABY_MOSES_IN_THE_NILE_02", "text": "Moses' life began with an act of desperate, courageous love."}
       ]
     },
     {
@@ -161,8 +161,8 @@
       "primaryFigure": "Abraham",
       "secondaryFigures": ["Isaac"],
       "framingLines": [
-        "Abraham walked up that mountain carrying more than wood.",
-        "What Abraham was asked to do didn't make sense. He went anyway."
+        {"id": "FRAME_BINDING_OF_ISAAC_01", "text": "Abraham walked up that mountain carrying more than wood."},
+        {"id": "FRAME_BINDING_OF_ISAAC_02", "text": "What Abraham was asked to do didn't make sense. He went anyway."}
       ]
     },
     {
@@ -170,8 +170,8 @@
       "primaryFigure": "God",
       "secondaryFigures": [],
       "framingLines": [
-        "Before anything existed, there was a voice \u2014 and it spoke everything into being.",
-        "The story of the world begins not with a problem, but with a gift."
+        {"id": "FRAME_CREATION_01", "text": "Before anything existed, there was a voice \u2014 and it spoke everything into being."},
+        {"id": "FRAME_CREATION_02", "text": "The story of the world begins not with a problem, but with a gift."}
       ]
     },
     {
@@ -179,8 +179,8 @@
       "primaryFigure": "Joshua",
       "secondaryFigures": [],
       "framingLines": [
-        "The Jordan was at flood stage. They were told to step in first.",
-        "Joshua and Israel had to put their feet in the water before it moved."
+        {"id": "FRAME_CROSSING_THE_JORDAN_01", "text": "The Jordan was at flood stage. They were told to step in first."},
+        {"id": "FRAME_CROSSING_THE_JORDAN_02", "text": "Joshua and Israel had to put their feet in the water before it moved."}
       ]
     },
     {
@@ -188,8 +188,8 @@
       "primaryFigure": "David",
       "secondaryFigures": ["Jonathan"],
       "framingLines": [
-        "David and Jonathan's friendship survived what should have destroyed it.",
-        "In the middle of danger, two friends made a promise they never broke."
+        {"id": "FRAME_DAVID_AND_JONATHAN_01", "text": "David and Jonathan's friendship survived what should have destroyed it."},
+        {"id": "FRAME_DAVID_AND_JONATHAN_02", "text": "In the middle of danger, two friends made a promise they never broke."}
       ]
     },
     {
@@ -197,8 +197,8 @@
       "primaryFigure": "David",
       "secondaryFigures": ["Mephibosheth"],
       "framingLines": [
-        "Mephibosheth expected judgment. David gave him a seat at the table.",
-        "David remembered a promise and honored it \u2014 even when no one expected him to."
+        {"id": "FRAME_DAVID_AND_MEPHIBOSHETH_01", "text": "Mephibosheth expected judgment. David gave him a seat at the table."},
+        {"id": "FRAME_DAVID_AND_MEPHIBOSHETH_02", "text": "David remembered a promise and honored it \u2014 even when no one expected him to."}
       ]
     },
     {
@@ -206,8 +206,8 @@
       "primaryFigure": "Jesus",
       "secondaryFigures": [],
       "framingLines": [
-        "Jesus once told a crowd to look at the birds. He was making a point about worry.",
-        "When the crowd was anxious about tomorrow, Jesus pointed them to today."
+        {"id": "FRAME_DO_NOT_WORRY_01", "text": "Jesus once told a crowd to look at the birds. He was making a point about worry."},
+        {"id": "FRAME_DO_NOT_WORRY_02", "text": "When the crowd was anxious about tomorrow, Jesus pointed them to today."}
       ]
     },
     {
@@ -215,8 +215,8 @@
       "primaryFigure": "Elijah",
       "secondaryFigures": ["The Widow"],
       "framingLines": [
-        "A widow was down to her last meal. Then a stranger showed up at her door.",
-        "The widow of Zarephath had nothing left \u2014 and that's when everything changed."
+        {"id": "FRAME_ELIJAH_AND_WIDOW_OF_ZAREPHATH_01", "text": "A widow was down to her last meal. Then a stranger showed up at her door."},
+        {"id": "FRAME_ELIJAH_AND_WIDOW_OF_ZAREPHATH_02", "text": "The widow of Zarephath had nothing left \u2014 and that's when everything changed."}
       ]
     },
     {
@@ -224,8 +224,8 @@
       "primaryFigure": "Elijah",
       "secondaryFigures": [],
       "framingLines": [
-        "Elijah stood alone against 450 prophets. He didn't flinch.",
-        "Everyone else had picked a side. Elijah stood on the other one."
+        {"id": "FRAME_ELIJAH_ON_MOUNT_CARMEL_01", "text": "Elijah stood alone against 450 prophets. He didn't flinch."},
+        {"id": "FRAME_ELIJAH_ON_MOUNT_CARMEL_02", "text": "Everyone else had picked a side. Elijah stood on the other one."}
       ]
     },
     {
@@ -233,8 +233,8 @@
       "primaryFigure": "Elisha",
       "secondaryFigures": [],
       "framingLines": [
-        "Elisha's servant saw the army and panicked. Elisha saw something else.",
-        "When the enemy surrounded them, Elisha prayed \u2014 not for escape, but for sight."
+        {"id": "FRAME_ELISHA_AND_THE_ARMY_01", "text": "Elisha's servant saw the army and panicked. Elisha saw something else."},
+        {"id": "FRAME_ELISHA_AND_THE_ARMY_02", "text": "When the enemy surrounded them, Elisha prayed \u2014 not for escape, but for sight."}
       ]
     },
     {
@@ -242,8 +242,8 @@
       "primaryFigure": "The Psalmist",
       "secondaryFigures": [],
       "framingLines": [
-        "The psalmist looked up \u2014 not because the answer was obvious, but because he needed one.",
-        "These words were written by someone searching for help and finding it above."
+        {"id": "FRAME_I_LIFT_MY_EYES_TO_THE_HILLS_01", "text": "The psalmist looked up \u2014 not because the answer was obvious, but because he needed one."},
+        {"id": "FRAME_I_LIFT_MY_EYES_TO_THE_HILLS_02", "text": "These words were written by someone searching for help and finding it above."}
       ]
     },
     {
@@ -251,8 +251,8 @@
       "primaryFigure": "Isaiah",
       "secondaryFigures": [],
       "framingLines": [
-        "Isaiah saw something that overwhelmed him \u2014 and then he heard 'Who shall I send?'",
-        "Isaiah didn't feel worthy. But when the call came, he answered anyway."
+        {"id": "FRAME_ISAIAHS_VISION_01", "text": "Isaiah saw something that overwhelmed him \u2014 and then he heard 'Who shall I send?'"},
+        {"id": "FRAME_ISAIAHS_VISION_02", "text": "Isaiah didn't feel worthy. But when the call came, he answered anyway."}
       ]
     },
     {
@@ -260,8 +260,8 @@
       "primaryFigure": "Jacob",
       "secondaryFigures": [],
       "framingLines": [
-        "Jacob refused to let go \u2014 even when it cost him.",
-        "That night, Jacob wrestled with something he couldn't name. He held on until dawn."
+        {"id": "FRAME_JACOB_WRESTLES_AT_PENIEL_01", "text": "Jacob refused to let go \u2014 even when it cost him."},
+        {"id": "FRAME_JACOB_WRESTLES_AT_PENIEL_02", "text": "That night, Jacob wrestled with something he couldn't name. He held on until dawn."}
       ]
     },
     {
@@ -269,8 +269,8 @@
       "primaryFigure": "Job",
       "secondaryFigures": [],
       "framingLines": [
-        "After everything Job lost, something unexpected happened \u2014 it came back.",
-        "Job's story didn't end in the ashes. There was a chapter he couldn't see coming."
+        {"id": "FRAME_JOB_RESTORED_01", "text": "After everything Job lost, something unexpected happened \u2014 it came back."},
+        {"id": "FRAME_JOB_RESTORED_02", "text": "Job's story didn't end in the ashes. There was a chapter he couldn't see coming."}
       ]
     },
     {
@@ -278,8 +278,8 @@
       "primaryFigure": "Jonah",
       "secondaryFigures": [],
       "framingLines": [
-        "Jonah heard God's voice and ran the other way.",
-        "Jonah didn't want the assignment. He boarded a ship going anywhere else."
+        {"id": "FRAME_JONAH_FLEES_01", "text": "Jonah heard God's voice and ran the other way."},
+        {"id": "FRAME_JONAH_FLEES_02", "text": "Jonah didn't want the assignment. He boarded a ship going anywhere else."}
       ]
     },
     {
@@ -287,8 +287,8 @@
       "primaryFigure": "Joseph",
       "secondaryFigures": [],
       "framingLines": [
-        "Years after his brothers sold him, Joseph stood in front of them again.",
-        "Joseph had every reason to turn them away. He wept instead."
+        {"id": "FRAME_JOSEPH_REVEALS_HIMSELF_01", "text": "Years after his brothers sold him, Joseph stood in front of them again."},
+        {"id": "FRAME_JOSEPH_REVEALS_HIMSELF_02", "text": "Joseph had every reason to turn them away. He wept instead."}
       ]
     },
     {
@@ -296,8 +296,8 @@
       "primaryFigure": "Moses",
       "secondaryFigures": [],
       "framingLines": [
-        "Every morning, God provided just enough \u2014 never more, never less.",
-        "Israel woke up hungry in the wilderness. The ground told a different story."
+        {"id": "FRAME_MANNA_FROM_HEAVEN_01", "text": "Every morning, God provided just enough \u2014 never more, never less."},
+        {"id": "FRAME_MANNA_FROM_HEAVEN_02", "text": "Israel woke up hungry in the wilderness. The ground told a different story."}
       ]
     },
     {
@@ -305,8 +305,8 @@
       "primaryFigure": "Peter",
       "secondaryFigures": ["Jesus"],
       "framingLines": [
-        "Peter had fished all night and caught nothing. Then someone told him to try again.",
-        "After a long night of empty nets, one voice changed everything."
+        {"id": "FRAME_MIRACULOUS_CATCH_OF_FISH_01", "text": "Peter had fished all night and caught nothing. Then someone told him to try again."},
+        {"id": "FRAME_MIRACULOUS_CATCH_OF_FISH_02", "text": "After a long night of empty nets, one voice changed everything."}
       ]
     },
     {
@@ -314,8 +314,8 @@
       "primaryFigure": "Naaman",
       "secondaryFigures": ["Elisha"],
       "framingLines": [
-        "Naaman expected something dramatic. He was told to just go wash.",
-        "The cure for Naaman's pride was simpler than he wanted it to be."
+        {"id": "FRAME_NAAMAN_HEALED_01", "text": "Naaman expected something dramatic. He was told to just go wash."},
+        {"id": "FRAME_NAAMAN_HEALED_02", "text": "The cure for Naaman's pride was simpler than he wanted it to be."}
       ]
     },
     {
@@ -323,8 +323,8 @@
       "primaryFigure": "Mary",
       "secondaryFigures": ["Joseph"],
       "framingLines": [
-        "The most important arrival in history happened in the quietest possible way.",
-        "Mary and Joseph had nothing ready \u2014 and everything was about to begin."
+        {"id": "FRAME_NATIVITY_01", "text": "The most important arrival in history happened in the quietest possible way."},
+        {"id": "FRAME_NATIVITY_02", "text": "Mary and Joseph had nothing ready \u2014 and everything was about to begin."}
       ]
     },
     {
@@ -332,8 +332,8 @@
       "primaryFigure": "Nehemiah",
       "secondaryFigures": [],
       "framingLines": [
-        "Nehemiah heard the wall was broken and couldn't stop thinking about it.",
-        "They told Nehemiah it couldn't be rebuilt. He picked up the stones anyway."
+        {"id": "FRAME_NEHEMIAH_REBUILDS_THE_WALL_01", "text": "Nehemiah heard the wall was broken and couldn't stop thinking about it."},
+        {"id": "FRAME_NEHEMIAH_REBUILDS_THE_WALL_02", "text": "They told Nehemiah it couldn't be rebuilt. He picked up the stones anyway."}
       ]
     },
     {
@@ -341,8 +341,8 @@
       "primaryFigure": "Noah",
       "secondaryFigures": [],
       "framingLines": [
-        "Noah built something enormous based on nothing but a word from God.",
-        "Everyone thought Noah was foolish. He kept building."
+        {"id": "FRAME_NOAH_BUILDS_THE_ARK_01", "text": "Noah built something enormous based on nothing but a word from God."},
+        {"id": "FRAME_NOAH_BUILDS_THE_ARK_02", "text": "Everyone thought Noah was foolish. He kept building."}
       ]
     },
     {
@@ -350,8 +350,8 @@
       "primaryFigure": "Peter",
       "secondaryFigures": ["John"],
       "framingLines": [
-        "Peter had no silver or gold. He offered something the man wasn't expecting.",
-        "'I don't have what you're asking for,' Peter said. 'But I have something better.'"
+        {"id": "FRAME_PETER_HEALS_LAME_MAN_01", "text": "Peter had no silver or gold. He offered something the man wasn't expecting."},
+        {"id": "FRAME_PETER_HEALS_LAME_MAN_02", "text": "'I don't have what you're asking for,' Peter said. 'But I have something better.'"}
       ]
     },
     {
@@ -359,8 +359,8 @@
       "primaryFigure": "Jeremiah",
       "secondaryFigures": [],
       "framingLines": [
-        "The clay didn't understand what the potter was making. It never does at first.",
-        "Sometimes being reshaped feels like being broken. Jeremiah understood that."
+        {"id": "FRAME_POTTER_AND_CLAY_01", "text": "The clay didn't understand what the potter was making. It never does at first."},
+        {"id": "FRAME_POTTER_AND_CLAY_02", "text": "Sometimes being reshaped feels like being broken. Jeremiah understood that."}
       ]
     },
     {
@@ -368,8 +368,8 @@
       "primaryFigure": "Solomon",
       "secondaryFigures": [],
       "framingLines": [
-        "Solomon could have asked for anything. He asked for wisdom to lead well.",
-        "When given a blank check, Solomon asked for the one thing money can't buy."
+        {"id": "FRAME_SOLOMON_ASKS_FOR_WISDOM_01", "text": "Solomon could have asked for anything. He asked for wisdom to lead well."},
+        {"id": "FRAME_SOLOMON_ASKS_FOR_WISDOM_02", "text": "When given a blank check, Solomon asked for the one thing money can't buy."}
       ]
     },
     {
@@ -377,8 +377,8 @@
       "primaryFigure": "Caleb",
       "secondaryFigures": ["Joshua"],
       "framingLines": [
-        "Ten spies saw giants. Two saw something bigger.",
-        "Caleb and Joshua looked at the same land and saw a completely different story."
+        {"id": "FRAME_SPIES_RETURN_FROM_CANAAN_01", "text": "Ten spies saw giants. Two saw something bigger."},
+        {"id": "FRAME_SPIES_RETURN_FROM_CANAAN_02", "text": "Caleb and Joshua looked at the same land and saw a completely different story."}
       ]
     },
     {
@@ -386,8 +386,8 @@
       "primaryFigure": "The One Leper",
       "secondaryFigures": ["Jesus"],
       "framingLines": [
-        "Ten were healed. One came back.",
-        "Only one of the ten stopped to say thank you. His gratitude set him apart."
+        {"id": "FRAME_TEN_LEPERS_01", "text": "Ten were healed. One came back."},
+        {"id": "FRAME_TEN_LEPERS_02", "text": "Only one of the ten stopped to say thank you. His gratitude set him apart."}
       ]
     },
     {
@@ -395,8 +395,8 @@
       "primaryFigure": "The Magi",
       "secondaryFigures": [],
       "framingLines": [
-        "The wise men followed a star for months \u2014 not knowing exactly where it would lead.",
-        "They traveled a long way on nothing more than a light in the sky and a hunch."
+        {"id": "FRAME_THE_MAGI_01", "text": "The wise men followed a star for months \u2014 not knowing exactly where it would lead."},
+        {"id": "FRAME_THE_MAGI_02", "text": "They traveled a long way on nothing more than a light in the sky and a hunch."}
       ]
     },
     {
@@ -404,8 +404,8 @@
       "primaryFigure": "Abraham",
       "secondaryFigures": ["Sarah"],
       "framingLines": [
-        "Abraham and Sarah had given up on the promise. Then three visitors arrived.",
-        "Sarah laughed when she heard it \u2014 because the promise sounded impossible."
+        {"id": "FRAME_THREE_VISITORS_AT_MAMRE_01", "text": "Abraham and Sarah had given up on the promise. Then three visitors arrived."},
+        {"id": "FRAME_THREE_VISITORS_AT_MAMRE_02", "text": "Sarah laughed when she heard it \u2014 because the promise sounded impossible."}
       ]
     },
     {
@@ -413,8 +413,8 @@
       "primaryFigure": "Isaiah",
       "secondaryFigures": [],
       "framingLines": [
-        "These words were written for people who had run out of strength.",
-        "Isaiah promised that the tired wouldn't just survive \u2014 they'd soar."
+        {"id": "FRAME_WINGS_LIKE_EAGLES_01", "text": "These words were written for people who had run out of strength."},
+        {"id": "FRAME_WINGS_LIKE_EAGLES_02", "text": "Isaiah promised that the tired wouldn't just survive \u2014 they'd soar."}
       ]
     }
   ]
