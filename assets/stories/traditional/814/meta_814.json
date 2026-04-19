@@ -3,15 +3,21 @@
   "storyId": 814,
   "mode": "traditional",
   "kidFriendly": true,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "hurting",
   "scriptureAnchor": "John 4:4-26",
+  "scriptureAnchorId": "john_4_4-26",
+  "bibleStoryKey": "woman_at_well",
+  "title": "The Woman at the Well",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_MARTHA_CARING",
+  "storyVoiceKey": "VOICE_MARTHA_CARING",
+  "reflectionVoiceKey": "VOICE_MARTHA_CARING",
   "voiceKeys": {
     "short": "VOICE_MARTHA_CARING",
     "full": "VOICE_MARTHA_CARING",
@@ -20,6 +26,7 @@
   },
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_44",
+  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionQuestion": "",
   "files": {
     "short": {
@@ -39,6 +46,5 @@
       "reflectionAudio": "audio_814_reflection.mp3"
     }
   },
-  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionText": "This story shows that being kind matters, even when things feel unfair. Even one small kindness helps."
 }

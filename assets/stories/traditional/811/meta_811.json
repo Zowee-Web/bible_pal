@@ -3,15 +3,21 @@
   "storyId": 811,
   "mode": "traditional",
   "kidFriendly": false,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
-  "mood": "neutral",
+  "mood": "calm_peaceful",
   "scriptureAnchor": "Luke 24:13-35",
+  "scriptureAnchorId": "luke_24_13-35",
+  "bibleStoryKey": "road_to_emmaus",
+  "title": "The Road to Emmaus",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_PETER_BOLD",
+  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "reflectionVoiceKey": "VOICE_PETER_BOLD",
   "voiceKeys": {
     "short": "VOICE_PETER_BOLD",
     "full": "VOICE_PETER_BOLD",
@@ -20,6 +26,7 @@
   },
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_44",
+  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionQuestion": "What small thing might you notice differently tomorrow?",
   "files": {
     "short": {
@@ -39,6 +46,5 @@
       "reflectionAudio": "audio_811_reflection.mp3"
     }
   },
-  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionText": "Stories of ordinary days often reflect the steady rhythm of daily faithfulness. These narratives show that meaning can be found in quiet, unremarkable moments. And even a small step forward can be enough for today."
 }

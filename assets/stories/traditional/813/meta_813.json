@@ -3,15 +3,21 @@
   "storyId": 813,
   "mode": "traditional",
   "kidFriendly": true,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "anxious",
   "scriptureAnchor": "Mark 4:35-41",
+  "scriptureAnchorId": "mark_4_35-41",
+  "bibleStoryKey": "jesus_calms_storm",
+  "title": "Jesus Calms the Storm",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_ESTHER_BRAVE",
+  "storyVoiceKey": "VOICE_ESTHER_BRAVE",
+  "reflectionVoiceKey": "VOICE_ESTHER_BRAVE",
   "voiceKeys": {
     "short": "VOICE_ESTHER_BRAVE",
     "full": "VOICE_ESTHER_BRAVE",
@@ -20,6 +26,7 @@
   },
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_44",
+  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionQuestion": "",
   "files": {
     "short": {
@@ -39,6 +46,5 @@
       "reflectionAudio": "audio_813_reflection.mp3"
     }
   },
-  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionText": "This story shows that even when things feel scary, we are not alone. Even one small brave thing counts."
 }

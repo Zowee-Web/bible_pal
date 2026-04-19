@@ -3,15 +3,21 @@
   "storyId": 810,
   "mode": "traditional",
   "kidFriendly": false,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "hurting",
   "scriptureAnchor": "John 4:4-26",
+  "scriptureAnchorId": "john_4_4-26",
+  "bibleStoryKey": "woman_at_well",
+  "title": "The Woman at the Well",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_DEBORAH_WISE",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "reflectionVoiceKey": "VOICE_DEBORAH_WISE",
   "voiceKeys": {
     "short": "VOICE_DEBORAH_WISE",
     "full": "VOICE_DEBORAH_WISE",
@@ -20,6 +26,7 @@
   },
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_44",
+  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionQuestion": "Where do you feel the weight of pain or loss today?",
   "files": {
     "short": {
@@ -39,6 +46,5 @@
       "reflectionAudio": "audio_810_reflection.mp3"
     }
   },
-  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionText": "Pain in stories often looks like walking through seasons of loss or disappointment. These narratives show that sorrow and hope can exist together. And even a small step forward can be enough for today."
 }

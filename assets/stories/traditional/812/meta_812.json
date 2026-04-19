@@ -3,14 +3,20 @@
   "storyId": 812,
   "mode": "traditional",
   "kidFriendly": true,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "joyful",
   "scriptureAnchor": "Luke 15:3-7",
+  "scriptureAnchorId": "luke_15_3-7",
+  "bibleStoryKey": "lost_sheep",
+  "title": "The Lost Sheep",
   "lengths": [
     "full",
     "long"
   ],
   "voiceKey": "VOICE_LYDIA_GRACIOUS",
+  "storyVoiceKey": "VOICE_LYDIA_GRACIOUS",
+  "reflectionVoiceKey": "VOICE_LYDIA_GRACIOUS",
   "voiceKeys": {
     "full": "VOICE_LYDIA_GRACIOUS",
     "long": "VOICE_LYDIA_GRACIOUS",
@@ -18,6 +24,7 @@
   },
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_44",
+  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionQuestion": "",
   "files": {
     "full": {
@@ -33,6 +40,5 @@
       "reflectionAudio": "audio_812_reflection.mp3"
     }
   },
-  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionText": "This story shows that good things can happen when we share and care for others. Even one small kindness matters."
 }
