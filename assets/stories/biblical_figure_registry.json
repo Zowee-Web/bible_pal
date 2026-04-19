@@ -416,6 +416,105 @@
         {"id": "FRAME_WINGS_LIKE_EAGLES_01", "text": "These words were written for people who had run out of strength."},
         {"id": "FRAME_WINGS_LIKE_EAGLES_02", "text": "Isaiah promised that the tired wouldn't just survive \u2014 they'd soar."}
       ]
+    },
+    {
+      "bibleStoryKey": "woman_touches_jesus_garment",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {"id": "FRAME_WOMAN_TOUCHES_JESUS_GARMENT_01", "text": "She had been suffering for twelve years and had nothing left to lose."},
+        {"id": "FRAME_WOMAN_TOUCHES_JESUS_GARMENT_02", "text": "Sometimes the bravest thing someone can do is reach out one more time."}
+      ]
+    },
+    {
+      "bibleStoryKey": "feeding_five_thousand",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": ["Andrew"],
+      "framingLines": [
+        {"id": "FRAME_FEEDING_FIVE_THOUSAND_01", "text": "What they had wasn\u2019t enough \u2014 and Jesus used it anyway."},
+        {"id": "FRAME_FEEDING_FIVE_THOUSAND_02", "text": "A boy\u2019s lunch became more than anyone expected that day."}
+      ]
+    },
+    {
+      "bibleStoryKey": "annunciation_to_mary",
+      "primaryFigure": "Mary",
+      "secondaryFigures": ["Gabriel"],
+      "framingLines": [
+        {"id": "FRAME_ANNUNCIATION_TO_MARY_01", "text": "Mary was young and ordinary \u2014 and then everything changed in a single moment."},
+        {"id": "FRAME_ANNUNCIATION_TO_MARY_02", "text": "She said yes to something she couldn\u2019t fully understand."}
+      ]
+    },
+    {
+      "bibleStoryKey": "raising_of_lazarus",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": ["Lazarus", "Martha", "Mary"],
+      "framingLines": [
+        {"id": "FRAME_RAISING_OF_LAZARUS_01", "text": "Martha said it was too late. Jesus told her it wasn\u2019t."},
+        {"id": "FRAME_RAISING_OF_LAZARUS_02", "text": "Even standing at a tomb, Jesus wept \u2014 and then called life back."}
+      ]
+    },
+    {
+      "bibleStoryKey": "good_samaritan",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {"id": "FRAME_GOOD_SAMARITAN_01", "text": "The people who should have stopped kept walking. A stranger didn\u2019t."},
+        {"id": "FRAME_GOOD_SAMARITAN_02", "text": "Jesus told a story about the kind of neighbor most people wouldn\u2019t expect."}
+      ]
+    },
+    {
+      "bibleStoryKey": "paralytic_through_roof",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {"id": "FRAME_PARALYTIC_THROUGH_ROOF_01", "text": "His friends couldn\u2019t get through the crowd \u2014 so they went through the roof."},
+        {"id": "FRAME_PARALYTIC_THROUGH_ROOF_02", "text": "Sometimes being carried by the people around you is how you get to healing."}
+      ]
+    },
+    {
+      "bibleStoryKey": "man_born_blind",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {"id": "FRAME_MAN_BORN_BLIND_01", "text": "Everyone had an opinion about why he was blind. Jesus just gave him sight."},
+        {"id": "FRAME_MAN_BORN_BLIND_02", "text": "He\u2019d never seen anything in his life \u2014 and then he saw everything."}
+      ]
+    },
+    {
+      "bibleStoryKey": "baptism_of_jesus",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": ["John the Baptist"],
+      "framingLines": [
+        {"id": "FRAME_BAPTISM_OF_JESUS_01", "text": "John didn\u2019t think he was worthy. Jesus came to him anyway."},
+        {"id": "FRAME_BAPTISM_OF_JESUS_02", "text": "When Jesus came out of the water, heaven opened and spoke."}
+      ]
+    },
+    {
+      "bibleStoryKey": "jesus_washes_disciples_feet",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": ["Peter"],
+      "framingLines": [
+        {"id": "FRAME_JESUS_WASHES_DISCIPLES_FEET_01", "text": "The one they called Lord knelt down and did a servant\u2019s work."},
+        {"id": "FRAME_JESUS_WASHES_DISCIPLES_FEET_02", "text": "Peter didn\u2019t want his feet washed. Jesus told him it mattered."}
+      ]
+    },
+    {
+      "bibleStoryKey": "temptation_in_wilderness",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {"id": "FRAME_TEMPTATION_IN_WILDERNESS_01", "text": "Forty days alone in the wilderness \u2014 and then the hardest test came."},
+        {"id": "FRAME_TEMPTATION_IN_WILDERNESS_02", "text": "Jesus was hungry, tired, and alone when the temptation arrived."}
+      ]
+    },
+    {
+      "bibleStoryKey": "jesus_calms_storm_matthew",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {"id": "FRAME_JESUS_CALMS_STORM_MATTHEW_01", "text": "The waves were crashing and the boat was sinking \u2014 and Jesus was asleep."},
+        {"id": "FRAME_JESUS_CALMS_STORM_MATTHEW_02", "text": "They woke him in a panic. He spoke to the storm and it listened."}
+      ]
     }
   ]
 }
