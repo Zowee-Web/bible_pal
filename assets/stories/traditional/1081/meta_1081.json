@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1081,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_05",
+  "title": "Five Loaves and Two Fish",
+  "scriptureAnchor": "Matthew 14:13-21",
+  "bibleStoryKey": "feeding_five_thousand",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "provision",
+    "mercy"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 660,
+  "timelineEra": "jesus_ministry",
+  "reflectionQuestion": "Have you ever had to offer something that felt completely insufficient?",
+  "reflectionText": "Five loaves and two fish. That was all they had. And it was not enough — not even close.\n\nThere is a particular kind of helplessness that comes from standing in front of a need that is clearly beyond your ability to meet. You can see what is needed. You can count what you have. And the numbers do not add up.\n\nWhat Jesus asked them to do was bring what they had. Not more than they had. Not what they wished they had. Just the small, insufficient thing that was actually in their hands.\n\nSometimes that is where it begins — not with enough, but with what is offered. The rest was not something the disciples produced. It was something that happened when they let go of what little they held.",
+  "reflectionVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "files": {
+    "short": {
+      "storyText": "story_1081_traditional_web_short.txt",
+      "storyAudio": "audio_1081_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1081_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1081_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1081_traditional_web.txt"
+    }
+  }
+}

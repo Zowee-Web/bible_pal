@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1085,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_05",
+  "title": "Through the Roof",
+  "scriptureAnchor": "Mark 2:1-12",
+  "bibleStoryKey": "paralytic_through_roof",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "themeTags": [
+    "faith",
+    "forgiveness"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 662,
+  "timelineEra": "jesus_ministry",
+  "files": {
+    "short": {
+      "storyText": "story_1085_traditional_web_short.txt",
+      "storyAudio": "audio_1085_story_short_take1.mp3"
+    },
+    "full": {
+      "storyText": "story_1085_traditional_web_full.txt",
+      "storyAudio": "audio_1085_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_1085_traditional_web_long.txt",
+      "storyAudio": "audio_1085_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1085_traditional_web.txt",
+      "reflectionAudio": "audio_1085_reflection.mp3"
+    }
+  },
+  "reflectionQuestion": "Has someone ever carried you through something you couldn't face alone?",
+  "reflectionText": "Sometimes the way forward is not through the front door.\n\nThe man in this story could not get to Jesus on his own. He could not walk, could not push through the crowd, could not even call out above the noise. But he had friends who would not give up — friends who carried him when he could not carry himself, who climbed when the path was blocked, who tore open a roof because the door would not do.\n\nThere are seasons when the faith that carries us is not entirely our own. When someone else believes on our behalf, shows up when we cannot, and refuses to let the crowd be the final answer.",
+  "reflectionVoiceKey": "VOICE_ARABELLA"
+}

@@ -1,20 +1,26 @@
 {
   "schemaVersion": 2,
-  "generationContractVersion": "STORY_FACTORY_v2.3",
   "storyId": 807,
   "mode": "traditional",
   "kidFriendly": true,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "weary",
   "scriptureAnchor": "Psalm 127:1–2",
+  "scriptureAnchorId": "ps_127_1_2",
+  "bibleStoryKey": "unless_the_lord_builds",
+  "title": "Unless the Lord Builds",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_JAMES_HUSKY",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "reflectionVoiceKey": "VOICE_JAMES_HUSKY",
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_KID_BEDTIME",
+  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionQuestion": "Can you think of a time when you felt safe because someone was taking care of you?",
   "files": {
     "short": {

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1090,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_05",
+  "title": "The Storm on the Lake",
+  "scriptureAnchor": "Matthew 8:23-27",
+  "bibleStoryKey": "jesus_calms_storm_matthew",
+  "storyVoiceKey": "VOICE_CHRIS_DEFAULT",
+  "themeTags": [
+    "faith",
+    "hope"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 652,
+  "timelineEra": "jesus_ministry",
+  "reflectionQuestion": "Have you ever been in a situation where everything was falling apart, and you had to trust that it would be okay?",
+  "reflectionText": "The storm came from nowhere. One moment the water was calm, the next the boat was filling. That is how fear works sometimes — not building gradually, but arriving all at once, without warning, turning a quiet evening into something desperate.\n\nWhat's striking is that Jesus was asleep. Not somewhere else. Not absent. Asleep — right there in the boat, in the middle of the same storm. His peace did not depend on the weather.\n\nThe disciples' question afterward was the right one. Not \"how did he do that?\" but \"what kind of man is this?\" Because what they had just witnessed was not a trick or a technique. It was something about who he was.\n\nSometimes the scariest part of a storm is not the wind or the waves. It's the silence before someone speaks — and the way everything changes when they do.",
+  "files": {
+    "short": {
+      "storyText": "story_1090_traditional_web_short.txt",
+      "storyAudio": "audio_1090_story_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1090_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1090_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1090_traditional_web.txt",
+      "reflectionAudio": "audio_1090_reflection.mp3"
+    }
+  },
+  "reflectionVoiceKey": "VOICE_CHRIS_DEFAULT"
+}

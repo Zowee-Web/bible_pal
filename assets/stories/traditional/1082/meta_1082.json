@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1082,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_05",
+  "title": "The Young Woman Who Said Yes",
+  "scriptureAnchor": "Luke 1:26-38",
+  "bibleStoryKey": "annunciation_to_mary",
+  "storyVoiceKey": "VOICE_CHARLOTTE_V3",
+  "themeTags": [
+    "faith",
+    "obedience"
+  ],
+  "primaryCharacterId": "mary",
+  "primaryCharacterDisplayName": "Mary",
+  "bibleOrderIndex": 617,
+  "timelineEra": "jesus_ministry",
+  "reflectionQuestion": "Has life ever asked something of you that didn't make sense at the time?",
+  "reflectionText": "She was not chosen because she was powerful. She was not chosen because she was important. She was a young woman in a small town, living a quiet life, doing the kind of work that no one writes about.\n\nAnd yet the question came to her. Not to a priest. Not to a scholar. Not to someone prepared for it. To her.\n\nWhat stands out is not the announcement itself — it is what she did with it. She asked an honest question. She sat with the impossibility of it. And then she said yes. Not because she understood, but because she was willing.\n\nThere are moments when life asks something of us that does not make sense. When the answer is not certainty but trust. When the bravest thing we can say is simply: let it be.",
+  "reflectionVoiceKey": "VOICE_CHARLOTTE_V3",
+  "files": {
+    "short": {
+      "storyText": "story_1082_traditional_web_short.txt",
+      "storyAudio": "audio_1082_story_short_take1.mp3"
+    },
+    "full": {
+      "storyText": "story_1082_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1082_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1082_traditional_web.txt"
+    }
+  }
+}

@@ -1,15 +1,23 @@
 {
+  "schemaVersion": 2,
   "storyId": 802,
   "mode": "traditional",
+  "kidFriendly": false,
+  "source": "legacy_inferred",
   "languageStyle": "KJV",
   "mood": "calm_peaceful",
   "scriptureAnchor": "Psalm 23",
+  "scriptureAnchorId": "ps_23",
+  "bibleStoryKey": "the_lord_is_my_shepherd",
+  "title": "The Lord Is My Shepherd",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_JAMES_HUSKY",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "reflectionVoiceKey": "VOICE_JAMES_HUSKY",
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_TRADITIONAL_CLASSIC_OPTION_B2_800_SERIES",
   "files": {

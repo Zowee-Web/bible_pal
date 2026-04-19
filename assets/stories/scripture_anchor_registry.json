@@ -779,6 +779,76 @@
         "anxious",
         "brave_courage"
       ]
+    },
+    {
+      "scriptureAnchorId": "matt_3_13-17",
+      "bibleStoryKey": "baptism_of_jesus",
+      "bibleSourceRef": "Matthew 3:13-17",
+      "moodTags": [
+        "encouraging",
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matt_4_1-11",
+      "bibleStoryKey": "temptation_in_wilderness",
+      "bibleSourceRef": "Matthew 4:1-11",
+      "moodTags": [
+        "brave_courage",
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matt_17_1-8",
+      "bibleStoryKey": "transfiguration",
+      "bibleSourceRef": "Matthew 17:1-8",
+      "moodTags": [
+        "joyful",
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matt_21_1-11",
+      "bibleStoryKey": "triumphal_entry",
+      "bibleSourceRef": "Matthew 21:1-11",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_22_7-23",
+      "bibleStoryKey": "last_supper",
+      "bibleSourceRef": "Luke 22:7-23",
+      "moodTags": [
+        "calm_peaceful",
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "mark_14_32-42",
+      "bibleStoryKey": "gethsemane",
+      "bibleSourceRef": "Mark 14:32-42",
+      "moodTags": [
+        "hurting",
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_23_26-49",
+      "bibleStoryKey": "crucifixion",
+      "bibleSourceRef": "Luke 23:26-49",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_24_50-53",
+      "bibleStoryKey": "ascension",
+      "bibleSourceRef": "Luke 24:50-53",
+      "moodTags": [
+        "joyful",
+        "encouraging"
+      ]
     }
   ]
 }

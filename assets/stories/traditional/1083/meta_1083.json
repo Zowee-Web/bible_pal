@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1083,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_05",
+  "title": "The Stone at Bethany",
+  "scriptureAnchor": "John 11:1-44",
+  "bibleStoryKey": "raising_of_lazarus",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "themeTags": [
+    "faith",
+    "hope"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 680,
+  "timelineEra": "jesus_ministry",
+  "files": {
+    "short": {
+      "storyText": "story_1083_traditional_web_short.txt",
+      "storyAudio": "audio_1083_story_short_take1.mp3"
+    },
+    "full": {
+      "storyText": "story_1083_traditional_web_full.txt",
+      "storyAudio": "audio_1083_story_full.mp3"
+    },
+    "long": {
+      "storyText": "story_1083_traditional_web_long.txt",
+      "storyAudio": "audio_1083_story_long.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1083_traditional_web.txt",
+      "reflectionAudio": "audio_1083_reflection.mp3"
+    }
+  },
+  "reflectionQuestion": "Have you ever waited for help that didn't come when you expected it?",
+  "reflectionText": "There are moments when everything we counted on is taken away — when the person we needed most does not come in time, and the worst thing happens anyway.\n\nThe sisters in this story knew Jesus could have healed their brother. They said so. And Jesus did not deny it. He wept with them. He stood at the grave and felt what they felt.\n\nWhat came next was beyond anything they expected. But it did not erase the grief that came before it. The weeping was real. The waiting was real. The silence of those four days was real.\n\nSometimes the hardest part is not the ending. It is the middle — the part where nothing has changed yet, and all you can do is wait.",
+  "reflectionVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN"
+}

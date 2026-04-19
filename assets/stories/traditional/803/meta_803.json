@@ -1,15 +1,23 @@
 {
+  "schemaVersion": 2,
   "storyId": 803,
   "mode": "traditional",
+  "kidFriendly": false,
+  "source": "legacy_inferred",
   "languageStyle": "KJV",
   "mood": "encouraging",
   "scriptureAnchor": "Psalm 46",
+  "scriptureAnchorId": "ps_46",
+  "bibleStoryKey": "god_is_our_refuge",
+  "title": "God Is Our Refuge",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_JAMES_HUSKY",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "reflectionVoiceKey": "VOICE_JAMES_HUSKY",
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_TRADITIONAL_OPTION_B2",
   "files": {

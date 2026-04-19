@@ -3,15 +3,21 @@
   "storyId": 809,
   "mode": "traditional",
   "kidFriendly": false,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "anxious",
   "scriptureAnchor": "Mark 4:35-41",
+  "scriptureAnchorId": "mark_4_35-41",
+  "bibleStoryKey": "jesus_calms_storm",
+  "title": "Jesus Calms the Storm",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_NOAH_PATIENT",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "reflectionVoiceKey": "VOICE_NOAH_PATIENT",
   "voiceKeys": {
     "short": "VOICE_NOAH_PATIENT",
     "full": "VOICE_NOAH_PATIENT",
@@ -20,6 +26,7 @@
   },
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_44",
+  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionQuestion": "What feels most uncertain in your life right now?",
   "files": {
     "short": {
@@ -39,6 +46,5 @@
       "reflectionAudio": "audio_809_reflection.mp3"
     }
   },
-  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionText": "Stories about worry often reflect the tension between what we can control and what we cannot. These narratives show that peace sometimes comes from releasing our grip on outcomes. And even a small step forward can be enough for today."
 }

@@ -1,15 +1,23 @@
 {
+  "schemaVersion": 2,
   "storyId": 804,
   "mode": "traditional",
+  "kidFriendly": false,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "joyful",
   "scriptureAnchor": "Romans 8:28",
+  "scriptureAnchorId": "rom_8_28",
+  "bibleStoryKey": "all_things_work_together",
+  "title": "All Things Work Together",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_JAMES_HUSKY",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "reflectionVoiceKey": "VOICE_JAMES_HUSKY",
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_TRADITIONAL_OPTION_B2",
   "files": {

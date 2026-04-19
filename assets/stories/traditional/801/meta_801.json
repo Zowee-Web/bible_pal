@@ -1,15 +1,23 @@
 {
+  "schemaVersion": 2,
   "storyId": 801,
   "mode": "traditional",
+  "kidFriendly": false,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "weary",
   "scriptureAnchor": "Matthew 11:28–30",
+  "scriptureAnchorId": "matt_11_28-30",
+  "bibleStoryKey": "rest_for_the_weary",
+  "title": "Rest for the Weary",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_JAMES_HUSKY",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "reflectionVoiceKey": "VOICE_JAMES_HUSKY",
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_TRADITIONAL_OPTION_B_TEST",
   "files": {
