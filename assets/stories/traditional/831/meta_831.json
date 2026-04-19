@@ -3,16 +3,21 @@
   "storyId": 831,
   "mode": "traditional",
   "kidFriendly": false,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
-  "mood": "neutral",
+  "mood": "calm_peaceful",
   "scriptureAnchor": "Genesis 41:1-40",
+  "scriptureAnchorId": "gen_41_1-40",
   "bibleStoryKey": "joseph_interprets_pharaohs_dreams",
+  "title": "Joseph Interprets Pharaoh's Dreams",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_BRADFORD",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "reflectionVoiceKey": "VOICE_BRADFORD",
   "voiceKeys": {
     "short": "VOICE_BRADFORD",
     "full": "VOICE_BRADFORD",
@@ -41,6 +46,8 @@
       "reflectionAudio": "audio_831_reflection.mp3"
     }
   },
+  "reflectionText": "A forgotten name spoken in the right moment can open a door — dim light shifting to gold, a man's face new and uncertain. Just for now, it is enough to remember the way one hallway led to another. That is enough for today.",
+  "reflectionSource": "llm",
   "wordCountFlags": {
     "short": {
       "promptTarget": 500,
@@ -49,8 +56,6 @@
       "accepted": "within_bucket"
     }
   },
-  "reflectionSource": "llm",
-  "reflectionText": "A forgotten name spoken in the right moment can open a door — dim light shifting to gold, a man's face new and uncertain. Just for now, it is enough to remember the way one hallway led to another. That is enough for today.",
   "boundaryValidation": {
     "short": "pass",
     "full": "pass",

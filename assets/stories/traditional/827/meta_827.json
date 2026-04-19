@@ -3,14 +3,19 @@
   "storyId": 827,
   "mode": "traditional",
   "kidFriendly": false,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "calm_peaceful",
   "scriptureAnchor": "Luke 10:38-42",
+  "scriptureAnchorId": "luke_10_38-42",
   "bibleStoryKey": "mary_and_martha",
+  "title": "Mary and Martha",
   "lengths": [
     "short"
   ],
   "voiceKey": "VOICE_DEBORAH_WISE",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "reflectionVoiceKey": "VOICE_DEBORAH_WISE",
   "voiceKeys": {
     "short": "VOICE_DEBORAH_WISE",
     "full": "VOICE_DEBORAH_WISE",
@@ -31,8 +36,8 @@
       "reflectionAudio": "audio_827_reflection.mp3"
     }
   },
-  "reflectionSource": "template",
   "reflectionText": "Stillness is not emptiness. Sometimes the quietest moment is where clarity arrives. Even one breath taken in peace can carry you further than you think.",
+  "reflectionSource": "template",
   "boundaryValidation": {
     "short": "pass"
   },

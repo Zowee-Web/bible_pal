@@ -3,15 +3,21 @@
   "storyId": 819,
   "mode": "traditional",
   "kidFriendly": true,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "encouraging",
   "scriptureAnchor": "Esther 4-7",
+  "scriptureAnchorId": "esth_4-7",
+  "bibleStoryKey": "queen_esther",
+  "title": "Queen Esther",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "reflectionVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
   "voiceKeys": {
     "short": "VOICE_REVEREND_MICHAEL_C_VINCENT",
     "full": "VOICE_REVEREND_MICHAEL_C_VINCENT",
@@ -20,6 +26,7 @@
   },
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_3",
+  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionQuestion": "Can you think of a time when someone's kind words made you feel braver?",
   "files": {
     "short": {
@@ -39,6 +46,5 @@
       "reflectionAudio": "audio_819_reflection.mp3"
     }
   },
-  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionText": "This story shows that standing up for others takes courage and love. Even one kind word can make a difference."
 }

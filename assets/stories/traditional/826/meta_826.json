@@ -3,16 +3,21 @@
   "storyId": 826,
   "mode": "traditional",
   "kidFriendly": false,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "brave_courage",
   "scriptureAnchor": "1 Samuel 17:1-54",
+  "scriptureAnchorId": "1sam_17_1-54",
   "bibleStoryKey": "david_and_goliath",
+  "title": "David and Goliath",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_NOAH_PATIENT",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "reflectionVoiceKey": "VOICE_NOAH_PATIENT",
   "voiceKeys": {
     "short": "VOICE_NOAH_PATIENT",
     "full": "VOICE_NOAH_PATIENT",
@@ -41,6 +46,8 @@
       "reflectionAudio": "audio_826_reflection.mp3"
     }
   },
+  "reflectionText": "The valley stretched silent, shields fluttering, while one young voice carried across the distance. Even a single stone in steady hands can meet a giant’s challenge. Let that be enough for today.",
+  "reflectionSource": "llm",
   "wordCountFlags": {
     "short": {
       "promptTarget": 500,
@@ -54,7 +61,5 @@
       "bucketMax": 1200,
       "accepted": "within_bucket"
     }
-  },
-  "reflectionSource": "llm",
-  "reflectionText": "The valley stretched silent, shields fluttering, while one young voice carried across the distance. Even a single stone in steady hands can meet a giant’s challenge. Let that be enough for today."
+  }
 }

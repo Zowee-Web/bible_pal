@@ -3,16 +3,21 @@
   "storyId": 833,
   "mode": "traditional",
   "kidFriendly": false,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "anxious",
   "scriptureAnchor": "Matthew 14:22-33",
+  "scriptureAnchorId": "matt_14_22-33",
   "bibleStoryKey": "peter_walks_on_water",
+  "title": "Peter Walks on Water",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_HANNAH_HOPE",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
+  "reflectionVoiceKey": "VOICE_HANNAH_HOPE",
   "voiceKeys": {
     "short": "VOICE_HANNAH_HOPE",
     "full": "VOICE_HANNAH_HOPE",
@@ -41,8 +46,8 @@
       "reflectionAudio": "audio_833_reflection.mp3"
     }
   },
-  "reflectionSource": "llm",
   "reflectionText": "Wind and darkness pressed close, the boat creaking beneath tired hands — still, one foot touched water and found a place to stand. Fear and hope tangled in the storm, and a heartbeat’s courage held for a breath. Even that is enough for today.",
+  "reflectionSource": "llm",
   "boundaryValidation": {
     "short": "pass",
     "full": "pass",

@@ -3,16 +3,21 @@
   "storyId": 825,
   "mode": "traditional",
   "kidFriendly": false,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "anxious",
   "scriptureAnchor": "1 Kings 19:9-18",
+  "scriptureAnchorId": "1kgs_19_9-18",
   "bibleStoryKey": "elijah_at_horeb",
+  "title": "Elijah at Horeb",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_MARCUS_ANCHOR",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "reflectionVoiceKey": "VOICE_MARCUS_ANCHOR",
   "voiceKeys": {
     "short": "VOICE_MARCUS_ANCHOR",
     "full": "VOICE_MARCUS_ANCHOR",

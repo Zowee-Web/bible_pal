@@ -3,16 +3,21 @@
   "storyId": 832,
   "mode": "traditional",
   "kidFriendly": false,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "weary",
   "scriptureAnchor": "Exodus 18:13-27",
+  "scriptureAnchorId": "exod_18_13-27",
   "bibleStoryKey": "moses_and_jethro",
+  "title": "Moses and Jethro",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_JOHN_BELOVED",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "reflectionVoiceKey": "VOICE_JOHN_BELOVED",
   "voiceKeys": {
     "short": "VOICE_JOHN_BELOVED",
     "full": "VOICE_JOHN_BELOVED",
@@ -41,6 +46,8 @@
       "reflectionAudio": "audio_832_reflection.mp3"
     }
   },
+  "reflectionText": "A single stone for a seat, lines that never seemed to end, and sun-warmed shoulders growing heavier with each story heard—Moses sat, and the day wore on. It is enough to sit back now, to let the night bring rest—one long breath, enough for today.",
+  "reflectionSource": "llm",
   "wordCountFlags": {
     "short": {
       "promptTarget": 500,
@@ -49,8 +56,6 @@
       "accepted": "within_bucket"
     }
   },
-  "reflectionSource": "llm",
-  "reflectionText": "A single stone for a seat, lines that never seemed to end, and sun-warmed shoulders growing heavier with each story heard—Moses sat, and the day wore on. It is enough to sit back now, to let the night bring rest—one long breath, enough for today.",
   "boundaryValidation": {
     "short": "pass",
     "full": "pass",

@@ -3,16 +3,21 @@
   "storyId": 828,
   "mode": "traditional",
   "kidFriendly": false,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "encouraging",
   "scriptureAnchor": "Ruth 1:1-22",
+  "scriptureAnchorId": "ruth_1_1-22",
   "bibleStoryKey": "ruth_and_naomi",
+  "title": "Ruth and Naomi",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_SARAH_STORYTELLER",
+  "storyVoiceKey": "VOICE_SARAH_STORYTELLER",
+  "reflectionVoiceKey": "VOICE_SARAH_STORYTELLER",
   "voiceKeys": {
     "short": "VOICE_SARAH_STORYTELLER",
     "full": "VOICE_SARAH_STORYTELLER",
@@ -41,6 +46,8 @@
       "reflectionAudio": "audio_828_reflection.mp3"
     }
   },
+  "reflectionText": "Three women pause on a dusty road, arms entwined—grief and longing pressed close between them. One turns back, another clings tightly, and hope breathes quietly in the choice to stay. That is enough for today.",
+  "reflectionSource": "llm",
   "wordCountFlags": {
     "short": {
       "promptTarget": 500,
@@ -49,8 +56,6 @@
       "accepted": "within_bucket"
     }
   },
-  "reflectionSource": "llm",
-  "reflectionText": "Three women pause on a dusty road, arms entwined—grief and longing pressed close between them. One turns back, another clings tightly, and hope breathes quietly in the choice to stay. That is enough for today.",
   "boundaryValidation": {
     "short": "pass",
     "full": "pass",

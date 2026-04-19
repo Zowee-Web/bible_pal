@@ -3,15 +3,21 @@
   "storyId": 823,
   "mode": "traditional",
   "kidFriendly": false,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "encouraging",
   "scriptureAnchor": "Esther 4-7",
+  "scriptureAnchorId": "esth_4-7",
+  "bibleStoryKey": "queen_esther",
+  "title": "Queen Esther",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_MARY_PONDER",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "reflectionVoiceKey": "VOICE_MARY_PONDER",
   "voiceKeys": {
     "short": "VOICE_MARY_PONDER",
     "full": "VOICE_MARY_PONDER",
@@ -20,6 +26,7 @@
   },
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_45",
+  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionQuestion": "Stories of encouragement often reflect moments when someone steps up for another. These narratives show how a single act of support can change the course of events. And even a small step forward can be enough for today.",
   "files": {
     "short": {
@@ -39,6 +46,5 @@
       "reflectionAudio": "audio_823_reflection.mp3"
     }
   },
-  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionText": "Stories of encouragement often reflect moments when someone steps up for another. These narratives show how a single act of support can change the course of events. And even a small step forward can be enough for today."
 }

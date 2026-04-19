@@ -3,16 +3,21 @@
   "storyId": 830,
   "mode": "traditional",
   "kidFriendly": false,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "joyful",
   "scriptureAnchor": "Luke 15:11-32",
+  "scriptureAnchorId": "luke_15_11-32",
   "bibleStoryKey": "prodigal_son",
+  "title": "The Prodigal Son",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_PETER_BOLD",
+  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "reflectionVoiceKey": "VOICE_PETER_BOLD",
   "voiceKeys": {
     "short": "VOICE_PETER_BOLD",
     "full": "VOICE_PETER_BOLD",
@@ -41,6 +46,8 @@
       "reflectionAudio": "audio_830_reflection.mp3"
     }
   },
+  "reflectionText": "Arms wide, the father ran—feet pounding earth, not holding back. Dust, sweat, laughter, and music filled the house once more. One welcome, one embrace—sometimes that’s enough for today.",
+  "reflectionSource": "llm",
   "wordCountFlags": {
     "short": {
       "promptTarget": 500,
@@ -49,8 +56,6 @@
       "accepted": "within_bucket"
     }
   },
-  "reflectionSource": "llm",
-  "reflectionText": "Arms wide, the father ran—feet pounding earth, not holding back. Dust, sweat, laughter, and music filled the house once more. One welcome, one embrace—sometimes that’s enough for today.",
   "boundaryValidation": {
     "short": "pass",
     "full": "pass",

@@ -3,15 +3,21 @@
   "storyId": 818,
   "mode": "traditional",
   "kidFriendly": true,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "calm_peaceful",
   "scriptureAnchor": "1 Samuel 3",
+  "scriptureAnchorId": "1sam_3",
+  "bibleStoryKey": "samuel_listens",
+  "title": "Samuel Listens",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_ARABELLA",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA",
   "voiceKeys": {
     "short": "VOICE_ARABELLA",
     "full": "VOICE_ARABELLA",
@@ -20,6 +26,7 @@
   },
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_3",
+  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionQuestion": "What is something quiet that makes you feel peaceful and safe?",
   "files": {
     "short": {
@@ -39,6 +46,5 @@
       "reflectionAudio": "audio_818_reflection.mp3"
     }
   },
-  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionText": "This story shows that being still and listening can bring us peace. Even one quiet moment matters."
 }

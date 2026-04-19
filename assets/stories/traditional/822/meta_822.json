@@ -3,15 +3,21 @@
   "storyId": 822,
   "mode": "traditional",
   "kidFriendly": false,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "calm_peaceful",
   "scriptureAnchor": "1 Samuel 3",
+  "scriptureAnchorId": "1sam_3",
+  "bibleStoryKey": "samuel_listens",
+  "title": "Samuel Listens",
   "lengths": [
     "short",
     "full",
     "long"
   ],
   "voiceKey": "VOICE_JOHN_BELOVED",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "reflectionVoiceKey": "VOICE_JOHN_BELOVED",
   "voiceKeys": {
     "short": "VOICE_JOHN_BELOVED",
     "full": "VOICE_JOHN_BELOVED",
@@ -20,6 +26,7 @@
   },
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_45",
+  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionQuestion": "Stories of stillness often reflect moments when silence speaks louder than noise. These narratives show how peace can be found by simply being present. And even a small step forward can be enough for today.",
   "files": {
     "short": {
@@ -39,6 +46,5 @@
       "reflectionAudio": "audio_822_reflection.mp3"
     }
   },
-  "generationContractVersion": "STORY_FACTORY_v2.3",
   "reflectionText": "Stories of stillness often reflect moments when silence speaks louder than noise. These narratives show how peace can be found by simply being present. And even a small step forward can be enough for today."
 }

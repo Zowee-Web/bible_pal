@@ -3,15 +3,20 @@
   "storyId": 829,
   "mode": "traditional",
   "kidFriendly": false,
+  "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "hurting",
   "scriptureAnchor": "Genesis 21:14-21",
+  "scriptureAnchorId": "gen_21_14-21",
   "bibleStoryKey": "hagar_in_wilderness",
+  "title": "Hagar in the Wilderness",
   "lengths": [
     "short",
     "full"
   ],
   "voiceKey": "VOICE_MARY_PONDER",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "reflectionVoiceKey": "VOICE_MARY_PONDER",
   "voiceKeys": {
     "short": "VOICE_MARY_PONDER",
     "full": "VOICE_MARY_PONDER",
@@ -36,8 +41,8 @@
       "reflectionAudio": "audio_829_reflection.mp3"
     }
   },
-  "reflectionSource": "llm",
   "reflectionText": "Hagar’s hands trembled as she held the empty skin—nothing left but dust, her hope almost gone. Then, among thorns and glare, water shimmered into view—one small, saving grace. A single clear drink, just enough for today.",
+  "reflectionSource": "llm",
   "boundaryValidation": {
     "short": "pass",
     "full": "pass"
