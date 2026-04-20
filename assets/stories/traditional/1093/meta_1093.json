@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1093,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_05",
+  "title": "The Woman with the Perfume",
+  "scriptureAnchor": "Luke 7:36-50",
+  "bibleStoryKey": "woman_anoints_jesus_feet",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "themeTags": [
+    "mercy",
+    "forgiveness"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 628,
+  "timelineEra": "jesus_ministry",
+  "reflectionQuestion": "Have you ever given something that cost you everything, without knowing if it would be received?",
+  "reflectionText": "She was not invited. She did not belong. Everything about her presence in that room was wrong by the standards of the people sitting at the table.\n\nAnd she came anyway. She came with tears and perfume and hair that she loosened in a room full of men who judged her for it. She gave everything she had — not carefully, not strategically, but completely.\n\nWhat Jesus noticed was not her sin. It was her love. And he drew a line between the two things that most people in the room would never have connected: the depth of what she gave and the depth of what she had been forgiven.\n\nSometimes the people who love most are the ones who know exactly what it cost to be let back in.",
+  "reflectionVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "files": {
+    "short": {
+      "storyText": "story_1093_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1093_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1093_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1093_traditional_web.txt"
+    }
+  }
+}

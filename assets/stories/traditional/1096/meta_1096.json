@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1096,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_05",
+  "title": "Thirty-Eight Years by the Pool",
+  "scriptureAnchor": "John 5:1-15",
+  "bibleStoryKey": "healing_at_bethesda",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "themeTags": [
+    "mercy",
+    "hope"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 670,
+  "timelineEra": "jesus_ministry",
+  "reflectionQuestion": "Have you ever stopped believing things could change — and then they did?",
+  "reflectionText": "Thirty-eight years is a long time to wait for something that never comes. Long enough to stop expecting it. Long enough to build a life around the absence of it — to stop asking for help, stop looking for change, stop believing that the question even has an answer anymore.\n\nWhen Jesus asked, \"Do you want to be made well?\" — the man did not say yes. He explained why it was impossible. That is what long suffering does: it replaces hope with explanation.\n\nBut Jesus did not ask for an explanation. He did not address the pool or the water or the system that had failed the man for decades. He spoke directly to the body that had forgotten how to stand.\n\nSometimes the thing we most need is not a better system. It is someone who speaks to us as though change is still possible — even when we have stopped believing it ourselves.",
+  "reflectionVoiceKey": "VOICE_JAMES_HUSKY",
+  "files": {
+    "short": {
+      "storyText": "story_1096_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1096_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1096_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1096_traditional_web.txt"
+    }
+  }
+}

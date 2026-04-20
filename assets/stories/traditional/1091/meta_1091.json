@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1091,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_05",
+  "title": "The Fiery Furnace",
+  "scriptureAnchor": "Daniel 3:1-30",
+  "bibleStoryKey": "fiery_furnace",
+  "storyVoiceKey": "VOICE_JOHN_DOE",
+  "themeTags": [
+    "faith",
+    "courage"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 390,
+  "timelineEra": "jesus_ministry",
+  "reflectionQuestion": "Have you ever had to make a choice knowing it could cost you everything?",
+  "reflectionText": "They were given a choice: bow or burn. The math was simple. The furnace was real. The king's power was absolute. Every rational calculation pointed in one direction.\n\nAnd they said: even if he does not.\n\nThat line is the hinge of the story. Not \"God will save us\" — they believed that. But \"even if he does not.\" Faith that does not depend on the outcome. Trust that does not require rescue. A decision made before the answer comes.\n\nMost of the hardest moments in life are not about knowing what will happen. They are about deciding who you are before you find out.",
+  "reflectionVoiceKey": "VOICE_JOHN_DOE",
+  "files": {
+    "short": {
+      "storyText": "story_1091_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1091_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1091_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1091_traditional_web.txt"
+    }
+  }
+}

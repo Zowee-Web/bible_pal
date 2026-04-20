@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1099,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_05",
+  "title": "The Mountain of Light",
+  "scriptureAnchor": "Matthew 17:1-8",
+  "bibleStoryKey": "transfiguration",
+  "storyVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+  "themeTags": [
+    "faith",
+    "hope"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 655,
+  "timelineEra": "jesus_ministry",
+  "reflectionQuestion": "Have you ever seen something that changed how you looked at everything ordinary?",
+  "reflectionText": "For a few minutes on a mountaintop, three ordinary men saw something they were never meant to forget.\n\nThe face of the man they followed — the one who ate bread, who got tired, who walked the same dusty roads — shone like the sun. The ordinary was pulled back, and what was underneath was blinding.\n\nThey wanted to build shelters. To contain it. To make it stay. But the moment was not meant to be preserved. It was meant to be carried.\n\nWhen they opened their eyes, everything looked normal again. Jesus looked like Jesus. The mountain was just a mountain. The path led back down to the valley, to the crowds, to the work.\n\nBut they had seen it. And what you have seen, you cannot unsee. It changes how you look at everything — especially the ordinary things.",
+  "reflectionVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+  "files": {
+    "short": {
+      "storyText": "story_1099_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1099_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1099_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1099_traditional_web.txt"
+    }
+  }
+}

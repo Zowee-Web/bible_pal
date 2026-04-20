@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1095,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_05",
+  "title": "The Road to Damascus",
+  "scriptureAnchor": "Acts 9:1-19",
+  "bibleStoryKey": "saul_on_road_to_damascus",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "faith",
+    "mercy"
+  ],
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "bibleOrderIndex": 700,
+  "timelineEra": "early_church",
+  "reflectionQuestion": "Have you ever discovered that the thing you were most certain about was the thing you most needed to let go?",
+  "reflectionText": "He was absolutely certain he was right. That is the most unsettling part of the story — not the violence, not the zeal, but the certainty. Saul believed he was doing God's work. He had the credentials, the authority, the conviction. And he was completely wrong.\n\nThe light on the road did not give him new information. It gave him a new identity. The man who stood up in Damascus was not the man who fell down on the road. Something fundamental had changed — not his intelligence, not his training, but the direction of his life.\n\nSometimes the most important moment is not when we learn something new. It is when we discover that what we were most sure of was the thing we most needed to let go.",
+  "reflectionVoiceKey": "VOICE_BRADFORD",
+  "files": {
+    "short": {
+      "storyText": "story_1095_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1095_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1095_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1095_traditional_web.txt"
+    }
+  }
+}

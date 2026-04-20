@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1100,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_05",
+  "title": "The City That Turned Around",
+  "scriptureAnchor": "Jonah 3:1-10",
+  "bibleStoryKey": "jonah_in_nineveh",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "themeTags": [
+    "obedience",
+    "mercy"
+  ],
+  "primaryCharacterId": "jonah",
+  "primaryCharacterDisplayName": "Jonah",
+  "bibleOrderIndex": 462,
+  "timelineEra": "prophets",
+  "reflectionQuestion": "Have you ever changed direction — not because you understood everything, but because you knew it was time?",
+  "reflectionText": "The most powerful city on earth heard eight words from a stranger and changed everything.\n\nNo miracles. No signs. No negotiation. Just a man standing in the street with a message he did not want to deliver, speaking to people who had no reason to listen — and they listened.\n\nWhat moved Nineveh was not theology. It was honesty. The king's decree did not promise anything. It said: \"Who knows? Maybe God will relent.\" That is not certainty. That is hope held with open hands.\n\nSometimes the most transformative thing a person or a community can do is stop. Stop the routine. Stop the excuses. Stop the violence. And say: we don't know if it will make a difference, but we are going to change anyway.\n\nNineveh did not earn forgiveness. They simply turned around. And that was enough.",
+  "reflectionVoiceKey": "VOICE_ARABELLA",
+  "files": {
+    "short": {
+      "storyText": "story_1100_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1100_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1100_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1100_traditional_web.txt"
+    }
+  }
+}

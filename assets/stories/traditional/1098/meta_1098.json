@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1098,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_05",
+  "title": "The Woman and the Dust",
+  "scriptureAnchor": "John 8:1-11",
+  "bibleStoryKey": "woman_caught_in_adultery",
+  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "themeTags": [
+    "mercy",
+    "forgiveness"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 675,
+  "timelineEra": "jesus_ministry",
+  "reflectionQuestion": "Have you ever been caught in something and expected condemnation — and received mercy instead?",
+  "reflectionText": "The accusers came with stones and certainty. They had the law. They had the evidence. They had the crowd. Everything was arranged for condemnation.\n\nAnd Jesus bent down and wrote in the dirt.\n\nWe do not know what he wrote. But we know what happened next: the men with the stones looked at themselves instead of at the woman. And one by one, they walked away.\n\nThere is something in that moment — the silence, the writing, the quiet challenge — that cuts deeper than any argument. It does not say the wrong thing was not wrong. It says: before you throw, look at your own hands.\n\nSometimes the most powerful response to accusation is not defense. It is a question that sends every accuser home.",
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF",
+  "files": {
+    "short": {
+      "storyText": "story_1098_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1098_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1098_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1098_traditional_web.txt"
+    }
+  }
+}
