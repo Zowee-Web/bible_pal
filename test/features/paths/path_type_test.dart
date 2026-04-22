@@ -60,8 +60,8 @@ void main() {
       expect(TimelineEra.earlyChurch.wireId, 'early_church');
     });
 
-    test('exactly nine eras exist', () {
-      expect(TimelineEra.values.length, 9);
+    test('exactly twelve eras exist', () {
+      expect(TimelineEra.values.length, 12);
     });
 
     test('fromWire round-trips every era', () {

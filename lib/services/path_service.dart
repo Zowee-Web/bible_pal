@@ -156,7 +156,7 @@ class PathService {
       if (byCharOrder != 0) return byCharOrder;
       return a.storyId.compareTo(b.storyId);
     });
-    return matches;
+    return _deduplicateStories(matches);
   }
 
   List<Parable> _storiesForTimeline(String pathId) {
@@ -167,7 +167,7 @@ class PathService {
     final matches =
         _parables.where((p) => p.timelineEra == pathId).toList();
     matches.sort(_byBibleOrderIndex);
-    return matches;
+    return _deduplicateStories(matches);
   }
 
   List<Parable> _storiesForThemes(String pathId) {
@@ -181,7 +181,7 @@ class PathService {
       return tags.contains(pathId);
     }).toList();
     matches.sort(_byBibleOrderIndex);
-    return matches;
+    return _deduplicateStories(matches);
   }
 
   List<Parable> _storiesForCharacters(String pathId) {
@@ -204,7 +204,7 @@ class PathService {
       if (byIdx != 0) return byIdx;
       return a.storyId.compareTo(b.storyId);
     });
-    return matches;
+    return _deduplicateStories(matches);
   }
 
   // --------------------------------------------------------------------
@@ -271,12 +271,12 @@ class PathService {
   }
 
   List<PathInstance> _instancesForBibleOrder() {
-    final byBook = <String, int>{};
+    final byBook = <String, List<Parable>>{};
     for (final p in _parables) {
       if (p.bibleOrderIndex == null) continue;
       final book = _bookSlugFromRef(p.bibleSourceRef);
       if (book == null || book.isEmpty) continue;
-      byBook[book] = (byBook[book] ?? 0) + 1;
+      (byBook[book] ??= []).add(p);
     }
 
     final instances = byBook.entries
@@ -284,7 +284,7 @@ class PathService {
               pathType: PathType.bibleOrder,
               pathId: e.key,
               displayLabel: _bookDisplayLabel(e.key),
-              storyCount: e.value,
+              storyCount: _countUniqueStories(e.value),
             ))
         .toList();
     // Sort by lowest bibleOrderIndex story within each book for a
@@ -298,12 +298,12 @@ class PathService {
   }
 
   List<PathInstance> _instancesForTimeline() {
-    final byEra = <String, int>{};
+    final byEra = <String, List<Parable>>{};
     for (final p in _parables) {
       final era = p.timelineEra;
       if (era == null) continue;
       if (TimelineEraParse.fromWire(era) == null) continue;
-      byEra[era] = (byEra[era] ?? 0) + 1;
+      (byEra[era] ??= []).add(p);
     }
 
     final instances = byEra.entries
@@ -311,7 +311,7 @@ class PathService {
               pathType: PathType.timeline,
               pathId: e.key,
               displayLabel: TimelineEraParse.fromWire(e.key)!.displayLabel,
-              storyCount: e.value,
+              storyCount: _countUniqueStories(e.value),
             ))
         .toList();
     // Sort by canonical era order (enum declaration order).
@@ -326,13 +326,13 @@ class PathService {
   }
 
   List<PathInstance> _instancesForThemes() {
-    final byTheme = <String, int>{};
+    final byTheme = <String, List<Parable>>{};
     for (final p in _parables) {
       final tags = p.themeTags;
       if (tags == null) continue;
       for (final tag in tags) {
         if (!ThemeTagParse.isValid(tag)) continue;
-        byTheme[tag] = (byTheme[tag] ?? 0) + 1;
+        (byTheme[tag] ??= []).add(p);
       }
     }
 
@@ -341,7 +341,7 @@ class PathService {
               pathType: PathType.themes,
               pathId: e.key,
               displayLabel: ThemeTagParse.fromWire(e.key)!.displayLabel,
-              storyCount: e.value,
+              storyCount: _countUniqueStories(e.value),
             ))
         .toList();
     // Sort by canonical theme order (enum declaration order).
@@ -354,14 +354,14 @@ class PathService {
   }
 
   List<PathInstance> _instancesForCharacters() {
-    final byChar = <String, int>{};
+    final byChar = <String, List<Parable>>{};
     for (final p in _parables) {
       final charId = p.primaryCharacterId;
       if (charId == null || charId.isEmpty) continue;
       // Jesus is reserved for jesus_life (SPEC 50.8) — NEVER surface in
       // the Characters path list.
       if (charId == 'jesus') continue;
-      byChar[charId] = (byChar[charId] ?? 0) + 1;
+      (byChar[charId] ??= []).add(p);
     }
 
     final instances = byChar.entries
@@ -369,7 +369,7 @@ class PathService {
               pathType: PathType.characters,
               pathId: e.key,
               displayLabel: CharacterRegistry.getDisplayName(e.key),
-              storyCount: e.value,
+              storyCount: _countUniqueStories(e.value),
             ))
         .toList();
     // Sort alphabetically by display label for predictable UX.
@@ -436,6 +436,67 @@ class PathService {
         .where((s) => isStoryCompleted(s.storyId))
         .length;
     return completedCount / stories.length;
+  }
+
+  // --------------------------------------------------------------------
+  // Deduplication — one entry per unique story (SPEC 50 path display)
+  // --------------------------------------------------------------------
+
+  /// Canonical dedup key: bibleStoryKey > bibleSourceRef > storyId.
+  /// Variants of the same Bible story (WEB/KJV, short/full) share
+  /// bibleStoryKey and/or bibleSourceRef, so this collapses them.
+  static String _dedupeKey(Parable p) {
+    if (p.bibleStoryKey != null && p.bibleStoryKey!.isNotEmpty) {
+      return p.bibleStoryKey!;
+    }
+    if (p.bibleSourceRef != null && p.bibleSourceRef!.isNotEmpty) {
+      return p.bibleSourceRef!;
+    }
+    return p.storyId;
+  }
+
+  /// Pick the best representative from a group of variants.
+  /// Preference: WEB > KJV, then short > full > long.
+  static Parable _pickRepresentative(List<Parable> variants) {
+    if (variants.length == 1) return variants.first;
+    // Prefer WEB
+    final webVariants = variants.where((p) => p.languageStyle == 'WEB');
+    final pool = webVariants.isNotEmpty ? webVariants : variants;
+    // Prefer short
+    for (final pref in ['short', 'full', 'long']) {
+      final match = pool.where((p) => p.storyLength == pref);
+      if (match.isNotEmpty) return match.first;
+    }
+    return pool.first;
+  }
+
+  /// Deduplicate a sorted list of parables, keeping one representative
+  /// per unique story. Preserves the order of first occurrence.
+  static List<Parable> _deduplicateStories(List<Parable> stories) {
+    final seen = <String>{};
+    final result = <Parable>[];
+    // Group by dedup key to pick the best representative.
+    final groups = <String, List<Parable>>{};
+    for (final p in stories) {
+      final key = _dedupeKey(p);
+      (groups[key] ??= []).add(p);
+    }
+    for (final p in stories) {
+      final key = _dedupeKey(p);
+      if (seen.contains(key)) continue;
+      seen.add(key);
+      result.add(_pickRepresentative(groups[key]!));
+    }
+    return result;
+  }
+
+  /// Count unique stories (deduped) from an iterable of parables.
+  static int _countUniqueStories(Iterable<Parable> parables) {
+    final seen = <String>{};
+    for (final p in parables) {
+      seen.add(_dedupeKey(p));
+    }
+    return seen.length;
   }
 
   // --------------------------------------------------------------------

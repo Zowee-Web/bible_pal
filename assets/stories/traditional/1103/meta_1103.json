@@ -21,8 +21,7 @@
   "bibleStoryKey": "peter_freed_from_prison",
   "storyVoiceKey": "VOICE_ARCHER",
   "themeTags": [
-    "faith",
-    "deliverance"
+    "faith"
   ],
   "primaryCharacterId": "peter",
   "primaryCharacterDisplayName": "Peter",

@@ -182,6 +182,86 @@
       "displayName": "Jesus",
       "descriptor": "Jesus of Nazareth — reserved for The Life of Jesus path (SPEC Feature 50.1b / 50.8). NEVER appears in the Characters path list.",
       "reserved_for_jesus_life": true
+    },
+    "bartimaeus": {
+      "displayName": "Bartimaeus",
+      "descriptor": "Blind beggar healed by Jesus at Jericho"
+    },
+    "caleb": {
+      "displayName": "Caleb",
+      "descriptor": "Faithful spy who trusted God's promise"
+    },
+    "god": {
+      "displayName": "God",
+      "descriptor": "Creator, Genesis"
+    },
+    "hagar": {
+      "displayName": "Hagar",
+      "descriptor": "Servant of Sarah, mother of Ishmael"
+    },
+    "isaiah": {
+      "displayName": "Isaiah",
+      "descriptor": "Prophet of Judah"
+    },
+    "jairus": {
+      "displayName": "Jairus",
+      "descriptor": "Synagogue ruler whose daughter Jesus raised"
+    },
+    "jehoshaphat": {
+      "displayName": "Jehoshaphat",
+      "descriptor": "King of Judah who trusted God in battle"
+    },
+    "jeremiah": {
+      "displayName": "Jeremiah",
+      "descriptor": "Weeping prophet of Judah"
+    },
+    "job": {
+      "displayName": "Job",
+      "descriptor": "Righteous man tested by suffering"
+    },
+    "joseph": {
+      "displayName": "Joseph",
+      "descriptor": "Son of Jacob, ruler in Egypt"
+    },
+    "lost_sheep": {
+      "displayName": "Lost Sheep",
+      "descriptor": "Parable of the lost sheep (Luke 15)"
+    },
+    "mary": {
+      "displayName": "Mary",
+      "descriptor": "Mother of Jesus"
+    },
+    "naaman": {
+      "displayName": "Naaman",
+      "descriptor": "Syrian commander healed of leprosy"
+    },
+    "nehemiah": {
+      "displayName": "Nehemiah",
+      "descriptor": "Cupbearer who rebuilt Jerusalem's walls"
+    },
+    "paul": {
+      "displayName": "Paul",
+      "descriptor": "Apostle to the Gentiles"
+    },
+    "peter": {
+      "displayName": "Peter",
+      "descriptor": "Disciple of Jesus, leader of the early church"
+    },
+    "prodigal_son": {
+      "displayName": "Prodigal Son",
+      "descriptor": "Parable of the prodigal son (Luke 15)"
+    },
+    "psalmist": {
+      "displayName": "The Psalmist",
+      "descriptor": "Author of Psalms"
+    },
+    "shadrach": {
+      "displayName": "Shadrach, Meshach, and Abednego",
+      "descriptor": "Three men in the fiery furnace"
+    },
+    "good_samaritan": {
+      "displayName": "Good Samaritan",
+      "descriptor": "Parable of the good Samaritan (Luke 10)"
     }
   }
 }
