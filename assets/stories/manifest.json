@@ -2819,7 +2819,10 @@
       "reflectionQuestion": "Is there a burden you've been carrying on your own that you might, even for a moment, allow yourself to lay down and find rest?",
       "bibleSourceRef": "Matthew 11:28-30",
       "bibleStoryKey": "rest_for_the_weary",
-      "scriptureTextFilePath": "traditional/1000/scripture_1000_web.txt"
+      "scriptureTextFilePath": "traditional/1000/scripture_1000_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1000_weary_long_traditional",
@@ -2841,7 +2844,10 @@
       "reflectionQuestion": "Is there a burden you've been carrying on your own that you might, even for a moment, allow yourself to lay down and find rest?",
       "bibleSourceRef": "Matthew 11:28-30",
       "bibleStoryKey": "rest_for_the_weary",
-      "scriptureTextFilePath": "traditional/1000/scripture_1000_web.txt"
+      "scriptureTextFilePath": "traditional/1000/scripture_1000_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1000_weary_short_traditional_kjv",
@@ -2863,7 +2869,10 @@
       "reflectionQuestion": "Is there a burden you've been carrying on your own that you might, even for a moment, allow yourself to lay down and find rest?",
       "bibleSourceRef": "Matthew 11:28-30",
       "bibleStoryKey": "rest_for_the_weary",
-      "scriptureTextFilePath": "traditional/1000/scripture_1000_kjv.txt"
+      "scriptureTextFilePath": "traditional/1000/scripture_1000_kjv.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1000_weary_full_traditional_kjv",
@@ -2885,7 +2894,10 @@
       "reflectionQuestion": "Is there a burden you've been carrying on your own that you might, even for a moment, allow yourself to lay down and find rest?",
       "bibleSourceRef": "Matthew 11:28-30",
       "bibleStoryKey": "rest_for_the_weary",
-      "scriptureTextFilePath": "traditional/1000/scripture_1000_kjv.txt"
+      "scriptureTextFilePath": "traditional/1000/scripture_1000_kjv.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1000_weary_long_traditional_kjv",
@@ -2907,7 +2919,10 @@
       "reflectionQuestion": "Is there a burden you've been carrying on your own that you might, even for a moment, allow yourself to lay down and find rest?",
       "bibleSourceRef": "Matthew 11:28-30",
       "bibleStoryKey": "rest_for_the_weary",
-      "scriptureTextFilePath": "traditional/1000/scripture_1000_kjv.txt"
+      "scriptureTextFilePath": "traditional/1000/scripture_1000_kjv.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1001_calm_peaceful_short_traditional",
@@ -2929,7 +2944,10 @@
       "reflectionQuestion": "Is there a moment in your daily life where you have felt a quiet, steady presence guiding you through an uncertain path?",
       "bibleSourceRef": "Psalm 23",
       "bibleStoryKey": "the_lord_is_my_shepherd",
-      "scriptureTextFilePath": "traditional/1001/scripture_1001_web.txt"
+      "scriptureTextFilePath": "traditional/1001/scripture_1001_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1001_calm_peaceful_full_traditional",
@@ -2951,7 +2969,10 @@
       "reflectionQuestion": "Is there a moment in your daily life where you have felt a quiet, steady presence guiding you through an uncertain path?",
       "bibleSourceRef": "Psalm 23",
       "bibleStoryKey": "the_lord_is_my_shepherd",
-      "scriptureTextFilePath": "traditional/1001/scripture_1001_web.txt"
+      "scriptureTextFilePath": "traditional/1001/scripture_1001_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1001_calm_peaceful_long_traditional",
@@ -2973,7 +2994,10 @@
       "reflectionQuestion": "Is there a moment in your daily life where you have felt a quiet, steady presence guiding you through an uncertain path?",
       "bibleSourceRef": "Psalm 23",
       "bibleStoryKey": "the_lord_is_my_shepherd",
-      "scriptureTextFilePath": "traditional/1001/scripture_1001_web.txt"
+      "scriptureTextFilePath": "traditional/1001/scripture_1001_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1001_calm_peaceful_short_traditional_kjv",
@@ -2995,7 +3019,10 @@
       "reflectionQuestion": "Is there a moment in your daily life where you have felt a quiet, steady presence guiding you through an uncertain path?",
       "bibleSourceRef": "Psalm 23",
       "bibleStoryKey": "the_lord_is_my_shepherd",
-      "scriptureTextFilePath": "traditional/1001/scripture_1001_kjv.txt"
+      "scriptureTextFilePath": "traditional/1001/scripture_1001_kjv.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1001_calm_peaceful_full_traditional_kjv",
@@ -3017,7 +3044,10 @@
       "reflectionQuestion": "Is there a moment in your daily life where you have felt a quiet, steady presence guiding you through an uncertain path?",
       "bibleSourceRef": "Psalm 23",
       "bibleStoryKey": "the_lord_is_my_shepherd",
-      "scriptureTextFilePath": "traditional/1001/scripture_1001_kjv.txt"
+      "scriptureTextFilePath": "traditional/1001/scripture_1001_kjv.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1001_calm_peaceful_long_traditional_kjv",
@@ -3039,7 +3069,10 @@
       "reflectionQuestion": "Is there a moment in your daily life where you have felt a quiet, steady presence guiding you through an uncertain path?",
       "bibleSourceRef": "Psalm 23",
       "bibleStoryKey": "the_lord_is_my_shepherd",
-      "scriptureTextFilePath": "traditional/1001/scripture_1001_kjv.txt"
+      "scriptureTextFilePath": "traditional/1001/scripture_1001_kjv.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1002_brave_courage_short_traditional",
@@ -3061,7 +3094,10 @@
       "reflectionQuestion": "Have you ever felt called to stand firm in something you believed was right, even when everything around you seemed to push against it?",
       "bibleSourceRef": "Daniel 3:13-27",
       "bibleStoryKey": "fiery_furnace",
-      "scriptureTextFilePath": "traditional/1002/scripture_1002_web.txt"
+      "scriptureTextFilePath": "traditional/1002/scripture_1002_web.txt",
+      "primaryCharacterId": "shadrach",
+      "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
+      "timelineEra": "exile"
     },
     {
       "storyId": "story_1002_brave_courage_full_traditional",
@@ -3083,7 +3119,10 @@
       "reflectionQuestion": "Have you ever felt called to stand firm in something you believed was right, even when everything around you seemed to push against it?",
       "bibleSourceRef": "Daniel 3:13-27",
       "bibleStoryKey": "fiery_furnace",
-      "scriptureTextFilePath": "traditional/1002/scripture_1002_web.txt"
+      "scriptureTextFilePath": "traditional/1002/scripture_1002_web.txt",
+      "primaryCharacterId": "shadrach",
+      "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
+      "timelineEra": "exile"
     },
     {
       "storyId": "story_1002_brave_courage_long_traditional",
@@ -3105,7 +3144,10 @@
       "reflectionQuestion": "Have you ever felt called to stand firm in something you believed was right, even when everything around you seemed to push against it?",
       "bibleSourceRef": "Daniel 3:13-27",
       "bibleStoryKey": "fiery_furnace",
-      "scriptureTextFilePath": "traditional/1002/scripture_1002_web.txt"
+      "scriptureTextFilePath": "traditional/1002/scripture_1002_web.txt",
+      "primaryCharacterId": "shadrach",
+      "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
+      "timelineEra": "exile"
     },
     {
       "storyId": "story_1002_brave_courage_short_traditional_kjv",
@@ -3127,7 +3169,10 @@
       "reflectionQuestion": "Have you ever felt called to stand firm in something you believed was right, even when everything around you seemed to push against it?",
       "bibleSourceRef": "Daniel 3:13-27",
       "bibleStoryKey": "fiery_furnace",
-      "scriptureTextFilePath": "traditional/1002/scripture_1002_kjv.txt"
+      "scriptureTextFilePath": "traditional/1002/scripture_1002_kjv.txt",
+      "primaryCharacterId": "shadrach",
+      "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
+      "timelineEra": "exile"
     },
     {
       "storyId": "story_1002_brave_courage_full_traditional_kjv",
@@ -3149,7 +3194,10 @@
       "reflectionQuestion": "Have you ever felt called to stand firm in something you believed was right, even when everything around you seemed to push against it?",
       "bibleSourceRef": "Daniel 3:13-27",
       "bibleStoryKey": "fiery_furnace",
-      "scriptureTextFilePath": "traditional/1002/scripture_1002_kjv.txt"
+      "scriptureTextFilePath": "traditional/1002/scripture_1002_kjv.txt",
+      "primaryCharacterId": "shadrach",
+      "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
+      "timelineEra": "exile"
     },
     {
       "storyId": "story_1002_brave_courage_long_traditional_kjv",
@@ -3171,7 +3219,10 @@
       "reflectionQuestion": "Have you ever felt called to stand firm in something you believed was right, even when everything around you seemed to push against it?",
       "bibleSourceRef": "Daniel 3:13-27",
       "bibleStoryKey": "fiery_furnace",
-      "scriptureTextFilePath": "traditional/1002/scripture_1002_kjv.txt"
+      "scriptureTextFilePath": "traditional/1002/scripture_1002_kjv.txt",
+      "primaryCharacterId": "shadrach",
+      "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
+      "timelineEra": "exile"
     },
     {
       "storyId": "story_1003_hurting_short_traditional",
@@ -3194,7 +3245,10 @@
       "reflectionQuestion": "Have you ever experienced a moment where letting go of an old hurt opened the door to a deeper connection with someone you love?",
       "bibleSourceRef": "Genesis 45:1-15",
       "bibleStoryKey": "joseph_reveals_himself",
-      "scriptureTextFilePath": "traditional/1003/scripture_1003_web.txt"
+      "scriptureTextFilePath": "traditional/1003/scripture_1003_web.txt",
+      "primaryCharacterId": "joseph",
+      "primaryCharacterDisplayName": "Joseph",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1003_hurting_full_traditional",
@@ -3217,7 +3271,10 @@
       "reflectionQuestion": "Have you ever experienced a moment where letting go of an old hurt opened the door to a deeper connection with someone you love?",
       "bibleSourceRef": "Genesis 45:1-15",
       "bibleStoryKey": "joseph_reveals_himself",
-      "scriptureTextFilePath": "traditional/1003/scripture_1003_web.txt"
+      "scriptureTextFilePath": "traditional/1003/scripture_1003_web.txt",
+      "primaryCharacterId": "joseph",
+      "primaryCharacterDisplayName": "Joseph",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1003_hurting_long_traditional",
@@ -3240,7 +3297,10 @@
       "reflectionQuestion": "Have you ever experienced a moment where letting go of an old hurt opened the door to a deeper connection with someone you love?",
       "bibleSourceRef": "Genesis 45:1-15",
       "bibleStoryKey": "joseph_reveals_himself",
-      "scriptureTextFilePath": "traditional/1003/scripture_1003_web.txt"
+      "scriptureTextFilePath": "traditional/1003/scripture_1003_web.txt",
+      "primaryCharacterId": "joseph",
+      "primaryCharacterDisplayName": "Joseph",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1003_hurting_short_traditional_kjv",
@@ -3263,7 +3323,10 @@
       "reflectionQuestion": "Have you ever experienced a moment where letting go of an old hurt opened the door to a deeper connection with someone you love?",
       "bibleSourceRef": "Genesis 45:1-15",
       "bibleStoryKey": "joseph_reveals_himself",
-      "scriptureTextFilePath": "traditional/1003/scripture_1003_kjv.txt"
+      "scriptureTextFilePath": "traditional/1003/scripture_1003_kjv.txt",
+      "primaryCharacterId": "joseph",
+      "primaryCharacterDisplayName": "Joseph",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1003_hurting_full_traditional_kjv",
@@ -3286,7 +3349,10 @@
       "reflectionQuestion": "Have you ever experienced a moment where letting go of an old hurt opened the door to a deeper connection with someone you love?",
       "bibleSourceRef": "Genesis 45:1-15",
       "bibleStoryKey": "joseph_reveals_himself",
-      "scriptureTextFilePath": "traditional/1003/scripture_1003_kjv.txt"
+      "scriptureTextFilePath": "traditional/1003/scripture_1003_kjv.txt",
+      "primaryCharacterId": "joseph",
+      "primaryCharacterDisplayName": "Joseph",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1003_hurting_long_traditional_kjv",
@@ -3309,7 +3375,10 @@
       "reflectionQuestion": "Have you ever experienced a moment where letting go of an old hurt opened the door to a deeper connection with someone you love?",
       "bibleSourceRef": "Genesis 45:1-15",
       "bibleStoryKey": "joseph_reveals_himself",
-      "scriptureTextFilePath": "traditional/1003/scripture_1003_kjv.txt"
+      "scriptureTextFilePath": "traditional/1003/scripture_1003_kjv.txt",
+      "primaryCharacterId": "joseph",
+      "primaryCharacterDisplayName": "Joseph",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1004_joyful_short_kid_traditional",
@@ -3362,7 +3431,10 @@
       "reflectionQuestion": "Can you think of a time when you heard really exciting news and wanted to tell everyone about it?",
       "bibleSourceRef": "Luke 2:1-20",
       "bibleStoryKey": "nativity",
-      "scriptureTextFilePath": "traditional/1004/scripture_1004_web.txt"
+      "scriptureTextFilePath": "traditional/1004/scripture_1004_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1004_joyful_long_kid_traditional",
@@ -3384,7 +3456,10 @@
       "reflectionQuestion": "Can you think of a time when you heard really exciting news and wanted to tell everyone about it?",
       "bibleSourceRef": "Luke 2:1-20",
       "bibleStoryKey": "nativity",
-      "scriptureTextFilePath": "traditional/1004/scripture_1004_web.txt"
+      "scriptureTextFilePath": "traditional/1004/scripture_1004_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1005_joyful_short_traditional",
@@ -3437,7 +3512,10 @@
       "reflectionQuestion": "Have you ever felt like something was holding you back from getting a closer look at who Jesus really is?",
       "bibleSourceRef": "Luke 19:1-10",
       "bibleStoryKey": "zacchaeus",
-      "scriptureTextFilePath": "traditional/1005/scripture_1005_web.txt"
+      "scriptureTextFilePath": "traditional/1005/scripture_1005_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1005_joyful_long_traditional",
@@ -3459,7 +3537,10 @@
       "reflectionQuestion": "Have you ever felt like something was holding you back from getting a closer look at who Jesus really is?",
       "bibleSourceRef": "Luke 19:1-10",
       "bibleStoryKey": "zacchaeus",
-      "scriptureTextFilePath": "traditional/1005/scripture_1005_web.txt"
+      "scriptureTextFilePath": "traditional/1005/scripture_1005_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1005_joyful_short_traditional_kjv",
@@ -3481,7 +3562,10 @@
       "reflectionQuestion": "Have you ever felt like something was holding you back from getting a closer look at who Jesus really is?",
       "bibleSourceRef": "Luke 19:1-10",
       "bibleStoryKey": "zacchaeus",
-      "scriptureTextFilePath": "traditional/1005/scripture_1005_kjv.txt"
+      "scriptureTextFilePath": "traditional/1005/scripture_1005_kjv.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1005_joyful_full_traditional_kjv",
@@ -3503,7 +3587,10 @@
       "reflectionQuestion": "Have you ever felt like something was holding you back from getting a closer look at who Jesus really is?",
       "bibleSourceRef": "Luke 19:1-10",
       "bibleStoryKey": "zacchaeus",
-      "scriptureTextFilePath": "traditional/1005/scripture_1005_kjv.txt"
+      "scriptureTextFilePath": "traditional/1005/scripture_1005_kjv.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1005_joyful_long_traditional_kjv",
@@ -3525,7 +3612,10 @@
       "reflectionQuestion": "Have you ever felt like something was holding you back from getting a closer look at who Jesus really is?",
       "bibleSourceRef": "Luke 19:1-10",
       "bibleStoryKey": "zacchaeus",
-      "scriptureTextFilePath": "traditional/1005/scripture_1005_kjv.txt"
+      "scriptureTextFilePath": "traditional/1005/scripture_1005_kjv.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1006_grateful_short_traditional",
@@ -3578,7 +3668,10 @@
       "reflectionQuestion": "Have you ever paused to notice a blessing you almost let slip by without a word of thanks?",
       "bibleSourceRef": "Luke 17:11-19",
       "bibleStoryKey": "ten_lepers",
-      "scriptureTextFilePath": "traditional/1006/scripture_1006_web.txt"
+      "scriptureTextFilePath": "traditional/1006/scripture_1006_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1006_grateful_long_traditional",
@@ -3600,7 +3693,10 @@
       "reflectionQuestion": "Have you ever paused to notice a blessing you almost let slip by without a word of thanks?",
       "bibleSourceRef": "Luke 17:11-19",
       "bibleStoryKey": "ten_lepers",
-      "scriptureTextFilePath": "traditional/1006/scripture_1006_web.txt"
+      "scriptureTextFilePath": "traditional/1006/scripture_1006_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1006_grateful_short_traditional_kjv",
@@ -3622,7 +3718,10 @@
       "reflectionQuestion": "Have you ever paused to notice a blessing you almost let slip by without a word of thanks?",
       "bibleSourceRef": "Luke 17:11-19",
       "bibleStoryKey": "ten_lepers",
-      "scriptureTextFilePath": "traditional/1006/scripture_1006_kjv.txt"
+      "scriptureTextFilePath": "traditional/1006/scripture_1006_kjv.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1006_grateful_full_traditional_kjv",
@@ -3644,7 +3743,10 @@
       "reflectionQuestion": "Have you ever paused to notice a blessing you almost let slip by without a word of thanks?",
       "bibleSourceRef": "Luke 17:11-19",
       "bibleStoryKey": "ten_lepers",
-      "scriptureTextFilePath": "traditional/1006/scripture_1006_kjv.txt"
+      "scriptureTextFilePath": "traditional/1006/scripture_1006_kjv.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1006_grateful_long_traditional_kjv",
@@ -3666,7 +3768,10 @@
       "reflectionQuestion": "Have you ever paused to notice a blessing you almost let slip by without a word of thanks?",
       "bibleSourceRef": "Luke 17:11-19",
       "bibleStoryKey": "ten_lepers",
-      "scriptureTextFilePath": "traditional/1006/scripture_1006_kjv.txt"
+      "scriptureTextFilePath": "traditional/1006/scripture_1006_kjv.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1007_anxious_short_traditional",
@@ -3688,7 +3793,10 @@
       "reflectionQuestion": "Have you ever found yourself in a storm of circumstances and wondered if God might be trying to get your attention about something you've been avoiding?",
       "bibleSourceRef": "Jonah 1:4-15",
       "bibleStoryKey": "jonah_flees",
-      "scriptureTextFilePath": "traditional/1007/scripture_1007_web.txt"
+      "scriptureTextFilePath": "traditional/1007/scripture_1007_web.txt",
+      "primaryCharacterId": "jonah",
+      "primaryCharacterDisplayName": "Jonah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1007_anxious_full_traditional",
@@ -3710,7 +3818,10 @@
       "reflectionQuestion": "Have you ever found yourself in a storm of circumstances and wondered if God might be trying to get your attention about something you've been avoiding?",
       "bibleSourceRef": "Jonah 1:4-15",
       "bibleStoryKey": "jonah_flees",
-      "scriptureTextFilePath": "traditional/1007/scripture_1007_web.txt"
+      "scriptureTextFilePath": "traditional/1007/scripture_1007_web.txt",
+      "primaryCharacterId": "jonah",
+      "primaryCharacterDisplayName": "Jonah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1007_anxious_long_traditional",
@@ -3732,7 +3843,10 @@
       "reflectionQuestion": "Have you ever found yourself in a storm of circumstances and wondered if God might be trying to get your attention about something you've been avoiding?",
       "bibleSourceRef": "Jonah 1:4-15",
       "bibleStoryKey": "jonah_flees",
-      "scriptureTextFilePath": "traditional/1007/scripture_1007_web.txt"
+      "scriptureTextFilePath": "traditional/1007/scripture_1007_web.txt",
+      "primaryCharacterId": "jonah",
+      "primaryCharacterDisplayName": "Jonah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1007_anxious_short_traditional_kjv",
@@ -3754,7 +3868,10 @@
       "reflectionQuestion": "Have you ever found yourself in a storm of circumstances and wondered if God might be trying to get your attention about something you've been avoiding?",
       "bibleSourceRef": "Jonah 1:4-15",
       "bibleStoryKey": "jonah_flees",
-      "scriptureTextFilePath": "traditional/1007/scripture_1007_kjv.txt"
+      "scriptureTextFilePath": "traditional/1007/scripture_1007_kjv.txt",
+      "primaryCharacterId": "jonah",
+      "primaryCharacterDisplayName": "Jonah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1007_anxious_full_traditional_kjv",
@@ -3776,7 +3893,10 @@
       "reflectionQuestion": "Have you ever found yourself in a storm of circumstances and wondered if God might be trying to get your attention about something you've been avoiding?",
       "bibleSourceRef": "Jonah 1:4-15",
       "bibleStoryKey": "jonah_flees",
-      "scriptureTextFilePath": "traditional/1007/scripture_1007_kjv.txt"
+      "scriptureTextFilePath": "traditional/1007/scripture_1007_kjv.txt",
+      "primaryCharacterId": "jonah",
+      "primaryCharacterDisplayName": "Jonah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1007_anxious_long_traditional_kjv",
@@ -3798,7 +3918,10 @@
       "reflectionQuestion": "Have you ever found yourself in a storm of circumstances and wondered if God might be trying to get your attention about something you've been avoiding?",
       "bibleSourceRef": "Jonah 1:4-15",
       "bibleStoryKey": "jonah_flees",
-      "scriptureTextFilePath": "traditional/1007/scripture_1007_kjv.txt"
+      "scriptureTextFilePath": "traditional/1007/scripture_1007_kjv.txt",
+      "primaryCharacterId": "jonah",
+      "primaryCharacterDisplayName": "Jonah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1008_encouraging_short_traditional",
@@ -3820,7 +3943,10 @@
       "reflectionQuestion": "Have you ever faced a moment where you needed to step forward into something new, even though the path ahead felt uncertain and unfamiliar?",
       "bibleSourceRef": "Joshua 1:1-9",
       "bibleStoryKey": "joshua_commissioned",
-      "scriptureTextFilePath": "traditional/1008/scripture_1008_web.txt"
+      "scriptureTextFilePath": "traditional/1008/scripture_1008_web.txt",
+      "primaryCharacterId": "joshua",
+      "primaryCharacterDisplayName": "Joshua",
+      "timelineEra": "conquest"
     },
     {
       "storyId": "story_1008_encouraging_full_traditional",
@@ -3842,7 +3968,10 @@
       "reflectionQuestion": "Have you ever faced a moment where you needed to step forward into something new, even though the path ahead felt uncertain and unfamiliar?",
       "bibleSourceRef": "Joshua 1:1-9",
       "bibleStoryKey": "joshua_commissioned",
-      "scriptureTextFilePath": "traditional/1008/scripture_1008_web.txt"
+      "scriptureTextFilePath": "traditional/1008/scripture_1008_web.txt",
+      "primaryCharacterId": "joshua",
+      "primaryCharacterDisplayName": "Joshua",
+      "timelineEra": "conquest"
     },
     {
       "storyId": "story_1008_encouraging_long_traditional",
@@ -3864,7 +3993,10 @@
       "reflectionQuestion": "Have you ever faced a moment where you needed to step forward into something new, even though the path ahead felt uncertain and unfamiliar?",
       "bibleSourceRef": "Joshua 1:1-9",
       "bibleStoryKey": "joshua_commissioned",
-      "scriptureTextFilePath": "traditional/1008/scripture_1008_web.txt"
+      "scriptureTextFilePath": "traditional/1008/scripture_1008_web.txt",
+      "primaryCharacterId": "joshua",
+      "primaryCharacterDisplayName": "Joshua",
+      "timelineEra": "conquest"
     },
     {
       "storyId": "story_1008_encouraging_short_traditional_kjv",
@@ -3886,7 +4018,10 @@
       "reflectionQuestion": "Have you ever faced a moment where you needed to step forward into something new, even though the path ahead felt uncertain and unfamiliar?",
       "bibleSourceRef": "Joshua 1:1-9",
       "bibleStoryKey": "joshua_commissioned",
-      "scriptureTextFilePath": "traditional/1008/scripture_1008_kjv.txt"
+      "scriptureTextFilePath": "traditional/1008/scripture_1008_kjv.txt",
+      "primaryCharacterId": "joshua",
+      "primaryCharacterDisplayName": "Joshua",
+      "timelineEra": "conquest"
     },
     {
       "storyId": "story_1008_encouraging_full_traditional_kjv",
@@ -3908,7 +4043,10 @@
       "reflectionQuestion": "Have you ever faced a moment where you needed to step forward into something new, even though the path ahead felt uncertain and unfamiliar?",
       "bibleSourceRef": "Joshua 1:1-9",
       "bibleStoryKey": "joshua_commissioned",
-      "scriptureTextFilePath": "traditional/1008/scripture_1008_kjv.txt"
+      "scriptureTextFilePath": "traditional/1008/scripture_1008_kjv.txt",
+      "primaryCharacterId": "joshua",
+      "primaryCharacterDisplayName": "Joshua",
+      "timelineEra": "conquest"
     },
     {
       "storyId": "story_1008_encouraging_long_traditional_kjv",
@@ -3930,7 +4068,10 @@
       "reflectionQuestion": "Have you ever faced a moment where you needed to step forward into something new, even though the path ahead felt uncertain and unfamiliar?",
       "bibleSourceRef": "Joshua 1:1-9",
       "bibleStoryKey": "joshua_commissioned",
-      "scriptureTextFilePath": "traditional/1008/scripture_1008_kjv.txt"
+      "scriptureTextFilePath": "traditional/1008/scripture_1008_kjv.txt",
+      "primaryCharacterId": "joshua",
+      "primaryCharacterDisplayName": "Joshua",
+      "timelineEra": "conquest"
     },
     {
       "storyId": "story_1009_calm_peaceful_short_kid_traditional",
@@ -3952,7 +4093,10 @@
       "reflectionQuestion": "",
       "bibleSourceRef": "Psalm 23",
       "bibleStoryKey": "the_lord_is_my_shepherd",
-      "scriptureTextFilePath": "traditional/1009/scripture_1009_web.txt"
+      "scriptureTextFilePath": "traditional/1009/scripture_1009_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1009_calm_peaceful_full_kid_traditional",
@@ -3974,7 +4118,10 @@
       "reflectionQuestion": "",
       "bibleSourceRef": "Psalm 23",
       "bibleStoryKey": "the_lord_is_my_shepherd",
-      "scriptureTextFilePath": "traditional/1009/scripture_1009_web.txt"
+      "scriptureTextFilePath": "traditional/1009/scripture_1009_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1009_calm_peaceful_long_kid_traditional",
@@ -3996,7 +4143,10 @@
       "reflectionQuestion": "",
       "bibleSourceRef": "Psalm 23",
       "bibleStoryKey": "the_lord_is_my_shepherd",
-      "scriptureTextFilePath": "traditional/1009/scripture_1009_web.txt"
+      "scriptureTextFilePath": "traditional/1009/scripture_1009_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1010_weary_short_kid_traditional",
@@ -4018,7 +4168,10 @@
       "reflectionQuestion": "Can you think of a time when you felt safe because someone was watching over you and taking care of you?",
       "bibleSourceRef": "Psalm 121",
       "bibleStoryKey": "i_lift_my_eyes_to_the_hills",
-      "scriptureTextFilePath": "traditional/1010/scripture_1010_web.txt"
+      "scriptureTextFilePath": "traditional/1010/scripture_1010_web.txt",
+      "primaryCharacterId": "psalmist",
+      "primaryCharacterDisplayName": "The Psalmist",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1010_weary_full_kid_traditional",
@@ -4040,7 +4193,10 @@
       "reflectionQuestion": "Can you think of a time when you felt safe because someone was watching over you and taking care of you?",
       "bibleSourceRef": "Psalm 121",
       "bibleStoryKey": "i_lift_my_eyes_to_the_hills",
-      "scriptureTextFilePath": "traditional/1010/scripture_1010_web.txt"
+      "scriptureTextFilePath": "traditional/1010/scripture_1010_web.txt",
+      "primaryCharacterId": "psalmist",
+      "primaryCharacterDisplayName": "The Psalmist",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1010_weary_long_kid_traditional",
@@ -4062,7 +4218,10 @@
       "reflectionQuestion": "Can you think of a time when you felt safe because someone was watching over you and taking care of you?",
       "bibleSourceRef": "Psalm 121",
       "bibleStoryKey": "i_lift_my_eyes_to_the_hills",
-      "scriptureTextFilePath": "traditional/1010/scripture_1010_web.txt"
+      "scriptureTextFilePath": "traditional/1010/scripture_1010_web.txt",
+      "primaryCharacterId": "psalmist",
+      "primaryCharacterDisplayName": "The Psalmist",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1011_anxious_short_kid_traditional",
@@ -4084,7 +4243,10 @@
       "reflectionQuestion": "Can you think of something beautiful in nature, like a flower or a bird, that reminds you God takes care of you too?",
       "bibleSourceRef": "Luke 12:22-31",
       "bibleStoryKey": "do_not_worry",
-      "scriptureTextFilePath": "traditional/1011/scripture_1011_web.txt"
+      "scriptureTextFilePath": "traditional/1011/scripture_1011_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1011_anxious_full_kid_traditional",
@@ -4106,7 +4268,10 @@
       "reflectionQuestion": "Can you think of something beautiful in nature, like a flower or a bird, that reminds you God takes care of you too?",
       "bibleSourceRef": "Luke 12:22-31",
       "bibleStoryKey": "do_not_worry",
-      "scriptureTextFilePath": "traditional/1011/scripture_1011_web.txt"
+      "scriptureTextFilePath": "traditional/1011/scripture_1011_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1011_anxious_long_kid_traditional",
@@ -4128,7 +4293,10 @@
       "reflectionQuestion": "Can you think of something beautiful in nature, like a flower or a bird, that reminds you God takes care of you too?",
       "bibleSourceRef": "Luke 12:22-31",
       "bibleStoryKey": "do_not_worry",
-      "scriptureTextFilePath": "traditional/1011/scripture_1011_web.txt"
+      "scriptureTextFilePath": "traditional/1011/scripture_1011_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1012_hurting_short_kid_traditional",
@@ -4150,7 +4318,10 @@
       "reflectionQuestion": "Can you think of a time when someone you love surprised you with something nice, like a yummy meal or a special visit?",
       "bibleSourceRef": "John 21:1-14",
       "bibleStoryKey": "breakfast_on_the_shore",
-      "scriptureTextFilePath": "traditional/1012/scripture_1012_web.txt"
+      "scriptureTextFilePath": "traditional/1012/scripture_1012_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1012_hurting_full_kid_traditional",
@@ -4172,7 +4343,10 @@
       "reflectionQuestion": "Can you think of a time when someone you love surprised you with something nice, like a yummy meal or a special visit?",
       "bibleSourceRef": "John 21:1-14",
       "bibleStoryKey": "breakfast_on_the_shore",
-      "scriptureTextFilePath": "traditional/1012/scripture_1012_web.txt"
+      "scriptureTextFilePath": "traditional/1012/scripture_1012_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1012_hurting_long_kid_traditional",
@@ -4194,7 +4368,10 @@
       "reflectionQuestion": "Can you think of a time when someone you love surprised you with something nice, like a yummy meal or a special visit?",
       "bibleSourceRef": "John 21:1-14",
       "bibleStoryKey": "breakfast_on_the_shore",
-      "scriptureTextFilePath": "traditional/1012/scripture_1012_web.txt"
+      "scriptureTextFilePath": "traditional/1012/scripture_1012_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1013_brave_courage_short_kid_traditional",
@@ -4216,7 +4393,10 @@
       "reflectionQuestion": "Can you think of a time when you had to be brave and trust that everything would be okay?",
       "bibleSourceRef": "Joshua 3:1-17",
       "bibleStoryKey": "crossing_the_jordan",
-      "scriptureTextFilePath": "traditional/1013/scripture_1013_web.txt"
+      "scriptureTextFilePath": "traditional/1013/scripture_1013_web.txt",
+      "primaryCharacterId": "joshua",
+      "primaryCharacterDisplayName": "Joshua",
+      "timelineEra": "conquest"
     },
     {
       "storyId": "story_1013_brave_courage_full_kid_traditional",
@@ -4238,7 +4418,10 @@
       "reflectionQuestion": "Can you think of a time when you had to be brave and trust that everything would be okay?",
       "bibleSourceRef": "Joshua 3:1-17",
       "bibleStoryKey": "crossing_the_jordan",
-      "scriptureTextFilePath": "traditional/1013/scripture_1013_web.txt"
+      "scriptureTextFilePath": "traditional/1013/scripture_1013_web.txt",
+      "primaryCharacterId": "joshua",
+      "primaryCharacterDisplayName": "Joshua",
+      "timelineEra": "conquest"
     },
     {
       "storyId": "story_1013_brave_courage_long_kid_traditional",
@@ -4260,7 +4443,10 @@
       "reflectionQuestion": "Can you think of a time when you had to be brave and trust that everything would be okay?",
       "bibleSourceRef": "Joshua 3:1-17",
       "bibleStoryKey": "crossing_the_jordan",
-      "scriptureTextFilePath": "traditional/1013/scripture_1013_web.txt"
+      "scriptureTextFilePath": "traditional/1013/scripture_1013_web.txt",
+      "primaryCharacterId": "joshua",
+      "primaryCharacterDisplayName": "Joshua",
+      "timelineEra": "conquest"
     },
     {
       "storyId": "story_1014_grateful_short_kid_traditional",
@@ -4282,7 +4468,10 @@
       "reflectionQuestion": "Can you think of a time when someone asked you to try something that seemed really hard, but you did it anyway and were surprised by what happened?",
       "bibleSourceRef": "Luke 5:1-11",
       "bibleStoryKey": "miraculous_catch_of_fish",
-      "scriptureTextFilePath": "traditional/1014/scripture_1014_web.txt"
+      "scriptureTextFilePath": "traditional/1014/scripture_1014_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1014_grateful_full_kid_traditional",
@@ -4304,7 +4493,10 @@
       "reflectionQuestion": "Can you think of a time when someone asked you to try something that seemed really hard, but you did it anyway and were surprised by what happened?",
       "bibleSourceRef": "Luke 5:1-11",
       "bibleStoryKey": "miraculous_catch_of_fish",
-      "scriptureTextFilePath": "traditional/1014/scripture_1014_web.txt"
+      "scriptureTextFilePath": "traditional/1014/scripture_1014_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1014_grateful_long_kid_traditional",
@@ -4326,7 +4518,10 @@
       "reflectionQuestion": "Can you think of a time when someone asked you to try something that seemed really hard, but you did it anyway and were surprised by what happened?",
       "bibleSourceRef": "Luke 5:1-11",
       "bibleStoryKey": "miraculous_catch_of_fish",
-      "scriptureTextFilePath": "traditional/1014/scripture_1014_web.txt"
+      "scriptureTextFilePath": "traditional/1014/scripture_1014_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1015_encouraging_short_kid_traditional",
@@ -4348,7 +4543,10 @@
       "reflectionQuestion": "Can you think of a time when you helped someone who really needed it, and how did that make you feel?",
       "bibleSourceRef": "Acts 3:1-10",
       "bibleStoryKey": "peter_heals_lame_man",
-      "scriptureTextFilePath": "traditional/1015/scripture_1015_web.txt"
+      "scriptureTextFilePath": "traditional/1015/scripture_1015_web.txt",
+      "primaryCharacterId": "peter",
+      "primaryCharacterDisplayName": "Peter",
+      "timelineEra": "early_church"
     },
     {
       "storyId": "story_1015_encouraging_full_kid_traditional",
@@ -4370,7 +4568,10 @@
       "reflectionQuestion": "Can you think of a time when you helped someone who really needed it, and how did that make you feel?",
       "bibleSourceRef": "Acts 3:1-10",
       "bibleStoryKey": "peter_heals_lame_man",
-      "scriptureTextFilePath": "traditional/1015/scripture_1015_web.txt"
+      "scriptureTextFilePath": "traditional/1015/scripture_1015_web.txt",
+      "primaryCharacterId": "peter",
+      "primaryCharacterDisplayName": "Peter",
+      "timelineEra": "early_church"
     },
     {
       "storyId": "story_1015_encouraging_long_kid_traditional",
@@ -4392,7 +4593,10 @@
       "reflectionQuestion": "Can you think of a time when you helped someone who really needed it, and how did that make you feel?",
       "bibleSourceRef": "Acts 3:1-10",
       "bibleStoryKey": "peter_heals_lame_man",
-      "scriptureTextFilePath": "traditional/1015/scripture_1015_web.txt"
+      "scriptureTextFilePath": "traditional/1015/scripture_1015_web.txt",
+      "primaryCharacterId": "peter",
+      "primaryCharacterDisplayName": "Peter",
+      "timelineEra": "early_church"
     },
     {
       "storyId": "story_1016_anxious_short_traditional",
@@ -4445,7 +4649,10 @@
       "reflectionQuestion": "What does it look like to move forward when the destination has not yet been named?",
       "bibleSourceRef": "Genesis 12:1-9",
       "bibleStoryKey": "abram_called",
-      "scriptureTextFilePath": "traditional/1016/scripture_1016_web.txt"
+      "scriptureTextFilePath": "traditional/1016/scripture_1016_web.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1016_anxious_long_traditional",
@@ -4467,7 +4674,10 @@
       "reflectionQuestion": "What does it look like to move forward when the destination has not yet been named?",
       "bibleSourceRef": "Genesis 12:1-9",
       "bibleStoryKey": "abram_called",
-      "scriptureTextFilePath": "traditional/1016/scripture_1016_web.txt"
+      "scriptureTextFilePath": "traditional/1016/scripture_1016_web.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1016_anxious_short_traditional_kjv",
@@ -4489,7 +4699,10 @@
       "reflectionQuestion": "What does it look like to move forward when the destination has not yet been named?",
       "bibleSourceRef": "Genesis 12:1-9",
       "bibleStoryKey": "abram_called",
-      "scriptureTextFilePath": "traditional/1016/scripture_1016_kjv.txt"
+      "scriptureTextFilePath": "traditional/1016/scripture_1016_kjv.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1016_anxious_full_traditional_kjv",
@@ -4511,7 +4724,10 @@
       "reflectionQuestion": "What does it look like to move forward when the destination has not yet been named?",
       "bibleSourceRef": "Genesis 12:1-9",
       "bibleStoryKey": "abram_called",
-      "scriptureTextFilePath": "traditional/1016/scripture_1016_kjv.txt"
+      "scriptureTextFilePath": "traditional/1016/scripture_1016_kjv.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1017_brave_courage_short_traditional",
@@ -4533,7 +4749,10 @@
       "reflectionQuestion": "What does it look like to begin building something when the reason for it is not yet visible to anyone but you?",
       "bibleSourceRef": "Genesis 6:9-22",
       "bibleStoryKey": "noah_builds_the_ark",
-      "scriptureTextFilePath": "traditional/1017/scripture_1017_web.txt"
+      "scriptureTextFilePath": "traditional/1017/scripture_1017_web.txt",
+      "primaryCharacterId": "noah",
+      "primaryCharacterDisplayName": "Noah",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1017_brave_courage_full_traditional",
@@ -4555,7 +4774,10 @@
       "reflectionQuestion": "What does it look like to begin building something when the reason for it is not yet visible to anyone but you?",
       "bibleSourceRef": "Genesis 6:9-22",
       "bibleStoryKey": "noah_builds_the_ark",
-      "scriptureTextFilePath": "traditional/1017/scripture_1017_web.txt"
+      "scriptureTextFilePath": "traditional/1017/scripture_1017_web.txt",
+      "primaryCharacterId": "noah",
+      "primaryCharacterDisplayName": "Noah",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1017_brave_courage_long_traditional",
@@ -4577,7 +4799,10 @@
       "reflectionQuestion": "What does it look like to begin building something when the reason for it is not yet visible to anyone but you?",
       "bibleSourceRef": "Genesis 6:9-22",
       "bibleStoryKey": "noah_builds_the_ark",
-      "scriptureTextFilePath": "traditional/1017/scripture_1017_web.txt"
+      "scriptureTextFilePath": "traditional/1017/scripture_1017_web.txt",
+      "primaryCharacterId": "noah",
+      "primaryCharacterDisplayName": "Noah",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1017_brave_courage_short_traditional_kjv",
@@ -4599,7 +4824,10 @@
       "reflectionQuestion": "What does it look like to begin building something when the reason for it is not yet visible to anyone but you?",
       "bibleSourceRef": "Genesis 6:9-22",
       "bibleStoryKey": "noah_builds_the_ark",
-      "scriptureTextFilePath": "traditional/1017/scripture_1017_kjv.txt"
+      "scriptureTextFilePath": "traditional/1017/scripture_1017_kjv.txt",
+      "primaryCharacterId": "noah",
+      "primaryCharacterDisplayName": "Noah",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1017_brave_courage_full_traditional_kjv",
@@ -4621,7 +4849,10 @@
       "reflectionQuestion": "What does it look like to begin building something when the reason for it is not yet visible to anyone but you?",
       "bibleSourceRef": "Genesis 6:9-22",
       "bibleStoryKey": "noah_builds_the_ark",
-      "scriptureTextFilePath": "traditional/1017/scripture_1017_kjv.txt"
+      "scriptureTextFilePath": "traditional/1017/scripture_1017_kjv.txt",
+      "primaryCharacterId": "noah",
+      "primaryCharacterDisplayName": "Noah",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1018_calm_peaceful_short_traditional",
@@ -4643,7 +4874,10 @@
       "reflectionQuestion": "Have you ever discovered that a place you thought was empty turned out to hold something you did not expect?",
       "bibleSourceRef": "Genesis 28:10-22",
       "bibleStoryKey": "jacobs_ladder",
-      "scriptureTextFilePath": "traditional/1018/scripture_1018_web.txt"
+      "scriptureTextFilePath": "traditional/1018/scripture_1018_web.txt",
+      "primaryCharacterId": "jacob",
+      "primaryCharacterDisplayName": "Jacob",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1018_calm_peaceful_full_traditional",
@@ -4665,7 +4899,10 @@
       "reflectionQuestion": "Have you ever discovered that a place you thought was empty turned out to hold something you did not expect?",
       "bibleSourceRef": "Genesis 28:10-22",
       "bibleStoryKey": "jacobs_ladder",
-      "scriptureTextFilePath": "traditional/1018/scripture_1018_web.txt"
+      "scriptureTextFilePath": "traditional/1018/scripture_1018_web.txt",
+      "primaryCharacterId": "jacob",
+      "primaryCharacterDisplayName": "Jacob",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1018_calm_peaceful_short_traditional_kjv",
@@ -4687,7 +4924,10 @@
       "reflectionQuestion": "Have you ever discovered that a place you thought was empty turned out to hold something you did not expect?",
       "bibleSourceRef": "Genesis 28:10-22",
       "bibleStoryKey": "jacobs_ladder",
-      "scriptureTextFilePath": "traditional/1018/scripture_1018_kjv.txt"
+      "scriptureTextFilePath": "traditional/1018/scripture_1018_kjv.txt",
+      "primaryCharacterId": "jacob",
+      "primaryCharacterDisplayName": "Jacob",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1018_calm_peaceful_full_traditional_kjv",
@@ -4709,7 +4949,10 @@
       "reflectionQuestion": "Have you ever discovered that a place you thought was empty turned out to hold something you did not expect?",
       "bibleSourceRef": "Genesis 28:10-22",
       "bibleStoryKey": "jacobs_ladder",
-      "scriptureTextFilePath": "traditional/1018/scripture_1018_kjv.txt"
+      "scriptureTextFilePath": "traditional/1018/scripture_1018_kjv.txt",
+      "primaryCharacterId": "jacob",
+      "primaryCharacterDisplayName": "Jacob",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1019_encouraging_short_traditional",
@@ -4762,7 +5005,10 @@
       "reflectionQuestion": "When have you been asked to step into something larger than yourself, carrying nothing but the assurance that you would not go alone?",
       "bibleSourceRef": "Exodus 3:1-15",
       "bibleStoryKey": "burning_bush",
-      "scriptureTextFilePath": "traditional/1019/scripture_1019_web.txt"
+      "scriptureTextFilePath": "traditional/1019/scripture_1019_web.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1019_encouraging_short_traditional_kjv",
@@ -4784,7 +5030,10 @@
       "reflectionQuestion": "When have you been asked to step into something larger than yourself, carrying nothing but the assurance that you would not go alone?",
       "bibleSourceRef": "Exodus 3:1-15",
       "bibleStoryKey": "burning_bush",
-      "scriptureTextFilePath": "traditional/1019/scripture_1019_kjv.txt"
+      "scriptureTextFilePath": "traditional/1019/scripture_1019_kjv.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1019_encouraging_full_traditional_kjv",
@@ -4806,7 +5055,10 @@
       "reflectionQuestion": "When have you been asked to step into something larger than yourself, carrying nothing but the assurance that you would not go alone?",
       "bibleSourceRef": "Exodus 3:1-15",
       "bibleStoryKey": "burning_bush",
-      "scriptureTextFilePath": "traditional/1019/scripture_1019_kjv.txt"
+      "scriptureTextFilePath": "traditional/1019/scripture_1019_kjv.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1020_grateful_short_traditional",
@@ -4859,7 +5111,10 @@
       "reflectionQuestion": "When has something you had given up hoping for arrived at a time you least expected it?",
       "bibleSourceRef": "Genesis 18:1-15",
       "bibleStoryKey": "three_visitors_at_mamre",
-      "scriptureTextFilePath": "traditional/1020/scripture_1020_web.txt"
+      "scriptureTextFilePath": "traditional/1020/scripture_1020_web.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1020_grateful_long_traditional",
@@ -4881,7 +5136,10 @@
       "reflectionQuestion": "When has something you had given up hoping for arrived at a time you least expected it?",
       "bibleSourceRef": "Genesis 18:1-15",
       "bibleStoryKey": "three_visitors_at_mamre",
-      "scriptureTextFilePath": "traditional/1020/scripture_1020_web.txt"
+      "scriptureTextFilePath": "traditional/1020/scripture_1020_web.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1020_grateful_short_traditional_kjv",
@@ -4903,7 +5161,10 @@
       "reflectionQuestion": "When has something you had given up hoping for arrived at a time you least expected it?",
       "bibleSourceRef": "Genesis 18:1-15",
       "bibleStoryKey": "three_visitors_at_mamre",
-      "scriptureTextFilePath": "traditional/1020/scripture_1020_kjv.txt"
+      "scriptureTextFilePath": "traditional/1020/scripture_1020_kjv.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1020_grateful_full_traditional_kjv",
@@ -4925,7 +5186,10 @@
       "reflectionQuestion": "When has something you had given up hoping for arrived at a time you least expected it?",
       "bibleSourceRef": "Genesis 18:1-15",
       "bibleStoryKey": "three_visitors_at_mamre",
-      "scriptureTextFilePath": "traditional/1020/scripture_1020_kjv.txt"
+      "scriptureTextFilePath": "traditional/1020/scripture_1020_kjv.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1021_hurting_short_traditional",
@@ -4947,7 +5211,10 @@
       "reflectionQuestion": "What does it mean to receive a blessing and a wound from the same encounter?",
       "bibleSourceRef": "Genesis 32:22-32",
       "bibleStoryKey": "jacob_wrestles_at_peniel",
-      "scriptureTextFilePath": "traditional/1021/scripture_1021_web.txt"
+      "scriptureTextFilePath": "traditional/1021/scripture_1021_web.txt",
+      "primaryCharacterId": "jacob",
+      "primaryCharacterDisplayName": "Jacob",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1021_hurting_full_traditional",
@@ -4969,7 +5236,10 @@
       "reflectionQuestion": "What does it mean to receive a blessing and a wound from the same encounter?",
       "bibleSourceRef": "Genesis 32:22-32",
       "bibleStoryKey": "jacob_wrestles_at_peniel",
-      "scriptureTextFilePath": "traditional/1021/scripture_1021_web.txt"
+      "scriptureTextFilePath": "traditional/1021/scripture_1021_web.txt",
+      "primaryCharacterId": "jacob",
+      "primaryCharacterDisplayName": "Jacob",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1021_hurting_long_traditional",
@@ -4991,7 +5261,10 @@
       "reflectionQuestion": "What does it mean to receive a blessing and a wound from the same encounter?",
       "bibleSourceRef": "Genesis 32:22-32",
       "bibleStoryKey": "jacob_wrestles_at_peniel",
-      "scriptureTextFilePath": "traditional/1021/scripture_1021_web.txt"
+      "scriptureTextFilePath": "traditional/1021/scripture_1021_web.txt",
+      "primaryCharacterId": "jacob",
+      "primaryCharacterDisplayName": "Jacob",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1021_hurting_short_traditional_kjv",
@@ -5013,7 +5286,10 @@
       "reflectionQuestion": "What does it mean to receive a blessing and a wound from the same encounter?",
       "bibleSourceRef": "Genesis 32:22-32",
       "bibleStoryKey": "jacob_wrestles_at_peniel",
-      "scriptureTextFilePath": "traditional/1021/scripture_1021_kjv.txt"
+      "scriptureTextFilePath": "traditional/1021/scripture_1021_kjv.txt",
+      "primaryCharacterId": "jacob",
+      "primaryCharacterDisplayName": "Jacob",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1021_hurting_full_traditional_kjv",
@@ -5035,7 +5311,10 @@
       "reflectionQuestion": "What does it mean to receive a blessing and a wound from the same encounter?",
       "bibleSourceRef": "Genesis 32:22-32",
       "bibleStoryKey": "jacob_wrestles_at_peniel",
-      "scriptureTextFilePath": "traditional/1021/scripture_1021_kjv.txt"
+      "scriptureTextFilePath": "traditional/1021/scripture_1021_kjv.txt",
+      "primaryCharacterId": "jacob",
+      "primaryCharacterDisplayName": "Jacob",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1022_joyful_short_traditional",
@@ -5088,7 +5367,10 @@
       "reflectionQuestion": "What does it look like when value is found in the place no one thought to look?",
       "bibleSourceRef": "1 Samuel 16:1-13",
       "bibleStoryKey": "david_anointed",
-      "scriptureTextFilePath": "traditional/1022/scripture_1022_web.txt"
+      "scriptureTextFilePath": "traditional/1022/scripture_1022_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1022_joyful_short_traditional_kjv",
@@ -5110,7 +5392,10 @@
       "reflectionQuestion": "What does it look like when value is found in the place no one thought to look?",
       "bibleSourceRef": "1 Samuel 16:1-13",
       "bibleStoryKey": "david_anointed",
-      "scriptureTextFilePath": "traditional/1022/scripture_1022_kjv.txt"
+      "scriptureTextFilePath": "traditional/1022/scripture_1022_kjv.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1022_joyful_full_traditional_kjv",
@@ -5132,7 +5417,10 @@
       "reflectionQuestion": "What does it look like when value is found in the place no one thought to look?",
       "bibleSourceRef": "1 Samuel 16:1-13",
       "bibleStoryKey": "david_anointed",
-      "scriptureTextFilePath": "traditional/1022/scripture_1022_kjv.txt"
+      "scriptureTextFilePath": "traditional/1022/scripture_1022_kjv.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1023_weary_short_traditional",
@@ -5154,7 +5442,10 @@
       "reflectionQuestion": "What does it feel like to need provision that comes only one day at a time?",
       "bibleSourceRef": "Exodus 16:1-18",
       "bibleStoryKey": "manna_from_heaven",
-      "scriptureTextFilePath": "traditional/1023/scripture_1023_web.txt"
+      "scriptureTextFilePath": "traditional/1023/scripture_1023_web.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1023_weary_full_traditional",
@@ -5176,7 +5467,10 @@
       "reflectionQuestion": "What does it feel like to need provision that comes only one day at a time?",
       "bibleSourceRef": "Exodus 16:1-18",
       "bibleStoryKey": "manna_from_heaven",
-      "scriptureTextFilePath": "traditional/1023/scripture_1023_web.txt"
+      "scriptureTextFilePath": "traditional/1023/scripture_1023_web.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1023_weary_long_traditional",
@@ -5198,7 +5492,10 @@
       "reflectionQuestion": "What does it feel like to need provision that comes only one day at a time?",
       "bibleSourceRef": "Exodus 16:1-18",
       "bibleStoryKey": "manna_from_heaven",
-      "scriptureTextFilePath": "traditional/1023/scripture_1023_web.txt"
+      "scriptureTextFilePath": "traditional/1023/scripture_1023_web.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1023_weary_short_traditional_kjv",
@@ -5220,7 +5517,10 @@
       "reflectionQuestion": "What does it feel like to need provision that comes only one day at a time?",
       "bibleSourceRef": "Exodus 16:1-18",
       "bibleStoryKey": "manna_from_heaven",
-      "scriptureTextFilePath": "traditional/1023/scripture_1023_kjv.txt"
+      "scriptureTextFilePath": "traditional/1023/scripture_1023_kjv.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1023_weary_full_traditional_kjv",
@@ -5242,7 +5542,10 @@
       "reflectionQuestion": "What does it feel like to need provision that comes only one day at a time?",
       "bibleSourceRef": "Exodus 16:1-18",
       "bibleStoryKey": "manna_from_heaven",
-      "scriptureTextFilePath": "traditional/1023/scripture_1023_kjv.txt"
+      "scriptureTextFilePath": "traditional/1023/scripture_1023_kjv.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1024_anxious_short_kid_traditional",
@@ -5264,7 +5567,10 @@
       "reflectionQuestion": "Have you ever had to do something new or go somewhere unfamiliar, even though it felt a little scary?",
       "bibleSourceRef": "Genesis 12:1-9",
       "bibleStoryKey": "abram_called",
-      "scriptureTextFilePath": "traditional/1024/scripture_1024_web.txt"
+      "scriptureTextFilePath": "traditional/1024/scripture_1024_web.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1024_anxious_full_kid_traditional",
@@ -5286,7 +5592,10 @@
       "reflectionQuestion": "Have you ever had to do something new or go somewhere unfamiliar, even though it felt a little scary?",
       "bibleSourceRef": "Genesis 12:1-9",
       "bibleStoryKey": "abram_called",
-      "scriptureTextFilePath": "traditional/1024/scripture_1024_web.txt"
+      "scriptureTextFilePath": "traditional/1024/scripture_1024_web.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1025_brave_courage_short_kid_traditional",
@@ -5308,7 +5617,10 @@
       "reflectionQuestion": "Can you think of a time when you kept doing something good, even though it was hard or nobody else was doing it?",
       "bibleSourceRef": "Genesis 6:9-22",
       "bibleStoryKey": "noah_builds_the_ark",
-      "scriptureTextFilePath": "traditional/1025/scripture_1025_web.txt"
+      "scriptureTextFilePath": "traditional/1025/scripture_1025_web.txt",
+      "primaryCharacterId": "noah",
+      "primaryCharacterDisplayName": "Noah",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1025_brave_courage_full_kid_traditional",
@@ -5330,7 +5642,10 @@
       "reflectionQuestion": "Can you think of a time when you kept doing something good, even though it was hard or nobody else was doing it?",
       "bibleSourceRef": "Genesis 6:9-22",
       "bibleStoryKey": "noah_builds_the_ark",
-      "scriptureTextFilePath": "traditional/1025/scripture_1025_web.txt"
+      "scriptureTextFilePath": "traditional/1025/scripture_1025_web.txt",
+      "primaryCharacterId": "noah",
+      "primaryCharacterDisplayName": "Noah",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1025_brave_courage_long_kid_traditional",
@@ -5352,7 +5667,10 @@
       "reflectionQuestion": "Can you think of a time when you kept doing something good, even though it was hard or nobody else was doing it?",
       "bibleSourceRef": "Genesis 6:9-22",
       "bibleStoryKey": "noah_builds_the_ark",
-      "scriptureTextFilePath": "traditional/1025/scripture_1025_web.txt"
+      "scriptureTextFilePath": "traditional/1025/scripture_1025_web.txt",
+      "primaryCharacterId": "noah",
+      "primaryCharacterDisplayName": "Noah",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1026_calm_peaceful_short_kid_traditional",
@@ -5374,7 +5692,10 @@
       "reflectionQuestion": "Have you ever felt God close to you in a surprising place or moment?",
       "bibleSourceRef": "Genesis 28:10-22",
       "bibleStoryKey": "jacobs_ladder",
-      "scriptureTextFilePath": "traditional/1026/scripture_1026_web.txt"
+      "scriptureTextFilePath": "traditional/1026/scripture_1026_web.txt",
+      "primaryCharacterId": "jacob",
+      "primaryCharacterDisplayName": "Jacob",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1026_calm_peaceful_full_kid_traditional",
@@ -5396,7 +5717,10 @@
       "reflectionQuestion": "Have you ever felt God close to you in a surprising place or moment?",
       "bibleSourceRef": "Genesis 28:10-22",
       "bibleStoryKey": "jacobs_ladder",
-      "scriptureTextFilePath": "traditional/1026/scripture_1026_web.txt"
+      "scriptureTextFilePath": "traditional/1026/scripture_1026_web.txt",
+      "primaryCharacterId": "jacob",
+      "primaryCharacterDisplayName": "Jacob",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1027_encouraging_short_kid_traditional",
@@ -5418,7 +5742,10 @@
       "reflectionQuestion": "When something feels too big for you, who do you talk to about it?",
       "bibleSourceRef": "Exodus 3:1-15",
       "bibleStoryKey": "burning_bush",
-      "scriptureTextFilePath": "traditional/1027/scripture_1027_web.txt"
+      "scriptureTextFilePath": "traditional/1027/scripture_1027_web.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1027_encouraging_full_kid_traditional",
@@ -5440,7 +5767,10 @@
       "reflectionQuestion": "When something feels too big for you, who do you talk to about it?",
       "bibleSourceRef": "Exodus 3:1-15",
       "bibleStoryKey": "burning_bush",
-      "scriptureTextFilePath": "traditional/1027/scripture_1027_web.txt"
+      "scriptureTextFilePath": "traditional/1027/scripture_1027_web.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1028_grateful_short_kid_traditional",
@@ -5462,7 +5792,10 @@
       "reflectionQuestion": "What is something you have been really happy to share with someone else?",
       "bibleSourceRef": "Genesis 18:1-15",
       "bibleStoryKey": "three_visitors_at_mamre",
-      "scriptureTextFilePath": "traditional/1028/scripture_1028_web.txt"
+      "scriptureTextFilePath": "traditional/1028/scripture_1028_web.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1028_grateful_full_kid_traditional",
@@ -5484,7 +5817,10 @@
       "reflectionQuestion": "What is something you have been really happy to share with someone else?",
       "bibleSourceRef": "Genesis 18:1-15",
       "bibleStoryKey": "three_visitors_at_mamre",
-      "scriptureTextFilePath": "traditional/1028/scripture_1028_web.txt"
+      "scriptureTextFilePath": "traditional/1028/scripture_1028_web.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1029_hurting_short_kid_traditional",
@@ -5506,7 +5842,10 @@
       "reflectionQuestion": "Have you ever gone through something hard and come out of it a little different than you were before?",
       "bibleSourceRef": "Genesis 32:22-32",
       "bibleStoryKey": "jacob_wrestles_at_peniel",
-      "scriptureTextFilePath": "traditional/1029/scripture_1029_web.txt"
+      "scriptureTextFilePath": "traditional/1029/scripture_1029_web.txt",
+      "primaryCharacterId": "jacob",
+      "primaryCharacterDisplayName": "Jacob",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1029_hurting_full_kid_traditional",
@@ -5528,7 +5867,10 @@
       "reflectionQuestion": "Have you ever gone through something hard and come out of it a little different than you were before?",
       "bibleSourceRef": "Genesis 32:22-32",
       "bibleStoryKey": "jacob_wrestles_at_peniel",
-      "scriptureTextFilePath": "traditional/1029/scripture_1029_web.txt"
+      "scriptureTextFilePath": "traditional/1029/scripture_1029_web.txt",
+      "primaryCharacterId": "jacob",
+      "primaryCharacterDisplayName": "Jacob",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1030_joyful_short_kid_traditional",
@@ -5550,7 +5892,10 @@
       "reflectionQuestion": "What is something about you that people might not notice from the outside, but that you think is really special?",
       "bibleSourceRef": "1 Samuel 16:1-13",
       "bibleStoryKey": "david_anointed",
-      "scriptureTextFilePath": "traditional/1030/scripture_1030_web.txt"
+      "scriptureTextFilePath": "traditional/1030/scripture_1030_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1030_joyful_full_kid_traditional",
@@ -5572,7 +5917,10 @@
       "reflectionQuestion": "What is something about you that people might not notice from the outside, but that you think is really special?",
       "bibleSourceRef": "1 Samuel 16:1-13",
       "bibleStoryKey": "david_anointed",
-      "scriptureTextFilePath": "traditional/1030/scripture_1030_web.txt"
+      "scriptureTextFilePath": "traditional/1030/scripture_1030_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1031_weary_short_kid_traditional",
@@ -5594,7 +5942,10 @@
       "reflectionQuestion": "When you feel tired or worried, what is something that helps you feel taken care of?",
       "bibleSourceRef": "Exodus 16:1-18",
       "bibleStoryKey": "manna_from_heaven",
-      "scriptureTextFilePath": "traditional/1031/scripture_1031_web.txt"
+      "scriptureTextFilePath": "traditional/1031/scripture_1031_web.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1031_weary_full_kid_traditional",
@@ -5616,7 +5967,10 @@
       "reflectionQuestion": "When you feel tired or worried, what is something that helps you feel taken care of?",
       "bibleSourceRef": "Exodus 16:1-18",
       "bibleStoryKey": "manna_from_heaven",
-      "scriptureTextFilePath": "traditional/1031/scripture_1031_web.txt"
+      "scriptureTextFilePath": "traditional/1031/scripture_1031_web.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1032_anxious_short_traditional",
@@ -5638,7 +5992,10 @@
       "reflectionQuestion": "When anxiety grips you, you do not need to see the whole road. You only need to take the step in front of you. What is one step you can take today, even without knowing what comes next?",
       "bibleSourceRef": "Genesis 22:1-19",
       "bibleStoryKey": "binding_of_isaac",
-      "scriptureTextFilePath": "traditional/1032/scripture_1032_web.txt"
+      "scriptureTextFilePath": "traditional/1032/scripture_1032_web.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1032_anxious_full_traditional",
@@ -5660,7 +6017,10 @@
       "reflectionQuestion": "When anxiety grips you, you do not need to see the whole road. You only need to take the step in front of you. What is one step you can take today, even without knowing what comes next?",
       "bibleSourceRef": "Genesis 22:1-19",
       "bibleStoryKey": "binding_of_isaac",
-      "scriptureTextFilePath": "traditional/1032/scripture_1032_web.txt"
+      "scriptureTextFilePath": "traditional/1032/scripture_1032_web.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1032_anxious_short_traditional_kjv",
@@ -5682,7 +6042,10 @@
       "reflectionQuestion": "When anxiety grips you, you do not need to see the whole road. You only need to take the step in front of you. What is one step you can take today, even without knowing what comes next?",
       "bibleSourceRef": "Genesis 22:1-19",
       "bibleStoryKey": "binding_of_isaac",
-      "scriptureTextFilePath": "traditional/1032/scripture_1032_kjv.txt"
+      "scriptureTextFilePath": "traditional/1032/scripture_1032_kjv.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1032_anxious_full_traditional_kjv",
@@ -5704,7 +6067,10 @@
       "reflectionQuestion": "When anxiety grips you, you do not need to see the whole road. You only need to take the step in front of you. What is one step you can take today, even without knowing what comes next?",
       "bibleSourceRef": "Genesis 22:1-19",
       "bibleStoryKey": "binding_of_isaac",
-      "scriptureTextFilePath": "traditional/1032/scripture_1032_kjv.txt"
+      "scriptureTextFilePath": "traditional/1032/scripture_1032_kjv.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1033_brave_courage_short_traditional",
@@ -5726,7 +6092,10 @@
       "reflectionQuestion": "Courage sometimes means releasing what you love into uncertain waters. What is one brave thing you could do today, even if the outcome is not yet clear?",
       "bibleSourceRef": "Exodus 2:1-10",
       "bibleStoryKey": "baby_moses_in_the_nile",
-      "scriptureTextFilePath": "traditional/1033/scripture_1033_web.txt"
+      "scriptureTextFilePath": "traditional/1033/scripture_1033_web.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1033_brave_courage_full_traditional",
@@ -5748,7 +6117,10 @@
       "reflectionQuestion": "Courage sometimes means releasing what you love into uncertain waters. What is one brave thing you could do today, even if the outcome is not yet clear?",
       "bibleSourceRef": "Exodus 2:1-10",
       "bibleStoryKey": "baby_moses_in_the_nile",
-      "scriptureTextFilePath": "traditional/1033/scripture_1033_web.txt"
+      "scriptureTextFilePath": "traditional/1033/scripture_1033_web.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1033_brave_courage_short_traditional_kjv",
@@ -5770,7 +6142,10 @@
       "reflectionQuestion": "Courage sometimes means releasing what you love into uncertain waters. What is one brave thing you could do today, even if the outcome is not yet clear?",
       "bibleSourceRef": "Exodus 2:1-10",
       "bibleStoryKey": "baby_moses_in_the_nile",
-      "scriptureTextFilePath": "traditional/1033/scripture_1033_kjv.txt"
+      "scriptureTextFilePath": "traditional/1033/scripture_1033_kjv.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1033_brave_courage_full_traditional_kjv",
@@ -5792,7 +6167,10 @@
       "reflectionQuestion": "Courage sometimes means releasing what you love into uncertain waters. What is one brave thing you could do today, even if the outcome is not yet clear?",
       "bibleSourceRef": "Exodus 2:1-10",
       "bibleStoryKey": "baby_moses_in_the_nile",
-      "scriptureTextFilePath": "traditional/1033/scripture_1033_kjv.txt"
+      "scriptureTextFilePath": "traditional/1033/scripture_1033_kjv.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1034_calm_peaceful_short_traditional",
@@ -5814,7 +6192,10 @@
       "reflectionQuestion": "In a quiet moment, what would you ask for? What is the one thing that would help you serve well the people and responsibilities in your life?",
       "bibleSourceRef": "1 Kings 3:5-14",
       "bibleStoryKey": "solomon_asks_for_wisdom",
-      "scriptureTextFilePath": "traditional/1034/scripture_1034_web.txt"
+      "scriptureTextFilePath": "traditional/1034/scripture_1034_web.txt",
+      "primaryCharacterId": "solomon",
+      "primaryCharacterDisplayName": "Solomon",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1034_calm_peaceful_full_traditional",
@@ -5836,7 +6217,10 @@
       "reflectionQuestion": "In a quiet moment, what would you ask for? What is the one thing that would help you serve well the people and responsibilities in your life?",
       "bibleSourceRef": "1 Kings 3:5-14",
       "bibleStoryKey": "solomon_asks_for_wisdom",
-      "scriptureTextFilePath": "traditional/1034/scripture_1034_web.txt"
+      "scriptureTextFilePath": "traditional/1034/scripture_1034_web.txt",
+      "primaryCharacterId": "solomon",
+      "primaryCharacterDisplayName": "Solomon",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1034_calm_peaceful_short_traditional_kjv",
@@ -5858,7 +6242,10 @@
       "reflectionQuestion": "In a quiet moment, what would you ask for? What is the one thing that would help you serve well the people and responsibilities in your life?",
       "bibleSourceRef": "1 Kings 3:5-14",
       "bibleStoryKey": "solomon_asks_for_wisdom",
-      "scriptureTextFilePath": "traditional/1034/scripture_1034_kjv.txt"
+      "scriptureTextFilePath": "traditional/1034/scripture_1034_kjv.txt",
+      "primaryCharacterId": "solomon",
+      "primaryCharacterDisplayName": "Solomon",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1034_calm_peaceful_full_traditional_kjv",
@@ -5880,7 +6267,10 @@
       "reflectionQuestion": "In a quiet moment, what would you ask for? What is the one thing that would help you serve well the people and responsibilities in your life?",
       "bibleSourceRef": "1 Kings 3:5-14",
       "bibleStoryKey": "solomon_asks_for_wisdom",
-      "scriptureTextFilePath": "traditional/1034/scripture_1034_kjv.txt"
+      "scriptureTextFilePath": "traditional/1034/scripture_1034_kjv.txt",
+      "primaryCharacterId": "solomon",
+      "primaryCharacterDisplayName": "Solomon",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1035_encouraging_short_traditional",
@@ -5902,7 +6292,10 @@
       "reflectionQuestion": "What task in front of you feels too big today? What if you are not meant to do it alone?",
       "bibleSourceRef": "Judges 6:11-24",
       "bibleStoryKey": "gideon_called",
-      "scriptureTextFilePath": "traditional/1035/scripture_1035_web.txt"
+      "scriptureTextFilePath": "traditional/1035/scripture_1035_web.txt",
+      "primaryCharacterId": "gideon",
+      "primaryCharacterDisplayName": "Gideon",
+      "timelineEra": "judges"
     },
     {
       "storyId": "story_1035_encouraging_full_traditional",
@@ -5924,7 +6317,10 @@
       "reflectionQuestion": "What task in front of you feels too big today? What if you are not meant to do it alone?",
       "bibleSourceRef": "Judges 6:11-24",
       "bibleStoryKey": "gideon_called",
-      "scriptureTextFilePath": "traditional/1035/scripture_1035_web.txt"
+      "scriptureTextFilePath": "traditional/1035/scripture_1035_web.txt",
+      "primaryCharacterId": "gideon",
+      "primaryCharacterDisplayName": "Gideon",
+      "timelineEra": "judges"
     },
     {
       "storyId": "story_1035_encouraging_short_traditional_kjv",
@@ -5946,7 +6342,10 @@
       "reflectionQuestion": "What task in front of you feels too big today? What if you are not meant to do it alone?",
       "bibleSourceRef": "Judges 6:11-24",
       "bibleStoryKey": "gideon_called",
-      "scriptureTextFilePath": "traditional/1035/scripture_1035_kjv.txt"
+      "scriptureTextFilePath": "traditional/1035/scripture_1035_kjv.txt",
+      "primaryCharacterId": "gideon",
+      "primaryCharacterDisplayName": "Gideon",
+      "timelineEra": "judges"
     },
     {
       "storyId": "story_1035_encouraging_full_traditional_kjv",
@@ -5968,7 +6367,10 @@
       "reflectionQuestion": "What task in front of you feels too big today? What if you are not meant to do it alone?",
       "bibleSourceRef": "Judges 6:11-24",
       "bibleStoryKey": "gideon_called",
-      "scriptureTextFilePath": "traditional/1035/scripture_1035_kjv.txt"
+      "scriptureTextFilePath": "traditional/1035/scripture_1035_kjv.txt",
+      "primaryCharacterId": "gideon",
+      "primaryCharacterDisplayName": "Gideon",
+      "timelineEra": "judges"
     },
     {
       "storyId": "story_1036_grateful_short_traditional",
@@ -5994,7 +6396,7 @@
       "primaryCharacterId": "ruth",
       "primaryCharacterDisplayName": "Ruth",
       "bibleOrderIndex": 180,
-      "timelineEra": "kingdom",
+      "timelineEra": "judges",
       "themeTags": [
         "provision",
         "mercy"
@@ -6021,7 +6423,10 @@
       "reflectionQuestion": "When has provision come to you in a form you did not expect or plan for?",
       "bibleSourceRef": "Ruth 2:1-23",
       "bibleStoryKey": "ruth_gleans_in_boaz_field",
-      "scriptureTextFilePath": "traditional/1036/scripture_1036_web.txt"
+      "scriptureTextFilePath": "traditional/1036/scripture_1036_web.txt",
+      "primaryCharacterId": "ruth",
+      "primaryCharacterDisplayName": "Ruth",
+      "timelineEra": "judges"
     },
     {
       "storyId": "story_1036_grateful_short_traditional_kjv",
@@ -6043,7 +6448,10 @@
       "reflectionQuestion": "When has provision come to you in a form you did not expect or plan for?",
       "bibleSourceRef": "Ruth 2:1-23",
       "bibleStoryKey": "ruth_gleans_in_boaz_field",
-      "scriptureTextFilePath": "traditional/1036/scripture_1036_kjv.txt"
+      "scriptureTextFilePath": "traditional/1036/scripture_1036_kjv.txt",
+      "primaryCharacterId": "ruth",
+      "primaryCharacterDisplayName": "Ruth",
+      "timelineEra": "judges"
     },
     {
       "storyId": "story_1036_grateful_full_traditional_kjv",
@@ -6065,7 +6473,10 @@
       "reflectionQuestion": "When has provision come to you in a form you did not expect or plan for?",
       "bibleSourceRef": "Ruth 2:1-23",
       "bibleStoryKey": "ruth_gleans_in_boaz_field",
-      "scriptureTextFilePath": "traditional/1036/scripture_1036_kjv.txt"
+      "scriptureTextFilePath": "traditional/1036/scripture_1036_kjv.txt",
+      "primaryCharacterId": "ruth",
+      "primaryCharacterDisplayName": "Ruth",
+      "timelineEra": "judges"
     },
     {
       "storyId": "story_1037_hurting_short_traditional",
@@ -6088,7 +6499,10 @@
       "reflectionQuestion": "When has the hurt of being misunderstood or betrayed by those closest to you felt most real?",
       "bibleSourceRef": "Genesis 37:1-36",
       "bibleStoryKey": "joseph_sold_by_brothers",
-      "scriptureTextFilePath": "traditional/1037/scripture_1037_web.txt"
+      "scriptureTextFilePath": "traditional/1037/scripture_1037_web.txt",
+      "primaryCharacterId": "joseph",
+      "primaryCharacterDisplayName": "Joseph",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1037_hurting_full_traditional",
@@ -6111,7 +6525,10 @@
       "reflectionQuestion": "When has the hurt of being misunderstood or betrayed by those closest to you felt most real?",
       "bibleSourceRef": "Genesis 37:1-36",
       "bibleStoryKey": "joseph_sold_by_brothers",
-      "scriptureTextFilePath": "traditional/1037/scripture_1037_web.txt"
+      "scriptureTextFilePath": "traditional/1037/scripture_1037_web.txt",
+      "primaryCharacterId": "joseph",
+      "primaryCharacterDisplayName": "Joseph",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1037_hurting_short_traditional_kjv",
@@ -6134,7 +6551,10 @@
       "reflectionQuestion": "When has the hurt of being misunderstood or betrayed by those closest to you felt most real?",
       "bibleSourceRef": "Genesis 37:1-36",
       "bibleStoryKey": "joseph_sold_by_brothers",
-      "scriptureTextFilePath": "traditional/1037/scripture_1037_kjv.txt"
+      "scriptureTextFilePath": "traditional/1037/scripture_1037_kjv.txt",
+      "primaryCharacterId": "joseph",
+      "primaryCharacterDisplayName": "Joseph",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1037_hurting_full_traditional_kjv",
@@ -6157,7 +6577,10 @@
       "reflectionQuestion": "When has the hurt of being misunderstood or betrayed by those closest to you felt most real?",
       "bibleSourceRef": "Genesis 37:1-36",
       "bibleStoryKey": "joseph_sold_by_brothers",
-      "scriptureTextFilePath": "traditional/1037/scripture_1037_kjv.txt"
+      "scriptureTextFilePath": "traditional/1037/scripture_1037_kjv.txt",
+      "primaryCharacterId": "joseph",
+      "primaryCharacterDisplayName": "Joseph",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1038_joyful_short_traditional",
@@ -6178,7 +6601,10 @@
       "reflectionQuestion": "When was the last time you paused to look at something you had made or been part of and saw that it was good?",
       "bibleSourceRef": "Genesis 1:1-31",
       "bibleStoryKey": "creation",
-      "scriptureTextFilePath": "traditional/1038/scripture_1038_web.txt"
+      "scriptureTextFilePath": "traditional/1038/scripture_1038_web.txt",
+      "primaryCharacterId": "god",
+      "primaryCharacterDisplayName": "God",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1038_joyful_full_traditional",
@@ -6199,7 +6625,10 @@
       "reflectionQuestion": "When was the last time you paused to look at something you had made or been part of and saw that it was good?",
       "bibleSourceRef": "Genesis 1:1-31",
       "bibleStoryKey": "creation",
-      "scriptureTextFilePath": "traditional/1038/scripture_1038_web.txt"
+      "scriptureTextFilePath": "traditional/1038/scripture_1038_web.txt",
+      "primaryCharacterId": "god",
+      "primaryCharacterDisplayName": "God",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1038_joyful_short_traditional_kjv",
@@ -6220,7 +6649,10 @@
       "reflectionQuestion": "When was the last time you paused to look at something you had made or been part of and saw that it was good?",
       "bibleSourceRef": "Genesis 1:1-31",
       "bibleStoryKey": "creation",
-      "scriptureTextFilePath": "traditional/1038/scripture_1038_kjv.txt"
+      "scriptureTextFilePath": "traditional/1038/scripture_1038_kjv.txt",
+      "primaryCharacterId": "god",
+      "primaryCharacterDisplayName": "God",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1038_joyful_full_traditional_kjv",
@@ -6241,7 +6673,10 @@
       "reflectionQuestion": "When was the last time you paused to look at something you had made or been part of and saw that it was good?",
       "bibleSourceRef": "Genesis 1:1-31",
       "bibleStoryKey": "creation",
-      "scriptureTextFilePath": "traditional/1038/scripture_1038_kjv.txt"
+      "scriptureTextFilePath": "traditional/1038/scripture_1038_kjv.txt",
+      "primaryCharacterId": "god",
+      "primaryCharacterDisplayName": "God",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1039_weary_short_traditional",
@@ -6263,7 +6698,10 @@
       "reflectionQuestion": "What does it feel like to have only enough for today and not know what tomorrow holds?",
       "bibleSourceRef": "1 Kings 17:1-16",
       "bibleStoryKey": "elijah_and_widow_of_zarephath",
-      "scriptureTextFilePath": "traditional/1039/scripture_1039_web.txt"
+      "scriptureTextFilePath": "traditional/1039/scripture_1039_web.txt",
+      "primaryCharacterId": "elijah",
+      "primaryCharacterDisplayName": "Elijah",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1039_weary_full_traditional",
@@ -6285,7 +6723,10 @@
       "reflectionQuestion": "What does it feel like to have only enough for today and not know what tomorrow holds?",
       "bibleSourceRef": "1 Kings 17:1-16",
       "bibleStoryKey": "elijah_and_widow_of_zarephath",
-      "scriptureTextFilePath": "traditional/1039/scripture_1039_web.txt"
+      "scriptureTextFilePath": "traditional/1039/scripture_1039_web.txt",
+      "primaryCharacterId": "elijah",
+      "primaryCharacterDisplayName": "Elijah",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1039_weary_short_traditional_kjv",
@@ -6307,7 +6748,10 @@
       "reflectionQuestion": "What does it feel like to have only enough for today and not know what tomorrow holds?",
       "bibleSourceRef": "1 Kings 17:1-16",
       "bibleStoryKey": "elijah_and_widow_of_zarephath",
-      "scriptureTextFilePath": "traditional/1039/scripture_1039_kjv.txt"
+      "scriptureTextFilePath": "traditional/1039/scripture_1039_kjv.txt",
+      "primaryCharacterId": "elijah",
+      "primaryCharacterDisplayName": "Elijah",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1039_weary_full_traditional_kjv",
@@ -6329,7 +6773,10 @@
       "reflectionQuestion": "What does it feel like to have only enough for today and not know what tomorrow holds?",
       "bibleSourceRef": "1 Kings 17:1-16",
       "bibleStoryKey": "elijah_and_widow_of_zarephath",
-      "scriptureTextFilePath": "traditional/1039/scripture_1039_kjv.txt"
+      "scriptureTextFilePath": "traditional/1039/scripture_1039_kjv.txt",
+      "primaryCharacterId": "elijah",
+      "primaryCharacterDisplayName": "Elijah",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1040_anxious_short_kid_traditional",
@@ -6351,7 +6798,10 @@
       "reflectionQuestion": "Has there been a time you were really scared, but then everything turned out okay?",
       "bibleSourceRef": "Genesis 22:1-19",
       "bibleStoryKey": "binding_of_isaac",
-      "scriptureTextFilePath": "traditional/1040/scripture_1040_web.txt"
+      "scriptureTextFilePath": "traditional/1040/scripture_1040_web.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1040_anxious_full_kid_traditional",
@@ -6373,7 +6823,10 @@
       "reflectionQuestion": "Has there been a time you were really scared, but then everything turned out okay?",
       "bibleSourceRef": "Genesis 22:1-19",
       "bibleStoryKey": "binding_of_isaac",
-      "scriptureTextFilePath": "traditional/1040/scripture_1040_web.txt"
+      "scriptureTextFilePath": "traditional/1040/scripture_1040_web.txt",
+      "primaryCharacterId": "abraham",
+      "primaryCharacterDisplayName": "Abraham",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1041_brave_courage_short_kid_traditional",
@@ -6395,7 +6848,10 @@
       "reflectionQuestion": "Can you think of a time you did something brave to help someone you care about?",
       "bibleSourceRef": "Exodus 2:1-10",
       "bibleStoryKey": "baby_moses_in_the_nile",
-      "scriptureTextFilePath": "traditional/1041/scripture_1041_web.txt"
+      "scriptureTextFilePath": "traditional/1041/scripture_1041_web.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1041_brave_courage_full_kid_traditional",
@@ -6417,7 +6873,10 @@
       "reflectionQuestion": "Can you think of a time you did something brave to help someone you care about?",
       "bibleSourceRef": "Exodus 2:1-10",
       "bibleStoryKey": "baby_moses_in_the_nile",
-      "scriptureTextFilePath": "traditional/1041/scripture_1041_web.txt"
+      "scriptureTextFilePath": "traditional/1041/scripture_1041_web.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1042_calm_peaceful_short_kid_traditional",
@@ -6439,7 +6898,10 @@
       "reflectionQuestion": "If God said you could ask for one thing, what would you ask for?",
       "bibleSourceRef": "1 Kings 3:5-14",
       "bibleStoryKey": "solomon_asks_for_wisdom",
-      "scriptureTextFilePath": "traditional/1042/scripture_1042_web.txt"
+      "scriptureTextFilePath": "traditional/1042/scripture_1042_web.txt",
+      "primaryCharacterId": "solomon",
+      "primaryCharacterDisplayName": "Solomon",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1042_calm_peaceful_full_kid_traditional",
@@ -6461,7 +6923,10 @@
       "reflectionQuestion": "If God said you could ask for one thing, what would you ask for?",
       "bibleSourceRef": "1 Kings 3:5-14",
       "bibleStoryKey": "solomon_asks_for_wisdom",
-      "scriptureTextFilePath": "traditional/1042/scripture_1042_web.txt"
+      "scriptureTextFilePath": "traditional/1042/scripture_1042_web.txt",
+      "primaryCharacterId": "solomon",
+      "primaryCharacterDisplayName": "Solomon",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1043_encouraging_short_kid_traditional",
@@ -6483,7 +6948,10 @@
       "reflectionQuestion": "What is something you are good at that you did not know you could do until you tried?",
       "bibleSourceRef": "Judges 6:11-24",
       "bibleStoryKey": "gideon_called",
-      "scriptureTextFilePath": "traditional/1043/scripture_1043_web.txt"
+      "scriptureTextFilePath": "traditional/1043/scripture_1043_web.txt",
+      "primaryCharacterId": "gideon",
+      "primaryCharacterDisplayName": "Gideon",
+      "timelineEra": "judges"
     },
     {
       "storyId": "story_1043_encouraging_full_kid_traditional",
@@ -6505,7 +6973,10 @@
       "reflectionQuestion": "What is something you are good at that you did not know you could do until you tried?",
       "bibleSourceRef": "Judges 6:11-24",
       "bibleStoryKey": "gideon_called",
-      "scriptureTextFilePath": "traditional/1043/scripture_1043_web.txt"
+      "scriptureTextFilePath": "traditional/1043/scripture_1043_web.txt",
+      "primaryCharacterId": "gideon",
+      "primaryCharacterDisplayName": "Gideon",
+      "timelineEra": "judges"
     },
     {
       "storyId": "story_1044_grateful_short_kid_traditional",
@@ -6527,7 +6998,10 @@
       "reflectionQuestion": "Who is someone who has been really kind to you, and how did it make you feel?",
       "bibleSourceRef": "Ruth 2:1-23",
       "bibleStoryKey": "ruth_gleans_in_boaz_field",
-      "scriptureTextFilePath": "traditional/1044/scripture_1044_web.txt"
+      "scriptureTextFilePath": "traditional/1044/scripture_1044_web.txt",
+      "primaryCharacterId": "ruth",
+      "primaryCharacterDisplayName": "Ruth",
+      "timelineEra": "judges"
     },
     {
       "storyId": "story_1044_grateful_full_kid_traditional",
@@ -6549,7 +7023,10 @@
       "reflectionQuestion": "Who is someone who has been really kind to you, and how did it make you feel?",
       "bibleSourceRef": "Ruth 2:1-23",
       "bibleStoryKey": "ruth_gleans_in_boaz_field",
-      "scriptureTextFilePath": "traditional/1044/scripture_1044_web.txt"
+      "scriptureTextFilePath": "traditional/1044/scripture_1044_web.txt",
+      "primaryCharacterId": "ruth",
+      "primaryCharacterDisplayName": "Ruth",
+      "timelineEra": "judges"
     },
     {
       "storyId": "story_1045_hurting_short_kid_traditional",
@@ -6572,7 +7049,10 @@
       "reflectionQuestion": "Have you ever been hurt by someone and felt really alone? What helped you feel better?",
       "bibleSourceRef": "Genesis 37:1-36",
       "bibleStoryKey": "joseph_sold_by_brothers",
-      "scriptureTextFilePath": "traditional/1045/scripture_1045_web.txt"
+      "scriptureTextFilePath": "traditional/1045/scripture_1045_web.txt",
+      "primaryCharacterId": "joseph",
+      "primaryCharacterDisplayName": "Joseph",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1045_hurting_full_kid_traditional",
@@ -6595,7 +7075,10 @@
       "reflectionQuestion": "Have you ever been hurt by someone and felt really alone? What helped you feel better?",
       "bibleSourceRef": "Genesis 37:1-36",
       "bibleStoryKey": "joseph_sold_by_brothers",
-      "scriptureTextFilePath": "traditional/1045/scripture_1045_web.txt"
+      "scriptureTextFilePath": "traditional/1045/scripture_1045_web.txt",
+      "primaryCharacterId": "joseph",
+      "primaryCharacterDisplayName": "Joseph",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1046_joyful_short_kid_traditional",
@@ -6616,7 +7099,10 @@
       "reflectionQuestion": "What is your favorite thing God made, and why do you think it is so amazing?",
       "bibleSourceRef": "Genesis 1:1-31",
       "bibleStoryKey": "creation",
-      "scriptureTextFilePath": "traditional/1046/scripture_1046_web.txt"
+      "scriptureTextFilePath": "traditional/1046/scripture_1046_web.txt",
+      "primaryCharacterId": "god",
+      "primaryCharacterDisplayName": "God",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1046_joyful_full_kid_traditional",
@@ -6637,7 +7123,10 @@
       "reflectionQuestion": "What is your favorite thing God made, and why do you think it is so amazing?",
       "bibleSourceRef": "Genesis 1:1-31",
       "bibleStoryKey": "creation",
-      "scriptureTextFilePath": "traditional/1046/scripture_1046_web.txt"
+      "scriptureTextFilePath": "traditional/1046/scripture_1046_web.txt",
+      "primaryCharacterId": "god",
+      "primaryCharacterDisplayName": "God",
+      "timelineEra": "patriarchs"
     },
     {
       "storyId": "story_1047_weary_short_kid_traditional",
@@ -6659,7 +7148,10 @@
       "reflectionQuestion": "When you feel really tired, what is something that helps you keep going?",
       "bibleSourceRef": "1 Kings 17:1-16",
       "bibleStoryKey": "elijah_and_widow_of_zarephath",
-      "scriptureTextFilePath": "traditional/1047/scripture_1047_web.txt"
+      "scriptureTextFilePath": "traditional/1047/scripture_1047_web.txt",
+      "primaryCharacterId": "elijah",
+      "primaryCharacterDisplayName": "Elijah",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1047_weary_full_kid_traditional",
@@ -6681,7 +7173,10 @@
       "reflectionQuestion": "When you feel really tired, what is something that helps you keep going?",
       "bibleSourceRef": "1 Kings 17:1-16",
       "bibleStoryKey": "elijah_and_widow_of_zarephath",
-      "scriptureTextFilePath": "traditional/1047/scripture_1047_web.txt"
+      "scriptureTextFilePath": "traditional/1047/scripture_1047_web.txt",
+      "primaryCharacterId": "elijah",
+      "primaryCharacterDisplayName": "Elijah",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1048_anxious_short_traditional",
@@ -6734,7 +7229,10 @@
       "reflectionQuestion": "The sea stood before them and the army behind. There was no way through and no way back. What does it mean to stand still when every instinct says to run?",
       "bibleSourceRef": "Exodus 14:10-31",
       "bibleStoryKey": "crossing_the_red_sea",
-      "scriptureTextFilePath": "traditional/1048/scripture_1048_web.txt"
+      "scriptureTextFilePath": "traditional/1048/scripture_1048_web.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1048_anxious_short_traditional_kjv",
@@ -6756,7 +7254,10 @@
       "reflectionQuestion": "The sea stood before them and the army behind. There was no way through and no way back. What does it mean to stand still when every instinct says to run?",
       "bibleSourceRef": "Exodus 14:10-31",
       "bibleStoryKey": "crossing_the_red_sea",
-      "scriptureTextFilePath": "traditional/1048/scripture_1048_kjv.txt"
+      "scriptureTextFilePath": "traditional/1048/scripture_1048_kjv.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1048_anxious_full_traditional_kjv",
@@ -6778,7 +7279,10 @@
       "reflectionQuestion": "The sea stood before them and the army behind. There was no way through and no way back. What does it mean to stand still when every instinct says to run?",
       "bibleSourceRef": "Exodus 14:10-31",
       "bibleStoryKey": "crossing_the_red_sea",
-      "scriptureTextFilePath": "traditional/1048/scripture_1048_kjv.txt"
+      "scriptureTextFilePath": "traditional/1048/scripture_1048_kjv.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1049_brave_courage_short_traditional",
@@ -6800,7 +7304,10 @@
       "reflectionQuestion": "They held the fruit of the promised land in their hands and still could not believe. When has abundance stood before you and fear kept you from reaching for it?",
       "bibleSourceRef": "Numbers 13:25-33",
       "bibleStoryKey": "spies_return_from_canaan",
-      "scriptureTextFilePath": "traditional/1049/scripture_1049_web.txt"
+      "scriptureTextFilePath": "traditional/1049/scripture_1049_web.txt",
+      "primaryCharacterId": "caleb",
+      "primaryCharacterDisplayName": "Caleb",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1049_brave_courage_full_traditional",
@@ -6822,7 +7329,10 @@
       "reflectionQuestion": "They held the fruit of the promised land in their hands and still could not believe. When has abundance stood before you and fear kept you from reaching for it?",
       "bibleSourceRef": "Numbers 13:25-33",
       "bibleStoryKey": "spies_return_from_canaan",
-      "scriptureTextFilePath": "traditional/1049/scripture_1049_web.txt"
+      "scriptureTextFilePath": "traditional/1049/scripture_1049_web.txt",
+      "primaryCharacterId": "caleb",
+      "primaryCharacterDisplayName": "Caleb",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1049_brave_courage_short_traditional_kjv",
@@ -6844,7 +7354,10 @@
       "reflectionQuestion": "They held the fruit of the promised land in their hands and still could not believe. When has abundance stood before you and fear kept you from reaching for it?",
       "bibleSourceRef": "Numbers 13:25-33",
       "bibleStoryKey": "spies_return_from_canaan",
-      "scriptureTextFilePath": "traditional/1049/scripture_1049_kjv.txt"
+      "scriptureTextFilePath": "traditional/1049/scripture_1049_kjv.txt",
+      "primaryCharacterId": "caleb",
+      "primaryCharacterDisplayName": "Caleb",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1049_brave_courage_full_traditional_kjv",
@@ -6866,7 +7379,10 @@
       "reflectionQuestion": "They held the fruit of the promised land in their hands and still could not believe. When has abundance stood before you and fear kept you from reaching for it?",
       "bibleSourceRef": "Numbers 13:25-33",
       "bibleStoryKey": "spies_return_from_canaan",
-      "scriptureTextFilePath": "traditional/1049/scripture_1049_kjv.txt"
+      "scriptureTextFilePath": "traditional/1049/scripture_1049_kjv.txt",
+      "primaryCharacterId": "caleb",
+      "primaryCharacterDisplayName": "Caleb",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1050_calm_peaceful_short_traditional",
@@ -6887,7 +7403,10 @@
       "reflectionQuestion": "The vessel was marred and the potter made it again. What does it feel like to be reshaped by hands you cannot see but have chosen to trust?",
       "bibleSourceRef": "Jeremiah 18:1-6",
       "bibleStoryKey": "potter_and_clay",
-      "scriptureTextFilePath": "traditional/1050/scripture_1050_web.txt"
+      "scriptureTextFilePath": "traditional/1050/scripture_1050_web.txt",
+      "primaryCharacterId": "jeremiah",
+      "primaryCharacterDisplayName": "Jeremiah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1050_calm_peaceful_full_traditional",
@@ -6908,7 +7427,10 @@
       "reflectionQuestion": "The vessel was marred and the potter made it again. What does it feel like to be reshaped by hands you cannot see but have chosen to trust?",
       "bibleSourceRef": "Jeremiah 18:1-6",
       "bibleStoryKey": "potter_and_clay",
-      "scriptureTextFilePath": "traditional/1050/scripture_1050_web.txt"
+      "scriptureTextFilePath": "traditional/1050/scripture_1050_web.txt",
+      "primaryCharacterId": "jeremiah",
+      "primaryCharacterDisplayName": "Jeremiah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1050_calm_peaceful_short_traditional_kjv",
@@ -6929,7 +7451,10 @@
       "reflectionQuestion": "The vessel was marred and the potter made it again. What does it feel like to be reshaped by hands you cannot see but have chosen to trust?",
       "bibleSourceRef": "Jeremiah 18:1-6",
       "bibleStoryKey": "potter_and_clay",
-      "scriptureTextFilePath": "traditional/1050/scripture_1050_kjv.txt"
+      "scriptureTextFilePath": "traditional/1050/scripture_1050_kjv.txt",
+      "primaryCharacterId": "jeremiah",
+      "primaryCharacterDisplayName": "Jeremiah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1050_calm_peaceful_full_traditional_kjv",
@@ -6950,7 +7475,10 @@
       "reflectionQuestion": "The vessel was marred and the potter made it again. What does it feel like to be reshaped by hands you cannot see but have chosen to trust?",
       "bibleSourceRef": "Jeremiah 18:1-6",
       "bibleStoryKey": "potter_and_clay",
-      "scriptureTextFilePath": "traditional/1050/scripture_1050_kjv.txt"
+      "scriptureTextFilePath": "traditional/1050/scripture_1050_kjv.txt",
+      "primaryCharacterId": "jeremiah",
+      "primaryCharacterDisplayName": "Jeremiah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1051_encouraging_short_traditional",
@@ -6972,7 +7500,10 @@
       "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole — and what would it take to say 'let us build'?",
       "bibleSourceRef": "Nehemiah 2:1-18",
       "bibleStoryKey": "nehemiah_rebuilds_the_wall",
-      "scriptureTextFilePath": "traditional/1051/scripture_1051_web.txt"
+      "scriptureTextFilePath": "traditional/1051/scripture_1051_web.txt",
+      "primaryCharacterId": "nehemiah",
+      "primaryCharacterDisplayName": "Nehemiah",
+      "timelineEra": "return"
     },
     {
       "storyId": "story_1051_encouraging_full_traditional",
@@ -6994,7 +7525,10 @@
       "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole — and what would it take to say 'let us build'?",
       "bibleSourceRef": "Nehemiah 2:1-18",
       "bibleStoryKey": "nehemiah_rebuilds_the_wall",
-      "scriptureTextFilePath": "traditional/1051/scripture_1051_web.txt"
+      "scriptureTextFilePath": "traditional/1051/scripture_1051_web.txt",
+      "primaryCharacterId": "nehemiah",
+      "primaryCharacterDisplayName": "Nehemiah",
+      "timelineEra": "return"
     },
     {
       "storyId": "story_1051_encouraging_short_traditional_kjv",
@@ -7016,7 +7550,10 @@
       "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole — and what would it take to say 'let us build'?",
       "bibleSourceRef": "Nehemiah 2:1-18",
       "bibleStoryKey": "nehemiah_rebuilds_the_wall",
-      "scriptureTextFilePath": "traditional/1051/scripture_1051_kjv.txt"
+      "scriptureTextFilePath": "traditional/1051/scripture_1051_kjv.txt",
+      "primaryCharacterId": "nehemiah",
+      "primaryCharacterDisplayName": "Nehemiah",
+      "timelineEra": "return"
     },
     {
       "storyId": "story_1051_encouraging_full_traditional_kjv",
@@ -7038,7 +7575,10 @@
       "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole — and what would it take to say 'let us build'?",
       "bibleSourceRef": "Nehemiah 2:1-18",
       "bibleStoryKey": "nehemiah_rebuilds_the_wall",
-      "scriptureTextFilePath": "traditional/1051/scripture_1051_kjv.txt"
+      "scriptureTextFilePath": "traditional/1051/scripture_1051_kjv.txt",
+      "primaryCharacterId": "nehemiah",
+      "primaryCharacterDisplayName": "Nehemiah",
+      "timelineEra": "return"
     },
     {
       "storyId": "story_1052_grateful_short_traditional",
@@ -7060,7 +7600,10 @@
       "reflectionQuestion": "A prince gave away everything that marked him as royalty to a shepherd he had just met. What moves a person to hand over their identity to someone else?",
       "bibleSourceRef": "1 Samuel 18:1-4",
       "bibleStoryKey": "david_and_jonathan",
-      "scriptureTextFilePath": "traditional/1052/scripture_1052_web.txt"
+      "scriptureTextFilePath": "traditional/1052/scripture_1052_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1052_grateful_full_traditional",
@@ -7082,7 +7625,10 @@
       "reflectionQuestion": "A prince gave away everything that marked him as royalty to a shepherd he had just met. What moves a person to hand over their identity to someone else?",
       "bibleSourceRef": "1 Samuel 18:1-4",
       "bibleStoryKey": "david_and_jonathan",
-      "scriptureTextFilePath": "traditional/1052/scripture_1052_web.txt"
+      "scriptureTextFilePath": "traditional/1052/scripture_1052_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1052_grateful_short_traditional_kjv",
@@ -7104,7 +7650,10 @@
       "reflectionQuestion": "A prince gave away everything that marked him as royalty to a shepherd he had just met. What moves a person to hand over their identity to someone else?",
       "bibleSourceRef": "1 Samuel 18:1-4",
       "bibleStoryKey": "david_and_jonathan",
-      "scriptureTextFilePath": "traditional/1052/scripture_1052_kjv.txt"
+      "scriptureTextFilePath": "traditional/1052/scripture_1052_kjv.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1052_grateful_full_traditional_kjv",
@@ -7126,7 +7675,10 @@
       "reflectionQuestion": "A prince gave away everything that marked him as royalty to a shepherd he had just met. What moves a person to hand over their identity to someone else?",
       "bibleSourceRef": "1 Samuel 18:1-4",
       "bibleStoryKey": "david_and_jonathan",
-      "scriptureTextFilePath": "traditional/1052/scripture_1052_kjv.txt"
+      "scriptureTextFilePath": "traditional/1052/scripture_1052_kjv.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1053_hurting_short_traditional",
@@ -7148,7 +7700,10 @@
       "reflectionQuestion": "He expected fire and spectacle but was told to wash in a muddy river. What happens when the answer to your deepest need looks nothing like what you imagined?",
       "bibleSourceRef": "2 Kings 5:1-14",
       "bibleStoryKey": "naaman_healed",
-      "scriptureTextFilePath": "traditional/1053/scripture_1053_web.txt"
+      "scriptureTextFilePath": "traditional/1053/scripture_1053_web.txt",
+      "primaryCharacterId": "naaman",
+      "primaryCharacterDisplayName": "Naaman",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1053_hurting_full_traditional",
@@ -7170,7 +7725,10 @@
       "reflectionQuestion": "He expected fire and spectacle but was told to wash in a muddy river. What happens when the answer to your deepest need looks nothing like what you imagined?",
       "bibleSourceRef": "2 Kings 5:1-14",
       "bibleStoryKey": "naaman_healed",
-      "scriptureTextFilePath": "traditional/1053/scripture_1053_web.txt"
+      "scriptureTextFilePath": "traditional/1053/scripture_1053_web.txt",
+      "primaryCharacterId": "naaman",
+      "primaryCharacterDisplayName": "Naaman",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1053_hurting_short_traditional_kjv",
@@ -7192,7 +7750,10 @@
       "reflectionQuestion": "He expected fire and spectacle but was told to wash in a muddy river. What happens when the answer to your deepest need looks nothing like what you imagined?",
       "bibleSourceRef": "2 Kings 5:1-14",
       "bibleStoryKey": "naaman_healed",
-      "scriptureTextFilePath": "traditional/1053/scripture_1053_kjv.txt"
+      "scriptureTextFilePath": "traditional/1053/scripture_1053_kjv.txt",
+      "primaryCharacterId": "naaman",
+      "primaryCharacterDisplayName": "Naaman",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1053_hurting_full_traditional_kjv",
@@ -7214,7 +7775,10 @@
       "reflectionQuestion": "He expected fire and spectacle but was told to wash in a muddy river. What happens when the answer to your deepest need looks nothing like what you imagined?",
       "bibleSourceRef": "2 Kings 5:1-14",
       "bibleStoryKey": "naaman_healed",
-      "scriptureTextFilePath": "traditional/1053/scripture_1053_kjv.txt"
+      "scriptureTextFilePath": "traditional/1053/scripture_1053_kjv.txt",
+      "primaryCharacterId": "naaman",
+      "primaryCharacterDisplayName": "Naaman",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1054_joyful_short_traditional",
@@ -7236,7 +7800,10 @@
       "reflectionQuestion": "He expected judgment and received a seat at the table. When has kindness arrived in a place where you only expected to be forgotten?",
       "bibleSourceRef": "2 Samuel 9:1-13",
       "bibleStoryKey": "david_and_mephibosheth",
-      "scriptureTextFilePath": "traditional/1054/scripture_1054_web.txt"
+      "scriptureTextFilePath": "traditional/1054/scripture_1054_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1054_joyful_full_traditional",
@@ -7258,7 +7825,10 @@
       "reflectionQuestion": "He expected judgment and received a seat at the table. When has kindness arrived in a place where you only expected to be forgotten?",
       "bibleSourceRef": "2 Samuel 9:1-13",
       "bibleStoryKey": "david_and_mephibosheth",
-      "scriptureTextFilePath": "traditional/1054/scripture_1054_web.txt"
+      "scriptureTextFilePath": "traditional/1054/scripture_1054_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1054_joyful_short_traditional_kjv",
@@ -7280,7 +7850,10 @@
       "reflectionQuestion": "He expected judgment and received a seat at the table. When has kindness arrived in a place where you only expected to be forgotten?",
       "bibleSourceRef": "2 Samuel 9:1-13",
       "bibleStoryKey": "david_and_mephibosheth",
-      "scriptureTextFilePath": "traditional/1054/scripture_1054_kjv.txt"
+      "scriptureTextFilePath": "traditional/1054/scripture_1054_kjv.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1054_joyful_full_traditional_kjv",
@@ -7302,7 +7875,10 @@
       "reflectionQuestion": "He expected judgment and received a seat at the table. When has kindness arrived in a place where you only expected to be forgotten?",
       "bibleSourceRef": "2 Samuel 9:1-13",
       "bibleStoryKey": "david_and_mephibosheth",
-      "scriptureTextFilePath": "traditional/1054/scripture_1054_kjv.txt"
+      "scriptureTextFilePath": "traditional/1054/scripture_1054_kjv.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1055_weary_short_traditional",
@@ -7325,7 +7901,10 @@
       "reflectionQuestion": "Everything was taken in a single afternoon — the animals, the servants, the children. What remains when everything you built is gone and the only thing left is the ground beneath you?",
       "bibleSourceRef": "Job 1:1-22",
       "bibleStoryKey": "job_tested",
-      "scriptureTextFilePath": "traditional/1055/scripture_1055_web.txt"
+      "scriptureTextFilePath": "traditional/1055/scripture_1055_web.txt",
+      "primaryCharacterId": "job",
+      "primaryCharacterDisplayName": "Job",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1055_weary_full_traditional",
@@ -7348,7 +7927,10 @@
       "reflectionQuestion": "Everything was taken in a single afternoon — the animals, the servants, the children. What remains when everything you built is gone and the only thing left is the ground beneath you?",
       "bibleSourceRef": "Job 1:1-22",
       "bibleStoryKey": "job_tested",
-      "scriptureTextFilePath": "traditional/1055/scripture_1055_web.txt"
+      "scriptureTextFilePath": "traditional/1055/scripture_1055_web.txt",
+      "primaryCharacterId": "job",
+      "primaryCharacterDisplayName": "Job",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1055_weary_short_traditional_kjv",
@@ -7371,7 +7953,10 @@
       "reflectionQuestion": "Everything was taken in a single afternoon — the animals, the servants, the children. What remains when everything you built is gone and the only thing left is the ground beneath you?",
       "bibleSourceRef": "Job 1:1-22",
       "bibleStoryKey": "job_tested",
-      "scriptureTextFilePath": "traditional/1055/scripture_1055_kjv.txt"
+      "scriptureTextFilePath": "traditional/1055/scripture_1055_kjv.txt",
+      "primaryCharacterId": "job",
+      "primaryCharacterDisplayName": "Job",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1055_weary_full_traditional_kjv",
@@ -7394,7 +7979,10 @@
       "reflectionQuestion": "Everything was taken in a single afternoon — the animals, the servants, the children. What remains when everything you built is gone and the only thing left is the ground beneath you?",
       "bibleSourceRef": "Job 1:1-22",
       "bibleStoryKey": "job_tested",
-      "scriptureTextFilePath": "traditional/1055/scripture_1055_kjv.txt"
+      "scriptureTextFilePath": "traditional/1055/scripture_1055_kjv.txt",
+      "primaryCharacterId": "job",
+      "primaryCharacterDisplayName": "Job",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1056_anxious_short_kid_traditional",
@@ -7416,7 +8004,10 @@
       "reflectionQuestion": "The sea was in front of them and the army was behind them. Have you ever been stuck in a scary place with no way out, and then someone helped you in a way you didn't expect?",
       "bibleSourceRef": "Exodus 14:10-31",
       "bibleStoryKey": "crossing_the_red_sea",
-      "scriptureTextFilePath": "traditional/1056/scripture_1056_web.txt"
+      "scriptureTextFilePath": "traditional/1056/scripture_1056_web.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1056_anxious_full_kid_traditional",
@@ -7438,7 +8029,10 @@
       "reflectionQuestion": "The sea was in front of them and the army was behind them. Have you ever been stuck in a scary place with no way out, and then someone helped you in a way you didn't expect?",
       "bibleSourceRef": "Exodus 14:10-31",
       "bibleStoryKey": "crossing_the_red_sea",
-      "scriptureTextFilePath": "traditional/1056/scripture_1056_web.txt"
+      "scriptureTextFilePath": "traditional/1056/scripture_1056_web.txt",
+      "primaryCharacterId": "moses",
+      "primaryCharacterDisplayName": "Moses",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1057_brave_courage_short_kid_traditional",
@@ -7460,7 +8054,10 @@
       "reflectionQuestion": "Caleb saw the same giants as everyone else but he wasn't afraid. Have you ever had to be the one person who believed something good when everyone else was scared?",
       "bibleSourceRef": "Numbers 13:25-33",
       "bibleStoryKey": "spies_return_from_canaan",
-      "scriptureTextFilePath": "traditional/1057/scripture_1057_web.txt"
+      "scriptureTextFilePath": "traditional/1057/scripture_1057_web.txt",
+      "primaryCharacterId": "caleb",
+      "primaryCharacterDisplayName": "Caleb",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1057_brave_courage_full_kid_traditional",
@@ -7482,7 +8079,10 @@
       "reflectionQuestion": "Caleb saw the same giants as everyone else but he wasn't afraid. Have you ever had to be the one person who believed something good when everyone else was scared?",
       "bibleSourceRef": "Numbers 13:25-33",
       "bibleStoryKey": "spies_return_from_canaan",
-      "scriptureTextFilePath": "traditional/1057/scripture_1057_web.txt"
+      "scriptureTextFilePath": "traditional/1057/scripture_1057_web.txt",
+      "primaryCharacterId": "caleb",
+      "primaryCharacterDisplayName": "Caleb",
+      "timelineEra": "exodus"
     },
     {
       "storyId": "story_1058_calm_peaceful_short_kid_traditional",
@@ -7503,7 +8103,10 @@
       "reflectionQuestion": "The potter didn't throw the clay away when it broke — he made it into something new. Have you ever felt broken and then been surprised that something good still came from it?",
       "bibleSourceRef": "Jeremiah 18:1-6",
       "bibleStoryKey": "potter_and_clay",
-      "scriptureTextFilePath": "traditional/1058/scripture_1058_web.txt"
+      "scriptureTextFilePath": "traditional/1058/scripture_1058_web.txt",
+      "primaryCharacterId": "jeremiah",
+      "primaryCharacterDisplayName": "Jeremiah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1058_calm_peaceful_full_kid_traditional",
@@ -7524,7 +8127,10 @@
       "reflectionQuestion": "The potter didn't throw the clay away when it broke — he made it into something new. Have you ever felt broken and then been surprised that something good still came from it?",
       "bibleSourceRef": "Jeremiah 18:1-6",
       "bibleStoryKey": "potter_and_clay",
-      "scriptureTextFilePath": "traditional/1058/scripture_1058_web.txt"
+      "scriptureTextFilePath": "traditional/1058/scripture_1058_web.txt",
+      "primaryCharacterId": "jeremiah",
+      "primaryCharacterDisplayName": "Jeremiah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1059_encouraging_short_kid_traditional",
@@ -7546,7 +8152,10 @@
       "reflectionQuestion": "Nehemiah was afraid to ask the king but he asked anyway. Have you ever been scared to ask for something important — and then found out the answer was yes?",
       "bibleSourceRef": "Nehemiah 2:1-18",
       "bibleStoryKey": "nehemiah_rebuilds_the_wall",
-      "scriptureTextFilePath": "traditional/1059/scripture_1059_web.txt"
+      "scriptureTextFilePath": "traditional/1059/scripture_1059_web.txt",
+      "primaryCharacterId": "nehemiah",
+      "primaryCharacterDisplayName": "Nehemiah",
+      "timelineEra": "return"
     },
     {
       "storyId": "story_1059_encouraging_full_kid_traditional",
@@ -7568,7 +8177,10 @@
       "reflectionQuestion": "Nehemiah was afraid to ask the king but he asked anyway. Have you ever been scared to ask for something important — and then found out the answer was yes?",
       "bibleSourceRef": "Nehemiah 2:1-18",
       "bibleStoryKey": "nehemiah_rebuilds_the_wall",
-      "scriptureTextFilePath": "traditional/1059/scripture_1059_web.txt"
+      "scriptureTextFilePath": "traditional/1059/scripture_1059_web.txt",
+      "primaryCharacterId": "nehemiah",
+      "primaryCharacterDisplayName": "Nehemiah",
+      "timelineEra": "return"
     },
     {
       "storyId": "story_1060_grateful_short_kid_traditional",
@@ -7590,7 +8202,10 @@
       "reflectionQuestion": "Jonathan gave away everything that made him a prince — just because his heart told him to. What is the most generous thing someone has ever done for you? What made it special?",
       "bibleSourceRef": "1 Samuel 18:1-4",
       "bibleStoryKey": "david_and_jonathan",
-      "scriptureTextFilePath": "traditional/1060/scripture_1060_web.txt"
+      "scriptureTextFilePath": "traditional/1060/scripture_1060_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1060_grateful_full_kid_traditional",
@@ -7612,7 +8227,10 @@
       "reflectionQuestion": "Jonathan gave away everything that made him a prince — just because his heart told him to. What is the most generous thing someone has ever done for you? What made it special?",
       "bibleSourceRef": "1 Samuel 18:1-4",
       "bibleStoryKey": "david_and_jonathan",
-      "scriptureTextFilePath": "traditional/1060/scripture_1060_web.txt"
+      "scriptureTextFilePath": "traditional/1060/scripture_1060_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1061_hurting_short_kid_traditional",
@@ -7634,7 +8252,10 @@
       "reflectionQuestion": "Naaman wanted something big and impressive, but the answer was simple and small. Have you ever been surprised that the right answer was easier than you expected?",
       "bibleSourceRef": "2 Kings 5:1-14",
       "bibleStoryKey": "naaman_healed",
-      "scriptureTextFilePath": "traditional/1061/scripture_1061_web.txt"
+      "scriptureTextFilePath": "traditional/1061/scripture_1061_web.txt",
+      "primaryCharacterId": "naaman",
+      "primaryCharacterDisplayName": "Naaman",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1061_hurting_full_kid_traditional",
@@ -7656,7 +8277,10 @@
       "reflectionQuestion": "Naaman wanted something big and impressive, but the answer was simple and small. Have you ever been surprised that the right answer was easier than you expected?",
       "bibleSourceRef": "2 Kings 5:1-14",
       "bibleStoryKey": "naaman_healed",
-      "scriptureTextFilePath": "traditional/1061/scripture_1061_web.txt"
+      "scriptureTextFilePath": "traditional/1061/scripture_1061_web.txt",
+      "primaryCharacterId": "naaman",
+      "primaryCharacterDisplayName": "Naaman",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1062_joyful_short_kid_traditional",
@@ -7678,7 +8302,10 @@
       "reflectionQuestion": "Mephibosheth thought he was nobody, but the king gave him a seat at his own table. Have you ever felt like you didn't belong somewhere, and then someone made you feel welcome anyway?",
       "bibleSourceRef": "2 Samuel 9:1-13",
       "bibleStoryKey": "david_and_mephibosheth",
-      "scriptureTextFilePath": "traditional/1062/scripture_1062_web.txt"
+      "scriptureTextFilePath": "traditional/1062/scripture_1062_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1062_joyful_full_kid_traditional",
@@ -7700,7 +8327,10 @@
       "reflectionQuestion": "Mephibosheth thought he was nobody, but the king gave him a seat at his own table. Have you ever felt like you didn't belong somewhere, and then someone made you feel welcome anyway?",
       "bibleSourceRef": "2 Samuel 9:1-13",
       "bibleStoryKey": "david_and_mephibosheth",
-      "scriptureTextFilePath": "traditional/1062/scripture_1062_web.txt"
+      "scriptureTextFilePath": "traditional/1062/scripture_1062_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1063_weary_short_kid_traditional",
@@ -7723,7 +8353,10 @@
       "reflectionQuestion": "Job lost everything in one day — his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?",
       "bibleSourceRef": "Job 1:1-22",
       "bibleStoryKey": "job_tested",
-      "scriptureTextFilePath": "traditional/1063/scripture_1063_web.txt"
+      "scriptureTextFilePath": "traditional/1063/scripture_1063_web.txt",
+      "primaryCharacterId": "job",
+      "primaryCharacterDisplayName": "Job",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1063_weary_full_kid_traditional",
@@ -7746,7 +8379,10 @@
       "reflectionQuestion": "Job lost everything in one day — his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?",
       "bibleSourceRef": "Job 1:1-22",
       "bibleStoryKey": "job_tested",
-      "scriptureTextFilePath": "traditional/1063/scripture_1063_web.txt"
+      "scriptureTextFilePath": "traditional/1063/scripture_1063_web.txt",
+      "primaryCharacterId": "job",
+      "primaryCharacterDisplayName": "Job",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1064_anxious_short_traditional",
@@ -7768,7 +8404,10 @@
       "reflectionQuestion": "When you think about the moments in your own life where you felt surrounded and outnumbered by forces beyond your control, what might it mean to consider that there could be something present in that situation that you simply couldn't yet see?",
       "bibleSourceRef": "2 Kings 6:8-23",
       "bibleStoryKey": "elisha_and_the_army",
-      "scriptureTextFilePath": "traditional/1064/scripture_1064_web.txt"
+      "scriptureTextFilePath": "traditional/1064/scripture_1064_web.txt",
+      "primaryCharacterId": "elisha",
+      "primaryCharacterDisplayName": "Elisha",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1064_anxious_full_traditional",
@@ -7790,7 +8429,10 @@
       "reflectionQuestion": "When you think about the moments in your own life where you felt surrounded and outnumbered by forces beyond your control, what might it mean to consider that there could be something present in that situation that you simply couldn't yet see?",
       "bibleSourceRef": "2 Kings 6:8-23",
       "bibleStoryKey": "elisha_and_the_army",
-      "scriptureTextFilePath": "traditional/1064/scripture_1064_web.txt"
+      "scriptureTextFilePath": "traditional/1064/scripture_1064_web.txt",
+      "primaryCharacterId": "elisha",
+      "primaryCharacterDisplayName": "Elisha",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1064_anxious_long_traditional",
@@ -7812,7 +8454,10 @@
       "reflectionQuestion": "When you think about the moments in your own life where you felt surrounded and outnumbered by forces beyond your control, what might it mean to consider that there could be something present in that situation that you simply couldn't yet see?",
       "bibleSourceRef": "2 Kings 6:8-23",
       "bibleStoryKey": "elisha_and_the_army",
-      "scriptureTextFilePath": "traditional/1064/scripture_1064_web.txt"
+      "scriptureTextFilePath": "traditional/1064/scripture_1064_web.txt",
+      "primaryCharacterId": "elisha",
+      "primaryCharacterDisplayName": "Elisha",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1064_anxious_short_traditional_kjv",
@@ -7834,7 +8479,10 @@
       "reflectionQuestion": "When you think about the moments in your own life where you felt surrounded and outnumbered by forces beyond your control, what might it mean to consider that there could be something present in that situation that you simply couldn't yet see?",
       "bibleSourceRef": "2 Kings 6:8-23",
       "bibleStoryKey": "elisha_and_the_army",
-      "scriptureTextFilePath": "traditional/1064/scripture_1064_kjv.txt"
+      "scriptureTextFilePath": "traditional/1064/scripture_1064_kjv.txt",
+      "primaryCharacterId": "elisha",
+      "primaryCharacterDisplayName": "Elisha",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1064_anxious_full_traditional_kjv",
@@ -7856,7 +8504,10 @@
       "reflectionQuestion": "When you think about the moments in your own life where you felt surrounded and outnumbered by forces beyond your control, what might it mean to consider that there could be something present in that situation that you simply couldn't yet see?",
       "bibleSourceRef": "2 Kings 6:8-23",
       "bibleStoryKey": "elisha_and_the_army",
-      "scriptureTextFilePath": "traditional/1064/scripture_1064_kjv.txt"
+      "scriptureTextFilePath": "traditional/1064/scripture_1064_kjv.txt",
+      "primaryCharacterId": "elisha",
+      "primaryCharacterDisplayName": "Elisha",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1065_brave_courage_short_traditional",
@@ -7878,7 +8529,10 @@
       "reflectionQuestion": "When you think about a moment in your own life where you stood alone in what you believed to be true — with no guarantee of how things would turn out — what gave you the courage to stay, and what did that cost you?",
       "bibleSourceRef": "1 Kings 18:20-39",
       "bibleStoryKey": "elijah_on_mount_carmel",
-      "scriptureTextFilePath": "traditional/1065/scripture_1065_web.txt"
+      "scriptureTextFilePath": "traditional/1065/scripture_1065_web.txt",
+      "primaryCharacterId": "elijah",
+      "primaryCharacterDisplayName": "Elijah",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1065_brave_courage_full_traditional",
@@ -7900,7 +8554,10 @@
       "reflectionQuestion": "When you think about a moment in your own life where you stood alone in what you believed to be true — with no guarantee of how things would turn out — what gave you the courage to stay, and what did that cost you?",
       "bibleSourceRef": "1 Kings 18:20-39",
       "bibleStoryKey": "elijah_on_mount_carmel",
-      "scriptureTextFilePath": "traditional/1065/scripture_1065_web.txt"
+      "scriptureTextFilePath": "traditional/1065/scripture_1065_web.txt",
+      "primaryCharacterId": "elijah",
+      "primaryCharacterDisplayName": "Elijah",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1065_brave_courage_long_traditional",
@@ -7922,7 +8579,10 @@
       "reflectionQuestion": "When you think about a moment in your own life where you stood alone in what you believed to be true — with no guarantee of how things would turn out — what gave you the courage to stay, and what did that cost you?",
       "bibleSourceRef": "1 Kings 18:20-39",
       "bibleStoryKey": "elijah_on_mount_carmel",
-      "scriptureTextFilePath": "traditional/1065/scripture_1065_web.txt"
+      "scriptureTextFilePath": "traditional/1065/scripture_1065_web.txt",
+      "primaryCharacterId": "elijah",
+      "primaryCharacterDisplayName": "Elijah",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1065_brave_courage_short_traditional_kjv",
@@ -7944,7 +8604,10 @@
       "reflectionQuestion": "When you think about a moment in your own life where you stood alone in what you believed to be true — with no guarantee of how things would turn out — what gave you the courage to stay, and what did that cost you?",
       "bibleSourceRef": "1 Kings 18:20-39",
       "bibleStoryKey": "elijah_on_mount_carmel",
-      "scriptureTextFilePath": "traditional/1065/scripture_1065_kjv.txt"
+      "scriptureTextFilePath": "traditional/1065/scripture_1065_kjv.txt",
+      "primaryCharacterId": "elijah",
+      "primaryCharacterDisplayName": "Elijah",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1065_brave_courage_full_traditional_kjv",
@@ -7966,7 +8629,10 @@
       "reflectionQuestion": "When you think about a moment in your own life where you stood alone in what you believed to be true — with no guarantee of how things would turn out — what gave you the courage to stay, and what did that cost you?",
       "bibleSourceRef": "1 Kings 18:20-39",
       "bibleStoryKey": "elijah_on_mount_carmel",
-      "scriptureTextFilePath": "traditional/1065/scripture_1065_kjv.txt"
+      "scriptureTextFilePath": "traditional/1065/scripture_1065_kjv.txt",
+      "primaryCharacterId": "elijah",
+      "primaryCharacterDisplayName": "Elijah",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1066_calm_peaceful_short_traditional",
@@ -7988,7 +8654,10 @@
       "reflectionQuestion": "What would it feel like to release, even for a moment, the weight of tomorrow's worries and simply trust that you are already held by something larger than yourself?",
       "bibleSourceRef": "Matthew 6:25-34",
       "bibleStoryKey": "do_not_worry",
-      "scriptureTextFilePath": "traditional/1066/scripture_1066_web.txt"
+      "scriptureTextFilePath": "traditional/1066/scripture_1066_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1066_calm_peaceful_full_traditional",
@@ -8010,7 +8679,10 @@
       "reflectionQuestion": "What would it feel like to release, even for a moment, the weight of tomorrow's worries and simply trust that you are already held by something larger than yourself?",
       "bibleSourceRef": "Matthew 6:25-34",
       "bibleStoryKey": "do_not_worry",
-      "scriptureTextFilePath": "traditional/1066/scripture_1066_web.txt"
+      "scriptureTextFilePath": "traditional/1066/scripture_1066_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1066_calm_peaceful_short_traditional_kjv",
@@ -8032,7 +8704,10 @@
       "reflectionQuestion": "What would it feel like to release, even for a moment, the weight of tomorrow's worries and simply trust that you are already held by something larger than yourself?",
       "bibleSourceRef": "Matthew 6:25-34",
       "bibleStoryKey": "do_not_worry",
-      "scriptureTextFilePath": "traditional/1066/scripture_1066_kjv.txt"
+      "scriptureTextFilePath": "traditional/1066/scripture_1066_kjv.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1066_calm_peaceful_full_traditional_kjv",
@@ -8054,7 +8729,10 @@
       "reflectionQuestion": "What would it feel like to release, even for a moment, the weight of tomorrow's worries and simply trust that you are already held by something larger than yourself?",
       "bibleSourceRef": "Matthew 6:25-34",
       "bibleStoryKey": "do_not_worry",
-      "scriptureTextFilePath": "traditional/1066/scripture_1066_kjv.txt"
+      "scriptureTextFilePath": "traditional/1066/scripture_1066_kjv.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1067_encouraging_short_traditional",
@@ -8076,7 +8754,10 @@
       "reflectionQuestion": "What would it be like to be fully seen—every hidden and imperfect part of you laid bare—and to find that the response waiting for you is not rejection, but an invitation?",
       "bibleSourceRef": "Isaiah 6:1-8",
       "bibleStoryKey": "isaiahs_vision",
-      "scriptureTextFilePath": "traditional/1067/scripture_1067_web.txt"
+      "scriptureTextFilePath": "traditional/1067/scripture_1067_web.txt",
+      "primaryCharacterId": "isaiah",
+      "primaryCharacterDisplayName": "Isaiah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1067_encouraging_full_traditional",
@@ -8098,7 +8779,10 @@
       "reflectionQuestion": "What would it be like to be fully seen—every hidden and imperfect part of you laid bare—and to find that the response waiting for you is not rejection, but an invitation?",
       "bibleSourceRef": "Isaiah 6:1-8",
       "bibleStoryKey": "isaiahs_vision",
-      "scriptureTextFilePath": "traditional/1067/scripture_1067_web.txt"
+      "scriptureTextFilePath": "traditional/1067/scripture_1067_web.txt",
+      "primaryCharacterId": "isaiah",
+      "primaryCharacterDisplayName": "Isaiah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1067_encouraging_short_traditional_kjv",
@@ -8120,7 +8804,10 @@
       "reflectionQuestion": "What would it be like to be fully seen—every hidden and imperfect part of you laid bare—and to find that the response waiting for you is not rejection, but an invitation?",
       "bibleSourceRef": "Isaiah 6:1-8",
       "bibleStoryKey": "isaiahs_vision",
-      "scriptureTextFilePath": "traditional/1067/scripture_1067_kjv.txt"
+      "scriptureTextFilePath": "traditional/1067/scripture_1067_kjv.txt",
+      "primaryCharacterId": "isaiah",
+      "primaryCharacterDisplayName": "Isaiah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1067_encouraging_full_traditional_kjv",
@@ -8142,7 +8829,10 @@
       "reflectionQuestion": "What would it be like to be fully seen—every hidden and imperfect part of you laid bare—and to find that the response waiting for you is not rejection, but an invitation?",
       "bibleSourceRef": "Isaiah 6:1-8",
       "bibleStoryKey": "isaiahs_vision",
-      "scriptureTextFilePath": "traditional/1067/scripture_1067_kjv.txt"
+      "scriptureTextFilePath": "traditional/1067/scripture_1067_kjv.txt",
+      "primaryCharacterId": "isaiah",
+      "primaryCharacterDisplayName": "Isaiah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1068_grateful_short_traditional",
@@ -8164,7 +8854,10 @@
       "reflectionQuestion": "When you think about a time you received back something you thought was lost forever—whether a relationship, a sense of purpose, or a part of yourself—what did that restoration stir in you that simple relief alone cannot explain?",
       "bibleSourceRef": "Job 42:1-17",
       "bibleStoryKey": "job_restored",
-      "scriptureTextFilePath": "traditional/1068/scripture_1068_web.txt"
+      "scriptureTextFilePath": "traditional/1068/scripture_1068_web.txt",
+      "primaryCharacterId": "job",
+      "primaryCharacterDisplayName": "Job",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1068_grateful_full_traditional",
@@ -8186,7 +8879,10 @@
       "reflectionQuestion": "When you think about a time you received back something you thought was lost forever—whether a relationship, a sense of purpose, or a part of yourself—what did that restoration stir in you that simple relief alone cannot explain?",
       "bibleSourceRef": "Job 42:1-17",
       "bibleStoryKey": "job_restored",
-      "scriptureTextFilePath": "traditional/1068/scripture_1068_web.txt"
+      "scriptureTextFilePath": "traditional/1068/scripture_1068_web.txt",
+      "primaryCharacterId": "job",
+      "primaryCharacterDisplayName": "Job",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1068_grateful_short_traditional_kjv",
@@ -8208,7 +8904,10 @@
       "reflectionQuestion": "When you think about a time you received back something you thought was lost forever—whether a relationship, a sense of purpose, or a part of yourself—what did that restoration stir in you that simple relief alone cannot explain?",
       "bibleSourceRef": "Job 42:1-17",
       "bibleStoryKey": "job_restored",
-      "scriptureTextFilePath": "traditional/1068/scripture_1068_kjv.txt"
+      "scriptureTextFilePath": "traditional/1068/scripture_1068_kjv.txt",
+      "primaryCharacterId": "job",
+      "primaryCharacterDisplayName": "Job",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1068_grateful_full_traditional_kjv",
@@ -8230,7 +8929,10 @@
       "reflectionQuestion": "When you think about a time you received back something you thought was lost forever—whether a relationship, a sense of purpose, or a part of yourself—what did that restoration stir in you that simple relief alone cannot explain?",
       "bibleSourceRef": "Job 42:1-17",
       "bibleStoryKey": "job_restored",
-      "scriptureTextFilePath": "traditional/1068/scripture_1068_kjv.txt"
+      "scriptureTextFilePath": "traditional/1068/scripture_1068_kjv.txt",
+      "primaryCharacterId": "job",
+      "primaryCharacterDisplayName": "Job",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1069_hurting_short_traditional",
@@ -8252,7 +8954,10 @@
       "reflectionQuestion": "What does it feel like to be fully known — every hidden wound, every unspoken thought — and to wonder whether being that deeply seen is something you long for or something you fear?",
       "bibleSourceRef": "Psalm 139:1-18",
       "bibleStoryKey": "fearfully_and_wonderfully_made",
-      "scriptureTextFilePath": "traditional/1069/scripture_1069_web.txt"
+      "scriptureTextFilePath": "traditional/1069/scripture_1069_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1069_hurting_full_traditional",
@@ -8274,7 +8979,10 @@
       "reflectionQuestion": "What does it feel like to be fully known — every hidden wound, every unspoken thought — and to wonder whether being that deeply seen is something you long for or something you fear?",
       "bibleSourceRef": "Psalm 139:1-18",
       "bibleStoryKey": "fearfully_and_wonderfully_made",
-      "scriptureTextFilePath": "traditional/1069/scripture_1069_web.txt"
+      "scriptureTextFilePath": "traditional/1069/scripture_1069_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1069_hurting_short_traditional_kjv",
@@ -8296,7 +9004,10 @@
       "reflectionQuestion": "What does it feel like to be fully known — every hidden wound, every unspoken thought — and to wonder whether being that deeply seen is something you long for or something you fear?",
       "bibleSourceRef": "Psalm 139:1-18",
       "bibleStoryKey": "fearfully_and_wonderfully_made",
-      "scriptureTextFilePath": "traditional/1069/scripture_1069_kjv.txt"
+      "scriptureTextFilePath": "traditional/1069/scripture_1069_kjv.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1069_hurting_full_traditional_kjv",
@@ -8318,7 +9029,10 @@
       "reflectionQuestion": "What does it feel like to be fully known — every hidden wound, every unspoken thought — and to wonder whether being that deeply seen is something you long for or something you fear?",
       "bibleSourceRef": "Psalm 139:1-18",
       "bibleStoryKey": "fearfully_and_wonderfully_made",
-      "scriptureTextFilePath": "traditional/1069/scripture_1069_kjv.txt"
+      "scriptureTextFilePath": "traditional/1069/scripture_1069_kjv.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1070_joyful_short_traditional",
@@ -8340,7 +9054,10 @@
       "reflectionQuestion": "What is it that stirs in you when you imagine leaving behind everything familiar to follow a single, distant light — and what might that kind of trust feel like if you allowed it?",
       "bibleSourceRef": "Matthew 2:1-12",
       "bibleStoryKey": "the_magi",
-      "scriptureTextFilePath": "traditional/1070/scripture_1070_web.txt"
+      "scriptureTextFilePath": "traditional/1070/scripture_1070_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1070_joyful_full_traditional",
@@ -8362,7 +9079,10 @@
       "reflectionQuestion": "What is it that stirs in you when you imagine leaving behind everything familiar to follow a single, distant light — and what might that kind of trust feel like if you allowed it?",
       "bibleSourceRef": "Matthew 2:1-12",
       "bibleStoryKey": "the_magi",
-      "scriptureTextFilePath": "traditional/1070/scripture_1070_web.txt"
+      "scriptureTextFilePath": "traditional/1070/scripture_1070_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1070_joyful_short_traditional_kjv",
@@ -8384,7 +9104,10 @@
       "reflectionQuestion": "What is it that stirs in you when you imagine leaving behind everything familiar to follow a single, distant light — and what might that kind of trust feel like if you allowed it?",
       "bibleSourceRef": "Matthew 2:1-12",
       "bibleStoryKey": "the_magi",
-      "scriptureTextFilePath": "traditional/1070/scripture_1070_kjv.txt"
+      "scriptureTextFilePath": "traditional/1070/scripture_1070_kjv.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1070_joyful_full_traditional_kjv",
@@ -8406,7 +9129,10 @@
       "reflectionQuestion": "What is it that stirs in you when you imagine leaving behind everything familiar to follow a single, distant light — and what might that kind of trust feel like if you allowed it?",
       "bibleSourceRef": "Matthew 2:1-12",
       "bibleStoryKey": "the_magi",
-      "scriptureTextFilePath": "traditional/1070/scripture_1070_kjv.txt"
+      "scriptureTextFilePath": "traditional/1070/scripture_1070_kjv.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1071_weary_short_traditional",
@@ -8428,7 +9154,10 @@
       "reflectionQuestion": "What does it feel like in your body right now to consider that the promise of renewed strength was spoken not to those who were already soaring, but specifically to those who were tired?",
       "bibleSourceRef": "Isaiah 40:28-31",
       "bibleStoryKey": "wings_like_eagles",
-      "scriptureTextFilePath": "traditional/1071/scripture_1071_web.txt"
+      "scriptureTextFilePath": "traditional/1071/scripture_1071_web.txt",
+      "primaryCharacterId": "isaiah",
+      "primaryCharacterDisplayName": "Isaiah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1071_weary_full_traditional",
@@ -8450,7 +9179,10 @@
       "reflectionQuestion": "What does it feel like in your body right now to consider that the promise of renewed strength was spoken not to those who were already soaring, but specifically to those who were tired?",
       "bibleSourceRef": "Isaiah 40:28-31",
       "bibleStoryKey": "wings_like_eagles",
-      "scriptureTextFilePath": "traditional/1071/scripture_1071_web.txt"
+      "scriptureTextFilePath": "traditional/1071/scripture_1071_web.txt",
+      "primaryCharacterId": "isaiah",
+      "primaryCharacterDisplayName": "Isaiah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1071_weary_short_traditional_kjv",
@@ -8472,7 +9204,10 @@
       "reflectionQuestion": "What does it feel like in your body right now to consider that the promise of renewed strength was spoken not to those who were already soaring, but specifically to those who were tired?",
       "bibleSourceRef": "Isaiah 40:28-31",
       "bibleStoryKey": "wings_like_eagles",
-      "scriptureTextFilePath": "traditional/1071/scripture_1071_kjv.txt"
+      "scriptureTextFilePath": "traditional/1071/scripture_1071_kjv.txt",
+      "primaryCharacterId": "isaiah",
+      "primaryCharacterDisplayName": "Isaiah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1071_weary_full_traditional_kjv",
@@ -8494,7 +9229,10 @@
       "reflectionQuestion": "What does it feel like in your body right now to consider that the promise of renewed strength was spoken not to those who were already soaring, but specifically to those who were tired?",
       "bibleSourceRef": "Isaiah 40:28-31",
       "bibleStoryKey": "wings_like_eagles",
-      "scriptureTextFilePath": "traditional/1071/scripture_1071_kjv.txt"
+      "scriptureTextFilePath": "traditional/1071/scripture_1071_kjv.txt",
+      "primaryCharacterId": "isaiah",
+      "primaryCharacterDisplayName": "Isaiah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1072_anxious_short_kid_traditional",
@@ -8516,7 +9254,10 @@
       "reflectionQuestion": "How do you think Elisha's servant felt when he couldn't see the army protecting them, and have you ever felt scared before you realized someone was looking out for you?",
       "bibleSourceRef": "2 Kings 6:8-23",
       "bibleStoryKey": "elisha_and_the_army",
-      "scriptureTextFilePath": "traditional/1072/scripture_1072_web.txt"
+      "scriptureTextFilePath": "traditional/1072/scripture_1072_web.txt",
+      "primaryCharacterId": "elisha",
+      "primaryCharacterDisplayName": "Elisha",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1072_anxious_full_kid_traditional",
@@ -8538,7 +9279,10 @@
       "reflectionQuestion": "How do you think Elisha's servant felt when he couldn't see the army protecting them, and have you ever felt scared before you realized someone was looking out for you?",
       "bibleSourceRef": "2 Kings 6:8-23",
       "bibleStoryKey": "elisha_and_the_army",
-      "scriptureTextFilePath": "traditional/1072/scripture_1072_web.txt"
+      "scriptureTextFilePath": "traditional/1072/scripture_1072_web.txt",
+      "primaryCharacterId": "elisha",
+      "primaryCharacterDisplayName": "Elisha",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1073_brave_courage_short_kid_traditional",
@@ -8560,7 +9304,10 @@
       "reflectionQuestion": "What do you think it felt like for Elijah to stand all by himself and trust that God would answer him?",
       "bibleSourceRef": "1 Kings 18:20-39",
       "bibleStoryKey": "elijah_on_mount_carmel",
-      "scriptureTextFilePath": "traditional/1073/scripture_1073_web.txt"
+      "scriptureTextFilePath": "traditional/1073/scripture_1073_web.txt",
+      "primaryCharacterId": "elijah",
+      "primaryCharacterDisplayName": "Elijah",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1073_brave_courage_full_kid_traditional",
@@ -8582,7 +9329,10 @@
       "reflectionQuestion": "What do you think it felt like for Elijah to stand all by himself and trust that God would answer him?",
       "bibleSourceRef": "1 Kings 18:20-39",
       "bibleStoryKey": "elijah_on_mount_carmel",
-      "scriptureTextFilePath": "traditional/1073/scripture_1073_web.txt"
+      "scriptureTextFilePath": "traditional/1073/scripture_1073_web.txt",
+      "primaryCharacterId": "elijah",
+      "primaryCharacterDisplayName": "Elijah",
+      "timelineEra": "kingdom"
     },
     {
       "storyId": "story_1074_calm_peaceful_short_kid_traditional",
@@ -8604,7 +9354,10 @@
       "reflectionQuestion": "What helps you feel peaceful when you're worried about something that hasn't happened yet?",
       "bibleSourceRef": "Matthew 6:25-34",
       "bibleStoryKey": "do_not_worry",
-      "scriptureTextFilePath": "traditional/1074/scripture_1074_web.txt"
+      "scriptureTextFilePath": "traditional/1074/scripture_1074_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1074_calm_peaceful_full_kid_traditional",
@@ -8626,7 +9379,10 @@
       "reflectionQuestion": "What helps you feel peaceful when you're worried about something that hasn't happened yet?",
       "bibleSourceRef": "Matthew 6:25-34",
       "bibleStoryKey": "do_not_worry",
-      "scriptureTextFilePath": "traditional/1074/scripture_1074_web.txt"
+      "scriptureTextFilePath": "traditional/1074/scripture_1074_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1075_encouraging_short_kid_traditional",
@@ -8648,7 +9404,10 @@
       "reflectionQuestion": "What is something kind or helpful you could do if someone around you needed help today?",
       "bibleSourceRef": "Isaiah 6:1-8",
       "bibleStoryKey": "isaiahs_vision",
-      "scriptureTextFilePath": "traditional/1075/scripture_1075_web.txt"
+      "scriptureTextFilePath": "traditional/1075/scripture_1075_web.txt",
+      "primaryCharacterId": "isaiah",
+      "primaryCharacterDisplayName": "Isaiah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1075_encouraging_full_kid_traditional",
@@ -8670,7 +9429,10 @@
       "reflectionQuestion": "What is something kind or helpful you could do if someone around you needed help today?",
       "bibleSourceRef": "Isaiah 6:1-8",
       "bibleStoryKey": "isaiahs_vision",
-      "scriptureTextFilePath": "traditional/1075/scripture_1075_web.txt"
+      "scriptureTextFilePath": "traditional/1075/scripture_1075_web.txt",
+      "primaryCharacterId": "isaiah",
+      "primaryCharacterDisplayName": "Isaiah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1076_grateful_short_kid_traditional",
@@ -8692,7 +9454,10 @@
       "reflectionQuestion": "What is something you feel really thankful for today?",
       "bibleSourceRef": "Job 42:1-17",
       "bibleStoryKey": "job_restored",
-      "scriptureTextFilePath": "traditional/1076/scripture_1076_web.txt"
+      "scriptureTextFilePath": "traditional/1076/scripture_1076_web.txt",
+      "primaryCharacterId": "job",
+      "primaryCharacterDisplayName": "Job",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1076_grateful_full_kid_traditional",
@@ -8714,7 +9479,10 @@
       "reflectionQuestion": "What is something you feel really thankful for today?",
       "bibleSourceRef": "Job 42:1-17",
       "bibleStoryKey": "job_restored",
-      "scriptureTextFilePath": "traditional/1076/scripture_1076_web.txt"
+      "scriptureTextFilePath": "traditional/1076/scripture_1076_web.txt",
+      "primaryCharacterId": "job",
+      "primaryCharacterDisplayName": "Job",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1077_hurting_short_kid_traditional",
@@ -8736,7 +9504,10 @@
       "reflectionQuestion": "What is something that hurts inside you right now that you wish someone really understood?",
       "bibleSourceRef": "Psalm 139:1-18",
       "bibleStoryKey": "fearfully_and_wonderfully_made",
-      "scriptureTextFilePath": "traditional/1077/scripture_1077_web.txt"
+      "scriptureTextFilePath": "traditional/1077/scripture_1077_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1077_hurting_full_kid_traditional",
@@ -8758,7 +9529,10 @@
       "reflectionQuestion": "What is something that hurts inside you right now that you wish someone really understood?",
       "bibleSourceRef": "Psalm 139:1-18",
       "bibleStoryKey": "fearfully_and_wonderfully_made",
-      "scriptureTextFilePath": "traditional/1077/scripture_1077_web.txt"
+      "scriptureTextFilePath": "traditional/1077/scripture_1077_web.txt",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "timelineEra": "wisdom"
     },
     {
       "storyId": "story_1078_joyful_short_kid_traditional",
@@ -8780,7 +9554,10 @@
       "reflectionQuestion": "What made you feel happy inside as you listened to this story?",
       "bibleSourceRef": "Matthew 2:1-12",
       "bibleStoryKey": "the_magi",
-      "scriptureTextFilePath": "traditional/1078/scripture_1078_web.txt"
+      "scriptureTextFilePath": "traditional/1078/scripture_1078_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1078_joyful_full_kid_traditional",
@@ -8802,7 +9579,10 @@
       "reflectionQuestion": "What made you feel happy inside as you listened to this story?",
       "bibleSourceRef": "Matthew 2:1-12",
       "bibleStoryKey": "the_magi",
-      "scriptureTextFilePath": "traditional/1078/scripture_1078_web.txt"
+      "scriptureTextFilePath": "traditional/1078/scripture_1078_web.txt",
+      "primaryCharacterId": "jesus",
+      "primaryCharacterDisplayName": "Jesus",
+      "timelineEra": "jesus_ministry"
     },
     {
       "storyId": "story_1079_weary_short_kid_traditional",
@@ -8824,7 +9604,10 @@
       "reflectionQuestion": "Have you ever felt so tired that you wished someone strong could carry you for a while?",
       "bibleSourceRef": "Isaiah 40:28-31",
       "bibleStoryKey": "wings_like_eagles",
-      "scriptureTextFilePath": "traditional/1079/scripture_1079_web.txt"
+      "scriptureTextFilePath": "traditional/1079/scripture_1079_web.txt",
+      "primaryCharacterId": "isaiah",
+      "primaryCharacterDisplayName": "Isaiah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1079_weary_full_kid_traditional",
@@ -8846,7 +9629,10 @@
       "reflectionQuestion": "Have you ever felt so tired that you wished someone strong could carry you for a while?",
       "bibleSourceRef": "Isaiah 40:28-31",
       "bibleStoryKey": "wings_like_eagles",
-      "scriptureTextFilePath": "traditional/1079/scripture_1079_web.txt"
+      "scriptureTextFilePath": "traditional/1079/scripture_1079_web.txt",
+      "primaryCharacterId": "isaiah",
+      "primaryCharacterDisplayName": "Isaiah",
+      "timelineEra": "prophets"
     },
     {
       "storyId": "story_1083_hurting_short_traditional",
@@ -8899,8 +9685,8 @@
       "bibleSourceRef": "Luke 10:25-37",
       "bibleStoryKey": "good_samaritan",
       "scriptureTextFilePath": "traditional/1084/scripture_1084_web.txt",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
+      "primaryCharacterId": "good_samaritan",
+      "primaryCharacterDisplayName": "Good Samaritan",
       "bibleOrderIndex": 630,
       "timelineEra": "jesus_ministry",
       "themeTags": [
@@ -9138,8 +9924,8 @@
       "reflectionQuestion": "When was the last time you stopped for someone you didn't have to stop for?",
       "bibleSourceRef": "Luke 10:25-37",
       "bibleStoryKey": "good_samaritan",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
+      "primaryCharacterId": "good_samaritan",
+      "primaryCharacterDisplayName": "Good Samaritan",
       "bibleOrderIndex": 630,
       "timelineEra": "jesus_ministry",
       "themeTags": [
@@ -9167,8 +9953,8 @@
       "reflectionQuestion": "When was the last time you stopped for someone you didn't have to stop for?",
       "bibleSourceRef": "Luke 10:25-37",
       "bibleStoryKey": "good_samaritan",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
+      "primaryCharacterId": "good_samaritan",
+      "primaryCharacterDisplayName": "Good Samaritan",
       "bibleOrderIndex": 630,
       "timelineEra": "jesus_ministry",
       "themeTags": [
@@ -9196,8 +9982,8 @@
       "reflectionQuestion": "When was the last time you stopped for someone you didn't have to stop for?",
       "bibleSourceRef": "Luke 10:25-37",
       "bibleStoryKey": "good_samaritan",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
+      "primaryCharacterId": "good_samaritan",
+      "primaryCharacterDisplayName": "Good Samaritan",
       "bibleOrderIndex": 630,
       "timelineEra": "jesus_ministry",
       "themeTags": [
@@ -9225,8 +10011,8 @@
       "reflectionQuestion": "When was the last time you stopped for someone you didn't have to stop for?",
       "bibleSourceRef": "Luke 10:25-37",
       "bibleStoryKey": "good_samaritan",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
+      "primaryCharacterId": "good_samaritan",
+      "primaryCharacterDisplayName": "Good Samaritan",
       "bibleOrderIndex": 630,
       "timelineEra": "jesus_ministry",
       "themeTags": [
@@ -9254,8 +10040,8 @@
       "reflectionQuestion": "When was the last time you stopped for someone you didn't have to stop for?",
       "bibleSourceRef": "Luke 10:25-37",
       "bibleStoryKey": "good_samaritan",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
+      "primaryCharacterId": "good_samaritan",
+      "primaryCharacterDisplayName": "Good Samaritan",
       "bibleOrderIndex": 630,
       "timelineEra": "jesus_ministry",
       "themeTags": [
@@ -9283,8 +10069,8 @@
       "reflectionQuestion": "When was the last time you stopped for someone you didn't have to stop for?",
       "bibleSourceRef": "Luke 10:25-37",
       "bibleStoryKey": "good_samaritan",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
+      "primaryCharacterId": "good_samaritan",
+      "primaryCharacterDisplayName": "Good Samaritan",
       "bibleOrderIndex": 630,
       "timelineEra": "jesus_ministry",
       "themeTags": [
@@ -11172,10 +11958,10 @@
       "reflectionQuestion": "Have you ever had to make a choice knowing it could cost you everything?",
       "bibleSourceRef": "Daniel 3:1-30",
       "bibleStoryKey": "fiery_furnace",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
+      "primaryCharacterId": "shadrach",
+      "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
       "bibleOrderIndex": 390,
-      "timelineEra": "jesus_ministry",
+      "timelineEra": "exile",
       "themeTags": [
         "faith",
         "courage"
@@ -11202,10 +11988,10 @@
       "reflectionQuestion": "Have you ever had to make a choice knowing it could cost you everything?",
       "bibleSourceRef": "Daniel 3:1-30",
       "bibleStoryKey": "fiery_furnace",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
+      "primaryCharacterId": "shadrach",
+      "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
       "bibleOrderIndex": 390,
-      "timelineEra": "jesus_ministry",
+      "timelineEra": "exile",
       "themeTags": [
         "faith",
         "courage"
@@ -11232,10 +12018,10 @@
       "reflectionQuestion": "Have you ever had to make a choice knowing it could cost you everything?",
       "bibleSourceRef": "Daniel 3:1-30",
       "bibleStoryKey": "fiery_furnace",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
+      "primaryCharacterId": "shadrach",
+      "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
       "bibleOrderIndex": 390,
-      "timelineEra": "jesus_ministry",
+      "timelineEra": "exile",
       "themeTags": [
         "faith",
         "courage"
@@ -11261,10 +12047,10 @@
       "reflectionQuestion": "Have you ever had to make a choice knowing it could cost you everything?",
       "bibleSourceRef": "Daniel 3:1-30",
       "bibleStoryKey": "fiery_furnace",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
+      "primaryCharacterId": "shadrach",
+      "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
       "bibleOrderIndex": 390,
-      "timelineEra": "jesus_ministry",
+      "timelineEra": "exile",
       "themeTags": [
         "faith",
         "courage"
@@ -11291,10 +12077,10 @@
       "reflectionQuestion": "Have you ever had to make a choice knowing it could cost you everything?",
       "bibleSourceRef": "Daniel 3:1-30",
       "bibleStoryKey": "fiery_furnace",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
+      "primaryCharacterId": "shadrach",
+      "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
       "bibleOrderIndex": 390,
-      "timelineEra": "jesus_ministry",
+      "timelineEra": "exile",
       "themeTags": [
         "faith",
         "courage"
@@ -11321,10 +12107,10 @@
       "reflectionQuestion": "Have you ever had to make a choice knowing it could cost you everything?",
       "bibleSourceRef": "Daniel 3:1-30",
       "bibleStoryKey": "fiery_furnace",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
+      "primaryCharacterId": "shadrach",
+      "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
       "bibleOrderIndex": 390,
-      "timelineEra": "jesus_ministry",
+      "timelineEra": "exile",
       "themeTags": [
         "faith",
         "courage"
@@ -11352,10 +12138,10 @@
       "reflectionQuestion": "Have you ever had to make a choice knowing it could cost you everything?",
       "bibleSourceRef": "Daniel 3:1-30",
       "bibleStoryKey": "fiery_furnace",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
+      "primaryCharacterId": "shadrach",
+      "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
       "bibleOrderIndex": 390,
-      "timelineEra": "jesus_ministry",
+      "timelineEra": "exile",
       "themeTags": [
         "faith",
         "courage"
@@ -12222,10 +13008,10 @@
       "reflectionQuestion": "Have you ever had to make a choice knowing it could cost you everything?",
       "bibleSourceRef": "Daniel 3:1-30",
       "bibleStoryKey": "fiery_furnace",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
+      "primaryCharacterId": "shadrach",
+      "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
       "bibleOrderIndex": 390,
-      "timelineEra": "prophets",
+      "timelineEra": "exile",
       "themeTags": [
         "faith",
         "courage"
@@ -12252,10 +13038,10 @@
       "reflectionQuestion": "Have you ever had to make a choice knowing it could cost you everything?",
       "bibleSourceRef": "Daniel 3:1-30",
       "bibleStoryKey": "fiery_furnace",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
+      "primaryCharacterId": "shadrach",
+      "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
       "bibleOrderIndex": 390,
-      "timelineEra": "prophets",
+      "timelineEra": "exile",
       "themeTags": [
         "faith",
         "courage"
@@ -13427,7 +14213,6 @@
       "bibleOrderIndex": 703,
       "timelineEra": "early_church",
       "themeTags": [
-        "faith",
         "faith"
       ]
     },
@@ -13457,7 +14242,6 @@
       "bibleOrderIndex": 703,
       "timelineEra": "early_church",
       "themeTags": [
-        "faith",
         "faith"
       ]
     },
@@ -13487,7 +14271,6 @@
       "bibleOrderIndex": 703,
       "timelineEra": "early_church",
       "themeTags": [
-        "faith",
         "faith"
       ]
     },
@@ -13517,7 +14300,6 @@
       "bibleOrderIndex": 703,
       "timelineEra": "early_church",
       "themeTags": [
-        "faith",
         "faith"
       ]
     },
@@ -13547,7 +14329,6 @@
       "bibleOrderIndex": 703,
       "timelineEra": "early_church",
       "themeTags": [
-        "faith",
         "faith"
       ]
     },
@@ -13577,7 +14358,6 @@
       "bibleOrderIndex": 703,
       "timelineEra": "early_church",
       "themeTags": [
-        "faith",
         "faith"
       ]
     },
@@ -13907,7 +14687,6 @@
       "bibleOrderIndex": 683,
       "timelineEra": "jesus_ministry",
       "themeTags": [
-        "hope",
         "hope"
       ]
     },
@@ -13937,7 +14716,6 @@
       "bibleOrderIndex": 683,
       "timelineEra": "jesus_ministry",
       "themeTags": [
-        "hope",
         "hope"
       ]
     },
@@ -13967,7 +14745,6 @@
       "bibleOrderIndex": 683,
       "timelineEra": "jesus_ministry",
       "themeTags": [
-        "hope",
         "hope"
       ]
     },
@@ -13997,7 +14774,6 @@
       "bibleOrderIndex": 683,
       "timelineEra": "jesus_ministry",
       "themeTags": [
-        "hope",
         "hope"
       ]
     },
@@ -14027,8 +14803,8 @@
       "bibleOrderIndex": 686,
       "timelineEra": "jesus_ministry",
       "themeTags": [
-        "mercy",
-        "courage"
+        "courage",
+        "mercy"
       ]
     },
     {
@@ -14057,8 +14833,8 @@
       "bibleOrderIndex": 686,
       "timelineEra": "jesus_ministry",
       "themeTags": [
-        "mercy",
-        "courage"
+        "courage",
+        "mercy"
       ]
     },
     {
@@ -14087,8 +14863,8 @@
       "bibleOrderIndex": 686,
       "timelineEra": "jesus_ministry",
       "themeTags": [
-        "mercy",
-        "courage"
+        "courage",
+        "mercy"
       ]
     },
     {
@@ -14117,8 +14893,8 @@
       "bibleOrderIndex": 686,
       "timelineEra": "jesus_ministry",
       "themeTags": [
-        "mercy",
-        "courage"
+        "courage",
+        "mercy"
       ]
     },
     {
@@ -14447,7 +15223,6 @@
       "bibleOrderIndex": 692,
       "timelineEra": "jesus_ministry",
       "themeTags": [
-        "hope",
         "hope"
       ]
     },
@@ -14477,7 +15252,6 @@
       "bibleOrderIndex": 692,
       "timelineEra": "jesus_ministry",
       "themeTags": [
-        "hope",
         "hope"
       ]
     },
@@ -14507,7 +15281,6 @@
       "bibleOrderIndex": 692,
       "timelineEra": "jesus_ministry",
       "themeTags": [
-        "hope",
         "hope"
       ]
     },
@@ -14537,7 +15310,6 @@
       "bibleOrderIndex": 692,
       "timelineEra": "jesus_ministry",
       "themeTags": [
-        "hope",
         "hope"
       ]
     }
