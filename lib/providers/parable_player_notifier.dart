@@ -335,6 +335,60 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
     }
   }
 
+  /// Swap the loaded story to a different variant (length or translation)
+  /// without resetting display-only state (verse, palResponseText,
+  /// launchContext). Used by the player-screen variant controls to avoid
+  /// the layout jump that [loadParable]'s fresh-state construction causes.
+  ///
+  /// Stops current audio, loads the new variant's audio + text, then
+  /// updates state via [copyWith]. Returns true on success.
+  Future<bool> switchVariant(Parable newVariant) async {
+    _completionFiredForCurrentLoad = false;
+    await _completionPositionSub?.cancel();
+    _completionPositionSub = null;
+
+    // Stop current playback (caller captures wasPlaying beforehand).
+    await _audioService.stop();
+    await _ambientService.forceStop();
+
+    try {
+      final parableService = await ref.read(parableServiceProvider.future);
+
+      final audioFile = await parableService.getAudioFile(
+        newVariant,
+        onProgress: Platform.isAndroid
+            ? (progress) {
+                state = state.copyWith(downloadProgress: progress);
+              }
+            : null,
+      );
+      if (state.downloadProgress != null) {
+        state = state.copyWith(clearDownloadProgress: true);
+      }
+      if (audioFile == null) {
+        return false;
+      }
+
+      await _audioService.loadAudio(audioFile, storyId: newVariant.storyId);
+      final parableText = await parableService.getParableText(newVariant);
+
+      // copyWith preserves verse, palResponseText, launchContext.
+      state = state.copyWith(
+        currentParable: newVariant,
+        parableText: parableText,
+        isLoading: false,
+        playbackCompleted: false,
+      );
+
+      _attachCompletionWatcher(newVariant, state.launchContext);
+      return true;
+    } catch (e) {
+      logError('variant_switch_failed', 'ParablePlayerNotifier.switchVariant',
+          storyId: newVariant.storyId, errorMessage: e.toString());
+      return false;
+    }
+  }
+
   /// Play the current parable (with voice consent check via VoiceConsentGate).
   ///
   /// Returns [VoicePlayResult] indicating what happened:

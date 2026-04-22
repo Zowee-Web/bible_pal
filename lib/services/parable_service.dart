@@ -221,6 +221,54 @@ class ParableService {
     return all.where((p) => p.storytellingMode == 'traditional').toList();
   }
 
+  /// Canonical variant resolution: find a sibling of [current] that matches
+  /// [storyLength] and [languageStyle], preserving bibleStoryKey,
+  /// storytellingMode, and kidFriendly.
+  ///
+  /// Used by LengthPickerScreen (path mode), ParablePlayerScreen (in-player
+  /// switching), and any future consumer that needs deterministic variant
+  /// lookup. Does NOT invoke mood expansion or non-repeat logic.
+  ///
+  /// Returns null when no matching variant exists.
+  Future<Parable?> resolveVariant({
+    required Parable current,
+    required String storyLength,
+    required String languageStyle,
+  }) async {
+    final all = await _loadManifest();
+    for (final p in all) {
+      if (p.bibleStoryKey == current.bibleStoryKey &&
+          p.storytellingMode == current.storytellingMode &&
+          p.kidFriendly == current.kidFriendly &&
+          p.languageStyle == languageStyle &&
+          p.storyLength == storyLength) {
+        return p;
+      }
+    }
+    return null;
+  }
+
+  /// Return the set of (storyLength, languageStyle) pairs available as
+  /// siblings of [current]. The caller uses this to enable/disable chips
+  /// in the player-screen variant controls.
+  ///
+  /// Returns a map: { 'short': {'WEB', 'KJV'}, 'full': {'WEB'}, ... }
+  Future<Map<String, Set<String>>> getAvailableVariants(
+      Parable current) async {
+    if (!current.hasBibleStoryKey) return {};
+    final all = await _loadManifest();
+    final result = <String, Set<String>>{};
+    for (final p in all) {
+      if (p.bibleStoryKey == current.bibleStoryKey &&
+          p.storytellingMode == current.storytellingMode &&
+          p.kidFriendly == current.kidFriendly &&
+          p.storyLength != null) {
+        result.putIfAbsent(p.storyLength!, () => {}).add(p.languageStyle);
+      }
+    }
+    return result;
+  }
+
   /// Get eligible parables based on user preferences and mood
   /// Per SPEC.md Feature #4: Parable Generation / Selection Engine
   /// Updated for Story Mode Contracts v2 (SPEC.md)

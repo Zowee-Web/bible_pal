@@ -17,6 +17,7 @@ import 'package:uuid/uuid.dart';
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/ambient_sound_type.dart';
+import '../../core/story_length_bucket.dart';
 import '../../widgets/living_sky_background.dart';
 import '../../widgets/scripture_sources_panel.dart';
 import '../../widgets/name_prompt_overlay.dart';
@@ -57,6 +58,9 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
   AmbientSoundType _ambientType = AmbientSoundType.defaultType;
   double _ambientVol = 0.10;
 
+  // Variant switching: available sibling variants for length/translation chips
+  Map<String, Set<String>> _availableVariants = {};
+
   // Bedtime mode sleep timer
   Timer? _sleepTimer;
 
@@ -74,6 +78,262 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     _checkReflectionAudioExists();
     _journalFocusNode.addListener(_onJournalFocusChange);
     _loadAmbientState();
+    _loadAvailableVariants();
+  }
+
+  /// Load available sibling variants for the current story so the variant
+  /// control chips know which options to enable/disable.
+  Future<void> _loadAvailableVariants() async {
+    final playerState = ref.read(parablePlayerProvider);
+    final parable = playerState.currentParable;
+    if (parable == null || !parable.hasBibleStoryKey) return;
+
+    final parableService = await ref.read(parableServiceProvider.future);
+    final variants = await parableService.getAvailableVariants(parable);
+    if (mounted) {
+      setState(() => _availableVariants = variants);
+    }
+  }
+
+  /// Switch the current story to a different length/translation variant.
+  ///
+  /// Preserves playback state: playing → auto-play new variant;
+  /// paused → load but stay paused.
+  ///
+  /// Uses [ParablePlayerNotifier.switchVariant] instead of [loadParable]
+  /// so display-only fields (verse, palResponseText, launchContext) are
+  /// preserved via copyWith — no layout jump.
+  Future<void> _switchVariant({
+    required String storyLength,
+    required String languageStyle,
+  }) async {
+    final playerNotifier = ref.read(parablePlayerProvider.notifier);
+    final playerState = ref.read(parablePlayerProvider);
+    final current = playerState.currentParable;
+    if (current == null) return;
+
+    // Already on this variant — no-op.
+    if (current.storyLength == storyLength &&
+        current.languageStyle == languageStyle) {
+      return;
+    }
+
+    // Capture playback state BEFORE stopping audio.
+    final wasPlaying = playerNotifier.isPlaying;
+
+    final parableService = await ref.read(parableServiceProvider.future);
+    final newVariant = await parableService.resolveVariant(
+      current: current,
+      storyLength: storyLength,
+      languageStyle: languageStyle,
+    );
+
+    if (newVariant == null || !mounted) return;
+
+    // Persist preference changes (fire-and-forget).
+    final appStateNotifier = ref.read(appStateProvider.notifier);
+    if (storyLength != current.storyLength) {
+      appStateNotifier.updatePreferredLengthBucket(storyLength);
+    }
+    if (languageStyle != current.languageStyle) {
+      appStateNotifier.updateLanguageStyle(languageStyle);
+    }
+
+    logEvent('player_variant_switch', {
+      'story_id': current.storyId,
+      'from_length': current.storyLength,
+      'to_length': storyLength,
+      'from_lang': current.languageStyle,
+      'to_lang': languageStyle,
+      'was_playing': wasPlaying,
+    });
+
+    // switchVariant stops audio + ambient, then loads new audio/text
+    // via copyWith (preserves verse, palResponseText, launchContext).
+    final success = await playerNotifier.switchVariant(newVariant);
+    if (!mounted) return;
+
+    // Reset ambient UI state — switchVariant force-stops the ambient
+    // service, so the toggle must reflect that.
+    if (_ambientOn) {
+      _ambientOn = false;
+      final sp = await SharedPreferences.getInstance();
+      await sp.remove('settings.backgroundSoundOn');
+    }
+
+    if (success && wasPlaying) {
+      await playerNotifier.play();
+    }
+
+    // Refresh reflection audio availability + favorite state.
+    _checkReflectionAudioExists();
+    _checkIfFavorited();
+
+    if (mounted) {
+      setState(() => _showReflection = false);
+    }
+  }
+
+  /// Variant controls — compact length + translation chip rows.
+  ///
+  /// Visual system matches ambient controls (SPEC Feature 47 locked palette):
+  /// - Container: `foreground.subtleSurface` / `subtleBorder` glass pane
+  /// - Selected chip: solid `warmHighlight` fill + dark w600 label
+  /// - Unselected chip: `subtleSurface` + subtle border
+  /// - Disabled chip: reduced opacity, no tap handler
+  ///
+  /// Hidden for Creative stories (no bibleStoryKey → no sibling variants).
+  Widget _buildVariantControls(ThemeData theme, ParablePlayerState playerState) {
+    final current = playerState.currentParable;
+    if (current == null || !current.hasBibleStoryKey) {
+      return const SizedBox.shrink();
+    }
+    if (_availableVariants.isEmpty) return const SizedBox.shrink();
+
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
+    final fg = palette.foreground;
+
+    // Length chips — ordered short → full → long.
+    final lengthBuckets = [
+      StoryLengthBucket.short,
+      StoryLengthBucket.full,
+      StoryLengthBucket.long,
+    ];
+
+    // Translation chips — ordered WEB → KJV.
+    const translations = ['WEB', 'KJV'];
+
+    Widget buildChip({
+      required String label,
+      required bool isSelected,
+      required bool isAvailable,
+      required VoidCallback onTap,
+    }) {
+      return ChoiceChip(
+        label: Text(
+          label,
+          style: TextStyle(
+            fontSize: 12,
+            color: !isAvailable
+                ? fg.secondaryText.withValues(alpha: 0.35)
+                : isSelected
+                    ? const Color(0xFF1A1A1A)
+                    : fg.secondaryText,
+            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+            letterSpacing: 0.2,
+          ),
+        ),
+        selected: isSelected,
+        selectedColor: palette.warmHighlight,
+        backgroundColor: fg.subtleSurface,
+        disabledColor: fg.subtleSurface,
+        side: BorderSide(
+          color: isSelected
+              ? palette.warmHighlight
+              : !isAvailable
+                  ? fg.subtleBorder.withValues(alpha: 0.35)
+                  : fg.subtleBorder,
+          width: 1,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        showCheckmark: false,
+        visualDensity: VisualDensity.compact,
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        onSelected: isAvailable && !isSelected
+            ? (_) => onTap()
+            : null,
+      );
+    }
+
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      decoration: BoxDecoration(
+        color: fg.subtleSurface,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: fg.subtleBorder, width: 1),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Length row
+          Row(
+            children: [
+              Icon(Icons.straighten, size: 14, color: fg.secondaryIcon),
+              const SizedBox(width: 8),
+              Text(
+                'Length',
+                style: TextStyle(
+                  color: fg.secondaryText,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 0.2,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: lengthBuckets.map((bucket) {
+              final isSelected = current.storyLength == bucket.name;
+              final langSet = _availableVariants[bucket.name];
+              final isAvailable =
+                  langSet != null && langSet.contains(current.languageStyle);
+              return buildChip(
+                label: bucket.displayLabel,
+                isSelected: isSelected,
+                isAvailable: isAvailable,
+                onTap: () => _switchVariant(
+                  storyLength: bucket.name,
+                  languageStyle: current.languageStyle,
+                ),
+              );
+            }).toList(),
+          ),
+          const SizedBox(height: 12),
+          // Translation row
+          Row(
+            children: [
+              Icon(Icons.translate, size: 14, color: fg.secondaryIcon),
+              const SizedBox(width: 8),
+              Text(
+                'Translation',
+                style: TextStyle(
+                  color: fg.secondaryText,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 0.2,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: translations.map((lang) {
+              final isSelected = current.languageStyle == lang;
+              final currentLength = current.storyLength ?? 'short';
+              final langSet = _availableVariants[currentLength];
+              final isAvailable = langSet != null && langSet.contains(lang);
+              return buildChip(
+                label: lang,
+                isSelected: isSelected,
+                isAvailable: isAvailable,
+                onTap: () => _switchVariant(
+                  storyLength: currentLength,
+                  languageStyle: lang,
+                ),
+              );
+            }).toList(),
+          ),
+        ],
+      ),
+    );
   }
 
   Future<void> _loadAmbientState() async {
@@ -846,6 +1106,9 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                   ],
                                 ),
 
+                                // Story variant controls (length + translation)
+                                _buildVariantControls(theme, playerState),
+
                                 // Ambient Sound Controls
                                 _buildAmbientControls(theme),
 
@@ -948,6 +1211,9 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                   value: _ambientOn,
                   activeColor: palette.warmHighlight,
                   onChanged: (on) async {
+                    // Update toggle immediately so the UI responds
+                    // without waiting for async work.
+                    setState(() => _ambientOn = on);
                     final sp = await SharedPreferences.getInstance();
                     await sp.setBool('settings.backgroundSoundOn', on);
                     if (on) {
@@ -958,8 +1224,6 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                     } else {
                       await ambient.forceStop();
                     }
-                    if (!mounted) return;
-                    setState(() => _ambientOn = on);
                   },
                 ),
               ),

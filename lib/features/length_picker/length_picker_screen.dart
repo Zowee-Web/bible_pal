@@ -80,34 +80,17 @@ class _LengthPickerScreenState extends ConsumerState<LengthPickerScreen> {
 
   /// PATH-MODE variant resolver (SPEC Feature 6 + Feature 50.12).
   ///
-  /// Given the user's [fixedParable] and the chosen [bucket], find the
-  /// variant of the same story whose `storyLength == bucket.name`. The
-  /// variant must match the original's `bibleStoryKey`,
-  /// `languageStyle`, `kidFriendly`, and `storytellingMode` so the
-  /// user always gets the same story in the same presentation —
-  /// only the length differs.
-  ///
-  /// If no matching variant exists (e.g. the story was only authored
-  /// as Short), returns null and the caller shows a snackbar.
-  ///
-  /// This method does NOT invoke `selectParable()` — Mood Expansion
-  /// is scope-protected and path launches are deterministic.
+  /// Delegates to [ParableService.resolveVariant] — the canonical
+  /// 4-axis match shared by length picker, player screen, and PALs
+  /// Paths. Does NOT invoke mood expansion.
   Future<Parable?> _resolvePathVariant(StoryLengthBucket bucket) async {
     final fixed = widget.fixedParable!;
     final parableService = await ref.read(parableServiceProvider.future);
-    final all = await parableService.getAllTraditionalParables();
-
-    // Prefer exact variant match on all 4 identity axes.
-    for (final p in all) {
-      if (p.bibleStoryKey == fixed.bibleStoryKey &&
-          p.storytellingMode == fixed.storytellingMode &&
-          p.languageStyle == fixed.languageStyle &&
-          p.kidFriendly == fixed.kidFriendly &&
-          p.storyLength == bucket.name) {
-        return p;
-      }
-    }
-    return null;
+    return parableService.resolveVariant(
+      current: fixed,
+      storyLength: bucket.name,
+      languageStyle: fixed.languageStyle,
+    );
   }
 
   Future<void> _pickLength(StoryLengthBucket bucket) async {
