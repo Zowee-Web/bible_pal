@@ -26,6 +26,9 @@ BANNED_VOICES = frozenset({
     "VOICE_SHEPHERD",
     "VOICE_HOPE",
     "VOICE_STILLWATER",
+    # Explicitly banned from all story narration by owner directive
+    "VOICE_SARAH_DEFAULT_VOICES",
+    "VOICE_LYDIA_GRACIOUS",
 })
 
 # ── APPROVED STORY NARRATOR POOL ─────────────────────────────────────────
@@ -37,14 +40,13 @@ APPROVED_NARRATOR_VOICES = frozenset({
     "VOICE_LILY_WOLFF",
     "VOICE_CHARLOTTE_V3",
     "VOICE_NATASHA_AFRICAN_AMERICAN",
-    "VOICE_SARAH_DEFAULT_VOICES",
     "VOICE_JAMES_BRITISH_PROFESSIONAL",
     "VOICE_REVEREND_MICHAEL_C_VINCENT",
     "VOICE_CHRIS_DEFAULT",
     "VOICE_JOHN_DOE",
     "VOICE_ARCHER",
     "VOICE_BRADFORD",
-    "VOICE_JAMES_HUSKY",  # Legacy narrator voice — allowed
+    "VOICE_JAMES_HUSKY",
 })
 
 

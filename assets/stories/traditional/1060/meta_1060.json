@@ -36,5 +36,8 @@
   "reflectionVoiceKey": "VOICE_MARTHA_CARING",
   "scriptureAnchor": "1 Samuel 18:1-4",
   "bibleStoryKey": "david_and_jonathan",
-  "reflectionText": "Jonathan gave away everything that made him a prince — just because his heart told him to. What is the most generous thing someone has ever done for you? What made it special?"
+  "reflectionText": "Jonathan gave away everything that made him a prince — just because his heart told him to. What is the most generous thing someone has ever done for you? What made it special?",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David"
 }

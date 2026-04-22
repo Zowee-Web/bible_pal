@@ -40,5 +40,8 @@
   "bibleStoryKey": "breakfast_on_the_shore",
   "storyVoiceKey": "VOICE_LILY_WOLFF",
   "reflectionVoiceKey": "VOICE_LILY_WOLFF",
-  "reflectionText": "Imagine standing by a big lake early in the morning. The sky is just turning pink. You have been trying really hard at something all night long, but nothing has worked. Then someone calls out with a kind voice and helps you in a way you did not expect. Suddenly, everything changes.\n\nThat is what happened to the disciples by the sea. They caught no fish all night. Then Jesus showed up on the shore and surprised them with more fish than they could carry. He even made breakfast for them.\n\nSometimes help comes from someone who loves us, right when we feel most tired. A warm meal and a friendly voice can make everything feel better."
+  "reflectionText": "Imagine standing by a big lake early in the morning. The sky is just turning pink. You have been trying really hard at something all night long, but nothing has worked. Then someone calls out with a kind voice and helps you in a way you did not expect. Suddenly, everything changes.\n\nThat is what happened to the disciples by the sea. They caught no fish all night. Then Jesus showed up on the shore and surprised them with more fish than they could carry. He even made breakfast for them.\n\nSometimes help comes from someone who loves us, right when we feel most tired. A warm meal and a friendly voice can make everything feel better.",
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus"
 }

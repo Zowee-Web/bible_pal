@@ -40,5 +40,8 @@
   "reflectionVoiceKey": "VOICE_PRISCILLA_TEACHER",
   "scriptureAnchor": "Isaiah 40:28-31",
   "bibleStoryKey": "wings_like_eagles",
-  "reflectionText": "Have you ever felt so tired that you wished someone strong could carry you for a while?"
+  "reflectionText": "Have you ever felt so tired that you wished someone strong could carry you for a while?",
+  "timelineEra": "prophets",
+  "primaryCharacterId": "isaiah",
+  "primaryCharacterDisplayName": "Isaiah"
 }

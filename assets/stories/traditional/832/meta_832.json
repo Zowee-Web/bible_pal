@@ -60,5 +60,8 @@
     "short": "pass",
     "full": "pass",
     "long": "pass"
-  }
+  },
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses"
 }

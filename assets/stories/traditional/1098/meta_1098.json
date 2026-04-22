@@ -11,8 +11,7 @@
   "mood": "hurting",
   "lengths": [
     "short",
-    "full",
-    "long"
+    "full"
   ],
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_05",
@@ -29,7 +28,7 @@
   "bibleOrderIndex": 675,
   "timelineEra": "jesus_ministry",
   "reflectionQuestion": "Have you ever been caught in something and expected condemnation — and received mercy instead?",
-  "reflectionText": "The accusers came with stones and certainty. They had the law. They had the evidence. They had the crowd. Everything was arranged for condemnation.\n\nAnd Jesus bent down and wrote in the dirt.\n\nWe do not know what he wrote. But we know what happened next: the men with the stones looked at themselves instead of at the woman. And one by one, they walked away.\n\nThere is something in that moment — the silence, the writing, the quiet challenge — that cuts deeper than any argument. It does not say the wrong thing was not wrong. It says: before you throw, look at your own hands.\n\nSometimes the most powerful response to accusation is not defense. It is a question that sends every accuser home.",
+  "reflectionText": "The scribes and Pharisees brought a woman taken in adultery. They set her in the middle. They cited the law of Moses. They asked Jesus what he said about her. Jesus stooped down and wrote on the ground with his finger. When they continued asking, he stood up and said, \"He who is without sin among you, let him throw the first stone at her.\" Then he stooped down and wrote on the ground again. They went out one by one, beginning from the oldest to the last. When they were gone, Jesus said to the woman, \"Where are your accusers? Did no one condemn you?\" She said, \"No one, Lord.\" He said, \"Neither do I condemn you. Go your way. From now on, sin no more.\"",
   "reflectionVoiceKey": "VOICE_LILY_WOLFF",
   "files": {
     "short": {
@@ -37,9 +36,6 @@
     },
     "full": {
       "storyText": "story_1098_traditional_web_full.txt"
-    },
-    "long": {
-      "storyText": "story_1098_traditional_web_long.txt"
     },
     "reflection": {
       "reflectionText": "reflection_1098_traditional_web.txt"

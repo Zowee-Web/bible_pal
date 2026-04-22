@@ -36,5 +36,8 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
   "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "reflectionText": "God made the whole world — light, sky, oceans, animals, and people. He looked at all of it and said, \"It is very good.\" Everything around you, from the biggest mountain to the tiniest bug, God made it on purpose. And he made you on purpose too.\n\nWhat is your favorite thing God made, and why do you think it is so amazing?"
+  "reflectionText": "God made the whole world — light, sky, oceans, animals, and people. He looked at all of it and said, \"It is very good.\" Everything around you, from the biggest mountain to the tiniest bug, God made it on purpose. And he made you on purpose too.\n\nWhat is your favorite thing God made, and why do you think it is so amazing?",
+  "timelineEra": "patriarchs",
+  "primaryCharacterId": "god",
+  "primaryCharacterDisplayName": "God"
 }

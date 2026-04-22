@@ -53,5 +53,8 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ELIJAH_SAGE",
   "reflectionVoiceKey": "VOICE_ELIJAH_SAGE",
-  "reflectionText": "The sea stood before them and the host behind. There was no passage through and no returning back. What meaneth it to stand still when every part of thee would flee?"
+  "reflectionText": "The sea stood before them and the host behind. There was no passage through and no returning back. What meaneth it to stand still when every part of thee would flee?",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses"
 }

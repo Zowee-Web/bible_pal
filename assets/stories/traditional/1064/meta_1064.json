@@ -60,5 +60,8 @@
     "web": "reflection_1064_traditional_web.txt",
     "kjv": "reflection_1064_traditional_kjv.txt"
   },
-  "reflectionText": "When thou dost call to mind those moments in thine own life wherein thou didst feel thyself encompassed and outnumbered by forces beyond thy governance, what might it signify to consider that there could be something present in that situation which thou simply couldst not yet behold?"
+  "reflectionText": "When thou dost call to mind those moments in thine own life wherein thou didst feel thyself encompassed and outnumbered by forces beyond thy governance, what might it signify to consider that there could be something present in that situation which thou simply couldst not yet behold?",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "elisha",
+  "primaryCharacterDisplayName": "Elisha"
 }

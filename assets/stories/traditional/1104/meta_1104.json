@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1104,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_06",
+  "title": "Singing at Midnight",
+  "scriptureAnchor": "Acts 16:25-34",
+  "bibleStoryKey": "paul_and_silas_in_prison",
+  "storyVoiceKey": "VOICE_JOHN_DOE",
+  "themeTags": [
+    "faith",
+    "courage"
+  ],
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "bibleOrderIndex": 710,
+  "timelineEra": "early_church",
+  "reflectionQuestion": "Have you ever chosen to praise in a moment when everything around you said there was nothing to praise about?",
+  "reflectionText": "They were in the deepest cell. Their backs were bleeding. Their feet were locked in stocks. It was midnight.\n\nAnd they were singing.\n\nThere is no explanation in the text for why. No commentary about their state of mind. They simply sang. And the other prisoners — people with their own reasons for being in that place — listened.\n\nWhat followed was dramatic. But the singing came first. Before the earthquake, before the open doors, before the jailer's question. The singing came when nothing had changed yet.",
+  "reflectionVoiceKey": "VOICE_JOHN_DOE",
+  "files": {
+    "short": {
+      "storyText": "story_1104_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1104_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1104_traditional_web.txt"
+    }
+  }
+}

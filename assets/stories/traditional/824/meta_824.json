@@ -46,5 +46,8 @@
       "reflectionAudio": "audio_824_reflection.mp3"
     }
   },
-  "reflectionText": "This story shows that it is okay to rest when we are tired. Even one small rest can help."
+  "reflectionText": "This story shows that it is okay to rest when we are tired. Even one small rest can help.",
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus"
 }

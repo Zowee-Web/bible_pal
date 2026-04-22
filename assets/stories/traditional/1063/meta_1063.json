@@ -36,5 +36,8 @@
   "reflectionVoiceKey": "VOICE_JANE_PROFESSIONAL",
   "scriptureAnchor": "Job 1:1-22",
   "bibleStoryKey": "job_tested",
-  "reflectionText": "Job lost everything in one day — his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?"
+  "reflectionText": "Job lost everything in one day — his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?",
+  "timelineEra": "wisdom",
+  "primaryCharacterId": "job",
+  "primaryCharacterDisplayName": "Job"
 }

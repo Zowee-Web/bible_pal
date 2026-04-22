@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1111,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_06",
+  "title": "The Prodigal Son",
+  "scriptureAnchor": "Luke 15:11-32",
+  "bibleStoryKey": "prodigal_son",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "themeTags": [
+    "forgiveness",
+    "mercy"
+  ],
+  "primaryCharacterId": "prodigal_son",
+  "primaryCharacterDisplayName": "Prodigal Son",
+  "bibleOrderIndex": 640,
+  "timelineEra": "jesus_ministry",
+  "reflectionVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "files": {
+    "short": {
+      "storyText": "story_1111_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1111_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1111_traditional_web.txt"
+    }
+  }
+}

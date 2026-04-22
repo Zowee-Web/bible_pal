@@ -40,5 +40,8 @@
   "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD",
   "scriptureAnchor": "Matthew 2:1-12",
   "bibleStoryKey": "the_magi",
-  "reflectionText": "What made you feel happy inside as you listened to this story?"
+  "reflectionText": "What made you feel happy inside as you listened to this story?",
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus"
 }

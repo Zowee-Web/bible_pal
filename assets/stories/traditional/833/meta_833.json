@@ -52,5 +52,8 @@
     "short": "pass",
     "full": "pass",
     "long": "pass"
-  }
+  },
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus"
 }

@@ -46,5 +46,8 @@
       "reflectionAudio": "audio_815_reflection.mp3"
     }
   },
-  "reflectionText": "This story shows that every day has moments worth noticing. Even one small thing can be special."
+  "reflectionText": "This story shows that every day has moments worth noticing. Even one small thing can be special.",
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus"
 }

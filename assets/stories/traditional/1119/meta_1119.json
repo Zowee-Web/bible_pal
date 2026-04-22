@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1119,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_06",
+  "title": "Naaman Is Healed",
+  "scriptureAnchor": "2 Kings 5:1-14",
+  "bibleStoryKey": "naaman_healed",
+  "storyVoiceKey": "VOICE_CHARLOTTE_V3",
+  "themeTags": [
+    "healing",
+    "humility"
+  ],
+  "primaryCharacterId": "naaman",
+  "primaryCharacterDisplayName": "Naaman",
+  "bibleOrderIndex": 310,
+  "timelineEra": "prophets",
+  "reflectionVoiceKey": "VOICE_CHARLOTTE_V3",
+  "files": {
+    "short": {
+      "storyText": "story_1119_traditional_web_short.txt"
+    }
+  }
+}

@@ -46,5 +46,8 @@
       "reflectionAudio": "audio_814_reflection.mp3"
     }
   },
-  "reflectionText": "This story shows that being kind matters, even when things feel unfair. Even one small kindness helps."
+  "reflectionText": "This story shows that being kind matters, even when things feel unfair. Even one small kindness helps.",
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus"
 }

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1107,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_06",
+  "title": "The Upper Room",
+  "scriptureAnchor": "Luke 22:7-23",
+  "bibleStoryKey": "last_supper",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "love",
+    "sacrifice"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 686,
+  "timelineEra": "jesus_ministry",
+  "reflectionQuestion": "Have you ever shared a meal that felt heavier than it looked — where something unspoken was present at the table?",
+  "reflectionText": "Jesus said he had earnestly desired to eat this Passover with them. He took bread, gave thanks, and broke it. He took the cup and passed it around the table. Twelve men ate and drank together in a furnished upper room. Then he said the hand of him who betrays me is with me on the table. The bread was already broken. The cup was already shared. The betrayer had already eaten. Everyone in that room had received the same bread from the same hands. Some meals carry weight that only becomes clear afterward. The bread was just bread. The wine was just wine. But the room held something none of them could name yet.",
+  "reflectionVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "files": {
+    "short": {
+      "storyText": "story_1107_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1107_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1107_traditional_web.txt"
+    }
+  }
+}

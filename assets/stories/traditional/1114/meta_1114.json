@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1114,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_06",
+  "title": "Daniel in the Lions' Den",
+  "scriptureAnchor": "Daniel 6",
+  "bibleStoryKey": "daniel_lions_den",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "themeTags": [
+    "faith",
+    "courage"
+  ],
+  "primaryCharacterId": "daniel",
+  "primaryCharacterDisplayName": "Daniel",
+  "bibleOrderIndex": 470,
+  "timelineEra": "exile",
+  "reflectionVoiceKey": "VOICE_ARCHER",
+  "files": {
+    "short": {
+      "storyText": "story_1114_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1114_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1114_traditional_web.txt"
+    }
+  }
+}

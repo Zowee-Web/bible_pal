@@ -44,5 +44,8 @@
   "skippedLengths": {
     "full": "intentionally_unavailable: exceeds_max_supported_length",
     "long": "intentionally_unavailable: exceeds_max_supported_length"
-  }
+  },
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "mary",
+  "primaryCharacterDisplayName": "Mary"
 }

@@ -61,5 +61,8 @@
       "bucketMax": 1200,
       "accepted": "within_bucket"
     }
-  }
+  },
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David"
 }

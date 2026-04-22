@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1115,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_06",
+  "title": "The Road to Emmaus",
+  "scriptureAnchor": "Luke 24:13-35",
+  "bibleStoryKey": "road_to_emmaus",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "themeTags": [
+    "faith",
+    "hope"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 695,
+  "timelineEra": "jesus_ministry",
+  "reflectionVoiceKey": "VOICE_ARABELLA",
+  "files": {
+    "short": {
+      "storyText": "story_1115_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1115_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1115_traditional_web.txt"
+    }
+  }
+}

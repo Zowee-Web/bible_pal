@@ -13,7 +13,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_LYDIA_GRACIOUS",
+  "voiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
   "reflectionQuestion": "The vessel was marred and the potter made it again. What does it feel like to be reshaped by hands you cannot see but have chosen to trust?",
@@ -45,13 +45,16 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_LYDIA_GRACIOUS",
-  "reflectionVoiceKey": "VOICE_LYDIA_GRACIOUS",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "reflectionVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
   "scriptureAnchor": "Jeremiah 18:1-6",
   "bibleStoryKey": "potter_and_clay",
   "reflections": {
     "web": "reflection_1050_traditional_web.txt",
     "kjv": "reflection_1050_traditional_kjv.txt"
   },
-  "reflectionText": "The vessel was marred and the potter made it again. What doth it mean to be fashioned anew by hands thou canst not see but hast chosen to trust?"
+  "reflectionText": "The vessel was marred and the potter made it again. What doth it mean to be fashioned anew by hands thou canst not see but hast chosen to trust?",
+  "timelineEra": "prophets",
+  "primaryCharacterId": "jeremiah",
+  "primaryCharacterDisplayName": "Jeremiah"
 }

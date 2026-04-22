@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1120,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_06",
+  "title": "Peter Freed from Prison",
+  "scriptureAnchor": "Acts 12:1-11",
+  "bibleStoryKey": "peter_prison_escape",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "themeTags": [
+    "deliverance",
+    "prayer"
+  ],
+  "primaryCharacterId": "peter",
+  "primaryCharacterDisplayName": "Peter",
+  "bibleOrderIndex": 720,
+  "timelineEra": "early_church",
+  "reflectionVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "files": {
+    "short": {
+      "storyText": "story_1120_traditional_web_short.txt"
+    }
+  }
+}

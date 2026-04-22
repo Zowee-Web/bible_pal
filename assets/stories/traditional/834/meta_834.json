@@ -60,5 +60,8 @@
     "short": "pass",
     "full": "pass",
     "long": "pass"
-  }
+  },
+  "timelineEra": "judges",
+  "primaryCharacterId": "gideon",
+  "primaryCharacterDisplayName": "Gideon"
 }

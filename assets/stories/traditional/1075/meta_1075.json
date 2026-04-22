@@ -40,5 +40,8 @@
   "reflectionVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
   "scriptureAnchor": "Isaiah 6:1-8",
   "bibleStoryKey": "isaiahs_vision",
-  "reflectionText": "What is something kind or helpful you could do if someone around you needed help today?"
+  "reflectionText": "What is something kind or helpful you could do if someone around you needed help today?",
+  "timelineEra": "prophets",
+  "primaryCharacterId": "isaiah",
+  "primaryCharacterDisplayName": "Isaiah"
 }

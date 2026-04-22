@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1109,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_06",
+  "title": "The Hill Called the Skull",
+  "scriptureAnchor": "Luke 23:26-49",
+  "bibleStoryKey": "crucifixion",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "themeTags": [
+    "sacrifice",
+    "mercy"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 688,
+  "timelineEra": "jesus_ministry",
+  "reflectionQuestion": "What does it mean to watch something unbearable — and stay?",
+  "reflectionText": "The crowds came to watch. When it was over, they turned and went home, beating their breasts. The spectacle was finished. The hill emptied. But not everyone left. The women who had followed Jesus from Galilee stood at a distance and watched. They did not turn away. They did not go home. They had no power to stop what was happening. They could not pull out the nails or take him down. They could not argue with the soldiers or overrule the sentence. They had nothing to offer but their presence. They stayed. That was all. They stood on the hill and they did not leave. Sometimes staying is the only thing left. And sometimes it is enough.",
+  "reflectionVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "files": {
+    "short": {
+      "storyText": "story_1109_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1109_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1109_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1109_traditional_web.txt"
+    }
+  }
+}

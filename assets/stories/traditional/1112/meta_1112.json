@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1112,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_06",
+  "title": "David and Goliath",
+  "scriptureAnchor": "1 Samuel 17:1-50",
+  "bibleStoryKey": "david_goliath",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "courage",
+    "faith"
+  ],
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "bibleOrderIndex": 220,
+  "timelineEra": "kingdom",
+  "reflectionVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "files": {
+    "short": {
+      "storyText": "story_1112_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1112_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1112_traditional_web.txt"
+    }
+  }
+}

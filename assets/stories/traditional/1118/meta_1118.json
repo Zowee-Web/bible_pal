@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1118,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_06",
+  "title": "The Fall of Jericho",
+  "scriptureAnchor": "Joshua 6:1-20",
+  "bibleStoryKey": "jericho_falls",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "obedience",
+    "faith"
+  ],
+  "primaryCharacterId": "joshua",
+  "primaryCharacterDisplayName": "Joshua",
+  "bibleOrderIndex": 100,
+  "timelineEra": "conquest",
+  "reflectionVoiceKey": "VOICE_BRADFORD",
+  "files": {
+    "short": {
+      "storyText": "story_1118_traditional_web_short.txt"
+    }
+  }
+}

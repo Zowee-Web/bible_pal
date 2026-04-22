@@ -14,13 +14,13 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_LYDIA_GRACIOUS",
-  "storyVoiceKey": "VOICE_LYDIA_GRACIOUS",
-  "reflectionVoiceKey": "VOICE_LYDIA_GRACIOUS",
+  "voiceKey": "VOICE_LILY_WOLFF",
+  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF",
   "voiceKeys": {
-    "full": "VOICE_LYDIA_GRACIOUS",
-    "long": "VOICE_LYDIA_GRACIOUS",
-    "reflection": "VOICE_LYDIA_GRACIOUS"
+    "full": "VOICE_LILY_WOLFF",
+    "long": "VOICE_LILY_WOLFF",
+    "reflection": "VOICE_LILY_WOLFF"
   },
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_44",
@@ -40,5 +40,8 @@
       "reflectionAudio": "audio_812_reflection.mp3"
     }
   },
-  "reflectionText": "This story shows that good things can happen when we share and care for others. Even one small kindness matters."
+  "reflectionText": "This story shows that good things can happen when we share and care for others. Even one small kindness matters.",
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "lost_sheep",
+  "primaryCharacterDisplayName": "Lost Sheep"
 }

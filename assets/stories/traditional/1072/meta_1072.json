@@ -40,5 +40,8 @@
   "reflectionVoiceKey": "VOICE_LILY_WOLFF",
   "scriptureAnchor": "2 Kings 6:8-23",
   "bibleStoryKey": "elisha_and_the_army",
-  "reflectionText": "How do you think Elisha's servant felt when he couldn't see the army protecting them, and have you ever felt scared before you realized someone was looking out for you?"
+  "reflectionText": "How do you think Elisha's servant felt when he couldn't see the army protecting them, and have you ever felt scared before you realized someone was looking out for you?",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "elisha",
+  "primaryCharacterDisplayName": "Elisha"
 }

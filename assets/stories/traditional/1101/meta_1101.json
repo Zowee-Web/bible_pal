@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1101,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_06",
+  "title": "The Blind Man by the Road",
+  "scriptureAnchor": "Mark 10:46-52",
+  "bibleStoryKey": "blind_bartimaeus",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "faith",
+    "mercy"
+  ],
+  "primaryCharacterId": "bartimaeus",
+  "primaryCharacterDisplayName": "Bartimaeus",
+  "bibleOrderIndex": 667,
+  "timelineEra": "jesus_ministry",
+  "reflectionQuestion": "Have you ever had to keep asking for something even when everything around you said to be quiet?",
+  "reflectionText": "He had been sitting by that road for years. The same dust, the same sounds, the same position at the edge of things. When he heard that Jesus was passing, he did not wait to be noticed. He shouted. When people told him to stop, he shouted louder.\n\nThere is something striking about what happened next. Jesus asked him what he wanted. The answer was simple and direct — not a theological statement, not a negotiation. Just the thing itself: to see again.\n\nSometimes the most difficult part is not the asking but believing the asking matters — that a voice from the roadside is not too small to be heard.",
+  "reflectionVoiceKey": "VOICE_BRADFORD",
+  "files": {
+    "short": {
+      "storyText": "story_1101_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1101_traditional_web_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1101_traditional_web.txt"
+    }
+  }
+}

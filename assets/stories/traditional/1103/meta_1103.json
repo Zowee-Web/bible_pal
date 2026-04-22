@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1103,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_06",
+  "title": "The Angel in the Prison",
+  "scriptureAnchor": "Acts 12:1-19",
+  "bibleStoryKey": "peter_freed_from_prison",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "themeTags": [
+    "faith",
+    "deliverance"
+  ],
+  "primaryCharacterId": "peter",
+  "primaryCharacterDisplayName": "Peter",
+  "bibleOrderIndex": 703,
+  "timelineEra": "early_church",
+  "reflectionQuestion": "Have you ever been in a situation that felt completely locked — and then something shifted that you did not arrange?",
+  "reflectionText": "Peter was asleep. That is the detail that stops you. The night before his trial — almost certainly his execution — and he was sleeping between two guards with chains on his wrists.\n\nThe church was awake. They were praying through the night, desperate. But Peter slept.\n\nAnd when the angel came and the chains fell and the gates opened, Peter walked through it all thinking it was a dream. He did not believe his own rescue until he was standing alone in the street.\n\nSometimes deliverance comes in the middle of the night, when the person being rescued is the last one to realize it is real.",
+  "reflectionVoiceKey": "VOICE_ARCHER",
+  "files": {
+    "short": {
+      "storyText": "story_1103_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1103_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1103_traditional_web_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1103_traditional_web.txt"
+    }
+  }
+}

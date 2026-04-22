@@ -49,5 +49,8 @@
   },
   "skippedLengths": {
     "long": "intentionally_unavailable: exceeds_max_supported_length"
-  }
+  },
+  "timelineEra": "patriarchs",
+  "primaryCharacterId": "hagar",
+  "primaryCharacterDisplayName": "Hagar"
 }

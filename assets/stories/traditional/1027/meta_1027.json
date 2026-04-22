@@ -36,5 +36,8 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
   "reflectionVoiceKey": "VOICE_PRISCILLA_TEACHER",
-  "reflectionText": "Moses was just a shepherd watching sheep when God called him for a very big job. He felt small and unsure. But God did not say, \"You can do it because you are strong.\" God said, \"I will be with you.\" Sometimes the most encouraging thing is knowing you do not have to do hard things alone.\n\nWhen something feels too big for you, who do you talk to about it?"
+  "reflectionText": "Moses was just a shepherd watching sheep when God called him for a very big job. He felt small and unsure. But God did not say, \"You can do it because you are strong.\" God said, \"I will be with you.\" Sometimes the most encouraging thing is knowing you do not have to do hard things alone.\n\nWhen something feels too big for you, who do you talk to about it?",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses"
 }

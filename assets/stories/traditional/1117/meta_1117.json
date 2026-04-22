@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1117,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_06",
+  "title": "The Crossing of the Red Sea",
+  "scriptureAnchor": "Exodus 14:10-31",
+  "bibleStoryKey": "red_sea_crossing",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "faith",
+    "deliverance"
+  ],
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "bibleOrderIndex": 60,
+  "timelineEra": "exodus",
+  "reflectionVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "files": {
+    "short": {
+      "storyText": "story_1117_traditional_web_short.txt"
+    }
+  }
+}
