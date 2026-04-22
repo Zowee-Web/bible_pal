@@ -12,7 +12,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_LYDIA_GRACIOUS",
+  "voiceKey": "VOICE_ARABELLA",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
   "reflectionQuestion": "She fought the hose for twenty minutes before her neighbor handed her a watering can. What fight are you in that might have a simpler answer?",
@@ -33,7 +33,7 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_LYDIA_GRACIOUS",
-  "reflectionVoiceKey": "VOICE_LYDIA_GRACIOUS",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA",
   "reflectionText": "She fought the hose for twenty minutes before her neighbor handed her a watering can. What fight are you in that might have a simpler answer?"
 }

@@ -518,7 +518,7 @@
       "audioFilePath": "parable_102_brave_courage_10min_kid_trad.mp3",
       "textFilePath": "parable_102_brave_courage_10min_kid_trad.txt",
       "translationId": "WEB",
-      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "short",
       "bibleSourceRef": "Daniel 6",
       "bibleStoryKey": "daniel_lions_den"
@@ -537,7 +537,7 @@
       "audioFilePath": "parable_110_encouraging_15min_kid_trad.mp3",
       "textFilePath": "parable_110_encouraging_15min_kid_trad.txt",
       "translationId": "WEB",
-      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "full",
       "bibleSourceRef": "Esther 4-7",
       "bibleStoryKey": "queen_esther"

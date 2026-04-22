@@ -1321,7 +1321,7 @@
       "textFilePath": "traditional/1011/story_1011_traditional_web_short.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "short",
       "availableLengths": [
         "short",
@@ -1344,7 +1344,7 @@
       "textFilePath": "traditional/1011/story_1011_traditional_web_full.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "full",
       "availableLengths": [
         "short",
@@ -1367,7 +1367,7 @@
       "textFilePath": "traditional/1011/story_1011_traditional_web_long.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "long",
       "availableLengths": [
         "short",
@@ -1938,7 +1938,7 @@
       "textFilePath": "traditional/1018/story_1018_traditional_web_short.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "short",
       "availableLengths": [
         "short",
@@ -1960,7 +1960,7 @@
       "textFilePath": "traditional/1018/story_1018_traditional_web_full.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "full",
       "availableLengths": [
         "short",
@@ -1982,7 +1982,7 @@
       "textFilePath": "traditional/1018/story_1018_traditional_kjv_short.txt",
       "translationId": "KJV",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "short",
       "availableLengths": [
         "short",
@@ -2004,7 +2004,7 @@
       "textFilePath": "traditional/1018/story_1018_traditional_kjv_full.txt",
       "translationId": "KJV",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "full",
       "availableLengths": [
         "short",
@@ -2114,7 +2114,7 @@
       "textFilePath": "traditional/1020/story_1020_traditional_web_short.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "short",
       "availableLengths": [
         "short",
@@ -2137,7 +2137,7 @@
       "textFilePath": "traditional/1020/story_1020_traditional_web_full.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "full",
       "availableLengths": [
         "short",
@@ -2160,7 +2160,7 @@
       "textFilePath": "traditional/1020/story_1020_traditional_web_long.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "long",
       "availableLengths": [
         "short",
@@ -2182,7 +2182,7 @@
       "textFilePath": "traditional/1020/story_1020_traditional_kjv_short.txt",
       "translationId": "KJV",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "short",
       "availableLengths": [
         "short",
@@ -2205,7 +2205,7 @@
       "textFilePath": "traditional/1020/story_1020_traditional_kjv_full.txt",
       "translationId": "KJV",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "full",
       "availableLengths": [
         "short",
@@ -2228,7 +2228,7 @@
       "textFilePath": "traditional/1020/story_1020_traditional_kjv_long.txt",
       "translationId": "KJV",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "long",
       "availableLengths": [
         "short",
@@ -4218,7 +4218,7 @@
       "textFilePath": "traditional/1050/story_1050_traditional_web_short.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "short",
       "availableLengths": [
         "short",
@@ -4240,7 +4240,7 @@
       "textFilePath": "traditional/1050/story_1050_traditional_web_full.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "full",
       "availableLengths": [
         "short",
@@ -4262,7 +4262,7 @@
       "textFilePath": "traditional/1050/story_1050_traditional_kjv_short.txt",
       "translationId": "KJV",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "short",
       "availableLengths": [
         "short",
@@ -4284,7 +4284,7 @@
       "textFilePath": "traditional/1050/story_1050_traditional_kjv_full.txt",
       "translationId": "KJV",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "full",
       "availableLengths": [
         "short",
@@ -4394,7 +4394,7 @@
       "textFilePath": "traditional/1052/story_1052_traditional_web_short.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "short",
       "availableLengths": [
         "short",
@@ -4416,7 +4416,7 @@
       "textFilePath": "traditional/1052/story_1052_traditional_web_full.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "full",
       "availableLengths": [
         "short",
@@ -4438,7 +4438,7 @@
       "textFilePath": "traditional/1052/story_1052_traditional_kjv_short.txt",
       "translationId": "KJV",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "short",
       "availableLengths": [
         "short",
@@ -4460,7 +4460,7 @@
       "textFilePath": "traditional/1052/story_1052_traditional_kjv_full.txt",
       "translationId": "KJV",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "full",
       "availableLengths": [
         "short",
@@ -6862,7 +6862,7 @@
       "textFilePath": "creative/2002/story_2002_creative_web_short.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "short",
       "availableLengths": [
         "short",
@@ -6884,7 +6884,7 @@
       "textFilePath": "creative/2002/story_2002_creative_web_full.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "full",
       "availableLengths": [
         "short",
@@ -6906,7 +6906,7 @@
       "textFilePath": "creative/2002/story_2002_creative_web_long.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "long",
       "availableLengths": [
         "short",
@@ -7456,7 +7456,7 @@
       "textFilePath": "creative/2011/story_2011_creative_web_short.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "short",
       "availableLengths": [
         "short",
@@ -7478,7 +7478,7 @@
       "textFilePath": "creative/2011/story_2011_creative_web_full.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "full",
       "availableLengths": [
         "short",
@@ -7500,7 +7500,7 @@
       "textFilePath": "creative/2011/story_2011_creative_web_long.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "long",
       "availableLengths": [
         "short",
@@ -7720,7 +7720,7 @@
       "textFilePath": "creative/2015/story_2015_creative_web_short.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "short",
       "availableLengths": [
         "short",
@@ -7742,7 +7742,7 @@
       "textFilePath": "creative/2015/story_2015_creative_web_full.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "full",
       "availableLengths": [
         "short",
@@ -7764,7 +7764,7 @@
       "textFilePath": "creative/2015/story_2015_creative_web_long.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_DEFAULT_VOICES",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "long",
       "availableLengths": [
         "short",
@@ -8611,7 +8611,7 @@
       "textFilePath": "creative/2034/story_2034_creative_web_short.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "short",
       "availableLengths": [
         "short",
@@ -8632,7 +8632,7 @@
       "textFilePath": "creative/2034/story_2034_creative_web_full.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "full",
       "availableLengths": [
         "short",
@@ -8653,7 +8653,7 @@
       "textFilePath": "creative/2035/story_2035_creative_web_short.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "short",
       "availableLengths": [
         "short",
@@ -8675,7 +8675,7 @@
       "textFilePath": "creative/2035/story_2035_creative_web_full.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "full",
       "availableLengths": [
         "short",
@@ -8697,7 +8697,7 @@
       "textFilePath": "creative/2035/story_2035_creative_web_long.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "long",
       "availableLengths": [
         "short",
@@ -9677,7 +9677,7 @@
       "textFilePath": "creative/2055/story_2055_creative_web_short.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "short",
       "availableLengths": [
         "short",
@@ -9698,7 +9698,7 @@
       "textFilePath": "creative/2055/story_2055_creative_web_full.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "full",
       "availableLengths": [
         "short",
@@ -10185,7 +10185,7 @@
       "textFilePath": "creative/2066/story_2066_creative_web_short.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "short",
       "availableLengths": [
         "short",
@@ -10207,7 +10207,7 @@
       "textFilePath": "creative/2066/story_2066_creative_web_full.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "full",
       "availableLengths": [
         "short",
@@ -10229,7 +10229,7 @@
       "textFilePath": "creative/2066/story_2066_creative_web_long.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_LYDIA_GRACIOUS",
+      "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "long",
       "availableLengths": [
         "short",
@@ -10250,7 +10250,7 @@
       "textFilePath": "creative/2067/story_2067_creative_web_short.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "short",
       "availableLengths": [
         "short",
@@ -10272,7 +10272,7 @@
       "textFilePath": "creative/2067/story_2067_creative_web_full.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "full",
       "availableLengths": [
         "short",
@@ -10294,7 +10294,7 @@
       "textFilePath": "creative/2067/story_2067_creative_web_long.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "long",
       "availableLengths": [
         "short",

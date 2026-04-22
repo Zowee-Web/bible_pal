@@ -13,7 +13,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_LYDIA_GRACIOUS",
+  "voiceKey": "VOICE_ARABELLA",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_04",
   "reflectionQuestion": "What is it about the simple, rhythmic motion of something familiar—a chair, a breath, a quiet habit—that can bring you back to a version of yourself you almost forgot was still there?",
@@ -36,8 +36,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_LYDIA_GRACIOUS",
-  "reflectionVoiceKey": "VOICE_LYDIA_GRACIOUS",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA",
   "theme": "an elderly woman sitting on a porch at dusk, watching the street go quiet",
   "reflectionText": "What is it about the simple, rhythmic motion of something familiar—a chair, a breath, a quiet habit—that can bring you back to a version of yourself you almost forgot was still there?"
 }
