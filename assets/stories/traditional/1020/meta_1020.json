@@ -16,7 +16,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_SARAH_STORYTELLER",
+  "voiceKey": "VOICE_CHARLOTTE_V3",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_01",
   "reflectionQuestion": "When has something you had given up hoping for arrived at a time you least expected it?",
@@ -52,8 +52,8 @@
     "kjv": "reflection_1020_traditional_kjv.txt"
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_SARAH_STORYTELLER",
-  "reflectionVoiceKey": "VOICE_SARAH_STORYTELLER",
+  "storyVoiceKey": "VOICE_CHARLOTTE_V3",
+  "reflectionVoiceKey": "VOICE_CHARLOTTE_V3",
   "reflectionText": "There is something striking in laughter spoken before a promise. Sarah laughed not from scorn but from the weight of long years — years of waiting, years in which her body had given its own answer. Yet the promise did not waver because she laughed. It stood, firm as the oaks above.\n\nAt times the most honest answer to an impossible gift is disbelief. And at times the gift cometh still, heedless of whether we were ready to receive it.",
   "timelineEra": "patriarchs",
   "primaryCharacterId": "abraham",

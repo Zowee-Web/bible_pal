@@ -14,7 +14,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_PRISCILLA_TEACHER",
+  "voiceKey": "VOICE_LILY_WOLFF",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_01",
   "reflectionQuestion": "When something feels too big for you, who do you talk to about it?",
@@ -34,8 +34,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
-  "reflectionVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF",
   "reflectionText": "Moses was just a shepherd watching sheep when God called him for a very big job. He felt small and unsure. But God did not say, \"You can do it because you are strong.\" God said, \"I will be with you.\" Sometimes the most encouraging thing is knowing you do not have to do hard things alone.\n\nWhen something feels too big for you, who do you talk to about it?",
   "timelineEra": "exodus",
   "primaryCharacterId": "moses",

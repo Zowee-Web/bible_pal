@@ -14,7 +14,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_MARTHA_CARING",
+  "voiceKey": "VOICE_ARABELLA",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
   "reflectionQuestion": "Who is someone who has been really kind to you, and how did it make you feel?",
@@ -34,8 +34,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_MARTHA_CARING",
-  "reflectionVoiceKey": "VOICE_MARTHA_CARING",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA",
   "reflectionText": "Ruth worked hard all day in the hot sun to take care of Naomi. And Boaz noticed. He gave her water, food, and extra grain — more than she expected. When we work hard and care for others, God often sends people to help us too.\n\nWho is someone who has been really kind to you, and how did it make you feel?",
   "timelineEra": "judges",
   "primaryCharacterId": "ruth",

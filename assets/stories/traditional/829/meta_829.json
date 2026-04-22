@@ -14,9 +14,9 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_MARY_PONDER",
-  "storyVoiceKey": "VOICE_MARY_PONDER",
-  "reflectionVoiceKey": "VOICE_MARY_PONDER",
+  "voiceKey": "VOICE_CHARLOTTE_V3",
+  "storyVoiceKey": "VOICE_CHARLOTTE_V3",
+  "reflectionVoiceKey": "VOICE_CHARLOTTE_V3",
   "voiceKeys": {
     "short": "VOICE_MARY_PONDER",
     "full": "VOICE_MARY_PONDER",

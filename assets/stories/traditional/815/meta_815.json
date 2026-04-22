@@ -15,9 +15,9 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "reflectionVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "voiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "reflectionVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "voiceKeys": {
     "short": "VOICE_BARNABAS_ENCOURAGER",
     "full": "VOICE_BARNABAS_ENCOURAGER",

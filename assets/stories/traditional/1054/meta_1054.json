@@ -13,7 +13,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_HANNAH_HOPE",
+  "voiceKey": "VOICE_CHARLOTTE_V3",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
   "reflectionQuestion": "He expected judgment and received a seat at the table. When has kindness arrived in a place where you only expected to be forgotten?",
@@ -45,8 +45,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_HANNAH_HOPE",
-  "reflectionVoiceKey": "VOICE_HANNAH_HOPE",
+  "storyVoiceKey": "VOICE_CHARLOTTE_V3",
+  "reflectionVoiceKey": "VOICE_CHARLOTTE_V3",
   "scriptureAnchor": "2 Samuel 9:1-13",
   "bibleStoryKey": "david_and_mephibosheth",
   "reflections": {

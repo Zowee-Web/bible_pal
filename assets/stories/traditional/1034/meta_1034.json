@@ -15,7 +15,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_SAMUEL_EARNEST",
+  "voiceKey": "VOICE_JOHN_DOE",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
   "reflectionQuestion": "In a quiet moment, what would you ask for? What is the one thing that would help you serve well the people and responsibilities in your life?",
@@ -63,8 +63,8 @@
     "kjv": "reflection_1034_traditional_kjv.txt"
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
-  "reflectionVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "storyVoiceKey": "VOICE_JOHN_DOE",
+  "reflectionVoiceKey": "VOICE_JOHN_DOE",
   "reflectionText": "Solomon might have asked for any thing. He chose understanding. Not power, not riches, not the overthrow of his enemies — only the clarity to discern between good and evil.\n\nIn a still moment, what wouldest thou ask? What is the one thing that would help thee serve well those whom thou hast been given to care for?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "solomon",

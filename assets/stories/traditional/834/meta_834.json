@@ -15,9 +15,9 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_ELIJAH_SAGE",
-  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
-  "reflectionVoiceKey": "VOICE_ELIJAH_SAGE",
+  "voiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "reflectionVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
   "voiceKeys": {
     "short": "VOICE_ELIJAH_SAGE",
     "full": "VOICE_ELIJAH_SAGE",

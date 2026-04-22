@@ -14,7 +14,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_SAMUEL_EARNEST",
+  "voiceKey": "VOICE_JOHN_DOE",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_04",
   "reflectionQuestion": "What would it feel like to release, even for a moment, the weight of tomorrow's worries and simply trust that you are already held by something larger than yourself?",
@@ -52,8 +52,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
-  "reflectionVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "storyVoiceKey": "VOICE_JOHN_DOE",
+  "reflectionVoiceKey": "VOICE_JOHN_DOE",
   "scriptureAnchor": "Matthew 6:25-34",
   "bibleStoryKey": "do_not_worry",
   "reflections": {

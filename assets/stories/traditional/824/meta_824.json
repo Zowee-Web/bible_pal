@@ -15,9 +15,9 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_SARAH_STORYTELLER",
-  "storyVoiceKey": "VOICE_SARAH_STORYTELLER",
-  "reflectionVoiceKey": "VOICE_SARAH_STORYTELLER",
+  "voiceKey": "VOICE_CHARLOTTE_V3",
+  "storyVoiceKey": "VOICE_CHARLOTTE_V3",
+  "reflectionVoiceKey": "VOICE_CHARLOTTE_V3",
   "voiceKeys": {
     "short": "VOICE_SARAH_STORYTELLER",
     "full": "VOICE_SARAH_STORYTELLER",

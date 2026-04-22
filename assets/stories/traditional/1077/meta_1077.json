@@ -13,7 +13,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_JANE_PROFESSIONAL",
+  "voiceKey": "VOICE_LILY_WOLFF",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_04",
   "reflectionQuestion": "What is something that hurts inside you right now that you wish someone really understood?",
@@ -36,8 +36,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_JANE_PROFESSIONAL",
-  "reflectionVoiceKey": "VOICE_JANE_PROFESSIONAL",
+  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF",
   "scriptureAnchor": "Psalm 139:1-18",
   "bibleStoryKey": "fearfully_and_wonderfully_made",
   "reflectionText": "What is something that hurts inside you right now that you wish someone really understood?",

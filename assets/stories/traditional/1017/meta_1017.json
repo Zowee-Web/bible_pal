@@ -16,7 +16,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_ELIJAH_SAGE",
+  "voiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_01",
   "reflectionQuestion": "What does it look like to begin building something when the reason for it is not yet visible to anyone but you?",
@@ -52,8 +52,8 @@
     "kjv": "reflection_1017_traditional_kjv.txt"
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
-  "reflectionVoiceKey": "VOICE_ELIJAH_SAGE",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "reflectionVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
   "reflectionText": "There is a manner of courage that looketh nothing like what the world calleth brave. It hath no sword, no field of battle, no company of men cheering from the walls. It looketh like a man hewing timber, day upon day, building that which none hath asked for, in answer to a voice none other hath heard.\n\nThe obedience of Noah was not one act of daring. It was labour sustained and daily — plank upon plank, seam upon seam — wrought in a world that saw no cause for any of it. It may be that faithfulness is not always a moment of boldness, but a long season of rising to do the work that hath been given.",
   "timelineEra": "patriarchs",
   "primaryCharacterId": "noah",

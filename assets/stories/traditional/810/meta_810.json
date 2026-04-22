@@ -15,9 +15,9 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_DEBORAH_WISE",
-  "storyVoiceKey": "VOICE_DEBORAH_WISE",
-  "reflectionVoiceKey": "VOICE_DEBORAH_WISE",
+  "voiceKey": "VOICE_ARABELLA",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA",
   "voiceKeys": {
     "short": "VOICE_DEBORAH_WISE",
     "full": "VOICE_DEBORAH_WISE",

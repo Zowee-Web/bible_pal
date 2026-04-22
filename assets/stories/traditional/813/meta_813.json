@@ -15,9 +15,9 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_ESTHER_BRAVE",
-  "storyVoiceKey": "VOICE_ESTHER_BRAVE",
-  "reflectionVoiceKey": "VOICE_ESTHER_BRAVE",
+  "voiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "reflectionVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
   "voiceKeys": {
     "short": "VOICE_ESTHER_BRAVE",
     "full": "VOICE_ESTHER_BRAVE",

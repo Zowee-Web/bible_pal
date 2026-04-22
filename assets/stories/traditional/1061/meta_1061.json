@@ -12,7 +12,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_PRISCILLA_TEACHER",
+  "voiceKey": "VOICE_LILY_WOLFF",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
   "reflectionQuestion": "Naaman wanted something big and impressive, but the answer was simple and small. Have you ever been surprised that the right answer was easier than you expected?",
@@ -32,8 +32,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
-  "reflectionVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF",
   "scriptureAnchor": "2 Kings 5:1-14",
   "bibleStoryKey": "naaman_healed",
   "reflectionText": "Naaman wanted something big and impressive, but the answer was simple and small. Have you ever been surprised that the right answer was easier than you expected?",

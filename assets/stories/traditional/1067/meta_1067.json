@@ -14,7 +14,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_DEBORAH_WISE",
+  "voiceKey": "VOICE_ARABELLA",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_04",
   "reflectionQuestion": "What would it be like to be fully seen—every hidden and imperfect part of you laid bare—and to find that the response waiting for you is not rejection, but an invitation?",
@@ -52,8 +52,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_DEBORAH_WISE",
-  "reflectionVoiceKey": "VOICE_DEBORAH_WISE",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA",
   "scriptureAnchor": "Isaiah 6:1-8",
   "bibleStoryKey": "isaiahs_vision",
   "reflections": {

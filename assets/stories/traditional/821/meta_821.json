@@ -15,9 +15,9 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_SAMUEL_EARNEST",
-  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
-  "reflectionVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "voiceKey": "VOICE_JOHN_DOE",
+  "storyVoiceKey": "VOICE_JOHN_DOE",
+  "reflectionVoiceKey": "VOICE_JOHN_DOE",
   "voiceKeys": {
     "short": "VOICE_SAMUEL_EARNEST",
     "full": "VOICE_SAMUEL_EARNEST",

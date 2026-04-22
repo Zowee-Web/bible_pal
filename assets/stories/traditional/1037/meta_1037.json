@@ -15,7 +15,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_MARCUS_ANCHOR",
+  "voiceKey": "VOICE_JAMES_HUSKY",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
   "reflectionQuestion": "When has the hurt of being misunderstood or betrayed by those closest to you felt most real?",
@@ -48,8 +48,8 @@
     "kjv": "reflection_1037_traditional_kjv.txt"
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
-  "reflectionVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "reflectionVoiceKey": "VOICE_JAMES_HUSKY",
   "reflectionText": "The coat changed hands twice. First when the brethren stripped it from Joseph's body. Then when they dipped it in the blood of a kid and brought it unto their father. The same garment that had been a sign of love became the instrument of grief.\n\nWhat Jacob mourned was not only the loss of a son. It was the loss of the particular son he had loved most visibly, most openly, in a manner that all around him could see and resent. The favouring that made the coat also made the hatred, and the hatred made the pit.\n\nHurt seldom arriveth from a single quarter. It layereth — the brethren's envy, Joseph's solitude, Jacob's grief that would not be comforted, Reuben's failed deliverance. Every soul in this account carrieth a wound he helped to make. The pit is empty and dry, and none cometh away whole.",
   "timelineEra": "patriarchs",
   "primaryCharacterId": "joseph",

@@ -15,9 +15,9 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_PETER_BOLD",
-  "storyVoiceKey": "VOICE_PETER_BOLD",
-  "reflectionVoiceKey": "VOICE_PETER_BOLD",
+  "voiceKey": "VOICE_ARCHER",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "reflectionVoiceKey": "VOICE_ARCHER",
   "voiceKeys": {
     "short": "VOICE_PETER_BOLD",
     "full": "VOICE_PETER_BOLD",

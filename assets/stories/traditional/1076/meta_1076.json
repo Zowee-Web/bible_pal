@@ -13,7 +13,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_MARTHA_CARING",
+  "voiceKey": "VOICE_ARABELLA",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_04",
   "reflectionQuestion": "What is something you feel really thankful for today?",
@@ -36,8 +36,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_MARTHA_CARING",
-  "reflectionVoiceKey": "VOICE_MARTHA_CARING",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA",
   "scriptureAnchor": "Job 42:1-17",
   "bibleStoryKey": "job_restored",
   "reflectionText": "What is something you feel really thankful for today?",

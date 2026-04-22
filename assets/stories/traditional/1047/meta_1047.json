@@ -14,7 +14,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_PRISCILLA_TEACHER",
+  "voiceKey": "VOICE_LILY_WOLFF",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
   "reflectionQuestion": "When you feel really tired, what is something that helps you keep going?",
@@ -34,8 +34,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
-  "reflectionVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF",
   "reflectionText": "Elijah was tired and hungry. The woman had almost nothing left. But when she shared her last bit of food, God made sure the flour and oil never ran out. Sometimes when we feel like we have nothing left to give, God provides in ways we do not expect.\n\nWhen you feel really tired, what is something that helps you keep going?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "elijah",

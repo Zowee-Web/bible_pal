@@ -14,7 +14,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_NOAH_PATIENT",
+  "voiceKey": "VOICE_CHRIS_DEFAULT",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_04",
   "reflectionQuestion": "What is it that stirs in you when you imagine leaving behind everything familiar to follow a single, distant light — and what might that kind of trust feel like if you allowed it?",
@@ -52,8 +52,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_NOAH_PATIENT",
-  "reflectionVoiceKey": "VOICE_NOAH_PATIENT",
+  "storyVoiceKey": "VOICE_CHRIS_DEFAULT",
+  "reflectionVoiceKey": "VOICE_CHRIS_DEFAULT",
   "scriptureAnchor": "Matthew 2:1-12",
   "bibleStoryKey": "the_magi",
   "reflections": {

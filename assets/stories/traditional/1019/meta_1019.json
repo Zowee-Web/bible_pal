@@ -15,7 +15,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "voiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_01",
   "reflectionQuestion": "When have you been asked to step into something larger than yourself, carrying nothing but the assurance that you would not go alone?",
@@ -48,8 +48,8 @@
     "kjv": "reflection_1019_traditional_kjv.txt"
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "reflectionVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "reflectionVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "reflectionText": "The bush was a common thing. It was such scrub as grew in every gully of the waste, passed without regard by every shepherd who walked those hills. That which made it wondrous was not its nature but what dwelt therein. The fire consumed not. It revealed.\n\nMoses asked for a name, and the word he received was unlike any name he had known. Not a title. Not an office. Only being itself — I AM. There is something in that name which resisteth all taming, all setting in order. It abideth, like the bush, burning and not consumed, as present now as it was upon that still hillside.",
   "timelineEra": "exodus",
   "primaryCharacterId": "moses",

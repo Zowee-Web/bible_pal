@@ -15,7 +15,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_MARY_PONDER",
+  "voiceKey": "VOICE_CHARLOTTE_V3",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
   "reflectionQuestion": "When anxiety grips you, you do not need to see the whole road. You only need to take the step in front of you. What is one step you can take today, even without knowing what comes next?",
@@ -63,8 +63,8 @@
     "kjv": "reflection_1032_traditional_kjv.txt"
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_MARY_PONDER",
-  "reflectionVoiceKey": "VOICE_MARY_PONDER",
+  "storyVoiceKey": "VOICE_CHARLOTTE_V3",
+  "reflectionVoiceKey": "VOICE_CHARLOTTE_V3",
   "reflectionText": "Abraham walked three days bearing a burden none could see. He knew not how the matter would end. He knew only the step before him.\n\nWhen fear layeth hold upon thee, thou needest not see the whole road. Thou needest only take the step that lieth before thee. What is one step thou canst take this day, though thou knowest not what cometh next?",
   "timelineEra": "patriarchs",
   "primaryCharacterId": "abraham",

@@ -15,7 +15,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_MIRIAM_JOYFUL",
+  "voiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_01",
   "reflectionQuestion": "What does it look like when value is found in the place no one thought to look?",
@@ -48,8 +48,8 @@
     "kjv": "reflection_1022_traditional_kjv.txt"
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
-  "reflectionVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "reflectionVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
   "reflectionText": "Seven sons stood before the prophet, and seven were refused. The one God sought was abroad in the field, not reckoned worthy to be called within. None had thought to summon him.\n\nThere is something worth pondering in this — that the thing God valueth most is oft the thing the company overlooketh. The measure that mattereth cannot be discerned from without.",
   "timelineEra": "kingdom",
   "primaryCharacterId": "david",

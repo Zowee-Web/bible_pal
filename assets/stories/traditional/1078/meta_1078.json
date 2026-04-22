@@ -13,7 +13,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_DAVID_SHEPHERD",
+  "voiceKey": "VOICE_ARCHER",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_04",
   "reflectionQuestion": "What made you feel happy inside as you listened to this story?",
@@ -36,8 +36,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "reflectionVoiceKey": "VOICE_ARCHER",
   "scriptureAnchor": "Matthew 2:1-12",
   "bibleStoryKey": "the_magi",
   "reflectionText": "What made you feel happy inside as you listened to this story?",

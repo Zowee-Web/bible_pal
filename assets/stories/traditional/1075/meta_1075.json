@@ -13,7 +13,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "voiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_04",
   "reflectionQuestion": "What is something kind or helpful you could do if someone around you needed help today?",
@@ -36,8 +36,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "reflectionVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "reflectionVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "scriptureAnchor": "Isaiah 6:1-8",
   "bibleStoryKey": "isaiahs_vision",
   "reflectionText": "What is something kind or helpful you could do if someone around you needed help today?",

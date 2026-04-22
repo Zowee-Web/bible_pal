@@ -13,7 +13,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_JOHN_BELOVED",
+  "voiceKey": "VOICE_JOHN_DOE",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
   "reflectionQuestion": "He expected fire and spectacle but was told to wash in a muddy river. What happens when the answer to your deepest need looks nothing like what you imagined?",
@@ -45,8 +45,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_JOHN_BELOVED",
-  "reflectionVoiceKey": "VOICE_JOHN_BELOVED",
+  "storyVoiceKey": "VOICE_JOHN_DOE",
+  "reflectionVoiceKey": "VOICE_JOHN_DOE",
   "scriptureAnchor": "2 Kings 5:1-14",
   "bibleStoryKey": "naaman_healed",
   "reflections": {

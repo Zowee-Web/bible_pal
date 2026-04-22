@@ -12,7 +12,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_MARTHA_CARING",
+  "voiceKey": "VOICE_ARABELLA",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
   "reflectionQuestion": "Jonathan gave away everything that made him a prince — just because his heart told him to. What is the most generous thing someone has ever done for you? What made it special?",
@@ -32,8 +32,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_MARTHA_CARING",
-  "reflectionVoiceKey": "VOICE_MARTHA_CARING",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA",
   "scriptureAnchor": "1 Samuel 18:1-4",
   "bibleStoryKey": "david_and_jonathan",
   "reflectionText": "Jonathan gave away everything that made him a prince — just because his heart told him to. What is the most generous thing someone has ever done for you? What made it special?",

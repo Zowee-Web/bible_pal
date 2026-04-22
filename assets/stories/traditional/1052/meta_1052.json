@@ -13,7 +13,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_SARAH_STORYTELLER",
+  "voiceKey": "VOICE_CHARLOTTE_V3",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
   "reflectionQuestion": "A prince gave away everything that marked him as royalty to a shepherd he had just met. What moves a person to hand over their identity to someone else?",
@@ -45,8 +45,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_SARAH_STORYTELLER",
-  "reflectionVoiceKey": "VOICE_SARAH_STORYTELLER",
+  "storyVoiceKey": "VOICE_CHARLOTTE_V3",
+  "reflectionVoiceKey": "VOICE_CHARLOTTE_V3",
   "scriptureAnchor": "1 Samuel 18:1-4",
   "bibleStoryKey": "david_and_jonathan",
   "reflections": {

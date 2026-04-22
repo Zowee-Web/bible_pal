@@ -13,7 +13,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_PRISCILLA_TEACHER",
+  "voiceKey": "VOICE_LILY_WOLFF",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_04",
   "reflectionQuestion": "Have you ever felt so tired that you wished someone strong could carry you for a while?",
@@ -36,8 +36,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
-  "reflectionVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF",
   "scriptureAnchor": "Isaiah 40:28-31",
   "bibleStoryKey": "wings_like_eagles",
   "reflectionText": "Have you ever felt so tired that you wished someone strong could carry you for a while?",

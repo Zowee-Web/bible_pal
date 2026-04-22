@@ -15,9 +15,9 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_JANE_PROFESSIONAL",
-  "storyVoiceKey": "VOICE_JANE_PROFESSIONAL",
-  "reflectionVoiceKey": "VOICE_JANE_PROFESSIONAL",
+  "voiceKey": "VOICE_LILY_WOLFF",
+  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF",
   "voiceKeys": {
     "short": "VOICE_JANE_PROFESSIONAL",
     "full": "VOICE_JANE_PROFESSIONAL",

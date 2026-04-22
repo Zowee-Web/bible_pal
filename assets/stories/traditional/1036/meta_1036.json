@@ -15,7 +15,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_HANNAH_HOPE",
+  "voiceKey": "VOICE_CHARLOTTE_V3",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_02",
   "reflectionQuestion": "When has provision come to you in a form you did not expect or plan for?",
@@ -48,8 +48,8 @@
     "kjv": "reflection_1036_traditional_kjv.txt"
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_HANNAH_HOPE",
-  "reflectionVoiceKey": "VOICE_HANNAH_HOPE",
+  "storyVoiceKey": "VOICE_CHARLOTTE_V3",
+  "reflectionVoiceKey": "VOICE_CHARLOTTE_V3",
   "reflectionText": "An ephah of barley weigheth roughly thirty pounds. Ruth carried it upon her shoulder from the field back into the city, and the weight of it was the weight of a day spent bending low, gathering, beating out grain under the open sun. She had gone forth that morning with nothing. She returned with more than enough.\n\nWhat standeth out is the quiet gathering of kindness. Boaz did not proclaim his generosity. He bade his men let fall handfuls of purpose for her, and charged them not to rebuke her. The provision was woven into the ordinary labour of the day so that it appeared, from without, as though she had simply gleaned well.\n\nGratitude often beginneth in the recognition that something was given before we knew to ask for it. A field that happened to belong unto a kinsman. A man who happened to take notice. Handfuls left as though by chance. The workings of care, arranged before the one who needed it arrived.",
   "timelineEra": "judges",
   "primaryCharacterId": "ruth",

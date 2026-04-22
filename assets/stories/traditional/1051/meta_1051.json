@@ -13,7 +13,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_MARCUS_ANCHOR",
+  "voiceKey": "VOICE_JAMES_HUSKY",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
   "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole — and what would it take to say 'let us build'?",
@@ -45,8 +45,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
-  "reflectionVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "reflectionVoiceKey": "VOICE_JAMES_HUSKY",
   "scriptureAnchor": "Nehemiah 2:1-18",
   "bibleStoryKey": "nehemiah_rebuilds_the_wall",
   "reflections": {

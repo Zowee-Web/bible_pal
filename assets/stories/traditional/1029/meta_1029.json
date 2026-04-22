@@ -14,7 +14,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_MARTHA_CARING",
+  "voiceKey": "VOICE_ARABELLA",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_01",
   "reflectionQuestion": "Have you ever gone through something hard and come out of it a little different than you were before?",
@@ -34,8 +34,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_MARTHA_CARING",
-  "reflectionVoiceKey": "VOICE_MARTHA_CARING",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA",
   "reflectionText": "Jacob wrestled all night long. Even when he was hurt, he held on and would not let go. Sometimes the hardest nights teach us the most important things. Jacob walked away with a limp, but he also walked away with a blessing and a brand-new name.\n\nHave you ever gone through something hard and come out of it a little different than you were before?",
   "timelineEra": "patriarchs",
   "primaryCharacterId": "jacob",

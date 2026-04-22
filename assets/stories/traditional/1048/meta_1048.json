@@ -15,7 +15,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_ELIJAH_SAGE",
+  "voiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
   "reflectionQuestion": "The sea stood before them and the army behind. There was no way through and no way back. What does it mean to stand still when every instinct says to run?",
@@ -51,8 +51,8 @@
     "kjv": "reflection_1048_traditional_kjv.txt"
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
-  "reflectionVoiceKey": "VOICE_ELIJAH_SAGE",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "reflectionVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
   "reflectionText": "The sea stood before them and the host behind. There was no passage through and no returning back. What meaneth it to stand still when every part of thee would flee?",
   "timelineEra": "exodus",
   "primaryCharacterId": "moses",

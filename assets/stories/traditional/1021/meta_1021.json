@@ -16,7 +16,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_JOHN_BELOVED",
+  "voiceKey": "VOICE_JOHN_DOE",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_01",
   "reflectionQuestion": "What does it mean to receive a blessing and a wound from the same encounter?",
@@ -52,8 +52,8 @@
     "kjv": "reflection_1021_traditional_kjv.txt"
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_JOHN_BELOVED",
-  "reflectionVoiceKey": "VOICE_JOHN_BELOVED",
+  "storyVoiceKey": "VOICE_JOHN_DOE",
+  "reflectionVoiceKey": "VOICE_JOHN_DOE",
   "reflectionText": "Jacob departed from the Jabbok with a halt he would bear all his remaining days. The blessing and the wound came from the selfsame hand, in the selfsame night. He sought the one and received both.\n\nThere are struggles that leave their mark upon the body and upon the name. Sometimes the deepest change cometh not from victory but from the readiness to hold fast when holding fast costeth all.",
   "timelineEra": "patriarchs",
   "primaryCharacterId": "jacob",

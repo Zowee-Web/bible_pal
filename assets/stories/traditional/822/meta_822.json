@@ -15,9 +15,9 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_JOHN_BELOVED",
-  "storyVoiceKey": "VOICE_JOHN_BELOVED",
-  "reflectionVoiceKey": "VOICE_JOHN_BELOVED",
+  "voiceKey": "VOICE_JOHN_DOE",
+  "storyVoiceKey": "VOICE_JOHN_DOE",
+  "reflectionVoiceKey": "VOICE_JOHN_DOE",
   "voiceKeys": {
     "short": "VOICE_JOHN_BELOVED",
     "full": "VOICE_JOHN_BELOVED",

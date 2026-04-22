@@ -15,9 +15,9 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_MARTHA_CARING",
-  "storyVoiceKey": "VOICE_MARTHA_CARING",
-  "reflectionVoiceKey": "VOICE_MARTHA_CARING",
+  "voiceKey": "VOICE_ARABELLA",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "reflectionVoiceKey": "VOICE_ARABELLA",
   "voiceKeys": {
     "short": "VOICE_MARTHA_CARING",
     "full": "VOICE_MARTHA_CARING",

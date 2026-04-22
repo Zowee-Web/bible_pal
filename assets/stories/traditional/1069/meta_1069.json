@@ -14,7 +14,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_MARCUS_ANCHOR",
+  "voiceKey": "VOICE_JAMES_HUSKY",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_04",
   "reflectionQuestion": "What does it feel like to be fully known — every hidden wound, every unspoken thought — and to wonder whether being that deeply seen is something you long for or something you fear?",
@@ -52,8 +52,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
-  "reflectionVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "reflectionVoiceKey": "VOICE_JAMES_HUSKY",
   "scriptureAnchor": "Psalm 139:1-18",
   "bibleStoryKey": "fearfully_and_wonderfully_made",
   "reflections": {

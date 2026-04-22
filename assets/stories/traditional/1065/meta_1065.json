@@ -14,7 +14,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_PETER_BOLD",
+  "voiceKey": "VOICE_ARCHER",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_04",
   "reflectionQuestion": "When you think about a moment in your own life where you stood alone in what you believed to be true — with no guarantee of how things would turn out — what gave you the courage to stay, and what did that cost you?",
@@ -52,8 +52,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_PETER_BOLD",
-  "reflectionVoiceKey": "VOICE_PETER_BOLD",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "reflectionVoiceKey": "VOICE_ARCHER",
   "scriptureAnchor": "1 Kings 18:20-39",
   "bibleStoryKey": "elijah_on_mount_carmel",
   "reflections": {

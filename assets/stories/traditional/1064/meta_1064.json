@@ -14,7 +14,7 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_MARY_PONDER",
+  "voiceKey": "VOICE_CHARLOTTE_V3",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_04",
   "reflectionQuestion": "When you think about the moments in your own life where you felt surrounded and outnumbered by forces beyond your control, what might it mean to consider that there could be something present in that situation that you simply couldn't yet see?",
@@ -52,8 +52,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_MARY_PONDER",
-  "reflectionVoiceKey": "VOICE_MARY_PONDER",
+  "storyVoiceKey": "VOICE_CHARLOTTE_V3",
+  "reflectionVoiceKey": "VOICE_CHARLOTTE_V3",
   "scriptureAnchor": "2 Kings 6:8-23",
   "bibleStoryKey": "elisha_and_the_army",
   "reflections": {
