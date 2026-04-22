@@ -1269,6 +1269,15 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                   ),
                                 ),
 
+                                // Story variant controls (length + translation)
+                                _buildVariantControls(theme, playerState),
+
+                                // Ambient Sound Controls
+                                _buildAmbientControls(theme),
+
+                                // PALs Paths continuation toggles (SPEC 50.6c/50.6d)
+                                _buildPathContinuationToggles(theme, playerState),
+
                                 const SizedBox(height: 16),
 
                                 // Action buttons — primary + glass hierarchy
@@ -1329,17 +1338,8 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                   ],
                                 ),
 
-                                // Story variant controls (length + translation)
-                                _buildVariantControls(theme, playerState),
-
-                                // Ambient Sound Controls
-                                _buildAmbientControls(theme),
-
                                 // Add to Journal — always visible (SPEC Feature 40)
                                 _buildJournalAction(theme, playerState),
-
-                                // PALs Paths continuation toggles (SPEC 50.6c/50.6d)
-                                _buildPathContinuationToggles(theme, playerState),
 
                                 // Post-Story Reflection (SPEC.md Features #34-36)
                                 _buildReflectionSection(theme),
