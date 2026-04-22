@@ -1394,7 +1394,7 @@ flutter test
 
 ## 🔒 Reflection System Invariant (NON-NEGOTIABLE)
 
-**Invariant**: Every story (Traditional AND Creative) MUST have a reflection. Reflection audio MUST use the same narrator voice as the story. Reflection is NEVER auto-played.
+**Invariant**: Every story (Traditional AND Creative) MUST have a reflection. Reflection audio MUST use the same narrator voice as the story. Reflection is not auto-played by default; it may auto-play only when the user has explicitly enabled "Pause for Reflection" on the player screen (SPEC Feature 50.6d, session-scoped, default OFF).
 
 ### Why This Exists
 
@@ -1402,7 +1402,7 @@ flutter test
 
 - Reflections are part of the complete story experience
 - Using different voices for reflection breaks immersion
-- Auto-playing reflection without consent violates MoDC principles
+- Auto-playing reflection without consent violates MoDC principles (exception: "Pause for Reflection" opt-in toggle, Feature 50.6d)
 - Every story deserves a reflection, not just some
 
 ### The Contract
@@ -1417,10 +1417,10 @@ flutter test
    - No separate "PAL voice" for reflections
    - Enforced via manifest validation: `reflectionNarratorVoiceKey == narratorVoiceKey`
 
-3. **Never Auto-Play Reflection**
+3. **Never Auto-Play Reflection (Default)**
    - After story ends, show "Hear Reflection" button
-   - User MUST tap to hear reflection
-   - No automatic playback of reflection audio
+   - User MUST tap to hear reflection by default
+   - No automatic playback of reflection audio UNLESS the user has explicitly enabled "Pause for Reflection" (Feature 50.6d) — a session-scoped, default-OFF toggle on the player screen. This preserves the non-directive principle because the user has opted in.
 
 4. **Reflection Content is Separate from Story Body**
    - Reflection text is a distinct asset file, never merged into or appended to story body text

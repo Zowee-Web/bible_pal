@@ -503,7 +503,7 @@ The question was: What EXACTLY is Traditional mode, and how do we enforce it?
 5. **Reflection System (All Stories)**
    - Every story (Traditional AND Creative) has a reflection
    - Reflection audio uses same `narratorVoiceKey` as story (no separate PAL voice)
-   - Reflection is NEVER auto-played — user taps "Hear Reflection" button
+   - Reflection is not auto-played by default — user taps "Hear Reflection" button. Exception: "Pause for Reflection" opt-in toggle (Feature 50.6d)
    - Scripture reference displayed AFTER story ends (Traditional only), NOT during
 
 6. **Mode Persistence**
@@ -522,7 +522,7 @@ The question was: What EXACTLY is Traditional mode, and how do we enforce it?
 **Alternatives Considered:**
 1. **Allow devotional content in Traditional** — Rejected. Blurs the line, confuses users.
 2. **Multiple Bible stories per mood** — ~~Rejected.~~ Now accepted via ADR-022. At scale (~1500 stories), variety outweighs predictability.
-3. **Auto-play reflection** — Rejected. Violates MoDC non-directive principle.
+3. **Auto-play reflection** — Rejected by default. Violates MoDC non-directive principle. Exception added: "Pause for Reflection" (Feature 50.6d) is a session-scoped, default-OFF opt-in toggle that preserves user agency.
 4. **Different voice for reflection** — Rejected. Breaks immersion, adds complexity.
 5. **Scripture during story narration** — Rejected. Interrupts narrative flow.
 

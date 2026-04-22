@@ -5,6 +5,7 @@ import '../../features/length_picker/length_picker_screen.dart';
 import '../../models/parable.dart';
 import '../../providers/parable_player_notifier.dart';
 import '../../providers/service_providers.dart';
+import '../../services/path_service.dart';
 import '../../theme/living_sky.dart';
 import 'path_launch_context.dart';
 import 'path_type.dart';
@@ -25,14 +26,33 @@ import 'path_type.dart';
 /// (no auto-skip). Phase 3 will add a subtle completion marker; Phase 2
 /// renders the next story without that marker.
 ///
+/// Bug fix: PathService is a FutureProvider that rebuilds when
+/// completedStoryIdsProvider is invalidated (on story completion).
+/// During the transient loading state, `valueOrNull` returns null.
+/// We cache the last resolved PathService so the block still renders
+/// immediately at natural completion. The cached value is only used
+/// for `getNextInPath()` which does not depend on completion state
+/// (path order is sacred).
+///
 /// Tapping the block calls `loadParable(nextStory, launchContext: next)`
 /// where `next.positionInPath = current.positionInPath + 1`. Playback
 /// does not auto-start — the user must tap Play on the main controls.
-class NextInJourneyBlock extends ConsumerWidget {
+class NextInJourneyBlock extends ConsumerStatefulWidget {
   const NextInJourneyBlock({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<NextInJourneyBlock> createState() =>
+      _NextInJourneyBlockState();
+}
+
+class _NextInJourneyBlockState extends ConsumerState<NextInJourneyBlock> {
+  /// Cached PathService for use during transient provider loading states.
+  /// Only used for read-only `getNextInPath()` lookups — never for
+  /// completion or progress state.
+  PathService? _lastResolvedPathService;
+
+  @override
+  Widget build(BuildContext context) {
     final playerState = ref.watch(parablePlayerProvider);
 
     // Condition 1: must be launched from a path
@@ -44,12 +64,18 @@ class NextInJourneyBlock extends ConsumerWidget {
 
     // Resolve the next story via PathService. PathService is async
     // (FutureProvider) so degrade gracefully if it's loading or errored.
+    // Bug fix: cache the last resolved value so we survive the transient
+    // loading state caused by completedStoryIdsProvider invalidation.
     final pathServiceAsync = ref.watch(pathServiceProvider);
-    final pathService = pathServiceAsync.valueOrNull;
-    if (pathService == null) return const SizedBox.shrink();
+    final pathService = pathServiceAsync.whenOrNull(data: (v) => v);
+    if (pathService != null) {
+      _lastResolvedPathService = pathService;
+    }
+    final effectivePathService = pathService ?? _lastResolvedPathService;
+    if (effectivePathService == null) return const SizedBox.shrink();
 
     // Condition 3: there must BE a next story in canonical order
-    final next = pathService.getNextInPath(
+    final next = effectivePathService.getNextInPath(
       launchContext.pathType,
       launchContext.pathId,
       launchContext.positionInPath,
@@ -60,7 +86,8 @@ class NextInJourneyBlock extends ConsumerWidget {
     // we can render a subtle completion marker. Path order is sacred —
     // we still render the block and advance normally; the marker is
     // purely informational. (SPEC Feature 50.6 — LOCKED.)
-    final nextIsCompleted = pathService.isStoryCompleted(next.storyId);
+    final nextIsCompleted =
+        effectivePathService.isStoryCompleted(next.storyId);
 
     return _NextBlockBody(
       next: next,

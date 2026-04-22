@@ -24,9 +24,14 @@ import '../../widgets/name_prompt_overlay.dart';
 import '../../widgets/premium_components.dart';
 import '../../theme/living_sky.dart';
 import '../paths/next_in_journey_block.dart';
+import '../paths/path_launch_context.dart';
+import '../paths/path_type.dart';
+
+/// Auto-advance delay after story completion (SPEC Feature 50.6c).
+const kAutoAdvanceDelay = Duration(seconds: 4);
 
 /// Parable Player Screen
-/// Based on SPEC.md Features 11, 12, 16, 17, 34-37
+/// Based on SPEC.md Features 11, 12, 16, 17, 34-37, 50.6c, 50.6d
 /// Displays parable with scripture sources, audio playback, and post-story reflection
 class ParablePlayerScreen extends ConsumerStatefulWidget {
   const ParablePlayerScreen({super.key});
@@ -63,6 +68,14 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
 
   // Bedtime mode sleep timer
   Timer? _sleepTimer;
+
+  // PALs Paths continuation toggles (session-scoped, SPEC 50.6c/50.6d)
+  bool _stayOnPathEnabled = false;
+  bool _pauseForReflectionEnabled = false;
+  Timer? _autoAdvanceTimer;
+  bool _isAutoAdvancing = false;
+  bool _sleepTimerFired = false;
+  StreamSubscription<PlayerState>? _reflectionCompletionSub;
 
   bool get _isBedtimeModeActive {
     final appState = ref.read(appStateProvider).valueOrNull;
@@ -357,6 +370,8 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
   @override
   void dispose() {
     _sleepTimer?.cancel();
+    _autoAdvanceTimer?.cancel();
+    _reflectionCompletionSub?.cancel();
     _scrollController.dispose();
     _reflectionPlayer?.dispose();
     _journalFocusNode.removeListener(_onJournalFocusChange);
@@ -426,8 +441,21 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
         }
       });
 
-      // Auto-play reflection if voice consent is granted and audio exists
-      await _maybeAutoPlayReflection();
+      // SPEC Feature 50.6d: Pause for Reflection opt-in autoplay.
+      // When enabled, auto-play reflection instead of waiting for
+      // user tap. After reflection completes, auto-advance starts
+      // if Stay on the Path is also enabled.
+      if (_pauseForReflectionEnabled && _hasReflectionAudio) {
+        await _autoPlayReflectionThenMaybeAdvance();
+      } else {
+        // Default: no auto-play (ADR-010 baseline).
+        // If Stay on the Path is ON without Pause for Reflection,
+        // start the auto-advance countdown immediately.
+        _startAutoAdvanceIfEnabled();
+      }
+    } else {
+      // Reflection dismissed — skip straight to auto-advance if enabled.
+      _startAutoAdvanceIfEnabled();
     }
 
     _startBedtimeSleepTimerIfNeeded();
@@ -445,6 +473,9 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
 
     _sleepTimer = Timer(Duration(minutes: minutes), () async {
       if (!mounted) return;
+      // Bedtime takes priority over auto-advance (SPEC 50.6c).
+      setState(() => _sleepTimerFired = true);
+      _cancelAutoAdvance('bedtime_timer');
       final playerNotifier = ref.read(parablePlayerProvider.notifier);
       await playerNotifier.audioService.fadeOutAndStop();
       // Also stop reflection audio if playing
@@ -452,13 +483,200 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     });
   }
 
-  /// ADR-010: Reflection audio is NEVER auto-played.
-  /// User must tap "Hear Reflection" button to play.
-  /// This method is intentionally empty - kept for backwards compatibility.
-  Future<void> _maybeAutoPlayReflection() async {
-    // ADR-010: Reflection is opt-in only. Never auto-play.
-    // User must tap "Hear Reflection" button.
-    // This method intentionally does nothing.
+  /// SPEC Feature 50.6d: Auto-play reflection then optionally auto-advance.
+  /// Called when Pause for Reflection is enabled and reflection audio exists.
+  /// After reflection completes, starts auto-advance if Stay on the Path is ON.
+  Future<void> _autoPlayReflectionThenMaybeAdvance() async {
+    // Check voice consent before auto-playing reflection.
+    final appState = ref.read(appStateProvider).valueOrNull;
+    if (appState == null) {
+      _startAutoAdvanceIfEnabled();
+      return;
+    }
+    final gateResult =
+        VoiceConsentGate.checkStoryNarration(appState.userPreferences);
+    if (gateResult != VoiceGateResult.allowed) {
+      // Voice narration disabled/needs consent — fall back to manual.
+      _startAutoAdvanceIfEnabled();
+      return;
+    }
+
+    // Listen for reflection completion BEFORE starting playback.
+    // Cancel any existing subscription to prevent duplicates.
+    await _reflectionCompletionSub?.cancel();
+    _reflectionCompletionSub = null;
+
+    _reflectionPlayer ??= AudioPlayer();
+    _reflectionCompletionSub =
+        _reflectionPlayer!.playerStateStream.listen((state) {
+      if (state.processingState == ProcessingState.completed) {
+        _reflectionCompletionSub?.cancel();
+        _reflectionCompletionSub = null;
+        if (mounted) {
+          setState(() => _isReflectionPlaying = false);
+          // Reflection done — now start auto-advance if enabled.
+          _startAutoAdvanceIfEnabled();
+        }
+      }
+    });
+
+    // Start reflection playback.
+    await _playReflectionAudio();
+  }
+
+  /// Cancel any pending auto-advance countdown and reset state.
+  void _cancelAutoAdvance(String reason) {
+    if (!_isAutoAdvancing) return;
+    _autoAdvanceTimer?.cancel();
+    _autoAdvanceTimer = null;
+    if (mounted) {
+      setState(() => _isAutoAdvancing = false);
+    }
+    final playerState = ref.read(parablePlayerProvider);
+    logEvent('auto_advance_cancelled', {
+      'story_id': playerState.currentParable?.storyId,
+      'reason': reason,
+    });
+  }
+
+  /// SPEC Feature 50.6c: Start auto-advance countdown if Stay on the Path
+  /// is enabled and conditions are met.
+  void _startAutoAdvanceIfEnabled() {
+    if (!_stayOnPathEnabled) return;
+    if (_sleepTimerFired) return;
+    if (!mounted) return;
+
+    final playerState = ref.read(parablePlayerProvider);
+    final launchContext = playerState.launchContext;
+    if (launchContext == null) return;
+
+    // Check if there IS a next story before starting countdown.
+    final pathServiceAsync = ref.read(pathServiceProvider);
+    final pathService = pathServiceAsync.valueOrNull;
+    if (pathService == null) return;
+
+    final next = pathService.getNextInPath(
+      launchContext.pathType,
+      launchContext.pathId,
+      launchContext.positionInPath,
+    );
+    if (next == null) return; // End of path — no auto-advance.
+
+    // Cancel any existing timer (idempotency).
+    _autoAdvanceTimer?.cancel();
+
+    setState(() => _isAutoAdvancing = true);
+
+    logEvent('auto_advance_started', {
+      'story_id': playerState.currentParable?.storyId,
+      'path_type': launchContext.pathType.wireId,
+      'path_id': launchContext.pathId,
+      'position': launchContext.positionInPath,
+    });
+
+    _autoAdvanceTimer = Timer(kAutoAdvanceDelay, _executeAutoAdvance);
+  }
+
+  /// Execute the actual auto-advance: load and play the next story.
+  Future<void> _executeAutoAdvance() async {
+    if (!mounted) return;
+    setState(() => _isAutoAdvancing = false);
+
+    final playerState = ref.read(parablePlayerProvider);
+    final launchContext = playerState.launchContext;
+    if (launchContext == null) return;
+
+    // Resolve next story from PathService.
+    final pathService = await ref.read(pathServiceProvider.future);
+    final nextParable = pathService.getNextInPath(
+      launchContext.pathType,
+      launchContext.pathId,
+      launchContext.positionInPath,
+    );
+    if (nextParable == null || !mounted) return;
+
+    final nextLaunchContext = PathLaunchContext(
+      pathType: launchContext.pathType,
+      pathId: launchContext.pathId,
+      positionInPath: launchContext.positionInPath + 1,
+    );
+
+    // Resolve matching variant (same length + language as current).
+    final current = playerState.currentParable;
+    Parable storyToLoad = nextParable;
+    if (current != null) {
+      final parableService = await ref.read(parableServiceProvider.future);
+      final variant = await parableService.resolveVariant(
+        current: nextParable,
+        storyLength: current.storyLength ?? 'short',
+        languageStyle: current.languageStyle,
+      );
+      if (variant != null) storyToLoad = variant;
+    }
+
+    if (!mounted) return;
+
+    // Add to history.
+    final appStateNotifier = ref.read(appStateProvider.notifier);
+    await appStateNotifier.addToHistory(storyToLoad);
+
+    // Reset UI state for the new story.
+    _reflectionCompletionSub?.cancel();
+    _reflectionCompletionSub = null;
+    _reflectionPlayer?.stop();
+    _sleepTimer?.cancel();
+    _journalController.clear();
+    setState(() {
+      _showReflection = false;
+      _reflectionAudioPlayed = false;
+      _isReflectionPlaying = false;
+      _hasReflectionAudio = false;
+      _showNamePrompt = false;
+      _journalSaved = false;
+      _journalEditing = false;
+      _sleepTimerFired = false;
+    });
+
+    // Load the new parable with the next launch context.
+    final playerNotifier = ref.read(parablePlayerProvider.notifier);
+    final success = await playerNotifier.loadParable(
+      storyToLoad,
+      launchContext: nextLaunchContext,
+    );
+
+    if (!mounted) return;
+
+    if (success) {
+      // Refresh state for the new story.
+      _checkReflectionAudioExists();
+      _checkIfFavorited();
+      _loadAvailableVariants();
+
+      // Auto-play the next story.
+      await _handlePlay(playerNotifier);
+
+      // Scroll back to top.
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          0,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeOut,
+        );
+      }
+
+      logEvent('auto_advance_played', {
+        'story_id': storyToLoad.storyId,
+        'path_type': nextLaunchContext.pathType.wireId,
+        'path_id': nextLaunchContext.pathId,
+        'position': nextLaunchContext.positionInPath,
+      });
+    } else {
+      // Load failed — cancel auto-advance gracefully.
+      logEvent('auto_advance_cancelled', {
+        'story_id': storyToLoad.storyId,
+        'reason': 'load_failure',
+      });
+    }
   }
 
   /// Play pre-generated reflection audio from local assets
@@ -531,6 +749,7 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
 
   /// Handle play reflection button with consent check
   Future<void> _handlePlayReflection() async {
+    _cancelAutoAdvance('reflection');
     final appState = ref.read(appStateProvider).valueOrNull;
     if (appState == null) return;
 
@@ -755,6 +974,9 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
         // widget tree, so calling them after pop is safe — their
         // cleanup just runs in the background while the user is
         // already on the previous route.
+        _cancelAutoAdvance('back_nav');
+        _autoAdvanceTimer?.cancel();
+        _reflectionCompletionSub?.cancel();
         final nav = Navigator.of(context);
         nav.pop();
         // Fire-and-forget cleanup. Reflection player doesn't need
@@ -875,6 +1097,7 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                       : Icons.play_arrow_rounded,
                                   size: 80,
                                   onPressed: () async {
+                                    _cancelAutoAdvance('manual_control');
                                     if (playerNotifier.isPlaying) {
                                       playerNotifier.pause();
                                     } else {
@@ -1112,17 +1335,20 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                 // Ambient Sound Controls
                                 _buildAmbientControls(theme),
 
+                                // Add to Journal — always visible (SPEC Feature 40)
+                                _buildJournalAction(theme, playerState),
+
+                                // PALs Paths continuation toggles (SPEC 50.6c/50.6d)
+                                _buildPathContinuationToggles(theme, playerState),
+
                                 // Post-Story Reflection (SPEC.md Features #34-36)
                                 _buildReflectionSection(theme),
 
-                                // Next in Your Journey (SPEC Feature 50.6 —
-                                // LOCKED). Rendered ONLY when the current
-                                // story was launched with a non-null
-                                // PathLaunchContext, playback has completed,
-                                // and PathService.getNextInPath() returns a
-                                // non-null next story. Path order is sacred:
-                                // advancement does NOT skip completed stories.
-                                const NextInJourneyBlock(),
+                                // Auto-advance countdown OR Next in Journey block
+                                if (_isAutoAdvancing)
+                                  _buildAutoAdvanceCountdown(theme)
+                                else
+                                  const NextInJourneyBlock(),
 
                                 const SizedBox(height: 24),
                               ],
@@ -1355,12 +1581,6 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
           const SizedBox(height: 16),
           _buildReflectionAudioControls(theme),
         ],
-
-        // Standalone journal input (adult only)
-        if (!isKidMode) ...[
-          const SizedBox(height: 12),
-          _buildJournalInput(theme, playerState.currentParable!),
-        ],
       ],
     );
   }
@@ -1406,70 +1626,235 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     }
   }
 
-  Widget _buildJournalInput(ThemeData theme, Parable parable) {
+  /// Always-visible "Add to Journal" action (SPEC Feature 40).
+  /// Independent of reflection visibility and playback state.
+  /// Hidden in kid mode.
+  Widget _buildJournalAction(ThemeData theme, ParablePlayerState playerState) {
+    final appState = ref.read(appStateProvider).valueOrNull;
+    if (appState == null) return const SizedBox.shrink();
+    if (appState.userPreferences.kidFriendlyOnly) return const SizedBox.shrink();
+    if (playerState.currentParable == null) return const SizedBox.shrink();
+
+    final parable = playerState.currentParable!;
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
+
     if (_journalSaved) {
-      return Text(
-        'Saved to your journal.',
-        style: theme.textTheme.bodySmall?.copyWith(
-          color: LivingSky.getPalette(LivingSky.getPhase()).foreground.tertiaryText,
-          fontStyle: FontStyle.italic,
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Text(
+          'Saved to your journal.',
+          textAlign: TextAlign.center,
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: palette.foreground.tertiaryText,
+            fontStyle: FontStyle.italic,
+          ),
         ),
       );
     }
 
     if (!_journalEditing) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          GlassButton.icon(
-            icon: Icons.edit_note,
-            label: 'Jot a thought',
-            onPressed: () {
-              setState(() => _journalEditing = true);
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                _journalFocusNode.requestFocus();
-              });
-            },
-          ),
-        ],
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GlassButton.icon(
+              icon: Icons.edit_note,
+              label: 'Add to Journal',
+              onPressed: () {
+                _cancelAutoAdvance('journal');
+                setState(() => _journalEditing = true);
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  _journalFocusNode.requestFocus();
+                });
+              },
+            ),
+          ],
+        ),
       );
     }
 
-    final palette = LivingSky.getPalette(LivingSky.getPhase());
-    return AnimatedSize(
-      duration: const Duration(milliseconds: 200),
-      curve: Curves.easeInOut,
-      child: TextField(
-        controller: _journalController,
-        focusNode: _journalFocusNode,
-        maxLength: 200,
-        maxLines: 1,
-        textInputAction: TextInputAction.done,
-        onSubmitted: (_) => _saveJournal(parable),
-        cursorColor: palette.foreground.primaryText,
-        style: TextStyle(
-          color: palette.foreground.primaryText,
-          fontSize: 14,
-        ),
-        decoration: InputDecoration(
-          hintText: 'Jot a thought...',
-          hintStyle: TextStyle(
-            color: palette.foreground.tertiaryText,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      child: AnimatedSize(
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeInOut,
+        child: TextField(
+          controller: _journalController,
+          focusNode: _journalFocusNode,
+          maxLength: 200,
+          maxLines: 1,
+          textInputAction: TextInputAction.done,
+          onSubmitted: (_) => _saveJournal(parable),
+          cursorColor: palette.foreground.primaryText,
+          style: TextStyle(
+            color: palette.foreground.primaryText,
             fontSize: 14,
           ),
-          isDense: true,
-          filled: true,
-          fillColor: palette.cardColor,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(24),
-            borderSide: BorderSide(color: palette.cardBorder),
+          decoration: InputDecoration(
+            hintText: 'Add to Journal...',
+            hintStyle: TextStyle(
+              color: palette.foreground.tertiaryText,
+              fontSize: 14,
+            ),
+            isDense: true,
+            filled: true,
+            fillColor: palette.cardColor,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(24),
+              borderSide: BorderSide(color: palette.cardBorder),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(24),
+              borderSide: BorderSide(color: palette.warmHighlight.withOpacity(0.5), width: 1.5),
+            ),
+            counterText: '',
           ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(24),
-            borderSide: BorderSide(color: palette.warmHighlight.withOpacity(0.5), width: 1.5),
+        ),
+      ),
+    );
+  }
+
+  /// PALs Paths continuation toggles (SPEC Features 50.6c, 50.6d).
+  /// Visible only when the current story was launched from a path context.
+  Widget _buildPathContinuationToggles(
+      ThemeData theme, ParablePlayerState playerState) {
+    if (playerState.launchContext == null) return const SizedBox.shrink();
+
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
+    final fg = palette.foreground;
+
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      decoration: BoxDecoration(
+        color: fg.subtleSurface,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: fg.subtleBorder, width: 1),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Stay on the Path toggle
+          Row(
+            children: [
+              Icon(Icons.route, size: 16, color: fg.secondaryIcon),
+              const SizedBox(width: 8),
+              Text(
+                'Stay on the Path',
+                style: TextStyle(
+                  color: fg.secondaryText,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 0.2,
+                ),
+              ),
+              const Spacer(),
+              SizedBox(
+                height: 28,
+                child: Switch.adaptive(
+                  value: _stayOnPathEnabled,
+                  activeColor: palette.warmHighlight,
+                  onChanged: (on) {
+                    setState(() => _stayOnPathEnabled = on);
+                    if (!on) {
+                      _cancelAutoAdvance('toggle_off');
+                    }
+                  },
+                ),
+              ),
+            ],
           ),
-          counterText: '',
+          const SizedBox(height: 4),
+          // Pause for Reflection toggle
+          Row(
+            children: [
+              Icon(Icons.self_improvement, size: 16, color: fg.secondaryIcon),
+              const SizedBox(width: 8),
+              Text(
+                'Pause for Reflection',
+                style: TextStyle(
+                  color: fg.secondaryText,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 0.2,
+                ),
+              ),
+              const Spacer(),
+              SizedBox(
+                height: 28,
+                child: Switch.adaptive(
+                  value: _pauseForReflectionEnabled,
+                  activeColor: palette.warmHighlight,
+                  onChanged: (on) {
+                    setState(() => _pauseForReflectionEnabled = on);
+                    if (!on) {
+                      _cancelAutoAdvance('toggle_off');
+                    }
+                  },
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Auto-advance countdown UI (SPEC Feature 50.6c).
+  /// Shown in place of NextInJourneyBlock during the 4-second countdown.
+  Widget _buildAutoAdvanceCountdown(ThemeData theme) {
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
+    final fg = palette.foreground;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: palette.cardColor,
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(
+            color: palette.accentColor.withOpacity(0.35),
+            width: 1,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(18, 18, 18, 14),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                width: 20,
+                height: 20,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: palette.accentColor.withOpacity(0.6),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                'Continuing your path\u2026',
+                style: TextStyle(
+                  color: fg.secondaryText,
+                  fontSize: 14,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+              const SizedBox(height: 8),
+              GestureDetector(
+                onTap: () => _cancelAutoAdvance('cancel_button'),
+                child: Text(
+                  'Cancel',
+                  style: TextStyle(
+                    color: fg.tertiaryText,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

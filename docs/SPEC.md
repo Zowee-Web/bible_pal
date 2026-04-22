@@ -851,7 +851,7 @@ After a PAL's Story finishes playing, an optional reflection connects the story'
 - **User-toggleable**: Via Settings ("Relate stories to everyday life" toggle)
 - **Persisted**: Setting survives app restarts
 - **Optional**: User may skip/dismiss at any time with no consequence
-- **Opt-in audio**: Reflection audio is NEVER auto-played. User must tap "Hear Reflection" button.
+- **Opt-in audio**: Reflection audio is not auto-played by default. User must tap "Hear Reflection" button. Exception: when the user has explicitly enabled "Pause for Reflection" on the player screen (Feature 50.6d), reflection audio auto-plays after story body completion.
 
 **Reflection System (LOCKED):**
 - **Every story has a reflection**: Both Traditional AND Creative stories have a story-specific reflection created alongside the story.
@@ -868,7 +868,6 @@ After a PAL's Story finishes playing, an optional reflection connects the story'
 2. For Traditional stories: Display scripture reference (e.g., "Mark 4:35-41")
 3. Show standalone reflection controls (no card/container):
    - "Hear Reflection" button (if reflection audio exists)
-   - "Jot a thought..." journal input (adult mode only)
 4. User may dismiss at any time
 
 **When Disabled:**
@@ -963,12 +962,13 @@ Tracks consecutive days of story listening to encourage gentle daily habit forma
 
 **40. Reflection Journal (Feature 40)**
 
-After the post-story reflection, users can jot a one-line thought tied to the story.
+Users can add a one-line thought tied to the current story at any time on the player screen.
 
 **Behavior:**
-- **Input**: Single-line text field ("Jot a thought...") appears in the reflection card after story playback
-- **Max length**: 200 characters
-- **Save**: Tap checkmark to save. Shows "Saved to your journal." confirmation
+- **Button**: "Add to Journal" action button is always visible on the story player screen (during playback and after completion)
+- **Independent**: Not dependent on reflection visibility, reflection toggle, or playback completion state
+- **Input**: Single-line text field appears when tapped. Max 200 characters.
+- **Save**: Submit to save. Shows "Saved to your journal." confirmation
 - **Not shown in kid mode**: Journal input is hidden when `kidFriendlyOnly` is true
 - **Storage**: Last 100 entries persisted in SharedPreferences
 
@@ -1421,6 +1421,30 @@ When a user lands on a path detail screen (not the player), a "Continue Your Jou
 
 - `getNextInPath(pathType, pathId, positionInPath)` — for the player. Advances by position. Kid-mode filtered. NEVER filtered by completion.
 - `getResumePoint(pathType, pathId)` — for the path detail screen. Returns the first incomplete story after kid-mode filtering, or the first story if all complete.
+
+### 50.6c Stay on the Path (Auto-Advance)
+
+A session-scoped toggle on the player screen labeled "Stay on the Path". Visible only when the current story was launched from a PALs Paths context (`launchContext != null`).
+
+- **Default:** OFF
+- **Persistence:** Session-scoped only — resets when the user leaves the player screen. Not persisted across app restarts.
+- **Behavior when ON:** After story body playback completes naturally, wait 4 seconds (`kAutoAdvanceDelay`), then automatically load and play the next story in canonical path order (same rule as Feature 50.6 — position + 1, never skip by completion). The next story resolves to the same length variant and language style as the current story via `ParableService.resolveVariant()`.
+- **Interaction with Pause for Reflection (50.6d):** When both are ON, reflection auto-plays first; the 4-second countdown begins only after reflection playback completes.
+- **Transition message:** During the 4-second countdown, display "Continuing your path…" with a cancel option.
+- **Cancellation:** Any user interaction (toggle change, reflection controls, play/pause, journal, back navigation) cancels the countdown immediately.
+- **End of path:** When no next story exists, the toggle has no effect. Normal completion state is shown.
+- **Bedtime mode:** Auto-advance is suppressed when the bedtime sleep timer fires. The sleep timer takes priority.
+
+### 50.6d Pause for Reflection (Opt-in Reflection Autoplay)
+
+A session-scoped toggle on the player screen labeled "Pause for Reflection". Visible only when the current story was launched from a PALs Paths context (`launchContext != null`).
+
+- **Default:** OFF
+- **Persistence:** Session-scoped only — resets when the user leaves the player screen. Not persisted across app restarts.
+- **Behavior when ON:** After story body playback completes naturally, reflection audio auto-plays (same audio as the "Hear Reflection" button). This is an explicit opt-in exception to the default "never auto-play reflection" rule (Feature 34).
+- **Interaction with Stay on the Path (50.6c):** When both are ON, reflection plays first; the auto-advance countdown begins only after reflection completes. When Pause for Reflection is ON but Stay on the Path is OFF, reflection auto-plays and the player remains on the current story after reflection ends.
+- **No forced continuation:** Reflection autoplay does not force auto-advance. The user must also enable Stay on the Path for auto-advance to occur.
+- **Voice consent:** Respects the existing voice consent gate. If voice narration is disabled, reflection does not auto-play.
 
 ### 50.7 Search
 
