@@ -23,24 +23,29 @@ class PalVoice {
 class PalVoiceRegistry {
   PalVoiceRegistry._();
 
-  static const String defaultVoiceKey = 'VOICE_GRACE';
+  static const String defaultVoiceKey = 'VOICE_RUTH_COMFORT';
 
   /// Old voice keys that should be migrated to the default.
+  /// VOICE_GRACE was retired 2026-04-23 — audio archived to
+  /// `assets/pal/audio_archive_grace_2026_04_23/` (not bundled). Existing
+  /// users with palVoiceKey == 'VOICE_GRACE' migrate to the default
+  /// (VOICE_RUTH_COMFORT) on next launch via `migrateVoiceKey`.
   static const List<String> _legacyVoiceKeys = [
     'VOICE_SARAH_STORYTELLER',
     'VOICE_HANNAH_HOPE',
     'VOICE_JAMES_HUSKY',
     'VOICE_DAVID_SHEPHERD',
+    'VOICE_GRACE',
   ];
 
   static const List<PalVoice> voices = [
     PalVoice(
-      voiceKey: 'VOICE_GRACE',
-      displayName: 'Grace',
+      voiceKey: 'VOICE_RUTH_COMFORT',
+      displayName: 'Ruth',
       emoji: '\u{1F33F}', // 🌿
-      description: 'Gentle & comforting',
+      description: 'Soft & compassionate',
       gender: 'female',
-      elevenLabsId: 'Z3R5wn05IrDiVCyEkUrK',
+      elevenLabsId: 'jBpfuIE2acCO8z3wKNLl',
     ),
     PalVoice(
       voiceKey: 'VOICE_SHEPHERD',

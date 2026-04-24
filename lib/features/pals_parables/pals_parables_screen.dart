@@ -182,7 +182,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     final useLegacy = appState?.userPreferences.useLegacyPal ?? false;
     if (!useLegacy) return;
 
-    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_GRACE';
+    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_RUTH_COMFORT';
     final userName = appState?.userPreferences.userName ?? '';
     final palAudio = ref.read(palAudioServiceProvider);
     final nameAudio = ref.read(nameAudioServiceProvider);
@@ -484,7 +484,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
 
     // Play PAL micro-response audio and get display text
     final appState = ref.read(appStateProvider).valueOrNull;
-    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_GRACE';
+    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_RUTH_COMFORT';
     final userName = appState?.userPreferences.userName ?? '';
 
     final useLegacy = appState?.userPreferences.useLegacyPal ?? false;
