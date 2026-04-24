@@ -4,39 +4,138 @@
   "description": "Maps bibleStoryKey to biblical figures and framing lines. Traditional stories only.",
   "entries": [
     {
-      "bibleStoryKey": "joseph_sold_by_brothers",
-      "primaryFigure": "Joseph",
-      "secondaryFigures": [],
+      "bibleStoryKey": "abram_called",
+      "primaryFigure": "Abraham",
+      "secondaryFigures": [
+        "Sarah"
+      ],
       "framingLines": [
-        {"id": "FRAME_JOSEPH_SOLD_BY_BROTHERS_01", "text": "Joseph knew what it felt like to be abandoned by the people closest to him."},
-        {"id": "FRAME_JOSEPH_SOLD_BY_BROTHERS_02", "text": "Before Joseph became someone great, he went through something that nearly broke him."}
+        {
+          "id": "FRAME_ABRAM_CALLED_01",
+          "text": "Abram left everything familiar behind — with nothing but a promise to guide him."
+        },
+        {
+          "id": "FRAME_ABRAM_CALLED_02",
+          "text": "Before he became Abraham, he was just a man asked to walk into the unknown."
+        }
       ]
     },
     {
-      "bibleStoryKey": "david_anointed",
-      "primaryFigure": "David",
-      "secondaryFigures": ["Samuel"],
+      "bibleStoryKey": "annunciation_to_mary",
+      "primaryFigure": "Mary",
+      "secondaryFigures": [
+        "Gabriel"
+      ],
       "framingLines": [
-        {"id": "FRAME_DAVID_ANOINTED_01", "text": "David was the one nobody thought to call \u2014 until God did."},
-        {"id": "FRAME_DAVID_ANOINTED_02", "text": "Everyone overlooked David. But being overlooked isn't the same as being forgotten."}
+        {
+          "id": "FRAME_ANNUNCIATION_TO_MARY_01",
+          "text": "Mary was young and ordinary — and then everything changed in a single moment."
+        },
+        {
+          "id": "FRAME_ANNUNCIATION_TO_MARY_02",
+          "text": "She said yes to something she couldn’t fully understand."
+        }
       ]
     },
     {
-      "bibleStoryKey": "rest_for_the_weary",
+      "bibleStoryKey": "ascension",
       "primaryFigure": "Jesus",
       "secondaryFigures": [],
       "framingLines": [
-        {"id": "FRAME_REST_FOR_THE_WEARY_01", "text": "Jesus once spoke directly to people who were worn out and carrying too much."},
-        {"id": "FRAME_REST_FOR_THE_WEARY_02", "text": "When the weight felt impossible, Jesus offered an invitation that still stands."}
+        {
+          "id": "FRAME_ASCENSION_01",
+          "text": "He led them out to Bethany, lifted his hands, and blessed them — and then he was gone."
+        },
+        {
+          "id": "FRAME_ASCENSION_02",
+          "text": "They watched him go. And they returned to Jerusalem with great joy."
+        }
       ]
     },
     {
-      "bibleStoryKey": "the_lord_is_my_shepherd",
-      "primaryFigure": "David",
-      "secondaryFigures": [],
+      "bibleStoryKey": "baby_moses_in_the_nile",
+      "primaryFigure": "Jochebed",
+      "secondaryFigures": [
+        "Moses",
+        "Miriam"
+      ],
       "framingLines": [
-        {"id": "FRAME_THE_LORD_IS_MY_SHEPHERD_01", "text": "David wrote these words from a place that knew both darkness and comfort."},
-        {"id": "FRAME_THE_LORD_IS_MY_SHEPHERD_02", "text": "Even in the valley, David found he wasn't walking alone."}
+        {
+          "id": "FRAME_BABY_MOSES_IN_THE_NILE_01",
+          "text": "A mother placed her child in a basket on the river and trusted God with the rest."
+        },
+        {
+          "id": "FRAME_BABY_MOSES_IN_THE_NILE_02",
+          "text": "Moses' life began with an act of desperate, courageous love."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "baptism_of_jesus",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [
+        "John the Baptist"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_BAPTISM_OF_JESUS_01",
+          "text": "John didn’t think he was worthy. Jesus came to him anyway."
+        },
+        {
+          "id": "FRAME_BAPTISM_OF_JESUS_02",
+          "text": "When Jesus came out of the water, heaven opened and spoke."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "binding_of_isaac",
+      "primaryFigure": "Abraham",
+      "secondaryFigures": [
+        "Isaac"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_BINDING_OF_ISAAC_01",
+          "text": "Abraham walked up that mountain carrying more than wood."
+        },
+        {
+          "id": "FRAME_BINDING_OF_ISAAC_02",
+          "text": "What Abraham was asked to do didn't make sense. He went anyway."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "blind_bartimaeus",
+      "primaryFigure": "Bartimaeus",
+      "secondaryFigures": [
+        "Jesus"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_BLIND_BARTIMAEUS_01",
+          "text": "Bartimaeus could not see — but he could shout. And he refused to stop."
+        },
+        {
+          "id": "FRAME_BLIND_BARTIMAEUS_02",
+          "text": "Everyone told him to be quiet. He got louder instead."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "breakfast_on_the_shore",
+      "primaryFigure": "Peter",
+      "secondaryFigures": [
+        "Jesus"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_BREAKFAST_ON_THE_SHORE_01",
+          "text": "Peter had failed in the worst way. And then Jesus made him breakfast."
+        },
+        {
+          "id": "FRAME_BREAKFAST_ON_THE_SHORE_02",
+          "text": "After his worst moment, Peter didn't get a lecture. He got a meal."
+        }
       ]
     },
     {
@@ -44,125 +143,14 @@
       "primaryFigure": "Moses",
       "secondaryFigures": [],
       "framingLines": [
-        {"id": "FRAME_BURNING_BUSH_01", "text": "Moses had every reason to doubt himself \u2014 and God called him anyway."},
-        {"id": "FRAME_BURNING_BUSH_02", "text": "Before Moses led anyone, he stood barefoot, unsure, and full of questions."}
-      ]
-    },
-    {
-      "bibleStoryKey": "gideon_called",
-      "primaryFigure": "Gideon",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_GIDEON_CALLED_01", "text": "Gideon called himself the least in his family. God called him something else."},
-        {"id": "FRAME_GIDEON_CALLED_02", "text": "Gideon was sure he wasn't enough. God saw something different."}
-      ]
-    },
-    {
-      "bibleStoryKey": "job_tested",
-      "primaryFigure": "Job",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_JOB_TESTED_01", "text": "Job lost nearly everything and still had the courage to ask why."},
-        {"id": "FRAME_JOB_TESTED_02", "text": "What Job went through would have broken most people. It nearly broke him too."}
-      ]
-    },
-    {
-      "bibleStoryKey": "ruth_gleans_in_boaz_field",
-      "primaryFigure": "Ruth",
-      "secondaryFigures": ["Boaz"],
-      "framingLines": [
-        {"id": "FRAME_RUTH_GLEANS_IN_BOAZ_FIELD_01", "text": "Ruth was a foreigner with nothing \u2014 and she found kindness where she least expected it."},
-        {"id": "FRAME_RUTH_GLEANS_IN_BOAZ_FIELD_02", "text": "After losing everything, Ruth took the smallest step forward. It changed her story."}
-      ]
-    },
-    {
-      "bibleStoryKey": "zacchaeus",
-      "primaryFigure": "Zacchaeus",
-      "secondaryFigures": ["Jesus"],
-      "framingLines": [
-        {"id": "FRAME_ZACCHAEUS_01", "text": "Zacchaeus was used to being on the outside. Then someone saw him."},
-        {"id": "FRAME_ZACCHAEUS_02", "text": "Everyone had already made up their mind about Zacchaeus \u2014 except one person."}
-      ]
-    },
-    {
-      "bibleStoryKey": "breakfast_on_the_shore",
-      "primaryFigure": "Peter",
-      "secondaryFigures": ["Jesus"],
-      "framingLines": [
-        {"id": "FRAME_BREAKFAST_ON_THE_SHORE_01", "text": "Peter had failed in the worst way. And then Jesus made him breakfast."},
-        {"id": "FRAME_BREAKFAST_ON_THE_SHORE_02", "text": "After his worst moment, Peter didn't get a lecture. He got a meal."}
-      ]
-    },
-    {
-      "bibleStoryKey": "jacobs_ladder",
-      "primaryFigure": "Jacob",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_JACOBS_LADDER_01", "text": "Jacob was alone, running, and afraid. That's where the dream found him."},
-        {"id": "FRAME_JACOBS_LADDER_02", "text": "In the loneliest night of Jacob's life, a promise found him."}
-      ]
-    },
-    {
-      "bibleStoryKey": "joshua_commissioned",
-      "primaryFigure": "Joshua",
-      "secondaryFigures": ["Moses"],
-      "framingLines": [
-        {"id": "FRAME_JOSHUA_COMMISSIONED_01", "text": "Joshua was told 'be strong and courageous' \u2014 because he needed to hear it."},
-        {"id": "FRAME_JOSHUA_COMMISSIONED_02", "text": "Stepping into Moses' shoes terrified Joshua. God knew that."}
-      ]
-    },
-    {
-      "bibleStoryKey": "fiery_furnace",
-      "primaryFigure": "Shadrach, Meshach, and Abednego",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_FIERY_FURNACE_01", "text": "Three men were told to bow. They chose the fire instead."},
-        {"id": "FRAME_FIERY_FURNACE_02", "text": "Shadrach, Meshach, and Abednego didn't know they'd survive. They stood anyway."}
-      ]
-    },
-    {
-      "bibleStoryKey": "crossing_the_red_sea",
-      "primaryFigure": "Moses",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_CROSSING_THE_RED_SEA_01", "text": "Israel was trapped \u2014 water ahead, army behind. And then the impossible happened."},
-        {"id": "FRAME_CROSSING_THE_RED_SEA_02", "text": "Moses and Israel stood at the edge of the sea with nowhere left to go."}
-      ]
-    },
-    {
-      "bibleStoryKey": "fearfully_and_wonderfully_made",
-      "primaryFigure": "David",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_FEARFULLY_AND_WONDERFULLY_MADE_01", "text": "These words were written by someone who needed to be reminded of his own worth."},
-        {"id": "FRAME_FEARFULLY_AND_WONDERFULLY_MADE_02", "text": "David looked inward and found something worth celebrating. It took courage to see it."}
-      ]
-    },
-    {
-      "bibleStoryKey": "abram_called",
-      "primaryFigure": "Abraham",
-      "secondaryFigures": ["Sarah"],
-      "framingLines": [
-        {"id": "FRAME_ABRAM_CALLED_01", "text": "Abram left everything familiar behind \u2014 with nothing but a promise to guide him."},
-        {"id": "FRAME_ABRAM_CALLED_02", "text": "Before he became Abraham, he was just a man asked to walk into the unknown."}
-      ]
-    },
-    {
-      "bibleStoryKey": "baby_moses_in_the_nile",
-      "primaryFigure": "Jochebed",
-      "secondaryFigures": ["Moses", "Miriam"],
-      "framingLines": [
-        {"id": "FRAME_BABY_MOSES_IN_THE_NILE_01", "text": "A mother placed her child in a basket on the river and trusted God with the rest."},
-        {"id": "FRAME_BABY_MOSES_IN_THE_NILE_02", "text": "Moses' life began with an act of desperate, courageous love."}
-      ]
-    },
-    {
-      "bibleStoryKey": "binding_of_isaac",
-      "primaryFigure": "Abraham",
-      "secondaryFigures": ["Isaac"],
-      "framingLines": [
-        {"id": "FRAME_BINDING_OF_ISAAC_01", "text": "Abraham walked up that mountain carrying more than wood."},
-        {"id": "FRAME_BINDING_OF_ISAAC_02", "text": "What Abraham was asked to do didn't make sense. He went anyway."}
+        {
+          "id": "FRAME_BURNING_BUSH_01",
+          "text": "Moses had every reason to doubt himself — and God called him anyway."
+        },
+        {
+          "id": "FRAME_BURNING_BUSH_02",
+          "text": "Before Moses led anyone, he stood barefoot, unsure, and full of questions."
+        }
       ]
     },
     {
@@ -170,8 +158,14 @@
       "primaryFigure": "God",
       "secondaryFigures": [],
       "framingLines": [
-        {"id": "FRAME_CREATION_01", "text": "Before anything existed, there was a voice \u2014 and it spoke everything into being."},
-        {"id": "FRAME_CREATION_02", "text": "The story of the world begins not with a problem, but with a gift."}
+        {
+          "id": "FRAME_CREATION_01",
+          "text": "Before anything existed, there was a voice — and it spoke everything into being."
+        },
+        {
+          "id": "FRAME_CREATION_02",
+          "text": "The story of the world begins not with a problem, but with a gift."
+        }
       ]
     },
     {
@@ -179,26 +173,132 @@
       "primaryFigure": "Joshua",
       "secondaryFigures": [],
       "framingLines": [
-        {"id": "FRAME_CROSSING_THE_JORDAN_01", "text": "The Jordan was at flood stage. They were told to step in first."},
-        {"id": "FRAME_CROSSING_THE_JORDAN_02", "text": "Joshua and Israel had to put their feet in the water before it moved."}
+        {
+          "id": "FRAME_CROSSING_THE_JORDAN_01",
+          "text": "The Jordan was at flood stage. They were told to step in first."
+        },
+        {
+          "id": "FRAME_CROSSING_THE_JORDAN_02",
+          "text": "Joshua and Israel had to put their feet in the water before it moved."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "crossing_the_red_sea",
+      "primaryFigure": "Moses",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_CROSSING_THE_RED_SEA_01",
+          "text": "Israel was trapped — water ahead, army behind. And then the impossible happened."
+        },
+        {
+          "id": "FRAME_CROSSING_THE_RED_SEA_02",
+          "text": "Moses and Israel stood at the edge of the sea with nowhere left to go."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "crucifixion",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [
+        "Simon of Cyrene"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_CRUCIFIXION_01",
+          "text": "They nailed him between two criminals on a hill outside the city walls."
+        },
+        {
+          "id": "FRAME_CRUCIFIXION_02",
+          "text": "Darkness fell in the middle of the day. The curtain of the temple tore in two."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "daniel_lions_den",
+      "primaryFigure": "Daniel",
+      "secondaryFigures": [
+        "Darius"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_DANIEL_LIONS_DEN_01",
+          "text": "Daniel kept praying — even when it could cost him everything."
+        },
+        {
+          "id": "FRAME_DANIEL_LIONS_DEN_02",
+          "text": "The lions were real. So was the One who closed their mouths."
+        }
       ]
     },
     {
       "bibleStoryKey": "david_and_jonathan",
       "primaryFigure": "David",
-      "secondaryFigures": ["Jonathan"],
+      "secondaryFigures": [
+        "Jonathan"
+      ],
       "framingLines": [
-        {"id": "FRAME_DAVID_AND_JONATHAN_01", "text": "David and Jonathan's friendship survived what should have destroyed it."},
-        {"id": "FRAME_DAVID_AND_JONATHAN_02", "text": "In the middle of danger, two friends made a promise they never broke."}
+        {
+          "id": "FRAME_DAVID_AND_JONATHAN_01",
+          "text": "David and Jonathan's friendship survived what should have destroyed it."
+        },
+        {
+          "id": "FRAME_DAVID_AND_JONATHAN_02",
+          "text": "In the middle of danger, two friends made a promise they never broke."
+        }
       ]
     },
     {
       "bibleStoryKey": "david_and_mephibosheth",
       "primaryFigure": "David",
-      "secondaryFigures": ["Mephibosheth"],
+      "secondaryFigures": [
+        "Mephibosheth"
+      ],
       "framingLines": [
-        {"id": "FRAME_DAVID_AND_MEPHIBOSHETH_01", "text": "Mephibosheth expected judgment. David gave him a seat at the table."},
-        {"id": "FRAME_DAVID_AND_MEPHIBOSHETH_02", "text": "David remembered a promise and honored it \u2014 even when no one expected him to."}
+        {
+          "id": "FRAME_DAVID_AND_MEPHIBOSHETH_01",
+          "text": "Mephibosheth expected judgment. David gave him a seat at the table."
+        },
+        {
+          "id": "FRAME_DAVID_AND_MEPHIBOSHETH_02",
+          "text": "David remembered a promise and honored it — even when no one expected him to."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "david_anointed",
+      "primaryFigure": "David",
+      "secondaryFigures": [
+        "Samuel"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_DAVID_ANOINTED_01",
+          "text": "David was the one nobody thought to call — until God did."
+        },
+        {
+          "id": "FRAME_DAVID_ANOINTED_02",
+          "text": "Everyone overlooked David. But being overlooked isn't the same as being forgotten."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "david_goliath",
+      "primaryFigure": "David",
+      "secondaryFigures": [
+        "Goliath",
+        "Saul"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_DAVID_GOLIATH_01",
+          "text": "Everyone saw a giant. David saw something different."
+        },
+        {
+          "id": "FRAME_DAVID_GOLIATH_02",
+          "text": "David walked toward what scared everyone else away."
+        }
       ]
     },
     {
@@ -206,17 +306,46 @@
       "primaryFigure": "Jesus",
       "secondaryFigures": [],
       "framingLines": [
-        {"id": "FRAME_DO_NOT_WORRY_01", "text": "Jesus once told a crowd to look at the birds. He was making a point about worry."},
-        {"id": "FRAME_DO_NOT_WORRY_02", "text": "When the crowd was anxious about tomorrow, Jesus pointed them to today."}
+        {
+          "id": "FRAME_DO_NOT_WORRY_01",
+          "text": "Jesus once told a crowd to look at the birds. He was making a point about worry."
+        },
+        {
+          "id": "FRAME_DO_NOT_WORRY_02",
+          "text": "When the crowd was anxious about tomorrow, Jesus pointed them to today."
+        }
       ]
     },
     {
       "bibleStoryKey": "elijah_and_widow_of_zarephath",
       "primaryFigure": "Elijah",
-      "secondaryFigures": ["The Widow"],
+      "secondaryFigures": [
+        "The Widow"
+      ],
       "framingLines": [
-        {"id": "FRAME_ELIJAH_AND_WIDOW_OF_ZAREPHATH_01", "text": "A widow was down to her last meal. Then a stranger showed up at her door."},
-        {"id": "FRAME_ELIJAH_AND_WIDOW_OF_ZAREPHATH_02", "text": "The widow of Zarephath had nothing left \u2014 and that's when everything changed."}
+        {
+          "id": "FRAME_ELIJAH_AND_WIDOW_OF_ZAREPHATH_01",
+          "text": "A widow was down to her last meal. Then a stranger showed up at her door."
+        },
+        {
+          "id": "FRAME_ELIJAH_AND_WIDOW_OF_ZAREPHATH_02",
+          "text": "The widow of Zarephath had nothing left — and that's when everything changed."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "elijah_at_horeb",
+      "primaryFigure": "Elijah",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_ELIJAH_AT_HOREB_01",
+          "text": "Elijah was done. God met him in a whisper."
+        },
+        {
+          "id": "FRAME_ELIJAH_AT_HOREB_02",
+          "text": "He expected thunder. What came was softer than that."
+        }
       ]
     },
     {
@@ -224,8 +353,14 @@
       "primaryFigure": "Elijah",
       "secondaryFigures": [],
       "framingLines": [
-        {"id": "FRAME_ELIJAH_ON_MOUNT_CARMEL_01", "text": "Elijah stood alone against 450 prophets. He didn't flinch."},
-        {"id": "FRAME_ELIJAH_ON_MOUNT_CARMEL_02", "text": "Everyone else had picked a side. Elijah stood on the other one."}
+        {
+          "id": "FRAME_ELIJAH_ON_MOUNT_CARMEL_01",
+          "text": "Elijah stood alone against 450 prophets. He didn't flinch."
+        },
+        {
+          "id": "FRAME_ELIJAH_ON_MOUNT_CARMEL_02",
+          "text": "Everyone else had picked a side. Elijah stood on the other one."
+        }
       ]
     },
     {
@@ -233,224 +368,95 @@
       "primaryFigure": "Elisha",
       "secondaryFigures": [],
       "framingLines": [
-        {"id": "FRAME_ELISHA_AND_THE_ARMY_01", "text": "Elisha's servant saw the army and panicked. Elisha saw something else."},
-        {"id": "FRAME_ELISHA_AND_THE_ARMY_02", "text": "When the enemy surrounded them, Elisha prayed \u2014 not for escape, but for sight."}
+        {
+          "id": "FRAME_ELISHA_AND_THE_ARMY_01",
+          "text": "Elisha's servant saw the army and panicked. Elisha saw something else."
+        },
+        {
+          "id": "FRAME_ELISHA_AND_THE_ARMY_02",
+          "text": "When the enemy surrounded them, Elisha prayed — not for escape, but for sight."
+        }
       ]
     },
     {
-      "bibleStoryKey": "i_lift_my_eyes_to_the_hills",
-      "primaryFigure": "The Psalmist",
+      "bibleStoryKey": "fearfully_and_wonderfully_made",
+      "primaryFigure": "David",
       "secondaryFigures": [],
       "framingLines": [
-        {"id": "FRAME_I_LIFT_MY_EYES_TO_THE_HILLS_01", "text": "The psalmist looked up \u2014 not because the answer was obvious, but because he needed one."},
-        {"id": "FRAME_I_LIFT_MY_EYES_TO_THE_HILLS_02", "text": "These words were written by someone searching for help and finding it above."}
-      ]
-    },
-    {
-      "bibleStoryKey": "isaiahs_vision",
-      "primaryFigure": "Isaiah",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_ISAIAHS_VISION_01", "text": "Isaiah saw something that overwhelmed him \u2014 and then he heard 'Who shall I send?'"},
-        {"id": "FRAME_ISAIAHS_VISION_02", "text": "Isaiah didn't feel worthy. But when the call came, he answered anyway."}
-      ]
-    },
-    {
-      "bibleStoryKey": "jacob_wrestles_at_peniel",
-      "primaryFigure": "Jacob",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_JACOB_WRESTLES_AT_PENIEL_01", "text": "Jacob refused to let go \u2014 even when it cost him."},
-        {"id": "FRAME_JACOB_WRESTLES_AT_PENIEL_02", "text": "That night, Jacob wrestled with something he couldn't name. He held on until dawn."}
-      ]
-    },
-    {
-      "bibleStoryKey": "job_restored",
-      "primaryFigure": "Job",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_JOB_RESTORED_01", "text": "After everything Job lost, something unexpected happened \u2014 it came back."},
-        {"id": "FRAME_JOB_RESTORED_02", "text": "Job's story didn't end in the ashes. There was a chapter he couldn't see coming."}
-      ]
-    },
-    {
-      "bibleStoryKey": "jonah_flees",
-      "primaryFigure": "Jonah",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_JONAH_FLEES_01", "text": "Jonah heard God's voice and ran the other way."},
-        {"id": "FRAME_JONAH_FLEES_02", "text": "Jonah didn't want the assignment. He boarded a ship going anywhere else."}
-      ]
-    },
-    {
-      "bibleStoryKey": "joseph_reveals_himself",
-      "primaryFigure": "Joseph",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_JOSEPH_REVEALS_HIMSELF_01", "text": "Years after his brothers sold him, Joseph stood in front of them again."},
-        {"id": "FRAME_JOSEPH_REVEALS_HIMSELF_02", "text": "Joseph had every reason to turn them away. He wept instead."}
-      ]
-    },
-    {
-      "bibleStoryKey": "manna_from_heaven",
-      "primaryFigure": "Moses",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_MANNA_FROM_HEAVEN_01", "text": "Every morning, God provided just enough \u2014 never more, never less."},
-        {"id": "FRAME_MANNA_FROM_HEAVEN_02", "text": "Israel woke up hungry in the wilderness. The ground told a different story."}
-      ]
-    },
-    {
-      "bibleStoryKey": "miraculous_catch_of_fish",
-      "primaryFigure": "Peter",
-      "secondaryFigures": ["Jesus"],
-      "framingLines": [
-        {"id": "FRAME_MIRACULOUS_CATCH_OF_FISH_01", "text": "Peter had fished all night and caught nothing. Then someone told him to try again."},
-        {"id": "FRAME_MIRACULOUS_CATCH_OF_FISH_02", "text": "After a long night of empty nets, one voice changed everything."}
-      ]
-    },
-    {
-      "bibleStoryKey": "naaman_healed",
-      "primaryFigure": "Naaman",
-      "secondaryFigures": ["Elisha"],
-      "framingLines": [
-        {"id": "FRAME_NAAMAN_HEALED_01", "text": "Naaman expected something dramatic. He was told to just go wash."},
-        {"id": "FRAME_NAAMAN_HEALED_02", "text": "The cure for Naaman's pride was simpler than he wanted it to be."}
-      ]
-    },
-    {
-      "bibleStoryKey": "nativity",
-      "primaryFigure": "Mary",
-      "secondaryFigures": ["Joseph"],
-      "framingLines": [
-        {"id": "FRAME_NATIVITY_01", "text": "The most important arrival in history happened in the quietest possible way."},
-        {"id": "FRAME_NATIVITY_02", "text": "Mary and Joseph had nothing ready \u2014 and everything was about to begin."}
-      ]
-    },
-    {
-      "bibleStoryKey": "nehemiah_rebuilds_the_wall",
-      "primaryFigure": "Nehemiah",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_NEHEMIAH_REBUILDS_THE_WALL_01", "text": "Nehemiah heard the wall was broken and couldn't stop thinking about it."},
-        {"id": "FRAME_NEHEMIAH_REBUILDS_THE_WALL_02", "text": "They told Nehemiah it couldn't be rebuilt. He picked up the stones anyway."}
-      ]
-    },
-    {
-      "bibleStoryKey": "noah_builds_the_ark",
-      "primaryFigure": "Noah",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_NOAH_BUILDS_THE_ARK_01", "text": "Noah built something enormous based on nothing but a word from God."},
-        {"id": "FRAME_NOAH_BUILDS_THE_ARK_02", "text": "Everyone thought Noah was foolish. He kept building."}
-      ]
-    },
-    {
-      "bibleStoryKey": "peter_heals_lame_man",
-      "primaryFigure": "Peter",
-      "secondaryFigures": ["John"],
-      "framingLines": [
-        {"id": "FRAME_PETER_HEALS_LAME_MAN_01", "text": "Peter had no silver or gold. He offered something the man wasn't expecting."},
-        {"id": "FRAME_PETER_HEALS_LAME_MAN_02", "text": "'I don't have what you're asking for,' Peter said. 'But I have something better.'"}
-      ]
-    },
-    {
-      "bibleStoryKey": "potter_and_clay",
-      "primaryFigure": "Jeremiah",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_POTTER_AND_CLAY_01", "text": "The clay didn't understand what the potter was making. It never does at first."},
-        {"id": "FRAME_POTTER_AND_CLAY_02", "text": "Sometimes being reshaped feels like being broken. Jeremiah understood that."}
-      ]
-    },
-    {
-      "bibleStoryKey": "solomon_asks_for_wisdom",
-      "primaryFigure": "Solomon",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_SOLOMON_ASKS_FOR_WISDOM_01", "text": "Solomon could have asked for anything. He asked for wisdom to lead well."},
-        {"id": "FRAME_SOLOMON_ASKS_FOR_WISDOM_02", "text": "When given a blank check, Solomon asked for the one thing money can't buy."}
-      ]
-    },
-    {
-      "bibleStoryKey": "spies_return_from_canaan",
-      "primaryFigure": "Caleb",
-      "secondaryFigures": ["Joshua"],
-      "framingLines": [
-        {"id": "FRAME_SPIES_RETURN_FROM_CANAAN_01", "text": "Ten spies saw giants. Two saw something bigger."},
-        {"id": "FRAME_SPIES_RETURN_FROM_CANAAN_02", "text": "Caleb and Joshua looked at the same land and saw a completely different story."}
-      ]
-    },
-    {
-      "bibleStoryKey": "ten_lepers",
-      "primaryFigure": "The One Leper",
-      "secondaryFigures": ["Jesus"],
-      "framingLines": [
-        {"id": "FRAME_TEN_LEPERS_01", "text": "Ten were healed. One came back."},
-        {"id": "FRAME_TEN_LEPERS_02", "text": "Only one of the ten stopped to say thank you. His gratitude set him apart."}
-      ]
-    },
-    {
-      "bibleStoryKey": "the_magi",
-      "primaryFigure": "The Magi",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_THE_MAGI_01", "text": "The wise men followed a star for months \u2014 not knowing exactly where it would lead."},
-        {"id": "FRAME_THE_MAGI_02", "text": "They traveled a long way on nothing more than a light in the sky and a hunch."}
-      ]
-    },
-    {
-      "bibleStoryKey": "three_visitors_at_mamre",
-      "primaryFigure": "Abraham",
-      "secondaryFigures": ["Sarah"],
-      "framingLines": [
-        {"id": "FRAME_THREE_VISITORS_AT_MAMRE_01", "text": "Abraham and Sarah had given up on the promise. Then three visitors arrived."},
-        {"id": "FRAME_THREE_VISITORS_AT_MAMRE_02", "text": "Sarah laughed when she heard it \u2014 because the promise sounded impossible."}
-      ]
-    },
-    {
-      "bibleStoryKey": "wings_like_eagles",
-      "primaryFigure": "Isaiah",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_WINGS_LIKE_EAGLES_01", "text": "These words were written for people who had run out of strength."},
-        {"id": "FRAME_WINGS_LIKE_EAGLES_02", "text": "Isaiah promised that the tired wouldn't just survive \u2014 they'd soar."}
-      ]
-    },
-    {
-      "bibleStoryKey": "woman_touches_jesus_garment",
-      "primaryFigure": "Jesus",
-      "secondaryFigures": [],
-      "framingLines": [
-        {"id": "FRAME_WOMAN_TOUCHES_JESUS_GARMENT_01", "text": "She had been suffering for twelve years and had nothing left to lose."},
-        {"id": "FRAME_WOMAN_TOUCHES_JESUS_GARMENT_02", "text": "Sometimes the bravest thing someone can do is reach out one more time."}
+        {
+          "id": "FRAME_FEARFULLY_AND_WONDERFULLY_MADE_01",
+          "text": "These words were written by someone who needed to be reminded of his own worth."
+        },
+        {
+          "id": "FRAME_FEARFULLY_AND_WONDERFULLY_MADE_02",
+          "text": "David looked inward and found something worth celebrating. It took courage to see it."
+        }
       ]
     },
     {
       "bibleStoryKey": "feeding_five_thousand",
       "primaryFigure": "Jesus",
-      "secondaryFigures": ["Andrew"],
+      "secondaryFigures": [
+        "Andrew"
+      ],
       "framingLines": [
-        {"id": "FRAME_FEEDING_FIVE_THOUSAND_01", "text": "What they had wasn\u2019t enough \u2014 and Jesus used it anyway."},
-        {"id": "FRAME_FEEDING_FIVE_THOUSAND_02", "text": "A boy\u2019s lunch became more than anyone expected that day."}
+        {
+          "id": "FRAME_FEEDING_FIVE_THOUSAND_01",
+          "text": "What they had wasn’t enough — and Jesus used it anyway."
+        },
+        {
+          "id": "FRAME_FEEDING_FIVE_THOUSAND_02",
+          "text": "A boy’s lunch became more than anyone expected that day."
+        }
       ]
     },
     {
-      "bibleStoryKey": "annunciation_to_mary",
-      "primaryFigure": "Mary",
-      "secondaryFigures": ["Gabriel"],
+      "bibleStoryKey": "fiery_furnace",
+      "primaryFigure": "Shadrach, Meshach, and Abednego",
+      "secondaryFigures": [],
       "framingLines": [
-        {"id": "FRAME_ANNUNCIATION_TO_MARY_01", "text": "Mary was young and ordinary \u2014 and then everything changed in a single moment."},
-        {"id": "FRAME_ANNUNCIATION_TO_MARY_02", "text": "She said yes to something she couldn\u2019t fully understand."}
+        {
+          "id": "FRAME_FIERY_FURNACE_01",
+          "text": "Three men were told to bow. They chose the fire instead."
+        },
+        {
+          "id": "FRAME_FIERY_FURNACE_02",
+          "text": "Shadrach, Meshach, and Abednego didn't know they'd survive. They stood anyway."
+        }
       ]
     },
     {
-      "bibleStoryKey": "raising_of_lazarus",
+      "bibleStoryKey": "gethsemane",
       "primaryFigure": "Jesus",
-      "secondaryFigures": ["Lazarus", "Martha", "Mary"],
+      "secondaryFigures": [
+        "Peter",
+        "James",
+        "John"
+      ],
       "framingLines": [
-        {"id": "FRAME_RAISING_OF_LAZARUS_01", "text": "Martha said it was too late. Jesus told her it wasn\u2019t."},
-        {"id": "FRAME_RAISING_OF_LAZARUS_02", "text": "Even standing at a tomb, Jesus wept \u2014 and then called life back."}
+        {
+          "id": "FRAME_GETHSEMANE_01",
+          "text": "He asked them to stay awake. They could not."
+        },
+        {
+          "id": "FRAME_GETHSEMANE_02",
+          "text": "He asked for the cup to pass. It did not."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "gideon_called",
+      "primaryFigure": "Gideon",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_GIDEON_CALLED_01",
+          "text": "Gideon called himself the least in his family. God called him something else."
+        },
+        {
+          "id": "FRAME_GIDEON_CALLED_02",
+          "text": "Gideon was sure he wasn't enough. God saw something different."
+        }
       ]
     },
     {
@@ -458,53 +464,153 @@
       "primaryFigure": "Jesus",
       "secondaryFigures": [],
       "framingLines": [
-        {"id": "FRAME_GOOD_SAMARITAN_01", "text": "The people who should have stopped kept walking. A stranger didn\u2019t."},
-        {"id": "FRAME_GOOD_SAMARITAN_02", "text": "Jesus told a story about the kind of neighbor most people wouldn\u2019t expect."}
+        {
+          "id": "FRAME_GOOD_SAMARITAN_01",
+          "text": "The people who should have stopped kept walking. A stranger didn’t."
+        },
+        {
+          "id": "FRAME_GOOD_SAMARITAN_02",
+          "text": "Jesus told a story about the kind of neighbor most people wouldn’t expect."
+        }
       ]
     },
     {
-      "bibleStoryKey": "paralytic_through_roof",
+      "bibleStoryKey": "hagar_in_wilderness",
+      "primaryFigure": "Hagar",
+      "secondaryFigures": [
+        "Ishmael"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_HAGAR_IN_WILDERNESS_01",
+          "text": "Hagar felt invisible. Then God called her by name."
+        },
+        {
+          "id": "FRAME_HAGAR_IN_WILDERNESS_02",
+          "text": "Out in the wilderness, someone saw her — really saw her."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "healing_at_bethesda",
       "primaryFigure": "Jesus",
       "secondaryFigures": [],
       "framingLines": [
-        {"id": "FRAME_PARALYTIC_THROUGH_ROOF_01", "text": "His friends couldn\u2019t get through the crowd \u2014 so they went through the roof."},
-        {"id": "FRAME_PARALYTIC_THROUGH_ROOF_02", "text": "Sometimes being carried by the people around you is how you get to healing."}
+        {
+          "id": "FRAME_HEALING_AT_BETHESDA_01",
+          "text": "He had been waiting for years. Then someone finally asked the right question."
+        },
+        {
+          "id": "FRAME_HEALING_AT_BETHESDA_02",
+          "text": "He didn't know who Jesus was yet. Jesus already knew him."
+        }
       ]
     },
     {
-      "bibleStoryKey": "man_born_blind",
-      "primaryFigure": "Jesus",
+      "bibleStoryKey": "i_lift_my_eyes_to_the_hills",
+      "primaryFigure": "The Psalmist",
       "secondaryFigures": [],
       "framingLines": [
-        {"id": "FRAME_MAN_BORN_BLIND_01", "text": "Everyone had an opinion about why he was blind. Jesus just gave him sight."},
-        {"id": "FRAME_MAN_BORN_BLIND_02", "text": "He\u2019d never seen anything in his life \u2014 and then he saw everything."}
+        {
+          "id": "FRAME_I_LIFT_MY_EYES_TO_THE_HILLS_01",
+          "text": "The psalmist looked up — not because the answer was obvious, but because he needed one."
+        },
+        {
+          "id": "FRAME_I_LIFT_MY_EYES_TO_THE_HILLS_02",
+          "text": "These words were written by someone searching for help and finding it above."
+        }
       ]
     },
     {
-      "bibleStoryKey": "baptism_of_jesus",
-      "primaryFigure": "Jesus",
-      "secondaryFigures": ["John the Baptist"],
-      "framingLines": [
-        {"id": "FRAME_BAPTISM_OF_JESUS_01", "text": "John didn\u2019t think he was worthy. Jesus came to him anyway."},
-        {"id": "FRAME_BAPTISM_OF_JESUS_02", "text": "When Jesus came out of the water, heaven opened and spoke."}
-      ]
-    },
-    {
-      "bibleStoryKey": "jesus_washes_disciples_feet",
-      "primaryFigure": "Jesus",
-      "secondaryFigures": ["Peter"],
-      "framingLines": [
-        {"id": "FRAME_JESUS_WASHES_DISCIPLES_FEET_01", "text": "The one they called Lord knelt down and did a servant\u2019s work."},
-        {"id": "FRAME_JESUS_WASHES_DISCIPLES_FEET_02", "text": "Peter didn\u2019t want his feet washed. Jesus told him it mattered."}
-      ]
-    },
-    {
-      "bibleStoryKey": "temptation_in_wilderness",
-      "primaryFigure": "Jesus",
+      "bibleStoryKey": "isaiahs_vision",
+      "primaryFigure": "Isaiah",
       "secondaryFigures": [],
       "framingLines": [
-        {"id": "FRAME_TEMPTATION_IN_WILDERNESS_01", "text": "Forty days alone in the wilderness \u2014 and then the hardest test came."},
-        {"id": "FRAME_TEMPTATION_IN_WILDERNESS_02", "text": "Jesus was hungry, tired, and alone when the temptation arrived."}
+        {
+          "id": "FRAME_ISAIAHS_VISION_01",
+          "text": "Isaiah saw something that overwhelmed him — and then he heard 'Who shall I send?'"
+        },
+        {
+          "id": "FRAME_ISAIAHS_VISION_02",
+          "text": "Isaiah didn't feel worthy. But when the call came, he answered anyway."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "jacob_wrestles_at_peniel",
+      "primaryFigure": "Jacob",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_JACOB_WRESTLES_AT_PENIEL_01",
+          "text": "Jacob refused to let go — even when it cost him."
+        },
+        {
+          "id": "FRAME_JACOB_WRESTLES_AT_PENIEL_02",
+          "text": "That night, Jacob wrestled with something he couldn't name. He held on until dawn."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "jacobs_ladder",
+      "primaryFigure": "Jacob",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_JACOBS_LADDER_01",
+          "text": "Jacob was alone, running, and afraid. That's where the dream found him."
+        },
+        {
+          "id": "FRAME_JACOBS_LADDER_02",
+          "text": "In the loneliest night of Jacob's life, a promise found him."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "jairus_daughter",
+      "primaryFigure": "Jairus",
+      "secondaryFigures": [
+        "Jesus"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_JAIRUS_DAUGHTER_01",
+          "text": "His daughter was dying. He fell at a stranger’s feet and begged."
+        },
+        {
+          "id": "FRAME_JAIRUS_DAUGHTER_02",
+          "text": "They told him it was too late. Jesus said otherwise."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "jehoshaphat_praise_battle",
+      "primaryFigure": "Jehoshaphat",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_JEHOSHAPHAT_PRAISE_BATTLE_01",
+          "text": "Jehoshaphat was outmatched. So he started by listening."
+        },
+        {
+          "id": "FRAME_JEHOSHAPHAT_PRAISE_BATTLE_02",
+          "text": "They marched into battle singing — before they even saw the enemy fall."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "jericho_falls",
+      "primaryFigure": "Joshua",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_JERICHO_FALLS_01",
+          "text": "The walls were thick. The instructions sounded strange."
+        },
+        {
+          "id": "FRAME_JERICHO_FALLS_02",
+          "text": "They walked. They waited. They trusted the silence before the noise."
+        }
       ]
     },
     {
@@ -512,8 +618,789 @@
       "primaryFigure": "Jesus",
       "secondaryFigures": [],
       "framingLines": [
-        {"id": "FRAME_JESUS_CALMS_STORM_MATTHEW_01", "text": "The waves were crashing and the boat was sinking \u2014 and Jesus was asleep."},
-        {"id": "FRAME_JESUS_CALMS_STORM_MATTHEW_02", "text": "They woke him in a panic. He spoke to the storm and it listened."}
+        {
+          "id": "FRAME_JESUS_CALMS_STORM_MATTHEW_01",
+          "text": "The waves were crashing and the boat was sinking — and Jesus was asleep."
+        },
+        {
+          "id": "FRAME_JESUS_CALMS_STORM_MATTHEW_02",
+          "text": "They woke him in a panic. He spoke to the storm and it listened."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "jesus_washes_disciples_feet",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [
+        "Peter"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_JESUS_WASHES_DISCIPLES_FEET_01",
+          "text": "The one they called Lord knelt down and did a servant’s work."
+        },
+        {
+          "id": "FRAME_JESUS_WASHES_DISCIPLES_FEET_02",
+          "text": "Peter didn’t want his feet washed. Jesus told him it mattered."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "job_restored",
+      "primaryFigure": "Job",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_JOB_RESTORED_01",
+          "text": "After everything Job lost, something unexpected happened — it came back."
+        },
+        {
+          "id": "FRAME_JOB_RESTORED_02",
+          "text": "Job's story didn't end in the ashes. There was a chapter he couldn't see coming."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "job_tested",
+      "primaryFigure": "Job",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_JOB_TESTED_01",
+          "text": "Job lost nearly everything and still had the courage to ask why."
+        },
+        {
+          "id": "FRAME_JOB_TESTED_02",
+          "text": "What Job went through would have broken most people. It nearly broke him too."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "jonah_flees",
+      "primaryFigure": "Jonah",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_JONAH_FLEES_01",
+          "text": "Jonah heard God's voice and ran the other way."
+        },
+        {
+          "id": "FRAME_JONAH_FLEES_02",
+          "text": "Jonah didn't want the assignment. He boarded a ship going anywhere else."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "jonah_in_nineveh",
+      "primaryFigure": "Jonah",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_JONAH_IN_NINEVEH_01",
+          "text": "Jonah said the words. Nineveh actually listened."
+        },
+        {
+          "id": "FRAME_JONAH_IN_NINEVEH_02",
+          "text": "He didn't expect them to change. They did anyway."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "joseph_interprets_pharaohs_dreams",
+      "primaryFigure": "Joseph",
+      "secondaryFigures": [
+        "Pharaoh"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_JOSEPH_INTERPRETS_PHARAOHS_DREAMS_01",
+          "text": "Joseph went from prison to palace in a single day."
+        },
+        {
+          "id": "FRAME_JOSEPH_INTERPRETS_PHARAOHS_DREAMS_02",
+          "text": "Pharaoh's dreams unsettled him. Joseph knew Who they were from."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "joseph_reveals_himself",
+      "primaryFigure": "Joseph",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_JOSEPH_REVEALS_HIMSELF_01",
+          "text": "Years after his brothers sold him, Joseph stood in front of them again."
+        },
+        {
+          "id": "FRAME_JOSEPH_REVEALS_HIMSELF_02",
+          "text": "Joseph had every reason to turn them away. He wept instead."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "joseph_sold_by_brothers",
+      "primaryFigure": "Joseph",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_JOSEPH_SOLD_BY_BROTHERS_01",
+          "text": "Joseph knew what it felt like to be abandoned by the people closest to him."
+        },
+        {
+          "id": "FRAME_JOSEPH_SOLD_BY_BROTHERS_02",
+          "text": "Before Joseph became someone great, he went through something that nearly broke him."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "joshua_commissioned",
+      "primaryFigure": "Joshua",
+      "secondaryFigures": [
+        "Moses"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_JOSHUA_COMMISSIONED_01",
+          "text": "Joshua was told 'be strong and courageous' — because he needed to hear it."
+        },
+        {
+          "id": "FRAME_JOSHUA_COMMISSIONED_02",
+          "text": "Stepping into Moses' shoes terrified Joshua. God knew that."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "last_supper",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_LAST_SUPPER_01",
+          "text": "He broke bread with them knowing what was coming. They did not."
+        },
+        {
+          "id": "FRAME_LAST_SUPPER_02",
+          "text": "The hand of the one who would betray him was on the same table."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "man_born_blind",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_MAN_BORN_BLIND_01",
+          "text": "Everyone had an opinion about why he was blind. Jesus just gave him sight."
+        },
+        {
+          "id": "FRAME_MAN_BORN_BLIND_02",
+          "text": "He’d never seen anything in his life — and then he saw everything."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "manna_from_heaven",
+      "primaryFigure": "Moses",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_MANNA_FROM_HEAVEN_01",
+          "text": "Every morning, God provided just enough — never more, never less."
+        },
+        {
+          "id": "FRAME_MANNA_FROM_HEAVEN_02",
+          "text": "Israel woke up hungry in the wilderness. The ground told a different story."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "mary_at_empty_tomb",
+      "primaryFigure": "Mary Magdalene",
+      "secondaryFigures": [
+        "Jesus"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_MARY_AT_EMPTY_TOMB_01",
+          "text": "Mary came expecting grief. She found a name spoken in love."
+        },
+        {
+          "id": "FRAME_MARY_AT_EMPTY_TOMB_02",
+          "text": "He said her name. That's how she knew."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "miraculous_catch_of_fish",
+      "primaryFigure": "Peter",
+      "secondaryFigures": [
+        "Jesus"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_MIRACULOUS_CATCH_OF_FISH_01",
+          "text": "Peter had fished all night and caught nothing. Then someone told him to try again."
+        },
+        {
+          "id": "FRAME_MIRACULOUS_CATCH_OF_FISH_02",
+          "text": "After a long night of empty nets, one voice changed everything."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "moses_and_jethro",
+      "primaryFigure": "Moses",
+      "secondaryFigures": [
+        "Jethro"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_MOSES_AND_JETHRO_01",
+          "text": "Moses was carrying too much alone. Jethro told him the truth."
+        },
+        {
+          "id": "FRAME_MOSES_AND_JETHRO_02",
+          "text": "Sometimes the help we need comes from someone who knows us."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "naaman_healed",
+      "primaryFigure": "Naaman",
+      "secondaryFigures": [
+        "Elisha"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_NAAMAN_HEALED_01",
+          "text": "Naaman expected something dramatic. He was told to just go wash."
+        },
+        {
+          "id": "FRAME_NAAMAN_HEALED_02",
+          "text": "The cure for Naaman's pride was simpler than he wanted it to be."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "nativity",
+      "primaryFigure": "Mary",
+      "secondaryFigures": [
+        "Joseph"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_NATIVITY_01",
+          "text": "The most important arrival in history happened in the quietest possible way."
+        },
+        {
+          "id": "FRAME_NATIVITY_02",
+          "text": "Mary and Joseph had nothing ready — and everything was about to begin."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "nehemiah_rebuilds_the_wall",
+      "primaryFigure": "Nehemiah",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_NEHEMIAH_REBUILDS_THE_WALL_01",
+          "text": "Nehemiah heard the wall was broken and couldn't stop thinking about it."
+        },
+        {
+          "id": "FRAME_NEHEMIAH_REBUILDS_THE_WALL_02",
+          "text": "They told Nehemiah it couldn't be rebuilt. He picked up the stones anyway."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "noah_builds_the_ark",
+      "primaryFigure": "Noah",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_NOAH_BUILDS_THE_ARK_01",
+          "text": "Noah built something enormous based on nothing but a word from God."
+        },
+        {
+          "id": "FRAME_NOAH_BUILDS_THE_ARK_02",
+          "text": "Everyone thought Noah was foolish. He kept building."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "paralytic_through_roof",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_PARALYTIC_THROUGH_ROOF_01",
+          "text": "His friends couldn’t get through the crowd — so they went through the roof."
+        },
+        {
+          "id": "FRAME_PARALYTIC_THROUGH_ROOF_02",
+          "text": "Sometimes being carried by the people around you is how you get to healing."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "paul_and_silas_in_prison",
+      "primaryFigure": "Paul",
+      "secondaryFigures": [
+        "Silas"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_PAUL_AND_SILAS_IN_PRISON_01",
+          "text": "Their backs were bleeding and their feet were in stocks. At midnight, they sang."
+        },
+        {
+          "id": "FRAME_PAUL_AND_SILAS_IN_PRISON_02",
+          "text": "The earthquake opened the doors — but the singing came first."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "pauls_shipwreck",
+      "primaryFigure": "Paul",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_PAULS_SHIPWRECK_01",
+          "text": "Fourteen days without sun or stars. Every reason to hope was gone — except one."
+        },
+        {
+          "id": "FRAME_PAULS_SHIPWRECK_02",
+          "text": "The ship broke apart. Every person aboard made it to shore alive."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "peter_freed_from_prison",
+      "primaryFigure": "Peter",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_PETER_FREED_FROM_PRISON_01",
+          "text": "Peter was chained between two guards the night before his execution — and he was asleep."
+        },
+        {
+          "id": "FRAME_PETER_FREED_FROM_PRISON_02",
+          "text": "The chains fell. The gate opened. And Peter thought he was dreaming."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "peter_heals_lame_man",
+      "primaryFigure": "Peter",
+      "secondaryFigures": [
+        "John"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_PETER_HEALS_LAME_MAN_01",
+          "text": "Peter had no silver or gold. He offered something the man wasn't expecting."
+        },
+        {
+          "id": "FRAME_PETER_HEALS_LAME_MAN_02",
+          "text": "'I don't have what you're asking for,' Peter said. 'But I have something better.'"
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "peter_prison_escape",
+      "primaryFigure": "Peter",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_PETER_PRISON_ESCAPE_01",
+          "text": "Peter was sleeping the night he was supposed to die."
+        },
+        {
+          "id": "FRAME_PETER_PRISON_ESCAPE_02",
+          "text": "The chains fell. The door opened. He thought he was dreaming."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "potter_and_clay",
+      "primaryFigure": "Jeremiah",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_POTTER_AND_CLAY_01",
+          "text": "The clay didn't understand what the potter was making. It never does at first."
+        },
+        {
+          "id": "FRAME_POTTER_AND_CLAY_02",
+          "text": "Sometimes being reshaped feels like being broken. Jeremiah understood that."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "prodigal_son",
+      "primaryFigure": "The Father",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_PRODIGAL_SON_01",
+          "text": "He came home expecting nothing. His father had been watching the road."
+        },
+        {
+          "id": "FRAME_PRODIGAL_SON_02",
+          "text": "There was a long way back. The welcome was longer."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "raising_of_lazarus",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [
+        "Lazarus",
+        "Martha",
+        "Mary"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_RAISING_OF_LAZARUS_01",
+          "text": "Martha said it was too late. Jesus told her it wasn’t."
+        },
+        {
+          "id": "FRAME_RAISING_OF_LAZARUS_02",
+          "text": "Even standing at a tomb, Jesus wept — and then called life back."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "red_sea_crossing",
+      "primaryFigure": "Moses",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_RED_SEA_CROSSING_01",
+          "text": "Behind them was Pharaoh. In front of them was the sea."
+        },
+        {
+          "id": "FRAME_RED_SEA_CROSSING_02",
+          "text": "They walked through what shouldn't have been a path."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "rest_for_the_weary",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_REST_FOR_THE_WEARY_01",
+          "text": "Jesus once spoke directly to people who were worn out and carrying too much."
+        },
+        {
+          "id": "FRAME_REST_FOR_THE_WEARY_02",
+          "text": "When the weight felt impossible, Jesus offered an invitation that still stands."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "road_to_emmaus",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_ROAD_TO_EMMAUS_01",
+          "text": "Two friends walked home grieving. Someone they didn't recognize joined them."
+        },
+        {
+          "id": "FRAME_ROAD_TO_EMMAUS_02",
+          "text": "He was right there with them — long before they realized who He was."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "ruth_and_naomi",
+      "primaryFigure": "Ruth",
+      "secondaryFigures": [
+        "Naomi"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_RUTH_AND_NAOMI_01",
+          "text": "Ruth had every reason to leave. She stayed anyway."
+        },
+        {
+          "id": "FRAME_RUTH_AND_NAOMI_02",
+          "text": "Naomi felt empty. Ruth refused to let her walk alone."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "ruth_gleans_in_boaz_field",
+      "primaryFigure": "Ruth",
+      "secondaryFigures": [
+        "Boaz"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_RUTH_GLEANS_IN_BOAZ_FIELD_01",
+          "text": "Ruth was a foreigner with nothing — and she found kindness where she least expected it."
+        },
+        {
+          "id": "FRAME_RUTH_GLEANS_IN_BOAZ_FIELD_02",
+          "text": "After losing everything, Ruth took the smallest step forward. It changed her story."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "saul_on_road_to_damascus",
+      "primaryFigure": "Saul",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_SAUL_ON_ROAD_TO_DAMASCUS_01",
+          "text": "Saul was sure he was right. Then a light stopped him cold."
+        },
+        {
+          "id": "FRAME_SAUL_ON_ROAD_TO_DAMASCUS_02",
+          "text": "He started the road as one man and finished it as another."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "solomon_asks_for_wisdom",
+      "primaryFigure": "Solomon",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_SOLOMON_ASKS_FOR_WISDOM_01",
+          "text": "Solomon could have asked for anything. He asked for wisdom to lead well."
+        },
+        {
+          "id": "FRAME_SOLOMON_ASKS_FOR_WISDOM_02",
+          "text": "When given a blank check, Solomon asked for the one thing money can't buy."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "spies_return_from_canaan",
+      "primaryFigure": "Caleb",
+      "secondaryFigures": [
+        "Joshua"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_SPIES_RETURN_FROM_CANAAN_01",
+          "text": "Ten spies saw giants. Two saw something bigger."
+        },
+        {
+          "id": "FRAME_SPIES_RETURN_FROM_CANAAN_02",
+          "text": "Caleb and Joshua looked at the same land and saw a completely different story."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "temptation_in_wilderness",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_TEMPTATION_IN_WILDERNESS_01",
+          "text": "Forty days alone in the wilderness — and then the hardest test came."
+        },
+        {
+          "id": "FRAME_TEMPTATION_IN_WILDERNESS_02",
+          "text": "Jesus was hungry, tired, and alone when the temptation arrived."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "ten_lepers",
+      "primaryFigure": "The One Leper",
+      "secondaryFigures": [
+        "Jesus"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_TEN_LEPERS_01",
+          "text": "Ten were healed. One came back."
+        },
+        {
+          "id": "FRAME_TEN_LEPERS_02",
+          "text": "Only one of the ten stopped to say thank you. His gratitude set him apart."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "the_lord_is_my_shepherd",
+      "primaryFigure": "David",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_THE_LORD_IS_MY_SHEPHERD_01",
+          "text": "David wrote these words from a place that knew both darkness and comfort."
+        },
+        {
+          "id": "FRAME_THE_LORD_IS_MY_SHEPHERD_02",
+          "text": "Even in the valley, David found he wasn't walking alone."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "the_magi",
+      "primaryFigure": "The Magi",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_THE_MAGI_01",
+          "text": "The wise men followed a star for months — not knowing exactly where it would lead."
+        },
+        {
+          "id": "FRAME_THE_MAGI_02",
+          "text": "They traveled a long way on nothing more than a light in the sky and a hunch."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "three_visitors_at_mamre",
+      "primaryFigure": "Abraham",
+      "secondaryFigures": [
+        "Sarah"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_THREE_VISITORS_AT_MAMRE_01",
+          "text": "Abraham and Sarah had given up on the promise. Then three visitors arrived."
+        },
+        {
+          "id": "FRAME_THREE_VISITORS_AT_MAMRE_02",
+          "text": "Sarah laughed when she heard it — because the promise sounded impossible."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "transfiguration",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [
+        "Peter",
+        "James",
+        "John"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_TRANSFIGURATION_01",
+          "text": "Just for a moment, the disciples saw who Jesus really was."
+        },
+        {
+          "id": "FRAME_TRANSFIGURATION_02",
+          "text": "They wanted to stay. They had to come back down the mountain."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "triumphal_entry",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_TRIUMPHAL_ENTRY_01",
+          "text": "He rode into the city on a borrowed colt while the crowds laid branches in his path."
+        },
+        {
+          "id": "FRAME_TRIUMPHAL_ENTRY_02",
+          "text": "The whole city asked: Who is this? The crowd already knew."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "wings_like_eagles",
+      "primaryFigure": "Isaiah",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_WINGS_LIKE_EAGLES_01",
+          "text": "These words were written for people who had run out of strength."
+        },
+        {
+          "id": "FRAME_WINGS_LIKE_EAGLES_02",
+          "text": "Isaiah promised that the tired wouldn't just survive — they'd soar."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "woman_anoints_jesus_feet",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_WOMAN_ANOINTS_JESUS_FEET_01",
+          "text": "She came uninvited. She left forgiven."
+        },
+        {
+          "id": "FRAME_WOMAN_ANOINTS_JESUS_FEET_02",
+          "text": "The room judged her. Jesus called her gift beautiful."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "woman_at_well",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_WOMAN_AT_WELL_01",
+          "text": "She came for water at noon to avoid people. He was already waiting."
+        },
+        {
+          "id": "FRAME_WOMAN_AT_WELL_02",
+          "text": "He knew everything about her. He spoke to her anyway."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "woman_caught_in_adultery",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_WOMAN_CAUGHT_IN_ADULTERY_01",
+          "text": "The crowd had stones. Jesus knelt in the dust."
+        },
+        {
+          "id": "FRAME_WOMAN_CAUGHT_IN_ADULTERY_02",
+          "text": "He didn't condemn her. He didn't pretend nothing happened either."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "woman_touches_jesus_garment",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_WOMAN_TOUCHES_JESUS_GARMENT_01",
+          "text": "She had been suffering for twelve years and had nothing left to lose."
+        },
+        {
+          "id": "FRAME_WOMAN_TOUCHES_JESUS_GARMENT_02",
+          "text": "Sometimes the bravest thing someone can do is reach out one more time."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "zacchaeus",
+      "primaryFigure": "Zacchaeus",
+      "secondaryFigures": [
+        "Jesus"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_ZACCHAEUS_01",
+          "text": "Zacchaeus was used to being on the outside. Then someone saw him."
+        },
+        {
+          "id": "FRAME_ZACCHAEUS_02",
+          "text": "Everyone had already made up their mind about Zacchaeus — except one person."
+        }
       ]
     }
   ]
