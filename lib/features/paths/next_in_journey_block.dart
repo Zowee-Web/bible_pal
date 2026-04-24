@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../features/length_picker/length_picker_screen.dart';
 import '../../models/parable.dart';
 import '../../providers/parable_player_notifier.dart';
 import '../../providers/service_providers.dart';
 import '../../services/path_service.dart';
 import '../../theme/living_sky.dart';
+import '../pals_parables/parable_player_screen.dart';
 import 'path_launch_context.dart';
-import 'path_type.dart';
 
 /// "Next in Your Journey" block rendered at the bottom of the canonical
 /// Story Player (SPEC Feature 50.6 — LOCKED).
@@ -199,20 +198,30 @@ class _NextBlockBody extends ConsumerWidget {
                 child: _NextPlayButton(
                   palette: palette,
                   onTap: () {
-                    // SPEC Feature 6 + Feature 50.12 — path-launched
-                    // stories route through the canonical length
-                    // picker. The picker resolves the user's chosen
-                    // variant and loads the player with the
-                    // preserved launchContext so "Next in Your
-                    // Journey" keeps advancing by canonical position.
+                    // Path-launched: open the canonical player directly.
+                    // The player owns the load (post-frame in initState)
+                    // so launchContext stays preserved while avoiding the
+                    // pre-navigation iOS audio-session hang. See
+                    // [ParablePlayerScreen.pendingParable].
                     Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => LengthPickerScreen(
-                          fixedParable: next,
-                          launchContext: nextLaunchContext,
-                          pathSubtitle:
-                              'From PALs Paths • ${nextLaunchContext.pathType.displayLabel}',
+                      PageRouteBuilder(
+                        pageBuilder: (_, __, ___) => ParablePlayerScreen(
+                          pendingParable: next,
+                          pendingLaunchContext: nextLaunchContext,
                         ),
+                        transitionsBuilder: (_, animation, __, child) {
+                          final curved = CurvedAnimation(
+                              parent: animation, curve: Curves.easeInOut);
+                          return FadeTransition(
+                            opacity: curved,
+                            child: ScaleTransition(
+                              scale: Tween<double>(begin: 0.98, end: 1.0)
+                                  .animate(curved),
+                              child: child,
+                            ),
+                          );
+                        },
+                        transitionDuration: const Duration(milliseconds: 260),
                       ),
                     );
                   },

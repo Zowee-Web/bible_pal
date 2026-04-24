@@ -167,13 +167,16 @@ final pathServiceProvider = FutureProvider<PathService>((ref) async {
       await parableService.getAllTraditionalParables();
   final jesusLifeSequence = await _loadJesusLifeSequence();
 
-  // Kid-mode flag reads from the current user preferences. Using
-  // ref.watch on appStateProvider means PathService rebuilds
-  // reactively when kid mode toggles — a kid-mode user who flips the
-  // toggle mid-session sees an immediately-updated path snapshot.
-  final appState = ref.watch(appStateProvider);
-  final kidFriendlyOnly =
-      appState.valueOrNull?.userPreferences.kidFriendlyOnly ?? false;
+  // Kid-mode flag reads from the current user preferences. Use
+  // `select` instead of watching the whole appStateProvider so that
+  // unrelated mutations (addToHistory, updatePreferredLengthBucket,
+  // etc.) do NOT invalidate this provider — otherwise screens that
+  // watch pathServiceProvider would flip back to a loading spinner
+  // every time the player added to history, producing a visible
+  // layout shift on return navigation.
+  final kidFriendlyOnly = ref.watch(appStateProvider.select(
+    (state) => state.valueOrNull?.userPreferences.kidFriendlyOnly ?? false,
+  ));
 
   // Phase 3: snapshot the completed story IDs so getResumePoint and
   // getCompletionPercentage work. The player hook invalidates
@@ -199,9 +202,11 @@ final searchServiceProvider = FutureProvider<SearchService>((ref) async {
   final traditionalParables =
       await parableService.getAllTraditionalParables();
 
-  final appState = ref.watch(appStateProvider);
-  final kidFriendlyOnly =
-      appState.valueOrNull?.userPreferences.kidFriendlyOnly ?? false;
+  // Same `select` pattern as pathServiceProvider — only rebuild when
+  // kid mode toggles, not on every appState mutation.
+  final kidFriendlyOnly = ref.watch(appStateProvider.select(
+    (state) => state.valueOrNull?.userPreferences.kidFriendlyOnly ?? false,
+  ));
 
   return SearchService(
     traditionalParables: traditionalParables,

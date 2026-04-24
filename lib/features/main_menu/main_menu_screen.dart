@@ -22,6 +22,8 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/services.dart' show HapticFeedback;
 import '../../providers/parable_player_notifier.dart';
 import '../../models/parable.dart';
+import '../../core/story_length_bucket.dart';
+import '../pals_parables/parable_player_screen.dart';
 import '../consent/voice_consent_dialog.dart';
 import '../../core/app_logger.dart';
 import '../../widgets/glass_input_decoration.dart';
@@ -32,6 +34,106 @@ import '../paths/paths_page.dart';
 /// Session-only opening tone (Feature 2.0). Set when the PAL opening line is
 /// selected; reset at the start of the next tap. Never persisted to storage.
 final _palOpeningToneProvider = StateProvider<PalOpeningTone?>((ref) => null);
+
+/// Re-entrancy guard shared across mood/text/voice entry flows so the user
+/// can't double-tap themselves into two parallel selections.
+bool _moodFlowSelecting = false;
+
+/// Selects a story for the given mood using the user's saved
+/// `preferredLengthBucket` and current preferences, loads it into the
+/// player, and navigates straight to the player screen with a one-time
+/// arrival animation. Replaces the legacy length-picker step in the
+/// mood/text/voice flows. PALs Paths still goes through `LengthPickerScreen`.
+Future<void> selectStoryAndOpenPlayer({
+  required WidgetRef ref,
+  required BuildContext context,
+  required String mood,
+  required String userText,
+  String? bibleStoryKey,
+}) async {
+  if (_moodFlowSelecting) return;
+  _moodFlowSelecting = true;
+  try {
+    final appStateNotifier = ref.read(appStateProvider.notifier);
+    final appState = ref.read(appStateProvider).valueOrNull;
+    final savedBucketName =
+        appState?.userPreferences.preferredLengthBucket ?? 'short';
+    final bucket = StoryLengthBucket.fromJson(savedBucketName);
+
+    // Keep session-scoped bucket in sync (back-compat with rest of app).
+    ref.read(sessionLengthBucketProvider.notifier).state = bucket;
+
+    logEvent('mood_flow_story_select', {
+      'mood': mood,
+      'length_bucket': bucket.name,
+      'has_user_text': userText.isNotEmpty,
+      'has_bible_story_key': bibleStoryKey != null,
+    });
+
+    final parable = await appStateNotifier.selectParable(
+      mood: mood,
+      lengthBucket: bucket,
+      userText: userText,
+      bibleStoryKey: bibleStoryKey,
+    );
+
+    if (!context.mounted) return;
+    if (parable == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('No story available for this mood yet.'),
+        ),
+      );
+      return;
+    }
+
+    await appStateNotifier.addToHistory(parable);
+    if (!context.mounted) return;
+
+    final playerNotifier = ref.read(parablePlayerProvider.notifier);
+    // Mood flow: no launchContext (PALs Paths owns that field).
+    final success = await playerNotifier.loadParable(parable);
+    if (!context.mounted) return;
+
+    if (!success) {
+      final playerState = ref.read(parablePlayerProvider);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(playerState.errorMessage ??
+              'This story needs an internet connection the first time you play it.'),
+          duration: const Duration(seconds: 4),
+        ),
+      );
+      return;
+    }
+
+    await Navigator.of(context).push(
+      PageRouteBuilder(
+        pageBuilder: (_, __, ___) =>
+            const ParablePlayerScreen(showArrivalAnimation: true),
+        transitionsBuilder: (_, animation, __, child) {
+          final curved =
+              CurvedAnimation(parent: animation, curve: Curves.easeInOut);
+          return FadeTransition(
+            opacity: curved,
+            child: ScaleTransition(
+              scale: Tween<double>(begin: 0.98, end: 1.0).animate(curved),
+              child: child,
+            ),
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 260),
+      ),
+    );
+  } catch (e) {
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Error: $e')),
+    );
+  } finally {
+    _moodFlowSelecting = false;
+  }
+}
 
 /// Main Menu Screen
 /// Based on SPEC Feature 48 — Main Horizontal Navigation (LOCKED 3 pages).
@@ -730,45 +832,22 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                 : null) ??
             PalReflectionLines.getLineRef(moodResult.mood);
         if (framingRef != null && mounted) {
-          // Feature 5.1a — Speak the reflection line BEFORE the overlay.
-          // This is PAL's spoken response after the user shares their mood.
-          final palResponseEnabled =
-              userPrefs.palVoiceEnabled &&
-              userPrefs.palGreetingsEnabled != false;
-          if (palResponseEnabled && reflectionRef != null) {
-            final voiceKey = userPrefs.palVoiceKey;
-            final palAudio = ref.read(palAudioServiceProvider);
-            try {
-              final played =
-                  await palAudio.playLine(reflectionRef.id, voiceKey);
-              if (played) {
-                await palAudio.awaitPlaybackComplete();
-                logEvent('pal_audio_played', {
-                  'line_id': reflectionRef.id,
-                  'type': 'reflection_response',
-                  'voice_key': voiceKey,
-                });
-              }
-            } catch (e) {
-              debugPrint('[MainMenu] Reflection audio failed: $e');
-              logEvent('pal_audio_error', {
-                'line_id': reflectionRef.id,
-                'type': 'reflection_response',
-                'error': e.runtimeType.toString(),
-              });
-            }
-            if (!mounted) return;
-            // Short pause between spoken response and overlay
-            await Future.delayed(const Duration(milliseconds: 300));
-            if (!mounted) return;
-          }
+          // Text-input flow: no audio. PAL's voice responses are reserved
+          // for the voice flow (`_processMoodFromVoice`); typed input
+          // shows the framing overlay only. Voice + audio for typed input
+          // was the original Feature 5.1a behavior but was removed because
+          // it felt intrusive in a quiet text-entry context.
 
-          // Compose overlay text: reflection + framing + transition.
+          // Compose overlay text: reflection → transition → framing.
+          // Transition is the conversational bridge ("I have a story
+          // for you") between mood acknowledgement and story intro;
+          // it reads naturally between the two, not as an outro after
+          // the framing line.
           // The overlay is text-only — no audio plays during it.
           final parts = <String>[
             if (reflectionRef != null) reflectionRef.text,
-            framingRef.text,
             if (transitionRef != null) transitionRef.text,
+            framingRef.text,
           ];
           final displayText = parts.join('\n\n');
           const fadeDuration = Duration(milliseconds: 1500);
@@ -796,42 +875,21 @@ class _StudyPageState extends ConsumerState<_StudyPage>
           if (!mounted) return;
         }
       }
-    } else if (userPrefs != null &&
-        userPrefs.storytellingMode == 'creative' &&
-        userPrefs.palVoiceEnabled &&
-        userPrefs.palGreetingsEnabled != false) {
-      // Creative mode: play a mood-based narrative opening line.
-      await CreativeOpeningLines.ensureLoaded();
-      final lineRef = CreativeOpeningLines.getLineRef(moodResult.mood);
-      if (lineRef != null && mounted) {
-        final palAudio = ref.read(palAudioServiceProvider);
-        try {
-          final played =
-              await palAudio.playLine(lineRef.id, userPrefs.palVoiceKey);
-          if (played) {
-            await palAudio.awaitPlaybackComplete();
-            logEvent('pal_audio_played', {
-              'line_id': lineRef.id,
-              'type': 'creative_opening',
-              'voice_key': userPrefs.palVoiceKey,
-            });
-          }
-        } catch (e) {
-          debugPrint('[MainMenu] Creative opening audio failed: $e');
-        }
-        if (!mounted) return;
-        await Future.delayed(const Duration(milliseconds: 300));
-        if (!mounted) return;
-      }
     }
+    // Creative mode used to play a mood-based opening line here on text
+    // submit; removed alongside the Traditional reflection audio so the
+    // entire text-input flow is silent until the player itself starts
+    // playback. Voice flow (`_processMoodFromVoice`) still plays both.
 
     if (!mounted) return;
-    await Navigator.of(context).pushNamed('/length_picker', arguments: {
-      'mood': moodResult.mood,
-      'userText': text,
-      if (previewKey != null) 'bibleStoryKey': previewKey,
-    });
-    // Dismiss keyboard when returning from length picker / player
+    await selectStoryAndOpenPlayer(
+      ref: ref,
+      context: context,
+      mood: moodResult.mood,
+      userText: text,
+      bibleStoryKey: previewKey,
+    );
+    // Dismiss keyboard when returning from player
     if (mounted) _textFocusNode.unfocus();
   }
 
@@ -883,69 +941,6 @@ class _StudyPageState extends ConsumerState<_StudyPage>
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildLanguageStyleRow(BuildContext context, SkyPalette palette) {
-    final appState = ref.watch(appStateProvider).valueOrNull;
-    final currentStyle = appState?.userPreferences.languageStyle ?? 'WEB';
-    final isTraditional = (appState?.userPreferences.storytellingMode ?? 'traditional') == 'traditional';
-    final isKidMode = appState?.userPreferences.kidFriendlyOnly ?? false;
-
-    // Auto-correct: if kid mode is on and KJV is selected, switch to WEB
-    if (isKidMode && currentStyle == 'KJV') {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        ref.read(appStateProvider.notifier).updateLanguageStyle('WEB');
-      });
-    }
-
-    final showRow = isTraditional && !isKidMode;
-
-    return AnimatedSize(
-      duration: const Duration(milliseconds: 200),
-      curve: Curves.easeOut,
-      alignment: Alignment.topCenter,
-      child: AnimatedOpacity(
-        opacity: showRow ? 1.0 : 0.0,
-        duration: const Duration(milliseconds: 150),
-        curve: Curves.easeOut,
-        child: showRow
-            ? Padding(
-                padding: const EdgeInsets.fromLTRB(24, 8, 24, 0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: palette.cardColor,
-                    borderRadius: BorderRadius.circular(14),
-                    border: Border.all(color: palette.cardBorder, width: 1),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: _LanguageTab(
-                          label: 'World English Bible',
-                          selected: currentStyle == 'WEB',
-                          palette: palette,
-                          onTap: () {
-                            ref.read(appStateProvider.notifier).updateLanguageStyle('WEB');
-                          },
-                        ),
-                      ),
-                      Expanded(
-                        child: _LanguageTab(
-                          label: 'King James Version',
-                          selected: currentStyle == 'KJV',
-                          palette: palette,
-                          onTap: () {
-                            ref.read(appStateProvider.notifier).updateLanguageStyle('KJV');
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            : const SizedBox.shrink(),
       ),
     );
   }
@@ -1012,12 +1007,13 @@ class _StudyPageState extends ConsumerState<_StudyPage>
           child: LayoutBuilder(
             builder: (context, constraints) {
               return SingleChildScrollView(
+                physics: const NeverScrollableScrollPhysics(),
                 child: ConstrainedBox(
                   constraints: BoxConstraints(minHeight: constraints.maxHeight),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 12),
 
                       // Heading — routes through foreground palette for
                       // phase-aware contrast (Phase 3.2 global pass).
@@ -1032,25 +1028,25 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                           shadows: palette.foreground.textShadow,
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 4),
                       Text(
                         'Tap a mood and PAL will find a story for you',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.w400,
                           color: palette.foreground.secondaryText,
                           letterSpacing: 0.2,
-                          height: 1.5,
+                          height: 1.4,
                           shadows: palette.foreground.subtitleShadow,
                         ),
                       ),
 
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 12),
 
                       // Mood buttons / now playing / finished
                       const _ReservedPanel(),
 
-                      const SizedBox(height: 36),
+                      const SizedBox(height: 16),
 
                       // Nav — Favorites / Journal / History / My PALs
                       Padding(
@@ -1084,20 +1080,17 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                         ),
                       ),
 
-                      const SizedBox(height: 14),
+                      const SizedBox(height: 8),
 
                       // Story mode toggle — Traditional / Creative
                       _buildStoryModeToggle(context, palette),
 
-                      // Language style — WEB / KJV (Traditional only)
-                      _buildLanguageStyleRow(context, palette),
-
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 6),
 
                       // Kid Mode pill
                       Center(child: _buildKidModePill(context, palette)),
 
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 12),
                     ],
                   ),
                 ),
@@ -1478,10 +1471,25 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         appStateForOpening?.userPreferences.palGreetingsEnabled != false;
     if (openingAudioEnabled) {
       final voiceKey =
-          appStateForOpening?.userPreferences.palVoiceKey ?? 'VOICE_GRACE';
+          appStateForOpening?.userPreferences.palVoiceKey ?? 'VOICE_RUTH_COMFORT';
       final palAudio = ref.read(palAudioServiceProvider);
       try {
-        final played = await palAudio.playLine(opening.id, voiceKey);
+        var played = await palAudio.playLine(opening.id, voiceKey);
+        // Retry-once narrowly here in the opening flow: if the very
+        // first PAL audio call after an app launch hits the iOS audio
+        // session in a not-yet-ready state, just_audio's setAsset can
+        // throw (PlayerException -11849 "Operation Stopped") and
+        // playLine returns false. A 500ms wait is enough for the
+        // session to settle, and the retry usually succeeds. Other
+        // code paths (transition, framing, reflection) are unchanged
+        // because they only run after the opening has already
+        // exercised the audio session — by then it's stable.
+        if (!played) {
+          await Future.delayed(const Duration(milliseconds: 500));
+          played = await palAudio.playLine(opening.id, voiceKey);
+          logEvent('pal_audio_opening_retry',
+              {'line_id': opening.id, 'voice_key': voiceKey, 'retry_played': played});
+        }
         if (played) {
           await palAudio.awaitPlaybackComplete();
           logEvent('pal_audio_played', {
@@ -1521,7 +1529,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       if (useLegacy &&
           appState?.userPreferences.palGreetingsEnabled != false) {
         // Legacy path: play old PROMPT_* audio
-        final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_GRACE';
+        final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_RUTH_COMFORT';
         final userName = appState?.userPreferences.userName ?? '';
         final palAudio = ref.read(palAudioServiceProvider);
         final nameAudio = ref.read(nameAudioServiceProvider);
@@ -1685,7 +1693,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     // Micro-response: text always shown; audio gated behind useLegacyPal.
     final appState = ref.read(appStateProvider).valueOrNull;
     final useLegacy = appState?.userPreferences.useLegacyPal ?? false;
-    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_GRACE';
+    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_RUTH_COMFORT';
 
     String responseText;
     if (!useLegacy ||
@@ -1783,8 +1791,37 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
       if (previewKey != null && mounted && palResponseEnabled) {
         await BiblicalFigureRegistry.ensureLoaded();
+        await PalTransitionLines.ensureLoaded();
+        final transitionRef = PalTransitionLines.getLineRef(previewKey);
         final framingRef =
             BiblicalFigureRegistry.getFramingLineRef(previewKey);
+
+        // Bridge beat: speak a transition line BETWEEN the reflection
+        // (already played above) and the framing line. The transition
+        // is the conversational hand-off — "I have a story for you" —
+        // that signals PAL is moving from acknowledging the user's
+        // mood to introducing a specific story.
+        if (transitionRef != null) {
+          final palAudio = ref.read(palAudioServiceProvider);
+          try {
+            final played =
+                await palAudio.playLine(transitionRef.id, voiceKey);
+            if (played) {
+              await palAudio.awaitPlaybackComplete();
+              logEvent('pal_audio_played', {
+                'line_id': transitionRef.id,
+                'type': 'transition_response',
+                'voice_key': voiceKey,
+                'bible_story_key': previewKey,
+              });
+            }
+          } catch (e) {
+            debugPrint('[MainMenu] Voice-path transition audio failed: $e');
+          }
+          if (!mounted || _voiceFlow != _VoiceFlowState.responding) return;
+          await Future.delayed(const Duration(milliseconds: 300));
+        }
+
         if (framingRef != null) {
           final palAudio = ref.read(palAudioServiceProvider);
           try {
@@ -1833,14 +1870,16 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       }
     }
 
-    // Navigate to length picker with the pre-selected story hint
+    // Open the player directly with the pre-selected story hint.
     if (!mounted) return;
     _cancelConversation();
-    await Navigator.of(context).pushNamed('/length_picker', arguments: {
-      'mood': result.mood,
-      'userText': transcript,
-      if (previewKey != null) 'bibleStoryKey': previewKey,
-    });
+    await selectStoryAndOpenPlayer(
+      ref: ref,
+      context: context,
+      mood: result.mood,
+      userText: transcript,
+      bibleStoryKey: previewKey,
+    );
     if (mounted) FocusScope.of(context).unfocus();
   }
 
@@ -2341,11 +2380,12 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
   Future<void> _handleMoodButtonTap(String mood) async {
     final appStateNotifier = ref.read(appStateProvider.notifier);
     appStateNotifier.updateLastDetectedMood(mood);
-
-    await Navigator.of(context).pushNamed('/length_picker', arguments: {
-      'mood': mood,
-      'userText': '',
-    });
+    await selectStoryAndOpenPlayer(
+      ref: ref,
+      context: context,
+      mood: mood,
+      userText: '',
+    );
     if (mounted) FocusScope.of(context).unfocus();
   }
 
@@ -2409,14 +2449,33 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
     final mode = _deriveMode(playerState);
     final theme = Theme.of(context);
 
+    // Fixed-height envelope so the panel's height never drives the
+    // outer column to recompute its `MainAxisAlignment.center` layout
+    // when the mode switches (e.g., nowPlaying → idle on back-nav).
+    // Without this, items above and below the panel visibly shift
+    // toward the recalculated centerline as `AnimatedSwitcher` resizes.
+    // 240 fits all three modes (idle mood-button wrap, nowPlaying
+    // title+slider+play, finished save+replay) tightly so the screen
+    // doesn't need to scroll on common iPhone heights.
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32),
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(minHeight: 120),
+      child: SizedBox(
+        height: 240,
         child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 280),
           switchInCurve: Curves.easeInOut,
           switchOutCurve: Curves.easeInOut,
+          // Layout builder centers each mode within the fixed envelope
+          // so the existing visual centering is preserved.
+          layoutBuilder: (currentChild, previousChildren) {
+            return Stack(
+              alignment: Alignment.center,
+              children: [
+                ...previousChildren,
+                if (currentChild != null) currentChild,
+              ],
+            );
+          },
           child: _buildPanel(mode, playerState, theme),
         ),
       ),
@@ -2714,71 +2773,6 @@ class _StoryModeTab extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Language style tab — used in the WEB / KJV toggle
-// ---------------------------------------------------------------------------
-
-class _LanguageTab extends StatelessWidget {
-  final String label;
-  final bool selected;
-  final SkyPalette palette;
-  final VoidCallback onTap;
-
-  const _LanguageTab({
-    required this.label,
-    required this.selected,
-    required this.palette,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      behavior: HitTestBehavior.opaque,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 180),
-        curve: Curves.easeOut,
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        decoration: BoxDecoration(
-          color: selected
-              ? palette.warmHighlight.withOpacity(0.15)
-              : Colors.transparent,
-          borderRadius: BorderRadius.circular(13),
-          border: selected
-              ? Border.all(color: palette.warmHighlight, width: 2)
-              : null,
-          boxShadow: selected
-              ? [
-                  BoxShadow(
-                    color: palette.warmHighlight
-                        .withOpacity(0.20 * palette.glowIntensity),
-                    blurRadius: 14,
-                    spreadRadius: 2,
-                  ),
-                ]
-              : null,
-        ),
-        child: Center(
-          child: Text(
-            label,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-              color: selected
-                  ? palette.foreground.primaryText
-                  : palette.foreground.secondaryText,
-              letterSpacing: 0.3,
-              shadows: palette.foreground.subtitleShadow,
-            ),
-          ),
         ),
       ),
     );

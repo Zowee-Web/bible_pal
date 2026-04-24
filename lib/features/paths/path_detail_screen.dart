@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/analytics_events.dart';
-import '../../features/length_picker/length_picker_screen.dart';
 import '../../models/parable.dart';
 import '../../providers/service_providers.dart';
 import '../../theme/living_sky.dart';
 import '../../widgets/living_sky_background.dart';
+import '../pals_parables/parable_player_screen.dart';
 import 'path_launch_context.dart';
 import 'path_type.dart';
 
@@ -74,9 +74,12 @@ class _PathDetailScreenState extends ConsumerState<PathDetailScreen> {
   /// with the preserved [PathLaunchContext] so "Next in Your Journey"
   /// still advances by canonical position.
   ///
-  /// Path stories NEVER skip the length picker — SPEC Feature 6
-  /// defines the three length buckets as the canonical surface for
-  /// every launch.
+  /// Path stories open the canonical player directly. The player owns
+  /// the load: it resolves the user's preferred length variant and calls
+  /// `loadParable` from a post-frame callback in its own State, AFTER
+  /// the route push has settled and a frame boundary has elapsed. See
+  /// [ParablePlayerScreen] for why this avoids the iOS audio-session
+  /// hang the in-place bypass produced.
   void _launchStory(
     BuildContext context,
     Parable parable,
@@ -89,12 +92,23 @@ class _PathDetailScreenState extends ConsumerState<PathDetailScreen> {
     );
 
     Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => LengthPickerScreen(
-          fixedParable: parable,
-          launchContext: launchContext,
-          pathSubtitle: 'From PALs Paths • ${widget.displayLabel}',
+      PageRouteBuilder(
+        pageBuilder: (_, __, ___) => ParablePlayerScreen(
+          pendingParable: parable,
+          pendingLaunchContext: launchContext,
         ),
+        transitionsBuilder: (_, animation, __, child) {
+          final curved =
+              CurvedAnimation(parent: animation, curve: Curves.easeInOut);
+          return FadeTransition(
+            opacity: curved,
+            child: ScaleTransition(
+              scale: Tween<double>(begin: 0.98, end: 1.0).animate(curved),
+              child: child,
+            ),
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 260),
       ),
     );
   }

@@ -34,14 +34,43 @@ const kAutoAdvanceDelay = Duration(seconds: 4);
 /// Based on SPEC.md Features 11, 12, 16, 17, 34-37, 50.6c, 50.6d
 /// Displays parable with scripture sources, audio playback, and post-story reflection
 class ParablePlayerScreen extends ConsumerStatefulWidget {
-  const ParablePlayerScreen({super.key});
+  /// One-time gentle arrival animation on the Play button. Opt-in only —
+  /// passed `true` by normal mood/text/voice entry. Other launches
+  /// (Favorites, History, PALs Paths, etc.) leave it false to preserve
+  /// existing behavior.
+  final bool showArrivalAnimation;
+
+  /// When provided, the player owns the load: it resolves the user's
+  /// preferred-length variant of [pendingParable], adds it to history, and
+  /// calls [ParablePlayerNotifier.loadParable] from a post-frame callback in
+  /// [_ParablePlayerScreenState.initState]. Used by PALs Paths entry to
+  /// avoid calling `loadParable` from the path screen context, which
+  /// previously hung when iOS audio-session activation collided with
+  /// provider-cascade rebuilds of the path screen mid-await.
+  ///
+  /// Mood/text/voice entries do NOT use this — they pre-load and pass null.
+  final Parable? pendingParable;
+
+  /// Companion to [pendingParable]. Carries the path's
+  /// [PathLaunchContext] forward so the player still renders
+  /// "Next in Your Journey" and `story_completed` telemetry records
+  /// `source: 'path'`.
+  final PathLaunchContext? pendingLaunchContext;
+
+  const ParablePlayerScreen({
+    super.key,
+    this.showArrivalAnimation = false,
+    this.pendingParable,
+    this.pendingLaunchContext,
+  });
 
   @override
   ConsumerState<ParablePlayerScreen> createState() =>
       _ParablePlayerScreenState();
 }
 
-class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
+class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
+    with TickerProviderStateMixin {
   bool _isFavorited = false;
   bool _isDraggingSlider = false;
   double _dragValue = 0;
@@ -84,6 +113,15 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
 
   bool _showNamePrompt = false;
 
+  // One-time arrival animation for the Play button (mood/text/voice entry only).
+  AnimationController? _arrivalController;
+  Animation<double>? _arrivalScale;
+  Animation<double>? _arrivalOpacity;
+
+  // Deferred-load guard: ensures the post-frame load runs at most once
+  // even if the State rebuilds for any reason.
+  bool _deferredLoadStarted = false;
+
   @override
   void initState() {
     super.initState();
@@ -92,6 +130,168 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     _journalFocusNode.addListener(_onJournalFocusChange);
     _loadAmbientState();
     _loadAvailableVariants();
+    if (widget.showArrivalAnimation) {
+      _initArrivalAnimation();
+    }
+    if (widget.pendingParable != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _runDeferredLoad();
+      });
+    }
+  }
+
+  /// Player-owned load entry point. Called from a post-frame callback so
+  /// that:
+  ///   1. The route push has fully settled (we're the active route).
+  ///   2. At least one frame has rendered (audio session has had a chance
+  ///      to initialize before we hit just_audio's setFilePath).
+  ///   3. The previous screen (e.g., path_detail_screen) is no longer in
+  ///      focus, so its provider-watch rebuilds can't tear our context
+  ///      mid-await.
+  ///
+  /// Resolves the user's `preferredLengthBucket` against sibling variants
+  /// of [widget.pendingParable] when possible, falls back to the path's
+  /// chosen story otherwise. After load, refreshes the per-parable UI
+  /// state (favorite, reflection availability, variant chip set).
+  Future<void> _runDeferredLoad() async {
+    if (_deferredLoadStarted) return;
+    _deferredLoadStarted = true;
+
+    final parable = widget.pendingParable;
+    if (parable == null) return;
+
+    final launchContext = widget.pendingLaunchContext;
+
+    try {
+      // Resolve preferred-length variant when one exists AND has bundled
+      // audio. Some bibleStoryKeys only have audio for a subset of lengths
+      // (e.g., 1094_jonah has audio for short only); resolveVariant would
+      // happily return a length-matching sibling whose audioFilePath is "",
+      // which then fails to load and dumps the user back to the empty
+      // "Tap PAL" fallback. We treat empty audioFilePath as "no usable
+      // variant" and fall back to the path's chosen story, which
+      // PathService picked specifically as the audio-bundled representative.
+      Parable resolved = parable;
+      final appState = ref.read(appStateProvider).valueOrNull;
+      final savedBucket =
+          appState?.userPreferences.preferredLengthBucket ?? 'short';
+      if (parable.hasBibleStoryKey && parable.storyLength != savedBucket) {
+        final parableService =
+            await ref.read(parableServiceProvider.future);
+        final match = await parableService.resolveVariant(
+          current: parable,
+          storyLength: savedBucket,
+          languageStyle: parable.languageStyle,
+        );
+        if (match != null &&
+            match.audioFilePath != null &&
+            match.audioFilePath!.isNotEmpty) {
+          resolved = match;
+        }
+      }
+      if (!mounted) return;
+
+      // Keep session-scoped bucket in sync with what we actually loaded.
+      final loadedBucket = StoryLengthBucket.fromJson(
+        resolved.storyLength ?? savedBucket,
+      );
+      ref.read(sessionLengthBucketProvider.notifier).state = loadedBucket;
+
+      await ref.read(appStateProvider.notifier).addToHistory(resolved);
+      if (!mounted) return;
+
+      final notifier = ref.read(parablePlayerProvider.notifier);
+      final success = await notifier.loadParable(
+        resolved,
+        launchContext: launchContext,
+      );
+      if (!mounted) return;
+
+      if (!success) {
+        final state = ref.read(parablePlayerProvider);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(state.errorMessage ??
+              'This story needs an internet connection the first time you play it.'),
+          duration: const Duration(seconds: 4),
+        ));
+        return;
+      }
+
+      // Refresh per-parable UI bits now that currentParable is set.
+      _checkIfFavorited();
+      _checkReflectionAudioExists();
+      _loadAvailableVariants();
+    } catch (e) {
+      debugPrint('[ParablePlayer] deferred load error: $e');
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Could not open this story: $e'),
+        duration: const Duration(seconds: 4),
+      ));
+    }
+  }
+
+  /// Wraps the Play button in a one-time scale+fade arrival animation.
+  /// Returns the child unchanged when no animation is active (zero overhead
+  /// for non-mood entry points).
+  Widget _wrapWithArrivalAnimation(Widget child) {
+    final controller = _arrivalController;
+    final scale = _arrivalScale;
+    final opacity = _arrivalOpacity;
+    if (controller == null || scale == null || opacity == null) {
+      return child;
+    }
+    return AnimatedBuilder(
+      animation: controller,
+      builder: (context, c) {
+        return Opacity(
+          opacity: opacity.value,
+          child: Transform.scale(scale: scale.value, child: c),
+        );
+      },
+      child: child,
+    );
+  }
+
+  void _initArrivalAnimation() {
+    final controller = AnimationController(
+      duration: const Duration(milliseconds: 900),
+      vsync: this,
+    );
+    // Scale: gentle emergence 0.85 → 1.03 (0–55%) → 1.0 (55–100%).
+    _arrivalScale = TweenSequence<double>([
+      TweenSequenceItem(
+        tween: Tween(begin: 0.85, end: 1.03)
+            .chain(CurveTween(curve: Curves.easeOutCubic)),
+        weight: 55,
+      ),
+      TweenSequenceItem(
+        tween: Tween(begin: 1.03, end: 1.0)
+            .chain(CurveTween(curve: Curves.easeOutCubic)),
+        weight: 45,
+      ),
+    ]).animate(controller);
+    // Opacity: 0 → 1 over the first 40%.
+    _arrivalOpacity = CurvedAnimation(
+      parent: controller,
+      curve: const Interval(0.0, 0.40, curve: Curves.easeOut),
+    );
+    _arrivalController = controller;
+    controller.forward().whenComplete(() {
+      controller.dispose();
+      if (mounted) {
+        setState(() {
+          _arrivalController = null;
+          _arrivalScale = null;
+          _arrivalOpacity = null;
+        });
+      } else {
+        _arrivalController = null;
+        _arrivalScale = null;
+        _arrivalOpacity = null;
+      }
+    });
   }
 
   /// Load available sibling variants for the current story so the variant
@@ -372,6 +572,7 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
     _sleepTimer?.cancel();
     _autoAdvanceTimer?.cancel();
     _reflectionCompletionSub?.cancel();
+    _arrivalController?.dispose();
     _scrollController.dispose();
     _reflectionPlayer?.dispose();
     _journalFocusNode.removeListener(_onJournalFocusChange);
@@ -977,15 +1178,17 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
         _cancelAutoAdvance('back_nav');
         _autoAdvanceTimer?.cancel();
         _reflectionCompletionSub?.cancel();
-        final nav = Navigator.of(context);
-        nav.pop();
-        // Fire-and-forget cleanup. Reflection player doesn't need
-        // setState (_stopReflectionAudio would, so we call stop()
-        // directly to skip the setState branch on a disposing widget).
-        _reflectionPlayer?.stop();
-        // Story audio + ambient + clear parable state — runs on the
-        // Riverpod notifier, not the widget.
-        await playerNotifier.clear();
+        // Wipe player state BEFORE pop so the main menu's panel
+        // AnimatedSwitcher rebuilds in idle mode under the player while
+        // the back transition runs — eliminates the post-pop layout
+        // shift. clear() now sets state synchronously on its first line;
+        // we fire-and-forget the audio stop so pop isn't blocked.
+        unawaited(playerNotifier.clear());
+        // Reflection player doesn't need setState (_stopReflectionAudio
+        // would, so we call stop() directly to skip the setState branch
+        // on a disposing widget).
+        unawaited(_reflectionPlayer?.stop() ?? Future<void>.value());
+        Navigator.of(context).pop();
       },
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -998,38 +1201,46 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
             const LivingSkyBackground(),
             SafeArea(
               child: playerState.currentParable == null
-                  ? Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.auto_stories, size: 48, color: theme.colorScheme.onSurfaceVariant),
-                          const SizedBox(height: 16),
-                          if (playerState.errorMessage != null) ...[
-                            Text(
-                              playerState.errorMessage!,
-                              style: theme.textTheme.bodyMedium,
-                              textAlign: TextAlign.center,
-                            ),
-                            if (playerState.canRetry)
-                              Padding(
-                                padding: const EdgeInsets.only(top: 12),
-                                child: TextButton(
-                                  onPressed: () => Navigator.of(context)
-                                      .pushNamedAndRemoveUntil(
-                                          '/main_menu', (_) => false),
-                                  child: const Text('Try Again'),
-                                ),
+                  ? (playerState.errorMessage != null
+                      // Real error: surface the message + retry path.
+                      ? Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.auto_stories,
+                                  size: 48,
+                                  color: theme.colorScheme.onSurfaceVariant),
+                              const SizedBox(height: 16),
+                              Text(
+                                playerState.errorMessage!,
+                                style: theme.textTheme.bodyMedium,
+                                textAlign: TextAlign.center,
                               ),
-                          ] else
-                            Text('Tap PAL to start a story', style: theme.textTheme.bodyLarge),
-                          const SizedBox(height: 16),
-                          ElevatedButton(
-                            onPressed: () => Navigator.of(context).pushNamedAndRemoveUntil('/main_menu', (_) => false),
-                            child: const Text('Back to PAL'),
+                              if (playerState.canRetry)
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 12),
+                                  child: TextButton(
+                                    onPressed: () => Navigator.of(context)
+                                        .pushNamedAndRemoveUntil(
+                                            '/main_menu', (_) => false),
+                                    child: const Text('Try Again'),
+                                  ),
+                                ),
+                              const SizedBox(height: 16),
+                              ElevatedButton(
+                                onPressed: () => Navigator.of(context)
+                                    .pushNamedAndRemoveUntil(
+                                        '/main_menu', (_) => false),
+                                child: const Text('Back to PAL'),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    )
+                        )
+                      // No parable + no error = transient state during the
+                      // deferred-load gap or during the back-pop animation
+                      // (clear() races with pop). Show the LivingSky
+                      // background only — no flashing "Tap PAL" UI.
+                      : const SizedBox.shrink())
                   : Column(
                       children: [
                         // Scrollable content area
@@ -1091,19 +1302,21 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen> {
                                 const SizedBox(height: 32),
 
                                 // LARGE Play/Pause Button — glowing orb style
-                                GlowingOrbButton(
-                                  icon: playerNotifier.isPlaying
-                                      ? Icons.pause_rounded
-                                      : Icons.play_arrow_rounded,
-                                  size: 80,
-                                  onPressed: () async {
-                                    _cancelAutoAdvance('manual_control');
-                                    if (playerNotifier.isPlaying) {
-                                      playerNotifier.pause();
-                                    } else {
-                                      await _handlePlay(playerNotifier);
-                                    }
-                                  },
+                                _wrapWithArrivalAnimation(
+                                  GlowingOrbButton(
+                                    icon: playerNotifier.isPlaying
+                                        ? Icons.pause_rounded
+                                        : Icons.play_arrow_rounded,
+                                    size: 80,
+                                    onPressed: () async {
+                                      _cancelAutoAdvance('manual_control');
+                                      if (playerNotifier.isPlaying) {
+                                        playerNotifier.pause();
+                                      } else {
+                                        await _handlePlay(playerNotifier);
+                                      }
+                                    },
+                                  ),
                                 ),
 
                                 const SizedBox(height: 8),

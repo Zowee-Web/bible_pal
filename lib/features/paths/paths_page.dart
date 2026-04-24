@@ -246,15 +246,18 @@ class _PathHomeContent extends StatelessWidget {
     // uniform narrower width so the stack reads as a symbolic column,
     // not a menu. Widths are fixed (not phase-aware) because the
     // composition is pure geometry.
-    const double heroMaxWidth = 360;
-    const double spineMaxWidth = 170;
+    // Tightened pass: cards are taller / wider so labels read clearly
+    // and the column fills the vertical gap between the heading and
+    // the text input below.
+    const double heroMaxWidth = 380;
+    const double spineMaxWidth = 240;
 
     return SingleChildScrollView(
       physics: const ClampingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 10),
+          const SizedBox(height: 14),
 
           // Hero — The Life of Jesus (SPEC 50.1b — LOCKED position).
           Center(
@@ -267,7 +270,7 @@ class _PathHomeContent extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 20),
+          const SizedBox(height: 18),
 
           // Spine — Characters first (directly under the hero), then
           // Bible Order, Timeline, Themes. All uniform width, all on
@@ -283,7 +286,7 @@ class _PathHomeContent extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 14),
+          const SizedBox(height: 12),
           Center(
             child: SizedBox(
               width: spineMaxWidth,
@@ -295,7 +298,7 @@ class _PathHomeContent extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 14),
+          const SizedBox(height: 12),
           Center(
             child: SizedBox(
               width: spineMaxWidth,
@@ -307,7 +310,7 @@ class _PathHomeContent extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 14),
+          const SizedBox(height: 12),
           Center(
             child: SizedBox(
               width: spineMaxWidth,
@@ -320,7 +323,7 @@ class _PathHomeContent extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 20),
+          const SizedBox(height: 16),
 
           // Helper text — Phase 3.2 polish copy update.
           Padding(
@@ -365,7 +368,7 @@ class _PathHeroCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         child: Container(
           padding:
-              const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+              const EdgeInsets.symmetric(horizontal: 20, vertical: 22),
           decoration: BoxDecoration(
             color: palette.cardColor,
             borderRadius: BorderRadius.circular(20),
@@ -383,19 +386,19 @@ class _PathHeroCard extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: palette.foreground.primaryText,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w700,
                   letterSpacing: 0.2,
                   shadows: palette.foreground.textShadow,
                 ),
               ),
-              const SizedBox(height: 3),
+              const SizedBox(height: 5),
               Text(
                 'A guided journey',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: palette.foreground.secondaryText,
-                  fontSize: 12,
+                  fontSize: 14,
                   shadows: palette.foreground.subtitleShadow,
                 ),
               ),
@@ -437,10 +440,10 @@ class _PathStandardCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(14),
         child: Container(
           padding:
-              const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+              const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
           decoration: BoxDecoration(
             color: palette.cardColor,
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: palette.foreground.primaryText,
               width: 2,
@@ -455,19 +458,19 @@ class _PathStandardCard extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: palette.foreground.primaryText,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
                   letterSpacing: 0.2,
                   shadows: palette.foreground.textShadow,
                 ),
               ),
-              const SizedBox(height: 2),
+              const SizedBox(height: 4),
               Text(
                 subtitle,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: palette.foreground.secondaryText,
-                  fontSize: 11,
+                  fontSize: 13,
                   shadows: palette.foreground.subtitleShadow,
                 ),
               ),

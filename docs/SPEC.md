@@ -228,16 +228,16 @@ When a mood button is tapped, a brief thinking delay (800–1500ms randomized) i
 - No forced positivity, no therapeutic framing, no implied knowledge PAL does not have
 
 **PAL Spoken Response + Framing Overlay (Feature 5.1a):**
-- After mood detection and before the framing overlay, PAL speaks a single reflection line as a spoken response
-- The reflection line plays via `playLine(reflectionRef.id, voiceKey)` and completes before the overlay appears
+- **Voice-input flow only** — when the user enters mood via the PAL orb (mic), PAL speaks a single reflection line as a spoken response after mood detection and before the framing overlay
+- **Text-input flow is silent** — when the user enters mood by typing into the bottom text field, PAL does NOT play a spoken reflection or creative opening line. The framing overlay still appears (text-only) for Traditional mode. Rationale: voice responses in a quiet text-entry context felt intrusive; the user explicitly opted text input out of audio
+- The reflection line (voice flow) plays via `playLine(reflectionRef.id, voiceKey)` and completes before the overlay appears
 - A short pause (~300ms) follows the spoken reflection before the overlay fades in
 - The framing overlay itself is **text-only** — no audio plays during the overlay
 - Audio uses the user's selected PAL voice (`palVoiceKey`)
 - If audio asset is missing or audio is disabled, the flow degrades gracefully to text-only
-- In the voice-first path (PAL orb → mic → mood), the same spoken reflection plays after mood detection, before navigating to story selection
 - Audio assets are pre-generated via the PAL audio pipeline; no runtime TTS
 - Asset path convention: `assets/pal/audio/{voiceKey}/{lineId}.mp3`
-- **Creative mode**: Instead of a story-specific framing line, PAL plays a mood-based narrative opening line from `assets/pal/creative_opening_lines.json` via `CreativeOpeningLines.getLineRef(mood)`
+- **Creative mode (voice flow only)**: Instead of a story-specific framing line, PAL plays a mood-based narrative opening line from `assets/pal/creative_opening_lines.json` via `CreativeOpeningLines.getLineRef(mood)`. Same silence rule as Traditional in the text flow — typed input does not trigger this audio
   - 8 mood buckets × 3 lines each, persistent recency-based rotation (same mechanism as reflection lines)
   - Content is narrative and imaginative — NOT Scripture-based, no Bible characters or verse formatting
   - Selection and playback follows the same pattern as the Traditional reflection line
@@ -271,11 +271,13 @@ Each option has a subtitle hint:
 - Full Story — "A complete story experience"
 - Long Story — "When you have time to settle in"
 
-**Length Selection Flow (PAL Conversational Picker):**
-- First time: After mood selection, PAL shows a bottom sheet ("I have a story for you.") with three tappable length options showing label and subtitle
-- User's choice is persisted in `UserPreferences.preferredLengthBucket`
-- Subsequent visits: saved preference is used automatically (no picker shown)
-- Manual override still available via the horizontal selector on the main menu
+**Length Selection Flow:**
+- Mood, text, and voice entry flows go straight to the player using the saved `UserPreferences.preferredLengthBucket` (default: `short` for first-time users) — no intermediate length picker is shown. The caller pre-loads via `loadParable` and then navigates.
+- PALs Paths story taps and "Next in Your Journey" taps also open the player directly — the calling screen pushes `ParablePlayerScreen(pendingParable, pendingLaunchContext)` and the player owns the load. The player resolves the user's preferred-length variant of the selected story and calls `loadParable` from a `WidgetsBinding.instance.addPostFrameCallback` inside its own `initState`. This is the safe shape: the load runs after the route push has settled and a frame has rendered, which avoids both the iOS audio-session activation hang and provider-cascade rebuilds of the source screen mid-await.
+- Length and Translation are adjusted on the player screen via the variant chips, which are the single canonical control surface for both. The mood screen no longer hosts a Translation toggle; player variant chips own that control. Story Mode (Traditional/Creative) and Kid Mode remain on the mood screen since they gate which pool a story is selected from.
+- `LengthPickerScreen` is no longer reached from any user flow. The screen and its `/length_picker` route remain in the codebase for now but are unwired; safe to remove in a follow-up cleanup.
+- A subtle one-time arrival animation plays on the Player's Play button when the user lands there from a normal mood/text/voice entry; the user must still tap Play manually to start playback (no auto-play). Path entries do not show the arrival animation.
+- Kid Mode + KJV is not a supported pairing — `AppStateNotifier.updateKidFriendlyOnly` auto-corrects `languageStyle` to `WEB` when Kid Mode is enabled while KJV is selected.
 
 Implementation notes:
 - Selection filters by `StoryLengthBucket` enum (short/full/long)

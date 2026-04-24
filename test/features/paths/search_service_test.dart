@@ -40,6 +40,10 @@ void main() {
       bibleSourceRef: bibleSourceRef,
       bibleStoryKey: bibleStoryKey,
       storyLength: 'short',
+      languageStyle: 'WEB',
+      // SearchService now filters out variants without bundled audio so a
+      // tap on a result never silently no-ops on `loadParable` failure.
+      audioFilePath: 'traditional/$storyId/audio.mp3',
       narratorVoiceKey: 'VOICE_JAMES_HUSKY',
       primaryCharacterId: primaryCharacterId,
       primaryCharacterDisplayName: primaryCharacterDisplayName,

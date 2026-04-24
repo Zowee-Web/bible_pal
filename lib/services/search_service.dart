@@ -35,7 +35,13 @@ class SearchService {
   /// Construct a SearchService from a snapshot of all Traditional
   /// parables + the kid-mode flag. The constructor filters defensively:
   /// Creative stories excluded (belt-and-suspenders against upstream
-  /// drift) and non-kid stories excluded when `kidFriendlyOnly` is true.
+  /// drift), non-kid stories excluded when `kidFriendlyOnly` is true,
+  /// and variants whose audio isn't bundled are excluded so a tap on a
+  /// search result never silently no-ops on `loadParable` failure.
+  /// Then variants of the same story are deduped to a single
+  /// representative (mirrors `PathService._pickRepresentative`:
+  /// WEB > KJV, then short > full > long). Callers can still switch
+  /// length/translation via the player's variant chips after entry.
   factory SearchService({
     required List<Parable> traditionalParables,
     required bool kidFriendlyOnly,
@@ -43,9 +49,48 @@ class SearchService {
     final filtered = traditionalParables.where((p) {
       if (p.storytellingMode != 'traditional') return false;
       if (kidFriendlyOnly && !p.kidFriendly) return false;
+      if (p.audioFilePath == null || p.audioFilePath!.isEmpty) return false;
       return true;
-    }).toList(growable: false);
-    return SearchService._(filtered);
+    });
+    return SearchService._(_dedupeRepresentatives(filtered));
+  }
+
+  /// Dedupe variants of the same story to a single representative.
+  /// Key includes the title so two distinct stories sharing the same
+  /// `bibleStoryKey` (e.g., 1007 "Storm on the Raging Sea" and 1094
+  /// "The Man Who Ran from God" both keyed as `jonah_flees`) remain
+  /// separate search hits. Title is consistent across length/translation
+  /// variants of the same story, so this still collapses true variants.
+  /// Pick: WEB > KJV, then short > full > long.
+  static List<Parable> _dedupeRepresentatives(Iterable<Parable> parables) {
+    String dedupeKey(Parable p) {
+      if (p.bibleStoryKey != null && p.bibleStoryKey!.isNotEmpty) {
+        return '${p.bibleStoryKey!}|${p.title}';
+      }
+      if (p.bibleSourceRef != null && p.bibleSourceRef!.isNotEmpty) {
+        return '${p.bibleSourceRef!}|${p.title}';
+      }
+      return p.storyId;
+    }
+
+    final groups = <String, List<Parable>>{};
+    for (final p in parables) {
+      (groups[dedupeKey(p)] ??= []).add(p);
+    }
+
+    Parable pickRep(List<Parable> variants) {
+      if (variants.length == 1) return variants.first;
+      final webVariants =
+          variants.where((p) => p.languageStyle == 'WEB').toList();
+      final pool = webVariants.isNotEmpty ? webVariants : variants;
+      for (final pref in ['short', 'full', 'long']) {
+        final match = pool.where((p) => p.storyLength == pref);
+        if (match.isNotEmpty) return match.first;
+      }
+      return pool.first;
+    }
+
+    return groups.values.map(pickRep).toList(growable: false);
   }
 
   /// Search the snapshot for the given query, returning a priority-

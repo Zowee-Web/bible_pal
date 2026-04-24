@@ -442,15 +442,19 @@ class PathService {
   // Deduplication — one entry per unique story (SPEC 50 path display)
   // --------------------------------------------------------------------
 
-  /// Canonical dedup key: bibleStoryKey > bibleSourceRef > storyId.
-  /// Variants of the same Bible story (WEB/KJV, short/full) share
-  /// bibleStoryKey and/or bibleSourceRef, so this collapses them.
+  /// Canonical dedup key: (bibleStoryKey | title) > (bibleSourceRef | title) > storyId.
+  /// Length/translation variants of the same story share both
+  /// bibleStoryKey AND title, so they collapse correctly. Two distinct
+  /// stories that happen to share a `bibleStoryKey` (e.g., 1007
+  /// "Storm on the Raging Sea" and 1094 "The Man Who Ran from God",
+  /// both keyed `jonah_flees`) keep separate entries in path lists so
+  /// neither is hidden under the same character / book / theme.
   static String _dedupeKey(Parable p) {
     if (p.bibleStoryKey != null && p.bibleStoryKey!.isNotEmpty) {
-      return p.bibleStoryKey!;
+      return '${p.bibleStoryKey!}|${p.title}';
     }
     if (p.bibleSourceRef != null && p.bibleSourceRef!.isNotEmpty) {
-      return p.bibleSourceRef!;
+      return '${p.bibleSourceRef!}|${p.title}';
     }
     return p.storyId;
   }

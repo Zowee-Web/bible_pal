@@ -634,11 +634,20 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
     state = state.copyWith(palResponseText: responseText, verse: verse);
   }
 
-  /// Clear current parable and reset player
+  /// Clear current parable and reset player.
+  ///
+  /// State is wiped *synchronously* on the first line so callers (like
+  /// the player screen's back handler) can observe the cleared state
+  /// before the next frame paints — without that, the main menu's
+  /// `_ReservedPanel` would still see `currentParable != null` while the
+  /// back animation runs and only switch to its idle layout afterward,
+  /// producing a visible mid-animation height shift. Audio stops are
+  /// awaited after the state change since they don't affect visible
+  /// layout.
   Future<void> clear() async {
+    state = state.clearParable();
     await _audioService.stop();
     await _ambientService.forceStop();
-    state = state.clearParable();
   }
 }
 

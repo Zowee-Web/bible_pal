@@ -143,8 +143,12 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
   }
 
   Future<void> updateKidFriendlyOnly(bool kidFriendlyOnly) async {
-    final prefs = state.requireValue.userPreferences.copyWith(
+    final current = state.requireValue.userPreferences;
+    // Kid Mode + KJV is not a supported pairing — auto-correct to WEB.
+    final shouldForceWeb = kidFriendlyOnly && current.languageStyle == 'KJV';
+    final prefs = current.copyWith(
       kidFriendlyOnly: kidFriendlyOnly,
+      languageStyle: shouldForceWeb ? 'WEB' : current.languageStyle,
     );
     await updateUserPreferences(prefs);
   }
