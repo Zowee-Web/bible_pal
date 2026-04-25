@@ -1687,9 +1687,10 @@ Award priority (when multiple would trigger simultaneously): Character → Path 
 
 **Platform-specific audio delivery (Cloud Foundation v1.1):**
 - Both iOS and Android use the same three-tier audio resolver: persistent cache → bundled asset → Cloudflare R2 HTTP download
-- iOS keeps its current bundled audio assets unchanged; R2 acts as a fallback/extension for any manifest entry not bundled (e.g. future content shipped via R2 without an app update)
 - Android keeps its 32-story bundled seed set; R2 covers the rest
-- Both platforms work offline with bundled and previously cached audio
+- iOS public-style TestFlight bundle (build 1.1.0+4 onward): only a small offline seed of story audio (mood-diverse short stories) is bundled. Story audio for the broader 1000–1120 catalog is shipped via R2 and downloaded on-demand. Manifest, story text, scripture text, and reflection audio remain bundled for ALL stories so list views, scripture panels, and reflection playback work offline regardless of cloud state.
+- Reflection audio remains bundled on both platforms in v1.1 (cloud reflection fallback is reserved for a later release; the resolver does not currently download reflection audio from R2)
+- Both platforms work offline with bundled seed + previously cached audio
 - iOS in v1.1 caches downloaded audio locally inside the app sandbox but does NOT run cache eviction or favorite-pinning logic. The Smart Offline Library (eviction, favorite-triggered download, 600 MB soft budget) remains Android-only in v1.1 and is DEFERRED to v2 for iOS
 - R2 is HTTP-only, accessed via the public `AUDIO_BASE_URL`. No Firebase, no auth, no Firestore, no messaging — R2 is a dumb file host accessed via HTTPS only
 
