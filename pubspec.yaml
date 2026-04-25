@@ -320,7 +320,6 @@ flutter:
     - assets/pal/pal_reflection_lines.json
     - assets/pal/pal_tone_biased_reflection_lines.json
     - assets/pal/creative_opening_lines.json
-    - assets/pal/audio/VOICE_RUTH_COMFORT/
     - assets/pal/audio/VOICE_SHEPHERD/
     - assets/pal/audio/VOICE_HOPE/
     - assets/pal/audio/VOICE_STILLWATER/

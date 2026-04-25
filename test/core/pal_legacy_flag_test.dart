@@ -95,14 +95,15 @@ void main() {
       expect(prefs.palVoiceKey, 'VOICE_GRACE');
     });
 
-    test('all 4 PAL voices are registered', () {
-      expect(PalVoiceRegistry.voices.length, 4);
+    test('all 3 active PAL voices are registered', () {
+      // Grace retired 2026-04-23; Ruth v1 retired 2026-04-25.
+      // Audio for both is preserved under archive directories.
+      expect(PalVoiceRegistry.voices.length, 3);
       expect(
           PalVoiceRegistry.voices.map((v) => v.voiceKey).toSet(),
           containsAll([
-            'VOICE_GRACE',
-            'VOICE_SHEPHERD',
             'VOICE_HOPE',
+            'VOICE_SHEPHERD',
             'VOICE_STILLWATER',
           ]));
     });

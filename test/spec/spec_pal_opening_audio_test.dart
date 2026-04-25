@@ -225,8 +225,9 @@ void main() {
       // SPEC line 61: "Pre-generated audio assets at
       // assets/pal/audio/{voiceKey}/{lineId}.mp3"
       expect(
-        PalAudioService.assetPath('VOICE_RUTH_COMFORT', 'OPENING_GENTLE_01'),
-        'assets/pal/audio/VOICE_RUTH_COMFORT/OPENING_GENTLE_01.mp3',
+        PalAudioService.assetPath(
+            PalVoiceRegistry.defaultVoiceKey, 'OPENING_GENTLE_01'),
+        'assets/pal/audio/${PalVoiceRegistry.defaultVoiceKey}/OPENING_GENTLE_01.mp3',
       );
     });
   });

@@ -26,23 +26,28 @@ class PalVoiceRegistry {
   static const String defaultVoiceKey = 'VOICE_HOPE';
 
   /// Old voice keys that should be migrated to the default.
-  /// VOICE_GRACE was retired 2026-04-23 — audio archived to
-  /// `assets/pal/audio_archive_grace_2026_04_23/` (not bundled). Existing
-  /// users with palVoiceKey == 'VOICE_GRACE' migrate to the default
-  /// (VOICE_RUTH_COMFORT) on next launch via `migrateVoiceKey`.
+  /// - VOICE_GRACE was retired 2026-04-23 — audio archived to
+  ///   `assets/pal/audio_archive_grace_2026_04_23/` (not bundled).
+  /// - VOICE_RUTH_COMFORT was retired 2026-04-25 — audio archived to
+  ///   `assets/pal/audio_archive_ruth_v1_2026_04_25/` (not bundled).
+  ///   Will be rebuilt as Ruth v2 from the archived source audio.
+  /// Existing users on any of these keys migrate to the current
+  /// default (VOICE_HOPE) on next launch via `migrateVoiceKey`.
   static const List<String> _legacyVoiceKeys = [
     'VOICE_SARAH_STORYTELLER',
     'VOICE_HANNAH_HOPE',
     'VOICE_JAMES_HUSKY',
     'VOICE_DAVID_SHEPHERD',
     'VOICE_GRACE',
+    'VOICE_RUTH_COMFORT',
   ];
 
-  // VOICE_HOPE is the default voice for new users / users with no
-  // saved palVoiceKey. Existing users who previously selected
-  // VOICE_RUTH_COMFORT keep Ruth — `migrateVoiceKey` only rewrites
-  // legacy or invalid keys, and Ruth remains valid. Hope is first
-  // in the display order; Ruth is third (still selectable).
+  // VOICE_HOPE is the default voice. Ruth v1 was retired
+  // 2026-04-25; existing users on VOICE_RUTH_COMFORT migrate to Hope
+  // on next launch via `migrateVoiceKey` (Ruth is in
+  // `_legacyVoiceKeys`). Ruth's audio is preserved at
+  // `assets/pal/audio_archive_ruth_v1_2026_04_25/` for future
+  // rebuild as Ruth v2.
   static const List<PalVoice> voices = [
     PalVoice(
       voiceKey: 'VOICE_HOPE',
@@ -59,14 +64,6 @@ class PalVoiceRegistry {
       description: 'Wise storyteller',
       gender: 'male',
       elevenLabsId: 'EkK5I93UQWFDigLMpZcX',
-    ),
-    PalVoice(
-      voiceKey: 'VOICE_RUTH_COMFORT',
-      displayName: 'Ruth',
-      emoji: '\u{1F33F}', // 🌿
-      description: 'Soft & compassionate',
-      gender: 'female',
-      elevenLabsId: 'jBpfuIE2acCO8z3wKNLl',
     ),
     PalVoice(
       voiceKey: 'VOICE_STILLWATER',
