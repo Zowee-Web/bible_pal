@@ -288,6 +288,10 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
     state = await AsyncValue.guard(() async {
       final entry = HistoryEntry.fromParable(parable);
       await _storage.addToHistory(entry);
+      // Record in the selection-time play log (decoupled from the 20-entry
+      // History; powers ParableService non-repeat serving across the full
+      // library). See SPEC.md Feature #11 note.
+      await _storage.recordPlayed(parable.storyId);
       final history = await _storage.getHistory();
 
       // Update listening streak
