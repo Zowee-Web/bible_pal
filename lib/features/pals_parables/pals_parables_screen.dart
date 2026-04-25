@@ -10,6 +10,7 @@ import 'package:bible_pal/providers/service_providers.dart'
     show nameAudioServiceProvider, palAudioServiceProvider, parableServiceProvider, sessionLengthBucketProvider;
 import 'package:bible_pal/services/verse_service.dart';
 import 'package:bible_pal/services/stt_service.dart';
+import 'package:bible_pal/core/pal_voice_registry.dart';
 import 'package:bible_pal/providers/app_state_notifier.dart';
 import 'package:bible_pal/providers/parable_player_notifier.dart';
 import 'package:bible_pal/widgets/greeting_display.dart';
@@ -182,7 +183,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     final useLegacy = appState?.userPreferences.useLegacyPal ?? false;
     if (!useLegacy) return;
 
-    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_RUTH_COMFORT';
+    final voiceKey = appState?.userPreferences.palVoiceKey ?? PalVoiceRegistry.defaultVoiceKey;
     final userName = appState?.userPreferences.userName ?? '';
     final palAudio = ref.read(palAudioServiceProvider);
     final nameAudio = ref.read(nameAudioServiceProvider);
@@ -484,7 +485,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
 
     // Play PAL micro-response audio and get display text
     final appState = ref.read(appStateProvider).valueOrNull;
-    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_RUTH_COMFORT';
+    final voiceKey = appState?.userPreferences.palVoiceKey ?? PalVoiceRegistry.defaultVoiceKey;
     final userName = appState?.userPreferences.userName ?? '';
 
     final useLegacy = appState?.userPreferences.useLegacyPal ?? false;
