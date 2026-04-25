@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../providers/app_state_notifier.dart';
+import 'package:just_audio/just_audio.dart'
+    show PlayerException, PlayerInterruptedException;
 import '../../services/pal_audio_service.dart' show PalAudioService;
 import '../../services/pal_prompt_service.dart';
 import '../../services/stt_service.dart';
@@ -1216,6 +1218,29 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   String? _finalTranscript;
   Timer? _autoStoryTimer;
 
+  // Hard reentrancy guard for the PAL voice conversation. Set true
+  // at the entry of `_startConversation` and released ONLY in
+  // `_cancelConversation` (which runs on every cancel/error path
+  // AND immediately before story navigation in the success path).
+  // The earlier per-flow flag was reset in `_startConversation`'s
+  // finally — but `_runConversation` returns as soon as STT
+  // *setup* completes, while mood detection and story navigation
+  // continue asynchronously via STT callbacks. That left a ~2s
+  // window where a second `_onPalTap` could start a parallel
+  // conversation, racing the shared audio player and producing
+  // PlayerException -11849 on the second opening. This flag stays
+  // up for the entire conversation lifetime, so the second tap is
+  // always blocked.
+  bool _voiceConversationActive = false;
+  // Set true when the opening playback fails with iOS -11849
+  // ("Operation Stopped"). The current AVPlayer instance is wedged
+  // and any subsequent setAsset on it will keep returning -11849.
+  // `_cancelConversation` consults this flag and runs an audio-
+  // recovery cooldown before releasing the conversation guard so
+  // the next tap starts against a fresh player + reactivated
+  // session, not the wedged one.
+  bool _needsAudioCooldown = false;
+
   // Services for voice flow
   final PalPromptService _promptService = PalPromptService();
   final SttService _sttService = SttService();
@@ -1426,7 +1451,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       });
     }
 
-    // Start the voice-first conversational flow
+    // Start the voice-first conversational flow.
     _startConversation();
   }
 
@@ -1435,7 +1460,35 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     _autoStoryTimer?.cancel();
     _sttService.stopListening();
     _micPulseController.stop();
-    ref.read(palAudioServiceProvider).stop();
+    final palAudio = ref.read(palAudioServiceProvider);
+    palAudio.stop();
+
+    if (_needsAudioCooldown) {
+      // Hold the conversation reentrancy guard up while the audio
+      // stack recovers (dispose+recreate player, deactivate→
+      // reactivate session, ~950ms total). A new tap during this
+      // window would otherwise hit the wedged AVPlayer and reproduce
+      // -11849 again. Release the guard ONLY when recovery
+      // completes.
+      _needsAudioCooldown = false;
+      logEvent('pal_audio_cooldown_started', {});
+      // Fire-and-forget; outcome is logged by the service.
+      () async {
+        try {
+          await palAudio.recoverFromOperationStopped();
+        } finally {
+          _voiceConversationActive = false;
+          logEvent('pal_audio_cooldown_finished', {});
+        }
+      }();
+    } else {
+      // Release the conversation reentrancy guard. This is the
+      // authoritative termination signal for the entire PAL flow —
+      // every cancel/error path calls this, and the success path
+      // calls it immediately before navigating to the story player.
+      _voiceConversationActive = false;
+    }
+
     // Resume breathing animation
     if (!_breathController.isAnimating) {
       _breathController.repeat(reverse: true);
@@ -1450,7 +1503,53 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   }
 
   /// Start the full voice conversation: greeting → listen → respond → story.
+  ///
+  /// Hard reentrancy guard at the actual call site. The InkWell's
+  /// `onTap` rebuild gate is the first line of defense, but breadcrumb
+  /// data showed a second `_startConversation` landing while a prior
+  /// flow was already in playingGreeting → listening — the two flows
+  /// then raced the shared audio player and the second opening's
+  /// `setAsset` returned PlayerException -11849 ("Operation Stopped").
+  /// This guard closes that race by checking both
+  /// `_voiceConversationActive` (a flag held across the entire flow
+  /// lifetime — released only by `_cancelConversation`) and the
+  /// public `_voiceFlow` state. Anything other than `inactive` blocks.
   Future<void> _startConversation() async {
+    // Single-entry contract: `_startConversation` is invoked only
+    // from `_onPalTap`. Debug-only assert catches any future
+    // accidental re-entry from a new caller; release builds rely
+    // on the runtime guard below.
+    assert(!_voiceConversationActive,
+        'Conversation restarted unexpectedly');
+
+    if (_voiceConversationActive ||
+        _voiceFlow != _VoiceFlowState.inactive) {
+      logEvent('pal_opening_reentry_blocked', {
+        'voice_flow': _voiceFlow.name,
+        'conversation_active': _voiceConversationActive,
+      });
+      return;
+    }
+    _voiceConversationActive = true;
+    try {
+      await _runConversation();
+    } catch (e) {
+      // Unexpected exception in the conversation flow — release the
+      // guard so the user isn't stuck with all future PAL taps
+      // silently blocked. _cancelConversation isn't guaranteed to
+      // run on a thrown exception.
+      _voiceConversationActive = false;
+      rethrow;
+    }
+    // NOTE: deliberate — do NOT release the guard here. _runConversation
+    // returns as soon as STT setup completes, but mood detection and
+    // story navigation continue asynchronously via STT callbacks.
+    // _cancelConversation (called in every cancel/error path AND
+    // immediately before story navigation in the success path) is the
+    // authoritative termination signal for the conversation.
+  }
+
+  Future<void> _runConversation() async {
     // Pause breathing during voice flow
     _breathController.stop();
 
@@ -1475,7 +1574,14 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
           appStateForOpening?.userPreferences.palVoiceKey ?? 'VOICE_RUTH_COMFORT';
       final palAudio = ref.read(palAudioServiceProvider);
       final expectedPath = PalAudioService.assetPath(voiceKey, opening.id);
+
       try {
+        // Strict iOS audio session activation gate. Configures +
+        // setActive(true) + 300ms settle delay before the first
+        // playback so AVFoundation has a fully active session by
+        // the time setAsset/play runs. Idempotent — subsequent
+        // calls in the same app session are fast no-ops.
+        await palAudio.ensureAudioSessionActive();
         var resolution = await palAudio.playLineResolved(opening.id, voiceKey);
         // Retry-once narrowly here in the opening flow: if the very
         // first PAL audio call after an app launch hits the iOS audio
@@ -1502,7 +1608,19 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
           'resolved_source': resolution.source,
           'success': resolution.played,
           if (resolution.errorType != null) 'error_type': resolution.errorType,
+          if (resolution.errorCode != null) 'error_code': resolution.errorCode,
+          if (resolution.errorMessage != null)
+            'error_message': resolution.errorMessage,
+          if (resolution.errorIndex != null) 'error_index': resolution.errorIndex,
+          if (resolution.errorString != null)
+            'error_string': resolution.errorString,
         });
+        // iOS -11849 leaves the AVPlayer wedged. Flag here so
+        // `_cancelConversation` runs the recovery cooldown before
+        // releasing the conversation guard for the next tap.
+        if (resolution.source == 'operation_stopped') {
+          _needsAudioCooldown = true;
+        }
         if (resolution.played) {
           await palAudio.awaitPlaybackComplete();
           logEvent('pal_audio_played', {
@@ -1518,6 +1636,19 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         }
       } catch (e) {
         debugPrint('[MainMenu] Opening line audio failed: $e');
+        // Extract rich PlayerException fields onto the canonical
+        // resolution event so we can distinguish iOS audio session
+        // refusals (-11849, -11800, etc.) from true asset failures.
+        final isPlayerException = e is PlayerException;
+        final isInterrupted = e is PlayerInterruptedException;
+        final richErr = <String, Object?>{
+          'error_type': e.runtimeType.toString(),
+          'error_string': e.toString(),
+          if (isPlayerException) 'error_code': e.code,
+          if (isPlayerException) 'error_message': e.message,
+          if (isPlayerException) 'error_index': e.details['index'],
+          if (isInterrupted) 'error_message': e.message,
+        };
         logEvent('pal_audio_error', {
           'line_id': opening.id,
           'type': 'opening',
@@ -1529,8 +1660,11 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
           'expected_path': expectedPath,
           'resolved_source': 'missing',
           'success': false,
-          'error_type': e.runtimeType.toString(),
+          ...richErr,
         });
+        if (isPlayerException && e.code == -11849) {
+          _needsAudioCooldown = true;
+        }
         await Future.delayed(const Duration(milliseconds: 1800));
       }
     } else {
