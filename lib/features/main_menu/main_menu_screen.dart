@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../providers/app_state_notifier.dart';
+import '../../services/pal_audio_service.dart' show PalAudioService;
 import '../../services/pal_prompt_service.dart';
 import '../../services/stt_service.dart';
 import '../../providers/service_providers.dart';
@@ -1473,24 +1474,36 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       final voiceKey =
           appStateForOpening?.userPreferences.palVoiceKey ?? 'VOICE_RUTH_COMFORT';
       final palAudio = ref.read(palAudioServiceProvider);
+      final expectedPath = PalAudioService.assetPath(voiceKey, opening.id);
       try {
-        var played = await palAudio.playLine(opening.id, voiceKey);
+        var resolution = await palAudio.playLineResolved(opening.id, voiceKey);
         // Retry-once narrowly here in the opening flow: if the very
         // first PAL audio call after an app launch hits the iOS audio
         // session in a not-yet-ready state, just_audio's setAsset can
-        // throw (PlayerException -11849 "Operation Stopped") and
-        // playLine returns false. A 500ms wait is enough for the
-        // session to settle, and the retry usually succeeds. Other
-        // code paths (transition, framing, reflection) are unchanged
-        // because they only run after the opening has already
-        // exercised the audio session — by then it's stable.
-        if (!played) {
+        // throw (PlayerException -11849 "Operation Stopped"). A 500ms
+        // wait is enough for the session to settle, and the retry
+        // usually succeeds. Other code paths (transition, framing,
+        // reflection) are unchanged because they only run after the
+        // opening has already exercised the audio session — by then
+        // it's stable.
+        if (!resolution.played) {
           await Future.delayed(const Duration(milliseconds: 500));
-          played = await palAudio.playLine(opening.id, voiceKey);
-          logEvent('pal_audio_opening_retry',
-              {'line_id': opening.id, 'voice_key': voiceKey, 'retry_played': played});
+          resolution = await palAudio.playLineResolved(opening.id, voiceKey);
+          logEvent('pal_audio_opening_retry', {
+            'line_id': opening.id,
+            'voice_key': voiceKey,
+            'retry_played': resolution.played,
+          });
         }
-        if (played) {
+        logEvent('pal_opening_audio_resolution', {
+          'voice_key': voiceKey,
+          'opening_line_id': opening.id,
+          'expected_path': expectedPath,
+          'resolved_source': resolution.source,
+          'success': resolution.played,
+          if (resolution.errorType != null) 'error_type': resolution.errorType,
+        });
+        if (resolution.played) {
           await palAudio.awaitPlaybackComplete();
           logEvent('pal_audio_played', {
             'line_id': opening.id,
@@ -1498,6 +1511,9 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
             'voice_key': voiceKey,
           });
         } else {
+          // SPEC Feature 2.0 floor: when audio cannot resolve, hold
+          // the text on screen long enough to be readable before the
+          // check-in prompt begins. Never silently skip.
           await Future.delayed(const Duration(milliseconds: 1800));
         }
       } catch (e) {
@@ -1506,6 +1522,14 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
           'line_id': opening.id,
           'type': 'opening',
           'error': e.runtimeType.toString(),
+        });
+        logEvent('pal_opening_audio_resolution', {
+          'voice_key': voiceKey,
+          'opening_line_id': opening.id,
+          'expected_path': expectedPath,
+          'resolved_source': 'missing',
+          'success': false,
+          'error_type': e.runtimeType.toString(),
         });
         await Future.delayed(const Duration(milliseconds: 1800));
       }
