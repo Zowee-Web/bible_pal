@@ -472,13 +472,40 @@ class ParableService {
 
     if (unique.isEmpty) return null;
 
-    // Rank by relatability if user text provided
-    if (userText != null && userText.isNotEmpty && unique.length > 1) {
-      final ranked = _matcher.rankByRelatability(userText, unique);
-      return ranked.first.bibleStoryKey;
+    // Rank by relatability if user text provided.
+    final ranked =
+        (userText != null && userText.isNotEmpty && unique.length > 1)
+            ? _matcher.rankByRelatability(userText, unique)
+            : unique;
+
+    // Anti-repeat: a bibleStoryKey is "recent" if any of its variants was
+    // played within the last 30 days. Prefer fresh keys; fall back to the
+    // top-ranked recent key only if every candidate is recent. This stops
+    // identical user text (e.g. "weary") from steering to the same story
+    // turn after turn — selectParable's play-log logic can't help here
+    // because the bibleStoryKey constraint collapses its candidate pool
+    // to variants of one story.
+    final playLog = await _storage.getPlayLog();
+    if (playLog.isNotEmpty) {
+      final unseenWindow = DateTime.now().subtract(_unseenWindow);
+      final recentStoryIds = <String>{
+        for (final e in playLog.entries)
+          if (e.value.isAfter(unseenWindow)) e.key,
+      };
+      if (recentStoryIds.isNotEmpty) {
+        final recentKeys = <String>{
+          for (final p in candidates)
+            if (p.bibleStoryKey != null &&
+                recentStoryIds.contains(p.storyId))
+              p.bibleStoryKey!,
+        };
+        final fresh =
+            ranked.where((p) => !recentKeys.contains(p.bibleStoryKey)).toList();
+        if (fresh.isNotEmpty) return fresh.first.bibleStoryKey;
+      }
     }
 
-    return unique.first.bibleStoryKey;
+    return ranked.first.bibleStoryKey;
   }
 
   /// Select a parable using mood expansion (SPEC 15b) and non-repeat serving.

@@ -156,4 +156,60 @@ void main() {
               'excluded from Tier 1 even when older entries exist');
     }
   });
+
+  test(
+      'previewBibleStoryKey rotates away from a recently-played key '
+      'when alternatives exist (fixes "same story for same mood text")',
+      () async {
+    const previewMood = 'weary';
+    const userText = 'I feel weary';
+
+    // Baseline: with no play log, repeat calls return the same top key.
+    final firstKey = await service.previewBibleStoryKey(
+      mood: previewMood,
+      userPrefs: adultPrefs,
+      userText: userText,
+    );
+    expect(firstKey, isNotNull,
+        reason: 'Sanity — manifest must yield a key for $previewMood');
+
+    final repeatKey = await service.previewBibleStoryKey(
+      mood: previewMood,
+      userPrefs: adultPrefs,
+      userText: userText,
+    );
+    expect(repeatKey, firstKey,
+        reason: 'Without a play log, identical text must produce the '
+            'same top-ranked key (deterministic baseline)');
+
+    // Find every story whose bibleStoryKey == firstKey and mark them all
+    // as recently played. Without the fix, the next preview call would
+    // still return firstKey (same relatability ranking).
+    final pool = await service.getEligibleParables(
+      mood: previewMood,
+      lengthBucket: testBucket,
+      userPrefs: adultPrefs,
+    );
+    final variantsOfFirst =
+        pool.where((p) => p.bibleStoryKey == firstKey).toList();
+    expect(variantsOfFirst, isNotEmpty,
+        reason: 'Pool must contain at least one variant of the first key');
+
+    final now = DateTime.now();
+    for (final p in variantsOfFirst) {
+      await storage.recordPlayed(p.storyId, at: now);
+    }
+
+    // Now the preview must rotate to a different bibleStoryKey, since
+    // alternatives exist for this mood.
+    final rotated = await service.previewBibleStoryKey(
+      mood: previewMood,
+      userPrefs: adultPrefs,
+      userText: userText,
+    );
+    expect(rotated, isNotNull);
+    expect(rotated, isNot(firstKey),
+        reason: 'A recently-played key must yield to a fresh alternative '
+            'when the mood pool offers other bibleStoryKeys');
+  });
 }
