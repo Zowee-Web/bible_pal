@@ -24,7 +24,7 @@ void main() {
       await cachedFile.parent.create(recursive: true);
       await cachedFile.writeAsBytes(sampleAudioBytes);
 
-      final result = await ctx.service.getAudioFileAndroidForTesting(parable);
+      final result = await ctx.service.getAudioFileWithCloudFallbackForTesting(parable);
 
       expect(result, isNotNull);
       // If the cache had been bypassed, the bytes would equal [9,9,9,9].
@@ -41,7 +41,7 @@ void main() {
       final ctx = await setupCloudAudioTest(audioBaseUrl: fake.baseUrl);
       final parable = testParable();
 
-      final result = await ctx.service.getAudioFileAndroidForTesting(parable);
+      final result = await ctx.service.getAudioFileWithCloudFallbackForTesting(parable);
 
       expect(result, isNotNull);
       expect(await result!.readAsBytes(), sampleAudioBytes);

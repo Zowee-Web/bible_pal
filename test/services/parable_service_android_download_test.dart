@@ -14,7 +14,7 @@ void main() {
     final parable = testParable();
 
     final progressUpdates = <double>[];
-    final result = await ctx.service.getAudioFileAndroidForTesting(
+    final result = await ctx.service.getAudioFileWithCloudFallbackForTesting(
       parable,
       onProgress: progressUpdates.add,
     );
@@ -24,7 +24,7 @@ void main() {
 
     // Subsequent call should hit the cache (no progress callbacks).
     progressUpdates.clear();
-    final result2 = await ctx.service.getAudioFileAndroidForTesting(
+    final result2 = await ctx.service.getAudioFileWithCloudFallbackForTesting(
       parable,
       onProgress: progressUpdates.add,
     );

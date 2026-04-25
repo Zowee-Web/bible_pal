@@ -181,7 +181,7 @@ void main() {
       audioFilePath: _favoritedAudioPath,
     );
     final result =
-        await ctx.service.getAudioFileAndroidForTesting(parable);
+        await ctx.service.getAudioFileWithCloudFallbackForTesting(parable);
 
     expect(result, isNotNull);
     expect(await result!.readAsBytes(), sampleAudioBytes,
@@ -207,7 +207,7 @@ void main() {
     // Use the Android resolver directly because Platform.isAndroid is false
     // on the test host. ensureCachedForFavorite is a thin wrapper.
     final result =
-        await ctx.service.getAudioFileAndroidForTesting(parable);
+        await ctx.service.getAudioFileWithCloudFallbackForTesting(parable);
 
     expect(result, isNotNull);
     final cachedFile = File('${cacheDir.path}/${parable.audioFilePath}');

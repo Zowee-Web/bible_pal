@@ -699,26 +699,21 @@ class ParableService {
 
   /// Get audio file for a parable.
   ///
-  /// Platform-specific delivery (SPEC Feature 27, Cloud Foundation v1):
-  /// - iOS: fully bundled assets (no cache, no network)
-  /// - Android: cache → bundled asset → R2 download
+  /// Platform delivery (SPEC Feature 27, Cloud Foundation v1.1):
+  /// - iOS & Android: cache → bundled asset → R2 download
+  /// - Cache eviction + favorite pinning (Smart Offline Library) is
+  ///   Android-only in v1.1; iOS caches on-demand only.
   ///
   /// [onProgress] is invoked during R2 download with values in [0.0, 1.0].
-  /// Only Android passes a non-null callback.
   Future<File?> getAudioFile(
     Parable parable, {
     void Function(double progress)? onProgress,
   }) async {
     if (parable.audioFilePath == null) return null;
 
-    // iOS: existing fully-bundled behavior. No cache, no network.
-    if (Platform.isIOS) {
-      return _getAudioFileFromAssets(parable);
-    }
-
-    // Android: cache → bundled asset → R2.
-    if (Platform.isAndroid) {
-      return _getAudioFileAndroid(parable, onProgress: onProgress);
+    // iOS & Android: shared three-tier resolver. iOS does not evict cache.
+    if (Platform.isIOS || Platform.isAndroid) {
+      return _getAudioFileWithCloudFallback(parable, onProgress: onProgress);
     }
 
     // Other platforms (desktop/test): preserve legacy behavior.
@@ -753,21 +748,23 @@ class ParableService {
     }
   }
 
-  /// Test-only entry point for the Android three-tier resolution path.
-  /// In production this is reached via [getAudioFile] when Platform.isAndroid.
+  /// Test-only entry point for the three-tier resolution path.
+  /// In production this is reached via [getAudioFile] on iOS or Android.
   @visibleForTesting
-  Future<File?> getAudioFileAndroidForTesting(
+  Future<File?> getAudioFileWithCloudFallbackForTesting(
     Parable parable, {
     void Function(double progress)? onProgress,
   }) =>
-      _getAudioFileAndroid(parable, onProgress: onProgress);
+      _getAudioFileWithCloudFallback(parable, onProgress: onProgress);
 
-  /// Test-only accessor for the Android cache directory.
+  /// Test-only accessor for the audio cache directory.
   @visibleForTesting
   Future<Directory> getAudioCacheDirForTesting() => _getAudioCacheDir();
 
-  /// Android helper: three-tier resolution (cache → bundled asset → R2).
-  Future<File?> _getAudioFileAndroid(
+  /// Three-tier audio resolver shared by iOS and Android (Cloud Foundation v1.1).
+  /// Cache → bundled asset → R2 download. Eviction after R2 download is
+  /// Android-only in v1.1 (Smart Offline Library is deferred to v2 on iOS).
+  Future<File?> _getAudioFileWithCloudFallback(
     Parable parable, {
     void Function(double progress)? onProgress,
   }) async {
@@ -827,12 +824,12 @@ class ParableService {
   }
 
   /// Smart Offline Library v1: silently ensure a story's audio is cached
-  /// when the user favorites it. Reuses the existing Android resolver, which
-  /// performs the cache → bundled asset → R2 cascade and writes into
-  /// `audio_cache/`.
+  /// when the user favorites it. Reuses the shared resolver, which performs
+  /// the cache → bundled asset → R2 cascade and writes into `audio_cache/`.
   ///
   /// - Android: idempotent. No-op if already cached. Downloads if needed.
-  /// - iOS: no-op (audio is bundled).
+  /// - iOS: no-op in v1.1 — Smart Offline Library is DEFERRED to v2.
+  ///   iOS caches on-demand at playback only.
   /// - Other platforms (test/desktop): no-op.
   ///
   /// Errors (network failure, missing AUDIO_BASE_URL) are swallowed —
@@ -841,7 +838,7 @@ class ParableService {
     if (!Platform.isAndroid) return;
     if (parable.audioFilePath == null) return;
     try {
-      await _getAudioFileAndroid(parable);
+      await _getAudioFileWithCloudFallback(parable);
     } catch (_) {/* silent — favoriting must not fail on network */}
   }
 
@@ -1047,9 +1044,12 @@ class ParableService {
             'story_id': storyId,
             'bytes': receivedBytes,
           });
-          // Smart Offline Library v1: keep cache near the soft budget.
-          // Fire-and-forget — eviction must never block playback.
-          unawaited(_evictIfOverBudget());
+          // Smart Offline Library v1 (Android only): keep cache near the soft
+          // budget. Fire-and-forget — eviction must never block playback.
+          // iOS v1.1: cache without eviction; Smart Offline deferred to v2.
+          if (Platform.isAndroid) {
+            unawaited(_evictIfOverBudget());
+          }
           return targetFile;
         } finally {
           client.close();

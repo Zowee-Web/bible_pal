@@ -18,7 +18,7 @@ void main() {
     final ctx = await setupCloudAudioTest(audioBaseUrl: fake.baseUrl);
     final parable = testParable();
 
-    final result = await ctx.service.getAudioFileAndroidForTesting(parable);
+    final result = await ctx.service.getAudioFileWithCloudFallbackForTesting(parable);
     expect(result, isNull, reason: 'failed download must not return a file');
 
     final cacheDir = await ctx.service.getAudioCacheDirForTesting();
@@ -53,7 +53,7 @@ void main() {
     await staleTmp.writeAsBytes(const [0xDE, 0xAD]);
     expect(await staleTmp.exists(), isTrue);
 
-    final result = await ctx.service.getAudioFileAndroidForTesting(parable);
+    final result = await ctx.service.getAudioFileWithCloudFallbackForTesting(parable);
     expect(result, isNotNull);
     expect(await result!.readAsBytes(), sampleAudioBytes);
     expect(await staleTmp.exists(), isFalse,

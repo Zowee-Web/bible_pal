@@ -20,7 +20,7 @@ void main() {
 
     // No HTTP server running on 0.0.0.0:1 — if the resolver tries to fetch
     // from the network this would fail. A cache hit must NOT touch the network.
-    final result = await ctx.service.getAudioFileAndroidForTesting(parable);
+    final result = await ctx.service.getAudioFileWithCloudFallbackForTesting(parable);
 
     expect(result, isNotNull);
     expect(result!.path, cachedFile.path);

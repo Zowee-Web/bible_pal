@@ -1685,14 +1685,15 @@ Award priority (when multiple would trigger simultaneously): Character → Path 
 - Only story libraries and story-related metadata sync
 - User preferences, favorites, and history stay on-device
 
-**Platform-specific audio delivery (Cloud Foundation v1):**
-- iOS uses fully bundled audio assets for playback
-- Android uses bundled seed assets plus Cloudflare R2 HTTP audio delivery with persistent local caching
-- Android includes a bundled seed set of 32 short stories covering all mood × mode × audience combinations
-- Android works offline with bundled and previously cached audio
-- No Firebase, no auth, no Firestore, no messaging — R2 is a dumb file host accessed via HTTP only
+**Platform-specific audio delivery (Cloud Foundation v1.1):**
+- Both iOS and Android use the same three-tier audio resolver: persistent cache → bundled asset → Cloudflare R2 HTTP download
+- iOS keeps its current bundled audio assets unchanged; R2 acts as a fallback/extension for any manifest entry not bundled (e.g. future content shipped via R2 without an app update)
+- Android keeps its 32-story bundled seed set; R2 covers the rest
+- Both platforms work offline with bundled and previously cached audio
+- iOS in v1.1 caches downloaded audio locally inside the app sandbox but does NOT run cache eviction or favorite-pinning logic. The Smart Offline Library (eviction, favorite-triggered download, 600 MB soft budget) remains Android-only in v1.1 and is DEFERRED to v2 for iOS
+- R2 is HTTP-only, accessed via the public `AUDIO_BASE_URL`. No Firebase, no auth, no Firestore, no messaging — R2 is a dumb file host accessed via HTTPS only
 
-**Smart Offline Library v1** (extends Cloud Foundation v1, Android only)
+**Smart Offline Library v1** (extends Cloud Foundation v1.1, Android only — iOS deferred to v2)
 - Cached story audio is automatically managed within a soft 600 MB target.
   The 600 MB target is a goal, not a hard cap — the system may temporarily
   exceed it (for example, when favorited audio alone is larger than the target).
@@ -1700,7 +1701,7 @@ Award priority (when multiple would trigger simultaneously): Character → Path 
   already cached, and is protected from auto-eviction. There is no new
   user-facing affordance for this behavior — no "Download" button, no
   "Available offline" label, and no new explanatory UI about offline
-  storage. Existing playback download progress UI from Cloud Foundation v1
+  storage. Existing playback download progress UI from Cloud Foundation v1.1
   may still appear when audio must be fetched on demand.
 - Listened-but-not-favorited audio is treated as disposable cache. It may
   be auto-evicted by the cache management routine to keep total cache size

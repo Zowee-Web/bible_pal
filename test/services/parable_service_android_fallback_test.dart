@@ -16,7 +16,7 @@ void main() {
         audioFilePath: 'creative/0000/does_not_exist.mp3',
       );
 
-      final result = await ctx.service.getAudioFileAndroidForTesting(parable);
+      final result = await ctx.service.getAudioFileWithCloudFallbackForTesting(parable);
       expect(result, isNull);
     },
   );
@@ -32,7 +32,7 @@ void main() {
     final ctx = await setupCloudAudioTest(audioBaseUrl: fake.baseUrl);
     final parable = testParable();
 
-    final result = await ctx.service.getAudioFileAndroidForTesting(parable);
+    final result = await ctx.service.getAudioFileWithCloudFallbackForTesting(parable);
     expect(result, isNull);
   });
 }
