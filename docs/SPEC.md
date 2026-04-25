@@ -630,6 +630,18 @@ Golden Prompt mode is a specialized generation strategy for adult traditional SH
   - Other active criteria
 - After pool exhausted, stories repeat using "least recently played" ordering
 
+> **Note — Same-`bibleStoryKey` rotation across variants.** When a request
+> resolves to a specific `bibleStoryKey` (e.g. text input maps to one
+> Bible story) and that bucket carries multiple variants — same mood,
+> length, language, kid mode, and storytelling mode but different
+> storyIds — selection rotates among them via the play log: Tier 1 prefers
+> a variant unplayed in the last 30 days; Tier 3 falls back to the
+> least-recently-played variant when all are within the window. This
+> rotation **never crosses user-selected boundaries**: length bucket,
+> translation/language style, kid mode, and storytelling mode are always
+> respected. If a bibleStoryKey carries only one variant for the user's
+> filters, that storyId is the only honest answer and is served as-is.
+
 **15b. Mood Expansion Serving Rule**
 
 Bible PAL preserves the user's selected mood as the primary intent, while expanding the eligible story pool in a controlled way to reduce fast repetition.

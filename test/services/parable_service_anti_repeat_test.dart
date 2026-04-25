@@ -212,4 +212,78 @@ void main() {
         reason: 'A recently-played key must yield to a fresh alternative '
             'when the mood pool offers other bibleStoryKeys');
   });
+
+  test(
+      'same-bibleStoryKey variants rotate via play-log LRP '
+      'when multiple variants share a (mood,length,lang,kid,mode) bucket',
+      () async {
+    // The manifest contains exactly two variants of `fiery_furnace` for
+    // mood=brave_courage, length=short, lang=WEB, kid=false, mode=traditional
+    // (story_1002_* and story_1091_*). This bucket is the canonical place
+    // to lock in the same-key rotation guarantee — the only behavior PAL can
+    // honor without crossing user-selected length / translation / mode / kid
+    // boundaries (see SPEC Feature #15).
+    const sameKeyMood = 'brave_courage';
+    const sameKeyKey = 'fiery_furnace';
+
+    // Confirm the bucket has at least two variants; if the content team
+    // collapses it to a single variant later, this test will fail loudly
+    // and signal the assumption to revisit.
+    final pool = await service.getEligibleParables(
+      mood: sameKeyMood,
+      lengthBucket: testBucket,
+      userPrefs: adultPrefs,
+    );
+    final variants = pool.where((p) => p.bibleStoryKey == sameKeyKey).toList();
+    expect(variants.length, greaterThanOrEqualTo(2),
+        reason: 'Test bucket must carry ≥2 variants of $sameKeyKey for '
+            'rotation to be observable');
+
+    // First call with empty play log → either variant is acceptable (Tier 1
+    // unseen, stable storyId tiebreak). Capture whichever the engine picks.
+    final first = await service.selectParable(
+      mood: sameKeyMood,
+      lengthBucket: testBucket,
+      userPrefs: adultPrefs,
+      bibleStoryKey: sameKeyKey,
+    );
+    expect(first, isNotNull);
+    expect(first!.bibleStoryKey, sameKeyKey);
+
+    // Record the first pick and call again. With one variant in the play
+    // log within the 30-day window and one still unseen, Tier 1 must pick
+    // the OTHER variant — not repeat the same storyId.
+    await storage.recordPlayed(first.storyId,
+        at: DateTime.now().subtract(const Duration(minutes: 1)));
+
+    final second = await service.selectParable(
+      mood: sameKeyMood,
+      lengthBucket: testBucket,
+      userPrefs: adultPrefs,
+      bibleStoryKey: sameKeyKey,
+    );
+    expect(second, isNotNull);
+    expect(second!.bibleStoryKey, sameKeyKey,
+        reason: 'Selection must remain inside the requested bibleStoryKey');
+    expect(second.storyId, isNot(first.storyId),
+        reason: 'Tier 1 unseen must rotate to the other variant in the '
+            'same bucket rather than repeat the most-recent storyId');
+
+    // Now both variants are recently played — Tier 1 is empty, so Tier 3
+    // (LRP) takes over. Record the second pick with a more recent stamp,
+    // then verify the next call returns the first storyId again (it is now
+    // the least-recently-played of the two).
+    await storage.recordPlayed(second.storyId, at: DateTime.now());
+
+    final third = await service.selectParable(
+      mood: sameKeyMood,
+      lengthBucket: testBucket,
+      userPrefs: adultPrefs,
+      bibleStoryKey: sameKeyKey,
+    );
+    expect(third, isNotNull);
+    expect(third!.storyId, first.storyId,
+        reason: 'When all same-key variants are recently played, Tier 3 '
+            'must rotate to the least-recently-played variant');
+  });
 }
