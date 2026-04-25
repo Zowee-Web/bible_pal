@@ -23,7 +23,7 @@ class PalVoice {
 class PalVoiceRegistry {
   PalVoiceRegistry._();
 
-  static const String defaultVoiceKey = 'VOICE_RUTH_COMFORT';
+  static const String defaultVoiceKey = 'VOICE_HOPE';
 
   /// Old voice keys that should be migrated to the default.
   /// VOICE_GRACE was retired 2026-04-23 — audio archived to
@@ -38,14 +38,19 @@ class PalVoiceRegistry {
     'VOICE_GRACE',
   ];
 
+  // VOICE_HOPE is the default voice for new users / users with no
+  // saved palVoiceKey. Existing users who previously selected
+  // VOICE_RUTH_COMFORT keep Ruth — `migrateVoiceKey` only rewrites
+  // legacy or invalid keys, and Ruth remains valid. Hope is first
+  // in the display order; Ruth is third (still selectable).
   static const List<PalVoice> voices = [
     PalVoice(
-      voiceKey: 'VOICE_RUTH_COMFORT',
-      displayName: 'Ruth',
-      emoji: '\u{1F33F}', // 🌿
-      description: 'Soft & compassionate',
+      voiceKey: 'VOICE_HOPE',
+      displayName: 'Hope',
+      emoji: '\u{2600}\u{FE0F}', // ☀️
+      description: 'Bright encouragement',
       gender: 'female',
-      elevenLabsId: 'jBpfuIE2acCO8z3wKNLl',
+      elevenLabsId: 'qBDvhofpxp92JgXJxDjB',
     ),
     PalVoice(
       voiceKey: 'VOICE_SHEPHERD',
@@ -56,12 +61,12 @@ class PalVoiceRegistry {
       elevenLabsId: 'EkK5I93UQWFDigLMpZcX',
     ),
     PalVoice(
-      voiceKey: 'VOICE_HOPE',
-      displayName: 'Hope',
-      emoji: '\u{2600}\u{FE0F}', // ☀️
-      description: 'Bright encouragement',
+      voiceKey: 'VOICE_RUTH_COMFORT',
+      displayName: 'Ruth',
+      emoji: '\u{1F33F}', // 🌿
+      description: 'Soft & compassionate',
       gender: 'female',
-      elevenLabsId: 'qBDvhofpxp92JgXJxDjB',
+      elevenLabsId: 'jBpfuIE2acCO8z3wKNLl',
     ),
     PalVoice(
       voiceKey: 'VOICE_STILLWATER',
@@ -73,12 +78,17 @@ class PalVoiceRegistry {
     ),
   ];
 
-  /// Look up a voice by key. Returns default if not found.
+  /// Look up a voice by key. Returns the default voice when [key] is
+  /// null or not found — explicitly resolved via [defaultVoiceKey]
+  /// rather than `voices.first` so the display order in Settings can
+  /// be reordered without changing default-voice behavior.
   static PalVoice getVoice(String? key) {
-    if (key == null) return voices.first;
+    final lookupKey = key ?? defaultVoiceKey;
     return voices.firstWhere(
-      (v) => v.voiceKey == key,
-      orElse: () => voices.first,
+      (v) => v.voiceKey == lookupKey,
+      orElse: () => voices.firstWhere(
+        (v) => v.voiceKey == defaultVoiceKey,
+      ),
     );
   }
 

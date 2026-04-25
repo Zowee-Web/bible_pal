@@ -28,8 +28,8 @@ void main() {
       // Listed explicitly so any *new* missing file (a regression)
       // breaks the test.
       const acceptedCrossVoiceFallbacks = <String>{
-        // Stillwater is missing OPENING_WEARY_04; PalAudioService falls
-        // back to the default voice's (Ruth's) asset for this line.
+        // Stillwater is missing OPENING_WEARY_04; PalAudioService
+        // falls back to the default voice's asset for this line.
         'VOICE_STILLWATER/OPENING_WEARY_04',
       };
 
@@ -50,33 +50,38 @@ void main() {
               'Missing PAL opening audio (excluding accepted cross-voice fallbacks): ${missing.join(', ')}');
     });
 
-    test('spec_pal_opening_ruth_asset_coverage.succeeds', () {
-      // Strict bundle-coverage audit for VOICE_RUTH_COMFORT.
+    test('spec_pal_opening_default_voice_asset_coverage.succeeds', () {
+      // Strict bundle-coverage audit for the default PAL voice
+      // (`PalVoiceRegistry.defaultVoiceKey`).
       //
-      // Ruth is the terminal node of the cross-voice fallback chain
-      // (the default voice has no further voice to fall back to), so
-      // a missing asset for her surfaces directly to the user as a
-      // silent greeting. This test fails if ANY of the three
-      // conditions below is violated for any of the 60 opening lines:
+      // The default voice is the terminal node of the cross-voice
+      // fallback chain — non-default voices fall back to the default
+      // when their own asset is missing, but the default voice has
+      // no further fallback. A missing asset for the default voice
+      // therefore surfaces directly as a silent greeting. This test
+      // fails if ANY of the three conditions below is violated for
+      // any of the 60 opening lines:
       //
       //   1. file exists at the expected pubspec-relative path
       //   2. file is non-empty
       //   3. file's parent directory is declared as a Flutter asset
       //      in pubspec.yaml (otherwise the file ships on disk in
-      //      source but is not bundled into the iOS .app)
+      //      source but is not bundled into the iOS / Android app at
+      //      build time)
       //
       // The reason string lists every missing file by ID + which
       // condition failed, so a build-time failure pinpoints exactly
       // what is broken.
 
-      // Condition 3: pubspec declares the Ruth asset directory.
+      // Condition 3: pubspec declares the default voice's directory.
       final pubspec = File('$projectRoot/pubspec.yaml').readAsStringSync();
-      const ruthDir = 'assets/pal/audio/${PalVoiceRegistry.defaultVoiceKey}/';
+      const defaultDir =
+          'assets/pal/audio/${PalVoiceRegistry.defaultVoiceKey}/';
       expect(
-        pubspec.contains(ruthDir),
+        pubspec.contains(defaultDir),
         isTrue,
         reason:
-            'pubspec.yaml is missing an `assets:` entry for `$ruthDir`. '
+            'pubspec.yaml is missing an `assets:` entry for `$defaultDir`. '
             'Without that line, files in this directory ship in source '
             'but are NOT bundled into the iOS / Android app at build '
             'time, which produces a runtime PlayerException with '
@@ -102,9 +107,9 @@ void main() {
         isEmpty,
         reason: missing.isEmpty
             ? ''
-            : 'Ruth (${PalVoiceRegistry.defaultVoiceKey}) is missing or '
-                'has empty opening assets — expected all 60 ids from '
-                'palOpeningLines:\n  - ${missing.join('\n  - ')}',
+            : 'Default voice (${PalVoiceRegistry.defaultVoiceKey}) is '
+                'missing or has empty opening assets — expected all 60 '
+                'ids from palOpeningLines:\n  - ${missing.join('\n  - ')}',
       );
     });
   });

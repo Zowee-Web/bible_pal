@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../providers/app_state_notifier.dart';
 import 'package:just_audio/just_audio.dart'
     show PlayerException, PlayerInterruptedException;
+import '../../core/pal_voice_registry.dart';
 import '../../services/pal_audio_service.dart' show PalAudioService;
 import '../../services/pal_prompt_service.dart';
 import '../../services/stt_service.dart';
@@ -1571,7 +1572,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         appStateForOpening?.userPreferences.palGreetingsEnabled != false;
     if (openingAudioEnabled) {
       final voiceKey =
-          appStateForOpening?.userPreferences.palVoiceKey ?? 'VOICE_RUTH_COMFORT';
+          appStateForOpening?.userPreferences.palVoiceKey ?? PalVoiceRegistry.defaultVoiceKey;
       final palAudio = ref.read(palAudioServiceProvider);
       final expectedPath = PalAudioService.assetPath(voiceKey, opening.id);
 
@@ -1686,7 +1687,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       if (useLegacy &&
           appState?.userPreferences.palGreetingsEnabled != false) {
         // Legacy path: play old PROMPT_* audio
-        final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_RUTH_COMFORT';
+        final voiceKey = appState?.userPreferences.palVoiceKey ?? PalVoiceRegistry.defaultVoiceKey;
         final userName = appState?.userPreferences.userName ?? '';
         final palAudio = ref.read(palAudioServiceProvider);
         final nameAudio = ref.read(nameAudioServiceProvider);
@@ -1850,7 +1851,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     // Micro-response: text always shown; audio gated behind useLegacyPal.
     final appState = ref.read(appStateProvider).valueOrNull;
     final useLegacy = appState?.userPreferences.useLegacyPal ?? false;
-    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_RUTH_COMFORT';
+    final voiceKey = appState?.userPreferences.palVoiceKey ?? PalVoiceRegistry.defaultVoiceKey;
 
     String responseText;
     if (!useLegacy ||

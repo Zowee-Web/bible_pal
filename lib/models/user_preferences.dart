@@ -110,7 +110,7 @@ class UserPreferences {
     this.voiceConsentVersion, // null = never consented
     this.palVoiceEnabled = true, // internal master switch, default ON
     this.useLegacyPal = false, // legacy PAL audio disabled by default
-    this.palVoiceKey = 'VOICE_RUTH_COMFORT',
+    this.palVoiceKey = PalVoiceRegistry.defaultVoiceKey,
     this.lastDetectedMood,
     this.preferredLengthBucket,
     this.bedtimeModeEnabled = false,
@@ -176,7 +176,7 @@ class UserPreferences {
       palVoiceEnabled: json['palVoiceEnabled'] as bool? ?? true,
       useLegacyPal: json['useLegacyPal'] as bool? ?? false,
       palVoiceKey: PalVoiceRegistry.migrateVoiceKey(
-          json['palVoiceKey'] as String? ?? 'VOICE_RUTH_COMFORT'),
+          json['palVoiceKey'] as String? ?? PalVoiceRegistry.defaultVoiceKey),
       lastDetectedMood:
           _validateMood(json['lastDetectedMood'] as String?),
       preferredLengthBucket: json['preferredLengthBucket'] as String?,
