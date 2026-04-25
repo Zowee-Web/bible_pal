@@ -50,23 +50,62 @@ void main() {
               'Missing PAL opening audio (excluding accepted cross-voice fallbacks): ${missing.join(', ')}');
     });
 
-    test(
-        'spec_pal_opening_default_voice_has_full_coverage.succeeds — Ruth has no further fallback',
-        () {
-      // The default voice is the terminal node of the cross-voice
-      // fallback chain. It MUST carry every opening asset, otherwise
-      // there is no graceful path and the resolution is `missing`.
+    test('spec_pal_opening_ruth_asset_coverage.succeeds', () {
+      // Strict bundle-coverage audit for VOICE_RUTH_COMFORT.
+      //
+      // Ruth is the terminal node of the cross-voice fallback chain
+      // (the default voice has no further voice to fall back to), so
+      // a missing asset for her surfaces directly to the user as a
+      // silent greeting. This test fails if ANY of the three
+      // conditions below is violated for any of the 60 opening lines:
+      //
+      //   1. file exists at the expected pubspec-relative path
+      //   2. file is non-empty
+      //   3. file's parent directory is declared as a Flutter asset
+      //      in pubspec.yaml (otherwise the file ships on disk in
+      //      source but is not bundled into the iOS .app)
+      //
+      // The reason string lists every missing file by ID + which
+      // condition failed, so a build-time failure pinpoints exactly
+      // what is broken.
+
+      // Condition 3: pubspec declares the Ruth asset directory.
+      final pubspec = File('$projectRoot/pubspec.yaml').readAsStringSync();
+      const ruthDir = 'assets/pal/audio/${PalVoiceRegistry.defaultVoiceKey}/';
+      expect(
+        pubspec.contains(ruthDir),
+        isTrue,
+        reason:
+            'pubspec.yaml is missing an `assets:` entry for `$ruthDir`. '
+            'Without that line, files in this directory ship in source '
+            'but are NOT bundled into the iOS / Android app at build '
+            'time, which produces a runtime PlayerException with '
+            'duration_ms == null and resolved_source == "missing".',
+      );
+
+      // Conditions 1 + 2: every opening line ID has a non-empty
+      // file at the expected location.
       final missing = <String>[];
       for (final line in palOpeningLines) {
-        final file =
-            File('$audioBase/${PalVoiceRegistry.defaultVoiceKey}/${line.id}.mp3');
-        if (!file.existsSync() || file.lengthSync() == 0) {
-          missing.add(line.id);
+        final relPath = '${PalVoiceRegistry.defaultVoiceKey}/${line.id}.mp3';
+        final file = File('$audioBase/$relPath');
+        if (!file.existsSync()) {
+          missing.add('$relPath (file does not exist)');
+          continue;
+        }
+        if (file.lengthSync() == 0) {
+          missing.add('$relPath (file is 0 bytes)');
         }
       }
-      expect(missing, isEmpty,
-          reason:
-              'Default voice (${PalVoiceRegistry.defaultVoiceKey}) missing opening assets: ${missing.join(', ')}');
+      expect(
+        missing,
+        isEmpty,
+        reason: missing.isEmpty
+            ? ''
+            : 'Ruth (${PalVoiceRegistry.defaultVoiceKey}) is missing or '
+                'has empty opening assets — expected all 60 ids from '
+                'palOpeningLines:\n  - ${missing.join('\n  - ')}',
+      );
     });
   });
 
@@ -84,13 +123,18 @@ void main() {
           .readAsStringSync();
       // The fallback contract lives in playLineResolved: when the
       // default voice's secondary attempt fails, return a resolution
-      // tagged 'missing' with the error type.
+      // tagged 'missing' (or 'operation_stopped' for the iOS -11849
+      // recovery path) with the error type.
       expect(src, contains('Future<PalAudioResolution> playLineResolved'),
           reason: 'playLineResolved is the resolution-aware entry point');
-      expect(src, contains("source: 'missing'"),
-          reason: 'missing branch must tag source as missing');
-      expect(src, contains('errorType: e2.runtimeType.toString()'),
-          reason: 'missing branch must record error_type for telemetry');
+      expect(src, contains("'missing'"),
+          reason:
+              "missing branch must still emit source: 'missing' for true asset-load failures");
+      expect(src, contains("'operation_stopped'"),
+          reason:
+              "iOS -11849 must surface as source: 'operation_stopped' (not 'missing')");
+      expect(src, contains('e.runtimeType.toString()'),
+          reason: 'failure path must record error_type for telemetry');
       // Symmetric retry: the default voice retries the same path
       // rather than falling out after a single setAsset attempt.
       // Strip whitespace so multi-line formatting does not break the
@@ -108,7 +152,8 @@ void main() {
       final src = File(
               '$projectRoot/lib/features/main_menu/main_menu_screen.dart')
           .readAsStringSync();
-      final start = src.indexOf('Future<void> _startConversation()');
+      final start = src.indexOf(
+          RegExp(r'Future<void> _startConversation\([^)]*\)'));
       expect(start, greaterThan(-1),
           reason: '_startConversation entry not found');
       // Find the segment for the opening flow only — bounded by the
@@ -147,7 +192,8 @@ void main() {
       final src = File(
               '$projectRoot/lib/features/main_menu/main_menu_screen.dart')
           .readAsStringSync();
-      final start = src.indexOf('Future<void> _startConversation()');
+      final start = src.indexOf(
+          RegExp(r'Future<void> _startConversation\([^)]*\)'));
       expect(start, greaterThan(-1),
           reason: '_startConversation entry not found');
       final segment = src.substring(start);
