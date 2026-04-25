@@ -16,6 +16,26 @@ class PalLine {
   const PalLine({required this.id, required this.text});
 }
 
+/// Outcome of a single resolved PAL line playback.
+///
+/// Used by the opening greeting flow (Feature 2.0) to emit the
+/// `pal_opening_audio_resolution` telemetry event. [source] mirrors the
+/// values listed in that event spec: `asset` (selected voice's asset
+/// played), `fallback` (selected voice failed, default voice's asset
+/// played), or `missing` (neither could be loaded — caller falls back
+/// to the SPEC text-only floor).
+class PalAudioResolution {
+  final String source;
+  final bool played;
+  final String? errorType;
+
+  const PalAudioResolution._({
+    required this.source,
+    required this.played,
+    this.errorType,
+  });
+}
+
 // Offline PAL audio playback service.
 // Loads curated lines from pal_lines.json and plays pre-rendered MP3 assets.
 // Name-prefix clips (generated via proxy TTS) can be stitched before prompts.
@@ -280,6 +300,61 @@ class PalAudioService {
           // Text-only fallback — no crash
         }
       }
+    }
+  }
+
+  /// Play a single PAL line and report how it resolved.
+  ///
+  /// Used by the opening greeting flow (Feature 2.0) so the caller can
+  /// emit the `pal_opening_audio_resolution` telemetry event. Same
+  /// fallback chain as [playLine] with one addition: when [voiceKey]
+  /// is the default voice and the first `setAsset` fails, a brief
+  /// 200ms delay precedes a same-asset retry. Without this, the
+  /// default voice (Ruth) gets only one `setAsset` attempt while
+  /// non-default voices get two (their cross-voice fallback to the
+  /// default voice). The asymmetry caused the default voice to drop
+  /// the very-first-after-launch opening greeting whenever the iOS
+  /// audio session was still warming up (PlayerException -11849
+  /// "Operation Stopped").
+  ///
+  /// Never throws — the failure surfaces as a `missing` resolution.
+  Future<PalAudioResolution> playLineResolved(
+    String lineId,
+    String voiceKey,
+  ) async {
+    await _acquireLock();
+    try {
+      final path = assetPath(voiceKey, lineId);
+      try {
+        await _player.setAsset(path);
+        await _player.play();
+        return const PalAudioResolution._(source: 'asset', played: true);
+      } catch (e) {
+        debugPrint('[PalAudioService] Asset load failed: $path — $e');
+        await Future.delayed(const Duration(milliseconds: 200));
+        final isDefault = voiceKey == PalVoiceRegistry.defaultVoiceKey;
+        final secondaryPath = isDefault
+            ? path
+            : assetPath(PalVoiceRegistry.defaultVoiceKey, lineId);
+        try {
+          await _player.setAsset(secondaryPath);
+          await _player.play();
+          return PalAudioResolution._(
+            source: isDefault ? 'asset' : 'fallback',
+            played: true,
+          );
+        } catch (e2) {
+          debugPrint(
+              '[PalAudioService] Secondary attempt failed: $secondaryPath — $e2');
+          return PalAudioResolution._(
+            source: 'missing',
+            played: false,
+            errorType: e2.runtimeType.toString(),
+          );
+        }
+      }
+    } finally {
+      _releaseLock();
     }
   }
 
