@@ -370,6 +370,107 @@ void main() {
     });
   });
 
+  group('Play Log (selection-time anti-repeat, cap=1000)', () {
+    test('starts empty and round-trips entries', () async {
+      expect(await storage.getPlayLog(), isEmpty);
+
+      final t = DateTime(2026, 4, 1, 12, 0);
+      await storage.recordPlayed('story_a', at: t);
+
+      final log = await storage.getPlayLog();
+      expect(log.length, 1);
+      expect(log['story_a'], t);
+    });
+
+    test('recordPlayed updates lastPlayedAt for a repeated story', () async {
+      final t1 = DateTime(2026, 1, 1);
+      final t2 = DateTime(2026, 4, 1);
+      await storage.recordPlayed('story_a', at: t1);
+      await storage.recordPlayed('story_a', at: t2);
+
+      final log = await storage.getPlayLog();
+      expect(log.length, 1, reason: 'Same storyId should not duplicate');
+      expect(log['story_a'], t2);
+    });
+
+    test(
+        'play log retains more than 20 entries '
+        '(decoupled from 20-entry History cap)', () async {
+      final base = DateTime(2026, 1, 1);
+      for (int i = 0; i < 50; i++) {
+        await storage.recordPlayed('story_$i',
+            at: base.add(Duration(minutes: i)));
+      }
+      final log = await storage.getPlayLog();
+      expect(log.length, 50,
+          reason: 'Play log must hold >20; History cap is independent');
+    });
+
+    test('caps at 1000 by evicting oldest timestamps (FIFO)', () async {
+      final base = DateTime(2026, 1, 1);
+      // Insert 1005 entries with strictly increasing timestamps.
+      for (int i = 0; i < 1005; i++) {
+        await storage.recordPlayed('story_$i',
+            at: base.add(Duration(seconds: i)));
+      }
+      final log = await storage.getPlayLog();
+      expect(log.length, 1000,
+          reason: 'Play log must cap at 1000 entries');
+      // The 5 oldest (story_0..story_4) should be evicted.
+      for (int i = 0; i < 5; i++) {
+        expect(log.containsKey('story_$i'), false,
+            reason: 'Oldest story_$i should have been evicted');
+      }
+      expect(log.containsKey('story_1004'), true,
+          reason: 'Newest entry must be retained');
+    });
+
+    test('writing to play log does NOT affect 20-entry History cap',
+        () async {
+      // Seed a 25-entry play log
+      final base = DateTime(2026, 1, 1);
+      for (int i = 0; i < 25; i++) {
+        await storage.recordPlayed('story_$i',
+            at: base.add(Duration(minutes: i)));
+      }
+
+      // Then add 25 entries to the user-facing History via its own API
+      for (int i = 0; i < 25; i++) {
+        await storage.addToHistory(HistoryEntry(
+          storyId: 'story_$i',
+          title: 'Story $i',
+          mood: 'joyful',
+          length: 5,
+          timestamp: base.add(Duration(minutes: i)),
+        ));
+      }
+
+      final history = await storage.getHistory();
+      final log = await storage.getPlayLog();
+      expect(history.length, 20,
+          reason: 'History cap (Feature #11 invariant) must remain 20');
+      expect(log.length, 25,
+          reason: 'Play log is independent of History cap');
+    });
+
+    test('clearPlayLog resets the log without touching History', () async {
+      await storage.recordPlayed('story_a');
+      await storage.addToHistory(HistoryEntry(
+        storyId: 'story_a',
+        title: 'A',
+        mood: 'joyful',
+        length: 5,
+        timestamp: DateTime.now(),
+      ));
+
+      await storage.clearPlayLog();
+
+      expect(await storage.getPlayLog(), isEmpty);
+      expect((await storage.getHistory()).length, 1,
+          reason: 'clearPlayLog must not affect History');
+    });
+  });
+
   group('Data Migration & Invariant Healing', () {
     test('should heal History cap violation (>20 entries)', () async {
       // Manually insert 30 history entries (simulating legacy data)
@@ -455,6 +556,29 @@ void main() {
       final pending = await storage.getPendingShares();
       expect(pending.length, equals(50),
           reason: 'Pending shares should be capped at 50 after migration');
+    });
+
+    test('should heal Play Log cap violation (>1000 entries)', () async {
+      // Manually insert 1010 play log entries (simulating legacy bloat)
+      final prefs = await SharedPreferences.getInstance();
+      final base = DateTime(2026, 1, 1);
+      final legacy = <String, String>{
+        for (int i = 0; i < 1010; i++)
+          'story_$i': base.add(Duration(seconds: i)).toIso8601String(),
+      };
+      await prefs.setString('play_log', jsonEncode(legacy));
+
+      final report = await storage.validateAndHealInvariants();
+      expect(report['play_log_trimmed'], equals(10),
+          reason: 'Should report 10 entries trimmed (1010 - 1000)');
+
+      final log = await storage.getPlayLog();
+      expect(log.length, 1000,
+          reason: 'Play log should be capped at 1000 after migration');
+      // The 10 oldest entries should be the ones evicted.
+      for (int i = 0; i < 10; i++) {
+        expect(log.containsKey('story_$i'), false);
+      }
     });
 
     test('should return empty report when no healing needed', () async {

@@ -33,6 +33,11 @@ class ParableService {
   /// but may exceed it when favorited audio alone is larger.
   static const int kAudioCacheBudgetBytes = 600 * 1024 * 1024;
 
+  /// How recently a story must have been played to count as "seen" by the
+  /// MoodExpansionEngine. Stories outside this window stay in the play log
+  /// (for LRP ordering) but are eligible as Tier 1 unseen picks again.
+  static const Duration _unseenWindow = Duration(days: 30);
+
   /// Mutable budget used by the eviction routine. Defaults to the public
   /// constant; tests override via [setAudioCacheBudgetForTesting] to avoid
   /// allocating real 600 MB fixtures.
@@ -545,15 +550,17 @@ class ParableService {
       return null;
     }
 
-    // Get history for non-repeat rule
-    final history = await _storage.getHistory();
-    final recentStoryIds = history.map((h) => h.storyId).toSet();
-    final playHistory = <String, DateTime>{};
-    for (final entry in history) {
-      if (!playHistory.containsKey(entry.storyId)) {
-        playHistory[entry.storyId] = entry.timestamp;
-      }
-    }
+    // Non-repeat rule: source the engine inputs from the selection-time
+    // play log (capped at 1000), not the 20-entry user-facing History.
+    // A story counts as "seen" if it was played in the last 30 days; older
+    // entries stay in playHistory for LRP ordering but are eligible again
+    // as Tier 1 picks. See SPEC.md Feature #11 (anti-repeat note).
+    final playHistory = await _storage.getPlayLog();
+    final unseenWindow = DateTime.now().subtract(_unseenWindow);
+    final recentStoryIds = <String>{
+      for (final entry in playHistory.entries)
+        if (entry.value.isAfter(unseenWindow)) entry.key,
+    };
 
     // Log pool sizes before/after expansion (SPEC 15b telemetry)
     logEvent('mood_expansion_pool', {

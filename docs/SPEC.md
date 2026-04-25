@@ -357,6 +357,17 @@ Creative stories MUST NOT carry any of these fields. Presence of any of them on 
   - `scriptureSources`
   - `timestamp`
 
+> **Note — Selection-time anti-repeat is decoupled from this 20-entry History.**
+> The user-facing History list above is capped at 20 (invariant; see
+> [INVARIANTS.md](INVARIANTS.md)). Internally, `StorageService` also
+> maintains a separate **play log** (`storyId → lastPlayedAt`, capped at
+> 1000 entries) that powers `ParableService` non-repeat serving via the
+> `MoodExpansionEngine`. A story counts as "seen" for selection purposes
+> if it was played within the last **30 days**; older entries remain in
+> the log for least-recently-played ordering but become eligible as Tier 1
+> unseen picks again. This decoupling lets the History UI stay tight
+> while anti-repeat memory is wide enough to actually feel non-repetitive.
+
 **12. Scripture Sources Panel**
 - Collapsible panel below story title on player screen
 - Collapsed by default; expands on tap to show:
