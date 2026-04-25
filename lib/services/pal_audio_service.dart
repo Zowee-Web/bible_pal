@@ -493,10 +493,9 @@ class PalAudioService {
         await _player.play();
         return const PalAudioResolution._(source: 'asset', played: true);
       } catch (e) {
-        // Diagnostic only — log the rich PlayerException fields for
-        // the first attempt. Caller doesn't see this exception
-        // (we retry internally), so this is the only place to capture
-        // its details.
+        // Log rich PlayerException fields for the first attempt.
+        // Caller doesn't see this exception when the secondary path
+        // succeeds, so this is the only place to capture its details.
         final fields1 = _extractAudioErrorFields(e);
         logEvent('pal_audio_player_exception', {
           'attempt': 1,
@@ -506,6 +505,17 @@ class PalAudioService {
           ...fields1,
         });
         debugPrint('[PalAudioService] Asset load failed: $path — $e');
+
+        // iOS -11849 ("Operation Stopped") leaves the AVPlayer
+        // wedged — every subsequent setAsset on the same player
+        // returns the same -11849. Retrying the secondary path or
+        // the call-site retry just reproduces the failure and
+        // delays the user's text-only fallback. Bail immediately
+        // and let the caller honor the SPEC 1800ms text floor +
+        // schedule a recovery cooldown via `_cancelConversation`.
+        if (e is PlayerException && e.code == -11849) {
+          return _resolutionFromFailure(e);
+        }
 
         await Future.delayed(const Duration(milliseconds: 200));
         final isDefault = voiceKey == PalVoiceRegistry.defaultVoiceKey;
@@ -521,10 +531,9 @@ class PalAudioService {
             played: true,
           );
         } catch (e2) {
-          // Diagnostic only — log the second attempt's rich fields
-          // and surface them on the resolution so the call site can
-          // include them in pal_opening_diag_play_returned /
-          // pal_opening_audio_resolution events.
+          // Log the second attempt's rich fields and surface them on
+          // the resolution so the call site can include them in
+          // `pal_opening_audio_resolution`.
           final fields2 = _extractAudioErrorFields(e2);
           logEvent('pal_audio_player_exception', {
             'attempt': 2,

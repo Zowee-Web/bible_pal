@@ -1583,16 +1583,15 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         // calls in the same app session are fast no-ops.
         await palAudio.ensureAudioSessionActive();
         var resolution = await palAudio.playLineResolved(opening.id, voiceKey);
-        // Retry-once narrowly here in the opening flow: if the very
-        // first PAL audio call after an app launch hits the iOS audio
-        // session in a not-yet-ready state, just_audio's setAsset can
-        // throw (PlayerException -11849 "Operation Stopped"). A 500ms
-        // wait is enough for the session to settle, and the retry
-        // usually succeeds. Other code paths (transition, framing,
-        // reflection) are unchanged because they only run after the
-        // opening has already exercised the audio session — by then
-        // it's stable.
-        if (!resolution.played) {
+        // Retry-once narrowly here in the opening flow for non-fatal
+        // failures (e.g. transient asset-load issues). For iOS
+        // -11849 ("Operation Stopped") the AVPlayer is wedged and
+        // every subsequent setAsset on it returns the same code, so
+        // retrying just delays the user's text-only fallback. Skip
+        // the retry on `operation_stopped` and fall through to the
+        // 1800ms text floor — `_cancelConversation` will run the
+        // recovery cooldown before the next tap is allowed.
+        if (!resolution.played && resolution.source != 'operation_stopped') {
           await Future.delayed(const Duration(milliseconds: 500));
           resolution = await palAudio.playLineResolved(opening.id, voiceKey);
           logEvent('pal_audio_opening_retry', {
