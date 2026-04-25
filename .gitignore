@@ -98,3 +98,9 @@ assets_audio_compressed/
 
 # Android build script temporary backup
 .android_build_backup_*
+
+# Ruth v2 experimental audio — generated locally for the
+# 2026-04-25 voice-stability test, intentionally not bundled or
+# committed. Files are preserved on disk for any future
+# regeneration / replacement-voice work.
+assets/pal/audio/VOICE_RUTH_COMFORT_V2/
