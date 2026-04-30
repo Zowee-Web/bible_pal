@@ -10,9 +10,9 @@ class MoodService {
   /// Detect mood from user's text input
   /// Returns mood category and emotional tags
   MoodResult detectMood(String text) {
-    final normalizedText = text.toLowerCase().trim();
+    final lowered = text.toLowerCase().trim();
 
-    if (normalizedText.isEmpty) {
+    if (lowered.isEmpty) {
       return const MoodResult(
         mood: 'calm_peaceful',
         emotionalTags: [],
@@ -20,17 +20,53 @@ class MoodService {
       );
     }
 
+    // Mask "not <positive>" so "not happy" / "not great" don't classify
+    // as joyful via raw keyword presence. See [_maskNegatedPositives].
+    final normalizedText = _maskNegatedPositives(lowered);
+
     // Check for grateful/thankful indicators (before joyful — more specific)
     if (_containsAny(normalizedText, [
       'grateful', 'thankful', 'blessed', 'appreciated', 'thankfulness',
       'gratitude', 'thank god', 'thank the lord', 'counting blessings',
       'so blessed', 'truly blessed',
+      // Common bare verb/noun forms that boundary-matching otherwise misses
+      // (e.g. `\bblessed\b` won't match "blessing"; `\bappreciated\b` won't
+      // match "appreciate").
+      'thanks', 'thank you', 'blessing', 'blessings',
+      'appreciate', 'appreciative',
     ])) {
       return MoodResult(
         mood: 'grateful',
         emotionalTags: _extractTags(normalizedText, [
           'grateful', 'thankful', 'blessed', 'appreciated', 'gratitude',
         ]),
+        confidenceScore: 0.85,
+      );
+    }
+
+    // Calm-resolution phrases must beat the bare `down` keyword in the
+    // hurting list later in the chain. "calmed down" / "settled down"
+    // express resolution, not hurting.
+    if (_containsAny(normalizedText, [
+      'calmed down', 'calming down', 'settled down', 'winding down',
+    ])) {
+      return const MoodResult(
+        mood: 'calm_peaceful',
+        emotionalTags: [],
+        confidenceScore: 0.7,
+      );
+    }
+
+    // Brave-resolution phrases — same shape as the calm pre-check above.
+    // "won't back down" / "never back down" contain `down`, which would
+    // otherwise match the hurting list before the brave_courage list
+    // gets its turn.
+    if (_containsAny(normalizedText, [
+      'won\'t back down', 'never back down',
+    ])) {
+      return const MoodResult(
+        mood: 'brave_courage',
+        emotionalTags: ['determined'],
         confidenceScore: 0.85,
       );
     }
@@ -44,6 +80,13 @@ class MoodService {
       'uplifted', 'optimistic', 'relieved', 'celebration',
       'celebrate', 'thriving', 'fantastic', 'awesome', 'loving',
       'confident', 'proud', 'victorious', 'free',
+      // Positive superlatives — short replies like "Excellent" or "Perfect"
+      // must route to joyful, never the weary fallback.
+      'excellent', 'perfect', 'splendid', 'incredible', 'terrific',
+      'lovely', 'fabulous', 'marvelous',
+      // Common positive synonyms that miss the keyword list above and
+      // would otherwise default to calm_peaceful.
+      'thrilled', 'delighted', 'elated', 'ecstatic', 'glad', 'pleased',
     ])) {
       return MoodResult(
         mood: 'joyful',
@@ -67,6 +110,9 @@ class MoodService {
       'heavy', 'hard week', 'hard day', 'long week', 'long day',
       'rough week', 'rough day', 'difficult', 'too much',
       'tough day', 'tough week',
+      // Common tired-state synonyms missed by the list above.
+      // 'exhausted' and 'drained' are already present.
+      'sleepy', 'groggy', 'exhausting', 'pooped',
     ])) {
       return MoodResult(
         mood: 'weary',
@@ -89,6 +135,8 @@ class MoodService {
       'losing my mind', 'spiraling', 'what if', 'terrified',
       'keep thinking about', 'can\'t stop thinking',
       'can\'t stop worrying', 'won\'t stop',
+      // Short anxious synonyms that miss the list above.
+      'antsy', 'jittery', 'uptight',
     ])) {
       return MoodResult(
         mood: 'anxious',
@@ -111,6 +159,9 @@ class MoodService {
       'miss them', 'miss him', 'miss her', 'passed away', 'died',
       'struggling', 'falling apart', 'giving up',
       'hard time', 'rough time', 'going through',
+      // Short sadness synonyms that miss the list above.
+      // 'aching' is already present.
+      'heartache', 'blue', 'low', 'mourning',
     ])) {
       return MoodResult(
         mood: 'hurting',
@@ -129,6 +180,11 @@ class MoodService {
       'fighting', 'warrior', 'fearless', 'overcoming', 'overcome',
       'conquer', 'resilient', 'tough', 'persevere', 'endure',
       'never give up', 'push through', 'stepping out', 'taking a stand',
+      // Short brave declarations that miss the list above.
+      // 'fearless' is already present (and word-boundary matching means
+      // it now correctly routes to brave instead of being shadowed by
+      // the substring 'fear' in the anxious list).
+      'i got this', 'won\'t back down', 'face it',
     ])) {
       return MoodResult(
         mood: 'brave_courage',
@@ -163,6 +219,12 @@ class MoodService {
       'fired up', 'inspired', 'driven', 'eager', 'looking forward',
       'can do', 'let\'s go', 'bring it on', 'feeling good about',
       'on track', 'making progress', 'getting better', 'growing',
+      // Short can-do declarations missed by the list above. 'i can' was
+      // intentionally NOT added — `\bi can\b` matches "i can't" (the
+      // apostrophe is a word boundary), recreating the exact false-positive
+      // class this fix exists to remove. 'can do' already covers the
+      // legitimate "I can do this" usage.
+      'go for it', 'got this', 'let\'s do this',
     ])) {
       return MoodResult(
         mood: 'encouraging',
@@ -174,11 +236,13 @@ class MoodService {
       );
     }
 
-    // Default to weary — an unmatched phrase is more likely someone
-    // struggling to express something heavy than someone feeling calm.
-    // This prevents mismatched positive reflection lines on missed input.
+    // Default to calm_peaceful for unrecognized non-empty input.
+    // INVARIANTS.md (Mood System) requires the safe default to be
+    // calm_peaceful, never weary — otherwise short positive replies
+    // ("Excellent", "Perfect") that miss the keyword list misroute
+    // straight into suffering content like "Job Loses Everything".
     return const MoodResult(
-      mood: 'weary',
+      mood: 'calm_peaceful',
       emotionalTags: [],
       confidenceScore: 0.4,
     );
@@ -252,14 +316,50 @@ class MoodService {
     ],
   };
 
-  /// Check if text contains any of the given keywords
+  /// Word-boundary keyword match. Prevents substring collisions like
+  /// "painting" matching the keyword `pain` or "already" matching `ready`.
+  /// Multi-word phrases (`thank you`, `worn out`, `i got this`) work
+  /// unchanged — only the outer edges need boundaries; the spaces inside
+  /// the literal are still required to appear.
   bool _containsAny(String text, List<String> keywords) {
-    return keywords.any((keyword) => text.contains(keyword));
+    return keywords.any((keyword) {
+      return RegExp(r'\b' + _escapeRegex(keyword) + r'\b').hasMatch(text);
+    });
   }
 
-  /// Extract emotional tags that are present in the text
+  /// Extract emotional tags that are present in the text. Same
+  /// word-boundary semantics as [_containsAny] — keeps tag extraction in
+  /// lockstep with classification so a tag never appears for a phrase
+  /// that didn't actually trigger its mood.
   List<String> _extractTags(String text, List<String> possibleTags) {
-    return possibleTags.where((tag) => text.contains(tag)).toList();
+    return possibleTags.where((tag) {
+      return RegExp(r'\b' + _escapeRegex(tag) + r'\b').hasMatch(text);
+    }).toList();
+  }
+
+  /// Escape regex metacharacters so a keyword is matched as a literal.
+  /// Current keyword set has none, but this guards future additions.
+  String _escapeRegex(String s) {
+    return s.replaceAllMapped(
+      RegExp(r'[\\^$.|?*+()\[\]{}]'),
+      (m) => '\\${m[0]}',
+    );
+  }
+
+  /// Strip "not <positive>" patterns before keyword matching so that
+  /// phrases like "not happy" / "not great" do not classify as joyful.
+  /// Narrow scope: only the bare "not <positive>" form. Richer negation
+  /// handling (e.g. "I don't feel great", "wasn't really happy") is a
+  /// separate, harder problem and is intentionally out of scope.
+  String _maskNegatedPositives(String text) {
+    return text.replaceAll(
+      RegExp(
+        r'\bnot\s+(?:happy|good|great|okay|ok|fine|joyful|blessed|excited|'
+        r'amazing|wonderful|fantastic|awesome|excellent|perfect|grateful|'
+        r'thrilled|delighted|elated|ecstatic|glad|pleased)\b',
+      ),
+      ' ',
+    );
   }
 }
 
