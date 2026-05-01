@@ -34,6 +34,8 @@ class MoodService {
       // match "appreciate").
       'thanks', 'thank you', 'blessing', 'blessings',
       'appreciate', 'appreciative',
+      // Direct gratitude synonyms missing from the original list.
+      'fortunate', 'lucky', 'honored',
     ])) {
       return MoodResult(
         mood: 'grateful',
@@ -44,11 +46,13 @@ class MoodService {
       );
     }
 
-    // Calm-resolution phrases must beat the bare `down` keyword in the
-    // hurting list later in the chain. "calmed down" / "settled down"
-    // express resolution, not hurting.
+    // Calm-resolution phrases must beat the bare `down` / `low`
+    // keywords in the hurting list later in the chain. "calmed down" /
+    // "settled down" express resolution, not hurting; "low key"
+    // expresses an unhurried day.
     if (_containsAny(normalizedText, [
       'calmed down', 'calming down', 'settled down', 'winding down',
+      'low key',
     ])) {
       return const MoodResult(
         mood: 'calm_peaceful',
@@ -60,9 +64,10 @@ class MoodService {
     // Brave-resolution phrases — same shape as the calm pre-check above.
     // "won't back down" / "never back down" contain `down`, which would
     // otherwise match the hurting list before the brave_courage list
-    // gets its turn.
+    // gets its turn. "no fear" contains `fear`, which would otherwise
+    // match the anxious list (which runs before brave_courage).
     if (_containsAny(normalizedText, [
-      'won\'t back down', 'never back down',
+      'won\'t back down', 'never back down', 'no fear',
     ])) {
       return const MoodResult(
         mood: 'brave_courage',
@@ -87,6 +92,8 @@ class MoodService {
       // Common positive synonyms that miss the keyword list above and
       // would otherwise default to calm_peaceful.
       'thrilled', 'delighted', 'elated', 'ecstatic', 'glad', 'pleased',
+      // Excited-slang + strong positive markers.
+      'stoked', 'psyched', 'best day',
     ])) {
       return MoodResult(
         mood: 'joyful',
@@ -113,6 +120,12 @@ class MoodService {
       // Common tired-state synonyms missed by the list above.
       // 'exhausted' and 'drained' are already present.
       'sleepy', 'groggy', 'exhausting', 'pooped',
+      // Workload/overwhelm shorthand. `\bbusy\b` won't match "business"
+      // (different letters); covers "busy day", "very busy", "so busy".
+      'busy', 'swamped',
+      // Bare slang + sleep-deprivation phrases.
+      'wiped', 'frazzled', 'dragging',
+      'can\'t sleep', 'couldn\'t sleep',
     ])) {
       return MoodResult(
         mood: 'weary',
@@ -137,6 +150,8 @@ class MoodService {
       'can\'t stop worrying', 'won\'t stop',
       // Short anxious synonyms that miss the list above.
       'antsy', 'jittery', 'uptight',
+      // Physical-tension markers + adverbial form of "freaking out".
+      'wound up', 'wired', 'freaking',
     ])) {
       return MoodResult(
         mood: 'anxious',
@@ -162,6 +177,12 @@ class MoodService {
       // Short sadness synonyms that miss the list above.
       // 'aching' is already present.
       'heartache', 'blue', 'low', 'mourning',
+      // Negated-positive shorthand that boundary matching otherwise
+      // sends to the calm_peaceful default. 'unhappy' is the most
+      // common form; it must route to a sad mood, not to calm.
+      'unhappy',
+      // Strong-negative markers + "off / unwell" phrasing.
+      'bummed', 'terrible', 'awful', 'horrible', 'not myself',
     ])) {
       return MoodResult(
         mood: 'hurting',
@@ -185,6 +206,9 @@ class MoodService {
       // it now correctly routes to brave instead of being shadowed by
       // the substring 'fear' in the anxious list).
       'i got this', 'won\'t back down', 'face it',
+      // Confident-self statements. 'no fear' also lives in the
+      // brave-resolution pre-check above so it wins over anxious 'fear'.
+      'won\'t quit', 'no fear', 'i\'ll handle it',
     ])) {
       return MoodResult(
         mood: 'brave_courage',
@@ -202,6 +226,9 @@ class MoodService {
       'at ease', 'relaxed', 'resting', 'tranquil', 'centered',
       'grounded', 'settled', 'steady', 'balanced', 'present',
       'mindful', 'unhurried', 'gentle', 'soft',
+      // Calm-day shorthand. `\bchill\b` does not match "chilly" or
+      // "chilling" (no boundary after `chill` when followed by `y`/`i`).
+      'chill', 'low key',
     ])) {
       return MoodResult(
         mood: 'calm_peaceful',
@@ -346,19 +373,30 @@ class MoodService {
     );
   }
 
-  /// Strip "not <positive>" patterns before keyword matching so that
-  /// phrases like "not happy" / "not great" do not classify as joyful.
-  /// Narrow scope: only the bare "not <positive>" form. Richer negation
-  /// handling (e.g. "I don't feel great", "wasn't really happy") is a
-  /// separate, harder problem and is intentionally out of scope.
+  /// Substitute "not <positive>" patterns with the marker token
+  /// "unhappy" before keyword matching. This routes phrases like
+  /// "not happy" / "not great" / "not good" into the hurting mood
+  /// (where 'unhappy' is a keyword), instead of dropping the phrase
+  /// to the calm_peaceful default — which produced inappropriate
+  /// calm/positive PAL responses to negative input.
+  ///
+  /// Optional `(?:doing\s+)?` bridge catches the common "not doing
+  /// well" / "not doing great" form. Token list also includes
+  /// `well` / `alright` so plain "not well" / "not alright" route
+  /// to hurting too.
+  ///
+  /// Narrow scope: only the bare "not <positive>" form. Richer
+  /// negation handling (e.g. "I don't feel great", "wasn't really
+  /// happy") is a separate, harder problem and remains out of scope.
   String _maskNegatedPositives(String text) {
     return text.replaceAll(
       RegExp(
-        r'\bnot\s+(?:happy|good|great|okay|ok|fine|joyful|blessed|excited|'
-        r'amazing|wonderful|fantastic|awesome|excellent|perfect|grateful|'
-        r'thrilled|delighted|elated|ecstatic|glad|pleased)\b',
+        r'\bnot\s+(?:doing\s+)?(?:happy|good|great|okay|ok|fine|joyful|'
+        r'blessed|excited|amazing|wonderful|fantastic|awesome|excellent|'
+        r'perfect|grateful|thrilled|delighted|elated|ecstatic|glad|'
+        r'pleased|well|alright|lucky)\b',
       ),
-      ' ',
+      'unhappy',
     );
   }
 }
