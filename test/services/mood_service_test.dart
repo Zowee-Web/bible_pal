@@ -576,4 +576,115 @@ void main() {
       expect(service.detectMood('i got this').mood, 'brave_courage');
     });
   });
+
+  // ---------------------------------------------------------------------
+  // Mixed-emotion "X but Y" handling. When the after-but clause is a
+  // positive resolution mood (joyful, grateful, encouraging,
+  // brave_courage, calm_peaceful), it overrides the before-but mood.
+  // Negative after-clauses do NOT override (conservative scope).
+  // Splits on the LAST " but " so the most-final emotion wins.
+  // Idiom guard: "anything but X" / "nothing but X" / "everything but X"
+  // do NOT trigger the override (those phrases mean NOT X / ONLY X).
+  // ---------------------------------------------------------------------
+  group('MoodService.detectMood — mixed-emotion "but" handling', () {
+    test('positive after-clause overrides negative before-clause', () {
+      final service = MoodService(random: Random(0));
+      // "negative state, but positive resolution" — after-clause wins.
+      expect(service.detectMood("I'm tired but happy").mood, 'joyful');
+      expect(service.detectMood('not great but thankful').mood, 'grateful');
+      expect(service.detectMood('sad but hopeful').mood, 'joyful',
+          reason: '`hopeful` is currently in the joyful keyword list. '
+              'Routing to encouraging would require moving the keyword '
+              '— deferred per scope.');
+      expect(service.detectMood('anxious but calm now').mood, 'calm_peaceful');
+      expect(service.detectMood('rough day but grateful').mood, 'grateful');
+      expect(service.detectMood('exhausted but excited').mood, 'joyful');
+    });
+
+    test('weak/default after-clause does NOT override; before-clause wins',
+        () {
+      final service = MoodService(random: Random(0));
+      // "fine" / "okay" / "alright" are not keywords (stopped from
+      // being added because they're too neutral). They classify as the
+      // default fallback (confidence 0.4) and must not override.
+      expect(service.detectMood('exhausted but fine').mood, 'weary',
+          reason: '"fine" has no keyword → default fallback → keep before.');
+      // "rough day but okay" — Adam's spec: hurting OR weary, but never
+      // joyful/grateful/calm_peaceful.
+      final mood1 = service.detectMood('rough day but okay').mood;
+      expect({'weary', 'hurting'}, contains(mood1),
+          reason: '"rough day but okay" should land on a heavy mood; '
+              'got "$mood1".');
+      expect(mood1, isNot('joyful'));
+      expect(mood1, isNot('grateful'));
+      expect(mood1, isNot('calm_peaceful'));
+      // "sad but I guess okay" — same shape; before-clause wins.
+      expect(service.detectMood('sad but I guess okay').mood, 'hurting');
+    });
+
+    test('negative after-clause does NOT override (conservative rule)', () {
+      final service = MoodService(random: Random(0));
+      // "happy but tired" — after=weary (negative). Filter rejects.
+      // Falls to regular classification: 'happy' matches joyful first.
+      expect(service.detectMood('happy but tired').mood, 'joyful',
+          reason: 'Negative after-clauses do not flip the routing — the '
+              'first clause stays dominant. Documented limitation.');
+    });
+
+    test('idiom guard: "anything but X" / "everything but X" do NOT '
+        'route to X', () {
+      final service = MoodService(random: Random(0));
+      // "anything but happy" means NOT happy — would have wrongly
+      // routed to joyful without the guard. Routes to hurting via
+      // the 'unhappy' marker.
+      expect(service.detectMood('anything but happy').mood, isNot('joyful'),
+          reason: '"anything but happy" means NOT happy.');
+      expect(service.detectMood('anything but happy').mood, 'hurting',
+          reason: 'Idiom guard substitutes "unhappy" → hurting.');
+      expect(service.detectMood('everything but grateful').mood,
+          isNot('grateful'),
+          reason: '"everything but grateful" means all except grateful.');
+      expect(service.detectMood('everything but happy').mood, isNot('joyful'),
+          reason: '"everything but happy" means all except happy.');
+    });
+
+    test('"nothing but X" is NOT guarded — it means ONLY X', () {
+      // "nothing but happy" = "only happy" → joyful. Distinct from
+      // "anything but" / "everything but" which exclude X.
+      final service = MoodService(random: Random(0));
+      expect(service.detectMood('nothing but happy').mood, 'joyful',
+          reason: '"nothing but happy" means ONLY happy.');
+      expect(service.detectMood('nothing but grateful').mood, 'grateful',
+          reason: '"nothing but grateful" means purely grateful.');
+    });
+
+    test('multiple "but" splits on the LAST occurrence', () {
+      final service = MoodService(random: Random(0));
+      // "tired but happy but lonely" — split: before="tired but happy",
+      // after="lonely". After=hurting (negative), filter rejects → falls
+      // to regular classification of the full input. 'happy' matches
+      // joyful first → joyful.
+      expect(
+          service.detectMood('tired but happy but lonely').mood, 'joyful');
+      // "anxious but tired but grateful" — last split: after="grateful".
+      // Positive ✓, override → grateful.
+      expect(service.detectMood('anxious but tired but grateful').mood,
+          'grateful');
+    });
+
+    test('comma / semicolon separators are accepted', () {
+      final service = MoodService(random: Random(0));
+      expect(service.detectMood('I am tired, but happy').mood, 'joyful');
+      expect(service.detectMood('I am tired; but happy').mood, 'joyful');
+    });
+
+    test('inputs without "but" classify normally (no regression)', () {
+      final service = MoodService(random: Random(0));
+      // Sanity: the mixed-but path must not affect regular inputs.
+      expect(service.detectMood('happy').mood, 'joyful');
+      expect(service.detectMood('exhausted').mood, 'weary');
+      expect(service.detectMood('grateful').mood, 'grateful');
+      expect(service.detectMood('').mood, 'calm_peaceful');
+    });
+  });
 }

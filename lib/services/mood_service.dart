@@ -7,8 +7,16 @@ class MoodService {
   final Random _random;
 
   MoodService({Random? random}) : _random = random ?? Random();
-  /// Detect mood from user's text input
-  /// Returns mood category and emotional tags
+  /// Detect mood from user's text input.
+  /// Returns mood category and emotional tags.
+  ///
+  /// Pipeline:
+  /// 1. Normalize (lowercase + trim)
+  /// 2. Empty → calm_peaceful default (confidence 0.5)
+  /// 3. [_maskNegatedPositives] — substitute "not <positive>" → "unhappy"
+  /// 4. [_detectMixedButMood] — "X but Y" mixed-emotion handling; if the
+  ///    after-but clause is a positive resolution mood, use it
+  /// 5. [_classifyByKeywords] — standard keyword-chain classification
   MoodResult detectMood(String text) {
     final lowered = text.toLowerCase().trim();
 
@@ -24,6 +32,21 @@ class MoodService {
     // as joyful via raw keyword presence. See [_maskNegatedPositives].
     final normalizedText = _maskNegatedPositives(lowered);
 
+    // Mixed-emotion "X but Y" handling. Returns null when no override
+    // applies; we then fall through to the standard keyword chain.
+    final mixed = _detectMixedButMood(normalizedText);
+    if (mixed != null) return mixed;
+
+    return _classifyByKeywords(normalizedText);
+  }
+
+  /// Standard keyword-chain classification. Operates on already-
+  /// normalized + mask-applied text. Always returns a [MoodResult] —
+  /// the calm_peaceful default (confidence 0.4) when nothing matches.
+  ///
+  /// Extracted from [detectMood] so [_detectMixedButMood] can classify
+  /// the after-but clause without re-entering the mixed-but logic.
+  MoodResult _classifyByKeywords(String normalizedText) {
     // Check for grateful/thankful indicators (before joyful — more specific)
     if (_containsAny(normalizedText, [
       'grateful', 'thankful', 'blessed', 'appreciated', 'thankfulness',
@@ -342,6 +365,78 @@ class MoodService {
       "That determination shines. Here's a story to match it.",
     ],
   };
+
+  /// Mixed-emotion "X but Y" handling. When the after-but clause
+  /// expresses a positive resolution mood (joyful, grateful, encouraging,
+  /// brave_courage, calm_peaceful), prefer it over the before-but clause.
+  /// Returns null when no override applies; the caller falls through to
+  /// the standard keyword classification.
+  ///
+  /// Conservative scope:
+  /// - Only positive resolution moods override. Negative after-clauses
+  ///   (anxious, weary, hurting) do NOT flip the routing — the typical
+  ///   reflection pattern is "negative → positive resolution", not the
+  ///   reverse, so the first clause stays dominant in that case.
+  /// - Splits on the LAST " but " so the most-final emotion wins in
+  ///   chains like "tired but happy but lonely".
+  ///
+  /// Idiom guard: "anything but X" / "nothing but X" / "everything but X"
+  /// are NOT contrast — they mean NOT X / ONLY X / etc. When the
+  /// before-clause collapses to one of those, skip the override.
+  MoodResult? _detectMixedButMood(String normalized) {
+    final split = _splitOnLastBut(normalized);
+    if (split == null) return null;
+    final before = split[0];
+    final after = split[1];
+    if (before.isEmpty || after.isEmpty) return null;
+
+    // Idiom guard. "anything but X" / "everything but X" mean NOT X /
+    // all except X — route to hurting via the 'unhappy' marker so the
+    // after-clause's positive keyword doesn't leak through the regular
+    // classifier ("anything but happy" must not become joyful via the
+    // standalone 'happy' match).
+    //
+    // "nothing but X" is intentionally EXCLUDED from this guard — it
+    // means "ONLY X" (e.g. "nothing but grateful" = purely grateful),
+    // so the normal positive-resolution override applies and routes to
+    // X. Falls through to the standard mixed-but logic below.
+    const idiomBefores = {'anything', 'everything'};
+    if (idiomBefores.contains(before)) {
+      return _classifyByKeywords('unhappy');
+    }
+
+    final afterResult = _classifyByKeywords(after);
+    // Confidence < 0.5 == default fallback (no keyword matched).
+    // Empty/weak after-clauses must not override (e.g. "exhausted but
+    // fine" → after='fine' has no keyword → keep before=weary).
+    if (afterResult.confidenceScore < 0.5) return null;
+
+    const positiveMoods = {
+      'joyful',
+      'grateful',
+      'encouraging',
+      'brave_courage',
+      'calm_peaceful',
+    };
+    if (!positiveMoods.contains(afterResult.mood)) return null;
+
+    return afterResult;
+  }
+
+  /// Split [text] on the LAST occurrence of " but " (with optional
+  /// leading "," / ";"). Returns [before, after] trimmed, or null if
+  /// no split point exists. Whitespace boundary on both sides prevents
+  /// accidental matches inside words.
+  List<String>? _splitOnLastBut(String text) {
+    final pattern = RegExp(r'(?:[,;]\s+but\s+|\s+but\s+)');
+    final matches = pattern.allMatches(text).toList();
+    if (matches.isEmpty) return null;
+    final last = matches.last;
+    return [
+      text.substring(0, last.start).trim(),
+      text.substring(last.end).trim(),
+    ];
+  }
 
   /// Word-boundary keyword match. Prevents substring collisions like
   /// "painting" matching the keyword `pain` or "already" matching `ready`.
