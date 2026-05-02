@@ -104,3 +104,8 @@ assets_audio_compressed/
 # committed. Files are preserved on disk for any future
 # regeneration / replacement-voice work.
 assets/pal/audio/VOICE_RUTH_COMFORT_V2/
+
+# Local WIP snapshots — produced when intentionally pushing committed
+# work while leaving an in-progress working tree (e.g. PAL opening
+# retirement). Always local, never committed.
+wip-*-status.txt
