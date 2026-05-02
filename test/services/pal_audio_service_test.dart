@@ -135,4 +135,40 @@ void main() {
               'cancel-then-retry corrupts the audio session.');
     });
   });
+
+  // ---------------------------------------------------------------------
+  // Source-level pin: playLine MUST self-heal on iOS PlayerException
+  // -11849 ("Operation Stopped") by calling recoverFromOperationStopped
+  // and retrying. Without this, the AVPlayer stays wedged and every
+  // subsequent setAsset returns the same code — silently. PAL goes
+  // mute on the NEXT line until the app is force-quit.
+  // playLineResolved already had its own -11849 detection (it returns
+  // an `operation_stopped` resolution and lets the caller schedule
+  // cooldown); playLine had no equivalent and was the source of the
+  // accumulating wedge.
+  // ---------------------------------------------------------------------
+  group('PalAudioService.playLine cancel-safety contract', () {
+    test('catches PlayerException -11849 and self-heals via recovery', () {
+      final source =
+          File('lib/services/pal_audio_service.dart').readAsStringSync();
+      final lines = source.split('\n');
+
+      // Locate the playLine method body.
+      final declIdx = lines.indexWhere(
+          (l) => l.contains('Future<bool> playLine(String lineId'));
+      expect(declIdx, greaterThan(-1),
+          reason: 'playLine must remain a public API.');
+
+      // Take a generous window forward (covers the catch + self-heal).
+      final body = lines.skip(declIdx).take(60).join('\n');
+
+      expect(body, contains('-11849'),
+          reason: 'playLine MUST detect iOS PlayerException -11849.');
+      expect(body, contains('recoverFromOperationStopped'),
+          reason: 'playLine MUST call recoverFromOperationStopped on '
+              '-11849 to dispose+recreate the wedged AVPlayer. Without '
+              'this, the wedge persists and PAL goes mute on the next '
+              'line.');
+    });
+  });
 }

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,9 +16,9 @@ import '../../providers/service_providers.dart';
 import '../../core/biblical_figure_registry.dart';
 import '../../core/creative_opening_lines.dart';
 import '../../core/pal_reflection_lines.dart';
-import '../../core/pal_tone_biased_reflection_lines.dart';
 import '../../core/pal_transition_lines.dart';
 import '../pal/opening/pal_opening_lines.dart';
+import '../pal/opening/pal_opening_recency.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/living_sky.dart';
 import '../onboarding/first_launch_screen.dart' show kPalIntroShownKey;
@@ -34,10 +35,6 @@ import '../../widgets/glass_input_decoration.dart';
 import '../../widgets/living_sky_background.dart';
 import '../../widgets/premium_components.dart';
 import '../paths/paths_page.dart';
-
-/// Session-only opening tone (Feature 2.0). Set when the PAL opening line is
-/// selected; reset at the start of the next tap. Never persisted to storage.
-final _palOpeningToneProvider = StateProvider<PalOpeningTone?>((ref) => null);
 
 /// Re-entrancy guard shared across mood/text/voice entry flows so the user
 /// can't double-tap themselves into two parallel selections.
@@ -822,19 +819,11 @@ class _StudyPageState extends ConsumerState<_StudyPage>
         await BiblicalFigureRegistry.ensureLoaded();
         await PalTransitionLines.ensureLoaded();
         await PalReflectionLines.ensureLoaded();
-        await PalToneBiasedReflectionLines.ensureLoaded();
         final framingRef =
             BiblicalFigureRegistry.getFramingLineRef(previewKey);
         final transitionRef =
             PalTransitionLines.getLineRef(previewKey);
-        // Feature 5.1: use tone-biased first sentence when opening tone is
-        // active; fall back to standard reflection line if key not found.
-        final openingTone = ref.read(_palOpeningToneProvider);
-        final reflectionRef = (openingTone != null
-                ? PalToneBiasedReflectionLines.getLineRef(
-                    moodResult.mood, openingTone)
-                : null) ??
-            PalReflectionLines.getLineRef(moodResult.mood);
+        final reflectionRef = PalReflectionLines.getLineRef(moodResult.mood);
         if (framingRef != null && mounted) {
           // Text-input flow: no audio. PAL's voice responses are reserved
           // for the voice flow (`_processMoodFromVoice`); typed input
@@ -1464,6 +1453,24 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     final palAudio = ref.read(palAudioServiceProvider);
     palAudio.stop();
 
+    // Defense-in-depth: cancels that fire while PAL audio is mid-flight
+    // can leave the iOS audio session in a partially-degraded state
+    // even when -11849 hasn't yet surfaced on a specific call. Each
+    // such cycle compounds — after a few cancel/retry rounds, PAL
+    // goes mute. Force a recovery on these cancels so the next session
+    // starts against a fresh AVPlayer + reactivated session.
+    //
+    // Excluded: `responding` is the post-mood navigation phase. The
+    // success path at the end of `_processMoodFromVoice` calls
+    // `_cancelConversation()` *as cleanup before navigating to the
+    // story player* — recovering the session there would race the
+    // story player's own audio session activation. We only force
+    // recovery for opening-line cancels (which is where the wedge
+    // typically accumulates anyway).
+    if (_voiceFlow == _VoiceFlowState.playingOpeningLine) {
+      _needsAudioCooldown = true;
+    }
+
     if (_needsAudioCooldown) {
       // Hold the conversation reentrancy guard up while the audio
       // stack recovers (dispose+recreate player, deactivate→
@@ -1554,11 +1561,12 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     // Pause breathing during voice flow
     _breathController.stop();
 
-    // Feature 2.0 — Delilah pre-greeting opening line.
-    // Selected uniformly at random; tone stored session-only (never persisted).
-    ref.read(_palOpeningToneProvider.notifier).state = null; // reset from prior session
-    final opening = pickOpeningLine();
-    ref.read(_palOpeningToneProvider.notifier).state = opening.tone;
+    // Feature 2.0 — time-bucketed opening greeting (mood-blind).
+    // Time bucket is computed from current local hour; line is chosen
+    // from that bucket via persistent recency rotation.
+    await PalOpeningRecency.ensureInitialized();
+    final hour = DateTime.now().hour;
+    final opening = pickOpeningLineForHour(hour);
     setState(() {
       _voiceFlow = _VoiceFlowState.playingOpeningLine;
       _greetingText = opening.text;
@@ -1574,6 +1582,47 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       final voiceKey =
           appStateForOpening?.userPreferences.palVoiceKey ?? PalVoiceRegistry.defaultVoiceKey;
       final palAudio = ref.read(palAudioServiceProvider);
+
+      // Name-prefix roll (Feature 2.0). 30% probability; eligibility is
+      // bare-type lines only (greeting-type lines play solo to avoid
+      // "Hi there, Adam! Hi… how's your morning been?" stacking).
+      // Filters out the "welcome back" template via
+      // `getRandomNameClipForOpening` — that prefix implies returning-user
+      // memory, which Feature 2.0 deliberately does not yet provide.
+      File? nameClipFile;
+      var namePrefixAttempted = false;
+      var namePrefixAttached = false;
+      if (opening.type == OpeningLineType.bare) {
+        final userName = appStateForOpening?.userPreferences.userName ?? '';
+        if (userName.isNotEmpty && Random().nextDouble() < 0.30) {
+          namePrefixAttempted = true;
+          final nameAudio = ref.read(nameAudioServiceProvider);
+          final nameClip =
+              await nameAudio.getRandomNameClipForOpening(userName, voiceKey);
+          if (nameClip != null) {
+            nameClipFile = nameClip.file;
+            namePrefixAttached = true;
+          } else {
+            // Cache miss — kick off lazy generation for next time.
+            nameAudio.generateNamePhrases(
+              name: userName,
+              voiceKey: voiceKey,
+            );
+          }
+        }
+      }
+
+      // Selection telemetry — fires before playback so we capture every
+      // selection even when downstream audio resolution fails.
+      logEvent('pal_opening_line_selected', {
+        'line_id': opening.id,
+        'time_bucket': opening.bucket.name,
+        'hour': hour,
+        'line_type': opening.type.name,
+        'name_prefix_attempted': namePrefixAttempted,
+        'name_prefix_attached': namePrefixAttached,
+      });
+
       final expectedPath = PalAudioService.assetPath(voiceKey, opening.id);
 
       try {
@@ -1583,7 +1632,11 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         // the time setAsset/play runs. Idempotent — subsequent
         // calls in the same app session are fast no-ops.
         await palAudio.ensureAudioSessionActive();
-        var resolution = await palAudio.playLineResolved(opening.id, voiceKey);
+        var resolution = await palAudio.playLineResolved(
+          opening.id,
+          voiceKey,
+          nameClipFile: nameClipFile,
+        );
         // Retry-once narrowly here in the opening flow for non-fatal
         // failures (e.g. transient asset-load issues). For iOS
         // -11849 ("Operation Stopped") the AVPlayer is wedged and
@@ -1594,7 +1647,11 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         // recovery cooldown before the next tap is allowed.
         if (!resolution.played && resolution.source != 'operation_stopped') {
           await Future.delayed(const Duration(milliseconds: 500));
-          resolution = await palAudio.playLineResolved(opening.id, voiceKey);
+          resolution = await palAudio.playLineResolved(
+            opening.id,
+            voiceKey,
+            nameClipFile: nameClipFile,
+          );
           logEvent('pal_audio_opening_retry', {
             'line_id': opening.id,
             'voice_key': voiceKey,
@@ -1865,13 +1922,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
           appState?.userPreferences.palGreetingsEnabled != false;
       if (palResponseEnabled) {
         await PalReflectionLines.ensureLoaded();
-        await PalToneBiasedReflectionLines.ensureLoaded();
-        final openingTone = ref.read(_palOpeningToneProvider);
-        final reflectionRef = (openingTone != null
-                ? PalToneBiasedReflectionLines.getLineRef(
-                    result.mood, openingTone)
-                : null) ??
-            PalReflectionLines.getLineRef(result.mood);
+        final reflectionRef = PalReflectionLines.getLineRef(result.mood);
         if (reflectionRef != null && mounted) {
           final palAudio = ref.read(palAudioServiceProvider);
           try {
@@ -2350,21 +2401,14 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         );
 
       case _VoiceFlowState.listening:
+        // Hide the greeting/prompt during listening — the mic-pulse
+        // indicator + partial transcript are sufficient signal that
+        // PAL is awaiting the user's response. The greeting stays
+        // visible during playingOpeningLine / playingGreeting above.
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (_greetingText != null)
-              Text(
-                _greetingText!,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: palette.foreground.mutedText,
-                  fontStyle: FontStyle.italic,
-                  shadows: palette.foreground.subtitleShadow,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            if (_partialTranscript.isNotEmpty) ...[
-              const SizedBox(height: 8),
+            if (_partialTranscript.isNotEmpty)
               Text(
                 _partialTranscript,
                 style: theme.textTheme.bodyMedium?.copyWith(
@@ -2373,7 +2417,6 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
                 ),
                 textAlign: TextAlign.center,
               ),
-            ],
           ],
         );
 
