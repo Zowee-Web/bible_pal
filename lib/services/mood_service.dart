@@ -420,8 +420,48 @@ class MoodService {
     };
     if (!positiveMoods.contains(afterResult.mood)) return null;
 
-    return afterResult;
+    // Compute blended micro-response when the before-clause has a real
+    // emotional signal AND a (before-mood, after-mood) template exists.
+    // The default fallback (confidence 0.4) means no keyword matched in
+    // the before-clause — treat that as "no signal", skip the blend.
+    String? blended;
+    final beforeResult = _classifyByKeywords(before);
+    if (beforeResult.confidenceScore >= 0.5) {
+      blended =
+          _blendedMicroResponses[beforeResult.mood]?[afterResult.mood];
+    }
+
+    return MoodResult(
+      mood: afterResult.mood,
+      emotionalTags: afterResult.emotionalTags,
+      confidenceScore: afterResult.confidenceScore,
+      blendedMicroResponseText: blended,
+    );
   }
+
+  /// Blended micro-responses for mixed-emotion "X but Y" inputs.
+  /// Keyed by (before-mood, after-mood). Only the most common
+  /// negative→positive combos are templated; other combos fall back
+  /// to the standard per-mood [_microResponses] line via
+  /// [getMicroResponseText].
+  ///
+  /// All templates are ≤ 12 words per SPEC §4 — pinned by a
+  /// regression test. Tone-matched to the existing `_microResponses`
+  /// pool: short, gentle, non-therapeutic, no "but"-mechanics
+  /// language exposed to the user.
+  static const Map<String, Map<String, String>> _blendedMicroResponses = {
+    'weary': {
+      'grateful': "A lot to carry, and still there's gratitude in it.",
+      'joyful': "That sounds tiring, but there's still a bright spark in it.",
+    },
+    'hurting': {
+      'grateful': "That sounds tender, and there's still thanks in it.",
+      'joyful': "That has been heavy, and I hear a little light.",
+    },
+    'anxious': {
+      'calm_peaceful': "That was unsettled, but some calm is returning now.",
+    },
+  };
 
   /// Split [text] on the LAST occurrence of " but " (with optional
   /// leading "," / ";"). Returns [before, after] trimmed, or null if
@@ -502,9 +542,22 @@ class MoodResult {
   final List<String> emotionalTags;
   final double confidenceScore; // 0.0 to 1.0
 
+  /// Optional blended micro-response for mixed-emotion "X but Y" inputs
+  /// (e.g. "tired but grateful"). Non-null only when:
+  ///   - the input was a recognized "X but Y" phrase,
+  ///   - the before-clause has a real emotional signal, AND
+  ///   - a (before-mood, after-mood) template exists in
+  ///     `MoodService._blendedMicroResponses`.
+  ///
+  /// When non-null, callers should prefer this for display; otherwise
+  /// fall back to `MoodService.getMicroResponseText(mood)` as before.
+  /// Voiced versions are out of scope (text-only).
+  final String? blendedMicroResponseText;
+
   const MoodResult({
     required this.mood,
     required this.emotionalTags,
     required this.confidenceScore,
+    this.blendedMicroResponseText,
   });
 }

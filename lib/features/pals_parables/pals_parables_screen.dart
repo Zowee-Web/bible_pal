@@ -531,6 +531,14 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
       }
     }
 
+    // Mixed-emotion "X but Y" inputs may produce a blended micro-response
+    // that acknowledges both sides. Prefer it for display when present.
+    // Audio (legacy path) still plays the standard RESP_* line for the
+    // resolved mood — voiced blends are out of scope.
+    if (result.blendedMicroResponseText != null) {
+      responseText = result.blendedMicroResponseText!;
+    }
+
     if (!mounted) return;
 
     setState(() {

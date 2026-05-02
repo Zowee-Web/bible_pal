@@ -687,4 +687,134 @@ void main() {
       expect(service.detectMood('').mood, 'calm_peaceful');
     });
   });
+
+  // ---------------------------------------------------------------------
+  // Blended micro-responses for mixed-emotion inputs. When the input is
+  // an "X but Y" phrase, the before-clause has a real emotional signal,
+  // and a (before, after) template exists, MoodResult carries a
+  // blendedMicroResponseText that the consumer should prefer over the
+  // standard mood-keyed micro-response. Voiced versions are out of
+  // scope — text-only.
+  // ---------------------------------------------------------------------
+  group('MoodService.detectMood — blended micro-responses for mixed inputs',
+      () {
+    test('"I\'m tired but grateful" → grateful with blended text', () {
+      final service = MoodService(random: Random(0));
+      final result = service.detectMood("I'm tired but grateful");
+      expect(result.mood, 'grateful');
+      expect(result.blendedMicroResponseText, isNotNull);
+      // weary→grateful template touches both sides of the emotion.
+      final lower = result.blendedMicroResponseText!.toLowerCase();
+      expect(lower, contains('carry'),
+          reason: 'Blend should acknowledge the weary side.');
+      expect(lower, contains('gratitude'),
+          reason: 'Blend should acknowledge the grateful side.');
+    });
+
+    test('"rough day but thankful" → grateful with blended text', () {
+      final service = MoodService(random: Random(0));
+      final result = service.detectMood('rough day but thankful');
+      expect(result.mood, 'grateful');
+      expect(result.blendedMicroResponseText, isNotNull);
+      final lower = result.blendedMicroResponseText!.toLowerCase();
+      expect(lower, contains('carry'));
+      expect(lower, contains('gratitude'));
+    });
+
+    test('"sad but hopeful" → joyful with blended text', () {
+      final service = MoodService(random: Random(0));
+      final result = service.detectMood('sad but hopeful');
+      expect(result.mood, 'joyful');
+      expect(result.blendedMicroResponseText, isNotNull);
+      // hurting→joyful template: heavy + light.
+      final lower = result.blendedMicroResponseText!.toLowerCase();
+      expect(lower, contains('heavy'),
+          reason: 'Blend should acknowledge the sad side.');
+      expect(lower, contains('light'),
+          reason: 'Blend should acknowledge the hopeful side.');
+    });
+
+    test('"anxious but calm now" → calm_peaceful with blended text', () {
+      final service = MoodService(random: Random(0));
+      final result = service.detectMood('anxious but calm now');
+      expect(result.mood, 'calm_peaceful');
+      expect(result.blendedMicroResponseText, isNotNull);
+      // anxious→calm template: unsettled + calm.
+      final lower = result.blendedMicroResponseText!.toLowerCase();
+      expect(lower, contains('unsettled'));
+      expect(lower, contains('calm'));
+    });
+
+    test('"exhausted but excited" → joyful with blended text', () {
+      final service = MoodService(random: Random(0));
+      final result = service.detectMood('exhausted but excited');
+      expect(result.mood, 'joyful');
+      expect(result.blendedMicroResponseText, isNotNull);
+      // weary→joyful template: tiring + bright.
+      final lower = result.blendedMicroResponseText!.toLowerCase();
+      expect(lower, contains('tiring'));
+      expect(lower, contains('bright'));
+    });
+
+    test('"exhausted but fine" → weary with NO blended text', () {
+      // After-clause is too weak (default fallback). No override, no
+      // blend. Single-mood weary response is used downstream.
+      final service = MoodService(random: Random(0));
+      final result = service.detectMood('exhausted but fine');
+      expect(result.mood, 'weary');
+      expect(result.blendedMicroResponseText, isNull);
+    });
+
+    test('"anything but happy" → hurting with NO blended text', () {
+      // Idiom guard fires before mixed-but logic computes a blend.
+      final service = MoodService(random: Random(0));
+      final result = service.detectMood('anything but happy');
+      expect(result.mood, 'hurting');
+      expect(result.blendedMicroResponseText, isNull);
+    });
+
+    test('"nothing but happy" → joyful with NO blended text', () {
+      // "nothing but X" means "ONLY X" — falls through normal mixed-but
+      // logic. Before-clause "nothing" classifies as default (no
+      // keyword), so the blend lookup is skipped. Pure joyful response.
+      final service = MoodService(random: Random(0));
+      final result = service.detectMood('nothing but happy');
+      expect(result.mood, 'joyful');
+      expect(result.blendedMicroResponseText, isNull,
+          reason: '"nothing but happy" expresses pure happiness; no '
+              'tension to acknowledge.');
+    });
+
+    test('single-mood inputs have null blendedMicroResponseText', () {
+      final service = MoodService(random: Random(0));
+      expect(service.detectMood('happy').blendedMicroResponseText, isNull);
+      expect(service.detectMood('tired').blendedMicroResponseText, isNull);
+      expect(service.detectMood('grateful').blendedMicroResponseText, isNull);
+      expect(service.detectMood('').blendedMicroResponseText, isNull);
+    });
+
+    test('all blended templates are ≤ 12 words (SPEC §4)', () {
+      // Pin the SPEC §4 word-count constraint. Iterates every known
+      // mixed-input combo through the public detector and asserts the
+      // produced blend is ≤ 12 words. Catches any future template edit
+      // that violates the limit.
+      final service = MoodService(random: Random(0));
+      const inputs = [
+        'tired but grateful',
+        'tired but happy',
+        'sad but grateful',
+        'sad but hopeful',
+        'anxious but calm now',
+      ];
+      for (final input in inputs) {
+        final blend = service.detectMood(input).blendedMicroResponseText;
+        expect(blend, isNotNull,
+            reason: '"$input" should produce a blended response.');
+        final wordCount = blend!.split(RegExp(r'\s+')).length;
+        expect(wordCount, lessThanOrEqualTo(12),
+            reason: 'Blend "$blend" has $wordCount words; SPEC §4 caps '
+                'micro-responses at 12.');
+      }
+    });
+  });
 }
