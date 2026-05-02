@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1124,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "On the Water in the Fourth Watch",
+  "scriptureAnchor": "Matthew 14:22-33",
+  "bibleStoryKey": "peter_walks_on_water",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "themeTags": [
+    "faith",
+    "fear"
+  ],
+  "emotionalTags": [
+    "fear",
+    "rescue"
+  ],
+  "primaryCharacterId": "peter",
+  "primaryCharacterDisplayName": "Peter",
+  "bibleOrderIndex": 615,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.7,
+    "similarity_boost": 0.85,
+    "style": 0.2,
+    "use_speaker_boost": true
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1124_traditional_web_short.txt"
+    }
+  }
+}

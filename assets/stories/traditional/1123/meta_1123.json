@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1123,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Road to Damascus",
+  "scriptureAnchor": "Acts 9:1-22",
+  "bibleStoryKey": "saul_road_to_damascus",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "themeTags": [
+    "transformation",
+    "calling"
+  ],
+  "emotionalTags": [
+    "awe",
+    "redemption"
+  ],
+  "primaryCharacterId": "paul_apostle",
+  "primaryCharacterDisplayName": "Paul",
+  "bibleOrderIndex": 700,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.55,
+    "similarity_boost": 0.85,
+    "style": 0.25,
+    "use_speaker_boost": true
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1123_traditional_web_short.txt"
+    }
+  }
+}

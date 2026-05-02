@@ -33,45 +33,74 @@ This document is the single source of truth for Bible PAL's features and behavio
 **1. PAL's Parables Button**
 - Main button on the home screen to start the parable experience
 
-**2.0 Delilah Pre-Greeting Opening Layer (Feature 2.0)**
-- Immediately after the PAL's Parables button is tapped, PAL plays one randomly selected opening line
-  from a fixed 60-line library **before** the Feature 2.1 check-in prompt activates
-- Each opening line carries a tone tag: `gentle`, `encouraging`, `calm`, `weary`, or `warm`
-- Selection is uniformly random from the 60-line library — no time-awareness, no category weighting
+**2.0 Time-Bucketed Opening Greeting Layer (Feature 2.0)**
+
+> **Revision history:**
+> - 2026-04-28: Replaced the random-tone 60-line library with a 12-line time-bucketed library. Removed the `PalOpeningTone` enum and the session-only `openingTone` signal. Selection is now mood-blind, driven solely by current local hour. Rationale: the previous library inadvertently inferred user mood pre-input (~50% of cold opens landed on lines that presupposed tiredness, burden, or positivity). The redesign preserves emotional warmth via Feature 2.1 micro-responses, which fire **after** the user has spoken.
+
+- Immediately after the PAL's Parables button is tapped, PAL plays one opening line
+  selected from a 12-line library **before** the Feature 2.1 check-in prompt activates
+- Selection is **mood-blind**: time bucket is computed from the user's current local hour
+  (`DateTime.now().hour`); the opening line is chosen from that bucket via persistent
+  recency rotation (every line in the bucket cycles before any repeat, history survives
+  app restarts via SharedPreferences)
 - TTS playback of the opening line **must complete** before Feature 2.1 begins — no overlap permitted
-- The selected `openingTone` is stored in **session-only state** (never persisted to SharedPreferences or SQLite)
-- Opening tone is discarded at end of the interaction session
-- Feature 2.1 and all subsequent steps remain unchanged
+- No tone signal is set, persisted, or read by any downstream layer
+
+**Time Buckets:**
+- 🌅 **Morning** — 05:00–11:59 (3 lines, `OPENING_MORN_*`)
+- ☀️ **Afternoon** — 12:00–16:59 (3 lines, `OPENING_AFTN_*`)
+- 🌆 **Evening** — 17:00–21:59 (3 lines, `OPENING_EVEN_*`)
+- 🌙 **Night** — 22:00–04:59 (3 lines, `OPENING_NIGHT_*`)
 
 **Opening Library:**
-- 60 lines total, 12 per tone bucket:
-  - `gentle` — lines 1–12 (soft, open, present)
-  - `encouraging` — lines 13–24 (supportive, affirming)
-  - `calm` — lines 25–36 (grounded, unhurried)
-  - `weary` — lines 37–48 (burden-aware, energy-sensitive)
-  - `warm` — lines 49–60 (light, steady, slightly uplifting)
-- All 60 lines are unique
+- 12 lines total, 3 per time bucket
+- Each line carries a `type` field: `greeting` (text already begins with a greeting word like
+  "Good morning…" / "Hi…") or `bare` (no leading greeting). Used by name-prefix attachment.
+- All 12 lines are unique
 - Content is **locked as a Dart hardcoded constant** — no JSON asset, no AI generation
 - Wording changes require a SPEC update and explicit owner approval
 
+**Name-Prefix Attachment (Optional):**
+- When the user has a non-empty `userName`, the opening flow rolls a 30% probability per
+  session to prepend a cached name-prefix clip (via `NameAudioService`)
+- Eligibility: only `bare`-type lines receive name prefixes. `greeting`-type lines always
+  play solo to avoid stacking ("Hi there, Adam! Hi… how's your morning been?")
+- Excluded prefix template: `"{name}, welcome back!"` (index 2). The "welcome back" phrasing
+  implies returning-user memory awareness, which Feature 2.0 does not yet provide. The clip
+  remains cached and is still available to other surfaces; opening selection filters it out
+  via `NameAudioService.getRandomNameClipForOpening`.
+- Effective name-prefix rate: 30% × 10 bare lines / 12 total = **~25% of opens**
+- Cache miss kicks off lazy generation for next time; the current open plays solo
+
 **Implementation Notes:**
-- `PalOpeningTone` enum: `gentle`, `encouraging`, `calm`, `weary`, `warm`
-- `PalOpeningLine`: `{String id, String text, PalOpeningTone tone}` — const struct
-- Each line carries a unique ID: `OPENING_{TONE}_{NN}` (e.g., `OPENING_GENTLE_01`)
+- `OpeningTimeBucket` enum: `morning`, `afternoon`, `evening`, `night`
+- `OpeningLineType` enum: `greeting`, `bare`
+- `PalOpeningLine`: `{String id, String text, OpeningTimeBucket bucket, OpeningLineType type}` — const struct
+- Each line carries a unique ID: `OPENING_{BUCKETCODE}_{NN}` (e.g., `OPENING_MORN_01`, `OPENING_AFTN_01`,
+  `OPENING_EVEN_01`, `OPENING_NIGHT_01`)
 - Pre-generated audio assets at `assets/pal/audio/{voiceKey}/{lineId}.mp3`
 - When audio asset is missing, falls back to minimum display duration (1800ms)
 - Library defined in `lib/features/pal/opening/pal_opening_lines.dart`
-- Session tone held in local screen state (not in `UserPreferences`)
+- Selection helper: `pickOpeningLineForHour(int hour)` in the same file
+- Recency rotation: `PalOpeningRecency` in `lib/features/pal/opening/pal_opening_recency.dart`
+  (delegates to `PalLineRotator` with family prefix `'opening'`; per-bucket history)
+- No tone state of any kind. The retired `_palOpeningToneProvider` and `PalOpeningTone` enum
+  are gone. Feature 5.1's tone-biased reflection branch was removed in the same revision.
+
+**Telemetry:**
+- `pal_opening_line_selected` (new) — fires at selection time, before playback. Payload:
+  `{line_id, time_bucket, hour, line_type, name_prefix_attempted, name_prefix_attached}`
+- `pal_opening_audio_resolution` — unchanged. Fires after playback resolution.
+- `pal_audio_played(type='opening')` — unchanged. Fires on successful playback.
 
 **Mood Screen Passive Placeholder Rotation (Visual Reuse):**
-- The mood screen TextField placeholder rotates through the same 60-line
-  Delilah opening library for passive visual discovery. This rotation is
-  fully decoupled from any PAL-tap interaction: it does not play TTS,
-  activate mic, or set `openingTone`.
-- Source of truth: `palOpeningLines` (Dart constant). No alternate
-  placeholder pools; no time-of-day branching for this rotation.
-- Rotation uses full-pool shuffle: every line is shown before any line
-  repeats. Immediate repeats across shuffle boundaries are avoided.
+- The mood screen TextField placeholder rotates through the 12-line opening greeting
+  library for passive visual discovery. This rotation is fully decoupled from any
+  PAL-tap interaction: it does not play TTS or activate mic.
+- Source of truth: `palOpeningLines` (Dart constant). No alternate placeholder pools.
+- Rotation uses full-pool shuffle: every line is shown before any line repeats.
+  Immediate repeats across shuffle boundaries are avoided.
 - Helper: `buildShuffledOpeningLineTexts({Random? random, String? avoidFirst})`
   in `lib/features/pal/opening/pal_opening_lines.dart`.
 
@@ -171,6 +200,16 @@ When a mood button is tapped, a brief thinking delay (800–1500ms randomized) i
 - Text is analyzed to detect mood (positive / neutral / negative plus finer emotional tags)
 - Voice input places transcribed text into the TextField, then follows the identical detection pipeline
 
+**3.1 Emotional-Fit Selection Rule**
+- PAL mood-based story selection must respect emotional fit. Positive moods (`joyful`, `grateful`, `encouraging`) prioritize stories of joy, gratitude, peace, victory, provision, and celebration.
+- Positive moods MUST exclude heavy loss/suffering/testing arcs (mood `weary` or `hurting`) unless the user explicitly requests them via search, favorites, history, or PALs Paths. The Mood Expansion engine's similar-mood map already enforces this — `joyful`, `grateful`, and `encouraging` never expand into `weary`/`hurting` — and the rule is locked here so future map edits stay safe.
+- When mood detection cannot match a keyword, the fallback mood is `calm_peaceful` — never `weary`. This prevents short positive replies like "Excellent" or "Perfect" from misrouting into suffering content. (Mirrors the empty-input default per INVARIANTS.md "Mood System".)
+- Common positive superlatives (e.g. `excellent`, `perfect`, `splendid`, `incredible`, `terrific`, `lovely`, `fabulous`, `marvelous`) must classify as `joyful`.
+
+**3.2 Story Routing Integrity**
+- The selected story's `storyId` and `title` returned by `previewBibleStoryKey()` / `selectParable()` must be preserved exactly through navigation. The `Parable` instance returned by selection is the same instance passed to `ParablePlayerNotifier.loadParable()`, and the player title MUST read from `state.currentParable.title` — no re-selection, no swap.
+- Each `loadParable()` call replaces the prior `currentParable` atomically. PAL flow must not leak a previous selection into a subsequent mood response (cancel/retry).
+
 **4. Micro-Response System**
 - After mood input, PAL plays a short, mood-specific micro-response (audio + text)
 - 40 total micro-responses: 8 mood buckets (joyful, grateful, weary, anxious, hurting, brave_courage, calm_peaceful, encouraging) × 5 lines each
@@ -189,42 +228,27 @@ When a mood button is tapped, a brief thinking delay (800–1500ms randomized) i
 - If pre-generated stories exist that match criteria, selects one
 - Otherwise generates a new one on demand
 
-**5.1 Framing Overlay + Tone-Biased First Reflection**
+**5.1 Framing Overlay + First Reflective Sentence**
+
+> **Revision history:**
+> - 2026-04-28: Removed the Tone-Biased Path. Feature 2.0 no longer emits an `openingTone` signal, so reflection now uses only the Normal Path (mood-scoped). Removed the tone-influence table and the `PalToneBiasedReflectionLines` selector.
+
 - In flows where the PAL framing overlay is shown, after story selection (Feature 5) and before playback begins, PAL displays a full-screen framing overlay
 - The overlay is dismissed by user tap or swipe; story playback begins after dismissal
 - The overlay composes three parts separated by line breaks:
-  1. **First reflective sentence** — mood-scoped emotional acknowledgment (Delilah++ layer)
+  1. **First reflective sentence** — mood-scoped emotional acknowledgment
   2. **Framing line** — from `BiblicalFigureRegistry.getFramingLine(previewKey)`
   3. **Transition line** — from `PalTransitionLines.getLine(previewKey)`
 
-**First Reflective Sentence — Normal Path (no active opening tone):**
+**First Reflective Sentence:**
 - Selected from `assets/pal/pal_reflection_lines.json` via `PalReflectionLines.getLine(mood)`
 - 8 mood buckets × 4 lines each, persistent recency-based rotation (cycles through all lines per mood before repeating, history survives app restarts via SharedPreferences)
-
-**First Reflective Sentence — Tone-Biased Path (opening tone active in session):**
-- When a Feature 2.0 `openingTone` is present in session, the first reflective sentence is selected
-  from `assets/pal/pal_tone_biased_reflection_lines.json` via `PalToneBiasedReflectionLines.getLine(mood, tone)`
-- Asset structure: 8 mood buckets × 5 tone buckets × 2–4 pre-written variants each
-- Selection within a variant set uses the same persistent recency-based rotation as the normal path
-- If the `(mood, tone)` key is absent, falls back silently to `PalReflectionLines.getLine(mood)`
 - Content is pre-written; no runtime string modification, no AI dependency
 
-**Tone Influence on Wording (pre-written variants):**
-
-| Tone | Character of first sentence |
-|------|-----------------------------|
-| `gentle` | soft, open, present framing |
-| `encouraging` | supportive, affirming framing |
-| `calm` | slowed pacing, grounding framing |
-| `weary` | burden-aware, energy-sensitive framing |
-| `warm` | light, steady, slightly uplifting framing |
-
 **Scope constraints (all are invariants — see INVARIANTS.md):**
-- Tone bias affects **only** the first reflective sentence
-- Framing line and transition line are **never** affected by `openingTone`
-- Story selection does **not** read `openingTone`
-- Tone must never contradict detected mood
-- Detected mood is the primary driver; opening tone is a subtle modifier only (~10–15%)
+- Framing line and transition line are **never** influenced by mood
+- Story selection does **not** read the reflection line
+- Detected mood is the only driver of reflection-line selection
 - No forced positivity, no therapeutic framing, no implied knowledge PAL does not have
 
 **PAL Spoken Response + Framing Overlay (Feature 5.1a):**
@@ -244,18 +268,20 @@ When a mood button is tapped, a brief thinking delay (800–1500ms randomized) i
   - Creative opening lines do NOT replace the Traditional framing overlay (text-only) — Traditional mode is unchanged
 - Line ID conventions:
   - Reflection: `REFL_{MOOD}_{NN}` (e.g., `REFL_JOYFUL_01`)
-  - Tone-biased reflection: `REFL_TB_{MOOD}_{TONE}_{NN}` (e.g., `REFL_TB_JOYFUL_GENTLE_01`)
   - Framing: `FRAME_{BIBLE_STORY_KEY}_{NN}` (e.g., `FRAME_DAVID_ANOINTED_01`)
   - Transition: `TRANS_{NN}` (e.g., `TRANS_01`)
   - Creative opening: `CREATIVE_{MOOD}_{NN}` (e.g., `CREATIVE_WEARY_01`)
 
 **Implementation Notes:**
-- New class: `PalToneBiasedReflectionLines` in `lib/core/pal_tone_biased_reflection_lines.dart`
-  - Loads `assets/pal/pal_tone_biased_reflection_lines.json`
-  - `getLine(String mood, PalOpeningTone tone) → String?`
-  - Returns `null` on unknown key; caller falls back to `PalReflectionLines`
-- Integration: `main_menu_screen.dart` — replace single `PalReflectionLines.getLine(moodResult.mood)`
-  call with tone-aware selection when session carries `openingTone`
+- Reflection selection: `PalReflectionLines.getLine(mood)` /
+  `PalReflectionLines.getLineRef(mood)` in `lib/core/pal_reflection_lines.dart`
+- Integration: `main_menu_screen.dart` calls `PalReflectionLines.getLineRef(moodResult.mood)`
+  directly in both the text-input flow (overlay composition) and the voice-input flow
+  (Feature 5.1a spoken response)
+- Retired (2026-04-28): `PalToneBiasedReflectionLines` selector and the
+  `assets/pal/pal_tone_biased_reflection_lines.json` asset. Audio for the retired
+  variants is archived per the never-delete policy; the asset itself will be moved
+  to `assets/pal/_archive/` in slice 3 of the redesign rollout.
 
 ### Story Length & Generation
 
@@ -427,6 +453,7 @@ Traditional stories MUST be **real Bible stories retold faithfully**. They are n
 - `bibleSourceRef` field is **REQUIRED** (e.g., "Luke 15:3-7", "Genesis 22:1-19")
 - `bibleStoryKey` field is **REQUIRED** — a stable canonical identifier for the Bible story (e.g., "lost_sheep", "jesus_calms_storm", "david_and_goliath")
 - **Scripture Anchor Registry**: Traditional stories are backed by a canonical registry (`assets/stories/scripture_anchor_registry.json`). Each anchor identifies one canonical narrative unit via `scriptureAnchorId` — the primary no-repeat key. An anchor may serve multiple moods via `moodTags`. No anchor is ever reused. See ADR-022.
+- **Pre-generation anchor guard**: Before generating any **new** Traditional story, the candidate `scriptureAnchorId` / `bibleStoryKey` must be checked via `scripts/check_anchor_available.py`. If the guard returns `DUPLICATE`, generation must not proceed. Existing duplicates in the legacy/current library are tolerated — see the **No-Duplicate Anchor Invariant for New Traditional Stories** in [`docs/INVARIANTS.md`](INVARIANTS.md).
 
 **Allowed ("Pizzazz"):**
 Scripture-faithful narrative enrichment is allowed:

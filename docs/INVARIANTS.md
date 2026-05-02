@@ -2189,56 +2189,132 @@ python3 -c "import json; r=json.load(open('server/model_router/model_registry.js
 
 ---
 
-## 🔒 Delilah Opening Layer Invariant (NON-NEGOTIABLE)
+## 🔒 Opening Greeting Invariant (NON-NEGOTIABLE)
 
 **Invariant**: The PAL opening layer must preserve audio sequencing, content integrity,
-and scope constraints at all times.
+and mood-blindness at all times.
+
+> **Revision (2026-04-28):** The previous "Delilah Opening Layer Invariant" governed a
+> 60-line × 5-tone library with a session-only `openingTone` signal that biased the
+> Feature 5.1 reflection. That mechanism is retired. The new invariant governs a
+> 12-line time-bucketed library with no tone signal. The previous version is
+> recoverable via Git history.
 
 ### Why This Exists
 
 The opening layer creates emotional continuity between greeting and story. Violating
-sequencing produces audio overlap (broken UX). Scope violations — tone contaminating
-story selection or full-response rewriting — undermine the primary user-emotion driver.
+sequencing produces audio overlap (broken UX). Mood-blindness is the load-bearing rule:
+the opening must never infer the user's emotional state before the user has spoken.
+Emotional specificity belongs to Feature 2.1 micro-responses (post-input).
 
 ### Rules
 
 **Opening Library Integrity:**
-- Library MUST contain exactly 60 entries — enforced by test
-- All 60 lines MUST be unique (no duplicate text) — enforced by test
-- Every line MUST carry a valid `PalOpeningTone` — enforced by test
-- Each tone bucket MUST contain exactly 12 lines — enforced by test
+- Library MUST contain exactly 12 entries — enforced by test
+- All 12 lines MUST be unique (no duplicate text) — enforced by test
+- Every line MUST carry a valid `OpeningTimeBucket` and `OpeningLineType` — enforced by test
+- Each time bucket MUST contain exactly 3 lines — enforced by test
 - Wording is locked; any change requires an explicit SPEC update
+- Line text MUST NOT contain mood-inference keywords (e.g. `tired`, `heavy`, `weighing`,
+  `draining`, `exhausting`, `bright spot`, `glad happened`, `worth holding`,
+  `really doing`) — enforced by test
 - The mood screen TextField passive placeholder MUST source exclusively
-  from `palOpeningLines`. No alternate hardcoded placeholder pools, no
-  time-of-day fallback hints for this rotation.
+  from `palOpeningLines`. No alternate hardcoded placeholder pools.
+
+**Mood-Blindness:**
+- Opening selection MUST NOT read any prior signal about user mood, recent stories,
+  recent moods, or any other state that could imply user emotion
+- The only inputs to selection are the current local hour and the persistent recency
+  history
+- No tone enum, no mood inference, no AI generation, no runtime TTS
+
+**Time-Bucket Determinism:**
+- Time-bucket boundaries MUST be deterministic from `DateTime.now().hour`:
+  morning `[5, 12)`, afternoon `[12, 17)`, evening `[17, 22)`, night `[22, 24) ∪ [0, 5)`
+- A given hour value MUST always map to the same bucket
 
 **Audio Sequencing:**
 - Opening line TTS MUST complete before Feature 2.1 check-in prompt audio begins
 - Mic activation MUST NOT occur during opening line playback
 - No TTS or mic overlap across opening → check-in → listening sequence
 
-**Opening Tone Scope:**
-- `openingTone` MUST NOT be written to SharedPreferences, SQLite, or any persistent store
-- `openingTone` is cleared at end of interaction session
-- `openingTone` is never exposed outside the active PAL interaction
-
-**Tone Bias Scope:**
-- Tone bias MUST affect ONLY the first reflective sentence (Feature 5.1)
-- Framing line and transition line MUST NOT be affected by `openingTone`
-- Story selection MUST NOT read or be influenced by `openingTone`
-- Tone-biased content MUST be pre-written (no runtime modification, no AI)
-- Tone MUST NOT contradict detected user mood
+**Name-Prefix Attachment Scope:**
+- Name-prefix attachment MUST be probability-gated (30% per session)
+- Name-prefix attachment MUST be eligibility-gated by line `type`: only `bare`-type
+  lines receive prefixes; `greeting`-type lines always play solo
+- The `"{name}, welcome back!"` prefix template (index 2) MUST NOT be selected for
+  opening playback — "welcome back" implies returning-user memory awareness, which
+  Feature 2.0 deliberately does not yet provide. The clip stays cached for other uses;
+  opening selection filters it out via `getRandomNameClipForOpening`
+- A cache miss MUST NOT block playback; the line plays solo and lazy generation kicks
+  off for the next session
 
 ### Enforcement Checklist (tests MUST cover all of these)
-- [ ] Exactly 60 entries in opening library
-- [ ] All text unique
-- [ ] All text non-empty
-- [ ] Valid `PalOpeningTone` on every line
-- [ ] Exactly 12 lines per tone bucket
-- [ ] `openingTone` not written to persistent storage
-- [ ] Framing and transition lines unaffected by tone
-- [ ] Story selection unaffected by tone
+- [ ] Exactly 12 entries in opening library
+- [ ] All text unique and non-empty
+- [ ] Valid `OpeningTimeBucket` and `OpeningLineType` on every line
+- [ ] Exactly 3 lines per time bucket
+- [ ] No mood-inference keywords in any line text
+- [ ] Hour 0–23 each maps to a deterministic bucket
+- [ ] `getRandomNameClipForOpening` never returns the "welcome back" template
+- [ ] Greeting-type lines never receive a name prefix (deterministic test)
 - [ ] TTS completion before mic activation (sequencing contract)
+
+---
+
+## 🔒 No-Duplicate Anchor Invariant for New Traditional Stories (NON-NEGOTIABLE)
+
+**Invariant**: New Traditional stories MUST NOT intentionally reuse a `scriptureAnchorId` (or `bibleStoryKey`) that is already in use by an existing Traditional story.
+
+### Why This Exists
+
+Each ElevenLabs audio generation costs credits. Generating a duplicate Traditional story for the same scripture passage:
+- Wastes generation credits
+- Adds maintenance burden without adding new content
+- Increases catalog noise without expanding scripture coverage
+
+### Scope and Tolerance
+
+- **Existing duplicates are tolerated.** As of the first scan (2026-05-02), prior generation batches contain duplicated `scriptureAnchorId` and `bibleStoryKey` values across legacy (≤999), Opus 4.6 batch (1000–1099), and pilot (1100+) metadata. These are recorded in [`assets/stories/anchor_coverage.json`](../assets/stories/anchor_coverage.json) under `duplicates`. They are **not** deleted, rewritten, or modified, and PALs Paths may select among them as needed.
+- **New Traditional stories** (created after this invariant takes effect) **MUST be checked against the anchor guard before generation.**
+
+### The Contract
+
+The `meta_*.json` files under `assets/stories/traditional/<id>/` are the single source of truth for which anchors are in use. `anchor_coverage.json` is a derived cache rebuilt from those metas — never edited by hand.
+
+### Enforcement
+
+Before generating any new Traditional story, run the guard:
+
+```bash
+python3 scripts/check_anchor_available.py check --scripture "Acts 9:1-22"
+python3 scripts/check_anchor_available.py check --anchor acts_9_1-22
+python3 scripts/check_anchor_available.py check --key saul_road_to_damascus
+```
+
+The script:
+- Returns `AVAILABLE` (exit 0) when neither the anchor nor the key collides with any existing meta
+- Returns `DUPLICATE …` (exit 1) when either field collides
+
+If the check returns `DUPLICATE`, generation MUST NOT proceed — choose a different scripture passage.
+
+After a new story's `meta_<id>.json` is written, refresh the cache:
+
+```bash
+python3 scripts/check_anchor_available.py rebuild
+```
+
+### Maintenance Rules
+
+- Do not edit `assets/stories/anchor_coverage.json` by hand.
+- Do not delete or modify existing duplicate stories solely to "clean up" the duplicate count — the legacy duplicates are intentional library state.
+- The guard is a generation-time check; it does not run on every build.
+
+### Resources
+
+- Guard script: [`scripts/check_anchor_available.py`](../scripts/check_anchor_available.py)
+- Coverage cache: [`assets/stories/anchor_coverage.json`](../assets/stories/anchor_coverage.json)
+- Anchor catalog (allowed picks): [`assets/stories/scripture_anchor_registry.json`](../assets/stories/scripture_anchor_registry.json)
 
 ---
 
