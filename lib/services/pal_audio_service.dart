@@ -292,6 +292,22 @@ class PalAudioService {
     return '';
   }
 
+  /// Configure the player's audio source for a single line, optionally
+  /// stitching a name-prefix clip in front via [ConcatenatingAudioSource].
+  /// Used by [playLineResolved] to support the Feature 2.0 opening
+  /// greeting's name-prefix attachment.
+  Future<void> _setSourceForLine(String assetPath, File? nameClipFile) async {
+    if (nameClipFile == null) {
+      await _player.setAsset(assetPath);
+      return;
+    }
+    final playlist = ConcatenatingAudioSource(children: [
+      AudioSource.file(nameClipFile.path),
+      AudioSource.asset(assetPath),
+    ]);
+    await _player.setAudioSource(playlist);
+  }
+
   /// Stitch a name-prefix clip (local file) + prompt/response asset into one
   /// gapless sequence using ConcatenatingAudioSource.
   Future<void> _playWithNamePrefix(
@@ -316,8 +332,10 @@ class PalAudioService {
   }
 
   /// Preview line ID used for Settings voice preview.
-  /// Uses a new PAL opening line instead of the legacy preview_01 asset.
-  static const String previewLineId = 'OPENING_GENTLE_01';
+  /// References the Feature 2.0 12-line library introduced 2026-04-28.
+  /// `OPENING_AFTN_01` ("How's your day going?") is a `bare`-type
+  /// afternoon line — neutral phrasing that previews well at any time of day.
+  static const String previewLineId = 'OPENING_AFTN_01';
 
   /// Play the preview line (for Settings voice preview).
   Future<void> playPreview(String voiceKey) async {
@@ -474,8 +492,9 @@ class PalAudioService {
 
   Future<PalAudioResolution> playLineResolved(
     String lineId,
-    String voiceKey,
-  ) async {
+    String voiceKey, {
+    File? nameClipFile,
+  }) async {
     await _acquireLock();
     try {
       // Pre-playback reset — defends against a player left in a
@@ -488,7 +507,7 @@ class PalAudioService {
 
       final path = assetPath(voiceKey, lineId);
       try {
-        await _player.setAsset(path);
+        await _setSourceForLine(path, nameClipFile);
         await _waitForPlayerReady();
         await _player.play();
         return const PalAudioResolution._(source: 'asset', played: true);
@@ -523,7 +542,7 @@ class PalAudioService {
             ? path
             : assetPath(PalVoiceRegistry.defaultVoiceKey, lineId);
         try {
-          await _player.setAsset(secondaryPath);
+          await _setSourceForLine(secondaryPath, nameClipFile);
           await _waitForPlayerReady();
           await _player.play();
           return PalAudioResolution._(
@@ -651,10 +670,23 @@ class PalAudioService {
     return state.processingState == ProcessingState.completed;
   }
 
-  /// Wait for current playback to complete.
+  /// Wait for current playback to complete OR be stopped.
+  ///
+  /// Accepts both `completed` (natural end) and `idle` (forced stop via
+  /// [stop] / [_player.stop]) as terminal states. The `idle` case is
+  /// load-bearing: when the user cancels mid-playback, `_cancelConversation`
+  /// calls [stop], which transitions the player to `idle` — never to
+  /// `completed`. Without `idle` here, every caller's await would hang
+  /// indefinitely, leaving stale futures alive that race the next PAL
+  /// session and silently corrupt the audio session state. After enough
+  /// cancel/retry cycles the stack wedges and PAL goes mute until the
+  /// app is force-quit. Mirrors the [_awaitPlaybackDone] helper used by
+  /// [playSequence].
   Future<void> awaitPlaybackComplete() async {
     await _player.playerStateStream.firstWhere(
-      (state) => state.processingState == ProcessingState.completed,
+      (state) =>
+          state.processingState == ProcessingState.completed ||
+          state.processingState == ProcessingState.idle,
     );
   }
 
