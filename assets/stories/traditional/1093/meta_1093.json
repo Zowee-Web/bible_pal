@@ -22,7 +22,9 @@
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
   "themeTags": [
     "mercy",
-    "forgiveness"
+    "forgiveness",
+    "suffering",
+    "lament"
   ],
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
@@ -44,5 +46,12 @@
     "reflection": {
       "reflectionText": "reflection_1093_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "hurting",
+    "sorrowful",
+    "grieving",
+    "lonely",
+    "broken"
+  ]
 }

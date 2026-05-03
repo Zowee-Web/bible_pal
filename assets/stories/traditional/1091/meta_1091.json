@@ -22,7 +22,9 @@
   "storyVoiceKey": "VOICE_JOHN_DOE",
   "themeTags": [
     "faith",
-    "courage"
+    "courage",
+    "obedience",
+    "deliverance"
   ],
   "primaryCharacterId": "shadrach",
   "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
@@ -44,5 +46,13 @@
     "reflection": {
       "reflectionText": "reflection_1091_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "courageous",
+    "determined",
+    "steadfast",
+    "resolute",
+    "brave",
+    "afraid"
+  ]
 }

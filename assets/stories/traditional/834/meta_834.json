@@ -63,5 +63,17 @@
   },
   "timelineEra": "judges",
   "primaryCharacterId": "gideon",
-  "primaryCharacterDisplayName": "Gideon"
+  "primaryCharacterDisplayName": "Gideon",
+  "themeTags": [
+    "courage",
+    "obedience",
+    "faith"
+  ],
+  "emotionalTags": [
+    "courageous",
+    "determined",
+    "steadfast",
+    "resolute",
+    "brave"
+  ]
 }

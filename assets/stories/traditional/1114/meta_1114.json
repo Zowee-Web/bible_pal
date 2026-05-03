@@ -21,7 +21,9 @@
   "storyVoiceKey": "VOICE_ARCHER",
   "themeTags": [
     "faith",
-    "courage"
+    "courage",
+    "obedience",
+    "deliverance"
   ],
   "primaryCharacterId": "daniel",
   "primaryCharacterDisplayName": "Daniel",
@@ -38,5 +40,13 @@
     "reflection": {
       "reflectionText": "reflection_1114_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "courageous",
+    "determined",
+    "steadfast",
+    "resolute",
+    "brave",
+    "afraid"
+  ]
 }

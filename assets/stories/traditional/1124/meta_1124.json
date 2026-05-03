@@ -19,11 +19,18 @@
   "storyVoiceKey": "VOICE_ARABELLA",
   "themeTags": [
     "faith",
-    "fear"
+    "fear",
+    "courage",
+    "obedience"
   ],
   "emotionalTags": [
     "fear",
-    "rescue"
+    "rescue",
+    "courageous",
+    "determined",
+    "steadfast",
+    "resolute",
+    "brave"
   ],
   "primaryCharacterId": "peter",
   "primaryCharacterDisplayName": "Peter",

@@ -49,5 +49,19 @@
   "reflectionText": "Stories of courage often reflect moments when fear meets faith. These narratives show how ordinary resolve can carry someone through extraordinary circumstances. And even a small step forward can be enough for today.",
   "timelineEra": "exile",
   "primaryCharacterId": "daniel",
-  "primaryCharacterDisplayName": "Daniel"
+  "primaryCharacterDisplayName": "Daniel",
+  "themeTags": [
+    "courage",
+    "obedience",
+    "faith",
+    "deliverance"
+  ],
+  "emotionalTags": [
+    "courageous",
+    "determined",
+    "steadfast",
+    "resolute",
+    "brave",
+    "afraid"
+  ]
 }

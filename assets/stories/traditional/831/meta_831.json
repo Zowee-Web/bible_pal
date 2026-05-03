@@ -63,5 +63,21 @@
   },
   "timelineEra": "patriarchs",
   "primaryCharacterId": "joseph",
-  "primaryCharacterDisplayName": "Joseph"
+  "primaryCharacterDisplayName": "Joseph",
+  "themeTags": [
+    "presence",
+    "guidance",
+    "trust",
+    "deliverance",
+    "freedom",
+    "revelation"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting",
+    "tender",
+    "awed"
+  ]
 }

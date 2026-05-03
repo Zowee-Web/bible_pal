@@ -49,5 +49,19 @@
   "reflectionText": "This story shows that being brave does not mean being unafraid. Even one small brave thing counts.",
   "timelineEra": "exile",
   "primaryCharacterId": "daniel",
-  "primaryCharacterDisplayName": "Daniel"
+  "primaryCharacterDisplayName": "Daniel",
+  "themeTags": [
+    "courage",
+    "obedience",
+    "faith",
+    "deliverance"
+  ],
+  "emotionalTags": [
+    "courageous",
+    "determined",
+    "steadfast",
+    "resolute",
+    "brave",
+    "afraid"
+  ]
 }

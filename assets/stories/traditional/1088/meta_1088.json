@@ -22,7 +22,11 @@
   "storyVoiceKey": "VOICE_LILY_WOLFF",
   "themeTags": [
     "mercy",
-    "obedience"
+    "obedience",
+    "gratitude",
+    "praise",
+    "humility",
+    "love"
   ],
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
@@ -46,5 +50,12 @@
       "reflectionAudio": "audio_1088_reflection.mp3"
     }
   },
-  "reflectionVoiceKey": "VOICE_LILY_WOLFF"
+  "reflectionVoiceKey": "VOICE_LILY_WOLFF",
+  "emotionalTags": [
+    "grateful",
+    "thankful",
+    "humbled",
+    "tender",
+    "loved"
+  ]
 }

@@ -21,7 +21,9 @@
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "themeTags": [
     "courage",
-    "faith"
+    "faith",
+    "obedience",
+    "deliverance"
   ],
   "primaryCharacterId": "david",
   "primaryCharacterDisplayName": "David",
@@ -38,5 +40,13 @@
     "reflection": {
       "reflectionText": "reflection_1112_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "courageous",
+    "determined",
+    "steadfast",
+    "resolute",
+    "brave",
+    "afraid"
+  ]
 }

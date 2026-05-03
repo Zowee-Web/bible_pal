@@ -22,7 +22,9 @@
   "storyVoiceKey": "VOICE_BRADFORD",
   "themeTags": [
     "faith",
-    "mercy"
+    "mercy",
+    "hope",
+    "promise"
   ],
   "primaryCharacterId": "paul",
   "primaryCharacterDisplayName": "Paul",
@@ -44,5 +46,12 @@
     "reflection": {
       "reflectionText": "reflection_1095_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired"
+  ]
 }

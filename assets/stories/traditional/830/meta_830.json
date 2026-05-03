@@ -63,5 +63,20 @@
   },
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "prodigal_son",
-  "primaryCharacterDisplayName": "Prodigal Son"
+  "primaryCharacterDisplayName": "Prodigal Son",
+  "themeTags": [
+    "celebration",
+    "praise",
+    "gratitude",
+    "forgiveness",
+    "restoration"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "happy",
+    "thankful",
+    "free",
+    "grateful",
+    "forgiven"
+  ]
 }

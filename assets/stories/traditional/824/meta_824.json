@@ -49,5 +49,17 @@
   "reflectionText": "This story shows that it is okay to rest when we are tired. Even one small rest can help.",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
-  "primaryCharacterDisplayName": "Jesus"
+  "primaryCharacterDisplayName": "Jesus",
+  "themeTags": [
+    "rest",
+    "endurance",
+    "patience"
+  ],
+  "emotionalTags": [
+    "weary",
+    "exhausted",
+    "overwhelmed",
+    "longing",
+    "tired"
+  ]
 }

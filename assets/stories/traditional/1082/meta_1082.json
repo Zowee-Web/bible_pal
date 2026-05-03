@@ -22,7 +22,9 @@
   "storyVoiceKey": "VOICE_CHARLOTTE_V3",
   "themeTags": [
     "faith",
-    "obedience"
+    "obedience",
+    "fear",
+    "trust"
   ],
   "primaryCharacterId": "mary",
   "primaryCharacterDisplayName": "Mary",
@@ -45,5 +47,12 @@
     "reflection": {
       "reflectionText": "reflection_1082_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "anxious",
+    "worried",
+    "fearful",
+    "restless",
+    "uncertain"
+  ]
 }

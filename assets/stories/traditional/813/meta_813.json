@@ -49,5 +49,19 @@
   "reflectionText": "This story shows that even when things feel scary, we are not alone. Even one small brave thing counts.",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
-  "primaryCharacterDisplayName": "Jesus"
+  "primaryCharacterDisplayName": "Jesus",
+  "themeTags": [
+    "fear",
+    "trust",
+    "faith",
+    "presence"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "worried",
+    "fearful",
+    "restless",
+    "uncertain",
+    "afraid"
+  ]
 }

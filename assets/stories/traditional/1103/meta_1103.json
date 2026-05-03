@@ -21,7 +21,9 @@
   "bibleStoryKey": "peter_freed_from_prison",
   "storyVoiceKey": "VOICE_ARCHER",
   "themeTags": [
-    "faith"
+    "faith",
+    "fear",
+    "trust"
   ],
   "primaryCharacterId": "peter",
   "primaryCharacterDisplayName": "Peter",
@@ -43,5 +45,12 @@
     "reflection": {
       "reflectionText": "reflection_1103_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "anxious",
+    "worried",
+    "fearful",
+    "restless",
+    "uncertain"
+  ]
 }

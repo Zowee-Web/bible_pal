@@ -22,7 +22,10 @@
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
   "themeTags": [
     "faith",
-    "hope"
+    "hope",
+    "suffering",
+    "lament",
+    "mercy"
   ],
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
@@ -48,5 +51,12 @@
   },
   "reflectionQuestion": "Have you ever waited for help that didn't come when you expected it?",
   "reflectionText": "There are moments when everything we counted on is taken away — when the person we needed most does not come in time, and the worst thing happens anyway.\n\nThe sisters in this story knew Jesus could have healed their brother. They said so. And Jesus did not deny it. He wept with them. He stood at the grave and felt what they felt.\n\nWhat came next was beyond anything they expected. But it did not erase the grief that came before it. The weeping was real. The waiting was real. The silence of those four days was real.\n\nSometimes the hardest part is not the ending. It is the middle — the part where nothing has changed yet, and all you can do is wait.",
-  "reflectionVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN"
+  "reflectionVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "emotionalTags": [
+    "hurting",
+    "sorrowful",
+    "grieving",
+    "lonely",
+    "broken"
+  ]
 }

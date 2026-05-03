@@ -22,7 +22,11 @@
   "storyVoiceKey": "VOICE_CHARLOTTE_V3",
   "themeTags": [
     "faith",
-    "hope"
+    "hope",
+    "celebration",
+    "praise",
+    "gratitude",
+    "resurrection"
   ],
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
@@ -44,5 +48,13 @@
     "reflection": {
       "reflectionText": "reflection_1092_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "joyful",
+    "happy",
+    "thankful",
+    "free",
+    "grateful",
+    "awed"
+  ]
 }

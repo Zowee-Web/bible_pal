@@ -56,5 +56,20 @@
   "reflectionText": "All was taken in a single afternoon — the beasts, the servants, the children. What remaineth when all thou hast built is gone, and nought is left thee save the earth beneath thy feet?",
   "timelineEra": "wisdom",
   "primaryCharacterId": "job",
-  "primaryCharacterDisplayName": "Job"
+  "primaryCharacterDisplayName": "Job",
+  "themeTags": [
+    "rest",
+    "endurance",
+    "patience",
+    "suffering",
+    "lament"
+  ],
+  "emotionalTags": [
+    "weary",
+    "exhausted",
+    "overwhelmed",
+    "longing",
+    "tired",
+    "confused"
+  ]
 }

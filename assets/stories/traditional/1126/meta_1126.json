@@ -19,11 +19,18 @@
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
   "themeTags": [
     "humility",
-    "service"
+    "service",
+    "presence",
+    "guidance",
+    "trust"
   ],
   "emotionalTags": [
     "tender",
-    "reverent"
+    "reverent",
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting"
   ],
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",

@@ -22,7 +22,10 @@
   "storyVoiceKey": "VOICE_LILY_WOLFF",
   "themeTags": [
     "faith",
-    "hope"
+    "hope",
+    "suffering",
+    "lament",
+    "mercy"
   ],
   "primaryCharacterId": "jairus",
   "primaryCharacterDisplayName": "Jairus",
@@ -44,5 +47,12 @@
     "reflection": {
       "reflectionText": "reflection_1102_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "hurting",
+    "sorrowful",
+    "grieving",
+    "lonely",
+    "broken"
+  ]
 }

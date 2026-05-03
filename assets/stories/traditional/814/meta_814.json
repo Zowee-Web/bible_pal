@@ -49,5 +49,20 @@
   "reflectionText": "This story shows that being kind matters, even when things feel unfair. Even one small kindness helps.",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
-  "primaryCharacterDisplayName": "Jesus"
+  "primaryCharacterDisplayName": "Jesus",
+  "themeTags": [
+    "suffering",
+    "lament",
+    "mercy",
+    "longing",
+    "provision"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "sorrowful",
+    "grieving",
+    "lonely",
+    "broken",
+    "seeking"
+  ]
 }

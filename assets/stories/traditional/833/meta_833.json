@@ -55,5 +55,17 @@
   },
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
-  "primaryCharacterDisplayName": "Jesus"
+  "primaryCharacterDisplayName": "Jesus",
+  "themeTags": [
+    "fear",
+    "trust",
+    "faith"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "worried",
+    "fearful",
+    "restless",
+    "uncertain"
+  ]
 }

@@ -21,7 +21,11 @@
   "storyVoiceKey": "VOICE_CHARLOTTE_V3",
   "themeTags": [
     "hope",
-    "mercy"
+    "mercy",
+    "suffering",
+    "lament",
+    "longing",
+    "provision"
   ],
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
@@ -38,5 +42,13 @@
     "reflection": {
       "reflectionText": "reflection_1113_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "hurting",
+    "sorrowful",
+    "grieving",
+    "lonely",
+    "broken",
+    "seeking"
+  ]
 }

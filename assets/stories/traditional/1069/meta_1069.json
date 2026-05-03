@@ -63,5 +63,18 @@
   "reflectionText": "What doth it feel like to be fully known — every hidden wound, every unspoken thought — and to wonder whether being that deeply seen is something thou dost long for or something thou dost fear?",
   "timelineEra": "wisdom",
   "primaryCharacterId": "david",
-  "primaryCharacterDisplayName": "David"
+  "primaryCharacterDisplayName": "David",
+  "themeTags": [
+    "suffering",
+    "lament",
+    "mercy",
+    "prayer"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "sorrowful",
+    "grieving",
+    "lonely",
+    "broken"
+  ]
 }

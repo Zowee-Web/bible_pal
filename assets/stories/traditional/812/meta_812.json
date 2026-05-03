@@ -43,5 +43,20 @@
   "reflectionText": "This story shows that good things can happen when we share and care for others. Even one small kindness matters.",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "lost_sheep",
-  "primaryCharacterDisplayName": "Lost Sheep"
+  "primaryCharacterDisplayName": "Lost Sheep",
+  "themeTags": [
+    "celebration",
+    "praise",
+    "gratitude",
+    "mercy",
+    "seeking"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "happy",
+    "thankful",
+    "free",
+    "grateful",
+    "loved"
+  ]
 }

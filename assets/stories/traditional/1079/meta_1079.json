@@ -43,5 +43,17 @@
   "reflectionText": "Have you ever felt so tired that you wished someone strong could carry you for a while?",
   "timelineEra": "prophets",
   "primaryCharacterId": "isaiah",
-  "primaryCharacterDisplayName": "Isaiah"
+  "primaryCharacterDisplayName": "Isaiah",
+  "themeTags": [
+    "rest",
+    "endurance",
+    "patience"
+  ],
+  "emotionalTags": [
+    "weary",
+    "exhausted",
+    "overwhelmed",
+    "longing",
+    "tired"
+  ]
 }

@@ -63,5 +63,22 @@
   },
   "timelineEra": "judges",
   "primaryCharacterId": "ruth",
-  "primaryCharacterDisplayName": "Ruth"
+  "primaryCharacterDisplayName": "Ruth",
+  "themeTags": [
+    "hope",
+    "promise",
+    "faith",
+    "loss",
+    "provision",
+    "loyalty"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired",
+    "alone",
+    "loved"
+  ]
 }

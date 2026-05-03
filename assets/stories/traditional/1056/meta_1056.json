@@ -39,5 +39,20 @@
   "reflectionText": "The sea was in front of them and the army was behind them. Have you ever been stuck in a scary place with no way out, and then someone helped you in a way you didn't expect?",
   "timelineEra": "exodus",
   "primaryCharacterId": "moses",
-  "primaryCharacterDisplayName": "Moses"
+  "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "fear",
+    "trust",
+    "faith",
+    "deliverance",
+    "freedom"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "worried",
+    "fearful",
+    "restless",
+    "uncertain",
+    "awed"
+  ]
 }

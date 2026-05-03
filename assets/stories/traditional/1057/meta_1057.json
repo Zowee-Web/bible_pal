@@ -39,5 +39,17 @@
   "reflectionText": "Caleb saw the same giants as everyone else but he wasn't afraid. Have you ever had to be the one person who believed something good when everyone else was scared?",
   "timelineEra": "exodus",
   "primaryCharacterId": "caleb",
-  "primaryCharacterDisplayName": "Caleb"
+  "primaryCharacterDisplayName": "Caleb",
+  "themeTags": [
+    "courage",
+    "obedience",
+    "faith"
+  ],
+  "emotionalTags": [
+    "courageous",
+    "determined",
+    "steadfast",
+    "resolute",
+    "brave"
+  ]
 }

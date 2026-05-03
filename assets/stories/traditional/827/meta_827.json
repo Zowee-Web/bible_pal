@@ -47,5 +47,17 @@
   },
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "mary",
-  "primaryCharacterDisplayName": "Mary"
+  "primaryCharacterDisplayName": "Mary",
+  "themeTags": [
+    "presence",
+    "guidance",
+    "trust"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting",
+    "tender"
+  ]
 }

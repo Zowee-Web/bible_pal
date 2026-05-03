@@ -22,7 +22,9 @@
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "themeTags": [
     "provision",
-    "mercy"
+    "mercy",
+    "gratitude",
+    "praise"
   ],
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
@@ -45,5 +47,12 @@
     "reflection": {
       "reflectionText": "reflection_1081_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "grateful",
+    "thankful",
+    "humbled",
+    "tender",
+    "loved"
+  ]
 }

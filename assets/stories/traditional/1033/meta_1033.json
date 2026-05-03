@@ -68,5 +68,20 @@
   "reflectionText": "A mother could not keep her child by holding fast. So she let go — slime and pitch and bulrushes and river. A sister stood in the mire and watched. A princess reached into the ark.\n\nCourage doth sometimes require the releasing of that which thou lovest into uncertain waters. What is one brave thing thou mightest do this day, though the end be not yet seen?",
   "timelineEra": "exodus",
   "primaryCharacterId": "moses",
-  "primaryCharacterDisplayName": "Moses"
+  "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "courage",
+    "obedience",
+    "faith",
+    "deliverance",
+    "freedom"
+  ],
+  "emotionalTags": [
+    "courageous",
+    "determined",
+    "steadfast",
+    "resolute",
+    "brave",
+    "awed"
+  ]
 }

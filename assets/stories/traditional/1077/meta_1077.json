@@ -43,5 +43,18 @@
   "reflectionText": "What is something that hurts inside you right now that you wish someone really understood?",
   "timelineEra": "wisdom",
   "primaryCharacterId": "david",
-  "primaryCharacterDisplayName": "David"
+  "primaryCharacterDisplayName": "David",
+  "themeTags": [
+    "suffering",
+    "lament",
+    "mercy",
+    "prayer"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "sorrowful",
+    "grieving",
+    "lonely",
+    "broken"
+  ]
 }

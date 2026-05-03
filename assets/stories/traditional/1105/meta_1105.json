@@ -22,7 +22,10 @@
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "themeTags": [
     "faith",
-    "provision"
+    "provision",
+    "fear",
+    "trust",
+    "presence"
   ],
   "primaryCharacterId": "paul",
   "primaryCharacterDisplayName": "Paul",
@@ -44,5 +47,13 @@
     "reflection": {
       "reflectionText": "reflection_1105_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "anxious",
+    "worried",
+    "fearful",
+    "restless",
+    "uncertain",
+    "afraid"
+  ]
 }

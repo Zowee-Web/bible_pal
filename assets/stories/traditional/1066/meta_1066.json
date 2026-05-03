@@ -63,5 +63,17 @@
   "reflectionText": "What would it feel like unto thee to release, even for a moment, the burden of the morrow's cares, and simply to trust that thou art already upheld by something greater than thyself?",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
-  "primaryCharacterDisplayName": "Jesus"
+  "primaryCharacterDisplayName": "Jesus",
+  "themeTags": [
+    "presence",
+    "guidance",
+    "trust"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting",
+    "tender"
+  ]
 }

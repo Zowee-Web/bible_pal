@@ -64,5 +64,19 @@
   },
   "timelineEra": "kingdom",
   "primaryCharacterId": "david",
-  "primaryCharacterDisplayName": "David"
+  "primaryCharacterDisplayName": "David",
+  "themeTags": [
+    "courage",
+    "obedience",
+    "faith",
+    "deliverance"
+  ],
+  "emotionalTags": [
+    "courageous",
+    "determined",
+    "steadfast",
+    "resolute",
+    "brave",
+    "afraid"
+  ]
 }

@@ -21,7 +21,9 @@
   "storyVoiceKey": "VOICE_LILY_WOLFF",
   "themeTags": [
     "mercy",
-    "forgiveness"
+    "forgiveness",
+    "suffering",
+    "lament"
   ],
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
@@ -40,5 +42,12 @@
     "reflection": {
       "reflectionText": "reflection_1098_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "hurting",
+    "sorrowful",
+    "grieving",
+    "lonely",
+    "broken"
+  ]
 }

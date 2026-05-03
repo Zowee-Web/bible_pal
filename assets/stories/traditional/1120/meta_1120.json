@@ -19,7 +19,10 @@
   "bibleStoryKey": "peter_prison_escape",
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
   "themeTags": [
-    "faith"
+    "faith",
+    "hope",
+    "promise",
+    "protection"
   ],
   "primaryCharacterId": "peter",
   "primaryCharacterDisplayName": "Peter",
@@ -30,5 +33,13 @@
     "short": {
       "storyText": "story_1120_traditional_web_short.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired",
+    "afraid"
+  ]
 }

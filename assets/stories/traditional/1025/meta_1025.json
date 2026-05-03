@@ -43,5 +43,20 @@
   "reflectionText": "Noah had a really, really big job to do. It probably took a very long time, and nobody else was building a ship like his. But he kept going because he trusted God. Sometimes doing the right thing means working hard even when other people do not understand why.\n\nCan you think of a time when you kept doing something good, even though it was hard or nobody else was doing it?",
   "timelineEra": "patriarchs",
   "primaryCharacterId": "noah",
-  "primaryCharacterDisplayName": "Noah"
+  "primaryCharacterDisplayName": "Noah",
+  "themeTags": [
+    "courage",
+    "obedience",
+    "faith",
+    "judgment",
+    "rescue"
+  ],
+  "emotionalTags": [
+    "courageous",
+    "determined",
+    "steadfast",
+    "resolute",
+    "brave",
+    "awed"
+  ]
 }

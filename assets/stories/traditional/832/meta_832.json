@@ -63,5 +63,20 @@
   },
   "timelineEra": "exodus",
   "primaryCharacterId": "moses",
-  "primaryCharacterDisplayName": "Moses"
+  "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "rest",
+    "endurance",
+    "patience",
+    "deliverance",
+    "freedom"
+  ],
+  "emotionalTags": [
+    "weary",
+    "exhausted",
+    "overwhelmed",
+    "longing",
+    "tired",
+    "awed"
+  ]
 }

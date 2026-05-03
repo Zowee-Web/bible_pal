@@ -20,7 +20,10 @@
   "storyVoiceKey": "VOICE_ARABELLA",
   "themeTags": [
     "obedience",
-    "mercy"
+    "mercy",
+    "hope",
+    "promise",
+    "faith"
   ],
   "primaryCharacterId": "jonah",
   "primaryCharacterDisplayName": "Jonah",
@@ -36,5 +39,12 @@
     "reflection": {
       "reflectionText": "reflection_1100_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired"
+  ]
 }

@@ -43,5 +43,17 @@
   "reflectionText": "What is something kind or helpful you could do if someone around you needed help today?",
   "timelineEra": "prophets",
   "primaryCharacterId": "isaiah",
-  "primaryCharacterDisplayName": "Isaiah"
+  "primaryCharacterDisplayName": "Isaiah",
+  "themeTags": [
+    "hope",
+    "promise",
+    "faith"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired"
+  ]
 }

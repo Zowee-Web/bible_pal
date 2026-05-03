@@ -56,5 +56,17 @@
   "reflectionText": "He looked for judgment but received a seat at the king's board. When hath kindness come unto thee in a place where thou didst expect only to be forgotten?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "david",
-  "primaryCharacterDisplayName": "David"
+  "primaryCharacterDisplayName": "David",
+  "themeTags": [
+    "celebration",
+    "praise",
+    "gratitude"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "happy",
+    "thankful",
+    "free",
+    "grateful"
+  ]
 }

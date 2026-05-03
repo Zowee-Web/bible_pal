@@ -19,11 +19,19 @@
   "storyVoiceKey": "VOICE_ARABELLA",
   "themeTags": [
     "transformation",
-    "calling"
+    "calling",
+    "hope",
+    "promise",
+    "faith"
   ],
   "emotionalTags": [
     "awe",
-    "redemption"
+    "redemption",
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired"
   ],
   "primaryCharacterId": "paul_apostle",
   "primaryCharacterDisplayName": "Paul",

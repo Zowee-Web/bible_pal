@@ -19,11 +19,19 @@
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
   "themeTags": [
     "calling",
-    "scripture"
+    "scripture",
+    "hope",
+    "promise",
+    "faith"
   ],
   "emotionalTags": [
     "wonder",
-    "welcome"
+    "welcome",
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired"
   ],
   "primaryCharacterId": "philip",
   "primaryCharacterDisplayName": "Philip",

@@ -22,7 +22,11 @@
   "storyVoiceKey": "VOICE_ARCHER",
   "themeTags": [
     "faith",
-    "courage"
+    "courage",
+    "suffering",
+    "lament",
+    "mercy",
+    "healing"
   ],
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
@@ -46,5 +50,14 @@
       "reflectionAudio": "audio_1086_reflection.mp3"
     }
   },
-  "reflectionVoiceKey": "VOICE_ARCHER"
+  "reflectionVoiceKey": "VOICE_ARCHER",
+  "emotionalTags": [
+    "hurting",
+    "sorrowful",
+    "grieving",
+    "lonely",
+    "broken",
+    "desperate",
+    "tender"
+  ]
 }

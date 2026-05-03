@@ -43,5 +43,17 @@
   "reflectionText": "What do you think it felt like for Elijah to stand all by himself and trust that God would answer him?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "elijah",
-  "primaryCharacterDisplayName": "Elijah"
+  "primaryCharacterDisplayName": "Elijah",
+  "themeTags": [
+    "courage",
+    "obedience",
+    "faith"
+  ],
+  "emotionalTags": [
+    "courageous",
+    "determined",
+    "steadfast",
+    "resolute",
+    "brave"
+  ]
 }

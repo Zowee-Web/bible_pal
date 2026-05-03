@@ -20,7 +20,10 @@
   "bibleStoryKey": "triumphal_entry",
   "storyVoiceKey": "VOICE_ARABELLA",
   "themeTags": [
-    "hope"
+    "hope",
+    "celebration",
+    "praise",
+    "gratitude"
   ],
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
@@ -39,5 +42,12 @@
     "reflection": {
       "reflectionText": "reflection_1106_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "joyful",
+    "happy",
+    "thankful",
+    "free",
+    "grateful"
+  ]
 }

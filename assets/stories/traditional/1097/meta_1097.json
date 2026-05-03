@@ -22,7 +22,10 @@
   "storyVoiceKey": "VOICE_JOHN_DOE",
   "themeTags": [
     "faith",
-    "courage"
+    "courage",
+    "fear",
+    "trust",
+    "deliverance"
   ],
   "primaryCharacterId": "jehoshaphat",
   "primaryCharacterDisplayName": "Jehoshaphat",
@@ -44,5 +47,13 @@
     "reflection": {
       "reflectionText": "reflection_1097_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "anxious",
+    "worried",
+    "fearful",
+    "restless",
+    "uncertain",
+    "afraid"
+  ]
 }

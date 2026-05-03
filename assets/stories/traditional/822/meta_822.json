@@ -49,5 +49,17 @@
   "reflectionText": "Stories of stillness often reflect moments when silence speaks louder than noise. These narratives show how peace can be found by simply being present. And even a small step forward can be enough for today.",
   "timelineEra": "kingdom",
   "primaryCharacterId": "samuel",
-  "primaryCharacterDisplayName": "Samuel"
+  "primaryCharacterDisplayName": "Samuel",
+  "themeTags": [
+    "presence",
+    "guidance",
+    "trust"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting",
+    "tender"
+  ]
 }

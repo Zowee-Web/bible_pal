@@ -21,7 +21,10 @@
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
   "themeTags": [
     "mercy",
-    "hope"
+    "hope",
+    "rest",
+    "endurance",
+    "patience"
   ],
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
@@ -40,5 +43,12 @@
     "reflection": {
       "reflectionText": "reflection_1096_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "weary",
+    "exhausted",
+    "overwhelmed",
+    "longing",
+    "tired"
+  ]
 }

@@ -49,5 +49,20 @@
   "reflectionText": "Stories about worry often reflect the tension between what we can control and what we cannot. These narratives show that peace sometimes comes from releasing our grip on outcomes. And even a small step forward can be enough for today.",
   "timelineEra": "kingdom",
   "primaryCharacterId": "elijah",
-  "primaryCharacterDisplayName": "Elijah"
+  "primaryCharacterDisplayName": "Elijah",
+  "themeTags": [
+    "fear",
+    "trust",
+    "faith",
+    "presence",
+    "revelation"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "worried",
+    "fearful",
+    "restless",
+    "uncertain",
+    "awed"
+  ]
 }

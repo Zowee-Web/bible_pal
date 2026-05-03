@@ -63,5 +63,20 @@
   "reflectionText": "When thou dost contemplate upon a moment in thine own life wherein thou didst stand alone in that which thou believest to be true—with no assurance of how all things should come to pass—what hath given unto thee the courage to remain steadfast, and what price hath been exacted of thee?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "elijah",
-  "primaryCharacterDisplayName": "Elijah"
+  "primaryCharacterDisplayName": "Elijah",
+  "themeTags": [
+    "courage",
+    "obedience",
+    "faith",
+    "presence",
+    "revelation"
+  ],
+  "emotionalTags": [
+    "courageous",
+    "determined",
+    "steadfast",
+    "resolute",
+    "brave",
+    "awed"
+  ]
 }

@@ -21,7 +21,8 @@
   "storyVoiceKey": "VOICE_JOHN_DOE",
   "themeTags": [
     "faith",
-    "courage"
+    "courage",
+    "obedience"
   ],
   "primaryCharacterId": "paul",
   "primaryCharacterDisplayName": "Paul",
@@ -40,5 +41,12 @@
     "reflection": {
       "reflectionText": "reflection_1104_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "courageous",
+    "determined",
+    "steadfast",
+    "resolute",
+    "brave"
+  ]
 }

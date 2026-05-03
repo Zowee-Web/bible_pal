@@ -21,7 +21,11 @@
   "storyVoiceKey": "VOICE_BRADFORD",
   "themeTags": [
     "faith",
-    "mercy"
+    "mercy",
+    "suffering",
+    "lament",
+    "healing",
+    "restoration"
   ],
   "primaryCharacterId": "bartimaeus",
   "primaryCharacterDisplayName": "Bartimaeus",
@@ -40,5 +44,13 @@
     "reflection": {
       "reflectionText": "reflection_1101_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "hurting",
+    "sorrowful",
+    "grieving",
+    "lonely",
+    "broken",
+    "desperate"
+  ]
 }

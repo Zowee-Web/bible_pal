@@ -52,5 +52,20 @@
   },
   "timelineEra": "patriarchs",
   "primaryCharacterId": "hagar",
-  "primaryCharacterDisplayName": "Hagar"
+  "primaryCharacterDisplayName": "Hagar",
+  "themeTags": [
+    "suffering",
+    "lament",
+    "mercy",
+    "testing",
+    "perseverance"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "sorrowful",
+    "grieving",
+    "lonely",
+    "broken",
+    "weary"
+  ]
 }

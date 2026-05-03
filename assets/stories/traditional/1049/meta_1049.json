@@ -56,5 +56,17 @@
   "reflectionText": "They held the fruit of the promised land in their hands and believed it not. When hath abundance stood before thee and fear kept thine hand from reaching?",
   "timelineEra": "exodus",
   "primaryCharacterId": "caleb",
-  "primaryCharacterDisplayName": "Caleb"
+  "primaryCharacterDisplayName": "Caleb",
+  "themeTags": [
+    "courage",
+    "obedience",
+    "faith"
+  ],
+  "emotionalTags": [
+    "courageous",
+    "determined",
+    "steadfast",
+    "resolute",
+    "brave"
+  ]
 }

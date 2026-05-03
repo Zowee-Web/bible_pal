@@ -22,7 +22,10 @@
   "storyVoiceKey": "VOICE_BRADFORD",
   "themeTags": [
     "faith",
-    "obedience"
+    "obedience",
+    "hope",
+    "promise",
+    "calling"
   ],
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
@@ -46,5 +49,13 @@
       "reflectionAudio": "audio_1087_reflection.mp3"
     }
   },
-  "reflectionVoiceKey": "VOICE_BRADFORD"
+  "reflectionVoiceKey": "VOICE_BRADFORD",
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired",
+    "humbled"
+  ]
 }

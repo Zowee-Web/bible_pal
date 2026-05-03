@@ -43,5 +43,17 @@
   "reflectionText": "Birds wake up each morning and find their breakfast waiting. Flowers open their petals without worrying about how pretty they look. God takes care of them quietly, like a parent who sets out your clothes before you even get up.\n\nSometimes our tummies feel tight when we wonder about things — like whether we will have enough or whether everything will be okay. That tight feeling is so normal. Everybody gets it sometimes, even grown-ups.\n\nBut look outside at the birds hopping in the grass. Look at the wildflowers growing by the sidewalk. They are wrapped in God's care, and so are you — right now, just as you are.",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
-  "primaryCharacterDisplayName": "Jesus"
+  "primaryCharacterDisplayName": "Jesus",
+  "themeTags": [
+    "fear",
+    "trust",
+    "faith"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "worried",
+    "fearful",
+    "restless",
+    "uncertain"
+  ]
 }

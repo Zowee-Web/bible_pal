@@ -49,5 +49,17 @@
   "reflectionText": "This story shows that being still and listening can bring us peace. Even one quiet moment matters.",
   "timelineEra": "kingdom",
   "primaryCharacterId": "samuel",
-  "primaryCharacterDisplayName": "Samuel"
+  "primaryCharacterDisplayName": "Samuel",
+  "themeTags": [
+    "presence",
+    "guidance",
+    "trust"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting",
+    "tender"
+  ]
 }

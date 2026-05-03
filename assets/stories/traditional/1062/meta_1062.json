@@ -39,5 +39,17 @@
   "reflectionText": "Mephibosheth thought he was nobody, but the king gave him a seat at his own table. Have you ever felt like you didn't belong somewhere, and then someone made you feel welcome anyway?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "david",
-  "primaryCharacterDisplayName": "David"
+  "primaryCharacterDisplayName": "David",
+  "themeTags": [
+    "celebration",
+    "praise",
+    "gratitude"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "happy",
+    "thankful",
+    "free",
+    "grateful"
+  ]
 }

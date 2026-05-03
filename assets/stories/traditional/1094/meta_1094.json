@@ -22,7 +22,9 @@
   "storyVoiceKey": "VOICE_ARCHER",
   "themeTags": [
     "obedience",
-    "faith"
+    "faith",
+    "fear",
+    "trust"
   ],
   "primaryCharacterId": "jonah",
   "primaryCharacterDisplayName": "Jonah",
@@ -44,5 +46,12 @@
     "reflection": {
       "reflectionText": "reflection_1094_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "anxious",
+    "worried",
+    "fearful",
+    "restless",
+    "uncertain"
+  ]
 }

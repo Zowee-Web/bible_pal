@@ -63,5 +63,17 @@
   "reflectionText": "What is it that stirreth within thee when thou dost imagine forsaking all that is familiar unto thee, that thou mayest follow after a single, distant light — and what manner of trust might that be, if thou didst permit thyself to yield unto it?",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
-  "primaryCharacterDisplayName": "Jesus"
+  "primaryCharacterDisplayName": "Jesus",
+  "themeTags": [
+    "celebration",
+    "praise",
+    "gratitude"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "happy",
+    "thankful",
+    "free",
+    "grateful"
+  ]
 }

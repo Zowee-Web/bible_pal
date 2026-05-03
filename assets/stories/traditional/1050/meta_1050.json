@@ -56,5 +56,17 @@
   "reflectionText": "The vessel was marred and the potter made it again. What doth it mean to be fashioned anew by hands thou canst not see but hast chosen to trust?",
   "timelineEra": "prophets",
   "primaryCharacterId": "jeremiah",
-  "primaryCharacterDisplayName": "Jeremiah"
+  "primaryCharacterDisplayName": "Jeremiah",
+  "themeTags": [
+    "presence",
+    "guidance",
+    "trust"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting",
+    "tender"
+  ]
 }

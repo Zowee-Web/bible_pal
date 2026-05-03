@@ -21,7 +21,11 @@
   "storyVoiceKey": "VOICE_ARCHER",
   "themeTags": [
     "faith",
-    "hope"
+    "hope",
+    "celebration",
+    "praise",
+    "gratitude",
+    "revelation"
   ],
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
@@ -40,5 +44,13 @@
     "reflection": {
       "reflectionText": "reflection_1099_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "joyful",
+    "happy",
+    "thankful",
+    "free",
+    "grateful",
+    "awed"
+  ]
 }

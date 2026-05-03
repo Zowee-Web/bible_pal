@@ -49,5 +49,19 @@
   "reflectionText": "Stories of ordinary days often reflect the steady rhythm of daily faithfulness. These narratives show that meaning can be found in quiet, unremarkable moments. And even a small step forward can be enough for today.",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
-  "primaryCharacterDisplayName": "Jesus"
+  "primaryCharacterDisplayName": "Jesus",
+  "themeTags": [
+    "presence",
+    "guidance",
+    "trust",
+    "revelation"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting",
+    "tender",
+    "awed"
+  ]
 }

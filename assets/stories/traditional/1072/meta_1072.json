@@ -43,5 +43,17 @@
   "reflectionText": "How do you think Elisha's servant felt when he couldn't see the army protecting them, and have you ever felt scared before you realized someone was looking out for you?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "elisha",
-  "primaryCharacterDisplayName": "Elisha"
+  "primaryCharacterDisplayName": "Elisha",
+  "themeTags": [
+    "fear",
+    "trust",
+    "faith"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "worried",
+    "fearful",
+    "restless",
+    "uncertain"
+  ]
 }

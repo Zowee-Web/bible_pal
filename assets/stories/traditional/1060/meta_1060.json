@@ -39,5 +39,17 @@
   "reflectionText": "Jonathan gave away everything that made him a prince — just because his heart told him to. What is the most generous thing someone has ever done for you? What made it special?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "david",
-  "primaryCharacterDisplayName": "David"
+  "primaryCharacterDisplayName": "David",
+  "themeTags": [
+    "gratitude",
+    "mercy",
+    "praise"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "thankful",
+    "humbled",
+    "tender",
+    "loved"
+  ]
 }

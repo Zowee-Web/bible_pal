@@ -21,7 +21,11 @@
   "storyVoiceKey": "VOICE_CHRIS_DEFAULT",
   "themeTags": [
     "obedience",
-    "patience"
+    "patience",
+    "suffering",
+    "lament",
+    "mercy",
+    "surrender"
   ],
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
@@ -40,5 +44,13 @@
     "reflection": {
       "reflectionText": "reflection_1108_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "hurting",
+    "sorrowful",
+    "grieving",
+    "lonely",
+    "broken",
+    "alone"
+  ]
 }

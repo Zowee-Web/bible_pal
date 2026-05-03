@@ -43,5 +43,17 @@
   "reflectionText": "What made you feel happy inside as you listened to this story?",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
-  "primaryCharacterDisplayName": "Jesus"
+  "primaryCharacterDisplayName": "Jesus",
+  "themeTags": [
+    "celebration",
+    "praise",
+    "gratitude"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "happy",
+    "thankful",
+    "free",
+    "grateful"
+  ]
 }
