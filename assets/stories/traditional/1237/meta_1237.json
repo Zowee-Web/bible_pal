@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1237,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Count It All Joy",
+  "scriptureAnchor": "James 1:2-12",
+  "scriptureAnchorId": "james_1_2_12",
+  "bibleStoryKey": "count_it_all_joy",
+  "storyVoiceKey": "VOICE_MARTHA_CARING",
+  "themeTags": [
+    "hope",
+    "promise",
+    "faith"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired"
+  ],
+  "primaryCharacterId": "james_brother_of_jesus",
+  "primaryCharacterDisplayName": "James",
+  "bibleOrderIndex": 800,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1237_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1173,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Give Me This Hill Country",
+  "scriptureAnchor": "Joshua 14:6-15",
+  "bibleStoryKey": "caleb_at_hebron",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "hope",
+    "promise",
+    "faith"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired"
+  ],
+  "primaryCharacterId": "caleb",
+  "primaryCharacterDisplayName": "Caleb",
+  "bibleOrderIndex": 142,
+  "timelineEra": "conquest",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1173_traditional_web_short.txt"
+    }
+  }
+}

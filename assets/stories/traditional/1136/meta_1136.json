@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1136,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "To an Unknown God",
+  "scriptureAnchor": "Acts 17:16-34",
+  "bibleStoryKey": "paul_in_athens",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "hope",
+    "promise",
+    "faith"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired"
+  ],
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "bibleOrderIndex": 712,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1136_traditional_web_short.txt"
+    }
+  }
+}

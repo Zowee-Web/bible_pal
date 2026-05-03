@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1143,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "In My Father's House",
+  "scriptureAnchor": "Luke 2:41-52",
+  "bibleStoryKey": "boy_jesus_in_temple",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "themeTags": [
+    "presence",
+    "guidance",
+    "trust"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting",
+    "tender"
+  ],
+  "primaryCharacterId": "mary",
+  "primaryCharacterDisplayName": "Mary",
+  "bibleOrderIndex": 590,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1143_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1184,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Can These Bones Live",
+  "scriptureAnchor": "Ezekiel 37:1-14",
+  "bibleStoryKey": "valley_of_dry_bones",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "hope",
+    "promise",
+    "faith"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired"
+  ],
+  "primaryCharacterId": "ezekiel",
+  "primaryCharacterDisplayName": "Ezekiel",
+  "bibleOrderIndex": 405,
+  "timelineEra": "exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1184_traditional_web_short.txt"
+    }
+  }
+}

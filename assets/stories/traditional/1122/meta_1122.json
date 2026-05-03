@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1122,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Wounds He Did Not Need to Touch",
+  "scriptureAnchor": "John 20:24-29",
+  "bibleStoryKey": "doubting_thomas",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "themeTags": [
+    "fear",
+    "trust",
+    "faith"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "worried",
+    "fearful",
+    "restless",
+    "uncertain"
+  ],
+  "primaryCharacterId": "thomas",
+  "primaryCharacterDisplayName": "Thomas",
+  "bibleOrderIndex": 645,
+  "timelineEra": "jesus_ministry",
+  "reflectionQuestion": "Has there been a moment when you said plainly what you would not believe — and were met there anyway?",
+  "reflectionText": "He said he would not believe. He said it out loud, with confidence, in front of people who had every reason to argue with him. He had drawn his line. And then the Lord he had drawn it against walked into the room.\n\nWhat stays with you is not the rebuke. There was no rebuke. Jesus came close. He held out the hands. He invited the very thing Thomas had said he would have to do. There is something tender about it: the way grace meets the place where doubt has been most stubborn.\n\nThomas did not need to touch him. The nearness undid him.\n\nSometimes the deepest faith does not come from the people who never doubted. It comes from the ones who said it plainly, were met where they stood, and were given more than they asked for.",
+  "reflectionVoiceKey": "VOICE_ARABELLA",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.55,
+    "similarity_boost": 0.85,
+    "style": 0.25,
+    "use_speaker_boost": true
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1122_traditional_web_short.txt",
+      "storyTextV3": "story_1122_traditional_web_short_v3.txt",
+      "storyAudio": "audio_1122_story_short.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1122_traditional_web.txt"
+    }
+  }
+}

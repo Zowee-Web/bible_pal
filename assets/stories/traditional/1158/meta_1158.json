@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1158,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Nehemiah's Prayer",
+  "scriptureAnchor": "Nehemiah 1:1-11",
+  "bibleStoryKey": "nehemiah_prays",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "themeTags": [
+    "suffering",
+    "lament",
+    "mercy",
+    "prayer",
+    "restoration",
+    "rebuilding"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "sorrowful",
+    "grieving",
+    "lonely",
+    "broken",
+    "seeking",
+    "determined"
+  ],
+  "primaryCharacterId": "nehemiah",
+  "primaryCharacterDisplayName": "Nehemiah",
+  "bibleOrderIndex": 510,
+  "timelineEra": "return",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1158_traditional_web_short.txt"
+    }
+  }
+}

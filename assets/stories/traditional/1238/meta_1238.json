@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1238,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Your King Comes",
+  "scriptureAnchor": "Zechariah 9:9-17",
+  "scriptureAnchorId": "zechariah_9_9_17",
+  "bibleStoryKey": "your_king_comes_humble",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "themeTags": [
+    "hope",
+    "promise",
+    "faith"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired"
+  ],
+  "primaryCharacterId": "zechariah",
+  "primaryCharacterDisplayName": "Zechariah",
+  "bibleOrderIndex": 385,
+  "timelineEra": "return",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1238_traditional_web_short.txt"
+    }
+  }
+}

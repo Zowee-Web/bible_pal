@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1231,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Let Justice Roll Down",
+  "scriptureAnchor": "Amos 5:21-24",
+  "scriptureAnchorId": "amos_5_21-24",
+  "bibleStoryKey": "let_justice_roll_down",
+  "storyVoiceKey": "VOICE_ESTHER_BRAVE",
+  "themeTags": [
+    "courage",
+    "obedience",
+    "faith",
+    "justice"
+  ],
+  "emotionalTags": [
+    "courageous",
+    "determined",
+    "steadfast",
+    "resolute",
+    "brave"
+  ],
+  "primaryCharacterId": "amos",
+  "primaryCharacterDisplayName": "Amos",
+  "bibleOrderIndex": 370,
+  "timelineEra": "prophets",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1231_traditional_web_short.txt"
+    }
+  }
+}

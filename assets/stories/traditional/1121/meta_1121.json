@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1121,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Lips That Moved Without Sound",
+  "scriptureAnchor": "1 Samuel 1:9-20",
+  "bibleStoryKey": "hannah_prays_for_son",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "themeTags": [
+    "suffering",
+    "lament",
+    "mercy",
+    "waiting",
+    "promise"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "sorrowful",
+    "grieving",
+    "lonely",
+    "broken",
+    "longing"
+  ],
+  "primaryCharacterId": "hannah",
+  "primaryCharacterDisplayName": "Hannah",
+  "bibleOrderIndex": 185,
+  "timelineEra": "prophets",
+  "reflectionQuestion": "Have you ever needed to be heard by God in a moment when no one else could understand what you were carrying?",
+  "reflectionText": "She did not raise her voice. She did not need to. The room was empty enough that her silence was already a kind of speech, and her tears were already a kind of prayer.\n\nWhat stays with you about Hannah is not the answer she received. It is the moment before — the long unanswered ache, sitting with her in a quiet room, with no one watching but God.\n\nEli got it wrong. People will get it wrong. Sometimes the deepest grief looks, from the outside, like something else entirely. The remarkable thing is that her honest words turned him — and that the heavens were not turned, because the heavens had been listening all along.\n\nHer son's name was a sentence she could carry for the rest of her life: I asked him of Yahweh. Not every prayer is answered the way Hannah's was. But every prayer is heard the way Hannah's was — by a God who reads lips that no one else can see move.",
+  "reflectionVoiceKey": "VOICE_ARABELLA",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.35,
+    "similarity_boost": 0.85,
+    "style": 0.5,
+    "use_speaker_boost": true
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1121_traditional_web_short.txt",
+      "storyTextV3": "story_1121_traditional_web_short_v3.txt",
+      "storyAudio": "audio_1121_story_short.mp3"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1121_traditional_web.txt"
+    }
+  }
+}

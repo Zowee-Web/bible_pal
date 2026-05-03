@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1149,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "She Is Its Mother",
+  "scriptureAnchor": "1 Kings 3:16-28",
+  "bibleStoryKey": "solomon_two_mothers",
+  "storyVoiceKey": "VOICE_JANE_PROFESSIONAL",
+  "themeTags": [
+    "hope",
+    "promise",
+    "faith"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired"
+  ],
+  "primaryCharacterId": "solomon",
+  "primaryCharacterDisplayName": "Solomon",
+  "bibleOrderIndex": 240,
+  "timelineEra": "kingdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1149_traditional_web_short.txt"
+    }
+  }
+}

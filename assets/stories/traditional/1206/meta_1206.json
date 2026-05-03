@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1206,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "She Did Not Turn Away",
+  "scriptureAnchor": "John 19:25-42",
+  "bibleStoryKey": "mary_magdalene_at_cross",
+  "storyVoiceKey": "VOICE_CHARLOTTE_V3",
+  "themeTags": [
+    "suffering",
+    "lament",
+    "mercy"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "sorrowful",
+    "grieving",
+    "lonely",
+    "broken"
+  ],
+  "primaryCharacterId": "mary_magdalene",
+  "primaryCharacterDisplayName": "Mary Magdalene",
+  "bibleOrderIndex": 685,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1206_traditional_web_short.txt"
+    }
+  }
+}

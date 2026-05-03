@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1210,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Have You Killed and Also Taken Possession",
+  "scriptureAnchor": "1 Kings 21:1-19",
+  "bibleStoryKey": "naboths_vineyard",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "suffering",
+    "lament",
+    "mercy"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "sorrowful",
+    "grieving",
+    "lonely",
+    "broken"
+  ],
+  "primaryCharacterId": "naboth",
+  "primaryCharacterDisplayName": "Naboth",
+  "bibleOrderIndex": 280,
+  "timelineEra": "kingdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1210_traditional_web_short.txt"
+    }
+  }
+}

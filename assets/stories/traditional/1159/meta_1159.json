@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1159,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Fleece on the Threshing Floor",
+  "scriptureAnchor": "Judges 6:36-40",
+  "bibleStoryKey": "gideons_fleece",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "fear",
+    "trust",
+    "faith"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "worried",
+    "fearful",
+    "restless",
+    "uncertain"
+  ],
+  "primaryCharacterId": "gideon",
+  "primaryCharacterDisplayName": "Gideon",
+  "bibleOrderIndex": 160,
+  "timelineEra": "judges",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1159_traditional_web_short.txt"
+    }
+  }
+}
