@@ -366,6 +366,22 @@ class ParableService {
         if (p.kidFriendly) return false;
       }
 
+      // Mood flow safety: exclude entries with empty audioFilePath. Such
+      // entries can exist when a story's metadata + text are checked in
+      // before audio is generated. Mood serving leads to a Play button that
+      // immediately fails because the resolver can't find a file at "".
+      // Paths/search keep these entries searchable; mood does not.
+      if ((p.audioFilePath ?? '').isEmpty) {
+        logEvent(
+            'story_excluded',
+            {
+              'story_id': p.storyId,
+              'reason': 'missing_audio_file_path',
+            },
+            level: LogLevel.warn);
+        return false;
+      }
+
       return true;
     }).toList();
 
@@ -709,7 +725,11 @@ class ParableService {
     Parable parable, {
     void Function(double progress)? onProgress,
   }) async {
-    if (parable.audioFilePath == null) return null;
+    // Treat null and empty-string paths the same. Empty paths can appear
+    // in manifest entries authored before audio is generated; the cache /
+    // asset / R2 cascade silently turns into a malformed lookup that
+    // surfaces as a misleading "needs internet connection" error.
+    if ((parable.audioFilePath ?? '').isEmpty) return null;
 
     // iOS & Android: shared three-tier resolver. iOS does not evict cache.
     if (Platform.isIOS || Platform.isAndroid) {
@@ -732,7 +752,7 @@ class ParableService {
       _getAudioFileFromAssets(parable);
 
   Future<File?> _getAudioFileFromAssets(Parable parable) async {
-    if (parable.audioFilePath == null) return null;
+    if ((parable.audioFilePath ?? '').isEmpty) return null;
     try {
       final audioData =
           await rootBundle.load('assets/stories/${parable.audioFilePath}');
@@ -769,6 +789,13 @@ class ParableService {
     void Function(double progress)? onProgress,
   }) async {
     _lastAudioError = AudioResolveError.none;
+    // Defense-in-depth: callers are expected to filter empty paths via
+    // [getAudioFile], but the test-only entry point and ensureCachedForFavorite
+    // can reach here directly.
+    if ((parable.audioFilePath ?? '').isEmpty) {
+      _lastAudioError = AudioResolveError.remoteNotFound;
+      return null;
+    }
     final relativePath = parable.audioFilePath!;
 
     // Tier 1: local cache hit.
@@ -836,7 +863,7 @@ class ParableService {
   /// favoriting must never fail because the network was unreliable.
   Future<void> ensureCachedForFavorite(Parable parable) async {
     if (!Platform.isAndroid) return;
-    if (parable.audioFilePath == null) return;
+    if ((parable.audioFilePath ?? '').isEmpty) return;
     try {
       await _getAudioFileWithCloudFallback(parable);
     } catch (_) {/* silent — favoriting must not fail on network */}
