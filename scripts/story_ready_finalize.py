@@ -144,7 +144,7 @@ class Summary:
     total: int = 0
     ready: int = 0
     failed: int = 0
-    audio_copied: int = 0
+    audio_promoted: int = 0
     manifest_added: int = 0
     manifest_updated: int = 0
     pubspec_added: int = 0
@@ -260,10 +260,16 @@ def ensure_canonical_audio(
     force: bool,
 ) -> Tuple[bool, str, bool]:
     """
-    Returns (ok, message, copied).
+    Returns (ok, message, promoted).
 
-    - If canonical exists and not --force: ok, no copy.
-    - If canonical missing and take exists: copy with shutil.copy2 (only if not dry-run).
+    Promotes the chosen take to the canonical filename via shutil.move (rename).
+    This is treated as PROMOTION, not deletion: the audio bytes survive, just at
+    the canonical path. Satisfies the never-delete-audio rule because no audio
+    data is destroyed — only the take filename is consumed.
+
+    - If canonical exists and not --force: ok, no action (idempotent).
+    - If canonical missing and take exists: move take -> canonical (only if not dry-run).
+    - If take is gone but canonical exists: ok, no action (already promoted).
     - If both missing: not ok.
     """
     take = take_path_for(story_id, take_name)
@@ -274,14 +280,14 @@ def ensure_canonical_audio(
 
     if not take.exists():
         if canonical.exists():
-            return True, f"canonical exists, take missing (skipped)", False
+            return True, f"canonical exists, take already promoted", False
         return False, f"missing both take ({take.name}) and canonical", False
 
     if dry_run:
-        return True, f"WOULD copy {take.name} -> {canonical.name}", False
+        return True, f"WOULD move (promote) {take.name} -> {canonical.name}", False
 
-    shutil.copy2(take, canonical)
-    return True, f"copied {take.name} -> {canonical.name}", True
+    shutil.move(str(take), str(canonical))
+    return True, f"moved (promoted) {take.name} -> {canonical.name}", True
 
 
 # ---------------------------------------------------------------------------
@@ -513,7 +519,7 @@ def finalize_story(
     """
     result = StoryResult(story_id=story_id)
     actions_taken: Dict[str, bool] = {
-        "audio_copied": False,
+        "audio_promoted": False,
         "manifest_added": False,
         "manifest_updated": False,
         "pubspec_added": False,
@@ -550,12 +556,12 @@ def finalize_story(
         result.add("story_text", True, text_p.name)
 
     # --- 6-7. canonical audio (copy take if needed) ------------------------
-    audio_ok, audio_msg, copied = ensure_canonical_audio(
+    audio_ok, audio_msg, promoted = ensure_canonical_audio(
         story_id, take_name, dry_run=dry_run, force=force
     )
     result.add("canonical_audio", audio_ok, audio_msg)
-    if copied:
-        actions_taken["audio_copied"] = True
+    if promoted:
+        actions_taken["audio_promoted"] = True
 
     # --- 8-9. manifest entry ------------------------------------------------
     matches = find_manifest_entries(manifest, story_id)
@@ -633,7 +639,7 @@ def print_summary(summary: Summary, dry_run: bool) -> None:
     print(f"  Stories checked:         {summary.total}")
     print(f"  Ready:                   {summary.ready}")
     print(f"  Failed:                  {summary.failed}")
-    print(f"  Audio copied:            {summary.audio_copied}")
+    print(f"  Audio promoted:          {summary.audio_promoted}")
     print(f"  Manifest entries added:  {summary.manifest_added}")
     print(f"  Manifest entries updated:{summary.manifest_updated}")
     print(f"  Pubspec lines added:     {summary.pubspec_added}")
@@ -737,8 +743,8 @@ def main(argv: Optional[List[str]] = None) -> int:
             summary.ready += 1
         else:
             summary.failed += 1
-        if actions["audio_copied"]:
-            summary.audio_copied += 1
+        if actions["audio_promoted"]:
+            summary.audio_promoted += 1
         if actions["manifest_added"]:
             summary.manifest_added += 1
         if actions["manifest_updated"]:
