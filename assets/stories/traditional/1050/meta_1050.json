@@ -13,7 +13,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "voiceKey": "VOICE_ELIJAH_SAGE",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
   "reflectionQuestion": "The vessel was marred and the potter made it again. What does it feel like to be reshaped by hands you cannot see but have chosen to trust?",
@@ -45,8 +45,8 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
-  "reflectionVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "reflectionVoiceKey": "VOICE_ELIJAH_SAGE",
   "scriptureAnchor": "Jeremiah 18:1-6",
   "bibleStoryKey": "potter_and_clay",
   "reflections": {
