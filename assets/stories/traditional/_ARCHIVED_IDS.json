@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "purpose": "Allowlist of Traditional story IDs whose meta_<id>.json exists on disk but is intentionally NOT shipped via assets/stories/manifest.json. These stories are preserved as legacy assets (per the never-delete-audio rule) but are not part of the active corpus surfaced to users.",
+  "policy": "Integrity tests treat any meta_<id>.json directory as either (a) referenced by the live manifest, or (b) listed below. Anything else is an unresolved orphan and the test fails. To intentionally retire a shipped story, remove it from manifest.json and add its ID here.",
+  "archivedIds": [
+    801,
+    802,
+    803,
+    804,
+    805,
+    806,
+    807,
+    808,
+    809,
+    810,
+    811,
+    812,
+    813,
+    814,
+    815,
+    816,
+    817,
+    818,
+    819,
+    820,
+    821,
+    822,
+    823,
+    824,
+    827,
+    830,
+    833,
+    834
+  ],
+  "notes": {
+    "origin": "Pre-Opus-4.6-migration 800-series. The current shipping manifest covers IDs 825-1268; these 28 were dropped during the Opus 4.6 cutover (see memory: project_opus46_migration). Their anchors are now covered by newer 825+ stories with the same scripture references.",
+    "doNotDelete": "Per the never-delete-audio rule these directories must remain intact. This file only marks them as 'known orphan, intentional', not 'safe to remove'."
+  }
+}
