@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1270,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Hold Fast to the Lord Your God",
+  "scriptureAnchor": "Joshua 23:1-16",
+  "scriptureAnchorId": "joshua_23_1_16",
+  "bibleStoryKey": "joshua_farewell_charge",
+  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "themeTags": [
+    "perseverance",
+    "obedience",
+    "faithfulness",
+    "calling"
+  ],
+  "emotionalTags": [
+    "resolute",
+    "steadfast",
+    "brave",
+    "determined",
+    "humbled",
+    "inspired"
+  ],
+  "primaryCharacterId": "joshua",
+  "primaryCharacterDisplayName": "Joshua",
+  "bibleOrderIndex": 130,
+  "timelineEra": "conquest",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1270_traditional_web_short.txt"
+    }
+  }
+}

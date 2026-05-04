@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1284,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Hear, O Israel",
+  "scriptureAnchor": "Deuteronomy 6:4-9",
+  "scriptureAnchorId": "deuteronomy_6_4_9",
+  "bibleStoryKey": "shema_love_the_lord",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "themeTags": [
+    "obedience",
+    "devotion",
+    "presence",
+    "love"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "comforted",
+    "loved",
+    "humbled",
+    "tender",
+    "trusting"
+  ],
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "bibleOrderIndex": 95,
+  "timelineEra": "exodus",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1284_traditional_web_short.txt"
+    }
+  }
+}

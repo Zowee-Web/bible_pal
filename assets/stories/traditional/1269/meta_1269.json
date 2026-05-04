@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1269,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "You Are a God Who Sees",
+  "scriptureAnchor": "Genesis 16:1-14",
+  "scriptureAnchorId": "genesis_16_1_14",
+  "bibleStoryKey": "hagar_in_the_wilderness",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "themeTags": [
+    "presence",
+    "mercy",
+    "deliverance",
+    "longing"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "lonely",
+    "longing",
+    "comforted",
+    "awed",
+    "humbled"
+  ],
+  "primaryCharacterId": "hagar",
+  "primaryCharacterDisplayName": "Hagar",
+  "bibleOrderIndex": 25,
+  "timelineEra": "patriarchs",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1269_traditional_web_short.txt"
+    }
+  }
+}

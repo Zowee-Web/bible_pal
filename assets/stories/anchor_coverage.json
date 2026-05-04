@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "lastUpdated": "2026-05-04T01:51:43Z",
+  "lastUpdated": "2026-05-04T17:57:58Z",
   "summary": {
-    "scanned": 303,
-    "uniqueScriptureAnchorIds": 248,
+    "scanned": 322,
+    "uniqueScriptureAnchorIds": 267,
     "duplicateScriptureAnchorIdCount": 47,
     "duplicateBibleStoryKeyCount": 48
   },
@@ -1621,6 +1621,120 @@
       "bibleStoryKey": "let_not_your_heart_be_troubled",
       "scriptureAnchor": "John 14:1-3, 18-19, 27",
       "scriptureAnchorId": "john_14_comfort_selected"
+    },
+    {
+      "storyId": 1269,
+      "bibleStoryKey": "hagar_in_the_wilderness",
+      "scriptureAnchor": "Genesis 16:1-14",
+      "scriptureAnchorId": "genesis_16_1_14"
+    },
+    {
+      "storyId": 1270,
+      "bibleStoryKey": "joshua_farewell_charge",
+      "scriptureAnchor": "Joshua 23:1-16",
+      "scriptureAnchorId": "joshua_23_1_16"
+    },
+    {
+      "storyId": 1271,
+      "bibleStoryKey": "jairus_daughter_raised",
+      "scriptureAnchor": "Mark 5:35-43",
+      "scriptureAnchorId": "mark_5_35_43"
+    },
+    {
+      "storyId": 1272,
+      "bibleStoryKey": "rejoice_peace_of_god",
+      "scriptureAnchor": "Philippians 4:4-9",
+      "scriptureAnchorId": "philippians_4_4_9"
+    },
+    {
+      "storyId": 1273,
+      "bibleStoryKey": "death_swallowed_in_victory",
+      "scriptureAnchor": "1 Corinthians 15:51-58",
+      "scriptureAnchorId": "1_corinthians_15_51_58"
+    },
+    {
+      "storyId": 1274,
+      "bibleStoryKey": "great_multitude_no_more_tears",
+      "scriptureAnchor": "Revelation 7:9-17",
+      "scriptureAnchorId": "revelation_7_9_17"
+    },
+    {
+      "storyId": 1275,
+      "bibleStoryKey": "cloud_of_witnesses_endure",
+      "scriptureAnchor": "Hebrews 12:1-13",
+      "scriptureAnchorId": "hebrews_12_1_13"
+    },
+    {
+      "storyId": 1276,
+      "bibleStoryKey": "pray_for_one_another",
+      "scriptureAnchor": "James 5:13-20",
+      "scriptureAnchorId": "james_5_13_20"
+    },
+    {
+      "storyId": 1277,
+      "bibleStoryKey": "calling_and_election_sure",
+      "scriptureAnchor": "2 Peter 1:3-11",
+      "scriptureAnchorId": "2_peter_1_3_11"
+    },
+    {
+      "storyId": 1278,
+      "bibleStoryKey": "patience_until_the_coming",
+      "scriptureAnchor": "James 5:7-11",
+      "scriptureAnchorId": "james_5_7_11"
+    },
+    {
+      "storyId": 1279,
+      "bibleStoryKey": "onesimus_received_as_brother",
+      "scriptureAnchor": "Philemon 1:8-16",
+      "scriptureAnchorId": "philemon_1_8_16"
+    },
+    {
+      "storyId": 1280,
+      "bibleStoryKey": "walk_in_truth_and_love",
+      "scriptureAnchor": "2 John 1:4-6",
+      "scriptureAnchorId": "2_john_1_4_6"
+    },
+    {
+      "storyId": 1281,
+      "bibleStoryKey": "faithful_work_for_brothers",
+      "scriptureAnchor": "3 John 1:5-8",
+      "scriptureAnchorId": "3_john_1_5_8"
+    },
+    {
+      "storyId": 1282,
+      "bibleStoryKey": "let_nations_be_glad",
+      "scriptureAnchor": "Psalm 67",
+      "scriptureAnchorId": "psalm_67"
+    },
+    {
+      "storyId": 1283,
+      "bibleStoryKey": "mourning_into_dancing",
+      "scriptureAnchor": "Psalm 30:1-12",
+      "scriptureAnchorId": "psalm_30_1_12"
+    },
+    {
+      "storyId": 1284,
+      "bibleStoryKey": "shema_love_the_lord",
+      "scriptureAnchor": "Deuteronomy 6:4-9",
+      "scriptureAnchorId": "deuteronomy_6_4_9"
+    },
+    {
+      "storyId": 1285,
+      "bibleStoryKey": "shelter_of_the_most_high",
+      "scriptureAnchor": "Psalm 91:1-7",
+      "scriptureAnchorId": "psalm_91_1_7"
+    },
+    {
+      "storyId": 1286,
+      "bibleStoryKey": "ebenezer_the_lord_helped_us",
+      "scriptureAnchor": "1 Samuel 7:1-17",
+      "scriptureAnchorId": "1_samuel_7_1_17"
+    },
+    {
+      "storyId": 1287,
+      "bibleStoryKey": "set_his_love_on_me",
+      "scriptureAnchor": "Psalm 91:9-16",
+      "scriptureAnchorId": "psalm_91_9_16"
     },
     {
       "storyId": 801,
