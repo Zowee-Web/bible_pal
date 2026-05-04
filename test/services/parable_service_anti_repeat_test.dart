@@ -103,6 +103,24 @@ void main() {
     for (final p in recentlyPlayed) {
       await storage.recordPlayed(p.storyId, at: oneDayAgo);
     }
+    // The MICRO serving bias (added separately) pulls MICROs from similar-mood
+    // pools into the eligible set when the mood is high-intensity (anxious /
+    // hurting / weary) at Short length. To keep this test focused on the
+    // exact-mood anti-repeat behavior, also mark every MICRO from similar
+    // moods as played — that way `survivor` is the only unseen candidate
+    // across the entire combined pool the bias would consider.
+    const similarMoodsForTest = ['anxious', 'weary', 'encouraging', 'calm_peaceful', 'brave_courage'];
+    for (final m in similarMoodsForTest) {
+      final similarPool = await service.getEligibleParables(
+        mood: m,
+        lengthBucket: testBucket,
+        userPrefs: adultPrefs,
+      );
+      for (final p in similarPool.where((p) => p.shortScripture)) {
+        if (p.storyId == survivor.storyId) continue;
+        await storage.recordPlayed(p.storyId, at: oneDayAgo);
+      }
+    }
 
     // Tier 1 = exact mood + unseen — should contain only `survivor` from
     // the exact pool. (Similar moods may also contribute, but Tier 1 prefers

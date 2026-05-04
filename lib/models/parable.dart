@@ -51,6 +51,15 @@ class Parable {
   final List<String>? themeTags;
   final int? characterPathOrder;
 
+  /// Internal-only MICRO classification flag.
+  /// True when this is a tightly-focused emotional scripture extract that runs
+  /// 50-250 words (shorter than the standard Short bucket of 300-500). Stored
+  /// under `lengths: ["short"]` so users still see it in the Short selection,
+  /// but selection logic may bias toward MICRO stories first when the user's
+  /// detected mood is high-intensity (anxious / hurting / weary). See SPEC
+  /// "Micro serving bias" and `feedback_micro_stories.md` in agent memory.
+  final bool shortScripture;
+
   const Parable({
     required this.storyId,
     required this.title,
@@ -83,6 +92,7 @@ class Parable {
     this.timelineEra,
     this.themeTags,
     this.characterPathOrder,
+    this.shortScripture = false,
   });
 
   /// Create from JSON (for storage/retrieval)
@@ -146,6 +156,7 @@ class Parable {
           ?.map((e) => e as String)
           .toList(),
       characterPathOrder: json['characterPathOrder'] as int?,
+      shortScripture: json['shortScripture'] as bool? ?? false,
     );
   }
 
@@ -209,6 +220,10 @@ class Parable {
     if (characterPathOrder != null) {
       json['characterPathOrder'] = characterPathOrder;
     }
+    // MICRO flag — only emit when true so legacy entries stay byte-identical.
+    if (shortScripture) {
+      json['shortScripture'] = true;
+    }
     return json;
   }
 
@@ -255,6 +270,7 @@ class Parable {
     String? timelineEra,
     List<String>? themeTags,
     int? characterPathOrder,
+    bool? shortScripture,
   }) {
     return Parable(
       storyId: storyId ?? this.storyId,
@@ -290,6 +306,7 @@ class Parable {
       timelineEra: timelineEra ?? this.timelineEra,
       themeTags: themeTags ?? this.themeTags,
       characterPathOrder: characterPathOrder ?? this.characterPathOrder,
+      shortScripture: shortScripture ?? this.shortScripture,
     );
   }
 

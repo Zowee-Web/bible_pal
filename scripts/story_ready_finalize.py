@@ -102,6 +102,7 @@ SAFE_UPDATE_FIELDS: Tuple[str, ...] = (
     "bibleOrderIndex",
     "timelineEra",
     "themeTags",
+    "shortScripture",
 )
 
 TESTS_TO_RUN: Tuple[str, ...] = (
@@ -343,6 +344,7 @@ def build_manifest_entry(
     bible_order_index = meta.get("bibleOrderIndex", 0)
     timeline_era = meta.get("timelineEra", "")
     theme_tags = list(meta.get("themeTags") or [])
+    short_scripture = bool(meta.get("shortScripture", False))
 
     text_rel = manifest_text_rel_for(story_id)
     audio_rel = manifest_audio_rel_for(story_id)
@@ -373,6 +375,9 @@ def build_manifest_entry(
             "themeTags": theme_tags,
             "reflectionQuestion": "",
         }
+        # MICRO marker (only emit when true to keep legacy entries clean).
+        if short_scripture:
+            entry["shortScripture"] = True
         return entry, True
 
     # Update path: copy existing dict, only mutate safe fields.
@@ -388,6 +393,11 @@ def build_manifest_entry(
     entry["bibleOrderIndex"] = bible_order_index
     entry["timelineEra"] = timeline_era
     entry["themeTags"] = theme_tags
+    # Only set shortScripture if true; remove if false-and-previously-present.
+    if short_scripture:
+        entry["shortScripture"] = True
+    elif "shortScripture" in entry:
+        del entry["shortScripture"]
     return entry, False
 
 
