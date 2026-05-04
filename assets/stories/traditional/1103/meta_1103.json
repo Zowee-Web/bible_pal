@@ -29,8 +29,8 @@
   "primaryCharacterDisplayName": "Peter",
   "bibleOrderIndex": 703,
   "timelineEra": "early_church",
-  "reflectionQuestion": "Have you ever been in a situation that felt completely locked — and then something shifted that you did not arrange?",
-  "reflectionText": "Peter was asleep. That is the detail that stops you. The night before his trial — almost certainly his execution — and he was sleeping between two guards with chains on his wrists.\n\nThe church was awake. They were praying through the night, desperate. But Peter slept.\n\nAnd when the angel came and the chains fell and the gates opened, Peter walked through it all thinking it was a dream. He did not believe his own rescue until he was standing alone in the street.\n\nSometimes deliverance comes in the middle of the night, when the person being rescued is the last one to realize it is real.",
+  "reflectionQuestion": "Have you ever been in a situation that felt completely locked \u2014 and then something shifted that you did not arrange?",
+  "reflectionText": "Peter was asleep. That is the detail that stops you. The night before his trial \u2014 almost certainly his execution \u2014 and he was sleeping between two guards with chains on his wrists.\n\nThe church was awake. They were praying through the night, desperate. But Peter slept.\n\nAnd when the angel came and the chains fell and the gates opened, Peter walked through it all thinking it was a dream. He did not believe his own rescue until he was standing alone in the street.\n\nSometimes deliverance comes in the middle of the night, when the person being rescued is the last one to realize it is real.",
   "reflectionVoiceKey": "VOICE_ARCHER",
   "files": {
     "short": {
@@ -48,9 +48,9 @@
   },
   "emotionalTags": [
     "anxious",
-    "worried",
     "fearful",
     "restless",
-    "uncertain"
+    "uncertain",
+    "seeking"
   ]
 }
