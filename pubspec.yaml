@@ -1162,6 +1162,28 @@ flutter:
     - assets/stories/traditional/1120/meta_1120.json
     - assets/stories/traditional/1120/story_1120_traditional_kjv_short.txt
     - assets/stories/traditional/1120/story_1120_traditional_web_short.txt
+    # 1100–1120 — story audio (canonical, bundled)
+    - assets/stories/traditional/1100/audio_1100_story_short.mp3
+    - assets/stories/traditional/1101/audio_1101_story_short.mp3
+    - assets/stories/traditional/1102/audio_1102_story_short.mp3
+    - assets/stories/traditional/1103/audio_1103_story_short.mp3
+    - assets/stories/traditional/1104/audio_1104_story_short.mp3
+    - assets/stories/traditional/1105/audio_1105_story_short.mp3
+    - assets/stories/traditional/1106/audio_1106_story_short.mp3
+    - assets/stories/traditional/1107/audio_1107_story_short.mp3
+    - assets/stories/traditional/1108/audio_1108_story_short.mp3
+    - assets/stories/traditional/1109/audio_1109_story_short.mp3
+    - assets/stories/traditional/1110/audio_1110_story_short.mp3
+    - assets/stories/traditional/1111/audio_1111_story_short.mp3
+    - assets/stories/traditional/1112/audio_1112_story_short.mp3
+    - assets/stories/traditional/1113/audio_1113_story_short.mp3
+    - assets/stories/traditional/1114/audio_1114_story_short.mp3
+    - assets/stories/traditional/1115/audio_1115_story_short.mp3
+    - assets/stories/traditional/1116/audio_1116_story_short.mp3
+    - assets/stories/traditional/1117/audio_1117_story_short.mp3
+    - assets/stories/traditional/1118/audio_1118_story_short.mp3
+    - assets/stories/traditional/1119/audio_1119_story_short.mp3
+    - assets/stories/traditional/1120/audio_1120_story_short.mp3
     # 1121 — Hannah at Shiloh (eleven_v3 pilot, audio bundled for beta demo)
     - assets/stories/traditional/1121/audio_1121_story_short.mp3
     - assets/stories/traditional/1121/meta_1121.json
