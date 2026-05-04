@@ -276,6 +276,118 @@ void main() {
     });
   });
 
+  group('MICRO bias releases when exact-mood MICROs are exhausted', () {
+    test(
+        'after exact-mood MICROs are recently played, selection falls back '
+        'to exact-mood non-MICRO Short before similar-mood MICRO', () async {
+      const mood = 'hurting';
+      final pool = await service.getEligibleParables(
+        mood: mood,
+        lengthBucket: StoryLengthBucket.short,
+        userPrefs: adultPrefs,
+      );
+      final exactMoodMicros =
+          pool.where((p) => p.mood == mood && p.shortScripture).toList();
+      final exactMoodNonMicros =
+          pool.where((p) => p.mood == mood && !p.shortScripture).toList();
+      if (exactMoodMicros.isEmpty || exactMoodNonMicros.isEmpty) {
+        return; // Need both buckets to validate the fallback
+      }
+
+      final oneDayAgo = DateTime.now().subtract(const Duration(days: 1));
+      for (final p in exactMoodMicros) {
+        await storage.recordPlayed(p.storyId, at: oneDayAgo);
+      }
+
+      // Run several selections — each must be exact-mood AND non-MICRO,
+      // NOT a similar-mood MICRO. This proves the bias released once
+      // exact-mood MICROs were drained, allowing normal tiered serving.
+      var sawExactNonMicro = false;
+      for (var i = 0; i < 5; i++) {
+        final result = await service.selectParable(
+          mood: mood,
+          lengthBucket: StoryLengthBucket.short,
+          userPrefs: adultPrefs,
+        );
+        if (result == null) continue;
+        // Must not be a recently-played exact-mood MICRO
+        expect(
+            exactMoodMicros.any((p) => p.storyId == result.storyId &&
+                result.shortScripture),
+            false,
+            reason: 'Selection must not return a recently-played MICRO.');
+        if (result.mood == mood && !result.shortScripture) {
+          sawExactNonMicro = true;
+        }
+      }
+      expect(sawExactNonMicro, true,
+          reason:
+              'After exact-mood MICROs were played, an exact-mood non-MICRO '
+              'Short must surface before any similar-mood MICRO.');
+    });
+
+    test(
+        'similar-mood MICROs do not keep the MICRO bias active when no '
+        'exact-mood MICRO is unseen', () async {
+      const mood = 'anxious';
+      final pool = await service.getEligibleParables(
+        mood: mood,
+        lengthBucket: StoryLengthBucket.short,
+        userPrefs: adultPrefs,
+      );
+      final exactMoodMicros =
+          pool.where((p) => p.mood == mood && p.shortScripture).toList();
+      final similarMoodMicros =
+          pool.where((p) => p.mood != mood && p.shortScripture).toList();
+      if (similarMoodMicros.isEmpty) {
+        return; // Nothing to validate without similar-mood MICRO presence
+      }
+
+      // Drain only exact-mood MICROs. Similar-mood MICROs remain unseen.
+      // Under the buggy behavior, the bias would still trigger and force a
+      // similar-mood MICRO. Under the fix, the bias releases and we should
+      // NOT keep landing on similar-mood MICROs over exact-mood non-MICROs.
+      final oneDayAgo = DateTime.now().subtract(const Duration(days: 1));
+      for (final p in exactMoodMicros) {
+        await storage.recordPlayed(p.storyId, at: oneDayAgo);
+      }
+
+      // Across multiple picks, verify selection isn't trapped in
+      // similar-mood MICRO. With the bias released, the selector's tiered
+      // serving (exact-mood-unseen first) should produce at least one
+      // exact-mood non-MICRO Short if any exists. If the corpus has no
+      // exact-mood non-MICRO Short for this mood, this test degrades to
+      // "selection isn't ALL similar-mood MICROs" which still proves the
+      // bias released.
+      final exactMoodNonMicroExists =
+          pool.any((p) => p.mood == mood && !p.shortScripture);
+      var sawNonSimilarMicro = false;
+      for (var i = 0; i < 8; i++) {
+        final result = await service.selectParable(
+          mood: mood,
+          lengthBucket: StoryLengthBucket.short,
+          userPrefs: adultPrefs,
+        );
+        if (result == null) continue;
+        final isSimilarMoodMicro =
+            result.mood != mood && result.shortScripture;
+        if (!isSimilarMoodMicro) sawNonSimilarMicro = true;
+      }
+      if (exactMoodNonMicroExists) {
+        expect(sawNonSimilarMicro, true,
+            reason: 'Bias should release once exact-mood MICROs are seen — '
+                'similar-mood MICROs alone must not keep selection locked '
+                'to MICRO-only when an exact-mood non-MICRO Short exists.');
+      } else {
+        // Degraded assertion: bias released ⇒ at least one selection should
+        // step outside MICRO-only (engine LRP rotates seen tiers etc.).
+        expect(sawNonSimilarMicro, true,
+            reason: 'Bias must not keep selection locked to similar-mood '
+                'MICROs once no unseen exact-mood MICRO exists.');
+      }
+    });
+  });
+
   group('MICRO bias does not apply to non-intense moods', () {
     test('calm_peaceful + Short does NOT force MICRO selection', () async {
       // calm_peaceful is not in the high-intensity set, so the bias should

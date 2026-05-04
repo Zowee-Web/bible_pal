@@ -541,27 +541,31 @@ class ParableService {
 
     // MICRO serving bias: for high-intensity moods (anxious/hurting/weary) at
     // Short length, prefer MICRO stories (shortScripture==true) first. They
-    // give faster comfort/direction. The bias is gated on having at least one
-    // UNSEEN MICRO so it never overrides anti-repeat. Falls back to the full
-    // combined pool if no eligible (unseen) MICRO exists. Bias does NOT
-    // affect Full or Long selection — those length buckets exclude MICRO
-    // entirely. See `feedback_micro_stories.md` in agent memory.
+    // give faster comfort/direction. The bias only stays active when there is
+    // at least one UNSEEN EXACT-MOOD MICRO so it never overrides anti-repeat
+    // and never traps the user on similar-mood MICROs once exact-mood MICROs
+    // are exhausted — normal tiered serving resumes so exact-mood non-MICRO
+    // Shorts can surface before similar-mood MICROs. Bias does NOT affect
+    // Full or Long selection — those length buckets exclude MICRO entirely.
+    // See `feedback_micro_stories.md` in agent memory.
     final microBiasApplied = lengthBucket == StoryLengthBucket.short &&
         _microBiasMoods.contains(mood);
     if (microBiasApplied) {
       final microPool =
           combinedPool.where((p) => p.shortScripture).toList(growable: false);
-      final unseenMicroCount =
-          microPool.where((p) => !recentStoryIds.contains(p.storyId)).length;
-      if (unseenMicroCount > 0) {
+      final unseenExactMoodMicroCount = microPool
+          .where((p) => p.mood == mood && !recentStoryIds.contains(p.storyId))
+          .length;
+      if (unseenExactMoodMicroCount > 0) {
         debugPrint(
             '[ParableService] MICRO bias applied for mood=$mood: '
-            '${microPool.length} MICRO candidate(s), $unseenMicroCount unseen '
+            '${microPool.length} MICRO candidate(s), '
+            '$unseenExactMoodMicroCount unseen exact-mood '
             '(combined pool was ${combinedPool.length})');
         logEvent('micro_bias_applied', {
           'selected_mood': mood,
           'micro_pool_size': microPool.length,
-          'unseen_micro_count': unseenMicroCount,
+          'unseen_exact_mood_micro_count': unseenExactMoodMicroCount,
           'combined_pool_size': combinedPool.length,
         });
         combinedPool = microPool;
@@ -572,11 +576,12 @@ class ParableService {
           'combined_pool_size': combinedPool.length,
         });
       } else {
-        // MICROs exist but all were recently played — don't lock the user
-        // into a seen MICRO; fall back to the broader pool.
+        // No unseen exact-mood MICRO available. Release the bias so normal
+        // tiered serving resumes — exact-mood non-MICRO Shorts should
+        // surface before similar-mood MICROs.
         logEvent('micro_bias_no_match', {
           'selected_mood': mood,
-          'reason': 'all_micros_recently_played',
+          'reason': 'no_unseen_exact_mood_micro',
           'micro_pool_size': microPool.length,
           'combined_pool_size': combinedPool.length,
         });
