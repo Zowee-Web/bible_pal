@@ -38,6 +38,16 @@ class ParableService {
   /// (for LRP ordering) but are eligible as Tier 1 unseen picks again.
   static const Duration _unseenWindow = Duration(days: 30);
 
+  /// High-intensity moods that trigger the MICRO serving bias for Short
+  /// length: when the user is anxious, hurting, or weary, prefer a shorter
+  /// emotionally-focused scripture extract first. See `feedback_micro_stories.md`
+  /// in agent memory and the "Micro serving bias" section.
+  static const Set<String> _microBiasMoods = {
+    'anxious',
+    'hurting',
+    'weary',
+  };
+
   /// Mutable budget used by the eviction routine. Defaults to the public
   /// constant; tests override via [setAudioCacheBudgetForTesting] to avoid
   /// allocating real 600 MB fixtures.
@@ -519,6 +529,60 @@ class ParableService {
     // Combined pool for the engine (exact + similar, engine handles separation)
     var combinedPool = [...exactPool, ...similarPools];
 
+    // Build the anti-repeat seen-set early so the MICRO bias check below can
+    // honor it (a MICRO whose only candidate was recently played should not
+    // hijack the selection). Same data drives the engine's anti-repeat below.
+    final playHistory = await _storage.getPlayLog();
+    final unseenWindow = DateTime.now().subtract(_unseenWindow);
+    final recentStoryIds = <String>{
+      for (final entry in playHistory.entries)
+        if (entry.value.isAfter(unseenWindow)) entry.key,
+    };
+
+    // MICRO serving bias: for high-intensity moods (anxious/hurting/weary) at
+    // Short length, prefer MICRO stories (shortScripture==true) first. They
+    // give faster comfort/direction. The bias is gated on having at least one
+    // UNSEEN MICRO so it never overrides anti-repeat. Falls back to the full
+    // combined pool if no eligible (unseen) MICRO exists. Bias does NOT
+    // affect Full or Long selection — those length buckets exclude MICRO
+    // entirely. See `feedback_micro_stories.md` in agent memory.
+    final microBiasApplied = lengthBucket == StoryLengthBucket.short &&
+        _microBiasMoods.contains(mood);
+    if (microBiasApplied) {
+      final microPool =
+          combinedPool.where((p) => p.shortScripture).toList(growable: false);
+      final unseenMicroCount =
+          microPool.where((p) => !recentStoryIds.contains(p.storyId)).length;
+      if (unseenMicroCount > 0) {
+        debugPrint(
+            '[ParableService] MICRO bias applied for mood=$mood: '
+            '${microPool.length} MICRO candidate(s), $unseenMicroCount unseen '
+            '(combined pool was ${combinedPool.length})');
+        logEvent('micro_bias_applied', {
+          'selected_mood': mood,
+          'micro_pool_size': microPool.length,
+          'unseen_micro_count': unseenMicroCount,
+          'combined_pool_size': combinedPool.length,
+        });
+        combinedPool = microPool;
+      } else if (microPool.isEmpty) {
+        logEvent('micro_bias_no_match', {
+          'selected_mood': mood,
+          'reason': 'no_micros_in_pool',
+          'combined_pool_size': combinedPool.length,
+        });
+      } else {
+        // MICROs exist but all were recently played — don't lock the user
+        // into a seen MICRO; fall back to the broader pool.
+        logEvent('micro_bias_no_match', {
+          'selected_mood': mood,
+          'reason': 'all_micros_recently_played',
+          'micro_pool_size': microPool.length,
+          'combined_pool_size': combinedPool.length,
+        });
+      }
+    }
+
     // If a bibleStoryKey hint was provided (from previewBibleStoryKey), constrain
     // to variants of that story. Falls back to full pool if no variants match.
     if (bibleStoryKey != null) {
@@ -550,17 +614,10 @@ class ParableService {
       return null;
     }
 
-    // Non-repeat rule: source the engine inputs from the selection-time
-    // play log (capped at 1000), not the 20-entry user-facing History.
-    // A story counts as "seen" if it was played in the last 30 days; older
-    // entries stay in playHistory for LRP ordering but are eligible again
-    // as Tier 1 picks. See SPEC.md Feature #11 (anti-repeat note).
-    final playHistory = await _storage.getPlayLog();
-    final unseenWindow = DateTime.now().subtract(_unseenWindow);
-    final recentStoryIds = <String>{
-      for (final entry in playHistory.entries)
-        if (entry.value.isAfter(unseenWindow)) entry.key,
-    };
+    // (Non-repeat rule note: playHistory + recentStoryIds were built earlier,
+    // before the MICRO bias check, so the bias and the engine see the same
+    // anti-repeat data. See SPEC.md Feature #11 anti-repeat note for the
+    // 30-day "seen" window.)
 
     // Log pool sizes before/after expansion (SPEC 15b telemetry)
     logEvent('mood_expansion_pool', {
