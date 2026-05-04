@@ -119,11 +119,11 @@ def main():
     print(f"Lines to consider: {len(lines)}")
     ok = skip = fail = 0
     for line_id, text in lines:
-        msg = tts(line_id, text)
-        print(f"  {msg}")
-        if msg.startswith("[ok"):
+        result = tts(line_id, text)
+        print(f"  {result}")
+        if result.startswith("[ok"):
             ok += 1
-        elif msg.startswith("[skip"):
+        elif result.startswith("[skip"):
             skip += 1
         else:
             fail += 1

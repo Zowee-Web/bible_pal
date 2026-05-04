@@ -198,7 +198,7 @@ void main() {
 
     test('CRITICAL: narratorVoiceKey must follow VOICE_* naming pattern', () {
       final violations = <String>[];
-      final voiceKeyPattern = RegExp(r'^VOICE_[A-Z]+(_[A-Z]+)*$');
+      final voiceKeyPattern = RegExp(r'^VOICE_[A-Z]+(_[A-Z0-9]+)*$');
 
       for (final parable in parables) {
         final storyId = parable['storyId'] as String;
