@@ -11,6 +11,7 @@
   "lengths": [
     "short"
   ],
+  "shortScripture": true,
   "createdByModel": "claude-opus-4-7",
   "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
   "title": "Just Say the Word",
@@ -19,8 +20,8 @@
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "themeTags": [
     "hope",
-    "promise",
-    "faith"
+    "healing",
+    "faithfulness"
   ],
   "emotionalTags": [
     "hopeful",

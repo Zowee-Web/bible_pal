@@ -1162,6 +1162,18 @@ flutter:
     - assets/stories/traditional/1120/meta_1120.json
     - assets/stories/traditional/1120/story_1120_traditional_kjv_short.txt
     - assets/stories/traditional/1120/story_1120_traditional_web_short.txt
+    # 1121 — Hannah at Shiloh (eleven_v3 pilot, audio bundled for beta demo)
+    - assets/stories/traditional/1121/audio_1121_story_short.mp3
+    - assets/stories/traditional/1121/meta_1121.json
+    - assets/stories/traditional/1121/reflection_1121_traditional_web.txt
+    - assets/stories/traditional/1121/scripture_1121_web.txt
+    - assets/stories/traditional/1121/story_1121_traditional_web_short.txt
+    # 1122 — Doubting Thomas (eleven_v3 pilot, tuned settings: stability=0.55, style=0.25)
+    - assets/stories/traditional/1122/audio_1122_story_short.mp3
+    - assets/stories/traditional/1122/meta_1122.json
+    - assets/stories/traditional/1122/reflection_1122_traditional_web.txt
+    - assets/stories/traditional/1122/scripture_1122_web.txt
+    - assets/stories/traditional/1122/story_1122_traditional_web_short.txt
     # 1123-1247 — story audio (canonical), promoted from take1; mood-flow ready
     - assets/stories/traditional/1123/audio_1123_story_short.mp3
     - assets/stories/traditional/1124/audio_1124_story_short.mp3
@@ -1288,6 +1300,28 @@ flutter:
     - assets/stories/traditional/1245/audio_1245_story_short.mp3
     - assets/stories/traditional/1246/audio_1246_story_short.mp3
     - assets/stories/traditional/1247/audio_1247_story_short.mp3
+    - assets/stories/traditional/1248/audio_1248_story_short.mp3
+    - assets/stories/traditional/1249/audio_1249_story_short.mp3
+    - assets/stories/traditional/1250/audio_1250_story_short.mp3
+    - assets/stories/traditional/1251/audio_1251_story_short.mp3
+    - assets/stories/traditional/1252/audio_1252_story_short.mp3
+    - assets/stories/traditional/1253/audio_1253_story_short.mp3
+    - assets/stories/traditional/1254/audio_1254_story_short.mp3
+    - assets/stories/traditional/1255/audio_1255_story_short.mp3
+    - assets/stories/traditional/1256/audio_1256_story_short.mp3
+    - assets/stories/traditional/1257/audio_1257_story_short.mp3
+    - assets/stories/traditional/1257/audio_1257_story_full.mp3
+    - assets/stories/traditional/1258/audio_1258_story_short.mp3
+    - assets/stories/traditional/1259/audio_1259_story_short.mp3
+    - assets/stories/traditional/1260/audio_1260_story_short.mp3
+    - assets/stories/traditional/1261/audio_1261_story_short.mp3
+    - assets/stories/traditional/1262/audio_1262_story_short.mp3
+    - assets/stories/traditional/1263/audio_1263_story_short.mp3
+    - assets/stories/traditional/1264/audio_1264_story_short.mp3
+    - assets/stories/traditional/1265/audio_1265_story_short.mp3
+    - assets/stories/traditional/1266/audio_1266_story_short.mp3
+    - assets/stories/traditional/1267/audio_1267_story_short.mp3
+    - assets/stories/traditional/1268/audio_1268_story_short.mp3
     # 800-series traditional stories
     - assets/stories/traditional/801/
     - assets/stories/traditional/802/
@@ -1412,7 +1446,6 @@ flutter:
     - assets/pal/pal_lines.json
     - assets/pal/pal_transition_lines.json
     - assets/pal/pal_reflection_lines.json
-    - assets/pal/pal_tone_biased_reflection_lines.json
     - assets/pal/creative_opening_lines.json
     - assets/pal/audio/VOICE_SHEPHERD/
     - assets/pal/audio/VOICE_HOPE/

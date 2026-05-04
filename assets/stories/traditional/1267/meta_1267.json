@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1267,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Through the Roof",
+  "scriptureAnchor": "Mark 2:1-12",
+  "scriptureAnchorId": "mark_2_1_12",
+  "bibleStoryKey": "paralytic_lowered_through_roof",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "healing",
+    "faith",
+    "forgiveness",
+    "presence"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "longing",
+    "hopeful",
+    "trusting",
+    "comforted",
+    "awed"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 540,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1267_traditional_web_short.txt"
+    }
+  }
+}

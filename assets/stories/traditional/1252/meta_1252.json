@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1252,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Kingdom Will Be the Lord's",
+  "scriptureAnchor": "Obadiah 1:15-21",
+  "scriptureAnchorId": "obadiah_1_15_21",
+  "bibleStoryKey": "kingdom_will_be_the_lords",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "themeTags": [
+    "deliverance",
+    "restoration",
+    "presence"
+  ],
+  "emotionalTags": [
+    "trusting",
+    "steadfast",
+    "humbled",
+    "awed",
+    "comforted"
+  ],
+  "primaryCharacterId": "obadiah",
+  "primaryCharacterDisplayName": "Obadiah",
+  "bibleOrderIndex": 365,
+  "timelineEra": "prophets",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1252_traditional_web_short.txt"
+    }
+  }
+}

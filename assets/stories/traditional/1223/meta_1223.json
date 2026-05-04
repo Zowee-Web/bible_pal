@@ -11,6 +11,7 @@
   "lengths": [
     "short"
   ],
+  "shortScripture": true,
   "createdByModel": "claude-opus-4-7",
   "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
   "title": "Oh That I Knew Where I Might Find Him",
@@ -26,11 +27,11 @@
   ],
   "emotionalTags": [
     "anxious",
-    "worried",
     "fearful",
     "restless",
     "uncertain",
-    "confused"
+    "confused",
+    "seeking"
   ],
   "primaryCharacterId": "job",
   "primaryCharacterDisplayName": "Job",
