@@ -14,7 +14,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "short",
-      "reflectionQuestion": "Is there a moment in your life where sharing something you had \u2014 encouragement, kindness, or hope \u2014 seemed to make it grow rather than run out?"
+      "reflectionQuestion": "Is there a moment in your life where sharing something you had — encouragement, kindness, or hope — seemed to make it grow rather than run out?"
     },
     {
       "storyId": "story_2000_joyful_full_creative",
@@ -30,7 +30,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "full",
-      "reflectionQuestion": "Is there a moment in your life where sharing something you had \u2014 encouragement, kindness, or hope \u2014 seemed to make it grow rather than run out?"
+      "reflectionQuestion": "Is there a moment in your life where sharing something you had — encouragement, kindness, or hope — seemed to make it grow rather than run out?"
     },
     {
       "storyId": "story_2000_joyful_long_creative",
@@ -46,7 +46,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "long",
-      "reflectionQuestion": "Is there a moment in your life where sharing something you had \u2014 encouragement, kindness, or hope \u2014 seemed to make it grow rather than run out?"
+      "reflectionQuestion": "Is there a moment in your life where sharing something you had — encouragement, kindness, or hope — seemed to make it grow rather than run out?"
     },
     {
       "storyId": "story_2001_anxious_short_creative",
@@ -158,7 +158,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "short",
-      "reflectionQuestion": "Is there something you've been quietly investing in \u2014 a relationship, a prayer, a small act of kindness \u2014 knowing the fruit of it may be for someone else to enjoy?"
+      "reflectionQuestion": "Is there something you've been quietly investing in — a relationship, a prayer, a small act of kindness — knowing the fruit of it may be for someone else to enjoy?"
     },
     {
       "storyId": "story_2003_grateful_full_creative",
@@ -174,7 +174,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "full",
-      "reflectionQuestion": "Is there something you've been quietly investing in \u2014 a relationship, a prayer, a small act of kindness \u2014 knowing the fruit of it may be for someone else to enjoy?"
+      "reflectionQuestion": "Is there something you've been quietly investing in — a relationship, a prayer, a small act of kindness — knowing the fruit of it may be for someone else to enjoy?"
     },
     {
       "storyId": "story_2003_grateful_long_creative",
@@ -190,7 +190,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "long",
-      "reflectionQuestion": "Is there something you've been quietly investing in \u2014 a relationship, a prayer, a small act of kindness \u2014 knowing the fruit of it may be for someone else to enjoy?"
+      "reflectionQuestion": "Is there something you've been quietly investing in — a relationship, a prayer, a small act of kindness — knowing the fruit of it may be for someone else to enjoy?"
     },
     {
       "storyId": "story_2004_calm_peaceful_short_kid_creative",
@@ -846,7 +846,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "short",
-      "reflectionQuestion": "Where is the place you go \u2014 or could go \u2014 when you need to let the stillness do its work?"
+      "reflectionQuestion": "Where is the place you go — or could go — when you need to let the stillness do its work?"
     },
     {
       "storyId": "story_2018_calm_peaceful_full_creative",
@@ -862,7 +862,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "full",
-      "reflectionQuestion": "Where is the place you go \u2014 or could go \u2014 when you need to let the stillness do its work?"
+      "reflectionQuestion": "Where is the place you go — or could go — when you need to let the stillness do its work?"
     },
     {
       "storyId": "story_2019_encouraging_short_creative",
@@ -910,7 +910,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARCHER",
       "storyLength": "short",
-      "reflectionQuestion": "What quiet, unremarkable thing have you witnessed lately that you almost didn't notice \u2014 and what shifted when you did?"
+      "reflectionQuestion": "What quiet, unremarkable thing have you witnessed lately that you almost didn't notice — and what shifted when you did?"
     },
     {
       "storyId": "story_2020_grateful_full_creative",
@@ -926,7 +926,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARCHER",
       "storyLength": "full",
-      "reflectionQuestion": "What quiet, unremarkable thing have you witnessed lately that you almost didn't notice \u2014 and what shifted when you did?"
+      "reflectionQuestion": "What quiet, unremarkable thing have you witnessed lately that you almost didn't notice — and what shifted when you did?"
     },
     {
       "storyId": "story_2021_hurting_short_creative",
@@ -942,7 +942,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
       "storyLength": "short",
-      "reflectionQuestion": "When has comfort found you in a place or moment you weren't expecting \u2014 not fixing the hurt, but simply sitting with you in it?"
+      "reflectionQuestion": "When has comfort found you in a place or moment you weren't expecting — not fixing the hurt, but simply sitting with you in it?"
     },
     {
       "storyId": "story_2021_hurting_full_creative",
@@ -958,7 +958,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
       "storyLength": "full",
-      "reflectionQuestion": "When has comfort found you in a place or moment you weren't expecting \u2014 not fixing the hurt, but simply sitting with you in it?"
+      "reflectionQuestion": "When has comfort found you in a place or moment you weren't expecting — not fixing the hurt, but simply sitting with you in it?"
     },
     {
       "storyId": "story_2022_joyful_short_creative",
@@ -1006,7 +1006,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "short",
-      "reflectionQuestion": "When was the last time you let yourself stop \u2014 not because you were finished, but because you'd reached the limit of what you could carry in one stretch?"
+      "reflectionQuestion": "When was the last time you let yourself stop — not because you were finished, but because you'd reached the limit of what you could carry in one stretch?"
     },
     {
       "storyId": "story_2023_weary_full_creative",
@@ -1022,7 +1022,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "full",
-      "reflectionQuestion": "When was the last time you let yourself stop \u2014 not because you were finished, but because you'd reached the limit of what you could carry in one stretch?"
+      "reflectionQuestion": "When was the last time you let yourself stop — not because you were finished, but because you'd reached the limit of what you could carry in one stretch?"
     },
     {
       "storyId": "story_2024_anxious_short_kid_creative",
@@ -1294,7 +1294,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "short",
-      "reflectionQuestion": "Is there a fear in your life that has outlasted the event that caused it \u2014 and what would it look like to drive the next six blocks anyway?"
+      "reflectionQuestion": "Is there a fear in your life that has outlasted the event that caused it — and what would it look like to drive the next six blocks anyway?"
     },
     {
       "storyId": "story_2032_anxious_full_creative",
@@ -1310,7 +1310,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "full",
-      "reflectionQuestion": "Is there a fear in your life that has outlasted the event that caused it \u2014 and what would it look like to drive the next six blocks anyway?"
+      "reflectionQuestion": "Is there a fear in your life that has outlasted the event that caused it — and what would it look like to drive the next six blocks anyway?"
     },
     {
       "storyId": "story_2033_brave_courage_short_creative",
@@ -1326,7 +1326,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
       "storyLength": "short",
-      "reflectionQuestion": "When have you known the right thing to do but hesitated because of what it might cost \u2014 and what helped you move forward?"
+      "reflectionQuestion": "When have you known the right thing to do but hesitated because of what it might cost — and what helped you move forward?"
     },
     {
       "storyId": "story_2033_brave_courage_full_creative",
@@ -1342,7 +1342,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
       "storyLength": "full",
-      "reflectionQuestion": "When have you known the right thing to do but hesitated because of what it might cost \u2014 and what helped you move forward?"
+      "reflectionQuestion": "When have you known the right thing to do but hesitated because of what it might cost — and what helped you move forward?"
     },
     {
       "storyId": "story_2034_calm_peaceful_short_creative",
@@ -1358,7 +1358,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "short",
-      "reflectionQuestion": "When was the last time you found peace in an unlikely place \u2014 not by seeking it, but by noticing it was already there?"
+      "reflectionQuestion": "When was the last time you found peace in an unlikely place — not by seeking it, but by noticing it was already there?"
     },
     {
       "storyId": "story_2034_calm_peaceful_full_creative",
@@ -1374,7 +1374,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "full",
-      "reflectionQuestion": "When was the last time you found peace in an unlikely place \u2014 not by seeking it, but by noticing it was already there?"
+      "reflectionQuestion": "When was the last time you found peace in an unlikely place — not by seeking it, but by noticing it was already there?"
     },
     {
       "storyId": "story_2035_encouraging_short_creative",
@@ -1390,7 +1390,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "short",
-      "reflectionQuestion": "Is there a sentence someone said to you \u2014 maybe years ago, maybe in passing \u2014 that you still carry? And is there someone who might need to hear one from you?"
+      "reflectionQuestion": "Is there a sentence someone said to you — maybe years ago, maybe in passing — that you still carry? And is there someone who might need to hear one from you?"
     },
     {
       "storyId": "story_2035_encouraging_full_creative",
@@ -1406,7 +1406,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "full",
-      "reflectionQuestion": "Is there a sentence someone said to you \u2014 maybe years ago, maybe in passing \u2014 that you still carry? And is there someone who might need to hear one from you?"
+      "reflectionQuestion": "Is there a sentence someone said to you — maybe years ago, maybe in passing — that you still carry? And is there someone who might need to hear one from you?"
     },
     {
       "storyId": "story_2036_grateful_short_creative",
@@ -1422,7 +1422,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "short",
-      "reflectionQuestion": "What small, ordinary thing have you been passing by without noticing \u2014 and what might happen if you paused for thirty seconds to look at it?"
+      "reflectionQuestion": "What small, ordinary thing have you been passing by without noticing — and what might happen if you paused for thirty seconds to look at it?"
     },
     {
       "storyId": "story_2036_grateful_full_creative",
@@ -1438,7 +1438,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "full",
-      "reflectionQuestion": "What small, ordinary thing have you been passing by without noticing \u2014 and what might happen if you paused for thirty seconds to look at it?"
+      "reflectionQuestion": "What small, ordinary thing have you been passing by without noticing — and what might happen if you paused for thirty seconds to look at it?"
     },
     {
       "storyId": "story_2037_hurting_short_creative",
@@ -1454,7 +1454,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "short",
-      "reflectionQuestion": "Is there something you have turned toward the wall \u2014 a memory, a name, an object \u2014 that might be ready to face forward again?"
+      "reflectionQuestion": "Is there something you have turned toward the wall — a memory, a name, an object — that might be ready to face forward again?"
     },
     {
       "storyId": "story_2037_hurting_full_creative",
@@ -1470,7 +1470,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "full",
-      "reflectionQuestion": "Is there something you have turned toward the wall \u2014 a memory, a name, an object \u2014 that might be ready to face forward again?"
+      "reflectionQuestion": "Is there something you have turned toward the wall — a memory, a name, an object — that might be ready to face forward again?"
     },
     {
       "storyId": "story_2038_joyful_short_creative",
@@ -1486,7 +1486,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
       "storyLength": "short",
-      "reflectionQuestion": "When was the last time joy arrived from a direction you weren't looking \u2014 and what would it mean to stay open to that kind of surprise?"
+      "reflectionQuestion": "When was the last time joy arrived from a direction you weren't looking — and what would it mean to stay open to that kind of surprise?"
     },
     {
       "storyId": "story_2038_joyful_full_creative",
@@ -1502,7 +1502,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
       "storyLength": "full",
-      "reflectionQuestion": "When was the last time joy arrived from a direction you weren't looking \u2014 and what would it mean to stay open to that kind of surprise?"
+      "reflectionQuestion": "When was the last time joy arrived from a direction you weren't looking — and what would it mean to stay open to that kind of surprise?"
     },
     {
       "storyId": "story_2039_weary_short_creative",
@@ -1518,7 +1518,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
       "storyLength": "short",
-      "reflectionQuestion": "When you are carrying something heavy, what would it mean to know that someone nearby is carrying something too \u2014 and that neither of you has to explain?"
+      "reflectionQuestion": "When you are carrying something heavy, what would it mean to know that someone nearby is carrying something too — and that neither of you has to explain?"
     },
     {
       "storyId": "story_2039_weary_full_creative",
@@ -1534,7 +1534,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
       "storyLength": "full",
-      "reflectionQuestion": "When you are carrying something heavy, what would it mean to know that someone nearby is carrying something too \u2014 and that neither of you has to explain?"
+      "reflectionQuestion": "When you are carrying something heavy, what would it mean to know that someone nearby is carrying something too — and that neither of you has to explain?"
     },
     {
       "storyId": "story_2040_anxious_short_kid_creative",
@@ -1806,7 +1806,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARCHER",
       "storyLength": "short",
-      "reflectionQuestion": "She waited three days to open the letter because the last one had changed everything. What envelope \u2014 real or invisible \u2014 have you been afraid to open?"
+      "reflectionQuestion": "She waited three days to open the letter because the last one had changed everything. What envelope — real or invisible — have you been afraid to open?"
     },
     {
       "storyId": "story_2048_anxious_full_creative",
@@ -1822,7 +1822,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARCHER",
       "storyLength": "full",
-      "reflectionQuestion": "She waited three days to open the letter because the last one had changed everything. What envelope \u2014 real or invisible \u2014 have you been afraid to open?"
+      "reflectionQuestion": "She waited three days to open the letter because the last one had changed everything. What envelope — real or invisible — have you been afraid to open?"
     },
     {
       "storyId": "story_2049_brave_courage_short_creative",
@@ -1870,7 +1870,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_BRADFORD",
       "storyLength": "short",
-      "reflectionQuestion": "He drove through a valley that asked nothing of him and something loosened inside. Where is the place \u2014 or the silence \u2014 that holds you without gripping?"
+      "reflectionQuestion": "He drove through a valley that asked nothing of him and something loosened inside. Where is the place — or the silence — that holds you without gripping?"
     },
     {
       "storyId": "story_2050_calm_peaceful_full_creative",
@@ -1886,7 +1886,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_BRADFORD",
       "storyLength": "full",
-      "reflectionQuestion": "He drove through a valley that asked nothing of him and something loosened inside. Where is the place \u2014 or the silence \u2014 that holds you without gripping?"
+      "reflectionQuestion": "He drove through a valley that asked nothing of him and something loosened inside. Where is the place — or the silence — that holds you without gripping?"
     },
     {
       "storyId": "story_2051_encouraging_short_creative",
@@ -1966,7 +1966,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "short",
-      "reflectionQuestion": "She put on gloves that didn't fit and knelt in a garden that wasn't hers anymore. What object carries someone you've lost \u2014 and what happens when you finally pick it up?"
+      "reflectionQuestion": "She put on gloves that didn't fit and knelt in a garden that wasn't hers anymore. What object carries someone you've lost — and what happens when you finally pick it up?"
     },
     {
       "storyId": "story_2053_hurting_full_creative",
@@ -1982,7 +1982,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "full",
-      "reflectionQuestion": "She put on gloves that didn't fit and knelt in a garden that wasn't hers anymore. What object carries someone you've lost \u2014 and what happens when you finally pick it up?"
+      "reflectionQuestion": "She put on gloves that didn't fit and knelt in a garden that wasn't hers anymore. What object carries someone you've lost — and what happens when you finally pick it up?"
     },
     {
       "storyId": "story_2054_joyful_short_creative",
@@ -2254,7 +2254,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARCHER",
       "storyLength": "short",
-      "reflectionQuestion": "When was the last time you jumped into something just because it looked fun \u2014 even if you knew you'd get in trouble?"
+      "reflectionQuestion": "When was the last time you jumped into something just because it looked fun — even if you knew you'd get in trouble?"
     },
     {
       "storyId": "story_2062_joyful_full_kid_creative",
@@ -2270,7 +2270,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARCHER",
       "storyLength": "full",
-      "reflectionQuestion": "When was the last time you jumped into something just because it looked fun \u2014 even if you knew you'd get in trouble?"
+      "reflectionQuestion": "When was the last time you jumped into something just because it looked fun — even if you knew you'd get in trouble?"
     },
     {
       "storyId": "story_2063_weary_short_kid_creative",
@@ -2318,7 +2318,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "short",
-      "reflectionQuestion": "What message have you been carrying \u2014 received or unsent \u2014 that still hums quietly in the background of your days, and what would it mean to finally let yourself hear it all the way through?"
+      "reflectionQuestion": "What message have you been carrying — received or unsent — that still hums quietly in the background of your days, and what would it mean to finally let yourself hear it all the way through?"
     },
     {
       "storyId": "story_2064_anxious_full_creative",
@@ -2334,7 +2334,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "full",
-      "reflectionQuestion": "What message have you been carrying \u2014 received or unsent \u2014 that still hums quietly in the background of your days, and what would it mean to finally let yourself hear it all the way through?"
+      "reflectionQuestion": "What message have you been carrying — received or unsent — that still hums quietly in the background of your days, and what would it mean to finally let yourself hear it all the way through?"
     },
     {
       "storyId": "story_2065_brave_courage_short_creative",
@@ -2350,7 +2350,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
       "storyLength": "short",
-      "reflectionQuestion": "What moment in your own life asked you to speak a truth that frightened you \u2014 and what did it cost you to say it, or to hold it back?"
+      "reflectionQuestion": "What moment in your own life asked you to speak a truth that frightened you — and what did it cost you to say it, or to hold it back?"
     },
     {
       "storyId": "story_2065_brave_courage_full_creative",
@@ -2366,7 +2366,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
       "storyLength": "full",
-      "reflectionQuestion": "What moment in your own life asked you to speak a truth that frightened you \u2014 and what did it cost you to say it, or to hold it back?"
+      "reflectionQuestion": "What moment in your own life asked you to speak a truth that frightened you — and what did it cost you to say it, or to hold it back?"
     },
     {
       "storyId": "story_2066_calm_peaceful_short_creative",
@@ -2382,7 +2382,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "short",
-      "reflectionQuestion": "What is it about the simple, rhythmic motion of something familiar\u2014a chair, a breath, a quiet habit\u2014that can bring you back to a version of yourself you almost forgot was still there?"
+      "reflectionQuestion": "What is it about the simple, rhythmic motion of something familiar—a chair, a breath, a quiet habit—that can bring you back to a version of yourself you almost forgot was still there?"
     },
     {
       "storyId": "story_2066_calm_peaceful_full_creative",
@@ -2398,7 +2398,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "full",
-      "reflectionQuestion": "What is it about the simple, rhythmic motion of something familiar\u2014a chair, a breath, a quiet habit\u2014that can bring you back to a version of yourself you almost forgot was still there?"
+      "reflectionQuestion": "What is it about the simple, rhythmic motion of something familiar—a chair, a breath, a quiet habit—that can bring you back to a version of yourself you almost forgot was still there?"
     },
     {
       "storyId": "story_2067_encouraging_short_creative",
@@ -2446,7 +2446,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "short",
-      "reflectionQuestion": "What small, ordinary object in your life has quietly held something warm for you\u2014something you might not have fully noticed or thanked?"
+      "reflectionQuestion": "What small, ordinary object in your life has quietly held something warm for you—something you might not have fully noticed or thanked?"
     },
     {
       "storyId": "story_2068_grateful_full_creative",
@@ -2462,7 +2462,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "full",
-      "reflectionQuestion": "What small, ordinary object in your life has quietly held something warm for you\u2014something you might not have fully noticed or thanked?"
+      "reflectionQuestion": "What small, ordinary object in your life has quietly held something warm for you—something you might not have fully noticed or thanked?"
     },
     {
       "storyId": "story_2069_hurting_short_creative",
@@ -2478,7 +2478,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "short",
-      "reflectionQuestion": "What is it like to sit with the weight of that empty chair in your own life \u2014 not to fill it or explain it, but simply to let yourself feel the shape of what's no longer there?"
+      "reflectionQuestion": "What is it like to sit with the weight of that empty chair in your own life — not to fill it or explain it, but simply to let yourself feel the shape of what's no longer there?"
     },
     {
       "storyId": "story_2069_hurting_full_creative",
@@ -2494,7 +2494,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "full",
-      "reflectionQuestion": "What is it like to sit with the weight of that empty chair in your own life \u2014 not to fill it or explain it, but simply to let yourself feel the shape of what's no longer there?"
+      "reflectionQuestion": "What is it like to sit with the weight of that empty chair in your own life — not to fill it or explain it, but simply to let yourself feel the shape of what's no longer there?"
     },
     {
       "storyId": "story_2070_joyful_short_creative",
@@ -2542,7 +2542,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
       "storyLength": "short",
-      "reflectionQuestion": "What is it that keeps you going during those quiet, heavy hours when the world is asleep and your weariness feels like the only honest thing left \u2014 and what, if anything, do you find yourself creating in that stillness?"
+      "reflectionQuestion": "What is it that keeps you going during those quiet, heavy hours when the world is asleep and your weariness feels like the only honest thing left — and what, if anything, do you find yourself creating in that stillness?"
     },
     {
       "storyId": "story_2071_weary_full_creative",
@@ -2558,7 +2558,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
       "storyLength": "full",
-      "reflectionQuestion": "What is it that keeps you going during those quiet, heavy hours when the world is asleep and your weariness feels like the only honest thing left \u2014 and what, if anything, do you find yourself creating in that stillness?"
+      "reflectionQuestion": "What is it that keeps you going during those quiet, heavy hours when the world is asleep and your weariness feels like the only honest thing left — and what, if anything, do you find yourself creating in that stillness?"
     },
     {
       "storyId": "story_2072_anxious_short_kid_creative",
@@ -7497,7 +7497,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "short",
-      "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole \u2014 and what would it take to say 'let us build'?",
+      "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole — and what would it take to say 'let us build'?",
       "bibleSourceRef": "Nehemiah 2:1-18",
       "bibleStoryKey": "nehemiah_rebuilds_the_wall",
       "scriptureTextFilePath": "traditional/1051/scripture_1051_web.txt",
@@ -7522,7 +7522,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "full",
-      "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole \u2014 and what would it take to say 'let us build'?",
+      "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole — and what would it take to say 'let us build'?",
       "bibleSourceRef": "Nehemiah 2:1-18",
       "bibleStoryKey": "nehemiah_rebuilds_the_wall",
       "scriptureTextFilePath": "traditional/1051/scripture_1051_web.txt",
@@ -7547,7 +7547,7 @@
       "languageStyle": "KJV",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "short",
-      "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole \u2014 and what would it take to say 'let us build'?",
+      "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole — and what would it take to say 'let us build'?",
       "bibleSourceRef": "Nehemiah 2:1-18",
       "bibleStoryKey": "nehemiah_rebuilds_the_wall",
       "scriptureTextFilePath": "traditional/1051/scripture_1051_kjv.txt",
@@ -7572,7 +7572,7 @@
       "languageStyle": "KJV",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "full",
-      "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole \u2014 and what would it take to say 'let us build'?",
+      "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole — and what would it take to say 'let us build'?",
       "bibleSourceRef": "Nehemiah 2:1-18",
       "bibleStoryKey": "nehemiah_rebuilds_the_wall",
       "scriptureTextFilePath": "traditional/1051/scripture_1051_kjv.txt",
@@ -7898,7 +7898,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_BRADFORD",
       "storyLength": "short",
-      "reflectionQuestion": "Everything was taken in a single afternoon \u2014 the animals, the servants, the children. What remains when everything you built is gone and the only thing left is the ground beneath you?",
+      "reflectionQuestion": "Everything was taken in a single afternoon — the animals, the servants, the children. What remains when everything you built is gone and the only thing left is the ground beneath you?",
       "bibleSourceRef": "Job 1:1-22",
       "bibleStoryKey": "job_tested",
       "scriptureTextFilePath": "traditional/1055/scripture_1055_web.txt",
@@ -7924,7 +7924,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_BRADFORD",
       "storyLength": "full",
-      "reflectionQuestion": "Everything was taken in a single afternoon \u2014 the animals, the servants, the children. What remains when everything you built is gone and the only thing left is the ground beneath you?",
+      "reflectionQuestion": "Everything was taken in a single afternoon — the animals, the servants, the children. What remains when everything you built is gone and the only thing left is the ground beneath you?",
       "bibleSourceRef": "Job 1:1-22",
       "bibleStoryKey": "job_tested",
       "scriptureTextFilePath": "traditional/1055/scripture_1055_web.txt",
@@ -7950,7 +7950,7 @@
       "languageStyle": "KJV",
       "narratorVoiceKey": "VOICE_BRADFORD",
       "storyLength": "short",
-      "reflectionQuestion": "Everything was taken in a single afternoon \u2014 the animals, the servants, the children. What remains when everything you built is gone and the only thing left is the ground beneath you?",
+      "reflectionQuestion": "Everything was taken in a single afternoon — the animals, the servants, the children. What remains when everything you built is gone and the only thing left is the ground beneath you?",
       "bibleSourceRef": "Job 1:1-22",
       "bibleStoryKey": "job_tested",
       "scriptureTextFilePath": "traditional/1055/scripture_1055_kjv.txt",
@@ -7976,7 +7976,7 @@
       "languageStyle": "KJV",
       "narratorVoiceKey": "VOICE_BRADFORD",
       "storyLength": "full",
-      "reflectionQuestion": "Everything was taken in a single afternoon \u2014 the animals, the servants, the children. What remains when everything you built is gone and the only thing left is the ground beneath you?",
+      "reflectionQuestion": "Everything was taken in a single afternoon — the animals, the servants, the children. What remains when everything you built is gone and the only thing left is the ground beneath you?",
       "bibleSourceRef": "Job 1:1-22",
       "bibleStoryKey": "job_tested",
       "scriptureTextFilePath": "traditional/1055/scripture_1055_kjv.txt",
@@ -8100,7 +8100,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_LILY_WOLFF",
       "storyLength": "short",
-      "reflectionQuestion": "The potter didn't throw the clay away when it broke \u2014 he made it into something new. Have you ever felt broken and then been surprised that something good still came from it?",
+      "reflectionQuestion": "The potter didn't throw the clay away when it broke — he made it into something new. Have you ever felt broken and then been surprised that something good still came from it?",
       "bibleSourceRef": "Jeremiah 18:1-6",
       "bibleStoryKey": "potter_and_clay",
       "scriptureTextFilePath": "traditional/1058/scripture_1058_web.txt",
@@ -8124,7 +8124,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_LILY_WOLFF",
       "storyLength": "full",
-      "reflectionQuestion": "The potter didn't throw the clay away when it broke \u2014 he made it into something new. Have you ever felt broken and then been surprised that something good still came from it?",
+      "reflectionQuestion": "The potter didn't throw the clay away when it broke — he made it into something new. Have you ever felt broken and then been surprised that something good still came from it?",
       "bibleSourceRef": "Jeremiah 18:1-6",
       "bibleStoryKey": "potter_and_clay",
       "scriptureTextFilePath": "traditional/1058/scripture_1058_web.txt",
@@ -8149,7 +8149,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
       "storyLength": "short",
-      "reflectionQuestion": "Nehemiah was afraid to ask the king but he asked anyway. Have you ever been scared to ask for something important \u2014 and then found out the answer was yes?",
+      "reflectionQuestion": "Nehemiah was afraid to ask the king but he asked anyway. Have you ever been scared to ask for something important — and then found out the answer was yes?",
       "bibleSourceRef": "Nehemiah 2:1-18",
       "bibleStoryKey": "nehemiah_rebuilds_the_wall",
       "scriptureTextFilePath": "traditional/1059/scripture_1059_web.txt",
@@ -8174,7 +8174,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
       "storyLength": "full",
-      "reflectionQuestion": "Nehemiah was afraid to ask the king but he asked anyway. Have you ever been scared to ask for something important \u2014 and then found out the answer was yes?",
+      "reflectionQuestion": "Nehemiah was afraid to ask the king but he asked anyway. Have you ever been scared to ask for something important — and then found out the answer was yes?",
       "bibleSourceRef": "Nehemiah 2:1-18",
       "bibleStoryKey": "nehemiah_rebuilds_the_wall",
       "scriptureTextFilePath": "traditional/1059/scripture_1059_web.txt",
@@ -8199,7 +8199,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "short",
-      "reflectionQuestion": "Jonathan gave away everything that made him a prince \u2014 just because his heart told him to. What is the most generous thing someone has ever done for you? What made it special?",
+      "reflectionQuestion": "Jonathan gave away everything that made him a prince — just because his heart told him to. What is the most generous thing someone has ever done for you? What made it special?",
       "bibleSourceRef": "1 Samuel 18:1-4",
       "bibleStoryKey": "david_and_jonathan",
       "scriptureTextFilePath": "traditional/1060/scripture_1060_web.txt",
@@ -8224,7 +8224,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "full",
-      "reflectionQuestion": "Jonathan gave away everything that made him a prince \u2014 just because his heart told him to. What is the most generous thing someone has ever done for you? What made it special?",
+      "reflectionQuestion": "Jonathan gave away everything that made him a prince — just because his heart told him to. What is the most generous thing someone has ever done for you? What made it special?",
       "bibleSourceRef": "1 Samuel 18:1-4",
       "bibleStoryKey": "david_and_jonathan",
       "scriptureTextFilePath": "traditional/1060/scripture_1060_web.txt",
@@ -8350,7 +8350,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_LILY_WOLFF",
       "storyLength": "short",
-      "reflectionQuestion": "Job lost everything in one day \u2014 his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?",
+      "reflectionQuestion": "Job lost everything in one day — his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?",
       "bibleSourceRef": "Job 1:1-22",
       "bibleStoryKey": "job_tested",
       "scriptureTextFilePath": "traditional/1063/scripture_1063_web.txt",
@@ -8376,7 +8376,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_LILY_WOLFF",
       "storyLength": "full",
-      "reflectionQuestion": "Job lost everything in one day \u2014 his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?",
+      "reflectionQuestion": "Job lost everything in one day — his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?",
       "bibleSourceRef": "Job 1:1-22",
       "bibleStoryKey": "job_tested",
       "scriptureTextFilePath": "traditional/1063/scripture_1063_web.txt",
@@ -8526,7 +8526,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARCHER",
       "storyLength": "short",
-      "reflectionQuestion": "When you think about a moment in your own life where you stood alone in what you believed to be true \u2014 with no guarantee of how things would turn out \u2014 what gave you the courage to stay, and what did that cost you?",
+      "reflectionQuestion": "When you think about a moment in your own life where you stood alone in what you believed to be true — with no guarantee of how things would turn out — what gave you the courage to stay, and what did that cost you?",
       "bibleSourceRef": "1 Kings 18:20-39",
       "bibleStoryKey": "elijah_on_mount_carmel",
       "scriptureTextFilePath": "traditional/1065/scripture_1065_web.txt",
@@ -8551,7 +8551,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARCHER",
       "storyLength": "full",
-      "reflectionQuestion": "When you think about a moment in your own life where you stood alone in what you believed to be true \u2014 with no guarantee of how things would turn out \u2014 what gave you the courage to stay, and what did that cost you?",
+      "reflectionQuestion": "When you think about a moment in your own life where you stood alone in what you believed to be true — with no guarantee of how things would turn out — what gave you the courage to stay, and what did that cost you?",
       "bibleSourceRef": "1 Kings 18:20-39",
       "bibleStoryKey": "elijah_on_mount_carmel",
       "scriptureTextFilePath": "traditional/1065/scripture_1065_web.txt",
@@ -8576,7 +8576,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARCHER",
       "storyLength": "long",
-      "reflectionQuestion": "When you think about a moment in your own life where you stood alone in what you believed to be true \u2014 with no guarantee of how things would turn out \u2014 what gave you the courage to stay, and what did that cost you?",
+      "reflectionQuestion": "When you think about a moment in your own life where you stood alone in what you believed to be true — with no guarantee of how things would turn out — what gave you the courage to stay, and what did that cost you?",
       "bibleSourceRef": "1 Kings 18:20-39",
       "bibleStoryKey": "elijah_on_mount_carmel",
       "scriptureTextFilePath": "traditional/1065/scripture_1065_web.txt",
@@ -8601,7 +8601,7 @@
       "languageStyle": "KJV",
       "narratorVoiceKey": "VOICE_ARCHER",
       "storyLength": "short",
-      "reflectionQuestion": "When you think about a moment in your own life where you stood alone in what you believed to be true \u2014 with no guarantee of how things would turn out \u2014 what gave you the courage to stay, and what did that cost you?",
+      "reflectionQuestion": "When you think about a moment in your own life where you stood alone in what you believed to be true — with no guarantee of how things would turn out — what gave you the courage to stay, and what did that cost you?",
       "bibleSourceRef": "1 Kings 18:20-39",
       "bibleStoryKey": "elijah_on_mount_carmel",
       "scriptureTextFilePath": "traditional/1065/scripture_1065_kjv.txt",
@@ -8626,7 +8626,7 @@
       "languageStyle": "KJV",
       "narratorVoiceKey": "VOICE_ARCHER",
       "storyLength": "full",
-      "reflectionQuestion": "When you think about a moment in your own life where you stood alone in what you believed to be true \u2014 with no guarantee of how things would turn out \u2014 what gave you the courage to stay, and what did that cost you?",
+      "reflectionQuestion": "When you think about a moment in your own life where you stood alone in what you believed to be true — with no guarantee of how things would turn out — what gave you the courage to stay, and what did that cost you?",
       "bibleSourceRef": "1 Kings 18:20-39",
       "bibleStoryKey": "elijah_on_mount_carmel",
       "scriptureTextFilePath": "traditional/1065/scripture_1065_kjv.txt",
@@ -8751,7 +8751,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "short",
-      "reflectionQuestion": "What would it be like to be fully seen\u2014every hidden and imperfect part of you laid bare\u2014and to find that the response waiting for you is not rejection, but an invitation?",
+      "reflectionQuestion": "What would it be like to be fully seen—every hidden and imperfect part of you laid bare—and to find that the response waiting for you is not rejection, but an invitation?",
       "bibleSourceRef": "Isaiah 6:1-8",
       "bibleStoryKey": "isaiahs_vision",
       "scriptureTextFilePath": "traditional/1067/scripture_1067_web.txt",
@@ -8776,7 +8776,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "full",
-      "reflectionQuestion": "What would it be like to be fully seen\u2014every hidden and imperfect part of you laid bare\u2014and to find that the response waiting for you is not rejection, but an invitation?",
+      "reflectionQuestion": "What would it be like to be fully seen—every hidden and imperfect part of you laid bare—and to find that the response waiting for you is not rejection, but an invitation?",
       "bibleSourceRef": "Isaiah 6:1-8",
       "bibleStoryKey": "isaiahs_vision",
       "scriptureTextFilePath": "traditional/1067/scripture_1067_web.txt",
@@ -8801,7 +8801,7 @@
       "languageStyle": "KJV",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "short",
-      "reflectionQuestion": "What would it be like to be fully seen\u2014every hidden and imperfect part of you laid bare\u2014and to find that the response waiting for you is not rejection, but an invitation?",
+      "reflectionQuestion": "What would it be like to be fully seen—every hidden and imperfect part of you laid bare—and to find that the response waiting for you is not rejection, but an invitation?",
       "bibleSourceRef": "Isaiah 6:1-8",
       "bibleStoryKey": "isaiahs_vision",
       "scriptureTextFilePath": "traditional/1067/scripture_1067_kjv.txt",
@@ -8826,7 +8826,7 @@
       "languageStyle": "KJV",
       "narratorVoiceKey": "VOICE_ARABELLA",
       "storyLength": "full",
-      "reflectionQuestion": "What would it be like to be fully seen\u2014every hidden and imperfect part of you laid bare\u2014and to find that the response waiting for you is not rejection, but an invitation?",
+      "reflectionQuestion": "What would it be like to be fully seen—every hidden and imperfect part of you laid bare—and to find that the response waiting for you is not rejection, but an invitation?",
       "bibleSourceRef": "Isaiah 6:1-8",
       "bibleStoryKey": "isaiahs_vision",
       "scriptureTextFilePath": "traditional/1067/scripture_1067_kjv.txt",
@@ -8851,7 +8851,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "short",
-      "reflectionQuestion": "When you think about a time you received back something you thought was lost forever\u2014whether a relationship, a sense of purpose, or a part of yourself\u2014what did that restoration stir in you that simple relief alone cannot explain?",
+      "reflectionQuestion": "When you think about a time you received back something you thought was lost forever—whether a relationship, a sense of purpose, or a part of yourself—what did that restoration stir in you that simple relief alone cannot explain?",
       "bibleSourceRef": "Job 42:1-17",
       "bibleStoryKey": "job_restored",
       "scriptureTextFilePath": "traditional/1068/scripture_1068_web.txt",
@@ -8876,7 +8876,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "full",
-      "reflectionQuestion": "When you think about a time you received back something you thought was lost forever\u2014whether a relationship, a sense of purpose, or a part of yourself\u2014what did that restoration stir in you that simple relief alone cannot explain?",
+      "reflectionQuestion": "When you think about a time you received back something you thought was lost forever—whether a relationship, a sense of purpose, or a part of yourself—what did that restoration stir in you that simple relief alone cannot explain?",
       "bibleSourceRef": "Job 42:1-17",
       "bibleStoryKey": "job_restored",
       "scriptureTextFilePath": "traditional/1068/scripture_1068_web.txt",
@@ -8901,7 +8901,7 @@
       "languageStyle": "KJV",
       "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "short",
-      "reflectionQuestion": "When you think about a time you received back something you thought was lost forever\u2014whether a relationship, a sense of purpose, or a part of yourself\u2014what did that restoration stir in you that simple relief alone cannot explain?",
+      "reflectionQuestion": "When you think about a time you received back something you thought was lost forever—whether a relationship, a sense of purpose, or a part of yourself—what did that restoration stir in you that simple relief alone cannot explain?",
       "bibleSourceRef": "Job 42:1-17",
       "bibleStoryKey": "job_restored",
       "scriptureTextFilePath": "traditional/1068/scripture_1068_kjv.txt",
@@ -8926,7 +8926,7 @@
       "languageStyle": "KJV",
       "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
       "storyLength": "full",
-      "reflectionQuestion": "When you think about a time you received back something you thought was lost forever\u2014whether a relationship, a sense of purpose, or a part of yourself\u2014what did that restoration stir in you that simple relief alone cannot explain?",
+      "reflectionQuestion": "When you think about a time you received back something you thought was lost forever—whether a relationship, a sense of purpose, or a part of yourself—what did that restoration stir in you that simple relief alone cannot explain?",
       "bibleSourceRef": "Job 42:1-17",
       "bibleStoryKey": "job_restored",
       "scriptureTextFilePath": "traditional/1068/scripture_1068_kjv.txt",
@@ -8951,7 +8951,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "short",
-      "reflectionQuestion": "What does it feel like to be fully known \u2014 every hidden wound, every unspoken thought \u2014 and to wonder whether being that deeply seen is something you long for or something you fear?",
+      "reflectionQuestion": "What does it feel like to be fully known — every hidden wound, every unspoken thought — and to wonder whether being that deeply seen is something you long for or something you fear?",
       "bibleSourceRef": "Psalm 139:1-18",
       "bibleStoryKey": "fearfully_and_wonderfully_made",
       "scriptureTextFilePath": "traditional/1069/scripture_1069_web.txt",
@@ -8976,7 +8976,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "full",
-      "reflectionQuestion": "What does it feel like to be fully known \u2014 every hidden wound, every unspoken thought \u2014 and to wonder whether being that deeply seen is something you long for or something you fear?",
+      "reflectionQuestion": "What does it feel like to be fully known — every hidden wound, every unspoken thought — and to wonder whether being that deeply seen is something you long for or something you fear?",
       "bibleSourceRef": "Psalm 139:1-18",
       "bibleStoryKey": "fearfully_and_wonderfully_made",
       "scriptureTextFilePath": "traditional/1069/scripture_1069_web.txt",
@@ -9001,7 +9001,7 @@
       "languageStyle": "KJV",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "short",
-      "reflectionQuestion": "What does it feel like to be fully known \u2014 every hidden wound, every unspoken thought \u2014 and to wonder whether being that deeply seen is something you long for or something you fear?",
+      "reflectionQuestion": "What does it feel like to be fully known — every hidden wound, every unspoken thought — and to wonder whether being that deeply seen is something you long for or something you fear?",
       "bibleSourceRef": "Psalm 139:1-18",
       "bibleStoryKey": "fearfully_and_wonderfully_made",
       "scriptureTextFilePath": "traditional/1069/scripture_1069_kjv.txt",
@@ -9026,7 +9026,7 @@
       "languageStyle": "KJV",
       "narratorVoiceKey": "VOICE_JAMES_HUSKY",
       "storyLength": "full",
-      "reflectionQuestion": "What does it feel like to be fully known \u2014 every hidden wound, every unspoken thought \u2014 and to wonder whether being that deeply seen is something you long for or something you fear?",
+      "reflectionQuestion": "What does it feel like to be fully known — every hidden wound, every unspoken thought — and to wonder whether being that deeply seen is something you long for or something you fear?",
       "bibleSourceRef": "Psalm 139:1-18",
       "bibleStoryKey": "fearfully_and_wonderfully_made",
       "scriptureTextFilePath": "traditional/1069/scripture_1069_kjv.txt",
@@ -9051,7 +9051,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_CHRIS_DEFAULT",
       "storyLength": "short",
-      "reflectionQuestion": "What is it that stirs in you when you imagine leaving behind everything familiar to follow a single, distant light \u2014 and what might that kind of trust feel like if you allowed it?",
+      "reflectionQuestion": "What is it that stirs in you when you imagine leaving behind everything familiar to follow a single, distant light — and what might that kind of trust feel like if you allowed it?",
       "bibleSourceRef": "Matthew 2:1-12",
       "bibleStoryKey": "the_magi",
       "scriptureTextFilePath": "traditional/1070/scripture_1070_web.txt",
@@ -9076,7 +9076,7 @@
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_CHRIS_DEFAULT",
       "storyLength": "full",
-      "reflectionQuestion": "What is it that stirs in you when you imagine leaving behind everything familiar to follow a single, distant light \u2014 and what might that kind of trust feel like if you allowed it?",
+      "reflectionQuestion": "What is it that stirs in you when you imagine leaving behind everything familiar to follow a single, distant light — and what might that kind of trust feel like if you allowed it?",
       "bibleSourceRef": "Matthew 2:1-12",
       "bibleStoryKey": "the_magi",
       "scriptureTextFilePath": "traditional/1070/scripture_1070_web.txt",
@@ -9101,7 +9101,7 @@
       "languageStyle": "KJV",
       "narratorVoiceKey": "VOICE_CHRIS_DEFAULT",
       "storyLength": "short",
-      "reflectionQuestion": "What is it that stirs in you when you imagine leaving behind everything familiar to follow a single, distant light \u2014 and what might that kind of trust feel like if you allowed it?",
+      "reflectionQuestion": "What is it that stirs in you when you imagine leaving behind everything familiar to follow a single, distant light — and what might that kind of trust feel like if you allowed it?",
       "bibleSourceRef": "Matthew 2:1-12",
       "bibleStoryKey": "the_magi",
       "scriptureTextFilePath": "traditional/1070/scripture_1070_kjv.txt",
@@ -9126,7 +9126,7 @@
       "languageStyle": "KJV",
       "narratorVoiceKey": "VOICE_CHRIS_DEFAULT",
       "storyLength": "full",
-      "reflectionQuestion": "What is it that stirs in you when you imagine leaving behind everything familiar to follow a single, distant light \u2014 and what might that kind of trust feel like if you allowed it?",
+      "reflectionQuestion": "What is it that stirs in you when you imagine leaving behind everything familiar to follow a single, distant light — and what might that kind of trust feel like if you allowed it?",
       "bibleSourceRef": "Matthew 2:1-12",
       "bibleStoryKey": "the_magi",
       "scriptureTextFilePath": "traditional/1070/scripture_1070_kjv.txt",
@@ -12585,7 +12585,7 @@
       "title": "The Man Who Ran from God",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever known exactly what you were supposed to do \u2014 and done the opposite?",
+      "reflectionQuestion": "Have you ever known exactly what you were supposed to do — and done the opposite?",
       "bibleSourceRef": "Jonah 1:1-17",
       "bibleStoryKey": "jonah_flees",
       "primaryCharacterId": "jonah",
@@ -12615,7 +12615,7 @@
       "title": "The Man Who Ran from God",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever known exactly what you were supposed to do \u2014 and done the opposite?",
+      "reflectionQuestion": "Have you ever known exactly what you were supposed to do — and done the opposite?",
       "bibleSourceRef": "Jonah 1:1-17",
       "bibleStoryKey": "jonah_flees",
       "primaryCharacterId": "jonah",
@@ -12645,7 +12645,7 @@
       "title": "The Man Who Ran from God",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever known exactly what you were supposed to do \u2014 and done the opposite?",
+      "reflectionQuestion": "Have you ever known exactly what you were supposed to do — and done the opposite?",
       "bibleSourceRef": "Jonah 1:1-17",
       "bibleStoryKey": "jonah_flees",
       "primaryCharacterId": "jonah",
@@ -12674,7 +12674,7 @@
       "scriptureTextFilePath": "traditional/1094/scripture_1094_kjv.txt",
       "title": "The Man Who Ran from God",
       "storytellingMode": "traditional",
-      "reflectionQuestion": "Have you ever known exactly what you were supposed to do \u2014 and done the opposite?",
+      "reflectionQuestion": "Have you ever known exactly what you were supposed to do — and done the opposite?",
       "bibleSourceRef": "Jonah 1:1-17",
       "bibleStoryKey": "jonah_flees",
       "primaryCharacterId": "jonah",
@@ -12704,7 +12704,7 @@
       "scriptureTextFilePath": "traditional/1094/scripture_1094_kjv.txt",
       "title": "The Man Who Ran from God",
       "storytellingMode": "traditional",
-      "reflectionQuestion": "Have you ever known exactly what you were supposed to do \u2014 and done the opposite?",
+      "reflectionQuestion": "Have you ever known exactly what you were supposed to do — and done the opposite?",
       "bibleSourceRef": "Jonah 1:1-17",
       "bibleStoryKey": "jonah_flees",
       "primaryCharacterId": "jonah",
@@ -12734,7 +12734,7 @@
       "scriptureTextFilePath": "traditional/1094/scripture_1094_kjv.txt",
       "title": "The Man Who Ran from God",
       "storytellingMode": "traditional",
-      "reflectionQuestion": "Have you ever known exactly what you were supposed to do \u2014 and done the opposite?",
+      "reflectionQuestion": "Have you ever known exactly what you were supposed to do — and done the opposite?",
       "bibleSourceRef": "Jonah 1:1-17",
       "bibleStoryKey": "jonah_flees",
       "primaryCharacterId": "jonah",
@@ -12765,7 +12765,7 @@
       "scriptureTextFilePath": "traditional/1094/scripture_1094_web.txt",
       "title": "The Man Who Ran from God",
       "storytellingMode": "traditional",
-      "reflectionQuestion": "Have you ever known exactly what you were supposed to do \u2014 and done the opposite?",
+      "reflectionQuestion": "Have you ever known exactly what you were supposed to do — and done the opposite?",
       "bibleSourceRef": "Jonah 1:1-17",
       "bibleStoryKey": "jonah_flees",
       "primaryCharacterId": "jonah",
@@ -13185,7 +13185,7 @@
       "scriptureTextFilePath": "traditional/1094/scripture_1094_web.txt",
       "title": "The Man Who Ran from God",
       "storytellingMode": "traditional",
-      "reflectionQuestion": "Have you ever known exactly what you were supposed to do \u2014 and done the opposite?",
+      "reflectionQuestion": "Have you ever known exactly what you were supposed to do — and done the opposite?",
       "bibleSourceRef": "Jonah 1:1-17",
       "bibleStoryKey": "jonah_flees",
       "primaryCharacterId": "jonah",
@@ -13215,7 +13215,7 @@
       "scriptureTextFilePath": "traditional/1094/scripture_1094_web.txt",
       "title": "The Man Who Ran from God",
       "storytellingMode": "traditional",
-      "reflectionQuestion": "Have you ever known exactly what you were supposed to do \u2014 and done the opposite?",
+      "reflectionQuestion": "Have you ever known exactly what you were supposed to do — and done the opposite?",
       "bibleSourceRef": "Jonah 1:1-17",
       "bibleStoryKey": "jonah_flees",
       "primaryCharacterId": "jonah",
@@ -13305,7 +13305,7 @@
       "title": "Thirty-Eight Years by the Pool",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever stopped believing things could change \u2014 and then they did?",
+      "reflectionQuestion": "Have you ever stopped believing things could change — and then they did?",
       "bibleSourceRef": "John 5:1-15",
       "bibleStoryKey": "healing_at_bethesda",
       "primaryCharacterId": "jesus",
@@ -13335,7 +13335,7 @@
       "title": "Thirty-Eight Years by the Pool",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever stopped believing things could change \u2014 and then they did?",
+      "reflectionQuestion": "Have you ever stopped believing things could change — and then they did?",
       "bibleSourceRef": "John 5:1-15",
       "bibleStoryKey": "healing_at_bethesda",
       "primaryCharacterId": "jesus",
@@ -13365,7 +13365,7 @@
       "title": "Thirty-Eight Years by the Pool",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever stopped believing things could change \u2014 and then they did?",
+      "reflectionQuestion": "Have you ever stopped believing things could change — and then they did?",
       "bibleSourceRef": "John 5:1-15",
       "bibleStoryKey": "healing_at_bethesda",
       "primaryCharacterId": "jesus",
@@ -13395,7 +13395,7 @@
       "title": "Thirty-Eight Years by the Pool",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever stopped believing things could change \u2014 and then they did?",
+      "reflectionQuestion": "Have you ever stopped believing things could change — and then they did?",
       "bibleSourceRef": "John 5:1-15",
       "bibleStoryKey": "healing_at_bethesda",
       "primaryCharacterId": "jesus",
@@ -13425,7 +13425,7 @@
       "title": "The Choir Before the Army",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever had to face something too big for you \u2014 and found that showing up was enough?",
+      "reflectionQuestion": "Have you ever had to face something too big for you — and found that showing up was enough?",
       "bibleSourceRef": "2 Chronicles 20:1-30",
       "bibleStoryKey": "jehoshaphat_praise_battle",
       "primaryCharacterId": "jehoshaphat",
@@ -13455,7 +13455,7 @@
       "title": "The Choir Before the Army",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever had to face something too big for you \u2014 and found that showing up was enough?",
+      "reflectionQuestion": "Have you ever had to face something too big for you — and found that showing up was enough?",
       "bibleSourceRef": "2 Chronicles 20:1-30",
       "bibleStoryKey": "jehoshaphat_praise_battle",
       "primaryCharacterId": "jehoshaphat",
@@ -13485,7 +13485,7 @@
       "title": "The Choir Before the Army",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever had to face something too big for you \u2014 and found that showing up was enough?",
+      "reflectionQuestion": "Have you ever had to face something too big for you — and found that showing up was enough?",
       "bibleSourceRef": "2 Chronicles 20:1-30",
       "bibleStoryKey": "jehoshaphat_praise_battle",
       "primaryCharacterId": "jehoshaphat",
@@ -13515,7 +13515,7 @@
       "title": "The Choir Before the Army",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever had to face something too big for you \u2014 and found that showing up was enough?",
+      "reflectionQuestion": "Have you ever had to face something too big for you — and found that showing up was enough?",
       "bibleSourceRef": "2 Chronicles 20:1-30",
       "bibleStoryKey": "jehoshaphat_praise_battle",
       "primaryCharacterId": "jehoshaphat",
@@ -13545,7 +13545,7 @@
       "title": "The Choir Before the Army",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever had to face something too big for you \u2014 and found that showing up was enough?",
+      "reflectionQuestion": "Have you ever had to face something too big for you — and found that showing up was enough?",
       "bibleSourceRef": "2 Chronicles 20:1-30",
       "bibleStoryKey": "jehoshaphat_praise_battle",
       "primaryCharacterId": "jehoshaphat",
@@ -13575,7 +13575,7 @@
       "title": "The Choir Before the Army",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever had to face something too big for you \u2014 and found that showing up was enough?",
+      "reflectionQuestion": "Have you ever had to face something too big for you — and found that showing up was enough?",
       "bibleSourceRef": "2 Chronicles 20:1-30",
       "bibleStoryKey": "jehoshaphat_praise_battle",
       "primaryCharacterId": "jehoshaphat",
@@ -13605,7 +13605,7 @@
       "title": "The Woman and the Dust",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been caught in something and expected condemnation \u2014 and received mercy instead?",
+      "reflectionQuestion": "Have you ever been caught in something and expected condemnation — and received mercy instead?",
       "bibleSourceRef": "John 8:1-11",
       "bibleStoryKey": "woman_caught_in_adultery",
       "primaryCharacterId": "jesus",
@@ -13635,7 +13635,7 @@
       "title": "The Woman and the Dust",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been caught in something and expected condemnation \u2014 and received mercy instead?",
+      "reflectionQuestion": "Have you ever been caught in something and expected condemnation — and received mercy instead?",
       "bibleSourceRef": "John 8:1-11",
       "bibleStoryKey": "woman_caught_in_adultery",
       "primaryCharacterId": "jesus",
@@ -13665,7 +13665,7 @@
       "title": "The Woman and the Dust",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been caught in something and expected condemnation \u2014 and received mercy instead?",
+      "reflectionQuestion": "Have you ever been caught in something and expected condemnation — and received mercy instead?",
       "bibleSourceRef": "John 8:1-11",
       "bibleStoryKey": "woman_caught_in_adultery",
       "primaryCharacterId": "jesus",
@@ -13695,7 +13695,7 @@
       "title": "The Woman and the Dust",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been caught in something and expected condemnation \u2014 and received mercy instead?",
+      "reflectionQuestion": "Have you ever been caught in something and expected condemnation — and received mercy instead?",
       "bibleSourceRef": "John 8:1-11",
       "bibleStoryKey": "woman_caught_in_adultery",
       "primaryCharacterId": "jesus",
@@ -13845,7 +13845,7 @@
       "title": "The City That Turned Around",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever changed direction \u2014 not because you understood everything, but because you knew it was time?",
+      "reflectionQuestion": "Have you ever changed direction — not because you understood everything, but because you knew it was time?",
       "bibleSourceRef": "Jonah 3:1-10",
       "bibleStoryKey": "jonah_in_nineveh",
       "primaryCharacterId": "jonah",
@@ -13875,7 +13875,7 @@
       "title": "The City That Turned Around",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever changed direction \u2014 not because you understood everything, but because you knew it was time?",
+      "reflectionQuestion": "Have you ever changed direction — not because you understood everything, but because you knew it was time?",
       "bibleSourceRef": "Jonah 3:1-10",
       "bibleStoryKey": "jonah_in_nineveh",
       "primaryCharacterId": "jonah",
@@ -14025,7 +14025,7 @@
       "title": "The Ruler's Daughter",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever had to trust through a delay \u2014 when every second felt like it mattered and nothing was moving fast enough?",
+      "reflectionQuestion": "Have you ever had to trust through a delay — when every second felt like it mattered and nothing was moving fast enough?",
       "bibleSourceRef": "Luke 8:40-56",
       "bibleStoryKey": "jairus_daughter",
       "primaryCharacterId": "jairus",
@@ -14055,7 +14055,7 @@
       "title": "The Ruler's Daughter",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever had to trust through a delay \u2014 when every second felt like it mattered and nothing was moving fast enough?",
+      "reflectionQuestion": "Have you ever had to trust through a delay — when every second felt like it mattered and nothing was moving fast enough?",
       "bibleSourceRef": "Luke 8:40-56",
       "bibleStoryKey": "jairus_daughter",
       "primaryCharacterId": "jairus",
@@ -14085,7 +14085,7 @@
       "title": "The Ruler's Daughter",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever had to trust through a delay \u2014 when every second felt like it mattered and nothing was moving fast enough?",
+      "reflectionQuestion": "Have you ever had to trust through a delay — when every second felt like it mattered and nothing was moving fast enough?",
       "bibleSourceRef": "Luke 8:40-56",
       "bibleStoryKey": "jairus_daughter",
       "primaryCharacterId": "jairus",
@@ -14115,7 +14115,7 @@
       "title": "The Ruler's Daughter",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever had to trust through a delay \u2014 when every second felt like it mattered and nothing was moving fast enough?",
+      "reflectionQuestion": "Have you ever had to trust through a delay — when every second felt like it mattered and nothing was moving fast enough?",
       "bibleSourceRef": "Luke 8:40-56",
       "bibleStoryKey": "jairus_daughter",
       "primaryCharacterId": "jairus",
@@ -14145,7 +14145,7 @@
       "title": "The Ruler's Daughter",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever had to trust through a delay \u2014 when every second felt like it mattered and nothing was moving fast enough?",
+      "reflectionQuestion": "Have you ever had to trust through a delay — when every second felt like it mattered and nothing was moving fast enough?",
       "bibleSourceRef": "Luke 8:40-56",
       "bibleStoryKey": "jairus_daughter",
       "primaryCharacterId": "jairus",
@@ -14175,7 +14175,7 @@
       "title": "The Ruler's Daughter",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever had to trust through a delay \u2014 when every second felt like it mattered and nothing was moving fast enough?",
+      "reflectionQuestion": "Have you ever had to trust through a delay — when every second felt like it mattered and nothing was moving fast enough?",
       "bibleSourceRef": "Luke 8:40-56",
       "bibleStoryKey": "jairus_daughter",
       "primaryCharacterId": "jairus",
@@ -14205,7 +14205,7 @@
       "title": "The Angel in the Prison",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been in a situation that felt completely locked \u2014 and then something shifted that you did not arrange?",
+      "reflectionQuestion": "Have you ever been in a situation that felt completely locked — and then something shifted that you did not arrange?",
       "bibleSourceRef": "Acts 12:1-19",
       "bibleStoryKey": "peter_freed_from_prison",
       "primaryCharacterId": "peter",
@@ -14234,7 +14234,7 @@
       "title": "The Angel in the Prison",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been in a situation that felt completely locked \u2014 and then something shifted that you did not arrange?",
+      "reflectionQuestion": "Have you ever been in a situation that felt completely locked — and then something shifted that you did not arrange?",
       "bibleSourceRef": "Acts 12:1-19",
       "bibleStoryKey": "peter_freed_from_prison",
       "primaryCharacterId": "peter",
@@ -14263,7 +14263,7 @@
       "title": "The Angel in the Prison",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been in a situation that felt completely locked \u2014 and then something shifted that you did not arrange?",
+      "reflectionQuestion": "Have you ever been in a situation that felt completely locked — and then something shifted that you did not arrange?",
       "bibleSourceRef": "Acts 12:1-19",
       "bibleStoryKey": "peter_freed_from_prison",
       "primaryCharacterId": "peter",
@@ -14292,7 +14292,7 @@
       "title": "The Angel in the Prison",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been in a situation that felt completely locked \u2014 and then something shifted that you did not arrange?",
+      "reflectionQuestion": "Have you ever been in a situation that felt completely locked — and then something shifted that you did not arrange?",
       "bibleSourceRef": "Acts 12:1-19",
       "bibleStoryKey": "peter_freed_from_prison",
       "primaryCharacterId": "peter",
@@ -14321,7 +14321,7 @@
       "title": "The Angel in the Prison",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been in a situation that felt completely locked \u2014 and then something shifted that you did not arrange?",
+      "reflectionQuestion": "Have you ever been in a situation that felt completely locked — and then something shifted that you did not arrange?",
       "bibleSourceRef": "Acts 12:1-19",
       "bibleStoryKey": "peter_freed_from_prison",
       "primaryCharacterId": "peter",
@@ -14350,7 +14350,7 @@
       "title": "The Angel in the Prison",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been in a situation that felt completely locked \u2014 and then something shifted that you did not arrange?",
+      "reflectionQuestion": "Have you ever been in a situation that felt completely locked — and then something shifted that you did not arrange?",
       "bibleSourceRef": "Acts 12:1-19",
       "bibleStoryKey": "peter_freed_from_prison",
       "primaryCharacterId": "peter",
@@ -14500,7 +14500,7 @@
       "title": "The Storm and the Shore",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been in a situation where everything rational said it was over \u2014 and something held?",
+      "reflectionQuestion": "Have you ever been in a situation where everything rational said it was over — and something held?",
       "bibleSourceRef": "Acts 27:13-44",
       "bibleStoryKey": "pauls_shipwreck",
       "primaryCharacterId": "paul",
@@ -14530,7 +14530,7 @@
       "title": "The Storm and the Shore",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been in a situation where everything rational said it was over \u2014 and something held?",
+      "reflectionQuestion": "Have you ever been in a situation where everything rational said it was over — and something held?",
       "bibleSourceRef": "Acts 27:13-44",
       "bibleStoryKey": "pauls_shipwreck",
       "primaryCharacterId": "paul",
@@ -14560,7 +14560,7 @@
       "title": "The Storm and the Shore",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been in a situation where everything rational said it was over \u2014 and something held?",
+      "reflectionQuestion": "Have you ever been in a situation where everything rational said it was over — and something held?",
       "bibleSourceRef": "Acts 27:13-44",
       "bibleStoryKey": "pauls_shipwreck",
       "primaryCharacterId": "paul",
@@ -14590,7 +14590,7 @@
       "title": "The Storm and the Shore",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been in a situation where everything rational said it was over \u2014 and something held?",
+      "reflectionQuestion": "Have you ever been in a situation where everything rational said it was over — and something held?",
       "bibleSourceRef": "Acts 27:13-44",
       "bibleStoryKey": "pauls_shipwreck",
       "primaryCharacterId": "paul",
@@ -14620,7 +14620,7 @@
       "title": "The Storm and the Shore",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been in a situation where everything rational said it was over \u2014 and something held?",
+      "reflectionQuestion": "Have you ever been in a situation where everything rational said it was over — and something held?",
       "bibleSourceRef": "Acts 27:13-44",
       "bibleStoryKey": "pauls_shipwreck",
       "primaryCharacterId": "paul",
@@ -14650,7 +14650,7 @@
       "title": "The Storm and the Shore",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been in a situation where everything rational said it was over \u2014 and something held?",
+      "reflectionQuestion": "Have you ever been in a situation where everything rational said it was over — and something held?",
       "bibleSourceRef": "Acts 27:13-44",
       "bibleStoryKey": "pauls_shipwreck",
       "primaryCharacterId": "paul",
@@ -14680,7 +14680,7 @@
       "title": "The Road into the City",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been part of something joyful that you did not fully understand \u2014 but joined in anyway?",
+      "reflectionQuestion": "Have you ever been part of something joyful that you did not fully understand — but joined in anyway?",
       "bibleSourceRef": "Matthew 21:1-11",
       "bibleStoryKey": "triumphal_entry",
       "primaryCharacterId": "jesus",
@@ -14709,7 +14709,7 @@
       "title": "The Road into the City",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been part of something joyful that you did not fully understand \u2014 but joined in anyway?",
+      "reflectionQuestion": "Have you ever been part of something joyful that you did not fully understand — but joined in anyway?",
       "bibleSourceRef": "Matthew 21:1-11",
       "bibleStoryKey": "triumphal_entry",
       "primaryCharacterId": "jesus",
@@ -14738,7 +14738,7 @@
       "title": "The Road into the City",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been part of something joyful that you did not fully understand \u2014 but joined in anyway?",
+      "reflectionQuestion": "Have you ever been part of something joyful that you did not fully understand — but joined in anyway?",
       "bibleSourceRef": "Matthew 21:1-11",
       "bibleStoryKey": "triumphal_entry",
       "primaryCharacterId": "jesus",
@@ -14767,7 +14767,7 @@
       "title": "The Road into the City",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever been part of something joyful that you did not fully understand \u2014 but joined in anyway?",
+      "reflectionQuestion": "Have you ever been part of something joyful that you did not fully understand — but joined in anyway?",
       "bibleSourceRef": "Matthew 21:1-11",
       "bibleStoryKey": "triumphal_entry",
       "primaryCharacterId": "jesus",
@@ -14796,7 +14796,7 @@
       "title": "The Upper Room",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever shared a meal that felt heavier than it looked \u2014 where something unspoken was present at the table?",
+      "reflectionQuestion": "Have you ever shared a meal that felt heavier than it looked — where something unspoken was present at the table?",
       "bibleSourceRef": "Luke 22:7-23",
       "bibleStoryKey": "last_supper",
       "primaryCharacterId": "jesus",
@@ -14826,7 +14826,7 @@
       "title": "The Upper Room",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever shared a meal that felt heavier than it looked \u2014 where something unspoken was present at the table?",
+      "reflectionQuestion": "Have you ever shared a meal that felt heavier than it looked — where something unspoken was present at the table?",
       "bibleSourceRef": "Luke 22:7-23",
       "bibleStoryKey": "last_supper",
       "primaryCharacterId": "jesus",
@@ -14856,7 +14856,7 @@
       "title": "The Upper Room",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever shared a meal that felt heavier than it looked \u2014 where something unspoken was present at the table?",
+      "reflectionQuestion": "Have you ever shared a meal that felt heavier than it looked — where something unspoken was present at the table?",
       "bibleSourceRef": "Luke 22:7-23",
       "bibleStoryKey": "last_supper",
       "primaryCharacterId": "jesus",
@@ -14886,7 +14886,7 @@
       "title": "The Upper Room",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever shared a meal that felt heavier than it looked \u2014 where something unspoken was present at the table?",
+      "reflectionQuestion": "Have you ever shared a meal that felt heavier than it looked — where something unspoken was present at the table?",
       "bibleSourceRef": "Luke 22:7-23",
       "bibleStoryKey": "last_supper",
       "primaryCharacterId": "jesus",
@@ -14916,7 +14916,7 @@
       "title": "The Garden at Night",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever asked for something to be taken from you \u2014 and it was not?",
+      "reflectionQuestion": "Have you ever asked for something to be taken from you — and it was not?",
       "bibleSourceRef": "Mark 14:32-42",
       "bibleStoryKey": "gethsemane",
       "primaryCharacterId": "jesus",
@@ -14946,7 +14946,7 @@
       "title": "The Garden at Night",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever asked for something to be taken from you \u2014 and it was not?",
+      "reflectionQuestion": "Have you ever asked for something to be taken from you — and it was not?",
       "bibleSourceRef": "Mark 14:32-42",
       "bibleStoryKey": "gethsemane",
       "primaryCharacterId": "jesus",
@@ -14976,7 +14976,7 @@
       "title": "The Garden at Night",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever asked for something to be taken from you \u2014 and it was not?",
+      "reflectionQuestion": "Have you ever asked for something to be taken from you — and it was not?",
       "bibleSourceRef": "Mark 14:32-42",
       "bibleStoryKey": "gethsemane",
       "primaryCharacterId": "jesus",
@@ -15006,7 +15006,7 @@
       "title": "The Garden at Night",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever asked for something to be taken from you \u2014 and it was not?",
+      "reflectionQuestion": "Have you ever asked for something to be taken from you — and it was not?",
       "bibleSourceRef": "Mark 14:32-42",
       "bibleStoryKey": "gethsemane",
       "primaryCharacterId": "jesus",
@@ -15036,7 +15036,7 @@
       "title": "The Hill Called the Skull",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "What does it mean to watch something unbearable \u2014 and stay?",
+      "reflectionQuestion": "What does it mean to watch something unbearable — and stay?",
       "bibleSourceRef": "Luke 23:26-49",
       "bibleStoryKey": "crucifixion",
       "primaryCharacterId": "jesus",
@@ -15066,7 +15066,7 @@
       "title": "The Hill Called the Skull",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "What does it mean to watch something unbearable \u2014 and stay?",
+      "reflectionQuestion": "What does it mean to watch something unbearable — and stay?",
       "bibleSourceRef": "Luke 23:26-49",
       "bibleStoryKey": "crucifixion",
       "primaryCharacterId": "jesus",
@@ -15096,7 +15096,7 @@
       "title": "The Hill Called the Skull",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "What does it mean to watch something unbearable \u2014 and stay?",
+      "reflectionQuestion": "What does it mean to watch something unbearable — and stay?",
       "bibleSourceRef": "Luke 23:26-49",
       "bibleStoryKey": "crucifixion",
       "primaryCharacterId": "jesus",
@@ -15126,7 +15126,7 @@
       "title": "The Hill Called the Skull",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "What does it mean to watch something unbearable \u2014 and stay?",
+      "reflectionQuestion": "What does it mean to watch something unbearable — and stay?",
       "bibleSourceRef": "Luke 23:26-49",
       "bibleStoryKey": "crucifixion",
       "primaryCharacterId": "jesus",
@@ -15156,7 +15156,7 @@
       "title": "The Hill Called the Skull",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "What does it mean to watch something unbearable \u2014 and stay?",
+      "reflectionQuestion": "What does it mean to watch something unbearable — and stay?",
       "bibleSourceRef": "Luke 23:26-49",
       "bibleStoryKey": "crucifixion",
       "primaryCharacterId": "jesus",
@@ -15186,7 +15186,7 @@
       "title": "The Hill Called the Skull",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "What does it mean to watch something unbearable \u2014 and stay?",
+      "reflectionQuestion": "What does it mean to watch something unbearable — and stay?",
       "bibleSourceRef": "Luke 23:26-49",
       "bibleStoryKey": "crucifixion",
       "primaryCharacterId": "jesus",
@@ -15216,7 +15216,7 @@
       "title": "Lifted Up at Bethany",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever watched someone leave \u2014 and felt not grief but joy?",
+      "reflectionQuestion": "Have you ever watched someone leave — and felt not grief but joy?",
       "bibleSourceRef": "Luke 24:50-53",
       "bibleStoryKey": "ascension",
       "primaryCharacterId": "jesus",
@@ -15245,7 +15245,7 @@
       "title": "Lifted Up at Bethany",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever watched someone leave \u2014 and felt not grief but joy?",
+      "reflectionQuestion": "Have you ever watched someone leave — and felt not grief but joy?",
       "bibleSourceRef": "Luke 24:50-53",
       "bibleStoryKey": "ascension",
       "primaryCharacterId": "jesus",
@@ -15274,7 +15274,7 @@
       "title": "Lifted Up at Bethany",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever watched someone leave \u2014 and felt not grief but joy?",
+      "reflectionQuestion": "Have you ever watched someone leave — and felt not grief but joy?",
       "bibleSourceRef": "Luke 24:50-53",
       "bibleStoryKey": "ascension",
       "primaryCharacterId": "jesus",
@@ -15303,7 +15303,7 @@
       "title": "Lifted Up at Bethany",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Have you ever watched someone leave \u2014 and felt not grief but joy?",
+      "reflectionQuestion": "Have you ever watched someone leave — and felt not grief but joy?",
       "bibleSourceRef": "Luke 24:50-53",
       "bibleStoryKey": "ascension",
       "primaryCharacterId": "jesus",
@@ -15393,7 +15393,7 @@
       "narratorVoiceKey": "VOICE_CHRIS_DEFAULT",
       "storyLength": "short",
       "bibleSourceRef": "1 Samuel 17:1-54",
-      "bibleStoryKey": "david_goliath",
+      "bibleStoryKey": "david_and_goliath",
       "audioFilePath": "traditional/826/audio_826_story_short.mp3",
       "reflectionAudioPath": "traditional/826/audio_826_reflection.mp3",
       "reflectionQuestion": "Stories of courage often reflect moments when fear meets faith. These narratives show how ordinary resolve can carry someone through extraordinary circumstances. And even a small step forward can be enough for today.",
@@ -15415,7 +15415,7 @@
       "narratorVoiceKey": "VOICE_CHRIS_DEFAULT",
       "storyLength": "full",
       "bibleSourceRef": "1 Samuel 17:1-54",
-      "bibleStoryKey": "david_goliath",
+      "bibleStoryKey": "david_and_goliath",
       "audioFilePath": "traditional/826/audio_826_story_full.mp3",
       "reflectionAudioPath": "traditional/826/audio_826_reflection.mp3",
       "reflectionQuestion": "Stories of courage often reflect moments when fear meets faith. These narratives show how ordinary resolve can carry someone through extraordinary circumstances. And even a small step forward can be enough for today.",
@@ -15437,7 +15437,7 @@
       "narratorVoiceKey": "VOICE_CHRIS_DEFAULT",
       "storyLength": "long",
       "bibleSourceRef": "1 Samuel 17:1-54",
-      "bibleStoryKey": "david_goliath",
+      "bibleStoryKey": "david_and_goliath",
       "audioFilePath": "traditional/826/audio_826_story_long.mp3",
       "reflectionAudioPath": "traditional/826/audio_826_reflection.mp3",
       "reflectionQuestion": "Stories of courage often reflect moments when fear meets faith. These narratives show how ordinary resolve can carry someone through extraordinary circumstances. And even a small step forward can be enough for today.",
@@ -15462,7 +15462,7 @@
       "bibleStoryKey": "ruth_and_naomi",
       "audioFilePath": "traditional/828/audio_828_story_short.mp3",
       "reflectionAudioPath": "traditional/828/audio_828_reflection.mp3",
-      "reflectionQuestion": "One act of support can shift more than you realize. Standing beside someone \u2014 even silently \u2014 can change the weight of what they carry. Even a small gesture can be enough for today.",
+      "reflectionQuestion": "One act of support can shift more than you realize. Standing beside someone — even silently — can change the weight of what they carry. Even a small gesture can be enough for today.",
       "scriptureTextFilePath": "traditional/828/scripture_828_web.txt",
       "primaryCharacterId": "ruth",
       "primaryCharacterDisplayName": "Ruth",
@@ -15484,7 +15484,7 @@
       "bibleStoryKey": "ruth_and_naomi",
       "audioFilePath": "traditional/828/audio_828_story_full.mp3",
       "reflectionAudioPath": "traditional/828/audio_828_reflection.mp3",
-      "reflectionQuestion": "One act of support can shift more than you realize. Standing beside someone \u2014 even silently \u2014 can change the weight of what they carry. Even a small gesture can be enough for today.",
+      "reflectionQuestion": "One act of support can shift more than you realize. Standing beside someone — even silently — can change the weight of what they carry. Even a small gesture can be enough for today.",
       "scriptureTextFilePath": "traditional/828/scripture_828_web.txt",
       "primaryCharacterId": "ruth",
       "primaryCharacterDisplayName": "Ruth",
@@ -15506,7 +15506,7 @@
       "bibleStoryKey": "ruth_and_naomi",
       "audioFilePath": "traditional/828/audio_828_story_long.mp3",
       "reflectionAudioPath": "traditional/828/audio_828_reflection.mp3",
-      "reflectionQuestion": "One act of support can shift more than you realize. Standing beside someone \u2014 even silently \u2014 can change the weight of what they carry. Even a small gesture can be enough for today.",
+      "reflectionQuestion": "One act of support can shift more than you realize. Standing beside someone — even silently — can change the weight of what they carry. Even a small gesture can be enough for today.",
       "scriptureTextFilePath": "traditional/828/scripture_828_web.txt",
       "primaryCharacterId": "ruth",
       "primaryCharacterDisplayName": "Ruth",
@@ -15638,7 +15638,7 @@
       "bibleStoryKey": "moses_and_jethro",
       "audioFilePath": "traditional/832/audio_832_story_short.mp3",
       "reflectionAudioPath": "traditional/832/audio_832_reflection.mp3",
-      "reflectionQuestion": "Weariness runs deep when the road has been long. Rest is not giving up \u2014 it is part of the journey. Even a small pause can restore more than you expect.",
+      "reflectionQuestion": "Weariness runs deep when the road has been long. Rest is not giving up — it is part of the journey. Even a small pause can restore more than you expect.",
       "scriptureTextFilePath": "traditional/832/scripture_832_web.txt",
       "primaryCharacterId": "moses",
       "primaryCharacterDisplayName": "Moses",
@@ -15660,7 +15660,7 @@
       "bibleStoryKey": "moses_and_jethro",
       "audioFilePath": "traditional/832/audio_832_story_full.mp3",
       "reflectionAudioPath": "traditional/832/audio_832_reflection.mp3",
-      "reflectionQuestion": "Weariness runs deep when the road has been long. Rest is not giving up \u2014 it is part of the journey. Even a small pause can restore more than you expect.",
+      "reflectionQuestion": "Weariness runs deep when the road has been long. Rest is not giving up — it is part of the journey. Even a small pause can restore more than you expect.",
       "scriptureTextFilePath": "traditional/832/scripture_832_web.txt",
       "primaryCharacterId": "moses",
       "primaryCharacterDisplayName": "Moses",
@@ -15682,7 +15682,7 @@
       "bibleStoryKey": "moses_and_jethro",
       "audioFilePath": "traditional/832/audio_832_story_long.mp3",
       "reflectionAudioPath": "traditional/832/audio_832_reflection.mp3",
-      "reflectionQuestion": "Weariness runs deep when the road has been long. Rest is not giving up \u2014 it is part of the journey. Even a small pause can restore more than you expect.",
+      "reflectionQuestion": "Weariness runs deep when the road has been long. Rest is not giving up — it is part of the journey. Even a small pause can restore more than you expect.",
       "scriptureTextFilePath": "traditional/832/scripture_832_web.txt",
       "primaryCharacterId": "moses",
       "primaryCharacterDisplayName": "Moses",
@@ -15795,7 +15795,7 @@
       "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
       "storyLength": "short",
       "bibleSourceRef": "1 Samuel 17:1-50",
-      "bibleStoryKey": "david_goliath",
+      "bibleStoryKey": "david_and_goliath",
       "audioFilePath": "traditional/1112/audio_1112_story_short.mp3",
       "primaryCharacterId": "david",
       "primaryCharacterDisplayName": "David",
@@ -15819,7 +15819,7 @@
       "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
       "storyLength": "full",
       "bibleSourceRef": "1 Samuel 17:1-50",
-      "bibleStoryKey": "david_goliath",
+      "bibleStoryKey": "david_and_goliath",
       "primaryCharacterId": "david",
       "primaryCharacterDisplayName": "David",
       "bibleOrderIndex": 220,
@@ -15842,7 +15842,7 @@
       "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
       "storyLength": "short",
       "bibleSourceRef": "1 Samuel 17:1-50",
-      "bibleStoryKey": "david_goliath",
+      "bibleStoryKey": "david_and_goliath",
       "audioFilePath": "traditional/1112/audio_1112_story_kjv_short.mp3",
       "primaryCharacterId": "david",
       "primaryCharacterDisplayName": "David",
@@ -15866,7 +15866,7 @@
       "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
       "storyLength": "full",
       "bibleSourceRef": "1 Samuel 17:1-50",
-      "bibleStoryKey": "david_goliath",
+      "bibleStoryKey": "david_and_goliath",
       "primaryCharacterId": "david",
       "primaryCharacterDisplayName": "David",
       "bibleOrderIndex": 220,
@@ -16452,7 +16452,7 @@
         "faith",
         "presence"
       ],
-      "reflectionQuestion": "Has there been a moment when you said plainly what you would not believe \u2014 and were met there anyway?"
+      "reflectionQuestion": "Has there been a moment when you said plainly what you would not believe — and were met there anyway?"
     },
     {
       "storyId": "story_1123_encouraging_short_traditional",
@@ -16557,7 +16557,7 @@
       "storyLength": "short",
       "scriptureTextFilePath": "",
       "bibleSourceRef": "John 13:1-17",
-      "bibleStoryKey": "foot_washing",
+      "bibleStoryKey": "jesus_washes_disciples_feet",
       "audioFilePath": "traditional/1126/audio_1126_story_short.mp3",
       "reflectionAudioPath": "",
       "primaryCharacterId": "jesus",
