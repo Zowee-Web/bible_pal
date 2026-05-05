@@ -2,10 +2,19 @@
 // Used by RelatabilityMatcher to extract tags from user input and match stories.
 //
 // Tag categories (flat storage, categorized here for documentation only):
-// - Emotions (7): overwhelmed, anxious, sad, angry, lonely, hopeless, grateful
+// - Emotions (7 v1 + 8 PR β = 15): overwhelmed, anxious, sad, angry, lonely,
+//   hopeless, grateful, danger, courage, hope, uncertainty, celebration,
+//   togetherness, solemnity, wonder
 // - Situations (13): workplace_conflict, unfair_authority, relationship_conflict,
 //   rejection, failure, grief, illness, financial_stress, parenting_struggle,
 //   self_doubt, temptation, waiting, injustice
+//
+// PR β expansion: added 8 emotional registers authored across the 1287-story
+// corpus. The new entries are registers (not extracted-from-user-input
+// categories), so they appear here primarily for manifest validation. The
+// `tagKeywords` map below intentionally does NOT add keywords for them —
+// adding keywords for `danger` etc. would change the matcher's behavior on
+// user input, which is outside this PR's scope.
 
 /// Explicit iteration order for deterministic tag extraction.
 /// When multiple tags match, we keep the first 3 in this order.
@@ -18,6 +27,15 @@ const List<String> tagOrder = [
   'lonely',
   'hopeless',
   'grateful',
+  // PR β expansion — emotional registers authored in corpus
+  'danger',
+  'courage',
+  'hope',
+  'uncertainty',
+  'celebration',
+  'togetherness',
+  'solemnity',
+  'wonder',
   // Situations second
   'workplace_conflict',
   'unfair_authority',

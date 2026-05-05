@@ -60,17 +60,20 @@ void main() {
           // STORY_FACTORY.md: dual-engine architecture
           //   Legacy Traditional (801-834): gpt-4.1
           //   Legacy Creative (500s): mistral-nemo / llama3.1:8b / qwen2.5:7b / gemma:7b
-          //   Opus system (1000+): claude-opus-4-6 (both modes)
+          //   Opus 4.6 system (1000-1110): claude-opus-4-6
+          //   Opus 4.7 system (1121-1287): claude-opus-4-7 (PR β allowlist update)
           const traditionalAllowedModels = {
             'gpt-4.1',           // legacy traditional engine
-            'claude-opus-4-6',   // Opus batch system (STORY_FACTORY.md Section 0)
+            'claude-opus-4-6',   // Opus 4.6 batch system (STORY_FACTORY.md Section 0)
+            'claude-opus-4-7',   // Opus 4.7 batch system (1121-1287 corpus)
           };
           const creativeAllowedModels = {
             'mistral-nemo',      // primary (via Ollama)
             'llama3.1:8b',       // fallback 1
             'qwen2.5:7b',        // fallback 2
             'gemma:7b',          // legacy fallback
-            'claude-opus-4-6',   // Opus batch system (STORY_FACTORY.md Section 0)
+            'claude-opus-4-6',   // Opus 4.6 batch system
+            'claude-opus-4-7',   // Opus 4.7 batch system
           };
 
           if (mode == 'traditional') {

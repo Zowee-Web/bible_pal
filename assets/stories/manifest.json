@@ -13891,8 +13891,8 @@
       "storyId": "story_1101_hurting_short_traditional",
       "mood": "hurting",
       "emotionalTags": [
-        "patience",
-        "desperation"
+        "waiting",
+        "hopeless"
       ],
       "audioFilePath": "traditional/1101/audio_1101_story_short.mp3",
       "textFilePath": "traditional/1101/story_1101_traditional_web_short.txt",
@@ -13921,8 +13921,8 @@
       "storyId": "story_1101_hurting_short_traditional_kjv",
       "mood": "hurting",
       "emotionalTags": [
-        "patience",
-        "desperation"
+        "waiting",
+        "hopeless"
       ],
       "audioFilePath": "traditional/1101/audio_1101_story_kjv_short.mp3",
       "textFilePath": "traditional/1101/story_1101_traditional_kjv_short.txt",
@@ -13951,8 +13951,8 @@
       "storyId": "story_1101_hurting_full_traditional",
       "mood": "hurting",
       "emotionalTags": [
-        "patience",
-        "desperation"
+        "waiting",
+        "hopeless"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1101/story_1101_traditional_web_full.txt",
@@ -13981,8 +13981,8 @@
       "storyId": "story_1101_hurting_full_traditional_kjv",
       "mood": "hurting",
       "emotionalTags": [
-        "patience",
-        "desperation"
+        "waiting",
+        "hopeless"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1101/story_1101_traditional_kjv_full.txt",
@@ -14012,7 +14012,7 @@
       "mood": "hurting",
       "emotionalTags": [
         "grief",
-        "fear"
+        "anxious"
       ],
       "audioFilePath": "traditional/1102/audio_1102_story_short.mp3",
       "textFilePath": "traditional/1102/story_1102_traditional_web_short.txt",
@@ -14042,7 +14042,7 @@
       "mood": "hurting",
       "emotionalTags": [
         "grief",
-        "fear"
+        "anxious"
       ],
       "audioFilePath": "traditional/1102/audio_1102_story_kjv_short.mp3",
       "textFilePath": "traditional/1102/story_1102_traditional_kjv_short.txt",
@@ -14072,7 +14072,7 @@
       "mood": "hurting",
       "emotionalTags": [
         "grief",
-        "fear"
+        "anxious"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1102/story_1102_traditional_web_full.txt",
@@ -14102,7 +14102,7 @@
       "mood": "hurting",
       "emotionalTags": [
         "grief",
-        "fear"
+        "anxious"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1102/story_1102_traditional_kjv_full.txt",
@@ -14132,7 +14132,7 @@
       "mood": "hurting",
       "emotionalTags": [
         "grief",
-        "fear"
+        "anxious"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1102/story_1102_traditional_web_long.txt",
@@ -14162,7 +14162,7 @@
       "mood": "hurting",
       "emotionalTags": [
         "grief",
-        "fear"
+        "anxious"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1102/story_1102_traditional_kjv_long.txt",
@@ -14365,8 +14365,7 @@
       "storyId": "story_1104_brave_courage_short_traditional",
       "mood": "brave_courage",
       "emotionalTags": [
-        "persecution",
-        "faith"
+        "injustice"
       ],
       "audioFilePath": "traditional/1104/audio_1104_story_short.mp3",
       "textFilePath": "traditional/1104/story_1104_traditional_web_short.txt",
@@ -14396,8 +14395,7 @@
       "storyId": "story_1104_brave_courage_short_traditional_kjv",
       "mood": "brave_courage",
       "emotionalTags": [
-        "persecution",
-        "faith"
+        "injustice"
       ],
       "audioFilePath": "traditional/1104/audio_1104_story_kjv_short.mp3",
       "textFilePath": "traditional/1104/story_1104_traditional_kjv_short.txt",
@@ -14426,8 +14424,7 @@
       "storyId": "story_1104_brave_courage_full_traditional",
       "mood": "brave_courage",
       "emotionalTags": [
-        "persecution",
-        "faith"
+        "injustice"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1104/story_1104_traditional_web_full.txt",
@@ -14456,8 +14453,7 @@
       "storyId": "story_1104_brave_courage_full_traditional_kjv",
       "mood": "brave_courage",
       "emotionalTags": [
-        "persecution",
-        "faith"
+        "injustice"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1104/story_1104_traditional_kjv_full.txt",
@@ -14902,8 +14898,8 @@
       "storyId": "story_1108_hurting_short_traditional",
       "mood": "hurting",
       "emotionalTags": [
-        "anguish",
-        "loneliness"
+        "sad",
+        "lonely"
       ],
       "audioFilePath": "traditional/1108/audio_1108_story_short.mp3",
       "textFilePath": "traditional/1108/story_1108_traditional_web_short.txt",
@@ -14932,8 +14928,8 @@
       "storyId": "story_1108_hurting_short_traditional_kjv",
       "mood": "hurting",
       "emotionalTags": [
-        "anguish",
-        "loneliness"
+        "sad",
+        "lonely"
       ],
       "audioFilePath": "traditional/1108/audio_1108_story_kjv_short.mp3",
       "textFilePath": "traditional/1108/story_1108_traditional_kjv_short.txt",
@@ -14962,8 +14958,8 @@
       "storyId": "story_1108_hurting_full_traditional",
       "mood": "hurting",
       "emotionalTags": [
-        "anguish",
-        "loneliness"
+        "sad",
+        "lonely"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1108/story_1108_traditional_web_full.txt",
@@ -14992,8 +14988,8 @@
       "storyId": "story_1108_hurting_full_traditional_kjv",
       "mood": "hurting",
       "emotionalTags": [
-        "anguish",
-        "loneliness"
+        "sad",
+        "lonely"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1108/story_1108_traditional_kjv_full.txt",
@@ -15022,7 +15018,7 @@
       "storyId": "story_1109_hurting_short_traditional",
       "mood": "hurting",
       "emotionalTags": [
-        "patience",
+        "waiting",
         "courage"
       ],
       "audioFilePath": "traditional/1109/audio_1109_story_short.mp3",
@@ -15052,7 +15048,7 @@
       "storyId": "story_1109_hurting_short_traditional_kjv",
       "mood": "hurting",
       "emotionalTags": [
-        "patience",
+        "waiting",
         "courage"
       ],
       "audioFilePath": "traditional/1109/audio_1109_story_kjv_short.mp3",
@@ -15082,7 +15078,7 @@
       "storyId": "story_1109_hurting_full_traditional",
       "mood": "hurting",
       "emotionalTags": [
-        "patience",
+        "waiting",
         "courage"
       ],
       "audioFilePath": "",
@@ -15112,7 +15108,7 @@
       "storyId": "story_1109_hurting_full_traditional_kjv",
       "mood": "hurting",
       "emotionalTags": [
-        "patience",
+        "waiting",
         "courage"
       ],
       "audioFilePath": "",
@@ -15142,7 +15138,7 @@
       "storyId": "story_1109_hurting_long_traditional",
       "mood": "hurting",
       "emotionalTags": [
-        "patience",
+        "waiting",
         "courage"
       ],
       "audioFilePath": "",
@@ -15172,7 +15168,7 @@
       "storyId": "story_1109_hurting_long_traditional_kjv",
       "mood": "hurting",
       "emotionalTags": [
-        "patience",
+        "waiting",
         "courage"
       ],
       "audioFilePath": "",
@@ -16399,8 +16395,8 @@
       "title": "The Lips That Moved Without Sound",
       "mood": "hurting",
       "emotionalTags": [
-        "unheard",
-        "longing"
+        "rejection",
+        "waiting"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": false,
@@ -16429,7 +16425,7 @@
       "title": "The Wounds He Did Not Need to Touch",
       "mood": "anxious",
       "emotionalTags": [
-        "doubt",
+        "self_doubt",
         "uncertainty"
       ],
       "storytellingMode": "traditional",
