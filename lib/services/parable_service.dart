@@ -33,6 +33,21 @@ class ParableService {
   /// but may exceed it when favorited audio alone is larger.
   static const int kAudioCacheBudgetBytes = 600 * 1024 * 1024;
 
+  /// How recently a story must have been played to count as "seen" by the
+  /// MoodExpansionEngine. Stories outside this window stay in the play log
+  /// (for LRP ordering) but are eligible as Tier 1 unseen picks again.
+  static const Duration _unseenWindow = Duration(days: 30);
+
+  /// High-intensity moods that trigger the MICRO serving bias for Short
+  /// length: when the user is anxious, hurting, or weary, prefer a shorter
+  /// emotionally-focused scripture extract first. See `feedback_micro_stories.md`
+  /// in agent memory and the "Micro serving bias" section.
+  static const Set<String> _microBiasMoods = {
+    'anxious',
+    'hurting',
+    'weary',
+  };
+
   /// Mutable budget used by the eviction routine. Defaults to the public
   /// constant; tests override via [setAudioCacheBudgetForTesting] to avoid
   /// allocating real 600 MB fixtures.
@@ -514,6 +529,65 @@ class ParableService {
     // Combined pool for the engine (exact + similar, engine handles separation)
     var combinedPool = [...exactPool, ...similarPools];
 
+    // Build the anti-repeat seen-set early so the MICRO bias check below can
+    // honor it (a MICRO whose only candidate was recently played should not
+    // hijack the selection). Same data drives the engine's anti-repeat below.
+    final playHistory = await _storage.getPlayLog();
+    final unseenWindow = DateTime.now().subtract(_unseenWindow);
+    final recentStoryIds = <String>{
+      for (final entry in playHistory.entries)
+        if (entry.value.isAfter(unseenWindow)) entry.key,
+    };
+
+    // MICRO serving bias: for high-intensity moods (anxious/hurting/weary) at
+    // Short length, prefer MICRO stories (shortScripture==true) first. They
+    // give faster comfort/direction. The bias only stays active when there is
+    // at least one UNSEEN EXACT-MOOD MICRO so it never overrides anti-repeat
+    // and never traps the user on similar-mood MICROs once exact-mood MICROs
+    // are exhausted — normal tiered serving resumes so exact-mood non-MICRO
+    // Shorts can surface before similar-mood MICROs. Bias does NOT affect
+    // Full or Long selection — those length buckets exclude MICRO entirely.
+    // See `feedback_micro_stories.md` in agent memory.
+    final microBiasApplied = lengthBucket == StoryLengthBucket.short &&
+        _microBiasMoods.contains(mood);
+    if (microBiasApplied) {
+      final microPool =
+          combinedPool.where((p) => p.shortScripture).toList(growable: false);
+      final unseenExactMoodMicroCount = microPool
+          .where((p) => p.mood == mood && !recentStoryIds.contains(p.storyId))
+          .length;
+      if (unseenExactMoodMicroCount > 0) {
+        debugPrint(
+            '[ParableService] MICRO bias applied for mood=$mood: '
+            '${microPool.length} MICRO candidate(s), '
+            '$unseenExactMoodMicroCount unseen exact-mood '
+            '(combined pool was ${combinedPool.length})');
+        logEvent('micro_bias_applied', {
+          'selected_mood': mood,
+          'micro_pool_size': microPool.length,
+          'unseen_exact_mood_micro_count': unseenExactMoodMicroCount,
+          'combined_pool_size': combinedPool.length,
+        });
+        combinedPool = microPool;
+      } else if (microPool.isEmpty) {
+        logEvent('micro_bias_no_match', {
+          'selected_mood': mood,
+          'reason': 'no_micros_in_pool',
+          'combined_pool_size': combinedPool.length,
+        });
+      } else {
+        // No unseen exact-mood MICRO available. Release the bias so normal
+        // tiered serving resumes — exact-mood non-MICRO Shorts should
+        // surface before similar-mood MICROs.
+        logEvent('micro_bias_no_match', {
+          'selected_mood': mood,
+          'reason': 'no_unseen_exact_mood_micro',
+          'micro_pool_size': microPool.length,
+          'combined_pool_size': combinedPool.length,
+        });
+      }
+    }
+
     // If a bibleStoryKey hint was provided (from previewBibleStoryKey), constrain
     // to variants of that story. Falls back to full pool if no variants match.
     if (bibleStoryKey != null) {
@@ -545,15 +619,10 @@ class ParableService {
       return null;
     }
 
-    // Get history for non-repeat rule
-    final history = await _storage.getHistory();
-    final recentStoryIds = history.map((h) => h.storyId).toSet();
-    final playHistory = <String, DateTime>{};
-    for (final entry in history) {
-      if (!playHistory.containsKey(entry.storyId)) {
-        playHistory[entry.storyId] = entry.timestamp;
-      }
-    }
+    // (Non-repeat rule note: playHistory + recentStoryIds were built earlier,
+    // before the MICRO bias check, so the bias and the engine see the same
+    // anti-repeat data. See SPEC.md Feature #11 anti-repeat note for the
+    // 30-day "seen" window.)
 
     // Log pool sizes before/after expansion (SPEC 15b telemetry)
     logEvent('mood_expansion_pool', {

@@ -29,6 +29,13 @@ class StorageService {
   static const int _completedStoriesCap = 1000;
   static const int _awardedBadgesCap = 200;
 
+  // Selection-time play log (storyId → lastPlayedAt). Decoupled from the
+  // user-facing 20-entry History; consumed by ParableService /
+  // MoodExpansionEngine to drive non-repeat serving across the full library.
+  // See SPEC.md Feature #11 (note on decoupling).
+  static const String _keyPlayLog = 'play_log';
+  static const int _playLogCap = 1000;
+
   final SharedPreferences _prefs;
 
   StorageService(this._prefs);
@@ -240,6 +247,52 @@ class StorageService {
     return list.contains(storyId);
   }
 
+  // ========== Play Log (selection-time anti-repeat) ==========
+  // Distinct from the 20-entry History. The play log persists
+  // storyId → lastPlayedAt for every playback, capped at 1000 entries
+  // (FIFO oldest-timestamp). Consumed by ParableService to feed
+  // MoodExpansionEngine's "seen" set and LRP ordering across the full
+  // library, not just the last 20 plays.
+
+  /// Read the full play log as a `storyId → lastPlayedAt` map.
+  /// Returns an empty map if nothing has been recorded yet.
+  Future<Map<String, DateTime>> getPlayLog() async {
+    final json = _prefs.getString(_keyPlayLog);
+    if (json == null) return <String, DateTime>{};
+    final raw = jsonDecode(json) as Map<String, dynamic>;
+    final out = <String, DateTime>{};
+    raw.forEach((storyId, value) {
+      final ts = DateTime.tryParse(value as String);
+      if (ts != null) out[storyId] = ts;
+    });
+    return out;
+  }
+
+  /// Record a story playback. Updates the lastPlayedAt for [storyId]
+  /// and evicts the oldest entries if the 1000-entry cap is exceeded.
+  Future<void> recordPlayed(String storyId, {DateTime? at}) async {
+    final log = await getPlayLog();
+    log[storyId] = at ?? DateTime.now();
+
+    if (log.length > _playLogCap) {
+      // Evict oldest by timestamp until at cap.
+      final entries = log.entries.toList()
+        ..sort((a, b) => a.value.compareTo(b.value));
+      final excess = log.length - _playLogCap;
+      for (var i = 0; i < excess; i++) {
+        log.remove(entries[i].key);
+      }
+    }
+
+    final encoded = log.map((k, v) => MapEntry(k, v.toIso8601String()));
+    await _prefs.setString(_keyPlayLog, jsonEncode(encoded));
+  }
+
+  /// Clear the play log (for testing / reset flows).
+  Future<void> clearPlayLog() async {
+    await _prefs.remove(_keyPlayLog);
+  }
+
   // ========== Awarded Badges (PALs Paths, Feature 50.11) ==========
 
   /// Return the set of awarded badge IDs as a list (insertion order).
@@ -326,6 +379,20 @@ class StorageService {
         final trimmed = list.skip(excess).toList();
         await _prefs.setString(_keyAwardedBadges, jsonEncode(trimmed));
         report['awarded_badges_trimmed'] = excess;
+      }
+    }
+
+    // Heal Play Log cap (1000 entries, oldest-timestamp-first)
+    final playLogJson = _prefs.getString(_keyPlayLog);
+    if (playLogJson != null) {
+      final raw = jsonDecode(playLogJson) as Map<String, dynamic>;
+      if (raw.length > _playLogCap) {
+        final entries = raw.entries.toList()
+          ..sort((a, b) => (a.value as String).compareTo(b.value as String));
+        final excess = raw.length - _playLogCap;
+        final keep = Map<String, dynamic>.fromEntries(entries.skip(excess));
+        await _prefs.setString(_keyPlayLog, jsonEncode(keep));
+        report['play_log_trimmed'] = excess;
       }
     }
 
