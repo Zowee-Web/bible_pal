@@ -19,7 +19,13 @@ import 'package:flutter_test/flutter_test.dart';
 const List<String> forbiddenVoiceNames = ['Grace', 'Abilene', 'Grant'];
 
 void main() {
+  // Active narrator pool — used by server script scans. New content authoring
+  // must use only these voices.
   late Set<String> allowedVoiceKeys;
+  // Active pool ∪ legacy-audio-only voices — used by manifest validation. The
+  // legacy set keeps existing audio assets serveable without metadata/audio
+  // drift. See voices.json `_legacyAudioOnlyVoices` for the rationale.
+  late Set<String> manifestValidVoiceKeys;
   late Map<String, dynamic> voicesJson;
 
   setUpAll(() async {
@@ -34,11 +40,22 @@ void main() {
     final content = await voicesFile.readAsString();
     voicesJson = jsonDecode(content) as Map<String, dynamic>;
 
-    // Extract allowed voice keys
+    // Extract active allowed voice keys (the narrator pool)
     final voices = voicesJson['voices'] as List<dynamic>;
     allowedVoiceKeys = voices
         .map((v) => (v as Map<String, dynamic>)['voiceKey'] as String)
         .toSet();
+
+    // Build the manifest validation set: active pool ∪ legacy-audio-only.
+    // Legacy entries are voices retained ONLY for manifest references whose
+    // audio was already generated with them — new content authoring still
+    // banned via the Python authoring registry and the server-script scan.
+    final legacy = voicesJson['_legacyAudioOnlyVoices'] as Map<String, dynamic>?;
+    final legacyVoices = (legacy?['voices'] as List<dynamic>?)
+            ?.map((e) => e as String)
+            .toSet() ??
+        const <String>{};
+    manifestValidVoiceKeys = {...allowedVoiceKeys, ...legacyVoices};
   });
 
   group('CRITICAL: Voice Key Allowlist Enforcement', () {
@@ -139,6 +156,7 @@ void main() {
         '.env', // Config files define voices, not use them
         'voice_selector.sh', // The selector itself uses variables like VOICE_SELECTOR_DIR
         'generate_pal_audio_batch.sh', // PAL script uses palVoices (VOICE_GRACE etc.), not narrator voices
+        'generate_pal_framing_audio_batch.sh', // PAL framing-audio script uses PAL voice pool (VOICE_SHEPHERD/HOPE/STILLWATER), not the story-narrator allowlist
       ];
 
       // Legacy scripts not yet migrated to voice_selector.sh
@@ -366,7 +384,10 @@ void main() {
         final narratorVoiceKey = entry['narratorVoiceKey'] as String?;
 
         if (narratorVoiceKey != null && narratorVoiceKey.isNotEmpty) {
-          if (!allowedVoiceKeys.contains(narratorVoiceKey)) {
+          // Manifest entries can reference legacy-audio-only voices —
+          // see voices.json `_legacyAudioOnlyVoices`. New content authoring
+          // is still banned via the Python registry and server-script scan.
+          if (!manifestValidVoiceKeys.contains(narratorVoiceKey)) {
             invalidVoiceKeys[storyId] = narratorVoiceKey;
           }
         }

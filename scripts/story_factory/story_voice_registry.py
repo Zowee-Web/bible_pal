@@ -29,6 +29,11 @@ BANNED_VOICES = frozenset({
     # Explicitly banned from all story narration by owner directive
     "VOICE_SARAH_DEFAULT_VOICES",
     "VOICE_LYDIA_GRACIOUS",
+    # Banned per owner directive (PR γ alignment with
+    # feedback_voice_rules.md). Legacy manifest entries using these have
+    # been remapped to allowed voices in the same PR.
+    "VOICE_JOHN_DOE",
+    "VOICE_CHRIS_DEFAULT",
 })
 
 # ── APPROVED STORY NARRATOR POOL ─────────────────────────────────────────
@@ -42,8 +47,6 @@ APPROVED_NARRATOR_VOICES = frozenset({
     "VOICE_NATASHA_AFRICAN_AMERICAN",
     "VOICE_JAMES_BRITISH_PROFESSIONAL",
     "VOICE_REVEREND_MICHAEL_C_VINCENT",
-    "VOICE_CHRIS_DEFAULT",
-    "VOICE_JOHN_DOE",
     "VOICE_ARCHER",
     "VOICE_BRADFORD",
     "VOICE_JAMES_HUSKY",
