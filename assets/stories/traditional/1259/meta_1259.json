@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1259,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Lord Bless You and Keep You",
+  "scriptureAnchor": "Numbers 6:22-27",
+  "scriptureAnchorId": "numbers_6_22_27",
+  "bibleStoryKey": "aaronic_blessing",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "themeTags": [
+    "blessing",
+    "presence",
+    "mercy",
+    "peace"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "loved",
+    "tender",
+    "humbled"
+  ],
+  "primaryCharacterId": "aaron",
+  "primaryCharacterDisplayName": "Aaron",
+  "bibleOrderIndex": 88,
+  "timelineEra": "exodus",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1259_traditional_web_short.txt"
+    }
+  }
+}

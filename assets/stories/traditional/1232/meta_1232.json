@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1232,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "What Does the Lord Require",
+  "scriptureAnchor": "Micah 6:6-8",
+  "scriptureAnchorId": "micah_6_6-8",
+  "bibleStoryKey": "what_does_the_lord_require",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "themeTags": [
+    "presence",
+    "mercy",
+    "obedience"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting",
+    "tender"
+  ],
+  "primaryCharacterId": "micah",
+  "primaryCharacterDisplayName": "Micah",
+  "bibleOrderIndex": 375,
+  "timelineEra": "prophets",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1232_traditional_web_short.txt"
+    }
+  }
+}

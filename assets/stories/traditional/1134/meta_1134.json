@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1134,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Joy of the Lord",
+  "scriptureAnchor": "Nehemiah 8:1-12",
+  "bibleStoryKey": "ezra_reads_the_law",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "gratitude",
+    "mercy",
+    "praise",
+    "restoration",
+    "rebuilding"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "thankful",
+    "humbled",
+    "tender",
+    "loved",
+    "determined"
+  ],
+  "primaryCharacterId": "ezra",
+  "primaryCharacterDisplayName": "Ezra",
+  "bibleOrderIndex": 530,
+  "timelineEra": "return",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1134_traditional_web_short.txt"
+    }
+  }
+}

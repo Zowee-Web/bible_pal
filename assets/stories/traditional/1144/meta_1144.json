@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1144,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Under the Juniper Tree",
+  "scriptureAnchor": "1 Kings 19:1-8",
+  "bibleStoryKey": "elijah_under_juniper",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "themeTags": [
+    "rest",
+    "endurance",
+    "patience"
+  ],
+  "emotionalTags": [
+    "weary",
+    "exhausted",
+    "overwhelmed",
+    "longing",
+    "tired"
+  ],
+  "primaryCharacterId": "elijah",
+  "primaryCharacterDisplayName": "Elijah",
+  "bibleOrderIndex": 285,
+  "timelineEra": "prophets",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1144_traditional_web_short.txt"
+    }
+  }
+}

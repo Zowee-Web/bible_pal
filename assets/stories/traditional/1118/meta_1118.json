@@ -20,7 +20,9 @@
   "storyVoiceKey": "VOICE_BRADFORD",
   "themeTags": [
     "obedience",
-    "faith"
+    "faith",
+    "courage",
+    "deliverance"
   ],
   "primaryCharacterId": "joshua",
   "primaryCharacterDisplayName": "Joshua",
@@ -31,5 +33,13 @@
     "short": {
       "storyText": "story_1118_traditional_web_short.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "determined",
+    "steadfast",
+    "resolute",
+    "brave",
+    "afraid",
+    "watchful"
+  ]
 }

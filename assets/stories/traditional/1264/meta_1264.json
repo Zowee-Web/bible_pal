@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1264,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Don't Be Afraid, Daniel",
+  "scriptureAnchor": "Daniel 10:1-19",
+  "scriptureAnchorId": "daniel_10_1_19",
+  "bibleStoryKey": "daniel_strengthened_by_angel",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "themeTags": [
+    "comfort",
+    "presence",
+    "prayer",
+    "fear"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "overwhelmed",
+    "longing",
+    "comforted",
+    "encouraged",
+    "trusting"
+  ],
+  "primaryCharacterId": "daniel",
+  "primaryCharacterDisplayName": "Daniel",
+  "bibleOrderIndex": 408,
+  "timelineEra": "exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1264_traditional_web_short.txt"
+    }
+  }
+}

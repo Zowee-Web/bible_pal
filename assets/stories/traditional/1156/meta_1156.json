@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1156,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The House Was Filled with Fragrance",
+  "scriptureAnchor": "John 12:1-8",
+  "bibleStoryKey": "mary_anoints_jesus",
+  "storyVoiceKey": "VOICE_MARTHA_CARING",
+  "themeTags": [
+    "presence",
+    "love",
+    "sacrifice"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting",
+    "tender"
+  ],
+  "primaryCharacterId": "mary_of_bethany",
+  "primaryCharacterDisplayName": "Mary of Bethany",
+  "bibleOrderIndex": 670,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1156_traditional_web_short.txt"
+    }
+  }
+}

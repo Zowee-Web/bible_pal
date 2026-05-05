@@ -21,7 +21,11 @@
   "storyVoiceKey": "VOICE_ARABELLA",
   "themeTags": [
     "faith",
-    "hope"
+    "hope",
+    "presence",
+    "guidance",
+    "trust",
+    "revelation"
   ],
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
@@ -38,5 +42,13 @@
     "reflection": {
       "reflectionText": "reflection_1115_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting",
+    "tender",
+    "awed"
+  ]
 }

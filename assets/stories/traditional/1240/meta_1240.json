@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1240,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Behold, I Am Making All Things New",
+  "scriptureAnchor": "Revelation 21:1-8",
+  "scriptureAnchorId": "revelation_21_1_8",
+  "bibleStoryKey": "new_heaven_and_new_earth",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "themeTags": [
+    "hope",
+    "restoration",
+    "mercy"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired"
+  ],
+  "primaryCharacterId": "john_apostle",
+  "primaryCharacterDisplayName": "John",
+  "bibleOrderIndex": 900,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1240_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1166,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Pray Like This",
+  "scriptureAnchor": "Matthew 6:9-15",
+  "bibleStoryKey": "lords_prayer",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "themeTags": [
+    "presence",
+    "guidance",
+    "trust",
+    "prayer"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting",
+    "tender",
+    "seeking"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 622,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1166_traditional_web_short.txt"
+    }
+  }
+}

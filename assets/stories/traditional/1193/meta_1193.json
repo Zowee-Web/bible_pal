@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1193,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Let Me Die with the Philistines",
+  "scriptureAnchor": "Judges 16:23-31",
+  "bibleStoryKey": "samson_final_prayer",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "themeTags": [
+    "courage",
+    "obedience",
+    "faith"
+  ],
+  "emotionalTags": [
+    "determined",
+    "steadfast",
+    "resolute",
+    "brave",
+    "watchful"
+  ],
+  "primaryCharacterId": "samson",
+  "primaryCharacterDisplayName": "Samson",
+  "bibleOrderIndex": 170,
+  "timelineEra": "judges",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1193_traditional_web_short.txt"
+    }
+  }
+}
