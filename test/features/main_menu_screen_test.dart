@@ -141,6 +141,13 @@ void main() {
     });
 
     testWidgets('PAL button is tappable without exceptions', (tester) async {
+      // Use a generous surface so the opening line text (Feature 2.0)
+      // doesn't cause RenderFlex overflow in the constrained test viewport.
+      tester.view.physicalSize = const Size(800, 1400);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+
       await tester.pumpWidget(_buildScreen());
       await tester.pump();
       await tester.pump(const Duration(seconds: 1));

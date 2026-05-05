@@ -1,9 +1,9 @@
 /// First-launch onboarding screen tests
 ///
 /// Verifies:
-/// - Silent first launch shows Living Sky + PAL orb + mood buttons
-/// - No audio, voice consent, or name prompt during onboarding
-/// - Mood tap marks onboarding complete and navigates to main menu
+/// - Silent first launch shows typed intro lines, then name input + Begin
+/// - No audio or voice consent UI during onboarding
+/// - Begin tap (after entering a name) marks onboarding complete and navigates
 library;
 
 import 'package:flutter/material.dart';
@@ -24,7 +24,7 @@ void main() {
       SharedPreferences.setMockInitialValues({});
     });
 
-    testWidgets('shows PAL orb and mood buttons after staggered fade-in',
+    testWidgets('shows name input and Begin button after typing intro',
         (tester) async {
       await tester.pumpWidget(
         const ProviderScope(
@@ -37,23 +37,18 @@ void main() {
       // Initially present
       expect(find.byType(FirstLaunchScreen), findsOneWidget);
 
-      // Advance past all fade-in stages (1.5s fade + 1s orb + 1s text + 1s moods)
-      await tester.pump(const Duration(milliseconds: 4000));
+      // Advance past intro typing animation
+      await tester.pump(const Duration(seconds: 8));
       await tester.pump(const Duration(milliseconds: 500));
 
-      // "How are you feeling?" should be visible
-      expect(find.text('How are you feeling?'), findsOneWidget);
-
-      // PAL text in orb should be visible
-      expect(find.text('PAL'), findsOneWidget);
-
-      // Mood buttons should be visible
-      expect(find.text('Joyful'), findsOneWidget);
-      expect(find.text('Grateful'), findsOneWidget);
-      expect(find.text('Peaceful'), findsOneWidget);
+      // After typing completes, name input + Begin button fade in
+      expect(find.byType(TextField), findsOneWidget);
+      expect(find.text('Your name'), findsOneWidget);
+      expect(find.text('Begin'), findsOneWidget);
     });
 
-    testWidgets('does NOT show name input or voice consent', (tester) async {
+    testWidgets('does NOT show voice consent UI during onboarding',
+        (tester) async {
       await tester.pumpWidget(
         const ProviderScope(
           child: MaterialApp(
@@ -63,14 +58,10 @@ void main() {
       );
 
       // Advance past all animations
-      await tester.pump(const Duration(seconds: 5));
+      await tester.pump(const Duration(seconds: 8));
 
-      // No name input
-      expect(find.byType(TextField), findsNothing);
-      expect(find.text('Your name'), findsNothing);
-      expect(find.text('Begin'), findsNothing);
-
-      // No voice consent
+      // No voice consent surface — fresh installs auto-enable per
+      // _handleContinue's currentVoiceConsentVersion stamping.
       expect(find.text('Enable Voice Features'), findsNothing);
       expect(find.text('Voice Consent'), findsNothing);
     });
@@ -92,8 +83,13 @@ void main() {
       expect(find.byIcon(Icons.volume_up), findsNothing);
     });
 
-    testWidgets('mood tap marks onboarding complete and navigates',
-        (tester) async {
+    testWidgets('Begin tap marks onboarding complete', (tester) async {
+      // This test verifies the SharedPreferences side-effect of completing
+      // onboarding. It does NOT assert post-navigation widget presence —
+      // _handleContinue also fires nameAudioServiceProvider which requires a
+      // mocked HTTP-capable scope to drive a Navigator transition cleanly in
+      // tests. The dedicated routing tests below verify AppRouter behavior
+      // when kFirstLaunchCompleteKey is set.
       await tester.pumpWidget(
         ProviderScope(
           child: MaterialApp(
@@ -107,20 +103,22 @@ void main() {
         ),
       );
 
-      // Advance past all fade-in stages
-      await tester.pump(const Duration(seconds: 5));
+      // Advance past typing animation so name input is enabled
+      await tester.pump(const Duration(seconds: 8));
+      await tester.pump(const Duration(milliseconds: 500));
 
-      // Tap a mood button
-      await tester.tap(find.text('Joyful'));
+      // Type a name
+      await tester.enterText(find.byType(TextField), 'Adam');
       await tester.pump();
-      await tester.pump(const Duration(milliseconds: 200));
 
-      // Verify first launch flag is set
+      // Tap Begin
+      await tester.tap(find.text('Begin'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 400));
+
+      // Verify first launch flag is set (onboarding complete)
       final sp = await SharedPreferences.getInstance();
       expect(sp.getBool(kFirstLaunchCompleteKey), true);
-
-      // Should navigate to Main Menu
-      expect(find.text('Main Menu Screen'), findsOneWidget);
     });
   });
 

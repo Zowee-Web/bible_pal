@@ -90,9 +90,9 @@ void main() {
   });
 
   group('PAL voice selection consistency', () {
-    test('palVoiceKey defaults to VOICE_GRACE', () {
+    test('palVoiceKey defaults to VOICE_RUTH_COMFORT', () {
       final prefs = UserPreferences.defaults();
-      expect(prefs.palVoiceKey, 'VOICE_GRACE');
+      expect(prefs.palVoiceKey, 'VOICE_RUTH_COMFORT');
     });
 
     test('all 4 PAL voices are registered', () {
@@ -100,7 +100,7 @@ void main() {
       expect(
           PalVoiceRegistry.voices.map((v) => v.voiceKey).toSet(),
           containsAll([
-            'VOICE_GRACE',
+            'VOICE_RUTH_COMFORT',
             'VOICE_SHEPHERD',
             'VOICE_HOPE',
             'VOICE_STILLWATER',
@@ -134,12 +134,12 @@ void main() {
       }
     });
 
-    test('Grace preview uses VOICE_GRACE path (current Arabella mapping)', () {
-      final grace = PalVoiceRegistry.getVoice('VOICE_GRACE');
-      expect(grace.elevenLabsId, isNotEmpty);
+    test('default voice preview uses VOICE_RUTH_COMFORT path', () {
+      final ruth = PalVoiceRegistry.getVoice('VOICE_RUTH_COMFORT');
+      expect(ruth.elevenLabsId, isNotEmpty);
       final path = PalAudioService.assetPath(
-          grace.voiceKey, PalAudioService.previewLineId);
-      expect(path, contains('VOICE_GRACE'));
+          ruth.voiceKey, PalAudioService.previewLineId);
+      expect(path, contains('VOICE_RUTH_COMFORT'));
       expect(path, isNot(contains('preview_01')));
     });
   });

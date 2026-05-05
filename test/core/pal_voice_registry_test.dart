@@ -16,8 +16,8 @@ void main() {
       expect(females.length, 2);
     });
 
-    test('default voice key is VOICE_GRACE', () {
-      expect(PalVoiceRegistry.defaultVoiceKey, 'VOICE_GRACE');
+    test('default voice key is VOICE_RUTH_COMFORT', () {
+      expect(PalVoiceRegistry.defaultVoiceKey, 'VOICE_RUTH_COMFORT');
     });
 
     test('default voice exists in the list', () {
@@ -53,7 +53,7 @@ void main() {
 
     test('voice keys match expected PAL V2 canonical keys', () {
       final expected = {
-        'VOICE_GRACE',
+        'VOICE_RUTH_COMFORT',
         'VOICE_SHEPHERD',
         'VOICE_HOPE',
         'VOICE_STILLWATER',
@@ -96,10 +96,12 @@ void main() {
       expect(PalVoiceRegistry.isLegacyKey('VOICE_HANNAH_HOPE'), true);
       expect(PalVoiceRegistry.isLegacyKey('VOICE_JAMES_HUSKY'), true);
       expect(PalVoiceRegistry.isLegacyKey('VOICE_DAVID_SHEPHERD'), true);
+      // VOICE_GRACE retired 2026-04-23 — migrated to VOICE_RUTH_COMFORT
+      expect(PalVoiceRegistry.isLegacyKey('VOICE_GRACE'), true);
     });
 
     test('new voice keys are not legacy', () {
-      expect(PalVoiceRegistry.isLegacyKey('VOICE_GRACE'), false);
+      expect(PalVoiceRegistry.isLegacyKey('VOICE_RUTH_COMFORT'), false);
       expect(PalVoiceRegistry.isLegacyKey('VOICE_SHEPHERD'), false);
       expect(PalVoiceRegistry.isLegacyKey('VOICE_HOPE'), false);
       expect(PalVoiceRegistry.isLegacyKey('VOICE_STILLWATER'), false);
@@ -107,18 +109,20 @@ void main() {
 
     test('migrateVoiceKey maps old keys to default', () {
       expect(PalVoiceRegistry.migrateVoiceKey('VOICE_SARAH_STORYTELLER'),
-          'VOICE_GRACE');
+          'VOICE_RUTH_COMFORT');
       expect(PalVoiceRegistry.migrateVoiceKey('VOICE_HANNAH_HOPE'),
-          'VOICE_GRACE');
+          'VOICE_RUTH_COMFORT');
       expect(PalVoiceRegistry.migrateVoiceKey('VOICE_JAMES_HUSKY'),
-          'VOICE_GRACE');
+          'VOICE_RUTH_COMFORT');
       expect(PalVoiceRegistry.migrateVoiceKey('VOICE_DAVID_SHEPHERD'),
-          'VOICE_GRACE');
+          'VOICE_RUTH_COMFORT');
+      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_GRACE'),
+          'VOICE_RUTH_COMFORT');
     });
 
     test('migrateVoiceKey preserves valid new keys', () {
-      expect(
-          PalVoiceRegistry.migrateVoiceKey('VOICE_GRACE'), 'VOICE_GRACE');
+      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_RUTH_COMFORT'),
+          'VOICE_RUTH_COMFORT');
       expect(PalVoiceRegistry.migrateVoiceKey('VOICE_SHEPHERD'),
           'VOICE_SHEPHERD');
       expect(PalVoiceRegistry.migrateVoiceKey('VOICE_HOPE'), 'VOICE_HOPE');
@@ -127,8 +131,8 @@ void main() {
     });
 
     test('migrateVoiceKey maps unknown keys to default', () {
-      expect(
-          PalVoiceRegistry.migrateVoiceKey('VOICE_UNKNOWN'), 'VOICE_GRACE');
+      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_UNKNOWN'),
+          'VOICE_RUTH_COMFORT');
     });
   });
 }
