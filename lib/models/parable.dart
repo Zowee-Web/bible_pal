@@ -58,7 +58,30 @@ class Parable {
   /// but selection logic may bias toward MICRO stories first when the user's
   /// detected mood is high-intensity (anxious / hurting / weary). See SPEC
   /// "Micro serving bias" and `feedback_micro_stories.md` in agent memory.
+  ///
+  /// Legacy single-variant marker: stories shipped before MICRO-as-variant
+  /// (B1) used this flag at the row level. New stories instead expose a
+  /// MICRO companion via [microAudioPath] / [microTextPath] on their Short
+  /// row; both representations are accepted by the bias eligibility
+  /// predicate.
   final bool shortScripture;
+
+  /// MICRO variant audio path (B1, MICRO-as-variant).
+  /// When non-null, this Short row exposes a sibling MICRO version of the
+  /// same `bibleStoryKey` story. The variant resolver in [ParableService]
+  /// swaps [audioFilePath] / [textFilePath] to the micro paths when the
+  /// 70/30 weighted bias takes the MICRO path. Null on rows without a
+  /// MICRO companion (the vast majority).
+  final String? microAudioPath;
+
+  /// MICRO variant text path (B1). See [microAudioPath].
+  final String? microTextPath;
+
+  /// True when this story has a B1 MICRO companion variant available.
+  /// Used by the bias eligibility predicate alongside [shortScripture] so
+  /// either representation routes through the same 70/30 logic.
+  bool get hasMicroVariant =>
+      microAudioPath != null && microAudioPath!.isNotEmpty;
 
   const Parable({
     required this.storyId,
@@ -93,6 +116,8 @@ class Parable {
     this.themeTags,
     this.characterPathOrder,
     this.shortScripture = false,
+    this.microAudioPath,
+    this.microTextPath,
   });
 
   /// Create from JSON (for storage/retrieval)
@@ -157,6 +182,8 @@ class Parable {
           .toList(),
       characterPathOrder: json['characterPathOrder'] as int?,
       shortScripture: json['shortScripture'] as bool? ?? false,
+      microAudioPath: json['microAudioPath'] as String?,
+      microTextPath: json['microTextPath'] as String?,
     );
   }
 
@@ -224,6 +251,14 @@ class Parable {
     if (shortScripture) {
       json['shortScripture'] = true;
     }
+    // B1 MICRO-as-variant — only emit when present so rows without a MICRO
+    // companion stay byte-identical.
+    if (microAudioPath != null) {
+      json['microAudioPath'] = microAudioPath;
+    }
+    if (microTextPath != null) {
+      json['microTextPath'] = microTextPath;
+    }
     return json;
   }
 
@@ -271,6 +306,8 @@ class Parable {
     List<String>? themeTags,
     int? characterPathOrder,
     bool? shortScripture,
+    String? microAudioPath,
+    String? microTextPath,
   }) {
     return Parable(
       storyId: storyId ?? this.storyId,
@@ -307,6 +344,8 @@ class Parable {
       themeTags: themeTags ?? this.themeTags,
       characterPathOrder: characterPathOrder ?? this.characterPathOrder,
       shortScripture: shortScripture ?? this.shortScripture,
+      microAudioPath: microAudioPath ?? this.microAudioPath,
+      microTextPath: microTextPath ?? this.microTextPath,
     );
   }
 

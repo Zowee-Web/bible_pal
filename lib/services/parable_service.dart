@@ -78,6 +78,17 @@ class ParableService {
     _microBiasRandom = _defaultRandom;
   }
 
+  /// Predicate identifying stories eligible for the MICRO bias's micro-content
+  /// pool. Covers both representations:
+  ///   • Legacy single-variant MICRO — `shortScripture: true` at the row level
+  ///     with audio/text paths already pointing at micro-length content.
+  ///   • B1 multi-variant — Short row exposing a sibling MICRO via
+  ///     [Parable.microAudioPath] / [Parable.microTextPath]. The variant
+  ///     resolver below swaps audio/text paths to the micro variant when
+  ///     the 70% bias path engages.
+  static bool _hasMicroContent(Parable p) =>
+      p.shortScripture || p.hasMicroVariant;
+
   /// Mutable budget used by the eviction routine. Defaults to the public
   /// constant; tests override via [setAudioCacheBudgetForTesting] to avoid
   /// allocating real 600 MB fixtures.
@@ -569,38 +580,51 @@ class ParableService {
         if (entry.value.isAfter(unseenWindow)) entry.key,
     };
 
-    // MICRO serving bias (70/30 weighted): for high-intensity moods
-    // (anxious/hurting/weary) at Short length, weight selection toward MICRO
-    // stories (shortScripture==true) without locking the user in.
+    // MICRO serving bias (70/30 weighted, B1 MICRO-as-variant): for
+    // high-intensity moods (anxious/hurting/weary) at Short length, weight
+    // selection toward micro-content stories without locking the user in.
     //
-    //   • Eligibility gate: at least one UNSEEN EXACT-MOOD MICRO must exist.
-    //     If not, the bias releases entirely and normal tiered serving runs
-    //     so exact-mood non-MICRO Shorts surface before similar-mood content.
+    // Micro-content is identified by [_hasMicroContent], which accepts both:
+    //   • Legacy single-variant MICROs (shortScripture: true) — their row's
+    //     own audio/text paths already point at micro-length content.
+    //   • B1 multi-variant stories (hasMicroVariant: true) — the Short row
+    //     carries a sibling MICRO via microAudioPath / microTextPath, and
+    //     the post-engine variant resolver below swaps paths when the 70%
+    //     bias path engages.
+    //
+    //   • Eligibility gate: at least one UNSEEN EXACT-MOOD micro-content
+    //     story must exist. If not, the bias releases entirely and normal
+    //     tiered serving runs so exact-mood non-MICRO Shorts surface before
+    //     similar-mood content.
     //   • When eligible, roll a [0,1) dice:
     //       - dice <  _microBiasProbability → constrain pool to exact-mood
-    //         unseen MICROs (the 70% path).
+    //         unseen micro-content stories (the 70% path).
     //       - dice >= _microBiasProbability → exclude exact-mood unseen
-    //         MICROs from the pool, letting the engine pick from the rest
-    //         (the 30% path). The engine's Tier 1 then naturally favors
-    //         exact-mood non-MICRO unseen Shorts.
-    //   • Anti-repeat is preserved end-to-end via recentStoryIds.
+    //         micro-content stories from the pool, letting the engine pick
+    //         from the rest (the 30% path). Engine Tier 1 then naturally
+    //         favors exact-mood non-MICRO unseen Shorts.
+    //   • Anti-repeat is preserved end-to-end via recentStoryIds and
+    //     remains per-storyId, so hearing the MICRO variant of a story
+    //     marks the parent story seen.
     //   • Full and Long are unaffected — those buckets exclude MICRO before
     //     this block runs (lengthBucket gate + manifest length filter).
     // See `feedback_micro_stories.md` in agent memory.
     final microBiasApplied = lengthBucket == StoryLengthBucket.short &&
         _microBiasMoods.contains(mood);
+    var tookMicroPath = false;
     if (microBiasApplied) {
-      final microPool =
-          combinedPool.where((p) => p.shortScripture).toList(growable: false);
+      final microPool = combinedPool
+          .where(_hasMicroContent)
+          .toList(growable: false);
       final unseenExactMoodMicros = microPool
           .where((p) => p.mood == mood && !recentStoryIds.contains(p.storyId))
           .toList(growable: false);
       if (unseenExactMoodMicros.isNotEmpty) {
         final dice = _microBiasRandom();
-        final tookMicroPath = dice < _microBiasProbability;
+        tookMicroPath = dice < _microBiasProbability;
         debugPrint(
             '[ParableService] MICRO bias eligible for mood=$mood: '
-            '${microPool.length} MICRO candidate(s), '
+            '${microPool.length} micro-content candidate(s), '
             '${unseenExactMoodMicros.length} unseen exact-mood, '
             'dice=${dice.toStringAsFixed(3)} → '
             '${tookMicroPath ? "micro_70" : "short_30"}');
@@ -615,9 +639,10 @@ class ParableService {
         if (tookMicroPath) {
           combinedPool = unseenExactMoodMicros;
         } else {
-          // 30% path: exclude exact-mood unseen MICROs so the engine picks
-          // from the remainder. Engine Tier 1 will surface exact-mood
-          // unseen non-MICRO Short before any similar-mood content.
+          // 30% path: exclude exact-mood unseen micro-content stories so
+          // the engine picks from the remainder. Engine Tier 1 will
+          // surface exact-mood unseen non-MICRO Short before similar-mood
+          // content.
           final excluded = unseenExactMoodMicros
               .map((p) => p.storyId)
               .toSet();
@@ -632,9 +657,9 @@ class ParableService {
           'combined_pool_size': combinedPool.length,
         });
       } else {
-        // No unseen exact-mood MICRO available. Release the bias so normal
-        // tiered serving resumes — exact-mood non-MICRO Shorts should
-        // surface before similar-mood MICROs.
+        // No unseen exact-mood micro-content available. Release the bias
+        // so normal tiered serving resumes — exact-mood non-MICRO Shorts
+        // should surface before similar-mood content.
         logEvent('micro_bias_no_match', {
           'selected_mood': mood,
           'reason': 'no_unseen_exact_mood_micro',
@@ -762,20 +787,36 @@ class ParableService {
     final selected = candidates.first;
     final servedMood = selected.mood;
 
+    // Variant resolver (B1 MICRO-as-variant): when the bias took the 70%
+    // micro path AND the picked story is a multi-variant story
+    // (hasMicroVariant=true), swap audioFilePath / textFilePath to the
+    // micro paths so the user gets the MICRO experience under the Short
+    // bucket. Single-variant legacy MICROs (shortScripture=true) already
+    // expose their micro paths directly, so the resolver no-ops on them.
+    final resolved = (tookMicroPath && selected.hasMicroVariant)
+        ? selected.copyWith(
+            audioFilePath: selected.microAudioPath,
+            textFilePath: selected.microTextPath,
+          )
+        : selected;
+
     // Log story selected with expansion metadata
     logEvent('story_selected', {
-      'story_id': selected.storyId,
+      'story_id': resolved.storyId,
       'selected_mood': mood,
       'served_mood': servedMood,
       'expansion_tier': result.tier,
       'mode':
-          '${userPrefs.kidFriendlyOnly ? "kid" : "adult"}_${selected.storytellingMode}',
-      'length_bucket': selected.lengthBucket.name,
-      'matched_tags': selected.emotionalTags,
+          '${userPrefs.kidFriendlyOnly ? "kid" : "adult"}_${resolved.storytellingMode}',
+      'length_bucket': resolved.lengthBucket.name,
+      'matched_tags': resolved.emotionalTags,
       'selection_method': selectionMethod,
+      'picked_has_variant': selected.hasMicroVariant,
+      'resolved_to_micro_variant':
+          tookMicroPath && selected.hasMicroVariant,
     });
 
-    return selected;
+    return resolved;
   }
 
   /// Get parable by ID
