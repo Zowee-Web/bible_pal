@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math' as math;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -47,6 +48,35 @@ class ParableService {
     'hurting',
     'weary',
   };
+
+  /// Probability that an eligible MICRO-biased pick chooses a MICRO story
+  /// (vs. falling through to normal exact-mood Short serving). Tuned so users
+  /// see comforting MICROs primarily, but also receive regular Shorts often
+  /// enough to avoid lock-in.
+  static const double _microBiasProbability = 0.70;
+
+  /// Pluggable [0, 1) sampler for the MICRO bias dice roll. Defaults to
+  /// [math.Random.nextDouble]; tests override with a deterministic stub via
+  /// [setMicroBiasRandomForTesting].
+  static double Function() _microBiasRandom = _defaultRandom;
+  static final math.Random _sharedRandom = math.Random();
+  static double _defaultRandom() => _sharedRandom.nextDouble();
+
+  /// Test-only seam to make the 70/30 dice deterministic. Returns the prior
+  /// sampler so tests can restore it in tearDown.
+  @visibleForTesting
+  static double Function() setMicroBiasRandomForTesting(
+      double Function() sampler) {
+    final previous = _microBiasRandom;
+    _microBiasRandom = sampler;
+    return previous;
+  }
+
+  /// Reset the bias RNG to the default. Use in tearDown after overriding.
+  @visibleForTesting
+  static void resetMicroBiasRandomForTesting() {
+    _microBiasRandom = _defaultRandom;
+  }
 
   /// Mutable budget used by the eviction routine. Defaults to the public
   /// constant; tests override via [setAudioCacheBudgetForTesting] to avoid
@@ -539,36 +569,62 @@ class ParableService {
         if (entry.value.isAfter(unseenWindow)) entry.key,
     };
 
-    // MICRO serving bias: for high-intensity moods (anxious/hurting/weary) at
-    // Short length, prefer MICRO stories (shortScripture==true) first. They
-    // give faster comfort/direction. The bias only stays active when there is
-    // at least one UNSEEN EXACT-MOOD MICRO so it never overrides anti-repeat
-    // and never traps the user on similar-mood MICROs once exact-mood MICROs
-    // are exhausted — normal tiered serving resumes so exact-mood non-MICRO
-    // Shorts can surface before similar-mood MICROs. Bias does NOT affect
-    // Full or Long selection — those length buckets exclude MICRO entirely.
+    // MICRO serving bias (70/30 weighted): for high-intensity moods
+    // (anxious/hurting/weary) at Short length, weight selection toward MICRO
+    // stories (shortScripture==true) without locking the user in.
+    //
+    //   • Eligibility gate: at least one UNSEEN EXACT-MOOD MICRO must exist.
+    //     If not, the bias releases entirely and normal tiered serving runs
+    //     so exact-mood non-MICRO Shorts surface before similar-mood content.
+    //   • When eligible, roll a [0,1) dice:
+    //       - dice <  _microBiasProbability → constrain pool to exact-mood
+    //         unseen MICROs (the 70% path).
+    //       - dice >= _microBiasProbability → exclude exact-mood unseen
+    //         MICROs from the pool, letting the engine pick from the rest
+    //         (the 30% path). The engine's Tier 1 then naturally favors
+    //         exact-mood non-MICRO unseen Shorts.
+    //   • Anti-repeat is preserved end-to-end via recentStoryIds.
+    //   • Full and Long are unaffected — those buckets exclude MICRO before
+    //     this block runs (lengthBucket gate + manifest length filter).
     // See `feedback_micro_stories.md` in agent memory.
     final microBiasApplied = lengthBucket == StoryLengthBucket.short &&
         _microBiasMoods.contains(mood);
     if (microBiasApplied) {
       final microPool =
           combinedPool.where((p) => p.shortScripture).toList(growable: false);
-      final unseenExactMoodMicroCount = microPool
+      final unseenExactMoodMicros = microPool
           .where((p) => p.mood == mood && !recentStoryIds.contains(p.storyId))
-          .length;
-      if (unseenExactMoodMicroCount > 0) {
+          .toList(growable: false);
+      if (unseenExactMoodMicros.isNotEmpty) {
+        final dice = _microBiasRandom();
+        final tookMicroPath = dice < _microBiasProbability;
         debugPrint(
-            '[ParableService] MICRO bias applied for mood=$mood: '
+            '[ParableService] MICRO bias eligible for mood=$mood: '
             '${microPool.length} MICRO candidate(s), '
-            '$unseenExactMoodMicroCount unseen exact-mood '
-            '(combined pool was ${combinedPool.length})');
+            '${unseenExactMoodMicros.length} unseen exact-mood, '
+            'dice=${dice.toStringAsFixed(3)} → '
+            '${tookMicroPath ? "micro_70" : "short_30"}');
         logEvent('micro_bias_applied', {
           'selected_mood': mood,
           'micro_pool_size': microPool.length,
-          'unseen_exact_mood_micro_count': unseenExactMoodMicroCount,
+          'unseen_exact_mood_micro_count': unseenExactMoodMicros.length,
           'combined_pool_size': combinedPool.length,
+          'micro_bias_path': tookMicroPath ? 'micro_70' : 'short_30',
+          'micro_bias_probability': _microBiasProbability,
         });
-        combinedPool = microPool;
+        if (tookMicroPath) {
+          combinedPool = unseenExactMoodMicros;
+        } else {
+          // 30% path: exclude exact-mood unseen MICROs so the engine picks
+          // from the remainder. Engine Tier 1 will surface exact-mood
+          // unseen non-MICRO Short before any similar-mood content.
+          final excluded = unseenExactMoodMicros
+              .map((p) => p.storyId)
+              .toSet();
+          combinedPool = combinedPool
+              .where((p) => !excluded.contains(p.storyId))
+              .toList(growable: false);
+        }
       } else if (microPool.isEmpty) {
         logEvent('micro_bias_no_match', {
           'selected_mood': mood,

@@ -1,11 +1,15 @@
-// Tests for the MICRO serving bias.
+// Tests for the MICRO serving bias (70/30 weighted variant).
 //
 // Spec: when the user's detected mood is high-intensity (anxious, hurting,
-// weary) AND the selected length is Short, ParableService should prefer
-// MICRO stories (shortScripture==true, lengths=["short"]) before falling
-// back to normal Short selection. Bias never applies to Full or Long.
-// Anti-repeat is honored — if all eligible MICROs are recently played,
-// selection falls back to the broader Short pool.
+// weary) AND the selected length is Short, ParableService weights selection
+// 70/30 between exact-mood unseen MICRO stories and the normal exact-mood
+// Short pool. Bias never applies to Full or Long. Eligibility gate: at least
+// one unseen exact-mood MICRO must exist; otherwise normal serving runs.
+//
+// All tests below override the bias dice via setMicroBiasRandomForTesting
+// to make the 70/30 split deterministic. Default dice in setUp is 0.0
+// (always takes the micro path) so legacy "prefers MICRO" assertions keep
+// holding; the 30% path is exercised explicitly in its own group.
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,10 +35,18 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     storage = await StorageService.create();
     service = ParableService(storage, null, true);
+    // Default dice = 0.0 → always takes the 70% micro path. Individual
+    // tests override before exercising the 30% path.
+    ParableService.setMicroBiasRandomForTesting(() => 0.0);
   });
 
-  group('MICRO bias triggers for high-intensity moods + Short', () {
-    test('anxious + Short prefers MICRO when one is eligible', () async {
+  tearDown(() {
+    ParableService.resetMicroBiasRandomForTesting();
+  });
+
+  group('70% path: high-intensity moods + Short prefer MICRO', () {
+    test('anxious + Short returns MICRO when dice picks the 70% path',
+        () async {
       final pool = await service.getEligibleParables(
         mood: 'anxious',
         lengthBucket: StoryLengthBucket.short,
@@ -98,6 +110,127 @@ void main() {
       );
       expect(result, isNotNull);
       expect(result!.shortScripture, true);
+    });
+  });
+
+  group('30% path: high-intensity moods + Short can serve regular Short', () {
+    test(
+        'anxious + Short with dice=0.99 picks exact-mood non-MICRO Short '
+        'instead of an exact-mood MICRO', () async {
+      // Force the 30% path
+      ParableService.setMicroBiasRandomForTesting(() => 0.99);
+
+      const mood = 'anxious';
+      final pool = await service.getEligibleParables(
+        mood: mood,
+        lengthBucket: StoryLengthBucket.short,
+        userPrefs: adultPrefs,
+      );
+      final hasExactMoodMicro =
+          pool.any((p) => p.mood == mood && p.shortScripture);
+      final hasExactMoodNonMicro =
+          pool.any((p) => p.mood == mood && !p.shortScripture);
+      if (!hasExactMoodMicro || !hasExactMoodNonMicro) {
+        return; // Need both buckets to validate the 30% path
+      }
+
+      // Across several picks, every result must be exact-mood AND
+      // non-MICRO — the 30% path has the engine pick from the pool minus
+      // unseen exact-mood MICROs, so Tier 1 (exact-mood unseen non-MICRO)
+      // wins.
+      var sawExactNonMicro = false;
+      for (var i = 0; i < 5; i++) {
+        final result = await service.selectParable(
+          mood: mood,
+          lengthBucket: StoryLengthBucket.short,
+          userPrefs: adultPrefs,
+        );
+        if (result == null) continue;
+        expect(
+            result.mood == mood && result.shortScripture,
+            false,
+            reason: '30% path must not return an exact-mood MICRO. Got '
+                '${result.storyId} (mood=${result.mood}, '
+                'micro=${result.shortScripture})');
+        if (result.mood == mood && !result.shortScripture) {
+          sawExactNonMicro = true;
+        }
+        // Mark played so subsequent picks rotate
+        await storage.recordPlayed(result.storyId, at: DateTime.now());
+      }
+      expect(sawExactNonMicro, true,
+          reason: '30% path should surface exact-mood non-MICRO Shorts via '
+              'the engine\'s Tier 1.');
+    });
+
+    test(
+        'hurting + Short with dice=0.99 picks exact-mood non-MICRO Short',
+        () async {
+      ParableService.setMicroBiasRandomForTesting(() => 0.99);
+      const mood = 'hurting';
+      final pool = await service.getEligibleParables(
+        mood: mood,
+        lengthBucket: StoryLengthBucket.short,
+        userPrefs: adultPrefs,
+      );
+      if (!pool.any((p) => p.mood == mood && p.shortScripture)) return;
+      if (!pool.any((p) => p.mood == mood && !p.shortScripture)) return;
+
+      final result = await service.selectParable(
+        mood: mood,
+        lengthBucket: StoryLengthBucket.short,
+        userPrefs: adultPrefs,
+      );
+      expect(result, isNotNull);
+      expect(result!.shortScripture, false,
+          reason: '30% path with hurting must return non-MICRO Short.');
+    });
+
+    test(
+        'weary + Short with dice=0.99 does not return an exact-mood MICRO',
+        () async {
+      ParableService.setMicroBiasRandomForTesting(() => 0.99);
+      const mood = 'weary';
+      final pool = await service.getEligibleParables(
+        mood: mood,
+        lengthBucket: StoryLengthBucket.short,
+        userPrefs: adultPrefs,
+      );
+      final hasExactMicro =
+          pool.any((p) => p.mood == mood && p.shortScripture);
+      if (!hasExactMicro) return;
+
+      final result = await service.selectParable(
+        mood: mood,
+        lengthBucket: StoryLengthBucket.short,
+        userPrefs: adultPrefs,
+      );
+      if (result == null) return;
+      expect(result.mood == mood && result.shortScripture, false,
+          reason: '30% path must not return an exact-mood MICRO.');
+    });
+
+    test('boundary dice = 0.7 takes the 30% path (strict <)', () async {
+      // Probability constant is 0.70; dice < 0.70 → micro path. Exactly
+      // 0.70 must take the 30% path.
+      ParableService.setMicroBiasRandomForTesting(() => 0.70);
+      const mood = 'hurting';
+      final pool = await service.getEligibleParables(
+        mood: mood,
+        lengthBucket: StoryLengthBucket.short,
+        userPrefs: adultPrefs,
+      );
+      if (!pool.any((p) => p.mood == mood && p.shortScripture)) return;
+      if (!pool.any((p) => p.mood == mood && !p.shortScripture)) return;
+
+      final result = await service.selectParable(
+        mood: mood,
+        lengthBucket: StoryLengthBucket.short,
+        userPrefs: adultPrefs,
+      );
+      if (result == null) return;
+      expect(result.mood == mood && result.shortScripture, false,
+          reason: 'dice == 0.70 must take the 30% path (strict <).');
     });
   });
 
