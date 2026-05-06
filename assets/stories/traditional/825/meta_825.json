@@ -13,7 +13,8 @@
   "lengths": [
     "short",
     "full",
-    "long"
+    "long",
+    "micro"
   ],
   "voiceKey": "VOICE_JAMES_HUSKY",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
@@ -44,6 +45,10 @@
     "reflection": {
       "reflectionText": "reflection_825_traditional_web.txt",
       "reflectionAudio": "audio_825_reflection.mp3"
+    },
+    "micro": {
+      "storyText": "story_825_traditional_web_micro.txt",
+      "storyAudio": "audio_825_story_micro.mp3"
     }
   },
   "reflectionText": "Stories about worry often reflect the tension between what we can control and what we cannot. These narratives show that peace sometimes comes from releasing our grip on outcomes. And even a small step forward can be enough for today.",

@@ -11755,7 +11755,10 @@
       "themeTags": [
         "faith",
         "hope"
-      ]
+      ],
+      "hasMicroVariant": true,
+      "microAudioPath": "traditional/1090/audio_1090_story_micro.mp3",
+      "microTextPath": "traditional/1090/story_1090_traditional_web_micro.txt"
     },
     {
       "storyId": "story_1090_anxious_full_traditional",
@@ -15333,7 +15336,10 @@
       "scriptureTextFilePath": "traditional/825/scripture_825_web.txt",
       "primaryCharacterId": "elijah",
       "primaryCharacterDisplayName": "Elijah",
-      "timelineEra": "kingdom"
+      "timelineEra": "kingdom",
+      "hasMicroVariant": true,
+      "microAudioPath": "traditional/825/audio_825_story_micro.mp3",
+      "microTextPath": "traditional/825/story_825_traditional_web_micro.txt"
     },
     {
       "storyId": "story_825_anxious_full_traditional",
@@ -16085,7 +16091,10 @@
       "themeTags": [
         "faith",
         "hope"
-      ]
+      ],
+      "hasMicroVariant": true,
+      "microAudioPath": "traditional/1115/audio_1115_story_micro.mp3",
+      "microTextPath": "traditional/1115/story_1115_traditional_web_micro.txt"
     },
     {
       "storyId": "story_1115_calm_peaceful_full_traditional",
