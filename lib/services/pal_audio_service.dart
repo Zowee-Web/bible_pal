@@ -606,38 +606,6 @@ class PalAudioService {
         await _player.play();
         return true;
       } catch (e) {
-        // iOS PlayerException -11849 ("Operation Stopped"): the AVPlayer
-        // is wedged and every subsequent setAsset on it returns the same
-        // code — including the default-voice fallback below. Without
-        // explicit recovery here, multi-cycle cancel/retry sequences
-        // accumulate wedge state silently (no symptom on the failing
-        // line; PAL just goes mute on the NEXT line) until the app is
-        // force-quit. Recover inline + retry once with the fresh player
-        // before falling through to the default-voice fallback.
-        if (e is PlayerException && e.code == -11849) {
-          debugPrint(
-              '[PalAudioService] playLine hit -11849 — recovering inline');
-          logEvent('pal_audio_player_exception', {
-            'attempt': 1,
-            'voice_key': voiceKey,
-            'line_id': lineId,
-            'attempted_path': path,
-            ..._extractAudioErrorFields(e),
-            'self_healed': true,
-          });
-          await recoverFromOperationStopped();
-          try {
-            await _player.setAsset(path);
-            await _waitForPlayerReady();
-            await _player.play();
-            return true;
-          } catch (e2) {
-            debugPrint(
-                '[PalAudioService] playLine retry after recovery failed: $e2');
-            return false;
-          }
-        }
-
         debugPrint('[PalAudioService] Asset not found: $path');
         // Fallback: try default voice
         if (voiceKey != PalVoiceRegistry.defaultVoiceKey) {
