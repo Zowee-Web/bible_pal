@@ -12,7 +12,8 @@
   "lengths": [
     "short",
     "full",
-    "long"
+    "long",
+    "micro"
   ],
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_05",
@@ -44,7 +45,12 @@
     "reflection": {
       "reflectionText": "reflection_1090_traditional_web.txt",
       "reflectionAudio": "audio_1090_reflection.mp3"
+    },
+    "micro": {
+      "storyText": "story_1090_traditional_web_micro.txt",
+      "storyAudio": "audio_1090_story_micro.mp3"
     }
   },
-  "reflectionVoiceKey": "VOICE_CHRIS_DEFAULT"
+  "reflectionVoiceKey": "VOICE_CHRIS_DEFAULT",
+  "voiceKey": "VOICE_CHRIS_DEFAULT"
 }

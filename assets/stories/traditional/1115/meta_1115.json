@@ -11,7 +11,8 @@
   "mood": "calm_peaceful",
   "lengths": [
     "short",
-    "full"
+    "full",
+    "micro"
   ],
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_06",
@@ -37,6 +38,11 @@
     },
     "reflection": {
       "reflectionText": "reflection_1115_traditional_web.txt"
+    },
+    "micro": {
+      "storyText": "story_1115_traditional_web_micro.txt",
+      "storyAudio": "audio_1115_story_micro.mp3"
     }
-  }
+  },
+  "voiceKey": "VOICE_ARABELLA"
 }
