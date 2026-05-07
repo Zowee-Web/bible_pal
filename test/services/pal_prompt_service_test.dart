@@ -179,6 +179,141 @@ void main() {
       expect(prompt.text, 'How\'s your morning starting out?');
     });
   });
+
+  group('PalPromptService.getNeutralCheckInPrompt', () {
+    // Cold-open contract: time-aware, varied, never probing. A curated
+    // pool per time window is drawn from with anti-repeat. Every line in
+    // every pool must (a) match an existing pre-bundled audio file across
+    // all active PAL voices and (b) pass the forbidden-token guard.
+
+    PalPromptService neutralServiceForHour(int hour, {int seed = 0}) {
+      return PalPromptService(
+        now: () => DateTime(2025, 1, 1, hour, 0),
+        random: Random(seed),
+      );
+    }
+
+    const expectedTimeWindows = {
+      5: 'morning',
+      11: 'morning',
+      12: 'afternoon',
+      16: 'afternoon',
+      17: 'evening',
+      21: 'evening',
+      22: 'lateNight',
+      4: 'lateNight',
+      0: 'lateNight',
+    };
+
+    for (final entry in expectedTimeWindows.entries) {
+      test('hour ${entry.key} -> time window ${entry.value}', () {
+        final prompt = neutralServiceForHour(entry.key).getNeutralCheckInPrompt();
+        expect(prompt.timeWindow, entry.value);
+        expect(prompt.category, 'neutral_check_in');
+        expect(prompt.id, isNotEmpty);
+        expect(prompt.text, isNotEmpty);
+      });
+    }
+
+    // The forbidden-token guard is the locked principle from
+    // feedback_pal_cold_open_neutrality.md. If it ever fails, the cold-open
+    // pool has drifted into emotionally presumptive territory.
+    final forbiddenTokens = [
+      'heavy',
+      'burden',
+      'carrying',
+      'hurt',
+      'weighing',
+      'pressure',
+      'worry',
+      'tired',
+      'restless',
+      'stressful',
+    ];
+
+    test('every line in every time window pool passes forbidden-token guard',
+        () {
+      // Drive the service across many seeds + a full ring per time window
+      // so we exercise every pool entry at least once.
+      for (final hour in [8, 14, 19, 23]) {
+        for (int seed = 0; seed < 100; seed++) {
+          final service = neutralServiceForHour(hour, seed: seed);
+          // Pick 10× the largest pool size to guarantee coverage + reset
+          // cycles.
+          for (int i = 0; i < 50; i++) {
+            final text =
+                service.getNeutralCheckInPrompt().text.toLowerCase();
+            for (final token in forbiddenTokens) {
+              expect(text.contains(token), false,
+                  reason: 'Hour $hour seed $seed pick $i — pool line '
+                      '"$text" contains forbidden token "$token". See '
+                      'feedback_pal_cold_open_neutrality.md');
+            }
+          }
+        }
+      }
+    });
+
+    test('anti-repeat: no duplicate within a single ring', () {
+      // For each time window, pick (poolSize) consecutive prompts and
+      // assert all IDs are unique.
+      // Pool sizes per time window (strict "how's your X" subset):
+      //   morning=4, afternoon=3, evening=3, lateNight=2.
+      const poolSizesByHour = {8: 4, 14: 3, 19: 3, 23: 2};
+      for (final entry in poolSizesByHour.entries) {
+        final service = neutralServiceForHour(entry.key, seed: 1);
+        final picks = <String>{};
+        for (int i = 0; i < entry.value; i++) {
+          picks.add(service.getNeutralCheckInPrompt().id);
+        }
+        expect(picks.length, entry.value,
+            reason:
+                'Hour ${entry.key}: expected ${entry.value} unique IDs in a '
+                'single ring, got ${picks.length}: $picks');
+      }
+    });
+
+    test('ring resets after exhaustion (pool.length + 1 picks succeed)', () {
+      for (final hour in [8, 14, 19, 23]) {
+        final service = neutralServiceForHour(hour, seed: 7);
+        // Exhaust the pool then pick once more.
+        for (int i = 0; i < 6; i++) {
+          final prompt = service.getNeutralCheckInPrompt();
+          expect(prompt.id, isNotEmpty);
+        }
+      }
+    });
+
+    test('every hour 0-23 produces a non-empty neutral prompt', () {
+      for (int h = 0; h < 24; h++) {
+        final prompt = neutralServiceForHour(h).getNeutralCheckInPrompt();
+        expect(prompt.text.isNotEmpty, true,
+            reason: 'Hour $h returned empty text');
+        expect(prompt.category, 'neutral_check_in',
+            reason: 'Hour $h has wrong category');
+      }
+    });
+
+    test('all pool IDs follow the DAY-bucket audio naming convention', () {
+      // Sanity guard: cold-open audio IDs must look like
+      // {prefix}_DAY_{NN}, where prefix ∈ {MORNING, AFT, EVE, LN}.
+      // This catches accidental drift into BURDEN/HEART/GRAT buckets.
+      final allowedPrefixes = ['MORNING_DAY_', 'AFT_DAY_', 'EVE_DAY_', 'LN_DAY_'];
+      for (final hour in [8, 14, 19, 23]) {
+        for (int seed = 0; seed < 30; seed++) {
+          final service = neutralServiceForHour(hour, seed: seed);
+          for (int i = 0; i < 30; i++) {
+            final id = service.getNeutralCheckInPrompt().id;
+            final ok = allowedPrefixes.any((p) => id.startsWith(p));
+            expect(ok, true,
+                reason:
+                    'Cold-open ID "$id" does not match an allowed DAY-bucket '
+                    'prefix. Hour $hour seed $seed pick $i.');
+          }
+        }
+      }
+    });
+  });
 }
 
 // ---------------------------------------------------------------------------

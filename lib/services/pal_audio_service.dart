@@ -3,10 +3,12 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:audio_session/audio_session.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
 
+import '../core/app_logger.dart';
 import '../core/pal_voice_registry.dart';
 
 // Simple data class for a PAL line (id + text).
@@ -16,12 +18,79 @@ class PalLine {
   const PalLine({required this.id, required this.text});
 }
 
+/// Outcome of a single resolved PAL line playback.
+///
+/// Used by the opening greeting flow (Feature 2.0) to emit the
+/// `pal_opening_audio_resolution` telemetry event. [source] mirrors the
+/// values listed in that event spec: `asset` (selected voice's asset
+/// played), `fallback` (selected voice failed, default voice's asset
+/// played), or `missing` (neither could be loaded — caller falls back
+/// to the SPEC text-only floor).
+class PalAudioResolution {
+  final String source;
+  final bool played;
+  final String? errorType;
+  // Rich PlayerException fields — populated only when the failure is
+  // a `PlayerException` (just_audio). Used by the opening-flow
+  // diagnostics to distinguish "asset truly missing" from "iOS
+  // session refused the operation" (e.g. code -11849 "Operation
+  // Stopped"). Diagnostic only — no playback path reads them.
+  final int? errorCode;
+  final String? errorMessage;
+  final int? errorIndex;
+  final String? errorString;
+
+  const PalAudioResolution._({
+    required this.source,
+    required this.played,
+    this.errorType,
+    this.errorCode,
+    this.errorMessage,
+    this.errorIndex,
+    this.errorString,
+  });
+}
+
+/// Extract diagnostic-only fields from any thrown audio-load error.
+/// Recognises just_audio's [PlayerException] and
+/// [PlayerInterruptedException]; falls back to runtime type + toString
+/// for anything else. Always safe — no exception escapes.
+Map<String, Object?> _extractAudioErrorFields(Object e) {
+  if (e is PlayerException) {
+    return {
+      'exception_type': 'PlayerException',
+      'exception_string': e.toString(),
+      'error_code': e.code,
+      'error_message': e.message,
+      'error_index': e.details['index'],
+    };
+  }
+  if (e is PlayerInterruptedException) {
+    return {
+      'exception_type': 'PlayerInterruptedException',
+      'exception_string': e.toString(),
+      'error_message': e.message,
+    };
+  }
+  return {
+    'exception_type': e.runtimeType.toString(),
+    'exception_string': e.toString(),
+  };
+}
+
 // Offline PAL audio playback service.
 // Loads curated lines from pal_lines.json and plays pre-rendered MP3 assets.
 // Name-prefix clips (generated via proxy TTS) can be stitched before prompts.
 class PalAudioService {
   final Random _random;
-  final AudioPlayer _player;
+  // Mutable so `recoverFromOperationStopped()` can dispose and
+  // replace the AVPlayer underneath when iOS PlayerException -11849
+  // leaves the current player wedged for subsequent setAsset calls.
+  AudioPlayer _player;
+  // Tracks whether `ensureAudioSessionActive()` has run a full
+  // configure + setActive + settle cycle. Subsequent calls only
+  // re-confirm setActive(true).
+  bool _sessionActive = false;
 
   // Loaded line pools (lazy-init)
   Map<String, List<PalLine>> _prompts = {};
@@ -223,6 +292,22 @@ class PalAudioService {
     return '';
   }
 
+  /// Configure the player's audio source for a single line, optionally
+  /// stitching a name-prefix clip in front via [ConcatenatingAudioSource].
+  /// Used by [playLineResolved] to support the Feature 2.0 opening
+  /// greeting's name-prefix attachment.
+  Future<void> _setSourceForLine(String assetPath, File? nameClipFile) async {
+    if (nameClipFile == null) {
+      await _player.setAsset(assetPath);
+      return;
+    }
+    final playlist = ConcatenatingAudioSource(children: [
+      AudioSource.file(nameClipFile.path),
+      AudioSource.asset(assetPath),
+    ]);
+    await _player.setAudioSource(playlist);
+  }
+
   /// Stitch a name-prefix clip (local file) + prompt/response asset into one
   /// gapless sequence using ConcatenatingAudioSource.
   Future<void> _playWithNamePrefix(
@@ -237,6 +322,7 @@ class PalAudioService {
         AudioSource.asset(path),
       ]);
       await _player.setAudioSource(playlist);
+      await _waitForPlayerReady();
       await _player.play();
     } catch (e) {
       debugPrint('[PalAudioService] Name prefix playback failed: $e');
@@ -246,8 +332,10 @@ class PalAudioService {
   }
 
   /// Preview line ID used for Settings voice preview.
-  /// Uses a new PAL opening line instead of the legacy preview_01 asset.
-  static const String previewLineId = 'OPENING_GENTLE_01';
+  /// References the Feature 2.0 12-line library introduced 2026-04-28.
+  /// `OPENING_AFTN_01` ("How's your day going?") is a `bare`-type
+  /// afternoon line — neutral phrasing that previews well at any time of day.
+  static const String previewLineId = 'OPENING_AFTN_01';
 
   /// Play the preview line (for Settings voice preview).
   Future<void> playPreview(String voiceKey) async {
@@ -265,6 +353,7 @@ class PalAudioService {
     final path = assetPath(voiceKey, lineId);
     try {
       await _player.setAsset(path);
+      await _waitForPlayerReady();
       await _player.play();
     } catch (e) {
       debugPrint('[PalAudioService] Asset not found: $path');
@@ -274,6 +363,7 @@ class PalAudioService {
             assetPath(PalVoiceRegistry.defaultVoiceKey, lineId);
         try {
           await _player.setAsset(fallbackPath);
+          await _waitForPlayerReady();
           await _player.play();
         } catch (e2) {
           debugPrint('[PalAudioService] Fallback also missing: $fallbackPath');
@@ -281,6 +371,224 @@ class PalAudioService {
         }
       }
     }
+  }
+
+  /// Play a single PAL line and report how it resolved.
+  ///
+  /// Used by the opening greeting flow (Feature 2.0) so the caller can
+  /// emit the `pal_opening_audio_resolution` telemetry event. Same
+  /// fallback chain as [playLine] with one addition: when [voiceKey]
+  /// is the default voice and the first `setAsset` fails, a brief
+  /// 200ms delay precedes a same-asset retry. Without this, the
+  /// default voice (Ruth) gets only one `setAsset` attempt while
+  /// non-default voices get two (their cross-voice fallback to the
+  /// default voice). The asymmetry caused the default voice to drop
+  /// the very-first-after-launch opening greeting whenever the iOS
+  /// audio session was still warming up (PlayerException -11849
+  /// "Operation Stopped").
+  ///
+  /// Never throws — the failure surfaces as a `missing` resolution.
+  /// Wait until the player's processingState reaches `ready`, with a
+  /// 2-second timeout. After [AudioPlayer.setAsset] returns, the
+  /// platform decoder may still be preparing the asset for playback;
+  /// calling [AudioPlayer.play] before this ready transition is what
+  /// triggered the intermittent silent-greeting bug on iOS. Throws
+  /// [TimeoutException] if the player gets stuck — caller's existing
+  /// failure path handles that uniformly with any other throw.
+  Future<void> _waitForPlayerReady() async {
+    await _player.processingStateStream
+        .firstWhere((s) => s == ProcessingState.ready)
+        .timeout(const Duration(seconds: 2));
+  }
+
+  /// Recover the PAL audio stack after a fatal PlayerException -11849
+  /// ("Operation Stopped") on iOS. The previous AVPlayer instance
+  /// stays wedged — every subsequent `setAsset` on it returns the
+  /// same -11849 — so the only reliable cleanup is to dispose it,
+  /// stand up a fresh `AudioPlayer`, and force the audio session
+  /// through a `setActive(false)` → `setActive(true)` cycle. Caller
+  /// must hold the conversation reentrancy guard for the entire
+  /// duration of this method so a new tap can't enter while the
+  /// session is mid-cycle.
+  ///
+  /// Total wall-time: ~950ms (200ms between deactivate/reactivate
+  /// + 750ms settle).
+  Future<void> recoverFromOperationStopped() async {
+    final stopwatch = Stopwatch()..start();
+    var success = false;
+    try {
+      // Stop and dispose the wedged player.
+      try {
+        await _player.stop();
+      } catch (_) {/*ignore*/}
+      final old = _player;
+      _player = AudioPlayer();
+      unawaited(old.dispose().catchError((Object _) {}));
+
+      // Deactivate → reactivate audio session.
+      try {
+        final session = await AudioSession.instance;
+        await session.setActive(false);
+        await Future.delayed(const Duration(milliseconds: 200));
+        await session.setActive(true);
+        _sessionActive = true;
+      } catch (e) {
+        debugPrint('[PalAudioService] Session reactivate failed: $e');
+      }
+
+      // Settle delay — gives iOS time to fully reactivate before
+      // any subsequent setAsset attempt.
+      await Future.delayed(const Duration(milliseconds: 750));
+      success = true;
+    } catch (e) {
+      debugPrint('[PalAudioService] Recovery failed: $e');
+    } finally {
+      logEvent('pal_audio_recovery_complete', {
+        'elapsed_ms': stopwatch.elapsedMilliseconds,
+        'success': success,
+      });
+    }
+  }
+
+  /// Configure and activate the iOS audio session, then wait for it
+  /// to settle. Idempotent — first call configures + activates +
+  /// waits 300ms; subsequent calls just re-confirm `setActive(true)`
+  /// without the configure or settle delay. Called before any PAL
+  /// audio playback so AVFoundation has a fully active session
+  /// before `setAsset`/`play` runs (rather than racing the lazy
+  /// activation that produced PlayerException -11849).
+  Future<void> ensureAudioSessionActive() async {
+    final stopwatch = Stopwatch()..start();
+    final wasActive = _sessionActive;
+    var success = false;
+    try {
+      final session = await AudioSession.instance;
+      if (!wasActive) {
+        await session.configure(const AudioSessionConfiguration(
+          avAudioSessionCategory: AVAudioSessionCategory.playback,
+          avAudioSessionMode: AVAudioSessionMode.defaultMode,
+          avAudioSessionCategoryOptions:
+              AVAudioSessionCategoryOptions.mixWithOthers,
+        ));
+      }
+      await session.setActive(true);
+      if (!wasActive) {
+        // iOS settle delay — tested-needed on cold launch so the
+        // first setAsset doesn't race the activation transition.
+        await Future.delayed(const Duration(milliseconds: 300));
+      }
+      _sessionActive = true;
+      success = true;
+    } catch (e) {
+      debugPrint('[PalAudioService] Audio session activation failed: $e');
+    } finally {
+      logEvent('pal_audio_session_activated', {
+        'elapsed_ms': stopwatch.elapsedMilliseconds,
+        'success': success,
+        'first_call': !wasActive,
+      });
+    }
+  }
+
+  Future<PalAudioResolution> playLineResolved(
+    String lineId,
+    String voiceKey, {
+    File? nameClipFile,
+  }) async {
+    await _acquireLock();
+    try {
+      // Pre-playback reset — defends against a player left in a
+      // half-stopped state by a prior failure (e.g. -11849 mid-flow).
+      // Suppressed: stop() on an idle player is a no-op; if it does
+      // throw, it doesn't affect the upcoming setAsset.
+      try {
+        await _player.stop();
+      } catch (_) {/* ignore */}
+
+      final path = assetPath(voiceKey, lineId);
+      try {
+        await _setSourceForLine(path, nameClipFile);
+        await _waitForPlayerReady();
+        await _player.play();
+        return const PalAudioResolution._(source: 'asset', played: true);
+      } catch (e) {
+        // Log rich PlayerException fields for the first attempt.
+        // Caller doesn't see this exception when the secondary path
+        // succeeds, so this is the only place to capture its details.
+        final fields1 = _extractAudioErrorFields(e);
+        logEvent('pal_audio_player_exception', {
+          'attempt': 1,
+          'voice_key': voiceKey,
+          'line_id': lineId,
+          'attempted_path': path,
+          ...fields1,
+        });
+        debugPrint('[PalAudioService] Asset load failed: $path — $e');
+
+        // iOS -11849 ("Operation Stopped") leaves the AVPlayer
+        // wedged — every subsequent setAsset on the same player
+        // returns the same -11849. Retrying the secondary path or
+        // the call-site retry just reproduces the failure and
+        // delays the user's text-only fallback. Bail immediately
+        // and let the caller honor the SPEC 1800ms text floor +
+        // schedule a recovery cooldown via `_cancelConversation`.
+        if (e is PlayerException && e.code == -11849) {
+          return _resolutionFromFailure(e);
+        }
+
+        await Future.delayed(const Duration(milliseconds: 200));
+        final isDefault = voiceKey == PalVoiceRegistry.defaultVoiceKey;
+        final secondaryPath = isDefault
+            ? path
+            : assetPath(PalVoiceRegistry.defaultVoiceKey, lineId);
+        try {
+          await _setSourceForLine(secondaryPath, nameClipFile);
+          await _waitForPlayerReady();
+          await _player.play();
+          return PalAudioResolution._(
+            source: isDefault ? 'asset' : 'fallback',
+            played: true,
+          );
+        } catch (e2) {
+          // Log the second attempt's rich fields and surface them on
+          // the resolution so the call site can include them in
+          // `pal_opening_audio_resolution`.
+          final fields2 = _extractAudioErrorFields(e2);
+          logEvent('pal_audio_player_exception', {
+            'attempt': 2,
+            'voice_key': voiceKey,
+            'line_id': lineId,
+            'attempted_path': secondaryPath,
+            ...fields2,
+          });
+          debugPrint(
+              '[PalAudioService] Secondary attempt failed: $secondaryPath — $e2');
+          return _resolutionFromFailure(e2);
+        }
+      }
+    } finally {
+      _releaseLock();
+    }
+  }
+
+  /// Build the failure resolution. Distinguishes the iOS -11849
+  /// ("Operation Stopped") AVFoundation refusal from a true
+  /// asset-missing failure so telemetry doesn't conflate them.
+  PalAudioResolution _resolutionFromFailure(Object e) {
+    final isOperationStopped = e is PlayerException && e.code == -11849;
+    return PalAudioResolution._(
+      source: isOperationStopped ? 'operation_stopped' : 'missing',
+      played: false,
+      errorType:
+          isOperationStopped ? 'operation_stopped' : e.runtimeType.toString(),
+      errorCode: e is PlayerException ? e.code : null,
+      errorMessage: e is PlayerException
+          ? e.message
+          : (e is PlayerInterruptedException ? e.message : null),
+      errorIndex:
+          e is PlayerException ? e.details['index'] as int? : null,
+      errorString: e.toString(),
+    );
   }
 
   /// Play a single PAL line by its asset ID.
@@ -294,6 +602,7 @@ class PalAudioService {
       final path = assetPath(voiceKey, lineId);
       try {
         await _player.setAsset(path);
+        await _waitForPlayerReady();
         await _player.play();
         return true;
       } catch (e) {
@@ -304,6 +613,7 @@ class PalAudioService {
               assetPath(PalVoiceRegistry.defaultVoiceKey, lineId);
           try {
             await _player.setAsset(fallbackPath);
+            await _waitForPlayerReady();
             await _player.play();
             return true;
           } catch (e2) {
@@ -330,6 +640,7 @@ class PalAudioService {
         final path = assetPath(voiceKey, lineIds[i]);
         try {
           await _player.setAsset(path);
+          await _waitForPlayerReady();
           await _player.play();
         } catch (e) {
           debugPrint('[PalAudioService] Sequence asset missing: $path');
@@ -359,11 +670,40 @@ class PalAudioService {
     return state.processingState == ProcessingState.completed;
   }
 
-  /// Wait for current playback to complete.
+  /// Wait for current playback to complete OR be stopped.
+  ///
+  /// Accepts both `completed` (natural end) and `idle` (forced stop via
+  /// [stop] / [_player.stop]) as terminal states. The `idle` case is
+  /// load-bearing: when the user cancels mid-playback, `_cancelConversation`
+  /// calls [stop], which transitions the player to `idle` — never to
+  /// `completed`. Without `idle` here, every caller's await would hang
+  /// indefinitely, leaving stale futures alive that race the next PAL
+  /// session and silently corrupt the audio session state. After enough
+  /// cancel/retry cycles the stack wedges and PAL goes mute until the
+  /// app is force-quit. Mirrors the [_awaitPlaybackDone] helper used by
+  /// [playSequence].
+  ///
+  /// **Important**: `playerStateStream` emits the current state to new
+  /// subscribers immediately. If the stream's most recent emission is
+  /// `idle` (e.g., right after `_acquireLock` returned but before
+  /// `_player.play()` had a chance to push the state forward), naive
+  /// `firstWhere(idle || completed)` matches that initial idle and
+  /// returns instantly — the caller's mic then opens before audio
+  /// actually plays, which feels exactly like PAL cutting the user off.
+  /// We defend against that race by `skipWhile`-ing any leading idle
+  /// state — wait until the player has actually moved out of idle (into
+  /// loading / buffering / ready) BEFORE we start watching for terminal.
+  /// Once we're past the leading idle, accept either terminal state
+  /// (completed = natural end, idle = subsequent stop/cancel).
   Future<void> awaitPlaybackComplete() async {
-    await _player.playerStateStream.firstWhere(
-      (state) => state.processingState == ProcessingState.completed,
-    );
+    await _player.playerStateStream
+        .skipWhile((state) =>
+            state.processingState == ProcessingState.idle)
+        .firstWhere(
+          (state) =>
+              state.processingState == ProcessingState.completed ||
+              state.processingState == ProcessingState.idle,
+        );
   }
 
   /// Stop any currently playing audio.
