@@ -3,7 +3,8 @@ import 'package:bible_pal/features/pal/opening/pal_opening_lines.dart';
 
 void main() {
   group('PAL Opening Line IDs', () {
-    test('all 60 lines have non-empty IDs', () {
+    test('all 12 lines have non-empty IDs', () {
+      expect(palOpeningLines.length, 12);
       for (final line in palOpeningLines) {
         expect(line.id.isNotEmpty, true,
             reason: 'Line with text "${line.text}" has empty ID');
@@ -18,13 +19,18 @@ void main() {
       }
     });
 
-    test('IDs follow OPENING_{TONE}_{NN} convention', () {
+    test('IDs follow OPENING_{BUCKET}_{NN} convention', () {
+      const bucketCode = {
+        OpeningTimeBucket.morning: 'MORN',
+        OpeningTimeBucket.afternoon: 'AFTN',
+        OpeningTimeBucket.evening: 'EVEN',
+        OpeningTimeBucket.night: 'NIGHT',
+      };
       for (final line in palOpeningLines) {
-        final toneUpper = line.tone.name.toUpperCase();
-        expect(line.id, startsWith('OPENING_${toneUpper}_'),
+        final code = bucketCode[line.bucket]!;
+        expect(line.id, startsWith('OPENING_${code}_'),
             reason:
-                'ID "${line.id}" does not match tone "${line.tone.name}"');
-        // Extract the NN suffix
+                'ID "${line.id}" does not match bucket "${line.bucket.name}"');
         final parts = line.id.split('_');
         final suffix = parts.last;
         expect(suffix.length, 2,
@@ -34,22 +40,15 @@ void main() {
       }
     });
 
-    test('each tone has 12 IDs', () {
-      for (final tone in PalOpeningTone.values) {
-        final toneUpper = tone.name.toUpperCase();
+    test('each bucket has exactly 3 IDs', () {
+      for (final bucket in OpeningTimeBucket.values) {
         final ids = palOpeningLines
-            .where((l) => l.tone == tone)
+            .where((l) => l.bucket == bucket)
             .map((l) => l.id)
             .toList();
-        expect(ids.length, 12,
-            reason: '$toneUpper has ${ids.length} IDs (expected 12)');
+        expect(ids.length, 3,
+            reason: '${bucket.name} has ${ids.length} IDs (expected 3)');
       }
-    });
-
-    test('pickOpeningLine returns line with valid ID', () {
-      final line = pickOpeningLine();
-      expect(line.id.isNotEmpty, true);
-      expect(line.id, startsWith('OPENING_'));
     });
   });
 }

@@ -682,12 +682,28 @@ class PalAudioService {
   /// cancel/retry cycles the stack wedges and PAL goes mute until the
   /// app is force-quit. Mirrors the [_awaitPlaybackDone] helper used by
   /// [playSequence].
+  ///
+  /// **Important**: `playerStateStream` emits the current state to new
+  /// subscribers immediately. If the stream's most recent emission is
+  /// `idle` (e.g., right after `_acquireLock` returned but before
+  /// `_player.play()` had a chance to push the state forward), naive
+  /// `firstWhere(idle || completed)` matches that initial idle and
+  /// returns instantly — the caller's mic then opens before audio
+  /// actually plays, which feels exactly like PAL cutting the user off.
+  /// We defend against that race by `skipWhile`-ing any leading idle
+  /// state — wait until the player has actually moved out of idle (into
+  /// loading / buffering / ready) BEFORE we start watching for terminal.
+  /// Once we're past the leading idle, accept either terminal state
+  /// (completed = natural end, idle = subsequent stop/cancel).
   Future<void> awaitPlaybackComplete() async {
-    await _player.playerStateStream.firstWhere(
-      (state) =>
-          state.processingState == ProcessingState.completed ||
-          state.processingState == ProcessingState.idle,
-    );
+    await _player.playerStateStream
+        .skipWhile((state) =>
+            state.processingState == ProcessingState.idle)
+        .firstWhere(
+          (state) =>
+              state.processingState == ProcessingState.completed ||
+              state.processingState == ProcessingState.idle,
+        );
   }
 
   /// Stop any currently playing audio.

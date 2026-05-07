@@ -151,7 +151,10 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
 
   Future<void> _loadAndPlayPrompt() async {
     try {
-      final prompt = await _promptService.getPrompt();
+      // Cold-open uses the deterministic neutral check-in (curated
+      // DAY-bucket subset). The 96-prompt `getPrompt()` includes
+      // BURDEN/HEART probes reserved for future follow-up flows.
+      final prompt = _promptService.getNeutralCheckInPrompt();
       if (mounted) {
         setState(() {
           _promptText = prompt.text;

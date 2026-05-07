@@ -23,31 +23,19 @@ void main() {
 
   group('Feature 2.0 — PAL opening audio coverage', () {
     test('spec_pal_opening_audio_coverage_all_voices.succeeds', () {
-      // Files where the missing-asset → cross-voice fallback to the
-      // default voice's asset is the accepted graceful degradation.
-      // Listed explicitly so any *new* missing file (a regression)
-      // breaks the test.
-      const acceptedCrossVoiceFallbacks = <String>{
-        // Stillwater is missing OPENING_WEARY_04; PalAudioService
-        // falls back to the default voice's asset for this line.
-        'VOICE_STILLWATER/OPENING_WEARY_04',
-      };
-
       final missing = <String>[];
       for (final voice in PalVoiceRegistry.voices) {
         for (final line in palOpeningLines) {
           final relPath = '${voice.voiceKey}/${line.id}';
           final file = File('$audioBase/$relPath.mp3');
           if (!file.existsSync() || file.lengthSync() == 0) {
-            if (!acceptedCrossVoiceFallbacks.contains(relPath)) {
-              missing.add('$relPath.mp3');
-            }
+            missing.add('$relPath.mp3');
           }
         }
       }
       expect(missing, isEmpty,
           reason:
-              'Missing PAL opening audio (excluding accepted cross-voice fallbacks): ${missing.join(', ')}');
+              'Missing PAL opening audio: ${missing.join(', ')}');
     });
 
     test('spec_pal_opening_default_voice_asset_coverage.succeeds', () {
@@ -108,8 +96,8 @@ void main() {
         reason: missing.isEmpty
             ? ''
             : 'Default voice (${PalVoiceRegistry.defaultVoiceKey}) is '
-                'missing or has empty opening assets — expected all 60 '
-                'ids from palOpeningLines:\n  - ${missing.join('\n  - ')}',
+                'missing or has empty opening assets — expected all '
+                '${palOpeningLines.length} ids from palOpeningLines:\n  - ${missing.join('\n  - ')}',
       );
     });
   });
@@ -222,12 +210,12 @@ void main() {
 
   group('Feature 2.0 — assetPath sanity', () {
     test('asset path matches SPEC Feature 2.0 layout', () {
-      // SPEC line 61: "Pre-generated audio assets at
+      // SPEC Feature 2.0: "Pre-generated audio assets at
       // assets/pal/audio/{voiceKey}/{lineId}.mp3"
       expect(
         PalAudioService.assetPath(
-            PalVoiceRegistry.defaultVoiceKey, 'OPENING_GENTLE_01'),
-        'assets/pal/audio/${PalVoiceRegistry.defaultVoiceKey}/OPENING_GENTLE_01.mp3',
+            PalVoiceRegistry.defaultVoiceKey, 'OPENING_AFTN_01'),
+        'assets/pal/audio/${PalVoiceRegistry.defaultVoiceKey}/OPENING_AFTN_01.mp3',
       );
     });
   });
