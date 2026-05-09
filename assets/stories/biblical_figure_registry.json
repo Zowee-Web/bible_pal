@@ -284,7 +284,7 @@
       ]
     },
     {
-      "bibleStoryKey": "david_goliath",
+      "bibleStoryKey": "david_and_goliath",
       "primaryFigure": "David",
       "secondaryFigures": [
         "Goliath",
@@ -292,11 +292,11 @@
       ],
       "framingLines": [
         {
-          "id": "FRAME_DAVID_GOLIATH_01",
+          "id": "FRAME_DAVID_AND_GOLIATH_01",
           "text": "Everyone saw a giant. David saw something different."
         },
         {
-          "id": "FRAME_DAVID_GOLIATH_02",
+          "id": "FRAME_DAVID_AND_GOLIATH_02",
           "text": "David walked toward what scared everyone else away."
         }
       ]
