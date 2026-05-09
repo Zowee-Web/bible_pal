@@ -3,13 +3,20 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 
-/// Phase 2 verification tests for PAL V2 asset migration.
+/// PAL audio asset verification tests.
 ///
-/// These tests verify:
-/// - Old PAL audio directories have been deleted
-/// - New PAL audio directories exist with correct file counts
-/// - No legacy greeting/compassionate-reply MP3s remain
-/// - All prompt and micro-response IDs in pal_lines.json have MP3s
+/// Originally written for Phase 2 PAL V2 migration. Updated 2026-05 after
+/// Feature 2.0 (12-line time-bucketed library, PR #13 / commit ceb0d3a) which
+/// retired VOICE_GRACE and VOICE_RUTH_COMFORT and grew per-voice asset counts
+/// well beyond the original 127/128 file expectations.
+///
+/// Current invariants verified:
+/// - Legacy V1 voice directories (Sarah/Hannah/James/David) remain deleted
+/// - The 3 active PAL voices (Hope/Shepherd/Stillwater) have audio directories
+/// - Retired voices (Grace/Ruth) are archived, not in audio/
+/// - No legacy greeting_*.mp3 / comp_*.mp3 files remain
+/// - All prompt and micro-response IDs in pal_lines.json have MP3s for active
+///   voices
 void main() {
   final projectRoot = _findProjectRoot();
   final audioBase = Directory('$projectRoot/assets/pal/audio');
@@ -34,44 +41,25 @@ void main() {
     }
   });
 
-  // --- New directory presence ---
+  // --- Active voice directory presence ---
 
-  group('New PAL audio directories present', () {
-    const newVoiceKeys = [
-      'VOICE_GRACE',
-      'VOICE_SHEPHERD',
+  group('Active PAL audio directories present', () {
+    // 3 canonical PAL voices per `feedback_pal_canonical_system.md`.
+    // Grace + Ruth retired; their audio is archived under audio_archive_*.
+    const activeVoiceKeys = [
       'VOICE_HOPE',
+      'VOICE_SHEPHERD',
       'VOICE_STILLWATER',
     ];
 
-    for (final key in newVoiceKeys) {
+    for (final key in activeVoiceKeys) {
       test('$key directory exists', () {
         final dir = Directory('${audioBase.path}/$key');
         expect(dir.existsSync(), true,
-            reason: 'New PAL directory $key should exist');
+            reason: 'Active PAL voice $key must have an audio directory');
       });
-    }
-  });
 
-  // --- File counts ---
-
-  group('New PAL directory file counts', () {
-    test('VOICE_GRACE has 128 MP3 files (prompts + micro + preview + onboarding)', () {
-      final dir = Directory('${audioBase.path}/VOICE_GRACE');
-      if (!dir.existsSync()) {
-        fail('VOICE_GRACE directory does not exist');
-      }
-      final mp3s = dir
-          .listSync()
-          .whereType<File>()
-          .where((f) => f.path.endsWith('.mp3'))
-          .toList();
-      expect(mp3s.length, 128,
-          reason: 'VOICE_GRACE: 96 prompts + 30 micro + 1 preview + 1 onboard = 128');
-    });
-
-    for (final key in ['VOICE_SHEPHERD', 'VOICE_HOPE', 'VOICE_STILLWATER']) {
-      test('$key has 127 MP3 files (prompts + micro + preview)', () {
+      test('$key directory contains audio files', () {
         final dir = Directory('${audioBase.path}/$key');
         if (!dir.existsSync()) {
           fail('$key directory does not exist');
@@ -81,8 +69,26 @@ void main() {
             .whereType<File>()
             .where((f) => f.path.endsWith('.mp3'))
             .toList();
-        expect(mp3s.length, 127,
-            reason: '$key: 96 prompts + 30 micro + 1 preview = 127');
+        expect(mp3s.length, greaterThan(0),
+            reason:
+                '$key must have at least some audio (the per-voice count is not pinned because it grows as new lines are added)');
+      });
+    }
+  });
+
+  // --- Retired voices not in active audio dir ---
+
+  group('Retired voices archived, not active', () {
+    // Voice retirement does NOT delete the audio (per
+    // `feedback_never_delete_audio.md`). Audio moves to audio_archive_*.
+    const retiredVoiceKeys = ['VOICE_GRACE', 'VOICE_RUTH_COMFORT'];
+
+    for (final key in retiredVoiceKeys) {
+      test('$key directory does NOT exist in audio/ (audio archived)', () {
+        final dir = Directory('${audioBase.path}/$key');
+        expect(dir.existsSync(), false,
+            reason:
+                'Retired voice $key must not have an audio dir; audio moves to assets/pal/audio_archive_*');
       });
     }
   });
@@ -137,10 +143,11 @@ void main() {
       palLines = jsonDecode(palLinesFile.readAsStringSync()) as Map<String, dynamic>;
     });
 
+    // Only the 3 active voices need full asset coverage. Retired voices'
+    // audio is preserved under audio_archive_* and not referenced at runtime.
     const voiceKeys = [
-      'VOICE_GRACE',
-      'VOICE_SHEPHERD',
       'VOICE_HOPE',
+      'VOICE_SHEPHERD',
       'VOICE_STILLWATER',
     ];
 
@@ -195,34 +202,15 @@ void main() {
       });
     }
 
-    test('VOICE_GRACE has onboarding MP3', () {
-      final onboarding = palLines['onboarding'] as List;
-      for (final line in onboarding) {
-        final id = (line as Map<String, dynamic>)['id'] as String;
-        final file = File('${audioBase.path}/VOICE_GRACE/$id.mp3');
-        expect(file.existsSync() && file.lengthSync() > 0, true,
-            reason: 'VOICE_GRACE missing onboarding: $id.mp3');
-      }
-    });
+    // VOICE_GRACE onboarding MP3 test removed: Grace was retired 2026-04-23
+    // and its audio is archived. The active default voice (VOICE_HOPE) is
+    // covered by the prompt/micro/preview tests above.
   });
 
-  // --- Total file count ---
-
-  group('Total file count', () {
-    test('total PAL audio files = 509', () {
-      if (!audioBase.existsSync()) {
-        fail('assets/pal/audio/ does not exist');
-      }
-      final allMp3s = audioBase
-          .listSync(recursive: true)
-          .whereType<File>()
-          .where((f) => f.path.endsWith('.mp3'))
-          .toList();
-
-      expect(allMp3s.length, 509,
-          reason: 'Expected 509 total PAL MP3 files, found ${allMp3s.length}');
-    });
-  });
+  // Total file count assertion removed: per-voice asset counts grow as new
+  // lines are added (current state ~520+ per voice, far past the 127 baseline
+  // this test originally pinned). Use per-ID coverage tests above instead;
+  // they're robust to count drift.
 }
 
 /// Walk up from the test file to find the project root (contains pubspec.yaml).

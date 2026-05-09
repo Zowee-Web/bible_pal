@@ -2,9 +2,10 @@
 // Used by RelatabilityMatcher to extract tags from user input and match stories.
 //
 // Tag categories (flat storage, categorized here for documentation only):
-// - Emotions (7 v1 + 8 PR β = 15): overwhelmed, anxious, sad, angry, lonely,
-//   hopeless, grateful, danger, courage, hope, uncertainty, celebration,
-//   togetherness, solemnity, wonder
+// - Emotions (7 v1 + 8 PR β + 10 PR β extension = 25): overwhelmed, anxious,
+//   sad, angry, lonely, hopeless, grateful, danger, courage, hope, uncertainty,
+//   celebration, togetherness, solemnity, wonder, anguish, loneliness,
+//   persecution, unheard, longing, doubt, patience, fear, desperation, faith
 // - Situations (13): workplace_conflict, unfair_authority, relationship_conflict,
 //   rejection, failure, grief, illness, financial_stress, parenting_struggle,
 //   self_doubt, temptation, waiting, injustice
@@ -15,6 +16,13 @@
 // `tagKeywords` map below intentionally does NOT add keywords for them —
 // adding keywords for `danger` etc. would change the matcher's behavior on
 // user input, which is outside this PR's scope.
+//
+// PR β extension (2026-05): added 10 more emotional registers actually used
+// by the corpus manifest (anguish, loneliness, persecution, unheard, longing,
+// doubt, patience, fear, desperation, faith). Same pattern as the original 8 —
+// tagOrder entries only, no tagKeywords additions. Adding keywords would
+// change matcher behavior on user input, which remains out of scope for
+// vocab-allowlist work.
 
 /// Explicit iteration order for deterministic tag extraction.
 /// When multiple tags match, we keep the first 3 in this order.
@@ -36,6 +44,17 @@ const List<String> tagOrder = [
   'togetherness',
   'solemnity',
   'wonder',
+  // PR β extension — additional registers used by the corpus manifest
+  'anguish',
+  'loneliness',
+  'persecution',
+  'unheard',
+  'longing',
+  'doubt',
+  'patience',
+  'fear',
+  'desperation',
+  'faith',
   // Situations second
   'workplace_conflict',
   'unfair_authority',

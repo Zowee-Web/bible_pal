@@ -12,7 +12,8 @@ import 'package:flutter_test/flutter_test.dart';
 /// Engine policy (LOCKED per STORY_FACTORY.md Section 0):
 ///   Legacy Traditional (801-834)  → "gpt-4.1"
 ///   Legacy Creative (500s)        → mistral-nemo / llama3.1:8b / qwen2.5:7b / gemma:7b
-///   Opus system (1000+, both)     → "claude-opus-4-6"
+///   Opus 4.6 batch (1000-1120)    → "claude-opus-4-6"
+///   Opus 4.7 batch (1121+)        → "claude-opus-4-7"
 void main() {
   group('CRITICAL: Story Engine Compliance (STORY_FACTORY.md)', () {
     test('all production meta.json files have correct createdByModel', () {
@@ -60,12 +61,12 @@ void main() {
           // STORY_FACTORY.md: dual-engine architecture
           //   Legacy Traditional (801-834): gpt-4.1
           //   Legacy Creative (500s): mistral-nemo / llama3.1:8b / qwen2.5:7b / gemma:7b
-          //   Opus 4.6 system (1000-1110): claude-opus-4-6
-          //   Opus 4.7 system (1121-1287): claude-opus-4-7 (PR β allowlist update)
+          //   Opus 4.6 batch (1000-1120): claude-opus-4-6
+          //   Opus 4.7 batch (1121+): claude-opus-4-7 (added 2026-05; 1M-context model now in active use)
           const traditionalAllowedModels = {
             'gpt-4.1',           // legacy traditional engine
-            'claude-opus-4-6',   // Opus 4.6 batch system (STORY_FACTORY.md Section 0)
-            'claude-opus-4-7',   // Opus 4.7 batch system (1121-1287 corpus)
+            'claude-opus-4-6',   // Opus 4.6 batch system
+            'claude-opus-4-7',   // Opus 4.7 batch system (1M context, active model)
           };
           const creativeAllowedModels = {
             'mistral-nemo',      // primary (via Ollama)
@@ -73,7 +74,7 @@ void main() {
             'qwen2.5:7b',        // fallback 2
             'gemma:7b',          // legacy fallback
             'claude-opus-4-6',   // Opus 4.6 batch system
-            'claude-opus-4-7',   // Opus 4.7 batch system
+            'claude-opus-4-7',   // Opus 4.7 batch system (1M context, active model)
           };
 
           if (mode == 'traditional') {

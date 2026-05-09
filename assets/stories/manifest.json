@@ -6187,7 +6187,7 @@
       "reflectionAudioPath": "traditional/1034/audio_1034_reflection.mp3",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "short",
       "reflectionQuestion": "In a quiet moment, what would you ask for? What is the one thing that would help you serve well the people and responsibilities in your life?",
       "bibleSourceRef": "1 Kings 3:5-14",
@@ -6212,7 +6212,7 @@
       "reflectionAudioPath": "traditional/1034/audio_1034_reflection.mp3",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "full",
       "reflectionQuestion": "In a quiet moment, what would you ask for? What is the one thing that would help you serve well the people and responsibilities in your life?",
       "bibleSourceRef": "1 Kings 3:5-14",
@@ -6237,7 +6237,7 @@
       "reflectionAudioPath": "traditional/1034/audio_1034_reflection_kjv.mp3",
       "translationId": "WEB",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "short",
       "reflectionQuestion": "In a quiet moment, what would you ask for? What is the one thing that would help you serve well the people and responsibilities in your life?",
       "bibleSourceRef": "1 Kings 3:5-14",
@@ -6262,7 +6262,7 @@
       "reflectionAudioPath": "traditional/1034/audio_1034_reflection_kjv.mp3",
       "translationId": "WEB",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "full",
       "reflectionQuestion": "In a quiet moment, what would you ask for? What is the one thing that would help you serve well the people and responsibilities in your life?",
       "bibleSourceRef": "1 Kings 3:5-14",
@@ -8649,7 +8649,7 @@
       "reflectionAudioPath": "traditional/1066/audio_1066_reflection.mp3",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "short",
       "reflectionQuestion": "What would it feel like to release, even for a moment, the weight of tomorrow's worries and simply trust that you are already held by something larger than yourself?",
       "bibleSourceRef": "Matthew 6:25-34",
@@ -8674,7 +8674,7 @@
       "reflectionAudioPath": "traditional/1066/audio_1066_reflection.mp3",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "full",
       "reflectionQuestion": "What would it feel like to release, even for a moment, the weight of tomorrow's worries and simply trust that you are already held by something larger than yourself?",
       "bibleSourceRef": "Matthew 6:25-34",
@@ -8699,7 +8699,7 @@
       "reflectionAudioPath": "traditional/1066/audio_1066_reflection_kjv.mp3",
       "translationId": "WEB",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "short",
       "reflectionQuestion": "What would it feel like to release, even for a moment, the weight of tomorrow's worries and simply trust that you are already held by something larger than yourself?",
       "bibleSourceRef": "Matthew 6:25-34",
@@ -8724,7 +8724,7 @@
       "reflectionAudioPath": "traditional/1066/audio_1066_reflection_kjv.mp3",
       "translationId": "WEB",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "full",
       "reflectionQuestion": "What would it feel like to release, even for a moment, the weight of tomorrow's worries and simply trust that you are already held by something larger than yourself?",
       "bibleSourceRef": "Matthew 6:25-34",
@@ -13419,7 +13419,7 @@
       "reflectionAudioPath": "",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "short",
       "scriptureTextFilePath": "traditional/1097/scripture_1097_web.txt",
       "title": "The Choir Before the Army",
@@ -13449,7 +13449,7 @@
       "reflectionAudioPath": "",
       "translationId": "KJV",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "short",
       "scriptureTextFilePath": "traditional/1097/scripture_1097_kjv.txt",
       "title": "The Choir Before the Army",
@@ -13479,7 +13479,7 @@
       "reflectionAudioPath": "",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "full",
       "scriptureTextFilePath": "traditional/1097/scripture_1097_web.txt",
       "title": "The Choir Before the Army",
@@ -13509,7 +13509,7 @@
       "reflectionAudioPath": "",
       "translationId": "KJV",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "full",
       "scriptureTextFilePath": "traditional/1097/scripture_1097_kjv.txt",
       "title": "The Choir Before the Army",
@@ -13539,7 +13539,7 @@
       "reflectionAudioPath": "",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "long",
       "scriptureTextFilePath": "traditional/1097/scripture_1097_web.txt",
       "title": "The Choir Before the Army",
@@ -13569,7 +13569,7 @@
       "reflectionAudioPath": "",
       "translationId": "KJV",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "narratorVoiceKey": "VOICE_JOHN_DOE",
       "storyLength": "long",
       "scriptureTextFilePath": "traditional/1097/scripture_1097_kjv.txt",
       "title": "The Choir Before the Army",
@@ -13891,8 +13891,8 @@
       "storyId": "story_1101_hurting_short_traditional",
       "mood": "hurting",
       "emotionalTags": [
-        "waiting",
-        "hopeless"
+        "patience",
+        "desperation"
       ],
       "audioFilePath": "traditional/1101/audio_1101_story_short.mp3",
       "textFilePath": "traditional/1101/story_1101_traditional_web_short.txt",
@@ -13921,8 +13921,8 @@
       "storyId": "story_1101_hurting_short_traditional_kjv",
       "mood": "hurting",
       "emotionalTags": [
-        "waiting",
-        "hopeless"
+        "patience",
+        "desperation"
       ],
       "audioFilePath": "traditional/1101/audio_1101_story_kjv_short.mp3",
       "textFilePath": "traditional/1101/story_1101_traditional_kjv_short.txt",
@@ -13951,8 +13951,8 @@
       "storyId": "story_1101_hurting_full_traditional",
       "mood": "hurting",
       "emotionalTags": [
-        "waiting",
-        "hopeless"
+        "patience",
+        "desperation"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1101/story_1101_traditional_web_full.txt",
@@ -13981,8 +13981,8 @@
       "storyId": "story_1101_hurting_full_traditional_kjv",
       "mood": "hurting",
       "emotionalTags": [
-        "waiting",
-        "hopeless"
+        "patience",
+        "desperation"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1101/story_1101_traditional_kjv_full.txt",
@@ -14012,7 +14012,7 @@
       "mood": "hurting",
       "emotionalTags": [
         "grief",
-        "anxious"
+        "fear"
       ],
       "audioFilePath": "traditional/1102/audio_1102_story_short.mp3",
       "textFilePath": "traditional/1102/story_1102_traditional_web_short.txt",
@@ -14042,7 +14042,7 @@
       "mood": "hurting",
       "emotionalTags": [
         "grief",
-        "anxious"
+        "fear"
       ],
       "audioFilePath": "traditional/1102/audio_1102_story_kjv_short.mp3",
       "textFilePath": "traditional/1102/story_1102_traditional_kjv_short.txt",
@@ -14072,7 +14072,7 @@
       "mood": "hurting",
       "emotionalTags": [
         "grief",
-        "anxious"
+        "fear"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1102/story_1102_traditional_web_full.txt",
@@ -14102,7 +14102,7 @@
       "mood": "hurting",
       "emotionalTags": [
         "grief",
-        "anxious"
+        "fear"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1102/story_1102_traditional_kjv_full.txt",
@@ -14132,7 +14132,7 @@
       "mood": "hurting",
       "emotionalTags": [
         "grief",
-        "anxious"
+        "fear"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1102/story_1102_traditional_web_long.txt",
@@ -14162,7 +14162,7 @@
       "mood": "hurting",
       "emotionalTags": [
         "grief",
-        "anxious"
+        "fear"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1102/story_1102_traditional_kjv_long.txt",
@@ -14365,7 +14365,8 @@
       "storyId": "story_1104_brave_courage_short_traditional",
       "mood": "brave_courage",
       "emotionalTags": [
-        "injustice"
+        "persecution",
+        "faith"
       ],
       "audioFilePath": "traditional/1104/audio_1104_story_short.mp3",
       "textFilePath": "traditional/1104/story_1104_traditional_web_short.txt",
@@ -14395,7 +14396,8 @@
       "storyId": "story_1104_brave_courage_short_traditional_kjv",
       "mood": "brave_courage",
       "emotionalTags": [
-        "injustice"
+        "persecution",
+        "faith"
       ],
       "audioFilePath": "traditional/1104/audio_1104_story_kjv_short.mp3",
       "textFilePath": "traditional/1104/story_1104_traditional_kjv_short.txt",
@@ -14424,7 +14426,8 @@
       "storyId": "story_1104_brave_courage_full_traditional",
       "mood": "brave_courage",
       "emotionalTags": [
-        "injustice"
+        "persecution",
+        "faith"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1104/story_1104_traditional_web_full.txt",
@@ -14453,7 +14456,8 @@
       "storyId": "story_1104_brave_courage_full_traditional_kjv",
       "mood": "brave_courage",
       "emotionalTags": [
-        "injustice"
+        "persecution",
+        "faith"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1104/story_1104_traditional_kjv_full.txt",
@@ -14898,8 +14902,8 @@
       "storyId": "story_1108_hurting_short_traditional",
       "mood": "hurting",
       "emotionalTags": [
-        "sad",
-        "lonely"
+        "anguish",
+        "loneliness"
       ],
       "audioFilePath": "traditional/1108/audio_1108_story_short.mp3",
       "textFilePath": "traditional/1108/story_1108_traditional_web_short.txt",
@@ -14928,8 +14932,8 @@
       "storyId": "story_1108_hurting_short_traditional_kjv",
       "mood": "hurting",
       "emotionalTags": [
-        "sad",
-        "lonely"
+        "anguish",
+        "loneliness"
       ],
       "audioFilePath": "traditional/1108/audio_1108_story_kjv_short.mp3",
       "textFilePath": "traditional/1108/story_1108_traditional_kjv_short.txt",
@@ -14958,8 +14962,8 @@
       "storyId": "story_1108_hurting_full_traditional",
       "mood": "hurting",
       "emotionalTags": [
-        "sad",
-        "lonely"
+        "anguish",
+        "loneliness"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1108/story_1108_traditional_web_full.txt",
@@ -14988,8 +14992,8 @@
       "storyId": "story_1108_hurting_full_traditional_kjv",
       "mood": "hurting",
       "emotionalTags": [
-        "sad",
-        "lonely"
+        "anguish",
+        "loneliness"
       ],
       "audioFilePath": "",
       "textFilePath": "traditional/1108/story_1108_traditional_kjv_full.txt",
@@ -15018,7 +15022,7 @@
       "storyId": "story_1109_hurting_short_traditional",
       "mood": "hurting",
       "emotionalTags": [
-        "waiting",
+        "patience",
         "courage"
       ],
       "audioFilePath": "traditional/1109/audio_1109_story_short.mp3",
@@ -15048,7 +15052,7 @@
       "storyId": "story_1109_hurting_short_traditional_kjv",
       "mood": "hurting",
       "emotionalTags": [
-        "waiting",
+        "patience",
         "courage"
       ],
       "audioFilePath": "traditional/1109/audio_1109_story_kjv_short.mp3",
@@ -15078,7 +15082,7 @@
       "storyId": "story_1109_hurting_full_traditional",
       "mood": "hurting",
       "emotionalTags": [
-        "waiting",
+        "patience",
         "courage"
       ],
       "audioFilePath": "",
@@ -15108,7 +15112,7 @@
       "storyId": "story_1109_hurting_full_traditional_kjv",
       "mood": "hurting",
       "emotionalTags": [
-        "waiting",
+        "patience",
         "courage"
       ],
       "audioFilePath": "",
@@ -15138,7 +15142,7 @@
       "storyId": "story_1109_hurting_long_traditional",
       "mood": "hurting",
       "emotionalTags": [
-        "waiting",
+        "patience",
         "courage"
       ],
       "audioFilePath": "",
@@ -15168,7 +15172,7 @@
       "storyId": "story_1109_hurting_long_traditional_kjv",
       "mood": "hurting",
       "emotionalTags": [
-        "waiting",
+        "patience",
         "courage"
       ],
       "audioFilePath": "",
@@ -16395,8 +16399,8 @@
       "title": "The Lips That Moved Without Sound",
       "mood": "hurting",
       "emotionalTags": [
-        "rejection",
-        "waiting"
+        "unheard",
+        "longing"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": false,
@@ -16425,7 +16429,7 @@
       "title": "The Wounds He Did Not Need to Touch",
       "mood": "anxious",
       "emotionalTags": [
-        "self_doubt",
+        "doubt",
         "uncertainty"
       ],
       "storytellingMode": "traditional",
