@@ -802,7 +802,8 @@
       "bibleStoryKey": "joseph_interprets_pharaohs_dreams",
       "bibleSourceRef": "Genesis 41:1-40",
       "moodTags": [
-        "encouraging"
+        "encouraging",
+        "calm_peaceful"
       ]
     },
     {
@@ -1514,7 +1515,8 @@
       "bibleStoryKey": "road_to_emmaus",
       "bibleSourceRef": "Luke 24:13-35",
       "moodTags": [
-        "encouraging"
+        "encouraging",
+        "calm_peaceful"
       ]
     },
     {
@@ -2179,22 +2181,6 @@
       "bibleSourceRef": "Zephaniah 3:8-20",
       "moodTags": [
         "encouraging"
-      ]
-    },
-    {
-      "scriptureAnchorId": "1sam_1_9-20",
-      "bibleStoryKey": "hannah_prays_for_son",
-      "bibleSourceRef": "1 Samuel 1:9-20",
-      "moodTags": [
-        "hurting"
-      ]
-    },
-    {
-      "scriptureAnchorId": "john_20_24-29",
-      "bibleStoryKey": "doubting_thomas",
-      "bibleSourceRef": "John 20:24-29",
-      "moodTags": [
-        "anxious"
       ]
     }
   ]
