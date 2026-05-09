@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1146,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Then Joseph Wept",
+  "scriptureAnchor": "Genesis 50:15-21",
+  "bibleStoryKey": "joseph_forgives",
+  "storyVoiceKey": "VOICE_JOSEPH_DREAMER",
+  "themeTags": [
+    "hope",
+    "promise",
+    "faith",
+    "forgiveness",
+    "restoration"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired",
+    "forgiven"
+  ],
+  "primaryCharacterId": "joseph",
+  "primaryCharacterDisplayName": "Joseph",
+  "bibleOrderIndex": 50,
+  "timelineEra": "patriarchs",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1146_traditional_web_short.txt"
+    }
+  }
+}

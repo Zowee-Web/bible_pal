@@ -21,7 +21,10 @@
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
   "themeTags": [
     "courage",
-    "mercy"
+    "mercy",
+    "presence",
+    "guidance",
+    "trust"
   ],
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
@@ -40,5 +43,12 @@
     "reflection": {
       "reflectionText": "reflection_1107_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting",
+    "tender"
+  ]
 }

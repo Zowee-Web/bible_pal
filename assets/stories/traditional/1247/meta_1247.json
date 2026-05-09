@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1247,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Jacob Wrestles Until Daybreak",
+  "scriptureAnchor": "Genesis 32:22-32",
+  "scriptureAnchorId": "genesis_32_22_32",
+  "bibleStoryKey": "jacob_wrestles_with_god",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "presence",
+    "guidance",
+    "trust",
+    "wrestling",
+    "transformation"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting",
+    "tender",
+    "humbled",
+    "seeking"
+  ],
+  "primaryCharacterId": "jacob",
+  "primaryCharacterDisplayName": "Jacob",
+  "bibleOrderIndex": 50,
+  "timelineEra": "patriarchs",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1247_traditional_web_short.txt"
+    }
+  }
+}

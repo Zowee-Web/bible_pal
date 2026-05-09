@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1251,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "I Have Fought the Good Fight",
+  "scriptureAnchor": "2 Timothy 4:1-8",
+  "scriptureAnchorId": "2_timothy_4_1_8",
+  "bibleStoryKey": "fought_the_good_fight",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "perseverance",
+    "faithfulness",
+    "hope",
+    "calling"
+  ],
+  "emotionalTags": [
+    "resolute",
+    "steadfast",
+    "hopeful",
+    "trusting",
+    "humbled"
+  ],
+  "primaryCharacterId": "paul_apostle",
+  "primaryCharacterDisplayName": "Paul",
+  "bibleOrderIndex": 790,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1251_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1255,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Treasure in Clay Vessels",
+  "scriptureAnchor": "2 Corinthians 4:7-18",
+  "scriptureAnchorId": "2_corinthians_4_7_18",
+  "bibleStoryKey": "treasure_in_clay_vessels",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "themeTags": [
+    "suffering",
+    "perseverance",
+    "hope",
+    "transformation"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "steadfast",
+    "trusting",
+    "comforted"
+  ],
+  "primaryCharacterId": "paul_apostle",
+  "primaryCharacterDisplayName": "Paul",
+  "bibleOrderIndex": 735,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1255_traditional_web_short.txt"
+    }
+  }
+}

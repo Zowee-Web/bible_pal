@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1211,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "I Love the Lord",
+  "scriptureAnchor": "Psalm 116:1-19",
+  "bibleStoryKey": "i_love_the_lord",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "themeTags": [
+    "gratitude",
+    "mercy",
+    "praise",
+    "prayer"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "thankful",
+    "humbled",
+    "tender",
+    "loved"
+  ],
+  "primaryCharacterId": "psalmist",
+  "primaryCharacterDisplayName": "Psalmist",
+  "bibleOrderIndex": 265,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1211_traditional_web_short.txt"
+    }
+  }
+}

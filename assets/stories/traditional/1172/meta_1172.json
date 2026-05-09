@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1172,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Song at the Sea",
+  "scriptureAnchor": "Exodus 15:1-21",
+  "bibleStoryKey": "miriams_song",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "themeTags": [
+    "celebration",
+    "praise",
+    "gratitude",
+    "deliverance",
+    "freedom"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "thankful",
+    "free",
+    "grateful",
+    "awed",
+    "comforted"
+  ],
+  "primaryCharacterId": "miriam",
+  "primaryCharacterDisplayName": "Miriam",
+  "bibleOrderIndex": 75,
+  "timelineEra": "exodus",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1172_traditional_web_short.txt"
+    }
+  }
+}

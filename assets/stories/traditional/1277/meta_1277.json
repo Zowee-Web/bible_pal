@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1277,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Make Your Calling and Election Sure",
+  "scriptureAnchor": "2 Peter 1:3-11",
+  "scriptureAnchorId": "2_peter_1_3_11",
+  "bibleStoryKey": "calling_and_election_sure",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "calling",
+    "perseverance",
+    "faith",
+    "faithfulness"
+  ],
+  "emotionalTags": [
+    "steadfast",
+    "determined",
+    "hopeful",
+    "encouraged",
+    "inspired",
+    "trusting"
+  ],
+  "primaryCharacterId": "peter",
+  "primaryCharacterDisplayName": "Peter",
+  "bibleOrderIndex": 830,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1277_traditional_web_short.txt"
+    }
+  }
+}

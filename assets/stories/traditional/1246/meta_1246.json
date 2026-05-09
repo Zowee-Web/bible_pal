@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1246,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Please Show Me Your Glory",
+  "scriptureAnchor": "Exodus 33:12-23",
+  "scriptureAnchorId": "exodus_33_12_23",
+  "bibleStoryKey": "show_me_your_glory",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "presence",
+    "guidance",
+    "trust",
+    "deliverance",
+    "freedom"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting",
+    "tender",
+    "humbled",
+    "awed"
+  ],
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "bibleOrderIndex": 78,
+  "timelineEra": "exodus",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1246_traditional_web_short.txt"
+    }
+  }
+}

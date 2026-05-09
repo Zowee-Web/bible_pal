@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1278,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Perseverance of Job",
+  "scriptureAnchor": "James 5:7-11",
+  "scriptureAnchorId": "james_5_7_11",
+  "bibleStoryKey": "patience_until_the_coming",
+  "storyVoiceKey": "VOICE_ESTHER_BRAVE",
+  "themeTags": [
+    "patience",
+    "endurance",
+    "suffering",
+    "mercy"
+  ],
+  "emotionalTags": [
+    "weary",
+    "exhausted",
+    "longing",
+    "steadfast",
+    "comforted",
+    "hopeful"
+  ],
+  "primaryCharacterId": "james_brother_of_jesus",
+  "primaryCharacterDisplayName": "James",
+  "bibleOrderIndex": 803,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1278_traditional_web_short.txt"
+    }
+  }
+}

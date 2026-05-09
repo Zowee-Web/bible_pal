@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1285,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "He Is My Refuge",
+  "scriptureAnchor": "Psalm 91:1-7",
+  "scriptureAnchorId": "psalm_91_1_7",
+  "bibleStoryKey": "shelter_of_the_most_high",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "themeTags": [
+    "refuge",
+    "protection",
+    "presence",
+    "trust"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "afraid",
+    "comforted",
+    "trusting",
+    "peaceful",
+    "awed"
+  ],
+  "primaryCharacterId": "psalmist",
+  "primaryCharacterDisplayName": "Psalmist",
+  "bibleOrderIndex": 228,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1285_traditional_web_short.txt"
+    }
+  }
+}

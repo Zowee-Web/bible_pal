@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1280,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Walk in Truth and Love",
+  "scriptureAnchor": "2 John 1:4-6",
+  "scriptureAnchorId": "2_john_1_4_6",
+  "bibleStoryKey": "walk_in_truth_and_love",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "love",
+    "obedience",
+    "faithfulness",
+    "presence"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "comforted",
+    "loved",
+    "trusting",
+    "tender",
+    "encouraged"
+  ],
+  "primaryCharacterId": "john_apostle",
+  "primaryCharacterDisplayName": "John",
+  "bibleOrderIndex": 875,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1280_traditional_web_short.txt"
+    }
+  }
+}

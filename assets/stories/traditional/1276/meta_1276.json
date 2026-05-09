@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1276,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Pray for One Another",
+  "scriptureAnchor": "James 5:13-20",
+  "scriptureAnchorId": "james_5_13_20",
+  "bibleStoryKey": "pray_for_one_another",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "themeTags": [
+    "prayer",
+    "healing",
+    "mercy",
+    "faith"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "longing",
+    "comforted",
+    "hopeful",
+    "trusting",
+    "awed"
+  ],
+  "primaryCharacterId": "james_brother_of_jesus",
+  "primaryCharacterDisplayName": "James",
+  "bibleOrderIndex": 805,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1276_traditional_web_short.txt"
+    }
+  }
+}

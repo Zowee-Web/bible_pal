@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1175,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Fishers of Men",
+  "scriptureAnchor": "Matthew 4:18-25",
+  "bibleStoryKey": "calling_first_disciples",
+  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "themeTags": [
+    "hope",
+    "promise",
+    "faith",
+    "calling",
+    "obedience"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired",
+    "seeking"
+  ],
+  "primaryCharacterId": "peter",
+  "primaryCharacterDisplayName": "Peter",
+  "bibleOrderIndex": 615,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1175_traditional_web_short.txt"
+    }
+  }
+}

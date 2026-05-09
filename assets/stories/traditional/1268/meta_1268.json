@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1268,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Don't Let Your Heart Be Troubled",
+  "scriptureAnchor": "John 14:1-3, 18-19, 27",
+  "scriptureAnchorId": "john_14_comfort_selected",
+  "bibleStoryKey": "let_not_your_heart_be_troubled",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
+  "themeTags": [
+    "comfort",
+    "presence",
+    "promise",
+    "peace"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "afraid",
+    "alone",
+    "comforted",
+    "trusting",
+    "peaceful"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 670,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1268_traditional_web_short.txt"
+    }
+  }
+}

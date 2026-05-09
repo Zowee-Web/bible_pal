@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1260,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Lord Is Faithful",
+  "scriptureAnchor": "2 Thessalonians 3:1-5",
+  "scriptureAnchorId": "2_thessalonians_3_1_5",
+  "bibleStoryKey": "lord_is_faithful_will_establish",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "prayer",
+    "faith",
+    "faithfulness",
+    "love"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "trusting",
+    "comforted",
+    "encouraged",
+    "loved",
+    "steadfast"
+  ],
+  "primaryCharacterId": "paul_apostle",
+  "primaryCharacterDisplayName": "Paul",
+  "bibleOrderIndex": 775,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1260_traditional_web_short.txt"
+    }
+  }
+}

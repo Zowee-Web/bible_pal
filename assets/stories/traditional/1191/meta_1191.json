@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1191,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Strengthen My Hands",
+  "scriptureAnchor": "Nehemiah 6:1-16",
+  "bibleStoryKey": "wall_completed",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "hope",
+    "promise",
+    "faith",
+    "restoration",
+    "rebuilding"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired",
+    "determined"
+  ],
+  "primaryCharacterId": "nehemiah",
+  "primaryCharacterDisplayName": "Nehemiah",
+  "bibleOrderIndex": 515,
+  "timelineEra": "return",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1191_traditional_web_short.txt"
+    }
+  }
+}

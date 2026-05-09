@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1225,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "A Time for Every Purpose",
+  "scriptureAnchor": "Ecclesiastes 3:1-8",
+  "bibleStoryKey": "time_for_every_purpose",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "themeTags": [
+    "presence",
+    "guidance",
+    "trust",
+    "wisdom"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting",
+    "tender",
+    "humbled",
+    "seeking"
+  ],
+  "primaryCharacterId": "solomon",
+  "primaryCharacterDisplayName": "Solomon",
+  "bibleOrderIndex": 250,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1225_traditional_web_short.txt"
+    }
+  }
+}

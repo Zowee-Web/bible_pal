@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1272,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Rejoice in the Lord Always",
+  "scriptureAnchor": "Philippians 4:4-9",
+  "scriptureAnchorId": "philippians_4_4_9",
+  "bibleStoryKey": "rejoice_peace_of_god",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "themeTags": [
+    "joy",
+    "peace",
+    "prayer",
+    "gratitude"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "peaceful",
+    "comforted",
+    "thankful",
+    "trusting",
+    "hopeful"
+  ],
+  "primaryCharacterId": "paul_apostle",
+  "primaryCharacterDisplayName": "Paul",
+  "bibleOrderIndex": 742,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1272_traditional_web_short.txt"
+    }
+  }
+}

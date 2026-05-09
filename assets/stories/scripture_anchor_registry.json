@@ -852,6 +852,22 @@
         "joyful",
         "encouraging"
       ]
+    },
+    {
+      "scriptureAnchorId": "1sam_1_9-20",
+      "bibleStoryKey": "hannah_prays_for_son",
+      "bibleSourceRef": "1 Samuel 1:9-20",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "john_20_24-29",
+      "bibleStoryKey": "doubting_thomas",
+      "bibleSourceRef": "John 20:24-29",
+      "moodTags": [
+        "anxious"
+      ]
     }
   ]
 }

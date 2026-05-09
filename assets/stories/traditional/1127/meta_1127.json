@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1127,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Sound of a Rushing Wind",
+  "scriptureAnchor": "Acts 2:1-13",
+  "bibleStoryKey": "pentecost",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "hope",
+    "promise",
+    "faith",
+    "calling",
+    "presence"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired",
+    "awed"
+  ],
+  "primaryCharacterId": "peter",
+  "primaryCharacterDisplayName": "Peter",
+  "bibleOrderIndex": 696,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1127_traditional_web_short.txt"
+    }
+  }
+}
