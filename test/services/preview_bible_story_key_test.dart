@@ -1,3 +1,9 @@
+// ignore_for_file: avoid_print
+//
+// This test uses print() for diagnostic output during ad-hoc development runs.
+// Suppressed at file scope so CI's `flutter analyze` doesn't fail on info-level
+// avoid_print warnings.
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:bible_pal/services/parable_service.dart';

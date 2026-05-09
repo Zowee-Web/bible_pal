@@ -90,19 +90,23 @@ void main() {
   });
 
   group('PAL voice selection consistency', () {
-    test('palVoiceKey defaults to VOICE_GRACE', () {
+    test('palVoiceKey defaults to VOICE_HOPE', () {
+      // Default migrated from VOICE_GRACE → VOICE_RUTH_COMFORT → VOICE_HOPE.
+      // Grace retired 2026-04-23; Ruth v1 retired 2026-04-25; Hope is now the
+      // canonical PAL default per `feedback_pal_canonical_system.md`.
       final prefs = UserPreferences.defaults();
-      expect(prefs.palVoiceKey, 'VOICE_GRACE');
+      expect(prefs.palVoiceKey, 'VOICE_HOPE');
     });
 
-    test('all 4 PAL voices are registered', () {
-      expect(PalVoiceRegistry.voices.length, 4);
+    test('all 3 active PAL voices are registered', () {
+      // Grace retired 2026-04-23; Ruth v1 retired 2026-04-25.
+      // Audio for both is preserved under archive directories.
+      expect(PalVoiceRegistry.voices.length, 3);
       expect(
           PalVoiceRegistry.voices.map((v) => v.voiceKey).toSet(),
           containsAll([
-            'VOICE_GRACE',
-            'VOICE_SHEPHERD',
             'VOICE_HOPE',
+            'VOICE_SHEPHERD',
             'VOICE_STILLWATER',
           ]));
     });
@@ -120,8 +124,11 @@ void main() {
   });
 
   group('PAL voice preview', () {
-    test('preview uses OPENING_GENTLE_01 not legacy preview_01', () {
-      expect(PalAudioService.previewLineId, 'OPENING_GENTLE_01');
+    test('preview uses OPENING_AFTN_01 not legacy preview_01', () {
+      // Updated from OPENING_GENTLE_01 to OPENING_AFTN_01 in PR #13
+      // (commit ceb0d3a) when the 12-line time-bucketed opening library
+      // replaced the gentle/cheerful tone-bucketed system.
+      expect(PalAudioService.previewLineId, 'OPENING_AFTN_01');
       expect(PalAudioService.previewLineId, isNot('preview_01'));
     });
 
@@ -130,17 +137,8 @@ void main() {
         final path = PalAudioService.assetPath(
             voice.voiceKey, PalAudioService.previewLineId);
         expect(path,
-            'assets/pal/audio/${voice.voiceKey}/OPENING_GENTLE_01.mp3');
+            'assets/pal/audio/${voice.voiceKey}/${PalAudioService.previewLineId}.mp3');
       }
-    });
-
-    test('Grace preview uses VOICE_GRACE path (current Arabella mapping)', () {
-      final grace = PalVoiceRegistry.getVoice('VOICE_GRACE');
-      expect(grace.elevenLabsId, isNotEmpty);
-      final path = PalAudioService.assetPath(
-          grace.voiceKey, PalAudioService.previewLineId);
-      expect(path, contains('VOICE_GRACE'));
-      expect(path, isNot(contains('preview_01')));
     });
   });
 

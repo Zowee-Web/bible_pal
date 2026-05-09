@@ -49,7 +49,8 @@
       "bibleStoryKey": "solomon_two_mothers",
       "bibleSourceRef": "1 Kings 3:16-28",
       "moodTags": [
-        "encouraging"
+        "encouraging",
+        "calm_peaceful"
       ]
     },
     {
@@ -285,7 +286,8 @@
       "bibleStoryKey": "lord_is_faithful_will_establish",
       "bibleSourceRef": "2 Thessalonians 3:1-5",
       "moodTags": [
-        "encouraging"
+        "encouraging",
+        "calm_peaceful"
       ]
     },
     {
@@ -1478,7 +1480,8 @@
       "bibleSourceRef": "Luke 1:26-38",
       "moodTags": [
         "anxious",
-        "joyful"
+        "joyful",
+        "calm_peaceful"
       ]
     },
     {
@@ -2176,6 +2179,22 @@
       "bibleSourceRef": "Zephaniah 3:8-20",
       "moodTags": [
         "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1sam_1_9-20",
+      "bibleStoryKey": "hannah_prays_for_son",
+      "bibleSourceRef": "1 Samuel 1:9-20",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "john_20_24-29",
+      "bibleStoryKey": "doubting_thomas",
+      "bibleSourceRef": "John 20:24-29",
+      "moodTags": [
+        "anxious"
       ]
     }
   ]

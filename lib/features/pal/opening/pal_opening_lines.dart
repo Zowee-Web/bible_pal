@@ -1,9 +1,23 @@
 import 'dart:math';
 
-/// Tone tag for a PAL opening line (Feature 2.0).
+import 'pal_opening_recency.dart';
+
+/// **Deprecated** — retired Feature 5.1 tone-biased reflection enum.
 ///
-/// Used as a session-only soft modifier on the first reflective sentence
-/// (Feature 5.1). Never persisted to storage.
+/// The 60-line tone-bucketed opening library was replaced by the 12-line
+/// time-bucketed library (Feature 2.0, SPEC §2.0 revision 2026-04-28),
+/// and the `PalOpeningTone` signal is no longer set anywhere in the live
+/// flow. This enum is preserved ONLY so the orphaned
+/// `lib/core/pal_tone_biased_reflection_lines.dart` (also retired Feature
+/// 5.1, kept on disk pending full cleanup) continues to compile. Do NOT
+/// reference this enum in new code — it has no live producers and no
+/// runtime effect. Selection for both opening lines and reflections is
+/// time-bucketed and mood-blind respectively.
+@Deprecated(
+  'Retired with Feature 2.0 12-line time-bucketed opening library. '
+  'Kept only so the unwired pal_tone_biased_reflection_lines.dart still '
+  'compiles. Use OpeningTimeBucket for opening selection.',
+)
 enum PalOpeningTone {
   gentle,
   encouraging,
@@ -12,345 +26,153 @@ enum PalOpeningTone {
   warm,
 }
 
-/// A single entry in the 60-line PAL pre-greeting opening library.
+/// Time-of-day bucket for a PAL opening greeting line (Feature 2.0).
+enum OpeningTimeBucket { morning, afternoon, evening, night }
+
+/// Whether a line already contains its own greeting word ("Hi…", "Good
+/// morning…") or is bare. Only `bare` lines are eligible for name-prefix
+/// attachment — `greeting` lines play solo to avoid stacking awkwardness
+/// with [NameAudioService] prefixes like "Hi there, {name}!".
+enum OpeningLineType { greeting, bare }
+
+/// A single entry in the PAL opening greeting library.
 class PalOpeningLine {
   final String id;
   final String text;
-  final PalOpeningTone tone;
+  final OpeningTimeBucket bucket;
+  final OpeningLineType type;
 
   const PalOpeningLine({
     required this.id,
     required this.text,
-    required this.tone,
+    required this.bucket,
+    required this.type,
   });
 }
 
-/// The locked 60-line opening library (Feature 2.0).
+/// The locked 12-line opening greeting library (Feature 2.0).
 ///
-/// 12 lines per tone bucket. Content is locked — wording changes require
-/// a SPEC update. Selected uniformly at random; no time-awareness.
-/// Each line carries a unique ID for audio asset lookup (Feature 2.0a).
+/// 3 lines per time bucket. Content is locked — wording changes require a
+/// SPEC update. Selection is mood-blind: time bucket is computed from the
+/// current local hour, then a line is chosen from that bucket via
+/// persistent recency rotation ([PalOpeningRecency]).
+///
+/// Each line carries a unique ID for audio asset lookup
+/// (`assets/pal/audio/{voiceKey}/{lineId}.mp3`).
 const List<PalOpeningLine> palOpeningLines = [
-  // ── gentle (1–12) ──────────────────────────────────────────────────────────
+  // ── morning (5am–12pm) ────────────────────────────────────────────────────
   PalOpeningLine(
-    id: 'OPENING_GENTLE_01',
-    text: "I\u2019m here. What\u2019s today been like for you?",
-    tone: PalOpeningTone.gentle,
+    id: 'OPENING_MORN_01',
+    text: "Good morning… how's your day going so far?",
+    bucket: OpeningTimeBucket.morning,
+    type: OpeningLineType.greeting,
   ),
   PalOpeningLine(
-    id: 'OPENING_GENTLE_02',
-    text: "You don't have to filter anything… how's your day been?",
-    tone: PalOpeningTone.gentle,
+    id: 'OPENING_MORN_02',
+    text: "Hi… how's your morning been?",
+    bucket: OpeningTimeBucket.morning,
+    type: OpeningLineType.greeting,
   ),
   PalOpeningLine(
-    id: 'OPENING_GENTLE_03',
-    text: "What\u2019s been sitting with you today?",
-    tone: PalOpeningTone.gentle,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_GENTLE_04',
-    text: "I've got time—what's been going on for you?",
-    tone: PalOpeningTone.gentle,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_GENTLE_05',
-    text: "What's been on your heart lately… even a little?",
-    tone: PalOpeningTone.gentle,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_GENTLE_06',
-    text: "How are you really doing right now?",
-    tone: PalOpeningTone.gentle,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_GENTLE_07',
-    text: "What's been quietly on your mind today?",
-    tone: PalOpeningTone.gentle,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_GENTLE_08',
-    text: "You can just say it as it is… how's today been?",
-    tone: PalOpeningTone.gentle,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_GENTLE_09',
-    text: "What's been lingering with you today?",
-    tone: PalOpeningTone.gentle,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_GENTLE_10',
-    text: "What kind of day has it been for you?",
-    tone: PalOpeningTone.gentle,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_GENTLE_11',
-    text: "What's been with you today… start wherever you want.",
-    tone: PalOpeningTone.gentle,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_GENTLE_12',
-    text: "How have things been feeling on your side today?",
-    tone: PalOpeningTone.gentle,
+    id: 'OPENING_MORN_03',
+    text: "How are you doing today?",
+    bucket: OpeningTimeBucket.morning,
+    type: OpeningLineType.bare,
   ),
 
-  // ── encouraging (13–24) ────────────────────────────────────────────────────
+  // ── afternoon (12pm–5pm) ──────────────────────────────────────────────────
   PalOpeningLine(
-    id: 'OPENING_ENCOURAGING_01',
-    text: "You don't have to carry it alone… what's been going on?",
-    tone: PalOpeningTone.encouraging,
+    id: 'OPENING_AFTN_01',
+    text: "How's your day going?",
+    bucket: OpeningTimeBucket.afternoon,
+    type: OpeningLineType.bare,
   ),
   PalOpeningLine(
-    id: 'OPENING_ENCOURAGING_02',
-    text: "What\u2019s been a little heavy for you today?",
-    tone: PalOpeningTone.encouraging,
+    id: 'OPENING_AFTN_02',
+    text: "How's everything been today?",
+    bucket: OpeningTimeBucket.afternoon,
+    type: OpeningLineType.bare,
   ),
   PalOpeningLine(
-    id: 'OPENING_ENCOURAGING_03',
-    text: "If something's been weighing on you, you can say it here.",
-    tone: PalOpeningTone.encouraging,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_ENCOURAGING_04',
-    text: "What's been taking more out of you than you expected?",
-    tone: PalOpeningTone.encouraging,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_ENCOURAGING_05',
-    text: "What\u2019s been hard to shake today?",
-    tone: PalOpeningTone.encouraging,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_ENCOURAGING_06',
-    text: "If today's been a lot, I'm here—what's going on?",
-    tone: PalOpeningTone.encouraging,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_ENCOURAGING_07',
-    text: "What's been asking a lot from you lately?",
-    tone: PalOpeningTone.encouraging,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_ENCOURAGING_08',
-    text: "What\u2019s been sitting a little heavier than usual?",
-    tone: PalOpeningTone.encouraging,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_ENCOURAGING_09',
-    text: "What's been pressing on you, even if it's small?",
-    tone: PalOpeningTone.encouraging,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_ENCOURAGING_10',
-    text: "You can let it out here… what's been going on?",
-    tone: PalOpeningTone.encouraging,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_ENCOURAGING_11',
-    text: "What's been harder than you thought it would be today?",
-    tone: PalOpeningTone.encouraging,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_ENCOURAGING_12',
-    text: "What\u2019s been pulling at you today?",
-    tone: PalOpeningTone.encouraging,
+    id: 'OPENING_AFTN_03',
+    text: "What kind of day has it been?",
+    bucket: OpeningTimeBucket.afternoon,
+    type: OpeningLineType.bare,
   ),
 
-  // ── calm (25–36) ───────────────────────────────────────────────────────────
+  // ── evening (5pm–10pm) ────────────────────────────────────────────────────
   PalOpeningLine(
-    id: 'OPENING_CALM_01',
-    text: "Take a breath with me. What's been going on?",
-    tone: PalOpeningTone.calm,
+    id: 'OPENING_EVEN_01',
+    text: "How was your day?",
+    bucket: OpeningTimeBucket.evening,
+    type: OpeningLineType.bare,
   ),
   PalOpeningLine(
-    id: 'OPENING_CALM_02',
-    text: "No rush at all… what's been on your heart?",
-    tone: PalOpeningTone.calm,
+    id: 'OPENING_EVEN_02',
+    text: "What's today been like for you?",
+    bucket: OpeningTimeBucket.evening,
+    type: OpeningLineType.bare,
   ),
   PalOpeningLine(
-    id: 'OPENING_CALM_03',
-    text: "We can just slow this down… how are you feeling?",
-    tone: PalOpeningTone.calm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_CALM_04',
-    text: "You can take your time here. What's been today?",
-    tone: PalOpeningTone.calm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_CALM_05',
-    text: "Let's just pause for a second… what's been going on?",
-    tone: PalOpeningTone.calm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_CALM_06',
-    text: "You don't have to hurry through it… what's been on your mind?",
-    tone: PalOpeningTone.calm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_CALM_07',
-    text: "We can sit here a moment. What's been with you?",
-    tone: PalOpeningTone.calm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_CALM_08',
-    text: "Whenever you're ready… what's been on your heart?",
-    tone: PalOpeningTone.calm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_CALM_09',
-    text: "Let's just take this one piece at a time… what's going on?",
-    tone: PalOpeningTone.calm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_CALM_10',
-    text: "Just ease into it. What's been today for you?",
-    tone: PalOpeningTone.calm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_CALM_11',
-    text: "We can keep this simple… how are you feeling right now?",
-    tone: PalOpeningTone.calm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_CALM_12',
-    text: "Take your time… what's been staying with you today?",
-    tone: PalOpeningTone.calm,
+    id: 'OPENING_EVEN_03',
+    text: "How's your day been?",
+    bucket: OpeningTimeBucket.evening,
+    type: OpeningLineType.bare,
   ),
 
-  // ── weary (37–48) ──────────────────────────────────────────────────────────
+  // ── night (10pm–5am) ──────────────────────────────────────────────────────
   PalOpeningLine(
-    id: 'OPENING_WEARY_01',
-    text: "You sound like you might be tired. What's been going on?",
-    tone: PalOpeningTone.weary,
+    id: 'OPENING_NIGHT_01',
+    text: "How's your night going?",
+    bucket: OpeningTimeBucket.night,
+    type: OpeningLineType.bare,
   ),
   PalOpeningLine(
-    id: 'OPENING_WEARY_02',
-    text: "Has today been a long one for you?",
-    tone: PalOpeningTone.weary,
+    id: 'OPENING_NIGHT_02',
+    text: "How are you tonight?",
+    bucket: OpeningTimeBucket.night,
+    type: OpeningLineType.bare,
   ),
   PalOpeningLine(
-    id: 'OPENING_WEARY_03',
-    text: "What's been wearing on you today?",
-    tone: PalOpeningTone.weary,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WEARY_04',
-    text: "You don\u2019t have to push through it here\u2026 what\u2019s been hard?",
-    tone: PalOpeningTone.weary,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WEARY_05',
-    text: "What's been taking more energy than you had today?",
-    tone: PalOpeningTone.weary,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WEARY_06',
-    text: "What's been a little too much lately?",
-    tone: PalOpeningTone.weary,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WEARY_07',
-    text: "What's been draining you today?",
-    tone: PalOpeningTone.weary,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WEARY_08',
-    text: "Has anything just felt… heavy today?",
-    tone: PalOpeningTone.weary,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WEARY_09',
-    text: "What's been a lot for you today?",
-    tone: PalOpeningTone.weary,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WEARY_10',
-    text: "What's been hard to carry today?",
-    tone: PalOpeningTone.weary,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WEARY_11',
-    text: "How are you holding up through all of it?",
-    tone: PalOpeningTone.weary,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WEARY_12',
-    text: "What's been quietly exhausting for you today?",
-    tone: PalOpeningTone.weary,
-  ),
-
-  // ── warm (49–60) ───────────────────────────────────────────────────────────
-  PalOpeningLine(
-    id: 'OPENING_WARM_01',
-    text: "Did anything feel a little good today?",
-    tone: PalOpeningTone.warm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WARM_02',
-    text: "What's been a small bright spot for you?",
-    tone: PalOpeningTone.warm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WARM_03',
-    text: "Anything that made you pause in a good way today?",
-    tone: PalOpeningTone.warm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WARM_04',
-    text: "What's something that felt even a little lighter today?",
-    tone: PalOpeningTone.warm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WARM_05',
-    text: "Did anything bring you a bit of peace today?",
-    tone: PalOpeningTone.warm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WARM_06',
-    text: "What's something you're glad happened today?",
-    tone: PalOpeningTone.warm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WARM_07',
-    text: "What's been a moment worth holding onto today?",
-    tone: PalOpeningTone.warm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WARM_08',
-    text: "Anything that made you smile, even briefly?",
-    tone: PalOpeningTone.warm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WARM_09',
-    text: "What felt steady or good today?",
-    tone: PalOpeningTone.warm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WARM_10',
-    text: "Was there a moment today that just felt… right?",
-    tone: PalOpeningTone.warm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WARM_11',
-    text: "What's something that didn't feel so heavy today?",
-    tone: PalOpeningTone.warm,
-  ),
-  PalOpeningLine(
-    id: 'OPENING_WARM_12',
-    text: "What's been a quiet good in your day?",
-    tone: PalOpeningTone.warm,
+    id: 'OPENING_NIGHT_03',
+    text: "What's your night been like?",
+    bucket: OpeningTimeBucket.night,
+    type: OpeningLineType.bare,
   ),
 ];
 
-/// Returns a uniformly random opening line from [palOpeningLines].
-///
-/// [random] is injectable for testing determinism.
-PalOpeningLine pickOpeningLine([Random? random]) {
-  final rng = random ?? Random();
-  return palOpeningLines[rng.nextInt(palOpeningLines.length)];
+/// Map a 24-hour clock value to a [OpeningTimeBucket]. Boundaries:
+/// morning = `[5, 12)`, afternoon = `[12, 17)`, evening = `[17, 22)`,
+/// night = `[22, 24) ∪ [0, 5)`.
+OpeningTimeBucket bucketForHour(int hour) {
+  if (hour >= 22 || hour < 5) return OpeningTimeBucket.night;
+  if (hour < 12) return OpeningTimeBucket.morning;
+  if (hour < 17) return OpeningTimeBucket.afternoon;
+  return OpeningTimeBucket.evening;
 }
 
-/// Returns all 60 opening-line texts in shuffled order, for passive
+/// Stable storage key for a bucket's recency history.
+String bucketKey(OpeningTimeBucket bucket) => bucket.name;
+
+/// Returns the lines belonging to [bucket], in declaration order.
+List<PalOpeningLine> linesForBucket(OpeningTimeBucket bucket) =>
+    [for (final l in palOpeningLines) if (l.bucket == bucket) l];
+
+/// Pick an opening line for the given local [hour] (0–23) using the
+/// persistent recency rotation in [PalOpeningRecency].
+///
+/// Caller is responsible for awaiting [PalOpeningRecency.ensureInitialized]
+/// before the first pick if persistence across app restarts is desired.
+PalOpeningLine pickOpeningLineForHour(int hour) {
+  final bucket = bucketForHour(hour);
+  final lines = linesForBucket(bucket);
+  // Library invariant: every bucket has at least one line.
+  assert(lines.isNotEmpty, 'Empty bucket ${bucket.name}');
+  final index = PalOpeningRecency.pickIndex(bucketKey(bucket), lines.length);
+  return lines[index];
+}
+
+/// Returns all opening-line texts in shuffled order, for passive
 /// rotation surfaces such as the mood screen TextField placeholder
 /// (Feature 2.0, "Mood Screen Passive Placeholder Rotation").
 ///
