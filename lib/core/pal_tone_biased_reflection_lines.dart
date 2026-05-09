@@ -1,3 +1,11 @@
+// ignore_for_file: deprecated_member_use_from_same_package
+//
+// PalOpeningTone is intentionally @Deprecated as of PR #13 (commit ceb0d3a)
+// when Feature 5.1 tone-biased reflection was retired. The enum is kept as a
+// stub so this orphaned file still compiles. The deprecation warnings are
+// expected and suppressed at file scope so CI's `flutter analyze` stays clean
+// on Flutter 3.27.1 (CI version). Newer Flutter versions don't emit the warning.
+
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
