@@ -3,21 +3,26 @@ import 'package:bible_pal/core/pal_voice_registry.dart';
 
 void main() {
   group('PalVoiceRegistry', () {
-    test('contains exactly 4 voices', () {
-      expect(PalVoiceRegistry.voices.length, 4);
+    test('contains exactly 3 active voices', () {
+      // Ruth v1 retired 2026-04-25 (audio archived to
+      // assets/pal/audio_archive_ruth_v1_2026_04_25/). Grace was
+      // retired 2026-04-23.
+      expect(PalVoiceRegistry.voices.length, 3);
     });
 
-    test('has 2 male and 2 female voices', () {
+    test('has 2 male and 1 female voices', () {
+      // Until Ruth v2 ships: Hope (female), Shepherd (male),
+      // Stillwater (male).
       final males =
           PalVoiceRegistry.voices.where((v) => v.gender == 'male').toList();
       final females =
           PalVoiceRegistry.voices.where((v) => v.gender == 'female').toList();
       expect(males.length, 2);
-      expect(females.length, 2);
+      expect(females.length, 1);
     });
 
-    test('default voice key is VOICE_GRACE', () {
-      expect(PalVoiceRegistry.defaultVoiceKey, 'VOICE_GRACE');
+    test('default voice key is VOICE_HOPE', () {
+      expect(PalVoiceRegistry.defaultVoiceKey, 'VOICE_HOPE');
     });
 
     test('default voice exists in the list', () {
@@ -51,11 +56,10 @@ void main() {
       }
     });
 
-    test('voice keys match expected PAL V2 canonical keys', () {
+    test('voice keys match expected PAL canonical keys', () {
       final expected = {
-        'VOICE_GRACE',
-        'VOICE_SHEPHERD',
         'VOICE_HOPE',
+        'VOICE_SHEPHERD',
         'VOICE_STILLWATER',
       };
       final actual = PalVoiceRegistry.voices.map((v) => v.voiceKey).toSet();
@@ -98,37 +102,48 @@ void main() {
       expect(PalVoiceRegistry.isLegacyKey('VOICE_DAVID_SHEPHERD'), true);
     });
 
-    test('new voice keys are not legacy', () {
-      expect(PalVoiceRegistry.isLegacyKey('VOICE_GRACE'), false);
-      expect(PalVoiceRegistry.isLegacyKey('VOICE_SHEPHERD'), false);
+    test('current voice keys are not legacy', () {
       expect(PalVoiceRegistry.isLegacyKey('VOICE_HOPE'), false);
+      expect(PalVoiceRegistry.isLegacyKey('VOICE_SHEPHERD'), false);
       expect(PalVoiceRegistry.isLegacyKey('VOICE_STILLWATER'), false);
     });
 
-    test('migrateVoiceKey maps old keys to default', () {
-      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_SARAH_STORYTELLER'),
-          'VOICE_GRACE');
-      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_HANNAH_HOPE'),
-          'VOICE_GRACE');
-      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_JAMES_HUSKY'),
-          'VOICE_GRACE');
-      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_DAVID_SHEPHERD'),
-          'VOICE_GRACE');
+    test('retired voices are legacy', () {
+      // Grace retired 2026-04-23, Ruth v1 retired 2026-04-25.
+      // Existing users on either migrate to the current default
+      // (Hope) on next launch.
+      expect(PalVoiceRegistry.isLegacyKey('VOICE_GRACE'), true);
+      expect(PalVoiceRegistry.isLegacyKey('VOICE_RUTH_COMFORT'), true);
     });
 
-    test('migrateVoiceKey preserves valid new keys', () {
+    test('migrateVoiceKey maps old keys to current default', () {
+      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_SARAH_STORYTELLER'),
+          'VOICE_HOPE');
+      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_HANNAH_HOPE'),
+          'VOICE_HOPE');
+      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_JAMES_HUSKY'),
+          'VOICE_HOPE');
+      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_DAVID_SHEPHERD'),
+          'VOICE_HOPE');
       expect(
-          PalVoiceRegistry.migrateVoiceKey('VOICE_GRACE'), 'VOICE_GRACE');
+          PalVoiceRegistry.migrateVoiceKey('VOICE_GRACE'), 'VOICE_HOPE');
+      // Ruth v1 retired 2026-04-25 — existing Ruth users land on
+      // Hope on next launch.
+      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_RUTH_COMFORT'),
+          'VOICE_HOPE');
+    });
+
+    test('migrateVoiceKey preserves valid current keys', () {
+      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_HOPE'), 'VOICE_HOPE');
       expect(PalVoiceRegistry.migrateVoiceKey('VOICE_SHEPHERD'),
           'VOICE_SHEPHERD');
-      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_HOPE'), 'VOICE_HOPE');
       expect(PalVoiceRegistry.migrateVoiceKey('VOICE_STILLWATER'),
           'VOICE_STILLWATER');
     });
 
-    test('migrateVoiceKey maps unknown keys to default', () {
+    test('migrateVoiceKey maps unknown keys to current default', () {
       expect(
-          PalVoiceRegistry.migrateVoiceKey('VOICE_UNKNOWN'), 'VOICE_GRACE');
+          PalVoiceRegistry.migrateVoiceKey('VOICE_UNKNOWN'), 'VOICE_HOPE');
     });
   });
 }

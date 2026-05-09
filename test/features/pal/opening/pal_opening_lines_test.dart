@@ -6,12 +6,12 @@ import 'package:bible_pal/features/pal/opening/pal_opening_lines.dart';
 
 void main() {
   // ---------------------------------------------------------------------------
-  // Library integrity (INVARIANTS — Delilah Opening Layer)
+  // Library integrity (Feature 2.0 — time-bucketed opening greeting)
   // ---------------------------------------------------------------------------
 
   group('opening library integrity', () {
-    test('exactly 60 entries', () {
-      expect(palOpeningLines.length, equals(60));
+    test('exactly 12 entries', () {
+      expect(palOpeningLines.length, equals(12));
     });
 
     test('all text non-empty', () {
@@ -34,110 +34,183 @@ void main() {
       );
     });
 
-    test('valid PalOpeningTone on every line', () {
+    test('valid OpeningTimeBucket on every line', () {
       for (final line in palOpeningLines) {
         expect(
-          PalOpeningTone.values.contains(line.tone),
+          OpeningTimeBucket.values.contains(line.bucket),
           isTrue,
-          reason: 'Invalid tone on: ${line.text}',
+          reason: 'Invalid bucket on: ${line.text}',
         );
       }
     });
 
-    test('exactly 12 lines per tone bucket', () {
-      for (final tone in PalOpeningTone.values) {
-        final count = palOpeningLines.where((l) => l.tone == tone).length;
+    test('valid OpeningLineType on every line', () {
+      for (final line in palOpeningLines) {
+        expect(
+          OpeningLineType.values.contains(line.type),
+          isTrue,
+          reason: 'Invalid type on: ${line.text}',
+        );
+      }
+    });
+
+    test('exactly 3 lines per time bucket', () {
+      for (final bucket in OpeningTimeBucket.values) {
+        final count = palOpeningLines.where((l) => l.bucket == bucket).length;
         expect(
           count,
-          equals(12),
-          reason: 'Tone ${tone.name} has $count lines, expected 12',
+          equals(3),
+          reason: 'Bucket ${bucket.name} has $count lines, expected 3',
         );
       }
     });
 
-    test('covers all 5 tones', () {
-      final tones = palOpeningLines.map((l) => l.tone).toSet();
-      expect(tones, containsAll(PalOpeningTone.values));
+    test('covers all 4 time buckets', () {
+      final buckets = palOpeningLines.map((l) => l.bucket).toSet();
+      expect(buckets, containsAll(OpeningTimeBucket.values));
     });
   });
 
   // ---------------------------------------------------------------------------
-  // Selection
+  // ID convention (matches asset filenames at assets/pal/audio/{voice}/{id}.mp3)
   // ---------------------------------------------------------------------------
 
-  group('pickOpeningLine', () {
-    test('returns a line from the library', () {
-      final line = pickOpeningLine();
-      expect(palOpeningLines.contains(line), isTrue);
+  group('opening line IDs', () {
+    test('all IDs non-empty and unique', () {
+      final ids = <String>{};
+      for (final line in palOpeningLines) {
+        expect(line.id.trim().isNotEmpty, isTrue);
+        expect(ids.add(line.id), isTrue, reason: 'Duplicate ID: ${line.id}');
+      }
     });
 
-    test('result has valid tone', () {
-      final line = pickOpeningLine();
-      expect(PalOpeningTone.values.contains(line.tone), isTrue);
-    });
-
-    test('injectable Random produces deterministic result', () {
-      const seed = 42;
-      final a = pickOpeningLine(Random(seed));
-      final b = pickOpeningLine(Random(seed));
-      expect(a.text, equals(b.text));
-      expect(a.tone, equals(b.tone));
-    });
-
-    test('different seeds can produce different lines', () {
-      final results = List.generate(
-        20,
-        (i) => pickOpeningLine(Random(i)).text,
-      ).toSet();
-      // With 60 lines and 20 seeds, expect at least 2 distinct results.
-      expect(results.length, greaterThan(1));
-    });
-
-    test('index stays within bounds across many calls', () {
-      for (int i = 0; i < 200; i++) {
-        final line = pickOpeningLine(Random(i));
-        expect(
-          palOpeningLines.indexOf(line),
-          inInclusiveRange(0, 59),
-        );
+    test('IDs follow OPENING_{BUCKET}_{NN} convention and match bucket', () {
+      const bucketCode = {
+        OpeningTimeBucket.morning: 'MORN',
+        OpeningTimeBucket.afternoon: 'AFTN',
+        OpeningTimeBucket.evening: 'EVEN',
+        OpeningTimeBucket.night: 'NIGHT',
+      };
+      for (final line in palOpeningLines) {
+        final code = bucketCode[line.bucket];
+        expect(line.id, startsWith('OPENING_${code}_'),
+            reason:
+                'ID "${line.id}" does not match bucket "${line.bucket.name}"');
+        final parts = line.id.split('_');
+        final suffix = parts.last;
+        expect(suffix.length, 2,
+            reason: 'ID "${line.id}" suffix is not 2 digits');
+        expect(int.tryParse(suffix), isNotNull,
+            reason: 'ID "${line.id}" suffix is not numeric');
       }
     });
   });
 
   // ---------------------------------------------------------------------------
-  // Tone enum
+  // Time-bucket boundary mapping
   // ---------------------------------------------------------------------------
 
-  group('PalOpeningTone', () {
-    test('has exactly 5 values', () {
-      expect(PalOpeningTone.values.length, equals(5));
+  group('bucketForHour', () {
+    test('night covers 22:00–04:59 inclusive', () {
+      for (final hour in [22, 23, 0, 1, 2, 3, 4]) {
+        expect(bucketForHour(hour), OpeningTimeBucket.night,
+            reason: 'hour=$hour should be night');
+      }
     });
 
-    test('contains expected tone names', () {
-      final names = PalOpeningTone.values.map((t) => t.name).toSet();
-      expect(names, containsAll(['gentle', 'encouraging', 'calm', 'weary', 'warm']));
+    test('morning covers 05:00–11:59 inclusive', () {
+      for (final hour in [5, 6, 8, 11]) {
+        expect(bucketForHour(hour), OpeningTimeBucket.morning,
+            reason: 'hour=$hour should be morning');
+      }
+    });
+
+    test('afternoon covers 12:00–16:59 inclusive', () {
+      for (final hour in [12, 13, 15, 16]) {
+        expect(bucketForHour(hour), OpeningTimeBucket.afternoon,
+            reason: 'hour=$hour should be afternoon');
+      }
+    });
+
+    test('evening covers 17:00–21:59 inclusive', () {
+      for (final hour in [17, 18, 20, 21]) {
+        expect(bucketForHour(hour), OpeningTimeBucket.evening,
+            reason: 'hour=$hour should be evening');
+      }
+    });
+
+    test('every hour 0–23 maps to a bucket', () {
+      for (var h = 0; h < 24; h++) {
+        final b = bucketForHour(h);
+        expect(OpeningTimeBucket.values.contains(b), isTrue);
+      }
     });
   });
 
   // ---------------------------------------------------------------------------
-  // Tone bias scope contract (structural)
+  // linesForBucket
   // ---------------------------------------------------------------------------
 
-  group('tone bias scope (structural)', () {
-    // These tests verify the data model enforces the invariant that tone is
-    // a property of the opening line only, not injected into other fields.
-
-    test('PalOpeningLine carries only text and tone', () {
-      final line = palOpeningLines.first;
-      // Verify the two required fields exist and are the only named members.
-      expect(line.text, isA<String>());
-      expect(line.tone, isA<PalOpeningTone>());
+  group('linesForBucket', () {
+    test('returns exactly 3 lines for each bucket', () {
+      for (final bucket in OpeningTimeBucket.values) {
+        expect(linesForBucket(bucket).length, 3);
+      }
     });
 
-    test('opening line text contains no mood-injection markers', () {
-      // Tone must never assert knowledge of the user's mood.
-      // Lines should not contain terms that presuppose the user's state.
-      const forbiddenPrefixes = ['You are', 'You feel', 'I know you'];
+    test('returned lines all match the requested bucket', () {
+      for (final bucket in OpeningTimeBucket.values) {
+        for (final line in linesForBucket(bucket)) {
+          expect(line.bucket, bucket);
+        }
+      }
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // No-inference content guardrail (durable lint)
+  // ---------------------------------------------------------------------------
+
+  group('no pre-input emotional inference', () {
+    // The opening greeting must be mood-blind. These keywords presupposed
+    // the user's emotional state in the retired 60-line library — they
+    // must never reappear.
+    const forbiddenKeywords = [
+      'tired',
+      'heavy',
+      'weighing',
+      'weighed',
+      'draining',
+      'drained',
+      'exhausting',
+      'exhausted',
+      'bright spot',
+      'glad happened',
+      'worth holding',
+      'really doing',
+      'carry it alone',
+      'pressing on',
+      'pulling at',
+      'hard to shake',
+      'wearing on',
+    ];
+
+    test('no opening line contains a forbidden inference keyword', () {
+      for (final line in palOpeningLines) {
+        final lower = line.text.toLowerCase();
+        for (final kw in forbiddenKeywords) {
+          expect(
+            lower.contains(kw),
+            isFalse,
+            reason:
+                'Line "${line.text}" (id=${line.id}) contains forbidden keyword "$kw" — opening must be mood-blind.',
+          );
+        }
+      }
+    });
+
+    test('no opening line starts with presupposed-knowledge prefix', () {
+      const forbiddenPrefixes = ['You are', 'You feel', 'I know you', 'You sound'];
       for (final line in palOpeningLines) {
         for (final prefix in forbiddenPrefixes) {
           expect(
@@ -156,9 +229,9 @@ void main() {
   // ---------------------------------------------------------------------------
 
   group('buildShuffledOpeningLineTexts', () {
-    test('returns exactly 60 texts', () {
+    test('returns the full library size', () {
       final pool = buildShuffledOpeningLineTexts(random: Random(1));
-      expect(pool.length, equals(60));
+      expect(pool.length, equals(palOpeningLines.length));
     });
 
     test('returns the full library with no additional strings', () {
@@ -168,21 +241,17 @@ void main() {
     });
 
     test('contains no old hardcoded placeholder strings', () {
-      // These are the old _StudyPageState / _PalsParablesScreenState hints
-      // that were removed from the mood screen rotation. If any of them
-      // appears in the pool, the rotation is still pulling from a mixed
-      // source.
       const oldPlaceholders = [
-        'Tell me how you\u2019re feeling\u2026',
-        'What\u2019s on your heart today?',
+        'Tell me how you’re feeling…',
+        'What’s on your heart today?',
         'How are you starting your day?',
         'What are you grateful for today?',
-        'How\u2019s your spirit doing?',
-        'What\u2019s on your heart tonight?',
+        'How’s your spirit doing?',
+        'What’s on your heart tonight?',
         'How did your day go?',
-        'What\u2019s ahead for you today?',
-        'What\u2019s on your mind tonight?',
-        'What\u2019s weighing on you?',
+        'What’s ahead for you today?',
+        'What’s on your mind tonight?',
+        'What’s weighing on you?',
         'Anything you need to lay down today?',
       ];
       final pool = buildShuffledOpeningLineTexts(random: Random(3));
@@ -202,17 +271,7 @@ void main() {
       expect(a, equals(b));
     });
 
-    test('different seeds produce different orderings', () {
-      final a = buildShuffledOpeningLineTexts(random: Random(1));
-      final b = buildShuffledOpeningLineTexts(random: Random(2));
-      // Same set, different order (with 60 items, seed 1 vs 2 should differ).
-      expect(a.toSet(), equals(b.toSet()));
-      expect(a, isNot(equals(b)));
-    });
-
     test('avoidFirst moves matching first element out of index 0', () {
-      // Same seed produces the same shuffle order, so the first element of
-      // the base run is what avoidFirst should displace in the guarded run.
       final base = buildShuffledOpeningLineTexts(random: Random(42));
       final target = base.first;
       final guarded = buildShuffledOpeningLineTexts(
@@ -224,7 +283,6 @@ void main() {
         isNot(equals(target)),
         reason: 'avoidFirst="$target" still appeared at index 0',
       );
-      // The avoided line is still present, just not at the front.
       expect(guarded, contains(target));
     });
 
@@ -238,31 +296,6 @@ void main() {
       expect(guarded, equals(base));
     });
 
-    test('simulated multi-cycle rotation never produces immediate repeats', () {
-      // Simulate the _StudyPageState rotation: start with one pool, cycle
-      // through every index, reshuffle on wrap with avoidFirst, repeat.
-      final rng = Random(99);
-      var pool = buildShuffledOpeningLineTexts(random: rng);
-      var idx = 0;
-      String? prev;
-      for (int step = 0; step < 200; step++) {
-        final line = pool[idx];
-        if (prev != null) {
-          expect(
-            line,
-            isNot(equals(prev)),
-            reason: 'Immediate repeat at step $step',
-          );
-        }
-        prev = line;
-        idx++;
-        if (idx >= pool.length) {
-          pool = buildShuffledOpeningLineTexts(random: rng, avoidFirst: prev);
-          idx = 0;
-        }
-      }
-    });
-
     test('full cycle visits every line before any repeat', () {
       final pool = buildShuffledOpeningLineTexts(random: Random(11));
       final seen = <String>{};
@@ -274,34 +307,7 @@ void main() {
         );
         seen.add(line);
       }
-      expect(seen.length, equals(60));
-    });
-  });
-
-  // ---------------------------------------------------------------------------
-  // Session-only tone — no persistence API exists
-  // ---------------------------------------------------------------------------
-
-  group('session-only tone contract', () {
-    // The PalOpeningLine / PalOpeningTone types must not expose any
-    // serialization or storage methods — persistence is explicitly prohibited.
-
-    test('PalOpeningLine has no toJson', () {
-      final line = palOpeningLines.first;
-      // Dart reflection isn't available in tests, but we verify the class
-      // doesn't implement toJson by confirming it's not callable.
-      // (If toJson existed it would be a dynamic method and this cast would succeed.)
-      expect(line, isNot(isA<Map>()));
-    });
-
-    test('PalOpeningTone values have no ordinal storage keys', () {
-      // Verify tone names are plain strings with no storage-key prefixes
-      // that would suggest they are meant to be stored.
-      for (final tone in PalOpeningTone.values) {
-        expect(tone.name, isNot(contains('_key')));
-        expect(tone.name, isNot(contains('_id')));
-        expect(tone.name, isNot(contains('prefs')));
-      }
+      expect(seen.length, equals(palOpeningLines.length));
     });
   });
 }

@@ -1,19 +1,24 @@
 import 'dart:async';
+import 'dart:io' show File;
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../providers/app_state_notifier.dart';
+import 'package:just_audio/just_audio.dart'
+    show PlayerException, PlayerInterruptedException;
+import '../../core/pal_voice_registry.dart';
+import '../../services/pal_audio_service.dart' show PalAudioService;
 import '../../services/pal_prompt_service.dart';
 import '../../services/stt_service.dart';
 import '../../providers/service_providers.dart';
 import '../../core/biblical_figure_registry.dart';
 import '../../core/creative_opening_lines.dart';
 import '../../core/pal_reflection_lines.dart';
-import '../../core/pal_tone_biased_reflection_lines.dart';
 import '../../core/pal_transition_lines.dart';
 import '../pal/opening/pal_opening_lines.dart';
+import '../pal/opening/pal_opening_recency.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/living_sky.dart';
 import '../onboarding/first_launch_screen.dart' show kPalIntroShownKey;
@@ -30,10 +35,6 @@ import '../../widgets/glass_input_decoration.dart';
 import '../../widgets/living_sky_background.dart';
 import '../../widgets/premium_components.dart';
 import '../paths/paths_page.dart';
-
-/// Session-only opening tone (Feature 2.0). Set when the PAL opening line is
-/// selected; reset at the start of the next tap. Never persisted to storage.
-final _palOpeningToneProvider = StateProvider<PalOpeningTone?>((ref) => null);
 
 /// Re-entrancy guard shared across mood/text/voice entry flows so the user
 /// can't double-tap themselves into two parallel selections.
@@ -818,19 +819,15 @@ class _StudyPageState extends ConsumerState<_StudyPage>
         await BiblicalFigureRegistry.ensureLoaded();
         await PalTransitionLines.ensureLoaded();
         await PalReflectionLines.ensureLoaded();
-        await PalToneBiasedReflectionLines.ensureLoaded();
         final framingRef =
             BiblicalFigureRegistry.getFramingLineRef(previewKey);
         final transitionRef =
             PalTransitionLines.getLineRef(previewKey);
-        // Feature 5.1: use tone-biased first sentence when opening tone is
-        // active; fall back to standard reflection line if key not found.
-        final openingTone = ref.read(_palOpeningToneProvider);
-        final reflectionRef = (openingTone != null
-                ? PalToneBiasedReflectionLines.getLineRef(
-                    moodResult.mood, openingTone)
-                : null) ??
-            PalReflectionLines.getLineRef(moodResult.mood);
+        // Feature 5.1 tone-biased reflection retired with the 12-line
+        // time-bucketed opening library (SPEC §2.0). Opening lines no
+        // longer carry a tone enum, so reflection always uses the
+        // default mood ref.
+        final reflectionRef = PalReflectionLines.getLineRef(moodResult.mood);
         if (framingRef != null && mounted) {
           // Text-input flow: no audio. PAL's voice responses are reserved
           // for the voice flow (`_processMoodFromVoice`); typed input
@@ -1215,8 +1212,30 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   String? _finalTranscript;
   Timer? _autoStoryTimer;
 
+  // Hard reentrancy guard for the PAL voice conversation. Set true
+  // at the entry of `_startConversation` and released ONLY in
+  // `_cancelConversation` (which runs on every cancel/error path
+  // AND immediately before story navigation in the success path).
+  // The earlier per-flow flag was reset in `_startConversation`'s
+  // finally — but `_runConversation` returns as soon as STT
+  // *setup* completes, while mood detection and story navigation
+  // continue asynchronously via STT callbacks. That left a ~2s
+  // window where a second `_onPalTap` could start a parallel
+  // conversation, racing the shared audio player and producing
+  // PlayerException -11849 on the second opening. This flag stays
+  // up for the entire conversation lifetime, so the second tap is
+  // always blocked.
+  bool _voiceConversationActive = false;
+  // Set true when the opening playback fails with iOS -11849
+  // ("Operation Stopped"). The current AVPlayer instance is wedged
+  // and any subsequent setAsset on it will keep returning -11849.
+  // `_cancelConversation` consults this flag and runs an audio-
+  // recovery cooldown before releasing the conversation guard so
+  // the next tap starts against a fresh player + reactivated
+  // session, not the wedged one.
+  bool _needsAudioCooldown = false;
+
   // Services for voice flow
-  final PalPromptService _promptService = PalPromptService();
   final SttService _sttService = SttService();
   final Random _random = Random();
 
@@ -1425,7 +1444,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       });
     }
 
-    // Start the voice-first conversational flow
+    // Start the voice-first conversational flow.
     _startConversation();
   }
 
@@ -1434,7 +1453,35 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     _autoStoryTimer?.cancel();
     _sttService.stopListening();
     _micPulseController.stop();
-    ref.read(palAudioServiceProvider).stop();
+    final palAudio = ref.read(palAudioServiceProvider);
+    palAudio.stop();
+
+    if (_needsAudioCooldown) {
+      // Hold the conversation reentrancy guard up while the audio
+      // stack recovers (dispose+recreate player, deactivate→
+      // reactivate session, ~950ms total). A new tap during this
+      // window would otherwise hit the wedged AVPlayer and reproduce
+      // -11849 again. Release the guard ONLY when recovery
+      // completes.
+      _needsAudioCooldown = false;
+      logEvent('pal_audio_cooldown_started', {});
+      // Fire-and-forget; outcome is logged by the service.
+      () async {
+        try {
+          await palAudio.recoverFromOperationStopped();
+        } finally {
+          _voiceConversationActive = false;
+          logEvent('pal_audio_cooldown_finished', {});
+        }
+      }();
+    } else {
+      // Release the conversation reentrancy guard. This is the
+      // authoritative termination signal for the entire PAL flow —
+      // every cancel/error path calls this, and the success path
+      // calls it immediately before navigating to the story player.
+      _voiceConversationActive = false;
+    }
+
     // Resume breathing animation
     if (!_breathController.isAnimating) {
       _breathController.repeat(reverse: true);
@@ -1449,15 +1496,64 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   }
 
   /// Start the full voice conversation: greeting → listen → respond → story.
+  ///
+  /// Hard reentrancy guard at the actual call site. The InkWell's
+  /// `onTap` rebuild gate is the first line of defense, but breadcrumb
+  /// data showed a second `_startConversation` landing while a prior
+  /// flow was already in playingGreeting → listening — the two flows
+  /// then raced the shared audio player and the second opening's
+  /// `setAsset` returned PlayerException -11849 ("Operation Stopped").
+  /// This guard closes that race by checking both
+  /// `_voiceConversationActive` (a flag held across the entire flow
+  /// lifetime — released only by `_cancelConversation`) and the
+  /// public `_voiceFlow` state. Anything other than `inactive` blocks.
   Future<void> _startConversation() async {
+    // Single-entry contract: `_startConversation` is invoked only
+    // from `_onPalTap`. Debug-only assert catches any future
+    // accidental re-entry from a new caller; release builds rely
+    // on the runtime guard below.
+    assert(!_voiceConversationActive,
+        'Conversation restarted unexpectedly');
+
+    if (_voiceConversationActive ||
+        _voiceFlow != _VoiceFlowState.inactive) {
+      logEvent('pal_opening_reentry_blocked', {
+        'voice_flow': _voiceFlow.name,
+        'conversation_active': _voiceConversationActive,
+      });
+      return;
+    }
+    _voiceConversationActive = true;
+    try {
+      await _runConversation();
+    } catch (e) {
+      // Unexpected exception in the conversation flow — release the
+      // guard so the user isn't stuck with all future PAL taps
+      // silently blocked. _cancelConversation isn't guaranteed to
+      // run on a thrown exception.
+      _voiceConversationActive = false;
+      rethrow;
+    }
+    // NOTE: deliberate — do NOT release the guard here. _runConversation
+    // returns as soon as STT setup completes, but mood detection and
+    // story navigation continue asynchronously via STT callbacks.
+    // _cancelConversation (called in every cancel/error path AND
+    // immediately before story navigation in the success path) is the
+    // authoritative termination signal for the conversation.
+  }
+
+  Future<void> _runConversation() async {
     // Pause breathing during voice flow
     _breathController.stop();
 
-    // Feature 2.0 — Delilah pre-greeting opening line.
-    // Selected uniformly at random; tone stored session-only (never persisted).
-    ref.read(_palOpeningToneProvider.notifier).state = null; // reset from prior session
-    final opening = pickOpeningLine();
-    ref.read(_palOpeningToneProvider.notifier).state = opening.tone;
+    // Feature 2.0 — 12-line time-bucketed mood-blind opening greeting
+    // (SPEC §2.0). Selection driven solely by current local hour with
+    // persistent recency rotation; tone signal retired with the 60-line
+    // library. Emotional warmth is handled later by Feature 2.1
+    // micro-responses, AFTER the user has spoken.
+    await PalOpeningRecency.ensureInitialized();
+    final hour = DateTime.now().hour;
+    final opening = pickOpeningLineForHour(hour);
     setState(() {
       _voiceFlow = _VoiceFlowState.playingOpeningLine;
       _greetingText = opening.text;
@@ -1471,42 +1567,133 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         appStateForOpening?.userPreferences.palGreetingsEnabled != false;
     if (openingAudioEnabled) {
       final voiceKey =
-          appStateForOpening?.userPreferences.palVoiceKey ?? 'VOICE_RUTH_COMFORT';
+          appStateForOpening?.userPreferences.palVoiceKey ?? PalVoiceRegistry.defaultVoiceKey;
       final palAudio = ref.read(palAudioServiceProvider);
-      try {
-        var played = await palAudio.playLine(opening.id, voiceKey);
-        // Retry-once narrowly here in the opening flow: if the very
-        // first PAL audio call after an app launch hits the iOS audio
-        // session in a not-yet-ready state, just_audio's setAsset can
-        // throw (PlayerException -11849 "Operation Stopped") and
-        // playLine returns false. A 500ms wait is enough for the
-        // session to settle, and the retry usually succeeds. Other
-        // code paths (transition, framing, reflection) are unchanged
-        // because they only run after the opening has already
-        // exercised the audio session — by then it's stable.
-        if (!played) {
-          await Future.delayed(const Duration(milliseconds: 500));
-          played = await palAudio.playLine(opening.id, voiceKey);
-          logEvent('pal_audio_opening_retry',
-              {'line_id': opening.id, 'voice_key': voiceKey, 'retry_played': played});
+      final expectedPath = PalAudioService.assetPath(voiceKey, opening.id);
+
+      // Optional name-prefix splice. Only attaches to `bare`-type
+      // opening lines so we don't stack greetings (e.g. avoid "Hi
+      // there, Adam! Hi… how's your morning been?"). Probability is
+      // 30% — natural and occasional, not every time. Cache miss
+      // kicks off lazy generation for the next launch.
+      File? nameClipFile;
+      String? nameClipText;
+      if (opening.type == OpeningLineType.bare) {
+        final userName = appStateForOpening?.userPreferences.userName ?? '';
+        if (userName.isNotEmpty && _random.nextDouble() < 0.30) {
+          final nameAudio = ref.read(nameAudioServiceProvider);
+          final nameClip =
+              await nameAudio.getRandomNameClip(userName, voiceKey);
+          if (nameClip != null) {
+            nameClipFile = nameClip.file;
+            nameClipText = nameClip.text;
+          } else {
+            // Cache miss — fire-and-forget so prefix is ready next time.
+            nameAudio.generateNamePhrases(
+                name: userName, voiceKey: voiceKey);
+          }
         }
-        if (played) {
+      }
+
+      try {
+        // Strict iOS audio session activation gate. Configures +
+        // setActive(true) + 300ms settle delay before the first
+        // playback so AVFoundation has a fully active session by
+        // the time setAsset/play runs. Idempotent — subsequent
+        // calls in the same app session are fast no-ops.
+        await palAudio.ensureAudioSessionActive();
+        var resolution = await palAudio.playLineResolved(
+            opening.id, voiceKey,
+            nameClipFile: nameClipFile);
+        // Retry-once narrowly here in the opening flow for non-fatal
+        // failures (e.g. transient asset-load issues). For iOS
+        // -11849 ("Operation Stopped") the AVPlayer is wedged and
+        // every subsequent setAsset on it returns the same code, so
+        // retrying just delays the user's text-only fallback. Skip
+        // the retry on `operation_stopped` and fall through to the
+        // 1800ms text floor — `_cancelConversation` will run the
+        // recovery cooldown before the next tap is allowed.
+        if (!resolution.played && resolution.source != 'operation_stopped') {
+          await Future.delayed(const Duration(milliseconds: 500));
+          resolution = await palAudio.playLineResolved(opening.id, voiceKey);
+          logEvent('pal_audio_opening_retry', {
+            'line_id': opening.id,
+            'voice_key': voiceKey,
+            'retry_played': resolution.played,
+          });
+        }
+        logEvent('pal_opening_audio_resolution', {
+          'voice_key': voiceKey,
+          'opening_line_id': opening.id,
+          'expected_path': expectedPath,
+          'resolved_source': resolution.source,
+          'success': resolution.played,
+          if (resolution.errorType != null) 'error_type': resolution.errorType,
+          if (resolution.errorCode != null) 'error_code': resolution.errorCode,
+          if (resolution.errorMessage != null)
+            'error_message': resolution.errorMessage,
+          if (resolution.errorIndex != null) 'error_index': resolution.errorIndex,
+          if (resolution.errorString != null)
+            'error_string': resolution.errorString,
+        });
+        // iOS -11849 leaves the AVPlayer wedged. Flag here so
+        // `_cancelConversation` runs the recovery cooldown before
+        // releasing the conversation guard for the next tap.
+        if (resolution.source == 'operation_stopped') {
+          _needsAudioCooldown = true;
+        }
+        if (resolution.played) {
+          // Reflect the name prefix in the displayed greeting so the
+          // text matches what's being voiced (e.g. "Hi there, Adam!
+          // How's your day going?").
+          if (nameClipFile != null && nameClipText != null && mounted) {
+            setState(() => _greetingText = '$nameClipText ${opening.text}');
+          }
           await palAudio.awaitPlaybackComplete();
           logEvent('pal_audio_played', {
             'line_id': opening.id,
             'type': 'opening',
             'voice_key': voiceKey,
+            'name_prefix_attached': nameClipFile != null,
+            'opening_line_type': opening.type.name,
           });
         } else {
+          // SPEC Feature 2.0 floor: when audio cannot resolve, hold
+          // the text on screen long enough to be readable before the
+          // check-in prompt begins. Never silently skip.
           await Future.delayed(const Duration(milliseconds: 1800));
         }
       } catch (e) {
         debugPrint('[MainMenu] Opening line audio failed: $e');
+        // Extract rich PlayerException fields onto the canonical
+        // resolution event so we can distinguish iOS audio session
+        // refusals (-11849, -11800, etc.) from true asset failures.
+        final isPlayerException = e is PlayerException;
+        final isInterrupted = e is PlayerInterruptedException;
+        final richErr = <String, Object?>{
+          'error_type': e.runtimeType.toString(),
+          'error_string': e.toString(),
+          if (isPlayerException) 'error_code': e.code,
+          if (isPlayerException) 'error_message': e.message,
+          if (isPlayerException) 'error_index': e.details['index'],
+          if (isInterrupted) 'error_message': e.message,
+        };
         logEvent('pal_audio_error', {
           'line_id': opening.id,
           'type': 'opening',
           'error': e.runtimeType.toString(),
         });
+        logEvent('pal_opening_audio_resolution', {
+          'voice_key': voiceKey,
+          'opening_line_id': opening.id,
+          'expected_path': expectedPath,
+          'resolved_source': 'missing',
+          'success': false,
+          ...richErr,
+        });
+        if (isPlayerException && e.code == -11849) {
+          _needsAudioCooldown = true;
+        }
         await Future.delayed(const Duration(milliseconds: 1800));
       }
     } else {
@@ -1514,69 +1701,21 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     }
     if (!mounted || _voiceFlow != _VoiceFlowState.playingOpeningLine) return;
 
+    // Feature 2.0 §3: opening line IS the only voiced beat at cold-open.
+    // The old Phase 2 (96-prompt `_promptService.getPrompt()` text/audio)
+    // is retired — its prompts include BURDEN/HEART probes that violate
+    // the mood-blind cold-open invariant. The 96-prompt service stays
+    // available for future follow-up flows after the user has spoken.
+    //
+    // Transition through `playingGreeting` momentarily so the existing
+    // `_startListeningForMood` gate (which checks for that state) still
+    // activates the mic. No audio plays in this transition; the opening
+    // line audio has already finished above via `awaitPlaybackComplete`.
     setState(() => _voiceFlow = _VoiceFlowState.playingGreeting);
-
-    // Load PAL greeting text (Feature 2.1) — always needed for display.
-    // Audio playback is gated behind useLegacyPal.
-    try {
-      final prompt = await _promptService.getPrompt();
-      if (!mounted) return;
-      setState(() => _greetingText = prompt.text);
-
-      final appState = ref.read(appStateProvider).valueOrNull;
-      final useLegacy = appState?.userPreferences.useLegacyPal ?? false;
-
-      if (useLegacy &&
-          appState?.userPreferences.palGreetingsEnabled != false) {
-        // Legacy path: play old PROMPT_* audio
-        final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_RUTH_COMFORT';
-        final userName = appState?.userPreferences.userName ?? '';
-        final palAudio = ref.read(palAudioServiceProvider);
-        final nameAudio = ref.read(nameAudioServiceProvider);
-
-        final nameClip = userName.isNotEmpty
-            ? await nameAudio.getRandomNameClip(userName, voiceKey)
-            : null;
-
-        if (nameClip == null && userName.isNotEmpty) {
-          nameAudio.generateNamePhrases(name: userName, voiceKey: voiceKey);
-        }
-
-        try {
-          final text = await palAudio.playPrompt(
-            prompt.id,
-            voiceKey,
-            nameClipFile: nameClip?.file,
-            nameClipText: nameClip?.text,
-          );
-
-          logEvent('pal_line_played', {
-            'line_id': prompt.id,
-            'type': 'prompt',
-            'time_window': prompt.timeWindow,
-            'voice_key': voiceKey,
-            'name_prefix_used': text != prompt.text,
-          });
-
-          if (mounted && text.isNotEmpty) {
-            setState(() => _greetingText = text);
-          }
-        } catch (e) {
-          debugPrint('[MainMenu] PAL prompt audio failed: $e');
-        }
-      }
-      // New path (useLegacyPal == false): opening line audio already played
-      // above; greeting text displays without old PROMPT_* audio.
-    } catch (e) {
-      debugPrint('[MainMenu] Failed to load prompt: $e');
-      if (mounted) {
-        setState(() => _greetingText = 'How are you doing today?');
-      }
-    }
 
     if (!mounted || _voiceFlow != _VoiceFlowState.playingGreeting) return;
 
-    // Greeting done — auto-activate mic
+    // Greeting done — auto-activate mic.
     await _startListeningForMood();
   }
 
@@ -1693,7 +1832,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     // Micro-response: text always shown; audio gated behind useLegacyPal.
     final appState = ref.read(appStateProvider).valueOrNull;
     final useLegacy = appState?.userPreferences.useLegacyPal ?? false;
-    final voiceKey = appState?.userPreferences.palVoiceKey ?? 'VOICE_RUTH_COMFORT';
+    final voiceKey = appState?.userPreferences.palVoiceKey ?? PalVoiceRegistry.defaultVoiceKey;
 
     String responseText;
     if (!useLegacy ||
@@ -1707,13 +1846,10 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
           appState?.userPreferences.palGreetingsEnabled != false;
       if (palResponseEnabled) {
         await PalReflectionLines.ensureLoaded();
-        await PalToneBiasedReflectionLines.ensureLoaded();
-        final openingTone = ref.read(_palOpeningToneProvider);
-        final reflectionRef = (openingTone != null
-                ? PalToneBiasedReflectionLines.getLineRef(
-                    result.mood, openingTone)
-                : null) ??
-            PalReflectionLines.getLineRef(result.mood);
+        // Feature 5.1 tone-biased reflection retired with 12-line
+        // time-bucketed opening library (SPEC §2.0). Reflection uses
+        // default mood ref.
+        final reflectionRef = PalReflectionLines.getLineRef(result.mood);
         if (reflectionRef != null && mounted) {
           final palAudio = ref.read(palAudioServiceProvider);
           try {
