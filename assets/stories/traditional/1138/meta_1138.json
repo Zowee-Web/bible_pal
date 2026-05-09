@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1138,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Chariot of Fire",
+  "scriptureAnchor": "2 Kings 2:1-12",
+  "bibleStoryKey": "elijah_taken_up",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "hope",
+    "calling",
+    "transformation"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired"
+  ],
+  "primaryCharacterId": "elijah",
+  "primaryCharacterDisplayName": "Elijah",
+  "bibleOrderIndex": 295,
+  "timelineEra": "prophets",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1138_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1190,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Bless the Lord, My Soul",
+  "scriptureAnchor": "Psalm 103:1-22",
+  "bibleStoryKey": "bless_the_lord_my_soul",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
+  "themeTags": [
+    "gratitude",
+    "mercy",
+    "praise",
+    "prayer",
+    "blessing"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "thankful",
+    "humbled",
+    "tender",
+    "loved"
+  ],
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "bibleOrderIndex": 230,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1190_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bible_pal/services/pal_audio_service.dart';
 import 'package:bible_pal/core/pal_voice_registry.dart';
@@ -22,7 +24,7 @@ void main() {
       expect(
         PalAudioService.assetPath(
             'VOICE_HOPE', PalAudioService.previewLineId),
-        'assets/pal/audio/VOICE_HOPE/OPENING_GENTLE_01.mp3',
+        'assets/pal/audio/VOICE_HOPE/OPENING_AFTN_01.mp3',
       );
     });
 
@@ -88,6 +90,49 @@ void main() {
         PalAudioService.assetPath('VOICE_STILLWATER', 'TRANS_01'),
         'assets/pal/audio/VOICE_STILLWATER/TRANS_01.mp3',
       );
+    });
+  });
+
+  // ---------------------------------------------------------------------
+  // Cancel-safety regression. `awaitPlaybackComplete` MUST accept both
+  // ProcessingState.completed (natural end) AND ProcessingState.idle
+  // (forced stop via _player.stop()). Without `idle` here, every
+  // caller's await hangs after `palAudio.stop()` is invoked from
+  // `_cancelConversation`, leaving stale futures that race the next
+  // PAL session and silently corrupt the audio session state. After
+  // a few cancel/retry cycles the stack wedges and PAL goes mute
+  // until the app is force-quit.
+  //
+  // AudioPlayer can't be cleanly mocked without adding mocktail/
+  // mockito to the project, and behavioral testing against the real
+  // player would require actual asset playback. So this is a source-
+  // level pin: a future refactor can't silently regress the contract
+  // without this test failing.
+  // ---------------------------------------------------------------------
+  group('PalAudioService.awaitPlaybackComplete cancel-safety contract', () {
+    test('predicate accepts both `completed` and `idle` terminal states',
+        () {
+      final source =
+          File('lib/services/pal_audio_service.dart').readAsStringSync();
+      final lines = source.split('\n');
+
+      // Locate the awaitPlaybackComplete method body and capture the
+      // window between its declaration and the next closing brace.
+      final declIdx = lines.indexWhere(
+          (l) => l.contains('Future<void> awaitPlaybackComplete()'));
+      expect(declIdx, greaterThan(-1),
+          reason: 'awaitPlaybackComplete must remain a public API.');
+
+      // Take a 12-line window forward (covers the firstWhere predicate).
+      final body = lines.skip(declIdx).take(12).join('\n');
+
+      expect(body, contains('ProcessingState.completed'),
+          reason: 'awaitPlaybackComplete must still wait for natural-end.');
+      expect(body, contains('ProcessingState.idle'),
+          reason:
+              'awaitPlaybackComplete MUST also accept `idle` so cancel '
+              'via _player.stop() unblocks the await. Without this, '
+              'cancel-then-retry corrupts the audio session.');
     });
   });
 }

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1152,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Comfort My People",
+  "scriptureAnchor": "Isaiah 40:1-11",
+  "bibleStoryKey": "comfort_my_people",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "hope",
+    "restoration",
+    "mercy"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "trusting",
+    "inspired"
+  ],
+  "primaryCharacterId": "isaiah",
+  "primaryCharacterDisplayName": "Isaiah",
+  "bibleOrderIndex": 350,
+  "timelineEra": "prophets",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1152_traditional_web_short.txt"
+    }
+  }
+}

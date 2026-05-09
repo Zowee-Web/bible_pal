@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1153,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Out of the Whirlwind",
+  "scriptureAnchor": "Job 38:1-21",
+  "bibleStoryKey": "job_whirlwind",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "fear",
+    "trust",
+    "faith",
+    "suffering",
+    "lament"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "fearful",
+    "restless",
+    "uncertain",
+    "confused",
+    "seeking"
+  ],
+  "primaryCharacterId": "job",
+  "primaryCharacterDisplayName": "Job",
+  "bibleOrderIndex": 220,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1153_traditional_web_short.txt"
+    }
+  }
+}

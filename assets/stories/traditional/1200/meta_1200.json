@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1200,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Aaron's Rod That Budded",
+  "scriptureAnchor": "Numbers 17:1-11",
+  "bibleStoryKey": "aarons_rod",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "presence",
+    "calling",
+    "obedience"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting",
+    "tender"
+  ],
+  "primaryCharacterId": "aaron",
+  "primaryCharacterDisplayName": "Aaron",
+  "bibleOrderIndex": 110,
+  "timelineEra": "exodus",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1200_traditional_web_short.txt"
+    }
+  }
+}

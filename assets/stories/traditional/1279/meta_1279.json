@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1279,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "No Longer a Servant, but a Beloved Brother",
+  "scriptureAnchor": "Philemon 1:8-16",
+  "scriptureAnchorId": "philemon_1_8_16",
+  "bibleStoryKey": "onesimus_received_as_brother",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "themeTags": [
+    "forgiveness",
+    "restoration",
+    "love",
+    "redemption"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "comforted",
+    "loved",
+    "humbled",
+    "tender",
+    "encouraged"
+  ],
+  "primaryCharacterId": "paul_apostle",
+  "primaryCharacterDisplayName": "Paul",
+  "bibleOrderIndex": 750,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1279_traditional_web_short.txt"
+    }
+  }
+}

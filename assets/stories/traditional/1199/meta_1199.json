@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1199,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Voice in the Wilderness Was Silent",
+  "scriptureAnchor": "Matthew 14:1-13",
+  "bibleStoryKey": "john_baptist_death",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "suffering",
+    "lament",
+    "mercy",
+    "testing",
+    "perseverance",
+    "calling"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "grieving",
+    "lonely",
+    "broken",
+    "weary",
+    "humbled",
+    "alone"
+  ],
+  "primaryCharacterId": "john_baptist",
+  "primaryCharacterDisplayName": "John the Baptist",
+  "bibleOrderIndex": 635,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1199_traditional_web_short.txt"
+    }
+  }
+}

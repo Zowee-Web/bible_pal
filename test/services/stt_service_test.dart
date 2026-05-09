@@ -120,12 +120,22 @@ void main() {
   });
 
   group('SttService constants', () {
-    test('defaultListenSeconds is 10', () {
-      expect(SttService.defaultListenSeconds, 10);
+    // Conversational pause-handling constants — see
+    // memory/feedback_voice_endpoint_delay.md ("3500ms is Adam's
+    // calibrated cadence"). Changing these requires re-running the
+    // calibration on a live device.
+    test('defaultListenSeconds is 90', () {
+      expect(SttService.defaultListenSeconds, 90);
     });
 
-    test('defaultPauseSeconds is 5', () {
-      expect(SttService.defaultPauseSeconds, 5);
+    test('defaultPauseDuration is 6500ms (hard silence ceiling)', () {
+      expect(SttService.defaultPauseDuration,
+          const Duration(milliseconds: 6500));
+    });
+
+    test('defaultEndpointDelay is 3500ms (calibrated cadence)', () {
+      expect(SttService.defaultEndpointDelay,
+          const Duration(milliseconds: 3500));
     });
   });
 }

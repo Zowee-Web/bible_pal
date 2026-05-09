@@ -1,20 +1,41 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bible_pal/features/paths/theme_vocabulary.dart';
 
-/// Tests for the PALs Paths theme vocabulary (SPEC Feature 50 — LOCKED).
-/// The 8-tag list is LOCKED for v1; any change requires owner-approved
-/// SPEC update. These tests pin the exact list and its wire IDs.
+/// Tests for the PALs Paths theme vocabulary (SPEC Feature 50).
+///
+/// Expanded in PR β from the original locked-8 to 58 tags covering the
+/// authored themes across the 1287-story corpus. These tests pin the new
+/// expanded vocabulary so further drift is intentional rather than accidental.
 void main() {
-  group('ThemeTag wire ids (SPEC 50 — LOCKED)', () {
-    test('exactly 8 theme tags exist', () {
-      expect(ThemeTag.values.length, 8);
+  group('ThemeTag wire ids — expanded vocabulary (SPEC 50, PR β)', () {
+    test('exactly 58 theme tags exist', () {
+      expect(ThemeTag.values.length, 58);
     });
 
-    test('all 8 locked wire ids are present and exact', () {
+    test('original locked-8 wire ids remain present and exact', () {
+      final wireIds = ThemeTag.values.map((t) => t.wireId).toSet();
+      const lockedV1 = {
+        'faith',
+        'hope',
+        'mercy',
+        'courage',
+        'obedience',
+        'provision',
+        'patience',
+        'forgiveness',
+      };
+      for (final id in lockedV1) {
+        expect(wireIds, contains(id),
+            reason: 'Locked-v1 tag "$id" must remain in expanded vocab');
+      }
+    });
+
+    test('all 58 expanded wire ids are present and exact', () {
       final wireIds = ThemeTag.values.map((t) => t.wireId).toSet();
       expect(
         wireIds,
         equals({
+          // v1 locked-8
           'faith',
           'hope',
           'mercy',
@@ -23,11 +44,62 @@ void main() {
           'provision',
           'patience',
           'forgiveness',
+          // PR β expansion (corpus-canonical themes)
+          'promise',
+          'presence',
+          'trust',
+          'guidance',
+          'prayer',
+          'calling',
+          'lament',
+          'gratitude',
+          'suffering',
+          'praise',
+          'deliverance',
+          'love',
+          'perseverance',
+          'restoration',
+          'endurance',
+          'faithfulness',
+          'transformation',
+          'rest',
+          'fear',
+          'healing',
+          'rebuilding',
+          'blessing',
+          'celebration',
+          'wisdom',
+          'peace',
+          'waiting',
+          'freedom',
+          'testing',
+          'covenant',
+          'longing',
+          'redemption',
+          'comfort',
+          'repentance',
+          'sacrifice',
+          'protection',
+          'refuge',
+          'witness',
+          'scripture',
+          'humility',
+          'service',
+          'kingdom',
+          'loyalty',
+          'shame',
+          'abandonment',
+          'justice',
+          'wrestling',
+          'grief',
+          'joy',
+          'hospitality',
+          'devotion',
         }),
       );
     });
 
-    test('individual tag wire ids match the locked vocabulary', () {
+    test('individual tag wire ids match the locked v1 set', () {
       expect(ThemeTag.faith.wireId, 'faith');
       expect(ThemeTag.hope.wireId, 'hope');
       expect(ThemeTag.mercy.wireId, 'mercy');
@@ -47,6 +119,10 @@ void main() {
       expect(ThemeTag.provision.displayLabel, 'Provision');
       expect(ThemeTag.patience.displayLabel, 'Patience');
       expect(ThemeTag.forgiveness.displayLabel, 'Forgiveness');
+      // Spot-check a few from the expansion
+      expect(ThemeTag.gratitude.displayLabel, 'Gratitude');
+      expect(ThemeTag.transformation.displayLabel, 'Transformation');
+      expect(ThemeTag.joy.displayLabel, 'Joy');
     });
 
     test('wire ids are lowercase snake_case compatible', () {
@@ -68,48 +144,40 @@ void main() {
     });
 
     test('returns null for unknown wire strings', () {
-      expect(ThemeTagParse.fromWire('gratitude'), isNull);
-      expect(ThemeTagParse.fromWire('joy'), isNull);
-      expect(ThemeTagParse.fromWire('peace'), isNull);
-      expect(ThemeTagParse.fromWire('FAITH'), isNull);
+      // PR β expansion brought gratitude/joy/peace/love into the vocab.
+      // These remain unknown:
+      expect(ThemeTagParse.fromWire('FAITH'), isNull,
+          reason: 'Wire IDs are case-sensitive');
+      expect(ThemeTagParse.fromWire('not_a_real_tag'), isNull);
       expect(ThemeTagParse.fromWire(''), isNull);
       expect(ThemeTagParse.fromWire(null), isNull);
     });
   });
 
   group('isValid + allWireIds helpers', () {
-    test('isValid matches known vocabulary', () {
+    test('isValid matches expanded vocabulary', () {
       expect(ThemeTagParse.isValid('faith'), isTrue);
       expect(ThemeTagParse.isValid('courage'), isTrue);
-      expect(ThemeTagParse.isValid('gratitude'), isFalse);
+      // PR β expansion additions:
+      expect(ThemeTagParse.isValid('gratitude'), isTrue);
+      expect(ThemeTagParse.isValid('joy'), isTrue);
+      expect(ThemeTagParse.isValid('peace'), isTrue);
+      expect(ThemeTagParse.isValid('love'), isTrue);
+      // Still invalid:
       expect(ThemeTagParse.isValid(''), isFalse);
+      expect(ThemeTagParse.isValid('not_a_real_tag'), isFalse);
     });
 
-    test('allWireIds returns the full locked set', () {
+    test('allWireIds returns the full expanded set', () {
       final all = ThemeTagParse.allWireIds;
-      expect(all.length, 8);
+      expect(all.length, 58);
+      // Sample membership across the v1 + expansion split
       expect(all, contains('faith'));
       expect(all, contains('forgiveness'));
-    });
-  });
-
-  group('banned tag negative guards', () {
-    // These words MUST NOT appear in the locked v1 vocabulary.
-    // Adding any of them requires an owner-approved SPEC update.
-    test('gratitude is NOT in the locked v1 vocabulary', () {
-      expect(ThemeTag.values.any((t) => t.wireId == 'gratitude'), isFalse);
-    });
-
-    test('joy is NOT in the locked v1 vocabulary', () {
-      expect(ThemeTag.values.any((t) => t.wireId == 'joy'), isFalse);
-    });
-
-    test('peace is NOT in the locked v1 vocabulary', () {
-      expect(ThemeTag.values.any((t) => t.wireId == 'peace'), isFalse);
-    });
-
-    test('love is NOT in the locked v1 vocabulary', () {
-      expect(ThemeTag.values.any((t) => t.wireId == 'love'), isFalse);
+      expect(all, contains('gratitude'));
+      expect(all, contains('joy'));
+      expect(all, contains('peace'));
+      expect(all, contains('love'));
     });
   });
 }

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1220,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Lord Is My Light",
+  "scriptureAnchor": "Psalm 27:1-14",
+  "bibleStoryKey": "the_lord_is_my_light",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
+  "themeTags": [
+    "presence",
+    "guidance",
+    "trust",
+    "prayer"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "calm",
+    "comforted",
+    "trusting",
+    "tender"
+  ],
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "bibleOrderIndex": 224,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1220_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1253,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Thoughts of Peace and Not of Evil",
+  "scriptureAnchor": "Jeremiah 29:4-14",
+  "scriptureAnchorId": "jeremiah_29_4_14",
+  "bibleStoryKey": "plans_to_prosper_you",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "promise",
+    "presence",
+    "hope",
+    "patience",
+    "restoration"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "trusting",
+    "comforted",
+    "longing",
+    "encouraged",
+    "renewed"
+  ],
+  "primaryCharacterId": "jeremiah",
+  "primaryCharacterDisplayName": "Jeremiah",
+  "bibleOrderIndex": 320,
+  "timelineEra": "exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1253_traditional_web_short.txt"
+    }
+  }
+}

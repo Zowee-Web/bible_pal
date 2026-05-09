@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1257,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Grace of God Has Appeared",
+  "scriptureAnchor": "Titus 2:11-14",
+  "scriptureAnchorId": "titus_2_11_14",
+  "bibleStoryKey": "grace_that_trains",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "themeTags": [
+    "transformation",
+    "redemption",
+    "hope",
+    "calling"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "renewed",
+    "inspired",
+    "humbled",
+    "loved"
+  ],
+  "primaryCharacterId": "paul_apostle",
+  "primaryCharacterDisplayName": "Paul",
+  "bibleOrderIndex": 795,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1257_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1257_traditional_web_full.txt",
+      "storyAudio": "audio_1257_story_full.mp3"
+    }
+  }
+}

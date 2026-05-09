@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
@@ -30,11 +32,27 @@ class SttService {
   bool _initialized = false;
   bool _available = false;
 
-  /// Default listen duration (seconds).
-  static const int defaultListenSeconds = 10;
+  /// Default listen duration (seconds). Long enough for the user to
+  /// share how their day is going without being cut off mid-sentence.
+  static const int defaultListenSeconds = 90;
 
-  /// Default pause-for-silence duration (seconds).
-  static const int defaultPauseSeconds = 5;
+  /// Hard ceiling on silence before the engine finalizes on its own.
+  /// Acts as a safety net — the early-endpoint timer below normally
+  /// finalizes much sooner.
+  static const Duration defaultPauseDuration =
+      Duration(milliseconds: 6500);
+
+  /// Early-endpoint detection: if no new partial result arrives within
+  /// this window after the user stops speaking, force the engine to
+  /// finalize. Partial results stream every ~200ms while talking, so
+  /// "no partials for N ms" is a reliable end-of-utterance signal —
+  /// far snappier than waiting for [defaultPauseDuration] of silence.
+  ///
+  /// LOCKED at 3500ms. Calibrated to Adam's natural speaking cadence
+  /// on 2026-04-27 (shorter values cut him off mid-sentence; longer
+  /// felt laggy). Do not change without explicit user request.
+  static const Duration defaultEndpointDelay =
+      Duration(milliseconds: 3500);
 
   /// Create with an optional [SpeechToText] instance for DI/testing.
   SttService({SpeechToText? speech}) : _speech = speech ?? SpeechToText();
@@ -131,7 +149,8 @@ class SttService {
     required void Function(SttResult result) onResult,
     void Function(String error)? onError,
     int listenSeconds = defaultListenSeconds,
-    int pauseSeconds = defaultPauseSeconds,
+    Duration pauseDuration = defaultPauseDuration,
+    Duration endpointDelay = defaultEndpointDelay,
   }) async {
     if (!_available) {
       onError?.call('Speech recognition not available');
@@ -142,20 +161,37 @@ class SttService {
       'source': 'mic_tap',
     });
 
+    Timer? endpointTimer;
+
     try {
       await _speech.listen(
         listenFor: Duration(seconds: listenSeconds),
-        pauseFor: Duration(seconds: pauseSeconds),
+        pauseFor: pauseDuration,
+        localeId: 'en_US',
         listenOptions: SpeechListenOptions(partialResults: true),
         onResult: (SpeechRecognitionResult result) {
+          final text = result.recognizedWords.trim();
           // Transcript is passed ONLY via callback — never logged.
           onResult(SttResult(
-            text: result.recognizedWords.trim(),
+            text: text,
             isFinal: result.finalResult,
           ));
+          if (result.finalResult) {
+            endpointTimer?.cancel();
+            endpointTimer = null;
+          } else if (text.isNotEmpty) {
+            // Reset the endpoint timer on every partial — only fires
+            // once the partial stream goes quiet, which is the fastest
+            // reliable end-of-utterance signal we get from the engine.
+            endpointTimer?.cancel();
+            endpointTimer = Timer(endpointDelay, () {
+              _speech.stop();
+            });
+          }
         },
       );
     } catch (e) {
+      endpointTimer?.cancel();
       onError?.call(e.toString());
     }
   }

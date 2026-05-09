@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1281,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Fellow Workers for the Truth",
+  "scriptureAnchor": "3 John 1:5-8",
+  "scriptureAnchorId": "3_john_1_5_8",
+  "bibleStoryKey": "faithful_work_for_brothers",
+  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "themeTags": [
+    "faithfulness",
+    "love",
+    "witness",
+    "hospitality"
+  ],
+  "emotionalTags": [
+    "encouraged",
+    "inspired",
+    "loved",
+    "comforted",
+    "hopeful",
+    "humbled"
+  ],
+  "primaryCharacterId": "john_apostle",
+  "primaryCharacterDisplayName": "John",
+  "bibleOrderIndex": 878,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1281_traditional_web_short.txt"
+    }
+  }
+}

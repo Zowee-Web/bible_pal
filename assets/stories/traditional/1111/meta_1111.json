@@ -21,7 +21,11 @@
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
   "themeTags": [
     "forgiveness",
-    "mercy"
+    "mercy",
+    "celebration",
+    "praise",
+    "gratitude",
+    "restoration"
   ],
   "primaryCharacterId": "prodigal_son",
   "primaryCharacterDisplayName": "Prodigal Son",
@@ -38,5 +42,13 @@
     "reflection": {
       "reflectionText": "reflection_1111_traditional_web.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "joyful",
+    "thankful",
+    "free",
+    "grateful",
+    "forgiven",
+    "comforted"
+  ]
 }

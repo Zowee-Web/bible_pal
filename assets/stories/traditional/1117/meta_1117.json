@@ -19,7 +19,11 @@
   "bibleStoryKey": "red_sea_crossing",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "themeTags": [
-    "faith"
+    "faith",
+    "fear",
+    "trust",
+    "deliverance",
+    "freedom"
   ],
   "primaryCharacterId": "moses",
   "primaryCharacterDisplayName": "Moses",
@@ -30,5 +34,13 @@
     "short": {
       "storyText": "story_1117_traditional_web_short.txt"
     }
-  }
+  },
+  "emotionalTags": [
+    "anxious",
+    "fearful",
+    "restless",
+    "uncertain",
+    "awed",
+    "seeking"
+  ]
 }

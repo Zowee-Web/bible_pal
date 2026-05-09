@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1139,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Deep Calls to Deep",
+  "scriptureAnchor": "Psalm 42:1-11",
+  "bibleStoryKey": "as_a_deer_pants",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "themeTags": [
+    "rest",
+    "endurance",
+    "patience",
+    "prayer"
+  ],
+  "emotionalTags": [
+    "weary",
+    "exhausted",
+    "overwhelmed",
+    "longing",
+    "tired"
+  ],
+  "primaryCharacterId": "psalmist",
+  "primaryCharacterDisplayName": "Psalmist",
+  "bibleOrderIndex": 250,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1139_traditional_web_short.txt"
+    }
+  }
+}
