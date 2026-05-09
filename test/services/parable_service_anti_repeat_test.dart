@@ -116,7 +116,11 @@ void main() {
         lengthBucket: testBucket,
         userPrefs: adultPrefs,
       );
-      for (final p in similarPool.where((p) => p.shortScripture)) {
+      // Drain micro-content stories (legacy shortScripture=true OR B1
+      // multi-variant hasMicroVariant=true) so the bias eligibility gate
+      // fails for similar moods and Tier 1 isolation holds.
+      for (final p in similarPool
+          .where((p) => p.shortScripture || p.hasMicroVariant)) {
         if (p.storyId == survivor.storyId) continue;
         await storage.recordPlayed(p.storyId, at: oneDayAgo);
       }

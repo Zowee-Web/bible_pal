@@ -15,6 +15,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:bible_pal/services/parable_service.dart';
 import 'package:bible_pal/services/storage_service.dart';
+import 'package:bible_pal/models/parable.dart';
 import 'package:bible_pal/models/user_preferences.dart';
 import 'package:bible_pal/core/story_length_bucket.dart';
 
@@ -541,6 +542,220 @@ void main() {
       expect(pool.where((p) => !p.shortScripture).isNotEmpty, true,
           reason: 'calm_peaceful Short pool should include non-MICRO stories; '
               'bias must not be filtering before getEligibleParables.');
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // B1 MICRO-as-variant: schema + resolver tests using synthetic Parable
+  // fixtures, since the master manifest doesn't yet carry any multi-variant
+  // rows. These test the variant-resolver logic in isolation from the engine.
+  // ---------------------------------------------------------------------------
+
+  group('B1: Parable schema supports microAudioPath / microTextPath', () {
+    test('fromJson reads micro paths and hasMicroVariant returns true', () {
+      final json = <String, dynamic>{
+        'storyId': 'story_test_1090_anxious_short_traditional',
+        'title': 'The Storm',
+        'mood': 'anxious',
+        'storytellingMode': 'traditional',
+        'kidFriendly': false,
+        'storyLength': 'short',
+        'audioFilePath':
+            'traditional/1090/audio_1090_story_short.mp3',
+        'textFilePath':
+            'traditional/1090/story_1090_traditional_web_short.txt',
+        'microAudioPath':
+            'traditional/1090/audio_1090_story_micro.mp3',
+        'microTextPath':
+            'traditional/1090/story_1090_traditional_web_micro.txt',
+      };
+      final p = Parable.fromJson(json);
+      expect(p.microAudioPath,
+          'traditional/1090/audio_1090_story_micro.mp3');
+      expect(p.microTextPath,
+          'traditional/1090/story_1090_traditional_web_micro.txt');
+      expect(p.hasMicroVariant, true);
+      expect(p.shortScripture, false,
+          reason: 'B1 multi-variant uses hasMicroVariant, not shortScripture.');
+    });
+
+    test('toJson omits micro fields when null (legacy byte-identical)', () {
+      final p = Parable(
+        storyId: 'legacy',
+        title: 'Legacy story',
+        mood: 'joyful',
+        storytellingMode: 'traditional',
+        kidFriendly: false,
+        storyLength: 'short',
+      );
+      final json = p.toJson();
+      expect(json.containsKey('microAudioPath'), false);
+      expect(json.containsKey('microTextPath'), false);
+      expect(json.containsKey('shortScripture'), false,
+          reason: 'shortScripture only emitted when true');
+    });
+
+    test('toJson emits micro fields when present', () {
+      final p = Parable(
+        storyId: 'multi-variant',
+        title: 'Multi-variant story',
+        mood: 'anxious',
+        storytellingMode: 'traditional',
+        kidFriendly: false,
+        storyLength: 'short',
+        microAudioPath: 'a.mp3',
+        microTextPath: 'a.txt',
+      );
+      final json = p.toJson();
+      expect(json['microAudioPath'], 'a.mp3');
+      expect(json['microTextPath'], 'a.txt');
+    });
+
+    test('hasMicroVariant is false when paths are null or empty', () {
+      final pNull = Parable(
+        storyId: 's',
+        title: 't',
+        mood: 'anxious',
+        storytellingMode: 'traditional',
+        kidFriendly: false,
+      );
+      final pEmpty = pNull.copyWith(microAudioPath: '');
+      expect(pNull.hasMicroVariant, false);
+      expect(pEmpty.hasMicroVariant, false);
+    });
+
+    test('legacy single-variant MICRO reports hasMicroVariant=false', () {
+      // Existing 45 standalone MICROs: shortScripture=true, no
+      // microAudioPath. The bias predicate accepts them via the
+      // shortScripture branch; the variant resolver leaves them alone.
+      final p = Parable(
+        storyId: 's',
+        title: 't',
+        mood: 'anxious',
+        storytellingMode: 'traditional',
+        kidFriendly: false,
+        shortScripture: true,
+      );
+      expect(p.shortScripture, true);
+      expect(p.hasMicroVariant, false);
+    });
+  });
+
+  group('B1: variant resolver swap behavior', () {
+    // The variant resolver in ParableService is a small copyWith call:
+    //   selected.copyWith(audioFilePath: microAudioPath, textFilePath: microTextPath)
+    // We exercise that exact swap shape here in isolation.
+
+    test('70% path: copyWith swaps audio + text paths to micro', () {
+      final original = Parable(
+        storyId: 'multi',
+        title: 'Multi',
+        mood: 'anxious',
+        storytellingMode: 'traditional',
+        kidFriendly: false,
+        storyLength: 'short',
+        audioFilePath: 'a/short.mp3',
+        textFilePath: 'a/short.txt',
+        microAudioPath: 'a/micro.mp3',
+        microTextPath: 'a/micro.txt',
+      );
+
+      // Mimic resolver swap
+      final resolved = original.copyWith(
+        audioFilePath: original.microAudioPath,
+        textFilePath: original.microTextPath,
+      );
+
+      expect(resolved.audioFilePath, 'a/micro.mp3');
+      expect(resolved.textFilePath, 'a/micro.txt');
+      // micro paths preserved on the resolved parable
+      expect(resolved.microAudioPath, 'a/micro.mp3');
+      expect(resolved.microTextPath, 'a/micro.txt');
+      // Anti-repeat key (storyId) unchanged — variant doesn't fork identity
+      expect(resolved.storyId, 'multi');
+    });
+
+    test('30% path: no swap → audio + text paths unchanged', () {
+      final original = Parable(
+        storyId: 'multi',
+        title: 'Multi',
+        mood: 'anxious',
+        storytellingMode: 'traditional',
+        kidFriendly: false,
+        storyLength: 'short',
+        audioFilePath: 'a/short.mp3',
+        textFilePath: 'a/short.txt',
+        microAudioPath: 'a/micro.mp3',
+        microTextPath: 'a/micro.txt',
+      );
+      // 30% path: resolver returns the parable as-is
+      expect(original.audioFilePath, 'a/short.mp3');
+      expect(original.textFilePath, 'a/short.txt');
+    });
+
+    test(
+        'legacy single-variant MICRO: resolver does not swap (hasMicroVariant=false)',
+        () {
+      final legacy = Parable(
+        storyId: 'legacy_micro',
+        title: 'Legacy',
+        mood: 'anxious',
+        storytellingMode: 'traditional',
+        kidFriendly: false,
+        storyLength: 'short',
+        shortScripture: true,
+        // NOTE: no microAudioPath — legacy single-variant exposes its micro
+        // content directly via audioFilePath.
+        audioFilePath: 'legacy/audio_micro.mp3',
+        textFilePath: 'legacy/text_micro.txt',
+      );
+      expect(legacy.hasMicroVariant, false,
+          reason: 'Legacy single-variant has no separate microAudioPath.');
+      // Resolver guard: tookMicroPath && hasMicroVariant — second clause false
+      // means resolver no-ops. The parable's own paths already point at micro.
+      expect(legacy.audioFilePath, 'legacy/audio_micro.mp3');
+    });
+  });
+
+  group('B1: bias eligibility predicate accepts both representations', () {
+    // The pool filter in ParableService uses _hasMicroContent which is
+    // semantically (p.shortScripture || p.hasMicroVariant). We can't access
+    // the private predicate directly, but we can verify the contract via
+    // the public Parable getters.
+
+    test('legacy shortScripture=true passes the content check', () {
+      final p = Parable(
+        storyId: 'a',
+        title: 't',
+        mood: 'anxious',
+        storytellingMode: 'traditional',
+        kidFriendly: false,
+        shortScripture: true,
+      );
+      expect(p.shortScripture || p.hasMicroVariant, true);
+    });
+
+    test('B1 multi-variant hasMicroVariant=true passes the content check', () {
+      final p = Parable(
+        storyId: 'a',
+        title: 't',
+        mood: 'anxious',
+        storytellingMode: 'traditional',
+        kidFriendly: false,
+        microAudioPath: 'x.mp3',
+      );
+      expect(p.shortScripture || p.hasMicroVariant, true);
+    });
+
+    test('plain Short (neither flag) does NOT pass the content check', () {
+      final p = Parable(
+        storyId: 'a',
+        title: 't',
+        mood: 'anxious',
+        storytellingMode: 'traditional',
+        kidFriendly: false,
+      );
+      expect(p.shortScripture || p.hasMicroVariant, false);
     });
   });
 }
