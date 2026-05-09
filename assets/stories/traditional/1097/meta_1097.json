@@ -19,7 +19,7 @@
   "title": "The Choir Before the Army",
   "scriptureAnchor": "2 Chronicles 20:1-30",
   "bibleStoryKey": "jehoshaphat_praise_battle",
-  "storyVoiceKey": "VOICE_JOHN_DOE",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
   "themeTags": [
     "faith",
     "courage"
@@ -30,7 +30,7 @@
   "timelineEra": "kingdom",
   "reflectionQuestion": "Have you ever had to face something too big for you — and found that showing up was enough?",
   "reflectionText": "Jehoshaphat stood before the people and said, \"We have no might against this great company that comes against us. We do not know what to do, but our eyes are on you.\" He proclaimed a fast. All Judah gathered — men, women, and children. They stood before Yahweh. The word came through Jahaziel: \"The battle is not yours, but God's. You will not need to fight in this battle. Stand still, and see the salvation of Yahweh.\" The next morning, Jehoshaphat appointed singers to go out before the army. They sang, \"Give thanks to Yahweh, for his loving kindness endures forever.\" And when they began to sing, Yahweh set ambushes against the enemy. The enemy destroyed themselves. When Judah arrived, the battle was already over.",
-  "reflectionVoiceKey": "VOICE_JOHN_DOE",
+  "reflectionVoiceKey": "VOICE_JAMES_HUSKY",
   "files": {
     "short": {
       "storyText": "story_1097_traditional_web_short.txt"
@@ -44,5 +44,6 @@
     "reflection": {
       "reflectionText": "reflection_1097_traditional_web.txt"
     }
-  }
+  },
+  "voiceKey": "VOICE_JAMES_HUSKY"
 }

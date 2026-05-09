@@ -89,8 +89,9 @@ else
 fi
 
 # PAL voice keys
+# VOICE_GRACE was retired 2026-04-23 per ADR-002 (replaced by VOICE_RUTH_COMFORT
+# as the default PAL voice). See lib/core/pal_voice_registry.dart legacy list.
 PAL_VOICES=(
-    "VOICE_GRACE"
     "VOICE_SHEPHERD"
     "VOICE_HOPE"
     "VOICE_STILLWATER"
