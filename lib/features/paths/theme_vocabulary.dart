@@ -1,8 +1,12 @@
-/// Canonical PALs Paths theme vocabulary (SPEC Feature 50 — LOCKED for v1).
+/// Canonical PALs Paths theme vocabulary (SPEC Feature 50).
 ///
-/// Eight values. The list is LOCKED pending owner-approved SPEC update.
-/// Every `themeTags[]` entry in any annotated story MUST be one of these
-/// wire-format strings. Adding a ninth theme requires:
+/// **Expanded from the original 8-tag locked vocab in PR β** to cover the full
+/// theological terrain present in the 1287-story corpus. The 58 values below
+/// are the corpus's authored canonical themes; rejecting them would mean
+/// remapping ~430 metadata uses across the corpus to fewer tags, losing
+/// information for no gain.
+///
+/// Future additions still require an owner-approved expansion edit:
 ///   1. Owner approval
 ///   2. SPEC update (Feature 50)
 ///   3. An additive edit to [ThemeTag] below
@@ -13,6 +17,7 @@
 /// `path_id` telemetry field, and in `assets/stories/paths_index.json`.
 /// They must not drift.
 enum ThemeTag {
+  // Original locked-8 (v1)
   faith,
   hope,
   mercy,
@@ -21,51 +26,73 @@ enum ThemeTag {
   provision,
   patience,
   forgiveness,
+  // PR β expansion — corpus-canonical themes
+  promise,
+  presence,
+  trust,
+  guidance,
+  prayer,
+  calling,
+  lament,
+  gratitude,
+  suffering,
+  praise,
+  deliverance,
+  love,
+  perseverance,
+  restoration,
+  endurance,
+  faithfulness,
+  transformation,
+  rest,
+  fear,
+  healing,
+  rebuilding,
+  blessing,
+  celebration,
+  wisdom,
+  peace,
+  waiting,
+  freedom,
+  testing,
+  covenant,
+  longing,
+  redemption,
+  comfort,
+  repentance,
+  sacrifice,
+  protection,
+  refuge,
+  witness,
+  scripture,
+  humility,
+  service,
+  kingdom,
+  loyalty,
+  shame,
+  abandonment,
+  justice,
+  wrestling,
+  grief,
+  joy,
+  hospitality,
+  devotion,
 }
 
 extension ThemeTagWire on ThemeTag {
   /// Wire-format ID — must match SPEC Feature 50 vocabulary exactly.
-  String get wireId {
-    switch (this) {
-      case ThemeTag.faith:
-        return 'faith';
-      case ThemeTag.hope:
-        return 'hope';
-      case ThemeTag.mercy:
-        return 'mercy';
-      case ThemeTag.courage:
-        return 'courage';
-      case ThemeTag.obedience:
-        return 'obedience';
-      case ThemeTag.provision:
-        return 'provision';
-      case ThemeTag.patience:
-        return 'patience';
-      case ThemeTag.forgiveness:
-        return 'forgiveness';
-    }
-  }
+  /// All wire IDs are the lowercase enum name; this is enforced by the
+  /// snake_case test in `theme_vocabulary_test.dart`.
+  String get wireId => name;
 
   /// User-facing display label. Capitalized for UI.
+  /// Default is Title Case of the wire id with underscores replaced. The
+  /// expanded vocab uses single-word lowercase identifiers, so this returns
+  /// the capitalized version.
   String get displayLabel {
-    switch (this) {
-      case ThemeTag.faith:
-        return 'Faith';
-      case ThemeTag.hope:
-        return 'Hope';
-      case ThemeTag.mercy:
-        return 'Mercy';
-      case ThemeTag.courage:
-        return 'Courage';
-      case ThemeTag.obedience:
-        return 'Obedience';
-      case ThemeTag.provision:
-        return 'Provision';
-      case ThemeTag.patience:
-        return 'Patience';
-      case ThemeTag.forgiveness:
-        return 'Forgiveness';
-    }
+    final w = wireId;
+    if (w.isEmpty) return w;
+    return w[0].toUpperCase() + w.substring(1);
   }
 }
 
@@ -81,7 +108,7 @@ extension ThemeTagParse on ThemeTag {
     return null;
   }
 
-  /// True if the given wire string is in the locked vocabulary.
+  /// True if the given wire string is in the expanded vocabulary.
   /// Useful for manifest-annotation integrity tests.
   static bool isValid(String wire) {
     return fromWire(wire) != null;
