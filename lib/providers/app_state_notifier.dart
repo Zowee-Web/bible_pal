@@ -127,6 +127,9 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
     await updateUserPreferences(prefs);
   }
 
+  // TODO(creative-retirement): Remove during Stage 2 retirement (planned 2026-05-13).
+  //   See docs/archive/CREATIVE_RETIREMENT_2026_05_13.md
+  //   Method no longer needed once the mode toggle UI is removed.
   Future<void> updateStorytellingMode(String mode) async {
     final prefs = state.requireValue.userPreferences.copyWith(
       storytellingMode: mode,

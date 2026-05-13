@@ -225,6 +225,9 @@ class StoryModeValidator {
   /// - No dependency language (MoDC)
   /// - No Bible story retelling signals
   /// - If languageStyle=KJV, no scripture-claim markers
+  // TODO(creative-retirement): Remove during Stage 2 retirement (planned 2026-05-13).
+  //   See docs/archive/CREATIVE_RETIREMENT_2026_05_13.md
+  //   Collapse validate() dispatcher to call validateTraditional() directly.
   static StoryModeValidationResult validateCreative({
     required String storyText,
     required String? bibleSourceRef,

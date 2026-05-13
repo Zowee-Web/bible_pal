@@ -6,6 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'pal_line_ref.dart';
 import 'pal_line_rotator.dart';
 
+// TODO(creative-retirement): Delete this entire file during Stage 2 retirement (planned 2026-05-13).
+//   See docs/archive/CREATIVE_RETIREMENT_2026_05_13.md
+//   Asset assets/pal/creative_opening_lines.json + companion test will go with it.
+
 /// Mood-based opening lines for Creative mode stories.
 ///
 /// These provide a narrative opening spoken by PAL before the length picker,

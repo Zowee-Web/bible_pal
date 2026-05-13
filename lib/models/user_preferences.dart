@@ -53,6 +53,9 @@ class UserPreferences {
       bibleTranslation; // ONLY open-source: 'WEB', 'KJV', 'ASV', 'YLT', 'DRA' (for Daily Bread)
   final String
       languageStyle; // 'WEB' or 'KJV' - story presentation diction (Contracts v2)
+  // TODO(creative-retirement): Remove during Stage 2 retirement (planned 2026-05-13).
+  //   See docs/archive/CREATIVE_RETIREMENT_2026_05_13.md
+  //   Coerce-on-load migration: 'creative' values should map to 'traditional'.
   final String
       storytellingMode; // 'creative' or 'traditional' - DEFAULT is 'traditional' (Contracts v2)
   final bool contentFilteringEnabled; // Feature #24

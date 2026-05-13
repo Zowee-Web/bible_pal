@@ -13,6 +13,9 @@ class Parable {
       length; // Nullable: null means bucket-first entry (use storyLength instead)
   final String?
       storyLength; // Primary: 'short', 'full', or 'long' (LOCKED SPEC)
+  // TODO(creative-retirement): Remove during Stage 2 retirement (planned 2026-05-13).
+  //   See docs/archive/CREATIVE_RETIREMENT_2026_05_13.md
+  //   Keep field for backward parse of legacy manifest entries; Traditional-only going forward.
   final String storytellingMode; // 'creative' or 'traditional'
   final String
       translationId; // Bible translation for compliance (Daily Bread, quotes)

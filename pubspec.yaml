@@ -397,6 +397,9 @@ flutter:
     - assets/stories/traditional/832/
     - assets/stories/traditional/833/
     - assets/stories/traditional/834/
+    # TODO(creative-retirement): Remove all 80 creative/ declarations + creative_opening_lines.json (L490)
+    #   during Stage 2 retirement (planned 2026-05-13).
+    #   See docs/archive/CREATIVE_RETIREMENT_2026_05_13.md
     # Creative stories (Opus 4.6, 2000-series)
     - assets/stories/creative/2000/
     - assets/stories/creative/2001/

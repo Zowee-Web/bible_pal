@@ -383,6 +383,9 @@ class ParableService {
 
       // CONTRACTS V2: Creative stories MUST NOT have bibleSourceRef
       // Stories with bibleSourceRef are EXCLUDED (data error)
+      // TODO(creative-retirement): Remove during Stage 2 retirement (planned 2026-05-13).
+      //   See docs/archive/CREATIVE_RETIREMENT_2026_05_13.md
+      //   Whole branch becomes dead code once Creative entries are stripped from manifests.
       if (p.storytellingMode == 'creative') {
         if (p.hasBibleSourceRef) {
           // Log exclusion for unexpected bibleSourceRef

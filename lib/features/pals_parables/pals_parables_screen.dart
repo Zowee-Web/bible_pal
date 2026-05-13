@@ -604,6 +604,9 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     final userPrefs = ref.read(appStateProvider).requireValue.userPreferences;
 
     // --- PAL framing response: show BEFORE length picker (text-input only) ---
+    // TODO(creative-retirement): Remove the storytellingMode check during Stage 2 retirement (planned 2026-05-13).
+    //   See docs/archive/CREATIVE_RETIREMENT_2026_05_13.md
+    //   Traditional becomes the only path; framing should always show.
     if (userText.isNotEmpty && userPrefs.storytellingMode == 'traditional') {
       final parableService = await ref.read(parableServiceProvider.future);
       final previewKey = await parableService.previewBibleStoryKey(

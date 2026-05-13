@@ -942,6 +942,9 @@ class _StudyPageState extends ConsumerState<_StudyPage>
     );
   }
 
+  // TODO(creative-retirement): Remove this widget during Stage 2 retirement (planned 2026-05-13).
+  //   See docs/archive/CREATIVE_RETIREMENT_2026_05_13.md
+  //   Also remove the caller site and the _StoryModeTab class below.
   Widget _buildStoryModeToggle(BuildContext context, SkyPalette palette) {
     final appState = ref.watch(appStateProvider).valueOrNull;
     final currentMode = appState?.userPreferences.storytellingMode ?? 'traditional';
@@ -1979,6 +1982,9 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
           await Future.delayed(const Duration(milliseconds: 300));
         }
       }
+    // TODO(creative-retirement): Remove this whole else-if block during Stage 2 (planned 2026-05-13).
+    //   See docs/archive/CREATIVE_RETIREMENT_2026_05_13.md
+    //   Creative mode opening-line playback is dead code post-retirement.
     } else if (userPrefs != null &&
         userPrefs.storytellingMode == 'creative' &&
         palResponseEnabled &&
@@ -2824,6 +2830,9 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
 // Story mode tab — used in the Traditional / Creative toggle
 // ---------------------------------------------------------------------------
 
+// TODO(creative-retirement): Delete this widget during Stage 2 retirement (planned 2026-05-13).
+//   See docs/archive/CREATIVE_RETIREMENT_2026_05_13.md
+//   Only used by _buildStoryModeToggle, which also goes away.
 class _StoryModeTab extends StatelessWidget {
   final String label;
   final String subtitle;
