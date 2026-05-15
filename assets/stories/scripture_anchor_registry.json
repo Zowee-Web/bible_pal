@@ -2208,6 +2208,30 @@
         "joyful",
         "grateful"
       ]
+    },
+    {
+      "scriptureAnchorId": "joshua_7_6-12",
+      "bibleStoryKey": "joshua_grieves_after_ai",
+      "bibleSourceRef": "Joshua 7:6-12",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "daniel_2_19-23",
+      "bibleStoryKey": "daniel_blesses_god_for_revelation",
+      "bibleSourceRef": "Daniel 2:19-23",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "haggai_1_5-11",
+      "bibleStoryKey": "consider_your_ways",
+      "bibleSourceRef": "Haggai 1:5-11",
+      "moodTags": [
+        "weary"
+      ]
     }
   ]
 }
