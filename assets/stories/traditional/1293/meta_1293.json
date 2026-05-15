@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1293,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The House of God Dedicated with Joy",
+  "scriptureAnchor": "Ezra 6:16-22",
+  "scriptureAnchorId": "ezra_6_16-22",
+  "bibleStoryKey": "temple_dedicated_with_joy",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "restoration",
+    "dedication",
+    "joy",
+    "worship",
+    "community"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "grateful",
+    "celebratory",
+    "humbled",
+    "thankful",
+    "hopeful"
+  ],
+  "primaryCharacterId": "ezra",
+  "primaryCharacterDisplayName": "Ezra",
+  "bibleOrderIndex": 258,
+  "timelineEra": "return",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1293_traditional_web_short.txt"
+    }
+  }
+}

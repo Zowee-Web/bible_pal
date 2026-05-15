@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1290,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Well Done, Good and Faithful Servant",
+  "scriptureAnchor": "Matthew 25:14-30",
+  "scriptureAnchorId": "matt_25_14-30",
+  "bibleStoryKey": "parable_of_talents",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "themeTags": [
+    "stewardship",
+    "faithfulness",
+    "responsibility",
+    "trust"
+  ],
+  "emotionalTags": [
+    "encouraged",
+    "challenged",
+    "hopeful",
+    "trusted",
+    "purposeful"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 555,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1290_traditional_web_short.txt"
+    }
+  }
+}

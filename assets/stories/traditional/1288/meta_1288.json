@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1288,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "I Have Called You by Name",
+  "scriptureAnchor": "Isaiah 43:1-7",
+  "scriptureAnchorId": "isa_43_1-7",
+  "bibleStoryKey": "i_have_called_you_by_name",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "identity",
+    "belonging",
+    "presence",
+    "redemption",
+    "love"
+  ],
+  "emotionalTags": [
+    "comforted",
+    "loved",
+    "seen",
+    "trusting",
+    "hopeful",
+    "tender"
+  ],
+  "primaryCharacterId": "isaiah",
+  "primaryCharacterDisplayName": "Isaiah",
+  "bibleOrderIndex": 287,
+  "timelineEra": "prophets",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1288_traditional_web_short.txt"
+    }
+  }
+}

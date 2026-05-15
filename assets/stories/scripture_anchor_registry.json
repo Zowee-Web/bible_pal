@@ -2182,6 +2182,32 @@
       "moodTags": [
         "encouraging"
       ]
+    },
+    {
+      "scriptureAnchorId": "joshua_21_43-45",
+      "bibleStoryKey": "yahweh_gave_them_rest",
+      "bibleSourceRef": "Joshua 21:43-45",
+      "moodTags": [
+        "calm_peaceful",
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "esther_8_15-17",
+      "bibleStoryKey": "jews_had_light_and_gladness",
+      "bibleSourceRef": "Esther 8:15-17",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "ezra_6_16-22",
+      "bibleStoryKey": "temple_dedicated_with_joy",
+      "bibleSourceRef": "Ezra 6:16-22",
+      "moodTags": [
+        "joyful",
+        "grateful"
+      ]
     }
   ]
 }
