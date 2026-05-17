@@ -184,8 +184,8 @@ When a mood button is tapped, a brief thinking delay (800–1500ms randomized) i
 **5. Parable Generation / Selection Engine**
 - Chooses or generates a parable based on:
   - User's detected mood
-  - Storytelling mode (creative vs traditional)
   - Selected length
+- Stories are Traditional only (Creative retired 2026-05-13).
 - If pre-generated stories exist that match criteria, selects one
 - Otherwise generates a new one on demand
 
@@ -229,7 +229,7 @@ When a mood button is tapped, a brief thinking delay (800–1500ms randomized) i
 
 **PAL Spoken Response + Framing Overlay (Feature 5.1a):**
 - **Voice-input flow only** — when the user enters mood via the PAL orb (mic), PAL speaks a single reflection line as a spoken response after mood detection and before the framing overlay
-- **Text-input flow is silent** — when the user enters mood by typing into the bottom text field, PAL does NOT play a spoken reflection or creative opening line. The framing overlay still appears (text-only) for Traditional mode. Rationale: voice responses in a quiet text-entry context felt intrusive; the user explicitly opted text input out of audio
+- **Text-input flow is silent** — when the user enters mood by typing into the bottom text field, PAL does NOT play a spoken reflection. The framing overlay still appears (text-only). Rationale: voice responses in a quiet text-entry context felt intrusive; the user explicitly opted text input out of audio
 - The reflection line (voice flow) plays via `playLine(reflectionRef.id, voiceKey)` and completes before the overlay appears
 - A short pause (~300ms) follows the spoken reflection before the overlay fades in
 - The framing overlay itself is **text-only** — no audio plays during the overlay
@@ -237,17 +237,11 @@ When a mood button is tapped, a brief thinking delay (800–1500ms randomized) i
 - If audio asset is missing or audio is disabled, the flow degrades gracefully to text-only
 - Audio assets are pre-generated via the PAL audio pipeline; no runtime TTS
 - Asset path convention: `assets/pal/audio/{voiceKey}/{lineId}.mp3`
-- **Creative mode (voice flow only)**: Instead of a story-specific framing line, PAL plays a mood-based narrative opening line from `assets/pal/creative_opening_lines.json` via `CreativeOpeningLines.getLineRef(mood)`. Same silence rule as Traditional in the text flow — typed input does not trigger this audio
-  - 8 mood buckets × 3 lines each, persistent recency-based rotation (same mechanism as reflection lines)
-  - Content is narrative and imaginative — NOT Scripture-based, no Bible characters or verse formatting
-  - Selection and playback follows the same pattern as the Traditional reflection line
-  - Creative opening lines do NOT replace the Traditional framing overlay (text-only) — Traditional mode is unchanged
 - Line ID conventions:
   - Reflection: `REFL_{MOOD}_{NN}` (e.g., `REFL_JOYFUL_01`)
   - Tone-biased reflection: `REFL_TB_{MOOD}_{TONE}_{NN}` (e.g., `REFL_TB_JOYFUL_GENTLE_01`)
   - Framing: `FRAME_{BIBLE_STORY_KEY}_{NN}` (e.g., `FRAME_DAVID_ANOINTED_01`)
   - Transition: `TRANS_{NN}` (e.g., `TRANS_01`)
-  - Creative opening: `CREATIVE_{MOOD}_{NN}` (e.g., `CREATIVE_WEARY_01`)
 
 **Implementation Notes:**
 - New class: `PalToneBiasedReflectionLines` in `lib/core/pal_tone_biased_reflection_lines.dart`
@@ -274,7 +268,7 @@ Each option has a subtitle hint:
 **Length Selection Flow:**
 - Mood, text, and voice entry flows go straight to the player using the saved `UserPreferences.preferredLengthBucket` (default: `short` for first-time users) — no intermediate length picker is shown. The caller pre-loads via `loadParable` and then navigates.
 - PALs Paths story taps and "Next in Your Journey" taps also open the player directly — the calling screen pushes `ParablePlayerScreen(pendingParable, pendingLaunchContext)` and the player owns the load. The player resolves the user's preferred-length variant of the selected story and calls `loadParable` from a `WidgetsBinding.instance.addPostFrameCallback` inside its own `initState`. This is the safe shape: the load runs after the route push has settled and a frame has rendered, which avoids both the iOS audio-session activation hang and provider-cascade rebuilds of the source screen mid-await.
-- Length and Translation are adjusted on the player screen via the variant chips, which are the single canonical control surface for both. The mood screen no longer hosts a Translation toggle; player variant chips own that control. Story Mode (Traditional/Creative) and Kid Mode remain on the mood screen since they gate which pool a story is selected from.
+- Length and Translation are adjusted on the player screen via the variant chips, which are the single canonical control surface for both. The mood screen no longer hosts a Translation toggle; player variant chips own that control. Kid Mode remains on the mood screen since it gates which pool a story is selected from. (The former Story Mode toggle was removed 2026-05-13 with Creative retirement.)
 - `LengthPickerScreen` is no longer reached from any user flow. The screen and its `/length_picker` route remain in the codebase for now but are unwired; safe to remove in a follow-up cleanup.
 - A subtle one-time arrival animation plays on the Player's Play button when the user lands there from a normal mood/text/voice entry; the user must still tap Play manually to start playback (no auto-play). Path entries do not show the arrival animation.
 - Kid Mode + KJV is not a supported pairing — `AppStateNotifier.updateKidFriendlyOnly` auto-corrects `languageStyle` to `WEB` when Kid Mode is enabled while KJV is selected.
@@ -308,7 +302,7 @@ Each parable includes:
 - `storyLength` ("short", "full", or "long" - primary field, LOCKED SPEC)
 - `length` (minutes: 5, 10, 15, or 20 - legacy field for backwards compatibility)
 - `lengthBucket` (computed getter: prioritizes storyLength, falls back to length)
-- `storytellingMode` (creative or traditional)
+- `storytellingMode` (always `traditional`; field retained for legacy parse)
 - `scriptureSources` (array of verse references)
 
 **PALs Paths metadata (optional, Traditional stories only — Feature 50):**
@@ -324,7 +318,7 @@ These fields are all optional. Stories without them remain fully servable via mo
 - `themeTags` (array<string>, OPTIONAL) — theme path memberships
 - `characterPathOrder` (int, OPTIONAL) — per-character sort order within a character path (unique per `primaryCharacterId`)
 
-Creative stories MUST NOT carry any of these fields. Presence of any of them on a Creative story fails Story Mode contract validation.
+These fields apply to Traditional stories only (the only active mode after Creative retirement).
 
 **9. AI-Generated Story Titles (Editable)**
 - Each parable has an AI-generated title by default
@@ -375,47 +369,32 @@ Creative stories MUST NOT carry any of these fields. Presence of any of them on 
   - Bible translation label (e.g., "World English Bible (WEB)")
 - "Read Scripture" button appears after playback completes
   - Opens bottom sheet with reference, translation, and verse text (when available)
-- Hidden for Creative stories (no scripture reference)
 - Scripture reference display is driven by story metadata for the current `storyId`
 - Reused in Favorites and History views (future)
 
-### Storytelling Modes
+### Storytelling Mode
 
-**13. Creative / Traditional Mode Toggle**
-
-Two distinct storytelling approaches:
-- **Creative Mode:** Modern, imaginative style with contemporary applications
-- **Traditional Mode:** Biblical narrative tone, closer to scripture style
-
-Affects:
-- Story generation prompts
-- Pre-generated story selection pool
+Bible PAL is Traditional-only as of 2026-05-13. Creative mode was retired and archived; see [archive/CREATIVE_RETIREMENT_2026_05_13.md](archive/CREATIVE_RETIREMENT_2026_05_13.md). Reactivation requires a SPEC update and restoration from the T9 archive or git tag `pre-creative-retirement-2026-05-13`.
 
 ---
 
-### Story Mode Contracts v2 (LOCKED)
+### Story Mode Contract (LOCKED)
 
-Story Mode Contracts v2 defines two orthogonal axes that govern story content and presentation. These contracts are **LOCKED** and must never be violated or blurred.
+Bible PAL serves a single active mode: **Traditional**. Every story is a faithful retelling of a real Bible story. The Story Mode Contract is **LOCKED** and must never be violated.
 
-#### Axis 1 — Story Mode (Authority)
-
-`storytellingMode`: `traditional` | `creative`
-
-This axis determines the **authority and source** of the story content.
-
-#### Axis 2 — Language Style (Presentation)
+#### Axis: Language Style (Presentation)
 
 `languageStyle`: `WEB` | `KJV`
 
-This axis determines the **diction and presentation style** only. It NEVER changes authority.
+Controls **diction and presentation style** only. It NEVER changes authority.
 
 **IMPORTANT:** `languageStyle` is separate from `translationId` (used for Bible translation compliance in Daily Bread and scripture references). Stories use `languageStyle` for presentation; scripture features use `translationId` for compliance.
 
 ---
 
-#### Traditional Mode Contract (DEFAULT)
+#### Traditional Mode Contract
 
-Traditional mode is the **default** for all users. Stories in Traditional mode are **faithful retellings of actual Bible stories**.
+Traditional is the **only active mode**. Stories in Traditional mode are **faithful retellings of actual Bible stories**.
 
 **Core Definition (LOCKED):**
 Traditional stories MUST be **real Bible stories retold faithfully**. They are not devotional content, not original stories with biblical themes, not paraphrased scripture. They are specific, identifiable Bible narratives rendered in narrative form.
@@ -448,7 +427,6 @@ Scripture-faithful narrative enrichment is allowed:
 - MoDC companionship voice (e.g., "I sit with you", "I am here")
 - First/second-person spiritual guide posture
 - Commentary or devotional asides within the narrative
-- Blurring into Creative mode territory
 - **Reflective narrator endings** — no interpretive, poetic, or emotionally summarizing closure language in story body text. Traditional stories must end at the scripture boundary with observable action only. Forbidden patterns include:
   - Listener-directed comfort language ("rest now", "enough for today", "one long breath")
   - Implied moral summary not present in scripture ("it was enough", "at last, peace")
@@ -458,8 +436,8 @@ Scripture-faithful narrative enrichment is allowed:
 **Separation of Story Body and Reflection Content:**
 - **Story body** contains only the faithful scripture retelling — no reflective language
 - **Reflection content** (Feature 34) is a separate asset, displayed after the story via the Reflection UX
-- Poetic or emotionally resonant closing language belongs ONLY in reflection content or Creative mode, never in Traditional story body text
-- Reflection content must never be merged into or appended to the Traditional story body
+- Poetic or emotionally resonant closing language belongs ONLY in reflection content, never in story body text
+- Reflection content must never be merged into or appended to the story body
 
 **Validation:**
 - Traditional stories without `bibleSourceRef` are **EXCLUDED** from the serving pool
@@ -469,90 +447,35 @@ Scripture-faithful narrative enrichment is allowed:
 - Stories that read as devotional commentary rather than narrative fail validation
 - Stories with reflective narrator ending patterns fail validation (see forbidden patterns above)
 
-
----
-
-#### Creative Mode Contract (USER TOGGLE)
-
-Creative mode produces original stories with biblical meaning and values. These are NOT derived from specific Bible passages.
-
-**Requirements:**
-- Original stories only; not retellings of specific Bible stories
-- MoDC (Model of Digital Companionship) rules apply fully:
-  - Non-directive: no commands or prescriptions
-  - Optional: user can skip/dismiss at any time
-  - Interruptible: no forced completion
-- `bibleSourceRef` field must be **ABSENT or empty**
-
-**Allowed:**
-- Biblical themes, values, and wisdom woven into original narratives
-- Contemporary or timeless settings
-- languageStyle may be WEB (modern) or KJV (poetic)
-
-**Forbidden:**
-- Retelling specific Bible stories (even loosely)
-- Implying scriptural authority ("as the Bible says", "scripture tells us")
-- Teaching doctrine as fact
-- Commands or prescriptions ("you should", "you must")
-- Dependency language ("you need this", "come back tomorrow")
-- `bibleSourceRef` field present
-
-**Creative + KJV Extra Restrictions:**
-When `languageStyle=KJV` in Creative mode, treat as **poetic diction only**. Additional forbidden patterns:
-- "Thus saith" or similar archaic authority markers
-- Verse numbering or chapter references
-- "This is the Word" or "hear the Word"
-- Any markers that imply scripture quotation
-
-**Validation:**
-- Creative stories with `bibleSourceRef` present fail validation
-- Stories with strong signals of Bible story retelling fail validation
-- Stories with scripture-authority claims fail validation
-- Stories with advice/prescription/dependency language fail validation
-- Creative+KJV stories with scripture-claim markers fail validation
-
-**Creative Story DNA (Pipeline Diversity — ADR-020):**
-
-Creative stories use a deterministic "Story DNA" planner to inject structural variety before generation. Each story is assigned attributes from rotating pools:
-- **Opening type** (8): dialogue, action, question, emotional_reflection, memory, object_focus, conflict, setting
-- **Structure type** (8): conversation, journey, witness, flashback, unexpected_encounter, problem_solution, parallel_lives, object_lesson
-- **Setting emphasis** (3, weighted low): low (no place description), medium, high
-- **Character archetype** (10): traveling merchant, shepherd, fisherman, widow, child, craftsman, teacher, farmer, healer, stranger
-- **Tone** (8): hopeful, reflective, warm, bittersweet, wonder, gentle, solemn, tender
-
-A repetition guard prevents 3+ consecutive stories from sharing the same opening_type or structure_type. A place-name avoidance list prevents reuse of overused fictional location names. Story DNA is stored in `meta_*.json` under the `storyDna` key (pipeline metadata only — the Flutter app does not read it).
-
 ---
 
 #### Global Invariants (Story Mode)
 
-1. **Non-Blur Enforcement**: Traditional and Creative modes must NEVER blur. Mode determines authority and validation rules.
+1. **Traditional-Only**: Traditional is the only active mode. Any `storytellingMode != 'traditional'` fails validation.
 
-2. **No Silent Fallback**: If no stories match the user's selected mode, return empty pool. Never silently serve cross-mode content.
+2. **Coerce-on-Load**: Legacy `'creative'` values in persisted user preferences coerce to `'traditional'` on load (`UserPreferences.fromJson`).
 
-3. **bibleSourceRef Integrity**:
-   - Traditional: REQUIRED. Stories without it are excluded (not guessed).
-   - Creative: FORBIDDEN. Stories with it fail validation.
+3. **bibleSourceRef Integrity**: REQUIRED for every story. Stories without it are excluded (never guessed).
 
-4. **languageStyle Independence**: Changing languageStyle (WEB↔KJV) never changes authority rules or mode validation.
+4. **languageStyle Independence**: Changing languageStyle (WEB↔KJV) never changes authority rules or validation.
 
-5. **Default is Traditional**: New users and unset preferences default to Traditional mode.
+5. **Default is Traditional**: New users and unset preferences default to Traditional.
 
 ---
 
-#### Parable Metadata (Updated for Contracts v2)
+#### Parable Metadata
 
-Each parable now includes:
+Each parable includes:
 - `storyId` (unique identifier)
 - `title` (AI-generated, user-editable)
 - `mood` / emotional tags
 - `storyLength` ("short", "full", or "long" - LOCKED SPEC)
 - `length` (legacy minutes field for backwards compatibility)
-- `storytellingMode` ("traditional" or "creative") - **REQUIRED**
+- `storytellingMode` ("traditional") — retained for legacy parse; Creative values coerce
 - `languageStyle` ("WEB" or "KJV") - **REQUIRED** for new stories
 - `translationId` (Bible translation for compliance - separate from languageStyle)
-- `bibleSourceRef` (scripture reference - **REQUIRED for Traditional, ABSENT for Creative**)
-- `bibleStoryKey` (canonical Bible story identifier - **REQUIRED for Traditional, ABSENT for Creative**)
+- `bibleSourceRef` (scripture reference - **REQUIRED**)
+- `bibleStoryKey` (canonical Bible story identifier - **REQUIRED**)
 - `kidFriendly` (boolean)
 - `scriptureSources` (array of verse references used in story)
 - `narratorVoiceKey` (symbolic voice key - **REQUIRED** for all stories)
@@ -571,7 +494,6 @@ Golden Prompt mode is a specialized generation strategy for adult traditional SH
 - Eliminate story repetition/duplication bugs caused by continuation logic
 
 **Non-Goals:**
-- Creative mode support (standard mode only)
 - Kid-friendly generation (separate harness)
 - Full/Long bucket stories (SHORT bucket only)
 
@@ -867,7 +789,7 @@ After a PAL's Story finishes playing, an optional reflection connects the story'
 - **Opt-in audio**: Reflection audio is not auto-played by default. User must tap "Hear Reflection" button. Exception: when the user has explicitly enabled "Pause for Reflection" on the player screen (Feature 50.6d), reflection audio auto-plays after story body completion.
 
 **Reflection System (LOCKED):**
-- **Every story has a reflection**: Both Traditional AND Creative stories have a story-specific reflection created alongside the story.
+- **Every story has a reflection**: Every Traditional story has a story-specific reflection created alongside the story.
 - **Reflection audio uses same narrator voice**: The `narratorVoiceKey` for reflection audio MUST match the story's `narratorVoiceKey`. No separate "PAL voice" for reflections.
 - **Pre-generated audio**: Reflection audio is pre-generated alongside story audio, not runtime TTS.
 
@@ -1262,7 +1184,7 @@ Optional background audio that plays alongside story narration to create a calm,
 
 **50. PALs Paths (Feature 50)**
 
-PALs Paths is a top-level Scripture exploration and progression system that complements the mood-driven serving engine. It lives on page 2 of the main horizontal nav (Feature 48). It operates **only on Traditional stories** — Creative stories are invisible to every path type and every search result.
+PALs Paths is a top-level Scripture exploration and progression system that complements the mood-driven serving engine. It lives on page 2 of the main horizontal nav (Feature 48). It operates on the (now-only) Traditional pool — see the Traditional-Only Story Mode Invariant in INVARIANTS.md.
 
 ### Purpose
 
@@ -1336,7 +1258,7 @@ The v1 sequence is expected to grow as annotation batches land. The per-stage en
 
 **Traditional only:**
 
-- `jesus_life` follows the same Story Mode Non-Blur rule as all other path types: only Traditional stories. Creative stories with Jesus themes are never surfaced in `jesus_life`.
+- `jesus_life` operates on the Traditional pool, like all other path types.
 
 ### 50.2 Canonical Timeline Eras (LOCKED)
 
@@ -1461,7 +1383,7 @@ A session-scoped toggle on the player screen labeled "Pause for Reflection". Vis
 
 ### 50.7 Search
 
-- **Scope:** Traditional stories only. Creative stories are invisible to search.
+- **Scope:** Traditional stories (the only active pool post-retirement).
 - **Query types:** verse ("John 3:16"), chapter ("Psalm 23"), book ("Genesis"), character ("David"), event ("burning bush"), keyword ("faith")
 - **Priority order (LOCKED):**
   1. Scripture anchor match (`bibleSourceRef` / `bibleStoryKey`)
@@ -1622,12 +1544,10 @@ Award priority (when multiple would trigger simultaneously): Character → Path 
 
 ## Settings
 
-**22. Creative/Traditional Mode Toggle**
-- Global setting for storytelling mode
-- **Default**: Traditional mode
-- **Persistence**: Mode persists across app restarts until explicitly changed
-- Affects parable selection and generation
-- Only two modes: Traditional and Creative (no other modes exist)
+**22. Story Mode (Retired)**
+- The Creative/Traditional toggle was removed 2026-05-13 with Creative retirement.
+- Traditional is the only active mode; no UI toggle is shown.
+- See [archive/CREATIVE_RETIREMENT_2026_05_13.md](archive/CREATIVE_RETIREMENT_2026_05_13.md).
 
 **23. Change Bible Translation**
 - Allows user to update preferred Bible translation(s) after onboarding

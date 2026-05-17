@@ -10,38 +10,40 @@ before implementation.
 
 ---
 
-## 0. Engine Architecture (Locked — Revised 2026-03-28)
+## 0. Engine Architecture (Locked — Revised 2026-05-13)
 
 ### Active Engine: Claude Opus 4.6
 
-All new story generation uses **Claude Opus 4.6** via the Anthropic API as the
-sole active engine for both Traditional and Creative modes.
+All new story generation uses **Claude Opus 4.6** via the Anthropic API.
+Traditional is the only active mode (Creative was retired 2026-05-13; see
+[archive/CREATIVE_RETIREMENT_2026_05_13.md](archive/CREATIVE_RETIREMENT_2026_05_13.md)).
 
 | Mode        | Engine                  | Generator Script               | ID Range    |
 |-------------|------------------------|---------------------------------|-------------|
-| Traditional | Claude Opus 4.6 (Cloud) | `generate_story_claude.py`     | 1000–1999   |
-| Creative    | Claude Opus 4.6 (Cloud) | `generate_story_claude.py`     | 2000–2999   |
+| Traditional | Claude Opus 4.6 (Cloud) | `generate_story_claude.py`     | 1000–1999+  |
 
 **Active Engine Rules:**
-- Both modes MUST use `claude-opus-4-6` via the Anthropic Python SDK.
+- MUST use `claude-opus-4-6` via the Anthropic Python SDK.
 - Metadata records `"createdByModel": "claude-opus-4-6"`.
-- Registries are separate: `used_scripture_anchors.json` (Traditional) vs `used_creative_themes.json` (Creative).
-- Output directories are separate: `assets/stories/traditional/` vs `assets/stories/creative/`.
-- No cross-engine content. No cross-registry reads. No blurring.
+- Registry: `used_scripture_anchors.json`.
+- Output directory: `assets/stories/traditional/`.
 
 ### Retired Engines (Legacy)
 
-The following engines are retired. Their scripts remain in the repo but are no
-longer used for new content. Legacy stories (IDs 501–519, 801–834) remain in
+The following engines are retired. Their scripts remain in the repo only where
+needed for legacy support. Legacy Traditional stories (IDs 801–834) remain in
 the app for testing and are never deleted.
 
-| Mode        | Engine (Retired)                | Generator Script (Retired)                                        | ID Range   |
-|-------------|--------------------------------|-------------------------------------------------------------------|------------|
-| Traditional | OpenAI gpt-4.1 (Cloud)         | `generate_traditional_story.py`                                   | 801–834    |
-| Creative    | mistral-nemo via Ollama (Local) | `generate_v2_batch.sh`, `generate_creative_story.py`              | 501–519    |
+| Mode        | Engine (Retired)                | Generator Script (Retired)         | ID Range   |
+|-------------|--------------------------------|-------------------------------------|------------|
+| Traditional | OpenAI gpt-4.1 (Cloud)         | `generate_traditional_story.py`    | 801–834    |
+
+Creative engines (mistral-nemo via Ollama for IDs 501–519; Claude Opus 4.6 for
+IDs 2000–2079) are archived to T9 and removed from the working tree as of
+Creative retirement (2026-05-13).
 
 **Why Single Engine:**
-- Consistent prose quality across both modes from a single best-in-class model
+- Consistent prose quality from a single best-in-class model
 - Eliminates continuation-stitching issues from local models
 - Simplifies tooling (one script, one API, one validation pipeline)
 - Preserves doctrinal trust (Opus 4.6 proven for faithful scripture retelling)
@@ -53,9 +55,9 @@ the app for testing and are never deleted.
 - Canonical author model: **Claude Opus 4.6** (`claude-opus-4-6`)
 - All new story and reflection prose MUST be generated via the Anthropic API
   using Claude Opus 4.6.
-- Legacy Traditional stories (801–834) were authored by gpt-4.1; legacy Creative
-  stories (501–519) were authored by Ollama models. These remain but are not
-  extended.
+- Legacy Traditional stories (801–834) were authored by gpt-4.1. They remain
+  in the app but are not extended. Legacy Creative stories (501–519, 2000–2079)
+  were retired on 2026-05-13 and archived.
 - Generation scripts MUST NOT contain hard-coded prose, fallback prose,
   or template expansions.
 
@@ -289,193 +291,41 @@ for Traditional story generation.
 
 ---
 
-## PART B: Creative Story Generation
+## PART B: Creative Mode Retirement (2026-05-13)
 
-The following sections define the Creative story generation pipeline.
-Creative stories are original faith-themed narratives — NOT Bible retellings.
+Creative mode and its dual-engine pipeline have been retired. The PART B
+sections that previously defined Creative story authoring, themes,
+guardrails, length system, reflection rules, audio generation, file
+contract, theme registry, and validation gates are no longer active.
 
----
+- Archive: [archive/CREATIVE_RETIREMENT_2026_05_13.md](archive/CREATIVE_RETIREMENT_2026_05_13.md)
+- Superseded ADRs: ADR-014 (dual-engine pipeline), ADR-020 (Story DNA)
+- Git tag for restoration: `pre-creative-retirement-2026-05-13`
+- T9 cold archive: `/Volumes/T9-Archive/bible_pal_archives/creative_retirement_2026_05_13/`
 
-## 12. Creative Canonical Story Author
-
-- Canonical author model: **Claude Opus 4.6** (`claude-opus-4-6`)
-- All new creative story and reflection prose MUST be generated via the Anthropic
-  API using Claude Opus 4.6.
-- Legacy Creative stories (501–519) were authored by Ollama models (mistral-nemo,
-  gemma:7b). These remain but are not extended.
-- Generation scripts MUST NOT contain hard-coded prose, fallback prose,
-  or template expansions.
-- The `createdByModel` metadata field records `"claude-opus-4-6"` for new stories.
-
-**Invariant:**
-The generator may orchestrate, validate, and persist content —
-but must never author content itself.
+Reactivation requires a new SPEC update and explicit owner approval.
 
 ---
 
-## 13. Creative Story Themes
+## 12. Story ID Space
 
-### 13.1 Theme-Based (Not Scripture-Anchored)
+### Active Range (Claude Opus 4.6, Traditional only)
+- Traditional story IDs: **1000–1999** (with overflow into 1100+/1200+/1300+ as the corpus grows)
 
-- Creative stories are anchored to a **theme**, not a Scripture passage.
-- Each story has exactly ONE theme (a short descriptive phrase).
-- A theme+mood combination may NEVER be reused.
-- NO `scriptureAnchor` or `bibleSourceRef` field in Creative metadata.
-- NO `bibleStoryKey` field in Creative metadata.
-
-### 13.2 Theme Format Rules
-
-Themes are free-form descriptive phrases, e.g.:
-- `"finding unexpected joy in small acts of kindness"`
-- `"a tired traveler who finds rest in an unlikely place"`
-- `"a potter who learns to trust the process of shaping clay"`
-
-### 13.3 Curated Theme Pools
-
-Themes are curated per mood in `batch_generate_creative.py`.
-Each mood has 8+ theme suggestions for scalability.
-
----
-
-## 14. Creative Content Guardrails (Non-Negotiable)
-
-All Creative stories MUST obey:
-
-- NO Bible story retellings (no specific Bible characters by name)
-- NO scripture quoting or verse references
-- NO teaching doctrine as fact
-- NO God speaking directly as a dialogue character
-- NO spiritual authority claims
-- NO fear-based framing (guilt, shame, punishment)
-- NO commands or prescriptions to the listener
-- NO dependency language
-
-Allowed:
-- Fictional characters
-- Modern or timeless settings
-- Parables and metaphor narratives
-- Symbolic elements
-- Biblical themes (grace, kindness, perseverance, forgiveness, hope)
-- Faith shown through characters' actions and observations
-
----
-
-## 15. Creative Story Length System (Revised 2026-03-29)
-
-Creative stories use shorter ranges than Traditional to match the parable format.
-
-| Bucket | Word Count | Aim For |
-|--------|------------|---------|
-| Short  | 250–380    | 320     |
-| Full   | 450–650    | 550     |
-| Long   | 750–1050   | 900     |
-
-Long is OPTIONAL for Creative stories (same policy as Traditional, see Section 5.2).
-
-**Rationale:** Creative stories are original parables and metaphor narratives —
-naturally more concise than detailed Bible retellings. Tighter ranges (revised from
-the original wider buckets) produce better audio-ready prose.
-
----
-
-## 16. Creative Reflection System
-
-Same rules as Traditional (Section 6):
-
-- Each story has exactly ONE canonical reflection.
-- Reflection applies to all three lengths.
-- Reflection is generated via the active engine (Claude Opus 4.6 for new stories).
-- Reflection word count target: **120–220 words** (adult), **60–120 words** (kid).
-- Same guardrails: no advice, no prescriptions, no theological interpretation.
-- Same optional reflection question rules (Section 6.1).
-
----
-
-## 17. Creative Audio Generation
-
-Same as Traditional (Section 7):
-
-- All audio is generated via ElevenLabs.
-- Exactly 4 audio files per story.
-- Each audio file must be >= 1000 bytes.
-- `--skip-audio` flag available for text-only generation.
-
----
-
-## 18. Creative File & Directory Contract
-
-Directory:
-`assets/stories/creative/<story_id>/`
-
-Required files:
-- `story_<id>_creative_<lane>_short.txt`
-- `story_<id>_creative_<lane>_full.txt`
-- `story_<id>_creative_<lane>_long.txt`
-- `reflection_<id>_creative_<lane>.txt`
-- `audio_<id>_story_short.mp3`
-- `audio_<id>_story_full.mp3`
-- `audio_<id>_story_long.mp3`
-- `audio_<id>_reflection.mp3`
-- `meta_<id>.json`
-
-### 18.1 Creative Metadata Schema
-
-Same `schemaVersion: 2` as Traditional, with these differences:
-
-- `"mode": "creative"` (not `"traditional"`)
-- `"theme": "..."` (theme string, replaces `scriptureAnchor`)
-- `"createdByModel": "<model_used>"` (e.g., `"mistral-nemo"`, `"gemma:7b"` — captured dynamically)
-- NO `scriptureAnchor` field (Creative mode forbids it)
-
----
-
-## 19. Creative Theme Registry
-
-- Used themes are tracked in `used_creative_themes.json`.
-- Registry key format: `"mood:theme"` (e.g., `"joyful:finding unexpected joy..."`)
-- Keys must be unique.
-- Registry updates only after successful generation.
-- Registry is sorted and formatted with indent=2.
-
----
-
-## 20. Creative Validation Gates
-
-All Creative stories pass through these gates (in order):
-
-1. **Meta-text check** — Same blocklist as Traditional
-2. **Word count validation** — Same locked ranges
-3. **Creative compliance check** — Catches scripture retelling, authority claims,
-   direct God dialogue, spiritual commands, fear framing
-4. **Kid forbidden words** (kid mode only) — Same blocklist as Traditional
-5. **Anti-repetition** — Same rules embedded in prompts
-
-On violation: sanitize rewrite attempted, then fresh regeneration.
-Max attempts: 5 (adult), 5 (kid).
-
----
-
-## 21. Story ID Space
-
-### Active Ranges (Claude Opus 4.6)
-- Traditional story IDs: **1000–1999**
-- Creative story IDs: **2000–2999**
-
-### Legacy Ranges (Retired Engines)
-- Creative (Ollama): **501–519**
+### Legacy Range (Retired Engine)
 - Traditional (gpt-4.1): **801–834**
 
-All ranges MUST NOT overlap.
+The Creative ranges (501–519 legacy, 2000–2999 modern) are reserved on the
+T9 archive and are not assignable to new content.
 
 ---
 
-## 22. Design Intent (Non-Normative)
+## 13. Design Intent (Non-Normative)
 
-The dual-engine Story Factory exists to ensure:
-- Zero drift at scale across both modes
+The Story Factory exists to ensure:
+- Zero drift at scale for Traditional Bible stories
 - Deterministic, auditable content creation
 - Clear separation between engines, modes, and registries
-- Cost control (local model for creative, cloud for traditional)
-- Vendor independence (creative runs entirely offline)
+- Vendor independence where practical (Traditional is locked to gpt-4.1 per ADR-014/016)
 
-This document is the single source of truth for all story generation.
+This document is the single source of truth for Traditional story generation.

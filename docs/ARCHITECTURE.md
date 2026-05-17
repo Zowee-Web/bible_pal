@@ -114,7 +114,7 @@ Stories are generated offline, not at runtime. The pipeline:
 
 Key server files:
 - `server/prompts/` — Generation prompt templates
-- `server/contracts/` — Story mode contracts (Traditional/Creative)
+- `server/contracts/` — Story mode contracts (Traditional)
 - `server/kid_bedtime_forbidden.txt` — Forbidden vocabulary for kid mode
 - `server/voices.json` — ElevenLabs voice configuration
 - `server/model_router/` — Universal Model Router (task-driven AI model selection)
@@ -139,13 +139,11 @@ API endpoints:
 
 ---
 
-## Two Story Modes (LOCKED Contract)
+## Story Mode (LOCKED Contract)
 
-**Traditional** (default): Faithful retellings of real Bible stories. Requires `bibleSourceRef` and `bibleStoryKey`. Multiple stories per mood; identity is the scripture anchor (`scriptureAnchorId`), not the mood. See ADR-022.
+**Traditional** (only active mode): Faithful retellings of real Bible stories. Requires `bibleSourceRef` and `bibleStoryKey`. Multiple stories per mood; identity is the scripture anchor (`scriptureAnchorId`), not the mood. See ADR-022.
 
-**Creative**: Original stories with biblical themes. `bibleSourceRef` must be absent. MoDC (Model of Digital Companionship) rules apply — non-directive, non-prescriptive.
-
-These modes must never blur. See SPEC.md "Story Mode Contracts v2" for full rules.
+Creative mode was retired on 2026-05-13. See [archive/CREATIVE_RETIREMENT_2026_05_13.md](archive/CREATIVE_RETIREMENT_2026_05_13.md) and DECISIONS.md ADR-014/ADR-020 (both superseded). All Creative assets are preserved at the T9 cold archive and recoverable via git tag `pre-creative-retirement-2026-05-13`.
 
 ---
 
@@ -176,7 +174,7 @@ Diagnostics-gated tests require `--dart-define=DIAGNOSTICS_ENABLED=true` and aut
 ## Important Boundaries
 
 1. **Translation compliance is enforced at multiple layers** — registry, runtime guards, tests, CI. Do not bypass any layer.
-2. **Story modes are mutually exclusive** — Traditional and Creative have different validation rules and must never cross-serve.
+2. **Traditional is the only active story mode** — Creative was retired 2026-05-13 and removed from the codebase. Reactivation requires SPEC update + restoration from T9 archive or git tag.
 3. **PAL voices are separate from narrator voices** — PAL voices (check-in, micro-response) are distinct from story narration voices.
 4. **Stories are pre-generated, not runtime** — The app plays bundled audio; it does not call LLMs or TTS at runtime (except for name audio).
 5. **Privacy boundary** — No user text, PII, or mood input is ever logged or persisted beyond the current session.
