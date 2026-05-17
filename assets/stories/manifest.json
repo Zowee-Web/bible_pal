@@ -787,7 +787,7 @@
       "audioFilePath": "traditional/1005/audio_1005_story_kjv_short.mp3",
       "textFilePath": "traditional/1005/story_1005_traditional_kjv_short.txt",
       "reflectionAudioPath": "traditional/1005/audio_1005_reflection_kjv.mp3",
-      "translationId": "WEB",
+      "translationId": "KJV",
       "languageStyle": "KJV",
       "narratorVoiceKey": "VOICE_CHRIS_DEFAULT",
       "storyLength": "short",

@@ -243,6 +243,10 @@
       "displayName": "Miriam",
       "descriptor": "Sister of Moses and Aaron, Exodus"
     },
+    "mordecai": {
+      "displayName": "Mordecai",
+      "descriptor": "Guardian of Esther who exposed Haman's plot, Esther"
+    },
     "moses": {
       "displayName": "Moses",
       "descriptor": "Leader of the Exodus"
