@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1326,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Yours Is the Greatness",
+  "scriptureAnchor": "1 Chronicles 29:10-13",
+  "scriptureAnchorId": "1_chronicles_29_10-13",
+  "bibleStoryKey": "davids_blessing_at_temple_offering",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "blessing",
+    "kingship",
+    "stewardship",
+    "doxology",
+    "thanksgiving"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "exalted",
+    "humbled",
+    "reverent",
+    "tender",
+    "settled"
+  ],
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "bibleOrderIndex": 215,
+  "timelineEra": "kingdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1326_traditional_web_short.txt"
+    }
+  }
+}

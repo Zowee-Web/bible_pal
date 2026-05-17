@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1331,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Take with You Words",
+  "scriptureAnchor": "Hosea 14:1-7",
+  "scriptureAnchorId": "hosea_14_1-7",
+  "bibleStoryKey": "return_to_yahweh_take_words",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "themeTags": [
+    "return",
+    "repentance",
+    "restoration",
+    "healing",
+    "blossoming"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "hopeful",
+    "humbled",
+    "tender",
+    "comforted",
+    "longing"
+  ],
+  "primaryCharacterId": "hosea",
+  "primaryCharacterDisplayName": "Hosea",
+  "bibleOrderIndex": 355,
+  "timelineEra": "prophets",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1331_traditional_web_short.txt"
+    }
+  }
+}

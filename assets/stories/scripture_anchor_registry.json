@@ -2480,6 +2480,90 @@
       "moodTags": [
         "weary"
       ]
+    },
+    {
+      "scriptureAnchorId": "1_chronicles_29_10-13",
+      "bibleStoryKey": "davids_blessing_at_temple_offering",
+      "bibleSourceRef": "1 Chronicles 29:10-13",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_10_21-24",
+      "bibleStoryKey": "jesus_rejoices_in_the_spirit",
+      "bibleSourceRef": "Luke 10:21-24",
+      "moodTags": [
+        "grateful",
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "psalm_107_1-9",
+      "bibleStoryKey": "give_thanks_for_he_gathered_us",
+      "bibleSourceRef": "Psalm 107:1-9",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "psalm_138_1-3",
+      "bibleStoryKey": "i_will_give_thanks_with_my_whole_heart",
+      "bibleSourceRef": "Psalm 138:1-3",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "psalm_145_1-7",
+      "bibleStoryKey": "i_will_extol_you_my_god_and_king",
+      "bibleSourceRef": "Psalm 145:1-7",
+      "moodTags": [
+        "grateful",
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "hosea_14_1-7",
+      "bibleStoryKey": "return_to_yahweh_take_words",
+      "bibleSourceRef": "Hosea 14:1-7",
+      "moodTags": [
+        "grateful",
+        "hopeful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_corinthians_9_6-15",
+      "bibleStoryKey": "thanks_be_to_god_for_his_unspeakable_gift",
+      "bibleSourceRef": "2 Corinthians 9:6-15",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "ephesians_5_18-21",
+      "bibleStoryKey": "giving_thanks_always_for_all",
+      "bibleSourceRef": "Ephesians 5:18-21",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_24_26-27",
+      "bibleStoryKey": "abrahams_servant_blesses_yahweh",
+      "bibleSourceRef": "Genesis 24:26-27",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "romans_11_33-36",
+      "bibleStoryKey": "depths_of_riches_of_god",
+      "bibleSourceRef": "Romans 11:33-36",
+      "moodTags": [
+        "grateful",
+        "awed"
+      ]
     }
   ]
 }

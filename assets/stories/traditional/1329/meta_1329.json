@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1329,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "With My Whole Heart",
+  "scriptureAnchor": "Psalm 138:1-3",
+  "scriptureAnchorId": "psalm_138_1-3",
+  "bibleStoryKey": "i_will_give_thanks_with_my_whole_heart",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "personal_thanksgiving",
+    "answered_prayer",
+    "loving_kindness",
+    "worship",
+    "intimacy"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "tender",
+    "humbled",
+    "trusting",
+    "comforted",
+    "settled"
+  ],
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "bibleOrderIndex": 275,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1329_traditional_web_short.txt"
+    }
+  }
+}
