@@ -99,11 +99,14 @@ if ! [[ "$current_branch" =~ $BRANCH_PATTERN ]]; then
 Expected a branch matching $BRANCH_PATTERN (e.g., fix/creative-retirement-stage2)."
 fi
 
-# 3. Working tree clean.
-if [ -n "$(git status --porcelain)" ]; then
-  warn "Working tree is not clean:"
-  git status --short >&2
-  die "Commit or stash your changes before running this script.
+# 3. Working tree clean of TRACKED changes.
+#    We deliberately ignore untracked files (--untracked-files=no): they cannot
+#    be clobbered by `git rm`, which only touches tracked paths. Modified or
+#    deleted tracked files DO pose a clobber risk and remain a blocker.
+if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
+  warn "Working tree has uncommitted tracked changes:"
+  git status --short --untracked-files=no >&2
+  die "Commit your changes before running this script.
 Per Adam's preference: NEVER stash PAL work — commit it instead."
 fi
 
