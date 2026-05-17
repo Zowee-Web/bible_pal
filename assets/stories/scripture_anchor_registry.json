@@ -2232,6 +2232,84 @@
       "moodTags": [
         "weary"
       ]
+    },
+    {
+      "scriptureAnchorId": "joshua_4_1-9",
+      "bibleStoryKey": "twelve_stones_memorial",
+      "bibleSourceRef": "Joshua 4:1-9",
+      "moodTags": [
+        "grateful",
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "joshua_5_13-15",
+      "bibleStoryKey": "commander_of_yahwehs_army",
+      "bibleSourceRef": "Joshua 5:13-15",
+      "moodTags": [
+        "calm_peaceful",
+        "awed"
+      ]
+    },
+    {
+      "scriptureAnchorId": "daniel_4_34-37",
+      "bibleStoryKey": "nebuchadnezzars_praise",
+      "bibleSourceRef": "Daniel 4:34-37",
+      "moodTags": [
+        "grateful",
+        "awed"
+      ]
+    },
+    {
+      "scriptureAnchorId": "daniel_10_1-3",
+      "bibleStoryKey": "daniel_three_weeks_mourning",
+      "bibleSourceRef": "Daniel 10:1-3",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "nehemiah_4_7-15",
+      "bibleStoryKey": "fight_for_your_brothers",
+      "bibleSourceRef": "Nehemiah 4:7-15",
+      "moodTags": [
+        "brave_courage",
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "judges_6_1-10",
+      "bibleStoryKey": "israel_in_the_days_of_midian",
+      "bibleSourceRef": "Judges 6:1-10",
+      "moodTags": [
+        "weary",
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "exodus_2_23-25",
+      "bibleStoryKey": "israel_groans_in_bondage",
+      "bibleSourceRef": "Exodus 2:23-25",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "nehemiah_6_1-9",
+      "bibleStoryKey": "nehemiah_refuses_to_come_down",
+      "bibleSourceRef": "Nehemiah 6:1-9",
+      "moodTags": [
+        "anxious",
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "deut_8_7-10",
+      "bibleStoryKey": "bless_the_lord_for_the_good_land",
+      "bibleSourceRef": "Deuteronomy 8:7-10",
+      "moodTags": [
+        "grateful"
+      ]
     }
   ]
 }
