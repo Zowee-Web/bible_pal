@@ -2308,6 +2308,90 @@
       "moodTags": [
         "grateful"
       ]
+    },
+    {
+      "scriptureAnchorId": "psalm_100",
+      "bibleStoryKey": "make_a_joyful_noise",
+      "bibleSourceRef": "Psalm 100",
+      "moodTags": [
+        "joyful",
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "nehemiah_12_27-43",
+      "bibleStoryKey": "dedication_of_the_wall",
+      "bibleSourceRef": "Nehemiah 12:27-43",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "acts_8_5-8",
+      "bibleStoryKey": "great_joy_in_samaria",
+      "bibleSourceRef": "Acts 8:5-8",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "joshua_22_1-9",
+      "bibleStoryKey": "reubenites_return_with_blessing",
+      "bibleSourceRef": "Joshua 22:1-9",
+      "moodTags": [
+        "joyful",
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "isaiah_12_1-6",
+      "bibleStoryKey": "sing_to_the_lord",
+      "bibleSourceRef": "Isaiah 12:1-6",
+      "moodTags": [
+        "joyful",
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "jeremiah_31_7-14",
+      "bibleStoryKey": "turn_mourning_into_joy",
+      "bibleSourceRef": "Jeremiah 31:7-14",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_21_1-7",
+      "bibleStoryKey": "sarah_laughs_at_isaacs_birth",
+      "bibleSourceRef": "Genesis 21:1-7",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_chronicles_16_8-13",
+      "bibleStoryKey": "davids_psalm_of_thanks",
+      "bibleSourceRef": "1 Chronicles 16:8-13",
+      "moodTags": [
+        "joyful",
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "john_2_1-11",
+      "bibleStoryKey": "wedding_at_cana",
+      "bibleSourceRef": "John 2:1-11",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "acts_2_42-47",
+      "bibleStoryKey": "gladness_and_singleness_of_heart",
+      "bibleSourceRef": "Acts 2:42-47",
+      "moodTags": [
+        "joyful"
+      ]
     }
   ]
 }

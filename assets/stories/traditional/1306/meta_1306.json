@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1306,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "A Psalm of Thanksgiving",
+  "scriptureAnchor": "Psalm 100",
+  "scriptureAnchorId": "psalm_100",
+  "bibleStoryKey": "make_a_joyful_noise",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "worship",
+    "thanksgiving",
+    "praise",
+    "pilgrimage",
+    "joy"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "grateful",
+    "humbled",
+    "exalted",
+    "reverent"
+  ],
+  "primaryCharacterId": "psalmist",
+  "primaryCharacterDisplayName": "Psalmist",
+  "bibleOrderIndex": 241,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1306_traditional_web_short.txt"
+    }
+  }
+}

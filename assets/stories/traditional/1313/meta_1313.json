@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1313,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Oh Give Thanks to Yahweh",
+  "scriptureAnchor": "1 Chronicles 16:8-13",
+  "scriptureAnchorId": "1_chronicles_16_8-13",
+  "bibleStoryKey": "davids_psalm_of_thanks",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "thanksgiving",
+    "worship",
+    "ark",
+    "praise",
+    "remembrance"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "grateful",
+    "exalted",
+    "reverent",
+    "trusting",
+    "celebrating"
+  ],
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "bibleOrderIndex": 213,
+  "timelineEra": "kingdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1313_traditional_web_short.txt"
+    }
+  }
+}

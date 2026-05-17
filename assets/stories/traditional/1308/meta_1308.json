@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1308,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Great Joy in That City",
+  "scriptureAnchor": "Acts 8:5-8",
+  "scriptureAnchorId": "acts_8_5-8",
+  "bibleStoryKey": "great_joy_in_samaria",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "evangelism",
+    "healing",
+    "joy",
+    "expansion",
+    "miracles"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "amazed",
+    "freed",
+    "hopeful",
+    "grateful",
+    "moved"
+  ],
+  "primaryCharacterId": "philip_evangelist",
+  "primaryCharacterDisplayName": "Philip",
+  "bibleOrderIndex": 690,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1308_traditional_web_short.txt"
+    }
+  }
+}

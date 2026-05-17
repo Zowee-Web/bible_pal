@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1307,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Joy of Jerusalem Was Heard Far Off",
+  "scriptureAnchor": "Nehemiah 12:27-43",
+  "scriptureAnchorId": "nehemiah_12_27-43",
+  "bibleStoryKey": "dedication_of_the_wall",
+  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "themeTags": [
+    "dedication",
+    "celebration",
+    "completion",
+    "joy",
+    "music"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "triumphant",
+    "thankful",
+    "celebrating",
+    "united",
+    "exuberant"
+  ],
+  "primaryCharacterId": "nehemiah",
+  "primaryCharacterDisplayName": "Nehemiah",
+  "bibleOrderIndex": 263,
+  "timelineEra": "return",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1307_traditional_web_short.txt"
+    }
+  }
+}

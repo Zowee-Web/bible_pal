@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1310,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Draw Water with Joy from the Wells",
+  "scriptureAnchor": "Isaiah 12:1-6",
+  "scriptureAnchorId": "isaiah_12_1-6",
+  "bibleStoryKey": "sing_to_the_lord",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "salvation",
+    "praise",
+    "future_joy",
+    "comfort",
+    "song"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "grateful",
+    "comforted",
+    "trusting",
+    "exalted",
+    "hopeful"
+  ],
+  "primaryCharacterId": "isaiah",
+  "primaryCharacterDisplayName": "Isaiah",
+  "bibleOrderIndex": 281,
+  "timelineEra": "prophets",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1310_traditional_web_short.txt"
+    }
+  }
+}
