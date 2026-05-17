@@ -119,15 +119,15 @@ void main() {
       }
       expect(reflectionPicks, {0, 1, 2});
 
-      // Family 'creative' should have its own clean history.
+      // Family 'framing' should have its own clean history.
       final r2 = PalLineRotator(Random(42));
-      r2.enablePersistence(prefs, 'creative');
-      final creativePicks = <int>{};
+      r2.enablePersistence(prefs, 'framing');
+      final framingPicks = <int>{};
       for (var i = 0; i < 3; i++) {
-        creativePicks.add(r2.pick('joyful', 3));
+        framingPicks.add(r2.pick('joyful', 3));
       }
-      expect(creativePicks, {0, 1, 2},
-          reason: 'creative family should cycle independently');
+      expect(framingPicks, {0, 1, 2},
+          reason: 'framing family should cycle independently');
     });
 
     test('handles pool-size shrink gracefully', () async {

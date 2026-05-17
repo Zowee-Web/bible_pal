@@ -57,14 +57,16 @@ Future<({ParableService service, Directory root})> setupCloudAudioTest({
 
 Parable testParable({
   String storyId = 'story_test_001',
-  String audioFilePath = 'creative/9999/audio_9999_story_short.mp3',
+  // Deliberately points at a path that is NOT bundled in pubspec.yaml so the
+  // asset-tier resolver misses and tests can exercise the R2 fallback path.
+  String audioFilePath = 'traditional/9999/audio_9999_story_short.mp3',
   String mood = 'joyful',
 }) {
   return Parable(
     storyId: storyId,
     title: 'Test Story',
     mood: mood,
-    storytellingMode: 'creative',
+    storytellingMode: 'traditional',
     kidFriendly: false,
     audioFilePath: audioFilePath,
     storyLength: 'short',
