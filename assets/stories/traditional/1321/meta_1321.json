@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1321,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The City Sits Solitary",
+  "scriptureAnchor": "Lamentations 1:1-5",
+  "scriptureAnchorId": "lamentations_1_1-5",
+  "bibleStoryKey": "jerusalem_sits_solitary",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "themeTags": [
+    "destruction",
+    "exile",
+    "lament",
+    "loss",
+    "loneliness"
+  ],
+  "emotionalTags": [
+    "weary",
+    "hurting",
+    "grieving",
+    "humbled",
+    "lonely",
+    "broken"
+  ],
+  "primaryCharacterId": "jeremiah",
+  "primaryCharacterDisplayName": "Jeremiah",
+  "bibleOrderIndex": 325,
+  "timelineEra": "exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1321_traditional_web_short.txt"
+    }
+  }
+}

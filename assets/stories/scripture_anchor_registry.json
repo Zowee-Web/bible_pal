@@ -2392,6 +2392,94 @@
       "moodTags": [
         "joyful"
       ]
+    },
+    {
+      "scriptureAnchorId": "numbers_11_10-15",
+      "bibleStoryKey": "moses_burden_too_heavy",
+      "bibleSourceRef": "Numbers 11:10-15",
+      "moodTags": [
+        "weary",
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "job_7_1-6",
+      "bibleStoryKey": "mans_days_are_like_a_hired_servant",
+      "bibleSourceRef": "Job 7:1-6",
+      "moodTags": [
+        "weary",
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "galatians_6_7-10",
+      "bibleStoryKey": "let_us_not_be_weary_in_well_doing",
+      "bibleSourceRef": "Galatians 6:7-10",
+      "moodTags": [
+        "weary",
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "mark_6_30-32",
+      "bibleStoryKey": "come_away_and_rest",
+      "bibleSourceRef": "Mark 6:30-32",
+      "moodTags": [
+        "weary",
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "isaiah_50_4-9",
+      "bibleStoryKey": "wearied_servant_prophet",
+      "bibleSourceRef": "Isaiah 50:4-9",
+      "moodTags": [
+        "weary",
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "lamentations_1_1-5",
+      "bibleStoryKey": "jerusalem_sits_solitary",
+      "bibleSourceRef": "Lamentations 1:1-5",
+      "moodTags": [
+        "weary",
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "habakkuk_1_2-4",
+      "bibleStoryKey": "how_long_o_lord",
+      "bibleSourceRef": "Habakkuk 1:2-4",
+      "moodTags": [
+        "weary",
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_samuel_17_27-29",
+      "bibleStoryKey": "davids_men_weary_in_flight",
+      "bibleSourceRef": "2 Samuel 17:27-29",
+      "moodTags": [
+        "weary",
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "ecclesiastes_2_18-23",
+      "bibleStoryKey": "vanity_of_toil",
+      "bibleSourceRef": "Ecclesiastes 2:18-23",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_47_7-10",
+      "bibleStoryKey": "few_and_evil_my_years",
+      "bibleSourceRef": "Genesis 47:7-10",
+      "moodTags": [
+        "weary"
+      ]
     }
   ]
 }

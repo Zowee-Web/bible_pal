@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1323,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The People Are Weary in the Wilderness",
+  "scriptureAnchor": "2 Samuel 17:27-29",
+  "scriptureAnchorId": "2_samuel_17_27-29",
+  "bibleStoryKey": "davids_men_weary_in_flight",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "exile",
+    "provision",
+    "friendship",
+    "hospitality",
+    "flight"
+  ],
+  "emotionalTags": [
+    "weary",
+    "grateful",
+    "comforted",
+    "humbled",
+    "settled",
+    "sustained"
+  ],
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "bibleOrderIndex": 196,
+  "timelineEra": "kingdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1323_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1317,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Spent Without Hope",
+  "scriptureAnchor": "Job 7:1-6",
+  "scriptureAnchorId": "job_7_1-6",
+  "bibleStoryKey": "mans_days_are_like_a_hired_servant",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "suffering",
+    "lament",
+    "endurance",
+    "sleeplessness",
+    "loss"
+  ],
+  "emotionalTags": [
+    "weary",
+    "hurting",
+    "hopeless",
+    "humbled",
+    "patient",
+    "broken"
+  ],
+  "primaryCharacterId": "job",
+  "primaryCharacterDisplayName": "Job",
+  "bibleOrderIndex": 220,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1317_traditional_web_short.txt"
+    }
+  }
+}

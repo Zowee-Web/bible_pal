@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1325,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Few and Evil Have Been My Years",
+  "scriptureAnchor": "Genesis 47:7-10",
+  "scriptureAnchorId": "genesis_47_7-10",
+  "bibleStoryKey": "few_and_evil_my_years",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "old_age",
+    "pilgrimage",
+    "blessing",
+    "remembrance",
+    "humility"
+  ],
+  "emotionalTags": [
+    "weary",
+    "humbled",
+    "reflective",
+    "patient",
+    "tender",
+    "settled"
+  ],
+  "primaryCharacterId": "jacob",
+  "primaryCharacterDisplayName": "Jacob",
+  "bibleOrderIndex": 60,
+  "timelineEra": "patriarchs",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1325_traditional_web_short.txt"
+    }
+  }
+}

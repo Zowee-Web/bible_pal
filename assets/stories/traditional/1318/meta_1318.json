@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1318,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Let Us Not Be Weary",
+  "scriptureAnchor": "Galatians 6:7-10",
+  "scriptureAnchorId": "galatians_6_7-10",
+  "bibleStoryKey": "let_us_not_be_weary_in_well_doing",
+  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "themeTags": [
+    "perseverance",
+    "doing_good",
+    "sowing",
+    "exhortation",
+    "endurance"
+  ],
+  "emotionalTags": [
+    "weary",
+    "resolute",
+    "hopeful",
+    "encouraged",
+    "steady",
+    "humbled"
+  ],
+  "primaryCharacterId": "paul_apostle",
+  "primaryCharacterDisplayName": "Paul",
+  "bibleOrderIndex": 728,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1318_traditional_web_short.txt"
+    }
+  }
+}

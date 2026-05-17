@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1319,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Come Apart and Rest",
+  "scriptureAnchor": "Mark 6:30-32",
+  "scriptureAnchorId": "mark_6_30-32",
+  "bibleStoryKey": "come_away_and_rest",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "rest",
+    "withdrawal",
+    "discipleship",
+    "compassion",
+    "stillness"
+  ],
+  "emotionalTags": [
+    "weary",
+    "comforted",
+    "settled",
+    "humbled",
+    "tender",
+    "grateful"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 638,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1319_traditional_web_short.txt"
+    }
+  }
+}

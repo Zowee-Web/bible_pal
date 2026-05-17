@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1324,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Even in the Night His Heart Takes No Rest",
+  "scriptureAnchor": "Ecclesiastes 2:18-23",
+  "scriptureAnchorId": "ecclesiastes_2_18-23",
+  "bibleStoryKey": "vanity_of_toil",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "themeTags": [
+    "vanity",
+    "toil",
+    "legacy",
+    "futility",
+    "labor"
+  ],
+  "emotionalTags": [
+    "weary",
+    "disillusioned",
+    "humbled",
+    "reflective",
+    "exhausted",
+    "sober"
+  ],
+  "primaryCharacterId": "qoheleth",
+  "primaryCharacterDisplayName": "The Preacher",
+  "bibleOrderIndex": 257,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1324_traditional_web_short.txt"
+    }
+  }
+}

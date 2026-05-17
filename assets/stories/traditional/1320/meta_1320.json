@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1320,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "I Have Set My Face Like a Flint",
+  "scriptureAnchor": "Isaiah 50:4-9",
+  "scriptureAnchorId": "isaiah_50_4-9",
+  "bibleStoryKey": "wearied_servant_prophet",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "suffering_servant",
+    "endurance",
+    "trust",
+    "vindication",
+    "obedience"
+  ],
+  "emotionalTags": [
+    "weary",
+    "resolute",
+    "humbled",
+    "steadfast",
+    "trusting",
+    "patient"
+  ],
+  "primaryCharacterId": "isaiah",
+  "primaryCharacterDisplayName": "Isaiah",
+  "bibleOrderIndex": 290,
+  "timelineEra": "prophets",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1320_traditional_web_short.txt"
+    }
+  }
+}
