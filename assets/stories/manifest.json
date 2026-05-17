@@ -18557,8 +18557,8 @@
       "bibleOrderIndex": 287,
       "timelineEra": "prophets",
       "themeTags": [
-        "identity",
-        "belonging",
+        "calling",
+        "covenant",
         "presence",
         "redemption",
         "love"
@@ -18589,8 +18589,8 @@
       "timelineEra": "jesus_ministry",
       "themeTags": [
         "provision",
-        "abundance",
-        "miracle",
+        "deliverance",
+        "blessing",
         "gratitude"
       ],
       "reflectionQuestion": "",
@@ -18618,9 +18618,9 @@
       "bibleOrderIndex": 555,
       "timelineEra": "jesus_ministry",
       "themeTags": [
-        "stewardship",
+        "service",
         "faithfulness",
-        "responsibility",
+        "obedience",
         "trust"
       ],
       "reflectionQuestion": "",
@@ -18649,7 +18649,7 @@
       "timelineEra": "conquest",
       "themeTags": [
         "rest",
-        "fulfillment",
+        "blessing",
         "promise",
         "faithfulness",
         "peace"
@@ -18680,10 +18680,10 @@
       "timelineEra": "exile",
       "themeTags": [
         "deliverance",
-        "reversal",
+        "freedom",
         "joy",
-        "honor",
-        "vindication"
+        "kingdom",
+        "justice"
       ],
       "reflectionQuestion": "",
       "shortScripture": false
@@ -18711,10 +18711,10 @@
       "timelineEra": "return",
       "themeTags": [
         "restoration",
-        "dedication",
+        "devotion",
         "joy",
-        "worship",
-        "community"
+        "praise",
+        "covenant"
       ],
       "reflectionQuestion": "",
       "shortScripture": false
@@ -18743,9 +18743,9 @@
       "themeTags": [
         "grief",
         "lament",
-        "intercession",
-        "defeat",
-        "consequence"
+        "prayer",
+        "shame",
+        "repentance"
       ],
       "reflectionQuestion": "",
       "shortScripture": false
@@ -18772,7 +18772,7 @@
       "bibleOrderIndex": 260,
       "timelineEra": "exile",
       "themeTags": [
-        "revelation",
+        "guidance",
         "wisdom",
         "praise",
         "deliverance"
@@ -18802,10 +18802,10 @@
       "bibleOrderIndex": 265,
       "timelineEra": "return",
       "themeTags": [
-        "priority",
-        "exhortation",
-        "neglected_temple",
-        "consider_ways"
+        "calling",
+        "repentance",
+        "rebuilding",
+        "wisdom"
       ],
       "reflectionQuestion": "",
       "shortScripture": false
@@ -18832,10 +18832,10 @@
       "bibleOrderIndex": 184,
       "timelineEra": "conquest",
       "themeTags": [
-        "memorial",
-        "remembrance",
+        "witness",
+        "faithfulness",
         "covenant",
-        "crossing",
+        "deliverance",
         "gratitude"
       ],
       "reflectionQuestion": "",
@@ -18863,11 +18863,10 @@
       "bibleOrderIndex": 185,
       "timelineEra": "conquest",
       "themeTags": [
-        "holy_ground",
-        "encounter",
-        "reverence",
         "presence",
-        "command"
+        "calling",
+        "humility",
+        "obedience"
       ],
       "reflectionQuestion": "",
       "shortScripture": false
