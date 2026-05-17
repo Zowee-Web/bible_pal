@@ -133,9 +133,7 @@ class AnalyticsEvents {
     return {
       'story_id': parable.storyId,
       'mood': parable.mood,
-      // TODO(creative-retirement): Remove or hard-code to 'traditional' during Stage 2 (planned 2026-05-13).
-      //   See docs/archive/CREATIVE_RETIREMENT_2026_05_13.md
-      'mode': parable.storytellingMode,
+      'mode': 'traditional',
       'length_bucket': parable.lengthBucket.name,
       'kid_friendly': parable.kidFriendly,
       'translation_id': parable.translationId,
