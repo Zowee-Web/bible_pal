@@ -48,13 +48,19 @@ TRANSIENT_CODES = {429, 502, 503}
 MAX_RETRIES = 3
 
 
-def tts(text: str, outfile: pathlib.Path, voice_id: str) -> int:
-    """Generate TTS audio via ElevenLabs. Returns file size in bytes."""
+def tts(text: str, outfile: pathlib.Path, voice_id: str,
+        model_id: str, voice_settings: dict) -> int:
+    """Generate TTS audio via ElevenLabs. Returns file size in bytes.
+
+    `model_id` and `voice_settings` come from each story's meta
+    (ttsModel / ttsVoiceSettings). Callers pass v2 defaults if the meta
+    doesn't declare them.
+    """
     api_key = os.environ["ELEVENLABS_API_KEY"]
     payload = json.dumps({
         "text": text,
-        "model_id": "eleven_multilingual_v2",
-        "voice_settings": {"stability": 0.5, "similarity_boost": 0.75},
+        "model_id": model_id,
+        "voice_settings": voice_settings,
     }).encode()
     req = urllib.request.Request(
         f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}",
@@ -144,6 +150,12 @@ def main() -> int:
         print(f"ABORT: {voice_key} env var is missing or empty in .env")
         return 1
 
+    tts_model = meta.get("ttsModel", "eleven_multilingual_v2")
+    tts_voice_settings = meta.get(
+        "ttsVoiceSettings",
+        {"stability": 0.5, "similarity_boost": 0.75},
+    )
+
     lane = meta.get("languageStyle", "WEB").lower()
 
     # Build list of text files -> audio files
@@ -166,8 +178,9 @@ def main() -> int:
     else:
         print(f"WARNING: reflection not found, skipping: {refl_name}")
 
-    print(f"  Mood: {mood} | Kid: {is_kid}")
+    print(f"  Mood: {meta.get('mood')} | Kid: {meta.get('kidFriendly', False)}")
     print(f"  Voice: {voice_key} ({voice_id[:8]}...)")
+    print(f"  TTS model: {tts_model}")
     print(f"  Files to generate: {len(audio_jobs)}")
     print()
 
@@ -181,7 +194,7 @@ def main() -> int:
             print(f"    Skipping (already exists: {mp3_path.stat().st_size:,} bytes)")
             continue
 
-        size = tts(text, mp3_path, voice_id)
+        size = tts(text, mp3_path, voice_id, tts_model, tts_voice_settings)
         print(f"    {size:,} bytes")
 
     # Update metadata with the voice keys used

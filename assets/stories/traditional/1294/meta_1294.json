@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1294,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "What Will You Do for Your Great Name?",
+  "scriptureAnchor": "Joshua 7:6-12",
+  "scriptureAnchorId": "joshua_7_6-12",
+  "bibleStoryKey": "joshua_grieves_after_ai",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "themeTags": [
+    "grief",
+    "lament",
+    "intercession",
+    "defeat",
+    "consequence"
+  ],
+  "emotionalTags": [
+    "devastated",
+    "humbled",
+    "broken",
+    "hurting",
+    "anxious",
+    "pleading"
+  ],
+  "primaryCharacterId": "joshua",
+  "primaryCharacterDisplayName": "Joshua",
+  "bibleOrderIndex": 188,
+  "timelineEra": "conquest",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1294_traditional_web_short.txt"
+    }
+  }
+}

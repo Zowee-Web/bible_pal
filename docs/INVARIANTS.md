@@ -1050,28 +1050,19 @@ flutter test
 
 ---
 
-## 🔒 Story Mode Non-Blur Invariant (NON-NEGOTIABLE)
+## 🔒 Traditional-Only Story Mode Invariant (NON-NEGOTIABLE)
 
-**Invariant**: Traditional and Creative storytelling modes MUST NEVER blur. Each mode has distinct authority, validation rules, and content requirements. No story may exhibit characteristics of both modes.
+**Invariant**: Traditional is the only active storytelling mode. Creative mode was retired on 2026-05-13 and removed from the working codebase. Every active story MUST be a faithful Bible retelling with a real scripture anchor.
 
 ### Why This Exists
 
-**Content integrity and user trust are paramount.**
+- Bible PAL's product identity is Scripture-grounded retellings, not AI-generated parables.
+- Eliminating the dual-mode contract eliminates a class of "is this from the Bible?" trust failures.
+- Creative assets are preserved (T9 archive + git tag `pre-creative-retirement-2026-05-13`) and recoverable but not active.
 
-- Traditional mode users expect faithful Bible retellings with scriptural authority
-- Creative mode users expect original stories without false scriptural claims
-- Blurring modes confuses users about the source and authority of content
-- Mixed-mode content undermines the distinct value proposition of each mode
-- Clear separation enables proper validation and quality gates
+See [archive/CREATIVE_RETIREMENT_2026_05_13.md](archive/CREATIVE_RETIREMENT_2026_05_13.md) and DECISIONS.md ADR-014 / ADR-020 (both superseded).
 
-### The Contract
-
-Story Mode Contracts v2 defines two orthogonal axes:
-
-**Axis 1 — Story Mode (Authority)**: `storytellingMode: traditional | creative`
-**Axis 2 — Language Style (Presentation)**: `languageStyle: WEB | KJV`
-
-#### Traditional Mode Requirements
+### Traditional Mode Requirements
 
 1. **Faithful Bible Retellings Only**
    - Must map to specific Bible passages
@@ -1094,50 +1085,27 @@ Story Mode Contracts v2 defines two orthogonal axes:
      - Implied moral summary not in scripture ("it was enough", "at last, peace")
      - Interpretive phrasing ("he felt", "she seemed", "rest at last") unless directly observable in scripture
      - Poetic or emotionally summarizing closings that shift from retelling to reflection
-   - Reflective/poetic closing language belongs ONLY in reflection content (separate asset) or Creative mode
+   - Reflective/poetic closing language belongs ONLY in reflection content (a separate asset, never the story body)
 
-#### Creative Mode Requirements
+### Coerce-on-Load Migration
 
-1. **Original Stories Only**
-   - NOT retellings of specific Bible stories
-   - Biblical themes/values allowed, not specific narratives
-   - MoDC rules apply (non-directive, optional, interruptible)
-
-2. **`bibleSourceRef` FORBIDDEN**
-   - Field must be absent or empty
-   - Stories with `bibleSourceRef` fail validation
-
-3. **Forbidden Patterns**
-   - Scripture authority claims ("as the Bible says", "scripture tells us")
-   - Teaching doctrine as fact
-   - Commands/prescriptions ("you should", "you must")
-   - Dependency language ("you need this", "come back tomorrow")
-   - Retelling specific Bible stories (even loosely)
-
-#### Creative + KJV Extra Restrictions
-
-When `languageStyle=KJV` in Creative mode:
-- Treat as poetic diction ONLY
-- FORBIDDEN: "Thus saith", verse numbering, "this is the Word", chapter/verse recitations
+Legacy `storytellingMode: 'creative'` values in SharedPreferences (from pre-retirement installs) MUST coerce to `'traditional'` in `UserPreferences.fromJson`. Enforced by [`test/critical/creative_retirement_test.dart`](../test/critical/creative_retirement_test.dart).
 
 ### Enforcement Mechanisms
 
-This invariant is enforced at **four layers**:
-
 #### 1. Manifest Validation
-**File**: [`test/critical/story_mode_contracts_test.dart`](../test/critical/story_mode_contracts_test.dart)
+**File**: [`test/critical/creative_retirement_test.dart`](../test/critical/creative_retirement_test.dart)
 
-- All Traditional stories must have `bibleSourceRef`
-- All Creative stories must NOT have `bibleSourceRef`
-- Tests scan manifest and fail build on violations
+- All active manifests MUST contain zero `storytellingMode: 'creative'` entries.
+- `assets/stories/creative/` directory MUST NOT exist.
+- Build fails if either invariant is violated.
 
 #### 2. Service Layer Filtering
 **File**: [`lib/services/parable_service.dart`](../lib/services/parable_service.dart)
 
 ```dart
 // Traditional stories without bibleSourceRef are EXCLUDED
-if (p.storytellingMode == 'traditional' &&
-    (p.bibleSourceRef == null || p.bibleSourceRef!.isEmpty)) {
+if (!p.hasBibleSourceRef) {
   // Log exclusion and skip this story
   return false;
 }
@@ -1146,39 +1114,30 @@ if (p.storytellingMode == 'traditional' &&
 #### 3. Story Mode Validator
 **File**: [`lib/safety/story_mode_validator.dart`](../lib/safety/story_mode_validator.dart)
 
-- `validateTraditional()`: Checks for required `bibleSourceRef`, forbidden MoDC patterns
-- `validateCreative()`: Checks for forbidden `bibleSourceRef`, scripture authority claims
-- Returns detailed violation list for generation repair
+- `validateTraditional()`: required `bibleSourceRef`, forbidden MoDC patterns.
+- `validate()` dispatcher rejects any `storytellingMode != 'traditional'` as invalid.
 
 #### 4. Build-Failing Tests
 **File**: [`test/critical/story_mode_contracts_test.dart`](../test/critical/story_mode_contracts_test.dart)
 
 **Critical Tests** (MUST PASS):
 - `CRITICAL: Traditional stories MUST have bibleSourceRef`
-- `CRITICAL: Creative stories MUST NOT have bibleSourceRef`
-- `CRITICAL: Mode filtering never cross-contaminates`
-- `CRITICAL: No silent cross-mode fallback`
+- `CRITICAL: validateMetadataOnly rejects non-traditional modes`
+- `CRITICAL: getEligibleParables returns only traditional stories`
 - `CRITICAL: Default storytellingMode is traditional`
 
 #### 5. Story Asset Consistency
 **File**: [`test/core/story_asset_consistency_test.dart`](../test/core/story_asset_consistency_test.dart)
 
 Validates structural integrity of committed story assets:
-- Every story directory has meta JSON with universal required fields (`storyId`, `mode`, `mood`, `languageStyle`, `voiceKey`, `files`, `lengths`)
-- Story text files referenced in `meta.files` exist and are non-empty
-- `meta.mode` matches directory lane (`traditional/` or `creative/`)
-- `meta.lengths` entries have corresponding `meta.files` entries
-- Traditional stories have `scriptureAnchor`
-- `meta.storyId` matches directory name
+- Every story directory has meta JSON with universal required fields.
+- Story text files referenced in `meta.files` exist and are non-empty.
+- `meta.mode == "traditional"` for every story; directory lane is `traditional/`.
+- Traditional stories have `scriptureAnchor`.
 
 #### 6. PALs Paths Traditional-Only Enforcement (Feature 50)
 
-PALs Paths operates only on Traditional stories. Creative stories are invisible to every path type and every search result. This extends the Non-Blur invariant into the path/search layer:
-
-- `PathService.getPathStories()` MUST filter out every story with `storytellingMode != 'traditional'` before applying any other filter
-- `SearchService.search()` MUST filter out every story with `storytellingMode != 'traditional'` before ranking
-- The 8 new metadata fields from Feature 50 (`primaryCharacterId`, `characterIds`, `bibleOrderIndex`, `timelineEra`, `themeTags`, `characterPathOrder`, `primaryCharacterDisplayName`, `characterDisplayNames`) MUST NOT appear on any Creative story. Presence of any of them on a Creative story is a manifest validation failure.
-- The `manifest_validation_test.dart` suite is extended to scan for the inverse: Creative stories carrying any PALs Paths metadata field fail the build.
+PALs Paths operates on the (now-only) Traditional pool. The 8 metadata fields from Feature 50 (`primaryCharacterId`, `characterIds`, `bibleOrderIndex`, `timelineEra`, `themeTags`, `characterPathOrder`, `primaryCharacterDisplayName`, `characterDisplayNames`) may appear on any Traditional story.
 
 ### Violation Response
 
@@ -1189,46 +1148,24 @@ PALs Paths operates only on Traditional stories. Creative stories are invisible 
 
 **Runtime**:
 - Traditional stories without `bibleSourceRef` are excluded from pool
-- Creative stories with `bibleSourceRef` are excluded from pool
+- Stories with any `storytellingMode != 'traditional'` are rejected by the validator
 - Violation logged with detailed error message
 - App continues with reduced pool (fail-safe)
 
-### Testing Story Mode Contracts
+### Reactivating Creative Mode
 
-```bash
-# Run story mode contract tests
-flutter test test/critical/story_mode_contracts_test.dart
-
-# Run story asset consistency tests
-flutter test test/core/story_asset_consistency_test.dart
-
-# Run all tests (includes both)
-flutter test
-```
-
-### Maintenance Rules
-
-**When modifying story-related code:**
-
-1. **NEVER** blur Traditional and Creative modes
-2. **NEVER** guess or invent `bibleSourceRef` values
-3. **NEVER** serve Traditional stories without `bibleSourceRef`
-4. **NEVER** allow Creative stories with `bibleSourceRef`
-5. **ALWAYS** validate mode-specific rules before serving
-6. **RUN** story mode tests before committing
-7. **DO NOT** weaken or remove mode validation tests
-
-**If a story mode test fails:**
-1. DO NOT disable the test
-2. DO NOT add cross-mode content to pass
-3. Fix the root cause (missing/extra bibleSourceRef, wrong mode assignment)
-4. Verify all tests pass
+Reactivation requires:
+1. SPEC update with explicit owner approval.
+2. Restoration from T9 archive or git tag `pre-creative-retirement-2026-05-13`.
+3. New tests covering the reactivated lane.
+4. Re-introduction of Creative validation, manifest entries, pubspec declarations, and any UI surface.
 
 ### Resources
 
-- [SPEC.md Story Mode Contracts v2](SPEC.md#story-mode-contracts-v2-locked)
+- [Archive: CREATIVE_RETIREMENT_2026_05_13.md](archive/CREATIVE_RETIREMENT_2026_05_13.md)
 - [Story Mode Validator](../lib/safety/story_mode_validator.dart)
 - [Story Mode Tests](../test/critical/story_mode_contracts_test.dart)
+- [Creative Retirement Tests](../test/critical/creative_retirement_test.dart)
 - [Parable Service](../lib/services/parable_service.dart)
 
 ---
@@ -1242,7 +1179,6 @@ flutter test
 **Separation of concerns prevents confusion.**
 
 - Users should be able to choose KJV diction without implying scriptural authority
-- Creative stories in KJV style are still original stories, not Bible retellings
 - Traditional stories in WEB style are still faithful retellings
 - Conflating presentation with authority creates validation loopholes
 
@@ -1261,8 +1197,6 @@ flutter test
 3. **Mode Rules Apply Regardless of languageStyle**
    - Traditional + WEB: Faithful retelling, modern diction, `bibleSourceRef` required
    - Traditional + KJV: Faithful retelling, classical diction, `bibleSourceRef` required
-   - Creative + WEB: Original story, modern diction, `bibleSourceRef` forbidden
-   - Creative + KJV: Original story, poetic diction, `bibleSourceRef` forbidden + extra restrictions
 
 ### Enforcement Mechanisms
 
@@ -1277,7 +1211,6 @@ flutter test
 **Critical Tests** (MUST PASS):
 - `CRITICAL: languageStyle does not affect bibleSourceRef requirements`
 - `CRITICAL: Traditional+KJV still requires bibleSourceRef`
-- `CRITICAL: Creative+KJV still forbids bibleSourceRef`
 
 ### Resources
 
@@ -1394,7 +1327,7 @@ flutter test
 
 ## 🔒 Reflection System Invariant (NON-NEGOTIABLE)
 
-**Invariant**: Every story (Traditional AND Creative) MUST have a reflection. Reflection audio MUST use the same narrator voice as the story. Reflection is not auto-played by default; it may auto-play only when the user has explicitly enabled "Pause for Reflection" on the player screen (SPEC Feature 50.6d, session-scoped, default OFF).
+**Invariant**: Every Traditional story MUST have a reflection. Reflection audio MUST use the same narrator voice as the story. Reflection is not auto-played by default; it may auto-play only when the user has explicitly enabled "Pause for Reflection" on the player screen (SPEC Feature 50.6d, session-scoped, default OFF).
 
 ### Why This Exists
 
@@ -1408,7 +1341,7 @@ flutter test
 ### The Contract
 
 1. **Every Story Has a Reflection**
-   - Both Traditional and Creative stories MUST have `reflectionAudioPath`
+   - Every Traditional story MUST have `reflectionAudioPath`
    - Stories without reflection audio are incomplete
    - Reflection text (`reflectionTextPath`) is optional but encouraged
 
@@ -1424,8 +1357,8 @@ flutter test
 
 4. **Reflection Content is Separate from Story Body**
    - Reflection text is a distinct asset file, never merged into or appended to story body text
-   - Traditional story body MUST NOT contain reflective narrator language (see Story Mode Non-Blur Invariant)
-   - Poetic, emotionally resonant closing language is valid ONLY in reflection content or Creative mode
+   - Traditional story body MUST NOT contain reflective narrator language (see Traditional-Only Story Mode Invariant)
+   - Poetic, emotionally resonant closing language is valid ONLY in reflection content
    - Enforced by automated test scan of Traditional story text files
 
 5. **Scripture Reference Display (Traditional Only)**
@@ -1489,44 +1422,39 @@ flutter test
 
 ## 🔒 Mode Persistence Invariant (NON-NEGOTIABLE)
 
-**Invariant**: Storytelling mode (Traditional/Creative) persists across app restarts. Default is Traditional. Only two modes exist.
+**Invariant**: `storytellingMode` always resolves to `'traditional'` on app load — fresh installs, restarts, and legacy installs alike. Traditional is the only valid mode after Creative retirement (2026-05-13).
 
 ### Why This Exists
 
-**User expectation and session continuity.**
-
-- Users expect their mode choice to be remembered
-- Traditional is the safer default (actual Bible stories)
-- Only two modes simplifies UX and code
+- One mode means zero ambiguity about content authority.
+- Legacy installs that persisted `'creative'` to SharedPreferences must coerce on load so the user never sees a phantom mode.
 
 ### The Contract
 
 1. **Default is Traditional**
-   - New users and unset preferences default to Traditional
-   - `UserPreferences.defaults().storytellingMode == 'traditional'`
+   - New users and unset preferences default to Traditional.
+   - `UserPreferences.defaults().storytellingMode == 'traditional'`.
 
-2. **Persistence Across Restarts**
-   - Mode change in Settings persists to SharedPreferences
-   - On app restart, mode is restored from storage
-   - No session-scoped mode that resets on restart
+2. **Coerce-on-Load**
+   - `UserPreferences.fromJson` coerces any legacy `'creative'` value to `'traditional'`.
+   - Unknown / future values fall through to `'traditional'` via the missing-default path.
 
-3. **Only Two Modes**
-   - `'traditional'` and `'creative'` are the only valid values
-   - No other modes exist or will be added
-   - Invalid values reset to Traditional
+3. **Single Active Mode**
+   - `'traditional'` is the only active value.
+   - Reactivating any other mode requires a SPEC update (see Traditional-Only Story Mode Invariant).
 
 ### Enforcement Mechanisms
 
-**File**: [`test/critical/mode_persistence_test.dart`](../test/critical/mode_persistence_test.dart)
+**File**: [`test/critical/creative_retirement_test.dart`](../test/critical/creative_retirement_test.dart)
 
 **Critical Tests** (MUST PASS):
-- `CRITICAL: Default storytelling mode is traditional`
-- `CRITICAL: Mode persists after simulated restart`
-- `CRITICAL: Invalid mode values reset to traditional`
+- `CRITICAL: defaults() returns "traditional" with no possibility of "creative"`
+- `CRITICAL: legacy storytellingMode "creative" coerces to "traditional"`
+- `CRITICAL: round-trip toJson/fromJson preserves "traditional"`
 
 ### Resources
 
-- [SPEC.md Settings](SPEC.md#settings)
+- [Archive: CREATIVE_RETIREMENT_2026_05_13.md](archive/CREATIVE_RETIREMENT_2026_05_13.md)
 - [UserPreferences Model](../lib/models/user_preferences.dart)
 
 ---

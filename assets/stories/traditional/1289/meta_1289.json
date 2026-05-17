@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1289,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": true,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "He Fed Five Thousand",
+  "scriptureAnchor": "John 6:1-14",
+  "scriptureAnchorId": "john_6_1-14",
+  "bibleStoryKey": "feeding_five_thousand_john",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "provision",
+    "abundance",
+    "miracle",
+    "gratitude"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "amazed",
+    "filled",
+    "thankful",
+    "humbled",
+    "joyful"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 606,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1289_traditional_web_short.txt"
+    }
+  }
+}

@@ -604,7 +604,7 @@ class _PalsParablesScreenState extends ConsumerState<PalsParablesScreen> {
     final userPrefs = ref.read(appStateProvider).requireValue.userPreferences;
 
     // --- PAL framing response: show BEFORE length picker (text-input only) ---
-    if (userText.isNotEmpty && userPrefs.storytellingMode == 'traditional') {
+    if (userText.isNotEmpty) {
       final parableService = await ref.read(parableServiceProvider.future);
       final previewKey = await parableService.previewBibleStoryKey(
         mood: _moodResult!.mood,

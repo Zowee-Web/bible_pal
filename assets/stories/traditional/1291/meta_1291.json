@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1291,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Yahweh Gave Them Rest",
+  "scriptureAnchor": "Joshua 21:43-45",
+  "scriptureAnchorId": "joshua_21_43-45",
+  "bibleStoryKey": "yahweh_gave_them_rest",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "rest",
+    "fulfillment",
+    "promise",
+    "faithfulness",
+    "peace"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "grateful",
+    "settled",
+    "trusting",
+    "comforted",
+    "hopeful"
+  ],
+  "primaryCharacterId": "joshua",
+  "primaryCharacterDisplayName": "Joshua",
+  "bibleOrderIndex": 205,
+  "timelineEra": "conquest",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1291_traditional_web_short.txt"
+    }
+  }
+}

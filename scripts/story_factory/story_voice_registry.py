@@ -50,6 +50,14 @@ APPROVED_NARRATOR_VOICES = frozenset({
     "VOICE_ARCHER",
     "VOICE_BRADFORD",
     "VOICE_JAMES_HUSKY",
+    # V3 PILOT pool — used by 1280+ batches; IDs sourced from server/voices.json
+    "VOICE_NOAH_PATIENT",
+    "VOICE_MIRIAM_JOYFUL",
+    "VOICE_BARNABAS_ENCOURAGER",
+    "VOICE_ELIJAH_SAGE",
+    "VOICE_DAVID_SHEPHERD",
+    "VOICE_PETER_BOLD",
+    "VOICE_RUTH_COMFORT",
 })
 
 

@@ -14,7 +14,6 @@ import '../../services/pal_prompt_service.dart';
 import '../../services/stt_service.dart';
 import '../../providers/service_providers.dart';
 import '../../core/biblical_figure_registry.dart';
-import '../../core/creative_opening_lines.dart';
 import '../../core/pal_reflection_lines.dart';
 import '../../core/pal_transition_lines.dart';
 import '../pal/opening/pal_opening_lines.dart';
@@ -805,10 +804,10 @@ class _StudyPageState extends ConsumerState<_StudyPage>
     final moodResult = appStateNotifier.moodService.detectMood(text);
     appStateNotifier.updateLastDetectedMood(moodResult.mood);
 
-    // PAL framing response: show before navigating (text-input Traditional only)
+    // PAL framing response: show before navigating (text-input only).
     String? previewKey;
     final userPrefs = ref.read(appStateProvider).valueOrNull?.userPreferences;
-    if (userPrefs != null && userPrefs.storytellingMode == 'traditional') {
+    if (userPrefs != null) {
       final parableService = await ref.read(parableServiceProvider.future);
       previewKey = await parableService.previewBibleStoryKey(
         mood: moodResult.mood,
@@ -873,10 +872,8 @@ class _StudyPageState extends ConsumerState<_StudyPage>
         }
       }
     }
-    // Creative mode used to play a mood-based opening line here on text
-    // submit; removed alongside the Traditional reflection audio so the
-    // entire text-input flow is silent until the player itself starts
-    // playback. Voice flow (`_processMoodFromVoice`) still plays both.
+    // Text-input flow is silent until the player itself starts playback.
+    // Voice flow (`_processMoodFromVoice`) plays the framing line.
 
     if (!mounted) return;
     await selectStoryAndOpenPlayer(
@@ -937,50 +934,6 @@ class _StudyPageState extends ConsumerState<_StudyPage>
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildStoryModeToggle(BuildContext context, SkyPalette palette) {
-    final appState = ref.watch(appStateProvider).valueOrNull;
-    final currentMode = appState?.userPreferences.storytellingMode ?? 'traditional';
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Container(
-        decoration: BoxDecoration(
-          color: palette.cardColor,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: palette.cardBorder, width: 1),
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: _StoryModeTab(
-                label: 'Traditional',
-                subtitle: 'Scripture-based',
-                icon: Icons.menu_book_outlined,
-                selected: currentMode == 'traditional',
-                palette: palette,
-                onTap: () {
-                  ref.read(appStateProvider.notifier).updateStorytellingMode('traditional');
-                },
-              ),
-            ),
-            Expanded(
-              child: _StoryModeTab(
-                label: 'Creative',
-                subtitle: 'Inspired storytelling',
-                icon: Icons.auto_awesome_outlined,
-                selected: currentMode == 'creative',
-                palette: palette,
-                onTap: () {
-                  ref.read(appStateProvider.notifier).updateStorytellingMode('creative');
-                },
-              ),
-            ),
-          ],
         ),
       ),
     );
@@ -1078,11 +1031,6 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                       ),
 
                       const SizedBox(height: 8),
-
-                      // Story mode toggle — Traditional / Creative
-                      _buildStoryModeToggle(context, palette),
-
-                      const SizedBox(height: 6),
 
                       // Kid Mode pill
                       Center(child: _buildKidModePill(context, palette)),
@@ -1908,16 +1856,15 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
     if (!mounted || _voiceFlow != _VoiceFlowState.responding) return;
 
-    // Play a mode-appropriate spoken line before the length picker.
-    // Traditional: story-specific framing line (from BiblicalFigureRegistry)
-    // Creative: mood-based narrative opening line
+    // Play the story-specific framing line (BiblicalFigureRegistry) before
+    // the length picker.
     String? previewKey;
     final userPrefs = appState?.userPreferences;
     final palResponseEnabled = userPrefs != null &&
         userPrefs.palVoiceEnabled &&
         userPrefs.palGreetingsEnabled != false;
 
-    if (userPrefs != null && userPrefs.storytellingMode == 'traditional') {
+    if (userPrefs != null) {
       final parableService = await ref.read(parableServiceProvider.future);
       previewKey = await parableService.previewBibleStoryKey(
         mood: result.mood,
@@ -1978,31 +1925,6 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
           if (!mounted || _voiceFlow != _VoiceFlowState.responding) return;
           await Future.delayed(const Duration(milliseconds: 300));
         }
-      }
-    } else if (userPrefs != null &&
-        userPrefs.storytellingMode == 'creative' &&
-        palResponseEnabled &&
-        mounted) {
-      // Creative mode: play a mood-based narrative opening line.
-      await CreativeOpeningLines.ensureLoaded();
-      final lineRef = CreativeOpeningLines.getLineRef(result.mood);
-      if (lineRef != null) {
-        final palAudio = ref.read(palAudioServiceProvider);
-        try {
-          final played = await palAudio.playLine(lineRef.id, voiceKey);
-          if (played) {
-            await palAudio.awaitPlaybackComplete();
-            logEvent('pal_audio_played', {
-              'line_id': lineRef.id,
-              'type': 'creative_opening',
-              'voice_key': voiceKey,
-            });
-          }
-        } catch (e) {
-          debugPrint('[MainMenu] Voice-path creative opening failed: $e');
-        }
-        if (!mounted || _voiceFlow != _VoiceFlowState.responding) return;
-        await Future.delayed(const Duration(milliseconds: 300));
       }
     }
 
@@ -2818,101 +2740,6 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
     );
   }
 
-}
-
-// ---------------------------------------------------------------------------
-// Story mode tab — used in the Traditional / Creative toggle
-// ---------------------------------------------------------------------------
-
-class _StoryModeTab extends StatelessWidget {
-  final String label;
-  final String subtitle;
-  final IconData icon;
-  final bool selected;
-  final SkyPalette palette;
-  final VoidCallback onTap;
-
-  const _StoryModeTab({
-    required this.label,
-    required this.subtitle,
-    required this.icon,
-    required this.selected,
-    required this.palette,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      behavior: HitTestBehavior.opaque,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 180),
-        curve: Curves.easeOut,
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        decoration: BoxDecoration(
-          color: selected
-              ? palette.warmHighlight.withOpacity(0.15)
-              : Colors.transparent,
-          borderRadius: BorderRadius.circular(13),
-          border: selected
-              ? Border.all(color: palette.warmHighlight, width: 2)
-              : null,
-          boxShadow: selected
-              ? [
-                  BoxShadow(
-                    color: palette.warmHighlight.withOpacity(0.20 * palette.glowIntensity),
-                    blurRadius: 14,
-                    spreadRadius: 2,
-                  ),
-                ]
-              : null,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  icon,
-                  size: 18,
-                  color: selected ? palette.warmHighlight : palette.foreground.secondaryIcon,
-                ),
-                const SizedBox(width: 6),
-                Text(
-                  label,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                    color: selected
-                        ? palette.foreground.primaryText
-                        : palette.foreground.secondaryText,
-                    letterSpacing: 0.3,
-                    shadows: palette.foreground.subtitleShadow,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 3),
-            Text(
-              subtitle,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 11,
-                fontWeight: FontWeight.w400,
-                color: selected
-                    ? palette.foreground.secondaryText
-                    : palette.foreground.tertiaryText,
-                shadows: palette.foreground.subtitleShadow,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
 
 // ---------------------------------------------------------------------------

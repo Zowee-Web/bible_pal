@@ -10,18 +10,17 @@ import '../helpers/scripture_anchor_registry_loader.dart';
 /// These tests enforce:
 /// 1. Traditional stories MUST have bibleStoryKey
 /// 2. Traditional stories MUST have bibleSourceRef
-/// 3. Creative stories MUST NOT have bibleStoryKey
-/// 4. Every Traditional story's bibleStoryKey is registered in the Scripture Anchor Registry
-/// 5. Every Traditional story's mood matches its anchor's moodTags
+/// 3. Every Traditional story's bibleStoryKey is registered in the Scripture Anchor Registry
+/// 4. Every Traditional story's mood matches its anchor's moodTags
 ///
 /// See: docs/INVARIANTS.md - Traditional Mode = Real Bible Story Invariant
 /// See: docs/DECISIONS.md ADR-022 - Scripture Anchor Registry
+/// Post-retirement: Creative-related rules covered by creative_retirement_test.dart.
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   late List<Parable> allParables;
   late List<Parable> traditionalParables;
-  late List<Parable> creativeParables;
   late ScriptureAnchorRegistry registry;
 
   setUpAll(() async {
@@ -39,12 +38,8 @@ void main() {
     traditionalParables =
         allParables.where((p) => p.storytellingMode == 'traditional').toList();
 
-    creativeParables =
-        allParables.where((p) => p.storytellingMode == 'creative').toList();
-
     print('Loaded ${allParables.length} total parables');
     print('  - ${traditionalParables.length} Traditional');
-    print('  - ${creativeParables.length} Creative');
     print('Registry: ${registry.anchors.length} anchors');
   });
 
@@ -84,25 +79,6 @@ void main() {
         isEmpty,
         reason: 'Traditional stories must have bibleSourceRef (Contracts v2). '
             'Found ${missingRef.length} violations.',
-      );
-    });
-
-    test('CRITICAL: Creative stories MUST NOT have bibleStoryKey', () {
-      final hasKey = creativeParables.where((p) => p.hasBibleStoryKey).toList();
-
-      if (hasKey.isNotEmpty) {
-        print(
-            '\n\u{1f6a8} VIOLATION: Creative stories should not have bibleStoryKey:');
-        for (final p in hasKey) {
-          print('  - ${p.storyId} has bibleStoryKey: ${p.bibleStoryKey}');
-        }
-      }
-
-      expect(
-        hasKey,
-        isEmpty,
-        reason: 'Creative stories must not have bibleStoryKey. '
-            'Found ${hasKey.length} violations.',
       );
     });
 

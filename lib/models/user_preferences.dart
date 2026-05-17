@@ -53,8 +53,10 @@ class UserPreferences {
       bibleTranslation; // ONLY open-source: 'WEB', 'KJV', 'ASV', 'YLT', 'DRA' (for Daily Bread)
   final String
       languageStyle; // 'WEB' or 'KJV' - story presentation diction (Contracts v2)
-  final String
-      storytellingMode; // 'creative' or 'traditional' - DEFAULT is 'traditional' (Contracts v2)
+  // Always 'traditional' on new installs. Field retained for backward parse
+  // of legacy SharedPreferences from before Creative retirement (2026-05-13);
+  // legacy 'creative' values are coerced to 'traditional' in fromJson.
+  final String storytellingMode;
   final bool contentFilteringEnabled; // Feature #24
   final bool kidFriendlyOnly; // Filter to kid-friendly content only
   final bool showEverydayReflections; // Feature #34: Post-story reflections
@@ -155,9 +157,11 @@ class UserPreferences {
         json['languageStyle'] as String? ?? json['storyLanguage'] as String?;
     final validatedLanguageStyle = _validateLanguageStyle(rawLanguageStyle);
 
-    // Contracts v2: Default storytellingMode is 'traditional'
+    // Post-retirement: only 'traditional' is valid. Legacy 'creative' values
+    // from pre-2026-05-13 installs are coerced to 'traditional' on load.
+    final rawMode = json['storytellingMode'] as String?;
     final storytellingMode =
-        json['storytellingMode'] as String? ?? 'traditional';
+        (rawMode == null || rawMode == 'creative') ? 'traditional' : rawMode;
 
     return UserPreferences(
       userName: json['userName'] as String? ?? '',

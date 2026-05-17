@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1305,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Good Land",
+  "scriptureAnchor": "Deuteronomy 8:7-10",
+  "scriptureAnchorId": "deut_8_7-10",
+  "bibleStoryKey": "bless_the_lord_for_the_good_land",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "promise",
+    "fulfillment",
+    "land",
+    "gratitude",
+    "remembrance"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "settled",
+    "humbled",
+    "hopeful",
+    "trusting",
+    "blessed"
+  ],
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "bibleOrderIndex": 140,
+  "timelineEra": "exodus",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1305_traditional_web_short.txt"
+    }
+  }
+}

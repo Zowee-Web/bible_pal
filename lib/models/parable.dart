@@ -13,7 +13,9 @@ class Parable {
       length; // Nullable: null means bucket-first entry (use storyLength instead)
   final String?
       storyLength; // Primary: 'short', 'full', or 'long' (LOCKED SPEC)
-  final String storytellingMode; // 'creative' or 'traditional'
+  // Always 'traditional' going forward. Field retained for backward parse of
+  // legacy manifest entries from before Creative retirement (2026-05-13).
+  final String storytellingMode;
   final String
       translationId; // Bible translation for compliance (Daily Bread, quotes)
   final String

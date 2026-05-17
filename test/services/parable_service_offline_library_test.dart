@@ -18,16 +18,16 @@ import '_cloud_audio_test_helpers.dart';
 /// A real-manifest storyId + its actual audioFilePath. We use real manifest
 /// entries so _getProtectedAudioPaths() can resolve storyId -> audioFilePath
 /// via the existing _loadManifest() codepath.
-const _favoritedStoryId = 'story_2000_joyful_short_creative';
-const _favoritedAudioPath = 'creative/2000/audio_2000_story_short.mp3';
+const _favoritedStoryId = 'story_1000_weary_short_traditional';
+const _favoritedAudioPath = 'traditional/1000/audio_1000_story_short.mp3';
 
-const _otherStoryId1 = 'story_2001_anxious_short_creative';
-const _otherAudioPath1 = 'creative/2001/audio_2001_story_short.mp3';
+const _otherStoryId1 = 'story_1001_calm_peaceful_short_traditional';
+const _otherAudioPath1 = 'traditional/1001/audio_1001_story_short.mp3';
 
-const _otherStoryId2 = 'story_2002_weary_short_creative';
-const _otherAudioPath2 = 'creative/2002/audio_2002_story_short.mp3';
+const _otherStoryId2 = 'story_1002_brave_courage_short_traditional';
+const _otherAudioPath2 = 'traditional/1002/audio_1002_story_short.mp3';
 
-const _otherAudioPath3 = 'creative/2003/audio_2003_story_short.mp3';
+const _otherAudioPath3 = 'traditional/1003/audio_1003_story_short.mp3';
 
 /// Writes a fake cached audio file with the given size and mtime.
 Future<File> _writeCachedFile(
@@ -201,7 +201,7 @@ void main() {
 
     // Use a path that is NOT bundled in pubspec.yaml so Tier 2 (asset) fails
     // and the resolver falls through to Tier 3 (R2 download). The default
-    // testParable() points at creative/9999/... which is not a real story.
+    // testParable() points at a path that is not a real bundled story.
     final parable = testParable();
 
     // Use the Android resolver directly because Platform.isAndroid is false

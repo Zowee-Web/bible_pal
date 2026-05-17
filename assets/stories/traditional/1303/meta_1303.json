@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1303,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "And God Remembered His Covenant",
+  "scriptureAnchor": "Exodus 2:23-25",
+  "scriptureAnchorId": "exodus_2_23-25",
+  "bibleStoryKey": "israel_groans_in_bondage",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "themeTags": [
+    "bondage",
+    "covenant_memory",
+    "cry",
+    "remembrance",
+    "long_waiting"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "weary",
+    "longing",
+    "grieving",
+    "humbled",
+    "patient"
+  ],
+  "primaryCharacterId": "israel",
+  "primaryCharacterDisplayName": "Israel",
+  "bibleOrderIndex": 52,
+  "timelineEra": "exodus",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0.35,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1303_traditional_web_short.txt"
+    }
+  }
+}

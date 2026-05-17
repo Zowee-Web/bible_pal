@@ -1,12 +1,15 @@
 // CRITICAL STORY MODE CONTRACTS TEST
-// Per SPEC.md Story Mode Contracts v2 and INVARIANTS.md
+// Per docs/INVARIANTS.md and docs/archive/CREATIVE_RETIREMENT_2026_05_13.md.
 //
-// These tests enforce:
+// Post-Creative-retirement (2026-05-13) these tests enforce:
 // - Traditional stories MUST have bibleSourceRef
-// - Creative stories MUST NOT have bibleSourceRef
-// - Mode filtering never cross-contaminates
-// - Default storytellingMode is traditional
+// - Default storytellingMode is 'traditional'
+// - Legacy 'creative' values in SharedPreferences coerce to 'traditional' on load
 // - languageStyle is presentation-only (doesn't affect mode rules)
+// - Mode filtering returns only traditional stories
+//
+// Coerce-on-load and registry-side guarantees that no Creative entries exist
+// in active manifests are covered by creative_retirement_test.dart.
 
 @Tags(['critical'])
 library;
@@ -21,17 +24,15 @@ import 'package:bible_pal/safety/story_mode_validator.dart';
 import 'package:bible_pal/core/story_length_bucket.dart';
 
 void main() {
-  group('CRITICAL: Story Mode Contracts v2', () {
+  group('CRITICAL: Story Mode Contracts (Traditional-only)', () {
     group('Default storytellingMode', () {
       test('CRITICAL: UserPreferences defaults to traditional mode', () {
-        // Per Contracts v2: Default is Traditional
         final prefs = UserPreferences(bibleTranslation: 'WEB');
 
         expect(
           prefs.storytellingMode,
           'traditional',
-          reason: '🚨 CONTRACTS V2 VIOLATION 🚨\n'
-              'UserPreferences.storytellingMode must default to "traditional".\n'
+          reason: 'UserPreferences.storytellingMode must default to "traditional".\n'
               'Actual default: ${prefs.storytellingMode}',
         );
       });
@@ -39,13 +40,7 @@ void main() {
       test('CRITICAL: UserPreferences.defaults() returns traditional mode', () {
         final prefs = UserPreferences.defaults();
 
-        expect(
-          prefs.storytellingMode,
-          'traditional',
-          reason: '🚨 CONTRACTS V2 VIOLATION 🚨\n'
-              'UserPreferences.defaults().storytellingMode must be "traditional".\n'
-              'Actual: ${prefs.storytellingMode}',
-        );
+        expect(prefs.storytellingMode, 'traditional');
       });
 
       test(
@@ -54,13 +49,7 @@ void main() {
         final json = {'bibleTranslation': 'WEB'};
         final prefs = UserPreferences.fromJson(json);
 
-        expect(
-          prefs.storytellingMode,
-          'traditional',
-          reason: '🚨 CONTRACTS V2 VIOLATION 🚨\n'
-              'Missing storytellingMode in JSON must default to "traditional".\n'
-              'Actual: ${prefs.storytellingMode}',
-        );
+        expect(prefs.storytellingMode, 'traditional');
       });
     });
 
@@ -79,7 +68,7 @@ void main() {
 
         expect(validTraditional.hasBibleSourceRef, true);
 
-        // Traditional story WITHOUT bibleSourceRef - invalid per Contracts v2
+        // Traditional story WITHOUT bibleSourceRef - invalid
         final invalidTraditional = Parable(
           storyId: 'trad_002',
           title: 'Some Story',
@@ -87,48 +76,9 @@ void main() {
           length: 5,
           storytellingMode: 'traditional',
           kidFriendly: false,
-          // bibleSourceRef missing
         );
 
-        expect(
-          invalidTraditional.hasBibleSourceRef,
-          false,
-          reason:
-              'Traditional story without bibleSourceRef should report hasBibleSourceRef=false',
-        );
-      });
-
-      test('CRITICAL: Creative Parable must NOT have bibleSourceRef', () {
-        // Creative story WITHOUT bibleSourceRef - valid
-        final validCreative = Parable(
-          storyId: 'creative_001',
-          title: 'The Kind Farmer',
-          mood: 'joyful',
-          length: 5,
-          storytellingMode: 'creative',
-          kidFriendly: false,
-          // bibleSourceRef absent - correct for Creative
-        );
-
-        expect(validCreative.hasBibleSourceRef, false);
-
-        // Creative story WITH bibleSourceRef - invalid per Contracts v2
-        final invalidCreative = Parable(
-          storyId: 'creative_002',
-          title: 'Another Story',
-          mood: 'joyful',
-          length: 5,
-          storytellingMode: 'creative',
-          kidFriendly: false,
-          bibleSourceRef: 'Genesis 1:1', // WRONG - Creative shouldn't have this
-        );
-
-        expect(
-          invalidCreative.hasBibleSourceRef,
-          true,
-          reason:
-              'This Creative story incorrectly has bibleSourceRef - validation should catch this',
-        );
+        expect(invalidTraditional.hasBibleSourceRef, false);
       });
     });
 
@@ -153,11 +103,7 @@ void main() {
           languageStyle: 'WEB',
         );
 
-        expect(
-          result.isValid,
-          false,
-          reason: 'Traditional without bibleSourceRef must fail validation',
-        );
+        expect(result.isValid, false);
         expect(
             result.violations.any((v) => v.contains('bibleSourceRef')), true);
       });
@@ -174,32 +120,19 @@ void main() {
         expect(result.isValid, false);
       });
 
-      test('CRITICAL: validateMetadataOnly passes valid Creative', () {
+      test('CRITICAL: validateMetadataOnly rejects non-traditional modes', () {
+        // Post-Creative-retirement: only 'traditional' is a valid mode value.
         final result = StoryModeValidator.validateMetadataOnly(
           storytellingMode: 'creative',
           bibleSourceRef: null,
           languageStyle: 'WEB',
         );
 
-        expect(result.isValid, true);
-        expect(result.violations, isEmpty);
-      });
-
-      test('CRITICAL: validateMetadataOnly fails Creative with bibleSourceRef',
-          () {
-        final result = StoryModeValidator.validateMetadataOnly(
-          storytellingMode: 'creative',
-          bibleSourceRef: 'Matthew 5:1',
-          languageStyle: 'KJV',
-        );
-
+        expect(result.isValid, false);
         expect(
-          result.isValid,
-          false,
-          reason: 'Creative with bibleSourceRef must fail validation',
+          result.violations.any((v) => v.contains('storytellingMode')),
+          true,
         );
-        expect(
-            result.violations.any((v) => v.contains('bibleSourceRef')), true);
       });
     });
 
@@ -213,41 +146,6 @@ void main() {
         );
 
         expect(result.violations.any((v) => v.contains('MoDC')), true);
-      });
-
-      test('Creative validation detects scripture authority claims', () {
-        final result = StoryModeValidator.validateCreative(
-          storyText: 'As the Bible says, we should always be kind to others.',
-          bibleSourceRef: null,
-          languageStyle: 'WEB',
-        );
-
-        expect(result.violations.any((v) => v.contains('scripture authority')),
-            true);
-      });
-
-      test('Creative+KJV validation detects scripture-claim markers', () {
-        final result = StoryModeValidator.validateCreative(
-          storyText: 'Thus saith the storyteller, verily the farmer was kind.',
-          bibleSourceRef: null,
-          languageStyle: 'KJV',
-        );
-
-        expect(
-            result.violations.any((v) => v.contains('scripture-claim marker')),
-            true);
-      });
-
-      test('Creative+WEB does NOT flag archaic language', () {
-        // Same text but WEB style - should not trigger KJV-specific checks
-        final result = StoryModeValidator.validateCreative(
-          storyText: 'Thus saith the storyteller, verily the farmer was kind.',
-          bibleSourceRef: null,
-          languageStyle: 'WEB',
-        );
-
-        // Should not have KJV-specific violation (but may have other issues)
-        expect(result.violations.any((v) => v.contains('Creative+KJV')), false);
       });
     });
 
@@ -270,38 +168,12 @@ void main() {
           languageStyle: 'KJV',
         );
         expect(tradKjv.isValid, false);
-
-        // Creative+WEB still forbids bibleSourceRef
-        final creativeWeb = StoryModeValidator.validateMetadataOnly(
-          storytellingMode: 'creative',
-          bibleSourceRef: 'Luke 1:1',
-          languageStyle: 'WEB',
-        );
-        expect(creativeWeb.isValid, false);
-
-        // Creative+KJV still forbids bibleSourceRef
-        final creativeKjv = StoryModeValidator.validateMetadataOnly(
-          storytellingMode: 'creative',
-          bibleSourceRef: 'Luke 1:1',
-          languageStyle: 'KJV',
-        );
-        expect(creativeKjv.isValid, false);
       });
 
       test('CRITICAL: Traditional+KJV still requires bibleSourceRef', () {
         final result = StoryModeValidator.validateMetadataOnly(
           storytellingMode: 'traditional',
           bibleSourceRef: 'Genesis 1:1',
-          languageStyle: 'KJV',
-        );
-
-        expect(result.isValid, true);
-      });
-
-      test('CRITICAL: Creative+KJV still forbids bibleSourceRef', () {
-        final result = StoryModeValidator.validateMetadataOnly(
-          storytellingMode: 'creative',
-          bibleSourceRef: null,
           languageStyle: 'KJV',
         );
 
@@ -333,7 +205,7 @@ void main() {
           'title': 'Test Story',
           'mood': 'joyful',
           'length': 5,
-          'storytellingMode': 'creative',
+          'storytellingMode': 'traditional',
           'kidFriendly': false,
         };
 
@@ -365,7 +237,7 @@ void main() {
           title: 'Test Story',
           mood: 'joyful',
           length: 5,
-          storytellingMode: 'creative',
+          storytellingMode: 'traditional',
           kidFriendly: false,
         );
 
@@ -396,7 +268,7 @@ void main() {
           'title': 'Test Story',
           'mood': 'joyful',
           'length': 5,
-          'storytellingMode': 'creative',
+          'storytellingMode': 'traditional',
           'kidFriendly': false,
         };
 
@@ -480,7 +352,7 @@ void main() {
           languageStyle: 'KJV',
         );
 
-        final copied = original.copyWith(storytellingMode: 'creative');
+        final copied = original.copyWith(bibleTranslation: 'KJV');
 
         expect(copied.languageStyle, 'KJV');
       });
@@ -502,12 +374,12 @@ void main() {
       parableService = ParableService(storageService, null, true);
     });
 
-    test('CRITICAL: Traditional mode only returns traditional stories',
+    test('CRITICAL: getEligibleParables returns only traditional stories',
         () async {
       final prefs = UserPreferences(
         bibleTranslation: 'WEB',
         storytellingMode: 'traditional',
-        kidFriendlyOnly: true, // Use kid mode for available traditional stories
+        kidFriendlyOnly: true,
       );
 
       final eligible = await parableService.getEligibleParables(
@@ -520,56 +392,9 @@ void main() {
         expect(
           p.storytellingMode,
           'traditional',
-          reason: '🚨 MODE CONTAMINATION 🚨\n'
-              'Traditional mode request returned creative story!\n'
+          reason: 'Traditional mode request returned non-traditional story.\n'
               'Story: ${p.storyId}',
         );
-      }
-    });
-
-    test('CRITICAL: Creative mode only returns creative stories', () async {
-      final prefs = UserPreferences(
-        bibleTranslation: 'WEB',
-        storytellingMode: 'creative',
-        kidFriendlyOnly: false,
-      );
-
-      final eligible = await parableService.getEligibleParables(
-        mood: 'joyful',
-        lengthBucket: StoryLengthBucket.short,
-        userPrefs: prefs,
-      );
-
-      for (final p in eligible) {
-        expect(
-          p.storytellingMode,
-          'creative',
-          reason: '🚨 MODE CONTAMINATION 🚨\n'
-              'Creative mode request returned traditional story!\n'
-              'Story: ${p.storyId}',
-        );
-      }
-    });
-
-    test('CRITICAL: No silent cross-mode fallback', () async {
-      // This test verifies that when no stories match the mode,
-      // we get an empty list rather than cross-mode content
-      final prefs = UserPreferences(
-        bibleTranslation: 'WEB',
-        storytellingMode: 'traditional',
-        kidFriendlyOnly: false,
-      );
-
-      final eligible = await parableService.getEligibleParables(
-        mood: 'joyful',
-        lengthBucket: StoryLengthBucket.short,
-        userPrefs: prefs,
-      );
-
-      // All returned stories must be traditional mode
-      // (empty is OK, cross-mode contamination is NOT OK)
-      for (final p in eligible) {
-        expect(p.storytellingMode, 'traditional');
       }
     });
   });

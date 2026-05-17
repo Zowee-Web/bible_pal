@@ -347,54 +347,31 @@ class ParableService {
       // Match length bucket (uses compatibility mapping from minute-based metadata)
       if (p.lengthBucket != lengthBucket) return false;
 
-      // Match storytelling mode (ALWAYS enforced - user expects this to work!)
-      if (p.storytellingMode != userPrefs.storytellingMode) return false;
-
       // Match language style (WEB or KJV) - Contracts v2
       // Use story's languageStyle field for filtering
       if (p.languageStyle != languageStyle) return false;
 
-      // CONTRACTS V2 + ADR-010: Traditional stories MUST have bibleSourceRef AND bibleStoryKey
+      // ADR-010: Traditional stories MUST have bibleSourceRef AND bibleStoryKey
       // Stories without these fields are EXCLUDED (not guessed)
-      if (p.storytellingMode == 'traditional') {
-        if (!p.hasBibleSourceRef) {
-          // Log exclusion for missing bibleSourceRef
-          logEvent(
-              'story_excluded',
-              {
-                'story_id': p.storyId,
-                'reason': 'traditional_missing_bible_source_ref',
-              },
-              level: LogLevel.warn);
-          return false;
-        }
-        if (!p.hasBibleStoryKey) {
-          // Log exclusion for missing bibleStoryKey (ADR-010)
-          logEvent(
-              'story_excluded',
-              {
-                'story_id': p.storyId,
-                'reason': 'traditional_missing_bible_story_key',
-              },
-              level: LogLevel.warn);
-          return false;
-        }
+      if (!p.hasBibleSourceRef) {
+        logEvent(
+            'story_excluded',
+            {
+              'story_id': p.storyId,
+              'reason': 'traditional_missing_bible_source_ref',
+            },
+            level: LogLevel.warn);
+        return false;
       }
-
-      // CONTRACTS V2: Creative stories MUST NOT have bibleSourceRef
-      // Stories with bibleSourceRef are EXCLUDED (data error)
-      if (p.storytellingMode == 'creative') {
-        if (p.hasBibleSourceRef) {
-          // Log exclusion for unexpected bibleSourceRef
-          logEvent(
-              'story_excluded',
-              {
-                'story_id': p.storyId,
-                'reason': 'creative_has_bible_source_ref',
-              },
-              level: LogLevel.warn);
-          return false;
-        }
+      if (!p.hasBibleStoryKey) {
+        logEvent(
+            'story_excluded',
+            {
+              'story_id': p.storyId,
+              'reason': 'traditional_missing_bible_story_key',
+            },
+            level: LogLevel.warn);
+        return false;
       }
 
       // Match kid-friendly filter (CRITICAL FOR PROPER CONTENT SEGREGATION)

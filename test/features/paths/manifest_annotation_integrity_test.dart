@@ -19,8 +19,8 @@ import 'package:bible_pal/features/paths/theme_vocabulary.dart';
 /// - `timelineEra` must be one of the 9 canonical eras from SPEC 50.2.
 /// - Every entry in `themeTags[]` must be in the locked 8-tag vocabulary
 ///   from SPEC 50.
-/// - Creative stories (storytellingMode == "creative") MUST NOT carry
-///   any PALs Paths metadata field (Story Mode Non-Blur Invariant #6).
+/// - Manifest must contain zero Creative entries (Creative retirement
+///   2026-05-13 — see docs/archive/CREATIVE_RETIREMENT_2026_05_13.md).
 /// - `bibleOrderIndex` and `characterPathOrder` must be non-negative
 ///   integers when present.
 /// - The Phase 2 seed batch must contain at least 10 annotated stories.
@@ -198,31 +198,17 @@ void main() {
     });
   });
 
-  group('Creative stories NEVER carry PALs Paths metadata (Non-Blur #6)', () {
-    test('no creative story has any PALs Paths annotation field', () {
-      final violations = <String>[];
-      const pathFields = [
-        'primaryCharacterId',
-        'primaryCharacterDisplayName',
-        'characterIds',
-        'characterDisplayNames',
-        'bibleOrderIndex',
-        'timelineEra',
-        'themeTags',
-        'characterPathOrder',
-      ];
-      for (final entry in entries) {
-        final mode = entry['storytellingMode'] as String?;
-        final storyId = entry['storyId'] as String? ?? '<unknown>';
-        if (mode != 'creative') continue;
-        for (final field in pathFields) {
-          if (entry.containsKey(field)) {
-            violations.add(
-                '$storyId: creative story has forbidden PALs Paths field "$field"');
-          }
-        }
-      }
-      expect(violations, isEmpty, reason: violations.join('\n'));
+  group('Creative retirement (2026-05-13)', () {
+    test('manifest contains zero Creative entries', () {
+      final creativeStoryIds = entries
+          .where((e) => e['storytellingMode'] == 'creative')
+          .map((e) => e['storyId'] as String? ?? '<unknown>')
+          .toList();
+      expect(creativeStoryIds, isEmpty,
+          reason: 'Creative entries have been retired. See '
+              'docs/archive/CREATIVE_RETIREMENT_2026_05_13.md. '
+              'Found ${creativeStoryIds.length} Creative entries: '
+              '${creativeStoryIds.take(5).join(", ")}');
     });
   });
 

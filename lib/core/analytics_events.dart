@@ -133,7 +133,7 @@ class AnalyticsEvents {
     return {
       'story_id': parable.storyId,
       'mood': parable.mood,
-      'mode': parable.storytellingMode,
+      'mode': 'traditional',
       'length_bucket': parable.lengthBucket.name,
       'kid_friendly': parable.kidFriendly,
       'translation_id': parable.translationId,

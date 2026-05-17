@@ -97,14 +97,6 @@
   },
 
   "tasks": {
-    "creative_story": {
-      "description": "Generate Creative mode stories (original faith-themed parables)",
-      "provider_constraint": "ollama",
-      "models": ["mistral-nemo", "llama3.1:8b", "qwen2.5:7b", "gemma:7b"],
-      "locked": false,
-      "default_temperature": 0.8,
-      "notes": "Fallback chain matches generate_v2_batch.sh get_creative_model()"
-    },
     "traditional_story_remote": {
       "description": "Generate Traditional mode stories (Bible retellings via OpenAI)",
       "provider_constraint": "openai",

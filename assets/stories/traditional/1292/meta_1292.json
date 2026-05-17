@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1292,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Light and Gladness",
+  "scriptureAnchor": "Esther 8:15-17",
+  "scriptureAnchorId": "esther_8_15-17",
+  "bibleStoryKey": "jews_had_light_and_gladness",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "themeTags": [
+    "deliverance",
+    "reversal",
+    "joy",
+    "honor",
+    "vindication"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "relieved",
+    "celebrated",
+    "thankful",
+    "elated",
+    "free"
+  ],
+  "primaryCharacterId": "mordecai",
+  "primaryCharacterDisplayName": "Mordecai",
+  "bibleOrderIndex": 248,
+  "timelineEra": "exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1292_traditional_web_short.txt"
+    }
+  }
+}

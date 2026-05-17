@@ -127,13 +127,6 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
     await updateUserPreferences(prefs);
   }
 
-  Future<void> updateStorytellingMode(String mode) async {
-    final prefs = state.requireValue.userPreferences.copyWith(
-      storytellingMode: mode,
-    );
-    await updateUserPreferences(prefs);
-  }
-
   /// Update story language style (WEB/KJV) - Contracts v2: presentation diction
   Future<void> updateLanguageStyle(String languageStyle) async {
     final prefs = state.requireValue.userPreferences.copyWith(
