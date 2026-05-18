@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1347,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Cord at the Window",
+  "scriptureAnchor": "Joshua 2:1-15",
+  "scriptureAnchorId": "joshua_2_1-15",
+  "bibleStoryKey": "rahab_hides_the_spies",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "themeTags": [
+    "protective_courage",
+    "harboring_the_stranger",
+    "fear_of_yahweh",
+    "covenant_kindness",
+    "outsider_faith"
+  ],
+  "emotionalTags": [
+    "brave",
+    "shrewd",
+    "quietly_decisive",
+    "trusting",
+    "protective",
+    "settled"
+  ],
+  "primaryCharacterId": "rahab",
+  "primaryCharacterDisplayName": "Rahab",
+  "bibleOrderIndex": 188,
+  "timelineEra": "conquest",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1347_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1354,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Joseph Boldly Asked",
+  "scriptureAnchor": "Mark 15:42-46",
+  "scriptureAnchorId": "mark_15_42-46",
+  "bibleStoryKey": "joseph_of_arimathea_asks_for_the_body",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "single_decisive_act",
+    "boldness_under_shadow",
+    "burial_of_jesus",
+    "preparation_day",
+    "quiet_courage"
+  ],
+  "emotionalTags": [
+    "brave",
+    "reverent",
+    "grave",
+    "decisive",
+    "tender",
+    "resolved"
+  ],
+  "primaryCharacterId": "joseph_of_arimathea",
+  "primaryCharacterDisplayName": "Joseph of Arimathea",
+  "bibleOrderIndex": 675,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1354_traditional_web_short.txt"
+    }
+  }
+}

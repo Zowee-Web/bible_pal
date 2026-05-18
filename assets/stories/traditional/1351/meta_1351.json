@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1351,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Three Hundred and Eighteen",
+  "scriptureAnchor": "Genesis 14:13-16",
+  "scriptureAnchorId": "genesis_14_13-16",
+  "bibleStoryKey": "abram_rescues_lot",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "themeTags": [
+    "protective_courage",
+    "rescue_of_kin",
+    "night_attack",
+    "household_loyalty",
+    "patriarchal_initiative"
+  ],
+  "emotionalTags": [
+    "brave",
+    "resolute",
+    "swift",
+    "tested",
+    "settled",
+    "vigilant"
+  ],
+  "primaryCharacterId": "abram",
+  "primaryCharacterDisplayName": "Abram",
+  "bibleOrderIndex": 14,
+  "timelineEra": "patriarchs",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1351_traditional_web_short.txt"
+    }
+  }
+}

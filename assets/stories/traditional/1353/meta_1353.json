@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1353,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Behold, I Am in Your Hand",
+  "scriptureAnchor": "Jeremiah 26:12-15",
+  "scriptureAnchorId": "jeremiah_26_12-15",
+  "bibleStoryKey": "jeremiah_at_the_new_gate",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "enduring_witness",
+    "trial_before_the_princes",
+    "prophet_under_threat",
+    "innocent_blood",
+    "spared_by_remembrance"
+  ],
+  "emotionalTags": [
+    "brave",
+    "steady",
+    "exposed",
+    "resolute",
+    "calm_under_pressure",
+    "trusting"
+  ],
+  "primaryCharacterId": "jeremiah",
+  "primaryCharacterDisplayName": "Jeremiah",
+  "bibleOrderIndex": 485,
+  "timelineEra": "pre_exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1353_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1349,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "What My God Says",
+  "scriptureAnchor": "2 Chronicles 18:13-27",
+  "scriptureAnchorId": "2_chronicles_18_13-27",
+  "bibleStoryKey": "micaiah_speaks_against_ahab",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "themeTags": [
+    "speaking_truth_to_power",
+    "prophet_against_court",
+    "vision_of_yahwehs_throne",
+    "lying_spirit",
+    "consequence_of_obedience"
+  ],
+  "emotionalTags": [
+    "brave",
+    "resolute",
+    "unflinching",
+    "weighty",
+    "outnumbered",
+    "settled"
+  ],
+  "primaryCharacterId": "micaiah",
+  "primaryCharacterDisplayName": "Micaiah",
+  "bibleOrderIndex": 278,
+  "timelineEra": "divided_monarchy",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1349_traditional_web_short.txt"
+    }
+  }
+}

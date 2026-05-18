@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1355,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Where You Go",
+  "scriptureAnchor": "Ruth 1:14-18",
+  "scriptureAnchorId": "ruth_1_14-18",
+  "bibleStoryKey": "ruth_clings_to_naomi",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "themeTags": [
+    "pioneering_obedience",
+    "covenant_loyalty",
+    "leaving_home",
+    "foreigner_in_israel",
+    "your_god_my_god"
+  ],
+  "emotionalTags": [
+    "brave",
+    "determined",
+    "tender",
+    "loyal",
+    "resolute",
+    "settled"
+  ],
+  "primaryCharacterId": "ruth",
+  "primaryCharacterDisplayName": "Ruth",
+  "bibleOrderIndex": 234,
+  "timelineEra": "judges",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1355_traditional_web_short.txt"
+    }
+  }
+}

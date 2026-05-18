@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1348,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Shiphrah and Puah",
+  "scriptureAnchor": "Exodus 1:15-22",
+  "scriptureAnchorId": "exodus_1_15-22",
+  "bibleStoryKey": "the_hebrew_midwives_feared_god",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "themeTags": [
+    "single_decisive_act",
+    "fearing_god_over_king",
+    "defying_pharaoh",
+    "saving_the_innocent",
+    "before_the_deliverer"
+  ],
+  "emotionalTags": [
+    "brave",
+    "resolute",
+    "shrewd",
+    "reverent",
+    "protective",
+    "quietly_defiant"
+  ],
+  "primaryCharacterId": "shiphrah_and_puah",
+  "primaryCharacterDisplayName": "Shiphrah and Puah",
+  "bibleOrderIndex": 51,
+  "timelineEra": "exodus",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1348_traditional_web_short.txt"
+    }
+  }
+}

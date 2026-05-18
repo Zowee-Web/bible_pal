@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1352,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Spear at Shittim",
+  "scriptureAnchor": "Numbers 25:6-13",
+  "scriptureAnchorId": "numbers_25_6-13",
+  "bibleStoryKey": "phinehas_stays_the_plague",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "single_decisive_act",
+    "zeal_for_yahweh",
+    "covenant_of_peace",
+    "atonement_and_intervention",
+    "priestly_courage"
+  ],
+  "emotionalTags": [
+    "brave",
+    "zealous",
+    "weighty",
+    "decisive",
+    "grieved",
+    "resolute"
+  ],
+  "primaryCharacterId": "phinehas",
+  "primaryCharacterDisplayName": "Phinehas",
+  "bibleOrderIndex": 152,
+  "timelineEra": "exodus",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1352_traditional_web_short.txt"
+    }
+  }
+}

@@ -4564,6 +4564,126 @@
       "majorMotif": "prayer_recalling_covenant_promise",
       "emotionalShape": "patriarch_waits_with_promise_in_hand",
       "tagsComplete": true
+    },
+    {
+      "storyId": 1346,
+      "anchor": "1 Samuel 14:1-15",
+      "mood": "brave_courage",
+      "era": "kingdom",
+      "character": "Jonathan",
+      "narrativeType": "historical_narrative",
+      "subTexture": "pioneering_obedience",
+      "majorMotif": "two_climb_the_cliff_to_garrison",
+      "emotionalShape": "few_against_many_with_sign_agreed",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1347,
+      "anchor": "Joshua 2:1-15",
+      "mood": "brave_courage",
+      "era": "conquest",
+      "character": "Rahab",
+      "narrativeType": "historical_narrative",
+      "subTexture": "protective_courage",
+      "majorMotif": "harboring_spies_under_flax_on_roof",
+      "emotionalShape": "outsider_calculates_and_chooses_yahweh",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1348,
+      "anchor": "Exodus 1:15-22",
+      "mood": "brave_courage",
+      "era": "exodus",
+      "character": "Shiphrah and Puah",
+      "narrativeType": "torah_narrative",
+      "subTexture": "single_decisive_act",
+      "majorMotif": "midwives_save_the_infants",
+      "emotionalShape": "fearing_god_more_than_king",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1349,
+      "anchor": "2 Chronicles 18:13-27",
+      "mood": "brave_courage",
+      "era": "divided_monarchy",
+      "character": "Micaiah",
+      "narrativeType": "historical_narrative",
+      "subTexture": "speaking_truth_to_power",
+      "majorMotif": "prophet_against_four_hundred",
+      "emotionalShape": "unflinching_vision_before_two_kings",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1350,
+      "anchor": "Acts 14:19-22",
+      "mood": "brave_courage",
+      "era": "early_church",
+      "character": "Paul",
+      "narrativeType": "early_church_narrative",
+      "subTexture": "enduring_witness",
+      "majorMotif": "stoned_and_rising_to_re_enter_city",
+      "emotionalShape": "physical_persecution_met_with_return",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1351,
+      "anchor": "Genesis 14:13-16",
+      "mood": "brave_courage",
+      "era": "patriarchs",
+      "character": "Abram",
+      "narrativeType": "torah_narrative",
+      "subTexture": "protective_courage",
+      "majorMotif": "household_rescue_by_night",
+      "emotionalShape": "patriarch_leads_318_to_recover_kin",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1352,
+      "anchor": "Numbers 25:6-13",
+      "mood": "brave_courage",
+      "era": "exodus",
+      "character": "Phinehas",
+      "narrativeType": "torah_narrative",
+      "subTexture": "single_decisive_act",
+      "majorMotif": "spear_through_the_tent_stops_plague",
+      "emotionalShape": "zealous_priestly_act_atones_for_camp",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1353,
+      "anchor": "Jeremiah 26:12-15",
+      "mood": "brave_courage",
+      "era": "pre_exile",
+      "character": "Jeremiah",
+      "narrativeType": "historical_narrative",
+      "subTexture": "enduring_witness",
+      "majorMotif": "prophet_on_trial_at_new_gate",
+      "emotionalShape": "calm_acceptance_with_warning_of_blood",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1354,
+      "anchor": "Mark 15:42-46",
+      "mood": "brave_courage",
+      "era": "jesus_ministry",
+      "character": "Joseph of Arimathea",
+      "narrativeType": "gospel",
+      "subTexture": "single_decisive_act",
+      "majorMotif": "bold_request_to_pilate_for_body",
+      "emotionalShape": "council_member_takes_quiet_burial_courage",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1355,
+      "anchor": "Ruth 1:14-18",
+      "mood": "brave_courage",
+      "era": "judges",
+      "character": "Ruth",
+      "narrativeType": "historical_narrative",
+      "subTexture": "pioneering_obedience",
+      "majorMotif": "moabite_widow_clings_at_parting",
+      "emotionalShape": "vow_of_loyalty_into_destitution",
+      "tagsComplete": true
     }
   ]
 }

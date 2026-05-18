@@ -2644,6 +2644,86 @@
       "moodTags": [
         "anxious"
       ]
+    },
+    {
+      "scriptureAnchorId": "1_samuel_14_1-15",
+      "bibleStoryKey": "jonathan_climbs_the_garrison",
+      "bibleSourceRef": "1 Samuel 14:1-15",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "joshua_2_1-15",
+      "bibleStoryKey": "rahab_hides_the_spies",
+      "bibleSourceRef": "Joshua 2:1-15",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "exodus_1_15-22",
+      "bibleStoryKey": "the_hebrew_midwives_feared_god",
+      "bibleSourceRef": "Exodus 1:15-22",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_chronicles_18_13-27",
+      "bibleStoryKey": "micaiah_speaks_against_ahab",
+      "bibleSourceRef": "2 Chronicles 18:13-27",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "acts_14_19-22",
+      "bibleStoryKey": "paul_stoned_at_lystra",
+      "bibleSourceRef": "Acts 14:19-22",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_14_13-16",
+      "bibleStoryKey": "abram_rescues_lot",
+      "bibleSourceRef": "Genesis 14:13-16",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "numbers_25_6-13",
+      "bibleStoryKey": "phinehas_stays_the_plague",
+      "bibleSourceRef": "Numbers 25:6-13",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "jeremiah_26_12-15",
+      "bibleStoryKey": "jeremiah_at_the_new_gate",
+      "bibleSourceRef": "Jeremiah 26:12-15",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "mark_15_42-46",
+      "bibleStoryKey": "joseph_of_arimathea_asks_for_the_body",
+      "bibleSourceRef": "Mark 15:42-46",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "ruth_1_14-18",
+      "bibleStoryKey": "ruth_clings_to_naomi",
+      "bibleSourceRef": "Ruth 1:14-18",
+      "moodTags": [
+        "brave_courage"
+      ]
     }
   ]
 }
