@@ -2804,6 +2804,86 @@
       "moodTags": [
         "hurting"
       ]
+    },
+    {
+      "scriptureAnchorId": "ezra_3_10-13",
+      "bibleStoryKey": "second_temple_foundation_dedication",
+      "bibleSourceRef": "Ezra 3:10-13",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "psalm_126_1-6",
+      "bibleStoryKey": "when_yahweh_brought_back_zion",
+      "bibleSourceRef": "Psalm 126:1-6",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_1_67-79",
+      "bibleStoryKey": "zechariahs_benedictus",
+      "bibleSourceRef": "Luke 1:67-79",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_chronicles_5_11-14",
+      "bibleStoryKey": "glory_fills_solomons_temple",
+      "bibleSourceRef": "2 Chronicles 5:11-14",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "acts_13_48-52",
+      "bibleStoryKey": "gentiles_believe_at_pisidian_antioch",
+      "bibleSourceRef": "Acts 13:48-52",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "nehemiah_8_9-12",
+      "bibleStoryKey": "joy_of_yahweh_is_your_strength",
+      "bibleSourceRef": "Nehemiah 8:9-12",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_15_8-10",
+      "bibleStoryKey": "lost_coin_parable",
+      "bibleSourceRef": "Luke 15:8-10",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "isaiah_35_1-10",
+      "bibleStoryKey": "highway_of_holiness_blooming_wilderness",
+      "bibleSourceRef": "Isaiah 35:1-10",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_samuel_22_1-7",
+      "bibleStoryKey": "davids_deliverance_song",
+      "bibleSourceRef": "2 Samuel 22:1-7",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "mark_5_18-20",
+      "bibleStoryKey": "decapolis_proclamation_restored_man",
+      "bibleSourceRef": "Mark 5:18-20",
+      "moodTags": [
+        "joyful"
+      ]
     }
   ]
 }

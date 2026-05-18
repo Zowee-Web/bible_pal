@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1370,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_07_V2_IMMERSIVE",
+  "title": "The Gentiles Were Glad",
+  "scriptureAnchor": "Acts 13:48-52",
+  "scriptureAnchorId": "acts_13_48-52",
+  "bibleStoryKey": "gentiles_believe_at_pisidian_antioch",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "gentile_response_joy",
+    "word_spread_abroad",
+    "shaking_off_the_dust",
+    "filled_with_joy_and_holy_spirit",
+    "persecution_and_joy_together"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "resolute",
+    "exultant",
+    "settled",
+    "encouraged",
+    "undeterred"
+  ],
+  "primaryCharacterId": "paul_apostle",
+  "primaryCharacterDisplayName": "Paul",
+  "bibleOrderIndex": 1051,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1370_traditional_web_short.txt"
+    }
+  }
+}

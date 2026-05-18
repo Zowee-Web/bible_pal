@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1366,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_07_V2_IMMERSIVE",
+  "title": "The Foundation Laid",
+  "scriptureAnchor": "Ezra 3:10-13",
+  "scriptureAnchorId": "ezra_3_10-13",
+  "bibleStoryKey": "second_temple_foundation_dedication",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "foundation_laying_jubilation",
+    "trumpets_and_cymbals",
+    "joy_mixed_with_memory_weeping",
+    "post_exile_dedication",
+    "great_shout_heard_far_away"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "exultant",
+    "honoring",
+    "tender",
+    "remembering",
+    "communal"
+  ],
+  "primaryCharacterId": "ezra",
+  "primaryCharacterDisplayName": "Ezra",
+  "bibleOrderIndex": 405,
+  "timelineEra": "return",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1366_traditional_web_short.txt"
+    }
+  }
+}

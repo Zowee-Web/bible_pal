@@ -4804,6 +4804,126 @@
       "majorMotif": "call_me_mara_at_homecoming",
       "emotionalShape": "naming_the_bitter_return",
       "tagsComplete": true
+    },
+    {
+      "storyId": 1366,
+      "anchor": "Ezra 3:10-13",
+      "mood": "joyful",
+      "era": "return",
+      "character": "Ezra",
+      "narrativeType": "historical_narrative",
+      "subTexture": "foundation_laying_jubilation",
+      "majorMotif": "trumpets_cymbals_great_shout",
+      "emotionalShape": "shout_of_joy_mingled_with_old_mens_weeping",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1367,
+      "anchor": "Psalm 126:1-6",
+      "mood": "joyful",
+      "era": "wisdom",
+      "character": "Psalmist",
+      "narrativeType": "psalm",
+      "subTexture": "restoration_dreaming_song",
+      "majorMotif": "we_were_like_those_who_dream",
+      "emotionalShape": "communal_voice_of_restored_returners",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1368,
+      "anchor": "Luke 1:67-79",
+      "mood": "joyful",
+      "era": "jesus_ministry",
+      "character": "Zechariah",
+      "narrativeType": "gospel",
+      "subTexture": "priestly_song_after_silence",
+      "majorMotif": "tongue_loosed_at_naming_of_john",
+      "emotionalShape": "old_priests_first_words_after_nine_months",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1369,
+      "anchor": "2 Chronicles 5:11-14",
+      "mood": "joyful",
+      "era": "divided_monarchy",
+      "character": "Solomon",
+      "narrativeType": "historical_narrative",
+      "subTexture": "divine_glory_response",
+      "majorMotif": "trumpeters_singers_as_one_cloud_fills",
+      "emotionalShape": "praise_overwhelmed_by_glory",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1370,
+      "anchor": "Acts 13:48-52",
+      "mood": "joyful",
+      "era": "early_church",
+      "character": "Paul",
+      "narrativeType": "early_church_narrative",
+      "subTexture": "gentile_response_joy",
+      "majorMotif": "shake_dust_filled_with_joy",
+      "emotionalShape": "persecution_with_joy_not_subtracted",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1371,
+      "anchor": "Nehemiah 8:9-12",
+      "mood": "joyful",
+      "era": "return",
+      "character": "Nehemiah",
+      "narrativeType": "historical_narrative",
+      "subTexture": "joy_as_strength",
+      "majorMotif": "weeping_turned_to_eating_portions_shared",
+      "emotionalShape": "communal_grief_redirected_to_celebration",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1372,
+      "anchor": "Luke 15:8-10",
+      "mood": "joyful",
+      "era": "jesus_ministry",
+      "character": "Jesus",
+      "narrativeType": "gospel",
+      "subTexture": "finding_what_was_lost",
+      "majorMotif": "lamp_lit_house_swept_for_one_coin",
+      "emotionalShape": "parable_of_diligent_search_then_neighbors_called",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1373,
+      "anchor": "Isaiah 35:1-10",
+      "mood": "joyful",
+      "era": "prophets",
+      "character": "Isaiah",
+      "narrativeType": "oracle",
+      "subTexture": "highway_of_holiness_vision",
+      "majorMotif": "desert_blossoming_ransomed_returning_with_singing",
+      "emotionalShape": "prophetic_vision_of_redeemed_future",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1374,
+      "anchor": "2 Samuel 22:1-7",
+      "mood": "joyful",
+      "era": "kingdom",
+      "character": "David",
+      "narrativeType": "historical_narrative",
+      "subTexture": "personal_deliverance_song",
+      "majorMotif": "seven_names_for_yahweh_after_deliverance",
+      "emotionalShape": "kings_thanksgiving_after_enemies_subdued",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1375,
+      "anchor": "Mark 5:18-20",
+      "mood": "joyful",
+      "era": "jesus_ministry",
+      "character": "Restored Man of the Gerasenes",
+      "narrativeType": "gospel",
+      "subTexture": "proclaim_what_was_done",
+      "majorMotif": "tell_them_what_great_things_in_decapolis",
+      "emotionalShape": "restored_man_sent_to_proclaim_in_ten_cities",
+      "tagsComplete": true
     }
   ]
 }

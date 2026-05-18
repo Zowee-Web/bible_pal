@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1367,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_07_V2_IMMERSIVE",
+  "title": "We Were Like Those Who Dream",
+  "scriptureAnchor": "Psalm 126:1-6",
+  "scriptureAnchorId": "psalm_126_1-6",
+  "bibleStoryKey": "when_yahweh_brought_back_zion",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "themeTags": [
+    "restoration_dreaming_song",
+    "laughter_after_captivity",
+    "streams_in_the_negev",
+    "sowing_in_tears_reaping_in_joy",
+    "song_of_ascent"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "marveling",
+    "communal",
+    "tender",
+    "restored",
+    "hopeful"
+  ],
+  "primaryCharacterId": "psalmist",
+  "primaryCharacterDisplayName": "Psalmist",
+  "bibleOrderIndex": 575,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1367_traditional_web_short.txt"
+    }
+  }
+}

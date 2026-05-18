@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1371,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_07_V2_IMMERSIVE",
+  "title": "The Joy of Yahweh Is Your Strength",
+  "scriptureAnchor": "Nehemiah 8:9-12",
+  "scriptureAnchorId": "nehemiah_8_9-12",
+  "bibleStoryKey": "joy_of_yahweh_is_your_strength",
+  "storyVoiceKey": "VOICE_CHARLOTTE_V3",
+  "themeTags": [
+    "joy_as_strength",
+    "water_gate_assembly",
+    "weeping_turned_to_eating",
+    "portions_to_the_poor",
+    "after_the_reading_of_the_law"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "encouraged",
+    "settled",
+    "tender",
+    "communal",
+    "restored"
+  ],
+  "primaryCharacterId": "nehemiah",
+  "primaryCharacterDisplayName": "Nehemiah",
+  "bibleOrderIndex": 420,
+  "timelineEra": "return",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1371_traditional_web_short.txt"
+    }
+  }
+}

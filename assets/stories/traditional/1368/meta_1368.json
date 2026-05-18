@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1368,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_07_V2_IMMERSIVE",
+  "title": "The Dawn from On High",
+  "scriptureAnchor": "Luke 1:67-79",
+  "scriptureAnchorId": "luke_1_67-79",
+  "bibleStoryKey": "zechariahs_benedictus",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "themeTags": [
+    "priestly_song_after_silence",
+    "tongue_loosed",
+    "covenant_remembered",
+    "prophet_of_the_most_high",
+    "dawn_from_on_high"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "exultant",
+    "tender",
+    "awed",
+    "restored",
+    "blessing"
+  ],
+  "primaryCharacterId": "zechariah",
+  "primaryCharacterDisplayName": "Zechariah",
+  "bibleOrderIndex": 982,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1368_traditional_web_short.txt"
+    }
+  }
+}

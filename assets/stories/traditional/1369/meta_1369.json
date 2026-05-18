@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1369,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_07_V2_IMMERSIVE",
+  "title": "The Glory Filled the House",
+  "scriptureAnchor": "2 Chronicles 5:11-14",
+  "scriptureAnchorId": "2_chronicles_5_11-14",
+  "bibleStoryKey": "glory_fills_solomons_temple",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "divine_glory_response",
+    "trumpeters_and_singers_as_one",
+    "temple_dedication",
+    "cloud_fills_the_house",
+    "for_he_is_good"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "awed",
+    "exultant",
+    "reverent",
+    "overwhelmed",
+    "communal"
+  ],
+  "primaryCharacterId": "solomon",
+  "primaryCharacterDisplayName": "Solomon",
+  "bibleOrderIndex": 277,
+  "timelineEra": "divided_monarchy",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1369_traditional_web_short.txt"
+    }
+  }
+}

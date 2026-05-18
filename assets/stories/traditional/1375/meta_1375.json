@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1375,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_07_V2_IMMERSIVE",
+  "title": "Tell What Great Things",
+  "scriptureAnchor": "Mark 5:18-20",
+  "scriptureAnchorId": "mark_5_18-20",
+  "bibleStoryKey": "decapolis_proclamation_restored_man",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "proclaim_what_was_done",
+    "restored_man_sent_home",
+    "mercy_recounted_in_decapolis",
+    "ten_cities_marveling",
+    "after_the_legion_was_cast_out"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "marveling",
+    "restored",
+    "tender",
+    "exultant",
+    "settled"
+  ],
+  "primaryCharacterId": "gerasene_demoniac",
+  "primaryCharacterDisplayName": "Restored Man of the Gerasenes",
+  "bibleOrderIndex": 967,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1375_traditional_web_short.txt"
+    }
+  }
+}

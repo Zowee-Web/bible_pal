@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1372,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_07_V2_IMMERSIVE",
+  "title": "Rejoice With Me",
+  "scriptureAnchor": "Luke 15:8-10",
+  "scriptureAnchorId": "luke_15_8-10",
+  "bibleStoryKey": "lost_coin_parable",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "finding_what_was_lost",
+    "joy_in_heaven",
+    "lamp_lit_house_swept",
+    "rejoice_with_me_neighbors",
+    "parable_of_the_lost_coin"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "delighted",
+    "communal",
+    "tender",
+    "expectant",
+    "exultant"
+  ],
+  "primaryCharacterId": "jesus_christ",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 996,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1372_traditional_web_short.txt"
+    }
+  }
+}

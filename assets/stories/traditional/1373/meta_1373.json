@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1373,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_07_V2_IMMERSIVE",
+  "title": "The Highway of Holiness",
+  "scriptureAnchor": "Isaiah 35:1-10",
+  "scriptureAnchorId": "isaiah_35_1-10",
+  "bibleStoryKey": "highway_of_holiness_blooming_wilderness",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "themeTags": [
+    "highway_of_holiness",
+    "desert_blossoming_like_rose",
+    "ransomed_returning_with_singing",
+    "blind_eyes_lame_feet_in_vision",
+    "everlasting_joy_on_their_heads"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "exultant",
+    "hopeful",
+    "awed",
+    "marveling",
+    "expectant"
+  ],
+  "primaryCharacterId": "isaiah",
+  "primaryCharacterDisplayName": "Isaiah",
+  "bibleOrderIndex": 758,
+  "timelineEra": "prophets",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1373_traditional_web_short.txt"
+    }
+  }
+}
