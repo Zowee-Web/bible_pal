@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1389,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_09_V3_IMMERSIVE",
+  "title": "Remember Me",
+  "scriptureAnchor": "Genesis 40:14-23",
+  "scriptureAnchorId": "genesis_40_14-23",
+  "bibleStoryKey": "joseph_forgotten_by_cupbearer",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "forgotten_in_prison",
+    "interpretation_of_two_dreams",
+    "cupbearer_restored",
+    "baker_hanged",
+    "asking_to_be_remembered"
+  ],
+  "emotionalTags": [
+    "weary",
+    "longing",
+    "forgotten",
+    "patient",
+    "waiting",
+    "alone"
+  ],
+  "primaryCharacterId": "joseph",
+  "primaryCharacterDisplayName": "Joseph",
+  "bibleOrderIndex": 40,
+  "timelineEra": "patriarchs",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1389_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1394,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_09_V3_IMMERSIVE",
+  "title": "I Have Cried Day and Night",
+  "scriptureAnchor": "Psalm 88:1-9",
+  "scriptureAnchorId": "psalm_88_1-9",
+  "bibleStoryKey": "heman_psalm_of_unrelieved_darkness",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "themeTags": [
+    "unrelieved_darkness_lament",
+    "psalm_that_does_not_turn",
+    "soul_full_of_troubles",
+    "friends_taken_away",
+    "mahalath_leannoth"
+  ],
+  "emotionalTags": [
+    "weary",
+    "alone",
+    "spent",
+    "afflicted",
+    "longing",
+    "honest"
+  ],
+  "primaryCharacterId": "heman_the_ezrahite",
+  "primaryCharacterDisplayName": "Heman the Ezrahite",
+  "bibleOrderIndex": 537,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1394_traditional_web_short.txt"
+    }
+  }
+}

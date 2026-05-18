@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1386,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_09_V3_IMMERSIVE",
+  "title": "The Forest Above the Towns",
+  "scriptureAnchor": "Joshua 17:14-18",
+  "scriptureAnchorId": "joshua_17_14-18",
+  "bibleStoryKey": "sons_of_joseph_complain",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "themeTags": [
+    "tribal_inheritance_strain",
+    "chariots_of_iron",
+    "joshuas_matter_of_fact_reply",
+    "work_of_clearing_ahead",
+    "after_the_lots_at_shiloh"
+  ],
+  "emotionalTags": [
+    "weary",
+    "burdened",
+    "unsatisfied",
+    "facing_the_work",
+    "settled",
+    "tested"
+  ],
+  "primaryCharacterId": "sons_of_joseph",
+  "primaryCharacterDisplayName": "Sons of Joseph",
+  "bibleOrderIndex": 199,
+  "timelineEra": "conquest",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1386_traditional_web_short.txt"
+    }
+  }
+}

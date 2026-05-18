@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1391,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_09_V3_IMMERSIVE",
+  "title": "How Long, O Yahweh of Armies",
+  "scriptureAnchor": "Zechariah 1:7-17",
+  "scriptureAnchorId": "zechariah_1_7-17",
+  "bibleStoryKey": "zechariahs_vision_of_horsemen",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "themeTags": [
+    "how_long_o_yahweh",
+    "horsemen_among_myrtle_trees",
+    "seventy_years_of_indignation",
+    "mercy_returns_to_jerusalem",
+    "night_vision_in_shebat"
+  ],
+  "emotionalTags": [
+    "weary",
+    "waiting",
+    "hopeful",
+    "settled",
+    "trusting",
+    "longing"
+  ],
+  "primaryCharacterId": "zechariah_prophet",
+  "primaryCharacterDisplayName": "Zechariah the Prophet",
+  "bibleOrderIndex": 919,
+  "timelineEra": "return",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1391_traditional_web_short.txt"
+    }
+  }
+}

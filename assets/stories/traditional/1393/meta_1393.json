@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1393,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_09_V3_IMMERSIVE",
+  "title": "The Strength of the Bearers",
+  "scriptureAnchor": "Nehemiah 4:10-14",
+  "scriptureAnchorId": "nehemiah_4_10-14",
+  "bibleStoryKey": "wall_builders_exhausted",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "communal_exhaustion",
+    "rubble_and_burdens",
+    "guards_in_lowest_places",
+    "remember_the_lord",
+    "fight_for_your_houses"
+  ],
+  "emotionalTags": [
+    "weary",
+    "spent",
+    "communal",
+    "resolute",
+    "encouraged",
+    "tested"
+  ],
+  "primaryCharacterId": "nehemiah",
+  "primaryCharacterDisplayName": "Nehemiah",
+  "bibleOrderIndex": 416,
+  "timelineEra": "return",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1393_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1390,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_09_V3_IMMERSIVE",
+  "title": "Despaired Even of Life",
+  "scriptureAnchor": "2 Corinthians 1:8-11",
+  "scriptureAnchorId": "2_corinthians_1_8-11",
+  "bibleStoryKey": "paul_affliction_in_asia",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "despaired_of_life",
+    "sentence_of_death_within",
+    "trust_in_god_who_raises_dead",
+    "saints_praying_together",
+    "after_ephesus"
+  ],
+  "emotionalTags": [
+    "weary",
+    "humbled",
+    "tested",
+    "trusting",
+    "spent",
+    "settled"
+  ],
+  "primaryCharacterId": "paul_apostle",
+  "primaryCharacterDisplayName": "Paul",
+  "bibleOrderIndex": 1090,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1390_traditional_web_short.txt"
+    }
+  }
+}

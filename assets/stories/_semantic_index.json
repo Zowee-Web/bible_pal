@@ -5044,6 +5044,126 @@
       "majorMotif": "father_i_thank_you_then_lazarus_emerges",
       "emotionalShape": "prayer_of_thanks_preceding_resurrection",
       "tagsComplete": true
+    },
+    {
+      "storyId": 1386,
+      "anchor": "Joshua 17:14-18",
+      "mood": "weary",
+      "era": "conquest",
+      "character": "Sons of Joseph",
+      "narrativeType": "historical_narrative",
+      "subTexture": "tribal_inheritance_strain",
+      "majorMotif": "complaint_to_joshua_about_one_lot",
+      "emotionalShape": "facing_the_work_of_clearing",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1387,
+      "anchor": "1 Samuel 30:1-6",
+      "mood": "weary",
+      "era": "kingdom",
+      "character": "David",
+      "narrativeType": "historical_narrative",
+      "subTexture": "collapse_at_ziklag",
+      "majorMotif": "wept_until_no_strength_then_strengthened_in_yahweh",
+      "emotionalShape": "depletion_then_finding_again",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1388,
+      "anchor": "Matthew 11:2-6",
+      "mood": "weary",
+      "era": "jesus_ministry",
+      "character": "John the Baptist",
+      "narrativeType": "gospel",
+      "subTexture": "prison_doubt_message",
+      "majorMotif": "two_disciples_sent_with_question_from_cell",
+      "emotionalShape": "imprisoned_forerunner_seeking_confirmation",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1389,
+      "anchor": "Genesis 40:14-23",
+      "mood": "weary",
+      "era": "patriarchs",
+      "character": "Joseph",
+      "narrativeType": "torah_narrative",
+      "subTexture": "forgotten_in_prison",
+      "majorMotif": "remember_me_then_cupbearer_forgets",
+      "emotionalShape": "asking_to_be_remembered_then_left_waiting",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1390,
+      "anchor": "2 Corinthians 1:8-11",
+      "mood": "weary",
+      "era": "early_church",
+      "character": "Paul",
+      "narrativeType": "epistle",
+      "subTexture": "despaired_of_life",
+      "majorMotif": "sentence_of_death_within_then_delivered",
+      "emotionalShape": "apostolic_exhaustion_acknowledged",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1391,
+      "anchor": "Zechariah 1:7-17",
+      "mood": "weary",
+      "era": "return",
+      "character": "Zechariah the Prophet",
+      "narrativeType": "oracle",
+      "subTexture": "how_long_o_yahweh",
+      "majorMotif": "horsemen_among_myrtle_trees_at_night",
+      "emotionalShape": "seventy_years_then_mercy_returns",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1392,
+      "anchor": "Psalm 73:1-17",
+      "mood": "weary",
+      "era": "wisdom",
+      "character": "Asaph",
+      "narrativeType": "psalm",
+      "subTexture": "envy_resolved_at_sanctuary",
+      "majorMotif": "feet_almost_gone_until_sanctuary_seen",
+      "emotionalShape": "interior_confession_of_a_temple_singer",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1393,
+      "anchor": "Nehemiah 4:10-14",
+      "mood": "weary",
+      "era": "return",
+      "character": "Nehemiah",
+      "narrativeType": "historical_narrative",
+      "subTexture": "communal_exhaustion",
+      "majorMotif": "bearers_of_burdens_failing_under_threat",
+      "emotionalShape": "rallying_at_the_unfinished_wall",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1394,
+      "anchor": "Psalm 88:1-9",
+      "mood": "weary",
+      "era": "wisdom",
+      "character": "Heman the Ezrahite",
+      "narrativeType": "psalm",
+      "subTexture": "unrelieved_darkness_lament",
+      "majorMotif": "psalm_that_does_not_turn",
+      "emotionalShape": "song_that_stays_in_the_dark",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1395,
+      "anchor": "Ezekiel 3:14-15",
+      "mood": "weary",
+      "era": "exile",
+      "character": "Ezekiel",
+      "narrativeType": "oracle",
+      "subTexture": "sitting_overwhelmed_seven_days",
+      "majorMotif": "prophet_silent_among_the_exiles_at_tel_aviv",
+      "emotionalShape": "bitterness_taking_seven_days_to_settle",
+      "tagsComplete": true
     }
   ]
 }

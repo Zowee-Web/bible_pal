@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1392,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_09_V3_IMMERSIVE",
+  "title": "Until I Entered the Sanctuary",
+  "scriptureAnchor": "Psalm 73:1-17",
+  "scriptureAnchorId": "psalm_73_1-17",
+  "bibleStoryKey": "asaph_envy_resolved_at_sanctuary",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "envy_resolved_at_sanctuary",
+    "feet_almost_gone",
+    "prosperity_of_the_wicked",
+    "interior_confession",
+    "psalm_of_asaph"
+  ],
+  "emotionalTags": [
+    "weary",
+    "tested",
+    "confessional",
+    "questioning",
+    "settled",
+    "humbled"
+  ],
+  "primaryCharacterId": "asaph",
+  "primaryCharacterDisplayName": "Asaph",
+  "bibleOrderIndex": 522,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1392_traditional_web_short.txt"
+    }
+  }
+}

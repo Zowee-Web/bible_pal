@@ -2964,6 +2964,86 @@
       "moodTags": [
         "grateful"
       ]
+    },
+    {
+      "scriptureAnchorId": "joshua_17_14-18",
+      "bibleStoryKey": "sons_of_joseph_complain",
+      "bibleSourceRef": "Joshua 17:14-18",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_samuel_30_1-6",
+      "bibleStoryKey": "david_at_burned_ziklag",
+      "bibleSourceRef": "1 Samuel 30:1-6",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matthew_11_2-6",
+      "bibleStoryKey": "john_baptist_sends_from_prison",
+      "bibleSourceRef": "Matthew 11:2-6",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_40_14-23",
+      "bibleStoryKey": "joseph_forgotten_by_cupbearer",
+      "bibleSourceRef": "Genesis 40:14-23",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_corinthians_1_8-11",
+      "bibleStoryKey": "paul_affliction_in_asia",
+      "bibleSourceRef": "2 Corinthians 1:8-11",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "zechariah_1_7-17",
+      "bibleStoryKey": "zechariahs_vision_of_horsemen",
+      "bibleSourceRef": "Zechariah 1:7-17",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "psalm_73_1-17",
+      "bibleStoryKey": "asaph_envy_resolved_at_sanctuary",
+      "bibleSourceRef": "Psalm 73:1-17",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "nehemiah_4_10-14",
+      "bibleStoryKey": "wall_builders_exhausted",
+      "bibleSourceRef": "Nehemiah 4:10-14",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "psalm_88_1-9",
+      "bibleStoryKey": "heman_psalm_of_unrelieved_darkness",
+      "bibleSourceRef": "Psalm 88:1-9",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "ezekiel_3_14-15",
+      "bibleStoryKey": "ezekiel_sits_overwhelmed_seven_days",
+      "bibleSourceRef": "Ezekiel 3:14-15",
+      "moodTags": [
+        "weary"
+      ]
     }
   ]
 }

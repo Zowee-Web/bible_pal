@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1388,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_09_V3_IMMERSIVE",
+  "title": "Are You He Who Comes",
+  "scriptureAnchor": "Matthew 11:2-6",
+  "scriptureAnchorId": "matthew_11_2-6",
+  "bibleStoryKey": "john_baptist_sends_from_prison",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "prison_doubt_message",
+    "two_disciples_sent",
+    "the_works_of_christ",
+    "no_occasion_for_stumbling",
+    "imprisoned_forerunner"
+  ],
+  "emotionalTags": [
+    "weary",
+    "questioning",
+    "alone",
+    "uncertain",
+    "longing",
+    "hopeful"
+  ],
+  "primaryCharacterId": "john_the_baptist",
+  "primaryCharacterDisplayName": "John the Baptist",
+  "bibleOrderIndex": 941,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1388_traditional_web_short.txt"
+    }
+  }
+}
