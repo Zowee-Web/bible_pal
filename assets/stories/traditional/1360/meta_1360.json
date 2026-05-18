@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1360,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "We Were Hoping",
+  "scriptureAnchor": "Luke 24:13-24",
+  "scriptureAnchorId": "luke_24_13-24",
+  "bibleStoryKey": "emmaus_road_before_recognition",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "disappointed_hope",
+    "third_day",
+    "walking_in_grief",
+    "stranger_drew_near",
+    "before_the_breaking_of_bread"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "grieving",
+    "disappointed",
+    "uncertain",
+    "wondering",
+    "heavy"
+  ],
+  "primaryCharacterId": "cleopas",
+  "primaryCharacterDisplayName": "Cleopas",
+  "bibleOrderIndex": 1006,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1360_traditional_web_short.txt"
+    }
+  }
+}

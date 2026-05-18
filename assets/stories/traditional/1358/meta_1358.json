@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1358,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Widow of Zarephath",
+  "scriptureAnchor": "1 Kings 17:17-24",
+  "scriptureAnchorId": "1_kings_17_17-24",
+  "bibleStoryKey": "elijah_raises_the_widows_son",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "themeTags": [
+    "bereavement",
+    "prophet_intercession",
+    "child_restored",
+    "famine_house",
+    "yahwehs_word_is_truth"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "grieving",
+    "imploring",
+    "raw",
+    "relieved",
+    "trusting"
+  ],
+  "primaryCharacterId": "widow_of_zarephath",
+  "primaryCharacterDisplayName": "Widow of Zarephath",
+  "bibleOrderIndex": 309,
+  "timelineEra": "divided_monarchy",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1358_traditional_web_short.txt"
+    }
+  }
+}

@@ -2724,6 +2724,86 @@
       "moodTags": [
         "brave_courage"
       ]
+    },
+    {
+      "scriptureAnchorId": "job_3_1-10",
+      "bibleStoryKey": "job_curses_the_day_of_his_birth",
+      "bibleSourceRef": "Job 3:1-10",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_samuel_1_17-27",
+      "bibleStoryKey": "davids_lament_for_saul_and_jonathan",
+      "bibleSourceRef": "2 Samuel 1:17-27",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_kings_17_17-24",
+      "bibleStoryKey": "elijah_raises_the_widows_son",
+      "bibleSourceRef": "1 Kings 17:17-24",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "lamentations_3_1-9",
+      "bibleStoryKey": "i_am_the_man_who_has_seen_affliction",
+      "bibleSourceRef": "Lamentations 3:1-9",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_24_13-24",
+      "bibleStoryKey": "emmaus_road_before_recognition",
+      "bibleSourceRef": "Luke 24:13-24",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "ezekiel_24_15-18",
+      "bibleStoryKey": "ezekiels_wife_dies_as_a_sign",
+      "bibleSourceRef": "Ezekiel 24:15-18",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_corinthians_12_7-10",
+      "bibleStoryKey": "pauls_thorn_and_sufficient_grace",
+      "bibleSourceRef": "2 Corinthians 12:7-10",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "jeremiah_9_1-3",
+      "bibleStoryKey": "the_weeping_prophet",
+      "bibleSourceRef": "Jeremiah 9:1-3",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "numbers_20_1-13",
+      "bibleStoryKey": "miriam_dies_moses_strikes_the_rock",
+      "bibleSourceRef": "Numbers 20:1-13",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "ruth_1_19-21",
+      "bibleStoryKey": "naomi_returns_empty_to_bethlehem",
+      "bibleSourceRef": "Ruth 1:19-21",
+      "moodTags": [
+        "hurting"
+      ]
     }
   ]
 }

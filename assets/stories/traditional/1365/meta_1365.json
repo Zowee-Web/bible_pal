@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1365,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Call Me Mara",
+  "scriptureAnchor": "Ruth 1:19-21",
+  "scriptureAnchorId": "ruth_1_19-21",
+  "bibleStoryKey": "naomi_returns_empty_to_bethlehem",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "themeTags": [
+    "bereavement",
+    "homecoming_in_grief",
+    "naming_the_pain",
+    "empty_returning",
+    "before_the_barley_harvest"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "bitter",
+    "displaced",
+    "grieving",
+    "honest",
+    "weary"
+  ],
+  "primaryCharacterId": "naomi",
+  "primaryCharacterDisplayName": "Naomi",
+  "bibleOrderIndex": 234,
+  "timelineEra": "judges",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1365_traditional_web_short.txt"
+    }
+  }
+}

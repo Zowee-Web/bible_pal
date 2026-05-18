@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1357,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "How the Mighty Have Fallen",
+  "scriptureAnchor": "2 Samuel 1:17-27",
+  "scriptureAnchorId": "2_samuel_1_17-27",
+  "bibleStoryKey": "davids_lament_for_saul_and_jonathan",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "communal_grief",
+    "elegy",
+    "covenant_friendship_lost",
+    "fallen_king",
+    "song_of_the_bow"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "grieving",
+    "tender",
+    "stricken",
+    "honoring",
+    "bereaved"
+  ],
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "bibleOrderIndex": 266,
+  "timelineEra": "kingdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1357_traditional_web_short.txt"
+    }
+  }
+}

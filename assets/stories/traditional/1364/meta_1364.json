@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1364,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Miriam Died at Kadesh",
+  "scriptureAnchor": "Numbers 20:1-13",
+  "scriptureAnchorId": "numbers_20_1-13",
+  "bibleStoryKey": "miriam_dies_moses_strikes_the_rock",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "compounded_grief",
+    "bereavement_of_sister",
+    "people_complain_in_wilderness",
+    "moses_speaks_in_haste",
+    "waters_of_meribah"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "grieving",
+    "frustrated",
+    "spent",
+    "burdened",
+    "stricken"
+  ],
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "bibleOrderIndex": 147,
+  "timelineEra": "exodus",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1364_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1362,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Thorn in the Flesh",
+  "scriptureAnchor": "2 Corinthians 12:7-10",
+  "scriptureAnchorId": "2_corinthians_12_7-10",
+  "bibleStoryKey": "pauls_thorn_and_sufficient_grace",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "chronic_physical_suffering",
+    "unanswered_prayer",
+    "sufficient_grace",
+    "strength_in_weakness",
+    "apostolic_humility"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "humbled",
+    "submitted",
+    "tested",
+    "trusting",
+    "settled"
+  ],
+  "primaryCharacterId": "paul_apostle",
+  "primaryCharacterDisplayName": "Paul",
+  "bibleOrderIndex": 1101,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1362_traditional_web_short.txt"
+    }
+  }
+}
