@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1380,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_08_V3_IMMERSIVE",
+  "title": "Blessed Be Yahweh",
+  "scriptureAnchor": "Exodus 18:1-12",
+  "scriptureAnchorId": "exodus_18_1-12",
+  "bibleStoryKey": "jethro_hears_and_blesses_yahweh",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "outsider_hears_and_blesses",
+    "midian_priest_meets_moses",
+    "burnt_offering_at_the_mountain",
+    "yahweh_greater_than_all_gods",
+    "elders_eat_bread_together"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "honoring",
+    "tender",
+    "reverent",
+    "exultant",
+    "settled"
+  ],
+  "primaryCharacterId": "jethro",
+  "primaryCharacterDisplayName": "Jethro",
+  "bibleOrderIndex": 68,
+  "timelineEra": "exodus",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1380_traditional_web_short.txt"
+    }
+  }
+}

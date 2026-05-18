@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1382,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_08_V3_IMMERSIVE",
+  "title": "El Beth El",
+  "scriptureAnchor": "Genesis 35:1-7",
+  "scriptureAnchorId": "genesis_35_1-7",
+  "bibleStoryKey": "jacob_renews_vow_at_bethel",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "renewed_vow_at_bethel",
+    "foreign_gods_put_away",
+    "altar_for_the_god_who_answered",
+    "terror_of_god_on_the_cities",
+    "after_shechem"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "humbled",
+    "reverent",
+    "settled",
+    "honoring",
+    "tender"
+  ],
+  "primaryCharacterId": "jacob",
+  "primaryCharacterDisplayName": "Jacob",
+  "bibleOrderIndex": 35,
+  "timelineEra": "patriarchs",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1382_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1383,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_08_V3_IMMERSIVE",
+  "title": "Spring Up, Well",
+  "scriptureAnchor": "Numbers 21:16-18",
+  "scriptureAnchorId": "numbers_21_16-18",
+  "bibleStoryKey": "song_of_the_well_at_beer",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "themeTags": [
+    "song_of_the_well",
+    "princes_dug_with_scepters",
+    "gift_of_water_in_wilderness",
+    "song_of_the_journey",
+    "from_beer_to_mattanah"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "exultant",
+    "communal",
+    "tender",
+    "settled",
+    "refreshed"
+  ],
+  "primaryCharacterId": "israel",
+  "primaryCharacterDisplayName": "Israel",
+  "bibleOrderIndex": 148,
+  "timelineEra": "exodus",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1383_traditional_web_short.txt"
+    }
+  }
+}

@@ -4924,6 +4924,126 @@
       "majorMotif": "tell_them_what_great_things_in_decapolis",
       "emotionalShape": "restored_man_sent_to_proclaim_in_ten_cities",
       "tagsComplete": true
+    },
+    {
+      "storyId": 1376,
+      "anchor": "1 Kings 8:54-61",
+      "mood": "grateful",
+      "era": "kingdom",
+      "character": "Solomon",
+      "narrativeType": "historical_narrative",
+      "subTexture": "kingly_blessing_after_dedication",
+      "majorMotif": "blessing_with_hands_lowered_after_long_prayer",
+      "emotionalShape": "kings_thanksgiving_for_promise_kept",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1377,
+      "anchor": "2 Chronicles 20:18-26",
+      "mood": "grateful",
+      "era": "divided_monarchy",
+      "character": "Jehoshaphat",
+      "narrativeType": "historical_narrative",
+      "subTexture": "post_battle_thanksgiving",
+      "majorMotif": "singers_before_army_then_valley_of_blessing",
+      "emotionalShape": "praise_as_weapon_then_named_valley",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1378,
+      "anchor": "Daniel 6:19-23",
+      "mood": "grateful",
+      "era": "exile",
+      "character": "Daniel",
+      "narrativeType": "historical_narrative",
+      "subTexture": "delivered_from_lions",
+      "majorMotif": "king_at_the_den_at_dawn_daniel_answers",
+      "emotionalShape": "deliverance_confirmed_no_harm_found",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1379,
+      "anchor": "2 Kings 4:32-37",
+      "mood": "grateful",
+      "era": "divided_monarchy",
+      "character": "Shunammite Woman",
+      "narrativeType": "historical_narrative",
+      "subTexture": "child_restored_to_mother",
+      "majorMotif": "prophet_on_child_then_seven_sneezes",
+      "emotionalShape": "mother_bows_then_carries_son_out",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1380,
+      "anchor": "Exodus 18:1-12",
+      "mood": "grateful",
+      "era": "exodus",
+      "character": "Jethro",
+      "narrativeType": "torah_narrative",
+      "subTexture": "outsider_hears_and_blesses",
+      "majorMotif": "midian_priest_blesses_yahweh_after_hearing",
+      "emotionalShape": "outsiders_meal_with_the_elders",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1381,
+      "anchor": "Habakkuk 3:17-19",
+      "mood": "grateful",
+      "era": "prophets",
+      "character": "Habakkuk",
+      "narrativeType": "oracle",
+      "subTexture": "yet_i_will_rejoice",
+      "majorMotif": "song_for_empty_fields_with_deer_feet",
+      "emotionalShape": "trust_chosen_before_destruction",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1382,
+      "anchor": "Genesis 35:1-7",
+      "mood": "grateful",
+      "era": "patriarchs",
+      "character": "Jacob",
+      "narrativeType": "torah_narrative",
+      "subTexture": "renewed_vow_at_bethel",
+      "majorMotif": "foreign_gods_buried_under_oak_at_shechem",
+      "emotionalShape": "altar_built_for_the_god_who_answered",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1383,
+      "anchor": "Numbers 21:16-18",
+      "mood": "grateful",
+      "era": "exodus",
+      "character": "Israel",
+      "narrativeType": "torah_narrative",
+      "subTexture": "song_of_the_well",
+      "majorMotif": "princes_dig_with_scepters_well_springs_up",
+      "emotionalShape": "communal_song_over_gift_of_water",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1384,
+      "anchor": "Acts 27:35-44",
+      "mood": "grateful",
+      "era": "early_church",
+      "character": "Paul",
+      "narrativeType": "early_church_narrative",
+      "subTexture": "thanks_on_the_ship_all_saved",
+      "majorMotif": "breaking_bread_among_276_in_storm",
+      "emotionalShape": "thanksgiving_followed_by_safe_arrival",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1385,
+      "anchor": "John 11:38-44",
+      "mood": "grateful",
+      "era": "jesus_ministry",
+      "character": "Jesus",
+      "narrativeType": "gospel",
+      "subTexture": "thanks_at_lazarus_tomb",
+      "majorMotif": "father_i_thank_you_then_lazarus_emerges",
+      "emotionalShape": "prayer_of_thanks_preceding_resurrection",
+      "tagsComplete": true
     }
   ]
 }

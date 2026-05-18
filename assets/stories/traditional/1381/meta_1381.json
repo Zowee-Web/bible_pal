@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1381,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_08_V3_IMMERSIVE",
+  "title": "Yet I Will Rejoice",
+  "scriptureAnchor": "Habakkuk 3:17-19",
+  "scriptureAnchorId": "habakkuk_3_17-19",
+  "bibleStoryKey": "yet_i_will_rejoice_song",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "yet_i_will_rejoice",
+    "joy_through_loss",
+    "deers_feet_in_high_places",
+    "before_the_destruction",
+    "song_for_the_music_director"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "resolute",
+    "trusting",
+    "tender",
+    "settled",
+    "exultant"
+  ],
+  "primaryCharacterId": "habakkuk",
+  "primaryCharacterDisplayName": "Habakkuk",
+  "bibleOrderIndex": 905,
+  "timelineEra": "prophets",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1381_traditional_web_short.txt"
+    }
+  }
+}

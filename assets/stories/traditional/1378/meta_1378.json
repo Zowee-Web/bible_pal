@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1378,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_08_V3_IMMERSIVE",
+  "title": "Drawn Out of the Den",
+  "scriptureAnchor": "Daniel 6:19-23",
+  "scriptureAnchorId": "daniel_6_19-23",
+  "bibleStoryKey": "daniel_delivered_from_lions",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "themeTags": [
+    "delivered_from_lions",
+    "lions_mouths_shut",
+    "king_at_the_den_at_dawn",
+    "innocence_preserved",
+    "trusted_in_his_god"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "delivered",
+    "settled",
+    "honoring",
+    "relieved",
+    "trusting"
+  ],
+  "primaryCharacterId": "daniel",
+  "primaryCharacterDisplayName": "Daniel",
+  "bibleOrderIndex": 858,
+  "timelineEra": "exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1378_traditional_web_short.txt"
+    }
+  }
+}

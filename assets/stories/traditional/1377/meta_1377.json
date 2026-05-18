@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1377,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_08_V3_IMMERSIVE",
+  "title": "The Valley of Beracah",
+  "scriptureAnchor": "2 Chronicles 20:18-26",
+  "scriptureAnchorId": "2_chronicles_20_18-26",
+  "bibleStoryKey": "jehoshaphat_battle_won_by_singers",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "themeTags": [
+    "post_battle_thanksgiving",
+    "singers_before_the_army",
+    "valley_of_blessing",
+    "three_days_of_spoil",
+    "loving_kindness_endures_forever"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "exultant",
+    "honoring",
+    "communal",
+    "marveling",
+    "settled"
+  ],
+  "primaryCharacterId": "jehoshaphat",
+  "primaryCharacterDisplayName": "Jehoshaphat",
+  "bibleOrderIndex": 392,
+  "timelineEra": "divided_monarchy",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1377_traditional_web_short.txt"
+    }
+  }
+}

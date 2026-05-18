@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1384,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_08_V3_IMMERSIVE",
+  "title": "Two Hundred Seventy-Six Souls",
+  "scriptureAnchor": "Acts 27:35-44",
+  "scriptureAnchorId": "acts_27_35-44",
+  "bibleStoryKey": "paul_breaks_bread_on_the_ship",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "thanks_on_the_ship_all_saved",
+    "breaking_bread_in_the_storm",
+    "ship_runs_aground",
+    "centurion_saves_paul",
+    "all_escaped_safely"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "settled",
+    "delivered",
+    "resolute",
+    "trusting",
+    "communal"
+  ],
+  "primaryCharacterId": "paul_apostle",
+  "primaryCharacterDisplayName": "Paul",
+  "bibleOrderIndex": 1065,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1384_traditional_web_short.txt"
+    }
+  }
+}
