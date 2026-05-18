@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1337,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Decree in Susa",
+  "scriptureAnchor": "Esther 3:8-15",
+  "scriptureAnchorId": "esther_3_8-15",
+  "bibleStoryKey": "hamans_decree",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "themeTags": [
+    "hidden_threat",
+    "court_intrigue",
+    "decree",
+    "exile_life",
+    "menace"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "perplexed",
+    "unsettled",
+    "dread",
+    "powerless",
+    "watchful"
+  ],
+  "primaryCharacterId": "haman",
+  "primaryCharacterDisplayName": "Haman",
+  "bibleOrderIndex": 425,
+  "timelineEra": "persian_exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1337_traditional_web_short.txt"
+    }
+  }
+}

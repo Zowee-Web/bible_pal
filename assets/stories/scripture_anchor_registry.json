@@ -2564,6 +2564,86 @@
         "grateful",
         "awed"
       ]
+    },
+    {
+      "scriptureAnchorId": "1_samuel_23_24-29",
+      "bibleStoryKey": "saul_pursues_david_at_maon",
+      "bibleSourceRef": "1 Samuel 23:24-29",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "esther_3_8-15",
+      "bibleStoryKey": "hamans_decree",
+      "bibleSourceRef": "Esther 3:8-15",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "daniel_3_13-18",
+      "bibleStoryKey": "but_if_not",
+      "bibleSourceRef": "Daniel 3:13-18",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_samuel_4_13-18",
+      "bibleStoryKey": "eli_hears_of_the_ark",
+      "bibleSourceRef": "1 Samuel 4:13-18",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "psalm_13_1-6",
+      "bibleStoryKey": "how_long_o_yahweh",
+      "bibleSourceRef": "Psalm 13:1-6",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_kings_19_14-19",
+      "bibleStoryKey": "hezekiah_spreads_the_letter",
+      "bibleSourceRef": "2 Kings 19:14-19",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_samuel_12_15-23",
+      "bibleStoryKey": "david_fasts_for_the_child",
+      "bibleSourceRef": "2 Samuel 12:15-23",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "jeremiah_1_4-10",
+      "bibleStoryKey": "i_am_a_child",
+      "bibleSourceRef": "Jeremiah 1:4-10",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "acts_23_12-22",
+      "bibleStoryKey": "pauls_nephew_warns_of_conspiracy",
+      "bibleSourceRef": "Acts 23:12-22",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_32_9-12",
+      "bibleStoryKey": "jacob_prays_before_meeting_esau",
+      "bibleSourceRef": "Genesis 32:9-12",
+      "moodTags": [
+        "anxious"
+      ]
     }
   ]
 }

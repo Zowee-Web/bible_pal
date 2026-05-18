@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1343,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "I Am a Child",
+  "scriptureAnchor": "Jeremiah 1:4-10",
+  "scriptureAnchorId": "jeremiah_1_4-10",
+  "bibleStoryKey": "i_am_a_child",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "prophetic_call",
+    "fear_before_obedience",
+    "commissioning",
+    "presence_of_yahweh",
+    "words_in_his_mouth"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "hesitant",
+    "humbled",
+    "awed",
+    "strengthened",
+    "called"
+  ],
+  "primaryCharacterId": "jeremiah",
+  "primaryCharacterDisplayName": "Jeremiah",
+  "bibleOrderIndex": 460,
+  "timelineEra": "pre_exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1343_traditional_web_short.txt"
+    }
+  }
+}

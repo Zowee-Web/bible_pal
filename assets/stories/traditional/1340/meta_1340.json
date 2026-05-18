@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1340,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "How Long, Yahweh?",
+  "scriptureAnchor": "Psalm 13:1-6",
+  "scriptureAnchorId": "psalm_13_1-6",
+  "bibleStoryKey": "how_long_o_yahweh",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "themeTags": [
+    "lament",
+    "spiritual_silence",
+    "trust_after_doubt",
+    "psalm_of_david",
+    "salvation"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "forsaken",
+    "weary",
+    "questioning",
+    "trusting",
+    "settled"
+  ],
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "bibleOrderIndex": 247,
+  "timelineEra": "early_monarchy",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1340_traditional_web_short.txt"
+    }
+  }
+}

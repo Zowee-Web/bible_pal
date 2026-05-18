@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1344,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "The Lying-in-Wait",
+  "scriptureAnchor": "Acts 23:12-22",
+  "scriptureAnchorId": "acts_23_12-22",
+  "bibleStoryKey": "pauls_nephew_warns_of_conspiracy",
+  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "themeTags": [
+    "hidden_threat",
+    "conspiracy",
+    "protection",
+    "providence",
+    "intervention"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "alert",
+    "tense",
+    "watchful",
+    "uncertain",
+    "guarded"
+  ],
+  "primaryCharacterId": "pauls_sisters_son",
+  "primaryCharacterDisplayName": "Paul's Sister's Son",
+  "bibleOrderIndex": 704,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1344_traditional_web_short.txt"
+    }
+  }
+}

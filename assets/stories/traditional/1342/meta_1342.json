@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1342,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Seven Days on the Ground",
+  "scriptureAnchor": "2 Samuel 12:15-23",
+  "scriptureAnchorId": "2_samuel_12_15-23",
+  "bibleStoryKey": "david_fasts_for_the_child",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "themeTags": [
+    "fear_of_loss",
+    "fasting",
+    "bereavement",
+    "consequence",
+    "submission_to_yahweh"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "imploring",
+    "grieving",
+    "spent",
+    "submitted",
+    "settled"
+  ],
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "bibleOrderIndex": 282,
+  "timelineEra": "early_monarchy",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1342_traditional_web_short.txt"
+    }
+  }
+}

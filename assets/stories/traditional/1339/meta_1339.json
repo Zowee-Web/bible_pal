@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1339,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
+  "title": "Eli by the Gate",
+  "scriptureAnchor": "1 Samuel 4:13-18",
+  "scriptureAnchorId": "1_samuel_4_13-18",
+  "bibleStoryKey": "eli_hears_of_the_ark",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "waiting",
+    "loss",
+    "judgment",
+    "end_of_an_era",
+    "ark_captured"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "dreading",
+    "grieving",
+    "trembling",
+    "heavy",
+    "fearful"
+  ],
+  "primaryCharacterId": "eli",
+  "primaryCharacterDisplayName": "Eli",
+  "bibleOrderIndex": 225,
+  "timelineEra": "judges",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1339_traditional_web_short.txt"
+    }
+  }
+}
