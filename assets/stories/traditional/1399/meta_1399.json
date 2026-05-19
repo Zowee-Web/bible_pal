@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1399,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_10_V3_IMMERSIVE",
+  "title": "A Cake of Barley Bread",
+  "scriptureAnchor": "Judges 7:9-15",
+  "scriptureAnchorId": "judges_7_9-15",
+  "bibleStoryKey": "gideon_overhears_the_dream",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "overheard_dream",
+    "if_you_are_afraid_go_with_purah",
+    "valley_like_locusts_for_multitude",
+    "barley_loaf_topples_tent",
+    "gideon_worships_in_camp"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "wary",
+    "trusting",
+    "encouraged",
+    "settled",
+    "alert"
+  ],
+  "primaryCharacterId": "gideon",
+  "primaryCharacterDisplayName": "Gideon",
+  "bibleOrderIndex": 220,
+  "timelineEra": "judges",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1399_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1403,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_10_V3_IMMERSIVE",
+  "title": "Thus Will the Jews Bind",
+  "scriptureAnchor": "Acts 21:10-14",
+  "scriptureAnchorId": "acts_21_10-14",
+  "bibleStoryKey": "agabus_prophesies_pauls_binding",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "themeTags": [
+    "binding_prophesied",
+    "agabus_takes_pauls_belt",
+    "company_begs_him_not_to_go",
+    "ready_to_die_at_jerusalem",
+    "the_lords_will_be_done"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "grieving",
+    "imploring",
+    "tender",
+    "resolute",
+    "submitted"
+  ],
+  "primaryCharacterId": "agabus",
+  "primaryCharacterDisplayName": "Agabus",
+  "bibleOrderIndex": 1058,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1403_traditional_web_short.txt"
+    }
+  }
+}

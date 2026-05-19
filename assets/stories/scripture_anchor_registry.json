@@ -3044,6 +3044,86 @@
       "moodTags": [
         "weary"
       ]
+    },
+    {
+      "scriptureAnchorId": "2_kings_7_3-9",
+      "bibleStoryKey": "four_lepers_at_samaria_gate",
+      "bibleSourceRef": "2 Kings 7:3-9",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "ruth_3_1-9",
+      "bibleStoryKey": "ruth_at_the_threshing_floor",
+      "bibleSourceRef": "Ruth 3:1-9",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_samuel_28_5-15",
+      "bibleStoryKey": "saul_at_endor",
+      "bibleSourceRef": "1 Samuel 28:5-15",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "judges_7_9-15",
+      "bibleStoryKey": "gideon_overhears_the_dream",
+      "bibleSourceRef": "Judges 7:9-15",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_kings_11_1-3",
+      "bibleStoryKey": "jehosheba_hides_joash",
+      "bibleSourceRef": "2 Kings 11:1-3",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "nehemiah_2_1-8",
+      "bibleStoryKey": "nehemiah_sad_before_the_king",
+      "bibleSourceRef": "Nehemiah 2:1-8",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "jeremiah_38_1-6",
+      "bibleStoryKey": "jeremiah_lowered_into_cistern",
+      "bibleSourceRef": "Jeremiah 38:1-6",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "acts_21_10-14",
+      "bibleStoryKey": "agabus_prophesies_pauls_binding",
+      "bibleSourceRef": "Acts 21:10-14",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "daniel_4_4-9",
+      "bibleStoryKey": "nebuchadnezzars_troubled_dream",
+      "bibleSourceRef": "Daniel 4:4-9",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_16_6-9",
+      "bibleStoryKey": "hagar_fleeing_to_shur",
+      "bibleSourceRef": "Genesis 16:6-9",
+      "moodTags": [
+        "anxious"
+      ]
     }
   ]
 }

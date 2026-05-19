@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1405,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_10_V3_IMMERSIVE",
+  "title": "Hagar at the Fountain",
+  "scriptureAnchor": "Genesis 16:6-9",
+  "scriptureAnchorId": "genesis_16_6-9",
+  "bibleStoryKey": "hagar_fleeing_to_shur",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "themeTags": [
+    "wilderness_flight",
+    "angel_at_the_spring_to_shur",
+    "named_by_name_in_the_wilderness",
+    "where_did_you_come_from",
+    "return_and_submit"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "fleeing",
+    "alone",
+    "exposed",
+    "seen",
+    "tender"
+  ],
+  "primaryCharacterId": "hagar",
+  "primaryCharacterDisplayName": "Hagar",
+  "bibleOrderIndex": 16,
+  "timelineEra": "patriarchs",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1405_traditional_web_short.txt"
+    }
+  }
+}

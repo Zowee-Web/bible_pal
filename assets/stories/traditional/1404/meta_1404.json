@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1404,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_10_V3_IMMERSIVE",
+  "title": "A Dream Which Made Me Afraid",
+  "scriptureAnchor": "Daniel 4:4-9",
+  "scriptureAnchorId": "daniel_4_4-9",
+  "bibleStoryKey": "nebuchadnezzars_troubled_dream",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "themeTags": [
+    "troubled_kings_dream",
+    "at_rest_in_my_house_then_afraid",
+    "wise_men_cannot_interpret",
+    "daniel_called_in_last",
+    "before_the_throne_in_babylon"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "troubled",
+    "exposed",
+    "questioning",
+    "imperial",
+    "humbled"
+  ],
+  "primaryCharacterId": "nebuchadnezzar",
+  "primaryCharacterDisplayName": "Nebuchadnezzar",
+  "bibleOrderIndex": 856,
+  "timelineEra": "exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1404_traditional_web_short.txt"
+    }
+  }
+}

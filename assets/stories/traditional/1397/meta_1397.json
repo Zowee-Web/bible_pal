@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1397,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_10_V3_IMMERSIVE",
+  "title": "Who Are You",
+  "scriptureAnchor": "Ruth 3:1-9",
+  "scriptureAnchorId": "ruth_3_1-9",
+  "bibleStoryKey": "ruth_at_the_threshing_floor",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "themeTags": [
+    "midnight_at_threshing_floor",
+    "kinsman_redeemer_request",
+    "naomis_plan",
+    "uncovered_feet_at_the_heap",
+    "spread_your_garment_over_me"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "obedient",
+    "tender",
+    "exposed",
+    "hopeful",
+    "trusting"
+  ],
+  "primaryCharacterId": "ruth",
+  "primaryCharacterDisplayName": "Ruth",
+  "bibleOrderIndex": 236,
+  "timelineEra": "judges",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1397_traditional_web_short.txt"
+    }
+  }
+}

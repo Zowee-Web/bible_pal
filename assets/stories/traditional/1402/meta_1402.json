@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1402,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_10_V3_IMMERSIVE",
+  "title": "Jeremiah in the Mire",
+  "scriptureAnchor": "Jeremiah 38:1-6",
+  "scriptureAnchorId": "jeremiah_38_1-6",
+  "bibleStoryKey": "jeremiah_lowered_into_cistern",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "lowered_into_cistern",
+    "preaching_surrender_to_babylon",
+    "princes_complain_to_zedekiah",
+    "no_water_only_mire",
+    "court_of_the_guard"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "exposed",
+    "imperiled",
+    "alone",
+    "weighted_down",
+    "trusting"
+  ],
+  "primaryCharacterId": "jeremiah",
+  "primaryCharacterDisplayName": "Jeremiah",
+  "bibleOrderIndex": 497,
+  "timelineEra": "pre_exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1402_traditional_web_short.txt"
+    }
+  }
+}

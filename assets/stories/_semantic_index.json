@@ -5164,6 +5164,126 @@
       "majorMotif": "prophet_silent_among_the_exiles_at_tel_aviv",
       "emotionalShape": "bitterness_taking_seven_days_to_settle",
       "tagsComplete": true
+    },
+    {
+      "storyId": 1396,
+      "anchor": "2 Kings 7:3-9",
+      "mood": "anxious",
+      "era": "divided_monarchy",
+      "character": "Four Lepers",
+      "narrativeType": "historical_narrative",
+      "subTexture": "if_we_go_in_we_die",
+      "majorMotif": "four_outsiders_decide_at_the_gate",
+      "emotionalShape": "desperate_logic_breaks_into_news",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1397,
+      "anchor": "Ruth 3:1-9",
+      "mood": "anxious",
+      "era": "judges",
+      "character": "Ruth",
+      "narrativeType": "historical_narrative",
+      "subTexture": "midnight_at_threshing_floor",
+      "majorMotif": "uncovered_feet_then_question_who_are_you",
+      "emotionalShape": "obedient_risk_under_moonlight",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1398,
+      "anchor": "1 Samuel 28:5-15",
+      "mood": "anxious",
+      "era": "early_monarchy",
+      "character": "Saul",
+      "narrativeType": "historical_narrative",
+      "subTexture": "heart_trembled_greatly",
+      "majorMotif": "disguised_king_at_medium_in_night",
+      "emotionalShape": "silent_god_then_forbidden_consultation",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1399,
+      "anchor": "Judges 7:9-15",
+      "mood": "anxious",
+      "era": "judges",
+      "character": "Gideon",
+      "narrativeType": "historical_narrative",
+      "subTexture": "overheard_dream",
+      "majorMotif": "creeping_to_outpost_in_dark",
+      "emotionalShape": "fear_quieted_by_an_enemys_dream",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1400,
+      "anchor": "2 Kings 11:1-3",
+      "mood": "anxious",
+      "era": "divided_monarchy",
+      "character": "Jehosheba",
+      "narrativeType": "historical_narrative",
+      "subTexture": "child_hidden_from_athaliah",
+      "majorMotif": "infant_smuggled_into_temple_room",
+      "emotionalShape": "six_years_of_concealed_heir",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1401,
+      "anchor": "Nehemiah 2:1-8",
+      "mood": "anxious",
+      "era": "return",
+      "character": "Nehemiah",
+      "narrativeType": "historical_narrative",
+      "subTexture": "sad_before_the_king",
+      "majorMotif": "silent_prayer_between_question_and_answer",
+      "emotionalShape": "fear_giving_way_to_favor",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1402,
+      "anchor": "Jeremiah 38:1-6",
+      "mood": "anxious",
+      "era": "pre_exile",
+      "character": "Jeremiah",
+      "narrativeType": "historical_narrative",
+      "subTexture": "lowered_into_cistern",
+      "majorMotif": "prophet_sinking_in_mud_of_well",
+      "emotionalShape": "physical_imperilment_for_truth_spoken",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1403,
+      "anchor": "Acts 21:10-14",
+      "mood": "anxious",
+      "era": "early_church",
+      "character": "Agabus",
+      "narrativeType": "early_church_narrative",
+      "subTexture": "binding_prophesied",
+      "majorMotif": "prophet_bound_with_pauls_belt",
+      "emotionalShape": "company_weeping_then_yielding",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1404,
+      "anchor": "Daniel 4:4-9",
+      "mood": "anxious",
+      "era": "exile",
+      "character": "Nebuchadnezzar",
+      "narrativeType": "historical_narrative",
+      "subTexture": "troubled_kings_dream",
+      "majorMotif": "at_ease_then_dream_brings_fear",
+      "emotionalShape": "king_in_throne_room_waiting_for_meaning",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1405,
+      "anchor": "Genesis 16:6-9",
+      "mood": "anxious",
+      "era": "patriarchs",
+      "character": "Hagar",
+      "narrativeType": "torah_narrative",
+      "subTexture": "wilderness_flight",
+      "majorMotif": "fleeing_servant_named_at_spring",
+      "emotionalShape": "alone_then_seen_by_angel",
+      "tagsComplete": true
     }
   ]
 }

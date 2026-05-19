@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1398,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_10_V3_IMMERSIVE",
+  "title": "His Heart Trembled Greatly",
+  "scriptureAnchor": "1 Samuel 28:5-15",
+  "scriptureAnchorId": "1_samuel_28_5-15",
+  "bibleStoryKey": "saul_at_endor",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "heart_trembled_greatly",
+    "yahweh_silent_through_dreams_urim_prophets",
+    "disguised_king_consults_medium",
+    "samuel_brought_up",
+    "night_at_endor"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "fearful",
+    "desperate",
+    "exposed",
+    "trembling",
+    "tested"
+  ],
+  "primaryCharacterId": "saul",
+  "primaryCharacterDisplayName": "Saul",
+  "bibleOrderIndex": 252,
+  "timelineEra": "early_monarchy",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1398_traditional_web_short.txt"
+    }
+  }
+}

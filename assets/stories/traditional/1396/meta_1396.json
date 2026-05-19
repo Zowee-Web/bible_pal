@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1396,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_10_V3_IMMERSIVE",
+  "title": "Why Do We Sit Here Until We Die",
+  "scriptureAnchor": "2 Kings 7:3-9",
+  "scriptureAnchorId": "2_kings_7_3-9",
+  "bibleStoryKey": "four_lepers_at_samaria_gate",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "if_we_go_in_we_die",
+    "siege_famine_at_samaria",
+    "four_outsiders_at_the_gate",
+    "empty_syrian_camp",
+    "good_news_we_cannot_keep_silent"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "desperate",
+    "calculating",
+    "exposed",
+    "wondering",
+    "settled"
+  ],
+  "primaryCharacterId": "four_lepers_of_samaria",
+  "primaryCharacterDisplayName": "Four Lepers",
+  "bibleOrderIndex": 332,
+  "timelineEra": "divided_monarchy",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1396_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1401,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_10_V3_IMMERSIVE",
+  "title": "Then I Was Very Much Afraid",
+  "scriptureAnchor": "Nehemiah 2:1-8",
+  "scriptureAnchorId": "nehemiah_2_1-8",
+  "bibleStoryKey": "nehemiah_sad_before_the_king",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "sad_before_the_king",
+    "cupbearer_at_susa",
+    "prayed_silently_before_answering",
+    "letters_for_governors_and_timber",
+    "good_hand_of_my_god_on_me"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "fearful",
+    "praying",
+    "exposed",
+    "honest",
+    "settled"
+  ],
+  "primaryCharacterId": "nehemiah",
+  "primaryCharacterDisplayName": "Nehemiah",
+  "bibleOrderIndex": 414,
+  "timelineEra": "return",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1401_traditional_web_short.txt"
+    }
+  }
+}
