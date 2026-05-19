@@ -5644,6 +5644,126 @@
       "majorMotif": "work_of_righteousness_as_peace",
       "emotionalShape": "prophets_picture_of_promised_dwelling",
       "tagsComplete": true
+    },
+    {
+      "storyId": 1436,
+      "anchor": "Numbers 27:1-11",
+      "mood": "brave_courage",
+      "era": "exodus",
+      "character": "Daughters of Zelophehad",
+      "narrativeType": "petition_and_statute",
+      "subTexture": "five_sisters_at_door_of_tent",
+      "majorMotif": "names_remembered_inheritance_granted",
+      "emotionalShape": "petition_heard_becomes_statute",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1437,
+      "anchor": "Judges 4:17-22",
+      "mood": "brave_courage",
+      "era": "judges",
+      "character": "Jael",
+      "narrativeType": "decisive_action_in_tent",
+      "subTexture": "tent_peg_and_bottle_of_milk",
+      "majorMotif": "deliverance_through_unexpected_woman",
+      "emotionalShape": "domestic_setting_becomes_hard_landing",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1438,
+      "anchor": "2 Samuel 23:8-12",
+      "mood": "brave_courage",
+      "era": "kingdom",
+      "character": "Eleazar",
+      "narrativeType": "mighty_man_stands_alone",
+      "subTexture": "hand_froze_to_sword",
+      "majorMotif": "one_figure_holding_the_line",
+      "emotionalShape": "movement_becomes_stillness_after_violence",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1439,
+      "anchor": "1 Samuel 14:43-45",
+      "mood": "grateful",
+      "era": "kingdom",
+      "character": "Jonathan",
+      "narrativeType": "rescue_through_intercession",
+      "subTexture": "honey_on_rod_and_lamp_light",
+      "majorMotif": "people_speak_as_one_voice",
+      "emotionalShape": "death_sentence_lifted_by_witness",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1440,
+      "anchor": "Esther 5:1-8",
+      "mood": "anxious",
+      "era": "persian_exile",
+      "character": "Esther",
+      "narrativeType": "approach_to_throne",
+      "subTexture": "golden_scepter_held_out",
+      "majorMotif": "queen_at_threshold_of_inner_court",
+      "emotionalShape": "fear_into_favor_then_held_silence",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1441,
+      "anchor": "Hebrews 11:8-12",
+      "mood": "encouraging",
+      "era": "early_church",
+      "character": "Abraham",
+      "narrativeType": "faith_arc_retrospect",
+      "subTexture": "tent_in_promised_land_under_stars",
+      "majorMotif": "looking_for_city_with_foundations",
+      "emotionalShape": "exile_held_open_by_promise",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1442,
+      "anchor": "2 Kings 2:11-14",
+      "mood": "hurting",
+      "era": "prophets",
+      "character": "Elisha",
+      "narrativeType": "departure_and_succession",
+      "subTexture": "chariot_of_fire_and_torn_clothes",
+      "majorMotif": "mantle_strikes_jordan_waters_divide",
+      "emotionalShape": "prophet_gone_river_empty_witness_alone",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1443,
+      "anchor": "Acts 8:1-4",
+      "mood": "anxious",
+      "era": "early_church",
+      "character": "Early Church",
+      "narrativeType": "scattering_and_proclamation",
+      "subTexture": "doors_broken_roads_full",
+      "majorMotif": "persecution_drives_word_outward",
+      "emotionalShape": "movement_fast_word_running_ahead",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1444,
+      "anchor": "Luke 21:1-4",
+      "mood": "grateful",
+      "era": "jesus_ministry",
+      "character": "Poor Widow",
+      "narrativeType": "teaching_through_observation",
+      "subTexture": "two_brass_coins_in_treasury",
+      "majorMotif": "gift_of_poverty_seen_by_the_Lord",
+      "emotionalShape": "small_act_witnessed_then_carried",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1445,
+      "anchor": "2 Chronicles 28:9-15",
+      "mood": "encouraging",
+      "era": "divided_monarchy",
+      "character": "Oded",
+      "narrativeType": "prophetic_warning_into_mercy",
+      "subTexture": "captives_clothed_and_anointed_at_jericho",
+      "majorMotif": "four_named_men_intercede",
+      "emotionalShape": "wrath_diverted_into_brotherhood",
+      "tagsComplete": true
     }
   ]
 }

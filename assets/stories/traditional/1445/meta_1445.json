@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1445,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_14_V3_IMMERSIVE",
+  "title": "The Captives Returned",
+  "scriptureAnchor": "2 Chronicles 28:9-15",
+  "scriptureAnchorId": "2_chronicles_28_9-15",
+  "bibleStoryKey": "oded_ephraim_return_captives",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "prophet_oded_warns_israel",
+    "four_heads_of_ephraim",
+    "captives_clothed_and_anointed",
+    "jericho_city_of_palm_trees",
+    "mercy_to_brothers"
+  ],
+  "emotionalTags": [
+    "encouraged",
+    "merciful",
+    "awed",
+    "settled",
+    "vindicated",
+    "hopeful"
+  ],
+  "primaryCharacterId": "oded_prophet",
+  "primaryCharacterDisplayName": "Oded",
+  "bibleOrderIndex": 400,
+  "timelineEra": "divided_monarchy",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1445_traditional_web_short.txt"
+    }
+  }
+}

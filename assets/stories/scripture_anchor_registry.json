@@ -3364,6 +3364,86 @@
       "moodTags": [
         "calm_peaceful"
       ]
+    },
+    {
+      "scriptureAnchorId": "numbers_27_1-11",
+      "bibleStoryKey": "daughters_of_zelophehad_inheritance",
+      "bibleSourceRef": "Numbers 27:1-11",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "judges_4_17-22",
+      "bibleStoryKey": "jael_tent_peg",
+      "bibleSourceRef": "Judges 4:17-22",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_samuel_23_8-12",
+      "bibleStoryKey": "eleazar_hand_froze_to_sword",
+      "bibleSourceRef": "2 Samuel 23:8-12",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_samuel_14_43-45",
+      "bibleStoryKey": "jonathan_honey_rescue",
+      "bibleSourceRef": "1 Samuel 14:43-45",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "esther_5_1-8",
+      "bibleStoryKey": "esther_approaches_king_scepter",
+      "bibleSourceRef": "Esther 5:1-8",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "hebrews_11_8-12",
+      "bibleStoryKey": "hebrews_faith_of_abraham",
+      "bibleSourceRef": "Hebrews 11:8-12",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_kings_2_11-14",
+      "bibleStoryKey": "elijah_chariot_elisha_at_jordan",
+      "bibleSourceRef": "2 Kings 2:11-14",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "acts_8_1-4",
+      "bibleStoryKey": "scattered_believers_preach_word",
+      "bibleSourceRef": "Acts 8:1-4",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_21_1-4",
+      "bibleStoryKey": "widow_two_mites",
+      "bibleSourceRef": "Luke 21:1-4",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_chronicles_28_9-15",
+      "bibleStoryKey": "oded_ephraim_return_captives",
+      "bibleSourceRef": "2 Chronicles 28:9-15",
+      "moodTags": [
+        "encouraging"
+      ]
     }
   ]
 }

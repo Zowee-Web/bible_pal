@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1443,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_14_V3_IMMERSIVE",
+  "title": "Scattered Abroad",
+  "scriptureAnchor": "Acts 8:1-4",
+  "scriptureAnchorId": "acts_8_1-4",
+  "bibleStoryKey": "scattered_believers_preach_word",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "persecution_in_jerusalem",
+    "scattered_throughout_judea_samaria",
+    "saul_ravages_assembly",
+    "preached_the_word_everywhere",
+    "stephen_buried_by_devout_men"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "urgent",
+    "brave",
+    "hopeful",
+    "encouraged",
+    "faithful"
+  ],
+  "primaryCharacterId": "early_church_believers",
+  "primaryCharacterDisplayName": "Early Church",
+  "bibleOrderIndex": 698,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1443_traditional_web_short.txt"
+    }
+  }
+}

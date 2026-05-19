@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1437,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_14_V3_IMMERSIVE",
+  "title": "Jael at the Tent",
+  "scriptureAnchor": "Judges 4:17-22",
+  "scriptureAnchorId": "judges_4_17-22",
+  "bibleStoryKey": "jael_tent_peg",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "themeTags": [
+    "jael_tent_peg",
+    "sisera_dead_in_tent",
+    "deliverance_of_israel",
+    "womens_decisive_action",
+    "bottle_of_milk_on_floor"
+  ],
+  "emotionalTags": [
+    "brave",
+    "resolute",
+    "awed",
+    "solemn",
+    "encouraged",
+    "vindicated"
+  ],
+  "primaryCharacterId": "jael",
+  "primaryCharacterDisplayName": "Jael",
+  "bibleOrderIndex": 158,
+  "timelineEra": "judges",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1437_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1441,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_14_V3_IMMERSIVE",
+  "title": "By Faith Abraham",
+  "scriptureAnchor": "Hebrews 11:8-12",
+  "scriptureAnchorId": "hebrews_11_8-12",
+  "bibleStoryKey": "hebrews_faith_of_abraham",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "faith_of_abraham",
+    "looking_for_city_with_foundations",
+    "sarah_received_power_to_conceive",
+    "stars_and_sand",
+    "strangers_and_pilgrims_in_tents"
+  ],
+  "emotionalTags": [
+    "encouraged",
+    "trusting",
+    "hopeful",
+    "awed",
+    "reverent",
+    "faithful"
+  ],
+  "primaryCharacterId": "abraham",
+  "primaryCharacterDisplayName": "Abraham",
+  "bibleOrderIndex": 762,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1441_traditional_web_short.txt"
+    }
+  }
+}

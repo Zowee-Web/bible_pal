@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1436,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_14_V3_IMMERSIVE",
+  "title": "The Daughters of Zelophehad",
+  "scriptureAnchor": "Numbers 27:1-11",
+  "scriptureAnchorId": "numbers_27_1-11",
+  "bibleStoryKey": "daughters_of_zelophehad_inheritance",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "themeTags": [
+    "daughters_of_zelophehad_inheritance",
+    "five_sisters_at_tent_of_meeting",
+    "statute_in_israel",
+    "courage_to_petition",
+    "names_spoken_aloud"
+  ],
+  "emotionalTags": [
+    "encouraged",
+    "hopeful",
+    "brave",
+    "settled",
+    "heard",
+    "vindicated"
+  ],
+  "primaryCharacterId": "daughters_of_zelophehad",
+  "primaryCharacterDisplayName": "Daughters of Zelophehad",
+  "bibleOrderIndex": 154,
+  "timelineEra": "exodus",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1436_traditional_web_short.txt"
+    }
+  }
+}
