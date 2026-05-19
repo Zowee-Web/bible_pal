@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1418,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_12_V3_IMMERSIVE",
+  "title": "Boaz at the Gate",
+  "scriptureAnchor": "Ruth 4:1-12",
+  "scriptureAnchorId": "ruth_4_1-12",
+  "bibleStoryKey": "boaz_redeems_at_the_gate",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "themeTags": [
+    "kinsman_redeemer_at_the_gate",
+    "ten_elders_seated",
+    "sandal_exchange_custom",
+    "blessing_of_rachel_and_leah",
+    "public_redemption_in_bethlehem"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "settled",
+    "honoring",
+    "communal",
+    "blessing",
+    "warm"
+  ],
+  "primaryCharacterId": "boaz",
+  "primaryCharacterDisplayName": "Boaz",
+  "bibleOrderIndex": 237,
+  "timelineEra": "judges",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1418_traditional_web_short.txt"
+    }
+  }
+}

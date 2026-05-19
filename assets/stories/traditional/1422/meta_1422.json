@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1422,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_12_V3_IMMERSIVE",
+  "title": "Went on His Way Rejoicing",
+  "scriptureAnchor": "Acts 8:26-39",
+  "scriptureAnchorId": "acts_8_26-39",
+  "bibleStoryKey": "ethiopian_eunuch_baptized",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "themeTags": [
+    "ethiopian_eunuch_baptized",
+    "isaiah_scroll_in_the_chariot",
+    "philip_caught_away_by_spirit",
+    "water_at_the_desert_road",
+    "went_on_his_way_rejoicing"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "marveling",
+    "tender",
+    "exultant",
+    "settled",
+    "blessed"
+  ],
+  "primaryCharacterId": "ethiopian_eunuch",
+  "primaryCharacterDisplayName": "Ethiopian Eunuch",
+  "bibleOrderIndex": 1045,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1422_traditional_web_short.txt"
+    }
+  }
+}

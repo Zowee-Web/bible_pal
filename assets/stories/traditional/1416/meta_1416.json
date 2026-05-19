@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1416,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_12_V3_IMMERSIVE",
+  "title": "The Gentiles Receive the Spirit",
+  "scriptureAnchor": "Acts 10:30-48",
+  "scriptureAnchorId": "acts_10_30-48",
+  "bibleStoryKey": "cornelius_household_baptized",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "gentile_pentecost_at_caesarea",
+    "your_prayer_is_heard",
+    "spirit_falls_while_peter_speaks",
+    "household_baptized",
+    "no_favoritism_with_god"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "awed",
+    "tender",
+    "communal",
+    "marveling",
+    "settled"
+  ],
+  "primaryCharacterId": "cornelius",
+  "primaryCharacterDisplayName": "Cornelius",
+  "bibleOrderIndex": 1048,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1416_traditional_web_short.txt"
+    }
+  }
+}

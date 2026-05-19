@@ -3204,6 +3204,86 @@
       "moodTags": [
         "grateful"
       ]
+    },
+    {
+      "scriptureAnchorId": "acts_10_30-48",
+      "bibleStoryKey": "cornelius_household_baptized",
+      "bibleSourceRef": "Acts 10:30-48",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "john_1_40-42",
+      "bibleStoryKey": "andrew_brings_peter",
+      "bibleSourceRef": "John 1:40-42",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "ruth_4_1-12",
+      "bibleStoryKey": "boaz_redeems_at_the_gate",
+      "bibleSourceRef": "Ruth 4:1-12",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "esther_9_20-22",
+      "bibleStoryKey": "purim_established_by_mordecai",
+      "bibleSourceRef": "Esther 9:20-22",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_chronicles_23_11-13",
+      "bibleStoryKey": "joash_crowned_in_the_temple",
+      "bibleSourceRef": "2 Chronicles 23:11-13",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_chronicles_29_25-30",
+      "bibleStoryKey": "hezekiah_restores_temple_worship",
+      "bibleSourceRef": "2 Chronicles 29:25-30",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "acts_8_26-39",
+      "bibleStoryKey": "ethiopian_eunuch_baptized",
+      "bibleSourceRef": "Acts 8:26-39",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "mark_7_31-37",
+      "bibleStoryKey": "deaf_mute_healed_in_decapolis",
+      "bibleSourceRef": "Mark 7:31-37",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "ruth_4_13-17",
+      "bibleStoryKey": "naomi_takes_obed_to_her_bosom",
+      "bibleSourceRef": "Ruth 4:13-17",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_kings_4_1-7",
+      "bibleStoryKey": "widows_oil_multiplied_by_elisha",
+      "bibleSourceRef": "2 Kings 4:1-7",
+      "moodTags": [
+        "joyful"
+      ]
     }
   ]
 }

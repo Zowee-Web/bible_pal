@@ -5404,6 +5404,126 @@
       "majorMotif": "hallel_at_gates_with_cornerstone",
       "emotionalShape": "festival_song_kept_for_pilgrims",
       "tagsComplete": true
+    },
+    {
+      "storyId": 1416,
+      "anchor": "Acts 10:30-48",
+      "mood": "joyful",
+      "era": "early_church",
+      "character": "Cornelius",
+      "narrativeType": "early_church_narrative",
+      "subTexture": "gentile_pentecost_at_caesarea",
+      "majorMotif": "spirit_falls_while_peter_speaks",
+      "emotionalShape": "barrier_broken_at_caesarea_household",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1417,
+      "anchor": "John 1:40-42",
+      "mood": "joyful",
+      "era": "jesus_ministry",
+      "character": "Andrew",
+      "narrativeType": "gospel",
+      "subTexture": "andrew_brings_peter",
+      "majorMotif": "first_brother_brings_brother_to_messiah",
+      "emotionalShape": "quiet_morning_of_naming",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1418,
+      "anchor": "Ruth 4:1-12",
+      "mood": "joyful",
+      "era": "judges",
+      "character": "Boaz",
+      "narrativeType": "historical_narrative",
+      "subTexture": "kinsman_redeemer_at_the_gate",
+      "majorMotif": "sandal_exchange_with_ten_elders",
+      "emotionalShape": "public_legal_redemption_warmly_done",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1419,
+      "anchor": "Esther 9:20-22",
+      "mood": "joyful",
+      "era": "persian_exile",
+      "character": "Mordecai",
+      "narrativeType": "historical_narrative",
+      "subTexture": "purim_established",
+      "majorMotif": "couriers_carry_letters_to_provinces",
+      "emotionalShape": "sorrow_turned_to_gladness_yearly_kept",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1420,
+      "anchor": "2 Chronicles 23:11-13",
+      "mood": "joyful",
+      "era": "divided_monarchy",
+      "character": "Joash",
+      "narrativeType": "historical_narrative",
+      "subTexture": "boy_king_crowned",
+      "majorMotif": "hidden_child_revealed_at_pillar",
+      "emotionalShape": "trumpets_break_six_year_silence",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1421,
+      "anchor": "2 Chronicles 29:25-30",
+      "mood": "joyful",
+      "era": "divided_monarchy",
+      "character": "Hezekiah",
+      "narrativeType": "historical_narrative",
+      "subTexture": "temple_worship_restored",
+      "majorMotif": "instruments_waking_after_silence",
+      "emotionalShape": "long_stopped_worship_beginning_again",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1422,
+      "anchor": "Acts 8:26-39",
+      "mood": "joyful",
+      "era": "early_church",
+      "character": "Ethiopian Eunuch",
+      "narrativeType": "early_church_narrative",
+      "subTexture": "chariot_baptism_in_the_desert",
+      "majorMotif": "isaiah_scroll_then_water_then_caught_away",
+      "emotionalShape": "convert_returns_rejoicing",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1423,
+      "anchor": "Mark 7:31-37",
+      "mood": "joyful",
+      "era": "jesus_ministry",
+      "character": "Deaf-Mute Man of Decapolis",
+      "narrativeType": "gospel",
+      "subTexture": "ephphatha_be_opened",
+      "majorMotif": "fingers_in_ears_then_sigh_then_release",
+      "emotionalShape": "stunned_silence_then_shouting",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1424,
+      "anchor": "Ruth 4:13-17",
+      "mood": "joyful",
+      "era": "judges",
+      "character": "Naomi",
+      "narrativeType": "historical_narrative",
+      "subTexture": "women_sing_for_naomi",
+      "majorMotif": "old_grandmother_takes_grandson_to_bosom",
+      "emotionalShape": "restoration_carried_by_neighbor_voices",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1425,
+      "anchor": "2 Kings 4:1-7",
+      "mood": "joyful",
+      "era": "divided_monarchy",
+      "character": "Widow of the Prophet's Son",
+      "narrativeType": "historical_narrative",
+      "subTexture": "widows_oil_multiplied",
+      "majorMotif": "jars_filling_one_after_another",
+      "emotionalShape": "debt_paid_from_one_small_pot",
+      "tagsComplete": true
     }
   ]
 }

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1420,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_12_V3_IMMERSIVE",
+  "title": "Long Live the King",
+  "scriptureAnchor": "2 Chronicles 23:11-13",
+  "scriptureAnchorId": "2_chronicles_23_11-13",
+  "bibleStoryKey": "joash_crowned_in_the_temple",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "boy_king_crowned",
+    "trumpets_in_temple_courts",
+    "after_six_years_hidden",
+    "athaliah_cries_treason",
+    "long_live_the_king"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "exultant",
+    "communal",
+    "marveling",
+    "honoring",
+    "exalted"
+  ],
+  "primaryCharacterId": "joash",
+  "primaryCharacterDisplayName": "Joash",
+  "bibleOrderIndex": 395,
+  "timelineEra": "divided_monarchy",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1420_traditional_web_short.txt"
+    }
+  }
+}

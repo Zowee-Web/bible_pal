@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1424,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_12_V3_IMMERSIVE",
+  "title": "A Son Is Born to Naomi",
+  "scriptureAnchor": "Ruth 4:13-17",
+  "scriptureAnchorId": "ruth_4_13-17",
+  "bibleStoryKey": "naomi_takes_obed_to_her_bosom",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "themeTags": [
+    "women_sing_for_naomi",
+    "restorer_of_life_in_old_age",
+    "better_to_you_than_seven_sons",
+    "obed_grandfather_of_david",
+    "near_kinsman_remembered"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "tender",
+    "restored",
+    "blessing",
+    "communal",
+    "settled"
+  ],
+  "primaryCharacterId": "naomi",
+  "primaryCharacterDisplayName": "Naomi",
+  "bibleOrderIndex": 238,
+  "timelineEra": "judges",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1424_traditional_web_short.txt"
+    }
+  }
+}

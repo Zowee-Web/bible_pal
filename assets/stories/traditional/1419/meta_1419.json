@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1419,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_12_V3_IMMERSIVE",
+  "title": "Days of Feasting and Gladness",
+  "scriptureAnchor": "Esther 9:20-22",
+  "scriptureAnchorId": "esther_9_20-22",
+  "bibleStoryKey": "purim_established_by_mordecai",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "purim_established",
+    "mordecai_writes_letters_to_provinces",
+    "sorrow_turned_to_gladness",
+    "portions_to_neighbors_gifts_to_poor",
+    "after_the_deliverance_in_adar"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "settled",
+    "communal",
+    "honoring",
+    "celebratory",
+    "remembering"
+  ],
+  "primaryCharacterId": "mordecai",
+  "primaryCharacterDisplayName": "Mordecai",
+  "bibleOrderIndex": 435,
+  "timelineEra": "persian_exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1419_traditional_web_short.txt"
+    }
+  }
+}

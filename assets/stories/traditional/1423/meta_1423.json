@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1423,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_12_V3_IMMERSIVE",
+  "title": "Ephphatha",
+  "scriptureAnchor": "Mark 7:31-37",
+  "scriptureAnchorId": "mark_7_31-37",
+  "bibleStoryKey": "deaf_mute_healed_in_decapolis",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "themeTags": [
+    "ephphatha_be_opened",
+    "fingers_in_ears_then_sigh",
+    "taken_aside_privately",
+    "astonished_beyond_measure",
+    "deaf_hear_and_mute_speak"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "astonished",
+    "tender",
+    "marveling",
+    "intimate",
+    "restored"
+  ],
+  "primaryCharacterId": "deaf_mute_man_of_decapolis",
+  "primaryCharacterDisplayName": "Deaf-Mute Man of Decapolis",
+  "bibleOrderIndex": 974,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1423_traditional_web_short.txt"
+    }
+  }
+}
