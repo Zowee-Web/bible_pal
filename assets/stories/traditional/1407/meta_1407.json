@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1407,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_11_V3_IMMERSIVE",
+  "title": "Then Manasseh Knew",
+  "scriptureAnchor": "2 Chronicles 33:10-13",
+  "scriptureAnchorId": "2_chronicles_33_10-13",
+  "bibleStoryKey": "manasseh_humbled_then_restored",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "themeTags": [
+    "humbled_then_restored",
+    "carried_away_in_hooks",
+    "begged_yahweh_in_distress",
+    "brought_back_to_jerusalem",
+    "knew_yahweh_was_god"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "humbled",
+    "restored",
+    "settled",
+    "reverent",
+    "honest"
+  ],
+  "primaryCharacterId": "manasseh",
+  "primaryCharacterDisplayName": "Manasseh",
+  "bibleOrderIndex": 405,
+  "timelineEra": "divided_monarchy",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1407_traditional_web_short.txt"
+    }
+  }
+}

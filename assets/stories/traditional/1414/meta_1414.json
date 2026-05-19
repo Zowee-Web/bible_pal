@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1414,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_11_V3_IMMERSIVE",
+  "title": "Yahweh Will Provide",
+  "scriptureAnchor": "Genesis 22:14-19",
+  "scriptureAnchorId": "genesis_22_14-19",
+  "bibleStoryKey": "abraham_after_the_ram",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "yahweh_will_provide_after_ram",
+    "angel_calls_a_second_time",
+    "covenant_oath_renewed",
+    "offspring_like_stars_and_sand",
+    "return_to_beersheba"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "humbled",
+    "settled",
+    "honoring",
+    "tested",
+    "relieved"
+  ],
+  "primaryCharacterId": "abraham",
+  "primaryCharacterDisplayName": "Abraham",
+  "bibleOrderIndex": 22,
+  "timelineEra": "patriarchs",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1414_traditional_web_short.txt"
+    }
+  }
+}

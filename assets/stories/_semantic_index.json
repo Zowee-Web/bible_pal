@@ -5284,6 +5284,126 @@
       "majorMotif": "fleeing_servant_named_at_spring",
       "emotionalShape": "alone_then_seen_by_angel",
       "tagsComplete": true
+    },
+    {
+      "storyId": 1406,
+      "anchor": "Joshua 22:30-34",
+      "mood": "grateful",
+      "era": "conquest",
+      "character": "Phinehas",
+      "narrativeType": "historical_narrative",
+      "subTexture": "altar_of_witness_peace",
+      "majorMotif": "tribes_reconciled_at_altar_of_ed",
+      "emotionalShape": "war_averted_blessing_god",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1407,
+      "anchor": "2 Chronicles 33:10-13",
+      "mood": "grateful",
+      "era": "divided_monarchy",
+      "character": "Manasseh",
+      "narrativeType": "historical_narrative",
+      "subTexture": "humbled_then_restored",
+      "majorMotif": "king_in_hooks_then_back_to_jerusalem",
+      "emotionalShape": "sinful_king_finally_knowing_god",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1408,
+      "anchor": "Luke 1:39-45",
+      "mood": "grateful",
+      "era": "jesus_ministry",
+      "character": "Elizabeth",
+      "narrativeType": "gospel",
+      "subTexture": "visitation_leaping_in_womb",
+      "majorMotif": "two_mothers_of_promise_in_hill_country",
+      "emotionalShape": "prophetic_greeting_at_doorway",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1409,
+      "anchor": "John 21:9-14",
+      "mood": "grateful",
+      "era": "jesus_ministry",
+      "character": "Risen Jesus",
+      "narrativeType": "gospel",
+      "subTexture": "breakfast_on_the_beach",
+      "majorMotif": "coals_fish_bread_at_dawn",
+      "emotionalShape": "third_revelation_quiet_meal",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1410,
+      "anchor": "Acts 28:11-15",
+      "mood": "grateful",
+      "era": "early_church",
+      "character": "Paul",
+      "narrativeType": "early_church_narrative",
+      "subTexture": "thanked_god_at_forum_of_appius",
+      "majorMotif": "brothers_walk_out_the_appian_way",
+      "emotionalShape": "apostle_renewed_at_meeting",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1411,
+      "anchor": "1 Samuel 7:7-12",
+      "mood": "grateful",
+      "era": "judges",
+      "character": "Samuel",
+      "narrativeType": "historical_narrative",
+      "subTexture": "ebenezer_stone",
+      "majorMotif": "stone_set_after_thundered_victory",
+      "emotionalShape": "prophet_marks_yahweh_helped_us",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1412,
+      "anchor": "2 Kings 13:14-19",
+      "mood": "grateful",
+      "era": "divided_monarchy",
+      "character": "Elisha",
+      "narrativeType": "historical_narrative",
+      "subTexture": "arrow_of_yahwehs_victory",
+      "majorMotif": "prophets_hands_on_kings_hands_shooting",
+      "emotionalShape": "final_word_passed_to_a_king",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1413,
+      "anchor": "Acts 16:13-15",
+      "mood": "grateful",
+      "era": "early_church",
+      "character": "Lydia",
+      "narrativeType": "early_church_narrative",
+      "subTexture": "heart_opened_at_riverside",
+      "majorMotif": "sabbath_riverside_baptism",
+      "emotionalShape": "first_european_convert_offering_hospitality",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1414,
+      "anchor": "Genesis 22:14-19",
+      "mood": "grateful",
+      "era": "patriarchs",
+      "character": "Abraham",
+      "narrativeType": "torah_narrative",
+      "subTexture": "yahweh_will_provide_after_ram",
+      "majorMotif": "angel_calls_again_then_return_to_beersheba",
+      "emotionalShape": "patriarch_relieved_then_blessed",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1415,
+      "anchor": "Psalm 118:19-29",
+      "mood": "grateful",
+      "era": "wisdom",
+      "character": "Psalmist",
+      "narrativeType": "psalm",
+      "subTexture": "this_is_the_day_yahweh_has_made",
+      "majorMotif": "hallel_at_gates_with_cornerstone",
+      "emotionalShape": "festival_song_kept_for_pilgrims",
+      "tagsComplete": true
     }
   ]
 }

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1413,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_11_V3_IMMERSIVE",
+  "title": "Whose Heart the Lord Opened",
+  "scriptureAnchor": "Acts 16:13-15",
+  "scriptureAnchorId": "acts_16_13-15",
+  "bibleStoryKey": "lydia_conversion_at_philippi",
+  "storyVoiceKey": "VOICE_CHARLOTTE_V3",
+  "themeTags": [
+    "heart_opened_at_riverside",
+    "seller_of_purple_from_thyatira",
+    "household_baptized",
+    "hospitality_offered_to_the_company",
+    "first_european_convert"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "opened",
+    "hospitable",
+    "settled",
+    "honoring",
+    "tender"
+  ],
+  "primaryCharacterId": "lydia",
+  "primaryCharacterDisplayName": "Lydia",
+  "bibleOrderIndex": 1054,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1413_traditional_web_short.txt"
+    }
+  }
+}

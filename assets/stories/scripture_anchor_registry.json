@@ -3124,6 +3124,86 @@
       "moodTags": [
         "anxious"
       ]
+    },
+    {
+      "scriptureAnchorId": "joshua_22_30-34",
+      "bibleStoryKey": "phinehas_at_altar_of_ed",
+      "bibleSourceRef": "Joshua 22:30-34",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_chronicles_33_10-13",
+      "bibleStoryKey": "manasseh_humbled_then_restored",
+      "bibleSourceRef": "2 Chronicles 33:10-13",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_1_39-45",
+      "bibleStoryKey": "visitation_at_zacharias_house",
+      "bibleSourceRef": "Luke 1:39-45",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "john_21_9-14",
+      "bibleStoryKey": "breakfast_on_the_beach",
+      "bibleSourceRef": "John 21:9-14",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "acts_28_11-15",
+      "bibleStoryKey": "paul_at_three_taverns",
+      "bibleSourceRef": "Acts 28:11-15",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_samuel_7_7-12",
+      "bibleStoryKey": "samuel_sets_ebenezer",
+      "bibleSourceRef": "1 Samuel 7:7-12",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_kings_13_14-19",
+      "bibleStoryKey": "elishas_last_word_to_joash",
+      "bibleSourceRef": "2 Kings 13:14-19",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "acts_16_13-15",
+      "bibleStoryKey": "lydia_conversion_at_philippi",
+      "bibleSourceRef": "Acts 16:13-15",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_22_14-19",
+      "bibleStoryKey": "abraham_after_the_ram",
+      "bibleSourceRef": "Genesis 22:14-19",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "psalm_118_19-29",
+      "bibleStoryKey": "this_is_the_day_yahweh_has_made",
+      "bibleSourceRef": "Psalm 118:19-29",
+      "moodTags": [
+        "grateful"
+      ]
     }
   ]
 }

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1408,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_11_V3_IMMERSIVE",
+  "title": "Blessed Is She Who Believed",
+  "scriptureAnchor": "Luke 1:39-45",
+  "scriptureAnchorId": "luke_1_39-45",
+  "bibleStoryKey": "visitation_at_zacharias_house",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "themeTags": [
+    "visitation_leaping_in_womb",
+    "mary_journeys_to_elizabeth",
+    "blessed_among_women",
+    "fulfillment_of_things_spoken",
+    "two_mothers_of_the_promise"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "tender",
+    "exultant",
+    "honoring",
+    "marveling",
+    "blessed"
+  ],
+  "primaryCharacterId": "elizabeth",
+  "primaryCharacterDisplayName": "Elizabeth",
+  "bibleOrderIndex": 954,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1408_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1410,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_11_V3_IMMERSIVE",
+  "title": "Thanked God, and Took Courage",
+  "scriptureAnchor": "Acts 28:11-15",
+  "scriptureAnchorId": "acts_28_11-15",
+  "bibleStoryKey": "paul_at_three_taverns",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "thanked_god_at_forum_of_appius",
+    "brothers_come_out_to_meet_the_apostle",
+    "after_the_long_voyage",
+    "appian_way_into_rome",
+    "courage_renewed_at_the_meeting"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "encouraged",
+    "settled",
+    "humbled",
+    "tender",
+    "honoring"
+  ],
+  "primaryCharacterId": "paul_apostle",
+  "primaryCharacterDisplayName": "Paul",
+  "bibleOrderIndex": 1066,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1410_traditional_web_short.txt"
+    }
+  }
+}

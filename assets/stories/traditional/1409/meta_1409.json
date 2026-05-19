@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1409,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_11_V3_IMMERSIVE",
+  "title": "Come and Eat Breakfast",
+  "scriptureAnchor": "John 21:9-14",
+  "scriptureAnchorId": "john_21_9-14",
+  "bibleStoryKey": "breakfast_on_the_beach",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "breakfast_on_the_beach",
+    "coals_and_fish_and_bread",
+    "third_revelation_to_disciples",
+    "one_hundred_fifty_three_fish",
+    "risen_lord_at_tiberias"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "tender",
+    "awed",
+    "settled",
+    "communal",
+    "restored"
+  ],
+  "primaryCharacterId": "jesus_christ",
+  "primaryCharacterDisplayName": "Risen Jesus",
+  "bibleOrderIndex": 1027,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1409_traditional_web_short.txt"
+    }
+  }
+}
