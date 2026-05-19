@@ -50,5 +50,12 @@
     "short": {
       "storyText": "story_1199_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "costly_witness"
+  ],
+  "secondaryLifeSituationTags": [
+    "speaking_truth_to_power",
+    "costly_choice"
+  ]
 }

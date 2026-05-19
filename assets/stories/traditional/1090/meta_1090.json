@@ -46,5 +46,12 @@
       "reflectionAudio": "audio_1090_reflection.mp3"
     }
   },
-  "reflectionVoiceKey": "VOICE_CHRIS_DEFAULT"
+  "reflectionVoiceKey": "VOICE_CHRIS_DEFAULT",
+  "primaryLifeSituationTags": [
+    "presence_in_the_storm"
+  ],
+  "secondaryLifeSituationTags": [
+    "sudden_crisis",
+    "fear_overwhelm"
+  ]
 }

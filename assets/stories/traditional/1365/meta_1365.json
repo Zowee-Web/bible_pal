@@ -50,5 +50,11 @@
     "short": {
       "storyText": "story_1365_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "loss_of_spouse"
+  ],
+  "secondaryLifeSituationTags": [
+    "starting_over"
+  ]
 }

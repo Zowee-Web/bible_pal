@@ -49,5 +49,12 @@
   "reflectionText": "Stories of joy often reflect moments when gratitude and connection come together. These narratives show how small blessings can accumulate into a sense of abundance. And even a small step forward can be enough for today.",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "lost_sheep",
-  "primaryCharacterDisplayName": "Lost Sheep"
+  "primaryCharacterDisplayName": "Lost Sheep",
+  "primaryLifeSituationTags": [
+    "losing_something_precious"
+  ],
+  "secondaryLifeSituationTags": [
+    "searching",
+    "found_again"
+  ]
 }

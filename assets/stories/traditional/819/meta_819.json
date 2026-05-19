@@ -49,5 +49,12 @@
   "reflectionText": "This story shows that standing up for others takes courage and love. Even one kind word can make a difference.",
   "timelineEra": "exile",
   "primaryCharacterId": "esther",
-  "primaryCharacterDisplayName": "Esther"
+  "primaryCharacterDisplayName": "Esther",
+  "primaryLifeSituationTags": [
+    "costly_choice"
+  ],
+  "secondaryLifeSituationTags": [
+    "speaking_truth_to_power",
+    "quiet_courage"
+  ]
 }

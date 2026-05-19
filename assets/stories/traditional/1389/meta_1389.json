@@ -50,5 +50,11 @@
     "short": {
       "storyText": "story_1389_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "forgotten_in_waiting"
+  ],
+  "secondaryLifeSituationTags": [
+    "delayed_promise"
+  ]
 }

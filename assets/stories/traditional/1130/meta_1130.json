@@ -45,5 +45,13 @@
     "short": {
       "storyText": "story_1130_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "second_chance"
+  ],
+  "secondaryLifeSituationTags": [
+    "forgiveness_received",
+    "bitter_failure",
+    "let_someone_down"
+  ]
 }

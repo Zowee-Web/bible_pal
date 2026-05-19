@@ -50,5 +50,11 @@
     "short": {
       "storyText": "story_1355_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "loyalty_in_loss"
+  ],
+  "secondaryLifeSituationTags": [
+    "starting_over"
+  ]
 }

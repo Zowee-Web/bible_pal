@@ -48,5 +48,11 @@
     "short": {
       "storyText": "story_1169_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "surrender_what_you_love"
+  ],
+  "secondaryLifeSituationTags": [
+    "delayed_promise"
+  ]
 }

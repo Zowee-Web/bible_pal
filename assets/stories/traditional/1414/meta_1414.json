@@ -50,5 +50,12 @@
     "short": {
       "storyText": "story_1414_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "surrender_what_you_love"
+  ],
+  "secondaryLifeSituationTags": [
+    "lifelong_waiting",
+    "surrender_to_god"
+  ]
 }

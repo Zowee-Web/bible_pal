@@ -1,0 +1,272 @@
+{
+  "$schema": "life_situation_seed_map_schema",
+  "version": 1,
+  "description": "v1 hand-curated mapping of {storyId: {primary: [...], secondary: [...]}} for ~50 iconic Bible PAL stories. Source-of-truth for scripts/backfill_life_situation_tags.py. All tagIds MUST be present in assets/stories/life_situation_tags_registry.json. Story 1196 (Borrowed Axe) is the v1 motivating example — its borrowed_item_lost motif lives in drafts until a second strong anchor surfaces; meanwhile 1196 is reachable via let_someone_down + restoration_after_loss.",
+  "entries": {
+    "1196": {
+      "title": "The Iron Did Float (Elisha + borrowed axe)",
+      "primary": ["let_someone_down"],
+      "secondary": ["restoration_after_loss", "unexpected_grace"]
+    },
+    "830": {
+      "title": "The Prodigal Son",
+      "primary": ["coming_home"],
+      "secondary": ["family_estrangement", "forgiveness_received", "bitter_failure"]
+    },
+    "1130": {
+      "title": "Peter Restored (breakfast on the shore)",
+      "primary": ["second_chance"],
+      "secondary": ["forgiveness_received", "bitter_failure", "let_someone_down"]
+    },
+    "1121": {
+      "title": "Hannah Prays for a Son",
+      "primary": ["unmet_longing"],
+      "secondary": ["prayer_in_anguish", "delayed_promise"]
+    },
+    "1169": {
+      "title": "Hannah Dedicates Samuel",
+      "primary": ["surrender_what_you_love"],
+      "secondary": ["delayed_promise"]
+    },
+    "1312": {
+      "title": "Sarah Laughs at Isaac's Birth",
+      "primary": ["delayed_promise"],
+      "secondary": ["unmet_longing"]
+    },
+    "1414": {
+      "title": "Abraham After the Ram",
+      "primary": ["surrender_what_you_love"],
+      "secondary": ["lifelong_waiting", "surrender_to_god"]
+    },
+    "1177": {
+      "title": "Simeon and Anna in the Temple",
+      "primary": ["lifelong_waiting"],
+      "secondary": ["delayed_promise"]
+    },
+    "1037": {
+      "title": "Joseph Sold by His Brothers",
+      "primary": ["betrayal_by_family"],
+      "secondary": ["family_estrangement", "unjust_persecution"]
+    },
+    "1045": {
+      "title": "Joseph and the Colorful Coat",
+      "primary": ["family_estrangement"],
+      "secondary": ["betrayal_by_family"]
+    },
+    "1178": {
+      "title": "Joseph in Prison (Cupbearer Forgot Him)",
+      "primary": ["unjust_imprisonment"],
+      "secondary": ["forgotten_in_waiting", "delayed_promise"]
+    },
+    "1389": {
+      "title": "Remember Me (Joseph forgotten by cupbearer)",
+      "primary": ["forgotten_in_waiting"],
+      "secondary": ["delayed_promise"]
+    },
+    "1146": {
+      "title": "Then Joseph Wept (forgives brothers)",
+      "primary": ["forgiveness_given"],
+      "secondary": ["mercy_to_enemies", "restoration_after_loss"]
+    },
+    "1003": {
+      "title": "Tears That Shattered the Silence (Joseph reveals himself)",
+      "primary": ["restoration_after_loss"],
+      "secondary": ["forgiveness_given", "coming_home"]
+    },
+    "1197": {
+      "title": "The Coat of Many Colors (Joseph's dreams begin)",
+      "primary": ["quiet_calling"],
+      "secondary": ["family_estrangement"]
+    },
+    "828": {
+      "title": "Ruth and Naomi",
+      "primary": ["loyalty_in_loss"],
+      "secondary": ["loss_of_spouse", "starting_over"]
+    },
+    "1355": {
+      "title": "Ruth Clings to Naomi",
+      "primary": ["loyalty_in_loss"],
+      "secondary": ["starting_over"]
+    },
+    "1265": {
+      "title": "Ruth and Naomi Return",
+      "primary": ["starting_over"],
+      "secondary": ["loss_of_spouse", "coming_home"]
+    },
+    "1365": {
+      "title": "Naomi Returns Empty to Bethlehem",
+      "primary": ["loss_of_spouse"],
+      "secondary": ["starting_over"]
+    },
+    "1036": {
+      "title": "Ruth Gleans in Boaz's Field",
+      "primary": ["quiet_provision"],
+      "secondary": ["starting_over"]
+    },
+    "819": {
+      "title": "Queen Esther",
+      "primary": ["costly_choice"],
+      "secondary": ["speaking_truth_to_power", "quiet_courage"]
+    },
+    "1431": {
+      "title": "Mordecai Walked Every Day (raises orphan Esther)",
+      "primary": ["quiet_calling"],
+      "secondary": ["quiet_provision"]
+    },
+    "1007": {
+      "title": "Storm on the Raging Sea (Jonah flees)",
+      "primary": ["running_from_calling"],
+      "secondary": ["reluctant_obedience", "sudden_crisis"]
+    },
+    "1094": {
+      "title": "The Man Who Ran from God (Jonah flees)",
+      "primary": ["running_from_calling"],
+      "secondary": ["reluctant_obedience"]
+    },
+    "1100": {
+      "title": "The City That Turned Around (Jonah in Nineveh)",
+      "primary": ["mercy_to_enemies"],
+      "secondary": ["reluctant_obedience"]
+    },
+    "1167": {
+      "title": "Jonah in the Fish",
+      "primary": ["second_chance"],
+      "secondary": ["prayer_in_anguish"]
+    },
+    "833": {
+      "title": "Peter Walks on Water",
+      "primary": ["sinking_in_fear"],
+      "secondary": ["wavering_faith"]
+    },
+    "1124": {
+      "title": "On the Water in the Fourth Watch (Peter walks)",
+      "primary": ["wavering_faith"],
+      "secondary": ["sinking_in_fear", "presence_in_the_storm"]
+    },
+    "1108": {
+      "title": "Gethsemane",
+      "primary": ["prayer_in_anguish"],
+      "secondary": ["surrender_to_god"]
+    },
+    "1053": {
+      "title": "Naaman Washes in the Jordan",
+      "primary": ["humbling_to_heal"],
+      "secondary": ["illness"]
+    },
+    "1061": {
+      "title": "Naaman Gets Clean",
+      "primary": ["illness"],
+      "secondary": ["humbling_to_heal"]
+    },
+    "1085": {
+      "title": "Paralytic Lowered Through the Roof",
+      "primary": ["illness"],
+      "secondary": []
+    },
+    "1101": {
+      "title": "Blind Bartimaeus",
+      "primary": ["illness"],
+      "secondary": []
+    },
+    "816": {
+      "title": "Daniel in the Lion's Den",
+      "primary": ["unjust_persecution"],
+      "secondary": ["quiet_courage"]
+    },
+    "817": {
+      "title": "Daniel in the Lion's Den",
+      "primary": ["quiet_courage"],
+      "secondary": ["unjust_persecution"]
+    },
+    "1114": {
+      "title": "Daniel in the Lions' Den",
+      "primary": ["unjust_persecution"],
+      "secondary": ["quiet_courage"]
+    },
+    "1128": {
+      "title": "Stephen Martyred",
+      "primary": ["costly_witness"],
+      "secondary": ["mercy_to_enemies", "unjust_persecution"]
+    },
+    "1199": {
+      "title": "John the Baptist's Death",
+      "primary": ["costly_witness"],
+      "secondary": ["speaking_truth_to_power", "costly_choice"]
+    },
+    "809": {
+      "title": "Jesus Calms the Storm",
+      "primary": ["sudden_crisis"],
+      "secondary": ["fear_overwhelm", "presence_in_the_storm"]
+    },
+    "1090": {
+      "title": "The Storm on the Lake",
+      "primary": ["presence_in_the_storm"],
+      "secondary": ["sudden_crisis", "fear_overwhelm"]
+    },
+    "810": {
+      "title": "The Woman at the Well",
+      "primary": ["secret_shame"],
+      "secondary": ["unexpected_grace"]
+    },
+    "1113": {
+      "title": "The Woman at the Well",
+      "primary": ["unexpected_grace"],
+      "secondary": ["secret_shame", "seen_and_known"]
+    },
+    "1122": {
+      "title": "Doubting Thomas",
+      "primary": ["wavering_faith"],
+      "secondary": ["seen_and_known"]
+    },
+    "1388": {
+      "title": "John the Baptist Sends From Prison",
+      "primary": ["wavering_faith"],
+      "secondary": ["unjust_imprisonment"]
+    },
+    "1005": {
+      "title": "The Little Man Who Found Big Love (Zacchaeus)",
+      "primary": ["unexpected_grace"],
+      "secondary": []
+    },
+    "1372": {
+      "title": "Rejoice With Me (Lost Coin)",
+      "primary": ["losing_something_precious"],
+      "secondary": ["searching", "found_again"]
+    },
+    "820": {
+      "title": "Lost Sheep",
+      "primary": ["losing_something_precious"],
+      "secondary": ["searching", "found_again"]
+    },
+    "1035": {
+      "title": "Gideon Called",
+      "primary": ["feeling_inadequate"],
+      "secondary": ["reluctant_obedience"]
+    },
+    "1316": {
+      "title": "Moses' Burden Too Heavy",
+      "primary": ["burnout"],
+      "secondary": ["feeling_inadequate"]
+    },
+    "1144": {
+      "title": "Elijah Under the Juniper",
+      "primary": ["burnout"],
+      "secondary": ["prayer_in_anguish"]
+    },
+    "1163": {
+      "title": "Annunciation to Mary",
+      "primary": ["surrender_to_god"],
+      "secondary": ["quiet_calling"]
+    },
+    "1082": {
+      "title": "Annunciation to Mary",
+      "primary": ["quiet_calling"],
+      "secondary": ["surrender_to_god"]
+    },
+    "1039": {
+      "title": "Elijah and the Widow of Zarephath",
+      "primary": ["quiet_provision"],
+      "secondary": []
+    }
+  }
+}

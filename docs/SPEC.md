@@ -1857,6 +1857,62 @@ All existing forbidden keys (user text, PII, minute-based length, tradition) rem
 
 ---
 
+## Life Situation Tags v1 (Metadata-Only)
+
+Situational retrieval layer mapping real-life events ("a friend borrowed something and lost it") to scripture-grounded stories. **v1 is metadata + offline CLI only — PAL routing is unchanged.**
+
+### Scope
+
+- Two optional fields on Traditional story metas: `primaryLifeSituationTags` (≤2) and `secondaryLifeSituationTags` (≤3)
+- Controlled vocabulary in `assets/stories/life_situation_tags_registry.json`
+- Drafts holding pen in `scripts/life_situation_tags_drafts.json` for tags that don't yet have ≥2 strong story anchors
+- Seed map of ~50 iconic stories in `scripts/life_situation_seed_map.json`
+- Standalone retrieval tool in `scripts/query_life_situation_tags.py` (vocabulary smoke test — not a natural-language retrieval engine)
+- Compliance test in `test/services/life_situation_tag_compliance_test.dart`
+
+### What v1 Does NOT Do
+
+- Does not modify `parable_service.dart` selection logic
+- Does not add fields to the `Parable` model (`fromJson` tolerates unknown fields)
+- Does not regenerate `assets/stories/manifest.json` — the CLI reads meta files directly
+- Does not change any user-visible PAL behavior
+- Does not surface tags in the Flutter UI
+
+### Vocabulary Rules (enforced by compliance test)
+
+- `minStoriesPerTag: 2` — every tag in the registry must appear (primary or secondary) on ≥2 stories. Tags with only 1 strong match go to the drafts file, not the registry.
+- `maxPrimaryPerStory: 2`, `maxSecondaryPerStory: 3` — anti-stuffing caps
+- No tag appears in both primary and secondary on the same story
+- snake_case tag IDs only
+- Banned generics (cannot be primary, should not be in registry): `restoration`, `waiting_on_god`, `comfort`, `hope`, `mercy`, `faith`, `love` — if a tag could be the title of a sermon series, it's too broad
+- A draft must have ≥2 *genuinely strong* story matches before graduating to the registry; stretched-match tagging is explicitly disallowed
+
+### CLI Semantics
+
+Two modes:
+
+- **Mode A — exact tag lookup**
+  - `--tags A,B,C`: AND across the pooled (primary ∪ secondary) set on each story
+  - `--any A,B,C`: OR across the same pooled set
+  - Ranking: primary matches rank above secondary matches (score = primaryHits × 10 + secondaryHits)
+- **Mode B — `--probe "free text"` (vocabulary smoke test)**
+  - Lowercases input, strips punctuation, drops stopwords; no stemming, no synonym expansion, no embeddings, no LLM
+  - Finds tags whose tagId + displayName + description share ≥2 tokens with the input
+  - Returns stories carrying any matched tag
+  - If retrieval feels wrong, the fix is in the vocabulary description or the seed map — not in this tool
+
+Run `python3 scripts/query_life_situation_tags.py --help` for full usage.
+
+### v2 Re-Evaluation Triggers
+
+Revisit when both of the following hold:
+- The seed coverage has grown organically to ~70–80 tagged stories without the vocabulary feeling cramped
+- Mode B probe smoke tests on varied real-world inputs consistently surface resonant stories AND consistently exclude false positives
+
+If both are true: v2 = add field to `Parable` model + regenerate manifest + wire retrieval consumer into PAL. If not: vocabulary revision before any code changes.
+
+---
+
 ## Development Principles
 
 1. **SPEC.md is the source of truth** - All code must align with this document

@@ -48,5 +48,11 @@
     "brave",
     "afraid",
     "watchful"
+  ],
+  "primaryLifeSituationTags": [
+    "unjust_persecution"
+  ],
+  "secondaryLifeSituationTags": [
+    "quiet_courage"
   ]
 }

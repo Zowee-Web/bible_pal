@@ -47,5 +47,12 @@
     "short": {
       "storyText": "story_1372_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "losing_something_precious"
+  ],
+  "secondaryLifeSituationTags": [
+    "searching",
+    "found_again"
+  ]
 }
