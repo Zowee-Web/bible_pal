@@ -3284,6 +3284,86 @@
       "moodTags": [
         "joyful"
       ]
+    },
+    {
+      "scriptureAnchorId": "john_3_1-8",
+      "bibleStoryKey": "nicodemus_comes_by_night",
+      "bibleSourceRef": "John 3:1-8",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "acts_18_24-28",
+      "bibleStoryKey": "apollos_taught_by_priscilla_and_aquila",
+      "bibleSourceRef": "Acts 18:24-28",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_24_62-67",
+      "bibleStoryKey": "isaac_meets_rebekah_at_beer_lahai_roi",
+      "bibleSourceRef": "Genesis 24:62-67",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_chronicles_34_1-7",
+      "bibleStoryKey": "young_josiah_seeks_god",
+      "bibleSourceRef": "2 Chronicles 34:1-7",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_timothy_1_3-7",
+      "bibleStoryKey": "unfeigned_faith_lois_eunice",
+      "bibleSourceRef": "2 Timothy 1:3-7",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "esther_2_5-11",
+      "bibleStoryKey": "mordecai_raises_orphan_esther",
+      "bibleSourceRef": "Esther 2:5-11",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "jeremiah_31_31-34",
+      "bibleStoryKey": "new_covenant_promise",
+      "bibleSourceRef": "Jeremiah 31:31-34",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "john_15_1-11",
+      "bibleStoryKey": "vine_and_branches",
+      "bibleSourceRef": "John 15:1-11",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "psalm_131_1-3",
+      "bibleStoryKey": "weaned_child_with_mother",
+      "bibleSourceRef": "Psalm 131:1-3",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "isaiah_32_17-18",
+      "bibleStoryKey": "quiet_resting_places",
+      "bibleSourceRef": "Isaiah 32:17-18",
+      "moodTags": [
+        "calm_peaceful"
+      ]
     }
   ]
 }

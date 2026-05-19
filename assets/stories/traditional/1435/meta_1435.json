@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1435,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_13_V3_IMMERSIVE",
+  "title": "Quiet Resting Places",
+  "scriptureAnchor": "Isaiah 32:17-18",
+  "scriptureAnchorId": "isaiah_32_17-18",
+  "bibleStoryKey": "quiet_resting_places",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "themeTags": [
+    "quiet_resting_places",
+    "work_of_righteousness_is_peace",
+    "peaceful_habitation_safe_dwellings",
+    "after_the_spirit_poured_out_oracle",
+    "isaiah_picture_of_coming_kingdom"
+  ],
+  "emotionalTags": [
+    "calm",
+    "settled",
+    "hopeful",
+    "tender",
+    "trusting",
+    "promised"
+  ],
+  "primaryCharacterId": "isaiah",
+  "primaryCharacterDisplayName": "Isaiah",
+  "bibleOrderIndex": 755,
+  "timelineEra": "prophets",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1435_traditional_web_short.txt"
+    }
+  }
+}

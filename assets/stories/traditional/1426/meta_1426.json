@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1426,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_13_V3_IMMERSIVE",
+  "title": "Nicodemus by Night",
+  "scriptureAnchor": "John 3:1-8",
+  "scriptureAnchorId": "john_3_1-8",
+  "bibleStoryKey": "nicodemus_comes_by_night",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "nicodemus_by_night",
+    "ruler_of_the_jews_seeking_privately",
+    "born_of_water_and_spirit",
+    "wind_blows_where_it_wishes",
+    "lamplight_upper_room"
+  ],
+  "emotionalTags": [
+    "calm",
+    "contemplative",
+    "private",
+    "seeking",
+    "reverent",
+    "questioning"
+  ],
+  "primaryCharacterId": "nicodemus",
+  "primaryCharacterDisplayName": "Nicodemus",
+  "bibleOrderIndex": 1004,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1426_traditional_web_short.txt"
+    }
+  }
+}

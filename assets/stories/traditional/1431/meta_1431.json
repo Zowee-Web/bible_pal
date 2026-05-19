@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1431,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_13_V3_IMMERSIVE",
+  "title": "Mordecai Walked Every Day",
+  "scriptureAnchor": "Esther 2:5-11",
+  "scriptureAnchorId": "esther_2_5-11",
+  "bibleStoryKey": "mordecai_raises_orphan_esther",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "themeTags": [
+    "orphan_in_susa_taken_by_mordecai",
+    "womens_quarters_under_hegai",
+    "seven_choice_maidens",
+    "secret_of_her_people_kept",
+    "mordecai_walking_outside_the_court"
+  ],
+  "emotionalTags": [
+    "calm",
+    "tender",
+    "watchful",
+    "protective",
+    "settled",
+    "waiting"
+  ],
+  "primaryCharacterId": "esther",
+  "primaryCharacterDisplayName": "Esther",
+  "bibleOrderIndex": 421,
+  "timelineEra": "persian_exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1431_traditional_web_short.txt"
+    }
+  }
+}

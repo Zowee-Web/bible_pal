@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1433,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_13_V3_IMMERSIVE",
+  "title": "Remain in Me",
+  "scriptureAnchor": "John 15:1-11",
+  "scriptureAnchorId": "john_15_1-11",
+  "bibleStoryKey": "vine_and_branches",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "vine_and_branches",
+    "remain_in_me_and_i_in_you",
+    "father_is_the_farmer",
+    "joy_made_full",
+    "upper_room_after_the_meal"
+  ],
+  "emotionalTags": [
+    "calm",
+    "tender",
+    "instructive",
+    "warm",
+    "settled",
+    "abiding"
+  ],
+  "primaryCharacterId": "jesus_christ",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 1020,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1433_traditional_web_short.txt"
+    }
+  }
+}

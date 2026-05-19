@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1429,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_13_V3_IMMERSIVE",
+  "title": "While He Was Yet Young",
+  "scriptureAnchor": "2 Chronicles 34:1-7",
+  "scriptureAnchorId": "2_chronicles_34_1-7",
+  "bibleStoryKey": "young_josiah_seeks_god",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "young_josiah_seeks_god",
+    "boy_king_at_eight_years_old",
+    "early_seeking_at_sixteen",
+    "purging_high_places_at_twenty",
+    "long_quiet_reformation"
+  ],
+  "emotionalTags": [
+    "calm",
+    "resolute",
+    "honoring",
+    "settled",
+    "patient",
+    "thorough"
+  ],
+  "primaryCharacterId": "josiah",
+  "primaryCharacterDisplayName": "Josiah",
+  "bibleOrderIndex": 408,
+  "timelineEra": "divided_monarchy",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1429_traditional_web_short.txt"
+    }
+  }
+}

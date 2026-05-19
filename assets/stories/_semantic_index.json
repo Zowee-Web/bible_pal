@@ -5524,6 +5524,126 @@
       "majorMotif": "jars_filling_one_after_another",
       "emotionalShape": "debt_paid_from_one_small_pot",
       "tagsComplete": true
+    },
+    {
+      "storyId": 1426,
+      "anchor": "John 3:1-8",
+      "mood": "calm_peaceful",
+      "era": "jesus_ministry",
+      "character": "Nicodemus",
+      "narrativeType": "gospel",
+      "subTexture": "nicodemus_by_night",
+      "majorMotif": "private_lamplight_inquiry",
+      "emotionalShape": "ruler_seeking_quietly_by_night",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1427,
+      "anchor": "Acts 18:24-28",
+      "mood": "calm_peaceful",
+      "era": "early_church",
+      "character": "Apollos",
+      "narrativeType": "early_church_narrative",
+      "subTexture": "apollos_taught_by_priscilla_and_aquila",
+      "majorMotif": "correction_offered_privately_in_back_room",
+      "emotionalShape": "gentle_relational_completion_of_teaching",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1428,
+      "anchor": "Genesis 24:62-67",
+      "mood": "calm_peaceful",
+      "era": "patriarchs",
+      "character": "Isaac",
+      "narrativeType": "torah_narrative",
+      "subTexture": "isaac_meets_rebekah_at_evening",
+      "majorMotif": "camels_coming_up_at_sunset_with_veil",
+      "emotionalShape": "meditation_in_field_meeting_promised_bride",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1429,
+      "anchor": "2 Chronicles 34:1-7",
+      "mood": "calm_peaceful",
+      "era": "divided_monarchy",
+      "character": "Josiah",
+      "narrativeType": "historical_narrative",
+      "subTexture": "young_josiah_seeks_god",
+      "majorMotif": "boy_king_growing_into_reformation",
+      "emotionalShape": "patient_long_seeking_then_purging",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1430,
+      "anchor": "2 Timothy 1:3-7",
+      "mood": "calm_peaceful",
+      "era": "early_church",
+      "character": "Paul",
+      "narrativeType": "epistle",
+      "subTexture": "unfeigned_faith_lois_eunice",
+      "majorMotif": "three_generations_of_faith_remembered",
+      "emotionalShape": "apostle_writes_warmly_from_last_cell",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1431,
+      "anchor": "Esther 2:5-11",
+      "mood": "calm_peaceful",
+      "era": "persian_exile",
+      "character": "Esther",
+      "narrativeType": "historical_narrative",
+      "subTexture": "orphan_in_susa_taken_by_mordecai",
+      "majorMotif": "mordecai_walks_daily_outside_womens_quarters",
+      "emotionalShape": "protective_uncle_watches_over_secret_kept",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1432,
+      "anchor": "Jeremiah 31:31-34",
+      "mood": "calm_peaceful",
+      "era": "pre_exile",
+      "character": "Jeremiah",
+      "narrativeType": "oracle",
+      "subTexture": "new_covenant_promise",
+      "majorMotif": "law_written_on_the_heart_promised",
+      "emotionalShape": "quiet_afternoon_in_court_of_the_guard",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1433,
+      "anchor": "John 15:1-11",
+      "mood": "calm_peaceful",
+      "era": "jesus_ministry",
+      "character": "Jesus",
+      "narrativeType": "gospel",
+      "subTexture": "vine_and_branches",
+      "majorMotif": "abide_in_me_after_the_supper",
+      "emotionalShape": "farewell_teaching_before_olives",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1434,
+      "anchor": "Psalm 131:1-3",
+      "mood": "calm_peaceful",
+      "era": "wisdom",
+      "character": "David",
+      "narrativeType": "psalm",
+      "subTexture": "weaned_child_with_mother",
+      "majorMotif": "three_verse_stilled_soul_song",
+      "emotionalShape": "pilgrim_song_of_humble_quiet",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1435,
+      "anchor": "Isaiah 32:17-18",
+      "mood": "calm_peaceful",
+      "era": "prophets",
+      "character": "Isaiah",
+      "narrativeType": "oracle",
+      "subTexture": "quiet_resting_places",
+      "majorMotif": "work_of_righteousness_as_peace",
+      "emotionalShape": "prophets_picture_of_promised_dwelling",
+      "tagsComplete": true
     }
   ]
 }

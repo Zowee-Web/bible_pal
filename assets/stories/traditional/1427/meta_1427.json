@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1427,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_13_V3_IMMERSIVE",
+  "title": "Taken Aside",
+  "scriptureAnchor": "Acts 18:24-28",
+  "scriptureAnchorId": "acts_18_24-28",
+  "bibleStoryKey": "apollos_taught_by_priscilla_and_aquila",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "apollos_taught_by_priscilla_and_aquila",
+    "tentmakers_back_room_at_ephesus",
+    "the_way_of_god_more_accurately",
+    "correction_offered_privately",
+    "eloquent_man_made_complete"
+  ],
+  "emotionalTags": [
+    "calm",
+    "relational",
+    "gentle",
+    "instructive",
+    "warm",
+    "humble"
+  ],
+  "primaryCharacterId": "apollos",
+  "primaryCharacterDisplayName": "Apollos",
+  "bibleOrderIndex": 1056,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1427_traditional_web_short.txt"
+    }
+  }
+}

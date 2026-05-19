@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1432,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_13_V3_IMMERSIVE",
+  "title": "I Will Write It on Their Heart",
+  "scriptureAnchor": "Jeremiah 31:31-34",
+  "scriptureAnchorId": "jeremiah_31_31-34",
+  "bibleStoryKey": "new_covenant_promise",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "new_covenant_promise",
+    "law_written_on_the_heart",
+    "i_will_remember_their_sin_no_more",
+    "in_the_court_of_the_guard",
+    "baruch_writing_in_the_afternoon"
+  ],
+  "emotionalTags": [
+    "calm",
+    "weighty",
+    "tender",
+    "hopeful",
+    "promised",
+    "settled"
+  ],
+  "primaryCharacterId": "jeremiah",
+  "primaryCharacterDisplayName": "Jeremiah",
+  "bibleOrderIndex": 488,
+  "timelineEra": "pre_exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1432_traditional_web_short.txt"
+    }
+  }
+}

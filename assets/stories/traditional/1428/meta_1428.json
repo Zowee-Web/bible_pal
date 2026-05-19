@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1428,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_13_V3_IMMERSIVE",
+  "title": "In the Field at Evening",
+  "scriptureAnchor": "Genesis 24:62-67",
+  "scriptureAnchorId": "genesis_24_62-67",
+  "bibleStoryKey": "isaac_meets_rebekah_at_beer_lahai_roi",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "themeTags": [
+    "isaac_meets_rebekah_at_evening",
+    "meditating_in_the_field_at_sunset",
+    "camels_coming_up_from_the_south",
+    "veil_of_the_aramean_bride",
+    "comforted_after_his_mothers_death"
+  ],
+  "emotionalTags": [
+    "calm",
+    "tender",
+    "expectant",
+    "honoring",
+    "settled",
+    "reverent"
+  ],
+  "primaryCharacterId": "isaac",
+  "primaryCharacterDisplayName": "Isaac",
+  "bibleOrderIndex": 24,
+  "timelineEra": "patriarchs",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1428_traditional_web_short.txt"
+    }
+  }
+}
