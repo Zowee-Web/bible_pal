@@ -1887,6 +1887,26 @@ Situational retrieval layer mapping real-life events ("a friend borrowed somethi
 - Banned generics (cannot be primary, should not be in registry): `restoration`, `waiting_on_god`, `comfort`, `hope`, `mercy`, `faith`, `love` — if a tag could be the title of a sermon series, it's too broad
 - A draft must have ≥2 *genuinely strong* story matches before graduating to the registry; stretched-match tagging is explicitly disallowed
 
+### Secondary Tag Discipline (editorial invariant — NOT enforceable by tests)
+
+**Rule: Secondary tags should still feel emotionally central — not merely adjacent.**
+
+A user who reaches for a tag is asking the system to serve them on that situation. A secondary tag that is "technically true but emotionally weak" — a theme adjacent to the story rather than a real doorway into it — produces silent semantic drift: queries quietly return stories that don't pay off the user's intent, and no test catches it.
+
+This is an **editorial invariant**. The compliance test can verify membership, cardinality, format, and per-tag count — it cannot verify whether a secondary tag is a genuine emotional doorway. That judgment is human-only.
+
+When reviewing a story's secondary tags, ask: *"Would a user reaching for this tag be served by this story?"* If the honest answer is "kinda, if they squinted," demote or remove the tag. The compliance test will not save you.
+
+Tags most likely to drift first (the "comfortable defaults" risk): `restoration_after_loss`, `unexpected_grace`, `quiet_calling`, `delayed_promise`, `wavering_faith`. Watch these specifically. The compliance test prints a soft warning when any single tag exceeds 15% of currently-tagged-story count — that's a review signal, not a failure.
+
+### Probe Regression Fixtures
+
+`scripts/probe_smoke_tests.txt` is a fixture file of `query | expectation` pairs, run by `scripts/run_probe_smoke_tests.py`. It exits non-zero on any expectation violation.
+
+**Purpose:** regression detection for vocabulary drift. When the registry, seed map, or CLI tokenization changes, the runner surfaces any change in retrieval behavior so it can be reviewed and explained.
+
+**Explicit non-claim:** these fixtures are **NOT proof of natural-language understanding**. Mode B is a deterministic keyword-overlap smoke test — no stemming, no synonyms, no embeddings, no LLM. A passing fixture suite means "retrieval behavior is unchanged since this fixture was last reviewed," not "the system understands these queries."
+
 ### CLI Semantics
 
 Two modes:

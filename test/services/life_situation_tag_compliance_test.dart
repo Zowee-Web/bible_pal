@@ -183,6 +183,55 @@ void main() {
     });
   });
 
+  group('Life Situation Tags Soft Warnings', () {
+    test(
+        'soft warning: tags exceeding 15% of tagged-story count '
+        '(review signal — informational only)', () {
+      const thresholdPercent = 15;
+
+      final usage = <String, int>{};
+      var taggedStories = 0;
+      for (final s in stories) {
+        if (s.primary.isNotEmpty || s.secondary.isNotEmpty) taggedStories++;
+        for (final tag in [...s.primary, ...s.secondary]) {
+          usage[tag] = (usage[tag] ?? 0) + 1;
+        }
+      }
+
+      if (taggedStories == 0) {
+        expect(true, isTrue);
+        return;
+      }
+
+      final cutoff = (thresholdPercent / 100.0) * taggedStories;
+      final overused = usage.entries.where((e) => e.value > cutoff).toList()
+        ..sort((a, b) => b.value.compareTo(a.value));
+
+      if (overused.isNotEmpty) {
+        // ignore: avoid_print
+        print(
+            '\n=== Soft Warning: tags exceeding $thresholdPercent% of tagged stories ($taggedStories tagged) ===');
+        // ignore: avoid_print
+        print(
+            '(Review signal for semantic drift / "comfortable default" overuse.');
+        // ignore: avoid_print
+        print(
+            ' Informational only — does NOT fail the test. Re-evaluate this');
+        // ignore: avoid_print
+        print(
+            ' threshold when the corpus crosses ~200 tagged stories.)');
+        for (final e in overused) {
+          final pct = (100.0 * e.value / taggedStories).toStringAsFixed(1);
+          // ignore: avoid_print
+          print('  ${e.key}: ${e.value} stories ($pct%)');
+        }
+      }
+
+      // Always passes — this is a print-only review signal.
+      expect(true, isTrue);
+    });
+  });
+
   group('Life Situation Tags Distribution Report', () {
     test('print tag usage statistics', () {
       final usage = <String, int>{};
