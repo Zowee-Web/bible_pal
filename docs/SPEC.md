@@ -1907,6 +1907,21 @@ Tags most likely to drift first (the "comfortable defaults" risk): `restoration_
 
 **Explicit non-claim:** these fixtures are **NOT proof of natural-language understanding**. Mode B is a deterministic keyword-overlap smoke test — no stemming, no synonyms, no embeddings, no LLM. A passing fixture suite means "retrieval behavior is unchanged since this fixture was last reviewed," not "the system understands these queries."
 
+### Lexical Brittleness is an Intentional v1 Limitation
+
+Mode B requires meaningful token overlap with tag IDs, display names, or descriptions. Queries that describe the correct situation using different lemma forms, tense, or idioms may return no match even when the right tag exists. This is acceptable v1 behavior because **false absence is safer than false confidence** — a user who gets "no match" can rephrase or seek elsewhere; a user who gets a confidently wrong story loses trust in the system.
+
+Observed examples from blind probe testing:
+
+- *"I am being persecuted unjustly"* may fail because `persecuted` ≠ `persecution` and `unjustly` ≠ `unjust` — even though `unjust_persecution` exists and tags 5 stories.
+- *"I am carrying too much by myself"* may fail even though `burnout` exists — the vocab uses "depleted/wearing-out", not "carrying".
+- *"I want to come back but I do not know if I would be welcome"* may fail even though `coming_home` exists — `come` ≠ `coming` without stemming.
+- *"I am scared to try again after how badly I failed"* may fail even though `second_chance`, `bitter_failure`, and `fear_overwhelm` all exist — `scared` ≠ `fear`, `failed` ≠ `failure`.
+
+These are not bugs. They are the cost of Mode B's deterministic, non-generative design. v2 may consider curated synonym maps or lemmatization to widen the retrieval surface, but **v1 must remain deterministic and non-generative**. Adding stemming, synonyms, embeddings, or LLM logic to Mode B in v1 is out of scope.
+
+The fix for a *false-positive* (a tag surfacing on connector words rather than content overlap) is to expand STOPWORDS — that strengthens determinism. The fix for a *false-negative* (a query that should match but doesn't) is to leave it as honest absence and wait for v2.
+
 ### CLI Semantics
 
 Two modes:

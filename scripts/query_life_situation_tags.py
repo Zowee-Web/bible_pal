@@ -67,6 +67,12 @@ STOPWORDS = {
     "not", "no", "yes",
     "can", "cant", "will", "wont", "would", "could", "should",
     "some", "any", "all", "most", "more",
+    # Temporal / frequency connectors. Added after the blind probe
+    # "I am scared to try again after how badly I failed" falsely matched
+    # starting_over via {after, again} — neither word carried meaningful
+    # emotional content for the query OR the tag. Connector tokens are
+    # noise across the board.
+    "after", "again", "still", "yet", "always", "ever", "ago",
 }
 
 # "up" / "down" / "in" / "out" are NOT stopwords here — they're often
