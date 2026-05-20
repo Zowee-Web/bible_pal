@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1451,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_15_V3_AUDIO_FIRST",
+  "title": "Nebuchadnezzar Restored",
+  "scriptureAnchor": "Daniel 4:28-37",
+  "scriptureAnchorId": "daniel_4_28-37",
+  "bibleStoryKey": "nebuchadnezzar_grass_as_oxen_restored",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "voice_from_heaven_on_the_roof",
+    "seven_seasons_in_the_field",
+    "hair_like_eagles_feathers",
+    "understanding_returns",
+    "most_high_rules_in_kingdom_of_men"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "humbled",
+    "awed",
+    "broken",
+    "restored",
+    "reverent"
+  ],
+  "primaryCharacterId": "nebuchadnezzar",
+  "primaryCharacterDisplayName": "Nebuchadnezzar",
+  "bibleOrderIndex": 430,
+  "timelineEra": "babylonian_exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1451_traditional_web_short.txt"
+    }
+  }
+}

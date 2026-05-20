@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1455,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_15_V3_AUDIO_FIRST",
+  "title": "The Walls Fell Down Flat",
+  "scriptureAnchor": "Joshua 6:15-21",
+  "scriptureAnchorId": "joshua_6_15-21",
+  "bibleStoryKey": "walls_of_jericho_fall",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "seventh_day_seventh_circuit",
+    "rams_horns_long_blast",
+    "people_held_silent_until_shout",
+    "wall_fell_down_flat",
+    "rahabs_house_preserved"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "awed",
+    "encouraged",
+    "victorious",
+    "reverent",
+    "trusting"
+  ],
+  "primaryCharacterId": "joshua",
+  "primaryCharacterDisplayName": "Joshua",
+  "bibleOrderIndex": 176,
+  "timelineEra": "conquest",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1455_traditional_web_short.txt"
+    }
+  }
+}

@@ -5764,6 +5764,126 @@
       "majorMotif": "four_named_men_intercede",
       "emotionalShape": "wrath_diverted_into_brotherhood",
       "tagsComplete": true
+    },
+    {
+      "storyId": 1446,
+      "anchor": "Joshua 2:1-21",
+      "mood": "anxious",
+      "era": "conquest",
+      "character": "Rahab",
+      "narrativeType": "hiding_and_covenant",
+      "subTexture": "flax_on_roof_and_scarlet_cord",
+      "majorMotif": "city_dweller_chooses_yahweh",
+      "emotionalShape": "concealment_then_pact_then_signal",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1447,
+      "anchor": "Joshua 3:14-17",
+      "mood": "encouraging",
+      "era": "conquest",
+      "character": "Joshua",
+      "narrativeType": "crossing_miracle",
+      "subTexture": "priests_feet_in_jordan_water_heaped",
+      "majorMotif": "ark_in_the_dry_riverbed",
+      "emotionalShape": "waters_part_nation_crosses_river_resumes",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1448,
+      "anchor": "1 Samuel 22:1-2",
+      "mood": "weary",
+      "era": "early_monarchy",
+      "character": "David",
+      "narrativeType": "exile_gathering",
+      "subTexture": "cave_in_the_hills_men_in_twos_and_threes",
+      "majorMotif": "alone_becomes_four_hundred",
+      "emotionalShape": "fugitive_into_captain",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1449,
+      "anchor": "2 Samuel 5:6-10",
+      "mood": "joyful",
+      "era": "early_monarchy",
+      "character": "David",
+      "narrativeType": "stronghold_taken",
+      "subTexture": "watercourse_climb_in_dark",
+      "majorMotif": "city_of_david_won_by_secret_shaft",
+      "emotionalShape": "taunt_into_conquest",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1450,
+      "anchor": "Daniel 5:1-30",
+      "mood": "anxious",
+      "era": "babylonian_exile",
+      "character": "Daniel",
+      "narrativeType": "verdict_at_the_feast",
+      "subTexture": "fingers_on_plaster_above_lampstand",
+      "majorMotif": "mene_mene_tekel_upharsin",
+      "emotionalShape": "praise_of_idols_into_kings_death",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1451,
+      "anchor": "Daniel 4:28-37",
+      "mood": "hurting",
+      "era": "babylonian_exile",
+      "character": "Nebuchadnezzar",
+      "narrativeType": "humbling_and_restoration",
+      "subTexture": "seven_seasons_hair_like_eagles",
+      "majorMotif": "boast_to_grass_to_understanding_returned",
+      "emotionalShape": "pride_into_brokenness_into_doxology",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1452,
+      "anchor": "2 Kings 22:8-13",
+      "mood": "encouraging",
+      "era": "pre_exile",
+      "character": "Josiah",
+      "narrativeType": "discovery_and_inquiry",
+      "subTexture": "scroll_found_in_temple_repair",
+      "majorMotif": "king_tears_his_clothes_at_the_words",
+      "emotionalShape": "found_word_then_torn_robe_then_inquire",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1453,
+      "anchor": "Jeremiah 32:1-15",
+      "mood": "encouraging",
+      "era": "pre_exile",
+      "character": "Jeremiah",
+      "narrativeType": "prophetic_act_of_hope",
+      "subTexture": "deed_in_earthen_vessel",
+      "majorMotif": "field_bought_during_the_siege",
+      "emotionalShape": "captivity_outside_promise_sealed_inside",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1454,
+      "anchor": "2 Kings 8:1-6",
+      "mood": "weary",
+      "era": "divided_monarchy",
+      "character": "Shunammite Woman",
+      "narrativeType": "providential_return",
+      "subTexture": "gehazis_story_at_the_moment_of_arrival",
+      "majorMotif": "convergence_at_the_kings_court",
+      "emotionalShape": "famine_displacement_then_vindication",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1455,
+      "anchor": "Joshua 6:15-21",
+      "mood": "joyful",
+      "era": "conquest",
+      "character": "Joshua",
+      "narrativeType": "march_and_shout",
+      "subTexture": "seven_circuits_held_silence_then_shout",
+      "majorMotif": "wall_fell_down_flat",
+      "emotionalShape": "build_into_release_into_aftermath",
+      "tagsComplete": true
     }
   ]
 }

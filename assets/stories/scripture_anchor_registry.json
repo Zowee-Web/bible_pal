@@ -3444,6 +3444,86 @@
       "moodTags": [
         "encouraging"
       ]
+    },
+    {
+      "scriptureAnchorId": "joshua_2_1-21",
+      "bibleStoryKey": "rahab_scarlet_cord",
+      "bibleSourceRef": "Joshua 2:1-21",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "joshua_3_14-17",
+      "bibleStoryKey": "jordan_waters_heaped_up",
+      "bibleSourceRef": "Joshua 3:14-17",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_samuel_22_1-2",
+      "bibleStoryKey": "david_cave_of_adullam_four_hundred",
+      "bibleSourceRef": "1 Samuel 22:1-2",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_samuel_5_6-10",
+      "bibleStoryKey": "david_takes_stronghold_zion",
+      "bibleSourceRef": "2 Samuel 5:6-10",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "daniel_5_1-30",
+      "bibleStoryKey": "belshazzar_writing_on_wall",
+      "bibleSourceRef": "Daniel 5:1-30",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "daniel_4_28-37",
+      "bibleStoryKey": "nebuchadnezzar_grass_as_oxen_restored",
+      "bibleSourceRef": "Daniel 4:28-37",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_kings_22_8-13",
+      "bibleStoryKey": "josiah_book_of_law_found",
+      "bibleSourceRef": "2 Kings 22:8-13",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "jeremiah_32_1-15",
+      "bibleStoryKey": "jeremiah_buys_field_in_anathoth",
+      "bibleSourceRef": "Jeremiah 32:1-15",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_kings_8_1-6",
+      "bibleStoryKey": "shunammite_returns_after_famine",
+      "bibleSourceRef": "2 Kings 8:1-6",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "joshua_6_15-21",
+      "bibleStoryKey": "walls_of_jericho_fall",
+      "bibleSourceRef": "Joshua 6:15-21",
+      "moodTags": [
+        "joyful"
+      ]
     }
   ]
 }

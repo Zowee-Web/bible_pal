@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1453,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_15_V3_AUDIO_FIRST",
+  "title": "The Field of Anathoth",
+  "scriptureAnchor": "Jeremiah 32:1-15",
+  "scriptureAnchorId": "jeremiah_32_1-15",
+  "bibleStoryKey": "jeremiah_buys_field_in_anathoth",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "court_of_the_guard",
+    "seventeen_shekels_of_silver",
+    "deed_in_earthen_vessel",
+    "fields_shall_be_bought_again",
+    "babylons_siege_around_jerusalem"
+  ],
+  "emotionalTags": [
+    "encouraged",
+    "hopeful",
+    "trusting",
+    "reverent",
+    "settled",
+    "faithful"
+  ],
+  "primaryCharacterId": "jeremiah",
+  "primaryCharacterDisplayName": "Jeremiah",
+  "bibleOrderIndex": 408,
+  "timelineEra": "pre_exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1453_traditional_web_short.txt"
+    }
+  }
+}

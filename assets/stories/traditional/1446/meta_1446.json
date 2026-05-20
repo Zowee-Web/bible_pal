@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1446,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_15_V3_AUDIO_FIRST",
+  "title": "Rahab at the Window",
+  "scriptureAnchor": "Joshua 2:1-21",
+  "scriptureAnchorId": "joshua_2_1-21",
+  "bibleStoryKey": "rahab_scarlet_cord",
+  "storyVoiceKey": "VOICE_CHARLOTTE_V3",
+  "themeTags": [
+    "rahab_hides_spies",
+    "scarlet_cord_at_window",
+    "flax_on_the_roof",
+    "king_of_jerichos_captain",
+    "yahweh_has_given_the_land"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "watchful",
+    "brave",
+    "hopeful",
+    "tense",
+    "trusting"
+  ],
+  "primaryCharacterId": "rahab",
+  "primaryCharacterDisplayName": "Rahab",
+  "bibleOrderIndex": 174,
+  "timelineEra": "conquest",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1446_traditional_web_short.txt"
+    }
+  }
+}

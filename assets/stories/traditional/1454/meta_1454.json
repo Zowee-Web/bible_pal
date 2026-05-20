@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1454,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_15_V3_AUDIO_FIRST",
+  "title": "The Shunammite Returns",
+  "scriptureAnchor": "2 Kings 8:1-6",
+  "scriptureAnchorId": "2_kings_8_1-6",
+  "bibleStoryKey": "shunammite_returns_after_famine",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "themeTags": [
+    "seven_years_of_famine",
+    "shunammite_to_philistia_and_back",
+    "gehazi_tells_kings_story",
+    "providential_convergence_at_court",
+    "restoration_of_house_and_field"
+  ],
+  "emotionalTags": [
+    "weary",
+    "tender",
+    "settled",
+    "vindicated",
+    "trusting",
+    "grateful"
+  ],
+  "primaryCharacterId": "shunammite_woman",
+  "primaryCharacterDisplayName": "Shunammite Woman",
+  "bibleOrderIndex": 312,
+  "timelineEra": "divided_monarchy",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1454_traditional_web_short.txt"
+    }
+  }
+}

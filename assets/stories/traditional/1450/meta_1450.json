@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1450,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_15_V3_AUDIO_FIRST",
+  "title": "The Writing on the Wall",
+  "scriptureAnchor": "Daniel 5:1-30",
+  "scriptureAnchorId": "daniel_5_1-30",
+  "bibleStoryKey": "belshazzar_writing_on_wall",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "themeTags": [
+    "belshazzars_feast",
+    "vessels_of_jerusalem_temple",
+    "fingers_writing_on_plaster",
+    "mene_mene_tekel_upharsin",
+    "kingdom_given_to_medes_and_persians"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "fearful",
+    "awed",
+    "solemn",
+    "tense",
+    "stunned"
+  ],
+  "primaryCharacterId": "daniel",
+  "primaryCharacterDisplayName": "Daniel",
+  "bibleOrderIndex": 432,
+  "timelineEra": "babylonian_exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1450_traditional_web_short.txt"
+    }
+  }
+}
