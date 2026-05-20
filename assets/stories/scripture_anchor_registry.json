@@ -3604,6 +3604,46 @@
       "moodTags": [
         "anxious"
       ]
+    },
+    {
+      "scriptureAnchorId": "luke_7_11-17",
+      "bibleStoryKey": "widow_of_nain_son_raised",
+      "bibleSourceRef": "Luke 7:11-17",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_50_22-26",
+      "bibleStoryKey": "joseph_deathbed_oath_carry_up_bones",
+      "bibleSourceRef": "Genesis 50:22-26",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "hebrews_12_18-24",
+      "bibleStoryKey": "two_mountains_sinai_and_zion",
+      "bibleSourceRef": "Hebrews 12:18-24",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "exodus_34_29-35",
+      "bibleStoryKey": "moses_shining_face_and_veil",
+      "bibleSourceRef": "Exodus 34:29-35",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "daniel_3_19-25",
+      "bibleStoryKey": "fourth_in_the_furnace",
+      "bibleSourceRef": "Daniel 3:19-25",
+      "moodTags": [
+        "anxious"
+      ]
     }
   ]
 }

@@ -6014,6 +6014,71 @@
       "emotionalShape": "storm_into_quiet_into_unanswered_question",
       "tagsComplete": true,
       "narratorStance": "scene-immersive"
+    },
+    {
+      "storyId": 1470,
+      "anchor": "Luke 7:11-17",
+      "mood": "grateful",
+      "era": "jesus_ministry",
+      "character": "Widow of Nain",
+      "narrativeType": "raising_at_the_gate",
+      "subTexture": "two_processions_meet_at_city_gate",
+      "majorMotif": "jesus_gave_him_back_to_his_mother",
+      "emotionalShape": "funeral_into_silence_into_restoration",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive"
+    },
+    {
+      "storyId": 1466,
+      "anchor": "Genesis 50:22-26",
+      "mood": "hurting",
+      "era": "patriarchs",
+      "character": "Joseph",
+      "narrativeType": "deathbed_oath_carrying_promise",
+      "subTexture": "coffin_in_egypt_with_promise_inside",
+      "majorMotif": "joseph_dies_with_eyes_on_the_land",
+      "emotionalShape": "long_arc_compressed_in_a_dying_word",
+      "tagsComplete": true,
+      "narratorStance": "story-immersive"
+    },
+    {
+      "storyId": 1467,
+      "anchor": "Hebrews 12:18-24",
+      "mood": "encouraging",
+      "era": "early_church",
+      "character": "Author of Hebrews",
+      "narrativeType": "epistolary_contrast",
+      "subTexture": "two_mountains_set_side_by_side",
+      "majorMotif": "you_have_not_come_to_sinai_but_to_zion",
+      "emotionalShape": "terror_named_then_displaced_by_gathering",
+      "tagsComplete": true,
+      "narratorStance": "story-immersive"
+    },
+    {
+      "storyId": 1468,
+      "anchor": "Exodus 34:29-35",
+      "mood": "brave_courage",
+      "era": "exodus",
+      "character": "Moses",
+      "narrativeType": "encounter_and_veil_rhythm",
+      "subTexture": "skin_of_face_shining_under_cloth",
+      "majorMotif": "moses_moves_between_speakings",
+      "emotionalShape": "encounter_carried_back_into_camp",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive"
+    },
+    {
+      "storyId": 1469,
+      "anchor": "Daniel 3:19-25",
+      "mood": "anxious",
+      "era": "babylonian_exile",
+      "character": "Shadrach, Meshach, and Abednego",
+      "narrativeType": "deliverance_in_the_furnace",
+      "subTexture": "four_men_loose_walking_in_fire",
+      "majorMotif": "fourth_like_son_of_the_gods",
+      "emotionalShape": "fury_into_astonishment_at_the_mouth_of_fire",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive"
     }
   ]
 }

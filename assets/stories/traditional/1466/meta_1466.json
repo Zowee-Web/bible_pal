@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1466,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_17_V3_QUALITY_EXPERIMENT",
+  "title": "Joseph's Bones",
+  "scriptureAnchor": "Genesis 50:22-26",
+  "scriptureAnchorId": "genesis_50_22-26",
+  "bibleStoryKey": "joseph_deathbed_oath_carry_up_bones",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "joseph_one_hundred_ten_years",
+    "ephraim_to_third_generation",
+    "god_will_surely_visit_you",
+    "carry_up_my_bones",
+    "coffin_in_egypt_promise_held"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "tender",
+    "reverent",
+    "trusting",
+    "hopeful",
+    "settled"
+  ],
+  "primaryCharacterId": "joseph",
+  "primaryCharacterDisplayName": "Joseph",
+  "bibleOrderIndex": 60,
+  "timelineEra": "patriarchs",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1466_traditional_web_short.txt"
+    }
+  }
+}

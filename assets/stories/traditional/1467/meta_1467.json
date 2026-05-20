@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1467,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_17_V3_QUALITY_EXPERIMENT",
+  "title": "Not Mount Sinai, but Mount Zion",
+  "scriptureAnchor": "Hebrews 12:18-24",
+  "scriptureAnchorId": "hebrews_12_18-24",
+  "bibleStoryKey": "two_mountains_sinai_and_zion",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "mountain_burning_with_fire",
+    "moses_terrified_and_trembling",
+    "city_of_living_god_heavenly_jerusalem",
+    "innumerable_multitudes_of_angels",
+    "blood_of_sprinkling_speaks_better_than_abel"
+  ],
+  "emotionalTags": [
+    "encouraged",
+    "awed",
+    "reverent",
+    "hopeful",
+    "settled",
+    "trusting"
+  ],
+  "primaryCharacterId": "author_of_hebrews",
+  "primaryCharacterDisplayName": "Author of Hebrews",
+  "bibleOrderIndex": 767,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1467_traditional_web_short.txt"
+    }
+  }
+}

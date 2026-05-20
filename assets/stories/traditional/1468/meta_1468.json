@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1468,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_17_V3_QUALITY_EXPERIMENT",
+  "title": "The Veil on Moses' Face",
+  "scriptureAnchor": "Exodus 34:29-35",
+  "scriptureAnchorId": "exodus_34_29-35",
+  "bibleStoryKey": "moses_shining_face_and_veil",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "themeTags": [
+    "two_tablets_of_testimony",
+    "skin_of_face_shone",
+    "people_afraid_to_come_near",
+    "veil_on_and_off",
+    "between_speaking_with_yahweh_and_camp"
+  ],
+  "emotionalTags": [
+    "brave",
+    "awed",
+    "reverent",
+    "settled",
+    "trusting",
+    "earnest"
+  ],
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "bibleOrderIndex": 80,
+  "timelineEra": "exodus",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1468_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1469,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_17_V3_QUALITY_EXPERIMENT",
+  "title": "The Fourth in the Fire",
+  "scriptureAnchor": "Daniel 3:19-25",
+  "scriptureAnchorId": "daniel_3_19-25",
+  "bibleStoryKey": "fourth_in_the_furnace",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "furnace_heated_seven_times_more",
+    "shadrach_meshach_abednego_bound",
+    "soldiers_killed_at_mouth_of_furnace",
+    "four_men_loose_walking_in_fire",
+    "fourth_like_son_of_gods"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "awed",
+    "tense",
+    "vindicated",
+    "trusting",
+    "hopeful"
+  ],
+  "primaryCharacterId": "shadrach_meshach_abednego",
+  "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
+  "bibleOrderIndex": 428,
+  "timelineEra": "babylonian_exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1469_traditional_web_short.txt"
+    }
+  }
+}
