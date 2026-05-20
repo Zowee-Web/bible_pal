@@ -50,5 +50,11 @@
     "short": {
       "storyText": "story_1316_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "burnout"
+  ],
+  "secondaryLifeSituationTags": [
+    "feeling_inadequate"
+  ]
 }

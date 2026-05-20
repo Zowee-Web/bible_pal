@@ -50,5 +50,11 @@
     "short": {
       "storyText": "story_1431_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "quiet_calling"
+  ],
+  "secondaryLifeSituationTags": [
+    "quiet_provision"
+  ]
 }

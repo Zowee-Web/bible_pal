@@ -55,5 +55,11 @@
   },
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
-  "primaryCharacterDisplayName": "Jesus"
+  "primaryCharacterDisplayName": "Jesus",
+  "primaryLifeSituationTags": [
+    "sinking_in_fear"
+  ],
+  "secondaryLifeSituationTags": [
+    "wavering_faith"
+  ]
 }

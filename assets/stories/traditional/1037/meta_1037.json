@@ -53,5 +53,12 @@
   "reflectionText": "The coat changed hands twice. First when the brethren stripped it from Joseph's body. Then when they dipped it in the blood of a kid and brought it unto their father. The same garment that had been a sign of love became the instrument of grief.\n\nWhat Jacob mourned was not only the loss of a son. It was the loss of the particular son he had loved most visibly, most openly, in a manner that all around him could see and resent. The favouring that made the coat also made the hatred, and the hatred made the pit.\n\nHurt seldom arriveth from a single quarter. It layereth — the brethren's envy, Joseph's solitude, Jacob's grief that would not be comforted, Reuben's failed deliverance. Every soul in this account carrieth a wound he helped to make. The pit is empty and dry, and none cometh away whole.",
   "timelineEra": "patriarchs",
   "primaryCharacterId": "joseph",
-  "primaryCharacterDisplayName": "Joseph"
+  "primaryCharacterDisplayName": "Joseph",
+  "primaryLifeSituationTags": [
+    "betrayal_by_family"
+  ],
+  "secondaryLifeSituationTags": [
+    "family_estrangement",
+    "unjust_persecution"
+  ]
 }

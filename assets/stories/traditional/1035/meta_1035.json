@@ -68,5 +68,11 @@
   "reflectionText": "Gideon was hiding grain in a winepress when God called him a mighty man of valour. He felt not mighty. He felt small and forgotten, of the poorest family in the weakest tribe.\n\nGod did not contend with the feeling. He said only, \"Surely I will be with thee.\" What labour before thee seemeth too great this day? What if thou art not appointed to bear it alone?",
   "timelineEra": "judges",
   "primaryCharacterId": "gideon",
-  "primaryCharacterDisplayName": "Gideon"
+  "primaryCharacterDisplayName": "Gideon",
+  "primaryLifeSituationTags": [
+    "feeling_inadequate"
+  ],
+  "secondaryLifeSituationTags": [
+    "reluctant_obedience"
+  ]
 }

@@ -45,5 +45,11 @@
     "short": {
       "storyText": "story_1163_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "surrender_to_god"
+  ],
+  "secondaryLifeSituationTags": [
+    "quiet_calling"
+  ]
 }

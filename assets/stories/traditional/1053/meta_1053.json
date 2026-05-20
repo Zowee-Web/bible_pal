@@ -56,5 +56,11 @@
   "reflectionText": "He looked for fire and great works, but was bidden wash in a common river. What cometh to pass when the answer to thy deepest need beareth no likeness to what thou hadst imagined?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "naaman",
-  "primaryCharacterDisplayName": "Naaman"
+  "primaryCharacterDisplayName": "Naaman",
+  "primaryLifeSituationTags": [
+    "humbling_to_heal"
+  ],
+  "secondaryLifeSituationTags": [
+    "illness"
+  ]
 }

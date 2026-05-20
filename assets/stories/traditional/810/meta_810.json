@@ -49,5 +49,11 @@
   "reflectionText": "Pain in stories often looks like walking through seasons of loss or disappointment. These narratives show that sorrow and hope can exist together. And even a small step forward can be enough for today.",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
-  "primaryCharacterDisplayName": "Jesus"
+  "primaryCharacterDisplayName": "Jesus",
+  "primaryLifeSituationTags": [
+    "secret_shame"
+  ],
+  "secondaryLifeSituationTags": [
+    "unexpected_grace"
+  ]
 }

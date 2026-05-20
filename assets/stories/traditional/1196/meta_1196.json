@@ -45,5 +45,12 @@
     "short": {
       "storyText": "story_1196_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "let_someone_down"
+  ],
+  "secondaryLifeSituationTags": [
+    "restoration_after_loss",
+    "unexpected_grace"
+  ]
 }

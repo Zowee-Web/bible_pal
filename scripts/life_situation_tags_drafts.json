@@ -1,0 +1,84 @@
+{
+  "$schema": "life_situation_tags_drafts_schema",
+  "version": 1,
+  "description": "Holding pen for Life Situation Tags that don't yet have ≥2 strong story matches in the seed map. Drafts are NOT loaded by the compliance test or the CLI. A draft graduates to assets/stories/life_situation_tags_registry.json once a second strong story carries it. If a draft never graduates after 2-3 batches, kill it.",
+  "drafts": [
+    {
+      "tagId": "borrowed_item_lost",
+      "displayName": "Borrowed Item Lost",
+      "description": "I lost or damaged something that belonged to someone else. Panic, responsibility, embarrassment, hope of restoration.",
+      "strongAnchors": [1196],
+      "note": "Load-bearing motif for the v1 motivating example (Borrowed Axe → 1196). Promote when a second clear borrowed-and-lost story enters the corpus. Until then, 1196 is reachable via let_someone_down + restoration_after_loss."
+    },
+    {
+      "tagId": "restitution",
+      "displayName": "Restitution",
+      "description": "Making things right materially after a wrong — paying back, returning, replacing. Distinct from forgiveness because the action is restorative, not relational.",
+      "strongAnchors": [1005],
+      "note": "Zacchaeus only. Watch for Onesimus (Philemon) or others to graduate."
+    },
+    {
+      "tagId": "desire_to_change",
+      "displayName": "Desire to Change",
+      "description": "I want to be different — and I'm doing something visible about it.",
+      "strongAnchors": [1005],
+      "note": "Zacchaeus only. Could graduate with Saul/Paul conversion arc once tagged."
+    },
+    {
+      "tagId": "answered_prayer",
+      "displayName": "Answered Prayer",
+      "description": "The thing I asked for came. The story sits after the answer, in the keeping of vows or in joy.",
+      "strongAnchors": [1169],
+      "note": "Hannah-dedicates-Samuel only. Could graduate via Sarah's joy or Elizabeth + John the Baptist."
+    },
+    {
+      "tagId": "carried_by_friends",
+      "displayName": "Carried by Friends",
+      "description": "I couldn't get there myself; people who loved me brought me. Distinct from quiet_provision because the carriers are personally known.",
+      "strongAnchors": [1085],
+      "note": "Paralytic through roof only. Watch for other friend-mediated healings."
+    },
+    {
+      "tagId": "persistent_asking",
+      "displayName": "Persistent Asking",
+      "description": "Asking again, louder, refusing to be hushed when the crowd wants me quiet.",
+      "strongAnchors": [1101],
+      "note": "Blind Bartimaeus only. Persistent widow parable would graduate this if added."
+    },
+    {
+      "tagId": "undeserved_mercy",
+      "displayName": "Undeserved Mercy",
+      "description": "I was caught in the act, and the verdict went the other way. Distinct from forgiveness_received because the wrong is undeniable and public.",
+      "strongAnchors": [1098],
+      "note": "Woman caught in adultery only. Could graduate via the thief on the cross."
+    },
+    {
+      "tagId": "devotion_dismissed",
+      "displayName": "Devotion Dismissed",
+      "description": "I gave something extravagant out of love and was told it was foolish or wasteful.",
+      "strongAnchors": [1093],
+      "note": "Woman anoints Jesus's feet only. Could graduate via the widow's two mites."
+    },
+    {
+      "tagId": "suicidal_despair",
+      "displayName": "Suicidal Despair",
+      "description": "Wanting to stop existing — said plainly, not metaphorically. The honest words are part of the story.",
+      "strongAnchors": [1144],
+      "note": "Elijah under juniper only. Could graduate via Jonah ('better for me to die') or Job. Sensitive tag — keep description grounded, do not route to general sadness."
+    },
+    {
+      "tagId": "trust_in_scarcity",
+      "displayName": "Trust in Scarcity",
+      "description": "Being asked to give from what you barely have, with the promise that the well won't go dry.",
+      "strongAnchors": [1039],
+      "note": "Elijah + widow of Zarephath only. Could graduate via the widow's mite or feeding-of-5000."
+    },
+    {
+      "tagId": "help_to_strangers",
+      "displayName": "Help to Strangers",
+      "description": "Stopping for someone who is not your problem — when others walked past.",
+      "strongAnchors": [1084],
+      "note": "Good Samaritan only. Could graduate via Onesiphorus or hospitality stories."
+    }
+  ]
+}

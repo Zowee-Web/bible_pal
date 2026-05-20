@@ -48,5 +48,12 @@
     "short": {
       "storyText": "story_1265_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "starting_over"
+  ],
+  "secondaryLifeSituationTags": [
+    "loss_of_spouse",
+    "coming_home"
+  ]
 }

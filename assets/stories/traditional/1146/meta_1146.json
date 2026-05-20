@@ -48,5 +48,12 @@
     "short": {
       "storyText": "story_1146_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "forgiveness_given"
+  ],
+  "secondaryLifeSituationTags": [
+    "mercy_to_enemies",
+    "restoration_after_loss"
+  ]
 }

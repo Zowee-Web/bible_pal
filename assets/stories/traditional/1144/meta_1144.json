@@ -45,5 +45,11 @@
     "short": {
       "storyText": "story_1144_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "burnout"
+  ],
+  "secondaryLifeSituationTags": [
+    "prayer_in_anguish"
+  ]
 }

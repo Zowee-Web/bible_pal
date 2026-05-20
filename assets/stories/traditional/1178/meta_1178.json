@@ -45,5 +45,12 @@
     "short": {
       "storyText": "story_1178_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "unjust_imprisonment"
+  ],
+  "secondaryLifeSituationTags": [
+    "forgotten_in_waiting",
+    "delayed_promise"
+  ]
 }

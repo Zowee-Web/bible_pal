@@ -36,5 +36,11 @@
     "reflection": {
       "reflectionText": "reflection_1100_traditional_web.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "mercy_to_enemies"
+  ],
+  "secondaryLifeSituationTags": [
+    "reluctant_obedience"
+  ]
 }

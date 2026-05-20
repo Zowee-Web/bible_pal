@@ -63,5 +63,12 @@
   },
   "timelineEra": "judges",
   "primaryCharacterId": "ruth",
-  "primaryCharacterDisplayName": "Ruth"
+  "primaryCharacterDisplayName": "Ruth",
+  "primaryLifeSituationTags": [
+    "loyalty_in_loss"
+  ],
+  "secondaryLifeSituationTags": [
+    "loss_of_spouse",
+    "starting_over"
+  ]
 }

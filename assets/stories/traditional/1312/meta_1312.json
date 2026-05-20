@@ -50,5 +50,11 @@
     "short": {
       "storyText": "story_1312_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "delayed_promise"
+  ],
+  "secondaryLifeSituationTags": [
+    "unmet_longing"
+  ]
 }

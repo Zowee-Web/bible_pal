@@ -45,5 +45,12 @@
     "short": {
       "storyText": "story_1128_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "costly_witness"
+  ],
+  "secondaryLifeSituationTags": [
+    "mercy_to_enemies",
+    "unjust_persecution"
+  ]
 }

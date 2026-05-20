@@ -50,5 +50,12 @@
     "broken",
     "seeking",
     "alone"
+  ],
+  "primaryLifeSituationTags": [
+    "unexpected_grace"
+  ],
+  "secondaryLifeSituationTags": [
+    "secret_shame",
+    "seen_and_known"
   ]
 }

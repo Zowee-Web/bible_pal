@@ -47,5 +47,12 @@
     "short": {
       "storyText": "story_1124_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "wavering_faith"
+  ],
+  "secondaryLifeSituationTags": [
+    "sinking_in_fear",
+    "presence_in_the_storm"
+  ]
 }

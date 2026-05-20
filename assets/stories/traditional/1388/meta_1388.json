@@ -50,5 +50,11 @@
     "short": {
       "storyText": "story_1388_traditional_web_short.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "wavering_faith"
+  ],
+  "secondaryLifeSituationTags": [
+    "unjust_imprisonment"
+  ]
 }

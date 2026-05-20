@@ -63,5 +63,13 @@
   },
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "prodigal_son",
-  "primaryCharacterDisplayName": "Prodigal Son"
+  "primaryCharacterDisplayName": "Prodigal Son",
+  "primaryLifeSituationTags": [
+    "coming_home"
+  ],
+  "secondaryLifeSituationTags": [
+    "family_estrangement",
+    "forgiveness_received",
+    "bitter_failure"
+  ]
 }

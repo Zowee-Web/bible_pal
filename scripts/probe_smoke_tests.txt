@@ -1,0 +1,51 @@
+# Life Situation Tags v1 — probe regression fixtures
+#
+# Format: <query> | <expectation>
+#
+# Expectations:
+#   MUST_INCLUDE:<id>[,<id>...]  — every listed storyId must appear in results
+#   MUST_EXCLUDE:<id>[,<id>...]  — none of the listed storyIds may appear
+#   NO_MATCH                     — the probe must return zero results
+#
+# These are deterministic regression checks against the Mode B keyword-overlap
+# CLI. They are NOT proof of natural-language understanding. A passing suite
+# means "retrieval behavior is unchanged since this fixture was last
+# reviewed," not "the system understands these queries."
+#
+# Add new entries when you find a probe whose result should remain stable
+# across future vocabulary changes. Write probes BEFORE running them — the
+# probes you write blind are signal; the ones you write after seeing results
+# are confirmation bias.
+#
+# Lines starting with '#' and blank lines are ignored.
+
+# --- positive: real situations should surface the right anchor ---
+I let my friend down                          | MUST_INCLUDE:1196
+a friend borrowed something and lost it       | MUST_INCLUDE:1196
+I feel forgotten while waiting                | MUST_INCLUDE:1389
+I keep running from what I know I should do   | MUST_INCLUDE:1007
+
+# --- negative: surface-word overlaps must not produce false positives ---
+I lost my faith                               | MUST_EXCLUDE:1196
+I lost my child                               | NO_MATCH
+I feel restored                               | NO_MATCH
+
+# --- exploratory probes: written blind before execution ---
+# Predictions committed before any run. Failures here are read as:
+#   (a) vocabulary gap   — tag for this situation doesn't exist
+#   (b) corpus gap       — tag exists but no tagged story
+#   (c) lexical hole     — vocab + story exist but Mode B's lack of stemming
+#                          / synonyms prevents the keyword overlap from firing
+# Most predicted NO_MATCH outcomes here are (c) — the most expensive failure
+# mode because the situation is named and the story exists, but the user's
+# natural phrasing never reaches the retrieval surface.
+I betrayed someone I love                                       | NO_MATCH
+I feel like nobody sees me at home                              | NO_MATCH
+God seems silent to me                                          | NO_MATCH
+I am at the end of my rope                                      | NO_MATCH
+I want to come back but I do not know if I would be welcome     | NO_MATCH
+I am carrying too much by myself                                | NO_MATCH
+I am scared to try again after how badly I failed               | NO_MATCH
+I do not know how to make things right                          | NO_MATCH
+I need a second chance                                          | MUST_INCLUDE:1130
+I am being persecuted unjustly                                  | NO_MATCH

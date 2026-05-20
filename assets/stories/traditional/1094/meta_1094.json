@@ -44,5 +44,11 @@
     "reflection": {
       "reflectionText": "reflection_1094_traditional_web.txt"
     }
-  }
+  },
+  "primaryLifeSituationTags": [
+    "running_from_calling"
+  ],
+  "secondaryLifeSituationTags": [
+    "reluctant_obedience"
+  ]
 }
