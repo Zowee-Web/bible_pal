@@ -3524,6 +3524,86 @@
       "moodTags": [
         "joyful"
       ]
+    },
+    {
+      "scriptureAnchorId": "joshua_24_14-25",
+      "bibleStoryKey": "covenant_at_shechem",
+      "bibleSourceRef": "Joshua 24:14-25",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "deuteronomy_26_1-11",
+      "bibleStoryKey": "firstfruits_wandering_aramean_liturgy",
+      "bibleSourceRef": "Deuteronomy 26:1-11",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "ruth_4_13-22",
+      "bibleStoryKey": "obed_to_jesse_to_david",
+      "bibleSourceRef": "Ruth 4:13-22",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "ezra_3_10-13",
+      "bibleStoryKey": "second_temple_foundation_weeping_and_shouting",
+      "bibleSourceRef": "Ezra 3:10-13",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_kings_18_30-39",
+      "bibleStoryKey": "fire_falls_on_carmel_altar",
+      "bibleSourceRef": "1 Kings 18:30-39",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "daniel_6_16-23",
+      "bibleStoryKey": "daniel_in_lions_den_kings_vigil",
+      "bibleSourceRef": "Daniel 6:16-23",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "acts_12_6-11",
+      "bibleStoryKey": "peter_freed_from_prison_by_angel",
+      "bibleSourceRef": "Acts 12:6-11",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "mark_5_25-34",
+      "bibleStoryKey": "woman_with_issue_of_blood_touches_hem",
+      "bibleSourceRef": "Mark 5:25-34",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_kings_6_15-17",
+      "bibleStoryKey": "elisha_servant_sees_chariots_of_fire",
+      "bibleSourceRef": "2 Kings 6:15-17",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "mark_4_35-41",
+      "bibleStoryKey": "jesus_calms_storm_who_then_is_this",
+      "bibleSourceRef": "Mark 4:35-41",
+      "moodTags": [
+        "anxious"
+      ]
     }
   ]
 }

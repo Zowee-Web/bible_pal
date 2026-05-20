@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1462,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_16_V3_MIXED_REGISTER",
+  "title": "Peter's Chains",
+  "scriptureAnchor": "Acts 12:6-11",
+  "scriptureAnchorId": "acts_12_6-11",
+  "bibleStoryKey": "peter_freed_from_prison_by_angel",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "sleeping_between_two_soldiers",
+    "chains_fell_off_hands",
+    "iron_gate_opened_by_itself",
+    "now_i_truly_know",
+    "house_of_mary_the_mother_of_john"
+  ],
+  "emotionalTags": [
+    "encouraged",
+    "awed",
+    "vindicated",
+    "hopeful",
+    "reverent",
+    "trusting"
+  ],
+  "primaryCharacterId": "peter",
+  "primaryCharacterDisplayName": "Peter",
+  "bibleOrderIndex": 705,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1462_traditional_web_short.txt"
+    }
+  }
+}

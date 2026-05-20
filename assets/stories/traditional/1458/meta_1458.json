@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1458,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_16_V3_MIXED_REGISTER",
+  "title": "The Line of David Born",
+  "scriptureAnchor": "Ruth 4:13-22",
+  "scriptureAnchorId": "ruth_4_13-22",
+  "bibleStoryKey": "obed_to_jesse_to_david",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "themeTags": [
+    "boaz_and_ruth_have_son_obed",
+    "naomi_nurses_the_child",
+    "obed_father_of_jesse",
+    "jesse_father_of_david",
+    "moabite_woman_in_messianic_line"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "tender",
+    "settled",
+    "hopeful",
+    "reverent",
+    "vindicated"
+  ],
+  "primaryCharacterId": "ruth",
+  "primaryCharacterDisplayName": "Ruth",
+  "bibleOrderIndex": 184,
+  "timelineEra": "judges",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1458_traditional_web_short.txt"
+    }
+  }
+}

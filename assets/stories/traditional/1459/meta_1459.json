@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1459,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_16_V3_MIXED_REGISTER",
+  "title": "The Foundation Laid",
+  "scriptureAnchor": "Ezra 3:10-13",
+  "scriptureAnchorId": "ezra_3_10-13",
+  "bibleStoryKey": "second_temple_foundation_weeping_and_shouting",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "themeTags": [
+    "foundation_of_second_temple",
+    "old_men_who_saw_first_temple_weep",
+    "young_men_shout_for_joy",
+    "trumpets_and_cymbals_of_asaph",
+    "noise_heard_far_away"
+  ],
+  "emotionalTags": [
+    "encouraged",
+    "tender",
+    "awed",
+    "reverent",
+    "hopeful",
+    "settled"
+  ],
+  "primaryCharacterId": "ezra",
+  "primaryCharacterDisplayName": "Ezra",
+  "bibleOrderIndex": 444,
+  "timelineEra": "return",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1459_traditional_web_short.txt"
+    }
+  }
+}

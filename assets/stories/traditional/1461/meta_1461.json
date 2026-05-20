@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1461,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_16_V3_MIXED_REGISTER",
+  "title": "Daniel in the Lions' Den",
+  "scriptureAnchor": "Daniel 6:16-23",
+  "scriptureAnchorId": "daniel_6_16-23",
+  "bibleStoryKey": "daniel_in_lions_den_kings_vigil",
+  "storyVoiceKey": "VOICE_CHARLOTTE_V3",
+  "themeTags": [
+    "stone_sealed_with_kings_signet",
+    "king_passes_night_fasting",
+    "lamentable_voice_at_dawn",
+    "angel_shut_the_lions_mouths",
+    "daniel_trusted_in_his_god"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "trusting",
+    "watchful",
+    "awed",
+    "hopeful",
+    "vindicated"
+  ],
+  "primaryCharacterId": "daniel",
+  "primaryCharacterDisplayName": "Daniel",
+  "bibleOrderIndex": 433,
+  "timelineEra": "persian_exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1461_traditional_web_short.txt"
+    }
+  }
+}

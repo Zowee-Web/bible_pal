@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1457,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_16_V3_MIXED_REGISTER",
+  "title": "A Wandering Aramean",
+  "scriptureAnchor": "Deuteronomy 26:1-11",
+  "scriptureAnchorId": "deuteronomy_26_1-11",
+  "bibleStoryKey": "firstfruits_wandering_aramean_liturgy",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "firstfruits_in_a_basket",
+    "wandering_aramean_was_my_father",
+    "yahweh_brought_us_out_of_egypt",
+    "land_flowing_with_milk_and_honey",
+    "liturgy_of_remembered_history"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "reverent",
+    "tender",
+    "settled",
+    "trusting",
+    "humble"
+  ],
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "bibleOrderIndex": 165,
+  "timelineEra": "exodus",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1457_traditional_web_short.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1464,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_16_V3_MIXED_REGISTER",
+  "title": "The Mountain Full of Chariots",
+  "scriptureAnchor": "2 Kings 6:15-17",
+  "scriptureAnchorId": "2_kings_6_15-17",
+  "bibleStoryKey": "elisha_servant_sees_chariots_of_fire",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "army_of_aram_surrounds_dothan",
+    "those_with_us_are_more_than_those_with_them",
+    "yahweh_open_his_eyes",
+    "mountain_full_of_horses_and_chariots_of_fire",
+    "elisha_at_dothan"
+  ],
+  "emotionalTags": [
+    "encouraged",
+    "awed",
+    "trusting",
+    "hopeful",
+    "settled",
+    "vindicated"
+  ],
+  "primaryCharacterId": "elisha",
+  "primaryCharacterDisplayName": "Elisha",
+  "bibleOrderIndex": 307,
+  "timelineEra": "divided_monarchy",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1464_traditional_web_short.txt"
+    }
+  }
+}

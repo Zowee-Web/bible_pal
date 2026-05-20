@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1463,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_OPUS_BATCH_16_V3_MIXED_REGISTER",
+  "title": "The Hem of His Garment",
+  "scriptureAnchor": "Mark 5:25-34",
+  "scriptureAnchorId": "mark_5_25-34",
+  "bibleStoryKey": "woman_with_issue_of_blood_touches_hem",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "themeTags": [
+    "twelve_years_of_bleeding",
+    "reaching_through_the_crowd",
+    "who_touched_my_clothes",
+    "daughter_your_faith_has_made_you_well",
+    "walked_alive_to_her_own_door"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "tender",
+    "reverent",
+    "awed",
+    "vindicated",
+    "trusting"
+  ],
+  "primaryCharacterId": "woman_with_issue_of_blood",
+  "primaryCharacterDisplayName": "Woman with Issue of Blood",
+  "bibleOrderIndex": 645,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1463_traditional_web_short.txt"
+    }
+  }
+}
