@@ -3644,6 +3644,46 @@
       "moodTags": [
         "anxious"
       ]
+    },
+    {
+      "scriptureAnchorId": "psalm_6_1-7",
+      "bibleStoryKey": "davids_psalm_of_weariness",
+      "bibleSourceRef": "Psalm 6:1-7",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "psalm_96_1-13",
+      "bibleStoryKey": "psalm_96_communal_sung_praise",
+      "bibleSourceRef": "Psalm 96:1-13",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_samuel_7_18-29",
+      "bibleStoryKey": "davids_prayer_after_the_covenant",
+      "bibleSourceRef": "2 Samuel 7:18-29",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "psalm_133_1-3",
+      "bibleStoryKey": "psalm_133_song_of_ascent_unity",
+      "bibleSourceRef": "Psalm 133:1-3",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_kings_22_14-20",
+      "bibleStoryKey": "huldah_prophesies_to_josiahs_men",
+      "bibleSourceRef": "2 Kings 22:14-20",
+      "moodTags": [
+        "brave_courage"
+      ]
     }
   ]
 }

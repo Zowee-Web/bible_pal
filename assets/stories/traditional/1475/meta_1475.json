@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1475,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_18_V3_QUALITY_EXPERIMENT",
+  "title": "Huldah Prophesies",
+  "scriptureAnchor": "2 Kings 22:14-20",
+  "scriptureAnchorId": "2_kings_22_14-20",
+  "bibleStoryKey": "huldah_prophesies_to_josiahs_men",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "themeTags": [
+    "huldah_the_prophetess",
+    "second_quarter_of_jerusalem",
+    "word_for_the_place_and_word_for_the_king",
+    "gathered_to_grave_in_peace",
+    "sequel_to_book_found_in_the_house"
+  ],
+  "emotionalTags": [
+    "brave",
+    "resolute",
+    "awed",
+    "reverent",
+    "earnest",
+    "settled"
+  ],
+  "primaryCharacterId": "huldah",
+  "primaryCharacterDisplayName": "Huldah",
+  "bibleOrderIndex": 409,
+  "timelineEra": "pre_exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1475_traditional_web_short.txt"
+    }
+  }
+}

@@ -6079,6 +6079,71 @@
       "emotionalShape": "fury_into_astonishment_at_the_mouth_of_fire",
       "tagsComplete": true,
       "narratorStance": "scene-immersive"
+    },
+    {
+      "storyId": 1471,
+      "anchor": "Psalm 6:1-7",
+      "mood": "weary",
+      "era": "wisdom",
+      "character": "David",
+      "narrativeType": "psalm_of_lament",
+      "subTexture": "lamp_burning_low_drenched_couch",
+      "majorMotif": "but_you_yahweh_how_long",
+      "emotionalShape": "weariness_named_then_passed_to_others_to_say",
+      "tagsComplete": true,
+      "narratorStance": "story-immersive"
+    },
+    {
+      "storyId": 1472,
+      "anchor": "Psalm 96:1-13",
+      "mood": "joyful",
+      "era": "wisdom",
+      "character": "Psalmist",
+      "narrativeType": "psalm_of_communal_praise",
+      "subTexture": "trumpets_harps_cymbals_in_the_courts",
+      "majorMotif": "fathers_mothers_children_sing_together",
+      "emotionalShape": "song_of_many_voices_rising_above_gates",
+      "tagsComplete": true,
+      "narratorStance": "story-immersive"
+    },
+    {
+      "storyId": 1473,
+      "anchor": "2 Samuel 7:18-29",
+      "mood": "grateful",
+      "era": "kingdom",
+      "character": "David",
+      "narrativeType": "embodied_prayer",
+      "subTexture": "sandals_off_sitting_on_the_floor",
+      "majorMotif": "who_am_i_lord_yahweh",
+      "emotionalShape": "shepherd_to_fugitive_to_king_to_promised_house",
+      "tagsComplete": true,
+      "narratorStance": "story-immersive"
+    },
+    {
+      "storyId": 1474,
+      "anchor": "Psalm 133:1-3",
+      "mood": "calm_peaceful",
+      "era": "wisdom",
+      "character": "Psalmist",
+      "narrativeType": "song_of_ascent",
+      "subTexture": "oil_on_aarons_beard_dew_on_hermon",
+      "majorMotif": "blessing_comes_down_like_dew",
+      "emotionalShape": "climbing_together_no_longer_alone",
+      "tagsComplete": true,
+      "narratorStance": "story-immersive"
+    },
+    {
+      "storyId": 1475,
+      "anchor": "2 Kings 22:14-20",
+      "mood": "brave_courage",
+      "era": "pre_exile",
+      "character": "Huldah",
+      "narrativeType": "prophecy_at_her_own_door",
+      "subTexture": "second_quarter_house_of_huldah",
+      "majorMotif": "she_did_not_stand_to_answer",
+      "emotionalShape": "two_words_delivered_then_five_men_walk_back",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive"
     }
   ]
 }

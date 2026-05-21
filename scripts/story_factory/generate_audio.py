@@ -18,10 +18,18 @@ import json
 import os
 import pathlib
 import re
+import shutil
+import subprocess
 import sys
 import time
 import urllib.error
 import urllib.request
+
+# Universal tail-pad applied to every generated mp3 to absorb the v3 TTS
+# tail-clip bug (~200ms occasionally lost on the final word). 400ms is short
+# enough that the listener perceives it as a natural breath after the close,
+# long enough to fully buffer the clip. See feedback_audio_end_clip.md.
+TAIL_PAD_SECONDS = 0.4
 
 from story_voice_registry import (
     validate_story_voice,
@@ -89,7 +97,37 @@ def tts(text: str, outfile: pathlib.Path, voice_id: str,
             f"Audio too small ({len(audio)} bytes) for {outfile.name}"
         )
     outfile.write_bytes(audio)
-    return len(audio)
+    _apply_tail_pad(outfile, TAIL_PAD_SECONDS)
+    return outfile.stat().st_size
+
+
+def _apply_tail_pad(mp3_path: pathlib.Path, duration_seconds: float) -> None:
+    """Append silence to the end of an mp3 via ffmpeg.
+
+    Universal pipeline step. Protects against the v3 TTS tail-clip bug.
+    Replaces the file in place once ffmpeg succeeds. Silently no-ops if
+    ffmpeg is unavailable so the script remains usable in environments
+    that don't have it installed.
+    """
+    if shutil.which("ffmpeg") is None:
+        print(f"    Warning: ffmpeg not found; skipping tail-pad on {mp3_path.name}")
+        return
+
+    tmp_path = mp3_path.with_suffix(".padded.mp3")
+    cmd = [
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-i", str(mp3_path),
+        "-af", f"apad=pad_dur={duration_seconds}",
+        "-codec:a", "libmp3lame", "-b:a", "128k",
+        str(tmp_path),
+    ]
+    try:
+        subprocess.run(cmd, check=True)
+        tmp_path.replace(mp3_path)
+    except subprocess.CalledProcessError as exc:
+        if tmp_path.exists():
+            tmp_path.unlink()
+        print(f"    Warning: ffmpeg pad failed on {mp3_path.name}: {exc}")
 
 
 def main() -> int:
