@@ -219,9 +219,13 @@ def main() -> int:
             continue
         audio_jobs.append((txt_path, outdir / mp3_name, mp3_name))
 
-    # Reflection
+    # Reflection — WEB keeps canonical name; KJV carries lane suffix
+    # so dual-lane reflections produce both files without overwriting.
     refl_name = f"reflection_{sid}_{mode}_{lane}.txt"
-    refl_mp3 = f"audio_{sid}_reflection.mp3"
+    if lane == "web":
+        refl_mp3 = f"audio_{sid}_reflection.mp3"
+    else:
+        refl_mp3 = f"audio_{sid}_reflection_{lane}.mp3"
     refl_path = outdir / refl_name
     if refl_path.exists():
         audio_jobs.append((refl_path, outdir / refl_mp3, refl_mp3))

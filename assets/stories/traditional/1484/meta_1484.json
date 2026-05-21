@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1484,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_20_V3_PHASE_A_WITH_REFLECTION",
+  "title": "The Leper Made Clean",
+  "scriptureAnchor": "Luke 5:12-16",
+  "scriptureAnchorId": "luke_5_12-16",
+  "bibleStoryKey": "leper_healed_jesus_withdrew_to_pray",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "leper_falls_at_jesus_feet",
+    "if_you_want_to_you_can_make_me_clean",
+    "jesus_stretched_out_his_hand_and_touched_him",
+    "show_yourself_to_the_priest",
+    "jesus_withdrew_to_pray_alone"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "reverent",
+    "tender",
+    "awed",
+    "settled",
+    "vindicated"
+  ],
+  "primaryCharacterId": "leper_healed_by_jesus",
+  "primaryCharacterDisplayName": "Leper Healed by Jesus",
+  "bibleOrderIndex": 622,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1484_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1484_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1484_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1484_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "The hand did not draw back from the leprosy. There are hands like that. They are not afraid of what has been kept apart for years.",
+  "reflectionText": "The hand drew not back from the leprosy. There are hands like that. They are not afraid of that which hath been kept apart for years.",
+  "reflectionSource": "claude-opus-4-7"
+}

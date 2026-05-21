@@ -6229,6 +6229,91 @@
         "web",
         "kjv"
       ]
+    },
+    {
+      "storyId": 1481,
+      "anchor": "Lamentations 3:55-58",
+      "mood": "hurting",
+      "era": "prophets",
+      "character": "Jeremiah",
+      "narrativeType": "lament_from_the_pit",
+      "subTexture": "voice_carried_up_from_dungeon",
+      "majorMotif": "you_came_near_in_the_day_i_called",
+      "emotionalShape": "lowest_place_then_hearing_then_redeemed",
+      "tagsComplete": true,
+      "narratorStance": "story-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1482,
+      "anchor": "Acts 20:7-12",
+      "mood": "encouraging",
+      "era": "early_church",
+      "character": "Eutychus",
+      "narrativeType": "fall_and_raising_in_upper_room",
+      "subTexture": "many_lights_and_open_third_floor_window",
+      "majorMotif": "his_life_is_in_him",
+      "emotionalShape": "long_sermon_into_fall_into_life_restored",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1483,
+      "anchor": "Psalm 84:1-7",
+      "mood": "joyful",
+      "era": "wisdom",
+      "character": "Psalmist",
+      "narrativeType": "pilgrim_song_of_ascent",
+      "subTexture": "sparrow_and_swallow_in_temple_eaves",
+      "majorMotif": "they_go_from_strength_to_strength",
+      "emotionalShape": "longing_in_the_road_into_arrival_at_zion",
+      "tagsComplete": true,
+      "narratorStance": "story-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1484,
+      "anchor": "Luke 5:12-16",
+      "mood": "grateful",
+      "era": "jesus_ministry",
+      "character": "Leper",
+      "narrativeType": "healing_by_touch_then_withdrawal",
+      "subTexture": "jesus_hand_on_the_unclean",
+      "majorMotif": "i_want_to_be_made_clean",
+      "emotionalShape": "isolation_into_touch_into_jesus_alone_in_prayer",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1485,
+      "anchor": "Mark 1:35-39",
+      "mood": "calm_peaceful",
+      "era": "jesus_ministry",
+      "character": "Jesus",
+      "narrativeType": "early_prayer_and_movement_onward",
+      "subTexture": "deserted_place_before_dawn",
+      "majorMotif": "let_us_go_to_the_next_towns",
+      "emotionalShape": "solitude_into_being_found_into_going_on",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
     }
   ]
 }

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1483,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_20_V3_PHASE_A_WITH_REFLECTION",
+  "title": "How Lovely Are Your Dwellings",
+  "scriptureAnchor": "Psalm 84:1-7",
+  "scriptureAnchorId": "psalm_84_1-7",
+  "bibleStoryKey": "psalm_of_pilgrims_walking_up_to_zion",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "themeTags": [
+    "pilgrim_song_walking_up_to_jerusalem",
+    "sparrow_and_swallow_nesting_near_altar",
+    "valley_of_weeping_made_into_springs",
+    "they_go_from_strength_to_strength",
+    "blessed_are_those_set_on_pilgrimage"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "longing",
+    "hopeful",
+    "reverent",
+    "trusting",
+    "encouraged"
+  ],
+  "primaryCharacterId": "psalmist",
+  "primaryCharacterDisplayName": "Psalmist",
+  "bibleOrderIndex": 492,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1483_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1483_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1483_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1483_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "The pilgrims sang as they climbed. The dust rose around their sandals. The valley of weeping was on the road, but the road did not end in the valley. It climbed toward Zion in the heat of the day.",
+  "reflectionText": "The pilgrims sang as they climbed. The dust rose round about their sandals. The valley of Baca was on the road, but the road ended not in the valley. It climbed toward Zion in the heat of the day.",
+  "reflectionSource": "claude-opus-4-7"
+}

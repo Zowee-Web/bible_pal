@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1482,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_20_V3_PHASE_A_WITH_REFLECTION",
+  "title": "Eutychus in the Window",
+  "scriptureAnchor": "Acts 20:7-12",
+  "scriptureAnchorId": "acts_20_7-12",
+  "bibleStoryKey": "eutychus_falls_from_window_paul_raises",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "upper_room_at_troas_many_lights",
+    "long_speech_until_midnight",
+    "young_man_falls_from_third_floor",
+    "paul_embraces_him_his_life_is_in_him",
+    "comforted_at_break_of_day"
+  ],
+  "emotionalTags": [
+    "encouraged",
+    "awed",
+    "tender",
+    "settled",
+    "reverent",
+    "comforted"
+  ],
+  "primaryCharacterId": "eutychus",
+  "primaryCharacterDisplayName": "Eutychus",
+  "bibleOrderIndex": 718,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1482_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1482_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1482_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1482_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "By morning, the boy was alive in the upper room. The window he had fallen from was still open. The lights had burned low into the day. Sometimes the fall is real, and the death is real, and the life is still in you.",
+  "reflectionText": "By morning, the young man was alive in the upper chamber. The window he had fallen from was yet open. The lights had burned low into the day. Sometimes the fall is real, and the death is real, and the life is yet in thee.",
+  "reflectionSource": "claude-opus-4-7"
+}

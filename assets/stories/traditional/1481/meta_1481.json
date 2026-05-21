@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1481,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_20_V3_PHASE_A_WITH_REFLECTION",
+  "title": "Out of the Lowest Dungeon",
+  "scriptureAnchor": "Lamentations 3:55-58",
+  "scriptureAnchorId": "lamentations_3_55-58",
+  "bibleStoryKey": "jeremiah_calls_from_the_low_dungeon",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "voice_from_the_lowest_dungeon",
+    "yahweh_came_near_in_the_day_i_called",
+    "do_not_be_afraid",
+    "redeemed_my_life",
+    "lament_carried_up_into_a_book"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "trusting",
+    "vindicated",
+    "settled",
+    "reverent",
+    "earnest"
+  ],
+  "primaryCharacterId": "jeremiah",
+  "primaryCharacterDisplayName": "Jeremiah",
+  "bibleOrderIndex": 760,
+  "timelineEra": "prophets",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1481_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1481_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1481_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1481_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "The pit was dark. The cry rose out of it. The answer had been waiting before the words left his mouth. There are answers like that, in the lowest places, which come before they are asked for.",
+  "reflectionText": "The pit was dark. The cry went up out of it. The answer had been waiting before ever the words were formed in his mouth. There are answers like that, in the low places, which come before they are asked for.",
+  "reflectionSource": "claude-opus-4-7"
+}

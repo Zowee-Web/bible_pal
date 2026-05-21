@@ -3724,6 +3724,46 @@
       "moodTags": [
         "brave_courage"
       ]
+    },
+    {
+      "scriptureAnchorId": "lamentations_3_55-58",
+      "bibleStoryKey": "jeremiah_calls_from_the_low_dungeon",
+      "bibleSourceRef": "Lamentations 3:55-58",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "acts_20_7-12",
+      "bibleStoryKey": "eutychus_falls_from_window_paul_raises",
+      "bibleSourceRef": "Acts 20:7-12",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "psalm_84_1-7",
+      "bibleStoryKey": "psalm_of_pilgrims_walking_up_to_zion",
+      "bibleSourceRef": "Psalm 84:1-7",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_5_12-16",
+      "bibleStoryKey": "leper_healed_jesus_withdrew_to_pray",
+      "bibleSourceRef": "Luke 5:12-16",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "mark_1_35-39",
+      "bibleStoryKey": "jesus_rises_early_to_pray_in_deserted_place",
+      "bibleSourceRef": "Mark 1:35-39",
+      "moodTags": [
+        "calm_peaceful"
+      ]
     }
   ]
 }

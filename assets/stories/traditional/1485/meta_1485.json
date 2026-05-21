@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1485,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_20_V3_PHASE_A_WITH_REFLECTION",
+  "title": "Before the Day Came Up",
+  "scriptureAnchor": "Mark 1:35-39",
+  "scriptureAnchorId": "mark_1_35-39",
+  "bibleStoryKey": "jesus_rises_early_to_pray_in_deserted_place",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "themeTags": [
+    "rose_before_dawn_to_pray_alone",
+    "deserted_place_outside_capernaum",
+    "disciples_came_looking_for_him",
+    "let_us_go_to_the_next_towns",
+    "preaching_throughout_galilee"
+  ],
+  "emotionalTags": [
+    "calm",
+    "settled",
+    "reverent",
+    "earnest",
+    "trusting",
+    "tender"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 624,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1485_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1485_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1485_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1485_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "There is a country outside the town that is empty before the day comes up. He went out to it. He prayed there. When they came looking, he went on with them. The morning went on across the hills behind him.",
+  "reflectionText": "There is a country without the town that is empty before the day cometh up. He went out unto it. He prayed there. When they came looking, he went on with them. The morning went on across the hills behind him.",
+  "reflectionSource": "claude-opus-4-7"
+}
