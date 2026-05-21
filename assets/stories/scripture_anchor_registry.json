@@ -3684,6 +3684,46 @@
       "moodTags": [
         "brave_courage"
       ]
+    },
+    {
+      "scriptureAnchorId": "ecclesiastes_12_1-7",
+      "bibleStoryKey": "preacher_remember_thy_creator_in_youth",
+      "bibleSourceRef": "Ecclesiastes 12:1-7",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "job_19_23-27",
+      "bibleStoryKey": "job_my_redeemer_liveth_from_ash_heap",
+      "bibleSourceRef": "Job 19:23-27",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "mark_14_43-50",
+      "bibleStoryKey": "judas_kiss_arrest_in_gethsemane",
+      "bibleSourceRef": "Mark 14:43-50",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_19_41-44",
+      "bibleStoryKey": "jesus_weeps_over_jerusalem",
+      "bibleSourceRef": "Luke 19:41-44",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "exodus_17_8-13",
+      "bibleStoryKey": "moses_hands_held_up_by_aaron_hur",
+      "bibleSourceRef": "Exodus 17:8-13",
+      "moodTags": [
+        "brave_courage"
+      ]
     }
   ]
 }

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1478,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_19_V3_DUAL_LANE_PILOT",
+  "title": "Judas Came Through the Trees",
+  "scriptureAnchor": "Mark 14:43-50",
+  "scriptureAnchorId": "mark_14_43-50",
+  "bibleStoryKey": "judas_kiss_arrest_in_gethsemane",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "whomever_i_kiss_that_is_he",
+    "rabbi_rabbi_kissed_him",
+    "ear_cut_off_in_garden",
+    "disciples_all_left_him_and_fled",
+    "judas_stood_where_he_kissed_him"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "tense",
+    "solemn",
+    "watchful",
+    "stunned",
+    "reverent"
+  ],
+  "primaryCharacterId": "judas",
+  "primaryCharacterDisplayName": "Judas",
+  "bibleOrderIndex": 687,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1478_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1478_traditional_kjv_short.txt"
+    }
+  }
+}

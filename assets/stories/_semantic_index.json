@@ -6144,6 +6144,91 @@
       "emotionalShape": "two_words_delivered_then_five_men_walk_back",
       "tagsComplete": true,
       "narratorStance": "scene-immersive"
+    },
+    {
+      "storyId": 1476,
+      "anchor": "Ecclesiastes 12:1-7",
+      "mood": "calm_peaceful",
+      "era": "wisdom",
+      "character": "The Preacher",
+      "narrativeType": "wisdom_oracle_to_the_young",
+      "subTexture": "preacher_in_his_own_evening",
+      "majorMotif": "remember_thy_creator_before_the_evil_days",
+      "emotionalShape": "wisdom_handed_back_to_the_young_with_a_name",
+      "tagsComplete": true,
+      "narratorStance": "story-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1477,
+      "anchor": "Job 19:23-27",
+      "mood": "encouraging",
+      "era": "wisdom",
+      "character": "Job",
+      "narrativeType": "confession_from_suffering",
+      "subTexture": "job_on_ash_heap_with_potsherd",
+      "majorMotif": "my_redeemer_liveth_from_the_dust",
+      "emotionalShape": "hope_named_while_in_the_pit",
+      "tagsComplete": true,
+      "narratorStance": "story-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1478,
+      "anchor": "Mark 14:43-50",
+      "mood": "anxious",
+      "era": "jesus_ministry",
+      "character": "Judas",
+      "narrativeType": "betrayal_in_the_dark",
+      "subTexture": "kiss_in_garden_of_gethsemane",
+      "majorMotif": "judas_stood_where_he_kissed_him",
+      "emotionalShape": "arrival_kiss_arrest_flight_then_stillness",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1479,
+      "anchor": "Luke 19:41-44",
+      "mood": "hurting",
+      "era": "jesus_ministry",
+      "character": "Jesus",
+      "narrativeType": "lament_over_the_city",
+      "subTexture": "tears_on_face_above_the_valley",
+      "majorMotif": "jesus_wept_over_jerusalem",
+      "emotionalShape": "approach_then_lament_then_continued_descent",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1480,
+      "anchor": "Exodus 17:8-13",
+      "mood": "brave_courage",
+      "era": "exodus",
+      "character": "Moses",
+      "narrativeType": "battle_supported_from_the_hill",
+      "subTexture": "two_men_holding_up_moses_hands_until_sunset",
+      "majorMotif": "when_moses_held_up_his_hand_israel_prevailed",
+      "emotionalShape": "fatigue_held_by_brothers_until_evening",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
     }
   ]
 }

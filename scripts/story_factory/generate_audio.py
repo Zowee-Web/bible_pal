@@ -143,6 +143,9 @@ def main() -> int:
                         help="Override voice (must be from approved narrator pool)")
     parser.add_argument("--overwrite", action="store_true",
                         help="Overwrite existing audio files")
+    parser.add_argument("--lane", type=str, default=None,
+                        choices=["web", "kjv"],
+                        help="Override translation lane (default: meta.languageStyle)")
     args = parser.parse_args()
 
     sid = args.story_id
@@ -194,13 +197,18 @@ def main() -> int:
         {"stability": 0.5, "similarity_boost": 0.75},
     )
 
-    lane = meta.get("languageStyle", "WEB").lower()
+    lane = (args.lane or meta.get("languageStyle", "WEB")).lower()
 
-    # Build list of text files -> audio files
+    # Build list of text files -> audio files.
+    # WEB mp3s keep the canonical short-form name; KJV mp3s carry the lane suffix
+    # so dual-lane stories produce both files without overwriting each other.
     audio_jobs = []
     for length in ["short", "full", "long"]:
         txt_name = f"story_{sid}_{mode}_{lane}_{length}.txt"
-        mp3_name = f"audio_{sid}_story_{length}.mp3"
+        if lane == "web":
+            mp3_name = f"audio_{sid}_story_{length}.mp3"
+        else:
+            mp3_name = f"audio_{sid}_story_{lane}_{length}.mp3"
         txt_path = outdir / txt_name
         if not txt_path.exists():
             print(f"WARNING: text file not found, skipping: {txt_name}")

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1480,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_19_V3_DUAL_LANE_PILOT",
+  "title": "Moses' Hands Lifted",
+  "scriptureAnchor": "Exodus 17:8-13",
+  "scriptureAnchorId": "exodus_17_8-13",
+  "bibleStoryKey": "moses_hands_held_up_by_aaron_hur",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "themeTags": [
+    "amalek_fought_with_israel_in_rephidim",
+    "rod_of_god_in_moses_hand",
+    "and_it_came_to_pass_when_moses_held_up_his_hand",
+    "aaron_and_hur_stayed_up_his_hands",
+    "joshua_discomfited_amalek"
+  ],
+  "emotionalTags": [
+    "brave",
+    "resolute",
+    "settled",
+    "trusting",
+    "earnest",
+    "supported"
+  ],
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "bibleOrderIndex": 82,
+  "timelineEra": "exodus",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1480_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1480_traditional_kjv_short.txt"
+    }
+  }
+}

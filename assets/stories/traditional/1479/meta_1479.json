@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1479,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_19_V3_DUAL_LANE_PILOT",
+  "title": "He Wept Over the City",
+  "scriptureAnchor": "Luke 19:41-44",
+  "scriptureAnchorId": "luke_19_41-44",
+  "bibleStoryKey": "jesus_weeps_over_jerusalem",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "jesus_beheld_the_city_and_wept",
+    "things_which_belong_unto_thy_peace",
+    "enemies_will_cast_trench_about_thee",
+    "not_one_stone_upon_another",
+    "knew_not_the_time_of_thy_visitation"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "tender",
+    "solemn",
+    "reverent",
+    "grieving",
+    "compassionate"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 668,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1479_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1479_traditional_kjv_short.txt"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1476,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_19_V3_DUAL_LANE_PILOT",
+  "title": "Remember Your Creator",
+  "scriptureAnchor": "Ecclesiastes 12:1-7",
+  "scriptureAnchorId": "ecclesiastes_12_1-7",
+  "bibleStoryKey": "preacher_remember_thy_creator_in_youth",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "remember_thy_creator_in_youth",
+    "before_the_evil_days_come",
+    "almond_tree_blossoms_grasshopper_burden",
+    "silver_cord_loosed_golden_bowl_broken",
+    "spirit_returns_to_god_who_gave_it"
+  ],
+  "emotionalTags": [
+    "calm",
+    "settled",
+    "tender",
+    "reverent",
+    "thoughtful",
+    "hopeful"
+  ],
+  "primaryCharacterId": "preacher",
+  "primaryCharacterDisplayName": "The Preacher",
+  "bibleOrderIndex": 535,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1476_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1476_traditional_kjv_short.txt"
+    }
+  }
+}
