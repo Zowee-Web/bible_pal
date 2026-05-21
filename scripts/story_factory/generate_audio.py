@@ -28,7 +28,11 @@ import urllib.request
 # Universal tail-pad applied to every generated mp3 to absorb the v3 TTS
 # tail-clip bug (~200ms occasionally lost on the final word). 400ms is short
 # enough that the listener perceives it as a natural breath after the close,
-# long enough to fully buffer the clip. See feedback_audio_end_clip.md.
+# long enough to fully buffer the file-boundary clip pattern. Confirmed
+# 400ms after Adam A/B'd against 500 on Batch 19 — 500 was slightly too
+# much, 400 lands invisibly. The remaining occasional tail-clips are
+# ElevenLabs-side synthesis-drops that the prose rule
+# (trailing-safety-phrase) addresses — see feedback_audio_end_clip.md.
 TAIL_PAD_SECONDS = 0.4
 
 from story_voice_registry import (
