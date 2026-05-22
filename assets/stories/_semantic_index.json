@@ -6314,6 +6314,71 @@
         "web",
         "kjv"
       ]
+    },
+    {
+      "storyId": 1486,
+      "anchor": "Daniel 1:8-21",
+      "mood": "brave_courage",
+      "era": "babylonian_exile",
+      "character": "Daniel",
+      "narrativeType": "decision_held_through_years",
+      "subTexture": "kings_portion_set_at_appointed_hour",
+      "majorMotif": "daniel_purposed_in_his_heart",
+      "emotionalShape": "private_decision_into_test_into_long_arc",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ],
+      "lengths": [
+        "short",
+        "full",
+        "long"
+      ]
+    },
+    {
+      "storyId": 1487,
+      "anchor": "Genesis 18:16-33",
+      "mood": "anxious",
+      "era": "patriarchs",
+      "character": "Abraham",
+      "narrativeType": "intercession_in_descents",
+      "subTexture": "abraham_in_high_grass_men_walking_toward_sodom",
+      "majorMotif": "shall_not_the_judge_of_all_the_earth_do_right",
+      "emotionalShape": "asking_again_each_time_more_carefully_stopping_at_ten",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ],
+      "lengths": [
+        "short",
+        "full",
+        "long"
+      ]
+    },
+    {
+      "storyId": 1488,
+      "anchor": "John 10:11-15",
+      "mood": "calm_peaceful",
+      "era": "jesus_ministry",
+      "character": "Jesus",
+      "narrativeType": "shepherd_declaration_with_setting",
+      "subTexture": "flocks_grazing_on_judean_hills_in_the_afternoon",
+      "majorMotif": "good_shepherd_lays_down_his_life",
+      "emotionalShape": "declaration_witnesses_turn_to_look_pharisees_do_not",
+      "tagsComplete": true,
+      "narratorStance": "story-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ],
+      "lengths": [
+        "short",
+        "full"
+      ]
     }
   ]
 }

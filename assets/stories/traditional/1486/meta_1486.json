@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1486,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_21_V3_PHASE_B_FULL_LONG_TEXT_ONLY",
+  "title": "Daniel at the King's Table",
+  "scriptureAnchor": "Daniel 1:8-21",
+  "scriptureAnchorId": "daniel_1_8-21",
+  "bibleStoryKey": "daniel_purposed_in_his_heart_ten_day_test",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "daniel_purposed_in_his_heart",
+    "refusing_the_kings_portion",
+    "ten_day_test_with_vegetables_and_water",
+    "faces_appeared_fairer_and_fatter",
+    "continued_unto_the_first_year_of_cyrus"
+  ],
+  "emotionalTags": [
+    "brave",
+    "resolute",
+    "settled",
+    "trusting",
+    "earnest",
+    "vindicated"
+  ],
+  "primaryCharacterId": "daniel",
+  "primaryCharacterDisplayName": "Daniel",
+  "bibleOrderIndex": 425,
+  "timelineEra": "babylonian_exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1486_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1486_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_1486_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1486_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1486_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1486_traditional_kjv.txt"
+    },
+    "long": {
+      "storyText": "story_1486_traditional_web_long.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1486_traditional_kjv_long.txt"
+    }
+  },
+  "reflectionQuestion": "The decision did not show in his face when he made it. He kept it inside, where the men of Babylon could not see it. The food was set on the table, and he did not eat it, and the years carried him forward from that day on.",
+  "reflectionText": "The decision shewed not in his face when he made it. He kept it within, where the men of Babylon could not see it. The meat was set upon the table, and he did eat not of it, and the years carried him forward from that day forth.",
+  "reflectionSource": "claude-opus-4-7"
+}

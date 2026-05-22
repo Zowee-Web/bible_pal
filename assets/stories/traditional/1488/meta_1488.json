@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1488,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_21_V3_PHASE_B_FULL_LONG_TEXT_ONLY",
+  "title": "I Am the Good Shepherd",
+  "scriptureAnchor": "John 10:11-15",
+  "scriptureAnchorId": "john_10_11-15",
+  "bibleStoryKey": "good_shepherd_lays_down_his_life_for_the_sheep",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "the_good_shepherd_lays_down_his_life",
+    "the_hireling_flees_when_the_wolf_comes",
+    "i_know_my_own_and_my_own_know_me",
+    "flocks_on_the_hills_of_judea",
+    "as_the_father_knows_me_so_i_know_the_father"
+  ],
+  "emotionalTags": [
+    "calm",
+    "settled",
+    "trusting",
+    "reverent",
+    "tender",
+    "hopeful"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 660,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1488_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1488_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_1488_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1488_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1488_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1488_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "Some of those who heard him turned to look at the hills. The flocks were still grazing in the afternoon, with their shepherds walking among them. The difference between a shepherd and a hireling was visible from where the listeners stood, if they were willing to look.",
+  "reflectionText": "Some of them that heard him turned to look at the hills. The flocks were yet grazing in the afternoon, with their shepherds walking among them. The difference between a shepherd and an hireling was visible from where the listeners stood, if they were willing to look.",
+  "reflectionSource": "claude-opus-4-7"
+}

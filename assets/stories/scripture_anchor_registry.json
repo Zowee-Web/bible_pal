@@ -3764,6 +3764,30 @@
       "moodTags": [
         "calm_peaceful"
       ]
+    },
+    {
+      "scriptureAnchorId": "daniel_1_8-21",
+      "bibleStoryKey": "daniel_purposed_in_his_heart_ten_day_test",
+      "bibleSourceRef": "Daniel 1:8-21",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_18_16-33",
+      "bibleStoryKey": "abraham_intercedes_for_sodom_six_descents",
+      "bibleSourceRef": "Genesis 18:16-33",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "john_10_11-15",
+      "bibleStoryKey": "good_shepherd_lays_down_his_life_for_the_sheep",
+      "bibleSourceRef": "John 10:11-15",
+      "moodTags": [
+        "calm_peaceful"
+      ]
     }
   ]
 }

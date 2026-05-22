@@ -150,6 +150,12 @@ def main() -> int:
     parser.add_argument("--lane", type=str, default=None,
                         choices=["web", "kjv"],
                         help="Override translation lane (default: meta.languageStyle)")
+    parser.add_argument("--lengths", type=str, default="short,full,long",
+                        help="Comma-separated story lengths to generate audio for "
+                             "(default: short,full,long). Use 'short' alone for Phase B "
+                             "text-only Full/Long batches.")
+    parser.add_argument("--skip-reflection", action="store_true",
+                        help="Skip reflection audio generation.")
     args = parser.parse_args()
 
     sid = args.story_id
@@ -206,8 +212,9 @@ def main() -> int:
     # Build list of text files -> audio files.
     # WEB mp3s keep the canonical short-form name; KJV mp3s carry the lane suffix
     # so dual-lane stories produce both files without overwriting each other.
+    requested_lengths = [l.strip() for l in args.lengths.split(",") if l.strip()]
     audio_jobs = []
-    for length in ["short", "full", "long"]:
+    for length in requested_lengths:
         txt_name = f"story_{sid}_{mode}_{lane}_{length}.txt"
         if lane == "web":
             mp3_name = f"audio_{sid}_story_{length}.mp3"
@@ -227,7 +234,9 @@ def main() -> int:
     else:
         refl_mp3 = f"audio_{sid}_reflection_{lane}.mp3"
     refl_path = outdir / refl_name
-    if refl_path.exists():
+    if args.skip_reflection:
+        pass
+    elif refl_path.exists():
         audio_jobs.append((refl_path, outdir / refl_mp3, refl_mp3))
     else:
         print(f"WARNING: reflection not found, skipping: {refl_name}")
