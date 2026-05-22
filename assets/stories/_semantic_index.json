@@ -3,11 +3,11 @@
   "_purpose": "Semantic index for full-library anti-clumping query. Built once + appended per new ship.",
   "_queryRule": "For each proposed anchor: find entries with (same mood) AND (same OR adjacent narrativeType) AND (same character if named). If 3+ matches surface, flag for swap consideration. tagsComplete=false entries only support shallow checks; full semantic dedup requires tagsComplete=true.",
   "_buildPass1Coverage": "Rule-based fields (storyId, anchor, mood, era, character, narrativeType) populated for all stories. Judgment fields (subTexture, majorMotif, emotionalShape) populated only for tagsComplete=true entries.",
-  "_buildPass2Plan": "Fill judgment fields progressively: 800s next, then iconic gratitude/anxious/weary, then character-cluster pairs (Sarah/Hannah, David/Joseph, etc.). Don't bulk-tag in one pass — improve batch-by-batch.",
+  "_buildPass2Plan": "Fill judgment fields progressively: 800s next, then iconic gratitude/anxious/weary, then character-cluster pairs (Sarah/Hannah, David/Joseph, etc.). Don't bulk-tag in one pass \u2014 improve batch-by-batch.",
   "stories": [
     {
       "storyId": 801,
-      "anchor": "Matthew 11:28–30",
+      "anchor": "Matthew 11:28\u201330",
       "mood": "weary",
       "era": "jesus_ministry",
       "character": "Jesus",
@@ -67,7 +67,7 @@
     },
     {
       "storyId": 806,
-      "anchor": "Isaiah 40:28–31",
+      "anchor": "Isaiah 40:28\u201331",
       "mood": "weary",
       "era": "prophets",
       "character": "Isaiah",
@@ -79,7 +79,7 @@
     },
     {
       "storyId": 807,
-      "anchor": "Psalm 127:1–2",
+      "anchor": "Psalm 127:1\u20132",
       "mood": "weary",
       "era": "wisdom",
       "character": "The Psalmist",
@@ -91,7 +91,7 @@
     },
     {
       "storyId": 808,
-      "anchor": "Psalm 19:1–6",
+      "anchor": "Psalm 19:1\u20136",
       "mood": "calm_peaceful",
       "era": "wisdom",
       "character": "David",
@@ -6424,6 +6424,176 @@
       "subTexture": "king_seated_room_quiet_after_naming",
       "majorMotif": "thou_art_the_man",
       "emotionalShape": "anger_kindled_then_named_then_silence",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1492,
+      "anchor": "Daniel 6:10-23",
+      "mood": "brave_courage",
+      "era": "babylonian_exile",
+      "character": "Daniel",
+      "narrativeType": "miracle_with_courtroom_setup",
+      "subTexture": "stone_sealed_with_signet_king_fasts_alone",
+      "majorMotif": "window_open_toward_jerusalem_under_decree",
+      "emotionalShape": "resolve_then_seal_then_steady_voice_through_stone",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1493,
+      "anchor": "Daniel 9:20-23",
+      "mood": "encouraging",
+      "era": "babylonian_exile",
+      "character": "Daniel",
+      "narrativeType": "interrupted_prayer_visitation",
+      "subTexture": "hand_laid_on_shoulder_at_evening_offering",
+      "majorMotif": "called_greatly_beloved_mid_prayer",
+      "emotionalShape": "self_accusing_prayer_softened_by_tender_address",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1494,
+      "anchor": "Jeremiah 29:4-14",
+      "mood": "weary",
+      "era": "babylonian_exile",
+      "character": "Jeremiah",
+      "narrativeType": "letter_received_in_exile",
+      "subTexture": "elders_quiet_at_table_lamp_burning_neighbor_laying_stones",
+      "majorMotif": "build_plant_take_wives_in_the_foreign_country",
+      "emotionalShape": "hope_for_quick_return_thwarted_into_long_settlement_then_named_peace",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1495,
+      "anchor": "1 Samuel 3:1-10",
+      "mood": "calm_peaceful",
+      "era": "early_monarchy",
+      "character": "Samuel",
+      "narrativeType": "child_misrecognizes_call_three_times",
+      "subTexture": "lamp_low_boy_near_ark_old_priest_finally_understands",
+      "majorMotif": "speak_for_thy_servant_heareth",
+      "emotionalShape": "small_confusion_repeated_thrice_then_open_listening",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1496,
+      "anchor": "1 Samuel 2:1-10",
+      "mood": "grateful",
+      "era": "early_monarchy",
+      "character": "Hannah",
+      "narrativeType": "song_offered_at_presentation",
+      "subTexture": "boy_holds_hem_mother_lifts_voice_priests_moving_among_altars",
+      "majorMotif": "barren_woman_sings_of_reversal",
+      "emotionalShape": "personal_thanksgiving_widening_into_cosmic_reversal_then_strength_unto_king",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1497,
+      "anchor": "1 Samuel 30:1-8",
+      "mood": "hurting",
+      "era": "early_monarchy",
+      "character": "David",
+      "narrativeType": "leader_alone_among_bitter_men",
+      "subTexture": "city_in_ash_men_sit_in_ruins_leader_steadies_in_silence",
+      "majorMotif": "encouraged_himself_in_the_lord_his_god",
+      "emotionalShape": "collapse_into_ash_then_internal_steadying_then_action_of_pursuit",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1498,
+      "anchor": "Esther 4:1-17",
+      "mood": "brave_courage",
+      "era": "persian_exile",
+      "character": "Esther",
+      "narrativeType": "queen_decides_to_break_law",
+      "subTexture": "maidens_silent_table_aside_scepter_resting_in_kings_hand",
+      "majorMotif": "if_i_perish_i_perish_after_three_day_fast",
+      "emotionalShape": "deferral_then_news_then_charge_then_resolve_and_silence",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1499,
+      "anchor": "Nehemiah 1:1-11",
+      "mood": "hurting",
+      "era": "persian_exile",
+      "character": "Nehemiah",
+      "narrativeType": "exile_mourns_unseen_city",
+      "subTexture": "cup_set_aside_wine_dim_in_bowl_window_toward_unseen_jerusalem",
+      "majorMotif": "wept_for_a_place_he_had_never_set_foot_in",
+      "emotionalShape": "inquiry_into_grief_into_confession_into_specific_petition",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1500,
+      "anchor": "Isaiah 40:1-11",
+      "mood": "encouraging",
+      "era": "pre_exile",
+      "character": "Isaiah",
+      "narrativeType": "prophet_hears_oracle_in_sequence",
+      "subTexture": "voice_speaks_in_three_movements_country_opens_before_prophet",
+      "majorMotif": "shepherd_carries_lambs_in_his_bosom_at_close",
+      "emotionalShape": "summons_to_comfort_then_universal_call_then_warning_then_tender_image",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1501,
+      "anchor": "Isaiah 50:4-9",
+      "mood": "weary",
+      "era": "pre_exile",
+      "character": "Isaiah",
+      "narrativeType": "servant_testimony_at_dawn",
+      "subTexture": "morning_light_across_room_doves_calling_servant_waits_at_table",
+      "majorMotif": "wakens_my_ear_morning_by_morning_tongue_for_the_weary",
+      "emotionalShape": "given_speech_then_endurance_through_shame_then_quiet_readiness",
       "tagsComplete": true,
       "narratorStance": "scene-immersive",
       "lanes": [

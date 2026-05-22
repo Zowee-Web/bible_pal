@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1501,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_23_STRICT_BUCKETS_DUAL_LANE",
+  "title": "Morning by Morning He Wakens My Ear",
+  "scriptureAnchor": "Isaiah 50:4-9",
+  "scriptureAnchorId": "isaiah_50_4-9",
+  "bibleStoryKey": "servant_song_tongue_of_the_learned",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "tongue_of_the_learned_for_the_weary",
+    "wakens_my_ear_morning_by_morning",
+    "face_set_like_a_flint",
+    "gave_my_back_to_the_smiters",
+    "he_is_near_who_justifies"
+  ],
+  "emotionalTags": [
+    "weary",
+    "resolute",
+    "settled",
+    "earnest",
+    "trusting",
+    "reverent"
+  ],
+  "primaryCharacterId": "isaiah",
+  "primaryCharacterDisplayName": "Isaiah",
+  "bibleOrderIndex": 712,
+  "timelineEra": "pre_exile",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1501_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1501_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1501_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1501_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "The servant said: he wakens my ear morning by morning. The tongue I was given is for the weary. What is it to be woken every day for the work of speaking gently to the people who are tired, knowing the tongue you have been given was opened for that purpose alone?",
+  "reflectionText": "The servant said: he wakeneth mine ear morning by morning. The tongue I was given is for the weary. What is it to be wakened every day for the work of speaking gently unto them that are tired, knowing the tongue thou hast been given was opened for that purpose alone?",
+  "reflectionSource": "claude-opus-4-7",
+  "reflectionVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL"
+}

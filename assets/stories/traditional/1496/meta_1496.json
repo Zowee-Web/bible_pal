@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1496,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_23_STRICT_BUCKETS_DUAL_LANE",
+  "title": "My Heart Rejoices in the LORD",
+  "scriptureAnchor": "1 Samuel 2:1-10",
+  "scriptureAnchorId": "1_samuel_2_1-10",
+  "bibleStoryKey": "hannahs_song_at_shiloh",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "themeTags": [
+    "presented_the_child_at_shiloh",
+    "bows_of_the_mighty_broken",
+    "raiseth_the_poor_out_of_the_dust",
+    "barren_bearing_seven",
+    "strength_unto_his_king"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "joyful",
+    "reverent",
+    "settled",
+    "tender",
+    "encouraged"
+  ],
+  "primaryCharacterId": "hannah",
+  "primaryCharacterDisplayName": "Hannah",
+  "bibleOrderIndex": 244,
+  "timelineEra": "early_monarchy",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1496_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1496_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1496_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1496_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "The boy stood beside her in the court while she sang the song that would carry across the whole country in time. He did not yet know what the song meant. What is it to be the answer to a prayer that has not yet finished speaking \u2014 to be small in the hand of the one who is lifting her voice over you?",
+  "reflectionText": "The boy stood at her side in the court while she sang the song that should carry over the whole country in time. He yet knew not what the song meant. What is it to be the answer unto a prayer that hath not yet finished speaking \u2014 to be small in the hand of her that is lifting up her voice over thee?",
+  "reflectionSource": "claude-opus-4-7",
+  "reflectionVoiceKey": "VOICE_MIRIAM_JOYFUL"
+}

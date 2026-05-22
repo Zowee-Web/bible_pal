@@ -103,7 +103,7 @@
     },
     {
       "scriptureAnchorId": "1_samuel_2_1-10",
-      "bibleStoryKey": "hannah_song",
+      "bibleStoryKey": "hannahs_song_at_shiloh",
       "bibleSourceRef": "1 Samuel 2:1-10",
       "moodTags": [
         "grateful"
@@ -589,7 +589,7 @@
     },
     {
       "scriptureAnchorId": "esther_4_1-17",
-      "bibleStoryKey": "esther_decision",
+      "bibleStoryKey": "esther_decides_to_go_before_the_king",
       "bibleSourceRef": "Esther 4:1-17",
       "moodTags": [
         "brave_courage"
@@ -964,7 +964,7 @@
     },
     {
       "scriptureAnchorId": "isaiah_40_1-11",
-      "bibleStoryKey": "comfort_my_people",
+      "bibleStoryKey": "comfort_my_people_voice_in_the_wilderness",
       "bibleSourceRef": "Isaiah 40:1-11",
       "moodTags": [
         "encouraging"
@@ -1858,7 +1858,7 @@
     },
     {
       "scriptureAnchorId": "nehemiah_1_1-11",
-      "bibleStoryKey": "nehemiah_prays",
+      "bibleStoryKey": "nehemiah_weeps_over_the_news_from_jerusalem",
       "bibleSourceRef": "Nehemiah 1:1-11",
       "moodTags": [
         "hurting"
@@ -2431,11 +2431,10 @@
     },
     {
       "scriptureAnchorId": "isaiah_50_4-9",
-      "bibleStoryKey": "wearied_servant_prophet",
+      "bibleStoryKey": "servant_song_tongue_of_the_learned",
       "bibleSourceRef": "Isaiah 50:4-9",
       "moodTags": [
-        "weary",
-        "brave_courage"
+        "weary"
       ]
     },
     {
@@ -3811,6 +3810,46 @@
       "bibleSourceRef": "2 Samuel 12:1-7",
       "moodTags": [
         "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "daniel_6_10-23",
+      "bibleStoryKey": "daniel_in_the_lions_den",
+      "bibleSourceRef": "Daniel 6:10-23",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "daniel_9_20-23",
+      "bibleStoryKey": "gabriel_answers_daniels_prayer",
+      "bibleSourceRef": "Daniel 9:20-23",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "jeremiah_29_4-14",
+      "bibleStoryKey": "jeremiahs_letter_to_the_babylonian_exiles",
+      "bibleSourceRef": "Jeremiah 29:4-14",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_samuel_3_1-10",
+      "bibleStoryKey": "samuel_hears_the_voice_in_the_night",
+      "bibleSourceRef": "1 Samuel 3:1-10",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_samuel_30_1-8",
+      "bibleStoryKey": "david_at_ziklag_encouraged_himself",
+      "bibleSourceRef": "1 Samuel 30:1-8",
+      "moodTags": [
+        "hurting"
       ]
     }
   ]

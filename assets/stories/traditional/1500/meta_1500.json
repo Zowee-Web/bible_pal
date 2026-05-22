@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1500,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_23_STRICT_BUCKETS_DUAL_LANE",
+  "title": "Comfort Ye My People",
+  "scriptureAnchor": "Isaiah 40:1-11",
+  "scriptureAnchorId": "isaiah_40_1-11",
+  "bibleStoryKey": "comfort_my_people_voice_in_the_wilderness",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "voice_in_the_wilderness_prepare_the_way",
+    "all_flesh_is_grass",
+    "word_of_our_god_shall_stand_forever",
+    "behold_your_god",
+    "shepherd_carries_the_lambs_in_his_bosom"
+  ],
+  "emotionalTags": [
+    "encouraged",
+    "awed",
+    "reverent",
+    "settled",
+    "tender",
+    "hopeful"
+  ],
+  "primaryCharacterId": "isaiah",
+  "primaryCharacterDisplayName": "Isaiah",
+  "bibleOrderIndex": 700,
+  "timelineEra": "pre_exile",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1500_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1500_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1500_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1500_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "The voice ended on the shepherd carrying the lambs in his bosom. That was the last picture it left for the country to hold. What is it to wait for the day when the one who comes with strong hand will be the same one who gathers the small ones gently against his chest and walks with them?",
+  "reflectionText": "The voice ended upon the shepherd carrying the lambs in his bosom. That was the last picture it left for the country to hold. What is it to wait for the day when he that cometh with strong hand shall be the same that gathereth the small ones gently against his bosom and walketh with them?",
+  "reflectionSource": "claude-opus-4-7",
+  "reflectionVoiceKey": "VOICE_BRADFORD"
+}

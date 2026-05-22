@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1493,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_23_STRICT_BUCKETS_DUAL_LANE",
+  "title": "Greatly Beloved",
+  "scriptureAnchor": "Daniel 9:20-23",
+  "scriptureAnchorId": "daniel_9_20-23",
+  "bibleStoryKey": "gabriel_answers_daniels_prayer",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "prayer_for_the_holy_mountain",
+    "gabriel_at_the_evening_offering",
+    "hand_laid_upon_the_shoulder",
+    "called_greatly_beloved",
+    "vision_understood_in_the_dim_chamber"
+  ],
+  "emotionalTags": [
+    "encouraged",
+    "tender",
+    "awed",
+    "reverent",
+    "settled",
+    "grateful"
+  ],
+  "primaryCharacterId": "daniel",
+  "primaryCharacterDisplayName": "Daniel",
+  "bibleOrderIndex": 433,
+  "timelineEra": "babylonian_exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1493_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1493_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1493_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1493_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "The hand was laid on his shoulder while his mouth was still shaped around the prayer for his people. Before he had finished, the word had gone out. What does it do to hear yourself called \"greatly beloved\" before you have even managed to finish the sentence you were saying?",
+  "reflectionText": "The hand was laid upon his shoulder while his mouth was yet shaped about the prayer for his people. Or ever he had finished, the commandment had gone forth. What doth it work in thee to hear thyself called \"greatly beloved\" before thou hast yet finished the sentence thou wast speaking?",
+  "reflectionSource": "claude-opus-4-7",
+  "reflectionVoiceKey": "VOICE_NOAH_PATIENT"
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1498,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_23_STRICT_BUCKETS_DUAL_LANE",
+  "title": "If I Perish, I Perish",
+  "scriptureAnchor": "Esther 4:1-17",
+  "scriptureAnchorId": "esther_4_1-17",
+  "bibleStoryKey": "esther_decides_to_go_before_the_king",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "themeTags": [
+    "mordecai_wept_in_the_kings_gate",
+    "copy_of_the_decree_carried_to_esther",
+    "for_such_a_time_as_this",
+    "three_day_fast_at_shushan",
+    "if_i_perish_i_perish"
+  ],
+  "emotionalTags": [
+    "brave",
+    "resolute",
+    "trembling",
+    "settled",
+    "earnest",
+    "reverent"
+  ],
+  "primaryCharacterId": "esther",
+  "primaryCharacterDisplayName": "Esther",
+  "bibleOrderIndex": 419,
+  "timelineEra": "persian_exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1498_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1498_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1498_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1498_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "She said: \"If I perish, I perish.\" She had decided. She sent Mordecai away. She and her maidens went into the three days of the fast. What is it to choose to go in once you have decided, knowing the law is against you and the gold scepter has not yet been lifted toward you?",
+  "reflectionText": "She said: \"If I perish, I perish.\" She had determined the matter. She sent Mordecai away. She and her maidens went into the three days of fasting. What is it to choose to go in once thou hast determined, knowing the law is against thee and the golden sceptre hath not yet been lifted toward thee?",
+  "reflectionSource": "claude-opus-4-7",
+  "reflectionVoiceKey": "VOICE_MIRIAM_JOYFUL"
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1499,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_23_STRICT_BUCKETS_DUAL_LANE",
+  "title": "The City He Had Not Yet Seen",
+  "scriptureAnchor": "Nehemiah 1:1-11",
+  "scriptureAnchorId": "nehemiah_1_1-11",
+  "bibleStoryKey": "nehemiah_weeps_over_the_news_from_jerusalem",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "hanani_brought_news_of_jerusalem",
+    "the_wall_was_broken_down",
+    "sat_down_and_wept_certain_days",
+    "confessed_the_sins_of_his_people",
+    "kings_cupbearer_at_the_window"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "weary",
+    "longing",
+    "tender",
+    "earnest",
+    "reverent"
+  ],
+  "primaryCharacterId": "nehemiah",
+  "primaryCharacterDisplayName": "Nehemiah",
+  "bibleOrderIndex": 408,
+  "timelineEra": "persian_exile",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1499_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1499_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1499_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1499_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "He asked after the city he had not yet seen, and the answer was that the wall was broken down. He sat down where he was and wept. What is it to weep for a place you have never set foot in, but which is somehow already the place your own heart has been carried by?",
+  "reflectionText": "He inquired after the city he had not yet seen, and the answer was that the wall was broken down. He sat him down where he was and wept. What is it to weep for a place thou hast never set foot in, but which hath somehow already become the place whither thine own heart hath been carried?",
+  "reflectionSource": "claude-opus-4-7",
+  "reflectionVoiceKey": "VOICE_NOAH_PATIENT"
+}

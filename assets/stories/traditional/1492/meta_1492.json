@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1492,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_23_STRICT_BUCKETS_DUAL_LANE",
+  "title": "When the Den Was Sealed",
+  "scriptureAnchor": "Daniel 6:10-23",
+  "scriptureAnchorId": "daniel_6_10-23",
+  "bibleStoryKey": "daniel_in_the_lions_den",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "windows_open_toward_jerusalem",
+    "knelt_three_times_a_day",
+    "decree_of_the_medes_and_persians",
+    "stone_sealed_with_kings_signet",
+    "angel_shut_the_lions_mouths"
+  ],
+  "emotionalTags": [
+    "brave",
+    "resolute",
+    "settled",
+    "trusting",
+    "reverent",
+    "vindicated"
+  ],
+  "primaryCharacterId": "daniel",
+  "primaryCharacterDisplayName": "Daniel",
+  "bibleOrderIndex": 431,
+  "timelineEra": "babylonian_exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1492_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1492_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1492_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1492_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "The window faced Jerusalem when the den was sealed below. Daniel had knelt at it before the decree was signed, and he would kneel at it again the morning after he walked out alive. What is it to keep doing the thing you have always done, knowing the law has been written to break you for doing it?",
+  "reflectionText": "The window faced Jerusalem when the den was sealed below. Daniel had kneeled at it before the decree was signed, and he would kneel at it again on the morning after he came forth alive. What is it to keep doing the thing thou hast ever done, knowing the law hath been written to break thee for doing it?",
+  "reflectionSource": "claude-opus-4-7",
+  "reflectionVoiceKey": "VOICE_BRADFORD"
+}

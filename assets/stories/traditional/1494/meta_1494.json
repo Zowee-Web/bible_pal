@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1494,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_23_STRICT_BUCKETS_DUAL_LANE",
+  "title": "The Letter That Came Down",
+  "scriptureAnchor": "Jeremiah 29:4-14",
+  "scriptureAnchorId": "jeremiah_29_4-14",
+  "bibleStoryKey": "jeremiahs_letter_to_the_babylonian_exiles",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "letter_from_jerusalem_to_the_captives",
+    "build_houses_plant_gardens_take_wives",
+    "seek_the_peace_of_the_city",
+    "thoughts_of_peace_not_evil",
+    "seventy_years_until_return"
+  ],
+  "emotionalTags": [
+    "weary",
+    "settled",
+    "trusting",
+    "longing",
+    "reverent",
+    "earnest"
+  ],
+  "primaryCharacterId": "jeremiah",
+  "primaryCharacterDisplayName": "Jeremiah",
+  "bibleOrderIndex": 745,
+  "timelineEra": "babylonian_exile",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1494_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1494_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1494_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1494_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "The letter did not say the time would be short. It said: build. Plant. Take wives. Multiply. Pray for the city. What does it do to be told that the country you did not choose is the country in which you are to live, and that the LORD's thoughts toward you in it are thoughts of peace?",
+  "reflectionText": "The letter said not that the time should be short. It said: build. Plant. Take ye wives. Multiply. Pray for the city. What doth it work in thee to be told that the land thou didst not choose is the land wherein thou art to dwell, and that the thoughts of the LORD toward thee in it are thoughts of peace?",
+  "reflectionSource": "claude-opus-4-7",
+  "reflectionVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL"
+}

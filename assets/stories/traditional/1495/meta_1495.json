@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1495,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_23_STRICT_BUCKETS_DUAL_LANE",
+  "title": "The Lamp Had Not Yet Gone Out",
+  "scriptureAnchor": "1 Samuel 3:1-10",
+  "scriptureAnchorId": "1_samuel_3_1-10",
+  "bibleStoryKey": "samuel_hears_the_voice_in_the_night",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "lamp_of_god_not_yet_gone_out",
+    "voice_calls_in_the_night",
+    "ran_three_times_unto_eli",
+    "speak_for_thy_servant_heareth",
+    "first_words_the_boy_would_carry"
+  ],
+  "emotionalTags": [
+    "calm",
+    "settled",
+    "reverent",
+    "tender",
+    "earnest",
+    "trusting"
+  ],
+  "primaryCharacterId": "samuel",
+  "primaryCharacterDisplayName": "Samuel",
+  "bibleOrderIndex": 247,
+  "timelineEra": "early_monarchy",
+  "ttsModel": "eleven_v3",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1495_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1495_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1495_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1495_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "The lamp had not yet gone out. The boy ran to Eli three times before either of them understood. What is it to hear a voice and not yet know that you are the one being called, and to keep going to the wrong person because you have not yet been told that the voice belongs to the LORD?",
+  "reflectionText": "The lamp was not yet gone out. The boy ran unto Eli three times or ever either of them understood. What is it to hear a voice and not yet know that thou art the one being called, and to keep going unto the wrong man because thou hast not yet been told that the voice belongeth unto the LORD?",
+  "reflectionSource": "claude-opus-4-7",
+  "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD"
+}
