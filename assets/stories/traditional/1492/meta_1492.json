@@ -10,7 +10,9 @@
   ],
   "mood": "brave_courage",
   "lengths": [
-    "short"
+    "short",
+    "full",
+    "long"
   ],
   "shortScripture": false,
   "createdByModel": "claude-opus-4-7",
@@ -39,7 +41,7 @@
   "primaryCharacterDisplayName": "Daniel",
   "bibleOrderIndex": 431,
   "timelineEra": "babylonian_exile",
-  "ttsModel": "eleven_v3",
+  "ttsModel": "eleven_multilingual_v2",
   "ttsVoiceSettings": {
     "stability": 0.85,
     "similarity_boost": 0.85,
@@ -54,6 +56,18 @@
     "short_kjv": {
       "storyText": "story_1492_traditional_kjv_short.txt"
     },
+    "full": {
+      "storyText": "story_1492_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1492_traditional_kjv_full.txt"
+    },
+    "long": {
+      "storyText": "story_1492_traditional_web_long.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1492_traditional_kjv_long.txt"
+    },
     "reflection": {
       "reflectionText": "reflection_1492_traditional_web.txt"
     },
@@ -63,6 +77,5 @@
   },
   "reflectionQuestion": "The window faced Jerusalem when the den was sealed below. Daniel had knelt at it before the decree was signed, and he would kneel at it again the morning after he walked out alive. What is it to keep doing the thing you have always done, knowing the law has been written to break you for doing it?",
   "reflectionText": "The window faced Jerusalem when the den was sealed below. Daniel had kneeled at it before the decree was signed, and he would kneel at it again on the morning after he came forth alive. What is it to keep doing the thing thou hast ever done, knowing the law hath been written to break thee for doing it?",
-  "reflectionSource": "claude-opus-4-7",
-  "reflectionVoiceKey": "VOICE_BRADFORD"
+  "reflectionSource": "claude-opus-4-7"
 }

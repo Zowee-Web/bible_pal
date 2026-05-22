@@ -10,7 +10,8 @@
   ],
   "mood": "hurting",
   "lengths": [
-    "short"
+    "short",
+    "full"
   ],
   "shortScripture": false,
   "createdByModel": "claude-opus-4-7",
@@ -54,6 +55,12 @@
     "short_kjv": {
       "storyText": "story_1499_traditional_kjv_short.txt"
     },
+    "full": {
+      "storyText": "story_1499_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1499_traditional_kjv_full.txt"
+    },
     "reflection": {
       "reflectionText": "reflection_1499_traditional_web.txt"
     },
@@ -63,6 +70,5 @@
   },
   "reflectionQuestion": "He asked after the city he had not yet seen, and the answer was that the wall was broken down. He sat down where he was and wept. What is it to weep for a place you have never set foot in, but which is somehow already the place your own heart has been carried by?",
   "reflectionText": "He inquired after the city he had not yet seen, and the answer was that the wall was broken down. He sat him down where he was and wept. What is it to weep for a place thou hast never set foot in, but which hath somehow already become the place whither thine own heart hath been carried?",
-  "reflectionSource": "claude-opus-4-7",
-  "reflectionVoiceKey": "VOICE_NOAH_PATIENT"
+  "reflectionSource": "claude-opus-4-7"
 }

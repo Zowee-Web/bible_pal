@@ -10,7 +10,8 @@
   ],
   "mood": "weary",
   "lengths": [
-    "short"
+    "short",
+    "full"
   ],
   "shortScripture": false,
   "createdByModel": "claude-opus-4-7",
@@ -39,7 +40,7 @@
   "primaryCharacterDisplayName": "Jeremiah",
   "bibleOrderIndex": 745,
   "timelineEra": "babylonian_exile",
-  "ttsModel": "eleven_v3",
+  "ttsModel": "eleven_multilingual_v2",
   "ttsVoiceSettings": {
     "stability": 0.85,
     "similarity_boost": 0.85,
@@ -54,6 +55,12 @@
     "short_kjv": {
       "storyText": "story_1494_traditional_kjv_short.txt"
     },
+    "full": {
+      "storyText": "story_1494_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1494_traditional_kjv_full.txt"
+    },
     "reflection": {
       "reflectionText": "reflection_1494_traditional_web.txt"
     },
@@ -63,6 +70,5 @@
   },
   "reflectionQuestion": "The letter did not say the time would be short. It said: build. Plant. Take wives. Multiply. Pray for the city. What does it do to be told that the country you did not choose is the country in which you are to live, and that the LORD's thoughts toward you in it are thoughts of peace?",
   "reflectionText": "The letter said not that the time should be short. It said: build. Plant. Take ye wives. Multiply. Pray for the city. What doth it work in thee to be told that the land thou didst not choose is the land wherein thou art to dwell, and that the thoughts of the LORD toward thee in it are thoughts of peace?",
-  "reflectionSource": "claude-opus-4-7",
-  "reflectionVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL"
+  "reflectionSource": "claude-opus-4-7"
 }

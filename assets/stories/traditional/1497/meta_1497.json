@@ -10,7 +10,8 @@
   ],
   "mood": "hurting",
   "lengths": [
-    "short"
+    "short",
+    "full"
   ],
   "shortScripture": false,
   "createdByModel": "claude-opus-4-7",
@@ -39,7 +40,7 @@
   "primaryCharacterDisplayName": "David",
   "bibleOrderIndex": 278,
   "timelineEra": "early_monarchy",
-  "ttsModel": "eleven_v3",
+  "ttsModel": "eleven_multilingual_v2",
   "ttsVoiceSettings": {
     "stability": 0.85,
     "similarity_boost": 0.85,
@@ -54,6 +55,12 @@
     "short_kjv": {
       "storyText": "story_1497_traditional_kjv_short.txt"
     },
+    "full": {
+      "storyText": "story_1497_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1497_traditional_kjv_full.txt"
+    },
     "reflection": {
       "reflectionText": "reflection_1497_traditional_web.txt"
     },
@@ -63,6 +70,5 @@
   },
   "reflectionQuestion": "He sat alone in the ashes of the city while the men around him spoke of stoning him. He did not get up. Something steadied in him in the silence first. What is it to be the one who has to find a strength inside himself before he can speak again to the people who are turning against him?",
   "reflectionText": "He sat alone in the ashes of the city while the men round about him spake of stoning him. He arose not. Something steadied within him in the silence first. What is it to be the one that must find a strength within himself or ever he can speak again unto them that are turning against him?",
-  "reflectionSource": "claude-opus-4-7",
-  "reflectionVoiceKey": "VOICE_BARNABAS_ENCOURAGER"
+  "reflectionSource": "claude-opus-4-7"
 }

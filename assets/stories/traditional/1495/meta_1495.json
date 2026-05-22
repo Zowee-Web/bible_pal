@@ -39,7 +39,7 @@
   "primaryCharacterDisplayName": "Samuel",
   "bibleOrderIndex": 247,
   "timelineEra": "early_monarchy",
-  "ttsModel": "eleven_v3",
+  "ttsModel": "eleven_multilingual_v2",
   "ttsVoiceSettings": {
     "stability": 0.85,
     "similarity_boost": 0.85,
@@ -63,6 +63,5 @@
   },
   "reflectionQuestion": "The lamp had not yet gone out. The boy ran to Eli three times before either of them understood. What is it to hear a voice and not yet know that you are the one being called, and to keep going to the wrong person because you have not yet been told that the voice belongs to the LORD?",
   "reflectionText": "The lamp was not yet gone out. The boy ran unto Eli three times or ever either of them understood. What is it to hear a voice and not yet know that thou art the one being called, and to keep going unto the wrong man because thou hast not yet been told that the voice belongeth unto the LORD?",
-  "reflectionSource": "claude-opus-4-7",
-  "reflectionVoiceKey": "VOICE_DAVID_SHEPHERD"
+  "reflectionSource": "claude-opus-4-7"
 }

@@ -10,7 +10,8 @@
   ],
   "mood": "grateful",
   "lengths": [
-    "short"
+    "short",
+    "full"
   ],
   "shortScripture": false,
   "createdByModel": "claude-opus-4-7",
@@ -39,7 +40,7 @@
   "primaryCharacterDisplayName": "Hannah",
   "bibleOrderIndex": 244,
   "timelineEra": "early_monarchy",
-  "ttsModel": "eleven_v3",
+  "ttsModel": "eleven_multilingual_v2",
   "ttsVoiceSettings": {
     "stability": 0.85,
     "similarity_boost": 0.85,
@@ -54,6 +55,12 @@
     "short_kjv": {
       "storyText": "story_1496_traditional_kjv_short.txt"
     },
+    "full": {
+      "storyText": "story_1496_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1496_traditional_kjv_full.txt"
+    },
     "reflection": {
       "reflectionText": "reflection_1496_traditional_web.txt"
     },
@@ -63,6 +70,5 @@
   },
   "reflectionQuestion": "The boy stood beside her in the court while she sang the song that would carry across the whole country in time. He did not yet know what the song meant. What is it to be the answer to a prayer that has not yet finished speaking \u2014 to be small in the hand of the one who is lifting her voice over you?",
   "reflectionText": "The boy stood at her side in the court while she sang the song that should carry over the whole country in time. He yet knew not what the song meant. What is it to be the answer unto a prayer that hath not yet finished speaking \u2014 to be small in the hand of her that is lifting up her voice over thee?",
-  "reflectionSource": "claude-opus-4-7",
-  "reflectionVoiceKey": "VOICE_MIRIAM_JOYFUL"
+  "reflectionSource": "claude-opus-4-7"
 }

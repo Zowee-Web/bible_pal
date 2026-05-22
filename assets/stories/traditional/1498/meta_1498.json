@@ -10,7 +10,9 @@
   ],
   "mood": "brave_courage",
   "lengths": [
-    "short"
+    "short",
+    "full",
+    "long"
   ],
   "shortScripture": false,
   "createdByModel": "claude-opus-4-7",
@@ -39,7 +41,7 @@
   "primaryCharacterDisplayName": "Esther",
   "bibleOrderIndex": 419,
   "timelineEra": "persian_exile",
-  "ttsModel": "eleven_v3",
+  "ttsModel": "eleven_multilingual_v2",
   "ttsVoiceSettings": {
     "stability": 0.85,
     "similarity_boost": 0.85,
@@ -54,6 +56,18 @@
     "short_kjv": {
       "storyText": "story_1498_traditional_kjv_short.txt"
     },
+    "full": {
+      "storyText": "story_1498_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1498_traditional_kjv_full.txt"
+    },
+    "long": {
+      "storyText": "story_1498_traditional_web_long.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1498_traditional_kjv_long.txt"
+    },
     "reflection": {
       "reflectionText": "reflection_1498_traditional_web.txt"
     },
@@ -63,6 +77,5 @@
   },
   "reflectionQuestion": "She said: \"If I perish, I perish.\" She had decided. She sent Mordecai away. She and her maidens went into the three days of the fast. What is it to choose to go in once you have decided, knowing the law is against you and the gold scepter has not yet been lifted toward you?",
   "reflectionText": "She said: \"If I perish, I perish.\" She had determined the matter. She sent Mordecai away. She and her maidens went into the three days of fasting. What is it to choose to go in once thou hast determined, knowing the law is against thee and the golden sceptre hath not yet been lifted toward thee?",
-  "reflectionSource": "claude-opus-4-7",
-  "reflectionVoiceKey": "VOICE_MIRIAM_JOYFUL"
+  "reflectionSource": "claude-opus-4-7"
 }
