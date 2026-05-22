@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1491,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_22_V2_MULTILINGUAL_EXPERIMENT",
+  "title": "Nathan Looked at David",
+  "scriptureAnchor": "2 Samuel 12:1-7",
+  "scriptureAnchorId": "2_samuel_12_1-7",
+  "bibleStoryKey": "nathans_parable_thou_art_the_man",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "nathan_sent_to_david",
+    "parable_of_the_ewe_lamb",
+    "davids_anger_burned_hot",
+    "you_are_the_man",
+    "anointed_king_delivered_from_saul"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "solemn",
+    "stunned",
+    "convicted",
+    "reverent",
+    "watchful"
+  ],
+  "primaryCharacterId": "nathan",
+  "primaryCharacterDisplayName": "Nathan",
+  "bibleOrderIndex": 281,
+  "timelineEra": "kingdom",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1491_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1491_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1491_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1491_traditional_kjv.txt"
+    },
+    "full": {
+      "storyText": "story_1491_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1491_traditional_kjv_full.txt"
+    },
+    "long": {
+      "storyText": "story_1491_traditional_web_long.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1491_traditional_kjv_long.txt"
+    }
+  },
+  "reflectionQuestion": "Nathan looked at David, and David did not speak. The king sat where he had been seated when the prophet came in, and the room was very quiet around him.",
+  "reflectionText": "Nathan looked at David, and David spake not. The king sat where he had been seated when the prophet came in, and the chamber was very quiet round about him.",
+  "reflectionSource": "claude-opus-4-7"
+}

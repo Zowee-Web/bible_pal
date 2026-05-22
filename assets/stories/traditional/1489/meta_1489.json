@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1489,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_22_V2_MULTILINGUAL_EXPERIMENT",
+  "title": "I Will Lie Down in Peace",
+  "scriptureAnchor": "Psalm 4:1-8",
+  "scriptureAnchorId": "psalm_4_1-8",
+  "bibleStoryKey": "psalm_of_evening_rest_amid_dishonor",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "evening_prayer_amid_dishonor",
+    "search_your_own_heart_on_your_bed",
+    "let_the_light_of_your_face_shine_on_us",
+    "gladness_more_than_grain_and_wine",
+    "i_will_lie_down_in_peace_and_sleep"
+  ],
+  "emotionalTags": [
+    "weary",
+    "trusting",
+    "settled",
+    "earnest",
+    "reverent",
+    "longing"
+  ],
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "bibleOrderIndex": 478,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1489_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1489_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1489_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1489_traditional_kjv.txt"
+    },
+    "full": {
+      "storyText": "story_1489_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1489_traditional_kjv_full.txt"
+    }
+  },
+  "reflectionQuestion": "The lamp had gone low in his chamber. The men who had spoken against him were still speaking somewhere across the city. David lay down in his own house and slept in peace.",
+  "reflectionText": "The lamp had gone low in his chamber. They that had spoken against him were yet speaking somewhere across the city. David lay down in his own house and slept in peace.",
+  "reflectionSource": "claude-opus-4-7"
+}

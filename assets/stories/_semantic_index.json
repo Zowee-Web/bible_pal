@@ -6379,6 +6379,57 @@
         "short",
         "full"
       ]
+    },
+    {
+      "storyId": 1489,
+      "anchor": "Psalm 4:1-8",
+      "mood": "weary",
+      "era": "wisdom",
+      "character": "David",
+      "narrativeType": "evening_prayer_amid_dishonor",
+      "subTexture": "lamp_going_low_in_kings_chamber",
+      "majorMotif": "i_will_lie_down_in_peace_and_sleep",
+      "emotionalShape": "spoken_against_then_carried_home_to_rest",
+      "tagsComplete": true,
+      "narratorStance": "story-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1490,
+      "anchor": "Acts 4:32-37",
+      "mood": "encouraging",
+      "era": "early_church",
+      "character": "Barnabas",
+      "narrativeType": "field_laid_at_apostles_feet",
+      "subTexture": "money_on_the_floor_among_other_prices",
+      "majorMotif": "son_of_encouragement_among_one_heart_one_soul",
+      "emotionalShape": "communal_holding_then_private_giving",
+      "tagsComplete": true,
+      "narratorStance": "story-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1491,
+      "anchor": "2 Samuel 12:1-7",
+      "mood": "anxious",
+      "era": "kingdom",
+      "character": "Nathan",
+      "narrativeType": "parable_then_naming",
+      "subTexture": "king_seated_room_quiet_after_naming",
+      "majorMotif": "thou_art_the_man",
+      "emotionalShape": "anger_kindled_then_named_then_silence",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
     }
   ]
 }

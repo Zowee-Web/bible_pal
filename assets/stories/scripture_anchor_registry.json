@@ -3788,6 +3788,30 @@
       "moodTags": [
         "calm_peaceful"
       ]
+    },
+    {
+      "scriptureAnchorId": "psalm_4_1-8",
+      "bibleStoryKey": "psalm_of_evening_rest_amid_dishonor",
+      "bibleSourceRef": "Psalm 4:1-8",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "acts_4_32-37",
+      "bibleStoryKey": "barnabas_sells_field_for_jerusalem_church",
+      "bibleSourceRef": "Acts 4:32-37",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_samuel_12_1-7",
+      "bibleStoryKey": "nathans_parable_thou_art_the_man",
+      "bibleSourceRef": "2 Samuel 12:1-7",
+      "moodTags": [
+        "anxious"
+      ]
     }
   ]
 }
