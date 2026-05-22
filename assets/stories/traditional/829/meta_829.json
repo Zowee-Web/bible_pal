@@ -16,7 +16,6 @@
   ],
   "voiceKey": "VOICE_CHARLOTTE_V3",
   "storyVoiceKey": "VOICE_CHARLOTTE_V3",
-  "reflectionVoiceKey": "VOICE_CHARLOTTE_V3",
   "voiceKeys": {
     "short": "VOICE_MARY_PONDER",
     "full": "VOICE_MARY_PONDER",
@@ -41,7 +40,7 @@
       "reflectionAudio": "audio_829_reflection.mp3"
     }
   },
-  "reflectionText": "Hagar’s hands trembled as she held the empty skin—nothing left but dust, her hope almost gone. Then, among thorns and glare, water shimmered into view—one small, saving grace. A single clear drink, just enough for today.",
+  "reflectionText": "Hagar\u2019s hands trembled as she held the empty skin\u2014nothing left but dust, her hope almost gone. Then, among thorns and glare, water shimmered into view\u2014one small, saving grace. A single clear drink, just enough for today.",
   "reflectionSource": "llm",
   "boundaryValidation": {
     "short": "pass",

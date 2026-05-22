@@ -29,8 +29,7 @@
   "bibleOrderIndex": 690,
   "timelineEra": "jesus_ministry",
   "reflectionQuestion": "Has someone ever spoken your name in a way that changed everything?",
-  "reflectionText": "She came to care for a body. She came carrying spices, expecting death, expecting silence, expecting the worst thing to still be true.\n\nAnd then someone spoke her name.\n\nNot a title. Not an explanation. Her name — spoken the way only one person had ever spoken it. And in that single word, everything she thought she knew about what was possible broke open.\n\nThere is something about being known — truly known, by name, by someone you thought was gone — that no argument or evidence can replicate. It is not proof. It is presence.\n\nSometimes the thing that changes everything is not a dramatic event. It is a familiar voice, saying your name, in a place where you did not expect to hear it.",
-  "reflectionVoiceKey": "VOICE_CHARLOTTE_V3",
+  "reflectionText": "She came to care for a body. She came carrying spices, expecting death, expecting silence, expecting the worst thing to still be true.\n\nAnd then someone spoke her name.\n\nNot a title. Not an explanation. Her name \u2014 spoken the way only one person had ever spoken it. And in that single word, everything she thought she knew about what was possible broke open.\n\nThere is something about being known \u2014 truly known, by name, by someone you thought was gone \u2014 that no argument or evidence can replicate. It is not proof. It is presence.\n\nSometimes the thing that changes everything is not a dramatic event. It is a familiar voice, saying your name, in a place where you did not expect to hear it.",
   "files": {
     "short": {
       "storyText": "story_1092_traditional_web_short.txt"

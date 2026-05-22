@@ -17,7 +17,6 @@
   ],
   "voiceKey": "VOICE_JOHN_DOE",
   "storyVoiceKey": "VOICE_JOHN_DOE",
-  "reflectionVoiceKey": "VOICE_JOHN_DOE",
   "voiceKeys": {
     "short": "VOICE_JOHN_BELOVED",
     "full": "VOICE_JOHN_BELOVED",
@@ -27,7 +26,7 @@
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_46",
   "generationContractVersion": "STORY_FACTORY_v2.3",
-  "reflectionQuestion": "Weariness runs deep when the road has been long. Rest is not giving up — it is part of the journey. Even a small pause can restore more than you expect.",
+  "reflectionQuestion": "Weariness runs deep when the road has been long. Rest is not giving up \u2014 it is part of the journey. Even a small pause can restore more than you expect.",
   "files": {
     "short": {
       "storyText": "story_832_traditional_web_short.txt",
@@ -46,7 +45,7 @@
       "reflectionAudio": "audio_832_reflection.mp3"
     }
   },
-  "reflectionText": "A single stone for a seat, lines that never seemed to end, and sun-warmed shoulders growing heavier with each story heard—Moses sat, and the day wore on. It is enough to sit back now, to let the night bring rest—one long breath, enough for today.",
+  "reflectionText": "A single stone for a seat, lines that never seemed to end, and sun-warmed shoulders growing heavier with each story heard\u2014Moses sat, and the day wore on. It is enough to sit back now, to let the night bring rest\u2014one long breath, enough for today.",
   "reflectionSource": "llm",
   "wordCountFlags": {
     "short": {

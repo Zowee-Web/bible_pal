@@ -29,7 +29,7 @@
   "bibleOrderIndex": 645,
   "timelineEra": "jesus_ministry",
   "reflectionQuestion": "Have you ever taken a step that felt small but changed everything that followed?",
-  "reflectionText": "There are moments that mark a beginning — not because something dramatic happens, but because something is declared. A door opens. A name is spoken. A purpose is confirmed out loud, in front of witnesses, in a way that cannot be taken back.\n\nJesus didn't need to be baptized. He was not confessing sin. He was not starting over. But he stepped into the water anyway — into the same river, alongside the same people, doing the same thing everyone else was doing. And in that ordinary act, something extraordinary was spoken.\n\nSometimes the most significant moments in life don't look significant at the time. They look like standing in a river. Like saying yes to something before you fully understand what it means. Like taking a step that feels small but changes everything that follows.",
+  "reflectionText": "There are moments that mark a beginning \u2014 not because something dramatic happens, but because something is declared. A door opens. A name is spoken. A purpose is confirmed out loud, in front of witnesses, in a way that cannot be taken back.\n\nJesus didn't need to be baptized. He was not confessing sin. He was not starting over. But he stepped into the water anyway \u2014 into the same river, alongside the same people, doing the same thing everyone else was doing. And in that ordinary act, something extraordinary was spoken.\n\nSometimes the most significant moments in life don't look significant at the time. They look like standing in a river. Like saying yes to something before you fully understand what it means. Like taking a step that feels small but changes everything that follows.",
   "files": {
     "short": {
       "storyText": "story_1087_traditional_web_short.txt",
@@ -45,6 +45,5 @@
       "reflectionText": "reflection_1087_traditional_web.txt",
       "reflectionAudio": "audio_1087_reflection.mp3"
     }
-  },
-  "reflectionVoiceKey": "VOICE_BRADFORD"
+  }
 }

@@ -17,7 +17,6 @@
   ],
   "voiceKey": "VOICE_JAMES_HUSKY",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
-  "reflectionVoiceKey": "VOICE_JAMES_HUSKY",
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_TRADITIONAL_OPTION_B2",
   "files": {
@@ -38,7 +37,7 @@
       "reflectionAudio": "audio_804_reflection.mp3"
     }
   },
-  "reflectionText": "Sometimes, life’s paths take unexpected turns, and events come together in ways that are hard to understand. The familiar pattern in Romans 8:28 gently weaves together the idea that, even when circumstances feel uncertain, there can be a deeper thread quietly at work. Noticing how moments—both welcome and unwelcome—interconnect, some may observe a kind of tapestry gently emerging beneath the surface of days.\n\nThere are times when the good in situations is clear, and other times when meaning remains hidden. In the rhythm of daily living, it’s possible to notice how patience and hope can coexist with confusion or difficulty. The story seems to invite us to observe the steady possibility that, behind the everyday, something purposeful is gently being shaped over time, whether or not it’s immediately visible.",
+  "reflectionText": "Sometimes, life\u2019s paths take unexpected turns, and events come together in ways that are hard to understand. The familiar pattern in Romans 8:28 gently weaves together the idea that, even when circumstances feel uncertain, there can be a deeper thread quietly at work. Noticing how moments\u2014both welcome and unwelcome\u2014interconnect, some may observe a kind of tapestry gently emerging beneath the surface of days.\n\nThere are times when the good in situations is clear, and other times when meaning remains hidden. In the rhythm of daily living, it\u2019s possible to notice how patience and hope can coexist with confusion or difficulty. The story seems to invite us to observe the steady possibility that, behind the everyday, something purposeful is gently being shaped over time, whether or not it\u2019s immediately visible.",
   "timelineEra": "early_church",
   "primaryCharacterId": "paul",
   "primaryCharacterDisplayName": "Paul"

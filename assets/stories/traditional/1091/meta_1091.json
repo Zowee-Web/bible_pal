@@ -29,8 +29,7 @@
   "bibleOrderIndex": 390,
   "timelineEra": "exile",
   "reflectionQuestion": "Have you ever had to make a choice knowing it could cost you everything?",
-  "reflectionText": "They were given a choice: bow or burn. The math was simple. The furnace was real. The king's power was absolute. Every rational calculation pointed in one direction.\n\nAnd they said: even if he does not.\n\nThat line is the hinge of the story. Not \"God will save us\" — they believed that. But \"even if he does not.\" Faith that does not depend on the outcome. Trust that does not require rescue. A decision made before the answer comes.\n\nMost of the hardest moments in life are not about knowing what will happen. They are about deciding who you are before you find out.",
-  "reflectionVoiceKey": "VOICE_JOHN_DOE",
+  "reflectionText": "They were given a choice: bow or burn. The math was simple. The furnace was real. The king's power was absolute. Every rational calculation pointed in one direction.\n\nAnd they said: even if he does not.\n\nThat line is the hinge of the story. Not \"God will save us\" \u2014 they believed that. But \"even if he does not.\" Faith that does not depend on the outcome. Trust that does not require rescue. A decision made before the answer comes.\n\nMost of the hardest moments in life are not about knowing what will happen. They are about deciding who you are before you find out.",
   "files": {
     "short": {
       "storyText": "story_1091_traditional_web_short.txt"

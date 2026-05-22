@@ -16,7 +16,7 @@
   "voiceKey": "VOICE_JAMES_HUSKY",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
-  "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole — and what would it take to say 'let us build'?",
+  "reflectionQuestion": "The walls lay broken and the gates burned. What stirs in you when you see something ruined that was once whole \u2014 and what would it take to say 'let us build'?",
   "title": "Nehemiah Rebuilds Jerusalem",
   "files": {
     "short": {
@@ -46,14 +46,13 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
-  "reflectionVoiceKey": "VOICE_JAMES_HUSKY",
   "scriptureAnchor": "Nehemiah 2:1-18",
   "bibleStoryKey": "nehemiah_rebuilds_the_wall",
   "reflections": {
     "web": "reflection_1051_traditional_web.txt",
     "kjv": "reflection_1051_traditional_kjv.txt"
   },
-  "reflectionText": "The walls lay broken and the gates consumed with fire. What stirreth in thee when thou seest that which was whole now lying in ruin — and what must needs move thee to say, let us build?",
+  "reflectionText": "The walls lay broken and the gates consumed with fire. What stirreth in thee when thou seest that which was whole now lying in ruin \u2014 and what must needs move thee to say, let us build?",
   "timelineEra": "return",
   "primaryCharacterId": "nehemiah",
   "primaryCharacterDisplayName": "Nehemiah"

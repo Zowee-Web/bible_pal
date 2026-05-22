@@ -17,7 +17,6 @@
   ],
   "voiceKey": "VOICE_CHARLOTTE_V3",
   "storyVoiceKey": "VOICE_CHARLOTTE_V3",
-  "reflectionVoiceKey": "VOICE_CHARLOTTE_V3",
   "voiceKeys": {
     "short": "VOICE_HANNAH_HOPE",
     "full": "VOICE_HANNAH_HOPE",
@@ -46,7 +45,7 @@
       "reflectionAudio": "audio_833_reflection.mp3"
     }
   },
-  "reflectionText": "Wind and darkness pressed close, the boat creaking beneath tired hands — still, one foot touched water and found a place to stand. Fear and hope tangled in the storm, and a heartbeat’s courage held for a breath. Even that is enough for today.",
+  "reflectionText": "Wind and darkness pressed close, the boat creaking beneath tired hands \u2014 still, one foot touched water and found a place to stand. Fear and hope tangled in the storm, and a heartbeat\u2019s courage held for a breath. Even that is enough for today.",
   "reflectionSource": "llm",
   "boundaryValidation": {
     "short": "pass",

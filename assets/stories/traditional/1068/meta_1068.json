@@ -17,7 +17,7 @@
   "voiceKey": "VOICE_CHARLOTTE_V3",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_04",
-  "reflectionQuestion": "When you think about a time you received back something you thought was lost forever—whether a relationship, a sense of purpose, or a part of yourself—what did that restoration stir in you that simple relief alone cannot explain?",
+  "reflectionQuestion": "When you think about a time you received back something you thought was lost forever\u2014whether a relationship, a sense of purpose, or a part of yourself\u2014what did that restoration stir in you that simple relief alone cannot explain?",
   "title": "Job Restored",
   "files": {
     "short": {
@@ -53,14 +53,13 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_CHARLOTTE_V3",
-  "reflectionVoiceKey": "VOICE_CHARLOTTE_V3",
   "scriptureAnchor": "Job 42:1-17",
   "bibleStoryKey": "job_restored",
   "reflections": {
     "web": "reflection_1068_traditional_web.txt",
     "kjv": "reflection_1068_traditional_kjv.txt"
   },
-  "reflectionText": "When thou dost call to mind a season wherein thou didst receive again that which thou hadst reckoned lost forever—whether it be a kinship, a sense of thy purpose, or a portion of thyself—what stirring within thee did that restoration kindle, that simple succor alone cannot make plain?",
+  "reflectionText": "When thou dost call to mind a season wherein thou didst receive again that which thou hadst reckoned lost forever\u2014whether it be a kinship, a sense of thy purpose, or a portion of thyself\u2014what stirring within thee did that restoration kindle, that simple succor alone cannot make plain?",
   "timelineEra": "wisdom",
   "primaryCharacterId": "job",
   "primaryCharacterDisplayName": "Job"

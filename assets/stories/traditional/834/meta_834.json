@@ -17,7 +17,6 @@
   ],
   "voiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
-  "reflectionVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
   "voiceKeys": {
     "short": "VOICE_ELIJAH_SAGE",
     "full": "VOICE_ELIJAH_SAGE",
@@ -46,7 +45,7 @@
       "reflectionAudio": "audio_834_reflection.mp3"
     }
   },
-  "reflectionText": "The sound of three hundred trumpets broke open the night, fear trembling in every heart—yet hands held fast to clay jars and a flicker of light. In the hush before dawn, sometimes a quiet courage is enough for today.",
+  "reflectionText": "The sound of three hundred trumpets broke open the night, fear trembling in every heart\u2014yet hands held fast to clay jars and a flicker of light. In the hush before dawn, sometimes a quiet courage is enough for today.",
   "reflectionSource": "llm",
   "wordCountFlags": {
     "short": {

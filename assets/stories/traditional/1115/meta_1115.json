@@ -31,7 +31,6 @@
   "primaryCharacterDisplayName": "Jesus",
   "bibleOrderIndex": 695,
   "timelineEra": "jesus_ministry",
-  "reflectionVoiceKey": "VOICE_ARABELLA",
   "files": {
     "short": {
       "storyText": "story_1115_traditional_web_short.txt"

@@ -6,7 +6,7 @@
   "source": "legacy_inferred",
   "languageStyle": "KJV",
   "mood": "calm_peaceful",
-  "scriptureAnchor": "Psalm 19:1–6",
+  "scriptureAnchor": "Psalm 19:1\u20136",
   "scriptureAnchorId": "ps_19_1_6",
   "bibleStoryKey": "heavens_declare_gods_glory",
   "title": "The Heavens Declare God's Glory",
@@ -17,7 +17,6 @@
   ],
   "voiceKey": "VOICE_JAMES_HUSKY",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
-  "reflectionVoiceKey": "VOICE_JAMES_HUSKY",
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_KID_BEDTIME",
   "reflectionQuestion": "What is something in the sky that makes you feel happy or amazed?",
@@ -39,7 +38,7 @@
       "reflectionAudio": "audio_808_reflection.mp3"
     }
   },
-  "reflectionText": "The sky is like a big, soft blanket above us. In the daytime, the sun climbs high and shines so bright. At night, the stars gently twinkle like tiny night-lights. All these things are very quiet. They do not speak with words. But they show how wonderful and big God is. Every day, the sky shares its pretty story with anyone who looks up. When you see clouds floating or sunlight sparkling, it’s like the sky is smiling down. It feels safe and peaceful under such a beautiful sky.",
+  "reflectionText": "The sky is like a big, soft blanket above us. In the daytime, the sun climbs high and shines so bright. At night, the stars gently twinkle like tiny night-lights. All these things are very quiet. They do not speak with words. But they show how wonderful and big God is. Every day, the sky shares its pretty story with anyone who looks up. When you see clouds floating or sunlight sparkling, it\u2019s like the sky is smiling down. It feels safe and peaceful under such a beautiful sky.",
   "timelineEra": "wisdom",
   "primaryCharacterId": "david",
   "primaryCharacterDisplayName": "David"

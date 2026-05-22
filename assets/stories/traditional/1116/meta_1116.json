@@ -28,7 +28,6 @@
   "primaryCharacterDisplayName": "Abraham",
   "bibleOrderIndex": 20,
   "timelineEra": "patriarchs",
-  "reflectionVoiceKey": "VOICE_CHARLOTTE_V3",
   "files": {
     "short": {
       "storyText": "story_1116_traditional_web_short.txt"

@@ -15,7 +15,7 @@
   "voiceKey": "VOICE_LILY_WOLFF",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
-  "reflectionQuestion": "The potter didn't throw the clay away when it broke — he made it into something new. Have you ever felt broken and then been surprised that something good still came from it?",
+  "reflectionQuestion": "The potter didn't throw the clay away when it broke \u2014 he made it into something new. Have you ever felt broken and then been surprised that something good still came from it?",
   "title": "The Potter's Wheel",
   "files": {
     "short": {
@@ -33,10 +33,9 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_LILY_WOLFF",
-  "reflectionVoiceKey": "VOICE_LILY_WOLFF",
   "scriptureAnchor": "Jeremiah 18:1-6",
   "bibleStoryKey": "potter_and_clay",
-  "reflectionText": "The potter didn't throw the clay away when it broke — he made it into something new. Have you ever felt broken and then been surprised that something good still came from it?",
+  "reflectionText": "The potter didn't throw the clay away when it broke \u2014 he made it into something new. Have you ever felt broken and then been surprised that something good still came from it?",
   "timelineEra": "prophets",
   "primaryCharacterId": "jeremiah",
   "primaryCharacterDisplayName": "Jeremiah"

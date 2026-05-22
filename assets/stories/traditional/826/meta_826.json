@@ -17,7 +17,6 @@
   ],
   "voiceKey": "VOICE_CHRIS_DEFAULT",
   "storyVoiceKey": "VOICE_CHRIS_DEFAULT",
-  "reflectionVoiceKey": "VOICE_CHRIS_DEFAULT",
   "voiceKeys": {
     "short": "VOICE_NOAH_PATIENT",
     "full": "VOICE_NOAH_PATIENT",
@@ -46,7 +45,7 @@
       "reflectionAudio": "audio_826_reflection.mp3"
     }
   },
-  "reflectionText": "The valley stretched silent, shields fluttering, while one young voice carried across the distance. Even a single stone in steady hands can meet a giant’s challenge. Let that be enough for today.",
+  "reflectionText": "The valley stretched silent, shields fluttering, while one young voice carried across the distance. Even a single stone in steady hands can meet a giant\u2019s challenge. Let that be enough for today.",
   "reflectionSource": "llm",
   "wordCountFlags": {
     "short": {

@@ -17,7 +17,6 @@
   ],
   "voiceKey": "VOICE_BRADFORD",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "reflectionVoiceKey": "VOICE_BRADFORD",
   "voiceKeys": {
     "short": "VOICE_BRADFORD",
     "full": "VOICE_BRADFORD",
@@ -46,7 +45,7 @@
       "reflectionAudio": "audio_831_reflection.mp3"
     }
   },
-  "reflectionText": "A forgotten name spoken in the right moment can open a door — dim light shifting to gold, a man's face new and uncertain. Just for now, it is enough to remember the way one hallway led to another. That is enough for today.",
+  "reflectionText": "A forgotten name spoken in the right moment can open a door \u2014 dim light shifting to gold, a man's face new and uncertain. Just for now, it is enough to remember the way one hallway led to another. That is enough for today.",
   "reflectionSource": "llm",
   "wordCountFlags": {
     "short": {

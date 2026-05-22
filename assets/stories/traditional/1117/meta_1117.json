@@ -29,7 +29,6 @@
   "primaryCharacterDisplayName": "Moses",
   "bibleOrderIndex": 60,
   "timelineEra": "exodus",
-  "reflectionVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "files": {
     "short": {
       "storyText": "story_1117_traditional_web_short.txt"

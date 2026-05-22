@@ -29,7 +29,7 @@
   "bibleOrderIndex": 652,
   "timelineEra": "jesus_ministry",
   "reflectionQuestion": "Have you ever been in a situation where everything was falling apart, and you had to trust that it would be okay?",
-  "reflectionText": "The storm came from nowhere. One moment the water was calm, the next the boat was filling. That is how fear works sometimes — not building gradually, but arriving all at once, without warning, turning a quiet evening into something desperate.\n\nWhat's striking is that Jesus was asleep. Not somewhere else. Not absent. Asleep — right there in the boat, in the middle of the same storm. His peace did not depend on the weather.\n\nThe disciples' question afterward was the right one. Not \"how did he do that?\" but \"what kind of man is this?\" Because what they had just witnessed was not a trick or a technique. It was something about who he was.\n\nSometimes the scariest part of a storm is not the wind or the waves. It's the silence before someone speaks — and the way everything changes when they do.",
+  "reflectionText": "The storm came from nowhere. One moment the water was calm, the next the boat was filling. That is how fear works sometimes \u2014 not building gradually, but arriving all at once, without warning, turning a quiet evening into something desperate.\n\nWhat's striking is that Jesus was asleep. Not somewhere else. Not absent. Asleep \u2014 right there in the boat, in the middle of the same storm. His peace did not depend on the weather.\n\nThe disciples' question afterward was the right one. Not \"how did he do that?\" but \"what kind of man is this?\" Because what they had just witnessed was not a trick or a technique. It was something about who he was.\n\nSometimes the scariest part of a storm is not the wind or the waves. It's the silence before someone speaks \u2014 and the way everything changes when they do.",
   "files": {
     "short": {
       "storyText": "story_1090_traditional_web_short.txt",
@@ -46,7 +46,6 @@
       "reflectionAudio": "audio_1090_reflection.mp3"
     }
   },
-  "reflectionVoiceKey": "VOICE_CHRIS_DEFAULT",
   "primaryLifeSituationTags": [
     "presence_in_the_storm"
   ],

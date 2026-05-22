@@ -17,7 +17,6 @@
   ],
   "voiceKey": "VOICE_ARCHER",
   "storyVoiceKey": "VOICE_ARCHER",
-  "reflectionVoiceKey": "VOICE_ARCHER",
   "voiceKeys": {
     "short": "VOICE_PETER_BOLD",
     "full": "VOICE_PETER_BOLD",
@@ -27,7 +26,7 @@
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_46",
   "generationContractVersion": "STORY_FACTORY_v2.3",
-  "reflectionQuestion": "Joy often arrives quietly — in a shared meal, a moment of thanks, a small gift freely given. It grows when we notice it. Even one moment of gratitude can be enough for today.",
+  "reflectionQuestion": "Joy often arrives quietly \u2014 in a shared meal, a moment of thanks, a small gift freely given. It grows when we notice it. Even one moment of gratitude can be enough for today.",
   "files": {
     "short": {
       "storyText": "story_830_traditional_web_short.txt",
@@ -46,7 +45,7 @@
       "reflectionAudio": "audio_830_reflection.mp3"
     }
   },
-  "reflectionText": "Arms wide, the father ran—feet pounding earth, not holding back. Dust, sweat, laughter, and music filled the house once more. One welcome, one embrace—sometimes that’s enough for today.",
+  "reflectionText": "Arms wide, the father ran\u2014feet pounding earth, not holding back. Dust, sweat, laughter, and music filled the house once more. One welcome, one embrace\u2014sometimes that\u2019s enough for today.",
   "reflectionSource": "llm",
   "wordCountFlags": {
     "short": {

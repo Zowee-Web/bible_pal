@@ -28,7 +28,6 @@
   "primaryCharacterDisplayName": "Joshua",
   "bibleOrderIndex": 100,
   "timelineEra": "conquest",
-  "reflectionVoiceKey": "VOICE_BRADFORD",
   "files": {
     "short": {
       "storyText": "story_1118_traditional_web_short.txt"

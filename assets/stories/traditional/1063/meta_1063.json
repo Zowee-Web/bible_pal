@@ -15,7 +15,7 @@
   "voiceKey": "VOICE_LILY_WOLFF",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
-  "reflectionQuestion": "Job lost everything in one day — his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?",
+  "reflectionQuestion": "Job lost everything in one day \u2014 his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?",
   "title": "Job's Terrible Day",
   "files": {
     "short": {
@@ -33,10 +33,9 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_LILY_WOLFF",
-  "reflectionVoiceKey": "VOICE_LILY_WOLFF",
   "scriptureAnchor": "Job 1:1-22",
   "bibleStoryKey": "job_tested",
-  "reflectionText": "Job lost everything in one day — his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?",
+  "reflectionText": "Job lost everything in one day \u2014 his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?",
   "timelineEra": "wisdom",
   "primaryCharacterId": "job",
   "primaryCharacterDisplayName": "Job"

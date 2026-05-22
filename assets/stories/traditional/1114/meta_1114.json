@@ -29,7 +29,6 @@
   "primaryCharacterDisplayName": "Daniel",
   "bibleOrderIndex": 470,
   "timelineEra": "exile",
-  "reflectionVoiceKey": "VOICE_ARCHER",
   "files": {
     "short": {
       "storyText": "story_1114_traditional_web_short.txt"
