@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1505,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_24_TEXTURE_LED_CINEMATIC",
+  "title": "The Mountain Full of Chariots of Fire",
+  "scriptureAnchor": "2 Kings 6:8-23",
+  "scriptureAnchorId": "2_kings_6_8-23",
+  "bibleStoryKey": "elisha_at_dothan_the_servants_eyes_opened",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "elisha_warns_king_of_israel_repeatedly",
+    "syrian_army_surrounds_dothan_by_night",
+    "fear_not_they_that_be_with_us",
+    "mountain_full_of_chariots_of_fire",
+    "great_provision_set_before_the_blinded_army"
+  ],
+  "emotionalTags": [
+    "calm",
+    "settled",
+    "awed",
+    "trusting",
+    "reverent",
+    "tender"
+  ],
+  "primaryCharacterId": "elisha",
+  "primaryCharacterDisplayName": "Elisha",
+  "bibleOrderIndex": 351,
+  "timelineEra": "divided_monarchy",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1505_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1505_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_1505_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1505_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1505_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1505_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "The servant rose in the morning and saw the army around the city. Elisha did not look. He answered without turning. \"They that be with us are more than they that be with them.\" What is it to be standing beside someone who is not afraid of what is surrounding you, and to ask for your own eyes to be opened?",
+  "reflectionText": "The servant rose in the morning and saw the army round about the city. Elisha looked not. He answered without turning. \"They that be with us are more than they that be with them.\" What is it to be standing beside one that is not afraid of that which is surrounding thee, and to ask for thine own eyes to be opened?",
+  "reflectionSource": "claude-opus-4-7"
+}

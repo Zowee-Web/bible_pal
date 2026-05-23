@@ -569,6 +569,9 @@ flutter:
     - assets/stories/traditional/1499/
     - assets/stories/traditional/1500/
     - assets/stories/traditional/1501/
+    - assets/stories/traditional/1502/
+    - assets/stories/traditional/1505/
+    - assets/stories/traditional/1506/
     # 800-series traditional stories
     - assets/stories/traditional/801/
     - assets/stories/traditional/802/

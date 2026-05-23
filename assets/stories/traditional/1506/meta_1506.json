@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1506,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_24_TEXTURE_LED_CINEMATIC",
+  "title": "The Ancient of Days",
+  "scriptureAnchor": "Daniel 7:1-14",
+  "scriptureAnchorId": "daniel_7_1-14",
+  "bibleStoryKey": "daniels_vision_of_four_beasts_and_ancient_of_days",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "four_winds_striving_on_the_great_sea",
+    "four_beasts_lion_bear_leopard_fourth",
+    "thrones_cast_down_ancient_of_days_seated",
+    "wheels_of_fire_books_opened",
+    "son_of_man_came_with_the_clouds"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "awed",
+    "solemn",
+    "stunned",
+    "watchful",
+    "reverent"
+  ],
+  "primaryCharacterId": "daniel",
+  "primaryCharacterDisplayName": "Daniel",
+  "bibleOrderIndex": 432,
+  "timelineEra": "babylonian_exile",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1506_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1506_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1506_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1506_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "The beasts came up out of the sea. The thrones were cast down. The Ancient of Days sat in white garment with wheels of fire under his throne. The fourth beast was slain. The Son of Man came with the clouds. What is it to be lying in your bed and to see, in one night, every kingdom that will ever be brought down — and the one that will last forever?",
+  "reflectionText": "The beasts came up out of the sea. The thrones were cast down. The Ancient of Days sat in white garment with wheels of fire beneath his throne. The fourth beast was slain. The Son of Man came with the clouds. What is it to be lying upon thy bed and to see, in one night, every kingdom that shall ever be brought down — and the one that shall last for ever?",
+  "reflectionSource": "claude-opus-4-7"
+}

@@ -6600,6 +6600,57 @@
         "web",
         "kjv"
       ]
+    },
+    {
+      "storyId": 1502,
+      "anchor": "Nehemiah 4:16-23",
+      "mood": "brave_courage",
+      "era": "persian_exile",
+      "character": "Nehemiah",
+      "narrativeType": "labor_under_armed_watch",
+      "subTexture": "half_with_spears_half_at_stone_trumpeter_on_wall_stars_to_morning",
+      "majorMotif": "one_hand_on_stone_other_hand_on_weapon",
+      "emotionalShape": "vigilance_carried_through_long_labor_until_the_wall_is_closed",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1505,
+      "anchor": "2 Kings 6:8-23",
+      "mood": "calm_peaceful",
+      "era": "divided_monarchy",
+      "character": "Elisha",
+      "narrativeType": "prophet_unmoved_amid_encirclement",
+      "subTexture": "servant_at_dawn_sees_army_then_hills_full_of_fire_chariots_then_provision_in_samaria",
+      "majorMotif": "they_that_be_with_us_are_more_than_they_that_be_with_them",
+      "emotionalShape": "servants_fear_opened_into_larger_seeing_then_enemys_blindness_into_provision",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1506,
+      "anchor": "Daniel 7:1-14",
+      "mood": "anxious",
+      "era": "babylonian_exile",
+      "character": "Daniel",
+      "narrativeType": "vision_of_beasts_and_enthronement",
+      "subTexture": "four_beasts_from_sea_then_thrones_cast_down_wheels_of_fire_son_of_man_on_clouds",
+      "majorMotif": "every_kingdom_brought_down_except_one_that_does_not_pass_away",
+      "emotionalShape": "terror_of_beasts_resolved_by_enthroned_dominion_that_lasts_forever",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
     }
   ]
 }

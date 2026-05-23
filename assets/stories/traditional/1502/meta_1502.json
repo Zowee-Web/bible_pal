@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1502,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_24_TEXTURE_LED_CINEMATIC",
+  "title": "With One Hand on the Stone and the Other on a Weapon",
+  "scriptureAnchor": "Nehemiah 4:16-23",
+  "scriptureAnchorId": "nehemiah_4_16-23",
+  "bibleStoryKey": "nehemiah_sword_and_trowel_at_the_wall",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "half_at_work_half_with_spears",
+    "sword_girded_by_every_builders_side",
+    "trumpeter_beside_nehemiah_on_the_wall",
+    "our_god_shall_fight_for_us",
+    "from_the_rising_of_the_morning_till_the_stars_appeared"
+  ],
+  "emotionalTags": [
+    "brave",
+    "resolute",
+    "settled",
+    "earnest",
+    "trusting",
+    "vindicated"
+  ],
+  "primaryCharacterId": "nehemiah",
+  "primaryCharacterDisplayName": "Nehemiah",
+  "bibleOrderIndex": 413,
+  "timelineEra": "persian_exile",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1502_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1502_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1502_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1502_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "Half of them worked. Half of them stood with spears. Every builder had a sword by his side. Nehemiah kept the trumpeter beside him on the wall. What is it to do your work with one hand and hold a weapon in the other, every day, until the stars come out and the wall is closed?",
+  "reflectionText": "Half of them wrought. Half of them stood with spears. Every builder had his sword girded by his side. Nehemiah kept the trumpeter beside him upon the wall. What is it to do thy work with one hand and hold a weapon in the other, every day, until the stars come out and the wall is closed?",
+  "reflectionSource": "claude-opus-4-7"
+}

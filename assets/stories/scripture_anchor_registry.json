@@ -3851,6 +3851,30 @@
       "moodTags": [
         "hurting"
       ]
+    },
+    {
+      "scriptureAnchorId": "nehemiah_4_16-23",
+      "bibleStoryKey": "nehemiah_sword_and_trowel_at_the_wall",
+      "bibleSourceRef": "Nehemiah 4:16-23",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_kings_6_8-23",
+      "bibleStoryKey": "elisha_at_dothan_the_servants_eyes_opened",
+      "bibleSourceRef": "2 Kings 6:8-23",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "daniel_7_1-14",
+      "bibleStoryKey": "daniels_vision_of_four_beasts_and_ancient_of_days",
+      "bibleSourceRef": "Daniel 7:1-14",
+      "moodTags": [
+        "anxious"
+      ]
     }
   ]
 }
