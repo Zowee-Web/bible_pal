@@ -260,17 +260,21 @@ def main() -> int:
         size = tts(text, mp3_path, voice_id, tts_model, tts_voice_settings)
         print(f"    {size:,} bytes")
 
-    # Update metadata with the voice keys used
+    # Update metadata with the story voice key actually used, if it changed.
+    # Reflections share the story narrator — do NOT write a separate
+    # reflectionVoiceKey field (was creating drift; reflections are not a
+    # separate voice system). Also strip any leaked reflectionVoiceKey
+    # we read in, so post-run state stays clean.
     updated = False
     if meta.get("storyVoiceKey") != voice_key:
         meta["storyVoiceKey"] = voice_key
         updated = True
-    if meta.get("reflectionVoiceKey") != voice_key:
-        meta["reflectionVoiceKey"] = voice_key
+    if "reflectionVoiceKey" in meta:
+        del meta["reflectionVoiceKey"]
         updated = True
     if updated:
         meta_file.write_text(json.dumps(meta, indent=2) + "\n")
-        print(f"\n  Updated metadata storyVoiceKey/reflectionVoiceKey to {voice_key}")
+        print(f"\n  Updated metadata storyVoiceKey to {voice_key}")
 
     elapsed = time.time() - t0
     print(f"\nDONE. Audio for story {sid} ({mode}) generated in {elapsed:.1f}s.")
