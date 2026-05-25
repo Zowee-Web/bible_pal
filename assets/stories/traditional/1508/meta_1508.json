@@ -10,7 +10,8 @@
   ],
   "mood": "brave_courage",
   "lengths": [
-    "short"
+    "short",
+    "full"
   ],
   "shortScripture": false,
   "createdByModel": "claude-opus-4-7",
@@ -59,6 +60,12 @@
     },
     "reflection_kjv": {
       "reflectionText": "reflection_1508_traditional_kjv.txt"
+    },
+    "full": {
+      "storyText": "story_1508_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1508_traditional_kjv_full.txt"
     }
   },
   "reflectionQuestion": "Saul was plowing the field. The messengers came. He heard the news. The Spirit of God came on him. He hewed the oxen in pieces. He sent the pieces throughout Israel. At dawn watch the next day three companies came into the camp of the Ammonites. What is it to be plowing one morning and leading three companies into battle by the same time the next day?",

@@ -11,7 +11,8 @@
   "mood": "grateful",
   "lengths": [
     "short",
-    "full"
+    "full",
+    "long"
   ],
   "shortScripture": false,
   "createdByModel": "claude-opus-4-7",
@@ -66,6 +67,12 @@
     },
     "reflection_kjv": {
       "reflectionText": "reflection_1510_traditional_kjv.txt"
+    },
+    "long": {
+      "storyText": "story_1510_traditional_web_long.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1510_traditional_kjv_long.txt"
     }
   },
   "reflectionQuestion": "He stood at the door with his horses and his chariots. He was angry when the prophet did not come out. His servants spoke to him. He dipped seven times in the Jordan and came up with the flesh of a little child. What is it to be the great man at the door who finds the cure is to go down to the river seven times and wash?",

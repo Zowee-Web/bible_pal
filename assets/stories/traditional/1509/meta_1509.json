@@ -10,7 +10,8 @@
   ],
   "mood": "calm_peaceful",
   "lengths": [
-    "short"
+    "short",
+    "full"
   ],
   "shortScripture": false,
   "createdByModel": "claude-opus-4-7",
@@ -59,9 +60,15 @@
     },
     "reflection_kjv": {
       "reflectionText": "reflection_1509_traditional_kjv.txt"
+    },
+    "full": {
+      "storyText": "story_1509_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1509_traditional_kjv_full.txt"
     }
   },
-  "reflectionQuestion": "The king could not sleep. The chronicles were read in the night. Haman came in to ask for the gallows and was made to walk the horse through the streets proclaiming the words he had wanted spoken about himself. What is it to be the man on the horse — and what is it to be the man holding the bridle?",
-  "reflectionText": "The king could not sleep. The chronicles were read in the night. Haman came in to ask for the gallows and was made to walk the horse through the streets proclaiming the words he had wanted spoken concerning himself. What is it to be the man upon the horse — and what is it to be the man that holdeth the bridle?",
+  "reflectionQuestion": "The king could not sleep. The chronicles were read in the night. Haman came in to ask for the gallows and was made to walk the horse through the streets proclaiming the words he had wanted spoken about himself. What is it to be the man on the horse \u2014 and what is it to be the man holding the bridle?",
+  "reflectionText": "The king could not sleep. The chronicles were read in the night. Haman came in to ask for the gallows and was made to walk the horse through the streets proclaiming the words he had wanted spoken concerning himself. What is it to be the man upon the horse \u2014 and what is it to be the man that holdeth the bridle?",
   "reflectionSource": "claude-opus-4-7"
 }
