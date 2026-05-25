@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1512,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_26_MIXED_TEXTURE",
+  "title": "The Book Found in the House of the LORD",
+  "scriptureAnchor": "2 Kings 22:8-20",
+  "scriptureAnchorId": "2_kings_22_8-20",
+  "bibleStoryKey": "josiah_finds_the_book_huldah_prophesies",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "hilkiah_found_the_book_in_the_temple",
+    "shaphan_read_it_before_josiah",
+    "the_king_rent_his_clothes",
+    "huldah_the_prophetess_in_jerusalem",
+    "eyes_shall_not_see_the_evil_because_heart_was_tender"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "solemn",
+    "earnest",
+    "reverent",
+    "watchful",
+    "tender"
+  ],
+  "primaryCharacterId": "josiah",
+  "primaryCharacterDisplayName": "Josiah",
+  "bibleOrderIndex": 369,
+  "timelineEra": "pre_exile",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1512_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1512_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_1512_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1512_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1512_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1512_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "The book was found in the house of the LORD where it had been lost. Shaphan read it before Josiah. The king rent his clothes when he heard the words. Huldah said his eyes would not see the evil because his heart had been tender. What is it to be the one who tears his clothes upon hearing what has been forgotten — and to be told you will not see what is coming because of it?",
+  "reflectionText": "The book was found in the house of the LORD where it had been lost. Shaphan read it before Josiah. The king rent his clothes when he heard the words. Huldah said his eyes should not see the evil because his heart had been tender. What is it to be the one that rendeth his clothes upon hearing what hath been forgotten — and to be told thine eyes shall not see what is coming because of it?",
+  "reflectionSource": "claude-opus-4-7"
+}

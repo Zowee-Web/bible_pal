@@ -6736,6 +6736,91 @@
         "web",
         "kjv"
       ]
+    },
+    {
+      "storyId": 1512,
+      "anchor": "2 Kings 22:8-20",
+      "mood": "anxious",
+      "era": "pre_exile",
+      "character": "Josiah",
+      "narrativeType": "lost_book_found_during_temple_repair",
+      "subTexture": "scroll_in_the_chamber_kings_rent_garment_prophetess_in_jerusalem",
+      "majorMotif": "eyes_shall_not_see_the_evil_because_heart_was_tender",
+      "emotionalShape": "forgotten_word_recovered_then_grieved_then_softened_by_huldahs_word",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1513,
+      "anchor": "1 Samuel 25:14-42",
+      "mood": "brave_courage",
+      "era": "early_monarchy",
+      "character": "Abigail",
+      "narrativeType": "woman_intercepts_avenger_on_the_road",
+      "subTexture": "donkeys_with_provisions_road_meeting_bow_at_feet_full_speech",
+      "majorMotif": "kept_my_lord_from_shedding_blood_with_her_own_hand",
+      "emotionalShape": "household_in_danger_intercepted_by_one_voice_then_blessing",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1514,
+      "anchor": "Ezra 8:21-32",
+      "mood": "weary",
+      "era": "persian_exile",
+      "character": "Ezra",
+      "narrativeType": "fast_at_river_then_long_journey_with_treasure",
+      "subTexture": "fast_at_ahava_treasure_weighed_to_twelve_priests_safe_road_to_jerusalem",
+      "majorMotif": "ashamed_to_ask_for_soldiers_after_speaking_of_gods_hand",
+      "emotionalShape": "spoken_word_makes_one_carry_alone_then_god_keeps_the_road",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1515,
+      "anchor": "Daniel 2:31-45",
+      "mood": "encouraging",
+      "era": "babylonian_exile",
+      "character": "Daniel",
+      "narrativeType": "interpretation_of_kings_dream_of_falling_kingdoms",
+      "subTexture": "great_image_struck_at_feet_stone_becomes_mountain_filling_earth",
+      "majorMotif": "kingdom_that_shall_never_be_destroyed",
+      "emotionalShape": "kingdoms_named_and_falling_then_one_kingdom_standing_forever",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1516,
+      "anchor": "1 Kings 19:9-13",
+      "mood": "calm_peaceful",
+      "era": "divided_monarchy",
+      "character": "Elijah",
+      "narrativeType": "theophany_after_long_journey_to_horeb",
+      "subTexture": "cave_then_wind_earthquake_fire_then_still_small_voice",
+      "majorMotif": "after_the_fire_a_still_small_voice",
+      "emotionalShape": "long_journey_then_three_loud_passings_then_meeting_in_quiet",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
     }
   ]
 }

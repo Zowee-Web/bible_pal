@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1514,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_26_MIXED_TEXTURE",
+  "title": "The Fast at the River of Ahava",
+  "scriptureAnchor": "Ezra 8:21-32",
+  "scriptureAnchorId": "ezra_8_21-32",
+  "bibleStoryKey": "ezra_proclaims_fast_at_ahava_journeys_with_treasure",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "ezra_proclaimed_a_fast_at_the_river_of_ahava",
+    "ashamed_to_ask_the_king_for_a_band_of_soldiers",
+    "twelve_priests_weighed_the_silver_and_gold",
+    "hand_of_god_upon_them_on_the_road",
+    "weighed_again_in_the_chambers_at_jerusalem"
+  ],
+  "emotionalTags": [
+    "weary",
+    "settled",
+    "trusting",
+    "earnest",
+    "reverent",
+    "awed"
+  ],
+  "primaryCharacterId": "ezra",
+  "primaryCharacterDisplayName": "Ezra",
+  "bibleOrderIndex": 405,
+  "timelineEra": "persian_exile",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1514_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1514_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_1514_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1514_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1514_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1514_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "Ezra had told the king the hand of God was upon all those who seek him. He could not then ask the king for a band of soldiers. So they fasted at the river. The treasure was weighed out, and the road was kept, and they came to Jerusalem alive. What is it to walk a long dangerous road carrying something precious because you have spoken what you cannot now ask help to keep?",
+  "reflectionText": "Ezra had told the king the hand of God was upon all them for good that seek him. He could not then ask the king for a band of soldiers. So they fasted at the river. The treasure was weighed out, and the road was kept, and they came unto Jerusalem alive. What is it to walk a long perilous road bearing somewhat precious because thou hast spoken what thou canst not now ask help to keep?",
+  "reflectionSource": "claude-opus-4-7"
+}

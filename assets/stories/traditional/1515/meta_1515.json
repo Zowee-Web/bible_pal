@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1515,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_26_MIXED_TEXTURE",
+  "title": "The Stone Cut Without Hands",
+  "scriptureAnchor": "Daniel 2:31-45",
+  "scriptureAnchorId": "daniel_2_31-45",
+  "bibleStoryKey": "daniel_interprets_nebuchadnezzars_dream_of_the_statue",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "nebuchadnezzars_dream_of_the_great_image",
+    "head_of_gold_silver_brass_iron_and_clay",
+    "stone_cut_out_without_hands",
+    "kingdom_that_shall_never_be_destroyed",
+    "stone_became_a_mountain_filled_the_whole_earth"
+  ],
+  "emotionalTags": [
+    "encouraged",
+    "awed",
+    "settled",
+    "reverent",
+    "trusting",
+    "hopeful"
+  ],
+  "primaryCharacterId": "daniel",
+  "primaryCharacterDisplayName": "Daniel",
+  "bibleOrderIndex": 426,
+  "timelineEra": "babylonian_exile",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1515_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1515_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_1515_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1515_traditional_kjv_full.txt"
+    },
+    "long": {
+      "storyText": "story_1515_traditional_web_long.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1515_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1515_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1515_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "The stone was cut out of the mountain without hands. It struck the image on its feet of iron and clay. The iron and brass and silver and gold broke together like chaff. The stone became a mountain that filled the whole earth. What is it to see, in a single night, every kingdom that will ever be brought down — and the one that will fill the earth?",
+  "reflectionText": "The stone was cut out of the mountain without hands. It smote the image upon his feet of iron and clay. The iron and brass and silver and gold brake together like chaff. The stone became a mountain that filled the whole earth. What is it to see, in a single night, every kingdom that shall ever be brought down — and the one that shall fill the whole earth?",
+  "reflectionSource": "claude-opus-4-7"
+}

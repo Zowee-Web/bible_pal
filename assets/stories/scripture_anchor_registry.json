@@ -3915,6 +3915,46 @@
       "moodTags": [
         "anxious"
       ]
+    },
+    {
+      "scriptureAnchorId": "2_kings_22_8-20",
+      "bibleStoryKey": "josiah_finds_the_book_huldah_prophesies",
+      "bibleSourceRef": "2 Kings 22:8-20",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_samuel_25_14-42",
+      "bibleStoryKey": "abigail_intercepts_david_with_bread_and_wine",
+      "bibleSourceRef": "1 Samuel 25:14-42",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "ezra_8_21-32",
+      "bibleStoryKey": "ezra_proclaims_fast_at_ahava_journeys_with_treasure",
+      "bibleSourceRef": "Ezra 8:21-32",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "daniel_2_31-45",
+      "bibleStoryKey": "daniel_interprets_nebuchadnezzars_dream_of_the_statue",
+      "bibleSourceRef": "Daniel 2:31-45",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_kings_19_9-13",
+      "bibleStoryKey": "elijah_at_horeb_still_small_voice",
+      "bibleSourceRef": "1 Kings 19:9-13",
+      "moodTags": [
+        "calm_peaceful"
+      ]
     }
   ]
 }
