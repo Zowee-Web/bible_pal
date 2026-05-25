@@ -22,40 +22,28 @@
   "title": "The Binding of Isaac",
   "files": {
     "short": {
-      "web": {
-        "storyText": "story_1032_traditional_web_short.txt"
-      },
-      "kjv": {
-        "storyText": "story_1032_traditional_kjv_short.txt"
-      },
+      "storyText": "story_1032_traditional_web_short.txt",
       "storyAudio": "audio_1032_story_short.mp3"
     },
+    "short_kjv": {
+      "storyAudio": "audio_1032_story_kjv_short.mp3",
+      "storyText": "story_1032_traditional_kjv_short.txt"
+    },
     "full": {
-      "web": {
-        "storyText": "story_1032_traditional_web_full.txt"
-      },
-      "kjv": {
-        "storyText": "story_1032_traditional_kjv_full.txt"
-      },
+      "storyText": "story_1032_traditional_web_full.txt",
       "storyAudio": "audio_1032_story_full.mp3"
     },
+    "full_kjv": {
+      "storyAudio": "audio_1032_story_kjv_full.mp3",
+      "storyText": "story_1032_traditional_kjv_full.txt"
+    },
     "reflection": {
-      "web": {
-        "reflectionText": "reflection_1032_traditional_web.txt"
-      },
-      "kjv": {
-        "reflectionText": "reflection_1032_traditional_kjv.txt"
-      },
+      "reflectionText": "reflection_1032_traditional_web.txt",
       "reflectionAudio": "audio_1032_reflection.mp3"
     },
-    "short_kjv": {
-      "storyAudio": "audio_1032_story_kjv_short.mp3"
-    },
-    "full_kjv": {
-      "storyAudio": "audio_1032_story_kjv_full.mp3"
-    },
     "reflection_kjv": {
-      "reflectionAudio": "audio_1032_reflection_kjv.mp3"
+      "reflectionAudio": "audio_1032_reflection_kjv.mp3",
+      "reflectionText": "reflection_1032_traditional_kjv.txt"
     }
   },
   "reflections": {

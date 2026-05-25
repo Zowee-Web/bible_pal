@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bible-pal.local/meta.schema.json",
+  "title": "Bible PAL traditional story meta",
+  "description": "JSON Schema for per-story metadata files at assets/stories/traditional/{sid}/meta_{sid}.json. additionalProperties is false at every level to catch silent leak fields (e.g. the rVK incident: reflectionVoiceKey leaking into ~167 metas). New top-level fields require an intentional schema change.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "storyId",
+    "mode",
+    "kidFriendly",
+    "languageStyle",
+    "mood",
+    "lengths",
+    "createdByModel",
+    "generationBatch",
+    "title",
+    "scriptureAnchor",
+    "bibleStoryKey",
+    "storyVoiceKey",
+    "timelineEra",
+    "primaryCharacterId",
+    "primaryCharacterDisplayName",
+    "files"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 2 },
+    "storyId": { "type": "integer", "minimum": 1 },
+    "mode": { "const": "traditional" },
+    "kidFriendly": { "type": "boolean" },
+    "languageStyle": { "type": "string", "enum": ["WEB", "KJV"] },
+    "lanes": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["web", "kjv"] },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "mood": {
+      "type": "string",
+      "enum": [
+        "encouraging",
+        "calm_peaceful",
+        "grateful",
+        "brave_courage",
+        "hurting",
+        "anxious",
+        "joyful",
+        "weary"
+      ]
+    },
+    "lengths": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["short", "full", "long"] },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "createdByModel": { "type": "string", "minLength": 1 },
+    "generationBatch": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "scriptureAnchor": { "type": "string", "minLength": 1 },
+    "scriptureAnchorId": { "type": "string", "minLength": 1 },
+    "bibleStoryKey": { "type": "string", "minLength": 1 },
+    "bibleOrderIndex": { "type": "integer", "minimum": 0 },
+    "storyVoiceKey": {
+      "type": "string",
+      "description": "Narrator voice. Enum is the union of all values currently shipping in the corpus. Source of truth for *new* authoring is scripts/story_factory/story_voice_registry.py:APPROVED_NARRATOR_VOICES + the character voices documented in feedback_voice_rules.md. Banned-for-new voices (LILY_WOLFF, PETER_BOLD, MARCUS_ANCHOR, JOSEPH_DREAMER) and legacy retired voices (JOHN_DOE, CHRIS_DEFAULT) remain in this enum so existing metas validate; new authoring should still go through validate_story_voice().",
+      "enum": [
+        "VOICE_ARABELLA",
+        "VOICE_ARCHER",
+        "VOICE_BARNABAS_ENCOURAGER",
+        "VOICE_BRADFORD",
+        "VOICE_CHARLOTTE_V3",
+        "VOICE_CHRIS_DEFAULT",
+        "VOICE_DAVID_SHEPHERD",
+        "VOICE_DEBORAH_WISE",
+        "VOICE_ELIJAH_SAGE",
+        "VOICE_ESTHER_BRAVE",
+        "VOICE_HANNAH_HOPE",
+        "VOICE_JAMES_BRITISH_PROFESSIONAL",
+        "VOICE_JAMES_HUSKY",
+        "VOICE_JANE_PROFESSIONAL",
+        "VOICE_JOHN_BELOVED",
+        "VOICE_JOHN_DOE",
+        "VOICE_JOSEPH_DREAMER",
+        "VOICE_LILY_WOLFF",
+        "VOICE_MARCUS_ANCHOR",
+        "VOICE_MARTHA_CARING",
+        "VOICE_MARY_PONDER",
+        "VOICE_MIRIAM_JOYFUL",
+        "VOICE_NATASHA_AFRICAN_AMERICAN",
+        "VOICE_NOAH_PATIENT",
+        "VOICE_PETER_BOLD",
+        "VOICE_PRISCILLA_TEACHER",
+        "VOICE_REVEREND_MICHAEL_C_VINCENT",
+        "VOICE_RUTH_COMFORT"
+      ]
+    },
+    "voiceKey": {
+      "type": "string",
+      "description": "Legacy duplicate of storyVoiceKey (115 metas in the 1000-series cohort). Allowed but not required; new authoring uses storyVoiceKey only."
+    },
+    "timelineEra": {
+      "type": "string",
+      "enum": [
+        "patriarchs",
+        "exodus",
+        "conquest",
+        "judges",
+        "early_monarchy",
+        "kingdom",
+        "divided_monarchy",
+        "pre_exile",
+        "exile",
+        "babylonian_exile",
+        "persian_exile",
+        "return",
+        "wisdom",
+        "prophets",
+        "jesus_ministry",
+        "early_church"
+      ]
+    },
+    "primaryCharacterId": { "type": "string", "minLength": 1 },
+    "primaryCharacterDisplayName": { "type": "string", "minLength": 1 },
+    "themeTags": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "emotionalTags": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "primaryLifeSituationTags": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "secondaryLifeSituationTags": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "ttsModel": {
+      "type": "string",
+      "enum": ["eleven_v3", "eleven_multilingual_v2"]
+    },
+    "ttsVoiceSettings": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "stability": { "type": "number", "minimum": 0, "maximum": 1 },
+        "similarity_boost": { "type": "number", "minimum": 0, "maximum": 1 },
+        "style": { "type": "number", "minimum": 0, "maximum": 1 },
+        "use_speaker_boost": { "type": "boolean" },
+        "speed": { "type": "number", "minimum": 0.5, "maximum": 2.0 }
+      }
+    },
+    "shortScripture": { "type": "boolean" },
+    "reflectionText": { "type": "string" },
+    "reflectionQuestion": { "type": "string" },
+    "reflectionSource": {
+      "type": "string",
+      "enum": ["llm", "claude-opus-4-7", "template"]
+    },
+    "editorialFlag": {
+      "type": "string",
+      "enum": ["exceptional"]
+    },
+    "editorialNotes": { "type": "string" },
+    "source": {
+      "type": "string",
+      "description": "LEGACY (grandfathered, do not write in new generation). Provenance marker for the 800-series cohort produced by the retired STORY_FACTORY v2.3 pipeline. Observed only on storyIds 801-834."
+    },
+    "generationContractVersion": {
+      "type": "string",
+      "description": "LEGACY (grandfathered, do not write in new generation). Pipeline contract version string used by the retired STORY_FACTORY v2.3 cohort (storyIds 807-834)."
+    },
+    "voiceKeys": {
+      "type": "object",
+      "description": "LEGACY (grandfathered, do not write in new generation). Per-length voice override map from the STORY_FACTORY v2.3 cohort (storyIds 809-834). Superseded by the single canonical `storyVoiceKey` field.",
+      "additionalProperties": { "type": "string" }
+    },
+    "boundaryValidation": {
+      "type": "object",
+      "description": "LEGACY (grandfathered, do not write in new generation). Per-length pass/fail marker from the STORY_FACTORY v2.3 pipeline (storyIds 827-834).",
+      "additionalProperties": { "type": "string" }
+    },
+    "wordCountFlags": {
+      "type": "object",
+      "description": "LEGACY (grandfathered, do not write in new generation). Per-length word-count audit record from the STORY_FACTORY v2.3 pipeline (storyIds 826-834). Modern bucket gate is enforced by scripts/validate_corpus.py.",
+      "additionalProperties": true
+    },
+    "skippedLengths": {
+      "type": "object",
+      "description": "LEGACY (grandfathered, do not write in new generation). Records intentionally-skipped lengths in STORY_FACTORY v2.3 (storyIds 827, 829). Modern flow: omit the length from `lengths` and don't add a `files.{length}` entry.",
+      "additionalProperties": { "type": "string" }
+    },
+    "reflections": {
+      "type": "object",
+      "description": "LEGACY (grandfathered, do not write in new generation). Object form of reflection filenames keyed by lane (web/kjv), observed on storyIds 1016-1071. Superseded by `files.reflection.reflectionText` and `files.reflection_kjv.reflectionText`.",
+      "additionalProperties": false,
+      "properties": {
+        "web": { "type": "string", "minLength": 1 },
+        "kjv": { "type": "string", "minLength": 1 }
+      }
+    },
+    "files": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(short|full|long)(_kjv)?$": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "storyText": { "type": "string", "minLength": 1 },
+            "storyAudio": { "type": "string", "minLength": 1 },
+            "storyTextV3": {
+              "type": "string",
+              "minLength": 1,
+              "description": "LEGACY (grandfathered, do not write in new generation). v3 TTS audio pilot variant, observed only on storyIds 1121 and 1122."
+            },
+            "reflectionText": {
+              "type": "string",
+              "minLength": 1,
+              "description": "LEGACY (grandfathered, do not write in new generation). 801 anomaly: reflection content inlined under a length entry instead of under files.reflection."
+            },
+            "reflectionAudio": {
+              "type": "string",
+              "minLength": 1,
+              "description": "LEGACY (grandfathered, do not write in new generation). 801 anomaly: see reflectionText description."
+            }
+          }
+        },
+        "^reflection(_kjv)?$": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "reflectionText": { "type": "string", "minLength": 1 },
+            "reflectionAudio": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    }
+  }
+}

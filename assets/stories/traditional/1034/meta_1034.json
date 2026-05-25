@@ -22,40 +22,28 @@
   "title": "Solomon Asks for Wisdom",
   "files": {
     "short": {
-      "web": {
-        "storyText": "story_1034_traditional_web_short.txt"
-      },
-      "kjv": {
-        "storyText": "story_1034_traditional_kjv_short.txt"
-      },
+      "storyText": "story_1034_traditional_web_short.txt",
       "storyAudio": "audio_1034_story_short.mp3"
     },
+    "short_kjv": {
+      "storyAudio": "audio_1034_story_kjv_short.mp3",
+      "storyText": "story_1034_traditional_kjv_short.txt"
+    },
     "full": {
-      "web": {
-        "storyText": "story_1034_traditional_web_full.txt"
-      },
-      "kjv": {
-        "storyText": "story_1034_traditional_kjv_full.txt"
-      },
+      "storyText": "story_1034_traditional_web_full.txt",
       "storyAudio": "audio_1034_story_full.mp3"
     },
+    "full_kjv": {
+      "storyAudio": "audio_1034_story_kjv_full.mp3",
+      "storyText": "story_1034_traditional_kjv_full.txt"
+    },
     "reflection": {
-      "web": {
-        "reflectionText": "reflection_1034_traditional_web.txt"
-      },
-      "kjv": {
-        "reflectionText": "reflection_1034_traditional_kjv.txt"
-      },
+      "reflectionText": "reflection_1034_traditional_web.txt",
       "reflectionAudio": "audio_1034_reflection.mp3"
     },
-    "short_kjv": {
-      "storyAudio": "audio_1034_story_kjv_short.mp3"
-    },
-    "full_kjv": {
-      "storyAudio": "audio_1034_story_kjv_full.mp3"
-    },
     "reflection_kjv": {
-      "reflectionAudio": "audio_1034_reflection_kjv.mp3"
+      "reflectionAudio": "audio_1034_reflection_kjv.mp3",
+      "reflectionText": "reflection_1034_traditional_kjv.txt"
     }
   },
   "reflections": {
@@ -64,7 +52,7 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
-  "reflectionText": "Solomon might have asked for any thing. He chose understanding. Not power, not riches, not the overthrow of his enemies \u2014 only the clarity to discern between good and evil.\n\nIn a still moment, what wouldest thou ask? What is the one thing that would help thee serve well those whom thou hast been given to care for?",
+  "reflectionText": "Solomon might have asked for any thing. He chose understanding. Not power, not riches, not the overthrow of his enemies — only the clarity to discern between good and evil.\n\nIn a still moment, what wouldest thou ask? What is the one thing that would help thee serve well those whom thou hast been given to care for?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "solomon",
   "primaryCharacterDisplayName": "Solomon"

@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+#
+# Bible PAL pre-commit hook — runs scripts/validate_corpus.py on staged
+# meta.json and prose .txt files under assets/stories/traditional/.
+#
+# Behavior:
+#   - Schema failures block the commit (exit non-zero).
+#   - Bucket-gate warnings and missing-file warnings print but do NOT block
+#     (Phase-1 policy; bucket goes blocking later via --strict-bucket once
+#     legacy drift is reconciled).
+#   - If no relevant files are staged, exits 0 immediately.
+#
+# Installation (one-time, from repo root):
+#   ln -sf ../../scripts/git_hooks/pre-commit .git/hooks/pre-commit
+#
+# Emergency bypass (use sparingly):
+#   git commit --no-verify
+
+set -e
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "$REPO_ROOT"
+
+# Collect staged additions/modifications under traditional/, restricted to
+# meta_*.json and prose .txt files. For each, resolve to its meta path so
+# the validator runs schema check on the meta files themselves
+# (the validator's bucket check reads prose .txt files indirectly via
+# meta.files.*.storyText paths).
+#
+# Portable: works on macOS's bash 3.2 (no mapfile, no associative arrays).
+STAGED=$(git diff --cached --name-only --diff-filter=ACM \
+    | grep -E '^assets/stories/traditional/[0-9]+/(meta_[0-9]+\.json|.*\.txt)$' \
+    || true)
+
+if [ -z "$STAGED" ]; then
+    exit 0
+fi
+
+META_PATHS=$(printf "%s\n" "$STAGED" \
+    | awk -F/ '{print "assets/stories/traditional/" $4 "/meta_" $4 ".json"}' \
+    | sort -u)
+
+# Filter out any computed meta paths that don't exist on disk (defensive —
+# could happen if a story dir is being added without a meta file in the
+# same commit, though that itself is a content bug).
+EXISTING=""
+for m in $META_PATHS; do
+    if [ -f "$m" ]; then
+        EXISTING="$EXISTING $m"
+    fi
+done
+
+if [ -z "$EXISTING" ]; then
+    exit 0
+fi
+
+# shellcheck disable=SC2086
+N=$(printf "%s\n" $EXISTING | wc -l | tr -d ' ')
+echo "Running validate_corpus.py on $N staged meta file(s)..."
+# shellcheck disable=SC2086
+exec python3 scripts/validate_corpus.py --paths $EXISTING
