@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1510,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_25_SUSTAINED_TEXTURE",
+  "title": "The Dust of the River on His Sandals",
+  "scriptureAnchor": "2 Kings 5:1-14",
+  "scriptureAnchorId": "2_kings_5_1-14",
+  "bibleStoryKey": "naaman_dips_seven_times_in_the_jordan",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "little_maid_speaks_of_prophet_in_samaria",
+    "chariots_stopped_at_elishas_door",
+    "naaman_wroth_at_simple_word",
+    "servants_counsel_what_if_great_thing",
+    "dipped_seven_times_flesh_like_a_child"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "tender",
+    "settled",
+    "awed",
+    "trusting",
+    "reverent"
+  ],
+  "primaryCharacterId": "naaman",
+  "primaryCharacterDisplayName": "Naaman",
+  "bibleOrderIndex": 350,
+  "timelineEra": "divided_monarchy",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1510_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1510_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_1510_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1510_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1510_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1510_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "He stood at the door with his horses and his chariots. He was angry when the prophet did not come out. His servants spoke to him. He dipped seven times in the Jordan and came up with the flesh of a little child. What is it to be the great man at the door who finds the cure is to go down to the river seven times and wash?",
+  "reflectionText": "He stood at the door with his horses and his chariot. He was wroth when the prophet came not out. His servants spake unto him. He dipped himself seven times in Jordan and came up with the flesh of a little child. What is it to be the great man at the door who findeth the cure is to go down unto the river seven times and wash?",
+  "reflectionSource": "claude-opus-4-7"
+}

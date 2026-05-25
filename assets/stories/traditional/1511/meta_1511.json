@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1511,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_25_SUSTAINED_TEXTURE",
+  "title": "The Letter on the Floor of the Temple",
+  "scriptureAnchor": "2 Kings 19:14-37",
+  "scriptureAnchorId": "2_kings_19_14-37",
+  "bibleStoryKey": "hezekiah_spreads_the_letter_angel_smites_assyrians",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "letter_spread_before_the_lord_on_temple_floor",
+    "hezekiahs_prayer_for_kingdoms_to_know",
+    "isaiah_he_shall_not_come_into_this_city",
+    "angel_smote_in_camp_by_night",
+    "morning_found_them_dead"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "earnest",
+    "watchful",
+    "awed",
+    "trusting",
+    "vindicated"
+  ],
+  "primaryCharacterId": "hezekiah",
+  "primaryCharacterDisplayName": "Hezekiah",
+  "bibleOrderIndex": 363,
+  "timelineEra": "pre_exile",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1511_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1511_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_1511_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1511_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1511_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1511_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "Hezekiah spread the letter on the floor of the temple before the LORD. He asked to be heard. That night the angel went out into the Assyrian camp. The morning came and the bodies were there. What is it to spread a letter before the LORD on a stone floor at noon, and to be answered before the next dawn?",
+  "reflectionText": "Hezekiah spread the letter upon the floor of the temple before the LORD. He asked to be heard. That night the angel went forth into the camp of the Assyrians. The morning came and the bodies were there. What is it to spread a letter before the LORD upon a stone floor at noon, and to be answered or ever the next dawn?",
+  "reflectionSource": "claude-opus-4-7"
+}

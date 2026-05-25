@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1509,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_25_SUSTAINED_TEXTURE",
+  "title": "The Night the King Could Not Sleep",
+  "scriptureAnchor": "Esther 6:1-11",
+  "scriptureAnchorId": "esther_6_1-11",
+  "bibleStoryKey": "the_chronicles_read_in_the_night_mordecai_paraded",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "king_could_not_sleep_chronicles_read",
+    "mordecai_named_in_the_record_unhonored",
+    "haman_arrives_to_ask_for_gallows",
+    "royal_apparel_and_horse_and_crown",
+    "haman_paraded_mordecai_through_streets"
+  ],
+  "emotionalTags": [
+    "calm",
+    "settled",
+    "watchful",
+    "reverent",
+    "tender",
+    "awed"
+  ],
+  "primaryCharacterId": "mordecai",
+  "primaryCharacterDisplayName": "Mordecai",
+  "bibleOrderIndex": 421,
+  "timelineEra": "persian_exile",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1509_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1509_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1509_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1509_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "The king could not sleep. The chronicles were read in the night. Haman came in to ask for the gallows and was made to walk the horse through the streets proclaiming the words he had wanted spoken about himself. What is it to be the man on the horse — and what is it to be the man holding the bridle?",
+  "reflectionText": "The king could not sleep. The chronicles were read in the night. Haman came in to ask for the gallows and was made to walk the horse through the streets proclaiming the words he had wanted spoken concerning himself. What is it to be the man upon the horse — and what is it to be the man that holdeth the bridle?",
+  "reflectionSource": "claude-opus-4-7"
+}

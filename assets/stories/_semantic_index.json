@@ -6651,6 +6651,91 @@
         "web",
         "kjv"
       ]
+    },
+    {
+      "storyId": 1507,
+      "anchor": "Joshua 6:1-21",
+      "mood": "brave_courage",
+      "era": "conquest",
+      "character": "Joshua",
+      "narrativeType": "ritual_procession_then_collapse",
+      "subTexture": "six_days_of_silent_circuits_then_seventh_day_seven_times_with_trumpets_and_shout",
+      "majorMotif": "wall_fell_down_flat_when_the_shout_came",
+      "emotionalShape": "imposed_silence_held_through_six_days_then_release_into_voice_on_seventh",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1508,
+      "anchor": "1 Samuel 11:1-11",
+      "mood": "brave_courage",
+      "era": "early_monarchy",
+      "character": "Saul",
+      "narrativeType": "spirit_falls_on_man_at_plow",
+      "subTexture": "plowing_then_oxen_hewn_then_three_companies_in_morning_watch",
+      "majorMotif": "from_field_to_battle_in_one_days_arc",
+      "emotionalShape": "weeping_news_into_kindled_anger_into_summons_into_dawn_victory",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1509,
+      "anchor": "Esther 6:1-11",
+      "mood": "calm_peaceful",
+      "era": "persian_exile",
+      "character": "Mordecai",
+      "narrativeType": "ironic_reversal_in_kings_chamber",
+      "subTexture": "sleepless_king_chronicles_read_haman_arrives_walks_horse_through_streets",
+      "majorMotif": "the_man_who_came_for_the_gallows_holds_the_bridle",
+      "emotionalShape": "small_recorded_act_remembered_unhonored_then_quietly_overturned",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1510,
+      "anchor": "2 Kings 5:1-14",
+      "mood": "grateful",
+      "era": "divided_monarchy",
+      "character": "Naaman",
+      "narrativeType": "great_man_humbled_to_the_river",
+      "subTexture": "chariots_at_elishas_door_then_river_dipping_seven_times_then_flesh_like_a_child",
+      "majorMotif": "the_cure_was_not_great_but_simple_at_the_river",
+      "emotionalShape": "rage_at_simplicity_softened_by_servants_into_obedience_into_healing",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1511,
+      "anchor": "2 Kings 19:14-37",
+      "mood": "anxious",
+      "era": "pre_exile",
+      "character": "Hezekiah",
+      "narrativeType": "king_spreads_letter_before_god_then_night_strike",
+      "subTexture": "letter_open_on_temple_floor_then_assyrian_camp_struck_by_night_morning_finds_bodies",
+      "majorMotif": "letter_spread_before_the_lord_at_noon_answered_before_dawn",
+      "emotionalShape": "siege_terror_carried_into_prayer_then_resolved_in_a_single_night",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
     }
   ]
 }

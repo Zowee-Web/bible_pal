@@ -3875,6 +3875,46 @@
       "moodTags": [
         "anxious"
       ]
+    },
+    {
+      "scriptureAnchorId": "joshua_6_1-21",
+      "bibleStoryKey": "jericho_falls_after_seven_day_procession",
+      "bibleSourceRef": "Joshua 6:1-21",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_samuel_11_1-11",
+      "bibleStoryKey": "saul_rescues_jabesh_gilead_three_companies",
+      "bibleSourceRef": "1 Samuel 11:1-11",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "esther_6_1-11",
+      "bibleStoryKey": "the_chronicles_read_in_the_night_mordecai_paraded",
+      "bibleSourceRef": "Esther 6:1-11",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_kings_5_1-14",
+      "bibleStoryKey": "naaman_dips_seven_times_in_the_jordan",
+      "bibleSourceRef": "2 Kings 5:1-14",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_kings_19_14-37",
+      "bibleStoryKey": "hezekiah_spreads_the_letter_angel_smites_assyrians",
+      "bibleSourceRef": "2 Kings 19:14-37",
+      "moodTags": [
+        "anxious"
+      ]
     }
   ]
 }

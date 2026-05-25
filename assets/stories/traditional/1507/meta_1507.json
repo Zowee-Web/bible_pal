@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1507,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_25_SUSTAINED_TEXTURE",
+  "title": "The Wall Fell Down Flat",
+  "scriptureAnchor": "Joshua 6:1-21",
+  "scriptureAnchorId": "joshua_6_1-21",
+  "bibleStoryKey": "jericho_falls_after_seven_day_procession",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "jericho_straitly_shut_up",
+    "seven_priests_with_rams_horn_trumpets",
+    "ark_compassing_the_city_six_days",
+    "shout_on_the_seventh_day",
+    "wall_fell_down_flat"
+  ],
+  "emotionalTags": [
+    "brave",
+    "resolute",
+    "awed",
+    "reverent",
+    "trusting",
+    "vindicated"
+  ],
+  "primaryCharacterId": "joshua",
+  "primaryCharacterDisplayName": "Joshua",
+  "bibleOrderIndex": 177,
+  "timelineEra": "conquest",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1507_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1507_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1507_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1507_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "Six days the procession went around the city in silence. The people did not shout. The wall watched them from above. On the seventh day they marched seven times. The trumpets blew. The people shouted. The wall fell down flat. What is it to be told to walk and not to speak, every day, until the day comes when you are told to shout?",
+  "reflectionText": "Six days the procession went round about the city in silence. The people shouted not. The wall watched them from above. On the seventh day they compassed it seven times. The trumpets blew. The people shouted. The wall fell down flat. What is it to be told to walk and not to speak, every day, until the day cometh when thou art bidden to shout?",
+  "reflectionSource": "claude-opus-4-7"
+}
