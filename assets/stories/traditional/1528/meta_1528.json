@@ -48,5 +48,8 @@
   "timelineEra": "early_church",
   "primaryCharacterId": "paul",
   "primaryCharacterDisplayName": "Paul",
-  "languageStyle": "WEB"
+  "languageStyle": "WEB",
+  "scriptureAnchorId": "acts_27_13-26",
+  "shortScripture": false,
+  "reflectionText": "What is it like to sit in that space where you can feel something coming undone, but you haven't yet reached the moment of breaking—and what do you notice about yourself in that waiting?"
 }

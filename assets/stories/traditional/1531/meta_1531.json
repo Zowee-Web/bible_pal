@@ -48,5 +48,8 @@
   "timelineEra": "early_church",
   "languageStyle": "WEB",
   "primaryCharacterId": "john_apostle",
-  "primaryCharacterDisplayName": "John"
+  "primaryCharacterDisplayName": "John",
+  "scriptureAnchorId": "revelation_21_1-7",
+  "shortScripture": false,
+  "reflectionText": "What would it feel like to live as though the renewal promised in that vision were already quietly unfolding in the world around you?"
 }
