@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1520,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_27_LYRIC_WARMTH",
+  "title": "What Is Man That Thou Art Mindful of Him",
+  "scriptureAnchor": "Psalm 8:1-9",
+  "scriptureAnchorId": "psalm_8_1-9",
+  "bibleStoryKey": "david_sings_of_heavens_and_mindfulness_of_man",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "themeTags": [
+    "when_i_consider_thy_heavens_moon_and_stars",
+    "what_is_man_that_thou_art_mindful_of_him",
+    "crowned_him_with_glory_and_honour",
+    "dominion_over_sheep_oxen_fowl_and_fish",
+    "o_lord_our_lord_how_excellent_is_thy_name"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "awed",
+    "reverent",
+    "tender",
+    "settled",
+    "hopeful"
+  ],
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "bibleOrderIndex": 470,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1520_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1520_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1520_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1520_traditional_kjv.txt"
+    },
+    "full": {
+      "storyText": "story_1520_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1520_traditional_kjv_full.txt"
+    }
+  },
+  "reflectionQuestion": "He sang it outside at night. He held his hand up against the stars. The hand was small. The heavens were not. The song closed where it had opened: how excellent is thy name. What is it to be small under so many stars and to know that you are also held above the ground by the same name that made them?",
+  "reflectionText": "He sang it without at night. He held his hand up against the stars. The hand was small. The heavens were not. The song closed where it had opened: how excellent is thy name. What is it to be small under so many stars and to know that thou art also held above the ground by the same name that made them?",
+  "reflectionSource": "claude-opus-4-7"
+}

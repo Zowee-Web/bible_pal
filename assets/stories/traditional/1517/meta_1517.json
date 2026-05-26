@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1517,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_27_LYRIC_WARMTH",
+  "title": "The LORD Is My Light and My Salvation",
+  "scriptureAnchor": "Psalm 27:1-14",
+  "scriptureAnchorId": "psalm_27_1-14",
+  "bibleStoryKey": "david_sings_of_light_salvation_and_waiting",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "the_lord_my_light_and_my_salvation",
+    "one_thing_have_i_desired_dwell_in_the_house",
+    "hide_me_in_his_pavilion_secret_of_the_tabernacle",
+    "set_me_upon_a_rock",
+    "wait_on_the_lord_be_of_good_courage"
+  ],
+  "emotionalTags": [
+    "encouraged",
+    "settled",
+    "trusting",
+    "reverent",
+    "hopeful",
+    "earnest"
+  ],
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "bibleOrderIndex": 478,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1517_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1517_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1517_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1517_traditional_kjv.txt"
+    },
+    "full": {
+      "storyText": "story_1517_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1517_traditional_kjv_full.txt"
+    }
+  },
+  "reflectionQuestion": "He sang of the LORD as light, salvation, strength, the rock in the secret of the tabernacle. He had been in trouble enough to know what each name meant. He closed with \"Wait on the LORD.\" What is it to sing a song you have learned in the years that are already behind you, and to close it by telling yourself to wait?",
+  "reflectionText": "He sang of the LORD as light, salvation, strength, the rock in the secret of the tabernacle. He had been in trouble enough to know what each name meant. He closed with \"Wait on the LORD.\" What is it to sing a song thou hast learned in the years that are already behind thee, and to close it by telling thyself to wait?",
+  "reflectionSource": "claude-opus-4-7"
+}

@@ -6821,6 +6821,91 @@
         "web",
         "kjv"
       ]
+    },
+    {
+      "storyId": 1517,
+      "anchor": "Psalm 27:1-14",
+      "mood": "encouraging",
+      "era": "wisdom",
+      "character": "David",
+      "narrativeType": "psalm_of_confidence_followed_by_prayer",
+      "subTexture": "lamp_low_song_opens_with_light_then_turns_to_prayer_then_closes_on_waiting",
+      "majorMotif": "hide_me_in_pavilion_set_me_on_a_rock",
+      "emotionalShape": "learned_confidence_then_petition_then_returning_to_courage",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1518,
+      "anchor": "Psalm 137:1-6",
+      "mood": "hurting",
+      "era": "babylonian_exile",
+      "character": "Babylonian Exile Psalmist",
+      "narrativeType": "corporate_lament_at_foreign_river",
+      "subTexture": "captives_sit_by_canal_hang_harps_on_willows_refuse_to_sing",
+      "majorMotif": "how_shall_we_sing_the_lords_song_in_a_strange_land",
+      "emotionalShape": "silent_grief_into_refusal_into_vow_of_remembrance",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1519,
+      "anchor": "Isaiah 43:1-7",
+      "mood": "brave_courage",
+      "era": "pre_exile",
+      "character": "Isaiah",
+      "narrativeType": "prophet_receives_word_of_calling_and_gathering",
+      "subTexture": "naming_then_waters_and_fire_imagery_then_four_directions_summons",
+      "majorMotif": "called_thee_by_thy_name_thou_art_mine",
+      "emotionalShape": "fear_not_redeemed_through_waters_and_fire_then_gathered_home",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1520,
+      "anchor": "Psalm 8:1-9",
+      "mood": "grateful",
+      "era": "wisdom",
+      "character": "David",
+      "narrativeType": "song_of_wonder_at_night_under_stars",
+      "subTexture": "david_outside_at_night_hand_raised_against_stars_song_circles_back",
+      "majorMotif": "what_is_man_that_thou_art_mindful_of_him",
+      "emotionalShape": "awe_at_heavens_into_question_into_answer_about_dominion",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
+    },
+    {
+      "storyId": 1521,
+      "anchor": "Matthew 6:25-34",
+      "mood": "calm_peaceful",
+      "era": "jesus_ministry",
+      "character": "Jesus",
+      "narrativeType": "hillside_teaching_with_image_anchors",
+      "subTexture": "bird_overhead_lilies_in_grass_solomon_invoked_kingdom_first_close",
+      "majorMotif": "consider_the_lilies_of_the_field",
+      "emotionalShape": "do_not_be_afraid_for_your_life_grounded_in_observable_images",
+      "tagsComplete": true,
+      "narratorStance": "scene-immersive",
+      "lanes": [
+        "web",
+        "kjv"
+      ]
     }
   ]
 }

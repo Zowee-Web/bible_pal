@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1521,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_27_LYRIC_WARMTH",
+  "title": "Consider the Lilies of the Field",
+  "scriptureAnchor": "Matthew 6:25-34",
+  "scriptureAnchorId": "matthew_6_25-34",
+  "bibleStoryKey": "jesus_teaches_take_no_thought_for_the_morrow",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "take_no_thought_for_your_life",
+    "behold_the_fowls_of_the_air",
+    "consider_the_lilies_of_the_field",
+    "solomon_in_all_his_glory_not_arrayed_like_one_of_these",
+    "seek_ye_first_the_kingdom_of_god"
+  ],
+  "emotionalTags": [
+    "calm",
+    "settled",
+    "trusting",
+    "tender",
+    "reverent",
+    "encouraged"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 611,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1521_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1521_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1521_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1521_traditional_kjv.txt"
+    },
+    "full": {
+      "storyText": "story_1521_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1521_traditional_kjv_full.txt"
+    }
+  },
+  "reflectionQuestion": "He pointed at the bird going over their heads. He gestured toward the lilies in the grass at his feet. He said: take no thought for the morrow. What is it to be told not to worry by someone who is standing in the grass, pointing to the lilies and the birds while he says it?",
+  "reflectionText": "He pointed at the bird going over their heads. He gestured toward the lilies in the grass at his feet. He said: take no thought for the morrow. What is it to be told not to take thought by one that is standing in the grass, pointing unto the lilies and the birds while he saith it?",
+  "reflectionSource": "claude-opus-4-7"
+}

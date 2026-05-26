@@ -2024,10 +2024,10 @@
     },
     {
       "scriptureAnchorId": "psalm_27_1-14",
-      "bibleStoryKey": "the_lord_is_my_light",
+      "bibleStoryKey": "david_sings_of_light_salvation_and_waiting",
       "bibleSourceRef": "Psalm 27:1-14",
       "moodTags": [
-        "calm_peaceful"
+        "encouraging"
       ]
     },
     {
@@ -3952,6 +3952,38 @@
       "scriptureAnchorId": "1_kings_19_9-13",
       "bibleStoryKey": "elijah_at_horeb_still_small_voice",
       "bibleSourceRef": "1 Kings 19:9-13",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "psalm_137_1-6",
+      "bibleStoryKey": "captives_by_the_rivers_of_babylon_remember_zion",
+      "bibleSourceRef": "Psalm 137:1-6",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "isaiah_43_1-7",
+      "bibleStoryKey": "isaiah_word_fear_not_through_waters_and_fire",
+      "bibleSourceRef": "Isaiah 43:1-7",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "psalm_8_1-9",
+      "bibleStoryKey": "david_sings_of_heavens_and_mindfulness_of_man",
+      "bibleSourceRef": "Psalm 8:1-9",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matthew_6_25-34",
+      "bibleStoryKey": "jesus_teaches_take_no_thought_for_the_morrow",
+      "bibleSourceRef": "Matthew 6:25-34",
       "moodTags": [
         "calm_peaceful"
       ]
