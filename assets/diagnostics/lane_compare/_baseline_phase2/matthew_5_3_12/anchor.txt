@@ -1,0 +1,3 @@
+Matthew 5:3–12
+length: short
+backend: claude

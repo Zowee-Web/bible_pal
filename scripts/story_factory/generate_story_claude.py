@@ -33,7 +33,7 @@ import time
 
 import anthropic
 
-from claude_prompts import (
+from story_prompts import (
     SYSTEM_PROMPTS_STORY_TRADITIONAL,
     SYSTEM_PROMPTS_STORY_CREATIVE,
     KID_SYSTEM_PROMPTS_STORY_TRADITIONAL,
@@ -62,6 +62,7 @@ from claude_validator import (
     check_meta_text,
     validate_traditional,
     validate_creative,
+    log_lane_warnings,
     check_reflection_banned,
     check_lyrical_drift,
     load_forbidden_words,
@@ -520,6 +521,11 @@ def main() -> int:
                 return fail_clean(
                     f"{length} story failed all gates after {MAX_REGEN} attempts"
                 )
+
+            # Lane identity validator (WARN-only, adult only).
+            # Logs to assets/diagnostics/lane_validator_log.jsonl, never blocks.
+            if mode == "traditional" and not is_kid:
+                log_lane_warnings(root, sid, lane, length, text)
 
             fname = f"story_{sid}_{mode}_{lane}_{length}.txt"
             (outdir / fname).write_text(text)
