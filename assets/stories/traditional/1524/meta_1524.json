@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1524,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_28_GENRE_AWARE",
+  "title": "The Fall of Jerusalem",
+  "scriptureAnchor": "2 Kings 25:1-12",
+  "scriptureAnchorId": "2_kings_25_1-12",
+  "bibleStoryKey": "fall_of_jerusalem_to_babylon",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "siege_and_famine",
+    "fall_of_the_city",
+    "burning_of_the_temple",
+    "blinded_king",
+    "remnant_carried_away"
+  ],
+  "emotionalTags": [
+    "devastated",
+    "grieving",
+    "stunned",
+    "hurting",
+    "fearful",
+    "stripped",
+    "lamenting"
+  ],
+  "primaryCharacterId": "zedekiah",
+  "primaryCharacterDisplayName": "Zedekiah",
+  "bibleOrderIndex": 290,
+  "timelineEra": "babylonian_exile",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1524_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1524_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1524_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1524_traditional_kjv.txt"
+    },
+    "full": {
+      "storyText": "story_1524_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1524_traditional_kjv_full.txt"
+    }
+  },
+  "reflectionQuestion": "The walls had stood since Solomon. The temple had stood since Solomon. The Chaldees broke them both down in the same month. What is it to live in a place all your life and to see the wood and the stone of it go in one summer?",
+  "reflectionText": "The walls had stood since Solomon. The temple had stood since Solomon. The Chaldees brake them both down in the same month. What is it to dwell in a place all thy days and to behold the wood and the stone of it go in one summer?",
+  "reflectionSource": "claude-opus-4-7"
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1526,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_28_GENRE_AWARE",
+  "title": "I Waited Patiently for the LORD",
+  "scriptureAnchor": "Psalm 40:1-8",
+  "scriptureAnchorId": "psalm_40_1-8",
+  "bibleStoryKey": "brought_up_out_of_the_horrible_pit",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "patient_waiting",
+    "lifted_from_the_pit",
+    "new_song_in_the_mouth",
+    "blessed_is_the_trusting_man",
+    "delight_in_the_will_of_god"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "settled",
+    "redeemed",
+    "wonderstruck",
+    "tender",
+    "trusting",
+    "committed"
+  ],
+  "primaryCharacterId": "psalmist",
+  "primaryCharacterDisplayName": "Psalmist",
+  "bibleOrderIndex": 190,
+  "timelineEra": "wisdom",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1526_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1526_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1526_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1526_traditional_kjv.txt"
+    }
+  },
+  "reflectionQuestion": "David said he had waited patiently. He had been in the horrible pit, in the miry clay, where his feet could not be lifted. Then the LORD brought him up and set his feet upon a rock. Then he had a new song. Then he had the law within his heart. What is it to wait long enough in a pit that the song you sing afterward is a new one you would not have known before?",
+  "reflectionText": "David said he had waited patiently. He had been in the horrible pit, in the miry clay, where his feet could not be lifted. Then the LORD brought him up and set his feet upon a rock. Then he had a new song. Then he had the law within his heart. What is it to wait so long in a pit that the song thou singest afterward is a new one thou wouldst not have known before?",
+  "reflectionSource": "claude-opus-4-7"
+}

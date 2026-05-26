@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1523,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "shortScripture": false,
+  "createdByModel": "claude-opus-4-7",
+  "generationBatch": "PAL_BATCH_28_GENRE_AWARE",
+  "title": "The Work Ceases on the House of the LORD",
+  "scriptureAnchor": "Ezra 4:1-24",
+  "scriptureAnchorId": "ezra_4_1-24",
+  "bibleStoryKey": "adversaries_stop_the_temple_rebuilding",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "themeTags": [
+    "opposition_to_the_work",
+    "refused_assistance",
+    "letters_against_the_city",
+    "long_delay",
+    "unfinished_house"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "discouraged",
+    "weary",
+    "grieved",
+    "uncertain",
+    "patient"
+  ],
+  "primaryCharacterId": "zerubbabel",
+  "primaryCharacterDisplayName": "Zerubbabel",
+  "bibleOrderIndex": 340,
+  "timelineEra": "persian_exile",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1523_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1523_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1523_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1523_traditional_kjv.txt"
+    },
+    "full": {
+      "storyText": "story_1523_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1523_traditional_kjv_full.txt"
+    }
+  },
+  "reflectionQuestion": "The work of the LORD's house had begun. The foundation had been laid. The adversaries weakened the hands of the people and wrote letters to the king. The king commanded the work to stop. The grass came up among the stones. Many years passed. What is it to live in a city where the unfinished house of the LORD is sitting in the middle of it every day?",
+  "reflectionText": "The work of the LORD's house had begun. The foundation had been laid. The adversaries weakened the hands of the people and wrote letters unto the king. The king commanded the work to cease. The grass came up among the stones. Many years passed. What is it to dwell in a city where the unfinished house of the LORD sitteth in the midst of it every day?",
+  "reflectionSource": "claude-opus-4-7"
+}

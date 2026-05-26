@@ -6906,6 +6906,66 @@
         "web",
         "kjv"
       ]
+    },
+    {
+      "storyId": 1522,
+      "anchor": "1 Samuel 12:1-25",
+      "mood": "calm_peaceful",
+      "era": "early_monarchy",
+      "character": "Samuel",
+      "narrativeType": "narrative",
+      "subTexture": "covenant_renewal_at_leadership_transition",
+      "majorMotif": "thunder_and_rain_in_wheat_harvest",
+      "emotionalShape": "rising_solemnity_into_intercessory_settlement",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1523,
+      "anchor": "Ezra 4:1-24",
+      "mood": "anxious",
+      "era": "persian_exile",
+      "character": "Zerubbabel",
+      "narrativeType": "narrative",
+      "subTexture": "long_opposition_to_holy_work",
+      "majorMotif": "stones_left_with_grass_growing_among_them",
+      "emotionalShape": "anxious_drift_into_unfinished_waiting",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1524,
+      "anchor": "2 Kings 25:1-12",
+      "mood": "hurting",
+      "era": "babylonian_exile",
+      "character": "Zedekiah",
+      "narrativeType": "narrative",
+      "subTexture": "the_city_falls_completely",
+      "majorMotif": "burning_houses_smoke_over_hills",
+      "emotionalShape": "grief_stacking_into_total_loss",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1525,
+      "anchor": "1 Kings 22:1-28",
+      "mood": "brave_courage",
+      "era": "divided_monarchy",
+      "character": "Micaiah",
+      "narrativeType": "narrative",
+      "subTexture": "one_true_word_in_a_room_of_four_hundred",
+      "majorMotif": "prophet_struck_on_the_cheek_then_imprisoned",
+      "emotionalShape": "resolute_lone_witness_into_solitary_consequence",
+      "tagsComplete": true
+    },
+    {
+      "storyId": 1526,
+      "anchor": "Psalm 40:1-8",
+      "mood": "grateful",
+      "era": "wisdom",
+      "character": "Psalmist",
+      "narrativeType": "psalm",
+      "subTexture": "lifted_from_pit_set_on_rock_new_song",
+      "majorMotif": "horrible_pit_and_miry_clay_to_rock",
+      "emotionalShape": "patient_waiting_into_grateful_settled_delight",
+      "tagsComplete": true
     }
   ]
 }
