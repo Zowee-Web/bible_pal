@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1531,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_29_LANE_DIFFERENTIATION",
+  "reflectionQuestion": "What would it feel like to live as though the renewal promised in that vision were already quietly unfolding in the world around you?",
+  "title": "A New Heaven and a New Earth",
+  "files": {
+    "short": {
+      "storyText": "story_1531_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1531_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1531_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1531_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1531_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1531_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "scriptureAnchor": "Revelation 21:1-7",
+  "bibleStoryKey": "new_heaven_new_earth",
+  "reflections": {
+    "web": "reflection_1531_traditional_web.txt",
+    "kjv": "reflection_1531_traditional_kjv.txt"
+  },
+  "timelineEra": "early_church",
+  "languageStyle": "WEB",
+  "primaryCharacterId": "john_apostle",
+  "primaryCharacterDisplayName": "John"
+}

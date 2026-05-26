@@ -1,0 +1,60 @@
+{
+  "batch": "PAL_OPUS_BATCH_29_LANE_DIFFERENTIATION",
+  "stories": [
+    {
+      "id": 1527,
+      "mode": "traditional",
+      "mood": "brave_courage",
+      "voice": "VOICE_PETER_BOLD",
+      "title": "The Sea Divided",
+      "anchor": "Exodus 14:21-31",
+      "bibleKey": "red_sea_crossing",
+      "passageSummary": "Moses stretches out his hand over the sea. The Lord drives the sea back with a strong east wind all night, turning the seabed to dry ground. The waters part as a wall on the right and on the left. Israel walks through on dry ground. Egyptian chariots pursue, but the Lord throws their host into confusion — wheels coming off, hard going. At dawn Moses stretches out his hand again; the sea returns to its normal flow, covering the chariots, horsemen, and the entire army of Pharaoh. Not one of them remains. Israel sees the great work of the Lord against Egypt. The people fear the Lord and believe in him and in his servant Moses.",
+      "kid": false
+    },
+    {
+      "id": 1528,
+      "mode": "traditional",
+      "mood": "anxious",
+      "voice": "VOICE_JAMES_HUSKY",
+      "title": "The Storm Before the Wreck",
+      "anchor": "Acts 27:13-26",
+      "bibleKey": "paul_storm_at_sea",
+      "passageSummary": "A south wind blows gently — they suppose they have obtained their purpose and weigh anchor along Crete. Soon a tempestuous wind called Euroclydon beats down. The ship is caught and cannot bear up against the wind, so they let her drive. Driven under Clauda, they secure the lifeboat, undergird the ship with cables, fearing the Syrtis sandbars. They lower the gear and are driven. The next day they throw cargo overboard; the third day they cast out the tackle with their own hands. Many days neither sun nor stars appear; the storm rages; all hope they should be saved is taken away. After long abstinence Paul stands and says: 'Sirs, ye should have hearkened unto me. But now I exhort you to take heart, for there shall be no loss of any life among you, but only of the ship. The angel of God whose I am and whom I serve stood by me this night, saying, Fear not, Paul; thou must be brought before Caesar, and lo, God hath given thee all them that sail with thee. Wherefore, sirs, be of good cheer: for I believe God, that it shall be even as it was told me. Howbeit we must be cast upon a certain island.'",
+      "kid": false
+    },
+    {
+      "id": 1529,
+      "mode": "traditional",
+      "mood": "encouraging",
+      "voice": "VOICE_MIRIAM_JOYFUL",
+      "title": "Ruth in the Field",
+      "anchor": "Ruth 2:1-13",
+      "bibleKey": "ruth_gleans_in_field_of_boaz",
+      "passageSummary": "Naomi's kinsman Boaz is a mighty man of wealth, of the family of Elimelech. Ruth the Moabitess says to Naomi, Let me go to the field and glean ears of corn after him in whose sight I shall find grace. She goes, and her hap is to light on a part of the field belonging to Boaz. Boaz comes from Bethlehem, says to the reapers, The Lord be with you. They answer, The Lord bless thee. He asks his servant: Whose damsel is this? The servant answers: It is the Moabitish damsel that came back with Naomi out of the country of Moab. She has been here from morning until now. Boaz speaks to Ruth: Hearest thou not, my daughter? Go not to glean in another field, neither go from hence, but abide here fast by my maidens. Let thine eyes be on the field that they do reap, and go after them: have I not charged the young men that they shall not touch thee? When thou art athirst, go unto the vessels, and drink. She falls on her face, bows to the ground, and says, Why have I found grace in thine eyes, that thou shouldest take knowledge of me, seeing I am a stranger? Boaz answers: It has fully been shown me, all that thou hast done unto thy mother in law. The Lord recompense thy work; a full reward be given thee of the Lord God of Israel, under whose wings thou art come to trust. She says, Let me find favour in thy sight, my lord, for thou hast comforted me.",
+      "kid": false
+    },
+    {
+      "id": 1530,
+      "mode": "traditional",
+      "mood": "weary",
+      "voice": "VOICE_ELIJAH_SAGE",
+      "title": "The Voice from the Whirlwind",
+      "anchor": "Job 38:1-11",
+      "bibleKey": "voice_from_the_whirlwind",
+      "passageSummary": "The Lord answers Job out of the whirlwind: Who is this that darkeneth counsel by words without knowledge? Gird up now thy loins like a man; for I will demand of thee, and answer thou me. Where wast thou when I laid the foundations of the earth? declare, if thou hast understanding. Who hath laid the measures thereof, if thou knowest? or who hath stretched the line upon it? Whereupon are the foundations thereof fastened? or who laid the corner stone thereof, when the morning stars sang together, and all the sons of God shouted for joy? Or who shut up the sea with doors, when it brake forth as if it had issued out of the womb? When I made the cloud the garment thereof, and thick darkness a swaddlingband for it, and brake up for it my decreed place, and set bars and doors, and said, Hitherto shalt thou come, but no further: and here shall thy proud waves be stayed.",
+      "kid": false
+    },
+    {
+      "id": 1531,
+      "mode": "traditional",
+      "mood": "joyful",
+      "voice": "VOICE_NATASHA_AFRICAN_AMERICAN",
+      "title": "A New Heaven and a New Earth",
+      "anchor": "Revelation 21:1-7",
+      "bibleKey": "new_heaven_new_earth",
+      "passageSummary": "John sees a new heaven and a new earth, for the first heaven and the first earth are passed away, and there is no more sea. He sees the holy city, new Jerusalem, coming down from God out of heaven, prepared as a bride adorned for her husband. He hears a great voice out of heaven saying: Behold, the tabernacle of God is with men, and he will dwell with them, and they shall be his people, and God himself shall be with them, and be their God. And God shall wipe away all tears from their eyes; and there shall be no more death, neither sorrow, nor crying, neither shall there be any more pain: for the former things are passed away. He that sat upon the throne says: Behold, I make all things new. He says: Write: for these words are true and faithful. And he says: It is done. I am Alpha and Omega, the beginning and the end. I will give unto him that is athirst of the fountain of the water of life freely. He that overcometh shall inherit all things; and I will be his God, and he shall be my son.",
+      "kid": false
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1530,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_ELIJAH_SAGE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_29_LANE_DIFFERENTIATION",
+  "reflectionQuestion": "When you think about the moments in your life where you demanded an answer and received instead only the vastness of what you couldn't understand, what happened to the exhaustion you were carrying?",
+  "title": "The Voice from the Whirlwind",
+  "files": {
+    "short": {
+      "storyText": "story_1530_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1530_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1530_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1530_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1530_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1530_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "scriptureAnchor": "Job 38:1-11",
+  "bibleStoryKey": "voice_from_the_whirlwind",
+  "reflections": {
+    "web": "reflection_1530_traditional_web.txt",
+    "kjv": "reflection_1530_traditional_kjv.txt"
+  },
+  "timelineEra": "wisdom",
+  "languageStyle": "WEB",
+  "primaryCharacterId": "job",
+  "primaryCharacterDisplayName": "Job"
+}

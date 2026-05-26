@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1529,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_MIRIAM_JOYFUL",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_29_LANE_DIFFERENTIATION",
+  "reflectionQuestion": "What might it look like in your own life to quietly show up and do the faithful, unglamorous work — trusting that someone, somewhere, is noticing?",
+  "title": "Ruth in the Field",
+  "files": {
+    "short": {
+      "storyText": "story_1529_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1529_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1529_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1529_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1529_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1529_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "scriptureAnchor": "Ruth 2:1-13",
+  "bibleStoryKey": "ruth_gleans_in_field_of_boaz",
+  "reflections": {
+    "web": "reflection_1529_traditional_web.txt",
+    "kjv": "reflection_1529_traditional_kjv.txt"
+  },
+  "timelineEra": "judges",
+  "primaryCharacterId": "ruth",
+  "primaryCharacterDisplayName": "Ruth",
+  "languageStyle": "WEB"
+}

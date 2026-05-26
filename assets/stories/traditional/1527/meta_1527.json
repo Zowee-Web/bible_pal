@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1527,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_ARCHER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_29_LANE_DIFFERENTIATION",
+  "reflectionQuestion": "When you think about the moment of standing at the edge of an impossible barrier — water towering on every side — what is it that makes a person step forward into that uncertain path, and have you ever felt the ground beneath your own feet in a moment like that?",
+  "title": "The Sea Divided",
+  "files": {
+    "short": {
+      "storyText": "story_1527_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1527_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1527_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1527_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1527_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1527_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "scriptureAnchor": "Exodus 14:21-31",
+  "bibleStoryKey": "red_sea_crossing",
+  "reflections": {
+    "web": "reflection_1527_traditional_web.txt",
+    "kjv": "reflection_1527_traditional_kjv.txt"
+  },
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "languageStyle": "WEB"
+}

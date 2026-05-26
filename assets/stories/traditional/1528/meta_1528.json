@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1528,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_JAMES_HUSKY",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_29_LANE_DIFFERENTIATION",
+  "reflectionQuestion": "What is it like to sit in that space where you can feel something coming undone, but you haven't yet reached the moment of breaking—and what do you notice about yourself in that waiting?",
+  "title": "The Storm Before the Wreck",
+  "files": {
+    "short": {
+      "storyText": "story_1528_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1528_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1528_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1528_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1528_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1528_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "scriptureAnchor": "Acts 27:13-26",
+  "bibleStoryKey": "paul_storm_at_sea",
+  "reflections": {
+    "web": "reflection_1528_traditional_web.txt",
+    "kjv": "reflection_1528_traditional_kjv.txt"
+  },
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "languageStyle": "WEB"
+}

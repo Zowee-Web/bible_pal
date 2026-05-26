@@ -47,6 +47,18 @@ SONNET_MODEL = "claude-sonnet-4-6"
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 STORIES_DIR = PROJECT_ROOT / "assets" / "stories"
 
+# Bridge to canonical lane-differentiation prompts (story_factory/story_prompts.py).
+# Adds sacred-proclamation (KJV) and sacred-witnessing (WEB) structural blocks
+# plus translation voice exemplars (Luke 2:8-14 in each lane).
+sys.path.insert(0, str(PROJECT_ROOT / "scripts" / "story_factory"))
+from story_prompts import (  # noqa: E402
+    _CLASSIC_LANE_STRUCTURE,
+    _MODERN_LANE_STRUCTURE,
+    _KJV_AUDIO_RULES,
+    _KJV_VOICE_EXEMPLAR,
+    _WEB_VOICE_EXEMPLAR,
+)
+
 # Load .env
 def load_env():
     env_path = PROJECT_ROOT / ".env"
@@ -197,7 +209,11 @@ def build_generation_prompt(
         length_instructions.append(f"- {length}: {lo}-{hi} words (aim {aim})")
 
     if mode == "traditional":
-        mode_rules = """
+        # The WEB primary generation now carries Modern-lane sacred-witnessing
+        # framing + WEB voice exemplar. The KJV rewrite (build_kjv_prompt) layers
+        # sacred-proclamation framing on top of this base prose.
+        mode_rules = (
+            """
 ## TRADITIONAL MODE RULES (NON-NEGOTIABLE)
 - Faithful retelling of the specific Bible passage
 - Preserve ALL characters, event order, outcomes from scripture
@@ -219,6 +235,9 @@ If your last sentence explains what something MEANS → DELETE IT.
 If your last paragraph summarizes significance → DELETE IT.
 End on a concrete image, a final action, or the last line of dialogue.
 """
+            + _MODERN_LANE_STRUCTURE
+            + _WEB_VOICE_EXEMPLAR
+        )
     else:
         mode_rules = """
 ## CREATIVE MODE RULES
@@ -312,20 +331,31 @@ Write ONLY prose inside the markers. No preamble, no word counts, no metadata.
 
 
 def build_kjv_prompt(web_text: str, length: str) -> str:
-    return f"""Rewrite this Bible PAL story in KJV (King James Version) classical English.
+    """Rewrite a WEB-lane story into the Classic (KJV-style) lane.
 
-Rules:
-- Use thee/thou/hath/saith/spake/drave/bare/wrought etc.
-- Same events, same scene expansion, same pacing
-- Same paragraph structure
-- Same ending (action/image/dialogue — no interpretation)
-- Do NOT add any content not in the original
-- Do NOT change the ending's style
-
-Original (WEB):
-{web_text}
-
-Write ONLY the KJV prose. No preamble, no markers."""
+    This is not a translation pass — it is a re-voicing into the Sacred
+    Proclamation register. Same events, same scene structure, same ending
+    style, but the prose itself is rewritten in KJV cadence and diction
+    (NOT in copy-pasted KJV phrasing).
+    """
+    return (
+        "Rewrite this Bible PAL story in the Classic (KJV-style) lane voice. "
+        "You are re-voicing it, not merely translating individual words.\n\n"
+        "Structural requirements (do NOT change these):\n"
+        "- Same events, same scene order, same scene expansion\n"
+        "- Same paragraph structure and beats\n"
+        "- Same ending (action/image/dialogue — no interpretation)\n"
+        "- Do NOT add or remove any content\n"
+        "- Do NOT change the length tier (this is a "
+        f"{length.upper()} story; keep its word count within ±10%)\n\n"
+        "Voice transformation (this is where the work happens):"
+        + _CLASSIC_LANE_STRUCTURE
+        + _KJV_AUDIO_RULES
+        + _KJV_VOICE_EXEMPLAR
+        + f"\n\nORIGINAL (Modern / WEB lane):\n{web_text}\n\n"
+        "Now write the Classic (KJV-style) lane version. Output ONLY the "
+        "rewritten prose. No preamble, no markers, no commentary."
+    )
 
 
 def build_reflection_prompt(mode: str, title: str, mood: str, kid: bool) -> str:
@@ -643,7 +673,24 @@ def generate_story(
     print(f"  ✓ {refl_fname}")
 
     if has_kjv:
-        kjv_refl_prompt = f"Rewrite this reflection in KJV classical English (thee/thou):\n\n{refl_text}\n\nWrite ONLY the KJV text."
+        kjv_refl_prompt = (
+            "Rewrite this Bible PAL reflection in the Classic (KJV-style) lane "
+            "voice. This is re-voicing, not word-for-word translation.\n\n"
+            "Keep:\n"
+            "- Same observations and invitations to notice\n"
+            "- Same length (±10%)\n"
+            "- The reverent, non-prescriptive register (no advice, no commands)\n\n"
+            "Transform the voice:\n"
+            "- Permit (do NOT mandate) thou/thee/thy, -eth/-est verb forms, "
+            "and archaic markers ('unto', 'spake', 'hath', 'saith') where they "
+            "aid solemnity. Real KJV varies — do not force these on every line.\n"
+            "- No contractions. Use 'do not', 'is not', etc.\n"
+            "- Maintain Hebraic parallelism in cadence where possible.\n"
+            "- Avoid pastiche or comedy-bit register. If it sounds like a "
+            "costume drama, simplify.\n\n"
+            f"ORIGINAL (Modern / WEB lane):\n{refl_text}\n\n"
+            "Write ONLY the rewritten reflection."
+        )
         kjv_refl_response = client.messages.create(
             model=HAIKU_MODEL,
             max_tokens=200,
