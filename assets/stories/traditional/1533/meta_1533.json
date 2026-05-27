@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1533,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_DEBORAH_WISE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_30_TEXTURE_ROTATION",
+  "reflectionQuestion": "What season or circumstance in your own life might be less about coincidence and more about a quiet, purposeful placing — and what would it mean to step fully into it?",
+  "title": "For Such a Time as This",
+  "files": {
+    "short": {
+      "storyText": "story_1533_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1533_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1533_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1533_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1533_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1533_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "scriptureAnchor": "Esther 4:9-17",
+  "bibleStoryKey": "esther_for_such_a_time_as_this",
+  "reflections": {
+    "web": "reflection_1533_traditional_web.txt",
+    "kjv": "reflection_1533_traditional_kjv.txt"
+  },
+  "timelineEra": "exile",
+  "primaryCharacterId": "esther",
+  "primaryCharacterDisplayName": "Esther",
+  "languageStyle": "WEB",
+  "scriptureAnchorId": "esther_4_9-17",
+  "shortScripture": false,
+  "reflectionText": "What season or circumstance in your own life might be less about coincidence and more about a quiet, purposeful placing — and what would it mean to step fully into it?"
+}

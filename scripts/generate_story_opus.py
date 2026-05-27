@@ -718,7 +718,7 @@ def generate_story(
         "storyId": story_id,
         "mode": mode,
         "kidFriendly": kid,
-        "primaryLanguageStyle": "WEB",
+        "languageStyle": "WEB",
         "lanes": lanes,
         "mood": mood,
         "lengths": actual_lengths_sorted,
@@ -730,7 +730,6 @@ def generate_story(
         "files": files,
         "reflectionSource": "llm",
         "storyVoiceKey": voice,
-        "reflectionVoiceKey": voice,
     }
 
     if anchor:

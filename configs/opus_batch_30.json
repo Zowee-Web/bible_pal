@@ -1,0 +1,60 @@
+{
+  "batch": "PAL_OPUS_BATCH_30_TEXTURE_ROTATION",
+  "stories": [
+    {
+      "id": 1532,
+      "mode": "traditional",
+      "mood": "brave_courage",
+      "voice": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "title": "The Walls of Jericho",
+      "anchor": "Joshua 6:6-20",
+      "bibleKey": "jericho_walls_fall",
+      "passageSummary": "Joshua summons the priests. Seven of them carry seven trumpets of rams' horns before the ark of the LORD. The armed men go before them; the rear guard comes after the ark, with the trumpets sounding continually. They march around the city of Jericho once on day one and return to camp. They do this six days. On the seventh day they rise early at dawn and compass the city seven times. On the seventh circuit, the priests blow the trumpets. Joshua calls out: 'Shout, for the LORD has given you the city.' The people shout with a great shout. The wall falls down flat. The people go up into the city, every man straight before him, and they take the city.",
+      "kid": false
+    },
+    {
+      "id": 1533,
+      "mode": "traditional",
+      "mood": "encouraging",
+      "voice": "VOICE_DEBORAH_WISE",
+      "title": "For Such a Time as This",
+      "anchor": "Esther 4:9-17",
+      "bibleKey": "esther_for_such_a_time_as_this",
+      "passageSummary": "Hathach returns from Mordecai to Queen Esther in the palace and tells her Mordecai's words. Esther sends Hathach back with her reply: anyone who comes uninvited to the king's inner court, man or woman, is put to death unless the king extends the golden scepter — and she has not been called to the king these thirty days. Hathach brings her words to Mordecai. Mordecai sends his answer: 'Think not within thyself that thou shalt escape in the king's house, more than all the Jews. For if thou altogether holdest thy peace at this time, then shall there enlargement and deliverance arise to the Jews from another place; but thou and thy father's house shall be destroyed: and who knoweth whether thou art come to the kingdom for such a time as this?' Esther sends her answer to Mordecai: gather all the Jews in Shushan and fast for me — no food, no water, three days, night and day. My maidens and I will fast likewise. Then I will go in unto the king, which is not according to the law: and if I perish, I perish. Mordecai goes his way and does all that Esther has commanded.",
+      "kid": false
+    },
+    {
+      "id": 1534,
+      "mode": "traditional",
+      "mood": "hurting",
+      "voice": "VOICE_JOHN_BELOVED",
+      "title": "The Widow at Zarephath",
+      "anchor": "1 Kings 17:8-16",
+      "bibleKey": "elijah_and_widow_at_zarephath",
+      "passageSummary": "The word of the LORD comes to Elijah: arise, get thee to Zarephath, which belongs to Sidon, and dwell there; I have commanded a widow woman there to sustain thee. Elijah goes to Zarephath. At the gate of the city he sees the widow gathering sticks. He calls to her and asks for a little water in a vessel that he may drink. As she goes to fetch it, he calls again: bring me, I pray thee, a morsel of bread in thine hand. She says: as the LORD thy God lives, I have nothing baked, but only a handful of meal in a barrel and a little oil in a cruse. I am gathering two sticks that I may go in and dress it for me and my son, that we may eat it, and die. Elijah says: fear not; go and do as thou hast said; but make me thereof a little cake first, and bring it unto me, and after make for thee and thy son. For thus saith the LORD God of Israel: the barrel of meal shall not waste, neither shall the cruse of oil fail, until the day that the LORD sends rain upon the earth. She goes and does according to Elijah's word. She and he and her household eat many days. The barrel of meal does not waste, neither does the cruse of oil fail, according to the word of the LORD which he spoke by Elijah.",
+      "kid": false
+    },
+    {
+      "id": 1535,
+      "mode": "traditional",
+      "mood": "anxious",
+      "voice": "VOICE_CHARLOTTE_V3",
+      "title": "Peter Delivered from Prison",
+      "anchor": "Acts 12:6-19",
+      "bibleKey": "peter_delivered_from_prison",
+      "passageSummary": "The night before Herod is to bring Peter forth, Peter is sleeping between two soldiers, bound with two chains. The keepers before the door keep the prison. An angel of the Lord comes upon Peter, and a light shines in the prison. The angel smites Peter on the side, raises him up, and says: arise up quickly. The chains fall off Peter's hands. The angel says: gird thyself, bind on thy sandals, cast thy garment about thee, and follow me. Peter goes out, and follows; he does not know that what was done by the angel was true; he thinks he sees a vision. They pass the first ward and the second ward, and come to the iron gate that leads unto the city, which opens to them of its own accord. They go out and pass on through one street, and forthwith the angel departs from him. When Peter comes to himself, he says: now I know of a surety that the Lord has sent his angel and has delivered me out of the hand of Herod, and from all the expectation of the people of the Jews. He comes to the house of Mary the mother of John, where many are gathered together praying. He knocks at the door of the gate; a damsel named Rhoda comes to hearken. When she knows Peter's voice, she opens not the gate for gladness, but runs in and tells how Peter stands before the gate. They say to her: thou art mad. She affirms that it is so. They say: it is his angel. Peter continues knocking. When they open the door and see him, they are astonished. He, beckoning unto them with the hand to hold their peace, declares unto them how the Lord has brought him out of the prison. He says: go shew these things unto James and to the brethren. He departs and goes to another place. As soon as it is day, there is no small stir among the soldiers about what is become of Peter. When Herod has sought for him, and finds him not, he examines the keepers, and commands that they be put to death.",
+      "kid": false
+    },
+    {
+      "id": 1536,
+      "mode": "traditional",
+      "mood": "calm_peaceful",
+      "voice": "VOICE_BARNABAS_ENCOURAGER",
+      "title": "He That Dwells in the Secret Place",
+      "anchor": "Psalm 91:1-16",
+      "bibleKey": "secret_place_of_the_most_high",
+      "passageSummary": "He that dwells in the secret place of the Most High shall abide under the shadow of the Almighty. I will say of the LORD: he is my refuge and my fortress, my God; in him will I trust. Surely he shall deliver thee from the snare of the fowler, and from the noisome pestilence. He shall cover thee with his feathers, and under his wings shalt thou trust: his truth shall be thy shield and buckler. Thou shalt not be afraid for the terror by night; nor for the arrow that flieth by day; nor for the pestilence that walketh in darkness; nor for the destruction that wasteth at noonday. A thousand shall fall at thy side, and ten thousand at thy right hand; but it shall not come nigh thee. Only with thine eyes shalt thou behold and see the reward of the wicked. Because thou hast made the LORD, which is my refuge, even the Most High, thy habitation; there shall no evil befall thee, neither shall any plague come nigh thy dwelling. For he shall give his angels charge over thee, to keep thee in all thy ways. They shall bear thee up in their hands, lest thou dash thy foot against a stone. Thou shalt tread upon the lion and adder: the young lion and the dragon shalt thou trample under feet. Because he has set his love upon me, therefore will I deliver him: I will set him on high, because he has known my name. He shall call upon me, and I will answer him: I will be with him in trouble; I will deliver him, and honour him. With long life will I satisfy him, and shew him my salvation.",
+      "kid": false
+    }
+  ]
+}

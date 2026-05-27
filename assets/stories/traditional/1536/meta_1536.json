@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1536,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_30_TEXTURE_ROTATION",
+  "reflectionQuestion": "What does it feel like to imagine a place of shelter so complete that you could truly rest there — and is there something in your life right now that comes close to offering that kind of quiet refuge?",
+  "title": "He That Dwells in the Secret Place",
+  "files": {
+    "short": {
+      "storyText": "story_1536_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1536_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1536_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1536_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1536_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1536_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "scriptureAnchor": "Psalm 91:1-16",
+  "bibleStoryKey": "secret_place_of_the_most_high",
+  "reflections": {
+    "web": "reflection_1536_traditional_web.txt",
+    "kjv": "reflection_1536_traditional_kjv.txt"
+  },
+  "timelineEra": "wisdom",
+  "languageStyle": "WEB",
+  "scriptureAnchorId": "psalm_91_1-16",
+  "shortScripture": false,
+  "reflectionText": "What does it feel like to imagine a place of shelter so complete that you could truly rest there — and is there something in your life right now that comes close to offering that kind of quiet refuge?",
+  "primaryCharacterId": "psalmist",
+  "primaryCharacterDisplayName": "Psalmist"
+}

@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1535,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_CHARLOTTE_V3",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_30_TEXTURE_ROTATION",
+  "reflectionQuestion": "When you think about the people praying through the night for Peter — so earnest in their pleading yet so stunned when he actually appeared at the door — have you ever found yourself caught between the anxiety of desperate prayer and the unsettling surprise of it being answered?",
+  "title": "Peter Delivered from Prison",
+  "files": {
+    "short": {
+      "storyText": "story_1535_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1535_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1535_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1535_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1535_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1535_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_CHARLOTTE_V3",
+  "scriptureAnchor": "Acts 12:6-19",
+  "bibleStoryKey": "peter_delivered_from_prison",
+  "reflections": {
+    "web": "reflection_1535_traditional_web.txt",
+    "kjv": "reflection_1535_traditional_kjv.txt"
+  },
+  "timelineEra": "early_church",
+  "primaryCharacterId": "peter",
+  "primaryCharacterDisplayName": "Peter",
+  "languageStyle": "WEB",
+  "scriptureAnchorId": "acts_12_6-19",
+  "shortScripture": false,
+  "reflectionText": "When you think about the people praying through the night for Peter — so earnest in their pleading yet so stunned when he actually appeared at the door — have you ever found yourself caught between the anxiety of desperate prayer and the unsettling surprise of it being answered?"
+}

@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1532,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_30_TEXTURE_ROTATION",
+  "reflectionQuestion": "What walls in your own life have you been circling patiently, trusting that faithfulness and courage in the face of what seems impossible might eventually bring them down?",
+  "title": "The Walls of Jericho",
+  "files": {
+    "short": {
+      "storyText": "story_1532_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1532_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1532_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1532_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1532_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1532_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "scriptureAnchor": "Joshua 6:6-20",
+  "bibleStoryKey": "jericho_walls_fall",
+  "reflections": {
+    "web": "reflection_1532_traditional_web.txt",
+    "kjv": "reflection_1532_traditional_kjv.txt"
+  },
+  "timelineEra": "conquest",
+  "primaryCharacterId": "joshua",
+  "primaryCharacterDisplayName": "Joshua",
+  "languageStyle": "WEB",
+  "scriptureAnchorId": "joshua_6_6-20",
+  "shortScripture": false,
+  "reflectionText": "What walls in your own life have you been circling patiently, trusting that faithfulness and courage in the face of what seems impossible might eventually bring them down?"
+}

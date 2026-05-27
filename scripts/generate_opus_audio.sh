@@ -87,9 +87,17 @@ fi
 # =============================================================================
 get_voice_id() {
     local voice_key="$1"
-    jq -r --arg key "$voice_key" \
+    local id
+    id=$(jq -r --arg key "$voice_key" \
         '.voices[] | select(.voiceKey == $key) | .elevenLabsId' \
-        "$VOICES_FILE"
+        "$VOICES_FILE")
+    # If voices.json uses an env-placeholder (_LOAD_FROM_ENV_VOICE_X), resolve
+    # the actual ElevenLabs ID from the .env-sourced shell variable.
+    if [[ "$id" == _LOAD_FROM_ENV_* ]]; then
+        local env_key="${id#_LOAD_FROM_ENV_}"
+        id=$(eval "echo \"\${$env_key:-}\"")
+    fi
+    echo "$id"
 }
 
 # =============================================================================
