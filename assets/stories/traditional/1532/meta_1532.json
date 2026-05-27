@@ -51,5 +51,12 @@
   "languageStyle": "WEB",
   "scriptureAnchorId": "joshua_6_6-20",
   "shortScripture": false,
-  "reflectionText": "What walls in your own life have you been circling patiently, trusting that faithfulness and courage in the face of what seems impossible might eventually bring them down?"
+  "reflectionText": "What walls in your own life have you been circling patiently, trusting that faithfulness and courage in the face of what seems impossible might eventually bring them down?",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  }
 }

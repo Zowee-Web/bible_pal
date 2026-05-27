@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1537,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_DAVID_SHEPHERD",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_31_GOSPEL_EPISTLE_ROTATION",
+  "reflectionQuestion": "In your own life, have there ever been moments when someone saw you more clearly than you expected — and instead of feeling exposed, you felt strangely free?",
+  "title": "The Woman at the Well",
+  "files": {
+    "short": {
+      "storyText": "story_1537_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1537_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1537_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1537_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1537_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1537_traditional_kjv.txt"
+    },
+    "long": {
+      "storyText": "story_1537_traditional_web_long.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1537_traditional_kjv_long.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "scriptureAnchor": "John 4:5-26",
+  "bibleStoryKey": "woman_at_the_well",
+  "reflections": {
+    "web": "reflection_1537_traditional_web.txt",
+    "kjv": "reflection_1537_traditional_kjv.txt"
+  },
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "scriptureAnchorId": "john_4_5-26",
+  "shortScripture": false,
+  "reflectionText": "In your own life, have there ever been moments when someone saw you more clearly than you expected — and instead of feeling exposed, you felt strangely free?"
+}

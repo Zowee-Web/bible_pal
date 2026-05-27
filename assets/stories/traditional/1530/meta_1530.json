@@ -51,5 +51,12 @@
   "primaryCharacterDisplayName": "Job",
   "scriptureAnchorId": "job_38_1-11",
   "shortScripture": false,
-  "reflectionText": "When you think about the moments in your life where you demanded an answer and received instead only the vastness of what you couldn't understand, what happened to the exhaustion you were carrying?"
+  "reflectionText": "When you think about the moments in your life where you demanded an answer and received instead only the vastness of what you couldn't understand, what happened to the exhaustion you were carrying?",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  }
 }

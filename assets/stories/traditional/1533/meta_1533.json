@@ -51,5 +51,12 @@
   "languageStyle": "WEB",
   "scriptureAnchorId": "esther_4_9-17",
   "shortScripture": false,
-  "reflectionText": "What season or circumstance in your own life might be less about coincidence and more about a quiet, purposeful placing — and what would it mean to step fully into it?"
+  "reflectionText": "What season or circumstance in your own life might be less about coincidence and more about a quiet, purposeful placing — and what would it mean to step fully into it?",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  }
 }

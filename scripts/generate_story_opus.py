@@ -730,6 +730,17 @@ def generate_story(
         "files": files,
         "reflectionSource": "llm",
         "storyVoiceKey": voice,
+        # TTS model + settings — must match what scripts/generate_opus_audio.sh
+        # actually sends to ElevenLabs (see ELEVENLABS_MODEL / ELEVENLABS_*
+        # constants in that script). Recorded here so the meta describes the
+        # rendered audio rather than aspiring to a different recipe.
+        "ttsModel": "eleven_turbo_v2_5",
+        "ttsVoiceSettings": {
+            "stability": 0.6,
+            "similarity_boost": 0.8,
+            "style": 0.0,
+            "use_speaker_boost": True,
+        },
     }
 
     if anchor:

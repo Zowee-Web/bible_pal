@@ -51,5 +51,12 @@
   "primaryCharacterDisplayName": "John",
   "scriptureAnchorId": "revelation_21_1-7",
   "shortScripture": false,
-  "reflectionText": "What would it feel like to live as though the renewal promised in that vision were already quietly unfolding in the world around you?"
+  "reflectionText": "What would it feel like to live as though the renewal promised in that vision were already quietly unfolding in the world around you?",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  }
 }

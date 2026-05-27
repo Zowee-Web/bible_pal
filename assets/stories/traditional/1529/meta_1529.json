@@ -51,5 +51,12 @@
   "languageStyle": "WEB",
   "scriptureAnchorId": "ruth_2_1-13",
   "shortScripture": false,
-  "reflectionText": "What might it look like in your own life to quietly show up and do the faithful, unglamorous work — trusting that someone, somewhere, is noticing?"
+  "reflectionText": "What might it look like in your own life to quietly show up and do the faithful, unglamorous work — trusting that someone, somewhere, is noticing?",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  }
 }

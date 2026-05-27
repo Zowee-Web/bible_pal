@@ -224,9 +224,11 @@ process_story() {
         lanes+=("kjv")
     fi
 
-    # Generate story audio (short + full only)
+    # Generate story audio for any length that has a text file on disk.
+    # `[[ -f "$text_file" ]]` guard below skips lengths the story doesn't have
+    # (so stories with only short+full are unaffected by including `long` here).
     for lane in "${lanes[@]}"; do
-        for length in short full; do
+        for length in short full long; do
             local text_file="$story_dir/story_${story_id}_${mode}_${lane}_${length}.txt"
             local audio_file
             if [[ "$lane" == "web" ]]; then

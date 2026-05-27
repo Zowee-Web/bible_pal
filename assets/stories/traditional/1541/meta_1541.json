@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1541,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_31_GOSPEL_EPISTLE_ROTATION",
+  "reflectionQuestion": "What weariness in your own journey might shift if you sensed, even for a moment, that you were not walking it unseen?",
+  "title": "So Great a Cloud of Witnesses",
+  "files": {
+    "short": {
+      "storyText": "story_1541_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1541_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1541_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1541_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1541_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1541_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "scriptureAnchor": "Hebrews 12:1-3",
+  "bibleStoryKey": "cloud_of_witnesses",
+  "reflections": {
+    "web": "reflection_1541_traditional_web.txt",
+    "kjv": "reflection_1541_traditional_kjv.txt"
+  },
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "timelineEra": "early_church",
+  "primaryCharacterId": "author_of_hebrews",
+  "primaryCharacterDisplayName": "Author of Hebrews",
+  "scriptureAnchorId": "hebrews_12_1-3",
+  "shortScripture": false,
+  "reflectionText": "What weariness in your own journey might shift if you sensed, even for a moment, that you were not walking it unseen?"
+}

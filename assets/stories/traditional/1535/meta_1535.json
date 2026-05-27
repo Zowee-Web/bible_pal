@@ -51,5 +51,12 @@
   "languageStyle": "WEB",
   "scriptureAnchorId": "acts_12_6-19",
   "shortScripture": false,
-  "reflectionText": "When you think about the people praying through the night for Peter — so earnest in their pleading yet so stunned when he actually appeared at the door — have you ever found yourself caught between the anxiety of desperate prayer and the unsettling surprise of it being answered?"
+  "reflectionText": "When you think about the people praying through the night for Peter — so earnest in their pleading yet so stunned when he actually appeared at the door — have you ever found yourself caught between the anxiety of desperate prayer and the unsettling surprise of it being answered?",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  }
 }

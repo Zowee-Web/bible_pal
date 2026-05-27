@@ -51,5 +51,12 @@
   "languageStyle": "WEB",
   "scriptureAnchorId": "exodus_14_21-31",
   "shortScripture": false,
-  "reflectionText": "When you think about the moment of standing at the edge of an impossible barrier — water towering on every side — what is it that makes a person step forward into that uncertain path, and have you ever felt the ground beneath your own feet in a moment like that?"
+  "reflectionText": "When you think about the moment of standing at the edge of an impossible barrier — water towering on every side — what is it that makes a person step forward into that uncertain path, and have you ever felt the ground beneath your own feet in a moment like that?",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  }
 }

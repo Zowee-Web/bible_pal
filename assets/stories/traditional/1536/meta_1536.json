@@ -51,5 +51,12 @@
   "shortScripture": false,
   "reflectionText": "What does it feel like to imagine a place of shelter so complete that you could truly rest there — and is there something in your life right now that comes close to offering that kind of quiet refuge?",
   "primaryCharacterId": "psalmist",
-  "primaryCharacterDisplayName": "Psalmist"
+  "primaryCharacterDisplayName": "Psalmist",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  }
 }

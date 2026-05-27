@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1540,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_HANNAH_HOPE",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_31_GOSPEL_EPISTLE_ROTATION",
+  "reflectionQuestion": "What would it feel like to carry that sense of being unconquerable not as a battle cry, but as a quiet, settled knowing — something so deeply rooted in you that even your hardest days couldn't shake it loose?",
+  "title": "More Than Conquerors",
+  "files": {
+    "short": {
+      "storyText": "story_1540_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1540_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1540_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1540_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1540_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1540_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
+  "scriptureAnchor": "Romans 8:31-39",
+  "bibleStoryKey": "more_than_conquerors",
+  "reflections": {
+    "web": "reflection_1540_traditional_web.txt",
+    "kjv": "reflection_1540_traditional_kjv.txt"
+  },
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul_apostle",
+  "primaryCharacterDisplayName": "Paul",
+  "scriptureAnchorId": "romans_8_31-39",
+  "shortScripture": false,
+  "reflectionText": "What would it feel like to carry that sense of being unconquerable not as a battle cry, but as a quiet, settled knowing — something so deeply rooted in you that even your hardest days couldn't shake it loose?"
+}
