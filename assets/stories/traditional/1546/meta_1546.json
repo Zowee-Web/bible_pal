@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1546,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_JOHN_BELOVED",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_32_LYRIC_WISDOM_ROTATION",
+  "reflectionQuestion": "What might it mean for you to consider that the ordinary, overlooked place where you already stand could be exactly the starting point from which something greater is being shaped in your life?",
+  "title": "I Took Thee from the Sheepcote",
+  "files": {
+    "short": {
+      "storyText": "story_1546_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1546_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1546_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1546_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1546_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1546_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "scriptureAnchor": "2 Samuel 7:8-17",
+  "bibleStoryKey": "nathans_prophecy_to_david",
+  "reflections": {
+    "web": "reflection_1546_traditional_web.txt",
+    "kjv": "reflection_1546_traditional_kjv.txt"
+  },
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "scriptureAnchorId": "2_samuel_7_8-17",
+  "shortScripture": false,
+  "reflectionText": "What might it mean for you to consider that the ordinary, overlooked place where you already stand could be exactly the starting point from which something greater is being shaped in your life?"
+}

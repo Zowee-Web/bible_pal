@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1545,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_PRISCILLA_TEACHER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_32_LYRIC_WISDOM_ROTATION",
+  "reflectionQuestion": "When you think about the debts others owe you — the apologies never offered, the wrongs never made right — what happens inside you when you hold that weight alongside the memory of what you yourself have been forgiven?",
+  "title": "The Unforgiving Servant",
+  "files": {
+    "short": {
+      "storyText": "story_1545_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1545_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1545_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1545_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1545_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1545_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "scriptureAnchor": "Matthew 18:21-35",
+  "bibleStoryKey": "parable_of_the_unforgiving_servant",
+  "reflections": {
+    "web": "reflection_1545_traditional_web.txt",
+    "kjv": "reflection_1545_traditional_kjv.txt"
+  },
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "scriptureAnchorId": "matthew_18_21-35",
+  "shortScripture": false,
+  "reflectionText": "When you think about the debts others owe you — the apologies never offered, the wrongs never made right — what happens inside you when you hold that weight alongside the memory of what you yourself have been forgiven?"
+}
