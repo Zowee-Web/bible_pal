@@ -10,7 +10,8 @@
   "mood": "anxious",
   "lengths": [
     "short",
-    "full"
+    "full",
+    "long"
   ],
   "voiceKey": "VOICE_CHARLOTTE_V3",
   "createdByModel": "claude-opus-4-6",
@@ -35,6 +36,12 @@
     },
     "reflection_kjv": {
       "reflectionText": "reflection_1535_traditional_kjv.txt"
+    },
+    "long": {
+      "storyText": "story_1535_traditional_web_long.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1535_traditional_kjv_long.txt"
     }
   },
   "reflectionSource": "llm",
