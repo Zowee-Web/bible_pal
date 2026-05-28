@@ -213,7 +213,9 @@ process_story() {
 
     local mode voice_key kid_friendly
     mode=$(jq -r '.mode' "$meta_file")
-    voice_key=$(jq -r '.voiceKey' "$meta_file")
+    # Some older metas (e.g. B28 1522–1526) only have storyVoiceKey, not voiceKey.
+    # Fall back gracefully so audio gen works on the full corpus.
+    voice_key=$(jq -r '.voiceKey // .storyVoiceKey // empty' "$meta_file")
     kid_friendly=$(jq -r '.kidFriendly' "$meta_file")
 
     echo -e "\n${GREEN}Story $story_id${NC} ($mode, kid=$kid_friendly, voice=$voice_key)"
