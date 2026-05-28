@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1549,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_ARABELLA",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_33_PRAYER_VISION_COVENANT",
+  "reflectionQuestion": "When weariness settles deep into your bones and the road ahead feels longer than your strength can carry, where do you find yourself looking — and what happens in you when you dare to lift your gaze?",
+  "title": "I Will Lift Up Mine Eyes",
+  "files": {
+    "short": {
+      "storyText": "story_1549_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1549_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1549_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1549_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1549_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1549_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "scriptureAnchor": "Psalm 121:1-8",
+  "bibleStoryKey": "i_will_lift_up_mine_eyes_unto_the_hills",
+  "reflections": {
+    "web": "reflection_1549_traditional_web.txt",
+    "kjv": "reflection_1549_traditional_kjv.txt"
+  },
+  "timelineEra": "wisdom",
+  "primaryCharacterId": "psalmist",
+  "primaryCharacterDisplayName": "Psalmist",
+  "scriptureAnchorId": "psalm_121_1-8",
+  "shortScripture": false,
+  "reflectionText": "When weariness settles deep into your bones and the road ahead feels longer than your strength can carry, where do you find yourself looking — and what happens in you when you dare to lift your gaze?"
+}

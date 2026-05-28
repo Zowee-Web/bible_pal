@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1551,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_JAMES_HUSKY",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_33_PRAYER_VISION_COVENANT",
+  "reflectionQuestion": "When you consider the moments in your life where you've had to declare what you and your household stand for—even when it set you apart from everyone around you—what was it that gave you the courage to plant your feet and speak, and what did that choice cost you or give you that you still carry today?",
+  "title": "As for Me and My House",
+  "files": {
+    "short": {
+      "storyText": "story_1551_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1551_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1551_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1551_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1551_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1551_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "scriptureAnchor": "Joshua 24:14-18",
+  "bibleStoryKey": "as_for_me_and_my_house_we_will_serve_the_lord",
+  "reflections": {
+    "web": "reflection_1551_traditional_web.txt",
+    "kjv": "reflection_1551_traditional_kjv.txt"
+  },
+  "timelineEra": "conquest",
+  "primaryCharacterId": "joshua",
+  "primaryCharacterDisplayName": "Joshua",
+  "scriptureAnchorId": "joshua_24_14-18",
+  "shortScripture": false,
+  "reflectionText": "When you consider the moments in your life where you've had to declare what you and your household stand for—even when it set you apart from everyone around you—what was it that gave you the courage to plant your feet and speak, and what did that choice cost you or give you that you still carry today?"
+}

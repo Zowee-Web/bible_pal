@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1547,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_ARCHER",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_33_PRAYER_VISION_COVENANT",
+  "reflectionQuestion": "When you face a moment where the odds feel overwhelming and your own strength clearly isn't enough, what happens inside you when you stop trying to figure out the way forward and simply admit, out loud, that you don't know what to do?",
+  "title": "Jehoshaphat's Prayer",
+  "files": {
+    "short": {
+      "storyText": "story_1547_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1547_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1547_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1547_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1547_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1547_traditional_kjv.txt"
+    },
+    "long": {
+      "storyText": "story_1547_traditional_web_long.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1547_traditional_kjv_long.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "scriptureAnchor": "2 Chronicles 20:1-19",
+  "bibleStoryKey": "jehoshaphats_prayer_for_deliverance",
+  "reflections": {
+    "web": "reflection_1547_traditional_web.txt",
+    "kjv": "reflection_1547_traditional_kjv.txt"
+  },
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "jehoshaphat",
+  "primaryCharacterDisplayName": "Jehoshaphat",
+  "scriptureAnchorId": "2_chronicles_20_1-19",
+  "shortScripture": false,
+  "reflectionText": "When you face a moment where the odds feel overwhelming and your own strength clearly isn't enough, what happens inside you when you stop trying to figure out the way forward and simply admit, out loud, that you don't know what to do?"
+}

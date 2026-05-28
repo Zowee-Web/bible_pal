@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1548,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "voiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_33_PRAYER_VISION_COVENANT",
+  "reflectionQuestion": "In what areas of your life might you be holding onto distinctions or judgments that God has already released, and what would it feel like to gently set those down?",
+  "title": "What God Hath Cleansed",
+  "files": {
+    "short": {
+      "storyText": "story_1548_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1548_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1548_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1548_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1548_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1548_traditional_kjv.txt"
+    },
+    "long": {
+      "storyText": "story_1548_traditional_web_long.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1548_traditional_kjv_long.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "scriptureAnchor": "Acts 10:9-23",
+  "bibleStoryKey": "peters_rooftop_vision",
+  "reflections": {
+    "web": "reflection_1548_traditional_web.txt",
+    "kjv": "reflection_1548_traditional_kjv.txt"
+  },
+  "timelineEra": "early_church",
+  "primaryCharacterId": "peter",
+  "primaryCharacterDisplayName": "Peter",
+  "scriptureAnchorId": "acts_10_9-23",
+  "shortScripture": false,
+  "reflectionText": "In what areas of your life might you be holding onto distinctions or judgments that God has already released, and what would it feel like to gently set those down?"
+}

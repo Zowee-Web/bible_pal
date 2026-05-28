@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1550,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "voiceKey": "VOICE_RUTH_COMFORT",
+  "createdByModel": "claude-opus-4-6",
+  "generationBatch": "PAL_OPUS_BATCH_33_PRAYER_VISION_COVENANT",
+  "reflectionQuestion": "What does it stir in you to consider that someone in their very last breaths could receive such an unhesitating welcome — and what might that reveal about the nature of the welcome that might be extended to you?",
+  "title": "Today Shalt Thou Be with Me in Paradise",
+  "files": {
+    "short": {
+      "storyText": "story_1550_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1550_traditional_web_full.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1550_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1550_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1550_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1550_traditional_kjv.txt"
+    }
+  },
+  "reflectionSource": "llm",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "scriptureAnchor": "Luke 23:39-43",
+  "bibleStoryKey": "thief_on_the_cross",
+  "reflections": {
+    "web": "reflection_1550_traditional_web.txt",
+    "kjv": "reflection_1550_traditional_kjv.txt"
+  },
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "scriptureAnchorId": "luke_23_39-43",
+  "shortScripture": false,
+  "reflectionText": "What does it stir in you to consider that someone in their very last breaths could receive such an unhesitating welcome — and what might that reveal about the nature of the welcome that might be extended to you?"
+}
