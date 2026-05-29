@@ -334,6 +334,97 @@ void main() {
     });
   });
 
+  group('Book-name substring fallback (Tier 3 bibleSourceRef regression)', () {
+    // Regression for the PALs Paths discoverability bug: searching
+    // "Psalm" (singular) returned only 1 result against the real corpus
+    // because "psalm" is not in `_knownBookSlugs` (only "psalms" is), so
+    // the Tier 2 parser missed it and Tier 3 did not check bibleSourceRef.
+    // Fix: add bibleSourceRef as a Tier 3 substring field so bare
+    // book-name queries fall back to substring matching on the printed
+    // Scripture reference. Real-corpus expectation (2026-05-29): 26
+    // Psalm-anchored Traditional stories, including 1069 (Psalm 139).
+    SearchService buildBookFallbackService() {
+      return SearchService(
+        traditionalParables: [
+          fixture(
+            storyId: 's1069',
+            title: 'Search Me, O God',
+            bibleSourceRef: 'Psalm 139:1-18',
+            bibleStoryKey: 'psalm_139_search_me',
+            primaryCharacterId: 'david',
+            primaryCharacterDisplayName: 'David',
+            bibleOrderIndex: 1390,
+          ),
+          fixture(
+            storyId: 's1306',
+            title: 'A Song of Thanksgiving',
+            bibleSourceRef: 'Psalm 100',
+            bibleStoryKey: 'psalm_100_thanksgiving',
+            primaryCharacterId: 'narrator',
+            primaryCharacterDisplayName: 'Narrator',
+            bibleOrderIndex: 1300,
+          ),
+          fixture(
+            storyId: 's1536',
+            title: 'Under His Wings',
+            bibleSourceRef: 'Psalm 91:1-16',
+            bibleStoryKey: 'psalm_91_under_his_wings',
+            primaryCharacterId: 'narrator',
+            primaryCharacterDisplayName: 'Narrator',
+            bibleOrderIndex: 1310,
+          ),
+          fixture(
+            storyId: 's1067',
+            title: 'Throne of Holy Fire',
+            bibleSourceRef: 'Isaiah 6:1-8',
+            bibleStoryKey: 'isaiah_throne_vision',
+            primaryCharacterId: 'isaiah',
+            primaryCharacterDisplayName: 'Isaiah',
+            bibleOrderIndex: 1700,
+          ),
+          fixture(
+            storyId: 's1100_gen',
+            title: 'In the Beginning',
+            bibleSourceRef: 'Genesis 1:1-5',
+            bibleStoryKey: 'creation_day_one',
+            primaryCharacterId: 'narrator',
+            primaryCharacterDisplayName: 'Narrator',
+            bibleOrderIndex: 10,
+          ),
+        ],
+        kidFriendlyOnly: false,
+      );
+    }
+
+    test('"Psalm" (singular) returns all Psalm-anchored stories', () {
+      final svc = buildBookFallbackService();
+      final ids = svc.search('Psalm').map((p) => p.storyId).toSet();
+      expect(ids, containsAll(<String>{'s1069', 's1306', 's1536'}));
+      expect(ids, contains('s1069')); // explicit: Psalm 139 / story 1069
+      expect(ids.length, greaterThanOrEqualTo(3));
+    });
+
+    test('"Isaiah" returns Isaiah-anchored stories', () {
+      final svc = buildBookFallbackService();
+      final ids = svc.search('Isaiah').map((p) => p.storyId).toSet();
+      expect(ids, contains('s1067'));
+    });
+
+    test('"Genesis" returns Genesis-anchored stories', () {
+      final svc = buildBookFallbackService();
+      final ids = svc.search('Genesis').map((p) => p.storyId).toSet();
+      expect(ids, contains('s1100_gen'));
+    });
+
+    test('case-insensitive: "psalm" and "PSALM" return the same Psalm stories', () {
+      final svc = buildBookFallbackService();
+      final lower = svc.search('psalm').map((p) => p.storyId).toSet();
+      final upper = svc.search('PSALM').map((p) => p.storyId).toSet();
+      expect(lower, equals(upper));
+      expect(lower, containsAll(<String>{'s1069', 's1306', 's1536'}));
+    });
+  });
+
   group('Privacy — query string is never mutated or exposed', () {
     test('search does not modify the query string', () {
       final svc = buildService();

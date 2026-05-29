@@ -22,7 +22,8 @@ import '../models/parable.dart';
 ///      "Book Chapter:Verse-Verse") against the story's bibleSourceRef
 ///   3. Metadata match — substring match (case-insensitive) against
 ///      title, characterDisplayNames, characterIds,
-///      primaryCharacterDisplayName, themeTags, and bibleStoryKey
+///      primaryCharacterDisplayName, themeTags, bibleStoryKey, and
+///      bibleSourceRef
 ///
 /// Ties within a tier are broken by `bibleOrderIndex` ascending, then
 /// `storyId`.
@@ -288,6 +289,14 @@ class SearchService {
     // not caught there.
     final storyKey = p.bibleStoryKey?.toLowerCase() ?? '';
     if (storyKey.contains(normalized)) return true;
+
+    // bibleSourceRef substring fallback: catches bare book-name queries
+    // for books the Tier 2 parser misses (e.g. singular "Psalm" — only
+    // "psalms" is in _knownBookSlugs), so a user typing the book name as
+    // they see it printed in the reference still surfaces all stories in
+    // that book.
+    final ref = p.bibleSourceRef?.toLowerCase() ?? '';
+    if (ref.contains(normalized)) return true;
 
     return false;
   }
