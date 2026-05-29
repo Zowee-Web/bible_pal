@@ -96,53 +96,137 @@ fi
 # ── Stage curated bundle ─────────────────────────────────────────────
 echo "Staging curated story bundle..."
 rm -rf "$PROJECT_ROOT/.play_build_stage"
-mkdir -p "$STAGE_DIR/traditional" "$STAGE_DIR/creative"
+mkdir -p "$STAGE_DIR/traditional"
 
 python3 - <<PYEOF
-import json, os, shutil, sys
+import json, os, shutil, subprocess, sys
+from concurrent.futures import ThreadPoolExecutor
 
 ROOT = "$PROJECT_ROOT"
 PICK_FILE = "$PICK_FILE"
 SRC_TEXT = os.path.join(ROOT, "assets/stories")
 SRC_AUDIO = os.path.join(ROOT, "assets_audio_compressed/stories")
 DST = os.path.join(ROOT, ".play_build_stage/stories")
+STATE_FILE = os.path.join(ROOT, ".play_build_stage", "picked_stories.json")
+
+def get_r2_base():
+    env_path = os.path.join(ROOT, ".env")
+    if os.path.isfile(env_path):
+        with open(env_path) as f:
+            for line in f:
+                if line.startswith("AUDIO_BASE_URL="):
+                    return line.split("=", 1)[1].strip()
+    return None
+
+R2_BASE = get_r2_base()
+if not R2_BASE:
+    print("ERROR: AUDIO_BASE_URL not found in .env — required for R2 audit.", file=sys.stderr)
+    sys.exit(1)
 
 with open(PICK_FILE) as f:
     pick = json.load(f)
 
-trad_set = set(pick["traditional"])
-crea_set = set(pick["creative"])
-picked = {("traditional", sid) for sid in trad_set} | {("creative", sid) for sid in crea_set}
+audio_set = set(pick["traditional"])  # stories with bundled audio + text
 
-# Copy text files (per-story dirs) + compressed audio
-# Play bundle ships WEB audio only — KJV text still copied for scripture display.
 def is_kjv_audio(fn):
     return fn.endswith(".mp3") and ("_kjv_" in fn or "reflection_kjv" in fn)
 
-for kind, ids in [("traditional", trad_set), ("creative", crea_set)]:
-    for sid in ids:
-        src_text_dir = os.path.join(SRC_TEXT, kind, sid)
-        src_audio_dir = os.path.join(SRC_AUDIO, kind, sid)
-        dst_dir = os.path.join(DST, kind, sid)
-        os.makedirs(dst_dir, exist_ok=True)
-        # Text/meta/scripture (not audio, not "long" anything; KJV text kept)
-        if os.path.isdir(src_text_dir):
-            for fn in os.listdir(src_text_dir):
-                if fn.endswith(".mp3"):
-                    continue
-                if "_long" in fn:
-                    continue
-                shutil.copy2(os.path.join(src_text_dir, fn), os.path.join(dst_dir, fn))
-        # Compressed audio: WEB only, no "long"
-        if os.path.isdir(src_audio_dir):
-            for fn in os.listdir(src_audio_dir):
-                if not fn.endswith(".mp3"):
-                    continue
-                if "_long.mp3" in fn:
-                    continue
-                if is_kjv_audio(fn):
-                    continue
-                shutil.copy2(os.path.join(src_audio_dir, fn), os.path.join(dst_dir, fn))
+# Load manifest and apply length/translation filters
+with open(os.path.join(SRC_TEXT, "manifest.json")) as f:
+    manifest = json.load(f)
+
+# Group surviving entries by (kind, sid)
+entries_by_story = {}
+for p in manifest["parables"]:
+    afp = p.get("audioFilePath", "")
+    parts = afp.split("/")
+    if len(parts) < 3:
+        continue
+    if p.get("storyLength") == "long":
+        continue
+    if p.get("translationId") == "KJV":
+        continue
+    kind, sid = parts[0], parts[1]
+    if kind == "creative":
+        continue  # Creative lane retired 2026-05-13
+    entries_by_story.setdefault((kind, sid), []).append(p)
+
+# Identify text-only candidates: traditional stories not in audio_set
+# Their audio paths must be R2-verified before inclusion
+text_only_candidates = {
+    key: entries for key, entries in entries_by_story.items()
+    if key[0] == "traditional" and key[1] not in audio_set
+}
+
+# Collect distinct audio paths to probe
+probe_paths = sorted({
+    p["audioFilePath"]
+    for entries in text_only_candidates.values()
+    for p in entries
+})
+
+print(f"  R2 audit: probing {len(probe_paths)} non-bundled audio paths against {R2_BASE}...")
+
+def probe(path):
+    url = f"{R2_BASE}/{path}"
+    r = subprocess.run(
+        ["curl", "-sI", "-o", "/dev/null", "-w", "%{http_code}", "--max-time", "10", url],
+        capture_output=True, text=True,
+    )
+    return path, r.stdout.strip() == "200"
+
+with ThreadPoolExecutor(max_workers=24) as pool:
+    probe_results = dict(pool.map(probe, probe_paths))
+
+r2_hits = sum(1 for v in probe_results.values() if v)
+r2_misses = len(probe_paths) - r2_hits
+print(f"    on R2: {r2_hits}   missing (dropped): {r2_misses}")
+
+# Warn if R2 looks unreachable
+if probe_paths and r2_hits == 0:
+    print("  WARNING: 0 R2 hits — network unreachable or bucket empty.")
+    print("           Bundle will ship audio-bundled set only.")
+
+# Build final picked sets
+text_only_set = set()
+final_entries = []
+for (kind, sid), entries in entries_by_story.items():
+    if sid in audio_set:
+        final_entries.extend(entries)
+        continue
+    surviving = [p for p in entries if probe_results.get(p["audioFilePath"], False)]
+    if surviving:
+        text_only_set.add(sid)
+        final_entries.extend(surviving)
+
+picked_stories = audio_set | text_only_set
+
+# Stage text/meta/scripture for ALL picked stories
+for sid in picked_stories:
+    src_text_dir = os.path.join(SRC_TEXT, "traditional", sid)
+    dst_dir = os.path.join(DST, "traditional", sid)
+    os.makedirs(dst_dir, exist_ok=True)
+    if os.path.isdir(src_text_dir):
+        for fn in os.listdir(src_text_dir):
+            if fn.endswith(".mp3"):
+                continue
+            if "_long" in fn:
+                continue
+            shutil.copy2(os.path.join(src_text_dir, fn), os.path.join(dst_dir, fn))
+
+# Stage audio for audio_set only (WEB short/full/reflection from compressed mirror)
+for sid in audio_set:
+    src_audio_dir = os.path.join(SRC_AUDIO, "traditional", sid)
+    dst_dir = os.path.join(DST, "traditional", sid)
+    if os.path.isdir(src_audio_dir):
+        for fn in os.listdir(src_audio_dir):
+            if not fn.endswith(".mp3"):
+                continue
+            if "_long.mp3" in fn:
+                continue
+            if is_kjv_audio(fn):
+                continue
+            shutil.copy2(os.path.join(src_audio_dir, fn), os.path.join(dst_dir, fn))
 
 # Copy registry/index files
 for fn in ["scripture_anchor_registry.json",
@@ -153,60 +237,55 @@ for fn in ["scripture_anchor_registry.json",
     if os.path.exists(src):
         shutil.copy2(src, os.path.join(DST, fn))
 
-# Filter manifest.json to picked stories, drop "long" + drop KJV variants
-with open(os.path.join(SRC_TEXT, "manifest.json")) as f:
-    manifest = json.load(f)
-filtered = []
-for p in manifest["parables"]:
-    afp = p.get("audioFilePath", "")
-    parts = afp.split("/")
-    if len(parts) < 3:
-        continue
-    if (parts[0], parts[1]) not in picked:
-        continue
-    if p.get("storyLength") == "long":
-        continue
-    if p.get("translationId") == "KJV":
-        continue
-    filtered.append(p)
-manifest["parables"] = filtered
+# Write filtered manifest
+manifest["parables"] = final_entries
 with open(os.path.join(DST, "manifest.json"), "w") as f:
     json.dump(manifest, f, indent=2)
 
-# Filter jesus_life_index.json to picked story IDs
+# Filter jesus_life_index by final picked set
 with open(os.path.join(SRC_TEXT, "jesus_life_index.json")) as f:
     jli = json.load(f)
 def story_in_pick(story_id):
-    # story_1000_weary_short_traditional → traditional/1000
     parts = story_id.split("_")
     if len(parts) < 4:
         return False
-    sid = parts[1]
-    kind = parts[-1]
-    return (kind, sid) in picked
+    return parts[1] in picked_stories
 jli["sequence"] = [s for s in jli.get("sequence", []) if story_in_pick(s)]
 with open(os.path.join(DST, "jesus_life_index.json"), "w") as f:
     json.dump(jli, f, indent=2)
 
-print(f"  Staged {len(trad_set)} Traditional + {len(crea_set)} Creative stories")
-print(f"  Manifest: {len(filtered)} parable variants (was {len(manifest['parables']) if False else len(manifest['parables'])})")
-print(f"  Jesus path: {len(jli['sequence'])} entries")
+# Persist picked sets for pubspec generation pass
+with open(STATE_FILE, "w") as f:
+    json.dump({
+        "audio_bundled": sorted(audio_set),
+        "text_only": sorted(text_only_set),
+        "all": sorted(picked_stories),
+    }, f, indent=2)
+
+print(f"  Audio-bundled stories:           {len(audio_set)}")
+print(f"  Text-only (R2-served) stories:   {len(text_only_set)}")
+print(f"  Total launch corpus:             {len(picked_stories)}")
+print(f"  Manifest variants:               {len(final_entries)}")
+print(f"  Jesus path entries:              {len(jli['sequence'])}")
 PYEOF
 
-# Compute staged audio total
+# Compute staged audio + text totals
 staged_audio_mb=$(find "$STAGE_DIR" -name "*.mp3" -exec du -ck {} + | tail -1 | awk '{printf "%.1f", $1/1024}')
+staged_text_kb=$(find "$STAGE_DIR" \( -name "*.txt" -o -name "*.json" \) -exec du -ck {} + | tail -1 | awk '{print $1}')
 echo "  Staged audio: ${staged_audio_mb} MB"
+echo "  Staged text + meta: ${staged_text_kb} KB"
 
 # ── Generate slim pubspec.yaml ───────────────────────────────────────
 echo "Generating Play pubspec.yaml..."
-PROJECT_ROOT="$PROJECT_ROOT" PUBSPEC="$PUBSPEC" PICK_FILE="$PICK_FILE" python3 - <<'PYEOF'
+PROJECT_ROOT="$PROJECT_ROOT" PUBSPEC="$PUBSPEC" python3 - <<'PYEOF'
 import os, re, json
 
 PUBSPEC = os.environ["PUBSPEC"]
-PICK_FILE = os.environ["PICK_FILE"]
+PROJECT_ROOT = os.environ["PROJECT_ROOT"]
+STATE_FILE = os.path.join(PROJECT_ROOT, ".play_build_stage", "picked_stories.json")
 
-with open(PICK_FILE) as f:
-    pick = json.load(f)
+with open(STATE_FILE) as f:
+    state = json.load(f)
 
 with open(PUBSPEC) as f:
     src = f.read()
@@ -217,26 +296,21 @@ line_re = re.compile(
     re.MULTILINE,
 )
 
-# Build the curated replacement block
-new_lines = [f"    - assets/stories/traditional/{sid}/\n" for sid in pick["traditional"]]
-new_lines += [f"    - assets/stories/creative/{sid}/\n" for sid in pick["creative"]]
+# List every picked story dir (audio-bundled + text-only). Pubspec is
+# directory-scoped, so audio absence in a text-only dir is what makes it text-only.
+new_lines = [f"    - assets/stories/traditional/{sid}/\n" for sid in state["all"]]
 replacement = "".join(new_lines)
 
-# Remove every per-story dir line, then insert the curated block once
-# at the position where the original block started.
 match = line_re.search(src)
 if not match:
     raise SystemExit("ERROR: no per-story asset lines found in pubspec.yaml")
 insert_pos = match.start()
 stripped = line_re.sub("", src)
-# After stripping, insert_pos may have shifted because the lines before
-# the first match are unchanged. So insert_pos is still valid.
 new_src = stripped[:insert_pos] + replacement + stripped[insert_pos:]
 
 with open(PUBSPEC + ".play_generated", "w") as f:
     f.write(new_src)
 
-# Sanity: count refs after rewrite
 trad_count = new_src.count("assets/stories/traditional/")
 crea_count = new_src.count("assets/stories/creative/")
 print(f"  Pubspec rewritten: {trad_count} traditional + {crea_count} creative dir refs")
