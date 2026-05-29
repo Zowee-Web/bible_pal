@@ -138,6 +138,89 @@ void main() {
   });
 
   test(
+      'repeated mood launches exhaust all unseen exact-mood stories '
+      'before any repeat (anti-repeat across many calls)', () async {
+    // Use 'joyful' + Short to avoid the MICRO-bias pool narrowing that
+    // applies to anxious/hurting/weary. We want a clean test of the
+    // 4-tier engine's exhaustion behavior against the persistent play log.
+    const exactMood = 'joyful';
+    const bucket = StoryLengthBucket.short;
+
+    final exactPool = await service.getEligibleParables(
+      mood: exactMood,
+      lengthBucket: bucket,
+      userPrefs: adultPrefs,
+    );
+    expect(exactPool.length, greaterThan(2),
+        reason: 'Test requires multi-story exact-mood pool');
+    final exactIds = exactPool.map((p) => p.storyId).toSet();
+
+    // Simulate repeated mood launches. After each pick, record the play
+    // (mirroring AppStateNotifier.addToHistory → storage.recordPlayed).
+    final selectedOrder = <String>[];
+    for (var i = 0; i < exactPool.length; i++) {
+      final result = await service.selectParable(
+        mood: exactMood,
+        lengthBucket: bucket,
+        userPrefs: adultPrefs,
+      );
+      expect(result, isNotNull,
+          reason: 'Tier 1 must produce a story while unseen exist');
+      // Only consider exact-mood picks — similar-mood stories may slip in
+      // if the engine fell to Tier 2, but Tier 1 should win on every call
+      // until the exact-mood unseen pool is exhausted.
+      expect(result!.mood, exactMood,
+          reason: 'Exact-mood unseen (Tier 1) must beat similar-mood while '
+              'any exact-mood unseen story remains. Call #${i + 1}');
+      expect(exactIds.contains(result.storyId), true,
+          reason: 'Returned story must be from the exact-mood pool');
+      expect(selectedOrder.contains(result.storyId), false,
+          reason: 'Story ${result.storyId} repeated on call #${i + 1} '
+              'while ${exactPool.length - selectedOrder.length - 1} '
+              'unseen exact-mood stories still remain — proves Tier 1 '
+              'is not respecting the persistent play log');
+      selectedOrder.add(result.storyId);
+      await storage.recordPlayed(result.storyId);
+    }
+
+    expect(selectedOrder.toSet(), exactIds,
+        reason: 'Every exact-mood Short story must surface exactly once '
+            'before any repeat');
+  });
+
+  test(
+      'similar-mood fallback (Tier 2) kicks in only after exact-mood '
+      'unseen pool is exhausted', () async {
+    const exactMood = 'joyful';
+    const bucket = StoryLengthBucket.short;
+    const similarMoods = ['grateful', 'encouraging', 'calm_peaceful'];
+
+    final exactPool = await service.getEligibleParables(
+      mood: exactMood,
+      lengthBucket: bucket,
+      userPrefs: adultPrefs,
+    );
+    expect(exactPool.length, greaterThan(0));
+
+    // Mark every exact-mood story as played 1 day ago (within 30-day window).
+    final oneDayAgo = DateTime.now().subtract(const Duration(days: 1));
+    for (final p in exactPool) {
+      await storage.recordPlayed(p.storyId, at: oneDayAgo);
+    }
+
+    // Now selection must fall to Tier 2: similar-mood unseen.
+    final result = await service.selectParable(
+      mood: exactMood,
+      lengthBucket: bucket,
+      userPrefs: adultPrefs,
+    );
+    expect(result, isNotNull);
+    expect(similarMoods.contains(result!.mood), true,
+        reason: 'With every exact-mood story seen, selection must come '
+            'from a similar mood (Tier 2), not repeat an exact-mood pick');
+  });
+
+  test(
       'stories played more than 30 days ago become eligible again '
       '(treated as unseen)', () async {
     final pool = await service.getEligibleParables(

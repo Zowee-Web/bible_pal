@@ -546,6 +546,15 @@ class ParableService {
         if (entry.value.isAfter(unseenWindow)) entry.key,
     };
 
+    // Diagnostics: capture true unseen counts BEFORE the MICRO bias narrows
+    // the pool. Surfaces in the story_selected event so beta reports of
+    // "same story repeating" can be triaged as a small-pool issue vs. a
+    // selection bug without app-side instrumentation.
+    final eligibleExactUnseenCount =
+        exactPool.where((p) => !recentStoryIds.contains(p.storyId)).length;
+    final eligibleSimilarUnseenCount =
+        similarPools.where((p) => !recentStoryIds.contains(p.storyId)).length;
+
     // MICRO serving bias (70/30 weighted): for high-intensity moods
     // (anxious/hurting/weary) at Short length, weight selection toward MICRO
     // stories (shortScripture==true) without locking the user in.
@@ -739,12 +748,27 @@ class ParableService {
     final selected = candidates.first;
     final servedMood = selected.mood;
 
+    // Human-readable tier reason for support triage. Tier number alone
+    // doesn't tell a reader whether the story came from unseen or LRP
+    // fallback; this field does.
+    final selectionReason = switch (result.tier) {
+      1 => 'tier_1_exact_unseen',
+      2 => 'tier_2_similar_unseen',
+      3 => 'tier_3_exact_seen_lrp',
+      4 => 'tier_4_similar_seen_lrp',
+      _ => 'tier_unknown',
+    };
+
     // Log story selected with expansion metadata
     logEvent('story_selected', {
       'story_id': selected.storyId,
       'selected_mood': mood,
       'served_mood': servedMood,
       'expansion_tier': result.tier,
+      'selection_reason': selectionReason,
+      'eligible_exact_unseen_count': eligibleExactUnseenCount,
+      'eligible_similar_unseen_count': eligibleSimilarUnseenCount,
+      'seen_count': recentStoryIds.length,
       'mode':
           '${userPrefs.kidFriendlyOnly ? "kid" : "adult"}_${selected.storytellingMode}',
       'length_bucket': selected.lengthBucket.name,
