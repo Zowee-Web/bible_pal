@@ -62,5 +62,11 @@
   "reflectionText": "What is it that stirreth within thee when thou dost imagine forsaking all that is familiar unto thee, that thou mayest follow after a single, distant light \u2014 and what manner of trust might that be, if thou didst permit thyself to yield unto it?",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
-  "primaryCharacterDisplayName": "Jesus"
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 605,
+  "themeTags": [
+    "guidance",
+    "devotion",
+    "faith"
+  ]
 }

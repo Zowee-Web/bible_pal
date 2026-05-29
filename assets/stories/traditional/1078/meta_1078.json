@@ -42,5 +42,11 @@
   "reflectionText": "What made you feel happy inside as you listened to this story?",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
-  "primaryCharacterDisplayName": "Jesus"
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 605,
+  "themeTags": [
+    "guidance",
+    "devotion",
+    "faith"
+  ]
 }
