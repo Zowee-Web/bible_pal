@@ -125,3 +125,22 @@ Ran `validate_lane_identity()` over the 10 Phase 4 fresh outputs in `lane_compar
 - **KJV: 3/5 CLEAN.** Three fail on `KJV_TOO_FEW_ARCHAIC_MARKERS` despite reading as strongly Classic-register (Hebraic parallelism, verb-subject inversion, ceremonial cadence). Marker counts: Psalm 23 = 2, Matthew 5 = 2, Ezra 3 = 1.
 
 This is consistent with the deliberate Phase 3 decision NOT to mandate thou/thee/-eth and to let KJV register emerge from cadence. The validator is stricter than the prompts — useful as a *signal* that lexical markers are sparse, but the threshold (≥3) may need lowering once batch data accumulates. Holding at WARN-only confirms this was the right call.
+
+### Calibration data point: B30 1532 KJV near-miss (2026-05-26)
+
+User flagged that 1532 (Joshua 6, REVEREND_MICHAEL voice) sounded the same in KJV and WEB audio. Marker audit confirmed:
+
+- 1532 KJV full: 3 marker hits / 3 unique patterns at **0.3/100w density** — outlier vs B30's other KJVs at 2.2–3.7/100w
+- 1532 KJV short: 6 marker hits / 4 unique — borderline (also lower than B30 median)
+- Validator status: **CLEAN** (passed because exactly 3 unique patterns hits the ≥3 floor)
+
+What the validator missed: the KJV rewrite drifted toward minimal word-swap rather than re-voicing into sacred-proclamation register. Words like "smote", "ceased not", "thereof", "hath given", "lifted up his voice" — clearly KJV-flavored but not in the marker-pattern list — were absent in the original generation. Regen of just KJV short + full restored these (commit 542e5fe amended into B30).
+
+**What this tells us for the eventual promotion-or-tune decision:**
+
+1. **The ≥3 unique-pattern threshold is too lenient on its own.** A story with exactly 3 unique markers (one of each: thou/unto/saith, say) can still be a weak rewrite if those are the only KJV moves.
+2. **Marker density (hits / 100w) is a better signal than unique-pattern count.** 1532 KJV full at 0.3/100w stuck out against the batch's 2.2–3.7/100w range. A density floor (e.g. ≥1.5/100w) would have caught this.
+3. **But density alone misses the structural axis.** "Smote" / "thereof" / "ceased not" / "hath given" — pure-Anglo archaic verb choices and constructions without thou/-eth — these are the cadence moves that actually create the sacred-proclamation feel and aren't in the marker pattern list at all.
+4. **The right next-step before promotion** is to expand `KJV_ARCHAIC_MARKERS` to include those Anglo-archaic constructions (smote, brake, bare, drave, ceased, wrought, thereof, therein, herein, behold-not-already, etc.), THEN re-baseline density across the existing corpus, THEN decide on density-vs-count thresholds. That's bigger than a tuning pass — it's a marker-list expansion.
+
+**Holding the original promotion timeline** (3–5 batches of WARN data before any threshold change). 1532 is logged as the first concrete near-miss; future similar misses go here.
