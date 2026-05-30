@@ -2,15 +2,18 @@
 Bible reference parser for bibleSourceRef strings.
 
 Parses formats observed in Bible PAL traditional stories:
-  "Mark 4:35-41"       → single chapter, verse range
-  "Psalm 23"           → whole chapter
-  "Daniel 6"           → whole chapter
-  "Esther 4-7"         → multi-chapter range (whole chapters)
-  "1 Samuel 17:1-54"   → numbered book, verse range
-  "Romans 8:28"        → single verse
-  "Isaiah 40:28–31"    → en-dash variant (legacy stories)
+  "Mark 4:35-41"           → single chapter, verse range
+  "Psalm 23"               → whole chapter
+  "Daniel 6"               → whole chapter
+  "Esther 4-7"             → multi-chapter range (whole chapters)
+  "1 Samuel 17:1-54"       → numbered book, verse range
+  "Romans 8:28"            → single verse
+  "Isaiah 40:28–31"        → en-dash variant (legacy stories)
+  "John 14:1-3, 18-19, 27" → discontinuous verses in same chapter (parse_bible_refs)
 
-STRICT: fails loudly on ambiguous or unparseable references.
+STRICT on book/chapter not found. LENIENT on individual missing verses
+within a declared range (some translations intentionally omit verses,
+e.g. WEB omits Acts 8:37 per modern critical scholarship).
 """
 
 import re
@@ -133,13 +136,74 @@ def parse_bible_ref(ref: str) -> BibleRef:
         )
 
 
+def parse_bible_refs(refs: str) -> list[BibleRef]:
+    """
+    Parse a possibly-comma-separated reference string into a list of BibleRefs.
+
+    For comma-separated lists like "John 14:1-3, 18-19, 27", each piece after
+    the first inherits the book + chapter from the preceding ref if it doesn't
+    name them itself. So:
+
+      "John 14:1-3, 18-19, 27"
+        -> [John 14:1-3, John 14:18-19, John 14:27]
+
+    A list with a single element matches what `parse_bible_ref` returns.
+    """
+    if not refs or not refs.strip():
+        raise ValueError("Empty reference string")
+
+    parts = [p.strip() for p in refs.split(",") if p.strip()]
+    if not parts:
+        raise ValueError("Empty reference string")
+
+    result: list[BibleRef] = []
+    prev: BibleRef | None = None
+    for part in parts:
+        if prev is None:
+            # First piece: must be a full ref
+            result.append(parse_bible_ref(part))
+            prev = result[-1]
+            continue
+
+        # Subsequent piece: if it starts with a digit and contains no letters,
+        # it's a verse-only continuation in the same book + chapter.
+        # Forms: "18-19", "27", "27-30"
+        normalized = _normalize_dashes(part)
+        if re.match(r'^\d+(?:\s*-\s*\d+)?$', normalized):
+            # Inherit book + chapter from prev
+            if prev.is_whole_chapter:
+                raise ValueError(
+                    f"Cannot continue a whole-chapter ref with verse-only piece '{part}' in '{refs}'"
+                )
+            verse_match = re.match(r'^(\d+)(?:\s*-\s*(\d+))?$', normalized)
+            v_start = int(verse_match.group(1))
+            v_end = int(verse_match.group(2)) if verse_match.group(2) else v_start
+            result.append(BibleRef(
+                book=prev.book,
+                start_chapter=prev.start_chapter,
+                end_chapter=prev.start_chapter,
+                start_verse=v_start,
+                end_verse=v_end,
+            ))
+            prev = result[-1]
+        else:
+            # Full ref in the continuation; parse fresh
+            result.append(parse_bible_ref(part))
+            prev = result[-1]
+
+    return result
+
+
 def extract_verses(bible_data: dict, ref: BibleRef) -> list[tuple[int, int, str]]:
     """
     Extract verses from a Bible JSON structure given a parsed BibleRef.
 
     Returns list of (chapter, verse_num, text) tuples in order.
-    Raises ValueError if the book or chapter is not found.
+    Raises ValueError if the BOOK or CHAPTER is not found (structural error).
+    Skips silently and prints a stderr warning for individual missing verses
+    within a range (e.g., WEB intentionally omits Acts 8:37).
     """
+    import sys
     books = bible_data.get("books", {})
 
     if ref.book not in books:
@@ -175,9 +239,12 @@ def extract_verses(bible_data: dict, ref: BibleRef) -> list[tuple[int, int, str]
             for v in range(v_start, v_end + 1):
                 v_str = str(v)
                 if v_str not in chapter_data:
-                    raise ValueError(
-                        f"Verse {ref.book} {ch}:{v} not found in Bible data"
+                    # Verse intentionally omitted (e.g., Acts 8:37 in WEB)
+                    print(
+                        f"    NOTE: Skipping missing verse {ref.book} {ch}:{v} (likely intentional omission)",
+                        file=sys.stderr,
                     )
+                    continue
                 result.append((ch, v, chapter_data[v_str]))
 
     if not result:

@@ -97,6 +97,9 @@ assets_pal_compressed/
 # Local Claude Code state (per-machine)
 .claude/
 
+# Generated audit reports
+reports/
+
 # Wrangler local config
 .wrangler/
 

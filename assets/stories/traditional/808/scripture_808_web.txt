@@ -1,16 +1,8 @@
 Psalm 19:1-6 (WEB)
 
-1 The heavens declare the glory of God.
-The expanse shows his handiwork.
-2 Day after day they pour out speech,
-and night after night they display knowledge.
-3 There is no speech nor language,
-where their voice is not heard.
-4 Their voice has gone out through all the earth,
-their words to the end of the world.
-In them he has set a tent for the sun,
-5 which is as a bridegroom coming out of his room,
-like a strong man rejoicing to run his course.
-6 His going out is from the end of the heavens,
-his circuit to its ends;
-There is nothing hidden from its heat.
+1 The heavens declare the glory of God. The expanse shows his handiwork.
+2 Day after day they pour out speech, and night after night they display knowledge.
+3 There is no speech nor language where their voice is not heard.
+4 Their voice has gone out through all the earth, their words to the end of the world. In them he has set a tent for the sun,
+5 which is as a bridegroom coming out of his room, like a strong man rejoicing to run his course.
+6 His going out is from the end of the heavens, his circuit to its ends. There is nothing hidden from its heat.

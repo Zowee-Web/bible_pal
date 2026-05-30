@@ -33,7 +33,7 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 sys.path.insert(0, SCRIPT_DIR)
 
-from lib.bible_ref_parser import parse_bible_ref, extract_verses, format_scripture_text
+from lib.bible_ref_parser import parse_bible_ref, parse_bible_refs, extract_verses, format_scripture_text
 
 TRADITIONAL_DIR = os.path.join(PROJECT_ROOT, "assets", "stories", "traditional")
 BIBLE_DATA_DIR = os.path.join(PROJECT_ROOT, "server", "data")
@@ -140,19 +140,31 @@ def main():
                 continue
 
             try:
-                ref = parse_bible_ref(ref_str)
-                verses = extract_verses(bibles[lang], ref)
-                text = format_scripture_text(ref, verses, lang.upper())
+                refs = parse_bible_refs(ref_str)
+                # Concatenate verses from all sub-refs in order
+                all_verses: list[tuple[int, int, str]] = []
+                for sub_ref in refs:
+                    all_verses.extend(extract_verses(bibles[lang], sub_ref))
+                # Use the first ref for display (concise header). If multi-ref,
+                # the header reflects the original combined string.
+                if len(refs) == 1:
+                    text = format_scripture_text(refs[0], all_verses, lang.upper())
+                else:
+                    # Multi-range: use the original ref_str in header
+                    text_lines = [f"{ref_str} ({lang.upper()})", ""]
+                    for ch, v, t in all_verses:
+                        text_lines.append(f"{v} {t}")
+                    text = "\n".join(text_lines) + "\n"
 
                 output_file = f"scripture_{sid}_{lang}.txt"
                 output_path = os.path.join(story_dir, output_file)
 
                 if args.dry_run:
-                    print(f"  {sid}: OK — {ref_str} ({lang.upper()}, {len(verses)} verses) → {output_file}")
+                    print(f"  {sid}: OK — {ref_str} ({lang.upper()}, {len(all_verses)} verses) → {output_file}")
                 else:
                     with open(output_path, "w", encoding="utf-8") as f:
                         f.write(text)
-                    print(f"  {sid}: WROTE {output_file} ({len(verses)} verses)")
+                    print(f"  {sid}: WROTE {output_file} ({len(all_verses)} verses)")
 
                 success_count += 1
 
