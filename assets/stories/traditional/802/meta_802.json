@@ -4,7 +4,11 @@
   "mode": "traditional",
   "kidFriendly": false,
   "source": "legacy_inferred",
-  "languageStyle": "KJV",
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
   "mood": "calm_peaceful",
   "scriptureAnchor": "Psalm 23",
   "scriptureAnchorId": "ps_23",
@@ -21,23 +25,31 @@
   "generationBatch": "PAL_TRADITIONAL_CLASSIC_OPTION_B2_800_SERIES",
   "files": {
     "short": {
-      "storyText": "story_802_traditional_kjv_short.txt",
-      "storyAudio": "audio_802_story_short.mp3"
+      "storyText": "story_802_traditional_web_short.txt"
     },
     "full": {
-      "storyText": "story_802_traditional_kjv_full.txt",
-      "storyAudio": "audio_802_story_full.mp3"
+      "storyText": "story_802_traditional_web_full.txt"
     },
     "long": {
-      "storyText": "story_802_traditional_kjv_long.txt",
-      "storyAudio": "audio_802_story_long.mp3"
+      "storyText": "story_802_traditional_web_long.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_802_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_802_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_802_traditional_kjv_long.txt"
     },
     "reflection": {
-      "reflectionText": "reflection_802_traditional_kjv.txt",
-      "reflectionAudio": "audio_802_reflection.mp3"
+      "reflectionText": "reflection_802_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_802_traditional_kjv.txt"
     }
   },
-  "reflectionText": "In the quiet cadence of Psalm 23, one may notice the enduring image of a shepherd walking gently before his flock. The valley\u2019s shadow and the green pastures both find their place along the path, woven together by the presence of the shepherd\u2019s guiding hand. There is a pattern of journeying\u2014through rest and uncertainty, stillness and motion\u2014accompanied always by a sense of unwavering companionship.\n\nAs the ancient words linger, some might observe how life, too, unfolds in seasons both peaceful and unknown. The language of the psalm invites attentiveness\u2014to moments of comfort beside still waters, and to the quiet assurance found even when the way is not clear. In these verses, a rhythm of care and watchfulness echoes softly, reminding listeners that the pattern of care is a story told across many generations.",
+  "reflectionText": "In the quiet cadence of Psalm 23, one may notice the enduring image of a shepherd walking gently before his flock. The valley’s shadow and the green pastures both find their place along the path, woven together by the presence of the shepherd’s guiding hand. There is a pattern of journeying—through rest and uncertainty, stillness and motion—accompanied always by a sense of unwavering companionship.\n\nAs the ancient words linger, some might observe how life, too, unfolds in seasons both peaceful and unknown. The language of the psalm invites attentiveness—to moments of comfort beside still waters, and to the quiet assurance found even when the way is not clear. In these verses, a rhythm of care and watchfulness echoes softly, reminding listeners that the pattern of care is a story told across many generations.",
   "timelineEra": "wisdom",
   "primaryCharacterId": "david",
   "primaryCharacterDisplayName": "David"

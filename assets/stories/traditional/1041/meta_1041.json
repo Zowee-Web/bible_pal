@@ -5,7 +5,8 @@
   "kidFriendly": true,
   "languageStyle": "WEB",
   "lanes": [
-    "web"
+    "web",
+    "kjv"
   ],
   "mood": "brave_courage",
   "scriptureAnchor": "Exodus 2:1-10",
@@ -31,6 +32,15 @@
     "reflection": {
       "reflectionText": "reflection_1041_traditional_web.txt",
       "reflectionAudio": "audio_1041_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyText": "story_1041_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1041_traditional_kjv_full.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1041_traditional_kjv.txt"
     }
   },
   "reflectionSource": "llm",

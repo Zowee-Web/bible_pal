@@ -26,7 +26,7 @@
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_46",
   "generationContractVersion": "STORY_FACTORY_v2.3",
-  "reflectionQuestion": "One act of support can shift more than you realize. Standing beside someone \u2014 even silently \u2014 can change the weight of what they carry. Even a small gesture can be enough for today.",
+  "reflectionQuestion": "One act of support can shift more than you realize. Standing beside someone — even silently — can change the weight of what they carry. Even a small gesture can be enough for today.",
   "files": {
     "short": {
       "storyText": "story_828_traditional_web_short.txt",
@@ -43,9 +43,18 @@
     "reflection": {
       "reflectionText": "reflection_828_traditional_web.txt",
       "reflectionAudio": "audio_828_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyText": "story_828_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_828_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_828_traditional_kjv_long.txt"
     }
   },
-  "reflectionText": "Three women pause on a dusty road, arms entwined\u2014grief and longing pressed close between them. One turns back, another clings tightly, and hope breathes quietly in the choice to stay. That is enough for today.",
+  "reflectionText": "Three women pause on a dusty road, arms entwined—grief and longing pressed close between them. One turns back, another clings tightly, and hope breathes quietly in the choice to stay. That is enough for today.",
   "reflectionSource": "llm",
   "wordCountFlags": {
     "short": {
@@ -69,5 +78,9 @@
   "secondaryLifeSituationTags": [
     "loss_of_spouse",
     "starting_over"
+  ],
+  "lanes": [
+    "web",
+    "kjv"
   ]
 }

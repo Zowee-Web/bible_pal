@@ -5,7 +5,8 @@
   "kidFriendly": true,
   "languageStyle": "WEB",
   "lanes": [
-    "web"
+    "web",
+    "kjv"
   ],
   "mood": "grateful",
   "lengths": [
@@ -15,7 +16,7 @@
   "voiceKey": "VOICE_ARABELLA",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
-  "reflectionQuestion": "Jonathan gave away everything that made him a prince \u2014 just because his heart told him to. What is the most generous thing someone has ever done for you? What made it special?",
+  "reflectionQuestion": "Jonathan gave away everything that made him a prince — just because his heart told him to. What is the most generous thing someone has ever done for you? What made it special?",
   "title": "David and Jonathan Become Friends",
   "files": {
     "short": {
@@ -29,13 +30,22 @@
     "reflection": {
       "reflectionText": "reflection_1060_traditional_web.txt",
       "reflectionAudio": "audio_1060_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyText": "story_1060_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1060_traditional_kjv_full.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1060_traditional_kjv.txt"
     }
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ARABELLA",
   "scriptureAnchor": "1 Samuel 18:1-4",
   "bibleStoryKey": "david_and_jonathan",
-  "reflectionText": "Jonathan gave away everything that made him a prince \u2014 just because his heart told him to. What is the most generous thing someone has ever done for you? What made it special?",
+  "reflectionText": "Jonathan gave away everything that made him a prince — just because his heart told him to. What is the most generous thing someone has ever done for you? What made it special?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "david",
   "primaryCharacterDisplayName": "David"

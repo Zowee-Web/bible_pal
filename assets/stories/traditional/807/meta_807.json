@@ -6,7 +6,7 @@
   "source": "legacy_inferred",
   "languageStyle": "WEB",
   "mood": "weary",
-  "scriptureAnchor": "Psalm 127:1\u20132",
+  "scriptureAnchor": "Psalm 127:1–2",
   "scriptureAnchorId": "ps_127_1_2",
   "bibleStoryKey": "unless_the_lord_builds",
   "title": "Unless the Lord Builds",
@@ -37,10 +37,23 @@
     "reflection": {
       "reflectionText": "reflection_807_traditional_web.txt",
       "reflectionAudio": "audio_807_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyText": "story_807_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_807_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_807_traditional_kjv_long.txt"
     }
   },
   "reflectionText": "God watches over us, even while we sleep at night. We can build with our hands, but God helps make our homes safe and happy. Sometimes people worry and work very hard, but God gives people rest because He loves them. Just like a parent tucks you in and sings you a song, God cares for you gently. When you close your eyes, you are safe and loved. It is okay to rest and let your heart be quiet. God holds the whole world, and He holds you, too.",
   "timelineEra": "wisdom",
   "primaryCharacterId": "psalmist",
-  "primaryCharacterDisplayName": "The Psalmist"
+  "primaryCharacterDisplayName": "The Psalmist",
+  "lanes": [
+    "web",
+    "kjv"
+  ]
 }

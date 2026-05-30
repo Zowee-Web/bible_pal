@@ -38,9 +38,15 @@
     "reflection": {
       "reflectionText": "reflection_829_traditional_web.txt",
       "reflectionAudio": "audio_829_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyText": "story_829_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_829_traditional_kjv_full.txt"
     }
   },
-  "reflectionText": "Hagar\u2019s hands trembled as she held the empty skin\u2014nothing left but dust, her hope almost gone. Then, among thorns and glare, water shimmered into view\u2014one small, saving grace. A single clear drink, just enough for today.",
+  "reflectionText": "Hagar’s hands trembled as she held the empty skin—nothing left but dust, her hope almost gone. Then, among thorns and glare, water shimmered into view—one small, saving grace. A single clear drink, just enough for today.",
   "reflectionSource": "llm",
   "boundaryValidation": {
     "short": "pass",
@@ -51,5 +57,9 @@
   },
   "timelineEra": "patriarchs",
   "primaryCharacterId": "hagar",
-  "primaryCharacterDisplayName": "Hagar"
+  "primaryCharacterDisplayName": "Hagar",
+  "lanes": [
+    "web",
+    "kjv"
+  ]
 }

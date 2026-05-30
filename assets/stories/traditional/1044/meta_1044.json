@@ -5,7 +5,8 @@
   "kidFriendly": true,
   "languageStyle": "WEB",
   "lanes": [
-    "web"
+    "web",
+    "kjv"
   ],
   "mood": "grateful",
   "scriptureAnchor": "Ruth 2:1-23",
@@ -31,11 +32,20 @@
     "reflection": {
       "reflectionText": "reflection_1044_traditional_web.txt",
       "reflectionAudio": "audio_1044_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyText": "story_1044_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1044_traditional_kjv_full.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1044_traditional_kjv.txt"
     }
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ARABELLA",
-  "reflectionText": "Ruth worked hard all day in the hot sun to take care of Naomi. And Boaz noticed. He gave her water, food, and extra grain \u2014 more than she expected. When we work hard and care for others, God often sends people to help us too.\n\nWho is someone who has been really kind to you, and how did it make you feel?",
+  "reflectionText": "Ruth worked hard all day in the hot sun to take care of Naomi. And Boaz noticed. He gave her water, food, and extra grain — more than she expected. When we work hard and care for others, God often sends people to help us too.\n\nWho is someone who has been really kind to you, and how did it make you feel?",
   "timelineEra": "judges",
   "primaryCharacterId": "ruth",
   "primaryCharacterDisplayName": "Ruth"

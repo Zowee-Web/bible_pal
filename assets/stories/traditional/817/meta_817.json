@@ -43,6 +43,15 @@
     "reflection": {
       "reflectionText": "reflection_817_traditional_web.txt",
       "reflectionAudio": "audio_817_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyText": "story_817_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_817_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_817_traditional_kjv_long.txt"
     }
   },
   "reflectionText": "This story shows that being brave does not mean being unafraid. Even one small brave thing counts.",
@@ -54,5 +63,9 @@
   ],
   "secondaryLifeSituationTags": [
     "unjust_persecution"
+  ],
+  "lanes": [
+    "web",
+    "kjv"
   ]
 }

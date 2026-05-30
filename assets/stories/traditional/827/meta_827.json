@@ -33,6 +33,9 @@
     "reflection": {
       "reflectionText": "reflection_827_traditional_web.txt",
       "reflectionAudio": "audio_827_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyText": "story_827_traditional_kjv_short.txt"
     }
   },
   "reflectionText": "Stillness is not emptiness. Sometimes the quietest moment is where clarity arrives. Even one breath taken in peace can carry you further than you think.",
@@ -46,5 +49,9 @@
   },
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "mary",
-  "primaryCharacterDisplayName": "Mary"
+  "primaryCharacterDisplayName": "Mary",
+  "lanes": [
+    "web",
+    "kjv"
+  ]
 }

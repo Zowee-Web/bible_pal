@@ -5,7 +5,8 @@
   "kidFriendly": false,
   "languageStyle": "WEB",
   "lanes": [
-    "web"
+    "web",
+    "kjv"
   ],
   "mood": "anxious",
   "lengths": [
@@ -47,6 +48,9 @@
   "files": {
     "short": {
       "storyText": "story_1264_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1264_traditional_kjv_short.txt"
     }
   }
 }

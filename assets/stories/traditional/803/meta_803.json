@@ -4,7 +4,11 @@
   "mode": "traditional",
   "kidFriendly": false,
   "source": "legacy_inferred",
-  "languageStyle": "KJV",
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
   "mood": "encouraging",
   "scriptureAnchor": "Psalm 46",
   "scriptureAnchorId": "ps_46",
@@ -21,23 +25,31 @@
   "generationBatch": "PAL_TRADITIONAL_OPTION_B2",
   "files": {
     "short": {
-      "storyText": "story_803_traditional_kjv_short.txt",
-      "storyAudio": "audio_803_story_short.mp3"
+      "storyText": "story_803_traditional_web_short.txt"
     },
     "full": {
-      "storyText": "story_803_traditional_kjv_full.txt",
-      "storyAudio": "audio_803_story_full.mp3"
+      "storyText": "story_803_traditional_web_full.txt"
     },
     "long": {
-      "storyText": "story_803_traditional_kjv_long.txt",
-      "storyAudio": "audio_803_story_long.mp3"
+      "storyText": "story_803_traditional_web_long.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_803_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_803_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_803_traditional_kjv_long.txt"
     },
     "reflection": {
-      "reflectionText": "reflection_803_traditional_kjv.txt",
-      "reflectionAudio": "audio_803_reflection.mp3"
+      "reflectionText": "reflection_803_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_803_traditional_kjv.txt"
     }
   },
-  "reflectionText": "In the midst of trembling earth and roaring waters, Psalm 46 sets forth an image of a steadfast refuge. Patterns of turmoil and steadfastness stand side by side: mountains may shake, yet there is a river whose streams make glad the city of God. Listeners may notice how, even as troubles swirl, the refrain points again and again to presence and stillness. \n\nThere can be times, both in ancient poetry and daily hours, when chaos and calm intermingle. The psalm offers language that holds these together\u2014a quiet center amid storm. Such words seem to rest in tension, inviting reflection on where unshakable peace and shelter are glimpsed amid ordinary commotion.",
+  "reflectionText": "In the midst of trembling earth and roaring waters, Psalm 46 sets forth an image of a steadfast refuge. Patterns of turmoil and steadfastness stand side by side: mountains may shake, yet there is a river whose streams make glad the city of God. Listeners may notice how, even as troubles swirl, the refrain points again and again to presence and stillness. \n\nThere can be times, both in ancient poetry and daily hours, when chaos and calm intermingle. The psalm offers language that holds these together—a quiet center amid storm. Such words seem to rest in tension, inviting reflection on where unshakable peace and shelter are glimpsed amid ordinary commotion.",
   "timelineEra": "wisdom",
   "primaryCharacterId": "psalmist",
   "primaryCharacterDisplayName": "The Psalmist"

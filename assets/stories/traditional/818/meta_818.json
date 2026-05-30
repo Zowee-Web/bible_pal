@@ -43,10 +43,23 @@
     "reflection": {
       "reflectionText": "reflection_818_traditional_web.txt",
       "reflectionAudio": "audio_818_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyText": "story_818_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_818_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_818_traditional_kjv_long.txt"
     }
   },
   "reflectionText": "This story shows that being still and listening can bring us peace. Even one quiet moment matters.",
   "timelineEra": "kingdom",
   "primaryCharacterId": "samuel",
-  "primaryCharacterDisplayName": "Samuel"
+  "primaryCharacterDisplayName": "Samuel",
+  "lanes": [
+    "web",
+    "kjv"
+  ]
 }

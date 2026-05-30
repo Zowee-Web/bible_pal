@@ -5,7 +5,8 @@
   "kidFriendly": true,
   "languageStyle": "WEB",
   "lanes": [
-    "web"
+    "web",
+    "kjv"
   ],
   "mood": "joyful",
   "scriptureAnchor": "Genesis 1:1-31",
@@ -31,11 +32,20 @@
     "reflection": {
       "reflectionText": "reflection_1046_traditional_web.txt",
       "reflectionAudio": "audio_1046_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyText": "story_1046_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1046_traditional_kjv_full.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1046_traditional_kjv.txt"
     }
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ARCHER",
-  "reflectionText": "God made the whole world \u2014 light, sky, oceans, animals, and people. He looked at all of it and said, \"It is very good.\" Everything around you, from the biggest mountain to the tiniest bug, God made it on purpose. And he made you on purpose too.\n\nWhat is your favorite thing God made, and why do you think it is so amazing?",
+  "reflectionText": "God made the whole world — light, sky, oceans, animals, and people. He looked at all of it and said, \"It is very good.\" Everything around you, from the biggest mountain to the tiniest bug, God made it on purpose. And he made you on purpose too.\n\nWhat is your favorite thing God made, and why do you think it is so amazing?",
   "timelineEra": "patriarchs",
   "primaryCharacterId": "god",
   "primaryCharacterDisplayName": "God"

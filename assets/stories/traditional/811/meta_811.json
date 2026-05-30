@@ -43,10 +43,23 @@
     "reflection": {
       "reflectionText": "reflection_811_traditional_web.txt",
       "reflectionAudio": "audio_811_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyText": "story_811_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_811_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_811_traditional_kjv_long.txt"
     }
   },
   "reflectionText": "Stories of ordinary days often reflect the steady rhythm of daily faithfulness. These narratives show that meaning can be found in quiet, unremarkable moments. And even a small step forward can be enough for today.",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
-  "primaryCharacterDisplayName": "Jesus"
+  "primaryCharacterDisplayName": "Jesus",
+  "lanes": [
+    "web",
+    "kjv"
+  ]
 }

@@ -5,7 +5,8 @@
   "kidFriendly": true,
   "languageStyle": "WEB",
   "lanes": [
-    "web"
+    "web",
+    "kjv"
   ],
   "mood": "encouraging",
   "lengths": [
@@ -15,7 +16,7 @@
   "voiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
-  "reflectionQuestion": "Nehemiah was afraid to ask the king but he asked anyway. Have you ever been scared to ask for something important \u2014 and then found out the answer was yes?",
+  "reflectionQuestion": "Nehemiah was afraid to ask the king but he asked anyway. Have you ever been scared to ask for something important — and then found out the answer was yes?",
   "title": "Nehemiah Rebuilds the Wall",
   "files": {
     "short": {
@@ -29,13 +30,22 @@
     "reflection": {
       "reflectionText": "reflection_1059_traditional_web.txt",
       "reflectionAudio": "audio_1059_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyText": "story_1059_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1059_traditional_kjv_full.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1059_traditional_kjv.txt"
     }
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
   "scriptureAnchor": "Nehemiah 2:1-18",
   "bibleStoryKey": "nehemiah_rebuilds_the_wall",
-  "reflectionText": "Nehemiah was afraid to ask the king but he asked anyway. Have you ever been scared to ask for something important \u2014 and then found out the answer was yes?",
+  "reflectionText": "Nehemiah was afraid to ask the king but he asked anyway. Have you ever been scared to ask for something important — and then found out the answer was yes?",
   "timelineEra": "return",
   "primaryCharacterId": "nehemiah",
   "primaryCharacterDisplayName": "Nehemiah"

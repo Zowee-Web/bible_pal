@@ -5,7 +5,8 @@
   "kidFriendly": true,
   "languageStyle": "WEB",
   "lanes": [
-    "web"
+    "web",
+    "kjv"
   ],
   "mood": "weary",
   "lengths": [
@@ -34,12 +35,24 @@
     "reflection": {
       "reflectionText": "reflection_1010_traditional_web.txt",
       "reflectionAudio": "audio_1010_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyText": "story_1010_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1010_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1010_traditional_kjv_long.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1010_traditional_kjv.txt"
     }
   },
   "scriptureAnchor": "Psalm 121",
   "bibleStoryKey": "i_lift_my_eyes_to_the_hills",
   "storyVoiceKey": "VOICE_ARABELLA",
-  "reflectionText": "Mountains stand tall and strong, even when clouds cover them up. Sometimes when things feel big or a little tricky, it helps to look up and remember that God is watching over everything. He never falls asleep \u2014 not even for one tiny second. That means when you are playing outside in the sunshine or tucked under your blanket at night, God is right there. He is like a cool shade on a really hot day, keeping you safe and close. Going out the door in the morning and coming back home in the evening, his care wraps around every step you take.",
+  "reflectionText": "Mountains stand tall and strong, even when clouds cover them up. Sometimes when things feel big or a little tricky, it helps to look up and remember that God is watching over everything. He never falls asleep — not even for one tiny second. That means when you are playing outside in the sunshine or tucked under your blanket at night, God is right there. He is like a cool shade on a really hot day, keeping you safe and close. Going out the door in the morning and coming back home in the evening, his care wraps around every step you take.",
   "timelineEra": "wisdom",
   "primaryCharacterId": "psalmist",
   "primaryCharacterDisplayName": "The Psalmist"

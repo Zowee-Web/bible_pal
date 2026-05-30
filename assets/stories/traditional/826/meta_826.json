@@ -43,9 +43,18 @@
     "reflection": {
       "reflectionText": "reflection_826_traditional_web.txt",
       "reflectionAudio": "audio_826_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyText": "story_826_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_826_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_826_traditional_kjv_long.txt"
     }
   },
-  "reflectionText": "The valley stretched silent, shields fluttering, while one young voice carried across the distance. Even a single stone in steady hands can meet a giant\u2019s challenge. Let that be enough for today.",
+  "reflectionText": "The valley stretched silent, shields fluttering, while one young voice carried across the distance. Even a single stone in steady hands can meet a giant’s challenge. Let that be enough for today.",
   "reflectionSource": "llm",
   "wordCountFlags": {
     "short": {
@@ -63,5 +72,9 @@
   },
   "timelineEra": "kingdom",
   "primaryCharacterId": "david",
-  "primaryCharacterDisplayName": "David"
+  "primaryCharacterDisplayName": "David",
+  "lanes": [
+    "web",
+    "kjv"
+  ]
 }

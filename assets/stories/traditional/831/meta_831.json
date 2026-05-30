@@ -43,9 +43,18 @@
     "reflection": {
       "reflectionText": "reflection_831_traditional_web.txt",
       "reflectionAudio": "audio_831_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyText": "story_831_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_831_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_831_traditional_kjv_long.txt"
     }
   },
-  "reflectionText": "A forgotten name spoken in the right moment can open a door \u2014 dim light shifting to gold, a man's face new and uncertain. Just for now, it is enough to remember the way one hallway led to another. That is enough for today.",
+  "reflectionText": "A forgotten name spoken in the right moment can open a door — dim light shifting to gold, a man's face new and uncertain. Just for now, it is enough to remember the way one hallway led to another. That is enough for today.",
   "reflectionSource": "llm",
   "wordCountFlags": {
     "short": {
@@ -62,5 +71,9 @@
   },
   "timelineEra": "patriarchs",
   "primaryCharacterId": "joseph",
-  "primaryCharacterDisplayName": "Joseph"
+  "primaryCharacterDisplayName": "Joseph",
+  "lanes": [
+    "web",
+    "kjv"
+  ]
 }

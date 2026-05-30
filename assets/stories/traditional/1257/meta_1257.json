@@ -5,7 +5,8 @@
   "kidFriendly": false,
   "languageStyle": "WEB",
   "lanes": [
-    "web"
+    "web",
+    "kjv"
   ],
   "mood": "encouraging",
   "lengths": [
@@ -53,6 +54,12 @@
     "full": {
       "storyText": "story_1257_traditional_web_full.txt",
       "storyAudio": "audio_1257_story_full.mp3"
+    },
+    "short_kjv": {
+      "storyText": "story_1257_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1257_traditional_kjv_full.txt"
     }
   }
 }

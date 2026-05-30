@@ -43,6 +43,15 @@
     "reflection": {
       "reflectionText": "reflection_819_traditional_web.txt",
       "reflectionAudio": "audio_819_reflection.mp3"
+    },
+    "short_kjv": {
+      "storyText": "story_819_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_819_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_819_traditional_kjv_long.txt"
     }
   },
   "reflectionText": "This story shows that standing up for others takes courage and love. Even one kind word can make a difference.",
@@ -55,5 +64,9 @@
   "secondaryLifeSituationTags": [
     "speaking_truth_to_power",
     "quiet_courage"
+  ],
+  "lanes": [
+    "web",
+    "kjv"
   ]
 }
