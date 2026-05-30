@@ -10,7 +10,9 @@
   ],
   "mood": "joyful",
   "lengths": [
-    "short"
+    "short",
+    "full",
+    "long"
   ],
   "createdByModel": "claude-opus-4-7",
   "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
@@ -48,6 +50,18 @@
     },
     "short_kjv": {
       "storyText": "story_1221_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_1221_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1221_traditional_web_long.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1221_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1221_traditional_kjv_long.txt"
     }
   }
 }
