@@ -13,7 +13,8 @@
   "bibleStoryKey": "burning_bush",
   "lengths": [
     "short",
-    "full"
+    "full",
+    "long"
   ],
   "voiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "createdByModel": "claude-opus-4-6",
@@ -37,10 +38,17 @@
       "storyAudio": "audio_1019_story_kjv_short.mp3"
     },
     "full_kjv": {
-      "storyAudio": "audio_1019_story_kjv_full.mp3"
+      "storyAudio": "audio_1019_story_kjv_full.mp3",
+      "storyText": "story_1019_traditional_kjv_full.txt"
     },
     "reflection_kjv": {
       "reflectionAudio": "audio_1019_reflection_kjv.mp3"
+    },
+    "long": {
+      "storyText": "story_1019_traditional_web_long.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1019_traditional_kjv_long.txt"
     }
   },
   "reflections": {
@@ -49,7 +57,7 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "reflectionText": "The bush was a common thing. It was such scrub as grew in every gully of the waste, passed without regard by every shepherd who walked those hills. That which made it wondrous was not its nature but what dwelt therein. The fire consumed not. It revealed.\n\nMoses asked for a name, and the word he received was unlike any name he had known. Not a title. Not an office. Only being itself \u2014 I AM. There is something in that name which resisteth all taming, all setting in order. It abideth, like the bush, burning and not consumed, as present now as it was upon that still hillside.",
+  "reflectionText": "The bush was a common thing. It was such scrub as grew in every gully of the waste, passed without regard by every shepherd who walked those hills. That which made it wondrous was not its nature but what dwelt therein. The fire consumed not. It revealed.\n\nMoses asked for a name, and the word he received was unlike any name he had known. Not a title. Not an office. Only being itself — I AM. There is something in that name which resisteth all taming, all setting in order. It abideth, like the bush, burning and not consumed, as present now as it was upon that still hillside.",
   "timelineEra": "exodus",
   "primaryCharacterId": "moses",
   "primaryCharacterDisplayName": "Moses"

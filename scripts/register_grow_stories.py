@@ -12,6 +12,7 @@ Idempotent: re-running on already-registered stories is a no-op.
 """
 
 from __future__ import annotations
+import argparse
 import json
 import os
 import re
@@ -22,10 +23,14 @@ ROOT = Path(__file__).resolve().parents[1]
 TRAD = ROOT / "assets" / "stories" / "traditional"
 MANIFEST = ROOT / "assets" / "stories" / "manifest.json"
 
-# The 25 GROW story IDs
+# Default: the 25 Phase 2 GROW story IDs
 GROW_IDS = [1036, 1037, 1038, 1112, 1114, 1117, 1118, 1129, 1131, 1140, 1142,
             1145, 1148, 1162, 1164, 1165, 1181, 1188, 1198, 1208, 1209, 1219,
             1227, 1446, 1450]
+
+# Tier 1 NEXT (12 stories, 2026-05-30)
+TIER1_IDS = [1019, 1032, 1055, 1111, 1113, 1123, 1160, 1172, 1216, 1265,
+             1505, 1511]
 
 
 def update_meta(sid: int) -> tuple[list[str], list[str]]:
@@ -142,7 +147,7 @@ def manifest_entry_for(sid: int, lane: str, length: str, all_entries: list[dict]
     return new_entry
 
 
-def update_manifest():
+def update_manifest(ids: list[int]):
     manifest = json.loads(MANIFEST.read_text())
     parables = manifest.get("parables", [])
 
@@ -152,7 +157,7 @@ def update_manifest():
         existing_keys.add((e.get("textFilePath", ""), e.get("languageStyle", "")))
 
     added = []
-    for sid in GROW_IDS:
+    for sid in ids:
         story_dir = TRAD / str(sid)
         for lane in ("WEB", "KJV"):
             for length in ("short", "full", "long"):
@@ -178,9 +183,23 @@ def update_manifest():
 
 
 def main():
-    print("Updating meta files...")
+    parser = argparse.ArgumentParser(description="Register Full/Long story files in meta + manifest")
+    parser.add_argument("--set", choices=["grow", "tier1"], default="grow",
+                        help="Which set of story IDs to register (default: grow)")
+    parser.add_argument("--ids", nargs="+", type=int,
+                        help="Override with explicit story IDs (overrides --set)")
+    args = parser.parse_args()
+
+    if args.ids:
+        ids = args.ids
+    elif args.set == "tier1":
+        ids = TIER1_IDS
+    else:
+        ids = GROW_IDS
+
+    print(f"Updating meta files for {len(ids)} stories ({args.set if not args.ids else 'explicit'})...")
     meta_summary = []
-    for sid in GROW_IDS:
+    for sid in ids:
         try:
             lengths_added, keys_added = update_meta(sid)
             if lengths_added or keys_added:
@@ -195,7 +214,7 @@ def main():
     print(f"\nMeta updates: {len(meta_summary)} stories modified")
 
     print("\nUpdating manifest.json...")
-    added = update_manifest()
+    added = update_manifest(ids)
     print(f"\nManifest entries added: {len(added)}")
     by_lane_len = {}
     for sid, lane, length in added:

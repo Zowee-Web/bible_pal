@@ -11,7 +11,8 @@
   "mood": "anxious",
   "lengths": [
     "short",
-    "full"
+    "full",
+    "long"
   ],
   "shortScripture": false,
   "createdByModel": "claude-opus-4-7",
@@ -66,6 +67,12 @@
     },
     "reflection_kjv": {
       "reflectionText": "reflection_1511_traditional_kjv.txt"
+    },
+    "long": {
+      "storyText": "story_1511_traditional_web_long.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1511_traditional_kjv_long.txt"
     }
   },
   "reflectionQuestion": "Hezekiah spread the letter on the floor of the temple before the LORD. He asked to be heard. That night the angel went out into the Assyrian camp. The morning came and the bodies were there. What is it to spread a letter before the LORD on a stone floor at noon, and to be answered before the next dawn?",
