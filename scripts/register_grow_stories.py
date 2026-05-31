@@ -35,6 +35,10 @@ TIER1_IDS = [1019, 1032, 1055, 1111, 1113, 1123, 1160, 1172, 1216, 1265,
 # Tier 2 NEXT (10 stories, 2026-05-30)
 TIER2_IDS = [1051, 1151, 1178, 1191, 1210, 1221, 1263, 1264, 1286, 1346]
 
+# Tier 3 (4 stories, 2026-05-30) — careful-review set, classified GROW
+# from 6 candidates; 1194 and 1224 deferred. Dual-lane Full+Long shipped.
+TIER3_IDS = [1212, 1228, 1230, 1506]
+
 
 def update_meta(sid: int) -> tuple[list[str], list[str]]:
     """Update meta_<sid>.json. Returns (lengths_added, file_keys_added)."""
@@ -193,7 +197,7 @@ def update_manifest(ids: list[int]):
 
 def main():
     parser = argparse.ArgumentParser(description="Register Full/Long story files in meta + manifest")
-    parser.add_argument("--set", choices=["grow", "tier1", "tier2"], default="grow",
+    parser.add_argument("--set", choices=["grow", "tier1", "tier2", "tier3"], default="grow",
                         help="Which set of story IDs to register (default: grow)")
     parser.add_argument("--ids", nargs="+", type=int,
                         help="Override with explicit story IDs (overrides --set)")
@@ -205,6 +209,8 @@ def main():
         ids = TIER1_IDS
     elif args.set == "tier2":
         ids = TIER2_IDS
+    elif args.set == "tier3":
+        ids = TIER3_IDS
     else:
         ids = GROW_IDS
 
