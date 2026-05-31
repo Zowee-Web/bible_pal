@@ -13,8 +13,9 @@ If CLAUDE.md conflicts with the official docs, **the official docs win**.
 1. [docs/INVARIANTS.md](docs/INVARIANTS.md) — Non-negotiable rules (highest authority)
 2. [docs/SPEC.md](docs/SPEC.md) — Product specification
 3. [docs/BIBLE_TRANSLATION_COMPLIANCE.md](docs/BIBLE_TRANSLATION_COMPLIANCE.md) — Compliance details
-4. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — System architecture
-5. **CLAUDE.md** — This file (workflow guide only)
+4. [docs/REFLECTION_VOICE.md](docs/REFLECTION_VOICE.md) — Locked editorial voice for reflections (paste-test, six-point audit, benchmarks)
+5. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — System architecture
+6. **CLAUDE.md** — This file (workflow guide only)
 
 ---
 
