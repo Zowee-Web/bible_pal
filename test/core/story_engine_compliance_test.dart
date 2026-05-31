@@ -67,6 +67,8 @@ void main() {
             'gpt-4.1',           // legacy traditional engine
             'claude-opus-4-6',   // Opus 4.6 batch system
             'claude-opus-4-7',   // Opus 4.7 batch system (1M context, active model)
+            'openai_chatgpt',    // cross-author experiment (Batch 17, story 1470 only;
+                                 // commit 7c64b38 — first cross-author batch in corpus)
           };
           const creativeAllowedModels = {
             'mistral-nemo',      // primary (via Ollama)
