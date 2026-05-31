@@ -52,9 +52,12 @@
     },
     "long_kjv": {
       "storyText": "story_831_traditional_kjv_long.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_831_traditional_kjv.txt"
     }
   },
-  "reflectionText": "A forgotten name spoken in the right moment can open a door — dim light shifting to gold, a man's face new and uncertain. Just for now, it is enough to remember the way one hallway led to another. That is enough for today.",
+  "reflectionText": "The cupbearer remembered Joseph. The dungeon door opened. Joseph stood before Pharaoh and gave him the meaning of the dream. What is it to be brought up out of the prison you had stopped expecting to leave, by the memory of a man who had at last remembered the favor you once did him?",
   "reflectionSource": "llm",
   "wordCountFlags": {
     "short": {

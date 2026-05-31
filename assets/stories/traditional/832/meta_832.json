@@ -52,9 +52,12 @@
     },
     "long_kjv": {
       "storyText": "story_832_traditional_kjv_long.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_832_traditional_kjv.txt"
     }
   },
-  "reflectionText": "A single stone for a seat, lines that never seemed to end, and sun-warmed shoulders growing heavier with each story heard—Moses sat, and the day wore on. It is enough to sit back now, to let the night bring rest—one long breath, enough for today.",
+  "reflectionText": "Moses sat from morning till evening while the people stood about him with their disputes. Jethro saw him and said: the thing you are doing is not good. Choose men to bear it with you. What is it to be told that the thing you have been doing alone is the thing you were never meant to carry on your own?",
   "reflectionSource": "llm",
   "wordCountFlags": {
     "short": {
