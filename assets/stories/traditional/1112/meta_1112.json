@@ -48,6 +48,9 @@
     },
     "long_kjv": {
       "storyText": "story_1112_traditional_kjv_long.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1112_traditional_kjv.txt"
     }
   },
   "emotionalTags": [

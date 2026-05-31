@@ -36,6 +36,9 @@
     },
     "reflection": {
       "reflectionText": "reflection_1119_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1119_traditional_kjv.txt"
     }
   },
   "emotionalTags": [

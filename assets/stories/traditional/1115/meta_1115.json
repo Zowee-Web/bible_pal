@@ -40,6 +40,9 @@
     },
     "reflection": {
       "reflectionText": "reflection_1115_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1115_traditional_kjv.txt"
     }
   },
   "emotionalTags": [
