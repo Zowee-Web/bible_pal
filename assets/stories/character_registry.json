@@ -370,6 +370,390 @@
     "zephaniah": {
       "displayName": "Zephaniah",
       "descriptor": "Prophet, Zephaniah"
+    },
+    "abigail": {
+      "displayName": "Abigail",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "abrahams_servant": {
+      "displayName": "Abraham's Servant",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "abram": {
+      "displayName": "Abram",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "agabus": {
+      "displayName": "Agabus",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "andrew": {
+      "displayName": "Andrew",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "apollos": {
+      "displayName": "Apollos",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "asaph": {
+      "displayName": "Asaph",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "babylonian_exile_psalmist": {
+      "displayName": "Babylonian Exile Psalmist",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "boaz": {
+      "displayName": "Boaz",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "cleopas": {
+      "displayName": "Cleopas",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "cornelius": {
+      "displayName": "Cornelius",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "daughters_of_zelophehad": {
+      "displayName": "Daughters of Zelophehad",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "deaf_mute_man_of_decapolis": {
+      "displayName": "Deaf-Mute Man of Decapolis",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "early_church_believers": {
+      "displayName": "Early Church",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "eleazar_mighty_man": {
+      "displayName": "Eleazar",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "eli": {
+      "displayName": "Eli",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "elizabeth": {
+      "displayName": "Elizabeth",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "ethiopian_eunuch": {
+      "displayName": "Ethiopian Eunuch",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "eutychus": {
+      "displayName": "Eutychus",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "four_lepers_of_samaria": {
+      "displayName": "Four Lepers",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "gerasene_demoniac": {
+      "displayName": "Restored Man of the Gerasenes",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "haman": {
+      "displayName": "Haman",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "heman_the_ezrahite": {
+      "displayName": "Heman the Ezrahite",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "hezekiah": {
+      "displayName": "Hezekiah",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "huldah": {
+      "displayName": "Huldah",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "israel": {
+      "displayName": "Israel",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "jael": {
+      "displayName": "Jael",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "jehosheba": {
+      "displayName": "Jehosheba",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "jerusalem_church": {
+      "displayName": "Early Church",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "jesus_christ": {
+      "displayName": "Jesus",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "jethro": {
+      "displayName": "Jethro",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "joash": {
+      "displayName": "Joash",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "john_the_baptist": {
+      "displayName": "John the Baptist",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "jonathan": {
+      "displayName": "Jonathan",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "joseph_of_arimathea": {
+      "displayName": "Joseph of Arimathea",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "josiah": {
+      "displayName": "Josiah",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "judas": {
+      "displayName": "Judas",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "leper_healed_by_jesus": {
+      "displayName": "Leper Healed by Jesus",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "manasseh": {
+      "displayName": "Manasseh",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "micaiah": {
+      "displayName": "Micaiah",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "naomi": {
+      "displayName": "Naomi",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "nathan": {
+      "displayName": "Nathan",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "nebuchadnezzar": {
+      "displayName": "Nebuchadnezzar",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "nicodemus": {
+      "displayName": "Nicodemus",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "oded_prophet": {
+      "displayName": "Oded",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "pauls_sisters_son": {
+      "displayName": "Paul's Sister's Son",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "philip_evangelist": {
+      "displayName": "Philip",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "phinehas": {
+      "displayName": "Phinehas",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "poor_widow_temple": {
+      "displayName": "Poor Widow",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "preacher": {
+      "displayName": "The Preacher",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "qoheleth": {
+      "displayName": "The Preacher",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "rahab": {
+      "displayName": "Rahab",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "saul": {
+      "displayName": "Saul",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "shadrach_meshach_abednego": {
+      "displayName": "Shadrach, Meshach, and Abednego",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "shiphrah_and_puah": {
+      "displayName": "Shiphrah and Puah",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "shunammite_woman": {
+      "displayName": "Shunammite Woman",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "sons_of_joseph": {
+      "displayName": "Sons of Joseph",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "widow_of_nain": {
+      "displayName": "Widow of Nain",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "widow_of_prophets_son": {
+      "displayName": "Widow of the Prophet's Son",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "widow_of_zarephath": {
+      "displayName": "Widow of Zarephath",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "woman_with_issue_of_blood": {
+      "displayName": "Woman with Issue of Blood",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "zechariah_prophet": {
+      "displayName": "Zechariah the Prophet",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "zedekiah": {
+      "displayName": "Zedekiah",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "zerubbabel": {
+      "displayName": "Zerubbabel",
+      "descriptor": "",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
     }
   }
 }
