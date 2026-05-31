@@ -48,6 +48,10 @@
     },
     "short_kjv": {
       "storyText": "story_1136_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1136_traditional_web.txt"
     }
-  }
+  },
+  "reflectionText": "Paul saw an altar in Athens inscribed: to an unknown god. He stood in the Areopagus and announced the one his hearers had been worshiping without knowing his name. What is the encouragement of finding that what you have been reaching for in the dark was already reaching back, even before you had a word for him?"
 }
