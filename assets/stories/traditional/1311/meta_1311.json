@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1311_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1311_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1311_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Jeremiah wrote of the day Israel would come home: they will return as a great company, with weeping. I will lead them by rivers of waters. I will turn their mourning into joy. I will comfort them and make them rejoice from their sorrow. What is it to be promised that the mourning you are still inside will be turned into joy by the One who scattered you and is now gathering you home?"
 }

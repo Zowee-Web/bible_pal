@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1307_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1307_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1307_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Two great companies went on the wall, giving thanks, with trumpets and cymbals and stringed instruments. They met in the house of God, and the joy of Jerusalem was heard far off. The women and the children rejoiced. What is it to be in a city whose joy can be heard in the villages of the hill country, on the day the broken wall has been finally closed?"
 }

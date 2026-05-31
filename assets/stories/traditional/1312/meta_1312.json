@@ -53,6 +53,12 @@
     },
     "short_kjv": {
       "storyText": "story_1312_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1312_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1312_traditional_kjv.txt"
     }
   },
   "primaryLifeSituationTags": [
@@ -60,5 +66,6 @@
   ],
   "secondaryLifeSituationTags": [
     "unmet_longing"
-  ]
+  ],
+  "reflectionText": "Sarah conceived and bore Abraham a son in his old age. She said: God has made me laugh. Everyone who hears will laugh with me. Who would have said that Sarah should nurse children? What is it to be the woman whose laughter at the tent door becomes the laughter of a household where the promised son has finally been laid against your arm?"
 }
