@@ -53,6 +53,10 @@
     },
     "short_kjv": {
       "storyText": "story_1381_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1381_traditional_web.txt"
     }
-  }
+  },
+  "reflectionText": "Habakkuk wrote a song for the year of the empty fields before the fields had emptied. What is it to set down a thanksgiving in advance, before the loss has even arrived, for a God you trust to hold you through what is coming?"
 }
