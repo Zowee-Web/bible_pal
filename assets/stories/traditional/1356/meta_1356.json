@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1356_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1356_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1356_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Let the day perish in which I was born. What is it to find that the only words you have left after seven days of silence are the words that wish your own birth undone — and to know that the silence had been a mercy of its own?"
 }

@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1360_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1360_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1360_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Their eyes were kept from recognizing him. The stranger walked between them on the road to Emmaus. What is it to walk seven miles in grief beside the One you are mourning for, and not to know that the answer to your grief has already come up beside you in the dust of the afternoon?"
 }

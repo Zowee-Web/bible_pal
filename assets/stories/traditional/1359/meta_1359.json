@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1359_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1359_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1359_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "I am the man who has seen affliction by the rod of his wrath. What is it to set down on a scroll the bitterness that has been your own life, and to find that the bitterness has not lifted — but the words are no longer locked inside your bones?"
 }

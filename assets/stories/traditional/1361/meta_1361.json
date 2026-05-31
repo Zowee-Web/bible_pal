@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1361_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1361_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1361_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "At evening my wife died. So I did in the morning as I was commanded. What is it to bury your grief beneath your headdress and to walk out among your people as a sign of what they will lose when the city they love is taken?"
 }

@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1354_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1354_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1354_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Joseph of Arimathea boldly went in to Pilate and asked for the body of Jesus. What is it to step out from the silence of the men who voted for the killing — and to be the one whose name would be remembered as the man who buried him?"
 }
