@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1256_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1256_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1256_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Paul wrote: rejoice always. Pray without ceasing. In everything give thanks. Do not quench the Spirit. The God of peace himself will sanctify you completely. He who calls you is faithful. What is it to be called to give thanks in everything, while still inside the everything you would not have chosen for yourself?"
 }

@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1253_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1253_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1253_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Jeremiah wrote to the captives at Babylon: build houses, plant gardens, take wives, seek the peace of the city. I know the thoughts that I think toward you, thoughts of peace and not of evil. What is it to be told to settle in a city you did not want to come to, because the One who sent you has thoughts of peace toward you in that very place?"
 }

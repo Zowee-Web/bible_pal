@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1260_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1260_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1260_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Paul wrote: the Lord is faithful, who will establish you and guard you from the evil one. May the Lord direct your hearts into the love of God, and into the patience of Christ. What is it to be guarded by a faithfulness that does not depend on yours, while your hearts are still being directed into a patience you have not yet learned?"
 }

@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1259_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1259_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1259_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "The Lord told Moses: speak to Aaron and to his sons. Bless the children of Israel with these words. The Lord bless you and keep you. The Lord make his face to shine on you. The Lord lift up his face toward you and give you peace. What is it to be blessed by name with words a priest puts on your head and the Lord himself puts on your name?"
 }

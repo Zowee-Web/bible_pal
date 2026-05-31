@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1254_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1254_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1254_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Paul wrote: the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faith, gentleness, self-control. Against such things there is no law. If we live by the Spirit, let us also walk by the Spirit. What is it to find that the things you have been trying to manufacture were already growing, only waiting for you to walk in the Spirit's own time?"
 }
