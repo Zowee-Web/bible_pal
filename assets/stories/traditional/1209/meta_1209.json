@@ -62,6 +62,13 @@
     },
     "long_kjv": {
       "storyText": "story_1209_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1209_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1209_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Jacob called his sons one by one to his bedside and spoke a word over each. When he had finished, he gathered up his feet into the bed and breathed his last. What does it feel like to be called to your father's bedside and be given the word he has been carrying for you all his days?"
 }

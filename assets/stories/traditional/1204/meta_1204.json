@@ -49,6 +49,13 @@
     },
     "short_kjv": {
       "storyText": "story_1204_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1204_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1204_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "The Levites lifted up the song of the Sabbath day: it is good to give thanks to the Lord. The righteous shall flourish like the palm tree, planted in the Lord's house. What is it to set aside a day in the week for the thanks you keep forgetting to give on the rest of the days?"
 }

@@ -48,6 +48,13 @@
     },
     "short_kjv": {
       "storyText": "story_1206_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1206_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1206_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Mary Magdalene stood with the women at the cross and did not turn away. She sat opposite the tomb as Joseph rolled the stone. The lamps in the city burned low, and she did not sleep that night. Have you ever kept your eyes on the One you could not save, until the stone was rolled and the evening had come?"
 }

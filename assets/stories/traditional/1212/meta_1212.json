@@ -62,6 +62,13 @@
     },
     "long_kjv": {
       "storyText": "story_1212_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1212_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1212_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Haggai asked the old men who had seen the first house: how do you see it now? Then he said: be strong, Zerubbabel. Be strong, Joshua. Be strong, all you people. And work. Have you ever been told to be strong and work, while you are still standing in the place that was once Solomon's?"
 }

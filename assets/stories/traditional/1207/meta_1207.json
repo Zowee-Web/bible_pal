@@ -51,6 +51,13 @@
     },
     "short_kjv": {
       "storyText": "story_1207_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1207_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1207_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Hosea cried in the cities of the north: come, let us return to the Lord. After two days he will revive us. On the third day he will raise us up. He will come to us like the rain. How do you receive a call back by a voice that names the tearing first, and then names the healing?"
 }

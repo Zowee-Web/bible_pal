@@ -50,6 +50,13 @@
     },
     "short_kjv": {
       "storyText": "story_1211_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1211_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1211_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "The psalmist said: I love the Lord, because he hears my voice. The cords of death surrounded me; I called on the name of the Lord. What will I give to the Lord for all his benefits toward me? How do you return for benefits you cannot repay, except by the calling on his name again?"
 }

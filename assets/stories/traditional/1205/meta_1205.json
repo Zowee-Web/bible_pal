@@ -50,6 +50,13 @@
     },
     "short_kjv": {
       "storyText": "story_1205_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1205_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1205_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "The remnant prayed from among the broken stones: remember, Lord, what has come on us. Turn us to yourself, Lord, and we shall be turned. Renew our days as of old. What does it take to pray for restoration to a state your generation has only been told of?"
 }
