@@ -15,27 +15,14 @@ import 'package:flutter_test/flutter_test.dart';
 /// This handles trailing newlines that git or editors may introduce. No other
 /// normalization is applied — content must match exactly.
 ///
-/// **V3 PILOT batch exemption** (added 2026-05): Stories generated in the
-/// claude-opus-4-7 V3 PILOT batch (generationBatch contains "V3_PILOT") and
-/// MICRO-scripture entries (shortScripture: true) are recognized as a
-/// distinct, audio-only schema variant that intentionally omits reflection
-/// assets. They are skipped from tests 1, 2, and 3 below.
-///
-/// This exemption is narrowly scoped. Non-PILOT stories must still satisfy
-/// the full reflection contract — reflectionText, reflection .txt, and
-/// exact content match — without exception.
+/// **V3 PILOT exemption retired 2026-05-31.** Every active Traditional story
+/// must satisfy the full reflection contract — reflectionText, reflection
+/// .txt, and exact content match — without exception. The V3_PILOT and
+/// shortScripture skip-list was removed after the 156-story dual-lane KJV
+/// backfill brought the corpus to 100% coverage.
 ///
 /// See: docs/INVARIANTS.md — Reflection System Invariant
-///
-/// Determines whether a story is a V3 PILOT batch entry that intentionally
-/// omits reflection assets. Used by the reflection-consistency tests below
-/// to skip the PILOT format from reflectionText / reflection .txt requirements.
-bool _isV3PilotStory(Map<String, dynamic> meta) {
-  final batch = meta['generationBatch']?.toString() ?? '';
-  if (batch.contains('V3_PILOT')) return true;
-  if (meta['shortScripture'] == true) return true;
-  return false;
-}
+///       docs/REFLECTION_VOICE.md — voice spec
 
 void main() {
   group('CRITICAL: Reflection Consistency', () {
@@ -50,10 +37,6 @@ void main() {
       final violations = <String>[];
 
       for (final unit in storyUnits) {
-        // V3 PILOT batch is an audio-only format that intentionally omits
-        // reflectionText. See file-level docstring for the schema rationale.
-        if (_isV3PilotStory(unit.meta)) continue;
-
         final meta = unit.meta;
         if (!meta.containsKey('reflectionText')) {
           violations.add('${unit.id}: reflectionText field missing from meta');
@@ -69,7 +52,7 @@ void main() {
 
       expect(violations, isEmpty,
           reason:
-              'Every non-PILOT story meta must have a non-empty reflectionText string.\n\n'
+              'Every story meta must have a non-empty reflectionText string.\n\n'
               'Violations:\n${violations.join('\n')}');
     });
 
@@ -77,10 +60,6 @@ void main() {
       final missing = <String>[];
 
       for (final unit in storyUnits) {
-        // V3 PILOT batch is an audio-only format that intentionally omits
-        // the reflection .txt file. See file-level docstring.
-        if (_isV3PilotStory(unit.meta)) continue;
-
         if (unit.reflectionTxtFile == null) {
           missing.add('${unit.id}: no reflection_*.txt in ${unit.dir}');
         } else if (!unit.reflectionTxtFile!.existsSync()) {
@@ -90,7 +69,7 @@ void main() {
       }
 
       expect(missing, isEmpty,
-          reason: 'Every non-PILOT story must have a reflection .txt file.\n\n'
+          reason: 'Every story must have a reflection .txt file.\n\n'
               'Missing:\n${missing.join('\n')}');
     });
 
@@ -98,11 +77,6 @@ void main() {
       final mismatches = <String>[];
 
       for (final unit in storyUnits) {
-        // V3 PILOT batch has neither reflectionText nor reflection .txt by
-        // design — skip them so the exact-match check applies only to
-        // stories that are required to have both. See file-level docstring.
-        if (_isV3PilotStory(unit.meta)) continue;
-
         final metaText = unit.meta['reflectionText'];
         if (metaText == null || metaText is! String) continue;
 
