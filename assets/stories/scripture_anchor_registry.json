@@ -1078,6 +1078,14 @@
       ]
     },
     {
+      "scriptureAnchorId": "comfort_my_people_isaiah_40_1-11",
+      "bibleStoryKey": "comfort_my_people",
+      "bibleSourceRef": "Isaiah 40:1-11",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
       "scriptureAnchorId": "dan_3_1-30",
       "bibleStoryKey": "fiery_furnace",
       "bibleSourceRef": "Daniel 3:1-30",
@@ -1390,6 +1398,14 @@
       ]
     },
     {
+      "scriptureAnchorId": "esther_decision_4_1-17",
+      "bibleStoryKey": "esther_decision",
+      "bibleSourceRef": "Esther 4:1-17",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
       "scriptureAnchorId": "exod_14_10-31",
       "bibleStoryKey": "crossing_the_red_sea",
       "bibleSourceRef": "Exodus 14:10-31",
@@ -1541,30 +1557,6 @@
       "scriptureAnchorId": "ezra_1_1-11",
       "bibleStoryKey": "cyrus_decree_to_rebuild",
       "bibleSourceRef": "Ezra 1:1-11",
-      "moodTags": [
-        "encouraging"
-      ]
-    },
-    {
-      "scriptureAnchorId": "ezra_3_10-13",
-      "bibleStoryKey": "temple_foundation",
-      "bibleSourceRef": "Ezra 3:10-13",
-      "moodTags": [
-        "grateful"
-      ]
-    },
-    {
-      "scriptureAnchorId": "ezra_3_10-13",
-      "bibleStoryKey": "second_temple_foundation_dedication",
-      "bibleSourceRef": "Ezra 3:10-13",
-      "moodTags": [
-        "joyful"
-      ]
-    },
-    {
-      "scriptureAnchorId": "ezra_3_10-13",
-      "bibleStoryKey": "second_temple_foundation_weeping_and_shouting",
-      "bibleSourceRef": "Ezra 3:10-13",
       "moodTags": [
         "encouraging"
       ]
@@ -1917,6 +1909,14 @@
       ]
     },
     {
+      "scriptureAnchorId": "hannah_song_1_samuel_2_1-10",
+      "bibleStoryKey": "hannah_song",
+      "bibleSourceRef": "1 Samuel 2:1-10",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
       "scriptureAnchorId": "hebrews_11_1-22",
       "bibleStoryKey": "faith_chapter_opening",
       "bibleSourceRef": "Hebrews 11:1-22",
@@ -1962,7 +1962,7 @@
       "bibleSourceRef": "Hosea 14:1-7",
       "moodTags": [
         "grateful",
-        "hopeful"
+        "encouraging"
       ]
     },
     {
@@ -2185,6 +2185,22 @@
       "bibleSourceRef": "Jeremiah 9:1-3",
       "moodTags": [
         "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "jesus_calms_storm_mark_4_35-41",
+      "bibleStoryKey": "jesus_calms_storm",
+      "bibleSourceRef": "Mark 4:35-41",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "jesus_calms_storm_who_then_is_this_mark_4_35-41",
+      "bibleStoryKey": "jesus_calms_storm_who_then_is_this",
+      "bibleSourceRef": "Mark 4:35-41",
+      "moodTags": [
+        "anxious"
       ]
     },
     {
@@ -3118,22 +3134,6 @@
       ]
     },
     {
-      "scriptureAnchorId": "mark_4_35-41",
-      "bibleStoryKey": "jesus_calms_storm",
-      "bibleSourceRef": "Mark 4:35-41",
-      "moodTags": [
-        "anxious"
-      ]
-    },
-    {
-      "scriptureAnchorId": "mark_4_35-41",
-      "bibleStoryKey": "jesus_calms_storm_who_then_is_this",
-      "bibleSourceRef": "Mark 4:35-41",
-      "moodTags": [
-        "anxious"
-      ]
-    },
-    {
       "scriptureAnchorId": "mark_5_1-20",
       "bibleStoryKey": "demoniac_at_gerasenes",
       "bibleSourceRef": "Mark 5:1-20",
@@ -3147,23 +3147,6 @@
       "bibleSourceRef": "Mark 5:18-20",
       "moodTags": [
         "joyful"
-      ]
-    },
-    {
-      "scriptureAnchorId": "mark_5_25-34",
-      "bibleStoryKey": "woman_touches_jesus_garment",
-      "bibleSourceRef": "Mark 5:25-34",
-      "moodTags": [
-        "hurting",
-        "brave_courage"
-      ]
-    },
-    {
-      "scriptureAnchorId": "mark_5_25-34",
-      "bibleStoryKey": "woman_with_issue_of_blood_touches_hem",
-      "bibleSourceRef": "Mark 5:25-34",
-      "moodTags": [
-        "grateful"
       ]
     },
     {
@@ -3471,6 +3454,14 @@
       "bibleSourceRef": "Nehemiah 8:9-12",
       "moodTags": [
         "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "nehemiah_prays_nehemiah_1_1-11",
+      "bibleStoryKey": "nehemiah_prays",
+      "bibleSourceRef": "Nehemiah 1:1-11",
+      "moodTags": [
+        "hurting"
       ]
     },
     {
@@ -3896,7 +3887,7 @@
       "bibleSourceRef": "Romans 11:33-36",
       "moodTags": [
         "grateful",
-        "awed"
+        "grateful"
       ]
     },
     {
@@ -3997,11 +3988,68 @@
       ]
     },
     {
+      "scriptureAnchorId": "second_temple_foundation_dedication_ezra_3_10-13",
+      "bibleStoryKey": "second_temple_foundation_dedication",
+      "bibleSourceRef": "Ezra 3:10-13",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "second_temple_foundation_weeping_and_shouting_ezra_3_10-13",
+      "bibleStoryKey": "second_temple_foundation_weeping_and_shouting",
+      "bibleSourceRef": "Ezra 3:10-13",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "temple_foundation_ezra_3_10-13",
+      "bibleStoryKey": "temple_foundation",
+      "bibleSourceRef": "Ezra 3:10-13",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "the_lord_is_my_light_psalm_27_1-14",
+      "bibleStoryKey": "the_lord_is_my_light",
+      "bibleSourceRef": "Psalm 27:1-14",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
       "scriptureAnchorId": "titus_2_11_14",
       "bibleStoryKey": "grace_that_trains",
       "bibleSourceRef": "Titus 2:11-14",
       "moodTags": [
         "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "wearied_servant_prophet_isaiah_50_4-9",
+      "bibleStoryKey": "wearied_servant_prophet",
+      "bibleSourceRef": "Isaiah 50:4-9",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "woman_touches_jesus_garment_mark_5_25-34",
+      "bibleStoryKey": "woman_touches_jesus_garment",
+      "bibleSourceRef": "Mark 5:25-34",
+      "moodTags": [
+        "hurting",
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "woman_with_issue_of_blood_touches_hem_mark_5_25-34",
+      "bibleStoryKey": "woman_with_issue_of_blood_touches_hem",
+      "bibleSourceRef": "Mark 5:25-34",
+      "moodTags": [
+        "grateful"
       ]
     },
     {
