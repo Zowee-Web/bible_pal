@@ -65,6 +65,13 @@
     },
     "long_kjv": {
       "storyText": "story_1263_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1263_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1263_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Peter and John stood before the rulers and elders and scribes of Jerusalem. Peter said: there is salvation in no one else, for there is no other name given among men by which we must be saved. They saw the boldness of two unlearned men and recognized that they had been with Jesus. What is it to stand before the council and be recognized as one who has been with the One they crucified?"
 }

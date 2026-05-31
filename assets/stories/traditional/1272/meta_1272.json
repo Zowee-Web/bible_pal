@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1272_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1272_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1272_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Paul wrote: rejoice in the Lord always; again I will say, rejoice. The peace of God which surpasses all understanding will guard your hearts. Think about whatever things are true, honorable, pure, lovely, of good report. What is it to be told to rejoice always, while the peace that guards you is the very one no one watching can yet understand?"
 }

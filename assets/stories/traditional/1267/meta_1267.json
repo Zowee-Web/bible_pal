@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1267_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1267_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1267_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Four people carried a paralytic to Jesus, and when they could not get near for the crowd they removed the roof and let him down. Jesus saw their faith and said: son, your sins are forgiven you. Take up your mat and go to your house. What is it to be lowered through the roof by friends whose faith made an opening where no door would?"
 }

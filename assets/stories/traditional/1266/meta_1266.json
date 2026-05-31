@@ -51,6 +51,13 @@
     },
     "short_kjv": {
       "storyText": "story_1266_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1266_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1266_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "The man had been by the pool thirty-eight years with no one to put him in the water. Jesus came and asked him: do you want to be made well? The man answered with explanation. Jesus said: arise. Take up your mat. Walk. Have you ever been asked whether you wanted to be made well, by the One who asked the question without waiting for the explanation to finish?"
 }
