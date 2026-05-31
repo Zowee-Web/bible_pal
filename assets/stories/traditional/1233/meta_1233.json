@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1233_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1233_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1233_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Isaiah said: he was wounded for our transgressions, crushed for our iniquities. By his wounds we are healed. All we like sheep have gone astray, and the Lord laid on him the iniquity of us all. What is it to be healed by the wounds of another, while you are still standing in the herd that wandered off?"
 }

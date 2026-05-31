@@ -50,6 +50,13 @@
     },
     "short_kjv": {
       "storyText": "story_1238_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1238_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1238_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Zechariah cried: rejoice, daughter of Zion. Your King comes to you, righteous and having salvation, lowly and riding on a donkey, the foal of a donkey. Have you ever been told to rejoice for a King whose coming will be on a donkey, before he has yet ridden through your gate?"
 }

@@ -50,6 +50,13 @@
     },
     "short_kjv": {
       "storyText": "story_1240_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1240_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1240_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "John saw a new heaven and a new earth, the holy city coming down from God. He heard the voice from the throne: behold, I am making all things new. He will wipe away every tear from their eyes. How do you receive a promise that everything you have lost will be wiped from your face by the hand of the One who sits on the throne?"
 }

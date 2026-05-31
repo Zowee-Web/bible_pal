@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1239_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1239_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1239_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "The proverb said: trust in the Lord with all your heart, and do not lean on your own understanding. In all your ways acknowledge him, and he will make your paths straight. What is it to be told to trust beyond what you can yet see, while your own understanding is still the only thing your hand has held?"
 }

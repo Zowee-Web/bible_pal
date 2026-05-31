@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1236_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1236_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1236_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Isaiah cried: come, everyone who thirsts, to the waters. Buy without money. Listen and your soul will live. My word will not return to me empty; it will accomplish what I sent it to do. Have you ever been called to come and drink without money, by a voice that said your hunger had been the wrong currency all along?"
 }

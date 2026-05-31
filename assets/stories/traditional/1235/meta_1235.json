@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1235_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1235_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1235_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Paul wrote: if I speak with the tongues of men and of angels and have not love, I am a clanging cymbal. Love bears all things, believes all things, hopes all things, endures all things. Now faith, hope, and love remain; the greatest of these is love. How do you measure a life against the one thing that bears, believes, hopes, and endures, all at the same time?"
 }
