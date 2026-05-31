@@ -51,6 +51,9 @@
     },
     "reflection": {
       "reflectionText": "reflection_1128_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1128_traditional_kjv.txt"
     }
   },
   "primaryLifeSituationTags": [
