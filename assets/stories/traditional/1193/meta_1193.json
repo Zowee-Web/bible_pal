@@ -48,6 +48,13 @@
     },
     "short_kjv": {
       "storyText": "story_1193_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1193_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1193_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Samson stood between the two middle pillars of the great house, leaned, and asked the Lord to remember him and strengthen him once more. He bowed himself with all his might. What is it to ask for one last strength at the end of a life you had spent against your own calling?"
 }

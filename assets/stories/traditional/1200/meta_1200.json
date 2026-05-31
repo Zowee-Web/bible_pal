@@ -48,6 +48,13 @@
     },
     "short_kjv": {
       "storyText": "story_1200_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1200_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1200_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Moses laid the twelve rods in the Tent of the Testimony before the ark. In the morning, Aaron's rod had budded, put forth buds, produced blossoms, and borne ripe almonds. What does it feel like to see the dry rod of your name come back from the holy place with almonds in bloom?"
 }

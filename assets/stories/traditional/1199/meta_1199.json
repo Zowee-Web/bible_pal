@@ -53,6 +53,12 @@
     },
     "short_kjv": {
       "storyText": "story_1199_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1199_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1199_traditional_kjv.txt"
     }
   },
   "primaryLifeSituationTags": [
@@ -61,5 +67,6 @@
   "secondaryLifeSituationTags": [
     "speaking_truth_to_power",
     "costly_choice"
-  ]
+  ],
+  "reflectionText": "John was beheaded in the prison. The disciples buried the body and told Jesus. Jesus withdrew in a boat to a deserted place apart. How do you grieve the loss of the voice that called you out by the river, by going alone to a place where the crowds have not yet come?"
 }

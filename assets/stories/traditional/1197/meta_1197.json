@@ -48,6 +48,12 @@
     },
     "short_kjv": {
       "storyText": "story_1197_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1197_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1197_traditional_kjv.txt"
     }
   },
   "primaryLifeSituationTags": [
@@ -55,5 +61,6 @@
   ],
   "secondaryLifeSituationTags": [
     "family_estrangement"
-  ]
+  ],
+  "reflectionText": "Joseph told his brothers and his father the dreams: the sheaves bowing, the sun and moon and eleven stars. His brothers hated him for it. His father kept the matter in mind. Have you ever carried dreams the people closest to you could not yet hear without it doing them harm?"
 }

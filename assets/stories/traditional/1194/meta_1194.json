@@ -55,7 +55,14 @@
     },
     "full_kjv": {
       "storyText": "story_1194_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1194_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1194_traditional_kjv.txt"
     }
   },
-  "editorialNotes": "Full anchors to assembly arc (vv12-23): trumpet, gathering, priests between porch and altar, divine pity hinge (v18), restoration promise. Outpouring oracle (vv28-32) stays Short-only — per feedback_split_mixed_tone_passages, growing Long would force choosing between assembly-arc and Pentecost-shaped outpouring."
+  "editorialNotes": "Full anchors to assembly arc (vv12-23): trumpet, gathering, priests between porch and altar, divine pity hinge (v18), restoration promise. Outpouring oracle (vv28-32) stays Short-only — per feedback_split_mixed_tone_passages, growing Long would force choosing between assembly-arc and Pentecost-shaped outpouring.",
+  "reflectionText": "Joel called for the trumpet to be sounded, the fast to be sanctified, the priests to weep between the porch and the altar. The Lord answered: I will pour out my Spirit on all flesh. What is it to be told that the answer to your assembly's grief is a Spirit that has not yet been poured out at all?"
 }

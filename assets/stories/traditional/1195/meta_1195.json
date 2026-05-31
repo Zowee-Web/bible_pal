@@ -48,6 +48,13 @@
     },
     "short_kjv": {
       "storyText": "story_1195_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1195_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1195_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "The disciples sent the parents away with their children. Jesus was indignant: let the little children come. He took them in his arms and blessed them. How does it land to be lifted up by the very one your keepers had thought you should be kept at distance from?"
 }

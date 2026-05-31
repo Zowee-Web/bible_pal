@@ -48,6 +48,13 @@
     },
     "short_kjv": {
       "storyText": "story_1201_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1201_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1201_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "The woman had been bent over for eighteen years. Jesus saw her, called her, laid his hands on her. She stood up straight. She lifted her face to the windows of the synagogue. What is it to look up at the sky for the first time in eighteen years and find the One who called you still waiting in the room?"
 }
