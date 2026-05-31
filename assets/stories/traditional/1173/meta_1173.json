@@ -48,6 +48,13 @@
     },
     "short_kjv": {
       "storyText": "story_1173_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1173_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1173_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Caleb stood before Joshua at eighty-five and asked for the hill country he had been promised forty-five years before. He said: I am still as strong today as I was in the day Moses sent me. What is the encouragement of asking at the end of your years for the inheritance you were shown when you were young?"
 }

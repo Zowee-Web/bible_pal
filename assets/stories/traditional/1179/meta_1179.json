@@ -48,6 +48,13 @@
     },
     "short_kjv": {
       "storyText": "story_1179_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1179_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1179_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "The stones were made ready at the quarry, and neither hammer nor axe nor any tool of iron was heard in the house while it was in building. What is the encouragement of building with all the loud work done before it ever comes near the place of the Name?"
 }

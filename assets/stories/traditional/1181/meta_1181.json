@@ -64,6 +64,13 @@
     },
     "long_kjv": {
       "storyText": "story_1181_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1181_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1181_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Deborah and Barak sang on the day of the Lord's victory: let those who love the Lord be like the sun when it rises in its strength. The land had rest forty years. What is the joy of singing on the morning when the land has begun to rest for years that are not yet known?"
 }
