@@ -53,6 +53,10 @@
     },
     "short_kjv": {
       "storyText": "story_1432_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1432_traditional_web.txt"
     }
-  }
+  },
+  "reflectionText": "Jeremiah spoke a new covenant into Baruch's pen in the court of the guard: I will write it on their heart. What kind of covenant is written not on stone outside you, but on the inside places no one else can see from the room?"
 }
