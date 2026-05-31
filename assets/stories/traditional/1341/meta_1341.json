@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1341_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1341_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1341_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Hezekiah received the letter and spread it before Yahweh in the house of the Lord. What is it to take the thing that frightens you most and lay it out in the open, in the place where you have always brought what was too heavy to carry alone?"
 }

@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1335_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1335_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1335_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Oh the depth of the riches both of the wisdom and the knowledge of God! How unsearchable are his judgments. What does it feel like to look at the whole long pattern of what God has done, is doing, and will yet do — and to find that no theology is wide enough to hold what rises in you then?"
 }

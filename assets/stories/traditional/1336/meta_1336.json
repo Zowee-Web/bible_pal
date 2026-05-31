@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1336_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1336_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1336_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Saul went on this side of the mountain, and David and his men on that side of the mountain. What is it to be hunted to the last edge of a rock, and to be saved by a messenger you did not send, calling the hunter away to a battle of his own?"
 }
