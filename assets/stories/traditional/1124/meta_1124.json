@@ -50,6 +50,9 @@
     },
     "short_kjv": {
       "storyText": "story_1124_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1124_traditional_web.txt"
     }
   },
   "primaryLifeSituationTags": [
@@ -58,5 +61,6 @@
   "secondaryLifeSituationTags": [
     "sinking_in_fear",
     "presence_in_the_storm"
-  ]
+  ],
+  "reflectionText": "Peter stepped out of the boat onto the water, walked toward Jesus, and began to sink when he saw the wind. The hand of Jesus took hold of him. What is the courage of asking to be called out onto what cannot hold you, knowing the hand is there to take you when you go down?"
 }

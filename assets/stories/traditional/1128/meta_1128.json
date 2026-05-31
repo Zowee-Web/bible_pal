@@ -48,6 +48,9 @@
     },
     "short_kjv": {
       "storyText": "story_1128_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1128_traditional_web.txt"
     }
   },
   "primaryLifeSituationTags": [
@@ -56,5 +59,6 @@
   "secondaryLifeSituationTags": [
     "mercy_to_enemies",
     "unjust_persecution"
-  ]
+  ],
+  "reflectionText": "Stephen saw the Son of Man standing, and they drove him outside the gate and stoned him. He kneeled and said: Lord, do not hold this sin against them. What is the courage of forgiving the men still throwing the stones, while the young Saul keeps their robes for them?"
 }

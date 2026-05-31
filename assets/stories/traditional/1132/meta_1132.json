@@ -48,6 +48,10 @@
     },
     "short_kjv": {
       "storyText": "story_1132_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1132_traditional_web.txt"
     }
-  }
+  },
+  "reflectionText": "Mary lifted her voice in Elizabeth's house and said: my soul magnifies the Lord. He has done great things for me. He has scattered the proud, brought down princes, lifted up the lowly, filled the hungry. How does a young woman in a hill-country house sing a song that turns the order of the kingdoms upside down?"
 }
