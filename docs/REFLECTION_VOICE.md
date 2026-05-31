@@ -39,7 +39,18 @@ Pattern:
 3. Direct second-person ("you")
 4. Length: 1-2 sentences, typically 25-45 words
 
-Openings that work: *"What does it feel like to…"* / *"What would it be like to…"* / *"What remains when…"* / *"Have you ever…"* / *"What is the…"*
+Openings that work (strongest first):
+
+- *"What is it to…"* / *"What is it like to…"*
+- *"What does it feel like to…"*
+- *"What would it be like to…"*
+- *"What remains when…"*
+- *"Have you ever…"*
+- *"How do you…"* / *"How does X arrive when…"*
+
+**Weaker patterns to avoid:** *"What is the [encouragement / hurt / weariness / anxiety / etc.] of…"* — naming a mood-noun in the stem presumes the listener should feel that mood AND often misses the actual emotional center of the passage. Listener-experience framing ("What is it to…") lets the listener find the actual register the story is asking them into. (Locked 2026-05-31 after Adam diagnosed 1192 Hagar: the story's center is the surprise-of-being-heard, not the hurt that preceded it.)
+
+**KJV-specific:** modern abstract nouns ("encouragement", "anxiety") feel out of register with thou/thee/thy. Prefer KJV-natural nouns when mood-naming is unavoidable: comfort, mercy, grace, strength, thanksgiving, courage, grief, joy, sorrow. Or default to *"What is it to…"* which is register-neutral.
 
 ### Earned Observation (rare form, ~1/10)
 
