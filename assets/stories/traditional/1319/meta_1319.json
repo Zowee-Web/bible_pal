@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1319_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1319_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1319_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "He said to them, come apart into a deserted place, and rest awhile. What is it to be told by the One you have been working for that you may sit down in the bottom of a boat, and let the noise of the shore fall behind you and grow still?"
 }

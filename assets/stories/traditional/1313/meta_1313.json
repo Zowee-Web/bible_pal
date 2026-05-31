@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1313_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1313_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1313_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "David appointed Asaph and his brothers to minister before the ark with cymbals, and with stringed instruments, and with harps. What does it feel like to stand near the tent where the ark dwells, and to hear the cymbals carry out across the city — to be given a song to sing back to the One who has been with you all along?"
 }

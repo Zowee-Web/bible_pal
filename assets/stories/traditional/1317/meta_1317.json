@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1317_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1317_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1317_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "My days are swifter than a weaver's shuttle, and are spent without hope. What is it to lie down at night unable to wait for morning, and to wake to a day already spent before it has begun?"
 }

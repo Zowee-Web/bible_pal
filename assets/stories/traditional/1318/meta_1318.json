@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1318_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1318_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1318_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Let us not be weary in doing good, for we will reap in due season. What is it to keep sowing into ground that has not yet given back — to keep doing the good thing on the day the harvest has not yet come?"
 }

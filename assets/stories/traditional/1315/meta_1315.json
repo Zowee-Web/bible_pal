@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1315_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1315_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1315_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "They took their food with gladness and singleness of heart. What is it to share a meal in a house where nothing is hidden — to break bread with no second thought to hold back, no calculation, no protection?"
 }

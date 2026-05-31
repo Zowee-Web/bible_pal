@@ -53,6 +53,12 @@
     },
     "short_kjv": {
       "storyText": "story_1316_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1316_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1316_traditional_kjv.txt"
     }
   },
   "primaryLifeSituationTags": [
@@ -60,5 +66,6 @@
   ],
   "secondaryLifeSituationTags": [
     "feeling_inadequate"
-  ]
+  ],
+  "reflectionText": "Moses stood alone before Yahweh and asked to be released from the weight. What is it to carry a thing so long that you would sooner lay down your life than bear it into one more dawn?"
 }

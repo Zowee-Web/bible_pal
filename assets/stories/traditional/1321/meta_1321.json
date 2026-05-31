@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1321_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1321_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1321_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "She weeps bitterly in the night. Among all her lovers she has no one to comfort her. What is it to sit among the ruins of what you loved, and to find that every one who once called you friend has gone home?"
 }

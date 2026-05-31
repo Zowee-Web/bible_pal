@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1322_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1322_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1322_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Yahweh, how long will I cry, and you will not hear? What is it to keep crying out for a justice that has not yet arrived, and to ask one more time for the answer that has not been given?"
 }
