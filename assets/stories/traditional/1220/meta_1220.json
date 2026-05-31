@@ -49,6 +49,13 @@
     },
     "short_kjv": {
       "storyText": "story_1220_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1220_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1220_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "The psalmist said: the Lord is my light and my salvation. One thing I have asked: that I may dwell in the Lord's house all the days of my life. Wait for the Lord. Be strong. Take courage. What is it to be told to take courage in the very middle of the waiting?"
 }

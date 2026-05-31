@@ -50,6 +50,13 @@
     },
     "short_kjv": {
       "storyText": "story_1214_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1214_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1214_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "The psalmist said: I will bless the Lord at all times. Oh, taste and see that the Lord is good. The Lord is near to the broken-hearted. What is it to set your tongue to blessing the Lord at all times, including the times you would rather not give him anything at all?"
 }

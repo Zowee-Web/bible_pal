@@ -50,6 +50,13 @@
     },
     "short_kjv": {
       "storyText": "story_1213_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1213_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1213_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Noah came out of the ark with his sons and built an altar. The Lord said he would not curse the ground again, and set the rainbow in the cloud as the sign of the covenant. Have you ever walked back onto dry ground and been given a sign in the sky that what destroyed you will not be sent again?"
 }

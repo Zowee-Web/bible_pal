@@ -48,6 +48,13 @@
     },
     "short_kjv": {
       "storyText": "story_1218_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1218_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1218_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "The Lord stirred up the spirit of Cyrus king of Persia, and Cyrus wrote: whoever is among you of his people, let him go up to Jerusalem and build the house. The vessels were brought out and counted. What does it feel like to be sent home by a pagan king carrying the vessels of your temple in your own hands?"
 }

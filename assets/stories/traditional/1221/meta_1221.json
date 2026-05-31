@@ -62,6 +62,13 @@
     },
     "long_kjv": {
       "storyText": "story_1221_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1221_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1221_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "David danced before the Lord with all his might in a linen ephod as the ark came up. He sacrificed at every six paces. He blessed the people with cakes and meat and raisins. Have you ever danced with no regard for what the windows of the palace might see, in the linen ephod the king has put on?"
 }

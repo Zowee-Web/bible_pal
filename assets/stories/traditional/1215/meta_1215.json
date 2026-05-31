@@ -50,6 +50,13 @@
     },
     "short_kjv": {
       "storyText": "story_1215_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1215_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1215_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Esther stood at the banquet of wine and said: my petition is for my life and the lives of my people. The king asked: who is he? Esther said: an adversary and an enemy, even this wicked Haman. What does it take to name the enemy out loud at the table where he is still sitting?"
 }

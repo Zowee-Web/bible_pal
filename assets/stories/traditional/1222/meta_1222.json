@@ -48,6 +48,13 @@
     },
     "short_kjv": {
       "storyText": "story_1222_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1222_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1222_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Zephaniah said: the Lord, your God, is in the middle of you. He will rejoice over you with joy. He will calm you in his love. He will rejoice over you with singing. How does it land to be the one your God is singing over, when you had thought you were the one who had to sing?"
 }
