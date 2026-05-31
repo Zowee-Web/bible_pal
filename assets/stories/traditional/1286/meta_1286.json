@@ -65,6 +65,13 @@
     },
     "long_kjv": {
       "storyText": "story_1286_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1286_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1286_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Samuel cried to the Lord for Israel at Mizpah, and the Lord answered. He set a stone between Mizpah and Shen, and called its name Ebenezer, saying: the Lord helped us until now. What does it take to set a stone in the ground with the name of the help you have already received written on it for those who come after?"
 }

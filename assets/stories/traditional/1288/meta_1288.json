@@ -50,6 +50,13 @@
     },
     "short_kjv": {
       "storyText": "story_1288_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1288_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1288_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Isaiah heard the Lord: do not be afraid, for I have redeemed you. I have called you by your name. You are mine. When you pass through the waters, I will be with you. When you walk through the fire, you will not be burned. Have you ever been told that the waters and the fire will both have you in them, but the One who called you by name will be with you in each?"
 }

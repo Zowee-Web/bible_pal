@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1283_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1283_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1283_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "The psalmist said: weeping may stay for the night, but joy comes in the morning. You have turned my mourning into dancing. You have removed my sackcloth and clothed me with gladness. What is it to wake from a long weeping and find that the One who hid his face is now the One who has clothed you in gladness?"
 }

@@ -49,6 +49,13 @@
     },
     "short_kjv": {
       "storyText": "story_1289_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1289_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1289_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Andrew brought the boy with five loaves and two fish. Jesus gave thanks, distributed, and the people were filled. Twelve baskets were gathered up. What is it to put your small lunch into the hand of the One who can give thanks for it and feed five thousand from it, leaving more in the basket than was given him?"
 }
