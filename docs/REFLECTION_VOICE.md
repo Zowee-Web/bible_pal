@@ -117,15 +117,17 @@ All six → benchmark candidate. Five or fewer → rewrite.
   > *What would it be like to be fully seen — every hidden and imperfect part of you laid bare — and to find that the response waiting for you is not rejection, but an invitation?*
 - **1069 Psalm 139:1-18** (hurting):
   > *What does it feel like to be fully known — every hidden wound, every unspoken thought — and to wonder whether being that deeply seen is something you long for or something you fear?*
+- **1117 Exodus 14:10-31** (anxious, Crossing of the Red Sea):
+  > *The pillar that had led them through the wilderness moved that night and stood behind them, between Israel and the army of Pharaoh. What is it like to be guarded by the very thing that has been leading you on?*
 
 ### Observation-form benchmark
 
 - **1096 John 5:1-15** (weary, Bethesda pool):
   > *Thirty-eight years is a long time to wait for something that never comes… Sometimes the thing we most need is not a better system. It is someone who speaks to us as though change is still possible — even when we have stopped believing it ourselves.*
 
-### Calibration candidate
+### Promotion history
 
-- **1117 Exodus 14:10-31** Crossing of the Red Sea — to be added after first-write approval (2026-05-31).
+- **1117 Red Sea** promoted to question-form benchmark 2026-05-31 — first reflection written under the refined spec; first written test of the paste-test discipline.
 
 ## Kid-Friendly Convention
 
