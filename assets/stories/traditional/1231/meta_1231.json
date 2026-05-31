@@ -51,6 +51,13 @@
     },
     "short_kjv": {
       "storyText": "story_1231_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1231_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1231_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Amos said: the Lord hates your feasts, the noise of your songs, the melody of your harps. Let justice roll down like waters, and righteousness like a mighty stream. How does it land to be told that what the Lord wants from you is not the song you prepared but the river you would not yet allow to run?"
 }

@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1225_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1225_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1225_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "The Preacher said: a time to be born and a time to die; a time to weep and a time to laugh; a time to mourn and a time to dance. What does it feel like to find that the season you are in has a name, and so does the one that has not yet come?"
 }

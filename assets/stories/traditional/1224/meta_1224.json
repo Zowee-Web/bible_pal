@@ -48,7 +48,14 @@
     },
     "short_kjv": {
       "storyText": "story_1224_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1224_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1224_traditional_kjv.txt"
     }
   },
-  "editorialNotes": "Short-canonical. Romans 8:18-39 is Pauline doxology with no named figures and no scene; growing Full/Long would force inventing scaffolding (Tertius's stylus, a Roman house-church) which drifts from anchor, or re-paraphrasing the argument with thinner imagery. Reviewed 2026-05-31 alongside Tier 3 ship; deliberate Short-only disposition per feedback_curating_a_library."
+  "editorialNotes": "Short-canonical. Romans 8:18-39 is Pauline doxology with no named figures and no scene; growing Full/Long would force inventing scaffolding (Tertius's stylus, a Roman house-church) which drifts from anchor, or re-paraphrasing the argument with thinner imagery. Reviewed 2026-05-31 alongside Tier 3 ship; deliberate Short-only disposition per feedback_curating_a_library.",
+  "reflectionText": "Paul said: if God is for us, who can be against us? Neither death nor life nor angels nor principalities nor any other created thing shall separate us from the love of Christ. How does it land to be told that none of what you fear has the power to take you from the love you have already been given?"
 }

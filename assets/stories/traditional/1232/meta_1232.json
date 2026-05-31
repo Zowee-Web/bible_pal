@@ -50,6 +50,13 @@
     },
     "short_kjv": {
       "storyText": "story_1232_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1232_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1232_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Micah lifted the question: with what shall I come before the Lord? Shall I come with thousands of rams, with rivers of oil? He has shown you, O man, what is good: to act justly, to love mercy, to walk humbly with your God. What is it to find that the thing required is smaller than the offering, and harder to bring?"
 }

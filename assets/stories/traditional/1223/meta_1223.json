@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1223_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1223_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1223_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Job said: oh that I knew where I might find him. If I go east, he is not there; if west, I cannot find him. But he knows the way that I take. What is it to search for the One you cannot find, while knowing he is the One already seeing the road you are walking?"
 }

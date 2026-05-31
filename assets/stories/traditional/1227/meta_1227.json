@@ -65,6 +65,13 @@
     },
     "long_kjv": {
       "storyText": "story_1227_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1227_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1227_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "The psalmist cried: my God, my God, why have you forsaken me? My bones are out of joint. He turned in the same psalm: I will declare your name to my brothers. He has not despised the afflicted. Have you ever prayed a forsaken prayer that later became the song the assembly will yet sing?"
 }
