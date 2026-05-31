@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1278_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1278_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1278_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "James wrote: be patient until the coming of the Lord. The farmer waits for the precious fruit of the earth. You have heard of the perseverance of Job, and have seen the Lord's purpose, how the Lord is full of compassion and mercy. What is it to be told to wait the way the farmer waits, while the rain you are praying for has not yet come down?"
 }

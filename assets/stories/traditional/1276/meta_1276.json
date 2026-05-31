@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1276_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1276_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1276_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "James wrote: is any among you suffering? Let him pray. Is any sick? Let him call for the elders. Confess your sins to one another. Pray for one another, that you may be healed. The insistent prayer of a righteous person is powerfully effective. What is it to be told that the way through is the calling of others and the saying out loud of what you had been carrying alone?"
 }

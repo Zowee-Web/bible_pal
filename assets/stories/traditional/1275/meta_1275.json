@@ -51,6 +51,13 @@
     },
     "short_kjv": {
       "storyText": "story_1275_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1275_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1275_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "The writer to the Hebrews said: surrounded by so great a cloud of witnesses, lay aside every weight and the sin which entangles, and run with perseverance the race set before us, looking to Jesus. What is it to run a race under the watching of every name that has run it before you and is now standing in the cloud above the field?"
 }

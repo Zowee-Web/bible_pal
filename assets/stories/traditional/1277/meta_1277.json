@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1277_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1277_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1277_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Peter wrote: his divine power has granted to us all things that pertain to life and godliness. Add to your faith virtue, knowledge, self-control, perseverance, godliness, brotherly affection, love. Make your calling and election sure. What is it to be told your calling is already secure, even while you are still being asked to add the next thing on top of the one just given?"
 }

@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1273_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1273_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1273_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Paul wrote: behold, I tell you a mystery. We will not all sleep, but we will all be changed, in the twinkling of an eye, at the last trumpet. Death is swallowed up in victory. Death, where is your sting? Therefore be steadfast, immovable, always abounding in the Lord's work. What is it to be told the trumpet is going to sound, while you are still inside the corruptible body that must put on the incorruption?"
 }

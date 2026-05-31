@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1281_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1281_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1281_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "John wrote to Gaius: you do a faithful work in whatever you accomplish for those who are brothers and strangers. They have testified about your love before the assembly. We ought to receive such, that we may be fellow workers for the truth. What is it to be told that your hospitality has been spoken of in the assembly by people you would not have known were watching?"
 }
