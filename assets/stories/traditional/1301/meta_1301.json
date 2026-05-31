@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1301_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1301_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1301_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Nehemiah set guards by family groups along the lowest parts of the wall. He said: do not be afraid. Remember the Lord, who is great and awesome, and fight for your brothers, your sons, your daughters, your wives, and your houses. What is it to be told to remember the Lord and pick up the trowel again, after the news has come that the enemy is on its way?"
 }

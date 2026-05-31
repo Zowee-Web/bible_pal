@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1300_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1300_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1300_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Daniel mourned three whole weeks beside the Hiddekel. He ate no pleasant food. He did not anoint himself. The men with him went home. He stayed by the river. What is it to keep mourning long enough that the river running beside you knows you better than the men who came with you?"
 }

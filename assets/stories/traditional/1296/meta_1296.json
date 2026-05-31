@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1296_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1296_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1296_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Haggai said: consider your ways. You have sown much and bring in little. You earn wages to put them into a bag with holes. The house of the Lord lies waste while each of you is busy with your own house. What is it to be told the leaking in your own bag is bound to the work you have walked away from on the holy hill?"
 }

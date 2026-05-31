@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1293_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1293_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1293_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "The temple was finished, stone by stone, beam by beam. The children of the captivity kept the dedication of this house of God with joy. They kept the Passover and the feast of unleavened bread seven days with gladness. What is it to dedicate the house your fathers had only described to you, on land they died before they could walk on?"
 }

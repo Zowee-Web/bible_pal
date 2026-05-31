@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1299_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1299_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1299_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Nebuchadnezzar lifted up his eyes to heaven, and his understanding returned to him. He blessed the Most High. He said: all the inhabitants of the earth are reputed as nothing; he does according to his will, and no one can stop his hand. What is it to come back into your reason and find the first thing you know to do is to bless the One who took it from you?"
 }
