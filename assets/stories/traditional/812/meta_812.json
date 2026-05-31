@@ -43,9 +43,12 @@
     },
     "long_kjv": {
       "storyText": "story_812_traditional_kjv_long.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_812_traditional_kjv.txt"
     }
   },
-  "reflectionText": "This story shows that good things can happen when we share and care for others. Even one small kindness matters.",
+  "reflectionText": "Jesus told a story about a shepherd who left ninety-nine sheep to go and find the one that was lost. When he found it, he carried it home on his shoulders. God cares about each one of us, even when we feel small or far from him. Can you think of one time someone went out of their way to look for you when you were missing?",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "lost_sheep",
   "primaryCharacterDisplayName": "Lost Sheep",

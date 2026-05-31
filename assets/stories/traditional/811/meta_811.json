@@ -52,9 +52,12 @@
     },
     "long_kjv": {
       "storyText": "story_811_traditional_kjv_long.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_811_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Stories of ordinary days often reflect the steady rhythm of daily faithfulness. These narratives show that meaning can be found in quiet, unremarkable moments. And even a small step forward can be enough for today.",
+  "reflectionText": "Two disciples walked seven miles from Jerusalem to Emmaus with grief in their words, and a stranger drew near and went with them. Their eyes were kept from knowing him. What is it to walk a long road in mourning, beside the One you were mourning, and not to know him until the bread was broken in the afternoon?",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",

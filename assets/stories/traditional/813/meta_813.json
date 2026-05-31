@@ -52,9 +52,12 @@
     },
     "long_kjv": {
       "storyText": "story_813_traditional_kjv_long.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_813_traditional_kjv.txt"
     }
   },
-  "reflectionText": "This story shows that even when things feel scary, we are not alone. Even one small brave thing counts.",
+  "reflectionText": "Jesus was sleeping in the boat when a big storm came. The waves were loud and the disciples were afraid. They woke Jesus up, and he stood and told the wind to be still — and it was. Even when things feel very scary, Jesus is right there in the boat with you. Can you think of one thing that helps you feel safe again when you have been afraid?",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",

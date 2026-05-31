@@ -46,9 +46,12 @@
     },
     "long_kjv": {
       "storyText": "story_807_traditional_kjv_long.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_807_traditional_kjv.txt"
     }
   },
-  "reflectionText": "God watches over us, even while we sleep at night. We can build with our hands, but God helps make our homes safe and happy. Sometimes people worry and work very hard, but God gives people rest because He loves them. Just like a parent tucks you in and sings you a song, God cares for you gently. When you close your eyes, you are safe and loved. It is okay to rest and let your heart be quiet. God holds the whole world, and He holds you, too.",
+  "reflectionText": "Psalm 127 says that even while we sleep, God is watching over us. We can work hard and try our best, and we can also rest — because God holds the whole world, and he holds you, too. Can you think of one thing that feels safe to you when the lamp goes out and you are tucked in?",
   "timelineEra": "wisdom",
   "primaryCharacterId": "psalmist",
   "primaryCharacterDisplayName": "The Psalmist",
