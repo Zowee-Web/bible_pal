@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1363_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1363_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1363_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Oh that my head were waters, and my eyes a spring of tears. What is it to cry that you might leave your people forever, and then to lay down the cry on the page and stay in the city with them through every day of what is coming?"
 }

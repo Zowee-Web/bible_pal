@@ -53,6 +53,12 @@
     },
     "short_kjv": {
       "storyText": "story_1365_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1365_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1365_traditional_kjv.txt"
     }
   },
   "primaryLifeSituationTags": [
@@ -60,5 +66,6 @@
   ],
   "secondaryLifeSituationTags": [
     "starting_over"
-  ]
+  ],
+  "reflectionText": "Don't call me Naomi. Call me Mara. I went out full, and Yahweh has brought me home again empty. What is it to come back to the city you left as one person, and to insist that it call you by a name that names the truth — even as the hand you say is empty already holds the one who would not leave you to walk home alone?"
 }
