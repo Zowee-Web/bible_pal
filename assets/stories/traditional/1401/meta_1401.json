@@ -53,6 +53,10 @@
     },
     "short_kjv": {
       "storyText": "story_1401_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1401_traditional_web.txt"
     }
-  }
+  },
+  "reflectionText": "The king saw Nehemiah's sad face and asked him what was wrong. Nehemiah was very much afraid. And then he prayed in the silence between the king's question and his own answer. What is the shape of a prayer that fits between two breaths in a king's room?"
 }
