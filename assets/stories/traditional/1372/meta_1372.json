@@ -50,6 +50,9 @@
     },
     "short_kjv": {
       "storyText": "story_1372_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1372_traditional_web.txt"
     }
   },
   "primaryLifeSituationTags": [
@@ -58,5 +61,6 @@
   "secondaryLifeSituationTags": [
     "searching",
     "found_again"
-  ]
+  ],
+  "reflectionText": "The woman lit the lamp, swept the house, and would not rest until she had found the one coin. What does it tell you about heaven that the joy over a single returning sinner is told in the shape of a woman calling her neighbors over a coin?"
 }
