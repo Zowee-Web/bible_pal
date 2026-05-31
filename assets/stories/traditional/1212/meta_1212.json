@@ -54,8 +54,14 @@
     "full": {
       "storyText": "story_1212_traditional_web_full.txt"
     },
+    "full_kjv": {
+      "storyText": "story_1212_traditional_kjv_full.txt"
+    },
     "long": {
       "storyText": "story_1212_traditional_web_long.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1212_traditional_kjv_long.txt"
     }
   }
 }
