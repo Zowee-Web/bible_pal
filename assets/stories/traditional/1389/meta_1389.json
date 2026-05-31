@@ -53,6 +53,9 @@
     },
     "short_kjv": {
       "storyText": "story_1389_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1389_traditional_web.txt"
     }
   },
   "primaryLifeSituationTags": [
@@ -60,5 +63,6 @@
   ],
   "secondaryLifeSituationTags": [
     "delayed_promise"
-  ]
+  ],
+  "reflectionText": "Joseph interpreted the cupbearer's dream and asked to be remembered. The dust gathered in Joseph's cell, and the cupbearer did not yet remember. Have you ever waited through long months when the one who promised to remember you has not yet returned to your name?"
 }
