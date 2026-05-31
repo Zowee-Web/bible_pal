@@ -48,6 +48,12 @@
     },
     "short_kjv": {
       "storyText": "story_1167_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1167_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1167_traditional_kjv.txt"
     }
   },
   "primaryLifeSituationTags": [
@@ -55,5 +61,6 @@
   ],
   "secondaryLifeSituationTags": [
     "prayer_in_anguish"
-  ]
+  ],
+  "reflectionText": "Jonah prayed from the belly of the fish in the dark, with the weeds wrapped around his head and the deep about him. The Lord spoke to the fish, and it vomited him out on the dry land. What does it take to pray from a place you should not have been able to send words from at all?"
 }

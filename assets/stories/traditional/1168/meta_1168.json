@@ -48,6 +48,13 @@
     },
     "short_kjv": {
       "storyText": "story_1168_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1168_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1168_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Jesus made a whip of cords and drove the merchants and the changers out of the temple, overturning the tables, scattering the coins across the stones. What is the courage of clearing out the courts of the house that bears your Father's name, with your own hands?"
 }

@@ -50,6 +50,13 @@
     },
     "short_kjv": {
       "storyText": "story_1166_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1166_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1166_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Jesus taught them to enter the inner room, shut the door, and pray to the Father who sees in secret. He gave them the words: Our Father in heaven. What is the quiet of being given the prayer you needed before you knew you needed words at all?"
 }

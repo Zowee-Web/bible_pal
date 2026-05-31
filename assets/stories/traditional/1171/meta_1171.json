@@ -51,6 +51,13 @@
     },
     "short_kjv": {
       "storyText": "story_1171_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1171_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1171_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Jesus passed by the booth where Matthew was bent over his accounts and said: follow me. Matthew got up, left the coins behind, and walked away without looking back. What is the encouragement of being called out of the work that had defined you, without having to gather up what you were leaving?"
 }

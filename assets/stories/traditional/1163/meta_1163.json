@@ -48,6 +48,12 @@
     },
     "short_kjv": {
       "storyText": "story_1163_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1163_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1163_traditional_kjv.txt"
     }
   },
   "primaryLifeSituationTags": [
@@ -55,5 +61,6 @@
   ],
   "secondaryLifeSituationTags": [
     "quiet_calling"
-  ]
+  ],
+  "reflectionText": "The angel departed, and Mary stood alone in the small house. She kept the words of the angel in her heart. What is the quiet of saying 'let it be done' to a future you have not yet been shown how to enter alone?"
 }
