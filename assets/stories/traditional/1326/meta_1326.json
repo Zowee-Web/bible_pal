@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1326_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1326_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1326_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "David's hands trembled now with age, but his voice carried. What is it to know that the great work belongs to the One who lent it to your hand for a season, and to bless him with the voice you have still remaining?"
 }

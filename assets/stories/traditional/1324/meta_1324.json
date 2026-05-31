@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1324_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1324_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1324_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "The houses still stood. The vineyards still grew. The pools still held their water. What is it to look at the works of your own hand, and to know that they will pass into other hands while you have not yet finished the labor that built them?"
 }

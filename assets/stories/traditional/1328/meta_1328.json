@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1328_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1328_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1328_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "He gathered them out of the lands, from the east and from the west, from the north and from the south. What is it to stand on the steps of the temple beside those who walked from every direction to come home, and to sing the same psalm with them as one voice rising?"
 }

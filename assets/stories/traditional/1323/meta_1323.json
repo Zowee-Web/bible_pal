@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1323_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1323_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1323_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Shobi and Machir and Barzillai brought beds, basins, honey, and cheese of the herd to the king in the wilderness. What is it to be driven out of the city you once ruled, and to find your supper laid out by friends who came a long road to set it down?"
 }

@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1332_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1332_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1332_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "God loves a cheerful giver. What is it to scatter your own seed with a glad hand, and to find that the One who gave you the seed is the One who fills the empty barn?"
 }

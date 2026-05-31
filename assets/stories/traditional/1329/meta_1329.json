@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1329_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1329_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1329_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "You called on the day when I called. You encouraged me with strength in my soul. What does it feel like to look back on the trouble that has already passed, and to know that the One you cried to had heard you in the very hour the prayer rose?"
 }
