@@ -56,6 +56,9 @@
     },
     "reflection": {
       "reflectionText": "reflection_1431_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1431_traditional_kjv.txt"
     }
   },
   "primaryLifeSituationTags": [
@@ -64,5 +67,5 @@
   "secondaryLifeSituationTags": [
     "quiet_provision"
   ],
-  "reflectionText": "Mordecai walked every day along the wall outside the women's house in the citadel of Susa, asking after Esther, with the secret of her people kept between them. What is the faithfulness of a daily walk that no one watching from the wall knows you are doing?"
+  "reflectionText": "Mordecai walked every day along the wall outside the women's house in the citadel of Susa, asking after Esther, with the secret of her people kept between them. What is it to walk the same path every day in front of a wall, asking after a person whose name no one watching from the wall has yet learned to call?"
 }
