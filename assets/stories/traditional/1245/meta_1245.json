@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1245_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1245_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1245_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Paul wrote: be strong in the Lord and in the strength of his might. Put on the whole armor of God: the belt of truth, the breastplate of righteousness, the shield of faith, the helmet of salvation, the sword of the Spirit. What is it to dress in armor for a battle that is not against flesh and blood, in a place where no one watching can see your enemy?"
 }

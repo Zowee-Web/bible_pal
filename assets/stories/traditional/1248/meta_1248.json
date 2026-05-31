@@ -52,6 +52,13 @@
     },
     "short_kjv": {
       "storyText": "story_1248_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1248_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1248_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Paul wrote: if you were raised with Christ, seek the things that are above. Set your mind on things above, not on things on the earth. Put on a heart of compassion, kindness, humility. Let the peace of God rule in your hearts. How do you set your mind on the things above while your feet are still walking the dust of the road below?"
 }

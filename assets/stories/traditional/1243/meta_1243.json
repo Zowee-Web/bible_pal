@@ -50,6 +50,13 @@
     },
     "short_kjv": {
       "storyText": "story_1243_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1243_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1243_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Peter wrote: humble yourselves under the mighty hand of God, casting all your worries on him, because he cares for you. Your adversary walks around like a roaring lion. Withstand him steadfast in your faith. What is it to be told to cast every worry on the One whose hand is mighty, while still listening for the lion at the door?"
 }

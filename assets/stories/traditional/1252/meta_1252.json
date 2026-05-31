@@ -50,6 +50,13 @@
     },
     "short_kjv": {
       "storyText": "story_1252_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1252_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1252_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Obadiah said: saviors will go up on Mount Zion to judge the mountain of Esau, and the kingdom will be the Lord's. Have you ever been told that the saviors will go up the mountain you fear, and that the kingdom they bring with them will not belong to any of the ones you feared?"
 }

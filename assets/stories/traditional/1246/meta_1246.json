@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1246_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1246_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1246_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Moses said: please show me your glory. The Lord answered: I will put you in a cleft of the rock and cover you with my hand until I have passed by. You will see my back, but my face shall not be seen. What does it feel like to be hidden in the rock by the One you asked to see, until he has gone by?"
 }
