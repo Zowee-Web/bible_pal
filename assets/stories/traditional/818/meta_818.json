@@ -52,9 +52,12 @@
     },
     "long_kjv": {
       "storyText": "story_818_traditional_kjv_long.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_818_traditional_kjv.txt"
     }
   },
-  "reflectionText": "This story shows that being still and listening can bring us peace. Even one quiet moment matters.",
+  "reflectionText": "Young Samuel was sleeping in the temple when he heard a voice calling his name. At first he thought it was Eli, but Eli told him: next time say, speak, Lord, your servant is listening. So Samuel did, and God spoke. Can you think of one quiet time when you felt like God was very close, sitting with you in the room?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "samuel",
   "primaryCharacterDisplayName": "Samuel",

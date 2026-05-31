@@ -52,9 +52,12 @@
     },
     "long_kjv": {
       "storyText": "story_821_traditional_kjv_long.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_821_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Weariness in stories often looks like carrying burdens over long stretches. These narratives show that rest and renewal are part of the natural rhythm of life. And even a small step forward can be enough for today.",
+  "reflectionText": "Come to me, all you who labor and are heavy laden, and I will give you rest. Take my yoke upon you. What is it to be told that the rest you have been looking for is not the laying down of every burden, but the picking up of one that has been made for the shape of your shoulders?",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",

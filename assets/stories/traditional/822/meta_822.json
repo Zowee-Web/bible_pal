@@ -52,9 +52,12 @@
     },
     "long_kjv": {
       "storyText": "story_822_traditional_kjv_long.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_822_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Stories of stillness often reflect moments when silence speaks louder than noise. These narratives show how peace can be found by simply being present. And even a small step forward can be enough for today.",
+  "reflectionText": "The voice called Samuel three times in the night. Eli told him: if he calls again, say, speak, for your servant is listening. The Lord came and stood. What is it to be called by name three times before you can name the voice that has been calling you — and then to be the one the voice had been waiting to be answered by, all along?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "samuel",
   "primaryCharacterDisplayName": "Samuel",

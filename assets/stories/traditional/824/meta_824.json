@@ -52,9 +52,12 @@
     },
     "long_kjv": {
       "storyText": "story_824_traditional_kjv_long.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_824_traditional_kjv.txt"
     }
   },
-  "reflectionText": "This story shows that it is okay to rest when we are tired. Even one small rest can help.",
+  "reflectionText": "Jesus said: come to me, all of you who are tired, and I will give you rest. He promised a yoke that would fit, not a heavy load to carry. It is okay to be tired, and it is okay to rest. Can you think of one thing that helps you feel calm when your day has been long?",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",

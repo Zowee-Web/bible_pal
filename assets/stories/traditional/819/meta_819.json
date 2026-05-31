@@ -52,9 +52,12 @@
     },
     "long_kjv": {
       "storyText": "story_819_traditional_kjv_long.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_819_traditional_kjv.txt"
     }
   },
-  "reflectionText": "This story shows that standing up for others takes courage and love. Even one kind word can make a difference.",
+  "reflectionText": "Queen Esther knew that her people were in danger. Even though it could have cost her her life, she walked into the king's room and asked him to save them. Standing up for others takes courage. Can you think of one time you spoke up for someone who had no one else to stand for them?",
   "timelineEra": "exile",
   "primaryCharacterId": "esther",
   "primaryCharacterDisplayName": "Esther",
