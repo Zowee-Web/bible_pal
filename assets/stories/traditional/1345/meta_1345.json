@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1345_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1345_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1345_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "With just my staff I crossed over this Jordan, and now I have become two companies. What is it to stand on the near side of the river that you crossed alone, and to count the people you carry now, and to remember the staff you carried then?"
 }

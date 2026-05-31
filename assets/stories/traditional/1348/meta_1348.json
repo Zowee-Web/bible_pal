@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1348_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1348_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1348_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Shiphrah and Puah feared God more than they feared the king, and God gave them families. What is it to be remembered by name in the book of God for the day you refused to do what the king commanded, and to find that your own house was built in the doing?"
 }

@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1343_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1343_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1343_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Before I formed you in the womb, I knew you. Then I said, ah Lord Yahweh, I do not know how to speak, for I am a child. What is it to be called by name from before your own beginning, and to know that the One who calls you has already heard the protest you have not yet spoken?"
 }

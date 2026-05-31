@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1350_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1350_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1350_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "He rose up, and entered into the city. The next day he went out with Barnabas. What is it to be dragged out of a city for dead and to walk back into it the next morning — to sit down again with the disciples and to tell them what you have just learned about how the Kingdom comes?"
 }

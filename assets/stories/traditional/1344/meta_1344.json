@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1344_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1344_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1344_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "Forty men had bound themselves under a curse to neither eat nor drink until they had killed Paul. What is it to be saved from a plot you never heard of, by a young man who was only the son of your sister, and whose name no one would think to write down?"
 }

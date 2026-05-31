@@ -53,6 +53,13 @@
     },
     "short_kjv": {
       "storyText": "story_1349_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1349_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1349_traditional_kjv.txt"
     }
-  }
+  },
+  "reflectionText": "If you return at all in peace, Yahweh has not spoken by me. What is it to set down a true word against four hundred false ones, and to be led away to bread of affliction with no one yet to know which prophet bore the burden of being alone?"
 }
