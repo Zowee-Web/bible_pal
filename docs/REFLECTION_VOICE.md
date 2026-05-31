@@ -13,9 +13,10 @@ The rule applies to all Traditional stories that are not V3_PILOT or `shortScrip
 3. Generic devotional and life-coaching language is prohibited.
 4. No mandatory application section.
 5. No mandatory closing invitation.
-6. Reflections may end in one of two valid forms:
+6. Reflections may take one of three valid forms:
    - **Earned Question** (default) — a story-shaped question arising naturally from the narrative
    - **Earned Observation** (rare, ~1/10) — a story-shaped observation arising naturally from the narrative
+   - **Image Cascade** (also rare) — a series of 3-5 concrete narrative beats from the story, structured as short paragraphs that walk the listener through the key images in sequence; no question, no observation-statement — the cascade IS the reflection
 7. Variance is encouraged; formula is discouraged.
 8. The reflection should stop once the question or observation lands. No follow-on instruction.
 9. Listener interpretation is preferred over narrator instruction.
@@ -43,6 +44,18 @@ Openings that work: *"What does it feel like to…"* / *"What would it be like t
 ### Earned Observation (rare form, ~1/10)
 
 Reserved for anchors where the emotional landing is so quiet and complete that a question would intrude. Extended form, typically ~150 words. Ends on a specific image or observation — not a question, not an instruction.
+
+### Image Cascade (also rare)
+
+A series of 3-5 concrete narrative beats from the story, structured as short paragraphs that walk the listener through the key images in sequence. No question, no observation-statement, no narrator interpretation — the cascade IS the reflection. Lands on a final image that completes the arc.
+
+Reserved for anchors where the story's images are so iconic that re-presenting them in compressed form IS the reflection. Typically ~80-120 words. Identified as a valid form during the 2026-05-31 mechanical-sync triage when 1111-1115 were found to use this form and pass all six audit points.
+
+Examples:
+- **1112 David & Goliath**:
+  > *For forty days the Philistine drew near morning and evening. For forty days no one in Israel answered. David chose five smooth stones from the brook. His sling was in his hand. He walked toward the giant with no sword, no armor, no shield. The stone struck Goliath in the forehead. He fell on his face to the earth. The valley lay quiet between the ridges.*
+- **1114 Daniel in the Lion's Den**:
+  > *Daniel's windows were open toward Jerusalem. He kneeled three times a day, and prayed, and gave thanks before his God, as he did before. The decree was signed. The windows stayed open. The prayer did not change. The king passed the night fasting, with no music and no sleep. In the morning he went in haste to the den and cried out with a troubled voice. Daniel's voice answered from the darkness below.*
 
 ## Prohibited Patterns
 
@@ -155,3 +168,4 @@ For the 2026-05-31 retrofit, WEB-only first pass is acceptable; KJV companions c
 
 - **2026-05-22** — Locked. Earlier "5 modes" rule (quiet observation / image callback / soft invitation / emotional afterglow / gentle question with at-least-3-of-5 non-question) rejected after B20-B22 review for keeping the listener at observer distance.
 - **2026-05-31** — Refined and elevated to docs. Headline paste-test, explicit no-imperative prohibition with examples, audio craft rules, observation-form acknowledgment (1096), six-point audit checklist added before 120-story reflection retrofit began.
+- **2026-05-31** (later same day) — Image-cascade acknowledged as a third valid form during mechanical-sync triage of stories 1111-1115. The corpus was found to already contain well-crafted reflections in this form that pass all six audit points but did not fit the original binary. Spec updated to acknowledge the form rather than rewrite the existing good content.
