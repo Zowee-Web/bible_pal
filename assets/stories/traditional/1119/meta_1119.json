@@ -33,6 +33,9 @@
   "files": {
     "short": {
       "storyText": "story_1119_traditional_web_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1119_traditional_web.txt"
     }
   },
   "emotionalTags": [
@@ -42,5 +45,6 @@
     "tender",
     "loved",
     "desperate"
-  ]
+  ],
+  "reflectionText": "Naaman went down into the Jordan and came up with the skin of a little child. What does gratitude feel like when it arrives in the shape your pride had refused to recognize?"
 }

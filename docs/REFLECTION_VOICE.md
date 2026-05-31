@@ -120,14 +120,19 @@ All six → benchmark candidate. Five or fewer → rewrite.
 - **1117 Exodus 14:10-31** (anxious, Crossing of the Red Sea):
   > *The pillar that had led them through the wilderness moved that night and stood behind them, between Israel and the army of Pharaoh. What is it like to be guarded by the very thing that has been leading you on?*
 
-### Observation-form benchmark
+### Observation-form benchmarks
 
 - **1096 John 5:1-15** (weary, Bethesda pool):
   > *Thirty-eight years is a long time to wait for something that never comes… Sometimes the thing we most need is not a better system. It is someone who speaks to us as though change is still possible — even when we have stopped believing it ourselves.*
+- **1121 1 Samuel 1:9-20** (hurting, Hannah's silent prayer):
+  > *She did not raise her voice. She did not need to. The room was empty enough that her silence was already a kind of speech, and her tears were already a kind of prayer… Not every prayer is answered the way Hannah's was. But every prayer is heard the way Hannah's was — by a God who reads lips that no one else can see move.*
+
+  *Why this is benchmark-grade:* built around a single anchor image (silent lips), stays tightly attached to the narrative throughout, never drifts into generic encouragement, ends on an observation unique to Hannah ("a God who reads lips that no one else can see move").
 
 ### Promotion history
 
-- **1117 Red Sea** promoted to question-form benchmark 2026-05-31 — first reflection written under the refined spec; first written test of the paste-test discipline.
+- **1117 Red Sea** (question form) promoted 2026-05-31 — first reflection written under the refined spec; first written test of the paste-test discipline.
+- **1121 Hannah** (observation form) promoted 2026-05-31 — pre-existing reflection identified during calibration-block triage; chosen over 1122 Thomas because 1121 stays more tightly attached to a single anchor image (silent lips) while 1122 edges toward broader theological observation.
 
 ## Kid-Friendly Convention
 

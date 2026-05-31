@@ -45,6 +45,9 @@
     },
     "long_kjv": {
       "storyText": "story_1118_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1118_traditional_web.txt"
     }
   },
   "emotionalTags": [
@@ -54,5 +57,6 @@
     "brave",
     "afraid",
     "watchful"
-  ]
+  ],
+  "reflectionText": "For six days they marched around the city in silence and did not attack. On the seventh, they marched it seven times. Have you ever been asked to keep walking around the thing in front of you, instead of pushing through it on your own?"
 }
