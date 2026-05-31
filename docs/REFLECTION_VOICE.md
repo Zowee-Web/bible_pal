@@ -4,7 +4,7 @@
 
 This document locks the editorial voice for every reflection in the Bible PAL corpus. Reflections close each story and pull the listener into the anchor's emotional space. Once 20+ reflections exist under one rule, changing the rule becomes expensive — so the rule is fixed here before the 120-story retrofit begins.
 
-The rule applies to all Traditional stories that are not V3_PILOT or `shortScripture: true` (those are audio-only schema variants exempt from the reflection requirement).
+The rule applies to **every active Traditional story**. The earlier V3_PILOT and `shortScripture: true` exemptions were retired 2026-05-31 after the dual-lane KJV backfill brought the corpus to 100% coverage; `reflection_consistency_test.dart` now enforces the contract without exception.
 
 ## Reflection Voice Rules
 
