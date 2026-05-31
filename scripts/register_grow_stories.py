@@ -138,11 +138,17 @@ def manifest_entry_for(sid: int, lane: str, length: str, all_entries: list[dict]
     # Adjust scripture path
     new_entry["scriptureTextFilePath"] = f"traditional/{sid}/scripture_{sid}_{lane_token}.txt"
 
-    # Adjust audio path (audio doesn't exist yet but path is canonical)
+    # Audio path: only set if the .mp3 already exists on disk. The
+    # manifest_integrity_test contract treats a non-empty audioFilePath as
+    # a guarantee the file exists; canonical-but-not-yet-rendered paths
+    # would fail that contract. Leave empty until the render pipeline
+    # populates it.
     if lane == "KJV":
-        new_entry["audioFilePath"] = f"traditional/{sid}/audio_{sid}_story_kjv_{length}.mp3"
+        canonical_audio = f"traditional/{sid}/audio_{sid}_story_kjv_{length}.mp3"
     else:
-        new_entry["audioFilePath"] = f"traditional/{sid}/audio_{sid}_story_{length}.mp3"
+        canonical_audio = f"traditional/{sid}/audio_{sid}_story_{length}.mp3"
+    audio_file = ROOT / "assets" / "stories" / canonical_audio
+    new_entry["audioFilePath"] = canonical_audio if audio_file.exists() else ""
 
     # Clear reflectionAudioPath since audio isn't generated for new variants
     new_entry["reflectionAudioPath"] = ""
