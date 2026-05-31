@@ -201,7 +201,7 @@ def main() -> int:
         print(f"ABORT: {voice_key} env var is missing or empty in .env")
         return 1
 
-    tts_model = meta.get("ttsModel", "eleven_multilingual_v2")
+    tts_model = meta.get("ttsModel", "eleven_turbo_v2_5")
     tts_voice_settings = meta.get(
         "ttsVoiceSettings",
         {"stability": 0.5, "similarity_boost": 0.75},

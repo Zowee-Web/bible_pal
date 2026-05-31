@@ -53,5 +53,10 @@
     "tender",
     "awed"
   ],
-  "reflectionText": "They walked seven miles from Jerusalem to Emmaus. A stranger joined them on the road. He opened the Scriptures to them as they walked.\n\nAt the table, he took bread, blessed it, and broke it. Their eyes were opened. They recognized him. He vanished.\n\nThe bread lay broken on the table. The chair was empty. They rose up that same hour and walked the seven miles back to Jerusalem."
+  "reflectionText": "They walked seven miles from Jerusalem to Emmaus. A stranger joined them on the road. He opened the Scriptures to them as they walked.\n\nAt the table, he took bread, blessed it, and broke it. Their eyes were opened. They recognized him. He vanished.\n\nThe bread lay broken on the table. The chair was empty. They rose up that same hour and walked the seven miles back to Jerusalem.",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

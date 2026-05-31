@@ -55,5 +55,10 @@
   "reflectionText": "What is something that hurts inside you right now that you wish someone really understood?",
   "timelineEra": "wisdom",
   "primaryCharacterId": "david",
-  "primaryCharacterDisplayName": "David"
+  "primaryCharacterDisplayName": "David",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

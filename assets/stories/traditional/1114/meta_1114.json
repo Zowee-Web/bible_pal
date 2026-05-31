@@ -67,5 +67,10 @@
   "secondaryLifeSituationTags": [
     "quiet_courage"
   ],
-  "reflectionText": "Daniel's windows were open toward Jerusalem. He kneeled three times a day, and prayed, and gave thanks before his God, as he did before.\n\nThe decree was signed. The windows stayed open. The prayer did not change.\n\nThe king passed the night fasting, with no music and no sleep. In the morning he went in haste to the den and cried out with a troubled voice. Daniel's voice answered from the darkness below."
+  "reflectionText": "Daniel's windows were open toward Jerusalem. He kneeled three times a day, and prayed, and gave thanks before his God, as he did before.\n\nThe decree was signed. The windows stayed open. The prayer did not change.\n\nThe king passed the night fasting, with no music and no sleep. In the morning he went in haste to the den and cried out with a troubled voice. Daniel's voice answered from the darkness below.",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

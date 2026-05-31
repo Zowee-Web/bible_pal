@@ -66,5 +66,10 @@
   ],
   "secondaryLifeSituationTags": [
     "starting_over"
-  ]
+  ],
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

@@ -17,7 +17,7 @@
   "voiceKey": "VOICE_ARABELLA",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_04",
-  "reflectionQuestion": "What would it be like to be fully seen\u2014every hidden and imperfect part of you laid bare\u2014and to find that the response waiting for you is not rejection, but an invitation?",
+  "reflectionQuestion": "What would it be like to be fully seen—every hidden and imperfect part of you laid bare—and to find that the response waiting for you is not rejection, but an invitation?",
   "title": "Isaiah's Vision in the Temple",
   "files": {
     "short": {
@@ -59,8 +59,13 @@
     "web": "reflection_1067_traditional_web.txt",
     "kjv": "reflection_1067_traditional_kjv.txt"
   },
-  "reflectionText": "What would it be to be fully seen\u2014every hidden and imperfect part of thee laid bare\u2014and to find that the response awaiting thee is not rejection, but an invitation?",
+  "reflectionText": "What would it be to be fully seen—every hidden and imperfect part of thee laid bare—and to find that the response awaiting thee is not rejection, but an invitation?",
   "timelineEra": "prophets",
   "primaryCharacterId": "isaiah",
-  "primaryCharacterDisplayName": "Isaiah"
+  "primaryCharacterDisplayName": "Isaiah",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }
