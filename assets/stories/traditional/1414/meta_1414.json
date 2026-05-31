@@ -53,6 +53,9 @@
     },
     "short_kjv": {
       "storyText": "story_1414_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1414_traditional_web.txt"
     }
   },
   "primaryLifeSituationTags": [
@@ -61,5 +64,6 @@
   "secondaryLifeSituationTags": [
     "lifelong_waiting",
     "surrender_to_god"
-  ]
+  ],
+  "reflectionText": "Abraham and Isaac came down the mountain together, and the name Abraham left in the place behind them was: Yahweh Will Provide. What does it take to walk back down toward your own people from a mountain where you have learned a new name you will carry all your days?"
 }
