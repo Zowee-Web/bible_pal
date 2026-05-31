@@ -10,7 +10,8 @@
   ],
   "mood": "encouraging",
   "lengths": [
-    "short"
+    "short",
+    "full"
   ],
   "createdByModel": "claude-opus-4-7",
   "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
@@ -34,7 +35,7 @@
   "primaryCharacterDisplayName": "Joel",
   "bibleOrderIndex": 365,
   "timelineEra": "prophets",
-  "ttsModel": "eleven_v3",
+  "ttsModel": "eleven_multilingual_v2",
   "ttsVoiceSettings": {
     "stability": 0.85,
     "similarity_boost": 0.85,
@@ -48,6 +49,13 @@
     },
     "short_kjv": {
       "storyText": "story_1194_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_1194_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1194_traditional_kjv_full.txt"
     }
-  }
+  },
+  "editorialNotes": "Full anchors to assembly arc (vv12-23): trumpet, gathering, priests between porch and altar, divine pity hinge (v18), restoration promise. Outpouring oracle (vv28-32) stays Short-only — per feedback_split_mixed_tone_passages, growing Long would force choosing between assembly-arc and Pentecost-shaped outpouring."
 }

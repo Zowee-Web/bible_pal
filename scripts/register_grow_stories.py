@@ -35,9 +35,12 @@ TIER1_IDS = [1019, 1032, 1055, 1111, 1113, 1123, 1160, 1172, 1216, 1265,
 # Tier 2 NEXT (10 stories, 2026-05-30)
 TIER2_IDS = [1051, 1151, 1178, 1191, 1210, 1221, 1263, 1264, 1286, 1346]
 
-# Tier 3 (4 stories, 2026-05-30) — careful-review set, classified GROW
-# from 6 candidates; 1194 and 1224 deferred. Dual-lane Full+Long shipped.
-TIER3_IDS = [1212, 1228, 1230, 1506]
+# Tier 3 (5 stories, 2026-05-30 → 2026-05-31) — careful-review set.
+# From 6 candidates: 4 GROW shipped Full+Long dual-lane (1212, 1228, 1230,
+# 1506), 1 MAYBE re-triaged to GROW-Full-only (1194 — assembly arc only,
+# no Long), 1 SKIP held Short-only (1224 — Pauline doxology, marked
+# editorialNotes Short-canonical).
+TIER3_IDS = [1194, 1212, 1228, 1230, 1506]
 
 
 def update_meta(sid: int) -> tuple[list[str], list[str]]:
