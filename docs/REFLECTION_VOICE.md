@@ -54,7 +54,9 @@ Openings that work (strongest first):
 
 ### Earned Observation (rare form, ~1/10)
 
-Reserved for anchors where the emotional landing is so quiet and complete that a question would intrude. Extended form, typically ~150 words. Ends on a specific image or observation — not a question, not an instruction.
+Reserved for anchors where the emotional landing is so quiet and complete that a question would intrude. Compressed form, **target ~70–90 words / ~30 seconds of audio**. Ends on a specific image or observation — not a question, not an instruction.
+
+**Length cap tightened 2026-05-31** after the first batch of audio renders proved that ~150-word reflections produced 60–75-second audio that felt too long in the player UX. The locked benchmarks below (1096, 1121) were retroactively compressed to ~80 words while preserving their anchor image and quiet landing; the original 150-word form is no longer the target.
 
 ### Image Cascade (also rare)
 
@@ -180,3 +182,4 @@ For the 2026-05-31 retrofit, WEB-only first pass is acceptable; KJV companions c
 - **2026-05-22** — Locked. Earlier "5 modes" rule (quiet observation / image callback / soft invitation / emotional afterglow / gentle question with at-least-3-of-5 non-question) rejected after B20-B22 review for keeping the listener at observer distance.
 - **2026-05-31** — Refined and elevated to docs. Headline paste-test, explicit no-imperative prohibition with examples, audio craft rules, observation-form acknowledgment (1096), six-point audit checklist added before 120-story reflection retrofit began.
 - **2026-05-31** (later same day) — Image-cascade acknowledged as a third valid form during mechanical-sync triage of stories 1111-1115. The corpus was found to already contain well-crafted reflections in this form that pass all six audit points but did not fit the original binary. Spec updated to acknowledge the form rather than rewrite the existing good content.
+- **2026-05-31** (audio batch 1 calibration) — Observation-form length cap tightened from ~150 words to ~70–90 words / ~30s audio after Adam reported that 60–75s reflection audio felt too long in the player UX. 1036 (was bloated + generic), 1096 (Bethesda), and 1121 (Hannah) refactored to the new cap. Image-cascade and question-form unchanged.
