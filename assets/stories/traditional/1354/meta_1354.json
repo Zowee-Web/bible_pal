@@ -39,13 +39,12 @@
   "primaryCharacterDisplayName": "Joseph of Arimathea",
   "bibleOrderIndex": 675,
   "timelineEra": "jesus_ministry",
-  "ttsModel": "eleven_v3",
+  "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.85,
     "similarity_boost": 0.85,
     "style": 0.15,
-    "use_speaker_boost": true,
-    "speed": 0.95
+    "use_speaker_boost": true
   },
   "files": {
     "short": {

@@ -39,13 +39,12 @@
   "primaryCharacterDisplayName": "Israel",
   "bibleOrderIndex": 52,
   "timelineEra": "exodus",
-  "ttsModel": "eleven_v3",
+  "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.85,
     "style": 0.35,
-    "use_speaker_boost": true,
-    "speed": 0.95
+    "use_speaker_boost": true
   },
   "files": {
     "short": {

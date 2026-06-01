@@ -38,7 +38,7 @@
   "primaryCharacterDisplayName": "Jesus",
   "bibleOrderIndex": 606,
   "timelineEra": "jesus_ministry",
-  "ttsModel": "eleven_multilingual_v2",
+  "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
