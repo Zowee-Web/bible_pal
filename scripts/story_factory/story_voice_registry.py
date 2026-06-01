@@ -64,6 +64,22 @@ APPROVED_NARRATOR_VOICES = frozenset({
     # Added 2026-05-31 during batch-2 audio render — fits Ruth 1 register;
     # already in server/voices.json (practical/caring/down-to-earth female).
     "VOICE_MARTHA_CARING",
+    # Added 2026-05-31 (post-batch-2 voice-registry sweep) — all voices in
+    # server/voices.json that were intentionally curated but never added to
+    # the approved pool. 8 of these are already in use by 45 stories; the
+    # other 3 (Lydia/Samuel/Sarah) are available but unused. Sanctioning all
+    # in one sweep prevents one-by-one discovery during audio batches.
+    "VOICE_DEBORAH_WISE",
+    "VOICE_ESTHER_BRAVE",
+    "VOICE_HANNAH_HOPE",
+    "VOICE_JOHN_BELOVED",
+    "VOICE_JOSEPH_DREAMER",
+    "VOICE_LYDIA_GRACIOUS",
+    "VOICE_MARCUS_ANCHOR",
+    "VOICE_MARY_PONDER",
+    "VOICE_PRISCILLA_TEACHER",
+    "VOICE_SAMUEL_EARNEST",
+    "VOICE_SARAH_STORYTELLER",
 })
 
 
