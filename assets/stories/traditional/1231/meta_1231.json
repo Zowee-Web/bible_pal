@@ -37,13 +37,12 @@
   "primaryCharacterDisplayName": "Amos",
   "bibleOrderIndex": 370,
   "timelineEra": "prophets",
-  "ttsModel": "eleven_v3",
+  "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.85,
     "similarity_boost": 0.85,
     "style": 0.15,
-    "use_speaker_boost": true,
-    "speed": 0.95
+    "use_speaker_boost": true
   },
   "files": {
     "short": {
