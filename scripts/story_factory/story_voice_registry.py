@@ -58,6 +58,9 @@ APPROVED_NARRATOR_VOICES = frozenset({
     "VOICE_DAVID_SHEPHERD",
     "VOICE_PETER_BOLD",
     "VOICE_RUTH_COMFORT",
+    # Added 2026-05-31 during batch-1 audio render — fits Isaiah 40 register;
+    # already in server/voices.json registry (regal/courageous/empowering female).
+    "VOICE_JANE_PROFESSIONAL",
 })
 
 
