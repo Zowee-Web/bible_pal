@@ -141,17 +141,26 @@ echo "[2/4] Computing next version:"
 
 REMOTE_VERSION=0
 REMOTE_STATUS=""
+REMOTE_STATE=""  # confirmed | confirmed-absent | unknown
 REMOTE_TMP="$(mktemp)"
-# Trap so the tmp file is always removed even if a later step exits.
-trap 'rm -f "$REMOTE_TMP"' EXIT
+REMOTE_ERR="$(mktemp)"
+# Trap so tmp files are always removed even if a later step exits.
+trap 'rm -f "$REMOTE_TMP" "$REMOTE_ERR"' EXIT
 
 # `wrangler r2 object get` writes the object body to the file given via
-# --file. Any failure (404, network, auth) is tolerated: we fall back to
-# remote_version=0 and print a warning. Push mode prints a stronger
-# warning but still proceeds — the app's CatalogService will reject a
-# non-monotonic version, so the worst case is a rejected upload, not
-# silent corruption.
-if wrangler r2 object get "$BUCKET/$CATALOG_KEY" --remote --file="$REMOTE_TMP" >/dev/null 2>&1; then
+# --file. We capture stderr separately so we can distinguish three cases:
+#   - confirmed       : object exists, version parsed from body
+#   - confirmed-absent: wrangler reported a 404 / not-found (first push)
+#   - unknown         : ambiguous failure (network, auth, syntax, etc.)
+# Dry-run tolerates all three. --push proceeds only on the first two —
+# pushing with an unknown remote state risks a non-monotonic version, so
+# we refuse and ask the operator to fix their environment instead of
+# relying on the app's CatalogService to reject the upload.
+REMOTE_FETCH_EXIT=0
+wrangler r2 object get "$BUCKET/$CATALOG_KEY" --remote --file="$REMOTE_TMP" \
+    >/dev/null 2>"$REMOTE_ERR" || REMOTE_FETCH_EXIT=$?
+
+if [ "$REMOTE_FETCH_EXIT" = "0" ]; then
   REMOTE_VERSION=$(python3 -c "
 import json
 try:
@@ -162,13 +171,14 @@ try:
 except Exception:
     print(0)
 ")
-  REMOTE_STATUS="$REMOTE_VERSION"
+  REMOTE_STATE="confirmed"
+  REMOTE_STATUS="$REMOTE_VERSION (confirmed)"
+elif grep -qiE "(not found|no such|404|does not exist)" "$REMOTE_ERR"; then
+  REMOTE_STATE="confirmed-absent"
+  REMOTE_STATUS="absent (first push — treating as 0)"
 else
-  if [ "$PUSH" = "1" ]; then
-    REMOTE_STATUS="unreachable (treating as 0 — verify before pushing)"
-  else
-    REMOTE_STATUS="unknown (dry-run did not require auth; treating as 0)"
-  fi
+  REMOTE_STATE="unknown"
+  REMOTE_STATUS="unknown (dry-run did not require auth; treating as 0)"
 fi
 
 NEXT_VERSION=$LOCAL_VERSION
@@ -181,6 +191,30 @@ echo "  local_version:  $LOCAL_VERSION"
 echo "  remote_version: $REMOTE_STATUS"
 echo "  next_version:   $NEXT_VERSION"
 echo ""
+
+# Push safety gate: refuse to upload unless we KNOW the remote state.
+# Dry-run is allowed to proceed with an unknown remote because it never
+# touches R2; --push must not roll the dice with the version field.
+if [ "$PUSH" = "1" ] && [ "$REMOTE_STATE" = "unknown" ]; then
+  echo "ERROR: refusing to --push without a confirmed remote catalog state." >&2
+  echo "" >&2
+  echo "wrangler r2 object get failed for $BUCKET/$CATALOG_KEY but did not" >&2
+  echo "return a recognizable 'not found' signal, so this script cannot tell" >&2
+  echo "whether the catalog already exists at some higher version or simply" >&2
+  echo "could not be read." >&2
+  echo "" >&2
+  echo "wrangler stderr (token-like strings redacted):" >&2
+  # Redact anything that looks like a long opaque token (>=20 chars of
+  # base64-ish characters) so account IDs / request IDs don't appear in
+  # shared logs. The user's own email and bucket names survive.
+  sed -E 's/[A-Za-z0-9_-]{20,}/<redacted>/g; s/^/    /' "$REMOTE_ERR" >&2
+  echo "" >&2
+  echo "Common fixes:" >&2
+  echo "  - wrangler login            (auth)" >&2
+  echo "  - wrangler r2 bucket list   (verify bucket access)" >&2
+  echo "  - check network connectivity" >&2
+  exit 1
+fi
 
 # ── [3/4] Stage catalog ──────────────────────────────────────────────────────
 
