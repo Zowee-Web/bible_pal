@@ -46,5 +46,10 @@
     "uncertain",
     "seeking"
   ],
-  "reflectionText": "The ram in the thicket was already there when Abraham stretched out his hand. What does it feel like to discover that the provision was waiting in the thicket behind you all the while?"
+  "reflectionText": "The ram in the thicket was already there when Abraham stretched out his hand. What does it feel like to discover that the provision was waiting in the thicket behind you all the while?",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

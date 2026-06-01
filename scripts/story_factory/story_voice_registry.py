@@ -61,6 +61,9 @@ APPROVED_NARRATOR_VOICES = frozenset({
     # Added 2026-05-31 during batch-1 audio render — fits Isaiah 40 register;
     # already in server/voices.json registry (regal/courageous/empowering female).
     "VOICE_JANE_PROFESSIONAL",
+    # Added 2026-05-31 during batch-2 audio render — fits Ruth 1 register;
+    # already in server/voices.json (practical/caring/down-to-earth female).
+    "VOICE_MARTHA_CARING",
 })
 
 

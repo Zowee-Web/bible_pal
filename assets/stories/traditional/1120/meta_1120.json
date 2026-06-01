@@ -47,5 +47,10 @@
     "inspired",
     "afraid"
   ],
-  "reflectionText": "Peter stood at the gate while the people who had been praying for him would not at first believe he was there. What is it to find the answered prayer at the gate while you are still inside the house asking for it to come?"
+  "reflectionText": "Peter stood at the gate while the people who had been praying for him would not at first believe he was there. What is it to find the answered prayer at the gate while you are still inside the house asking for it to come?",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

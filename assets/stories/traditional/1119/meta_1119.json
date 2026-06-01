@@ -49,5 +49,10 @@
     "loved",
     "desperate"
   ],
-  "reflectionText": "Naaman went down into the Jordan and came up with the skin of a little child. What does gratitude feel like when it arrives in the shape your pride had refused to recognize?"
+  "reflectionText": "Naaman went down into the Jordan and came up with the skin of a little child. What does gratitude feel like when it arrives in the shape your pride had refused to recognize?",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

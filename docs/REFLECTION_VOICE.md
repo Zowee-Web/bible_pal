@@ -54,9 +54,20 @@ Openings that work (strongest first):
 
 ### Earned Observation (rare form, ~1/10)
 
-Reserved for anchors where the emotional landing is so quiet and complete that a question would intrude. Compressed form, **target ~70–90 words / ~30 seconds of audio**. Ends on a specific image or observation — not a question, not an instruction.
+Reserved for anchors where the emotional landing is so quiet and complete that a question would intrude. Compressed form, **target ~70–80 words / ~30 seconds of audio**. Ends on a specific image or observation — not a question, not an instruction.
 
-**Length cap tightened 2026-05-31** after the first batch of audio renders proved that ~150-word reflections produced 60–75-second audio that felt too long in the player UX. The locked benchmarks below (1096, 1121) were retroactively compressed to ~80 words while preserving their anchor image and quiet landing; the original 150-word form is no longer the target.
+### Universal Length Cap
+
+Locked 2026-05-31 after batch-1 audio review. Applies to all three forms:
+
+- **Target**: 10–30 seconds of audio
+- **Normal range**: ~25–60 words
+- **Hard cap**: ~80 words unless explicitly approved
+- **Refactor before rendering** if a reflection comes in over cap
+
+Reflections are brief pauses for thought, not mini-devotionals. The cap exists because in the player UX a 60-second reflection trails the story too long; listeners feel the gear shift from narrative-immersion to closing-frame. Question form naturally lands at ~10–15s, image cascade at ~25–35s, observation form at ~30s — all under the cap.
+
+The locked benchmarks 1096 (Bethesda) and 1121 (Hannah) were retroactively compressed from ~150 words to ~80 words while preserving their anchor image and quiet landing; the original 150-word form is no longer the target.
 
 ### Image Cascade (also rare)
 

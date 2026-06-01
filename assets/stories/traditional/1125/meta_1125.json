@@ -38,7 +38,7 @@
   "primaryCharacterDisplayName": "Philip",
   "bibleOrderIndex": 699,
   "timelineEra": "early_church",
-  "ttsModel": "eleven_v3",
+  "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.8,
     "similarity_boost": 0.85,

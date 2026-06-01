@@ -61,5 +61,10 @@
     "afraid",
     "watchful"
   ],
-  "reflectionText": "For six days they marched around the city in silence and did not attack. On the seventh, they marched it seven times. Have you ever been asked to keep walking around the thing in front of you, instead of pushing through it on your own?"
+  "reflectionText": "For six days they marched around the city in silence and did not attack. On the seventh, they marched it seven times. Have you ever been asked to keep walking around the thing in front of you, instead of pushing through it on your own?",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

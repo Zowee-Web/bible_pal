@@ -37,7 +37,7 @@
   "primaryCharacterDisplayName": "Peter",
   "bibleOrderIndex": 615,
   "timelineEra": "jesus_ministry",
-  "ttsModel": "eleven_v3",
+  "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.7,
     "similarity_boost": 0.85,
