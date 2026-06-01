@@ -930,13 +930,52 @@ class ParableService {
   @visibleForTesting
   Future<Directory> getAudioCacheDirForTesting() => _getAudioCacheDir();
 
-  /// Android helper: three-tier resolution (cache → bundled asset → R2).
+  /// Android helper: thin wrapper around [_resolveByPath] (Slice 3
+  /// pure-refactor). The cascade itself lives in [_resolveByPath] so
+  /// Slice 4 can share it with reflection audio without duplicating
+  /// any tier logic.
   Future<File?> _getAudioFileAndroid(
     Parable parable, {
     void Function(double progress)? onProgress,
+  }) {
+    return _resolveByPath(
+      parable.audioFilePath!,
+      storyId: parable.storyId,
+      lengthBucket: parable.lengthBucket.name,
+      onProgress: onProgress,
+    );
+  }
+
+  /// Test-only entry point for direct three-tier resolution by path.
+  /// Lets Slice 3's parity test compare wrapper vs helper for the same
+  /// inputs. Production callers go through [_getAudioFileAndroid].
+  @visibleForTesting
+  Future<File?> resolveByPathForTesting(
+    String relativePath, {
+    required String storyId,
+    required String lengthBucket,
+    void Function(double progress)? onProgress,
+  }) =>
+      _resolveByPath(
+        relativePath,
+        storyId: storyId,
+        lengthBucket: lengthBucket,
+        onProgress: onProgress,
+      );
+
+  /// Three-tier audio resolver (Android): cache → bundled asset → R2
+  /// download. Behavior is byte-identical to the prior in-place
+  /// implementation in [_getAudioFileAndroid]; the only diff is that
+  /// `relativePath`, `storyId`, and `lengthBucket` arrive as parameters
+  /// rather than off a [Parable], so the cascade can be reused by
+  /// reflection audio in Slice 4.
+  Future<File?> _resolveByPath(
+    String relativePath, {
+    required String storyId,
+    required String lengthBucket,
+    void Function(double progress)? onProgress,
   }) async {
     _lastAudioError = AudioResolveError.none;
-    final relativePath = parable.audioFilePath!;
 
     // Tier 1: local cache hit.
     final cacheDir = await _getAudioCacheDir();
@@ -948,8 +987,8 @@ class ParableService {
         await cachedFile.setLastModified(DateTime.now());
       } catch (_) {/* mtime touch is best-effort */}
       _currentAudioRelativePath = relativePath;
-      logEvent('story_cache_hit', {'story_id': parable.storyId});
-      logEvent('audio_source', {'source': 'cache', 'story_id': parable.storyId});
+      logEvent('story_cache_hit', {'story_id': storyId});
+      logEvent('audio_source', {'source': 'cache', 'story_id': storyId});
       return cachedFile;
     }
 
@@ -960,7 +999,7 @@ class ParableService {
       await cachedFile.parent.create(recursive: true);
       await cachedFile.writeAsBytes(audioData.buffer.asUint8List());
       _currentAudioRelativePath = relativePath;
-      logEvent('audio_source', {'source': 'asset', 'story_id': parable.storyId});
+      logEvent('audio_source', {'source': 'asset', 'story_id': storyId});
       return cachedFile;
     } catch (_) {
       // Not bundled — fall through to R2 download.
@@ -969,13 +1008,13 @@ class ParableService {
     // Tier 3: download from R2.
     final downloaded = await _downloadAudio(
       relativePath,
-      storyId: parable.storyId,
-      lengthBucket: parable.lengthBucket.name,
+      storyId: storyId,
+      lengthBucket: lengthBucket,
       onProgress: onProgress,
     );
     if (downloaded != null) {
       _currentAudioRelativePath = relativePath;
-      logEvent('audio_source', {'source': 'r2', 'story_id': parable.storyId});
+      logEvent('audio_source', {'source': 'r2', 'story_id': storyId});
     }
     return downloaded;
   }
