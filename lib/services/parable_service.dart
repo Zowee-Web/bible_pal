@@ -14,6 +14,7 @@ import '../core/story_length_bucket.dart';
 import '../core/mood_similarity.dart';
 import '../core/mood_expansion_engine.dart';
 import '../core/seasonal_calendar.dart';
+import 'catalog_service.dart';
 import 'storage_service.dart';
 import 'relatability_matcher.dart';
 
@@ -89,6 +90,19 @@ class ParableService {
   final bool testMode;
   final RelatabilityMatcher _matcher = RelatabilityMatcher();
 
+  /// Phase 2 / Slice 2: remote catalog client. Always present; the
+  /// constructor accepts an injected instance for tests and falls back
+  /// to a default `CatalogService()` otherwise. Skipped entirely when
+  /// [testMode] is true so unit tests don't hit real network or assume
+  /// a docs-dir cache.
+  final CatalogService _catalog;
+
+  /// Phase 2 / Slice 2: hard memoization of the per-launch manifest load.
+  /// First [_loadManifest] call resolves the catalog cascade once and
+  /// emits a single [manifest_source] log; all subsequent callers receive
+  /// the same Future. Tests reset via [resetManifestCacheForTesting].
+  Future<List<Parable>>? _manifestLoadFuture;
+
   /// Smart Offline Library v1: cache-relative path of the most recent file
   /// returned by [getAudioFile]. Excluded from eviction so the currently-
   /// playing track is never deleted underneath just_audio.
@@ -108,7 +122,18 @@ class ParableService {
   bool _evictionInProgress = false;
 
   ParableService(this._storage,
-      [this._externalStoragePath, this.testMode = false]);
+      [this._externalStoragePath, this.testMode = false, CatalogService? catalog])
+      : _catalog = catalog ?? CatalogService();
+
+  /// Test-only seam: clear the memoized manifest load so a subsequent
+  /// [_loadManifest] call re-runs the catalog cascade and re-emits the
+  /// [manifest_source] log. Production code MUST NOT call this — the
+  /// manifest is intentionally pinned for the lifetime of the launch.
+  @visibleForTesting
+  void resetManifestCacheForTesting() {
+    _manifestLoadFuture = null;
+    _useAssets = false;
+  }
 
   /// Get the parable library directory
   Future<Directory> _getParableLibraryDir() async {
@@ -129,13 +154,60 @@ class ParableService {
     return parableDir;
   }
 
-  /// Load manifest of available parables
-  /// Validates that referenced audio files exist and skips broken entries
-  Future<List<Parable>> _loadManifest() async {
+  /// Load manifest of available parables. Hard-memoized for the lifetime
+  /// of this [ParableService] instance: the first call resolves the
+  /// catalog cascade (Phase 2 / Slice 2) and the result is reused for
+  /// every subsequent caller. Tests reset via
+  /// [resetManifestCacheForTesting].
+  Future<List<Parable>> _loadManifest() {
+    return _manifestLoadFuture ??= _resolveManifest();
+  }
+
+  /// Single-shot manifest resolution. In production, goes through
+  /// [CatalogService.loadCatalog] (cache → bundled) and kicks off a
+  /// background remote refresh. In [testMode], preserves the original
+  /// bundled-only path verbatim so existing logic/filter tests don't
+  /// need to mock the catalog client.
+  Future<List<Parable>> _resolveManifest() async {
     try {
       List<Parable> parables = [];
       int totalEntries = 0;
       int skippedEntries = 0;
+
+      // Slice 2: production cascade — CatalogService.loadCatalog()
+      // returns cache when a valid cached copy exists, otherwise reads
+      // bundled assets via rootBundle. On exception (e.g., bundled
+      // manifest missing), fall through to the legacy docs-dir path.
+      if (!testMode) {
+        try {
+          final result = await _catalog.loadCatalog();
+          _useAssets = true;
+          final src = result.source == CatalogSource.cache
+              ? 'cache'
+              : 'bundled';
+          debugPrint(
+              '📚 Loading ${result.parables.length} parables (source=$src)');
+          logEvent('story_pool_loaded', {
+            'total_count': result.parables.length,
+            'valid_count': result.parables.length,
+            'skipped_count': 0,
+            'source': src == 'cache' ? 'catalog_cache' : 'bundled_assets',
+          });
+          logEvent('manifest_source', {
+            'source': src,
+            'entry_count': result.parables.length,
+            if (result.version != null) 'version': result.version,
+          });
+          // Fire-and-forget background refresh. CatalogService handles
+          // its own retry, validation, and telemetry. Errors are
+          // swallowed so a refresh failure cannot crash the app.
+          unawaited(_catalog.refreshFromRemote());
+          return result.parables;
+        } catch (e) {
+          debugPrint(
+              'Catalog cascade failed, falling back to legacy manifest load: $e');
+        }
+      }
 
       // First try loading from bundled assets (for testing)
       try {
