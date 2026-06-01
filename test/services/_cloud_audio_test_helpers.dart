@@ -61,6 +61,7 @@ Parable testParable({
   // asset-tier resolver misses and tests can exercise the R2 fallback path.
   String audioFilePath = 'traditional/9999/audio_9999_story_short.mp3',
   String mood = 'joyful',
+  String? reflectionAudioPath,
 }) {
   return Parable(
     storyId: storyId,
@@ -69,6 +70,7 @@ Parable testParable({
     storytellingMode: 'traditional',
     kidFriendly: false,
     audioFilePath: audioFilePath,
+    reflectionAudioPath: reflectionAudioPath,
     storyLength: 'short',
   );
 }

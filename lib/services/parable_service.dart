@@ -1097,23 +1097,65 @@ class ParableService {
     return cacheDir;
   }
 
-  /// Smart Offline Library v1: silently ensure a story's audio is cached
+  /// Smart Offline Library v1: silently ensure a parable's audio is cached
   /// when the user favorites it. Reuses the existing Android resolver, which
   /// performs the cache → bundled asset → R2 cascade and writes into
   /// `audio_cache/`.
   ///
+  /// Slice 5: primes BOTH the story audio and the reflection audio (when
+  /// the parable declares a reflection path). Each cache attempt is
+  /// isolated in its own try/catch so a failure on one asset cannot
+  /// affect the other. Favoriting must never fail because caching failed.
+  ///
   /// - Android: idempotent. No-op if already cached. Downloads if needed.
   /// - iOS: no-op (audio is bundled).
   /// - Other platforms (test/desktop): no-op.
-  ///
-  /// Errors (network failure, missing AUDIO_BASE_URL) are swallowed —
-  /// favoriting must never fail because the network was unreliable.
   Future<void> ensureCachedForFavorite(Parable parable) async {
     if (!Platform.isAndroid) return;
-    if (parable.audioFilePath == null) return;
-    try {
-      await _getAudioFileAndroid(parable);
-    } catch (_) {/* silent — favoriting must not fail on network */}
+
+    // Story audio first (existing behavior).
+    if (parable.audioFilePath != null) {
+      try {
+        await _getAudioFileAndroid(parable);
+      } catch (_) {/* silent — favoriting must not fail on network */}
+    }
+
+    // Reflection audio second (Slice 5 addition). Same three-tier
+    // cascade, same swallow-and-continue semantics.
+    if (parable.reflectionAudioPath != null) {
+      try {
+        await _resolveByPath(
+          parable.reflectionAudioPath!,
+          storyId: parable.storyId,
+          lengthBucket: parable.lengthBucket.name,
+          kind: AudioKind.reflection,
+        );
+      } catch (_) {/* silent — favoriting must not fail on network */}
+    }
+  }
+
+  /// Test-only entry point for Slice 5 favorite-caching. Mirrors
+  /// [getAudioFileAndroidForTesting]; bypasses the [Platform.isAndroid]
+  /// check in [ensureCachedForFavorite] so the cascade is exercised in
+  /// `flutter test` (where Platform reports the host).
+  @visibleForTesting
+  Future<void> ensureCachedForFavoriteAndroidForTesting(
+      Parable parable) async {
+    if (parable.audioFilePath != null) {
+      try {
+        await _getAudioFileAndroid(parable);
+      } catch (_) {/* silent */}
+    }
+    if (parable.reflectionAudioPath != null) {
+      try {
+        await _resolveByPath(
+          parable.reflectionAudioPath!,
+          storyId: parable.storyId,
+          lengthBucket: parable.lengthBucket.name,
+          kind: AudioKind.reflection,
+        );
+      } catch (_) {/* silent */}
+    }
   }
 
   /// Walks the audio cache directory and returns total bytes consumed.
@@ -1146,8 +1188,14 @@ class ParableService {
     final protected = <String>{};
     for (final fav in favorites) {
       final p = byId[fav.storyId];
-      if (p?.audioFilePath != null) {
-        protected.add(p!.audioFilePath!);
+      if (p == null) continue;
+      if (p.audioFilePath != null) {
+        protected.add(p.audioFilePath!);
+      }
+      // Slice 5: reflection audio is also cached on favorite, so it
+      // must be protected from eviction alongside the story audio.
+      if (p.reflectionAudioPath != null) {
+        protected.add(p.reflectionAudioPath!);
       }
     }
     return protected;

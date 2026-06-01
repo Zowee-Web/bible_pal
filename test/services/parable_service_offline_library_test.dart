@@ -20,6 +20,8 @@ import '_cloud_audio_test_helpers.dart';
 /// via the existing _loadManifest() codepath.
 const _favoritedStoryId = 'story_1000_weary_short_traditional';
 const _favoritedAudioPath = 'traditional/1000/audio_1000_story_short.mp3';
+// Slice 5: reflection path for the favorited story (matches manifest).
+const _favoritedReflectionPath = 'traditional/1000/audio_1000_reflection.mp3';
 
 const _otherStoryId1 = 'story_1001_calm_peaceful_short_traditional';
 const _otherAudioPath1 = 'traditional/1001/audio_1001_story_short.mp3';
@@ -308,5 +310,88 @@ void main() {
     final total = await service.getAudioCacheTotalBytesForTesting();
     expect(total, 300,
         reason: 'favorites must never be evicted, overrun is honored');
+  });
+
+  // ---------------------------------------------------------------------------
+  // Slice 5 — ensureCachedForFavorite primes BOTH story and reflection audio,
+  // and eviction protects both.
+  // ---------------------------------------------------------------------------
+
+  test(
+      'Test 8: ensureCachedForFavorite caches BOTH story and reflection audio '
+      'when neither is cached', () async {
+    final fake = await startFakeAudioServer(body: sampleAudioBytes);
+    addTearDown(() => fake.server.close(force: true));
+
+    final ctx = await setupCloudAudioTest(audioBaseUrl: fake.baseUrl);
+    final cacheDir = await ctx.service.getAudioCacheDirForTesting();
+
+    // Build a parable with both paths pointing at NOT-bundled fixtures
+    // so Tier 2 (asset) misses and Tier 3 (R2) fires for both files.
+    final parable = testParable(
+      reflectionAudioPath: 'traditional/9999/audio_9999_reflection.mp3',
+    );
+
+    await ctx.service.ensureCachedForFavoriteAndroidForTesting(parable);
+
+    final storyCacheFile =
+        File('${cacheDir.path}/${parable.audioFilePath}');
+    final reflectionCacheFile =
+        File('${cacheDir.path}/${parable.reflectionAudioPath}');
+
+    expect(await storyCacheFile.exists(), isTrue,
+        reason: 'story audio must be cached');
+    expect(await storyCacheFile.readAsBytes(), sampleAudioBytes);
+    expect(await reflectionCacheFile.exists(), isTrue,
+        reason: 'reflection audio must be cached');
+    expect(await reflectionCacheFile.readAsBytes(), sampleAudioBytes);
+  });
+
+  test(
+      'Test 9: eviction protects favorited reflection audio alongside '
+      'favorited story audio', () async {
+    await setupCloudAudioTest();
+    SharedPreferences.setMockInitialValues({});
+    final storage = await StorageService.create();
+    final service = ParableService(storage, null, true);
+
+    final cacheDir = await service.getAudioCacheDirForTesting();
+    // Budget = 200 bytes. Three files at 100 each = 300 total → over budget.
+    ParableService.setAudioCacheBudgetForTesting(200);
+
+    final now = DateTime.now();
+    // Favorited story + reflection, both oldest mtime (most evictable
+    // candidates absent protection).
+    final favStory = await _writeCachedFile(
+      cacheDir,
+      _favoritedAudioPath,
+      sizeBytes: 100,
+      mtime: now.subtract(const Duration(hours: 10)),
+    );
+    final favReflection = await _writeCachedFile(
+      cacheDir,
+      _favoritedReflectionPath,
+      sizeBytes: 100,
+      mtime: now.subtract(const Duration(hours: 9)),
+    );
+    // Non-favorited file with the newest mtime — would normally be
+    // preserved by mtime alone, but should be evicted here because the
+    // favorited pair is protected.
+    final other = await _writeCachedFile(
+      cacheDir,
+      _otherAudioPath1,
+      sizeBytes: 100,
+      mtime: now.subtract(const Duration(hours: 1)),
+    );
+
+    await _addFavorite(storage, _favoritedStoryId);
+    await service.evictIfOverBudgetForTesting();
+
+    expect(await favStory.exists(), isTrue,
+        reason: 'favorited story audio must never be evicted');
+    expect(await favReflection.exists(), isTrue,
+        reason: 'favorited reflection audio must never be evicted (Slice 5)');
+    expect(await other.exists(), isFalse,
+        reason: 'non-favorited file must be evicted instead');
   });
 }
