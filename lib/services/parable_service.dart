@@ -27,6 +27,11 @@ enum AudioResolveError {
   remoteNotFound,
 }
 
+/// Slice 4: which audio asset the three-tier resolver is loading.
+/// Threaded into the `audio_source` telemetry event so consumers can
+/// distinguish story playback from reflection playback.
+enum AudioKind { story, reflection }
+
 /// Parable Service - handles parable selection, generation, and management
 /// Based on SPEC.md Features #4, #6, #14, #15
 class ParableService {
@@ -895,18 +900,61 @@ class ParableService {
     return null;
   }
 
+  /// Slice 4: resolve a parable's reflection audio file with the same
+  /// platform semantics as [getAudioFile]:
+  /// - Android: cache → bundled asset → R2 download (via [_resolveByPath]).
+  /// - iOS: bundled-only, mirroring [_getAudioFileFromAssets].
+  /// - Other platforms (desktop/test): asset-mode when [_useAssets], else
+  ///   the legacy docs-dir fallback.
+  ///
+  /// Returns null when the parable has no `reflectionAudioPath` declared
+  /// or when the platform-specific cascade fails to produce a file —
+  /// callers surface the "Connect to play" state in the UI.
+  Future<File?> getReflectionAudioFile(Parable parable) async {
+    if (parable.reflectionAudioPath == null) return null;
+
+    if (Platform.isIOS) {
+      return _getAudioFromAssetsByPath(parable.reflectionAudioPath!);
+    }
+
+    if (Platform.isAndroid) {
+      return _resolveByPath(
+        parable.reflectionAudioPath!,
+        storyId: parable.storyId,
+        lengthBucket: parable.lengthBucket.name,
+        kind: AudioKind.reflection,
+      );
+    }
+
+    // Other platforms (desktop/test): preserve story-audio parity.
+    if (_useAssets) {
+      return _getAudioFromAssetsByPath(parable.reflectionAudioPath!);
+    }
+    final dir = await _getParableLibraryDir();
+    final reflectionFile = File('${dir.path}/${parable.reflectionAudioPath}');
+    if (await reflectionFile.exists()) return reflectionFile;
+    return null;
+  }
+
   /// iOS / asset-mode helper: copy bundled asset to temp dir for just_audio.
   @visibleForTesting
   Future<File?> getAudioFileFromAssetsForTesting(Parable parable) =>
       _getAudioFileFromAssets(parable);
 
-  Future<File?> _getAudioFileFromAssets(Parable parable) async {
-    if (parable.audioFilePath == null) return null;
+  Future<File?> _getAudioFileFromAssets(Parable parable) {
+    if (parable.audioFilePath == null) return Future.value(null);
+    return _getAudioFromAssetsByPath(parable.audioFilePath!);
+  }
+
+  /// Slice 4: shared assets→temp helper. Story audio uses this via
+  /// [_getAudioFileFromAssets]; reflection audio (iOS) uses it via
+  /// [getReflectionAudioFile].
+  Future<File?> _getAudioFromAssetsByPath(String relativePath) async {
     try {
       final audioData =
-          await rootBundle.load('assets/stories/${parable.audioFilePath}');
+          await rootBundle.load('assets/stories/$relativePath');
       final tempDir = await getTemporaryDirectory();
-      final tempFile = File('${tempDir.path}/${parable.audioFilePath}');
+      final tempFile = File('${tempDir.path}/$relativePath');
       await tempFile.parent.create(recursive: true);
       await tempFile.writeAsBytes(audioData.buffer.asUint8List());
       debugPrint('Copied audio from assets to temp: ${tempFile.path}');
@@ -926,14 +974,28 @@ class ParableService {
   }) =>
       _getAudioFileAndroid(parable, onProgress: onProgress);
 
+  /// Test-only entry point for Android reflection resolution. Mirrors
+  /// [getAudioFileAndroidForTesting]; bypasses the [Platform.isAndroid]
+  /// check in [getReflectionAudioFile] so the cascade is exercised in
+  /// `flutter test` (where Platform reports the host).
+  @visibleForTesting
+  Future<File?> getReflectionAudioFileAndroidForTesting(Parable parable) {
+    if (parable.reflectionAudioPath == null) return Future.value(null);
+    return _resolveByPath(
+      parable.reflectionAudioPath!,
+      storyId: parable.storyId,
+      lengthBucket: parable.lengthBucket.name,
+      kind: AudioKind.reflection,
+    );
+  }
+
   /// Test-only accessor for the Android cache directory.
   @visibleForTesting
   Future<Directory> getAudioCacheDirForTesting() => _getAudioCacheDir();
 
   /// Android helper: thin wrapper around [_resolveByPath] (Slice 3
   /// pure-refactor). The cascade itself lives in [_resolveByPath] so
-  /// Slice 4 can share it with reflection audio without duplicating
-  /// any tier logic.
+  /// Slice 4 shares it with reflection audio via [getReflectionAudioFile].
   Future<File?> _getAudioFileAndroid(
     Parable parable, {
     void Function(double progress)? onProgress,
@@ -942,37 +1004,40 @@ class ParableService {
       parable.audioFilePath!,
       storyId: parable.storyId,
       lengthBucket: parable.lengthBucket.name,
+      kind: AudioKind.story,
       onProgress: onProgress,
     );
   }
 
   /// Test-only entry point for direct three-tier resolution by path.
-  /// Lets Slice 3's parity test compare wrapper vs helper for the same
-  /// inputs. Production callers go through [_getAudioFileAndroid].
+  /// Lets the parity test compare wrapper vs helper for the same
+  /// inputs. Production callers go through [_getAudioFileAndroid] or
+  /// [getReflectionAudioFile].
   @visibleForTesting
   Future<File?> resolveByPathForTesting(
     String relativePath, {
     required String storyId,
     required String lengthBucket,
+    required AudioKind kind,
     void Function(double progress)? onProgress,
   }) =>
       _resolveByPath(
         relativePath,
         storyId: storyId,
         lengthBucket: lengthBucket,
+        kind: kind,
         onProgress: onProgress,
       );
 
   /// Three-tier audio resolver (Android): cache → bundled asset → R2
-  /// download. Behavior is byte-identical to the prior in-place
-  /// implementation in [_getAudioFileAndroid]; the only diff is that
-  /// `relativePath`, `storyId`, and `lengthBucket` arrive as parameters
-  /// rather than off a [Parable], so the cascade can be reused by
-  /// reflection audio in Slice 4.
+  /// download. Identical to the Slice 3 implementation except each
+  /// `audio_source` event now carries `kind: story | reflection` so
+  /// consumers can distinguish which asset was loaded.
   Future<File?> _resolveByPath(
     String relativePath, {
     required String storyId,
     required String lengthBucket,
+    required AudioKind kind,
     void Function(double progress)? onProgress,
   }) async {
     _lastAudioError = AudioResolveError.none;
@@ -988,7 +1053,8 @@ class ParableService {
       } catch (_) {/* mtime touch is best-effort */}
       _currentAudioRelativePath = relativePath;
       logEvent('story_cache_hit', {'story_id': storyId});
-      logEvent('audio_source', {'source': 'cache', 'story_id': storyId});
+      logEvent('audio_source',
+          {'source': 'cache', 'story_id': storyId, 'kind': kind.name});
       return cachedFile;
     }
 
@@ -999,7 +1065,8 @@ class ParableService {
       await cachedFile.parent.create(recursive: true);
       await cachedFile.writeAsBytes(audioData.buffer.asUint8List());
       _currentAudioRelativePath = relativePath;
-      logEvent('audio_source', {'source': 'asset', 'story_id': storyId});
+      logEvent('audio_source',
+          {'source': 'asset', 'story_id': storyId, 'kind': kind.name});
       return cachedFile;
     } catch (_) {
       // Not bundled — fall through to R2 download.
@@ -1014,7 +1081,8 @@ class ParableService {
     );
     if (downloaded != null) {
       _currentAudioRelativePath = relativePath;
-      logEvent('audio_source', {'source': 'r2', 'story_id': storyId});
+      logEvent('audio_source',
+          {'source': 'r2', 'story_id': storyId, 'kind': kind.name});
     }
     return downloaded;
   }

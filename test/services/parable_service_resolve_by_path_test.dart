@@ -7,6 +7,7 @@
 
 import 'dart:io';
 
+import 'package:bible_pal/services/parable_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '_cloud_audio_test_helpers.dart';
@@ -31,6 +32,7 @@ void main() {
       parable.audioFilePath!,
       storyId: parable.storyId,
       lengthBucket: parable.lengthBucket.name,
+      kind: AudioKind.story,
     );
 
     expect(viaWrapper, isNotNull);

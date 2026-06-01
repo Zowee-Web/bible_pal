@@ -79,6 +79,11 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
   bool _isReflectionPlaying = false;
   bool _reflectionAudioPlayed = false;
   bool _hasReflectionAudio = false;
+  // Slice 4: surfaced when the reflection resolver returns null
+  // (e.g., offline + no cached reflection audio and bundled lookup
+  // failed). UI renders a minimal "Connect to play" label instead of
+  // the play button.
+  bool _reflectionUnavailable = false;
   final ReflectionService _reflectionService = ReflectionService();
 
   // Separate audio player for reflection (to not interfere with story player)
@@ -880,28 +885,48 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
     }
   }
 
-  /// Play pre-generated reflection audio from local assets
+  /// Play pre-generated reflection audio. Slice 4: routes through
+  /// [ParableService.getReflectionAudioFile] so reflection audio
+  /// flows through the same cache → bundled → R2 cascade as story
+  /// audio on Android. Surfaces "Connect to play" when the resolver
+  /// returns null (e.g., offline + nothing cached + nothing bundled).
   Future<void> _playReflectionAudio() async {
     final playerState = ref.read(parablePlayerProvider);
-    if (playerState.currentParable == null) return;
-
-    final reflectionPath = _getReflectionAudioPath(playerState.currentParable!);
-    if (reflectionPath == null) return;
+    final parable = playerState.currentParable;
+    if (parable == null) return;
+    if (_getReflectionAudioPath(parable) == null) return;
 
     try {
-      // Initialize reflection player if needed
+      final parableService = await ref.read(parableServiceProvider.future);
+      final file = await parableService.getReflectionAudioFile(parable);
+      // User may have exited the player while the resolver was in
+      // flight — drop the result silently.
+      if (!mounted) return;
+
+      if (file == null) {
+        logEvent('reflection_unavailable', {'story_id': parable.storyId});
+        setState(() {
+          _isReflectionPlaying = false;
+          _reflectionUnavailable = true;
+        });
+        return;
+      }
+
       _reflectionPlayer ??= AudioPlayer();
+      await _reflectionPlayer!.setFilePath(file.path);
+      // Second mounted guard: just_audio's setFilePath is awaitable
+      // and dispose() may have run during the load.
+      if (!mounted) {
+        await _reflectionPlayer?.stop();
+        return;
+      }
 
-      // Load from assets
-      await _reflectionPlayer!.setAsset('assets/stories/$reflectionPath');
-
-      logEvent('reflection_start', {
-        'story_id': playerState.currentParable!.storyId,
-      });
+      logEvent('reflection_start', {'story_id': parable.storyId});
 
       setState(() {
         _isReflectionPlaying = true;
         _reflectionAudioPlayed = true;
+        _reflectionUnavailable = false;
       });
 
       await _reflectionPlayer!.play();
@@ -915,10 +940,11 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
         }
       });
     } catch (e) {
+      if (!mounted) return;
       debugPrint('[ReflectionAudio] Error playing: $e');
 
       logEvent('reflection_fail', {
-        'story_id': playerState.currentParable!.storyId,
+        'story_id': parable.storyId,
         'error_type': e.runtimeType.toString(),
       }, level: LogLevel.error);
 
@@ -2078,8 +2104,22 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // Play/Stop/Replay button — glass style
-        if (_isReflectionPlaying)
+        // Play/Stop/Replay button — glass style.
+        // Slice 4: when the resolver could not produce a file (offline,
+        // remote-only), render a minimal "Connect to play" label instead
+        // of the play button.
+        if (_reflectionUnavailable)
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+            child: Text(
+              'Connect to play',
+              style: TextStyle(
+                color: Colors.white70,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          )
+        else if (_isReflectionPlaying)
           GlassButton.icon(
             icon: Icons.stop,
             label: 'Stop',
