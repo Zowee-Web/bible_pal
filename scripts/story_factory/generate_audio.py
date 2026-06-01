@@ -156,6 +156,8 @@ def main() -> int:
                              "text-only Full/Long batches.")
     parser.add_argument("--skip-reflection", action="store_true",
                         help="Skip reflection audio generation.")
+    parser.add_argument("--reflection-only", action="store_true",
+                        help="Render only the reflection audio; skip all story lengths.")
     args = parser.parse_args()
 
     sid = args.story_id
@@ -212,7 +214,7 @@ def main() -> int:
     # Build list of text files -> audio files.
     # WEB mp3s keep the canonical short-form name; KJV mp3s carry the lane suffix
     # so dual-lane stories produce both files without overwriting each other.
-    requested_lengths = [l.strip() for l in args.lengths.split(",") if l.strip()]
+    requested_lengths = [] if args.reflection_only else [l.strip() for l in args.lengths.split(",") if l.strip()]
     audio_jobs = []
     for length in requested_lengths:
         txt_name = f"story_{sid}_{mode}_{lane}_{length}.txt"
