@@ -70,5 +70,10 @@
     "secret_shame",
     "seen_and_known"
   ],
-  "reflectionText": "Jesus sat by the well at the sixth hour. The woman came to draw water. He said, \"Give me a drink.\"\n\nShe said, \"I have no husband.\" He said, \"You have had five husbands, and the one you now have is not your husband.\"\n\nShe left the water jar on the stone rim and went into the city. \"Come, see a man who told me everything I ever did.\""
+  "reflectionText": "Jesus sat by the well at the sixth hour. The woman came to draw water. He said, \"Give me a drink.\"\n\nShe said, \"I have no husband.\" He said, \"You have had five husbands, and the one you now have is not your husband.\"\n\nShe left the water jar on the stone rim and went into the city. \"Come, see a man who told me everything I ever did.\"",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

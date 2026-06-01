@@ -55,5 +55,10 @@
   "reflectionText": "What is something you feel really thankful for today?",
   "timelineEra": "wisdom",
   "primaryCharacterId": "job",
-  "primaryCharacterDisplayName": "Job"
+  "primaryCharacterDisplayName": "Job",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

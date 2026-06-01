@@ -48,5 +48,10 @@
   "reflectionText": "The people were tired and hungry, and they did not know where their next meal would come from. But God sent food right to the ground where they camped. Every person had just exactly enough — not too much and not too little.\n\nWhen you feel tired or worried, what is something that helps you feel taken care of?",
   "timelineEra": "exodus",
   "primaryCharacterId": "moses",
-  "primaryCharacterDisplayName": "Moses"
+  "primaryCharacterDisplayName": "Moses",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

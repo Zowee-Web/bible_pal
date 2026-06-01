@@ -48,5 +48,10 @@
   "reflectionText": "Nehemiah was afraid to ask the king but he asked anyway. Have you ever been scared to ask for something important — and then found out the answer was yes?",
   "timelineEra": "return",
   "primaryCharacterId": "nehemiah",
-  "primaryCharacterDisplayName": "Nehemiah"
+  "primaryCharacterDisplayName": "Nehemiah",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

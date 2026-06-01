@@ -48,5 +48,10 @@
   "reflectionText": "The potter didn't throw the clay away when it broke — he made it into something new. Have you ever felt broken and then been surprised that something good still came from it?",
   "timelineEra": "prophets",
   "primaryCharacterId": "jeremiah",
-  "primaryCharacterDisplayName": "Jeremiah"
+  "primaryCharacterDisplayName": "Jeremiah",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

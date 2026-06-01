@@ -55,5 +55,10 @@
   "reflectionText": "What do you think it felt like for Elijah to stand all by himself and trust that God would answer him?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "elijah",
-  "primaryCharacterDisplayName": "Elijah"
+  "primaryCharacterDisplayName": "Elijah",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

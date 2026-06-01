@@ -48,5 +48,10 @@
   "reflectionText": "God told Solomon he could have anything he wanted. Solomon did not ask for toys or money or to be the strongest. He asked for wisdom — the ability to understand what is right. And God was so happy with that choice that he gave Solomon even more than he asked for.\n\nIf God said you could ask for one thing, what would you ask for?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "solomon",
-  "primaryCharacterDisplayName": "Solomon"
+  "primaryCharacterDisplayName": "Solomon",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }
