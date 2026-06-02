@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:bible_pal/providers/parable_player_notifier.dart';
@@ -586,25 +585,23 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
     super.dispose();
   }
 
-  /// Check if pre-generated reflection audio exists for current parable
+  /// Update reflection button visibility from the manifest's declaration.
+  ///
+  /// Trusts `parable.reflectionAudioPath` as the source of truth. Previously
+  /// this used `rootBundle.load()` which only checks bundled assets (Tier 2),
+  /// hiding the button for any story whose reflection audio is served from
+  /// R2 or local cache. The actual playback path is three-tier
+  /// (cache → bundled → R2) via `ParableService.getReflectionAudioFile`, and
+  /// surfaces `reflection_unavailable` if every tier misses — so the button
+  /// shows whenever the manifest declares a reflection, and the resolver
+  /// decides at play time.
   Future<void> _checkReflectionAudioExists() async {
     final playerState = ref.read(parablePlayerProvider);
-    if (playerState.currentParable == null) return;
-
-    final reflectionPath = _getReflectionAudioPath(playerState.currentParable!);
-    if (reflectionPath == null) return;
-
-    try {
-      // Try to load the asset to check if it exists
-      await rootBundle.load('assets/stories/$reflectionPath');
-      if (mounted) {
-        setState(() => _hasReflectionAudio = true);
-      }
-    } catch (_) {
-      // Asset doesn't exist - reflection audio not available
-      if (mounted) {
-        setState(() => _hasReflectionAudio = false);
-      }
+    final parable = playerState.currentParable;
+    if (parable == null) return;
+    final reflectionPath = _getReflectionAudioPath(parable);
+    if (mounted) {
+      setState(() => _hasReflectionAudio = reflectionPath != null);
     }
   }
 
