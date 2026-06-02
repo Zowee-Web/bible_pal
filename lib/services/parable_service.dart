@@ -869,24 +869,18 @@ class ParableService {
   /// Get audio file for a parable.
   ///
   /// Platform-specific delivery (SPEC Feature 27, Cloud Foundation v1):
-  /// - iOS: fully bundled assets (no cache, no network)
-  /// - Android: cache → bundled asset → R2 download
+  /// - iOS / Android: cache → bundled asset → R2 download (three-tier resolver).
+  /// - Other platforms (desktop/test): asset-mode when [_useAssets],
+  ///   else legacy docs-dir fallback.
   ///
   /// [onProgress] is invoked during R2 download with values in [0.0, 1.0].
-  /// Only Android passes a non-null callback.
   Future<File?> getAudioFile(
     Parable parable, {
     void Function(double progress)? onProgress,
   }) async {
     if (parable.audioFilePath == null) return null;
 
-    // iOS: existing fully-bundled behavior. No cache, no network.
-    if (Platform.isIOS) {
-      return _getAudioFileFromAssets(parable);
-    }
-
-    // Android: cache → bundled asset → R2.
-    if (Platform.isAndroid) {
+    if (Platform.isAndroid || Platform.isIOS) {
       return _getAudioFileAndroid(parable, onProgress: onProgress);
     }
 
@@ -902,8 +896,7 @@ class ParableService {
 
   /// Slice 4: resolve a parable's reflection audio file with the same
   /// platform semantics as [getAudioFile]:
-  /// - Android: cache → bundled asset → R2 download (via [_resolveByPath]).
-  /// - iOS: bundled-only, mirroring [_getAudioFileFromAssets].
+  /// - iOS / Android: cache → bundled asset → R2 download (via [_resolveByPath]).
   /// - Other platforms (desktop/test): asset-mode when [_useAssets], else
   ///   the legacy docs-dir fallback.
   ///
@@ -913,11 +906,7 @@ class ParableService {
   Future<File?> getReflectionAudioFile(Parable parable) async {
     if (parable.reflectionAudioPath == null) return null;
 
-    if (Platform.isIOS) {
-      return _getAudioFromAssetsByPath(parable.reflectionAudioPath!);
-    }
-
-    if (Platform.isAndroid) {
+    if (Platform.isAndroid || Platform.isIOS) {
       return _resolveByPath(
         parable.reflectionAudioPath!,
         storyId: parable.storyId,
@@ -936,7 +925,8 @@ class ParableService {
     return null;
   }
 
-  /// iOS / asset-mode helper: copy bundled asset to temp dir for just_audio.
+  /// Desktop / asset-mode helper: copy bundled asset to temp dir for just_audio.
+  /// Used by the desktop/test branch of [getAudioFile] when [_useAssets] is set.
   @visibleForTesting
   Future<File?> getAudioFileFromAssetsForTesting(Parable parable) =>
       _getAudioFileFromAssets(parable);
@@ -946,9 +936,8 @@ class ParableService {
     return _getAudioFromAssetsByPath(parable.audioFilePath!);
   }
 
-  /// Slice 4: shared assets→temp helper. Story audio uses this via
-  /// [_getAudioFileFromAssets]; reflection audio (iOS) uses it via
-  /// [getReflectionAudioFile].
+  /// Shared assets→temp helper for the desktop/test branch of
+  /// [getAudioFile] and [getReflectionAudioFile].
   Future<File?> _getAudioFromAssetsByPath(String relativePath) async {
     try {
       final audioData =
@@ -965,8 +954,9 @@ class ParableService {
     }
   }
 
-  /// Test-only entry point for the Android three-tier resolution path.
-  /// In production this is reached via [getAudioFile] when Platform.isAndroid.
+  /// Test-only entry point for the three-tier resolution path.
+  /// In production this is reached via [getAudioFile] on Android and iOS.
+  /// Method name retained for test-history continuity.
   @visibleForTesting
   Future<File?> getAudioFileAndroidForTesting(
     Parable parable, {
@@ -974,10 +964,10 @@ class ParableService {
   }) =>
       _getAudioFileAndroid(parable, onProgress: onProgress);
 
-  /// Test-only entry point for Android reflection resolution. Mirrors
-  /// [getAudioFileAndroidForTesting]; bypasses the [Platform.isAndroid]
-  /// check in [getReflectionAudioFile] so the cascade is exercised in
-  /// `flutter test` (where Platform reports the host).
+  /// Test-only entry point for reflection three-tier resolution. Mirrors
+  /// [getAudioFileAndroidForTesting]; bypasses the platform check in
+  /// [getReflectionAudioFile] so the cascade is exercised in `flutter test`
+  /// (where Platform reports the host).
   @visibleForTesting
   Future<File?> getReflectionAudioFileAndroidForTesting(Parable parable) {
     if (parable.reflectionAudioPath == null) return Future.value(null);

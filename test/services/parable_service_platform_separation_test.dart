@@ -1,9 +1,8 @@
-// Cloud Foundation v1 — iOS never enters Android download/cache path.
-// SPEC Feature 27, Plan: Test #6.
-//
-// Verifies the platform branch in ParableService.getAudioFile() by checking
-// that the iOS helper (the only code path on Platform.isIOS) is purely
-// asset-based: no cache directory writes, no HTTP calls.
+// Asset-loading helper contract — verifies that the helper does not create
+// or read the cache directory used by the three-tier resolver. After Step 1
+// (iOS R2 resolver parity) the helper is no longer the iOS production path,
+// but it is still used by the desktop/test branch of getAudioFile, so its
+// no-cache-side-effects contract is documented here.
 
 import 'dart:io';
 
@@ -13,13 +12,13 @@ import '_cloud_audio_test_helpers.dart';
 
 void main() {
   test(
-    'iOS asset helper does not create or read the Android audio_cache dir',
+    'asset helper does not create or read the audio_cache directory',
     () async {
       final ctx = await setupCloudAudioTest(audioBaseUrl: 'http://0.0.0.0:1');
       final parable = testParable();
 
       // Snapshot the documents dir BEFORE the call to detect any cache
-      // directory creation by the iOS helper.
+      // directory creation by the asset helper.
       final docsBefore = Directory('${ctx.root.path}/documents');
       final cacheBefore = Directory('${docsBefore.path}/audio_cache');
       expect(await cacheBefore.exists(), isFalse,
@@ -30,7 +29,7 @@ void main() {
       expect(
         await cacheBefore.exists(),
         isFalse,
-        reason: 'iOS helper must NOT create the Android audio_cache directory',
+        reason: 'asset helper must NOT create the audio_cache directory',
       );
     },
   );
