@@ -163,11 +163,23 @@ audio_set = set(pick["traditional"])  # stories with bundled audio + text
 def is_kjv_audio(fn):
     return fn.endswith(".mp3") and ("_kjv_" in fn or "reflection_kjv" in fn)
 
-# Load manifest and apply length/translation filters
+# Load manifest (full 1252-entry corpus). Step 3: the FULL manifest is bundled
+# verbatim so first-launch mood selection has the complete pool. Audio is still
+# pruned to the curated set below.
 with open(os.path.join(SRC_TEXT, "manifest.json")) as f:
     manifest = json.load(f)
 
-# Group surviving entries by (kind, sid)
+# Compute all unique story IDs in the full manifest. Used by text staging and
+# pubspec rewrite so every manifest entry has its text/scripture/meta files in
+# the bundled tree (Step 3 — fixes catalog-drift mood-selection failure).
+all_manifest_sids = set()
+for p in manifest["parables"]:
+    afp = p.get("audioFilePath", "")
+    parts = afp.split("/")
+    if len(parts) >= 3 and parts[0] == "traditional":
+        all_manifest_sids.add(parts[1])
+
+# Group surviving entries by (kind, sid) — used for the AUDIO pick (R2 audit).
 entries_by_story = {}
 for p in manifest["parables"]:
     afp = p.get("audioFilePath", "")
@@ -233,24 +245,29 @@ for (kind, sid), entries in entries_by_story.items():
 
 picked_stories = audio_set | text_only_set
 
-# Stage text/meta/scripture for ALL picked stories
-for sid in picked_stories:
+# Stage text/meta/scripture for EVERY story in the manifest (Step 3 — full
+# text coverage so mood selection on the full manifest never surfaces "No
+# story text available"). Long text variants are bundled too because long
+# entries appear in the staged manifest.
+for sid in all_manifest_sids:
     src_text_dir = os.path.join(SRC_TEXT, "traditional", sid)
     dst_dir = os.path.join(DST, "traditional", sid)
-    os.makedirs(dst_dir, exist_ok=True)
     if os.path.isdir(src_text_dir):
+        os.makedirs(dst_dir, exist_ok=True)
         for fn in os.listdir(src_text_dir):
             if fn.endswith(".mp3"):
                 continue
-            if "_long" in fn:
-                continue
             shutil.copy2(os.path.join(src_text_dir, fn), os.path.join(dst_dir, fn))
 
-# Stage audio for audio_set only (WEB short/full/reflection from compressed mirror)
+# Stage audio for audio_set only (WEB short/full/reflection from compressed
+# mirror). Step 3: create dst_dir here too — text loop only visits sids
+# present in the manifest, so an audio_set sid that's absent from the
+# manifest (pick-file / manifest mismatch) needs its own dir creation.
 for sid in audio_set:
     src_audio_dir = os.path.join(SRC_AUDIO, "traditional", sid)
     dst_dir = os.path.join(DST, "traditional", sid)
     if os.path.isdir(src_audio_dir):
+        os.makedirs(dst_dir, exist_ok=True)
         for fn in os.listdir(src_audio_dir):
             if not fn.endswith(".mp3"):
                 continue
@@ -269,35 +286,42 @@ for fn in ["scripture_anchor_registry.json",
     if os.path.exists(src):
         shutil.copy2(src, os.path.join(DST, fn))
 
-# Write filtered manifest
-manifest["parables"] = final_entries
-with open(os.path.join(DST, "manifest.json"), "w") as f:
-    json.dump(manifest, f, indent=2)
+# Write the FULL manifest verbatim (Step 3). final_entries is kept for the
+# diagnostics print below but no longer mutates the bundled manifest.
+shutil.copy2(os.path.join(SRC_TEXT, "manifest.json"),
+             os.path.join(DST, "manifest.json"))
 
-# Filter jesus_life_index by final picked set
+# Filter jesus_life_index by manifest presence (Step 3 — consistent with
+# expanded manifest staging so the path UI references stories actually in
+# the bundled catalog).
 with open(os.path.join(SRC_TEXT, "jesus_life_index.json")) as f:
     jli = json.load(f)
-def story_in_pick(story_id):
+def story_in_manifest(story_id):
     parts = story_id.split("_")
     if len(parts) < 4:
         return False
-    return parts[1] in picked_stories
-jli["sequence"] = [s for s in jli.get("sequence", []) if story_in_pick(s)]
+    return parts[1] in all_manifest_sids
+jli["sequence"] = [s for s in jli.get("sequence", []) if story_in_manifest(s)]
 with open(os.path.join(DST, "jesus_life_index.json"), "w") as f:
     json.dump(jli, f, indent=2)
 
-# Persist picked sets for pubspec generation pass
+# Persist picked + manifest sets for pubspec generation pass (Step 3 adds
+# manifest_sids so pubspec lists every story dir whose ID is in the staged
+# manifest, not just the audio-verified subset).
 with open(STATE_FILE, "w") as f:
     json.dump({
         "audio_bundled": sorted(audio_set),
         "text_only": sorted(text_only_set),
         "all": sorted(picked_stories),
+        "manifest_sids": sorted(all_manifest_sids),
     }, f, indent=2)
 
 print(f"  Audio-bundled stories:           {len(audio_set)}")
 print(f"  Text-only (R2-served) stories:   {len(text_only_set)}")
-print(f"  Total launch corpus:             {len(picked_stories)}")
-print(f"  Manifest variants:               {len(final_entries)}")
+print(f"  Audio launch corpus:             {len(picked_stories)}")
+print(f"  Audio-verified manifest entries: {len(final_entries)}")
+print(f"  Full bundled manifest entries:   {len(manifest['parables'])}")
+print(f"  All stories in manifest:         {len(all_manifest_sids)}")
 print(f"  Jesus path entries:              {len(jli['sequence'])}")
 PYEOF
 
@@ -306,6 +330,20 @@ staged_audio_mb=$(find "$STAGE_DIR" -name "*.mp3" -exec du -ck {} + | tail -1 | 
 staged_text_kb=$(find "$STAGE_DIR" \( -name "*.txt" -o -name "*.json" \) -exec du -ck {} + | tail -1 | awk '{print $1}')
 echo "  Staged audio: ${staged_audio_mb} MB"
 echo "  Staged text + meta: ${staged_text_kb} KB"
+
+# Step 3 — text coverage check: every story in the staged manifest must
+# have its referenced textFilePath present in the staged tree.
+missing_text=$(python3 -c "
+import json, os
+m = json.load(open('$STAGE_DIR/manifest.json'))
+missing = [p['textFilePath'] for p in m['parables']
+           if p.get('textFilePath') and not os.path.exists(os.path.join('$STAGE_DIR', p['textFilePath']))]
+print(len(missing))
+")
+echo "  Text coverage check: $missing_text manifest entries missing textFilePath in staged tree"
+if [ "$missing_text" -gt 0 ]; then
+  echo "  WARNING: text coverage incomplete — investigate before shipping"
+fi
 
 # ── Generate slim pubspec.yaml ───────────────────────────────────────
 echo "Generating Play pubspec.yaml..."
@@ -328,9 +366,10 @@ line_re = re.compile(
     re.MULTILINE,
 )
 
-# List every picked story dir (audio-bundled + text-only). Pubspec is
-# directory-scoped, so audio absence in a text-only dir is what makes it text-only.
-new_lines = [f"    - assets/stories/traditional/{sid}/\n" for sid in state["all"]]
+# List every story dir whose ID is in the staged manifest (Step 3). Audio
+# absence in a dir is what makes it text-only at runtime; the three-tier
+# resolver handles missing audio via R2 / null-return.
+new_lines = [f"    - assets/stories/traditional/{sid}/\n" for sid in state["manifest_sids"]]
 replacement = "".join(new_lines)
 
 match = line_re.search(src)
@@ -347,6 +386,25 @@ trad_count = new_src.count("assets/stories/traditional/")
 crea_count = new_src.count("assets/stories/creative/")
 print(f"  Pubspec rewritten: {trad_count} traditional + {crea_count} creative dir refs")
 PYEOF
+
+# Step 3 — pubspec coverage check: pubspec must declare every story dir
+# whose ID appears in the staged manifest.
+pubspec_dir_count=$(grep -c "^    - assets/stories/traditional/" "$PUBSPEC.play_generated" 2>/dev/null || echo 0)
+unique_sids_in_manifest=$(python3 -c "
+import json
+m = json.load(open('$STAGE_DIR/manifest.json'))
+sids = set()
+for p in m['parables']:
+    afp = p.get('audioFilePath', '')
+    parts = afp.split('/')
+    if len(parts) >= 3 and parts[0] == 'traditional':
+        sids.add(parts[1])
+print(len(sids))
+")
+echo "  Pubspec coverage check: $pubspec_dir_count dirs declared vs $unique_sids_in_manifest unique manifest sids"
+if [ "$pubspec_dir_count" -ne "$unique_sids_in_manifest" ]; then
+  echo "  WARNING: pubspec coverage mismatch — investigate before shipping"
+fi
 
 # ── Swap state in place ──────────────────────────────────────────────
 echo "Swapping state for build..."
