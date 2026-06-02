@@ -38,14 +38,23 @@ PUBSPEC="$PROJECT_ROOT/pubspec.yaml"
 PUBSPEC_BACKUP="$PROJECT_ROOT/pubspec.yaml.devbackup"
 STAGE_DIR="$PROJECT_ROOT/.play_build_stage/stories"
 PICK_FILE="$PROJECT_ROOT/scripts/play_bundle_pick.json"
+LOCK_DIR="$PROJECT_ROOT/.bundle_build.lock.d"
 
 # ── Restore on exit (idempotent) ─────────────────────────────────────
+LOCK_ACQUIRED=false
+
 restore_state() {
   local exit_code=$?
+  # If we did not acquire the lock, another bundle build owns the dev tree.
+  # Backups and stage dirs belong to that process — touch nothing.
+  if [ "$LOCK_ACQUIRED" != "true" ]; then
+    return $exit_code
+  fi
   if $KEEP_AFTER_BUILD && [ "$exit_code" -eq 0 ]; then
     echo ""
     echo "--keep set: leaving staged assets/stories/ and pubspec.yaml in place."
     echo "  Backups: $STORIES_BACKUP, $PAL_AUDIO_BACKUP, $PUBSPEC_BACKUP"
+    rmdir "$LOCK_DIR" 2>/dev/null || true
     return 0
   fi
   if [ -d "$STORIES_BACKUP" ]; then
@@ -64,9 +73,21 @@ restore_state() {
     mv "$PUBSPEC_BACKUP" "$PUBSPEC"
   fi
   rm -rf "$PROJECT_ROOT/.play_build_stage"
+  rmdir "$LOCK_DIR" 2>/dev/null || true
   return $exit_code
 }
 trap restore_state EXIT INT TERM
+
+# ── Cross-platform staging mutex (portable: macOS + Linux) ───────────
+# Atomic mkdir is the portable lock primitive — `flock` is not present in
+# default macOS installs. Released by restore_state on EXIT/INT/TERM.
+if ! mkdir "$LOCK_DIR" 2>/dev/null; then
+  echo "ERROR: another bundle/staging build holds $LOCK_DIR." >&2
+  echo "If you are certain no other build is running, remove the lock with:" >&2
+  echo "  rmdir $LOCK_DIR" >&2
+  exit 1
+fi
+LOCK_ACQUIRED=true
 
 # ── Sanity checks ────────────────────────────────────────────────────
 if [ ! -f "$PICK_FILE" ]; then
@@ -80,6 +101,17 @@ if [ -d "$STORIES_BACKUP" ] || [ -d "$PAL_AUDIO_BACKUP" ] || [ -f "$PUBSPEC_BACK
   echo "  $PAL_AUDIO_BACKUP" >&2
   echo "  $PUBSPEC_BACKUP" >&2
   echo "Inspect, then either restore manually or remove the backups." >&2
+  exit 1
+fi
+# iOS-flavored backups indicate an iOS staging script is mid-flight or
+# crashed without restoring. Refuse to proceed — the dev tree is not ours
+# to mutate until those are resolved.
+if [ -d "$PROJECT_ROOT/assets/stories.iosdevbackup" ] \
+   || [ -d "$PROJECT_ROOT/assets/pal/audio.iosdevbackup" ] \
+   || [ -f "$PROJECT_ROOT/pubspec.yaml.iosdevbackup" ]; then
+  echo "ERROR: iOS-flavored .iosdevbackup markers present." >&2
+  echo "Either an iOS bundle build is mid-flight or it crashed without restoring." >&2
+  echo "Resolve those first before running the Play bundle build." >&2
   exit 1
 fi
 if [ ! -d "$PROJECT_ROOT/assets_audio_compressed/stories" ]; then
