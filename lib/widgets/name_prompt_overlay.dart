@@ -8,19 +8,25 @@ import '../theme/living_sky.dart';
 /// SharedPreferences key — prevents re-showing after skip or submit.
 const kHasSeenNamePromptKey = 'has_seen_name_prompt';
 
-/// Soft, non-blocking name prompt shown after first story completion.
+/// Soft, non-blocking name prompt for the onboarding flow.
 ///
-/// Trigger conditions (checked by caller):
-/// - playbackCompleted == true
-/// - userPreferences.userName is null or empty
-/// - kHasSeenNamePromptKey is false
+/// MUST only be mounted while onboarding is active. The widget is not allowed
+/// to render on the story player, PALs Paths, or any post-onboarding screen.
+/// Callers must gate mounting on `!hasCompletedOnboarding` AND ensure they
+/// are on the onboarding route. [shouldShow] enforces the onboarding gate as
+/// defense-in-depth so a misplaced caller still no-ops.
 class NamePromptOverlay extends ConsumerStatefulWidget {
   final VoidCallback onDismiss;
 
   const NamePromptOverlay({super.key, required this.onDismiss});
 
-  /// Check if the name prompt should be shown.
-  static Future<bool> shouldShow(String? userName) async {
+  /// Returns true only when the prompt is allowed to render:
+  /// onboarding is incomplete, no name is set, and it hasn't been shown yet.
+  static Future<bool> shouldShow({
+    required String? userName,
+    required bool hasCompletedOnboarding,
+  }) async {
+    if (hasCompletedOnboarding) return false;
     if (userName != null && userName.isNotEmpty) return false;
     final sp = await SharedPreferences.getInstance();
     return sp.getBool(kHasSeenNamePromptKey) != true;

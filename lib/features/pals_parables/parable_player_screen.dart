@@ -19,7 +19,6 @@ import '../../core/ambient_sound_type.dart';
 import '../../core/story_length_bucket.dart';
 import '../../widgets/living_sky_background.dart';
 import '../../widgets/scripture_sources_panel.dart';
-import '../../widgets/name_prompt_overlay.dart';
 import '../../widgets/premium_components.dart';
 import '../../theme/living_sky.dart';
 import '../paths/next_in_journey_block.dart';
@@ -114,8 +113,6 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
     final appState = ref.read(appStateProvider).valueOrNull;
     return appState?.userPreferences.bedtimeModeEnabled ?? false;
   }
-
-  bool _showNamePrompt = false;
 
   // One-time arrival animation for the Play button (mood/text/voice entry only).
   AnimationController? _arrivalController;
@@ -620,16 +617,6 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
   }
 
   void _onPlaybackCompleted() async {
-    // Check if we should show the post-first-story name prompt
-    final appState = ref.read(appStateProvider).valueOrNull;
-    if (appState != null) {
-      final userName = appState.userPreferences.userName;
-      final shouldShow = await NamePromptOverlay.shouldShow(userName);
-      if (shouldShow && mounted) {
-        setState(() => _showNamePrompt = true);
-      }
-    }
-
     if (!_reflectionDismissed) {
       setState(() => _showReflection = true);
 
@@ -834,7 +821,6 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
       _reflectionAudioPlayed = false;
       _isReflectionPlaying = false;
       _hasReflectionAudio = false;
-      _showNamePrompt = false;
       _journalSaved = false;
       _journalEditing = false;
       _sleepTimerFired = false;
@@ -1600,20 +1586,6 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
                 child: IgnorePointer(
                   child: Container(
                     color: Colors.black.withOpacity(0.3),
-                  ),
-                ),
-              ),
-            // Post-first-story name prompt
-            if (_showNamePrompt)
-              Positioned(
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: SafeArea(
-                  child: NamePromptOverlay(
-                    onDismiss: () {
-                      if (mounted) setState(() => _showNamePrompt = false);
-                    },
                   ),
                 ),
               ),
