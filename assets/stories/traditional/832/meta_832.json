@@ -26,7 +26,7 @@
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_46",
   "generationContractVersion": "STORY_FACTORY_v2.3",
-  "reflectionQuestion": "Weariness runs deep when the road has been long. Rest is not giving up — it is part of the journey. Even a small pause can restore more than you expect.",
+  "reflectionQuestion": "Weariness runs deep when the road has been long. Rest is not giving up \u2014 it is part of the journey. Even a small pause can restore more than you expect.",
   "files": {
     "short": {
       "storyText": "story_832_traditional_web_short.txt",
@@ -83,5 +83,6 @@
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
-  }
+  },
+  "bibleOrderIndex": 19095
 }

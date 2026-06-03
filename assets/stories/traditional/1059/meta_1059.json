@@ -16,7 +16,7 @@
   "voiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
-  "reflectionQuestion": "Nehemiah was afraid to ask the king but he asked anyway. Have you ever been scared to ask for something important — and then found out the answer was yes?",
+  "reflectionQuestion": "Nehemiah was afraid to ask the king but he asked anyway. Have you ever been scared to ask for something important \u2014 and then found out the answer was yes?",
   "title": "Nehemiah Rebuilds the Wall",
   "files": {
     "short": {
@@ -45,7 +45,7 @@
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
   "scriptureAnchor": "Nehemiah 2:1-18",
   "bibleStoryKey": "nehemiah_rebuilds_the_wall",
-  "reflectionText": "Nehemiah was afraid to ask the king but he asked anyway. Have you ever been scared to ask for something important — and then found out the answer was yes?",
+  "reflectionText": "Nehemiah was afraid to ask the king but he asked anyway. Have you ever been scared to ask for something important \u2014 and then found out the answer was yes?",
   "timelineEra": "return",
   "primaryCharacterId": "nehemiah",
   "primaryCharacterDisplayName": "Nehemiah",
@@ -53,5 +53,6 @@
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
-  }
+  },
+  "bibleOrderIndex": 3531
 }

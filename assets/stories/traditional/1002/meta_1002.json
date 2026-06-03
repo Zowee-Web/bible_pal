@@ -40,7 +40,7 @@
   "scriptureAnchor": "Daniel 3:13-27",
   "bibleStoryKey": "fiery_furnace",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "reflectionText": "A furnace roars so hot it consumes the very soldiers who stoke its flames. And yet, inside that blaze, three figures walk unbound — and a fourth walks with them.\n\nSomething worth lingering over lives in that detail about the ropes. Shadrach, Meshach, and Abednego entered the fire bound. The flames touched nothing of them — not hair, not garment, not skin — yet the cords that held them fell away. The only thing the fire consumed was what had restrained them.\n\nThere are seasons when the heat of circumstance feels unbearable, when the pressure to bend toward what the world demands grows loud and insistent. And sometimes faithfulness does not remove a soul from the furnace. Sometimes the deliverance happens inside it.\n\nThe king himself looked in and saw not three men but four, and the form of the fourth was \"like the Son of God.\" The presence did not arrive after the trial ended. It was already there, walking in the midst of the flames.\n\nPerhaps the most quietly astonishing part is what the fire left behind — or rather, what it did not. Not even the smell of smoke clung to them when they emerged.",
+  "reflectionText": "A furnace roars so hot it consumes the very soldiers who stoke its flames. And yet, inside that blaze, three figures walk unbound \u2014 and a fourth walks with them.\n\nSomething worth lingering over lives in that detail about the ropes. Shadrach, Meshach, and Abednego entered the fire bound. The flames touched nothing of them \u2014 not hair, not garment, not skin \u2014 yet the cords that held them fell away. The only thing the fire consumed was what had restrained them.\n\nThere are seasons when the heat of circumstance feels unbearable, when the pressure to bend toward what the world demands grows loud and insistent. And sometimes faithfulness does not remove a soul from the furnace. Sometimes the deliverance happens inside it.\n\nThe king himself looked in and saw not three men but four, and the form of the fourth was \"like the Son of God.\" The presence did not arrive after the trial ended. It was already there, walking in the midst of the flames.\n\nPerhaps the most quietly astonishing part is what the fire left behind \u2014 or rather, what it did not. Not even the smell of smoke clung to them when they emerged.",
   "timelineEra": "exile",
   "primaryCharacterId": "shadrach",
   "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
@@ -48,5 +48,6 @@
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
-  }
+  },
+  "bibleOrderIndex": 4871
 }

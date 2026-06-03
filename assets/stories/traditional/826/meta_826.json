@@ -84,5 +84,6 @@
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
-  }
+  },
+  "bibleOrderIndex": 18255
 }

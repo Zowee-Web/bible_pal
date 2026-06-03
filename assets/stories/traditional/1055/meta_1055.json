@@ -17,7 +17,7 @@
   "voiceKey": "VOICE_BRADFORD",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
-  "reflectionQuestion": "Everything was taken in a single afternoon — the animals, the servants, the children. What remains when everything you built is gone and the only thing left is the ground beneath you?",
+  "reflectionQuestion": "Everything was taken in a single afternoon \u2014 the animals, the servants, the children. What remains when everything you built is gone and the only thing left is the ground beneath you?",
   "title": "Job Loses Everything",
   "files": {
     "short": {
@@ -59,7 +59,7 @@
     "web": "reflection_1055_traditional_web.txt",
     "kjv": "reflection_1055_traditional_kjv.txt"
   },
-  "reflectionText": "All was taken in a single afternoon — the beasts, the servants, the children. What remaineth when all thou hast built is gone, and nought is left thee save the earth beneath thy feet?",
+  "reflectionText": "All was taken in a single afternoon \u2014 the beasts, the servants, the children. What remaineth when all thou hast built is gone, and nought is left thee save the earth beneath thy feet?",
   "timelineEra": "wisdom",
   "primaryCharacterId": "job",
   "primaryCharacterDisplayName": "Job",
@@ -67,5 +67,6 @@
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
-  }
+  },
+  "bibleOrderIndex": 2461
 }

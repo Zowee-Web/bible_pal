@@ -47,5 +47,6 @@
   "primaryLifeSituationTags": [
     "unexpected_grace"
   ],
-  "secondaryLifeSituationTags": []
+  "secondaryLifeSituationTags": [],
+  "bibleOrderIndex": 640
 }

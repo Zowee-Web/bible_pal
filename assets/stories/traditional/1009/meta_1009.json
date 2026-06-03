@@ -48,12 +48,13 @@
   "scriptureAnchor": "Psalm 23",
   "bibleStoryKey": "the_lord_is_my_shepherd",
   "storyVoiceKey": "VOICE_LILY_WOLFF",
-  "reflectionText": "Sometimes you feel so safe and cozy, like being wrapped in a warm blanket. That feeling of being watched over and cared for is really special. Green grass under your feet, cool water to drink on a hot day — those good things are all around you. Even when a room gets dark at night, someone is right there with you. A shepherd walks with the sheep everywhere they go, through sunny meadows and dim valleys. The sheep never walk by themselves. Kindness and love follow close behind, like a friendly puppy that never leaves your side. That kind of love stays with you every single day.",
+  "reflectionText": "Sometimes you feel so safe and cozy, like being wrapped in a warm blanket. That feeling of being watched over and cared for is really special. Green grass under your feet, cool water to drink on a hot day \u2014 those good things are all around you. Even when a room gets dark at night, someone is right there with you. A shepherd walks with the sheep everywhere they go, through sunny meadows and dim valleys. The sheep never walk by themselves. Kindness and love follow close behind, like a friendly puppy that never leaves your side. That kind of love stays with you every single day.",
   "timelineEra": "wisdom",
   "primaryCharacterId": "david",
   "primaryCharacterDisplayName": "David",
   "lanes": [
     "web",
     "kjv"
-  ]
+  ],
+  "bibleOrderIndex": 24584
 }

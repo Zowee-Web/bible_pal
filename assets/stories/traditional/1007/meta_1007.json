@@ -40,7 +40,7 @@
   "scriptureAnchor": "Jonah 1:4-15",
   "bibleStoryKey": "jonah_flees",
   "storyVoiceKey": "VOICE_ARCHER",
-  "reflectionText": "A ship pitches in heavy seas, and every soul aboard knows something is wrong. The timbers groan, the cargo flies overboard, and seasoned mariners cry out to gods they have called upon a hundred times before. Yet the one man who knows the living God sleeps below deck, curled away from the storm he himself has occasioned.\n\nWhen Jonah finally speaks, his confession is plain and unadorned: \"I fear the LORD, the God of heaven, which hath made the sea and the dry land.\" Even in flight, he cannot unknow what he knows. The sailors, strangers to his covenant, show a remarkable tenderness — rowing hard, reluctant to cast him into the deep, pleading that his blood not rest upon them.\n\nSometimes the people nearest a storm see its shape more clearly than the one at its center. Sometimes those outside a tradition of faith act with a gentleness that humbles those within it. The sea does not calm until truth is no longer hidden below deck. There is a quiet pattern here — how honesty, even costly honesty, can still the waters that evasion only deepens.",
+  "reflectionText": "A ship pitches in heavy seas, and every soul aboard knows something is wrong. The timbers groan, the cargo flies overboard, and seasoned mariners cry out to gods they have called upon a hundred times before. Yet the one man who knows the living God sleeps below deck, curled away from the storm he himself has occasioned.\n\nWhen Jonah finally speaks, his confession is plain and unadorned: \"I fear the LORD, the God of heaven, which hath made the sea and the dry land.\" Even in flight, he cannot unknow what he knows. The sailors, strangers to his covenant, show a remarkable tenderness \u2014 rowing hard, reluctant to cast him into the deep, pleading that his blood not rest upon them.\n\nSometimes the people nearest a storm see its shape more clearly than the one at its center. Sometimes those outside a tradition of faith act with a gentleness that humbles those within it. The sea does not calm until truth is no longer hidden below deck. There is a quiet pattern here \u2014 how honesty, even costly honesty, can still the waters that evasion only deepens.",
   "timelineEra": "prophets",
   "primaryCharacterId": "jonah",
   "primaryCharacterDisplayName": "Jonah",
@@ -55,5 +55,6 @@
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
-  }
+  },
+  "bibleOrderIndex": 2466
 }
