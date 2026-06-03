@@ -5,10 +5,19 @@
 # Creates 64 kbps mono MP3 copies in assets_audio_compressed/
 # while leaving originals in assets/stories/ completely untouched.
 #
+# Default behavior (Step 5A — mtime-aware):
+#   - compress files that don't exist in the mirror
+#   - REFRESH existing compressed files when the raw mp3 is newer
+#     (avoids shipping stale audio after a story is re-narrated)
+#   - skip existing files that are current with the raw
+#
 # Usage:
-#   ./scripts/compress_audio.sh              # compress all files
-#   ./scripts/compress_audio.sh --dry-run    # preview only, no encoding
-#   ./scripts/compress_audio.sh --verify     # compare file counts
+#   ./scripts/compress_audio.sh                     # compress missing + refresh stale
+#   ./scripts/compress_audio.sh --dry-run           # preview, no encoding
+#   ./scripts/compress_audio.sh --verify            # count files + stale check
+#   ./scripts/compress_audio.sh --skip-existing     # legacy opt-out: skip ANY existing
+#                                                   # compressed file regardless of mtime
+#   Flags can combine (e.g. --dry-run --skip-existing).
 #
 
 set -euo pipefail
@@ -17,32 +26,66 @@ PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 SRC_DIR="$PROJECT_ROOT/assets/stories"
 DST_DIR="$PROJECT_ROOT/assets_audio_compressed/stories"
 
+# ── Path exclusions (Step 5A bundle-hygiene) ─────────────────────────
+# Source-side: skip audio_archive/ (voice-swap snapshots, work-in-progress
+# audio that should NOT enter the deployable compressed mirror).
+# Destination-side: skip creative/ (retired lane, 2026-05-13 — orphaned
+# compressed files that the staging pipeline no longer references).
+# Note: this only excludes them from script visibility; the files
+# themselves are left on disk unmodified.
+src_find_mp3s() {
+  find "$SRC_DIR" -name "*.mp3" -type f ! -path "*/audio_archive/*"
+}
+dst_find_mp3s() {
+  find "$DST_DIR" -name "*.mp3" -type f ! -path "*/creative/*"
+}
+
 DRY_RUN=false
 VERIFY=false
+SKIP_EXISTING=false  # legacy opt-out: skip ANY existing compressed file
 
 for arg in "$@"; do
   case "$arg" in
-    --dry-run) DRY_RUN=true ;;
-    --verify)  VERIFY=true ;;
+    --dry-run)       DRY_RUN=true ;;
+    --verify)        VERIFY=true ;;
+    --skip-existing) SKIP_EXISTING=true ;;
     *) echo "Unknown option: $arg"; exit 1 ;;
   esac
 done
 
 # ── Verify mode ──────────────────────────────────────────────────────
 if $VERIFY; then
-  src_count=$(find "$SRC_DIR" -name "*.mp3" -type f | wc -l | tr -d ' ')
+  echo "(scope: src excludes audio_archive/; dst excludes creative/)"
+  src_count=$(src_find_mp3s | wc -l | tr -d ' ')
   dst_count=0
   if [ -d "$DST_DIR" ]; then
-    dst_count=$(find "$DST_DIR" -name "*.mp3" -type f | wc -l | tr -d ' ')
+    dst_count=$(dst_find_mp3s | wc -l | tr -d ' ')
   fi
-  echo "Originals:  $src_count files"
-  echo "Compressed: $dst_count files"
-  if [ "$src_count" -eq "$dst_count" ]; then
-    echo "✓ Counts match."
-  else
+  echo "Originals (deployable):     $src_count files"
+  echo "Compressed (traditional):   $dst_count files"
+
+  # Stale check: count compressed files whose raw counterpart is newer.
+  # Read-only — no files are modified by --verify.
+  stale_count=0
+  if [ -d "$DST_DIR" ]; then
+    while IFS= read -r dst_file; do
+      rel_path="${dst_file#"$DST_DIR/"}"
+      src_file="$SRC_DIR/$rel_path"
+      if [ -f "$src_file" ] && [ "$src_file" -nt "$dst_file" ]; then
+        stale_count=$((stale_count + 1))
+      fi
+    done < <(dst_find_mp3s)
+  fi
+  echo "Stale:                      $stale_count file(s) (raw newer than compressed)"
+
+  if [ "$src_count" -eq "$dst_count" ] && [ "$stale_count" -eq 0 ]; then
+    echo "✓ Counts match and no stale files."
+  elif [ "$src_count" -ne "$dst_count" ]; then
     missing=$((src_count - dst_count))
     echo "✗ $missing file(s) missing from compressed output."
     exit 1
+  else
+    echo "⚠ $stale_count compressed file(s) are out of date — re-run without --skip-existing to refresh."
   fi
 
   # Compare total sizes
@@ -64,11 +107,18 @@ if $DRY_RUN; then
   echo "=== DRY RUN — no files will be written ==="
   echo ""
 fi
+if $SKIP_EXISTING; then
+  echo "=== --skip-existing: legacy mode (any existing compressed file is kept as-is) ==="
+  echo ""
+fi
 
-total=$(find "$SRC_DIR" -name "*.mp3" -type f | wc -l | tr -d ' ')
+total=$(src_find_mp3s | wc -l | tr -d ' ')
 count=0
-skipped=0
-errors=0
+compressed_missing=0
+refreshed_stale=0
+skipped_current=0
+skipped_existing=0   # only incremented when --skip-existing is used
+failed=0
 
 while IFS= read -r src_file; do
   # Build mirrored destination path
@@ -78,22 +128,53 @@ while IFS= read -r src_file; do
 
   count=$((count + 1))
 
-  # Skip if compressed version already exists
+  # Decide action for this file
+  action=""
   if [ -f "$dst_file" ]; then
-    skipped=$((skipped + 1))
-    continue
+    if $SKIP_EXISTING; then
+      action="skip_existing"
+    elif [ "$src_file" -nt "$dst_file" ]; then
+      action="refresh_stale"
+    else
+      action="skip_current"
+    fi
+  else
+    action="compress_missing"
   fi
 
-  echo "[$count/$total] $rel_path"
+  case "$action" in
+    skip_existing)
+      skipped_existing=$((skipped_existing + 1))
+      continue
+      ;;
+    skip_current)
+      skipped_current=$((skipped_current + 1))
+      continue
+      ;;
+    refresh_stale)
+      echo "[$count/$total] REFRESH (stale): $rel_path"
+      ;;
+    compress_missing)
+      echo "[$count/$total] NEW: $rel_path"
+      ;;
+  esac
 
   if $DRY_RUN; then
+    # Increment the counter so dry-run totals match what a real run would do
+    if [ "$action" = "refresh_stale" ]; then
+      refreshed_stale=$((refreshed_stale + 1))
+    else
+      compressed_missing=$((compressed_missing + 1))
+    fi
     continue
   fi
 
   # Create output directory
   mkdir -p "$dst_subdir"
 
-  # Re-encode: 64 kbps, mono, optimized for voice
+  # Re-encode: 64 kbps, mono, optimized for voice.
+  # ffmpeg overwrites $dst_file (-y) which is correct for the refresh-stale path.
+  # Destination is always under $DST_DIR — originals at $SRC_DIR are never touched.
   if ! ffmpeg -nostdin -loglevel error -y -i "$src_file" \
     -codec:a libmp3lame \
     -b:a 64k \
@@ -102,20 +183,31 @@ while IFS= read -r src_file; do
     -compression_level 2 \
     "$dst_file" 2>&1; then
     echo "  ERROR: failed to compress $rel_path" >&2
-    errors=$((errors + 1))
+    failed=$((failed + 1))
     # Remove partial output
     rm -f "$dst_file"
+    continue
   fi
 
-done < <(find "$SRC_DIR" -name "*.mp3" -type f | sort)
+  if [ "$action" = "refresh_stale" ]; then
+    refreshed_stale=$((refreshed_stale + 1))
+  else
+    compressed_missing=$((compressed_missing + 1))
+  fi
+
+done < <(src_find_mp3s | sort)
 
 echo ""
 echo "Done."
-echo "  Total:    $total"
-echo "  Encoded:  $((count - skipped - errors))"
-echo "  Skipped:  $skipped (already existed)"
-echo "  Errors:   $errors"
+echo "  Total raw mp3s:        $total"
+echo "  Compressed (new):      $compressed_missing"
+echo "  Refreshed (stale):     $refreshed_stale"
+echo "  Skipped (current):     $skipped_current"
+if $SKIP_EXISTING; then
+  echo "  Skipped (--skip-existing): $skipped_existing"
+fi
+echo "  Failed:                $failed"
 
-if [ "$errors" -gt 0 ]; then
+if [ "$failed" -gt 0 ]; then
   exit 1
 fi
