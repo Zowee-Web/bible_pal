@@ -39,13 +39,12 @@
   "primaryCharacterDisplayName": "Elisha",
   "bibleOrderIndex": 341,
   "timelineEra": "kingdom",
-  "ttsModel": "eleven_v3",
+  "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.85,
     "similarity_boost": 0.85,
     "style": 0.15,
-    "use_speaker_boost": true,
-    "speed": 0.95
+    "use_speaker_boost": true
   },
   "files": {
     "short": {
@@ -61,5 +60,5 @@
       "reflectionText": "reflection_1412_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The dying prophet told the king to strike the ground with arrows, and the king struck only three times. What is it to be told to strike the ground until the gift is complete \u2014 and to find later that the number of strikes was the number you would receive?"
+  "reflectionText": "The dying prophet told the king to strike the ground with arrows, and the king struck only three times. What is it to be told to strike the ground until the gift is complete — and to find later that the number of strikes was the number you would receive?"
 }
