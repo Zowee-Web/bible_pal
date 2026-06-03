@@ -40,7 +40,7 @@
   "primaryCharacterId": "abigail",
   "primaryCharacterDisplayName": "Abigail",
   "bibleOrderIndex": 275,
-  "timelineEra": "early_monarchy",
+  "timelineEra": "kingdom",
   "ttsModel": "eleven_multilingual_v2",
   "ttsVoiceSettings": {
     "stability": 0.85,

@@ -38,7 +38,7 @@
   "primaryCharacterId": "widow_of_zarephath",
   "primaryCharacterDisplayName": "Widow of Zarephath",
   "bibleOrderIndex": 309,
-  "timelineEra": "divided_monarchy",
+  "timelineEra": "kingdom",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.85,
@@ -60,5 +60,5 @@
       "reflectionText": "reflection_1358_traditional_kjv.txt"
     }
   },
-  "reflectionText": "He stretched himself on the child three times, and cried to Yahweh. What is it to give a child back into the arms of his mother, alive — and to hear from her lips, for the first time, that the One who sent you to her was the God you said he was?"
+  "reflectionText": "He stretched himself on the child three times, and cried to Yahweh. What is it to give a child back into the arms of his mother, alive \u2014 and to hear from her lips, for the first time, that the One who sent you to her was the God you said he was?"
 }

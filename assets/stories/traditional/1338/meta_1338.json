@@ -38,7 +38,7 @@
   "primaryCharacterId": "shadrach_meshach_abednego",
   "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
   "bibleOrderIndex": 580,
-  "timelineEra": "babylonian_exile",
+  "timelineEra": "exile",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.85,
@@ -60,5 +60,5 @@
       "reflectionText": "reflection_1338_traditional_kjv.txt"
     }
   },
-  "reflectionText": "If it happens, our God is able to deliver us. But if not — let it be known, O king, that we will not serve your gods. What is it to lay down an answer before a king that you cannot take back, and to say it in the same breath where you do not yet know what the morning will bring?"
+  "reflectionText": "If it happens, our God is able to deliver us. But if not \u2014 let it be known, O king, that we will not serve your gods. What is it to lay down an answer before a king that you cannot take back, and to say it in the same breath where you do not yet know what the morning will bring?"
 }

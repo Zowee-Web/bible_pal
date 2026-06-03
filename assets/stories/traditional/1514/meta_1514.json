@@ -39,7 +39,7 @@
   "primaryCharacterId": "ezra",
   "primaryCharacterDisplayName": "Ezra",
   "bibleOrderIndex": 405,
-  "timelineEra": "persian_exile",
+  "timelineEra": "return",
   "ttsModel": "eleven_multilingual_v2",
   "ttsVoiceSettings": {
     "stability": 0.85,

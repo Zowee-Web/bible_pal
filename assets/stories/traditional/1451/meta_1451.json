@@ -38,7 +38,7 @@
   "primaryCharacterId": "nebuchadnezzar",
   "primaryCharacterDisplayName": "Nebuchadnezzar",
   "bibleOrderIndex": 430,
-  "timelineEra": "babylonian_exile",
+  "timelineEra": "exile",
   "ttsModel": "eleven_v3",
   "ttsVoiceSettings": {
     "stability": 0.85,

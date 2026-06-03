@@ -38,7 +38,7 @@
   "primaryCharacterId": "haman",
   "primaryCharacterDisplayName": "Haman",
   "bibleOrderIndex": 425,
-  "timelineEra": "persian_exile",
+  "timelineEra": "return",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.85,

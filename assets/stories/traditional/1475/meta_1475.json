@@ -38,7 +38,7 @@
   "primaryCharacterId": "huldah",
   "primaryCharacterDisplayName": "Huldah",
   "bibleOrderIndex": 409,
-  "timelineEra": "pre_exile",
+  "timelineEra": "prophets",
   "ttsModel": "eleven_v3",
   "ttsVoiceSettings": {
     "stability": 0.85,
@@ -61,5 +61,5 @@
       "reflectionText": "reflection_1475_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The five men of the king came to Huldah's house in the second quarter. She gave them Yahweh's word from where she sat — without raising her voice, without standing. What is it to give the king's messengers the word of the Lord from where you sit, without lifting your voice or standing to your feet, and to know they will carry it back to the king without changing one word from your own?"
+  "reflectionText": "The five men of the king came to Huldah's house in the second quarter. She gave them Yahweh's word from where she sat \u2014 without raising her voice, without standing. What is it to give the king's messengers the word of the Lord from where you sit, without lifting your voice or standing to your feet, and to know they will carry it back to the king without changing one word from your own?"
 }

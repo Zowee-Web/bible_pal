@@ -38,7 +38,7 @@
   "primaryCharacterId": "david",
   "primaryCharacterDisplayName": "David",
   "bibleOrderIndex": 247,
-  "timelineEra": "early_monarchy",
+  "timelineEra": "kingdom",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.85,
@@ -60,5 +60,5 @@
       "reflectionText": "reflection_1340_traditional_kjv.txt"
     }
   },
-  "reflectionText": "How long, Yahweh? Will you forget me forever? But I trust in your loving kindness. What is it to sing the trust before the trust has been answered — to set the same psalm into the air on a day that gave you nothing it had promised, and to call it a song?"
+  "reflectionText": "How long, Yahweh? Will you forget me forever? But I trust in your loving kindness. What is it to sing the trust before the trust has been answered \u2014 to set the same psalm into the air on a day that gave you nothing it had promised, and to call it a song?"
 }

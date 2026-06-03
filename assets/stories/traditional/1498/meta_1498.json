@@ -40,7 +40,7 @@
   "primaryCharacterId": "esther",
   "primaryCharacterDisplayName": "Esther",
   "bibleOrderIndex": 419,
-  "timelineEra": "persian_exile",
+  "timelineEra": "return",
   "ttsModel": "eleven_multilingual_v2",
   "ttsVoiceSettings": {
     "stability": 0.85,

@@ -39,7 +39,7 @@
   "primaryCharacterId": "isaiah",
   "primaryCharacterDisplayName": "Isaiah",
   "bibleOrderIndex": 700,
-  "timelineEra": "pre_exile",
+  "timelineEra": "prophets",
   "ttsModel": "eleven_multilingual_v2",
   "ttsVoiceSettings": {
     "stability": 0.85,

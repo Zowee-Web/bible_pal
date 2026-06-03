@@ -38,7 +38,7 @@
   "primaryCharacterId": "shunammite_woman",
   "primaryCharacterDisplayName": "Shunammite Woman",
   "bibleOrderIndex": 312,
-  "timelineEra": "divided_monarchy",
+  "timelineEra": "kingdom",
   "ttsModel": "eleven_v3",
   "ttsVoiceSettings": {
     "stability": 0.85,
@@ -61,5 +61,5 @@
       "reflectionText": "reflection_1454_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The Shunammite came back from seven years in Philistia to find her house and field taken. She walked into the king's court in the very hour Gehazi was telling the story of her own restored son. What is it to walk into the king's court at the very hour your own son's story is being told there — and to find that the door you had given up on opening was opening for you all along?"
+  "reflectionText": "The Shunammite came back from seven years in Philistia to find her house and field taken. She walked into the king's court in the very hour Gehazi was telling the story of her own restored son. What is it to walk into the king's court at the very hour your own son's story is being told there \u2014 and to find that the door you had given up on opening was opening for you all along?"
 }

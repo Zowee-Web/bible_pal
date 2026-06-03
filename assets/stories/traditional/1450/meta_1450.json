@@ -40,7 +40,7 @@
   "primaryCharacterId": "daniel",
   "primaryCharacterDisplayName": "Daniel",
   "bibleOrderIndex": 432,
-  "timelineEra": "babylonian_exile",
+  "timelineEra": "exile",
   "ttsModel": "eleven_v3",
   "ttsVoiceSettings": {
     "stability": 0.85,

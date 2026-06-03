@@ -38,7 +38,7 @@
   "primaryCharacterId": "shadrach_meshach_abednego",
   "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
   "bibleOrderIndex": 428,
-  "timelineEra": "babylonian_exile",
+  "timelineEra": "exile",
   "ttsModel": "eleven_v3",
   "ttsVoiceSettings": {
     "stability": 0.85,
@@ -61,5 +61,5 @@
       "reflectionText": "reflection_1469_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The men were thrown into the furnace bound. The king looked in and saw four men, loose, walking. The appearance of the fourth was like a son of the gods. What is it for a king to count three men cast into the fire, and to look in and see four — and to know that the one walking with them is not any of his own?"
+  "reflectionText": "The men were thrown into the furnace bound. The king looked in and saw four men, loose, walking. The appearance of the fourth was like a son of the gods. What is it for a king to count three men cast into the fire, and to look in and see four \u2014 and to know that the one walking with them is not any of his own?"
 }

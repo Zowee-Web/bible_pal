@@ -40,7 +40,7 @@
   "primaryCharacterId": "daniel",
   "primaryCharacterDisplayName": "Daniel",
   "bibleOrderIndex": 426,
-  "timelineEra": "babylonian_exile",
+  "timelineEra": "exile",
   "ttsModel": "eleven_multilingual_v2",
   "ttsVoiceSettings": {
     "stability": 0.85,
@@ -75,7 +75,7 @@
       "reflectionText": "reflection_1515_traditional_kjv.txt"
     }
   },
-  "reflectionQuestion": "The stone was cut out of the mountain without hands. It struck the image on its feet of iron and clay. The iron and brass and silver and gold broke together like chaff. The stone became a mountain that filled the whole earth. What is it to see, in a single night, every kingdom that will ever be brought down — and the one that will fill the earth?",
-  "reflectionText": "The stone was cut out of the mountain without hands. It struck the image on its feet of iron and clay. The iron and brass and silver and gold broke together like chaff. The stone became a mountain that filled the whole earth. What is it to see, in a single night, the kingdoms shown in the dream brought down — and the one that will fill the earth?",
+  "reflectionQuestion": "The stone was cut out of the mountain without hands. It struck the image on its feet of iron and clay. The iron and brass and silver and gold broke together like chaff. The stone became a mountain that filled the whole earth. What is it to see, in a single night, every kingdom that will ever be brought down \u2014 and the one that will fill the earth?",
+  "reflectionText": "The stone was cut out of the mountain without hands. It struck the image on its feet of iron and clay. The iron and brass and silver and gold broke together like chaff. The stone became a mountain that filled the whole earth. What is it to see, in a single night, the kingdoms shown in the dream brought down \u2014 and the one that will fill the earth?",
   "reflectionSource": "claude-opus-4-7"
 }

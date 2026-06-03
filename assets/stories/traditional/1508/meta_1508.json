@@ -39,7 +39,7 @@
   "primaryCharacterId": "saul",
   "primaryCharacterDisplayName": "Saul",
   "bibleOrderIndex": 252,
-  "timelineEra": "early_monarchy",
+  "timelineEra": "kingdom",
   "ttsModel": "eleven_multilingual_v2",
   "ttsVoiceSettings": {
     "stability": 0.85,

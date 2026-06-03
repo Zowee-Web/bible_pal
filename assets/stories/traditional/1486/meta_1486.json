@@ -40,7 +40,7 @@
   "primaryCharacterId": "daniel",
   "primaryCharacterDisplayName": "Daniel",
   "bibleOrderIndex": 425,
-  "timelineEra": "babylonian_exile",
+  "timelineEra": "exile",
   "ttsModel": "eleven_v3",
   "ttsVoiceSettings": {
     "stability": 0.85,
@@ -75,7 +75,7 @@
       "storyText": "story_1486_traditional_kjv_long.txt"
     }
   },
-  "reflectionQuestion": "Daniel purposed in his heart that he would not defile himself, and the decision did not show in his face when he made it. What is the choice you have made inside yourself that the men around you cannot see — and how do you keep it through all the years that follow?",
-  "reflectionText": "Daniel purposed in his heart that he would not defile himself, and the decision shewed not in his face when he made it. What is the choice thou hast made within thyself that they that are round about thee cannot see — and how dost thou keep it through all the years that follow?",
+  "reflectionQuestion": "Daniel purposed in his heart that he would not defile himself, and the decision did not show in his face when he made it. What is the choice you have made inside yourself that the men around you cannot see \u2014 and how do you keep it through all the years that follow?",
+  "reflectionText": "Daniel purposed in his heart that he would not defile himself, and the decision shewed not in his face when he made it. What is the choice thou hast made within thyself that they that are round about thee cannot see \u2014 and how dost thou keep it through all the years that follow?",
   "reflectionSource": "claude-opus-4-7"
 }
