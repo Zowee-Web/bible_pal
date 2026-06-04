@@ -243,6 +243,27 @@ def classify(rel_path):
 with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
     results = list(pool.map(classify, paths))
 
+# Second pass: probe-failed paths (almost always 429 rate-limit artifacts)
+# get a sequential re-probe with pacing. Bypasses the per-source-IP burst
+# limit that the parallel audit can trip. Without this, the live run can
+# never converge to "0 probe errors" because the parallel audit randomly
+# fails on a handful of paths each run.
+retry_idx = [i for i, r in enumerate(results) if r[2] == "error"]
+if retry_idx:
+    print(f"  Re-probing {len(retry_idx)} 429-failed paths sequentially with 1.5s pacing...")
+    for i in retry_idx:
+        rel_path = results[i][0]
+        local_ok = results[i][1]
+        time.sleep(1.5)
+        code = probe_once(f"{R2_BASE}/{rel_path}")
+        if code == "200":
+            status = "on_r2"
+        elif code == "404":
+            status = "absent"
+        else:
+            status = "error"
+        results[i] = [rel_path, local_ok, status, code]
+
 would_skip   = [r for r in results if r[2] == "on_r2"]
 would_upload = [r for r in results if r[2] == "absent" and r[1]]
 missing      = [r for r in results if r[2] == "absent" and not r[1]]
