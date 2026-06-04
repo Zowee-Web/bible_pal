@@ -154,13 +154,15 @@ echo ""
 # ── Sample commands ──────────────────────────────────────────────────────────
 
 # Find one traditional and one creative path for sample display.
-# SIGPIPE guard: `head -1` closes the pipe after one line, which kills
-# the upstream `grep` with SIGPIPE and fails the pipeline under
-# `set -o pipefail`. That's what was causing exit 141 right after the
-# header banner. Awk's `exit` reads-then-stops in a single process so
-# there's no inter-process pipe to close prematurely.
+# SIGPIPE guard: `awk ... exit` closes the read end before printf
+# finishes writing all 1128 lines (~50 KB, often larger than the OS
+# pipe buffer). That kills printf with SIGPIPE, which pipefail propagates,
+# which `set -e` turns fatal. Disable pipefail just for these two lines —
+# we don't care about the printf exit status, only awk's match.
+set +o pipefail
 SAMPLE_TRAD=$(printf '%s\n' "$AUDIO_PATHS" | awk '/^traditional\// { print; exit }')
 SAMPLE_CREA=$(printf '%s\n' "$AUDIO_PATHS" | awk '/^creative\// { print; exit }')
+set -o pipefail
 
 echo "Sample wrangler commands:"
 echo ""
