@@ -22,9 +22,23 @@
 
 set -euo pipefail
 
+# Run from repo root so .env / assets/stories paths resolve correctly even
+# when the script is invoked from somewhere else (matches upload_r2_catalog.sh).
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$REPO_ROOT"
+
 BUCKET="bible-pal-audio"
 ASSETS_DIR="assets/stories"
 MANIFEST="$ASSETS_DIR/manifest.json"
+
+# Shared mutex with build_play_bundle.sh / build_ios_bundle.sh. Those scripts
+# `mv assets/stories → assets/stories.devbackup` mid-build; a concurrent
+# upload audit + upload loop reads those moved files as MISSING-local and
+# silently drops them. Holding the same lock serializes uploads with
+# Play/iOS bundle builds and prevents that race.
+LOCK_DIR="$REPO_ROOT/.bundle_build.lock.d"
+LOCK_ACQUIRED=false
 
 # Counters
 UPLOADED=0
@@ -32,7 +46,27 @@ SKIPPED=0
 MISSING=0
 FAILED=0
 
+# Single cleanup function for everything — lock + audit tempdir. AUDIT_DIR
+# is created later in the script; reference it defensively in case we exit
+# before it's set.
+AUDIT_DIR=""
+cleanup() {
+    [ -n "$AUDIT_DIR" ] && [ -d "$AUDIT_DIR" ] && rm -rf "$AUDIT_DIR"
+    [ "$LOCK_ACQUIRED" = "true" ] && rmdir "$LOCK_DIR" 2>/dev/null || true
+}
+trap cleanup EXIT INT TERM
+
 # ── Preflight checks ────────────────────────────────────────────────────────
+
+# 0. Acquire the shared bundle-build lock. Atomic mkdir is the portable
+# primitive — flock isn't on stock macOS. Released by trap on exit.
+if ! mkdir "$LOCK_DIR" 2>/dev/null; then
+    echo "ERROR: another bundle build or upload holds $LOCK_DIR." >&2
+    echo "If you are certain nothing else is running, remove it with:" >&2
+    echo "  rmdir $LOCK_DIR" >&2
+    exit 1
+fi
+LOCK_ACQUIRED=true
 
 # 1. wrangler installed?
 if ! command -v wrangler &>/dev/null; then
@@ -158,7 +192,7 @@ if [ -z "$R2_BASE" ]; then
 fi
 
 AUDIT_DIR=$(mktemp -d -t r2_audit.XXXXXX)
-trap 'rm -rf "$AUDIT_DIR"' EXIT INT TERM
+# cleanup trap set earlier (lock + audit dir together) handles removal
 
 echo "  Auditing $TOTAL paths against $R2_BASE ..."
 echo ""
