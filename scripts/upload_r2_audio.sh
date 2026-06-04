@@ -147,25 +147,29 @@ fi
 echo "----------------------------------------------------------------"
 echo ""
 
-# ── Dry-run: full R2 audit + classified report ──────────────────────────────
+# ── R2 audit (shared by dry-run and live preflight) ─────────────────────────
 # Reads AUDIO_BASE_URL from .env (single source of truth shared with the
 # Flutter dotenv loader). Probes every path in parallel against the public
-# R2 dev URL. No wrangler auth required.
-if [ "${DRY_RUN:-0}" = "1" ]; then
-    R2_BASE=$(grep '^AUDIO_BASE_URL=' .env 2>/dev/null | head -1 | cut -d= -f2- | tr -d '"')
-    if [ -z "$R2_BASE" ]; then
-        echo "ERROR: AUDIO_BASE_URL not found in .env — required for R2 audit."
-        exit 1
-    fi
-    echo "  Auditing $TOTAL paths against $R2_BASE ..."
-    echo ""
+# R2 dev URL. No wrangler auth required for the probe itself.
+R2_BASE=$(grep '^AUDIO_BASE_URL=' .env 2>/dev/null | head -1 | cut -d= -f2- | tr -d '"')
+if [ -z "$R2_BASE" ]; then
+    echo "ERROR: AUDIO_BASE_URL not found in .env — required for R2 audit."
+    exit 1
+fi
 
-    AUDIO_PATHS="$AUDIO_PATHS" R2_BASE="$R2_BASE" ASSETS_DIR="$ASSETS_DIR" python3 - <<'PYEOF'
-import os, subprocess, sys, time, random
+AUDIT_DIR=$(mktemp -d -t r2_audit.XXXXXX)
+trap 'rm -rf "$AUDIT_DIR"' EXIT INT TERM
+
+echo "  Auditing $TOTAL paths against $R2_BASE ..."
+echo ""
+
+AUDIO_PATHS="$AUDIO_PATHS" R2_BASE="$R2_BASE" ASSETS_DIR="$ASSETS_DIR" AUDIT_DIR="$AUDIT_DIR" python3 - <<'PYEOF'
+import json, os, subprocess, sys, time, random
 from concurrent.futures import ThreadPoolExecutor
 
 R2_BASE = os.environ["R2_BASE"]
 ASSETS_DIR = os.environ["ASSETS_DIR"]
+AUDIT_DIR = os.environ["AUDIT_DIR"]
 paths = [p for p in os.environ["AUDIO_PATHS"].strip().split("\n") if p]
 
 # Cloudflare's public *.r2.dev URLs are subject to per-source-IP rate
@@ -198,7 +202,7 @@ def classify(rel_path):
         status = "absent"
     else:
         status = "error"
-    return rel_path, local_ok, status, code
+    return [rel_path, local_ok, status, code]
 
 with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
     results = list(pool.map(classify, paths))
@@ -208,15 +212,26 @@ would_upload = [r for r in results if r[2] == "absent" and r[1]]
 missing      = [r for r in results if r[2] == "absent" and not r[1]]
 failed       = [r for r in results if r[2] == "error"]
 
-print("  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-print("    Dry-run R2 audit summary")
-print("  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-print(f"    Would upload (local present, R2 missing):   {len(would_upload):>5}")
-print(f"    Would skip   (already on R2):               {len(would_skip):>5}")
+# Persist audit for the upload loop + summary to read.
+with open(os.path.join(AUDIT_DIR, "audit.json"), "w") as f:
+    json.dump({
+        "would_upload": [r[0] for r in would_upload],
+        "would_skip":   [r[0] for r in would_skip],
+        "missing":      [r[0] for r in missing],
+        "failed":       [[r[0], r[3]] for r in failed],
+        "total":        len(results),
+    }, f)
+
+label = "Dry-run R2 audit summary" if os.environ.get("DRY_RUN", "0") == "1" else "Pre-flight R2 audit summary"
+print(f"  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+print(f"    {label}")
+print(f"  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+print(f"    To upload    (local present, R2 missing):   {len(would_upload):>5}")
+print(f"    Skip         (already on R2):               {len(would_skip):>5}")
 print(f"    Missing      (local absent, cannot upload): {len(missing):>5}")
 print(f"    Failed       (probe error, non-200/non-404):{len(failed):>5}")
 print(f"    Total manifest audio paths:                 {len(results):>5}")
-print("  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+print(f"  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
 def show(label, rows, max_n=5):
     if not rows:
@@ -229,57 +244,83 @@ def show(label, rows, max_n=5):
             suffix = f"  [http={r[3]}]"
         print(f"    - {r[0]}{suffix}")
 
-show("WOULD-UPLOAD paths", would_upload)
-show("WOULD-SKIP paths (already on R2)", would_skip)
+show("TO-UPLOAD paths", would_upload)
+show("SKIP paths (already on R2)", would_skip)
 show("MISSING-LOCAL paths", missing)
 show("FAILED probes", failed)
-
-# Exit non-zero only if there are real misses to investigate (probe errors).
-# Missing-local and absent-from-R2 are informational, not failures.
-sys.exit(1 if failed else 0)
 PYEOF
-    exit $?
+
+# Reusable accessors over the audit JSON. python3 -c is cheap here; the file
+# is tiny so re-reading per question is fine and keeps the bash side simple.
+audit_count() { python3 -c "import json; print(len(json.load(open('$AUDIT_DIR/audit.json'))['$1']))"; }
+audit_list()  { python3 -c "import json
+for p in json.load(open('$AUDIT_DIR/audit.json'))['$1']:
+    print(p)"; }
+
+# Capture audit-derived counters. SKIPPED + MISSING + PROBE_FAILED are
+# pre-determined by the audit; UPLOADED + FAILED are filled by the loop below.
+SKIPPED=$(audit_count would_skip)
+MISSING=$(audit_count missing)
+PROBE_FAILED=$(audit_count failed)
+
+# ── Dry-run: stop here, exit non-zero only on probe errors ─────────────────
+if [ "${DRY_RUN:-0}" = "1" ]; then
+    if [ "$PROBE_FAILED" -gt 0 ]; then exit 1; fi
+    exit 0
 fi
 
-# ── Upload loop ──────────────────────────────────────────────────────────────
+# ── Live upload: iterate only the to-upload queue from the audit ────────────
+TO_UPLOAD_PATHS=$(audit_list would_upload)
+UPLOAD_QUEUE_TOTAL=$(audit_count would_upload)
 
+# Honor SMALL_BATCH on the upload queue (not on the full manifest).
+if [ "${SMALL_BATCH:-0}" = "1" ]; then
+    LIMIT=5
+    if [ "$UPLOAD_QUEUE_TOTAL" -lt 5 ]; then LIMIT=$UPLOAD_QUEUE_TOTAL; fi
+else
+    LIMIT=$UPLOAD_QUEUE_TOTAL
+fi
+
+if [ "$UPLOAD_QUEUE_TOTAL" -eq 0 ]; then
+    echo ""
+    echo "Nothing to upload — every manifest audio path is already on R2."
+    if [ "$PROBE_FAILED" -gt 0 ]; then exit 1; fi
+    exit 0
+fi
+
+echo ""
+echo "----------------------------------------------------------------"
+echo "Uploading $LIMIT of $UPLOAD_QUEUE_TOTAL needed files..."
+echo "----------------------------------------------------------------"
+
+# Sample buffers — first 5 successful + first 5 failed paths
+UPLOADED_SAMPLES=()
+FAILED_SAMPLES=()
 COUNT=0
-for rel_path in $AUDIO_PATHS; do
+for rel_path in $TO_UPLOAD_PATHS; do
     COUNT=$((COUNT + 1))
-    if [ $COUNT -gt $LIMIT ]; then
-        break
-    fi
-
+    if [ $COUNT -gt $LIMIT ]; then break; fi
     local_file="$ASSETS_DIR/$rel_path"
 
-    # Safety: only .mp3 files
-    if [[ "$rel_path" != *.mp3 ]]; then
-        echo "  [$COUNT/$LIMIT] SKIP (not .mp3): $rel_path"
-        SKIPPED=$((SKIPPED + 1))
-        continue
-    fi
-
-    # Safety: must be under creative/ or traditional/
-    if [[ "$rel_path" != creative/* && "$rel_path" != traditional/* ]]; then
-        echo "  [$COUNT/$LIMIT] SKIP (unexpected prefix): $rel_path"
-        SKIPPED=$((SKIPPED + 1))
-        continue
-    fi
-
-    # Check local file exists
+    # Defensive: file may have been deleted between audit and upload.
     if [ ! -f "$local_file" ]; then
-        echo "  [$COUNT/$LIMIT] MISSING: $rel_path"
+        echo "  [$COUNT/$LIMIT] MISSING after audit: $rel_path"
         MISSING=$((MISSING + 1))
         continue
     fi
 
-    # Live upload — dry-run exits earlier via the R2 audit block above.
     echo "  [$COUNT/$LIMIT] Uploading: $rel_path"
     if wrangler r2 object put "$BUCKET/$rel_path" --file="$local_file" --content-type="audio/mpeg" --remote 2>&1; then
         UPLOADED=$((UPLOADED + 1))
+        if [ "${#UPLOADED_SAMPLES[@]}" -lt 5 ]; then
+            UPLOADED_SAMPLES+=("$rel_path")
+        fi
     else
-        echo "  [$COUNT/$LIMIT] FAILED: $rel_path"
         FAILED=$((FAILED + 1))
+        echo "  [$COUNT/$LIMIT] FAILED: $rel_path"
+        if [ "${#FAILED_SAMPLES[@]}" -lt 5 ]; then
+            FAILED_SAMPLES+=("$rel_path")
+        fi
     fi
 done
 
@@ -290,12 +331,51 @@ echo "================================================================"
 echo "  Summary"
 echo "================================================================"
 echo "  Uploaded:      $UPLOADED"
-echo "  Skipped:       $SKIPPED"
+echo "  Skipped:       $SKIPPED   (already on R2 before this run)"
 echo "  Missing local: $MISSING"
-echo "  Failed:        $FAILED"
-echo "  Remaining:     $((TOTAL - UPLOADED - SKIPPED - MISSING - FAILED))"
+echo "  Failed:        $FAILED   (wrangler upload errors)"
+if [ "$PROBE_FAILED" -gt 0 ]; then
+    echo "  Probe errors:  $PROBE_FAILED   (R2 audit could not classify; skipped this run)"
+fi
 echo "================================================================"
 
-if [ $FAILED -gt 0 ]; then
+# macOS ships bash 3.2 — `${arr[@]}` on an empty array under `set -u`
+# fails with "unbound variable". Guard with length checks and only
+# expand when non-empty.
+if [ "${#UPLOADED_SAMPLES[@]}" -gt 0 ]; then
+    echo ""
+    echo "  Sample UPLOADED paths (first ${#UPLOADED_SAMPLES[@]}):"
+    for p in "${UPLOADED_SAMPLES[@]}"; do
+        echo "    - $p"
+    done
+fi
+if [ "${#FAILED_SAMPLES[@]}" -gt 0 ]; then
+    echo ""
+    echo "  Sample FAILED paths (first ${#FAILED_SAMPLES[@]}):"
+    for p in "${FAILED_SAMPLES[@]}"; do
+        echo "    - $p"
+    done
+fi
+
+# Echo the audit's skipped/missing samples too so the final summary is
+# self-contained (no need to scroll back to the pre-flight section).
+python3 - <<PYEOF
+import json
+a = json.load(open("$AUDIT_DIR/audit.json"))
+def show(label, items, max_n=5):
+    if not items: return
+    print()
+    print(f"  Sample {label} (first {min(max_n, len(items))}):")
+    for p in items[:max_n]:
+        if isinstance(p, list):
+            print(f"    - {p[0]}  [http={p[1]}]")
+        else:
+            print(f"    - {p}")
+show("SKIPPED paths (already on R2)", a["would_skip"])
+show("MISSING-LOCAL paths", a["missing"])
+show("PROBE-FAILED paths", a["failed"])
+PYEOF
+
+if [ $FAILED -gt 0 ] || [ "$PROBE_FAILED" -gt 0 ]; then
     exit 1
 fi
