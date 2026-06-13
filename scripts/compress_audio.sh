@@ -172,17 +172,16 @@ while IFS= read -r src_file; do
   # Create output directory
   mkdir -p "$dst_subdir"
 
-  # Re-encode: 64 kbps, mono, optimized for voice.
-  # ffmpeg overwrites $dst_file (-y) which is correct for the refresh-stale path.
+  # Re-encode + EBU R128 loudness normalization to -18 LUFS via the shared
+  # primitive. See docs/AUDIO_LOUDNESS.md for the calibration story and
+  # scripts/loudnorm_audio.sh for the encoder profile (libmp3lame 64k mono
+  # 22050 Hz + 300/500 ms pads + 30 ms fades).
+  # --force overwrites for refresh_stale; for compress_missing the
+  # destination doesn't exist yet so --force is a safe no-op.
   # Destination is always under $DST_DIR — originals at $SRC_DIR are never touched.
-  if ! ffmpeg -nostdin -loglevel error -y -i "$src_file" \
-    -codec:a libmp3lame \
-    -b:a 64k \
-    -ac 1 \
-    -ar 22050 \
-    -compression_level 2 \
-    "$dst_file" 2>&1; then
-    echo "  ERROR: failed to compress $rel_path" >&2
+  if ! "$PROJECT_ROOT/scripts/loudnorm_audio.sh" \
+    "$src_file" "$dst_file" --force >/dev/null; then
+    echo "  ERROR: failed to compress+normalize $rel_path" >&2
     failed=$((failed + 1))
     # Remove partial output
     rm -f "$dst_file"
