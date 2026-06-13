@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart' show AssetManifest, rootBundle;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bible_pal/services/storage_service.dart';
@@ -41,6 +41,23 @@ final storageServiceProvider = FutureProvider<StorageService>((ref) async {
 final parableServiceProvider = FutureProvider<ParableService>((ref) async {
   final storageService = await ref.watch(storageServiceProvider.future);
   return ParableService(storageService);
+});
+
+// Bundled audio paths — set of asset-bundled audio file paths (relative to
+// `assets/stories/`) loaded once from the Flutter AssetManifest. Used by the
+// player screen to gate variant chip availability so we never enable a
+// Full/Long/KJV button whose audio is not in the bundle. R2-served variants
+// are deliberately excluded here; if R2 audio normalization lands later, a
+// separate availability source will be unioned in.
+final bundledAudioPathsProvider = FutureProvider<Set<String>>((ref) async {
+  ref.keepAlive();
+  const String prefix = 'assets/stories/';
+  final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+  return manifest
+      .listAssets()
+      .where((p) => p.startsWith(prefix) && p.endsWith('.mp3'))
+      .map((p) => p.substring(prefix.length))
+      .toSet();
 });
 
 // AudioService provider - singleton, kept alive for the app lifetime so the

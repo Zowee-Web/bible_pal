@@ -374,9 +374,17 @@ class ParableService {
   /// siblings of [current]. The caller uses this to enable/disable chips
   /// in the player-screen variant controls.
   ///
+  /// A variant is considered available only when its manifest entry has a
+  /// non-empty `audioFilePath` AND that path is present in
+  /// [bundledAudioPaths] (the set of asset-bundled audio paths). R2-served
+  /// variants are deliberately excluded here — chip availability reflects
+  /// only what is playable from the bundle.
+  ///
   /// Returns a map: { 'short': {'WEB', 'KJV'}, 'full': {'WEB'}, ... }
   Future<Map<String, Set<String>>> getAvailableVariants(
-      Parable current) async {
+    Parable current,
+    Set<String> bundledAudioPaths,
+  ) async {
     if (!current.hasBibleStoryKey) return {};
     final all = await _loadManifest();
     final result = <String, Set<String>>{};
@@ -384,7 +392,10 @@ class ParableService {
       if (p.bibleStoryKey == current.bibleStoryKey &&
           p.storytellingMode == current.storytellingMode &&
           p.kidFriendly == current.kidFriendly &&
-          p.storyLength != null) {
+          p.storyLength != null &&
+          p.audioFilePath != null &&
+          p.audioFilePath!.isNotEmpty &&
+          bundledAudioPaths.contains(p.audioFilePath!)) {
         result.putIfAbsent(p.storyLength!, () => {}).add(p.languageStyle);
       }
     }

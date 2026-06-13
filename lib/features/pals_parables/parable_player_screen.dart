@@ -303,7 +303,9 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
     if (parable == null || !parable.hasBibleStoryKey) return;
 
     final parableService = await ref.read(parableServiceProvider.future);
-    final variants = await parableService.getAvailableVariants(parable);
+    final bundledPaths = await ref.read(bundledAudioPathsProvider.future);
+    final variants =
+        await parableService.getAvailableVariants(parable, bundledPaths);
     if (mounted) {
       setState(() => _availableVariants = variants);
     }
