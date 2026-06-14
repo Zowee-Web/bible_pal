@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1560,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_OPUS_COVERAGE_ROUNDOUT_2026-06",
+  "title": "Tower of Babel",
+  "scriptureAnchor": "Genesis 11:1-9",
+  "bibleStoryKey": "tower_of_babel_and_the_scattering",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "themeTags": [
+    "pride",
+    "scattering",
+    "language"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "small",
+    "confused",
+    "scattered",
+    "humbled"
+  ],
+  "primaryCharacterId": "babel_builders",
+  "primaryCharacterDisplayName": "The Builders of Babel",
+  "bibleOrderIndex": 11,
+  "timelineEra": "patriarchs",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.65,
+    "similarity_boost": 0.85,
+    "style": 0.05,
+    "use_speaker_boost": true
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1560_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1560_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1560_traditional_web_long.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1560_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1560_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1560_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1560_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1560_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Come, they said, let us build a tower whose top reaches to the heavens, and make a name for ourselves, lest we be scattered. God came down to see what the children of man had built. Then he confused their language. What is it to build a tower meant to keep you from being scattered, and to find that the building of it is the very thing that breaks the gathering?",
+  "editorialNotes": "Coverage round-out batch. Refined-spec reflection (Earned Question form, <=80w)."
+}

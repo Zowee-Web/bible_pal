@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1558,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_OPUS_COVERAGE_ROUNDOUT_2026-06",
+  "title": "Seven Words from the Cross",
+  "scriptureAnchor": "Luke 23:34-46",
+  "bibleStoryKey": "the_seven_last_words_from_the_cross",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "forgiveness",
+    "death",
+    "sacrifice"
+  ],
+  "emotionalTags": [
+    "sorrowful",
+    "weighty",
+    "tender",
+    "loved",
+    "reverent"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "bibleOrderIndex": 920,
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.7,
+    "similarity_boost": 0.85,
+    "style": 0.05,
+    "use_speaker_boost": true
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1558_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1558_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1558_traditional_web_long.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1558_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1558_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1558_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1558_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1558_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Father, forgive them, for they do not know what they are doing. Today you will be with me in paradise. Father, into your hands I commit my spirit. The cross said much. Most of what it said was prayer. What is it to be the one whose first word at the moment of death is forgiveness for the ones who did the killing?",
+  "editorialNotes": "Coverage round-out batch. Refined-spec reflection (Earned Question form, <=80w)."
+}

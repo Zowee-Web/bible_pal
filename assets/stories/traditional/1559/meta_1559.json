@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1559,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_OPUS_COVERAGE_ROUNDOUT_2026-06",
+  "title": "Worthy is the Lamb",
+  "scriptureAnchor": "Revelation 5:1-14",
+  "bibleStoryKey": "worthy_is_the_lamb_throne_room_vision",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "themeTags": [
+    "worship",
+    "worthiness",
+    "redemption"
+  ],
+  "emotionalTags": [
+    "awed",
+    "grateful",
+    "joyful",
+    "moved",
+    "exalted"
+  ],
+  "primaryCharacterId": "john_apostle",
+  "primaryCharacterDisplayName": "John the Apostle",
+  "bibleOrderIndex": 1180,
+  "timelineEra": "early_church",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1559_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1559_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1559_traditional_web_long.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1559_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1559_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1559_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1559_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1559_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "A scroll was sealed with seven seals, and no one in heaven or on earth could open it. Then a Lamb appeared, looking as though it had been slain, and the Lamb took the scroll. Every creature in heaven and on earth sang: Worthy is the Lamb. What is it to find that the One who can open the future is the One the song calls Lamb?",
+  "editorialNotes": "Coverage round-out batch. Refined-spec reflection (Earned Question form, <=80w)."
+}

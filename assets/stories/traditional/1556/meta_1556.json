@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1556,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_OPUS_COVERAGE_ROUNDOUT_2026-06",
+  "title": "The River from the Threshold",
+  "scriptureAnchor": "Ezekiel 47:1-12",
+  "bibleStoryKey": "ezekiels_vision_of_the_river_from_the_temple",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "restoration",
+    "healing",
+    "vision"
+  ],
+  "emotionalTags": [
+    "awed",
+    "wondering",
+    "hopeful",
+    "peaceful",
+    "renewed"
+  ],
+  "primaryCharacterId": "ezekiel",
+  "primaryCharacterDisplayName": "Ezekiel",
+  "bibleOrderIndex": 760,
+  "timelineEra": "exile",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.7,
+    "similarity_boost": 0.85,
+    "style": 0.05,
+    "use_speaker_boost": true
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1556_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1556_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1556_traditional_web_long.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1556_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1556_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1556_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1556_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1556_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Water came out from under the threshold of the temple, ankle-deep at first, then knee-deep, then to the waist, then a river he could not pass through except by swimming. On each bank stood trees for food, and their leaves for healing. What is it to wade into a river that began as a trickle, and to find the trees on its banks were planted for the healing of the nations?",
+  "editorialNotes": "Coverage round-out batch. Refined-spec reflection (Earned Question form, <=80w)."
+}

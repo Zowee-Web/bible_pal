@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1555,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_OPUS_COVERAGE_ROUNDOUT_2026-06",
+  "title": "Let Justice Roll Down",
+  "scriptureAnchor": "Amos 5:18-24",
+  "bibleStoryKey": "amos_let_justice_roll_down_like_waters",
+  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "themeTags": [
+    "justice",
+    "worship",
+    "righteousness"
+  ],
+  "emotionalTags": [
+    "challenged",
+    "convicted",
+    "stirred",
+    "called",
+    "awakened"
+  ],
+  "primaryCharacterId": "amos",
+  "primaryCharacterDisplayName": "Amos",
+  "bibleOrderIndex": 840,
+  "timelineEra": "prophets",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.55,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1555_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1555_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1555_traditional_web_long.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1555_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1555_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1555_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1555_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1555_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "I hate, I despise your feasts, and I will not delight in your solemn assemblies. Take away from me the noise of your songs. But let justice roll down like waters, and righteousness like a mighty stream. What is it to be told that what God wants is not your music but the river of justice you have not yet let run?",
+  "editorialNotes": "Coverage round-out batch. Refined-spec reflection (Earned Question form, <=80w)."
+}

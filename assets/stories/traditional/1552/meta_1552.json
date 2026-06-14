@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1552,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_OPUS_COVERAGE_ROUNDOUT_2026-06",
+  "title": "Choose Life",
+  "scriptureAnchor": "Deuteronomy 30:11-20",
+  "bibleStoryKey": "choose_life_at_the_end_of_moses_road",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "covenant",
+    "choice",
+    "obedience"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "called",
+    "loved",
+    "trusting",
+    "weighty"
+  ],
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "bibleOrderIndex": 200,
+  "timelineEra": "exodus",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.85,
+    "style": 0.1,
+    "use_speaker_boost": true
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1552_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1552_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1552_traditional_web_long.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1552_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1552_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1552_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1552_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1552_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Moses stood before the people he had led for forty years and laid the choice plainly: life and death, blessing and curse. He did not promise the choosing would be easy. He said only: choose life. What is it to be told, at the end of every road, that the choice has been kept open until the very last hour you can still call yours?",
+  "editorialNotes": "Coverage round-out batch. Refined-spec reflection (Earned Question form, <=80w)."
+}

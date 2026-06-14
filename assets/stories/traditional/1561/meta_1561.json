@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1561,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_OPUS_COVERAGE_ROUNDOUT_2026-06",
+  "title": "The Golden Calf and the Intercession",
+  "scriptureAnchor": "Exodus 32:1-14",
+  "bibleStoryKey": "moses_intercedes_after_the_golden_calf",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "intercession",
+    "idolatry",
+    "mercy"
+  ],
+  "emotionalTags": [
+    "grieved",
+    "interceding",
+    "loving",
+    "weighted",
+    "hopeful"
+  ],
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "bibleOrderIndex": 80,
+  "timelineEra": "exodus",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.85,
+    "style": 0.1,
+    "use_speaker_boost": true
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1561_traditional_web_short.txt"
+    },
+    "full": {
+      "storyText": "story_1561_traditional_web_full.txt"
+    },
+    "long": {
+      "storyText": "story_1561_traditional_web_long.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1561_traditional_kjv_short.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1561_traditional_kjv_full.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1561_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1561_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1561_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Moses had been on the mountain for forty days. The people grew tired of waiting and made a calf of gold. God said to Moses: let me alone, that I may consume them. And Moses said: if you will not forgive their sin, blot me out of your book that you have written. What is it to stand between God and the people you are responsible for, and to offer yourself in their place before they have seen what is coming?",
+  "editorialNotes": "Coverage round-out batch. Refined-spec reflection (Earned Question form, <=80w)."
+}
