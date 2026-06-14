@@ -100,17 +100,19 @@ def report(kids):
           f"/ ceiling {target['ceilingAnchors']} anchors, hard stop {target['hardStopStories']} stories")
     print()
 
-    total_anchors = covered = in_progress = 0
-    planned_stories = 0
+    # tallies; keys: "all" = full canon, "launch" = launch:true cutline
+    tot = {"all": collections.Counter(), "launch": collections.Counter()}
+    planned = {"all": 0, "launch": 0}
     state_mark = {"covered": "*", "in_progress": "~", "open": " "}
     for cat in reg["categories"]:
         cells = []
         for a in cat["anchors"]:
-            total_anchors += 1
-            planned_stories += len(a.get("targetLengths", []))
             state, _ = _anchor_status(a, by_anchor)
-            covered += state == "covered"
-            in_progress += state == "in_progress"
+            scopes = ["all"] + (["launch"] if a.get("launch") else [])
+            for sc in scopes:
+                tot[sc][state] += 1
+                tot[sc]["n"] += 1
+                planned[sc] += len(a.get("targetLengths", []))
             cells.append((state, a))
         n_cov = sum(1 for st, _ in cells if st == "covered")
         n_prog = sum(1 for st, _ in cells if st == "in_progress")
@@ -118,15 +120,18 @@ def report(kids):
         prog = f" (+{n_prog} in progress)" if n_prog else ""
         print(f"{cat['name']:<22} {tag}{prog}")
         for st, a in cells:
-            print(f"   [{state_mark[st]}] {a['displayName']}")
+            lmark = "L" if a.get("launch") else " "
+            print(f"   [{state_mark[st]}]{lmark} {a['displayName']}")
 
     print()
-    print(f"Core anchors covered: {covered} / {total_anchors}"
-          f"  ({in_progress} in progress, {total_anchors - covered - in_progress} open)")
-    headroom = HARD_STOP_STORIES - planned_stories
-    print(f"Planned stories at full coverage: {planned_stories} / {HARD_STOP_STORIES} hard stop "
-          f"({headroom} headroom)" + ("  *** OVER HARD STOP ***" if headroom < 0 else ""))
-    print("  Legend: [*] covered  [~] in progress  [ ] open")
+    for sc, label in (("launch", "LAUNCH cutline"), ("all", "FULL canon")):
+        t = tot[sc]
+        n, cov, prog = t["n"], t["covered"], t["in_progress"]
+        headroom = HARD_STOP_STORIES - planned[sc]
+        over = "  *** OVER HARD STOP ***" if headroom < 0 else ""
+        print(f"{label:<16} anchors {cov}/{n} covered ({prog} in progress, "
+              f"{n - cov - prog} open) | planned stories {planned[sc]}/{HARD_STOP_STORIES} ({headroom} headroom){over}")
+    print("  Legend: [*] covered  [~] in progress  [ ] open   |   L = launch-50 cutline")
 
 
 def validate(kids):

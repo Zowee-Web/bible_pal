@@ -34,181 +34,924 @@
     },
     "fulfillmentMatch": "An anchor is fulfilled by kids_manifest.json stories whose scriptureAnchorId is in this anchor's manifestAnchorIds.",
     "generationStatus": "PAUSED until adult corpus closes (see memory project_kid_stories_deferred).",
-    "lastUpdated": "2026-06-14"
+    "lastUpdated": "2026-06-14",
+    "launchCutline": "Each anchor carries launch:true/false. launch:true = the v1 cutline (50 anchors); launch:false = deferred to the mature tier (24 anchors). Launch set = all core-tier anchors + the most-replayable secondary ones; obscure/heavier anchors (Paul's road, Gethsemane, lost coin, wisdom-list comfort entries) deferred. Center stays 4-7."
   },
   "categories": [
     {
       "name": "Creation",
       "anchors": [
-        {"anchorId": "creation_days", "displayName": "The Seven Days of Creation", "scriptureRef": "Genesis 1", "tier": "core", "targetLengths": ["short", "full"], "longEligible": true},
-        {"anchorId": "adam_eve", "displayName": "Adam and Eve", "scriptureRef": "Genesis 2", "tier": "core", "targetLengths": ["short", "full"]},
-        {"anchorId": "garden_of_eden", "displayName": "The Garden of Eden", "scriptureRef": "Genesis 2:8-25", "tier": "secondary", "targetLengths": ["short"]}
+        {
+          "anchorId": "creation_days",
+          "displayName": "The Seven Days of Creation",
+          "scriptureRef": "Genesis 1",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "longEligible": true,
+          "launch": true
+        },
+        {
+          "anchorId": "adam_eve",
+          "displayName": "Adam and Eve",
+          "scriptureRef": "Genesis 2",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "garden_of_eden",
+          "displayName": "The Garden of Eden",
+          "scriptureRef": "Genesis 2:8-25",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        }
       ]
     },
     {
       "name": "Noah",
       "anchors": [
-        {"anchorId": "noah_flood", "displayName": "Noah and the Great Flood", "scriptureRef": "Genesis 6-8", "tier": "core", "targetLengths": ["short", "full"], "longEligible": true},
-        {"anchorId": "noah_promise", "displayName": "God's Promise (The Rainbow)", "scriptureRef": "Genesis 9:8-17", "tier": "core", "targetLengths": ["short", "full"], "sibling": "noah_flood"}
+        {
+          "anchorId": "noah_flood",
+          "displayName": "Noah and the Great Flood",
+          "scriptureRef": "Genesis 6-8",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "longEligible": true,
+          "launch": true
+        },
+        {
+          "anchorId": "noah_promise",
+          "displayName": "God's Promise (The Rainbow)",
+          "scriptureRef": "Genesis 9:8-17",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "sibling": "noah_flood",
+          "launch": true
+        }
       ]
     },
     {
       "name": "Abraham & Sarah",
       "anchors": [
-        {"anchorId": "abraham_call", "displayName": "God Calls Abraham", "scriptureRef": "Genesis 12:1-9", "tier": "core", "targetLengths": ["short", "full"]},
-        {"anchorId": "abraham_stars", "displayName": "Abraham and the Stars", "scriptureRef": "Genesis 15:1-6", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "sarah_isaac", "displayName": "Sarah's Promised Baby", "scriptureRef": "Genesis 18:1-15; 21:1-7", "tier": "secondary", "targetLengths": ["short"]}
+        {
+          "anchorId": "abraham_call",
+          "displayName": "God Calls Abraham",
+          "scriptureRef": "Genesis 12:1-9",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "abraham_stars",
+          "displayName": "Abraham and the Stars",
+          "scriptureRef": "Genesis 15:1-6",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        },
+        {
+          "anchorId": "sarah_isaac",
+          "displayName": "Sarah's Promised Baby",
+          "scriptureRef": "Genesis 18:1-15; 21:1-7",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        }
       ]
     },
     {
       "name": "Joseph",
       "anchors": [
-        {"anchorId": "joseph_coat", "displayName": "Joseph's Colorful Coat", "scriptureRef": "Genesis 37", "tier": "core", "targetLengths": ["short", "full"]},
-        {"anchorId": "joseph_dreams", "displayName": "Joseph and the King's Dreams", "scriptureRef": "Genesis 41", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "joseph_egypt", "displayName": "Joseph in Egypt", "scriptureRef": "Genesis 41:37-57", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "joseph_forgives", "displayName": "Joseph Forgives His Brothers", "scriptureRef": "Genesis 45", "tier": "core", "targetLengths": ["short", "full"], "longEligible": true}
+        {
+          "anchorId": "joseph_coat",
+          "displayName": "Joseph's Colorful Coat",
+          "scriptureRef": "Genesis 37",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "joseph_dreams",
+          "displayName": "Joseph and the King's Dreams",
+          "scriptureRef": "Genesis 41",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        },
+        {
+          "anchorId": "joseph_egypt",
+          "displayName": "Joseph in Egypt",
+          "scriptureRef": "Genesis 41:37-57",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        },
+        {
+          "anchorId": "joseph_forgives",
+          "displayName": "Joseph Forgives His Brothers",
+          "scriptureRef": "Genesis 45",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "longEligible": true,
+          "launch": true
+        }
       ]
     },
     {
       "name": "Moses & Exodus",
       "anchors": [
-        {"anchorId": "baby_moses", "displayName": "Baby Moses in the Basket", "scriptureRef": "Exodus 2:1-10", "tier": "core", "targetLengths": ["short", "full"]},
-        {"anchorId": "burning_bush", "displayName": "The Burning Bush", "scriptureRef": "Exodus 3", "tier": "core", "targetLengths": ["short", "full"]},
-        {"anchorId": "red_sea", "displayName": "Crossing the Red Sea", "scriptureRef": "Exodus 14", "tier": "core", "targetLengths": ["short", "full"], "longEligible": true},
-        {"anchorId": "ten_commandments", "displayName": "The Ten Commandments", "scriptureRef": "Exodus 20", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "manna", "displayName": "Manna from Heaven", "scriptureRef": "Exodus 16", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "passover", "displayName": "The First Passover", "scriptureRef": "Exodus 12", "tier": "secondary", "targetLengths": ["short"]}
+        {
+          "anchorId": "baby_moses",
+          "displayName": "Baby Moses in the Basket",
+          "scriptureRef": "Exodus 2:1-10",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "burning_bush",
+          "displayName": "The Burning Bush",
+          "scriptureRef": "Exodus 3",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "red_sea",
+          "displayName": "Crossing the Red Sea",
+          "scriptureRef": "Exodus 14",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "longEligible": true,
+          "launch": true
+        },
+        {
+          "anchorId": "ten_commandments",
+          "displayName": "The Ten Commandments",
+          "scriptureRef": "Exodus 20",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "manna",
+          "displayName": "Manna from Heaven",
+          "scriptureRef": "Exodus 16",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        },
+        {
+          "anchorId": "passover",
+          "displayName": "The First Passover",
+          "scriptureRef": "Exodus 12",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        }
       ]
     },
     {
       "name": "Joshua",
       "anchors": [
-        {"anchorId": "jordan_crossing", "displayName": "Crossing the Jordan River", "scriptureRef": "Joshua 3", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "jericho", "displayName": "The Walls of Jericho", "scriptureRef": "Joshua 6", "tier": "core", "targetLengths": ["short", "full"]}
+        {
+          "anchorId": "jordan_crossing",
+          "displayName": "Crossing the Jordan River",
+          "scriptureRef": "Joshua 3",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        },
+        {
+          "anchorId": "jericho",
+          "displayName": "The Walls of Jericho",
+          "scriptureRef": "Joshua 6",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true
+        }
       ]
     },
     {
       "name": "Ruth",
       "anchors": [
-        {"anchorId": "ruth_naomi", "displayName": "Ruth and Naomi", "scriptureRef": "Ruth 1-4", "tier": "core", "targetLengths": ["short", "full"]}
+        {
+          "anchorId": "ruth_naomi",
+          "displayName": "Ruth and Naomi",
+          "scriptureRef": "Ruth 1-4",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true
+        }
       ]
     },
     {
       "name": "Samuel",
       "anchors": [
-        {"anchorId": "samuel_listens", "displayName": "God Calls Samuel", "scriptureRef": "1 Samuel 3", "tier": "core", "targetLengths": ["short", "full"], "manifestAnchorIds": ["1_samuel_3"]},
-        {"anchorId": "samuel_anoints_david", "displayName": "Samuel Anoints David", "scriptureRef": "1 Samuel 16", "tier": "secondary", "targetLengths": ["short"]}
+        {
+          "anchorId": "samuel_listens",
+          "displayName": "God Calls Samuel",
+          "scriptureRef": "1 Samuel 3",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "1_samuel_3"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "samuel_anoints_david",
+          "displayName": "Samuel Anoints David",
+          "scriptureRef": "1 Samuel 16",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        }
       ]
     },
     {
       "name": "David",
       "anchors": [
-        {"anchorId": "david_shepherd", "displayName": "David the Shepherd Boy", "scriptureRef": "1 Samuel 16:11-13", "tier": "core", "targetLengths": ["short", "full"], "sibling": "david_goliath"},
-        {"anchorId": "david_goliath", "displayName": "David and Goliath", "scriptureRef": "1 Samuel 17", "tier": "core", "targetLengths": ["short", "full"], "longEligible": true, "manifestAnchorIds": ["1_samuel_17"]},
-        {"anchorId": "david_harp", "displayName": "David Plays for King Saul", "scriptureRef": "1 Samuel 16:14-23", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "david_jonathan", "displayName": "David and Jonathan, Best Friends", "scriptureRef": "1 Samuel 18-20", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "david_king", "displayName": "David Becomes King", "scriptureRef": "2 Samuel 5", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "david_kindness_mephibosheth", "displayName": "David's Kindness to Mephibosheth", "scriptureRef": "2 Samuel 9", "tier": "secondary", "targetLengths": ["short"]}
+        {
+          "anchorId": "david_shepherd",
+          "displayName": "David the Shepherd Boy",
+          "scriptureRef": "1 Samuel 16:11-13",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "sibling": "david_goliath",
+          "launch": true
+        },
+        {
+          "anchorId": "david_goliath",
+          "displayName": "David and Goliath",
+          "scriptureRef": "1 Samuel 17",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "longEligible": true,
+          "manifestAnchorIds": [
+            "1_samuel_17"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "david_harp",
+          "displayName": "David Plays for King Saul",
+          "scriptureRef": "1 Samuel 16:14-23",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        },
+        {
+          "anchorId": "david_jonathan",
+          "displayName": "David and Jonathan, Best Friends",
+          "scriptureRef": "1 Samuel 18-20",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "david_king",
+          "displayName": "David Becomes King",
+          "scriptureRef": "2 Samuel 5",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        },
+        {
+          "anchorId": "david_kindness_mephibosheth",
+          "displayName": "David's Kindness to Mephibosheth",
+          "scriptureRef": "2 Samuel 9",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        }
       ]
     },
     {
       "name": "Elijah & Elisha",
       "anchors": [
-        {"anchorId": "elijah_ravens", "displayName": "Elijah Fed by Ravens", "scriptureRef": "1 Kings 17:1-6", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "elijah_carmel", "displayName": "Fire on Mount Carmel", "scriptureRef": "1 Kings 18", "tier": "core", "targetLengths": ["short", "full"]},
-        {"anchorId": "elijah_whisper", "displayName": "The Gentle Whisper", "scriptureRef": "1 Kings 19:9-13", "tier": "core", "targetLengths": ["short", "full"]},
-        {"anchorId": "elisha_widow_oil", "displayName": "Elisha and the Widow's Oil", "scriptureRef": "2 Kings 4:1-7", "tier": "secondary", "targetLengths": ["short"]}
+        {
+          "anchorId": "elijah_ravens",
+          "displayName": "Elijah Fed by Ravens",
+          "scriptureRef": "1 Kings 17:1-6",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "elijah_carmel",
+          "displayName": "Fire on Mount Carmel",
+          "scriptureRef": "1 Kings 18",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "elijah_whisper",
+          "displayName": "The Gentle Whisper",
+          "scriptureRef": "1 Kings 19:9-13",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "elisha_widow_oil",
+          "displayName": "Elisha and the Widow's Oil",
+          "scriptureRef": "2 Kings 4:1-7",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        }
       ]
     },
     {
       "name": "Jonah",
       "anchors": [
-        {"anchorId": "jonah_fish", "displayName": "Jonah and the Big Fish", "scriptureRef": "Jonah 1-4", "tier": "core", "targetLengths": ["short", "full"], "longEligible": true, "manifestAnchorIds": ["jonah"]}
+        {
+          "anchorId": "jonah_fish",
+          "displayName": "Jonah and the Big Fish",
+          "scriptureRef": "Jonah 1-4",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "longEligible": true,
+          "manifestAnchorIds": [
+            "jonah"
+          ],
+          "launch": true
+        }
       ]
     },
     {
       "name": "Daniel",
       "anchors": [
-        {"anchorId": "daniel_food", "displayName": "Daniel's Healthy Food", "scriptureRef": "Daniel 1", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "fiery_furnace", "displayName": "The Fiery Furnace", "scriptureRef": "Daniel 3", "tier": "core", "targetLengths": ["short", "full"], "longEligible": true},
-        {"anchorId": "daniel_lions_den", "displayName": "Daniel in the Lions' Den", "scriptureRef": "Daniel 6", "tier": "core", "targetLengths": ["short", "full"], "manifestAnchorIds": ["daniel_6"]},
-        {"anchorId": "writing_on_wall", "displayName": "The Writing on the Wall", "scriptureRef": "Daniel 5", "tier": "secondary", "targetLengths": ["short"]}
+        {
+          "anchorId": "daniel_food",
+          "displayName": "Daniel's Healthy Food",
+          "scriptureRef": "Daniel 1",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        },
+        {
+          "anchorId": "fiery_furnace",
+          "displayName": "The Fiery Furnace",
+          "scriptureRef": "Daniel 3",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "longEligible": true,
+          "launch": true
+        },
+        {
+          "anchorId": "daniel_lions_den",
+          "displayName": "Daniel in the Lions' Den",
+          "scriptureRef": "Daniel 6",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "daniel_6"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "writing_on_wall",
+          "displayName": "The Writing on the Wall",
+          "scriptureRef": "Daniel 5",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        }
       ]
     },
     {
       "name": "Esther",
       "anchors": [
-        {"anchorId": "esther_queen", "displayName": "Esther Becomes Queen", "scriptureRef": "Esther 2", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "esther_brave", "displayName": "Esther's Brave Choice", "scriptureRef": "Esther 4-8", "tier": "core", "targetLengths": ["short", "full"], "manifestAnchorIds": ["esther"]}
+        {
+          "anchorId": "esther_queen",
+          "displayName": "Esther Becomes Queen",
+          "scriptureRef": "Esther 2",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "esther_brave",
+          "displayName": "Esther's Brave Choice",
+          "scriptureRef": "Esther 4-8",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "esther"
+          ],
+          "launch": true
+        }
       ]
     },
     {
       "name": "Birth of Jesus",
       "anchors": [
-        {"anchorId": "mary_says_yes", "displayName": "Mary Says Yes", "scriptureRef": "Luke 1:26-38", "tier": "core", "targetLengths": ["short", "full"], "sibling": "bethlehem_night"},
-        {"anchorId": "bethlehem_night", "displayName": "The Night in Bethlehem", "scriptureRef": "Luke 2:1-7", "tier": "core", "targetLengths": ["short", "full"], "longEligible": true},
-        {"anchorId": "shepherds_angels", "displayName": "The Shepherds and the Angels", "scriptureRef": "Luke 2:8-20", "tier": "core", "targetLengths": ["short", "full"]},
-        {"anchorId": "wise_men", "displayName": "The Wise Men and the Star", "scriptureRef": "Matthew 2:1-12", "tier": "core", "targetLengths": ["short", "full"]}
+        {
+          "anchorId": "mary_says_yes",
+          "displayName": "Mary Says Yes",
+          "scriptureRef": "Luke 1:26-38",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "sibling": "bethlehem_night",
+          "launch": true
+        },
+        {
+          "anchorId": "bethlehem_night",
+          "displayName": "The Night in Bethlehem",
+          "scriptureRef": "Luke 2:1-7",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "longEligible": true,
+          "launch": true
+        },
+        {
+          "anchorId": "shepherds_angels",
+          "displayName": "The Shepherds and the Angels",
+          "scriptureRef": "Luke 2:8-20",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "wise_men",
+          "displayName": "The Wise Men and the Star",
+          "scriptureRef": "Matthew 2:1-12",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true
+        }
       ]
     },
     {
       "name": "Jesus' Miracles",
       "anchors": [
-        {"anchorId": "water_to_wine", "displayName": "Water into Wine", "scriptureRef": "John 2:1-11", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "calming_storm", "displayName": "Jesus Calms the Storm", "scriptureRef": "Mark 4:35-41", "tier": "core", "targetLengths": ["short", "full"]},
-        {"anchorId": "feeding_5000", "displayName": "Feeding the Five Thousand", "scriptureRef": "John 6:1-14", "tier": "core", "targetLengths": ["short", "full"]},
-        {"anchorId": "walking_on_water", "displayName": "Jesus Walks on Water", "scriptureRef": "Matthew 14:22-33", "tier": "core", "targetLengths": ["short", "full"]},
-        {"anchorId": "jesus_children", "displayName": "Jesus and the Children", "scriptureRef": "Mark 10:13-16", "tier": "core", "targetLengths": ["short", "full"]},
-        {"anchorId": "heal_blind", "displayName": "Jesus Heals a Blind Man", "scriptureRef": "Mark 10:46-52", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "jairus_daughter", "displayName": "Jairus' Little Girl", "scriptureRef": "Mark 5:21-43", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "ten_lepers", "displayName": "The Thankful Leper", "scriptureRef": "Luke 17:11-19", "tier": "secondary", "targetLengths": ["short"]}
+        {
+          "anchorId": "water_to_wine",
+          "displayName": "Water into Wine",
+          "scriptureRef": "John 2:1-11",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "calming_storm",
+          "displayName": "Jesus Calms the Storm",
+          "scriptureRef": "Mark 4:35-41",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "feeding_5000",
+          "displayName": "Feeding the Five Thousand",
+          "scriptureRef": "John 6:1-14",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "walking_on_water",
+          "displayName": "Jesus Walks on Water",
+          "scriptureRef": "Matthew 14:22-33",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "jesus_children",
+          "displayName": "Jesus and the Children",
+          "scriptureRef": "Mark 10:13-16",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "heal_blind",
+          "displayName": "Jesus Heals a Blind Man",
+          "scriptureRef": "Mark 10:46-52",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "jairus_daughter",
+          "displayName": "Jairus' Little Girl",
+          "scriptureRef": "Mark 5:21-43",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "ten_lepers",
+          "displayName": "The Thankful Leper",
+          "scriptureRef": "Luke 17:11-19",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        }
       ]
     },
     {
       "name": "Jesus' Parables",
       "anchors": [
-        {"anchorId": "good_samaritan", "displayName": "The Good Samaritan", "scriptureRef": "Luke 10:25-37", "tier": "core", "targetLengths": ["short", "full"], "manifestAnchorIds": ["luke_10_25-37"]},
-        {"anchorId": "lost_sheep", "displayName": "The Lost Sheep", "scriptureRef": "Luke 15:3-7", "tier": "core", "targetLengths": ["short", "full"], "manifestAnchorIds": ["luke_15_3-7"]},
-        {"anchorId": "prodigal_son", "displayName": "The Loving Father", "scriptureRef": "Luke 15:11-32", "tier": "core", "targetLengths": ["short", "full"], "longEligible": true},
-        {"anchorId": "mustard_seed", "displayName": "The Tiny Mustard Seed", "scriptureRef": "Matthew 13:31-32", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "sower", "displayName": "The Farmer and the Seeds", "scriptureRef": "Mark 4:1-20", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "two_builders", "displayName": "The Wise and Foolish Builders", "scriptureRef": "Matthew 7:24-27", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "lost_coin", "displayName": "The Lost Coin", "scriptureRef": "Luke 15:8-10", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "hidden_treasure", "displayName": "The Hidden Treasure", "scriptureRef": "Matthew 13:44", "tier": "secondary", "targetLengths": ["short"]}
+        {
+          "anchorId": "good_samaritan",
+          "displayName": "The Good Samaritan",
+          "scriptureRef": "Luke 10:25-37",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "luke_10_25-37"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "lost_sheep",
+          "displayName": "The Lost Sheep",
+          "scriptureRef": "Luke 15:3-7",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "luke_15_3-7"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "prodigal_son",
+          "displayName": "The Loving Father",
+          "scriptureRef": "Luke 15:11-32",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "longEligible": true,
+          "launch": true
+        },
+        {
+          "anchorId": "mustard_seed",
+          "displayName": "The Tiny Mustard Seed",
+          "scriptureRef": "Matthew 13:31-32",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "sower",
+          "displayName": "The Farmer and the Seeds",
+          "scriptureRef": "Mark 4:1-20",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "two_builders",
+          "displayName": "The Wise and Foolish Builders",
+          "scriptureRef": "Matthew 7:24-27",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "lost_coin",
+          "displayName": "The Lost Coin",
+          "scriptureRef": "Luke 15:8-10",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        },
+        {
+          "anchorId": "hidden_treasure",
+          "displayName": "The Hidden Treasure",
+          "scriptureRef": "Matthew 13:44",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        }
       ]
     },
     {
       "name": "Easter",
       "anchors": [
-        {"anchorId": "palm_sunday", "displayName": "Palm Sunday", "scriptureRef": "Matthew 21:1-11", "tier": "core", "targetLengths": ["short", "full"]},
-        {"anchorId": "last_supper", "displayName": "The Last Supper", "scriptureRef": "Luke 22:7-20", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "gethsemane", "displayName": "Jesus Prays in the Garden", "scriptureRef": "Luke 22:39-46", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "the_cross", "displayName": "The Cross", "scriptureRef": "Luke 23:32-49", "tier": "core", "targetLengths": ["short", "full"], "sibling": "empty_tomb"},
-        {"anchorId": "empty_tomb", "displayName": "The Empty Tomb", "scriptureRef": "Luke 24:1-12", "tier": "core", "targetLengths": ["short", "full"], "longEligible": true}
+        {
+          "anchorId": "palm_sunday",
+          "displayName": "Palm Sunday",
+          "scriptureRef": "Matthew 21:1-11",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "last_supper",
+          "displayName": "The Last Supper",
+          "scriptureRef": "Luke 22:7-20",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "gethsemane",
+          "displayName": "Jesus Prays in the Garden",
+          "scriptureRef": "Luke 22:39-46",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        },
+        {
+          "anchorId": "the_cross",
+          "displayName": "The Cross",
+          "scriptureRef": "Luke 23:32-49",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "sibling": "empty_tomb",
+          "launch": true
+        },
+        {
+          "anchorId": "empty_tomb",
+          "displayName": "The Empty Tomb",
+          "scriptureRef": "Luke 24:1-12",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "longEligible": true,
+          "launch": true
+        }
       ]
     },
     {
       "name": "Early Church",
       "anchors": [
-        {"anchorId": "pentecost", "displayName": "The Holy Spirit Comes", "scriptureRef": "Acts 2", "tier": "core", "targetLengths": ["short", "full"]},
-        {"anchorId": "peter_prison", "displayName": "Peter Set Free from Prison", "scriptureRef": "Acts 12:1-19", "tier": "secondary", "targetLengths": ["short"]},
-        {"anchorId": "paul_road", "displayName": "Paul Meets Jesus on the Road", "scriptureRef": "Acts 9:1-19", "tier": "secondary", "targetLengths": ["short"]}
+        {
+          "anchorId": "pentecost",
+          "displayName": "The Holy Spirit Comes",
+          "scriptureRef": "Acts 2",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "peter_prison",
+          "displayName": "Peter Set Free from Prison",
+          "scriptureRef": "Acts 12:1-19",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        },
+        {
+          "anchorId": "paul_road",
+          "displayName": "Paul Meets Jesus on the Road",
+          "scriptureRef": "Acts 9:1-19",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        }
       ]
     },
     {
       "name": "Heaven (Revelation)",
       "anchors": [
-        {"anchorId": "new_heaven", "displayName": "A New Heaven and a New Earth", "scriptureRef": "Revelation 21:1-7", "tier": "core", "targetLengths": ["short", "full"]},
-        {"anchorId": "no_more_tears", "displayName": "No More Tears", "scriptureRef": "Revelation 21:3-4", "tier": "secondary", "targetLengths": ["short"]}
+        {
+          "anchorId": "new_heaven",
+          "displayName": "A New Heaven and a New Earth",
+          "scriptureRef": "Revelation 21:1-7",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "no_more_tears",
+          "displayName": "No More Tears",
+          "scriptureRef": "Revelation 21:3-4",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        }
       ]
     },
     {
       "name": "Comfort & Bedtime",
       "anchors": [
-        {"anchorId": "psalm_23", "displayName": "The Lord Is My Shepherd", "scriptureRef": "Psalm 23", "tier": "core", "type": "comfort-ritual", "targetLengths": ["short"]},
-        {"anchorId": "lords_prayer", "displayName": "The Lord's Prayer", "scriptureRef": "Matthew 6:9-13", "tier": "core", "type": "comfort-ritual", "targetLengths": ["short"]},
-        {"anchorId": "beatitudes", "displayName": "The Beatitudes", "scriptureRef": "Matthew 5:1-12", "tier": "secondary", "type": "comfort-ritual", "targetLengths": ["short"]},
-        {"anchorId": "fruit_of_spirit", "displayName": "The Fruit of the Spirit", "scriptureRef": "Galatians 5:22-23", "tier": "secondary", "type": "comfort-ritual", "targetLengths": ["short"]}
+        {
+          "anchorId": "psalm_23",
+          "displayName": "The Lord Is My Shepherd",
+          "scriptureRef": "Psalm 23",
+          "tier": "core",
+          "type": "comfort-ritual",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "lords_prayer",
+          "displayName": "The Lord's Prayer",
+          "scriptureRef": "Matthew 6:9-13",
+          "tier": "core",
+          "type": "comfort-ritual",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": true
+        },
+        {
+          "anchorId": "beatitudes",
+          "displayName": "The Beatitudes",
+          "scriptureRef": "Matthew 5:1-12",
+          "tier": "secondary",
+          "type": "comfort-ritual",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        },
+        {
+          "anchorId": "fruit_of_spirit",
+          "displayName": "The Fruit of the Spirit",
+          "scriptureRef": "Galatians 5:22-23",
+          "tier": "secondary",
+          "type": "comfort-ritual",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false
+        }
       ]
     }
   ]
