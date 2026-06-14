@@ -65,6 +65,18 @@ quiet footsteps) — **sparingly**, 1–2 per moment.
 > wind-down ending. Rotate endings and comfort imagery; don't repeat the
 > blanket/sleep motif within a story or across a batch.
 
+### 5.5 One indelible image
+Every story should contain **one** physical image a child remembers after the
+details fade. Examples:
+- David sliding a smooth stone into his sling.
+- Jonah opening his eyes inside the giant fish.
+- Elijah hearing God's whisper after the roaring wind.
+- The shepherds staring at a sky full of angels.
+
+If you remove this image and the story loses its heartbeat, you found the right
+image. Do **not** force multiple showpieces — one memorable image is enough
+(this complements §5: restraint everywhere, except the single image you let land).
+
 ### 6. Characters feel human
 Show the turn: fear→courage, sadness→joy, confusion→understanding,
 loneliness→comfort, weakness→trust in God. Let action carry the feeling; don't
@@ -151,3 +163,15 @@ Reflection / question examples:
 A loving parent reading beside a warm lamp. A grandparent telling stories before
 bed. Jesus sitting with children beneath a tree. The child should finish feeling:
 **safe, loved, curious, and excited for tomorrow's story.**
+
+## Bedtime test
+
+Before finishing, ask: **"Would a child happily ask to hear this story again
+tomorrow night?"** If not:
+- simplify the language
+- strengthen the emotional heartbeat
+- sharpen the one memorable image (§5.5)
+- remove unnecessary explanation
+
+Replayability is more important than novelty. Depth beats breadth. Wonder beats
+information.
