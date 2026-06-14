@@ -20,7 +20,7 @@
   "scriptureAnchor": "Amos 5:18-24",
   "scriptureAnchorId": "amos_5_18-24",
   "bibleStoryKey": "amos_let_justice_roll_down_like_waters",
-  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
   "themeTags": [
     "justice",
     "worship",
@@ -39,9 +39,9 @@
   "timelineEra": "prophets",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.55,
-    "similarity_boost": 0.85,
-    "style": 0.15,
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
     "use_speaker_boost": true
   },
   "files": {
@@ -71,5 +71,7 @@
     }
   },
   "reflectionText": "I hate, I despise your feasts, and I will not delight in your solemn assemblies. Take away from me the noise of your songs. But let justice roll down like waters, and righteousness like a mighty stream. What is it to be told that what God wants is not your music but the river of justice you have not yet let run?",
-  "editorialNotes": "Coverage round-out batch. Refined-spec reflection (Earned Question form, <=80w)."
+  "editorialNotes": "Coverage round-out batch. Refined-spec reflection (Earned Question form, <=80w).",
+  "renderedAt": "2026-06-14T18:36:12Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

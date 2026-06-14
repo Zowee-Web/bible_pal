@@ -38229,7 +38229,7 @@
       "textFilePath": "traditional/1555/story_1555_traditional_web_short.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_PETER_BOLD",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
       "storyLength": "short",
       "bibleSourceRef": "Amos 5:18-24",
       "bibleStoryKey": "amos_let_justice_roll_down_like_waters",
@@ -38248,7 +38248,7 @@
       "shortScripture": false,
       "mode": "traditional",
       "scriptureAnchor": "Amos 5:18-24",
-      "storyVoiceKey": "VOICE_PETER_BOLD",
+      "storyVoiceKey": "VOICE_ELIJAH_SAGE",
       "scriptureTextFilePath": "traditional/1555/scripture_1555_web.txt"
     },
     {
@@ -38267,7 +38267,7 @@
       "textFilePath": "traditional/1555/story_1555_traditional_kjv_short.txt",
       "translationId": "KJV",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_PETER_BOLD",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
       "storyLength": "short",
       "bibleSourceRef": "Amos 5:18-24",
       "bibleStoryKey": "amos_let_justice_roll_down_like_waters",
@@ -38286,7 +38286,7 @@
       "shortScripture": false,
       "mode": "traditional",
       "scriptureAnchor": "Amos 5:18-24",
-      "storyVoiceKey": "VOICE_PETER_BOLD",
+      "storyVoiceKey": "VOICE_ELIJAH_SAGE",
       "scriptureTextFilePath": "traditional/1555/scripture_1555_kjv.txt"
     },
     {
@@ -38305,7 +38305,7 @@
       "textFilePath": "traditional/1555/story_1555_traditional_web_full.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_PETER_BOLD",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
       "storyLength": "full",
       "bibleSourceRef": "Amos 5:18-24",
       "bibleStoryKey": "amos_let_justice_roll_down_like_waters",
@@ -38324,7 +38324,7 @@
       "shortScripture": false,
       "mode": "traditional",
       "scriptureAnchor": "Amos 5:18-24",
-      "storyVoiceKey": "VOICE_PETER_BOLD",
+      "storyVoiceKey": "VOICE_ELIJAH_SAGE",
       "scriptureTextFilePath": "traditional/1555/scripture_1555_web.txt"
     },
     {
@@ -38343,7 +38343,7 @@
       "textFilePath": "traditional/1555/story_1555_traditional_kjv_full.txt",
       "translationId": "KJV",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_PETER_BOLD",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
       "storyLength": "full",
       "bibleSourceRef": "Amos 5:18-24",
       "bibleStoryKey": "amos_let_justice_roll_down_like_waters",
@@ -38362,7 +38362,7 @@
       "shortScripture": false,
       "mode": "traditional",
       "scriptureAnchor": "Amos 5:18-24",
-      "storyVoiceKey": "VOICE_PETER_BOLD",
+      "storyVoiceKey": "VOICE_ELIJAH_SAGE",
       "scriptureTextFilePath": "traditional/1555/scripture_1555_kjv.txt"
     },
     {
@@ -38381,7 +38381,7 @@
       "textFilePath": "traditional/1555/story_1555_traditional_web_long.txt",
       "translationId": "WEB",
       "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_PETER_BOLD",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
       "storyLength": "long",
       "bibleSourceRef": "Amos 5:18-24",
       "bibleStoryKey": "amos_let_justice_roll_down_like_waters",
@@ -38400,7 +38400,7 @@
       "shortScripture": false,
       "mode": "traditional",
       "scriptureAnchor": "Amos 5:18-24",
-      "storyVoiceKey": "VOICE_PETER_BOLD",
+      "storyVoiceKey": "VOICE_ELIJAH_SAGE",
       "scriptureTextFilePath": "traditional/1555/scripture_1555_web.txt"
     },
     {
@@ -38419,7 +38419,7 @@
       "textFilePath": "traditional/1555/story_1555_traditional_kjv_long.txt",
       "translationId": "KJV",
       "languageStyle": "KJV",
-      "narratorVoiceKey": "VOICE_PETER_BOLD",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
       "storyLength": "long",
       "bibleSourceRef": "Amos 5:18-24",
       "bibleStoryKey": "amos_let_justice_roll_down_like_waters",
@@ -38438,7 +38438,7 @@
       "shortScripture": false,
       "mode": "traditional",
       "scriptureAnchor": "Amos 5:18-24",
-      "storyVoiceKey": "VOICE_PETER_BOLD",
+      "storyVoiceKey": "VOICE_ELIJAH_SAGE",
       "scriptureTextFilePath": "traditional/1555/scripture_1555_kjv.txt"
     },
     {
