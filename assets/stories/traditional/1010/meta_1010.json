@@ -52,9 +52,14 @@
   "scriptureAnchor": "Psalm 121",
   "bibleStoryKey": "i_lift_my_eyes_to_the_hills",
   "storyVoiceKey": "VOICE_ARABELLA",
-  "reflectionText": "Mountains stand tall and strong, even when clouds cover them up. Sometimes when things feel big or a little tricky, it helps to look up and remember that God is watching over everything. He never falls asleep \u2014 not even for one tiny second. That means when you are playing outside in the sunshine or tucked under your blanket at night, God is right there. He is like a cool shade on a really hot day, keeping you safe and close. Going out the door in the morning and coming back home in the evening, his care wraps around every step you take.",
+  "reflectionText": "When something feels big, you can lift up your eyes and remember that God is watching over you. He never falls asleep, not for one second. Whether you are running outside in the sunshine or tucked under your blanket at night, God is right there. Can you think of one place where you feel safe and looked after when you go in and when you come home?",
   "timelineEra": "wisdom",
   "primaryCharacterId": "psalmist",
   "primaryCharacterDisplayName": "The Psalmist",
-  "bibleOrderIndex": 122584
+  "bibleOrderIndex": 122584,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

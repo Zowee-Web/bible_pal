@@ -52,9 +52,14 @@
   "scriptureAnchor": "Joshua 3:1-17",
   "bibleStoryKey": "crossing_the_jordan",
   "storyVoiceKey": "VOICE_CHARLOTTE_V3",
-  "reflectionText": "A big river stood right in the way. The water was deep and moving fast. But the people didn't have to cross it by themselves. God went ahead of them, and the water stopped flowing. The ground became dry enough for everyone to walk across \u2014 moms, dads, grandkids, even little ones.\n\nSometimes things feel really big. A new school feels big. A dark room feels big. A hard day feels big. But even when something seems too wide to cross, you are never standing at the edge by yourself. Someone who loves you is already there, making a way through.",
+  "reflectionText": "A big river stood right in the way. The water was deep and moving fast. But God went ahead of the people, and the water stopped flowing. The ground became dry enough for everyone to walk across — even the little ones. Sometimes things look too big to get past. Can you think of one time something felt too hard, and then you found a path to walk on?",
   "timelineEra": "conquest",
   "primaryCharacterId": "joshua",
   "primaryCharacterDisplayName": "Joshua",
-  "bibleOrderIndex": 4208
+  "bibleOrderIndex": 4208,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

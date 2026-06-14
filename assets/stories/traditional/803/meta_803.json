@@ -49,8 +49,13 @@
       "reflectionText": "reflection_803_traditional_kjv.txt"
     }
   },
-  "reflectionText": "In the midst of trembling earth and roaring waters, Psalm 46 sets forth an image of a steadfast refuge. Patterns of turmoil and steadfastness stand side by side: mountains may shake, yet there is a river whose streams make glad the city of God. Listeners may notice how, even as troubles swirl, the refrain points again and again to presence and stillness. \n\nThere can be times, both in ancient poetry and daily hours, when chaos and calm intermingle. The psalm offers language that holds these together—a quiet center amid storm. Such words seem to rest in tension, inviting reflection on where unshakable peace and shelter are glimpsed amid ordinary commotion.",
+  "reflectionText": "Though the earth give way and the mountains fall into the sea, there is a river whose streams make glad the city of God. Be still, and know. What is it to be told that the steadiness you are looking for is not the silence after the storm, but the river that runs through the city while the storm is still going on?",
   "timelineEra": "wisdom",
   "primaryCharacterId": "psalmist",
-  "primaryCharacterDisplayName": "The Psalmist"
+  "primaryCharacterDisplayName": "The Psalmist",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

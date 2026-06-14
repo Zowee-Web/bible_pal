@@ -48,7 +48,7 @@
   "scriptureAnchor": "Luke 2:1-20",
   "bibleStoryKey": "nativity",
   "storyVoiceKey": "VOICE_ARABELLA",
-  "reflectionText": "Sometimes the biggest, most wonderful things happen in the quietest places. Baby Jesus wasn't born in a fancy great house. He was born in a simple spot where animals stayed. A little manger held him, soft and warm.\n\nThe shepherds were just doing their regular job that night. They weren't leaders or important people. But the angels came to them first with the happy news. The whole sky filled up with singing!\n\nGood news often comes in surprising ways. A tiny baby. A quiet night. Regular people watching their sheep. And suddenly, everything changed with so much joy and light and love.\n\nEven small, quiet moments can hold something beautiful.",
+  "reflectionText": "Jesus wasn't born in a palace. He was born in a quiet little place where animals sleep. The shepherds were just doing their regular job when the angels came with the good news. Sometimes the biggest gifts come in the quietest places. Can you think of one quiet thing that feels like a gift to you and your home?",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
@@ -56,5 +56,10 @@
     "web",
     "kjv"
   ],
-  "bibleOrderIndex": 620
+  "bibleOrderIndex": 620,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }
