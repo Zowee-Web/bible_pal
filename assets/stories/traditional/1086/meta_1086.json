@@ -29,7 +29,7 @@
   "bibleOrderIndex": 678,
   "timelineEra": "jesus_ministry",
   "reflectionQuestion": "Have you ever had to explain something you barely understood yourself, to people who did not want to believe?",
-  "reflectionText": "He was born into darkness, and it was the only world he knew. No one asked if he wanted to see. No one explained why he couldn't. The darkness was simply there \u2014 from the beginning, without cause, without apology.\n\nWhat changed was not his effort. He didn't find a cure. He didn't earn the healing. A stranger knelt beside him, put mud on his eyes, and told him to wash. He went. He washed. And everything was different.\n\nThe hardest part may not have been the blindness. It may have been what came after \u2014 the questions, the doubt, the people who could not accept what had happened. He was asked to explain something he barely understood himself, over and over, to people who did not want to believe.\n\nAnd when they threw him out, Jesus came and found him.\n\nSometimes the ones who see most clearly are the ones who have the least reason to believe \u2014 and believe anyway.",
+  "reflectionText": "He was born into darkness, and it was the only world he knew. A stranger knelt beside him, put mud on his eyes, and told him to wash. What changed was not his effort — he found no cure. And when the questions came afterward, and the people who would not believe, and the moment they threw him out, Jesus came and found him. What is it to see most clearly with the least reason — and to still believe?",
   "files": {
     "short": {
       "storyText": "story_1086_traditional_web_short.txt",
@@ -45,5 +45,10 @@
       "reflectionText": "reflection_1086_traditional_web.txt",
       "reflectionAudio": "audio_1086_reflection.mp3"
     }
+  },
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
   }
 }

@@ -57,9 +57,14 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "reflectionText": "The bush was a common thing. It was such scrub as grew in every gully of the waste, passed without regard by every shepherd who walked those hills. That which made it wondrous was not its nature but what dwelt therein. The fire consumed not. It revealed.\n\nMoses asked for a name, and the word he received was unlike any name he had known. Not a title. Not an office. Only being itself \u2014 I AM. There is something in that name which resisteth all taming, all setting in order. It abideth, like the bush, burning and not consumed, as present now as it was upon that still hillside.",
+  "reflectionText": "The bush was ordinary. The fire did not consume. What is it to be stopped on an ordinary hillside by a name that cannot be domesticated — I AM — and to be told that the One who speaks from the fire is the One who has been with you all along?",
   "timelineEra": "exodus",
   "primaryCharacterId": "moses",
   "primaryCharacterDisplayName": "Moses",
-  "bibleOrderIndex": 50
+  "bibleOrderIndex": 50,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

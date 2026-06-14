@@ -29,7 +29,7 @@
   "bibleOrderIndex": 665,
   "timelineEra": "jesus_ministry",
   "reflectionQuestion": "Have you ever reached for something when you had nothing left to lose?",
-  "reflectionText": "Twelve years is a long time to carry something alone. The kind of quiet suffering that no one sees \u2014 the appointments that lead nowhere, the money that runs out, the slow erosion of hope.\n\nWhat she did was small. She reached out and touched the edge of a robe in a crowded street. It was not a grand gesture. It was the last thing she had left to try.\n\nAnd Jesus stopped. In the middle of a pressing crowd, with people pulling at him from every side, he stopped \u2014 not because he had to, but because someone had reached for him. He wanted to know who.\n\nSometimes the bravest thing a person can do is reach out one more time, even when every reason to try has already been spent.",
+  "reflectionText": "Twelve years is a long time to carry something alone. She reached out and touched the edge of a robe in a crowded street — the last thing she had left to try. And Jesus stopped, in the middle of the press, because someone had reached for him. What is it to be the one whose smallest reach is the one the One who carries the world stops to claim?",
   "files": {
     "short": {
       "storyText": "story_1080_traditional_web_short.txt",
@@ -44,5 +44,10 @@
     "reflection": {
       "reflectionText": "reflection_1080_traditional_web.txt"
     }
+  },
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
   }
 }

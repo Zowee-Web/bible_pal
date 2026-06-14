@@ -52,9 +52,14 @@
   "scriptureAnchor": "Acts 3:1-10",
   "bibleStoryKey": "peter_heals_lame_man",
   "storyVoiceKey": "VOICE_LILY_WOLFF",
-  "reflectionText": "A man sat by a big, beautiful gate every single day. He could not walk, so he asked people for coins. But Peter and John gave him something even better than money. They shared the power of God's love, and the man jumped up on his own two feet! He was so happy that he started leaping and praising God right there in front of everyone.\n\nSometimes the best gifts are not things we can hold in our hands. A kind word, a helping hand, or just being there for someone can feel like the biggest gift in the whole wide world. Joy can show up in the most surprising ways.",
+  "reflectionText": "A man sat by the temple gate every day asking for coins. He couldn't walk. When Peter and John came by, they gave him something better than money — they helped him stand up. He started leaping and praising God right there in the middle of everyone. Sometimes the best gifts aren't things you can hold. Can you think of one time someone helped you in a way that made you feel new again?",
   "timelineEra": "early_church",
   "primaryCharacterId": "peter",
   "primaryCharacterDisplayName": "Peter",
-  "bibleOrderIndex": 5067
+  "bibleOrderIndex": 5067,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

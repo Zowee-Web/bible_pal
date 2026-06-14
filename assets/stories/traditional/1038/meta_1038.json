@@ -57,9 +57,14 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_CHRIS_DEFAULT",
-  "reflectionText": "Six times God looked upon that which he had made, and six times the text declareth it good. The seventh time \u2014 after the man and the woman, after all things \u2014 the word changeth. Very good. Not merely ordered or fitting, but delighted in.\n\nThere is something striking in a Creator who pauseth to look. The making itself is swift \u2014 God speaketh and it is so. But the seeing is deliberate. Light existeth, and then God seeth the light. The act of creation and the act of beholding are separate moments.\n\nJoy dwelleth in that space between. Between the making and the noticing. Between the labour of a day and the moment one stoppeth to behold what hath come of it.",
+  "reflectionText": "Six times God looked at what he had made, and the text says he saw that it was good. The seventh time, after the man and the woman, the word changed — very good. What is it to notice that the making is swift, but the seeing is deliberate — that joy lives in the moment between the work of a day and the choice to stop and see what it has given?",
   "timelineEra": "patriarchs",
   "primaryCharacterId": "god",
   "primaryCharacterDisplayName": "God",
-  "bibleOrderIndex": 2061
+  "bibleOrderIndex": 2061,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

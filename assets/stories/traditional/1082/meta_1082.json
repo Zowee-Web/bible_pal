@@ -29,7 +29,7 @@
   "bibleOrderIndex": 617,
   "timelineEra": "jesus_ministry",
   "reflectionQuestion": "Has life ever asked something of you that didn't make sense at the time?",
-  "reflectionText": "She was not chosen because she was powerful. She was not chosen because she was important. She was a young woman in a small town, living a quiet life, doing the kind of work that no one writes about.\n\nAnd yet the question came to her. Not to a priest. Not to a scholar. Not to someone prepared for it. To her.\n\nWhat stands out is not the announcement itself \u2014 it is what she did with it. She asked an honest question. She sat with the impossibility of it. And then she said yes. Not because she understood, but because she was willing.\n\nThere are moments when life asks something of us that does not make sense. When the answer is not certainty but trust. When the bravest thing we can say is simply: let it be.",
+  "reflectionText": "She was not chosen because she was powerful or important — she was a young woman in a small town, doing the kind of work no one writes about. And yet the question came to her. What is it to be asked something so large that no one would have prepared you for it — and to say yes, not because you understood, but because you were willing?",
   "files": {
     "short": {
       "storyText": "story_1082_traditional_web_short.txt",
@@ -50,5 +50,10 @@
   ],
   "secondaryLifeSituationTags": [
     "surrender_to_god"
-  ]
+  ],
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }
