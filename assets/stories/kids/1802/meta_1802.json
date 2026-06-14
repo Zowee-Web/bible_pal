@@ -14,7 +14,7 @@
   "longEligible": true,
   "longRendered": false,
   "status": "REVIEW",
-  "storyVoiceKey": null,
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.6,
@@ -26,9 +26,9 @@
   "hardContentFlags": ["peril_water"],
   "kidSafetyNotes": "Danger-as-awe, not terror: storm resolves into stillness; being put into the sea is calm and gentle; inside the fish is dark but 'safe, warm, not alone'. Scripture: fish sets Jonah on DRY LAND, he then travels to Nineveh (avoids the kid_113 'dropped at Nineveh' error); no invented crown. Jonah 4 epilogue (anger/plant/worm) intentionally omitted as tonally wrong for 4-7; faithful to outcome + emotional truth. One indelible image: Jonah opening his eyes inside the fish.",
   "files": {
-    "short": { "storyText": "story_1802_short.txt", "audio": null },
-    "full": { "storyText": "story_1802_full.txt", "audio": null },
-    "reflection": { "text": "reflection_1802.txt", "audio": null }
+    "short": { "storyText": "story_1802_short.txt", "audio": "audio_1802_short.mp3" },
+    "full": { "storyText": "story_1802_full.txt", "audio": "audio_1802_full.mp3" },
+    "reflection": { "text": "reflection_1802.txt", "audio": "audio_1802_reflection.mp3" }
   },
   "createdNote": "Second dedicated kid-lane anchor (Mercy pillar). Supersedes legacy kid_113. Voice not yet chosen; storyVoiceKey null until audio approval."
 }
