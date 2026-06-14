@@ -17,7 +17,7 @@
   "voiceKey": "VOICE_ESTHER_BRAVE",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_32_LYRIC_WISDOM_ROTATION",
-  "reflectionQuestion": "What moment in your own life has asked you to witness something so overwhelming that every part of you wanted to look away or fall silent — and what did it cost you to stay present to it?",
+  "reflectionQuestion": "What moment in your own life has asked you to witness something so overwhelming that every part of you wanted to look away or fall silent \u2014 and what did it cost you to stay present to it?",
   "title": "The Transfiguration",
   "files": {
     "short": {
@@ -65,5 +65,6 @@
   "primaryCharacterDisplayName": "Jesus",
   "scriptureAnchorId": "mark_9_2-13",
   "shortScripture": false,
-  "reflectionText": "What moment in your own life has asked you to witness something so overwhelming that every part of you wanted to look away or fall silent — and what did it cost you to stay present to it?"
+  "reflectionText": "What moment in your own life has asked you to witness something so overwhelming that every part of you wanted to look away or fall silent \u2014 and what did it cost you to stay present to it?",
+  "bibleOrderIndex": 10976
 }

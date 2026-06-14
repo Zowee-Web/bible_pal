@@ -16,7 +16,7 @@
   "voiceKey": "VOICE_NOAH_PATIENT",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_32_LYRIC_WISDOM_ROTATION",
-  "reflectionQuestion": "What moment recently made you pause—not because you were told to be thankful, but because something ordinary suddenly tasted like grace on your tongue?",
+  "reflectionQuestion": "What moment recently made you pause\u2014not because you were told to be thankful, but because something ordinary suddenly tasted like grace on your tongue?",
   "title": "Taste and See",
   "files": {
     "short": {
@@ -58,5 +58,6 @@
   "primaryCharacterDisplayName": "Psalmist",
   "scriptureAnchorId": "psalm_34_1-10",
   "shortScripture": false,
-  "reflectionText": "What moment recently made you pause—not because you were told to be thankful, but because something ordinary suddenly tasted like grace on your tongue?"
+  "reflectionText": "What moment recently made you pause\u2014not because you were told to be thankful, but because something ordinary suddenly tasted like grace on your tongue?",
+  "bibleOrderIndex": 175585
 }

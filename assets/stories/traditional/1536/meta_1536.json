@@ -15,7 +15,7 @@
   "voiceKey": "VOICE_BARNABAS_ENCOURAGER",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_30_TEXTURE_ROTATION",
-  "reflectionQuestion": "What does it feel like to imagine a place of shelter so complete that you could truly rest there — and is there something in your life right now that comes close to offering that kind of quiet refuge?",
+  "reflectionQuestion": "What does it feel like to imagine a place of shelter so complete that you could truly rest there \u2014 and is there something in your life right now that comes close to offering that kind of quiet refuge?",
   "title": "He That Dwells in the Secret Place",
   "files": {
     "short": {
@@ -49,7 +49,7 @@
   "languageStyle": "WEB",
   "scriptureAnchorId": "psalm_91_1-16",
   "shortScripture": false,
-  "reflectionText": "What does it feel like to imagine a place of shelter so complete that you could truly rest there — and is there something in your life right now that comes close to offering that kind of quiet refuge?",
+  "reflectionText": "What does it feel like to imagine a place of shelter so complete that you could truly rest there \u2014 and is there something in your life right now that comes close to offering that kind of quiet refuge?",
   "primaryCharacterId": "psalmist",
   "primaryCharacterDisplayName": "Psalmist",
   "ttsModel": "eleven_turbo_v2_5",
@@ -58,5 +58,6 @@
     "similarity_boost": 0.8,
     "style": 0.0,
     "use_speaker_boost": true
-  }
+  },
+  "bibleOrderIndex": 232585
 }

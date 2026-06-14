@@ -37,7 +37,7 @@ STORIES = ROOT / "assets" / "stories"
 MANIFEST = STORIES / "manifest.json"
 REGISTRY = STORIES / "scripture_anchor_registry.json"
 
-IDS = list(range(1552, 1562))
+DEFAULT_IDS = list(range(1552, 1562))
 TRANS_SUFFIX = re.compile(r"\s*\((?:WEB|KJV|ASV|YLT|DRA)\)\s*$")
 LANES = [("web", "WEB"), ("kjv", "KJV")]
 
@@ -79,7 +79,9 @@ def manifest_entry(meta: dict, sid: int, length: str, lane: str, trans: str,
         "reflectionAudioPath": refl_audio,
         "primaryCharacterId": meta["primaryCharacterId"],
         "primaryCharacterDisplayName": meta["primaryCharacterDisplayName"],
-        "bibleOrderIndex": meta["bibleOrderIndex"],
+        # may be absent in older metas (e.g. PAL_OPUS_BATCH_29); emitted as
+        # null and filled deterministically afterward by step4a_bible_order_backfill.py
+        "bibleOrderIndex": meta.get("bibleOrderIndex"),
         "timelineEra": meta["timelineEra"],
         "themeTags": meta.get("themeTags", []),
         "reflectionQuestion": reflection_q,
@@ -102,7 +104,11 @@ def dump(path: Path, obj, write: bool):
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true", help="apply changes")
+    ap.add_argument("--ids", help="comma-separated story ids to promote "
+                    "(default: %s-%s)" % (DEFAULT_IDS[0], DEFAULT_IDS[-1]))
     args = ap.parse_args()
+    ids = ([int(x) for x in args.ids.split(",") if x.strip()]
+           if args.ids else DEFAULT_IDS)
 
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
@@ -110,7 +116,7 @@ def main() -> int:
     existing_anchor_ids = {a["scriptureAnchorId"] for a in registry["anchors"]}
 
     new_manifest, new_registry, meta_patches = [], [], []
-    for sid in IDS:
+    for sid in ids:
         d = STORIES / "traditional" / str(sid)
         meta_path = d / f"meta_{sid}.json"
         meta = json.loads(meta_path.read_text(encoding="utf-8"))

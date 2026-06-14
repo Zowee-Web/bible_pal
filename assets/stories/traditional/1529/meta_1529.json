@@ -16,7 +16,7 @@
   "voiceKey": "VOICE_MIRIAM_JOYFUL",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_29_LANE_DIFFERENTIATION",
-  "reflectionQuestion": "What might it look like in your own life to quietly show up and do the faithful, unglamorous work — trusting that someone, somewhere, is noticing?",
+  "reflectionQuestion": "What might it look like in your own life to quietly show up and do the faithful, unglamorous work \u2014 trusting that someone, somewhere, is noticing?",
   "title": "Ruth in the Field",
   "files": {
     "short": {
@@ -58,12 +58,13 @@
   "languageStyle": "WEB",
   "scriptureAnchorId": "ruth_2_1-13",
   "shortScripture": false,
-  "reflectionText": "What might it look like in your own life to quietly show up and do the faithful, unglamorous work — trusting that someone, somewhere, is noticing?",
+  "reflectionText": "What might it look like in your own life to quietly show up and do the faithful, unglamorous work \u2014 trusting that someone, somewhere, is noticing?",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.6,
     "similarity_boost": 0.8,
     "style": 0.0,
     "use_speaker_boost": true
-  }
+  },
+  "bibleOrderIndex": 6240
 }

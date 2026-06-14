@@ -17,7 +17,7 @@
   "voiceKey": "VOICE_DAVID_SHEPHERD",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_31_GOSPEL_EPISTLE_ROTATION",
-  "reflectionQuestion": "In your own life, have there ever been moments when someone saw you more clearly than you expected — and instead of feeling exposed, you felt strangely free?",
+  "reflectionQuestion": "In your own life, have there ever been moments when someone saw you more clearly than you expected \u2014 and instead of feeling exposed, you felt strangely free?",
   "title": "The Woman at the Well",
   "files": {
     "short": {
@@ -65,5 +65,6 @@
   "primaryCharacterDisplayName": "Jesus",
   "scriptureAnchorId": "john_4_5-26",
   "shortScripture": false,
-  "reflectionText": "In your own life, have there ever been moments when someone saw you more clearly than you expected — and instead of feeling exposed, you felt strangely free?"
+  "reflectionText": "In your own life, have there ever been moments when someone saw you more clearly than you expected \u2014 and instead of feeling exposed, you felt strangely free?",
+  "bibleOrderIndex": 6034
 }

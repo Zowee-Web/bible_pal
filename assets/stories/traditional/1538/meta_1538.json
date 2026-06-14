@@ -17,7 +17,7 @@
   "voiceKey": "VOICE_BRADFORD",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_31_GOSPEL_EPISTLE_ROTATION",
-  "reflectionQuestion": "When you consider the boy who offered everything he had—even though it couldn't possibly have been enough—what does that stir in you about the small, seemingly insufficient things you carry in your own hands?",
+  "reflectionQuestion": "When you consider the boy who offered everything he had\u2014even though it couldn't possibly have been enough\u2014what does that stir in you about the small, seemingly insufficient things you carry in your own hands?",
   "title": "Five Loaves and Two Fish",
   "files": {
     "short": {
@@ -65,5 +65,6 @@
   "primaryCharacterDisplayName": "Jesus",
   "scriptureAnchorId": "mark_6_30-44",
   "shortScripture": false,
-  "reflectionText": "When you consider the boy who offered everything he had—even though it couldn't possibly have been enough—what does that stir in you about the small, seemingly insufficient things you carry in your own hands?"
+  "reflectionText": "When you consider the boy who offered everything he had\u2014even though it couldn't possibly have been enough\u2014what does that stir in you about the small, seemingly insufficient things you carry in your own hands?",
+  "bibleOrderIndex": 8004
 }

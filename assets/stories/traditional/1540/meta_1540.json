@@ -16,7 +16,7 @@
   "voiceKey": "VOICE_HANNAH_HOPE",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_31_GOSPEL_EPISTLE_ROTATION",
-  "reflectionQuestion": "What would it feel like to carry that sense of being unconquerable not as a battle cry, but as a quiet, settled knowing — something so deeply rooted in you that even your hardest days couldn't shake it loose?",
+  "reflectionQuestion": "What would it feel like to carry that sense of being unconquerable not as a battle cry, but as a quiet, settled knowing \u2014 something so deeply rooted in you that even your hardest days couldn't shake it loose?",
   "title": "More Than Conquerors",
   "files": {
     "short": {
@@ -41,7 +41,7 @@
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_HANNAH_HOPE",
   "scriptureAnchor": "Romans 8:31-39",
-  "bibleStoryKey": "more_than_conquerors",
+  "bibleStoryKey": "more_than_conquerors_joy",
   "reflections": {
     "web": "reflection_1540_traditional_web.txt",
     "kjv": "reflection_1540_traditional_kjv.txt"
@@ -58,5 +58,6 @@
   "primaryCharacterDisplayName": "Paul",
   "scriptureAnchorId": "romans_8_31-39",
   "shortScripture": false,
-  "reflectionText": "What would it feel like to carry that sense of being unconquerable not as a battle cry, but as a quiet, settled knowing — something so deeply rooted in you that even your hardest days couldn't shake it loose?"
+  "reflectionText": "What would it feel like to carry that sense of being unconquerable not as a battle cry, but as a quiet, settled knowing \u2014 something so deeply rooted in you that even your hardest days couldn't shake it loose?",
+  "bibleOrderIndex": 9751
 }

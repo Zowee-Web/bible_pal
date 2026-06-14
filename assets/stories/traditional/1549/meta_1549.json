@@ -16,7 +16,7 @@
   "voiceKey": "VOICE_ARABELLA",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_33_PRAYER_VISION_COVENANT",
-  "reflectionQuestion": "When weariness settles deep into your bones and the road ahead feels longer than your strength can carry, where do you find yourself looking — and what happens in you when you dare to lift your gaze?",
+  "reflectionQuestion": "When weariness settles deep into your bones and the road ahead feels longer than your strength can carry, where do you find yourself looking \u2014 and what happens in you when you dare to lift your gaze?",
   "title": "I Will Lift Up Mine Eyes",
   "files": {
     "short": {
@@ -58,5 +58,6 @@
   "primaryCharacterDisplayName": "Psalmist",
   "scriptureAnchorId": "psalm_121_1-8",
   "shortScripture": false,
-  "reflectionText": "When weariness settles deep into your bones and the road ahead feels longer than your strength can carry, where do you find yourself looking — and what happens in you when you dare to lift your gaze?"
+  "reflectionText": "When weariness settles deep into your bones and the road ahead feels longer than your strength can carry, where do you find yourself looking \u2014 and what happens in you when you dare to lift your gaze?",
+  "bibleOrderIndex": 262585
 }

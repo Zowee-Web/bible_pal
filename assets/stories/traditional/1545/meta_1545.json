@@ -16,7 +16,7 @@
   "voiceKey": "VOICE_PRISCILLA_TEACHER",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_32_LYRIC_WISDOM_ROTATION",
-  "reflectionQuestion": "When you think about the debts others owe you — the apologies never offered, the wrongs never made right — what happens inside you when you hold that weight alongside the memory of what you yourself have been forgiven?",
+  "reflectionQuestion": "When you think about the debts others owe you \u2014 the apologies never offered, the wrongs never made right \u2014 what happens inside you when you hold that weight alongside the memory of what you yourself have been forgiven?",
   "title": "The Unforgiving Servant",
   "files": {
     "short": {
@@ -58,5 +58,6 @@
   "primaryCharacterDisplayName": "Jesus",
   "scriptureAnchorId": "matthew_18_21-35",
   "shortScripture": false,
-  "reflectionText": "When you think about the debts others owe you — the apologies never offered, the wrongs never made right — what happens inside you when you hold that weight alongside the memory of what you yourself have been forgiven?"
+  "reflectionText": "When you think about the debts others owe you \u2014 the apologies never offered, the wrongs never made right \u2014 what happens inside you when you hold that weight alongside the memory of what you yourself have been forgiven?",
+  "bibleOrderIndex": 19962
 }

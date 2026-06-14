@@ -16,7 +16,7 @@
   "voiceKey": "VOICE_RUTH_COMFORT",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_33_PRAYER_VISION_COVENANT",
-  "reflectionQuestion": "What does it stir in you to consider that someone in their very last breaths could receive such an unhesitating welcome — and what might that reveal about the nature of the welcome that might be extended to you?",
+  "reflectionQuestion": "What does it stir in you to consider that someone in their very last breaths could receive such an unhesitating welcome \u2014 and what might that reveal about the nature of the welcome that might be extended to you?",
   "title": "Today Shalt Thou Be with Me in Paradise",
   "files": {
     "short": {
@@ -58,5 +58,6 @@
   "primaryCharacterDisplayName": "Jesus",
   "scriptureAnchorId": "luke_23_39-43",
   "shortScripture": false,
-  "reflectionText": "What does it stir in you to consider that someone in their very last breaths could receive such an unhesitating welcome — and what might that reveal about the nature of the welcome that might be extended to you?"
+  "reflectionText": "What does it stir in you to consider that someone in their very last breaths could receive such an unhesitating welcome \u2014 and what might that reveal about the nature of the welcome that might be extended to you?",
+  "bibleOrderIndex": 25045
 }

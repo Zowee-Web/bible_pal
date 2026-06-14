@@ -16,7 +16,7 @@
   "voiceKey": "VOICE_MARY_PONDER",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_31_GOSPEL_EPISTLE_ROTATION",
-  "reflectionQuestion": "When you stand before God in the quiet of your own heart, which voice do you hear more clearly — the one listing all the ways you've measured up, or the one that can barely whisper, \"Have mercy on me\"?",
+  "reflectionQuestion": "When you stand before God in the quiet of your own heart, which voice do you hear more clearly \u2014 the one listing all the ways you've measured up, or the one that can barely whisper, \"Have mercy on me\"?",
   "title": "The Pharisee and the Tax Collector",
   "files": {
     "short": {
@@ -58,5 +58,6 @@
   "primaryCharacterDisplayName": "Jesus",
   "scriptureAnchorId": "luke_18_9-14",
   "shortScripture": false,
-  "reflectionText": "When you stand before God in the quiet of your own heart, which voice do you hear more clearly — the one listing all the ways you've measured up, or the one that can barely whisper, \"Have mercy on me\"?"
+  "reflectionText": "When you stand before God in the quiet of your own heart, which voice do you hear more clearly \u2014 the one listing all the ways you've measured up, or the one that can barely whisper, \"Have mercy on me\"?",
+  "bibleOrderIndex": 20015
 }

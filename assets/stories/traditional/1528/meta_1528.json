@@ -16,7 +16,7 @@
   "voiceKey": "VOICE_JAMES_HUSKY",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_29_LANE_DIFFERENTIATION",
-  "reflectionQuestion": "What is it like to sit in that space where you can feel something coming undone, but you haven't yet reached the moment of breaking—and what do you notice about yourself in that waiting?",
+  "reflectionQuestion": "What is it like to sit in that space where you can feel something coming undone, but you haven't yet reached the moment of breaking\u2014and what do you notice about yourself in that waiting?",
   "title": "The Storm Before the Wreck",
   "files": {
     "short": {
@@ -58,12 +58,13 @@
   "languageStyle": "WEB",
   "scriptureAnchorId": "acts_27_13-26",
   "shortScripture": false,
-  "reflectionText": "What is it like to sit in that space where you can feel something coming undone, but you haven't yet reached the moment of breaking—and what do you notice about yourself in that waiting?",
+  "reflectionText": "What is it like to sit in that space where you can feel something coming undone, but you haven't yet reached the moment of breaking\u2014and what do you notice about yourself in that waiting?",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.6,
     "similarity_boost": 0.8,
     "style": 0.0,
     "use_speaker_boost": true
-  }
+  },
+  "bibleOrderIndex": 33080
 }

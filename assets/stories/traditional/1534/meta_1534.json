@@ -16,7 +16,7 @@
   "voiceKey": "VOICE_JOHN_BELOVED",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_30_TEXTURE_ROTATION",
-  "reflectionQuestion": "When you think about the widow preparing what she believed would be her last meal, is there a place in your own life where you've felt you were down to the very last of what you had to give — and what did it feel like to be asked for even that?",
+  "reflectionQuestion": "When you think about the widow preparing what she believed would be her last meal, is there a place in your own life where you've felt you were down to the very last of what you had to give \u2014 and what did it feel like to be asked for even that?",
   "title": "The Widow at Zarephath",
   "files": {
     "short": {
@@ -58,12 +58,13 @@
   "languageStyle": "WEB",
   "scriptureAnchorId": "1_kings_17_8-16",
   "shortScripture": false,
-  "reflectionText": "When you think about the widow preparing what she believed would be her last meal, is there a place in your own life where you've felt you were down to the very last of what you had to give — and what did it feel like to be asked for even that?",
+  "reflectionText": "When you think about the widow preparing what she believed would be her last meal, is there a place in your own life where you've felt you were down to the very last of what you had to give \u2014 and what did it feel like to be asked for even that?",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.6,
     "similarity_boost": 0.8,
     "style": 0.0,
     "use_speaker_boost": true
-  }
+  },
+  "bibleOrderIndex": 38326
 }

@@ -16,7 +16,7 @@
   "voiceKey": "VOICE_JAMES_HUSKY",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_33_PRAYER_VISION_COVENANT",
-  "reflectionQuestion": "When you consider the moments in your life where you've had to declare what you and your household stand for—even when it set you apart from everyone around you—what was it that gave you the courage to plant your feet and speak, and what did that choice cost you or give you that you still carry today?",
+  "reflectionQuestion": "When you consider the moments in your life where you've had to declare what you and your household stand for\u2014even when it set you apart from everyone around you\u2014what was it that gave you the courage to plant your feet and speak, and what did that choice cost you or give you that you still carry today?",
   "title": "As for Me and My House",
   "files": {
     "short": {
@@ -58,5 +58,6 @@
   "primaryCharacterDisplayName": "Joshua",
   "scriptureAnchorId": "joshua_24_14-18",
   "shortScripture": false,
-  "reflectionText": "When you consider the moments in your life where you've had to declare what you and your household stand for—even when it set you apart from everyone around you—what was it that gave you the courage to plant your feet and speak, and what did that choice cost you or give you that you still carry today?"
+  "reflectionText": "When you consider the moments in your life where you've had to declare what you and your household stand for\u2014even when it set you apart from everyone around you\u2014what was it that gave you the courage to plant your feet and speak, and what did that choice cost you or give you that you still carry today?",
+  "bibleOrderIndex": 29222
 }
