@@ -16,7 +16,7 @@
     "long"
   ],
   "voiceKey": "VOICE_CHRIS_DEFAULT",
-  "storyVoiceKey": "VOICE_CHRIS_DEFAULT",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
   "voiceKeys": {
     "short": "VOICE_NOAH_PATIENT",
     "full": "VOICE_NOAH_PATIENT",
