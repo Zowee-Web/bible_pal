@@ -37,13 +37,12 @@
   "primaryCharacterId": "queen_of_sheba",
   "primaryCharacterDisplayName": "The Queen of Sheba",
   "timelineEra": "kingdom",
-  "ttsModel": "eleven_multilingual_v2",
+  "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.85,
+    "stability": 0.6,
     "similarity_boost": 0.85,
-    "style": 0.15,
-    "use_speaker_boost": true,
-    "speed": 0.95
+    "style": 0.1,
+    "use_speaker_boost": true
   },
   "shortScripture": false,
   "files": {
@@ -72,7 +71,8 @@
       "reflectionText": "reflection_1543_traditional_kjv.txt"
     }
   },
-  "reflectionText": "When you finally stand inside something you had only heard of, and the half turns out never to have been told — what happens to the doubt you were so certain of, and what do you find rising up in its place?",
-  "reflectionQuestion": "When you finally stand inside something you had only heard of, and the half turns out never to have been told — what happens to the doubt you were so certain of, and what do you find rising up in its place?",
-  "reflectionSource": "llm"
+  "reflectionText": "When you finally stand inside something you had only heard of, and the half turns out never to have been told \u2014 what happens to the doubt you were so certain of, and what do you find rising up in its place?",
+  "reflectionQuestion": "When you finally stand inside something you had only heard of, and the half turns out never to have been told \u2014 what happens to the doubt you were so certain of, and what do you find rising up in its place?",
+  "reflectionSource": "llm",
+  "bibleOrderIndex": 49327
 }
