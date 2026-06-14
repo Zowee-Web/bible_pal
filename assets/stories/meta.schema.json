@@ -136,10 +136,12 @@
     },
     "ttsModel": {
       "type": "string",
+      "description": "RENDER-CONFIG DOCTRINE: the audio-generation pipeline (scripts/generate_opus_audio.sh) is the single source of truth for what was actually sent to ElevenLabs. For stories rendered before 2026-06-14, ttsModel/ttsVoiceSettings in meta may not match the real render config and are NOT authoritative — do not bulk-reconcile the corpus. New stories should record the pipeline's actual settings at render time. Never assert meta == pipeline in tests/validators; it fails on legacy. (As of 2026-06-14 the pipeline hardcodes eleven_turbo_v2_5.)",
       "enum": ["eleven_v3", "eleven_multilingual_v2", "eleven_turbo_v2_5"]
     },
     "ttsVoiceSettings": {
       "type": "object",
+      "description": "See ttsModel description for the render-config doctrine: pipeline is authoritative; pre-2026-06-14 metas may drift; do not bulk-reconcile or test meta == pipeline.",
       "additionalProperties": false,
       "properties": {
         "stability": { "type": "number", "minimum": 0, "maximum": 1 },
