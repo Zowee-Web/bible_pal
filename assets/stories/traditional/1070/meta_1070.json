@@ -17,7 +17,7 @@
   "voiceKey": "VOICE_CHRIS_DEFAULT",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_04",
-  "reflectionQuestion": "What is it that stirs in you when you imagine leaving behind everything familiar to follow a single, distant light \u2014 and what might that kind of trust feel like if you allowed it?",
+  "reflectionQuestion": "What is it that stirs in you when you imagine leaving behind everything familiar to follow a single, distant light — and what might that kind of trust feel like if you allowed it?",
   "title": "The Wise Men Follow the Star",
   "files": {
     "short": {
@@ -52,14 +52,14 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_CHRIS_DEFAULT",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
   "scriptureAnchor": "Matthew 2:1-12",
   "bibleStoryKey": "the_magi",
   "reflections": {
     "web": "reflection_1070_traditional_web.txt",
     "kjv": "reflection_1070_traditional_kjv.txt"
   },
-  "reflectionText": "What is it that stirreth within thee when thou dost imagine forsaking all that is familiar unto thee, that thou mayest follow after a single, distant light \u2014 and what manner of trust might that be, if thou didst permit thyself to yield unto it?",
+  "reflectionText": "What is it that stirreth within thee when thou dost imagine forsaking all that is familiar unto thee, that thou mayest follow after a single, distant light — and what manner of trust might that be, if thou didst permit thyself to yield unto it?",
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
@@ -68,5 +68,10 @@
     "guidance",
     "devotion",
     "faith"
-  ]
+  ],
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }
