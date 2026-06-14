@@ -61,7 +61,9 @@ KIDS_MANIFEST = STORIES / "kids_manifest.json"
 ANCHOR_REGISTRY = STORIES / "kid_anchor_registry.json"
 
 SHIPPABLE = {"DONE", "APPROVED", "AUDIO_PENDING"}
-REJECTED = "REJECTED"
+# Terminal/non-counting: excluded from coverage and from the length check.
+# REJECTED = wrong approach; SUPERSEDED = right approach, replaced by a newer telling.
+TERMINAL = {"REJECTED", "SUPERSEDED"}
 AXIS = {"short", "full", "long"}
 TIERS = {"core", "secondary"}
 
@@ -155,10 +157,10 @@ def main() -> int:
         if axis is None:
             fails.append(f"C: story '{sid}' has unknown lengthBucket '{bucket}'")
         else:
-            if bucket in LEGACY_BUCKETS:
+            if bucket in LEGACY_BUCKETS and status not in TERMINAL:
                 warns.append(f"legacy-bucket: story '{sid}' uses '{bucket}' "
                              f"(migrate to {axis})")
-            if anchor_id and status != REJECTED:
+            if anchor_id and status not in TERMINAL:
                 anchor_lengths[anchor_id].append((sid, axis, shippable))
 
     # C) length within plan
