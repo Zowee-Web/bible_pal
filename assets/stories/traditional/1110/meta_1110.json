@@ -31,8 +31,8 @@
   "primaryCharacterDisplayName": "Jesus",
   "bibleOrderIndex": 692,
   "timelineEra": "jesus_ministry",
-  "reflectionQuestion": "Have you ever watched someone leave \u2014 and felt not grief but joy?",
-  "reflectionText": "Jesus led them out to Bethany. He lifted his hands and blessed them. While he blessed them, he was parted from them and carried up into heaven. They watched him go. Their faces were turned upward. The hilltop was empty. The wind blew across the ridge. Then they returned to Jerusalem with great joy. Not grief. Joy. They had just watched him leave. They would not walk with him again on the roads of Galilee or sit with him at a table in Bethany. He was gone from their sight. And they went back praising God. Something about the blessing \u2014 about the way he left \u2014 turned their watching into worship and their loss into joy.",
+  "reflectionQuestion": "Have you ever watched someone leave — and felt not grief but joy?",
+  "reflectionText": "Jesus led them out to Bethany. He lifted his hands and blessed them. While he was blessing them, he was parted from them and carried up. They watched him go. Then they returned to Jerusalem with great joy. Not grief. Joy. He was gone from their sight. What is it to be the one whose loss has been turned into worship by the way the blessing was given?",
   "files": {
     "short": {
       "storyText": "story_1110_traditional_web_short.txt"
@@ -51,5 +51,10 @@
     "grateful",
     "awed",
     "comforted"
-  ]
+  ],
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

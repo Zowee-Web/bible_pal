@@ -26,8 +26,8 @@
   "primaryCharacterDisplayName": "Jonah",
   "bibleOrderIndex": 462,
   "timelineEra": "prophets",
-  "reflectionQuestion": "Have you ever changed direction \u2014 not because you understood everything, but because you knew it was time?",
-  "reflectionText": "The most powerful city on earth heard eight words from a stranger and changed everything. No miracles. No signs. No negotiation. Just a man standing in the street with a message he did not want to deliver, speaking to people who had no reason to listen — and they listened. What moved Nineveh was not theology. It was honesty. The king's decree did not promise anything. It said: \"Who knows? Maybe God will relent.\" That is not certainty. That is hope held with open hands. Sometimes the most transformative thing a person or a community can do is stop. Stop the routine. Stop the excuses. Stop the violence. And say: we don't know if it will make a difference, but we are going to change anyway. Nineveh did not earn forgiveness. They simply turned around. And that was enough.",
+  "reflectionQuestion": "Have you ever changed direction — not because you understood everything, but because you knew it was time?",
+  "reflectionText": "The most powerful city on earth heard eight words from a stranger and changed everything. No miracles. No signs. The king's decree did not promise anything — it said: Who knows? Maybe God will relent. What is it to turn around without certainty, holding nothing but hope with open hands, and to find that the turning is what mattered all along?",
   "files": {
     "short": {
       "storyText": "story_1100_traditional_web_short.txt"
@@ -41,5 +41,10 @@
   ],
   "secondaryLifeSituationTags": [
     "reluctant_obedience"
-  ]
+  ],
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

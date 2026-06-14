@@ -29,8 +29,8 @@
   "primaryCharacterDisplayName": "Jesus",
   "bibleOrderIndex": 683,
   "timelineEra": "jesus_ministry",
-  "reflectionQuestion": "Have you ever been part of something joyful that you did not fully understand \u2014 but joined in anyway?",
-  "reflectionText": "Jesus sent two disciples into a village for a donkey and a colt. They found the animals exactly where he said they would be. They brought them back. He sat on the colt. And the crowd erupted. People threw their cloaks on the road. They cut branches from the trees. They shouted Hosanna. Children ran alongside. The whole city was stirred. Most of them did not know what was coming next. The week ahead held betrayal, arrest, crucifixion. But in that moment, they laid down what they had and joined the procession. Joy does not always require understanding. Sometimes it asks only that you show up and join in.",
+  "reflectionQuestion": "Have you ever been part of something joyful that you did not fully understand — but joined in anyway?",
+  "reflectionText": "Jesus sent two disciples for a donkey and a colt. He sat on the colt, and the crowd erupted. People threw their cloaks on the road. They cut branches from the trees. They shouted Hosanna. Most did not know what was coming next — the week ahead held betrayal and arrest and crucifixion. What is it to lay down what you have and join the procession before you know where it leads?",
   "files": {
     "short": {
       "storyText": "story_1106_traditional_web_short.txt"
@@ -48,5 +48,10 @@
     "free",
     "grateful",
     "comforted"
-  ]
+  ],
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

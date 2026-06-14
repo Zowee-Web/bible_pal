@@ -31,8 +31,8 @@
   "primaryCharacterDisplayName": "Jesus",
   "bibleOrderIndex": 688,
   "timelineEra": "jesus_ministry",
-  "reflectionQuestion": "What does it mean to watch something unbearable \u2014 and stay?",
-  "reflectionText": "The crowds came to watch. When it was over, they turned and went home, beating their breasts. The spectacle was finished. The hill emptied. But not everyone left. The women who had followed Jesus from Galilee stood at a distance and watched. They did not turn away. They did not go home. They had no power to stop what was happening. They could not pull out the nails or take him down. They could not argue with the soldiers or overrule the sentence. They had nothing to offer but their presence. They stayed. That was all. They stood on the hill and they did not leave. Sometimes staying is the only thing left. And sometimes it is enough.",
+  "reflectionQuestion": "What does it mean to watch something unbearable — and stay?",
+  "reflectionText": "The crowds came to watch. When it was over, they turned and went home, beating their breasts. The spectacle was finished. But the women who had followed Jesus from Galilee stood at a distance and watched. They had no power to stop what was happening. They had nothing to offer but their presence. They stayed. What is it to be the one whose only gift is staying, when staying is the only thing left to give?",
   "files": {
     "short": {
       "storyText": "story_1109_traditional_web_short.txt"
@@ -53,5 +53,10 @@
     "lonely",
     "broken",
     "alone"
-  ]
+  ],
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

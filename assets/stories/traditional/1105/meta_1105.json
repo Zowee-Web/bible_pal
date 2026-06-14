@@ -31,8 +31,8 @@
   "primaryCharacterDisplayName": "Paul",
   "bibleOrderIndex": 720,
   "timelineEra": "early_church",
-  "reflectionQuestion": "Have you ever been in a situation where everything rational said it was over \u2014 and something held?",
-  "reflectionText": "Paul stood on a ship that was coming apart. The storm had lasted fourteen days. The cargo was gone. The tackle was gone. Neither sun nor stars had appeared. Every rational measure said it was over. Then Paul stood among them and said he believed God. He took bread on the deck of a breaking ship and gave thanks. He ate. And the men around him ate. The ship still broke apart. They still had to swim for shore. But all two hundred and seventy-six made it to land. Every one of them alive. Sometimes holding is not the absence of storm. It is the presence of something the storm cannot reach.",
+  "reflectionQuestion": "Have you ever been in a situation where everything rational said it was over — and something held?",
+  "reflectionText": "The storm had lasted fourteen days. The cargo was gone, the tackle gone, neither sun nor stars seen. Every rational measure said it was over. Then Paul stood among them, took bread on the deck of a breaking ship, and gave thanks. He ate. And the men around him ate. What is it to hold steady not by the absence of the storm but by the presence of something the storm cannot harm?",
   "files": {
     "short": {
       "storyText": "story_1105_traditional_web_short.txt"
@@ -53,5 +53,10 @@
     "uncertain",
     "afraid",
     "seeking"
-  ]
+  ],
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

@@ -32,7 +32,7 @@
   "bibleOrderIndex": 667,
   "timelineEra": "jesus_ministry",
   "reflectionQuestion": "Have you ever had to keep asking for something even when everything around you said to be quiet?",
-  "reflectionText": "He had been sitting by that road for years. The same dust, the same sounds, the same position at the edge of things. When he heard that Jesus was passing, he did not wait to be noticed. He shouted. When people told him to stop, he shouted louder.\n\nThere is something striking about what happened next. Jesus asked him what he wanted. The answer was simple and direct \u2014 not a theological statement, not a negotiation. Just the thing itself: to see again.\n\nSometimes the most difficult part is not the asking but believing the asking matters \u2014 that a voice from the roadside is not too small to be heard.",
+  "reflectionText": "He had sat by that road for years. When he heard Jesus passing, he shouted. When people told him to be quiet, he shouted louder. Jesus stopped and asked what he wanted. The answer was simple and direct — not a negotiation, just the thing itself: that I might see. What is it to believe that a voice from the roadside is not too small to be heard at all?",
   "files": {
     "short": {
       "storyText": "story_1101_traditional_web_short.txt"
@@ -55,5 +55,10 @@
   "primaryLifeSituationTags": [
     "illness"
   ],
-  "secondaryLifeSituationTags": []
+  "secondaryLifeSituationTags": [],
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }
