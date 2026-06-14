@@ -18,6 +18,7 @@
   "generationBatch": "PAL_OPUS_COVERAGE_ROUNDOUT_2026-06",
   "title": "The Great Commission",
   "scriptureAnchor": "Matthew 28:16-20",
+  "scriptureAnchorId": "matthew_28_16-20",
   "bibleStoryKey": "great_commission_on_the_galilee_mountain",
   "storyVoiceKey": "VOICE_BRADFORD",
   "themeTags": [
@@ -69,6 +70,6 @@
       "reflectionText": "reflection_1557_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Eleven men stood on a mountain in Galilee. Some of them still doubted. And Jesus said: all authority in heaven and earth has been given to me. Go, then. Make disciples. And I am with you always, to the end of the age. What is it to be sent into the world by someone who knows you still doubt — and to be promised company every step of the way home?",
+  "reflectionText": "Eleven men stood on a mountain in Galilee. Some of them still doubted. And Jesus said: all authority in heaven and earth has been given to me. Go, then. Make disciples. And I am with you always, to the end of the age. What is it to be sent into the world by someone who knows you still doubt \u2014 and to be promised company every step of the way home?",
   "editorialNotes": "Coverage round-out batch. Refined-spec reflection (Earned Question form, <=80w)."
 }

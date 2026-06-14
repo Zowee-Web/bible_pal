@@ -4075,6 +4075,86 @@
       "moodTags": [
         "encouraging"
       ]
+    },
+    {
+      "scriptureAnchorId": "deuteronomy_30_11-20",
+      "bibleStoryKey": "choose_life_at_the_end_of_moses_road",
+      "bibleSourceRef": "Deuteronomy 30:11-20",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_samuel_12_1-13",
+      "bibleStoryKey": "nathan_confronts_david_with_the_parable_of_the_lamb",
+      "bibleSourceRef": "2 Samuel 12:1-13",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "proverbs_31_10-31",
+      "bibleStoryKey": "the_woman_of_noble_character",
+      "bibleSourceRef": "Proverbs 31:10-31",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "amos_5_18-24",
+      "bibleStoryKey": "amos_let_justice_roll_down_like_waters",
+      "bibleSourceRef": "Amos 5:18-24",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "ezekiel_47_1-12",
+      "bibleStoryKey": "ezekiels_vision_of_the_river_from_the_temple",
+      "bibleSourceRef": "Ezekiel 47:1-12",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matthew_28_16-20",
+      "bibleStoryKey": "great_commission_on_the_galilee_mountain",
+      "bibleSourceRef": "Matthew 28:16-20",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_23_34-46",
+      "bibleStoryKey": "the_seven_last_words_from_the_cross",
+      "bibleSourceRef": "Luke 23:34-46",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "revelation_5_1-14",
+      "bibleStoryKey": "worthy_is_the_lamb_throne_room_vision",
+      "bibleSourceRef": "Revelation 5:1-14",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_11_1-9",
+      "bibleStoryKey": "tower_of_babel_and_the_scattering",
+      "bibleSourceRef": "Genesis 11:1-9",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "exodus_32_1-14",
+      "bibleStoryKey": "moses_intercedes_after_the_golden_calf",
+      "bibleSourceRef": "Exodus 32:1-14",
+      "moodTags": [
+        "hurting"
+      ]
     }
   ]
 }
