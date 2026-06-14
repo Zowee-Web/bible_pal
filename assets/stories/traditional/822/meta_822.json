@@ -15,13 +15,13 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_JOHN_DOE",
-  "storyVoiceKey": "VOICE_JOHN_DOE",
+  "voiceKey": "VOICE_JAMES_HUSKY",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
   "voiceKeys": {
-    "short": "VOICE_JOHN_BELOVED",
-    "full": "VOICE_JOHN_BELOVED",
-    "long": "VOICE_JOHN_BELOVED",
-    "reflection": "VOICE_JOHN_BELOVED"
+    "short": "VOICE_JAMES_HUSKY",
+    "full": "VOICE_JAMES_HUSKY",
+    "long": "VOICE_JAMES_HUSKY",
+    "reflection": "VOICE_JAMES_HUSKY"
   },
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_45",

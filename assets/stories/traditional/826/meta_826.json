@@ -15,13 +15,13 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_CHRIS_DEFAULT",
-  "storyVoiceKey": "VOICE_CHRIS_DEFAULT",
+  "voiceKey": "VOICE_BRADFORD",
+  "storyVoiceKey": "VOICE_BRADFORD",
   "voiceKeys": {
-    "short": "VOICE_NOAH_PATIENT",
-    "full": "VOICE_NOAH_PATIENT",
-    "long": "VOICE_NOAH_PATIENT",
-    "reflection": "VOICE_NOAH_PATIENT"
+    "short": "VOICE_BRADFORD",
+    "full": "VOICE_BRADFORD",
+    "long": "VOICE_BRADFORD",
+    "reflection": "VOICE_BRADFORD"
   },
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_46",
