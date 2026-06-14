@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1802,
+  "anchorId": "jonah_fish",
+  "kidLane": "dedicated-4-7",
+  "title": "Jonah and the Big Fish",
+  "scriptureAnchorId": "jonah",
+  "bibleSourceRef": "Jonah 1-4",
+  "bibleStoryKey": "jonah_nineveh",
+  "mood": "calm_peaceful",
+  "emotionalTags": ["safe", "wonder", "mercy"],
+  "themeTags": ["mercy", "second chances", "presence of God", "forgiveness"],
+  "lengths": ["short", "full"],
+  "longEligible": true,
+  "longRendered": false,
+  "status": "REVIEW",
+  "storyVoiceKey": null,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Where do you think God was, the whole time Jonah was inside the big fish?",
+  "hardContentFlags": ["peril_water"],
+  "kidSafetyNotes": "Danger-as-awe, not terror: storm resolves into stillness; being put into the sea is calm and gentle; inside the fish is dark but 'safe, warm, not alone'. Scripture: fish sets Jonah on DRY LAND, he then travels to Nineveh (avoids the kid_113 'dropped at Nineveh' error); no invented crown. Jonah 4 epilogue (anger/plant/worm) intentionally omitted as tonally wrong for 4-7; faithful to outcome + emotional truth. One indelible image: Jonah opening his eyes inside the fish.",
+  "files": {
+    "short": { "storyText": "story_1802_short.txt", "audio": null },
+    "full": { "storyText": "story_1802_full.txt", "audio": null },
+    "reflection": { "text": "reflection_1802.txt", "audio": null }
+  },
+  "createdNote": "Second dedicated kid-lane anchor (Mercy pillar). Supersedes legacy kid_113. Voice not yet chosen; storyVoiceKey null until audio approval."
+}
