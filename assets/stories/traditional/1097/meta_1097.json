@@ -28,8 +28,8 @@
   "primaryCharacterDisplayName": "Jehoshaphat",
   "bibleOrderIndex": 280,
   "timelineEra": "kingdom",
-  "reflectionQuestion": "Have you ever had to face something too big for you \u2014 and found that showing up was enough?",
-  "reflectionText": "There is a kind of courage that does not look like courage. It looks like singing. The army of Judah went out to face a force they could not defeat \u2014 and instead of weapons, they sent the choir. Not after the battle, in celebration. Before it. While the outcome was still unknown. While the enemy was still on the march. What Jehoshaphat admitted \u2014 \"we do not know what to do, but our eyes are on you\" \u2014 is not the prayer of a weak man. It is the prayer of an honest one. The kind of prayer that costs something to say out loud, in front of your people, when everyone is watching and waiting for you to have an answer. Sometimes the bravest thing is not having a plan. It is admitting you don't have one \u2014 and still showing up.",
+  "reflectionQuestion": "Have you ever had to face something too big for you — and found that showing up was enough?",
+  "reflectionText": "There is a kind of courage that does not look like courage. It looks like singing. The army of Judah went out to face a force they could not defeat, and instead of weapons they sent the choir — before the battle, while the outcome was still unknown. What is it to admit you have no plan, in front of your people, and still walk into the morning?",
   "files": {
     "short": {
       "storyText": "story_1097_traditional_web_short.txt"
@@ -44,5 +44,10 @@
       "reflectionText": "reflection_1097_traditional_web.txt"
     }
   },
-  "voiceKey": "VOICE_JAMES_HUSKY"
+  "voiceKey": "VOICE_JAMES_HUSKY",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+  }
 }

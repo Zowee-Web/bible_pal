@@ -27,8 +27,8 @@
   "primaryCharacterDisplayName": "Jesus",
   "bibleOrderIndex": 675,
   "timelineEra": "jesus_ministry",
-  "reflectionQuestion": "Have you ever been caught in something and expected condemnation \u2014 and received mercy instead?",
-  "reflectionText": "The accusers came with stones and certainty. They had the law. They had the evidence. They had the crowd. Everything was arranged for condemnation. And Jesus bent down and wrote in the dirt. We do not know what he wrote. But we know what happened next: the men with the stones looked at themselves instead of at the woman. And one by one, they walked away. There is something in that moment — the silence, the writing, the quiet challenge — that cuts deeper than any argument. It does not say the wrong thing was not wrong. It says: before you throw, look at your own hands. Sometimes the most powerful response to accusation is not defense. It is a question that sends every accuser home.",
+  "reflectionQuestion": "Have you ever been caught in something and expected condemnation — and received mercy instead?",
+  "reflectionText": "The accusers came with stones and certainty. They had the law, the evidence, the crowd. Everything was arranged for condemnation. And Jesus bent down and wrote in the dirt. One by one, the men with the stones walked away. What is it to be answered, not with a defense, but with a question that sends every accuser home?",
   "files": {
     "short": {
       "storyText": "story_1098_traditional_web_short.txt"
@@ -39,5 +39,10 @@
     "reflection": {
       "reflectionText": "reflection_1098_traditional_web.txt"
     }
+  },
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
   }
 }

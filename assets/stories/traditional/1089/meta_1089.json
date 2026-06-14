@@ -29,7 +29,7 @@
   "bibleOrderIndex": 646,
   "timelineEra": "jesus_ministry",
   "reflectionQuestion": "Have you ever faced a test that no one else could see?",
-  "reflectionText": "Forty days is a long time to be hungry. A long time to be alone. A long time to sit with nothing but silence and stone and the sound of your own breathing.\n\nThe temptations were not absurd. They were reasonable. Bread when you're starving. Safety when you're vulnerable. Power when you have nothing. Each one made a kind of sense \u2014 the kind that sounds right when you are exhausted and there is no one around to hear you say yes.\n\nWhat stands out is not the drama of the offers but the quietness of the refusals. Three times, Jesus answered with scripture. Not with argument. Not with explanation. Just with words he had carried into the wilderness before the test began.\n\nSometimes the hardest battles are the ones no one sees \u2014 fought in silence, in empty places, with nothing but what you brought with you.",
+  "reflectionText": "Forty days in the wilderness — alone, hungry, with nothing but stone and silence. The temptations were not absurd. They were reasonable. Bread when you are starving. Safety when you are vulnerable. Power when you have nothing. What is it to answer each one with only the words you carried in before the test began?",
   "files": {
     "short": {
       "storyText": "story_1089_traditional_web_short.txt",
@@ -45,5 +45,10 @@
       "reflectionText": "reflection_1089_traditional_web.txt",
       "reflectionAudio": "audio_1089_reflection.mp3"
     }
+  },
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
   }
 }
