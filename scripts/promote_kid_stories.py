@@ -24,9 +24,13 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 STORIES = os.path.join(HERE, "..", "assets", "stories")
 KIDS_MANIFEST = os.path.join(STORIES, "kids_manifest.json")
+ANCHOR_REGISTRY = os.path.join(STORIES, "kid_anchor_registry.json")
 APP_MANIFEST = os.path.join(STORIES, "manifest.json")
 
 PROMOTE_STATUSES = {"DONE"}
+COVERED_STATUSES = {"APPROVED", "AUDIO_PENDING", "DONE"}
+IN_PROGRESS_STATUSES = {"DRAFTED", "REVIEW", "NEEDS_REWRITE"}
+HARD_STOP_STORIES = 150
 
 
 def load(path):
@@ -62,26 +66,67 @@ def to_manifest_entry(kid):
     }
 
 
+def _anchor_status(anchor, stories_by_manifest_anchor):
+    """Return (state, best_story_status) for a registry anchor."""
+    ids = anchor.get("manifestAnchorIds", [])
+    matched = [s for aid in ids for s in stories_by_manifest_anchor.get(aid, [])]
+    if not matched:
+        return "open", None
+    statuses = {s["status"] for s in matched}
+    if statuses & COVERED_STATUSES:
+        return "covered", "/".join(sorted(statuses & COVERED_STATUSES))
+    if statuses & IN_PROGRESS_STATUSES:
+        return "in_progress", "/".join(sorted(statuses & IN_PROGRESS_STATUSES))
+    return "open", None  # only REJECTED stories point here
+
+
 def report(kids):
-    rows = kids["stories"]
-    by_status = collections.Counter(s["status"] for s in rows)
-    print(f"Kid lane: {len(rows)} stories")
-    for status, n in sorted(by_status.items()):
-        print(f"  {status:<14} {n}")
+    """Anchor-coverage map (the success metric): coverage against the planned canon."""
+    try:
+        reg = load(ANCHOR_REGISTRY)
+    except FileNotFoundError:
+        print("kid_anchor_registry.json not found; cannot compute coverage.")
+        return
+
+    # index kid-lane stories by their scriptureAnchorId
+    by_anchor = collections.defaultdict(list)
+    for s in kids["stories"]:
+        if s.get("scriptureAnchorId"):
+            by_anchor[s["scriptureAnchorId"]].append(s)
+
+    target = reg["_meta"]["doctrine"]["targets"]
+    print("=== Bible PAL Kids — anchor coverage ===")
+    print(f"Plan: launch {target['launchAnchors']} / mature {target['matureAnchors']} "
+          f"/ ceiling {target['ceilingAnchors']} anchors, hard stop {target['hardStopStories']} stories")
     print()
-    # Anchor coverage / dedup view
-    anchored = [s for s in rows if s.get("scriptureAnchorId")]
-    dupes = [a for a, n in collections.Counter(
-        s["scriptureAnchorId"] for s in anchored).items() if n > 1]
-    print(f"Distinct anchors used: {len({s['scriptureAnchorId'] for s in anchored})}"
-          f"  (no anchor: {len(rows) - len(anchored)})")
-    if dupes:
-        print(f"  Anchors used more than once: {', '.join(dupes)}")
+
+    total_anchors = covered = in_progress = 0
+    planned_stories = 0
+    state_mark = {"covered": "*", "in_progress": "~", "open": " "}
+    for cat in reg["categories"]:
+        cells = []
+        for a in cat["anchors"]:
+            total_anchors += 1
+            planned_stories += len(a.get("targetLengths", []))
+            state, _ = _anchor_status(a, by_anchor)
+            covered += state == "covered"
+            in_progress += state == "in_progress"
+            cells.append((state, a))
+        n_cov = sum(1 for st, _ in cells if st == "covered")
+        n_prog = sum(1 for st, _ in cells if st == "in_progress")
+        tag = "Complete" if n_cov == len(cells) else f"{n_cov}/{len(cells)}"
+        prog = f" (+{n_prog} in progress)" if n_prog else ""
+        print(f"{cat['name']:<22} {tag}{prog}")
+        for st, a in cells:
+            print(f"   [{state_mark[st]}] {a['displayName']}")
+
     print()
-    print(f"{'STATUS':<14}{'BUCKET':<8}{'WORDS':<14}TITLE")
-    for s in sorted(rows, key=lambda r: (r["status"], r["id"])):
-        w = f"{s.get('actualWords','?')}/{s.get('targetWords','?')}"
-        print(f"{s['status']:<14}{s.get('lengthBucket',''):<8}{w:<14}{s['title']}")
+    print(f"Core anchors covered: {covered} / {total_anchors}"
+          f"  ({in_progress} in progress, {total_anchors - covered - in_progress} open)")
+    headroom = HARD_STOP_STORIES - planned_stories
+    print(f"Planned stories at full coverage: {planned_stories} / {HARD_STOP_STORIES} hard stop "
+          f"({headroom} headroom)" + ("  *** OVER HARD STOP ***" if headroom < 0 else ""))
+    print("  Legend: [*] covered  [~] in progress  [ ] open")
 
 
 def validate(kids):
