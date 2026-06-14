@@ -35,6 +35,7 @@
     "fulfillmentMatch": "An anchor is fulfilled by kids_manifest.json stories whose scriptureAnchorId is in this anchor's manifestAnchorIds.",
     "generationStatus": "PAUSED until adult corpus closes (see memory project_kid_stories_deferred).",
     "lastUpdated": "2026-06-14",
+    "productionIdBand": "anchorId is the canonical identity. Each anchor that has authored stories ALSO carries a numeric productionId in the reserved 1801+ band (one number per anchor; lengths are files inside kids/<productionId>/, mirroring the adult traditional/<id>/ layout). The number is a production/distribution handle for the existing numeric-keyed audio chain (compression, R2, T9, manifest audioFilePath); it does NOT replace anchorId. Assign lazily (next free number) when an anchor's first story is written. david_goliath = 1801.",
     "launchCutline": "Each anchor carries launch:true/false. launch:true = the v1 cutline (50 anchors); launch:false = deferred to the mature tier (24 anchors). Launch set = all core-tier anchors + the most-replayable secondary ones; obscure/heavier anchors (Paul's road, Gethsemane, lost coin, wisdom-list comfort entries) deferred. Center stays 4-7."
   },
   "categories": [
@@ -357,7 +358,8 @@
           "manifestAnchorIds": [
             "1_samuel_17"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1801
         },
         {
           "anchorId": "david_harp",

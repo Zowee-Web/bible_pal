@@ -93,8 +93,9 @@
     },
     {
       "id": "kid_david_goliath_short",
+      "storyNumber": 1801,
       "title": "David and the Giant",
-      "textFilePath": "kids/david_goliath/story_david_goliath_short.txt",
+      "textFilePath": "kids/1801/story_1801_short.txt",
       "scriptureAnchorId": "1_samuel_17",
       "bibleStoryKey": "david_and_goliath",
       "bibleSourceRef": "1 Samuel 17",
@@ -114,8 +115,9 @@
     },
     {
       "id": "kid_david_goliath_full",
+      "storyNumber": 1801,
       "title": "David and the Giant",
-      "textFilePath": "kids/david_goliath/story_david_goliath_full.txt",
+      "textFilePath": "kids/1801/story_1801_full.txt",
       "scriptureAnchorId": "1_samuel_17",
       "bibleStoryKey": "david_and_goliath",
       "bibleSourceRef": "1 Samuel 17",

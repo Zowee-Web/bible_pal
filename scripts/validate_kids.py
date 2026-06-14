@@ -92,11 +92,20 @@ def index_registry(reg, fails):
     anchors = [a for c in reg["categories"] for a in c["anchors"]]
     by_id = {}
     rev = {}
+    prod_ids = {}
     for a in anchors:
         aid = a["anchorId"]
         if aid in by_id:
             fails.append(f"registry: duplicate anchorId '{aid}'")
         by_id[aid] = a
+        pid = a.get("productionId")
+        if pid is not None:
+            if not isinstance(pid, int) or pid < 1801:
+                fails.append(f"registry: anchor '{aid}' productionId {pid!r} must be an int >= 1801")
+            elif pid in prod_ids:
+                fails.append(f"registry: productionId {pid} on both '{prod_ids[pid]}' and '{aid}'")
+            else:
+                prod_ids[pid] = aid
         bad = set(a.get("targetLengths", [])) - AXIS
         if bad:
             fails.append(f"registry: anchor '{aid}' targetLengths not in {sorted(AXIS)}: {sorted(bad)}")
@@ -150,6 +159,14 @@ def main() -> int:
         if shippable and anchor_id is None:
             fails.append(f"B: {status} story '{sid}' does not map to a planned anchor "
                          f"(scriptureAnchorId={aid_src!r})")
+
+        # D) storyNumber must match the anchor's registry productionId
+        sn = s.get("storyNumber")
+        if sn is not None and anchor_id is not None:
+            pid = by_id[anchor_id].get("productionId")
+            if pid != sn:
+                fails.append(f"D: story '{sid}' storyNumber {sn} != anchor "
+                             f"'{anchor_id}' productionId {pid!r}")
 
         # length normalization
         bucket = s.get("lengthBucket")
