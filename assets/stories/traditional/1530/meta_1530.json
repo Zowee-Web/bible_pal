@@ -56,6 +56,19 @@
   "languageStyle": "WEB",
   "primaryCharacterId": "job",
   "primaryCharacterDisplayName": "Job",
+  "themeTags": [
+    "suffering",
+    "presence",
+    "lament",
+    "wisdom"
+  ],
+  "emotionalTags": [
+    "weary",
+    "awed",
+    "humbled",
+    "overwhelmed",
+    "small"
+  ],
   "scriptureAnchorId": "job_38_1-11",
   "shortScripture": false,
   "reflectionText": "When you think about the moments in your life where you demanded an answer and received instead only the vastness of what you couldn't understand, what happened to the exhaustion you were carrying?",

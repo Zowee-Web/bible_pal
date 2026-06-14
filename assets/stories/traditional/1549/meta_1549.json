@@ -56,6 +56,19 @@
   "timelineEra": "wisdom",
   "primaryCharacterId": "psalmist",
   "primaryCharacterDisplayName": "Psalmist",
+  "themeTags": [
+    "presence",
+    "protection",
+    "trust",
+    "guidance"
+  ],
+  "emotionalTags": [
+    "weary",
+    "trusting",
+    "hopeful",
+    "settled",
+    "earnest"
+  ],
   "scriptureAnchorId": "psalm_121_1-8",
   "shortScripture": false,
   "reflectionText": "When weariness settles deep into your bones and the road ahead feels longer than your strength can carry, where do you find yourself looking \u2014 and what happens in you when you dare to lift your gaze?",

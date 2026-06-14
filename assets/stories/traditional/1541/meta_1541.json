@@ -56,6 +56,19 @@
   "timelineEra": "early_church",
   "primaryCharacterId": "author_of_hebrews",
   "primaryCharacterDisplayName": "Author of Hebrews",
+  "themeTags": [
+    "endurance",
+    "perseverance",
+    "hope",
+    "faith"
+  ],
+  "emotionalTags": [
+    "weary",
+    "encouraged",
+    "resolute",
+    "steadfast",
+    "earnest"
+  ],
   "scriptureAnchorId": "hebrews_12_1-3",
   "shortScripture": false,
   "reflectionText": "What weariness in your own journey might shift if you sensed, even for a moment, that you were not walking it unseen?",

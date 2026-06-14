@@ -55,6 +55,19 @@
   "timelineEra": "exodus",
   "primaryCharacterId": "moses",
   "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "deliverance",
+    "faith",
+    "courage",
+    "presence"
+  ],
+  "emotionalTags": [
+    "brave",
+    "awed",
+    "trembling",
+    "resolute",
+    "reverent"
+  ],
   "languageStyle": "WEB",
   "scriptureAnchorId": "exodus_14_21-31",
   "shortScripture": false,

@@ -55,6 +55,19 @@
   "timelineEra": "early_church",
   "primaryCharacterId": "paul",
   "primaryCharacterDisplayName": "Paul",
+  "themeTags": [
+    "hope",
+    "courage",
+    "providence",
+    "deliverance"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "overwhelmed",
+    "fearful",
+    "hopeless",
+    "encouraged"
+  ],
   "languageStyle": "WEB",
   "scriptureAnchorId": "acts_27_13-26",
   "shortScripture": false,

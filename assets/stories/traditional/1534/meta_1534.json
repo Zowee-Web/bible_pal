@@ -55,6 +55,19 @@
   "timelineEra": "kingdom",
   "primaryCharacterId": "elijah",
   "primaryCharacterDisplayName": "Elijah",
+  "themeTags": [
+    "provision",
+    "faith",
+    "trust",
+    "obedience"
+  ],
+  "emotionalTags": [
+    "hopeless",
+    "weary",
+    "trusting",
+    "earnest",
+    "grateful"
+  ],
   "languageStyle": "WEB",
   "scriptureAnchorId": "1_kings_17_8-16",
   "shortScripture": false,

@@ -55,6 +55,19 @@
   "timelineEra": "judges",
   "primaryCharacterId": "ruth",
   "primaryCharacterDisplayName": "Ruth",
+  "themeTags": [
+    "provision",
+    "faithfulness",
+    "refuge",
+    "blessing"
+  ],
+  "emotionalTags": [
+    "earnest",
+    "humbled",
+    "tender",
+    "grateful",
+    "hopeful"
+  ],
   "languageStyle": "WEB",
   "scriptureAnchorId": "ruth_2_1-13",
   "shortScripture": false,

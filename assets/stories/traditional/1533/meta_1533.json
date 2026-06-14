@@ -55,6 +55,19 @@
   "timelineEra": "exile",
   "primaryCharacterId": "esther",
   "primaryCharacterDisplayName": "Esther",
+  "themeTags": [
+    "courage",
+    "calling",
+    "providence",
+    "deliverance"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "resolute",
+    "brave",
+    "weighty",
+    "earnest"
+  ],
   "languageStyle": "WEB",
   "scriptureAnchorId": "esther_4_9-17",
   "shortScripture": false,

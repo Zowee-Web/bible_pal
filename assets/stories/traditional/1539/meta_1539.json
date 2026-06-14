@@ -56,6 +56,19 @@
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
+  "themeTags": [
+    "humility",
+    "mercy",
+    "repentance",
+    "forgiveness"
+  ],
+  "emotionalTags": [
+    "humbled",
+    "convicted",
+    "sorrowful",
+    "earnest",
+    "broken"
+  ],
   "scriptureAnchorId": "luke_18_9-14",
   "shortScripture": false,
   "reflectionText": "When you stand before God in the quiet of your own heart, which voice do you hear more clearly \u2014 the one listing all the ways you've measured up, or the one that can barely whisper, \"Have mercy on me\"?",

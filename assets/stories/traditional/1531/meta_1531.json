@@ -49,6 +49,19 @@
   "languageStyle": "WEB",
   "primaryCharacterId": "john_apostle",
   "primaryCharacterDisplayName": "John",
+  "themeTags": [
+    "hope",
+    "restoration",
+    "promise",
+    "presence"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "awed",
+    "joyful",
+    "reverent",
+    "encouraged"
+  ],
   "scriptureAnchorId": "revelation_21_1-7",
   "shortScripture": false,
   "reflectionText": "What would it feel like to live as though the renewal promised in that vision were already quietly unfolding in the world around you?",

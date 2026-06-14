@@ -55,6 +55,19 @@
   "timelineEra": "conquest",
   "primaryCharacterId": "joshua",
   "primaryCharacterDisplayName": "Joshua",
+  "themeTags": [
+    "obedience",
+    "faith",
+    "perseverance",
+    "deliverance"
+  ],
+  "emotionalTags": [
+    "resolute",
+    "patient",
+    "brave",
+    "awed",
+    "waiting"
+  ],
   "languageStyle": "WEB",
   "scriptureAnchorId": "joshua_6_6-20",
   "shortScripture": false,

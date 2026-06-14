@@ -52,6 +52,19 @@
   "reflectionText": "What does it feel like to imagine a place of shelter so complete that you could truly rest there \u2014 and is there something in your life right now that comes close to offering that kind of quiet refuge?",
   "primaryCharacterId": "psalmist",
   "primaryCharacterDisplayName": "Psalmist",
+  "themeTags": [
+    "refuge",
+    "protection",
+    "trust",
+    "presence"
+  ],
+  "emotionalTags": [
+    "calm",
+    "settled",
+    "trusting",
+    "reverent",
+    "steady"
+  ],
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.6,

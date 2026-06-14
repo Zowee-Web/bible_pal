@@ -63,6 +63,19 @@
   "timelineEra": "jesus_ministry",
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
+  "themeTags": [
+    "transformation",
+    "presence",
+    "worship",
+    "hope"
+  ],
+  "emotionalTags": [
+    "longing",
+    "exposed",
+    "awed",
+    "encouraged",
+    "hopeful"
+  ],
   "scriptureAnchorId": "john_4_5-26",
   "shortScripture": false,
   "reflectionText": "In your own life, have there ever been moments when someone saw you more clearly than you expected \u2014 and instead of feeling exposed, you felt strangely free?",

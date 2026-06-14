@@ -55,6 +55,19 @@
   "timelineEra": "early_church",
   "primaryCharacterId": "peter",
   "primaryCharacterDisplayName": "Peter",
+  "themeTags": [
+    "deliverance",
+    "prayer",
+    "providence",
+    "faith"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "stunned",
+    "awed",
+    "earnest",
+    "grateful"
+  ],
   "languageStyle": "WEB",
   "scriptureAnchorId": "acts_12_6-19",
   "shortScripture": false,

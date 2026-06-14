@@ -56,6 +56,19 @@
   "timelineEra": "early_church",
   "primaryCharacterId": "paul_apostle",
   "primaryCharacterDisplayName": "Paul",
+  "themeTags": [
+    "hope",
+    "love",
+    "faith",
+    "endurance"
+  ],
+  "emotionalTags": [
+    "settled",
+    "trusting",
+    "encouraged",
+    "loved",
+    "resolute"
+  ],
   "scriptureAnchorId": "romans_8_31-39",
   "shortScripture": false,
   "reflectionText": "What would it feel like to carry that sense of being unconquerable not as a battle cry, but as a quiet, settled knowing \u2014 something so deeply rooted in you that even your hardest days couldn't shake it loose?",
