@@ -21,6 +21,18 @@ set -e
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 cd "$REPO_ROOT"
 
+# --- Kid-lane registry/manifest consistency gate ---
+# If either kid-lane map file is staged, run validate_kids.py. FAILs block the
+# commit; WARNs (legacy length-bucket drift) print but do not block. Runs before
+# the traditional check so it fires even when no traditional files are staged.
+KID_STAGED=$(git diff --cached --name-only --diff-filter=ACM \
+    | grep -E '^assets/stories/(kids_manifest|kid_anchor_registry)\.json$' \
+    || true)
+if [ -n "$KID_STAGED" ]; then
+    echo "Running validate_kids.py (kid registry consistency)..."
+    python3 scripts/validate_kids.py || exit 1
+fi
+
 # Collect staged additions/modifications under traditional/, restricted to
 # meta_*.json and prose .txt files. For each, resolve to its meta path so
 # the validator runs schema check on the meta files themselves
