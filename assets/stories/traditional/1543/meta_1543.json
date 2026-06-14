@@ -8,17 +8,44 @@
     "web",
     "kjv"
   ],
-  "mood": "calm_peaceful",
+  "mood": "joyful",
   "lengths": [
     "short",
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_ELIJAH_SAGE",
-  "createdByModel": "claude-opus-4-6",
-  "generationBatch": "PAL_OPUS_BATCH_32_LYRIC_WISDOM_ROTATION",
-  "reflectionQuestion": "When you imagine being asked — by God, by life, by the quiet voice within — \"What shall I give thee?\" what rises to the surface of your heart, and does it surprise you?",
-  "title": "Ask What I Shall Give Thee",
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_1543_REANCHOR_QUEEN_OF_SHEBA_2026-06",
+  "title": "There Was No More Spirit in Her",
+  "scriptureAnchor": "1 Kings 10:1-13",
+  "scriptureAnchorId": "1_kings_10_1-13",
+  "bibleStoryKey": "queen_of_sheba_visits_solomon",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "themeTags": [
+    "wisdom",
+    "praise",
+    "blessing",
+    "witness"
+  ],
+  "emotionalTags": [
+    "awed",
+    "joyful",
+    "grateful",
+    "wonderstruck",
+    "reverent"
+  ],
+  "primaryCharacterId": "queen_of_sheba",
+  "primaryCharacterDisplayName": "The Queen of Sheba",
+  "timelineEra": "kingdom",
+  "ttsModel": "eleven_multilingual_v2",
+  "ttsVoiceSettings": {
+    "stability": 0.85,
+    "similarity_boost": 0.85,
+    "style": 0.15,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "shortScripture": false,
   "files": {
     "short": {
       "storyText": "story_1543_traditional_web_short.txt"
@@ -26,44 +53,26 @@
     "full": {
       "storyText": "story_1543_traditional_web_full.txt"
     },
+    "long": {
+      "storyText": "story_1543_traditional_web_long.txt"
+    },
     "short_kjv": {
       "storyText": "story_1543_traditional_kjv_short.txt"
     },
     "full_kjv": {
       "storyText": "story_1543_traditional_kjv_full.txt"
     },
+    "long_kjv": {
+      "storyText": "story_1543_traditional_kjv_long.txt"
+    },
     "reflection": {
       "reflectionText": "reflection_1543_traditional_web.txt"
     },
     "reflection_kjv": {
       "reflectionText": "reflection_1543_traditional_kjv.txt"
-    },
-    "long": {
-      "storyText": "story_1543_traditional_web_long.txt"
-    },
-    "long_kjv": {
-      "storyText": "story_1543_traditional_kjv_long.txt"
     }
   },
-  "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
-  "ttsModel": "eleven_turbo_v2_5",
-  "ttsVoiceSettings": {
-    "stability": 0.6,
-    "similarity_boost": 0.8,
-    "style": 0.0,
-    "use_speaker_boost": true
-  },
-  "scriptureAnchor": "1 Kings 3:5-15",
-  "bibleStoryKey": "solomon_asks_for_wisdom",
-  "reflections": {
-    "web": "reflection_1543_traditional_web.txt",
-    "kjv": "reflection_1543_traditional_kjv.txt"
-  },
-  "timelineEra": "kingdom",
-  "primaryCharacterId": "solomon",
-  "primaryCharacterDisplayName": "Solomon",
-  "scriptureAnchorId": "1_kings_3_5-15",
-  "shortScripture": false,
-  "reflectionText": "When you imagine being asked — by God, by life, by the quiet voice within — \"What shall I give thee?\" what rises to the surface of your heart, and does it surprise you?"
+  "reflectionText": "When you finally stand inside something you had only heard of, and the half turns out never to have been told — what happens to the doubt you were so certain of, and what do you find rising up in its place?",
+  "reflectionQuestion": "When you finally stand inside something you had only heard of, and the half turns out never to have been told — what happens to the doubt you were so certain of, and what do you find rising up in its place?",
+  "reflectionSource": "llm"
 }
