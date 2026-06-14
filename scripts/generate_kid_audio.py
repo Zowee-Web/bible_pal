@@ -51,7 +51,8 @@ def story_body(path: pathlib.Path) -> str:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--id", required=True, help="kid productionId, e.g. 1801")
-    ap.add_argument("--length", required=True, choices=["short", "full", "long"])
+    ap.add_argument("--length", required=True,
+                    choices=["short", "full", "long", "reflection"])
     ap.add_argument("--voice", default=None,
                     help="override meta.storyVoiceKey (must be an approved narrator)")
     args = ap.parse_args()
@@ -79,12 +80,20 @@ def main() -> int:
     model = meta.get("ttsModel", DEFAULT_MODEL)
     settings = meta.get("ttsVoiceSettings", DEFAULT_SETTINGS)
 
-    txt = base / f"story_{args.id}_{args.length}.txt"
-    if not txt.exists():
-        print(f"ABORT: story file not found: {txt.relative_to(REPO)}")
-        return 1
-    text = story_body(txt)
-    out = base / f"audio_{args.id}_{args.length}.mp3"
+    if args.length == "reflection":
+        txt = base / f"reflection_{args.id}.txt"
+        if not txt.exists():
+            print(f"ABORT: reflection file not found: {txt.relative_to(REPO)}")
+            return 1
+        text = txt.read_text(encoding="utf-8").strip()  # single question, no title
+        out = base / f"audio_{args.id}_reflection.mp3"
+    else:
+        txt = base / f"story_{args.id}_{args.length}.txt"
+        if not txt.exists():
+            print(f"ABORT: story file not found: {txt.relative_to(REPO)}")
+            return 1
+        text = story_body(txt)
+        out = base / f"audio_{args.id}_{args.length}.mp3"
 
     print(f"Story : {args.id} '{meta.get('title')}' [{meta.get('anchorId')}] / {args.length}")
     print(f"Voice : {voice_key} ({voice_id})")

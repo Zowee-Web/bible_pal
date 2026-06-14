@@ -27,7 +27,8 @@
   "kidSafetyNotes": "Combat safe: beheading (1 Sam 17:51) omitted; outcome in one calm sentence. Menace de-stacked to thud + Goliath's scriptural taunt. One indelible image: five smooth stones.",
   "files": {
     "short": { "storyText": "story_1801_short.txt", "audio": "audio_1801_short.mp3" },
-    "full": { "storyText": "story_1801_full.txt", "audio": null }
+    "full": { "storyText": "story_1801_full.txt", "audio": "audio_1801_full.mp3" },
+    "reflection": { "text": "reflection_1801.txt", "audio": "audio_1801_reflection.mp3" }
   },
   "createdNote": "Doctrine-v2 Rosetta Stone; first dedicated kid-lane anchor. productionId band 1801+ (anchor stays canonical in kid_anchor_registry.json)."
 }
