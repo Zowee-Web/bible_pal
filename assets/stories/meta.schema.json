@@ -151,6 +151,14 @@
         "speed": { "type": "number", "minimum": 0.5, "maximum": 2.0 }
       }
     },
+    "renderedAt": {
+      "type": "string",
+      "description": "UTC ISO-8601 timestamp of the last successful audio render, written by scripts/generate_opus_audio.sh after a story's render pass completes with at least one generated file and zero failures. Absent on stories rendered before this field was introduced (2026-06-14); not backfilled — see ttsModel render-config doctrine."
+    },
+    "generatorVersion": {
+      "type": "string",
+      "description": "Which generator wrote the render metadata (ttsModel/ttsVoiceSettings/renderedAt). Written only on successful real renders; never in --dry-run."
+    },
     "shortScripture": { "type": "boolean" },
     "reflectionText": { "type": "string" },
     "reflectionQuestion": { "type": "string" },

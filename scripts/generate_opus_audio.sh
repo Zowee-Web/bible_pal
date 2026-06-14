@@ -5,6 +5,10 @@
 # Generates audio for short + full lengths only (no longs).
 # Reads voice assignments from meta JSON files.
 # Idempotent: skips files that already exist.
+# After a successful real render pass for a story (>=1 file generated, 0
+# failures, not --dry-run), writes the actual render config back into that
+# story's meta: ttsModel / ttsVoiceSettings / renderedAt / generatorVersion.
+# Never on --dry-run; never backfills already-rendered (all-skip) stories.
 #
 # USAGE:
 #   ./scripts/generate_opus_audio.sh [OPTIONS]
@@ -197,6 +201,45 @@ generate_audio() {
 }
 
 # =============================================================================
+# Render metadata writer
+# =============================================================================
+# Records the ACTUAL pipeline render config into the story meta. Called ONLY
+# after a successful real render pass (>=1 file generated, 0 failures, not
+# dry-run). Never backfills: an all-skip re-run generates nothing, so this is
+# not invoked. Writes ttsModel/ttsVoiceSettings/renderedAt/generatorVersion;
+# leaves all other meta fields untouched. ensure_ascii + indent=2 matches the
+# rest of the meta pipeline so the diff is limited to these fields.
+write_render_meta() {
+    local meta_file="$1"
+    python3 - "$meta_file" "$ELEVENLABS_MODEL" "$ELEVENLABS_STABILITY" "$ELEVENLABS_SIMILARITY" "$ELEVENLABS_STYLE" <<'PYEOF'
+import json, sys
+from datetime import datetime, timezone
+
+meta_file, model, stability, similarity, style = sys.argv[1:6]
+with open(meta_file, encoding="utf-8") as f:
+    meta = json.load(f)
+
+# Update render config in place (existing keys keep their position; new keys
+# append). Values come from the shell constants so this stays the single
+# source of truth — if the pipeline constants change, the written meta follows.
+meta["ttsModel"] = model
+meta["ttsVoiceSettings"] = {
+    "stability": float(stability),
+    "similarity_boost": float(similarity),
+    "style": float(style),
+    "use_speaker_boost": True,
+}
+meta["renderedAt"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+meta["generatorVersion"] = "generate_opus_audio.sh"
+
+out = json.dumps(meta, indent=2, ensure_ascii=True)
+with open(meta_file, "w", encoding="utf-8") as f:
+    f.write(out + "\n")
+PYEOF
+    echo -e "${GREEN}  ✎ render metadata written → $(basename "$meta_file")${NC}"
+}
+
+# =============================================================================
 # Process a single story
 # =============================================================================
 process_story() {
@@ -219,6 +262,10 @@ process_story() {
     kid_friendly=$(jq -r '.kidFriendly' "$meta_file")
 
     echo -e "\n${GREEN}Story $story_id${NC} ($mode, kid=$kid_friendly, voice=$voice_key)"
+
+    # Snapshot counters to detect this story's own render outcome.
+    local gen_before=$GENERATED
+    local fail_before=$FAILED
 
     # Determine lanes
     local lanes=("web")
@@ -259,6 +306,16 @@ process_story() {
             generate_audio "$refl_file" "$refl_audio" "$voice_key"
         fi
     done
+
+    # Record render metadata ONLY on a successful real render of THIS story:
+    # not a dry-run, at least one file actually generated this pass, and zero
+    # failures. An all-skip re-run (story already fully rendered) generates
+    # nothing → no write → legacy stories are never backfilled.
+    local story_generated=$((GENERATED - gen_before))
+    local story_failed=$((FAILED - fail_before))
+    if ! $DRY_RUN && [[ $story_generated -gt 0 && $story_failed -eq 0 ]]; then
+        write_render_meta "$meta_file"
+    fi
 }
 
 # =============================================================================
