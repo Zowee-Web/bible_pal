@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1805,
+  "anchorId": "creation_days",
+  "kidLane": "dedicated-4-7",
+  "title": "The World God Made",
+  "scriptureAnchorId": "creation_days",
+  "bibleSourceRef": "Genesis 1 - 2:3",
+  "bibleStoryKey": "creation",
+  "translation": "WEB",
+  "mood": "grateful",
+  "emotionalTags": ["wonder", "joy", "gratitude"],
+  "themeTags": ["creation", "wonder", "Gods goodness", "thankfulness"],
+  "lengths": ["short", "full"],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "What is something in God's world that you are thankful for?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "Wonder pillar, pure (no hard content). Discipline: strictly 'God did this / God made this / God saw this' — no telling the child their purpose (per Adam's review, dropped 'to know him and love him'; dropped the 'not tired' rest-explanation). Two-image symmetry: darkness-empty (open) -> darkness-full-of-stars (close). Genesis 1 + day-7 rest. Day counts cleared the word floors via observable creation detail (mountains, giraffes/mice, stars, storks/sparrows, rivers/shores), not re-added explanation.",
+  "files": {
+    "short": { "storyText": "story_1805_short.txt", "audio": "audio_1805_short.mp3" },
+    "full": { "storyText": "story_1805_full.txt", "audio": "audio_1805_full.mp3" },
+    "reflection": { "text": "reflection_1805.txt", "audio": "audio_1805_reflection.mp3", "ttsModel": "eleven_v3" }
+  },
+  "createdNote": "Wonder pillar, story 2. Foundational. Voice VOICE_NATASHA_AFRICAN_AMERICAN (Warm Strength; 2nd female narrator). Mood grateful (fills an empty mood). Reflection renders in eleven_v3."
+}

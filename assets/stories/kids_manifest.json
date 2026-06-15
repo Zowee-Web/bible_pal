@@ -29,6 +29,70 @@
   },
   "stories": [
     {
+      "id": "kid_creation_days_short",
+      "storyNumber": 1805,
+      "title": "The World God Made",
+      "textFilePath": "kids/1805/story_1805_short.txt",
+      "scriptureAnchorId": "creation_days",
+      "bibleStoryKey": "creation",
+      "bibleSourceRef": "Genesis 1 - 2:3",
+      "mood": "grateful",
+      "emotionalTags": [
+        "wonder",
+        "joy",
+        "gratitude"
+      ],
+      "themeTags": [
+        "creation",
+        "wonder",
+        "Gods goodness",
+        "thankfulness"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 303,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+      "audioFilePath": "kids/1805/audio_1805_short.mp3",
+      "reflectionAudioPath": "kids/1805/audio_1805_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What is something in God's world that you are thankful for?",
+      "kidSafetyNotes": "Wonder pillar, pure (no hard content). Strict 'God did/made/saw' discipline (no 'to know him and love him'; no rest-explanation). Two-image symmetry darkness->stars.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_creation_days_full",
+      "storyNumber": 1805,
+      "title": "The World God Made",
+      "textFilePath": "kids/1805/story_1805_full.txt",
+      "scriptureAnchorId": "creation_days",
+      "bibleStoryKey": "creation",
+      "bibleSourceRef": "Genesis 1 - 2:3",
+      "mood": "grateful",
+      "emotionalTags": [
+        "wonder",
+        "joy",
+        "gratitude"
+      ],
+      "themeTags": [
+        "creation",
+        "wonder",
+        "Gods goodness",
+        "thankfulness"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 700,
+      "actualWords": 508,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+      "audioFilePath": "kids/1805/audio_1805_full.mp3",
+      "reflectionAudioPath": "kids/1805/audio_1805_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What is something in God's world that you are thankful for?",
+      "kidSafetyNotes": "Wonder pillar, pure (no hard content). Strict 'God did/made/saw' discipline (no 'to know him and love him'; no rest-explanation). Two-image symmetry darkness->stars.",
+      "hardContentFlags": []
+    },
+    {
       "id": "kid_walking_on_water_short",
       "storyNumber": 1804,
       "title": "Jesus Walks on the Water",

@@ -54,7 +54,11 @@
             "full"
           ],
           "longEligible": true,
-          "launch": true
+          "launch": true,
+          "manifestAnchorIds": [
+            "creation_days"
+          ],
+          "productionId": 1805
         },
         {
           "anchorId": "adam_eve",
