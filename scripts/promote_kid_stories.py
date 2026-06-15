@@ -32,6 +32,14 @@ COVERED_STATUSES = {"APPROVED", "AUDIO_PENDING", "DONE"}
 IN_PROGRESS_STATUSES = {"DRAFTED", "REVIEW", "NEEDS_REWRITE"}
 HARD_STOP_STORIES = 150
 
+# The app surfaces stories by MOOD (parable_service mood filter), so the kid
+# canon needs coverage across all 8 moods, not just anchor coverage. Mirrors the
+# adult manifest.json mood taxonomy; keep in sync if the app's moods change.
+APP_MOODS = [
+    "anxious", "brave_courage", "calm_peaceful", "encouraging",
+    "grateful", "hurting", "joyful", "weary",
+]
+
 
 def load(path):
     with open(path, "r", encoding="utf-8") as f:
@@ -132,6 +140,73 @@ def report(kids):
         print(f"{label:<16} anchors {cov}/{n} covered ({prog} in progress, "
               f"{n - cov - prog} open) | planned stories {planned[sc]}/{HARD_STOP_STORIES} ({headroom} headroom){over}")
     print("  Legend: [*] covered  [~] in progress  [ ] open   |   L = launch-50 cutline")
+
+    mood_report(kids, reg)
+
+
+def mood_report(kids, reg):
+    """Mood coverage: how the (built) kid anchors spread across the 8 app moods.
+
+    Counted by DISTINCT ANCHOR, not story — David's short+full count as one
+    courage anchor. Surfaces overfill (one mood hogging anchors) and empties
+    (moods with no kid coverage), since the app serves by mood.
+    """
+    # manifestAnchorId -> registry anchorId
+    rev = {}
+    for cat in reg["categories"]:
+        for a in cat["anchors"]:
+            for mid in a.get("manifestAnchorIds", []):
+                rev[mid] = a["anchorId"]
+
+    # anchorId -> {"mood": str, "covered": bool}  (non-terminal stories only)
+    anchors = {}
+    for s in kids["stories"]:
+        status = s.get("status")
+        if status not in COVERED_STATUSES and status not in IN_PROGRESS_STATUSES:
+            continue  # skip REJECTED / SUPERSEDED / PROPOSED
+        aid = rev.get(s.get("scriptureAnchorId"))
+        mood = s.get("mood")
+        if not aid or not mood:
+            continue
+        rec = anchors.setdefault(aid, {"mood": mood, "covered": False})
+        if status in COVERED_STATUSES:
+            rec["covered"] = True
+
+    # mood -> list of (anchorId, covered)
+    by_mood = collections.defaultdict(list)
+    for aid, rec in anchors.items():
+        by_mood[rec["mood"]].append((aid, rec["covered"]))
+
+    print()
+    print("=== Mood coverage (app serves by mood; count = distinct anchors) ===")
+    covered_moods = empty = 0
+    for mood in APP_MOODS:
+        entries = by_mood.get(mood, [])
+        n = len(entries)
+        ncov = sum(1 for _, c in entries if c)
+        if ncov:
+            covered_moods += 1
+        if n == 0:
+            empty += 1
+            print(f"  {mood:<14} 0   EMPTY")
+        else:
+            names = ", ".join(a for a, _ in sorted(entries))
+            tag = f"{ncov} covered" if ncov == n else f"{ncov} covered, {n - ncov} in progress"
+            print(f"  {mood:<14} {n:<3} {tag}  ({names})")
+    # any non-app moods slipped in?
+    stray = sorted(set(by_mood) - set(APP_MOODS))
+    if stray:
+        print(f"  ! non-app moods in use (not searchable): {', '.join(stray)}")
+    empties = [m for m in APP_MOODS if not by_mood.get(m)]
+    inprog_only = sum(1 for m in APP_MOODS
+                      if by_mood.get(m) and not any(c for _, c in by_mood[m]))
+    print(f"Moods: {covered_moods} covered, {inprog_only} in-progress-only, "
+          f"{empty} empty" + (f" ({', '.join(empties)})" if empties else ""))
+    if anchors:
+        hi = max(len(v) for v in by_mood.values())
+        if hi >= 3 and empty:
+            print(f"  note: heaviest mood has {hi} anchors while {empty} moods are empty "
+                  f"— steer new anchors toward the empties.")
 
 
 def validate(kids):
