@@ -41,13 +41,15 @@ remember it. You are **not** rewriting Scripture or inventing a fantasy. You are
   Lord's Prayer) is WEB, **with the divine name rendered traditionally** (next
   bullet). Never quote NIV/ESV/NLT/etc.
   See [BIBLE_TRANSLATION_COMPLIANCE.md](BIBLE_TRANSLATION_COMPLIANCE.md).
-- **Divine name (Adam, 2026-06-15):** use **"God"** by default. Use **"the Lord"**
-  only when a directly-quoted biblical line really needs it (e.g. "The Lord is my
-  shepherd"). **Never use "Yahweh"** in kid prose or narration — it's unfamiliar to
-  4–7s. This stays WEB-based: "Yahweh" and "the LORD" are both public-domain
-  renderings of the Hebrew name (YHWH), so this is a rendering choice, not a
-  copyrighted-translation change. (WEB renders it "Yahweh"; for kids we render it
-  "the Lord" / "God".)
+- **Divine name (Adam, 2026-06-15):** use **"God"** by default; use **"the Lord"**
+  in a directly-quoted line that needs it ("The Lord is my shepherd"). **"Yahweh"
+  is rare and deliberate — about 1 story in 20** — used only where it's most
+  meaningful and gives a parent a natural reason to explain the name to the child.
+  Best fit: **the burning bush (Exodus 3), where God reveals his name** ("I AM");
+  other good fits are name moments (Psalm 23 — already an instance — or the Ten
+  Commandments). Don't sprinkle it; pick the anchor where it *teaches*. Everywhere
+  else, "God." (Compliance note: "Yahweh" and "the LORD" are both public-domain
+  renderings of YHWH — a rendering choice, not a copyrighted-translation change.)
 
 ### 3. Emotional safety
 - Children should feel safe while listening.
