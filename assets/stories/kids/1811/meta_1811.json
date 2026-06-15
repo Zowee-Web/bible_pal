@@ -36,7 +36,7 @@
   },
   "reflectionQuestion": "What do you think Moses felt when God spoke his name?",
   "hardContentFlags": [],
-  "kidSafetyNotes": "NO-Yahweh per locked kid rule: God's name given as 'I AM' (Exodus 3:14) + 'It was God's holy name' -- the word 'Yahweh' is NOT used (use God). Name introduced gently, then stops to let the mystery breathe. Fear->reassurance ('I will be with you'). Part of the lane's 'God is with me / not alone' thread. One image: the bush that burns but is not burned up.",
+  "kidSafetyNotes": "DELIBERATE 'Yahweh' covenant-name story -- the doctrine's single-best Yahweh anchor (KID_STORY_PROMPT.md S2: rare+deliberate, story-rule-not-quota, use in Burning Bush). Name given by God himself ('My name is Yahweh'), framed gently as 'God's holy name' (not casual). Fear->reassurance ('I will be with you'). Part of the lane's 'God is with me / not alone' thread. One image: the bush that burns but is not burned up.",
   "files": {
     "short": {
       "storyText": "story_1811_short.txt",
