@@ -34,7 +34,10 @@ sys.path.insert(0, str(SF))
 from generate_audio import tts, load_env  # noqa: E402
 from story_voice_registry import validate_story_voice, VoiceValidationError  # noqa: E402
 
-DEFAULT_MODEL = "eleven_turbo_v2_5"
+DEFAULT_MODEL = "eleven_turbo_v2_5"        # story narration (long; cost matters)
+# Reflections are ~10 words, so the priciest/most-expressive model is essentially
+# free there and reads more naturally on a question's intonation (Adam 2026-06-15).
+REFLECTION_MODEL = "eleven_v3"
 DEFAULT_SETTINGS = {
     "stability": 0.6, "similarity_boost": 0.8, "style": 0.0, "use_speaker_boost": True,
 }
@@ -77,7 +80,10 @@ def main() -> int:
         print(f"ABORT: {voice_key} not set in .env")
         return 1
 
-    model = meta.get("ttsModel", DEFAULT_MODEL)
+    if args.length == "reflection":
+        model = meta.get("reflectionTtsModel", REFLECTION_MODEL)
+    else:
+        model = meta.get("ttsModel", DEFAULT_MODEL)
     settings = meta.get("ttsVoiceSettings", DEFAULT_SETTINGS)
 
     if args.length == "reflection":
