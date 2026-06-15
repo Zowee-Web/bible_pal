@@ -43,11 +43,15 @@ remember it. You are **not** rewriting Scripture or inventing a fantasy. You are
   See [BIBLE_TRANSLATION_COMPLIANCE.md](BIBLE_TRANSLATION_COMPLIANCE.md).
 - **Divine name (Adam, 2026-06-15):** use **"God"** by default; use **"the Lord"**
   in a directly-quoted line that reads better with it ("The Lord is my shepherd").
-  **"Yahweh" is rare and deliberate — ~1 story in 20 (~5%)** — and only when the
-  story is **about God's covenant identity** or the original wording is especially
-  meaningful. Rare keeps it special: heard once in a while it becomes "this is one
-  of the stories where we hear God's special name," and invites the parent moment
-  ("Mom, who is Yahweh?" → "That's God's special name in the Bible").
+  **"Yahweh" is rare and deliberate — used only when hearing God's name is part of
+  the story itself** (covenant identity, or original wording that's especially
+  meaningful). This is a **story rule, not a quota**: don't force ~5%, and don't
+  space them out. If a long stretch of stories has no covenant-name anchor, use
+  "God" the whole way; if several covenant-name stories land close together, that's
+  fine — write the right story. (It works out to roughly 1 in 20, but that's the
+  *result*, not a target.) Rare keeps it special: heard once in a while it becomes
+  "this is one of the stories where we hear God's special name," and invites the
+  parent moment ("Mom, who is Yahweh?" → "That's God's special name in the Bible").
   - **Use Yahweh in (covenant-name stories):** the **Burning Bush** (Exodus 3, "I AM
     WHO I AM" — the single best), **Psalm 23** ("Yahweh is my shepherd"), **Elijah on
     Mount Carmel** ("Yahweh is God!"), **Moses at Sinai / the Ten Commandments**.
