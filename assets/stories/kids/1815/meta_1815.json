@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1815,
+  "anchorId": "good_samaritan",
+  "kidLane": "dedicated-4-7",
+  "title": "The Good Samaritan",
+  "scriptureAnchorId": "luke_10_25-37",
+  "bibleSourceRef": "Luke 10:25-37",
+  "bibleStoryKey": "good_samaritan",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "compassion",
+    "kindness",
+    "cared-for"
+  ],
+  "themeTags": [
+    "love your neighbor",
+    "kindness",
+    "compassion",
+    "mercy"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_MARTHA_CARING",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "When has someone been kind to you when you needed them?",
+  "hardContentFlags": [
+    "violence_softened"
+  ],
+  "kidSafetyNotes": "SUPERSEDES legacy kid_1005_neighbor_short. Robbery softened ('they hurt the man, and took all his things, and left him lying'); no blood/weapons. Care detailed gently (oil, cloth, cool water - Luke 10:34). Adam-locked ending kept verbatim: Jesus 'Now you know... Go and do the same' (the one story where an explicit do-this is faithful to the parable's point). One image: the Samaritan kneeling in the dust.",
+  "files": {
+    "short": {
+      "storyText": "story_1815_short.txt",
+      "audio": "audio_1815_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1815_full.txt",
+      "audio": "audio_1815_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1815.txt",
+      "audio": "audio_1815_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

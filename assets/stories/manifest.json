@@ -45320,6 +45320,286 @@
         "forgiveness"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_burning_bush_short",
+      "title": "The Burning Bush",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "reassured",
+        "called"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1811/audio_1811_short.mp3",
+      "textFilePath": "kids/1811/story_1811_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "storyLength": "short",
+      "reflectionQuestion": "What do you think Moses felt when God spoke his name?",
+      "bibleSourceRef": "Exodus 3:1-15",
+      "bibleStoryKey": "burning_bush",
+      "themeTags": [
+        "Gods name",
+        "Gods call",
+        "presence of God",
+        "holiness"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_burning_bush_full",
+      "title": "The Burning Bush",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "reassured",
+        "called"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1811/audio_1811_full.mp3",
+      "textFilePath": "kids/1811/story_1811_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "storyLength": "full",
+      "reflectionQuestion": "What do you think Moses felt when God spoke his name?",
+      "bibleSourceRef": "Exodus 3:1-15",
+      "bibleStoryKey": "burning_bush",
+      "themeTags": [
+        "Gods name",
+        "Gods call",
+        "presence of God",
+        "holiness"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_empty_tomb_short",
+      "title": "The Empty Tomb",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joy",
+        "hope",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1812/audio_1812_short.mp3",
+      "textFilePath": "kids/1812/story_1812_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "short",
+      "reflectionQuestion": "What do you think the women felt when they heard that Jesus was alive?",
+      "bibleSourceRef": "Matthew 28:1-10",
+      "bibleStoryKey": "resurrection_empty_tomb",
+      "themeTags": [
+        "resurrection",
+        "hope",
+        "Jesus is alive",
+        "Easter"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_empty_tomb_full",
+      "title": "The Empty Tomb",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joy",
+        "hope",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1812/audio_1812_full.mp3",
+      "textFilePath": "kids/1812/story_1812_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "full",
+      "reflectionQuestion": "What do you think the women felt when they heard that Jesus was alive?",
+      "bibleSourceRef": "Matthew 28:1-10",
+      "bibleStoryKey": "resurrection_empty_tomb",
+      "themeTags": [
+        "resurrection",
+        "hope",
+        "Jesus is alive",
+        "Easter"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_red_sea_short",
+      "title": "Crossing the Red Sea",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "wonder",
+        "rescued",
+        "safe"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1813/audio_1813_short.mp3",
+      "textFilePath": "kids/1813/story_1813_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "short",
+      "reflectionQuestion": "What do you think it looked like, walking between two walls of water?",
+      "bibleSourceRef": "Exodus 14",
+      "bibleStoryKey": "red_sea_crossing",
+      "themeTags": [
+        "deliverance",
+        "trust",
+        "wonder",
+        "Gods rescue"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_red_sea_full",
+      "title": "Crossing the Red Sea",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "wonder",
+        "rescued",
+        "safe"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1813/audio_1813_full.mp3",
+      "textFilePath": "kids/1813/story_1813_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "full",
+      "reflectionQuestion": "What do you think it looked like, walking between two walls of water?",
+      "bibleSourceRef": "Exodus 14",
+      "bibleStoryKey": "red_sea_crossing",
+      "themeTags": [
+        "deliverance",
+        "trust",
+        "wonder",
+        "Gods rescue"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_daniel_lions_den_short",
+      "title": "Daniel in the Lions' Den",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "safe",
+        "calm",
+        "trust"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1814/audio_1814_short.mp3",
+      "textFilePath": "kids/1814/story_1814_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "short",
+      "reflectionQuestion": "Daniel felt safe with God close by. What helps you feel calm and safe?",
+      "bibleSourceRef": "Daniel 6",
+      "bibleStoryKey": "daniel_lions_den",
+      "themeTags": [
+        "faith",
+        "protection",
+        "presence of God",
+        "prayer"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_daniel_lions_den_full",
+      "title": "Daniel in the Lions' Den",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "safe",
+        "calm",
+        "trust"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1814/audio_1814_full.mp3",
+      "textFilePath": "kids/1814/story_1814_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "full",
+      "reflectionQuestion": "Daniel felt safe with God close by. What helps you feel calm and safe?",
+      "bibleSourceRef": "Daniel 6",
+      "bibleStoryKey": "daniel_lions_den",
+      "themeTags": [
+        "faith",
+        "protection",
+        "presence of God",
+        "prayer"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_good_samaritan_short",
+      "title": "The Good Samaritan",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "compassion",
+        "kindness",
+        "cared-for"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1815/audio_1815_short.mp3",
+      "textFilePath": "kids/1815/story_1815_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "storyLength": "short",
+      "reflectionQuestion": "When has someone been kind to you when you needed them?",
+      "bibleSourceRef": "Luke 10:25-37",
+      "bibleStoryKey": "good_samaritan",
+      "themeTags": [
+        "love your neighbor",
+        "kindness",
+        "compassion",
+        "mercy"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_good_samaritan_full",
+      "title": "The Good Samaritan",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "compassion",
+        "kindness",
+        "cared-for"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1815/audio_1815_full.mp3",
+      "textFilePath": "kids/1815/story_1815_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "storyLength": "full",
+      "reflectionQuestion": "When has someone been kind to you when you needed them?",
+      "bibleSourceRef": "Luke 10:25-37",
+      "bibleStoryKey": "good_samaritan",
+      "themeTags": [
+        "love your neighbor",
+        "kindness",
+        "compassion",
+        "mercy"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }

@@ -676,7 +676,7 @@
       "lengthBucket": "10min",
       "targetWords": 1200,
       "actualWords": 949,
-      "status": "NEEDS_REWRITE",
+      "status": "SUPERSEDED",
       "narratorVoiceKey": null,
       "audioFilePath": null,
       "reflectionText": null,
@@ -685,7 +685,9 @@
       "hardContentFlags": [
         "violence_threat",
         "scripture_contradiction"
-      ]
+      ],
+      "supersededBy": "kid_daniel_lions_den_short",
+      "supersededReason": "Replaced by dedicated 4-7 lane anchor (batch 2)"
     },
     {
       "id": "kid_110_esther_15min",
@@ -855,13 +857,15 @@
       "lengthBucket": "short",
       "targetWords": 250,
       "actualWords": 181,
-      "status": "REVIEW",
+      "status": "SUPERSEDED",
       "narratorVoiceKey": null,
       "audioFilePath": null,
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "Anchor inferred (Good Samaritan); confirm before approval.",
-      "hardContentFlags": []
+      "hardContentFlags": [],
+      "supersededBy": "kid_good_samaritan_short",
+      "supersededReason": "Replaced by dedicated 4-7 lane anchor (batch 2)"
     },
     {
       "id": "kid_502_lostsheep_short",
@@ -1132,6 +1136,342 @@
       "kidSafetyNotes": "OFF-PROMPT: invents modern child 'Willow'.",
       "hardContentFlags": [
         "off_prompt_invented_character"
+      ]
+    },
+    {
+      "id": "kid_burning_bush_short",
+      "storyNumber": 1811,
+      "title": "The Burning Bush",
+      "textFilePath": "kids/1811/story_1811_short.txt",
+      "scriptureAnchorId": "burning_bush",
+      "bibleStoryKey": "burning_bush",
+      "bibleSourceRef": "Exodus 3:1-15",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "reassured",
+        "called"
+      ],
+      "themeTags": [
+        "Gods name",
+        "Gods call",
+        "presence of God",
+        "holiness"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 271,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "audioFilePath": "kids/1811/audio_1811_short.mp3",
+      "reflectionAudioPath": "kids/1811/audio_1811_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Moses felt when God spoke his name?",
+      "kidSafetyNotes": "FIRST deliberate 'Yahweh' story (covenant-name anchor). Name introduced gently with context ('God gave Moses something very special - his own name... It was God's holy name'), then stops to let the mystery breathe (Adam's edit). Fear->reassurance ('I will be with you'). Part of the lane's 'God is with me / not alone' thread. One image: the bush that burns but is not burned up.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_burning_bush_full",
+      "storyNumber": 1811,
+      "title": "The Burning Bush",
+      "textFilePath": "kids/1811/story_1811_full.txt",
+      "scriptureAnchorId": "burning_bush",
+      "bibleStoryKey": "burning_bush",
+      "bibleSourceRef": "Exodus 3:1-15",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "reassured",
+        "called"
+      ],
+      "themeTags": [
+        "Gods name",
+        "Gods call",
+        "presence of God",
+        "holiness"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 404,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "audioFilePath": "kids/1811/audio_1811_full.mp3",
+      "reflectionAudioPath": "kids/1811/audio_1811_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Moses felt when God spoke his name?",
+      "kidSafetyNotes": "FIRST deliberate 'Yahweh' story (covenant-name anchor). Name introduced gently with context ('God gave Moses something very special - his own name... It was God's holy name'), then stops to let the mystery breathe (Adam's edit). Fear->reassurance ('I will be with you'). Part of the lane's 'God is with me / not alone' thread. One image: the bush that burns but is not burned up.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_empty_tomb_short",
+      "storyNumber": 1812,
+      "title": "The Empty Tomb",
+      "textFilePath": "kids/1812/story_1812_short.txt",
+      "scriptureAnchorId": "empty_tomb",
+      "bibleStoryKey": "resurrection_empty_tomb",
+      "bibleSourceRef": "Matthew 28:1-10",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joy",
+        "hope",
+        "wonder"
+      ],
+      "themeTags": [
+        "resurrection",
+        "hope",
+        "Jesus is alive",
+        "Easter"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 278,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1812/audio_1812_short.mp3",
+      "reflectionAudioPath": "kids/1812/audio_1812_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the women felt when they heard that Jesus was alive?",
+      "kidSafetyNotes": "Easter / empty_tomb = Sunday morning JOY (sibling of the_cross). Jesus's death is gentle backstory only ('Jesus had died... laid to rest'); the weight is on resurrection wonder. Adam: 'It is still true today' kept on purpose -- the resurrection is a proclamation, not a behavior to imitate (unlike a moral). One image: the empty tomb / folded grave cloths.",
+      "hardContentFlags": [
+        "death_handled_gently"
+      ]
+    },
+    {
+      "id": "kid_empty_tomb_full",
+      "storyNumber": 1812,
+      "title": "The Empty Tomb",
+      "textFilePath": "kids/1812/story_1812_full.txt",
+      "scriptureAnchorId": "empty_tomb",
+      "bibleStoryKey": "resurrection_empty_tomb",
+      "bibleSourceRef": "Matthew 28:1-10",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joy",
+        "hope",
+        "wonder"
+      ],
+      "themeTags": [
+        "resurrection",
+        "hope",
+        "Jesus is alive",
+        "Easter"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 409,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1812/audio_1812_full.mp3",
+      "reflectionAudioPath": "kids/1812/audio_1812_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the women felt when they heard that Jesus was alive?",
+      "kidSafetyNotes": "Easter / empty_tomb = Sunday morning JOY (sibling of the_cross). Jesus's death is gentle backstory only ('Jesus had died... laid to rest'); the weight is on resurrection wonder. Adam: 'It is still true today' kept on purpose -- the resurrection is a proclamation, not a behavior to imitate (unlike a moral). One image: the empty tomb / folded grave cloths.",
+      "hardContentFlags": [
+        "death_handled_gently"
+      ]
+    },
+    {
+      "id": "kid_red_sea_short",
+      "storyNumber": 1813,
+      "title": "Crossing the Red Sea",
+      "textFilePath": "kids/1813/story_1813_short.txt",
+      "scriptureAnchorId": "red_sea",
+      "bibleStoryKey": "red_sea_crossing",
+      "bibleSourceRef": "Exodus 14",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "wonder",
+        "rescued",
+        "safe"
+      ],
+      "themeTags": [
+        "deliverance",
+        "trust",
+        "wonder",
+        "Gods rescue"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 305,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1813/audio_1813_short.mp3",
+      "reflectionAudioPath": "kids/1813/audio_1813_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it looked like, walking between two walls of water?",
+      "kidSafetyNotes": "Fear->trust->wonder->rescue (NOT punishment). Pharaoh's army drowning OMITTED ('the army could not follow them anymore'). 'Do not be afraid... God will take care of us.' One image: the two walls of water with the dry path between.",
+      "hardContentFlags": [
+        "peril_pursuit"
+      ]
+    },
+    {
+      "id": "kid_red_sea_full",
+      "storyNumber": 1813,
+      "title": "Crossing the Red Sea",
+      "textFilePath": "kids/1813/story_1813_full.txt",
+      "scriptureAnchorId": "red_sea",
+      "bibleStoryKey": "red_sea_crossing",
+      "bibleSourceRef": "Exodus 14",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "wonder",
+        "rescued",
+        "safe"
+      ],
+      "themeTags": [
+        "deliverance",
+        "trust",
+        "wonder",
+        "Gods rescue"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 449,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1813/audio_1813_full.mp3",
+      "reflectionAudioPath": "kids/1813/audio_1813_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it looked like, walking between two walls of water?",
+      "kidSafetyNotes": "Fear->trust->wonder->rescue (NOT punishment). Pharaoh's army drowning OMITTED ('the army could not follow them anymore'). 'Do not be afraid... God will take care of us.' One image: the two walls of water with the dry path between.",
+      "hardContentFlags": [
+        "peril_pursuit"
+      ]
+    },
+    {
+      "id": "kid_daniel_lions_den_short",
+      "storyNumber": 1814,
+      "title": "Daniel in the Lions' Den",
+      "textFilePath": "kids/1814/story_1814_short.txt",
+      "scriptureAnchorId": "daniel_6",
+      "bibleStoryKey": "daniel_lions_den",
+      "bibleSourceRef": "Daniel 6",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "safe",
+        "calm",
+        "trust"
+      ],
+      "themeTags": [
+        "faith",
+        "protection",
+        "presence of God",
+        "prayer"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 309,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1814/audio_1814_short.mp3",
+      "reflectionAudioPath": "kids/1814/audio_1814_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Daniel felt safe with God close by. What helps you feel calm and safe?",
+      "kidSafetyNotes": "SUPERSEDES legacy kid_102 (fixes its scripture error: the old one had 'Daniel ascended to the throne' -- never happened, gone). Lions are awe-not-terror ('lay down... quiet and calm, like great gentle cats'); accusers' fate omitted. Mood calm_peaceful (Daniel's peace), not courage. Part of the 'God is with me / not alone' thread.",
+      "hardContentFlags": [
+        "peril_animals_softened"
+      ]
+    },
+    {
+      "id": "kid_daniel_lions_den_full",
+      "storyNumber": 1814,
+      "title": "Daniel in the Lions' Den",
+      "textFilePath": "kids/1814/story_1814_full.txt",
+      "scriptureAnchorId": "daniel_6",
+      "bibleStoryKey": "daniel_lions_den",
+      "bibleSourceRef": "Daniel 6",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "safe",
+        "calm",
+        "trust"
+      ],
+      "themeTags": [
+        "faith",
+        "protection",
+        "presence of God",
+        "prayer"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 464,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1814/audio_1814_full.mp3",
+      "reflectionAudioPath": "kids/1814/audio_1814_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Daniel felt safe with God close by. What helps you feel calm and safe?",
+      "kidSafetyNotes": "SUPERSEDES legacy kid_102 (fixes its scripture error: the old one had 'Daniel ascended to the throne' -- never happened, gone). Lions are awe-not-terror ('lay down... quiet and calm, like great gentle cats'); accusers' fate omitted. Mood calm_peaceful (Daniel's peace), not courage. Part of the 'God is with me / not alone' thread.",
+      "hardContentFlags": [
+        "peril_animals_softened"
+      ]
+    },
+    {
+      "id": "kid_good_samaritan_short",
+      "storyNumber": 1815,
+      "title": "The Good Samaritan",
+      "textFilePath": "kids/1815/story_1815_short.txt",
+      "scriptureAnchorId": "luke_10_25-37",
+      "bibleStoryKey": "good_samaritan",
+      "bibleSourceRef": "Luke 10:25-37",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "compassion",
+        "kindness",
+        "cared-for"
+      ],
+      "themeTags": [
+        "love your neighbor",
+        "kindness",
+        "compassion",
+        "mercy"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 286,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "audioFilePath": "kids/1815/audio_1815_short.mp3",
+      "reflectionAudioPath": "kids/1815/audio_1815_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "When has someone been kind to you when you needed them?",
+      "kidSafetyNotes": "SUPERSEDES legacy kid_1005_neighbor_short. Robbery softened ('they hurt the man, and took all his things, and left him lying'); no blood/weapons. Care detailed gently (oil, cloth, cool water - Luke 10:34). Adam-locked ending kept verbatim: Jesus 'Now you know... Go and do the same' (the one story where an explicit do-this is faithful to the parable's point). One image: the Samaritan kneeling in the dust.",
+      "hardContentFlags": [
+        "violence_softened"
+      ]
+    },
+    {
+      "id": "kid_good_samaritan_full",
+      "storyNumber": 1815,
+      "title": "The Good Samaritan",
+      "textFilePath": "kids/1815/story_1815_full.txt",
+      "scriptureAnchorId": "luke_10_25-37",
+      "bibleStoryKey": "good_samaritan",
+      "bibleSourceRef": "Luke 10:25-37",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "compassion",
+        "kindness",
+        "cared-for"
+      ],
+      "themeTags": [
+        "love your neighbor",
+        "kindness",
+        "compassion",
+        "mercy"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 409,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "audioFilePath": "kids/1815/audio_1815_full.mp3",
+      "reflectionAudioPath": "kids/1815/audio_1815_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "When has someone been kind to you when you needed them?",
+      "kidSafetyNotes": "SUPERSEDES legacy kid_1005_neighbor_short. Robbery softened ('they hurt the man, and took all his things, and left him lying'); no blood/weapons. Care detailed gently (oil, cloth, cool water - Luke 10:34). Adam-locked ending kept verbatim: Jesus 'Now you know... Go and do the same' (the one story where an explicit do-this is faithful to the parable's point). One image: the Samaritan kneeling in the dust.",
+      "hardContentFlags": [
+        "violence_softened"
       ]
     }
   ]

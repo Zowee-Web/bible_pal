@@ -639,6 +639,11 @@ flutter:
     - assets/stories/kids/1808/
     - assets/stories/kids/1809/
     - assets/stories/kids/1810/
+    - assets/stories/kids/1811/
+    - assets/stories/kids/1812/
+    - assets/stories/kids/1813/
+    - assets/stories/kids/1814/
+    - assets/stories/kids/1815/
     - assets/audio/
     - assets/audio/ambient/
     - assets/safety/kid_safety_blocklist.txt

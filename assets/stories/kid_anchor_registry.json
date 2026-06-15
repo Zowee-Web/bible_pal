@@ -227,7 +227,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1811,
+          "manifestAnchorIds": [
+            "burning_bush"
+          ]
         },
         {
           "anchorId": "red_sea",
@@ -239,7 +243,11 @@
             "full"
           ],
           "longEligible": true,
-          "launch": true
+          "launch": true,
+          "productionId": 1813,
+          "manifestAnchorIds": [
+            "red_sea"
+          ]
         },
         {
           "anchorId": "ten_commandments",
@@ -522,7 +530,8 @@
           "manifestAnchorIds": [
             "daniel_6"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1814
         },
         {
           "anchorId": "writing_on_wall",
@@ -737,7 +746,8 @@
           "manifestAnchorIds": [
             "luke_10_25-37"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1815
         },
         {
           "anchorId": "lost_sheep",
@@ -866,14 +876,18 @@
         {
           "anchorId": "empty_tomb",
           "displayName": "The Empty Tomb",
-          "scriptureRef": "Luke 24:1-12",
+          "scriptureRef": "Matthew 28:1-10",
           "tier": "core",
           "targetLengths": [
             "short",
             "full"
           ],
           "longEligible": true,
-          "launch": true
+          "launch": true,
+          "productionId": 1812,
+          "manifestAnchorIds": [
+            "empty_tomb"
+          ]
         }
       ]
     },
