@@ -48,10 +48,17 @@
     "kjv": "reflection_1018_traditional_kjv.txt"
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_ARABELLA",
-  "reflectionText": "Jacob went not seeking God that night. He fled from a trouble of his own making, and he halted only because the sun was set. The stone beneath his head was no sacred thing. The ground was no holy place. It was but a spot upon the road \u2014 until it was not.\n\nThere is something quietly unsettling in the thought that the gate of heaven might stand in the last place a soul would think to seek it. That the ground beneath common weariness, common failing, common flight might prove to be the very place where something speaketh.",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "reflectionText": "Jacob went not seeking God that night. He fled from a trouble of his own making, and he halted only because the sun was set. The stone beneath his head was no sacred thing. The ground was no holy place. It was but a spot upon the road — until it was not.\n\nThere is something quietly unsettling in the thought that the gate of heaven might stand in the last place a soul would think to seek it. That the ground beneath common weariness, common failing, common flight might prove to be the very place where something speaketh.",
   "timelineEra": "patriarchs",
   "primaryCharacterId": "jacob",
   "primaryCharacterDisplayName": "Jacob",
-  "bibleOrderIndex": 29070
+  "bibleOrderIndex": 29070,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "style": 0.1,
+    "use_speaker_boost": true
+  }
 }
