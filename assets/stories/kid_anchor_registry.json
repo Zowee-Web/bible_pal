@@ -922,7 +922,11 @@
           "targetLengths": [
             "short"
           ],
-          "launch": true
+          "launch": true,
+          "manifestAnchorIds": [
+            "psalm_23"
+          ],
+          "productionId": 1803
         },
         {
           "anchorId": "lords_prayer",

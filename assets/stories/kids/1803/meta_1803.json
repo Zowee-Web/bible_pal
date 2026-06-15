@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1803,
+  "anchorId": "psalm_23",
+  "kidLane": "dedicated-4-7",
+  "type": "comfort-ritual",
+  "title": "The Lord Is My Shepherd",
+  "scriptureAnchorId": "psalm_23",
+  "bibleSourceRef": "Psalm 23",
+  "bibleStoryKey": "psalm_23",
+  "translation": "WEB",
+  "mood": "weary",
+  "emotionalTags": ["safe", "calm", "comforted"],
+  "themeTags": ["comfort", "rest", "presence of God", "shepherd"],
+  "lengths": ["short"],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "What helps you feel safe and calm when it is time to sleep?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "First comfort-ritual: gentle frame (own words: 'God watches over us like a shepherd') around the verbatim WEB Psalm 23. WEB keeps 'Yahweh is my shepherd'; the frame carries the familiar warmth so a 4-7 meets the comfort first. Full psalm kept (incl. 'valley of the shadow of death' / 'enemies') — v4 is the comforting turn. Verse numbers stripped for narration; wording is verbatim WEB. Exempt from the short word floor (comfort-ritual).",
+  "files": {
+    "short": { "storyText": "story_1803_short.txt", "audio": "audio_1803_short.mp3" },
+    "reflection": { "text": "reflection_1803.txt", "audio": "audio_1803_reflection.mp3" }
+  },
+  "createdNote": "Comfort pillar; first comfort-ritual build (template for Lord's Prayer / Beatitudes). Voice VOICE_ARABELLA (lane's first female narrator). Mood weary (fills an empty mood)."
+}
