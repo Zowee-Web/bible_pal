@@ -34,9 +34,12 @@ remember it. You are **not** rewriting Scripture or inventing a fantasy. You are
 
 ### 2. Bible-translation compliance (project invariant)
 - Kid stories are **retellings in your own simple words**, not translations.
-- If you quote Scripture **directly**, the wording must come from a public-domain
-  translation — **WEB** by default (KJV/ASV/YLT/DRA also allowed). Never quote
-  NIV/ESV/NLT/etc. See [BIBLE_TRANSLATION_COMPLIANCE.md](BIBLE_TRANSLATION_COMPLIANCE.md).
+- **The kid lane is WEB-only** (Adam, 2026-06-14). Unlike the adult corpus (which
+  runs WEB + KJV lanes), kid stories — both narrative retellings and
+  comfort-ritual recitations — use **WEB exclusively**. No KJV/ASV/YLT/DRA lane
+  for kids. Any directly-quoted Scripture (especially comfort-ritual anchors like
+  Psalm 23 / the Lord's Prayer) is verbatim **WEB**. Never quote NIV/ESV/NLT/etc.
+  See [BIBLE_TRANSLATION_COMPLIANCE.md](BIBLE_TRANSLATION_COMPLIANCE.md).
 
 ### 3. Emotional safety
 - Children should feel safe while listening.
