@@ -64,6 +64,12 @@ quiet footsteps) — **sparingly**, 1–2 per moment.
 > "cozy blanket," "drifted into the sweetest sleep," lamplight, and the bedtime
 > wind-down ending. Rotate endings and comfort imagery; don't repeat the
 > blanket/sleep motif within a story or across a batch.
+>
+> **Vary the opening.** Do NOT begin successive stories with the same formula —
+> "A long time ago" is now a watched phrase (used by 1801 + 1802; don't make it
+> three). Rotate the way in: a place ("In the hills near Bethlehem…"), an action,
+> a sound, a character at work, a question, weather, a time of day. The first
+> line should feel chosen for *this* story, not stamped from a template.
 
 ### 5.5 One indelible image
 Every story should contain **one** physical image a child remembers after the
