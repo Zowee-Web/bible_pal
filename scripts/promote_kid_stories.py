@@ -27,7 +27,11 @@ KIDS_MANIFEST = os.path.join(STORIES, "kids_manifest.json")
 ANCHOR_REGISTRY = os.path.join(STORIES, "kid_anchor_registry.json")
 APP_MANIFEST = os.path.join(STORIES, "manifest.json")
 
-PROMOTE_STATUSES = {"DONE"}
+# A kid story is surfaced in the app as soon as it is "created" = has rendered
+# audio. Status (REVIEW/APPROVED/DONE) is internal authoring state; the app shows
+# any non-terminal story that has audio (Adam 2026-06-15: visible as soon as
+# created). REJECTED/SUPERSEDED are never surfaced.
+TERMINAL_STATUSES = {"REJECTED", "SUPERSEDED"}
 COVERED_STATUSES = {"APPROVED", "AUDIO_PENDING", "DONE"}
 IN_PROGRESS_STATUSES = {"DRAFTED", "REVIEW", "NEEDS_REWRITE"}
 HARD_STOP_STORIES = 150
@@ -209,19 +213,22 @@ def mood_report(kids, reg):
                   f"— steer new anchors toward the empties.")
 
 
+def is_promotable(s):
+    """Surface in the app if it's a created story (has audio) and not terminal."""
+    return bool(s.get("audioFilePath")) and s.get("status") not in TERMINAL_STATUSES
+
+
 def validate(kids):
-    """Pre-promotion sanity checks for DONE stories."""
+    """Sanity-check every story that will be surfaced in the app."""
     errs = []
     for s in kids["stories"]:
-        if s["status"] != "DONE":
+        if not is_promotable(s):
             continue
         path = os.path.join(STORIES, s["textFilePath"])
         if not os.path.exists(path):
             errs.append(f"{s['id']}: text file missing ({s['textFilePath']})")
-        if not s.get("audioFilePath"):
-            errs.append(f"{s['id']}: DONE but no audioFilePath")
         if not s.get("bibleSourceRef"):
-            errs.append(f"{s['id']}: DONE but no bibleSourceRef (kid stories must be Scripture-anchored)")
+            errs.append(f"{s['id']}: surfaced but no bibleSourceRef (kid stories must be Scripture-anchored)")
     return errs
 
 
@@ -234,9 +241,9 @@ def promote(write):
             print("  - " + e, file=sys.stderr)
         return 1
 
-    to_add = [s for s in kids["stories"] if s["status"] in PROMOTE_STATUSES]
+    to_add = [s for s in kids["stories"] if is_promotable(s)]
     if not to_add:
-        print("No kid stories at status DONE; nothing to promote.")
+        print("No kid stories with audio to surface.")
         return 0
 
     app = load(APP_MANIFEST)
@@ -252,7 +259,7 @@ def promote(write):
             app["parables"].append(entry)
             added += 1
 
-    print(f"Promote: +{added} new, ~{updated} updated (of {len(to_add)} DONE).")
+    print(f"Surface: +{added} new, ~{updated} updated (of {len(to_add)} created kid stories).")
     if write:
         with open(APP_MANIFEST, "w", encoding="utf-8") as f:
             json.dump(app, f, indent=2, ensure_ascii=False)
