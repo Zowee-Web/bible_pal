@@ -9,20 +9,47 @@
   "bibleStoryKey": "wise_men_star",
   "translation": "WEB",
   "mood": "joyful",
-  "emotionalTags": ["joy", "wonder", "worship"],
-  "themeTags": ["seeking Jesus", "the star", "worship", "gifts"],
-  "lengths": ["short", "full"],
+  "emotionalTags": [
+    "joy",
+    "wonder",
+    "worship"
+  ],
+  "themeTags": [
+    "seeking Jesus",
+    "the star",
+    "worship",
+    "gifts"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "longEligible": false,
   "status": "REVIEW",
   "storyVoiceKey": "VOICE_ARCHER",
   "ttsModel": "eleven_turbo_v2_5",
-  "ttsVoiceSettings": { "stability": 0.6, "similarity_boost": 0.8, "style": 0.0, "use_speaker_boost": true },
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
   "reflectionQuestion": "If you could give baby Jesus a gift, what would you want to bring him?",
   "hardContentFlags": [],
   "kidSafetyNotes": "Joyful/wonder. Herod and the slaughter of the innocents omitted entirely — just the star, the journey, the gifts, the joy. Ending reworked to land on wonder ('just as God had planned all along'). One image: the star stopping over the house.",
   "files": {
-    "short": { "storyText": "story_1809_short.txt", "audio": null },
-    "full": { "storyText": "story_1809_full.txt", "audio": null },
-    "reflection": { "text": "reflection_1809.txt", "audio": null, "ttsModel": "eleven_v3" }
+    "short": {
+      "storyText": "story_1809_short.txt",
+      "audio": "audio_1809_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1809_full.txt",
+      "audio": "audio_1809_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1809.txt",
+      "audio": "audio_1809_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
   }
 }

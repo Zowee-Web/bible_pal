@@ -9,20 +9,46 @@
   "bibleStoryKey": "jesus_blesses_children",
   "translation": "WEB",
   "mood": "joyful",
-  "emotionalTags": ["joy", "welcomed", "loved"],
-  "themeTags": ["Jesus welcomes children", "welcome", "blessing"],
-  "lengths": ["short", "full"],
+  "emotionalTags": [
+    "joy",
+    "welcomed",
+    "loved"
+  ],
+  "themeTags": [
+    "Jesus welcomes children",
+    "welcome",
+    "blessing"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "longEligible": false,
   "status": "REVIEW",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "ttsModel": "eleven_turbo_v2_5",
-  "ttsVoiceSettings": { "stability": 0.6, "similarity_boost": 0.8, "style": 0.0, "use_speaker_boost": true },
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
   "reflectionQuestion": "If you could climb up and sit with Jesus, what would you want to tell him?",
   "hardContentFlags": [],
   "kidSafetyNotes": "Joyful. Quoted 'God's kingdom belongs to little children' (NOT 'just like these' — avoids telling the child who they are). Ends on 'Jesus was glad they came' rather than 'still loves children today'. One image (held): Jesus opening his arms wide.",
   "files": {
-    "short": { "storyText": "story_1807_short.txt", "audio": null },
-    "full": { "storyText": "story_1807_full.txt", "audio": null },
-    "reflection": { "text": "reflection_1807.txt", "audio": null, "ttsModel": "eleven_v3" }
+    "short": {
+      "storyText": "story_1807_short.txt",
+      "audio": "audio_1807_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1807_full.txt",
+      "audio": "audio_1807_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1807.txt",
+      "audio": "audio_1807_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
   }
 }
