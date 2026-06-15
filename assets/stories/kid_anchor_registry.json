@@ -648,7 +648,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "manifestAnchorIds": [
+            "walking_on_water"
+          ],
+          "productionId": 1804
         },
         {
           "anchorId": "jesus_children",

@@ -29,6 +29,74 @@
   },
   "stories": [
     {
+      "id": "kid_walking_on_water_short",
+      "storyNumber": 1804,
+      "title": "Jesus Walks on the Water",
+      "textFilePath": "kids/1804/story_1804_short.txt",
+      "scriptureAnchorId": "walking_on_water",
+      "bibleStoryKey": "jesus_walks_on_water",
+      "bibleSourceRef": "Matthew 14:22-33",
+      "mood": "anxious",
+      "emotionalTags": [
+        "safe",
+        "courage",
+        "wonder"
+      ],
+      "themeTags": [
+        "trust",
+        "presence of God",
+        "courage",
+        "wonder"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 306,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "audioFilePath": "kids/1804/audio_1804_short.mp3",
+      "reflectionAudioPath": "kids/1804/audio_1804_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "When something feels scary, who helps you feel safe again?",
+      "kidSafetyNotes": "Wonder + anxious->safe. Storm/sinking as awe not terror; immediate rescue. Softened 'why did you doubt' -> 'why were you afraid', 'ghost' -> 'what is it'. Image: hand catching Peter.",
+      "hardContentFlags": [
+        "peril_water"
+      ]
+    },
+    {
+      "id": "kid_walking_on_water_full",
+      "storyNumber": 1804,
+      "title": "Jesus Walks on the Water",
+      "textFilePath": "kids/1804/story_1804_full.txt",
+      "scriptureAnchorId": "walking_on_water",
+      "bibleStoryKey": "jesus_walks_on_water",
+      "bibleSourceRef": "Matthew 14:22-33",
+      "mood": "anxious",
+      "emotionalTags": [
+        "safe",
+        "courage",
+        "wonder"
+      ],
+      "themeTags": [
+        "trust",
+        "presence of God",
+        "courage",
+        "wonder"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 700,
+      "actualWords": 520,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "audioFilePath": "kids/1804/audio_1804_full.mp3",
+      "reflectionAudioPath": "kids/1804/audio_1804_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "When something feels scary, who helps you feel safe again?",
+      "kidSafetyNotes": "Wonder + anxious->safe. Storm/sinking as awe not terror; immediate rescue. Softened 'why did you doubt' -> 'why were you afraid', 'ghost' -> 'what is it'. Image: hand catching Peter.",
+      "hardContentFlags": [
+        "peril_water"
+      ]
+    },
+    {
       "id": "kid_psalm_23_short",
       "storyNumber": 1803,
       "title": "The Lord Is My Shepherd",
@@ -38,8 +106,17 @@
       "bibleStoryKey": "psalm_23",
       "bibleSourceRef": "Psalm 23",
       "mood": "weary",
-      "emotionalTags": ["safe", "calm", "comforted"],
-      "themeTags": ["comfort", "rest", "presence of God", "shepherd"],
+      "emotionalTags": [
+        "safe",
+        "calm",
+        "comforted"
+      ],
+      "themeTags": [
+        "comfort",
+        "rest",
+        "presence of God",
+        "shepherd"
+      ],
       "lengthBucket": "short",
       "targetWords": null,
       "actualWords": 168,
@@ -60,8 +137,14 @@
       "bibleStoryKey": "samuel_called",
       "bibleSourceRef": "1 Samuel 3",
       "mood": "calm_peaceful",
-      "emotionalTags": ["safe", "wonder"],
-      "themeTags": ["listening", "Gods voice"],
+      "emotionalTags": [
+        "safe",
+        "wonder"
+      ],
+      "themeTags": [
+        "listening",
+        "Gods voice"
+      ],
       "lengthBucket": "5min",
       "targetWords": 600,
       "actualWords": 617,
@@ -81,8 +164,14 @@
       "bibleStoryKey": "samuel_called",
       "bibleSourceRef": "1 Samuel 3",
       "mood": "calm_peaceful",
-      "emotionalTags": ["safe", "wonder"],
-      "themeTags": ["listening", "Gods voice"],
+      "emotionalTags": [
+        "safe",
+        "wonder"
+      ],
+      "themeTags": [
+        "listening",
+        "Gods voice"
+      ],
       "lengthBucket": "3min",
       "targetWords": 350,
       "actualWords": 353,
@@ -102,8 +191,14 @@
       "bibleStoryKey": "david_and_goliath",
       "bibleSourceRef": "1 Samuel 17",
       "mood": "brave_courage",
-      "emotionalTags": ["courage", "fear-to-courage"],
-      "themeTags": ["courage", "trust"],
+      "emotionalTags": [
+        "courage",
+        "fear-to-courage"
+      ],
+      "themeTags": [
+        "courage",
+        "trust"
+      ],
       "lengthBucket": "5min",
       "targetWords": 600,
       "actualWords": 534,
@@ -113,7 +208,9 @@
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "SUPERSEDED 2026-06-14 by kid_david_goliath_short/full (doctrine-v2 pilot). Right anchor + faithful retelling; retired pre-doctrine for lingering fear + off length, NOT off-doctrine. File kept.",
-      "hardContentFlags": ["violence_combat"]
+      "hardContentFlags": [
+        "violence_combat"
+      ]
     },
     {
       "id": "kid_david_goliath_short",
@@ -124,8 +221,15 @@
       "bibleStoryKey": "david_and_goliath",
       "bibleSourceRef": "1 Samuel 17",
       "mood": "brave_courage",
-      "emotionalTags": ["courage", "fear-to-courage", "safe"],
-      "themeTags": ["courage", "trust"],
+      "emotionalTags": [
+        "courage",
+        "fear-to-courage",
+        "safe"
+      ],
+      "themeTags": [
+        "courage",
+        "trust"
+      ],
       "lengthBucket": "short",
       "targetWords": 400,
       "actualWords": 365,
@@ -136,7 +240,9 @@
       "reflectionText": null,
       "reflectionQuestion": "What do you think helped David feel brave when everyone else was afraid?",
       "kidSafetyNotes": "Doctrine-v2 pilot (Rosetta Stone). Combat safe: beheading (1 Sam 17:51) omitted; outcome in one calm sentence ('the giant fell... the valley grew still'). Menace de-stacked to thud + Goliath's scriptural taunt. One indelible image: five smooth stones.",
-      "hardContentFlags": ["violence_combat"]
+      "hardContentFlags": [
+        "violence_combat"
+      ]
     },
     {
       "id": "kid_david_goliath_full",
@@ -147,8 +253,15 @@
       "bibleStoryKey": "david_and_goliath",
       "bibleSourceRef": "1 Samuel 17",
       "mood": "brave_courage",
-      "emotionalTags": ["courage", "fear-to-courage", "safe"],
-      "themeTags": ["courage", "trust"],
+      "emotionalTags": [
+        "courage",
+        "fear-to-courage",
+        "safe"
+      ],
+      "themeTags": [
+        "courage",
+        "trust"
+      ],
       "lengthBucket": "full",
       "targetWords": 700,
       "actualWords": 599,
@@ -159,7 +272,9 @@
       "reflectionText": null,
       "reflectionQuestion": "What do you think helped David feel brave when everyone else was afraid?",
       "kidSafetyNotes": "Doctrine-v2 pilot (Rosetta Stone). Combat safe: beheading omitted; outcome in one calm sentence. Menace de-stacked to thud + Goliath's scriptural taunt ('Send out a man to fight me!'). One indelible image: five smooth stones.",
-      "hardContentFlags": ["violence_combat"]
+      "hardContentFlags": [
+        "violence_combat"
+      ]
     },
     {
       "id": "kid_102_daniel_10min",
@@ -169,8 +284,14 @@
       "bibleStoryKey": "daniel_lions_den",
       "bibleSourceRef": "Daniel 6",
       "mood": "brave_courage",
-      "emotionalTags": ["courage", "faith"],
-      "themeTags": ["faith", "protection"],
+      "emotionalTags": [
+        "courage",
+        "faith"
+      ],
+      "themeTags": [
+        "faith",
+        "protection"
+      ],
       "lengthBucket": "10min",
       "targetWords": 1200,
       "actualWords": 949,
@@ -180,7 +301,10 @@
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "SCRIPTURE VIOLATION: 'Daniel ascended to the throne' — Daniel did not become king. Also 'menacing countdown', 'beastly roar' linger on fear. CSV PASS is wrong.",
-      "hardContentFlags": ["violence_threat", "scripture_contradiction"]
+      "hardContentFlags": [
+        "violence_threat",
+        "scripture_contradiction"
+      ]
     },
     {
       "id": "kid_110_esther_15min",
@@ -190,8 +314,14 @@
       "bibleStoryKey": "esther_deliverance",
       "bibleSourceRef": "Book of Esther",
       "mood": "encouraging",
-      "emotionalTags": ["courage", "hope"],
-      "themeTags": ["courage", "deliverance"],
+      "emotionalTags": [
+        "courage",
+        "hope"
+      ],
+      "themeTags": [
+        "courage",
+        "deliverance"
+      ],
       "lengthBucket": "15min",
       "targetWords": 1800,
       "actualWords": 1092,
@@ -201,7 +331,9 @@
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "'his life snuffed out', 'met his demise' — lingers on Haman's death; violates emotional-safety rule. Word count well under target.",
-      "hardContentFlags": ["death_villain"]
+      "hardContentFlags": [
+        "death_villain"
+      ]
     },
     {
       "id": "kid_113_jonah_20min",
@@ -211,8 +343,14 @@
       "bibleStoryKey": "jonah_nineveh",
       "bibleSourceRef": "Book of Jonah",
       "mood": "calm_peaceful",
-      "emotionalTags": ["mercy", "hope"],
-      "themeTags": ["mercy", "forgiveness"],
+      "emotionalTags": [
+        "mercy",
+        "hope"
+      ],
+      "themeTags": [
+        "mercy",
+        "forgiveness"
+      ],
       "lengthBucket": "20min",
       "targetWords": 2400,
       "actualWords": 2300,
@@ -222,7 +360,9 @@
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "SUPERSEDED 2026-06-14 by kid_jonah_fish_short/full (productionId 1802, doctrine-v2). Legacy had scripture errors (fish 'deposited him on the sandy shore of Nineveh'; invented crown) — those are fixed in the new telling. File kept.",
-      "hardContentFlags": ["scripture_contradiction"]
+      "hardContentFlags": [
+        "scripture_contradiction"
+      ]
     },
     {
       "id": "kid_jonah_fish_short",
@@ -233,8 +373,17 @@
       "bibleStoryKey": "jonah_nineveh",
       "bibleSourceRef": "Jonah 1-4",
       "mood": "calm_peaceful",
-      "emotionalTags": ["safe", "wonder", "mercy"],
-      "themeTags": ["mercy", "second chances", "presence of God", "forgiveness"],
+      "emotionalTags": [
+        "safe",
+        "wonder",
+        "mercy"
+      ],
+      "themeTags": [
+        "mercy",
+        "second chances",
+        "presence of God",
+        "forgiveness"
+      ],
       "lengthBucket": "short",
       "targetWords": 400,
       "actualWords": 364,
@@ -245,7 +394,9 @@
       "reflectionText": null,
       "reflectionQuestion": "Where do you think God was, the whole time Jonah was inside the big fish?",
       "kidSafetyNotes": "Danger-as-awe (storm/fish handled safe, not terror). Fish sets Jonah on dry land, then he travels to Nineveh (fixes kid_113 error); no invented crown. Jonah 4 epilogue omitted (tonally wrong for 4-7). One indelible image: eyes opening inside the fish.",
-      "hardContentFlags": ["peril_water"]
+      "hardContentFlags": [
+        "peril_water"
+      ]
     },
     {
       "id": "kid_jonah_fish_full",
@@ -256,8 +407,17 @@
       "bibleStoryKey": "jonah_nineveh",
       "bibleSourceRef": "Jonah 1-4",
       "mood": "calm_peaceful",
-      "emotionalTags": ["safe", "wonder", "mercy"],
-      "themeTags": ["mercy", "second chances", "presence of God", "forgiveness"],
+      "emotionalTags": [
+        "safe",
+        "wonder",
+        "mercy"
+      ],
+      "themeTags": [
+        "mercy",
+        "second chances",
+        "presence of God",
+        "forgiveness"
+      ],
       "lengthBucket": "full",
       "targetWords": 700,
       "actualWords": 627,
@@ -268,7 +428,9 @@
       "reflectionText": null,
       "reflectionQuestion": "Where do you think God was, the whole time Jonah was inside the big fish?",
       "kidSafetyNotes": "Danger-as-awe (storm/fish handled safe, not terror). Fish sets Jonah on dry land, then he travels to Nineveh (fixes kid_113 error); no invented crown. Jonah 4 epilogue omitted (tonally wrong for 4-7). One indelible image: eyes opening inside the fish.",
-      "hardContentFlags": ["peril_water"]
+      "hardContentFlags": [
+        "peril_water"
+      ]
     },
     {
       "id": "kid_1003_shepherd_short",
@@ -278,7 +440,9 @@
       "bibleStoryKey": null,
       "bibleSourceRef": null,
       "mood": "joyful",
-      "emotionalTags": ["joy"],
+      "emotionalTags": [
+        "joy"
+      ],
       "themeTags": [],
       "lengthBucket": "short",
       "targetWords": 250,
@@ -299,8 +463,14 @@
       "bibleStoryKey": "good_samaritan",
       "bibleSourceRef": "Luke 10:25-37",
       "mood": "joyful",
-      "emotionalTags": ["kindness", "joy"],
-      "themeTags": ["kindness", "mercy"],
+      "emotionalTags": [
+        "kindness",
+        "joy"
+      ],
+      "themeTags": [
+        "kindness",
+        "mercy"
+      ],
       "lengthBucket": "short",
       "targetWords": 250,
       "actualWords": 181,
@@ -320,8 +490,14 @@
       "bibleStoryKey": "lost_sheep",
       "bibleSourceRef": "Luke 15:3-7",
       "mood": "joyful",
-      "emotionalTags": ["joy", "belonging"],
-      "themeTags": ["seeking", "belonging"],
+      "emotionalTags": [
+        "joy",
+        "belonging"
+      ],
+      "themeTags": [
+        "seeking",
+        "belonging"
+      ],
       "lengthBucket": "short",
       "targetWords": 250,
       "actualWords": 262,
@@ -341,8 +517,13 @@
       "bibleStoryKey": null,
       "bibleSourceRef": null,
       "mood": "joyful",
-      "emotionalTags": ["joy", "gratitude"],
-      "themeTags": ["gratitude"],
+      "emotionalTags": [
+        "joy",
+        "gratitude"
+      ],
+      "themeTags": [
+        "gratitude"
+      ],
       "lengthBucket": "5min",
       "targetWords": 600,
       "actualWords": 1121,
@@ -352,7 +533,9 @@
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "OFF-PROMPT: invents modern fictional child 'Lily'; not a Bible retelling. Violates 'never invent characters'. Keep as training artifact.",
-      "hardContentFlags": ["off_prompt_invented_character"]
+      "hardContentFlags": [
+        "off_prompt_invented_character"
+      ]
     },
     {
       "id": "kid_021_weary_5min",
@@ -362,8 +545,12 @@
       "bibleStoryKey": null,
       "bibleSourceRef": null,
       "mood": "weary",
-      "emotionalTags": ["rest"],
-      "themeTags": ["rest"],
+      "emotionalTags": [
+        "rest"
+      ],
+      "themeTags": [
+        "rest"
+      ],
       "lengthBucket": "5min",
       "targetWords": 600,
       "actualWords": 1329,
@@ -373,7 +560,9 @@
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "OFF-PROMPT: invents modern child 'Willow'; not a Bible retelling.",
-      "hardContentFlags": ["off_prompt_invented_character"]
+      "hardContentFlags": [
+        "off_prompt_invented_character"
+      ]
     },
     {
       "id": "kid_022_anxious_5min",
@@ -383,8 +572,12 @@
       "bibleStoryKey": null,
       "bibleSourceRef": null,
       "mood": "anxious",
-      "emotionalTags": ["peace"],
-      "themeTags": ["peace"],
+      "emotionalTags": [
+        "peace"
+      ],
+      "themeTags": [
+        "peace"
+      ],
       "lengthBucket": "5min",
       "targetWords": 600,
       "actualWords": 1354,
@@ -394,7 +587,9 @@
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "OFF-PROMPT: invents 'a brave bunny named Luna'; anthropomorphic fable, not Scripture.",
-      "hardContentFlags": ["off_prompt_invented_character"]
+      "hardContentFlags": [
+        "off_prompt_invented_character"
+      ]
     },
     {
       "id": "kid_023_hurting_5min",
@@ -404,8 +599,12 @@
       "bibleStoryKey": null,
       "bibleSourceRef": null,
       "mood": "hurting",
-      "emotionalTags": ["comfort"],
-      "themeTags": ["comfort"],
+      "emotionalTags": [
+        "comfort"
+      ],
+      "themeTags": [
+        "comfort"
+      ],
       "lengthBucket": "5min",
       "targetWords": 600,
       "actualWords": 1360,
@@ -415,7 +614,9 @@
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "OFF-PROMPT: invents modern child 'Lily'; not a Bible retelling.",
-      "hardContentFlags": ["off_prompt_invented_character"]
+      "hardContentFlags": [
+        "off_prompt_invented_character"
+      ]
     },
     {
       "id": "kid_025_weary_10min",
@@ -425,8 +626,12 @@
       "bibleStoryKey": null,
       "bibleSourceRef": null,
       "mood": "weary",
-      "emotionalTags": ["rest"],
-      "themeTags": ["rest"],
+      "emotionalTags": [
+        "rest"
+      ],
+      "themeTags": [
+        "rest"
+      ],
       "lengthBucket": "10min",
       "targetWords": 1200,
       "actualWords": 1326,
@@ -436,7 +641,9 @@
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "OFF-PROMPT: invents modern child 'Willow'.",
-      "hardContentFlags": ["off_prompt_invented_character"]
+      "hardContentFlags": [
+        "off_prompt_invented_character"
+      ]
     },
     {
       "id": "kid_026_anxious_5min",
@@ -446,8 +653,12 @@
       "bibleStoryKey": null,
       "bibleSourceRef": null,
       "mood": "anxious",
-      "emotionalTags": ["peace"],
-      "themeTags": ["peace"],
+      "emotionalTags": [
+        "peace"
+      ],
+      "themeTags": [
+        "peace"
+      ],
       "lengthBucket": "5min",
       "targetWords": 600,
       "actualWords": 1219,
@@ -457,7 +668,9 @@
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "OFF-PROMPT: invents modern child 'Willow'.",
-      "hardContentFlags": ["off_prompt_invented_character"]
+      "hardContentFlags": [
+        "off_prompt_invented_character"
+      ]
     },
     {
       "id": "kid_026_joyful_10min",
@@ -467,8 +680,12 @@
       "bibleStoryKey": null,
       "bibleSourceRef": null,
       "mood": "joyful",
-      "emotionalTags": ["joy"],
-      "themeTags": ["joy"],
+      "emotionalTags": [
+        "joy"
+      ],
+      "themeTags": [
+        "joy"
+      ],
       "lengthBucket": "10min",
       "targetWords": 1200,
       "actualWords": 1395,
@@ -478,7 +695,9 @@
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "OFF-PROMPT: invents modern child 'Lily'. Note: duplicate id 026 with kid_026_anxious_5min in legacy filenames.",
-      "hardContentFlags": ["off_prompt_invented_character"]
+      "hardContentFlags": [
+        "off_prompt_invented_character"
+      ]
     },
     {
       "id": "kid_027_weary_10min",
@@ -488,8 +707,12 @@
       "bibleStoryKey": null,
       "bibleSourceRef": null,
       "mood": "weary",
-      "emotionalTags": ["rest"],
-      "themeTags": ["rest"],
+      "emotionalTags": [
+        "rest"
+      ],
+      "themeTags": [
+        "rest"
+      ],
       "lengthBucket": "10min",
       "targetWords": 1200,
       "actualWords": 1311,
@@ -499,7 +722,9 @@
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "OFF-PROMPT: invents modern child 'Lily'.",
-      "hardContentFlags": ["off_prompt_invented_character"]
+      "hardContentFlags": [
+        "off_prompt_invented_character"
+      ]
     },
     {
       "id": "kid_029_hurting_10min",
@@ -509,8 +734,12 @@
       "bibleStoryKey": null,
       "bibleSourceRef": null,
       "mood": "hurting",
-      "emotionalTags": ["comfort"],
-      "themeTags": ["comfort"],
+      "emotionalTags": [
+        "comfort"
+      ],
+      "themeTags": [
+        "comfort"
+      ],
       "lengthBucket": "10min",
       "targetWords": 1200,
       "actualWords": 1319,
@@ -520,7 +749,9 @@
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "OFF-PROMPT: invents modern child 'Willow'.",
-      "hardContentFlags": ["off_prompt_invented_character"]
+      "hardContentFlags": [
+        "off_prompt_invented_character"
+      ]
     }
   ]
 }

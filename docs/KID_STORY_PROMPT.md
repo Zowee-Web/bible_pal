@@ -142,9 +142,21 @@ rule as the adult corpus, `feedback_no_inline_reflection`):
 4. **One question** — open-ended, easy for ages 4–9, invites wonder or kindness.
 
 Reflection / question examples:
+- "When something feels scary, who helps you feel safe again?"
 - "What do you think Samuel felt when God called his name?"
 - "When have you needed courage?"
 - "What do you love most about God's world?"
+
+**Reflection writing + audio (Adam, 2026-06-15):**
+- Write reflections **conversational and human** — the way a parent actually
+  asks at bedtime ("When something feels scary, who helps you feel safe again?"),
+  not formal or quiz-like.
+- **End the question on a soft consonant or open vowel** (…again? / …safe? / …to?),
+  never a hard plosive (…afraid? / …scared? / …help?). The reflection renders in
+  the expressive **`eleven_v3`** model, which clips a final plosive syllable
+  (see [[feedback_audio_end_clip]]) and reads abrupt.
+- The reflection is **narrated in the story's own voice** (whatever
+  `storyVoiceKey` the anchor uses), not a separate reflection voice.
 
 ---
 

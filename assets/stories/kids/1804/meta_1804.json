@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1804,
+  "anchorId": "walking_on_water",
+  "kidLane": "dedicated-4-7",
+  "title": "Jesus Walks on the Water",
+  "scriptureAnchorId": "walking_on_water",
+  "bibleSourceRef": "Matthew 14:22-33",
+  "bibleStoryKey": "jesus_walks_on_water",
+  "translation": "WEB",
+  "mood": "anxious",
+  "emotionalTags": ["safe", "courage", "wonder"],
+  "themeTags": ["trust", "presence of God", "courage", "wonder"],
+  "lengths": ["short", "full"],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "When something feels scary, who helps you feel safe again?",
+  "hardContentFlags": ["peril_water"],
+  "kidSafetyNotes": "Wonder + anxious->safe. Storm/Peter-sinking handled as awe not terror; rescue is immediate ('right away... before Peter could sink any lower'). Softened for 4-7: 'why did you doubt?' (Matt 14:31) -> 'Why were you afraid? I am right here with you.'; the disciples' 'ghost' -> 'What is it?'. One indelible image: Jesus's hand catching Peter the instant he calls.",
+  "files": {
+    "short": { "storyText": "story_1804_short.txt", "audio": "audio_1804_short.mp3" },
+    "full": { "storyText": "story_1804_full.txt", "audio": "audio_1804_full.mp3" },
+    "reflection": { "text": "reflection_1804.txt", "audio": "audio_1804_reflection.mp3", "ttsModel": "eleven_v3" }
+  },
+  "createdNote": "Wonder pillar, story 1. Voice VOICE_NOAH_PATIENT (story + reflection). Reflection wording chosen by Adam, matches the story (fear->safe). Reflection renders in eleven_v3 per wrapper."
+}
