@@ -42,14 +42,24 @@ remember it. You are **not** rewriting Scripture or inventing a fantasy. You are
   bullet). Never quote NIV/ESV/NLT/etc.
   See [BIBLE_TRANSLATION_COMPLIANCE.md](BIBLE_TRANSLATION_COMPLIANCE.md).
 - **Divine name (Adam, 2026-06-15):** use **"God"** by default; use **"the Lord"**
-  in a directly-quoted line that needs it ("The Lord is my shepherd"). **"Yahweh"
-  is rare and deliberate — about 1 story in 20** — used only where it's most
-  meaningful and gives a parent a natural reason to explain the name to the child.
-  Best fit: **the burning bush (Exodus 3), where God reveals his name** ("I AM");
-  other good fits are name moments (Psalm 23 — already an instance — or the Ten
-  Commandments). Don't sprinkle it; pick the anchor where it *teaches*. Everywhere
-  else, "God." (Compliance note: "Yahweh" and "the LORD" are both public-domain
-  renderings of YHWH — a rendering choice, not a copyrighted-translation change.)
+  in a directly-quoted line that reads better with it ("The Lord is my shepherd").
+  **"Yahweh" is rare and deliberate — ~1 story in 20 (~5%)** — and only when the
+  story is **about God's covenant identity** or the original wording is especially
+  meaningful. Rare keeps it special: heard once in a while it becomes "this is one
+  of the stories where we hear God's special name," and invites the parent moment
+  ("Mom, who is Yahweh?" → "That's God's special name in the Bible").
+  - **Use Yahweh in (covenant-name stories):** the **Burning Bush** (Exodus 3, "I AM
+    WHO I AM" — the single best), **Psalm 23** ("Yahweh is my shepherd"), **Elijah on
+    Mount Carmel** ("Yahweh is God!"), **Moses at Sinai / the Ten Commandments**.
+  - **Do NOT use Yahweh in** stories that aren't about the name — Creation, Noah,
+    David & Goliath, Jesus & the Children, Jesus Walks on Water, Jairus' Daughter,
+    the Good Samaritan, the Lost Sheep, etc. Use "God" there.
+  - **Introduce it gently the first time it appears** — give the child a little
+    context, never drop it casually. NOT "Yahweh made the stars." YES: "God's
+    special name in the Bible is Yahweh. And Yahweh loved his people very much," or
+    "The psalm begins, 'Yahweh is my shepherd…'"
+  - Compliance: "Yahweh" and "the LORD" both render YHWH — a rendering choice, not
+    a copyrighted-translation change.
 
 ### 3. Emotional safety
 - Children should feel safe while listening.
