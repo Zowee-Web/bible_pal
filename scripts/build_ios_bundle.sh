@@ -160,7 +160,7 @@ command -v xcrun >/dev/null   || { echo "ERROR: xcrun not on PATH" >&2; exit 1; 
 
 echo "Staging curated story bundle..."
 rm -rf "$PROJECT_ROOT/.ios_build_stage"
-mkdir -p "$STAGE_DIR/traditional"
+mkdir -p "$STAGE_DIR/traditional" "$STAGE_DIR/kids"
 
 python3 - <<PYEOF
 import json, os, shutil, subprocess, sys
@@ -190,7 +190,7 @@ if not R2_BASE:
 with open(PICK_FILE) as f:
     pick = json.load(f)
 
-audio_set = set(pick["traditional"])  # stories with bundled audio + text
+bundled_pick = set(pick["traditional"])  # curated traditional stories with bundled audio
 
 def is_kjv_audio(fn):
     return fn.endswith(".mp3") and ("_kjv_" in fn or "reflection_kjv" in fn)
@@ -204,12 +204,18 @@ with open(os.path.join(SRC_TEXT, "manifest.json")) as f:
 # Compute all unique story IDs in the full manifest. Used by text staging and
 # pubspec rewrite so every manifest entry has its text/scripture/meta files in
 # the bundled tree (Step 3 — fixes catalog-drift mood-selection failure).
-all_manifest_sids = set()
+# Map each story id -> its lane dir ("traditional" or "kids") from the manifest.
+sid_kind = {}
 for p in manifest["parables"]:
     afp = p.get("audioFilePath", "")
     parts = afp.split("/")
-    if len(parts) >= 3 and parts[0] == "traditional":
-        all_manifest_sids.add(parts[1])
+    if len(parts) >= 3 and parts[0] in ("traditional", "kids"):
+        sid_kind[parts[1]] = parts[0]
+all_manifest_sids = set(sid_kind)
+
+# Audio pick: curated traditional set PLUS every kid story (kid lane ships in full).
+kid_sids = {sid for sid, k in sid_kind.items() if k == "kids"}
+audio_set = bundled_pick | kid_sids
 
 # Group surviving entries by (kind, sid) — used for the AUDIO pick (R2 audit).
 entries_by_story = {}
@@ -231,7 +237,7 @@ for p in manifest["parables"]:
 # Their audio paths must be R2-verified before inclusion
 text_only_candidates = {
     key: entries for key, entries in entries_by_story.items()
-    if key[0] == "traditional" and key[1] not in audio_set
+    if key[0] in ("traditional", "kids") and key[1] not in audio_set
 }
 
 # Collect distinct audio paths to probe
@@ -282,8 +288,11 @@ picked_stories = audio_set | text_only_set
 # story text available"). Long text variants are bundled too because long
 # entries appear in the staged manifest.
 for sid in all_manifest_sids:
-    src_text_dir = os.path.join(SRC_TEXT, "traditional", sid)
-    dst_dir = os.path.join(DST, "traditional", sid)
+    kind = sid_kind.get(sid)
+    if not kind:
+        continue
+    src_text_dir = os.path.join(SRC_TEXT, kind, sid)
+    dst_dir = os.path.join(DST, kind, sid)
     if os.path.isdir(src_text_dir):
         os.makedirs(dst_dir, exist_ok=True)
         for fn in os.listdir(src_text_dir):
@@ -296,8 +305,9 @@ for sid in all_manifest_sids:
 # present in the manifest, so an audio_set sid that's absent from the
 # manifest (pick-file / manifest mismatch) needs its own dir creation.
 for sid in audio_set:
-    src_audio_dir = os.path.join(SRC_AUDIO, "traditional", sid)
-    dst_dir = os.path.join(DST, "traditional", sid)
+    kind = sid_kind.get(sid, "traditional")
+    src_audio_dir = os.path.join(SRC_AUDIO, kind, sid)
+    dst_dir = os.path.join(DST, kind, sid)
     if os.path.isdir(src_audio_dir):
         os.makedirs(dst_dir, exist_ok=True)
         for fn in os.listdir(src_audio_dir):
@@ -346,6 +356,7 @@ with open(STATE_FILE, "w") as f:
         "text_only": sorted(text_only_set),
         "all": sorted(picked_stories),
         "manifest_sids": sorted(all_manifest_sids),
+        "sid_kind": sid_kind,
     }, f, indent=2)
 
 print(f"  Audio-bundled stories:           {len(audio_set)}")
@@ -361,7 +372,7 @@ PYEOF
 # the stage dir is still at $STAGE_DIR).
 staged_audio_mb=$(find "$STAGE_DIR" -name "*.mp3" -exec du -ck {} + | tail -1 | awk '{printf "%.1f", $1/1024}')
 staged_text_kb=$(find "$STAGE_DIR" \( -name "*.txt" -o -name "*.json" \) -exec du -ck {} + | tail -1 | awk '{print $1}')
-staged_story_dirs=$(find "$STAGE_DIR/traditional" -maxdepth 1 -mindepth 1 -type d | wc -l | awk '{print $1}')
+staged_story_dirs=$(find "$STAGE_DIR/traditional" "$STAGE_DIR/kids" -maxdepth 1 -mindepth 1 -type d 2>/dev/null | wc -l | awk '{print $1}')
 staged_audio_files=$(find "$STAGE_DIR" -name "*.mp3" | wc -l | awk '{print $1}')
 staged_manifest_entries=$(python3 -c "import json,sys;print(len(json.load(open('$STAGE_DIR/manifest.json'))['parables']))")
 echo "  Staged audio: ${staged_audio_mb} MB"
@@ -399,16 +410,18 @@ with open(STATE_FILE) as f:
 with open(PUBSPEC) as f:
     src = f.read()
 
-# Match all per-story dir lines (one regex covers both traditional and creative)
+# Match all per-story dir lines (one regex covers traditional, creative, kids)
 line_re = re.compile(
-    r"^    - assets/stories/(?:traditional|creative)/\d+/\n",
+    r"^    - assets/stories/(?:traditional|creative|kids)/\d+/\n",
     re.MULTILINE,
 )
 
-# List every story dir whose ID is in the staged manifest (Step 3). Audio
-# absence in a dir is what makes it text-only at runtime; the three-tier
-# resolver handles missing audio via R2 / null-return.
-new_lines = [f"    - assets/stories/traditional/{sid}/\n" for sid in state["manifest_sids"]]
+# List every story dir whose ID is in the staged manifest (Step 3), under its
+# own lane (traditional/<id>/ or kids/<id>/). Audio absence makes a dir
+# text-only at runtime; the three-tier resolver handles it via R2 / null-return.
+sid_kind = state.get("sid_kind", {})
+new_lines = [f"    - assets/stories/{sid_kind.get(sid, 'traditional')}/{sid}/\n"
+             for sid in state["manifest_sids"]]
 replacement = "".join(new_lines)
 
 match = line_re.search(src)
@@ -422,13 +435,13 @@ with open(PUBSPEC + ".ios_generated", "w") as f:
     f.write(new_src)
 
 trad_count = new_src.count("assets/stories/traditional/")
-crea_count = new_src.count("assets/stories/creative/")
-print(f"  Pubspec rewritten: {trad_count} traditional + {crea_count} creative dir refs")
+kids_count = new_src.count("assets/stories/kids/")
+print(f"  Pubspec rewritten: {trad_count} traditional + {kids_count} kids dir refs")
 PYEOF
 
 # Step 3 — pubspec coverage check: pubspec must declare every story dir
 # whose ID appears in the staged manifest.
-pubspec_dir_count=$(grep -c "^    - assets/stories/traditional/" "$PUBSPEC.ios_generated" 2>/dev/null || echo 0)
+pubspec_dir_count=$(grep -cE "^    - assets/stories/(traditional|kids)/" "$PUBSPEC.ios_generated" 2>/dev/null || echo 0)
 unique_sids_in_manifest=$(python3 -c "
 import json
 m = json.load(open('$STAGE_DIR/manifest.json'))
@@ -436,7 +449,7 @@ sids = set()
 for p in m['parables']:
     afp = p.get('audioFilePath', '')
     parts = afp.split('/')
-    if len(parts) >= 3 and parts[0] == 'traditional':
+    if len(parts) >= 3 and parts[0] in ('traditional', 'kids'):
         sids.add(parts[1])
 print(len(sids))
 ")

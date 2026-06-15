@@ -27,7 +27,7 @@
     "1073"
   ],
   "creative": [],
-  "_note": "traditional[] = audio-bundled curated set (instant-play). The bundle also includes text/meta/scripture for every other Traditional story whose audio is R2-verified (pre-flight audit at stage time). Non-bundled audio is served from R2 on demand via the cache->bundled->R2 cascade.",
+  "_note": "traditional[] = audio-bundled curated set (instant-play). The bundle also includes text/meta/scripture for every other Traditional story whose audio is R2-verified (pre-flight audit at stage time). Non-bundled audio is served from R2 on demand via the cache->bundled->R2 cascade. KIDS: the dedicated kid lane (kids/<id>/) is NOT gated by this pick — the build scripts bundle EVERY kid story's audio automatically (small lane, ships in full). Watch the AAB size as the kid lane grows toward ~50 anchors; switch kids to a curated pick or R2 if it nears the 200 MB cap.",
   "audio_mb": 90.0,
   "estimated_aab_mb": 178
 }
