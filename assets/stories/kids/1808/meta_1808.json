@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1808,
+  "anchorId": "noah_promise",
+  "kidLane": "dedicated-4-7",
+  "title": "Noah's Rainbow",
+  "scriptureAnchorId": "noah_promise",
+  "bibleSourceRef": "Genesis 8-9",
+  "bibleStoryKey": "noah_rainbow_promise",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": ["hope", "relief", "wonder"],
+  "themeTags": ["Gods promise", "new beginnings", "faithfulness"],
+  "lengths": ["short", "full"],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": { "stability": 0.6, "similarity_boost": 0.8, "style": 0.0, "use_speaker_boost": true },
+  "reflectionQuestion": "What do you think about when you see a rainbow?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "Encouraging. This is noah_promise (the rainbow), so the flood is gentle backstory only ('kept everyone safe') — no drowning/death shown. Centered on dove/leaf/rainbow/promise. One image: the rainbow stretched across the sky.",
+  "files": {
+    "short": { "storyText": "story_1808_short.txt", "audio": null },
+    "full": { "storyText": "story_1808_full.txt", "audio": null },
+    "reflection": { "text": "reflection_1808.txt", "audio": null, "ttsModel": "eleven_v3" }
+  }
+}

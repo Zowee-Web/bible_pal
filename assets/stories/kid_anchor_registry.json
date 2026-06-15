@@ -108,7 +108,11 @@
             "full"
           ],
           "sibling": "noah_flood",
-          "launch": true
+          "launch": true,
+          "manifestAnchorIds": [
+            "noah_promise"
+          ],
+          "productionId": 1808
         }
       ]
     },
@@ -208,7 +212,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "manifestAnchorIds": [
+            "baby_moses"
+          ],
+          "productionId": 1810
         },
         {
           "anchorId": "burning_bush",
@@ -604,7 +612,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "manifestAnchorIds": [
+            "wise_men"
+          ],
+          "productionId": 1809
         }
       ]
     },
@@ -667,7 +679,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "manifestAnchorIds": [
+            "jesus_children"
+          ],
+          "productionId": 1807
         },
         {
           "anchorId": "heal_blind",
@@ -685,9 +701,14 @@
           "scriptureRef": "Mark 5:21-43",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": true
+          "launch": true,
+          "manifestAnchorIds": [
+            "jairus_daughter"
+          ],
+          "productionId": 1806
         },
         {
           "anchorId": "ten_lepers",

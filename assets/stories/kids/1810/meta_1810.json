@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1810,
+  "anchorId": "baby_moses",
+  "kidLane": "dedicated-4-7",
+  "title": "Baby Moses",
+  "scriptureAnchorId": "baby_moses",
+  "bibleSourceRef": "Exodus 2:1-10",
+  "bibleStoryKey": "baby_moses_basket",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": ["safe", "loved", "calm"],
+  "themeTags": ["Gods protection", "providence", "family love"],
+  "lengths": ["short", "full"],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": { "stability": 0.6, "similarity_boost": 0.8, "style": 0.0, "use_speaker_boost": true },
+  "reflectionQuestion": "Who do you feel safe and cozy with at the end of the day?",
+  "hardContentFlags": ["peril_infant_softened"],
+  "kidSafetyNotes": "Calm/protection. Pharaoh's order softened all the way to 'a dangerous time for baby boys' — no killing named. God's care made gently explicit at the end. One image (held): the basket in the reeds / the mother getting to hold her son again.",
+  "files": {
+    "short": { "storyText": "story_1810_short.txt", "audio": null },
+    "full": { "storyText": "story_1810_full.txt", "audio": null },
+    "reflection": { "text": "reflection_1810.txt", "audio": null, "ttsModel": "eleven_v3" }
+  }
+}

@@ -110,6 +110,13 @@ If you remove this image and the story loses its heartbeat, you found the right
 image. Do **not** force multiple showpieces — one memorable image is enough
 (this complements §5: restraint everywhere, except the single image you let land).
 
+> **The strongest image is often someone being held** (Adam, 2026-06-15). The
+> stories children remember aren't usually the miracle — they're the moment of
+> being *held*: Jesus taking the little girl's hand ("it's time to get up");
+> Moses's mother getting her son back to hold; Jesus opening his arms to the
+> children. When a story has a held/hand/embrace moment, let *that* be the
+> indelible image, and let the ending rest there.
+
 ### 6. Characters feel human
 Show the turn: fear→courage, sadness→joy, confusion→understanding,
 loneliness→comfort, weakness→trust in God. Let action carry the feeling; don't
@@ -127,19 +134,21 @@ feeling **"God is with me,"** never "I am scared."
 
 ## Length buckets
 
-Pick one bucket per story; do not pad to hit a number. Targets are guides, ±15%.
+Kid buckets serve the **child**, not the adult corpus (Adam, 2026-06-15). Gentle
+4–7 bedtime stories are naturally short; do **not** pad to hit a number — if a
+story is complete at the low end, leave it.
 
-| Bucket | Target words | Notes |
-|--------|-------------:|-------|
-| short  | ~250 | a single parable beat |
-| 3min   | ~350 | |
-| 5min   | ~600 | |
-| 10min  | ~1200 | |
-| 15min  | ~1800 | review: long for the youngest listeners |
-| 20min  | ~2400 | review: long for the youngest listeners |
+| Bucket | Words | Notes |
+|--------|------:|-------|
+| short  | **250–450** | the everyday length; a single, complete telling |
+| full   | **400–750** | a meaningfully fuller telling; should feel bigger than the short |
+| long   | **700–1100** | special/exceptional anchors only (earned, not default) |
 
-(Targets inherited from the legacy CSV. The 15/20-min buckets are flagged for
-re-evaluation — 2,400 words is a lot for a 4-year-old.)
+Short and full overlap (400–450) on purpose — pick the bucket by **intent** (is
+this the brief telling or the fuller one?), and let the full be a real expansion
+of the short, not just a few words more. These replace the adult floors
+(short 300–500 / full 501–900), which were too long for the kid lane and created
+a "add words so the validator is happy" incentive.
 
 ---
 

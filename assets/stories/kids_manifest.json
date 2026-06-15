@@ -16,18 +16,335 @@
     ],
     "promotion": "Stories at status DONE are mirrored into assets/stories/manifest.json (kidFriendly: true) by scripts/promote_kid_stories.py.",
     "lengthBuckets": {
-      "3min": 350,
-      "5min": 600,
-      "10min": 1200,
-      "15min": 1800,
-      "20min": 2400,
-      "short": 250
+      "short": "250-450",
+      "full": "400-750",
+      "long": "700-1100 (special/exceptional anchors only)"
     },
-    "lengthNote": "Word targets inherited from the legacy CSV. Flag for review: 1800-2400w is long for ages 4-9; revisit when generation un-pauses.",
-    "lastUpdated": "2026-06-13",
-    "generationStatus": "PAUSED until adult corpus closes (see memory project_kid_stories_deferred)"
+    "lengthNote": "Kid word bands (Adam 2026-06-15) — serve the child, not the adult corpus. Replace the adult floors (short 300-500 / full 501-900), which were too long for gentle 4-7 bedtime prose and created a 'pad to satisfy the validator' incentive. short+full overlap 400-450 on purpose; pick by intent. Don't pad. Legacy time-bucket values (3min/5min/etc.) are gone; legacy stories still carry those lengthBucket strings until migrated.",
+    "lastUpdated": "2026-06-15",
+    "generationStatus": "ACTIVE (adult corpus closed 2026-06-14)"
   },
   "stories": [
+    {
+      "id": "kid_jairus_daughter_short",
+      "storyNumber": 1806,
+      "title": "Jairus' Little Girl",
+      "textFilePath": "kids/1806/story_1806_short.txt",
+      "scriptureAnchorId": "jairus_daughter",
+      "bibleStoryKey": "jairus_daughter",
+      "bibleSourceRef": "Mark 5:21-43",
+      "mood": "hurting",
+      "emotionalTags": [
+        "comforted",
+        "hope",
+        "safe"
+      ],
+      "themeTags": [
+        "healing",
+        "faith",
+        "compassion of Jesus"
+      ],
+      "lengthBucket": "short",
+      "targetWords": null,
+      "actualWords": 259,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": null,
+      "reflectionAudioPath": null,
+      "reflectionText": null,
+      "reflectionQuestion": "When you don't feel well, who do you like to have close to you?",
+      "kidSafetyNotes": "Hurting->hope. Death handled gently: Jesus says she is 'only sleeping' and wakes her (faithful to Mark 5:39). Bleeding-woman subplot omitted. One indelible image (held): Jesus takes her hand, 'it's time to get up'.",
+      "hardContentFlags": [
+        "death_handled_gently"
+      ]
+    },
+    {
+      "id": "kid_jairus_daughter_full",
+      "storyNumber": 1806,
+      "title": "Jairus' Little Girl",
+      "textFilePath": "kids/1806/story_1806_full.txt",
+      "scriptureAnchorId": "jairus_daughter",
+      "bibleStoryKey": "jairus_daughter",
+      "bibleSourceRef": "Mark 5:21-43",
+      "mood": "hurting",
+      "emotionalTags": [
+        "comforted",
+        "hope",
+        "safe"
+      ],
+      "themeTags": [
+        "healing",
+        "faith",
+        "compassion of Jesus"
+      ],
+      "lengthBucket": "full",
+      "targetWords": null,
+      "actualWords": 451,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": null,
+      "reflectionAudioPath": null,
+      "reflectionText": null,
+      "reflectionQuestion": "When you don't feel well, who do you like to have close to you?",
+      "kidSafetyNotes": "Hurting->hope. Death handled gently: Jesus says she is 'only sleeping' and wakes her (faithful to Mark 5:39). Bleeding-woman subplot omitted. One indelible image (held): Jesus takes her hand, 'it's time to get up'.",
+      "hardContentFlags": [
+        "death_handled_gently"
+      ]
+    },
+    {
+      "id": "kid_jesus_children_short",
+      "storyNumber": 1807,
+      "title": "Jesus and the Children",
+      "textFilePath": "kids/1807/story_1807_short.txt",
+      "scriptureAnchorId": "jesus_children",
+      "bibleStoryKey": "jesus_blesses_children",
+      "bibleSourceRef": "Mark 10:13-16",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joy",
+        "welcomed",
+        "loved"
+      ],
+      "themeTags": [
+        "Jesus welcomes children",
+        "welcome",
+        "blessing"
+      ],
+      "lengthBucket": "short",
+      "targetWords": null,
+      "actualWords": 272,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": null,
+      "reflectionAudioPath": null,
+      "reflectionText": null,
+      "reflectionQuestion": "If you could climb up and sit with Jesus, what would you want to tell him?",
+      "kidSafetyNotes": "Joyful. Quoted 'God's kingdom belongs to little children' (NOT 'just like these' — avoids telling the child who they are). Ends on 'Jesus was glad they came' rather than 'still loves children today'. One image (held): Jesus opening his arms wide.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_jesus_children_full",
+      "storyNumber": 1807,
+      "title": "Jesus and the Children",
+      "textFilePath": "kids/1807/story_1807_full.txt",
+      "scriptureAnchorId": "jesus_children",
+      "bibleStoryKey": "jesus_blesses_children",
+      "bibleSourceRef": "Mark 10:13-16",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joy",
+        "welcomed",
+        "loved"
+      ],
+      "themeTags": [
+        "Jesus welcomes children",
+        "welcome",
+        "blessing"
+      ],
+      "lengthBucket": "full",
+      "targetWords": null,
+      "actualWords": 407,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": null,
+      "reflectionAudioPath": null,
+      "reflectionText": null,
+      "reflectionQuestion": "If you could climb up and sit with Jesus, what would you want to tell him?",
+      "kidSafetyNotes": "Joyful. Quoted 'God's kingdom belongs to little children' (NOT 'just like these' — avoids telling the child who they are). Ends on 'Jesus was glad they came' rather than 'still loves children today'. One image (held): Jesus opening his arms wide.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_noah_promise_short",
+      "storyNumber": 1808,
+      "title": "Noah's Rainbow",
+      "textFilePath": "kids/1808/story_1808_short.txt",
+      "scriptureAnchorId": "noah_promise",
+      "bibleStoryKey": "noah_rainbow_promise",
+      "bibleSourceRef": "Genesis 8-9",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "hope",
+        "relief",
+        "wonder"
+      ],
+      "themeTags": [
+        "Gods promise",
+        "new beginnings",
+        "faithfulness"
+      ],
+      "lengthBucket": "short",
+      "targetWords": null,
+      "actualWords": 273,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "audioFilePath": null,
+      "reflectionAudioPath": null,
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think about when you see a rainbow?",
+      "kidSafetyNotes": "Encouraging. This is noah_promise (the rainbow), so the flood is gentle backstory only ('kept everyone safe') — no drowning/death shown. Centered on dove/leaf/rainbow/promise. One image: the rainbow stretched across the sky.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_noah_promise_full",
+      "storyNumber": 1808,
+      "title": "Noah's Rainbow",
+      "textFilePath": "kids/1808/story_1808_full.txt",
+      "scriptureAnchorId": "noah_promise",
+      "bibleStoryKey": "noah_rainbow_promise",
+      "bibleSourceRef": "Genesis 8-9",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "hope",
+        "relief",
+        "wonder"
+      ],
+      "themeTags": [
+        "Gods promise",
+        "new beginnings",
+        "faithfulness"
+      ],
+      "lengthBucket": "full",
+      "targetWords": null,
+      "actualWords": 402,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "audioFilePath": null,
+      "reflectionAudioPath": null,
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think about when you see a rainbow?",
+      "kidSafetyNotes": "Encouraging. This is noah_promise (the rainbow), so the flood is gentle backstory only ('kept everyone safe') — no drowning/death shown. Centered on dove/leaf/rainbow/promise. One image: the rainbow stretched across the sky.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_wise_men_short",
+      "storyNumber": 1809,
+      "title": "The Wise Men and the Star",
+      "textFilePath": "kids/1809/story_1809_short.txt",
+      "scriptureAnchorId": "wise_men",
+      "bibleStoryKey": "wise_men_star",
+      "bibleSourceRef": "Matthew 2:1-12",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joy",
+        "wonder",
+        "worship"
+      ],
+      "themeTags": [
+        "seeking Jesus",
+        "the star",
+        "worship",
+        "gifts"
+      ],
+      "lengthBucket": "short",
+      "targetWords": null,
+      "actualWords": 263,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "audioFilePath": null,
+      "reflectionAudioPath": null,
+      "reflectionText": null,
+      "reflectionQuestion": "If you could give baby Jesus a gift, what would you want to bring him?",
+      "kidSafetyNotes": "Joyful/wonder. Herod and the slaughter of the innocents omitted entirely — just the star, the journey, the gifts, the joy. Ending reworked to land on wonder ('just as God had planned all along'). One image: the star stopping over the house.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_wise_men_full",
+      "storyNumber": 1809,
+      "title": "The Wise Men and the Star",
+      "textFilePath": "kids/1809/story_1809_full.txt",
+      "scriptureAnchorId": "wise_men",
+      "bibleStoryKey": "wise_men_star",
+      "bibleSourceRef": "Matthew 2:1-12",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joy",
+        "wonder",
+        "worship"
+      ],
+      "themeTags": [
+        "seeking Jesus",
+        "the star",
+        "worship",
+        "gifts"
+      ],
+      "lengthBucket": "full",
+      "targetWords": null,
+      "actualWords": 413,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "audioFilePath": null,
+      "reflectionAudioPath": null,
+      "reflectionText": null,
+      "reflectionQuestion": "If you could give baby Jesus a gift, what would you want to bring him?",
+      "kidSafetyNotes": "Joyful/wonder. Herod and the slaughter of the innocents omitted entirely — just the star, the journey, the gifts, the joy. Ending reworked to land on wonder ('just as God had planned all along'). One image: the star stopping over the house.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_baby_moses_short",
+      "storyNumber": 1810,
+      "title": "Baby Moses",
+      "textFilePath": "kids/1810/story_1810_short.txt",
+      "scriptureAnchorId": "baby_moses",
+      "bibleStoryKey": "baby_moses_basket",
+      "bibleSourceRef": "Exodus 2:1-10",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "safe",
+        "loved",
+        "calm"
+      ],
+      "themeTags": [
+        "Gods protection",
+        "providence",
+        "family love"
+      ],
+      "lengthBucket": "short",
+      "targetWords": null,
+      "actualWords": 276,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "audioFilePath": null,
+      "reflectionAudioPath": null,
+      "reflectionText": null,
+      "reflectionQuestion": "Who do you feel safe and cozy with at the end of the day?",
+      "kidSafetyNotes": "Calm/protection. Pharaoh's order softened all the way to 'a dangerous time for baby boys' — no killing named. God's care made gently explicit at the end. One image (held): the basket in the reeds / the mother getting to hold her son again.",
+      "hardContentFlags": [
+        "peril_infant_softened"
+      ]
+    },
+    {
+      "id": "kid_baby_moses_full",
+      "storyNumber": 1810,
+      "title": "Baby Moses",
+      "textFilePath": "kids/1810/story_1810_full.txt",
+      "scriptureAnchorId": "baby_moses",
+      "bibleStoryKey": "baby_moses_basket",
+      "bibleSourceRef": "Exodus 2:1-10",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "safe",
+        "loved",
+        "calm"
+      ],
+      "themeTags": [
+        "Gods protection",
+        "providence",
+        "family love"
+      ],
+      "lengthBucket": "full",
+      "targetWords": null,
+      "actualWords": 412,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "audioFilePath": null,
+      "reflectionAudioPath": null,
+      "reflectionText": null,
+      "reflectionQuestion": "Who do you feel safe and cozy with at the end of the day?",
+      "kidSafetyNotes": "Calm/protection. Pharaoh's order softened all the way to 'a dangerous time for baby boys' — no killing named. God's care made gently explicit at the end. One image (held): the basket in the reeds / the mother getting to hold her son again.",
+      "hardContentFlags": [
+        "peril_infant_softened"
+      ]
+    },
     {
       "id": "kid_creation_days_short",
       "storyNumber": 1805,

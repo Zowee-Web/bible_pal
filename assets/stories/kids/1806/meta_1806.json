@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1806,
+  "anchorId": "jairus_daughter",
+  "kidLane": "dedicated-4-7",
+  "title": "Jairus' Little Girl",
+  "scriptureAnchorId": "jairus_daughter",
+  "bibleSourceRef": "Mark 5:21-43",
+  "bibleStoryKey": "jairus_daughter",
+  "translation": "WEB",
+  "mood": "hurting",
+  "emotionalTags": ["comforted", "hope", "safe"],
+  "themeTags": ["healing", "faith", "compassion of Jesus"],
+  "lengths": ["short", "full"],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": { "stability": 0.6, "similarity_boost": 0.8, "style": 0.0, "use_speaker_boost": true },
+  "reflectionQuestion": "When you don't feel well, who do you like to have close to you?",
+  "hardContentFlags": ["death_handled_gently"],
+  "kidSafetyNotes": "Hurting->hope. Death handled gently: Jesus says she is 'only sleeping' and wakes her (faithful to Mark 5:39). Bleeding-woman subplot omitted. One indelible image (held): Jesus takes her hand, 'it's time to get up'.",
+  "files": {
+    "short": { "storyText": "story_1806_short.txt", "audio": null },
+    "full": { "storyText": "story_1806_full.txt", "audio": null },
+    "reflection": { "text": "reflection_1806.txt", "audio": null, "ttsModel": "eleven_v3" }
+  }
+}
