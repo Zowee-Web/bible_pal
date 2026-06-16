@@ -45880,6 +45880,286 @@
         "presence of God"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_the_cross_short",
+      "title": "The Cross",
+      "mood": "hurting",
+      "emotionalTags": [
+        "loved",
+        "comforted",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1821/audio_1821_short.mp3",
+      "textFilePath": "kids/1821/story_1821_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_SAMUEL_EARNEST",
+      "storyLength": "short",
+      "reflectionQuestion": "What do you think it means to be loved as much as Jesus loves you?",
+      "bibleSourceRef": "Luke 23:32-49",
+      "bibleStoryKey": "the_cross",
+      "themeTags": [
+        "Gods love",
+        "sacrifice",
+        "hope",
+        "Jesus loves me"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_the_cross_full",
+      "title": "The Cross",
+      "mood": "hurting",
+      "emotionalTags": [
+        "loved",
+        "comforted",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1821/audio_1821_full.mp3",
+      "textFilePath": "kids/1821/story_1821_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_SAMUEL_EARNEST",
+      "storyLength": "full",
+      "reflectionQuestion": "What do you think it means to be loved as much as Jesus loves you?",
+      "bibleSourceRef": "Luke 23:32-49",
+      "bibleStoryKey": "the_cross",
+      "themeTags": [
+        "Gods love",
+        "sacrifice",
+        "hope",
+        "Jesus loves me"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_fiery_furnace_short",
+      "title": "The Fiery Furnace",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "safe",
+        "trusting"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1822/audio_1822_short.mp3",
+      "textFilePath": "kids/1822/story_1822_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "storyLength": "short",
+      "reflectionQuestion": "What do you think the three friends saw when they looked beside them in the fire?",
+      "bibleSourceRef": "Daniel 3",
+      "bibleStoryKey": "fiery_furnace",
+      "themeTags": [
+        "faith",
+        "presence of God",
+        "courage",
+        "protection"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_fiery_furnace_full",
+      "title": "The Fiery Furnace",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "safe",
+        "trusting"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1822/audio_1822_full.mp3",
+      "textFilePath": "kids/1822/story_1822_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "storyLength": "full",
+      "reflectionQuestion": "What do you think the three friends saw when they looked beside them in the fire?",
+      "bibleSourceRef": "Daniel 3",
+      "bibleStoryKey": "fiery_furnace",
+      "themeTags": [
+        "faith",
+        "presence of God",
+        "courage",
+        "protection"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_abraham_call_short",
+      "title": "God Calls Abraham",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "trusting",
+        "calm",
+        "hopeful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1823/audio_1823_short.mp3",
+      "textFilePath": "kids/1823/story_1823_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOSEPH_DREAMER",
+      "storyLength": "short",
+      "reflectionQuestion": "What do you think it was like for Abraham to set out, not yet knowing where God was leading him?",
+      "bibleSourceRef": "Genesis 12:1-9",
+      "bibleStoryKey": "abraham_call",
+      "themeTags": [
+        "trust",
+        "faith",
+        "Gods promise",
+        "obedience"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_abraham_call_full",
+      "title": "God Calls Abraham",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "trusting",
+        "calm",
+        "hopeful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1823/audio_1823_full.mp3",
+      "textFilePath": "kids/1823/story_1823_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOSEPH_DREAMER",
+      "storyLength": "full",
+      "reflectionQuestion": "What do you think it was like for Abraham to set out, not yet knowing where God was leading him?",
+      "bibleSourceRef": "Genesis 12:1-9",
+      "bibleStoryKey": "abraham_call",
+      "themeTags": [
+        "trust",
+        "faith",
+        "Gods promise",
+        "obedience"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_mary_says_yes_short",
+      "title": "Mary Says Yes",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "joy",
+        "trusting"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1824/audio_1824_short.mp3",
+      "textFilePath": "kids/1824/story_1824_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "storyLength": "short",
+      "reflectionQuestion": "What do you think Mary felt when the angel told her she would be the mother of Jesus?",
+      "bibleSourceRef": "Luke 1:26-38",
+      "bibleStoryKey": "mary_says_yes",
+      "themeTags": [
+        "faith",
+        "Gods plan",
+        "trust",
+        "Jesus is coming"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_mary_says_yes_full",
+      "title": "Mary Says Yes",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "joy",
+        "trusting"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1824/audio_1824_full.mp3",
+      "textFilePath": "kids/1824/story_1824_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "storyLength": "full",
+      "reflectionQuestion": "What do you think Mary felt when the angel told her she would be the mother of Jesus?",
+      "bibleSourceRef": "Luke 1:26-38",
+      "bibleStoryKey": "mary_says_yes",
+      "themeTags": [
+        "faith",
+        "Gods plan",
+        "trust",
+        "Jesus is coming"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_feeding_5000_short",
+      "title": "The Big Picnic",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "wonder",
+        "joy"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1825/audio_1825_short.mp3",
+      "textFilePath": "kids/1825/story_1825_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "storyLength": "short",
+      "reflectionQuestion": "What do you think the boy felt when his own little lunch became enough for everyone?",
+      "bibleSourceRef": "John 6:1-14",
+      "bibleStoryKey": "feeding_5000",
+      "themeTags": [
+        "Gods provision",
+        "gratitude",
+        "generosity",
+        "Gods power"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_feeding_5000_full",
+      "title": "The Big Picnic",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "wonder",
+        "joy"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1825/audio_1825_full.mp3",
+      "textFilePath": "kids/1825/story_1825_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "storyLength": "full",
+      "reflectionQuestion": "What do you think the boy felt when his own little lunch became enough for everyone?",
+      "bibleSourceRef": "John 6:1-14",
+      "bibleStoryKey": "feeding_5000",
+      "themeTags": [
+        "Gods provision",
+        "gratitude",
+        "generosity",
+        "Gods power"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }

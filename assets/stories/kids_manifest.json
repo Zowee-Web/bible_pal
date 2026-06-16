@@ -1805,6 +1805,336 @@
       "reflectionQuestion": "What do you think Samuel felt when he heard the gentle voice calling his name?",
       "kidSafetyNotes": "SUPERSEDES legacy kid_114_samuel (5min/3min off-bucket, no audio). The hard message God gives Samuel (judgment on Eli's house) OMITTED entirely -- just 'God spoke to Samuel.' Pure bedtime: nighttime setting, the lamp of God glowing. Not-alone spine -- God calls the child by name. 'Speak, Lord, for your servant is listening' uses 'Lord' in a quoted line (per divine-name doctrine). One image: the lamp of God glowing soft and golden as the boy sits up to listen. Adam: A+ ('pure bedtime magic').",
       "hardContentFlags": []
+    },
+    {
+      "id": "kid_the_cross_short",
+      "storyNumber": 1821,
+      "title": "The Cross",
+      "textFilePath": "kids/1821/story_1821_short.txt",
+      "scriptureAnchorId": "luke_23_32-49",
+      "bibleStoryKey": "the_cross",
+      "bibleSourceRef": "Luke 23:32-49",
+      "mood": "hurting",
+      "emotionalTags": [
+        "loved",
+        "comforted",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods love",
+        "sacrifice",
+        "hope",
+        "Jesus loves me"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 268,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_SAMUEL_EARNEST",
+      "audioFilePath": "kids/1821/audio_1821_short.mp3",
+      "reflectionAudioPath": "kids/1821/audio_1821_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it means to be loved as much as Jesus loves you?",
+      "kidSafetyNotes": "THE hard story, told via the Joseph method (feedback_kid_god_with_not_cause). LOVE-centered, not suffering-centered: death stated softly ('his breath grew still'); NO nails/blood/gore. Jesus's real words kept ('Father, forgive them'; 'into your hands'). Names that God had NOT left ('there in the dark') and refuses to end in the dark -- ends forward ('Sunday was coming'), gently pointing to Easter (1812). Grounding image: his mother Mary among the watchers (threads to 1824). Mood=hurting: the comfort for a sad child is 'Jesus knows sadness, loves you this much, and God did not leave.' Adam: braver-set centerpiece; reviewed line-by-line.",
+      "hardContentFlags": [
+        "death_handled_gently",
+        "crucifixion_softened"
+      ]
+    },
+    {
+      "id": "kid_the_cross_full",
+      "storyNumber": 1821,
+      "title": "The Cross",
+      "textFilePath": "kids/1821/story_1821_full.txt",
+      "scriptureAnchorId": "luke_23_32-49",
+      "bibleStoryKey": "the_cross",
+      "bibleSourceRef": "Luke 23:32-49",
+      "mood": "hurting",
+      "emotionalTags": [
+        "loved",
+        "comforted",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods love",
+        "sacrifice",
+        "hope",
+        "Jesus loves me"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 441,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_SAMUEL_EARNEST",
+      "audioFilePath": "kids/1821/audio_1821_full.mp3",
+      "reflectionAudioPath": "kids/1821/audio_1821_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it means to be loved as much as Jesus loves you?",
+      "kidSafetyNotes": "THE hard story, told via the Joseph method (feedback_kid_god_with_not_cause). LOVE-centered, not suffering-centered: death stated softly ('his breath grew still'); NO nails/blood/gore. Jesus's real words kept ('Father, forgive them'; 'into your hands'). Names that God had NOT left ('there in the dark') and refuses to end in the dark -- ends forward ('Sunday was coming'), gently pointing to Easter (1812). Grounding image: his mother Mary among the watchers (threads to 1824). Mood=hurting: the comfort for a sad child is 'Jesus knows sadness, loves you this much, and God did not leave.' Adam: braver-set centerpiece; reviewed line-by-line.",
+      "hardContentFlags": [
+        "death_handled_gently",
+        "crucifixion_softened"
+      ]
+    },
+    {
+      "id": "kid_fiery_furnace_short",
+      "storyNumber": 1822,
+      "title": "The Fiery Furnace",
+      "textFilePath": "kids/1822/story_1822_short.txt",
+      "scriptureAnchorId": "daniel_3",
+      "bibleStoryKey": "fiery_furnace",
+      "bibleSourceRef": "Daniel 3",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "safe",
+        "trusting"
+      ],
+      "themeTags": [
+        "faith",
+        "presence of God",
+        "courage",
+        "protection"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 253,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "audioFilePath": "kids/1822/audio_1822_short.mp3",
+      "reflectionAudioPath": "kids/1822/audio_1822_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the three friends saw when they looked beside them in the fire?",
+      "kidSafetyNotes": "Braver-set: REAL danger (fire), but no one is harmed; the soldiers' deaths (Dan 3:22) OMITTED. KEPT the hardest faith line -- 'Our God is able to save us, but even if he does not, we will still worship only him' -- faith WITHOUT a guarantee, the deliberate counter to gentleness-drift (feedback_kid_faithful_not_gentle). Not-alone spine made literal: the fourth figure walking WITH them in the flames. One image: the four walking unharmed in the fire. Names Shadrach/Meshach/Abednego kept (rhythmic for kids).",
+      "hardContentFlags": [
+        "peril_fire"
+      ]
+    },
+    {
+      "id": "kid_fiery_furnace_full",
+      "storyNumber": 1822,
+      "title": "The Fiery Furnace",
+      "textFilePath": "kids/1822/story_1822_full.txt",
+      "scriptureAnchorId": "daniel_3",
+      "bibleStoryKey": "fiery_furnace",
+      "bibleSourceRef": "Daniel 3",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "safe",
+        "trusting"
+      ],
+      "themeTags": [
+        "faith",
+        "presence of God",
+        "courage",
+        "protection"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 457,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "audioFilePath": "kids/1822/audio_1822_full.mp3",
+      "reflectionAudioPath": "kids/1822/audio_1822_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the three friends saw when they looked beside them in the fire?",
+      "kidSafetyNotes": "Braver-set: REAL danger (fire), but no one is harmed; the soldiers' deaths (Dan 3:22) OMITTED. KEPT the hardest faith line -- 'Our God is able to save us, but even if he does not, we will still worship only him' -- faith WITHOUT a guarantee, the deliberate counter to gentleness-drift (feedback_kid_faithful_not_gentle). Not-alone spine made literal: the fourth figure walking WITH them in the flames. One image: the four walking unharmed in the fire. Names Shadrach/Meshach/Abednego kept (rhythmic for kids).",
+      "hardContentFlags": [
+        "peril_fire"
+      ]
+    },
+    {
+      "id": "kid_abraham_call_short",
+      "storyNumber": 1823,
+      "title": "God Calls Abraham",
+      "textFilePath": "kids/1823/story_1823_short.txt",
+      "scriptureAnchorId": "genesis_12",
+      "bibleStoryKey": "abraham_call",
+      "bibleSourceRef": "Genesis 12:1-9",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "trusting",
+        "calm",
+        "hopeful"
+      ],
+      "themeTags": [
+        "trust",
+        "faith",
+        "Gods promise",
+        "obedience"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 258,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOSEPH_DREAMER",
+      "audioFilePath": "kids/1823/audio_1823_short.mp3",
+      "reflectionAudioPath": "kids/1823/audio_1823_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like for Abraham to set out, not yet knowing where God was leading him?",
+      "kidSafetyNotes": "Trust before you can see: God calls Abraham to a land he can't yet see; Abraham goes. Gentle, no peril. Center = 'he did not know the way ahead, but he knew the One who was leading him.' Grounding: tents under a sky of more stars than he could count (Gen 12 call + the stars promise). Mood calm_peaceful (quiet trust on the journey). Part of the not-alone spine -- God beside him every step.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_abraham_call_full",
+      "storyNumber": 1823,
+      "title": "God Calls Abraham",
+      "textFilePath": "kids/1823/story_1823_full.txt",
+      "scriptureAnchorId": "genesis_12",
+      "bibleStoryKey": "abraham_call",
+      "bibleSourceRef": "Genesis 12:1-9",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "trusting",
+        "calm",
+        "hopeful"
+      ],
+      "themeTags": [
+        "trust",
+        "faith",
+        "Gods promise",
+        "obedience"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 470,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOSEPH_DREAMER",
+      "audioFilePath": "kids/1823/audio_1823_full.mp3",
+      "reflectionAudioPath": "kids/1823/audio_1823_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like for Abraham to set out, not yet knowing where God was leading him?",
+      "kidSafetyNotes": "Trust before you can see: God calls Abraham to a land he can't yet see; Abraham goes. Gentle, no peril. Center = 'he did not know the way ahead, but he knew the One who was leading him.' Grounding: tents under a sky of more stars than he could count (Gen 12 call + the stars promise). Mood calm_peaceful (quiet trust on the journey). Part of the not-alone spine -- God beside him every step.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_mary_says_yes_short",
+      "storyNumber": 1824,
+      "title": "Mary Says Yes",
+      "textFilePath": "kids/1824/story_1824_short.txt",
+      "scriptureAnchorId": "luke_1_26-38",
+      "bibleStoryKey": "mary_says_yes",
+      "bibleSourceRef": "Luke 1:26-38",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "joy",
+        "trusting"
+      ],
+      "themeTags": [
+        "faith",
+        "Gods plan",
+        "trust",
+        "Jesus is coming"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 272,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "audioFilePath": "kids/1824/audio_1824_short.mp3",
+      "reflectionAudioPath": "kids/1824/audio_1824_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Mary felt when the angel told her she would be the mother of Jesus?",
+      "kidSafetyNotes": "Gentle wonder. Angel's greeting + 'nothing is impossible with God' + Mary's trusting 'yes' (her real words softened: 'let it happen just as you have said'). Grounding: an ordinary little room + her chores, the plain walls lit up by the angel (child-can-see-it pass). Voice Mary Ponder (Luke 2:19 nod). Threads to 1821 -- the same Mary who says yes to the baby stands by him at the cross.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_mary_says_yes_full",
+      "storyNumber": 1824,
+      "title": "Mary Says Yes",
+      "textFilePath": "kids/1824/story_1824_full.txt",
+      "scriptureAnchorId": "luke_1_26-38",
+      "bibleStoryKey": "mary_says_yes",
+      "bibleSourceRef": "Luke 1:26-38",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "joy",
+        "trusting"
+      ],
+      "themeTags": [
+        "faith",
+        "Gods plan",
+        "trust",
+        "Jesus is coming"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 422,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "audioFilePath": "kids/1824/audio_1824_full.mp3",
+      "reflectionAudioPath": "kids/1824/audio_1824_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Mary felt when the angel told her she would be the mother of Jesus?",
+      "kidSafetyNotes": "Gentle wonder. Angel's greeting + 'nothing is impossible with God' + Mary's trusting 'yes' (her real words softened: 'let it happen just as you have said'). Grounding: an ordinary little room + her chores, the plain walls lit up by the angel (child-can-see-it pass). Voice Mary Ponder (Luke 2:19 nod). Threads to 1821 -- the same Mary who says yes to the baby stands by him at the cross.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_feeding_5000_short",
+      "storyNumber": 1825,
+      "title": "The Big Picnic",
+      "textFilePath": "kids/1825/story_1825_short.txt",
+      "scriptureAnchorId": "john_6_1-14",
+      "bibleStoryKey": "feeding_5000",
+      "bibleSourceRef": "John 6:1-14",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "wonder",
+        "joy"
+      ],
+      "themeTags": [
+        "Gods provision",
+        "gratitude",
+        "generosity",
+        "Gods power"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 262,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "audioFilePath": "kids/1825/audio_1825_short.mp3",
+      "reflectionAudioPath": "kids/1825/audio_1825_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the boy felt when his own little lunch became enough for everyone?",
+      "kidSafetyNotes": "Gentle, joyful provision. Kid title 'The Big Picnic' (warm, inviting hook for ages 4-7; anchor stays feeding_5000). One image: the boy's five loaves + two fish feeding everyone, with baskets left over. Texture = crowds / daylight / grassy hillside (kinetic-exterior, counters quiet-room drift). Center: God does much with a little freely given. Mood grateful (provision + thankfulness).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_feeding_5000_full",
+      "storyNumber": 1825,
+      "title": "The Big Picnic",
+      "textFilePath": "kids/1825/story_1825_full.txt",
+      "scriptureAnchorId": "john_6_1-14",
+      "bibleStoryKey": "feeding_5000",
+      "bibleSourceRef": "John 6:1-14",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "wonder",
+        "joy"
+      ],
+      "themeTags": [
+        "Gods provision",
+        "gratitude",
+        "generosity",
+        "Gods power"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 431,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "audioFilePath": "kids/1825/audio_1825_full.mp3",
+      "reflectionAudioPath": "kids/1825/audio_1825_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the boy felt when his own little lunch became enough for everyone?",
+      "kidSafetyNotes": "Gentle, joyful provision. Kid title 'The Big Picnic' (warm, inviting hook for ages 4-7; anchor stays feeding_5000). One image: the boy's five loaves + two fish feeding everyone, with baskets left over. Texture = crowds / daylight / grassy hillside (kinetic-exterior, counters quiet-room drift). Center: God does much with a little freely given. Mood grateful (provision + thankfulness).",
+      "hardContentFlags": []
     }
   ]
 }

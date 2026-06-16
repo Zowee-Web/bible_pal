@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1823,
+  "anchorId": "abraham_call",
+  "kidLane": "dedicated-4-7",
+  "title": "God Calls Abraham",
+  "scriptureAnchorId": "genesis_12",
+  "bibleSourceRef": "Genesis 12:1-9",
+  "bibleStoryKey": "abraham_call",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "trusting",
+    "calm",
+    "hopeful"
+  ],
+  "themeTags": [
+    "trust",
+    "faith",
+    "Gods promise",
+    "obedience"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JOSEPH_DREAMER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "What do you think it was like for Abraham to set out, not yet knowing where God was leading him?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "Trust before you can see: God calls Abraham to a land he can't yet see; Abraham goes. Gentle, no peril. Center = 'he did not know the way ahead, but he knew the One who was leading him.' Grounding: tents under a sky of more stars than he could count (Gen 12 call + the stars promise). Mood calm_peaceful (quiet trust on the journey). Part of the not-alone spine -- God beside him every step.",
+  "files": {
+    "short": {
+      "storyText": "story_1823_short.txt",
+      "audio": "audio_1823_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1823_full.txt",
+      "audio": "audio_1823_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1823.txt",
+      "audio": "audio_1823_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

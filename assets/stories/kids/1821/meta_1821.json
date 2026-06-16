@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1821,
+  "anchorId": "the_cross",
+  "kidLane": "dedicated-4-7",
+  "title": "The Cross",
+  "scriptureAnchorId": "luke_23_32-49",
+  "bibleSourceRef": "Luke 23:32-49",
+  "bibleStoryKey": "the_cross",
+  "translation": "WEB",
+  "mood": "hurting",
+  "emotionalTags": [
+    "loved",
+    "comforted",
+    "hope"
+  ],
+  "themeTags": [
+    "Gods love",
+    "sacrifice",
+    "hope",
+    "Jesus loves me"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "What do you think it means to be loved as much as Jesus loves you?",
+  "hardContentFlags": [
+    "death_handled_gently",
+    "crucifixion_softened"
+  ],
+  "kidSafetyNotes": "THE hard story, told via the Joseph method (feedback_kid_god_with_not_cause). LOVE-centered, not suffering-centered: death stated softly ('his breath grew still'); NO nails/blood/gore. Jesus's real words kept ('Father, forgive them'; 'into your hands'). Names that God had NOT left ('there in the dark') and refuses to end in the dark -- ends forward ('Sunday was coming'), gently pointing to Easter (1812). Grounding image: his mother Mary among the watchers (threads to 1824). Mood=hurting: the comfort for a sad child is 'Jesus knows sadness, loves you this much, and God did not leave.' Adam: braver-set centerpiece; reviewed line-by-line.",
+  "files": {
+    "short": {
+      "storyText": "story_1821_short.txt",
+      "audio": "audio_1821_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1821_full.txt",
+      "audio": "audio_1821_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1821.txt",
+      "audio": "audio_1821_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

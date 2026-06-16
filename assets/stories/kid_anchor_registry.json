@@ -128,7 +128,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1823,
+          "manifestAnchorIds": [
+            "genesis_12"
+          ]
         },
         {
           "anchorId": "abraham_stars",
@@ -525,7 +529,11 @@
             "full"
           ],
           "longEligible": true,
-          "launch": true
+          "launch": true,
+          "productionId": 1822,
+          "manifestAnchorIds": [
+            "daniel_3"
+          ]
         },
         {
           "anchorId": "daniel_lions_den",
@@ -596,7 +604,11 @@
             "full"
           ],
           "sibling": "bethlehem_night",
-          "launch": true
+          "launch": true,
+          "productionId": 1824,
+          "manifestAnchorIds": [
+            "luke_1_26-38"
+          ]
         },
         {
           "anchorId": "bethlehem_night",
@@ -675,7 +687,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1825,
+          "manifestAnchorIds": [
+            "john_6_1-14"
+          ]
         },
         {
           "anchorId": "walking_on_water",
@@ -888,7 +904,11 @@
             "full"
           ],
           "sibling": "empty_tomb",
-          "launch": true
+          "launch": true,
+          "productionId": 1821,
+          "manifestAnchorIds": [
+            "luke_23_32-49"
+          ]
         },
         {
           "anchorId": "empty_tomb",
