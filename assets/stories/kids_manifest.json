@@ -529,13 +529,15 @@
       "lengthBucket": "5min",
       "targetWords": 600,
       "actualWords": 617,
-      "status": "APPROVED",
+      "status": "SUPERSEDED",
       "narratorVoiceKey": null,
       "audioFilePath": null,
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "Benchmark for the lane: faithful, gentle, complete arc. Bedtime-coziness ending is on the cliche edge (see anti-clumping note).",
-      "hardContentFlags": []
+      "hardContentFlags": [],
+      "supersededBy": "kid_samuel_listens_full",
+      "supersededReason": "Replaced by dedicated 4-7 lane anchor samuel_listens (batch 3)"
     },
     {
       "id": "kid_114_samuel_3min",
@@ -556,13 +558,15 @@
       "lengthBucket": "3min",
       "targetWords": 350,
       "actualWords": 353,
-      "status": "APPROVED",
+      "status": "SUPERSEDED",
       "narratorVoiceKey": null,
       "audioFilePath": null,
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "Short cut of the 5min benchmark.",
-      "hardContentFlags": []
+      "hardContentFlags": [],
+      "supersededBy": "kid_samuel_listens_short",
+      "supersededReason": "Replaced by dedicated 4-7 lane anchor samuel_listens (batch 3)"
     },
     {
       "id": "kid_101_david_5min",
@@ -1473,6 +1477,334 @@
       "hardContentFlags": [
         "violence_softened"
       ]
+    },
+    {
+      "id": "kid_calming_storm_short",
+      "storyNumber": 1816,
+      "title": "Jesus Calms the Storm",
+      "textFilePath": "kids/1816/story_1816_short.txt",
+      "scriptureAnchorId": "mark_4_35-41",
+      "bibleStoryKey": "jesus_calms_storm",
+      "bibleSourceRef": "Mark 4:35-41",
+      "mood": "anxious",
+      "emotionalTags": [
+        "reassured",
+        "safe",
+        "calm"
+      ],
+      "themeTags": [
+        "trust",
+        "presence of God",
+        "peace",
+        "fear to faith"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 261,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
+      "audioFilePath": "kids/1816/audio_1816_short.mp3",
+      "reflectionAudioPath": "kids/1816/audio_1816_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it felt like in the boat when the wind grew quiet and the water went still?",
+      "kidSafetyNotes": "Storm is exciting-not-terrifying; no one drowns; fear->calm ('Why were you so afraid?'). Part of the 'God is with me / not alone' spine -- Jesus was in the boat the whole time. One image: Jesus asleep on the cushion while the waves crash, then glassy calm. Adam: A+ ('Jesus is with me even when I'm scared' -- not 'nothing bad will happen').",
+      "hardContentFlags": [
+        "peril_storm"
+      ]
+    },
+    {
+      "id": "kid_calming_storm_full",
+      "storyNumber": 1816,
+      "title": "Jesus Calms the Storm",
+      "textFilePath": "kids/1816/story_1816_full.txt",
+      "scriptureAnchorId": "mark_4_35-41",
+      "bibleStoryKey": "jesus_calms_storm",
+      "bibleSourceRef": "Mark 4:35-41",
+      "mood": "anxious",
+      "emotionalTags": [
+        "reassured",
+        "safe",
+        "calm"
+      ],
+      "themeTags": [
+        "trust",
+        "presence of God",
+        "peace",
+        "fear to faith"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 414,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
+      "audioFilePath": "kids/1816/audio_1816_full.mp3",
+      "reflectionAudioPath": "kids/1816/audio_1816_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it felt like in the boat when the wind grew quiet and the water went still?",
+      "kidSafetyNotes": "Storm is exciting-not-terrifying; no one drowns; fear->calm ('Why were you so afraid?'). Part of the 'God is with me / not alone' spine -- Jesus was in the boat the whole time. One image: Jesus asleep on the cushion while the waves crash, then glassy calm. Adam: A+ ('Jesus is with me even when I'm scared' -- not 'nothing bad will happen').",
+      "hardContentFlags": [
+        "peril_storm"
+      ]
+    },
+    {
+      "id": "kid_prodigal_son_short",
+      "storyNumber": 1817,
+      "title": "The Loving Father",
+      "textFilePath": "kids/1817/story_1817_short.txt",
+      "scriptureAnchorId": "luke_15_11-32",
+      "bibleStoryKey": "loving_father",
+      "bibleSourceRef": "Luke 15:11-32",
+      "mood": "grateful",
+      "emotionalTags": [
+        "loved",
+        "welcomed",
+        "grateful"
+      ],
+      "themeTags": [
+        "Gods love",
+        "forgiveness",
+        "homecoming",
+        "grace"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 263,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "audioFilePath": "kids/1817/audio_1817_short.mp3",
+      "reflectionAudioPath": "kids/1817/audio_1817_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like for the son to look up and see his father running to meet him?",
+      "kidSafetyNotes": "Framed on the FATHER (title 'The Loving Father'), per registry displayName. Younger son's wild living softened to 'spent it all'; pigs/hunger gentle; older-brother subplot OMITTED (age focus = God runs to welcome you home). One image: the old father running down the road. Receiving-side reflection. Adam: A+.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_prodigal_son_full",
+      "storyNumber": 1817,
+      "title": "The Loving Father",
+      "textFilePath": "kids/1817/story_1817_full.txt",
+      "scriptureAnchorId": "luke_15_11-32",
+      "bibleStoryKey": "loving_father",
+      "bibleSourceRef": "Luke 15:11-32",
+      "mood": "grateful",
+      "emotionalTags": [
+        "loved",
+        "welcomed",
+        "grateful"
+      ],
+      "themeTags": [
+        "Gods love",
+        "forgiveness",
+        "homecoming",
+        "grace"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 428,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "audioFilePath": "kids/1817/audio_1817_full.mp3",
+      "reflectionAudioPath": "kids/1817/audio_1817_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like for the son to look up and see his father running to meet him?",
+      "kidSafetyNotes": "Framed on the FATHER (title 'The Loving Father'), per registry displayName. Younger son's wild living softened to 'spent it all'; pigs/hunger gentle; older-brother subplot OMITTED (age focus = God runs to welcome you home). One image: the old father running down the road. Receiving-side reflection. Adam: A+.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_jericho_short",
+      "storyNumber": 1818,
+      "title": "The Walls of Jericho",
+      "textFilePath": "kids/1818/story_1818_short.txt",
+      "scriptureAnchorId": "joshua_6",
+      "bibleStoryKey": "walls_of_jericho",
+      "bibleSourceRef": "Joshua 6",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "trusting",
+        "wonder"
+      ],
+      "themeTags": [
+        "trust",
+        "Gods power",
+        "obedience",
+        "presence of God"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 268,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "audioFilePath": "kids/1818/audio_1818_short.mp3",
+      "reflectionAudioPath": "kids/1818/audio_1818_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like to march around those great walls so quietly, day after day, waiting?",
+      "kidSafetyNotes": "Joshua 6 adapted for ages 4-7 (Adam 2026-06-15): conquest/killing OMITTED entirely. Reframed from 'God has given us the city' / 'walked into the city' (dispossession) to Joshua shouting 'God is with us!' + a wonder ending ('all the things God could do'). Theme = TRUSTING God before you see anything happen (the quiet marching, the waiting). 'God is with us!' ties to the not-alone spine (faithful: the ark/God's presence is carried around Jericho). One image: the walls tumbling flat. Texture: kinetic/exterior/sound (marching, trumpets, shout, crash).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_jericho_full",
+      "storyNumber": 1818,
+      "title": "The Walls of Jericho",
+      "textFilePath": "kids/1818/story_1818_full.txt",
+      "scriptureAnchorId": "joshua_6",
+      "bibleStoryKey": "walls_of_jericho",
+      "bibleSourceRef": "Joshua 6",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "trusting",
+        "wonder"
+      ],
+      "themeTags": [
+        "trust",
+        "Gods power",
+        "obedience",
+        "presence of God"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 427,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "audioFilePath": "kids/1818/audio_1818_full.mp3",
+      "reflectionAudioPath": "kids/1818/audio_1818_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like to march around those great walls so quietly, day after day, waiting?",
+      "kidSafetyNotes": "Joshua 6 adapted for ages 4-7 (Adam 2026-06-15): conquest/killing OMITTED entirely. Reframed from 'God has given us the city' / 'walked into the city' (dispossession) to Joshua shouting 'God is with us!' + a wonder ending ('all the things God could do'). Theme = TRUSTING God before you see anything happen (the quiet marching, the waiting). 'God is with us!' ties to the not-alone spine (faithful: the ark/God's presence is carried around Jericho). One image: the walls tumbling flat. Texture: kinetic/exterior/sound (marching, trumpets, shout, crash).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_joseph_forgives_short",
+      "storyNumber": 1819,
+      "title": "Joseph Forgives His Brothers",
+      "textFilePath": "kids/1819/story_1819_short.txt",
+      "scriptureAnchorId": "genesis_45",
+      "bibleStoryKey": "joseph_forgives",
+      "bibleSourceRef": "Genesis 45",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "forgiven",
+        "reconciled",
+        "loved"
+      ],
+      "themeTags": [
+        "forgiveness",
+        "presence of God",
+        "family",
+        "reconciliation"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 258,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": "kids/1819/audio_1819_short.mp3",
+      "reflectionAudioPath": "kids/1819/audio_1819_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Joseph felt the moment he saw his brothers standing there in front of him?",
+      "kidSafetyNotes": "Backstory softened (brothers 'jealous, sent him far away'; pit + slavery OMITTED); no violence. KEY THEOLOGY (Adam 2026-06-15, see feedback_kid_god_with_not_cause): 'God was still working for good' NOT 'God turned it into something good' -- God WITH Joseph in the sad thing, never the cause of it. A literal 5-year-old must not hear 'God made Joseph sad on purpose.' Not-alone spine ('God never once left his side'). One image: Joseph weeping as he embraces the brothers who wronged him. Adam: A+.",
+      "hardContentFlags": [
+        "family_hurt_softened"
+      ]
+    },
+    {
+      "id": "kid_joseph_forgives_full",
+      "storyNumber": 1819,
+      "title": "Joseph Forgives His Brothers",
+      "textFilePath": "kids/1819/story_1819_full.txt",
+      "scriptureAnchorId": "genesis_45",
+      "bibleStoryKey": "joseph_forgives",
+      "bibleSourceRef": "Genesis 45",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "forgiven",
+        "reconciled",
+        "loved"
+      ],
+      "themeTags": [
+        "forgiveness",
+        "presence of God",
+        "family",
+        "reconciliation"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 417,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": "kids/1819/audio_1819_full.mp3",
+      "reflectionAudioPath": "kids/1819/audio_1819_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Joseph felt the moment he saw his brothers standing there in front of him?",
+      "kidSafetyNotes": "Backstory softened (brothers 'jealous, sent him far away'; pit + slavery OMITTED); no violence. KEY THEOLOGY (Adam 2026-06-15, see feedback_kid_god_with_not_cause): 'God was still working for good' NOT 'God turned it into something good' -- God WITH Joseph in the sad thing, never the cause of it. A literal 5-year-old must not hear 'God made Joseph sad on purpose.' Not-alone spine ('God never once left his side'). One image: Joseph weeping as he embraces the brothers who wronged him. Adam: A+.",
+      "hardContentFlags": [
+        "family_hurt_softened"
+      ]
+    },
+    {
+      "id": "kid_samuel_listens_short",
+      "storyNumber": 1820,
+      "title": "God Calls Samuel",
+      "textFilePath": "kids/1820/story_1820_short.txt",
+      "scriptureAnchorId": "1_samuel_3",
+      "bibleStoryKey": "god_calls_samuel",
+      "bibleSourceRef": "1 Samuel 3",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "calm",
+        "safe",
+        "listening"
+      ],
+      "themeTags": [
+        "listening to God",
+        "Gods call",
+        "prayer",
+        "presence of God"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 251,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "audioFilePath": "kids/1820/audio_1820_short.mp3",
+      "reflectionAudioPath": "kids/1820/audio_1820_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Samuel felt when he heard the gentle voice calling his name?",
+      "kidSafetyNotes": "SUPERSEDES legacy kid_114_samuel (5min/3min off-bucket, no audio). The hard message God gives Samuel (judgment on Eli's house) OMITTED entirely -- just 'God spoke to Samuel.' Pure bedtime: nighttime setting, the lamp of God glowing. Not-alone spine -- God calls the child by name. 'Speak, Lord, for your servant is listening' uses 'Lord' in a quoted line (per divine-name doctrine). One image: the lamp of God glowing soft and golden as the boy sits up to listen. Adam: A+ ('pure bedtime magic').",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_samuel_listens_full",
+      "storyNumber": 1820,
+      "title": "God Calls Samuel",
+      "textFilePath": "kids/1820/story_1820_full.txt",
+      "scriptureAnchorId": "1_samuel_3",
+      "bibleStoryKey": "god_calls_samuel",
+      "bibleSourceRef": "1 Samuel 3",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "calm",
+        "safe",
+        "listening"
+      ],
+      "themeTags": [
+        "listening to God",
+        "Gods call",
+        "prayer",
+        "presence of God"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 408,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "audioFilePath": "kids/1820/audio_1820_full.mp3",
+      "reflectionAudioPath": "kids/1820/audio_1820_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Samuel felt when he heard the gentle voice calling his name?",
+      "kidSafetyNotes": "SUPERSEDES legacy kid_114_samuel (5min/3min off-bucket, no audio). The hard message God gives Samuel (judgment on Eli's house) OMITTED entirely -- just 'God spoke to Samuel.' Pure bedtime: nighttime setting, the lamp of God glowing. Not-alone spine -- God calls the child by name. 'Speak, Lord, for your servant is listening' uses 'Lord' in a quoted line (per divine-name doctrine). One image: the lamp of God glowing soft and golden as the boy sits up to listen. Adam: A+ ('pure bedtime magic').",
+      "hardContentFlags": []
     }
   ]
 }

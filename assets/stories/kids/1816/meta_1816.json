@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1816,
+  "anchorId": "calming_storm",
+  "kidLane": "dedicated-4-7",
+  "title": "Jesus Calms the Storm",
+  "scriptureAnchorId": "mark_4_35-41",
+  "bibleSourceRef": "Mark 4:35-41",
+  "bibleStoryKey": "jesus_calms_storm",
+  "translation": "WEB",
+  "mood": "anxious",
+  "emotionalTags": [
+    "reassured",
+    "safe",
+    "calm"
+  ],
+  "themeTags": [
+    "trust",
+    "presence of God",
+    "peace",
+    "fear to faith"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "What do you think it felt like in the boat when the wind grew quiet and the water went still?",
+  "hardContentFlags": [
+    "peril_storm"
+  ],
+  "kidSafetyNotes": "Storm is exciting-not-terrifying; no one drowns; fear->calm ('Why were you so afraid?'). Part of the 'God is with me / not alone' spine -- Jesus was in the boat the whole time. One image: Jesus asleep on the cushion while the waves crash, then glassy calm. Adam: A+ ('Jesus is with me even when I'm scared' -- not 'nothing bad will happen').",
+  "files": {
+    "short": {
+      "storyText": "story_1816_short.txt",
+      "audio": "audio_1816_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1816_full.txt",
+      "audio": "audio_1816_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1816.txt",
+      "audio": "audio_1816_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

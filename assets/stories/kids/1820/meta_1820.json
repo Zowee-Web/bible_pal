@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1820,
+  "anchorId": "samuel_listens",
+  "kidLane": "dedicated-4-7",
+  "title": "God Calls Samuel",
+  "scriptureAnchorId": "1_samuel_3",
+  "bibleSourceRef": "1 Samuel 3",
+  "bibleStoryKey": "god_calls_samuel",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "calm",
+    "safe",
+    "listening"
+  ],
+  "themeTags": [
+    "listening to God",
+    "Gods call",
+    "prayer",
+    "presence of God"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "What do you think Samuel felt when he heard the gentle voice calling his name?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "SUPERSEDES legacy kid_114_samuel (5min/3min off-bucket, no audio). The hard message God gives Samuel (judgment on Eli's house) OMITTED entirely -- just 'God spoke to Samuel.' Pure bedtime: nighttime setting, the lamp of God glowing. Not-alone spine -- God calls the child by name. 'Speak, Lord, for your servant is listening' uses 'Lord' in a quoted line (per divine-name doctrine). One image: the lamp of God glowing soft and golden as the boy sits up to listen. Adam: A+ ('pure bedtime magic').",
+  "files": {
+    "short": {
+      "storyText": "story_1820_short.txt",
+      "audio": "audio_1820_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1820_full.txt",
+      "audio": "audio_1820_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1820.txt",
+      "audio": "audio_1820_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

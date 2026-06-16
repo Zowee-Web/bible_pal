@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1819,
+  "anchorId": "joseph_forgives",
+  "kidLane": "dedicated-4-7",
+  "title": "Joseph Forgives His Brothers",
+  "scriptureAnchorId": "genesis_45",
+  "bibleSourceRef": "Genesis 45",
+  "bibleStoryKey": "joseph_forgives",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "forgiven",
+    "reconciled",
+    "loved"
+  ],
+  "themeTags": [
+    "forgiveness",
+    "presence of God",
+    "family",
+    "reconciliation"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "What do you think Joseph felt the moment he saw his brothers standing there in front of him?",
+  "hardContentFlags": [
+    "family_hurt_softened"
+  ],
+  "kidSafetyNotes": "Backstory softened (brothers 'jealous, sent him far away'; pit + slavery OMITTED); no violence. KEY THEOLOGY (Adam 2026-06-15, see feedback_kid_god_with_not_cause): 'God was still working for good' NOT 'God turned it into something good' -- God WITH Joseph in the sad thing, never the cause of it. A literal 5-year-old must not hear 'God made Joseph sad on purpose.' Not-alone spine ('God never once left his side'). One image: Joseph weeping as he embraces the brothers who wronged him. Adam: A+.",
+  "files": {
+    "short": {
+      "storyText": "story_1819_short.txt",
+      "audio": "audio_1819_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1819_full.txt",
+      "audio": "audio_1819_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1819.txt",
+      "audio": "audio_1819_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

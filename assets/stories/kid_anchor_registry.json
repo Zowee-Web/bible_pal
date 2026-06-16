@@ -196,7 +196,11 @@
             "full"
           ],
           "longEligible": true,
-          "launch": true
+          "launch": true,
+          "productionId": 1819,
+          "manifestAnchorIds": [
+            "genesis_45"
+          ]
         }
       ]
     },
@@ -303,7 +307,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1818,
+          "manifestAnchorIds": [
+            "joshua_6"
+          ]
         }
       ]
     },
@@ -338,7 +346,8 @@
           "manifestAnchorIds": [
             "1_samuel_3"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1820
         },
         {
           "anchorId": "samuel_anoints_david",
@@ -651,7 +660,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1816,
+          "manifestAnchorIds": [
+            "mark_4_35-41"
+          ]
         },
         {
           "anchorId": "feeding_5000",
@@ -773,7 +786,11 @@
             "full"
           ],
           "longEligible": true,
-          "launch": true
+          "launch": true,
+          "productionId": 1817,
+          "manifestAnchorIds": [
+            "luke_15_11-32"
+          ]
         },
         {
           "anchorId": "mustard_seed",
