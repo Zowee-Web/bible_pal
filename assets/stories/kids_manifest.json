@@ -1696,13 +1696,13 @@
       ],
       "lengthBucket": "short",
       "targetWords": 400,
-      "actualWords": 258,
+      "actualWords": 282,
       "status": "REVIEW",
       "narratorVoiceKey": "VOICE_RUTH_COMFORT",
       "audioFilePath": "kids/1819/audio_1819_short.mp3",
       "reflectionAudioPath": "kids/1819/audio_1819_reflection.mp3",
       "reflectionText": null,
-      "reflectionQuestion": "What do you think Joseph felt the moment he saw his brothers standing there in front of him?",
+      "reflectionQuestion": "What do you think Joseph felt when he saw his brothers again, after so many years away?",
       "kidSafetyNotes": "Backstory softened (brothers 'jealous, sent him far away'; pit + slavery OMITTED); no violence. KEY THEOLOGY (Adam 2026-06-15, see feedback_kid_god_with_not_cause): 'God was still working for good' NOT 'God turned it into something good' -- God WITH Joseph in the sad thing, never the cause of it. A literal 5-year-old must not hear 'God made Joseph sad on purpose.' Not-alone spine ('God never once left his side'). One image: Joseph weeping as he embraces the brothers who wronged him. Adam: A+.",
       "hardContentFlags": [
         "family_hurt_softened"
@@ -1736,7 +1736,7 @@
       "audioFilePath": "kids/1819/audio_1819_full.mp3",
       "reflectionAudioPath": "kids/1819/audio_1819_reflection.mp3",
       "reflectionText": null,
-      "reflectionQuestion": "What do you think Joseph felt the moment he saw his brothers standing there in front of him?",
+      "reflectionQuestion": "What do you think Joseph felt when he saw his brothers again, after so many years away?",
       "kidSafetyNotes": "Backstory softened (brothers 'jealous, sent him far away'; pit + slavery OMITTED); no violence. KEY THEOLOGY (Adam 2026-06-15, see feedback_kid_god_with_not_cause): 'God was still working for good' NOT 'God turned it into something good' -- God WITH Joseph in the sad thing, never the cause of it. A literal 5-year-old must not hear 'God made Joseph sad on purpose.' Not-alone spine ('God never once left his side'). One image: Joseph weeping as he embraces the brothers who wronged him. Adam: A+.",
       "hardContentFlags": [
         "family_hurt_softened"

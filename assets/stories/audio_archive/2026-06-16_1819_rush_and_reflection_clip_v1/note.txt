@@ -1,0 +1,10 @@
+1819 Joseph Forgives — superseded short + reflection audio.
+
+SHORT: the no-coat version (story rushed event-to-event with no held object).
+Replacement opens with the coat of many colors as an early held image.
+
+REFLECTION: old text "...his brothers standing there in front of him?" whose final
+word clipped in v3 audio. Replacement ends on a vowel ("...after so many years away?").
+
+Superseded 2026-06-16 (Adam: child-can-see-it pass + reflection end-clip fix).
+Voice VOICE_RUTH_COMFORT. Full story audio NOT changed (unchanged text), not archived.
