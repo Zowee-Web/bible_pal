@@ -17,13 +17,31 @@ import 'package:bible_pal/models/parable.dart';
 
 /// AppStateNotifier that returns default state without real services.
 class _TestAppStateNotifier extends AppStateNotifier {
+  _TestAppStateNotifier({this.kidFriendlyOnly = false});
+
+  final bool kidFriendlyOnly;
+
   @override
   Future<AppState> build() async {
     return AppState(
-      userPreferences: UserPreferences.defaults(),
+      userPreferences:
+          UserPreferences.defaults().copyWith(kidFriendlyOnly: kidFriendlyOnly),
       favorites: [],
       history: [],
       pals: [],
+    );
+  }
+
+  // Update in-memory only — avoids the real persistence services that
+  // aren't wired in tests. Lets the Kid Mode gate flip state observably.
+  @override
+  Future<void> updateKidFriendlyOnly(bool value) async {
+    final current = state.requireValue;
+    state = AsyncData(
+      current.copyWith(
+        userPreferences:
+            current.userPreferences.copyWith(kidFriendlyOnly: value),
+      ),
     );
   }
 }
@@ -82,11 +100,13 @@ class _TestPlayerNotifier extends ParablePlayerNotifier {
 Widget _buildScreen({
   ParablePlayerState? playerState,
   NavigatorObserver? observer,
+  bool kidMode = false,
 }) {
   final state = playerState ?? const ParablePlayerState();
   return ProviderScope(
     overrides: [
-      appStateProvider.overrideWith(() => _TestAppStateNotifier()),
+      appStateProvider
+          .overrideWith(() => _TestAppStateNotifier(kidFriendlyOnly: kidMode)),
       parablePlayerProvider.overrideWith(() => _TestPlayerNotifier(state)),
     ],
     child: MaterialApp(
@@ -261,6 +281,50 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(seconds: 1));
       expect(tester.takeException(), isNull);
+    });
+  });
+
+  // --- Parent gate (SPEC Feature 51.2) ---
+  //
+  // These assert the two gate VISUAL states (the contract a child/parent
+  // sees). The hold-3s interaction itself is verified manually per SPEC —
+  // tap/gesture interaction on page 1 is intercepted by the PageView/route
+  // transition AbsorbPointer in the widget-test harness.
+
+  group('parent gate (Feature 51.2)', () {
+    Future<void> openMoodPage(WidgetTester tester) async {
+      // Tall surface so the Kid Mode pill (bottom of the non-scrolling
+      // Mood page) is laid out on-screen.
+      await tester.binding.setSurfaceSize(const Size(600, 1600));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
+      // The Kid Mode pill lives on the Mood page (page 1).
+      await tester.drag(find.byType(PageView), const Offset(-600, 0));
+      await tester.pump(const Duration(milliseconds: 500));
+      await tester.pump(const Duration(milliseconds: 500));
+    }
+
+    testWidgets('OFF: pill reads OFF with no exit gate hint', (tester) async {
+      await tester.pumpWidget(_buildScreen());
+      await openMoodPage(tester);
+
+      expect(find.textContaining('Kid Mode: OFF', findRichText: true),
+          findsOneWidget);
+      // No parent gate when off — entering is a plain tap.
+      expect(find.text('Hold to exit'), findsNothing);
+      expect(find.text('Keep holding to exit…'), findsNothing);
+    });
+
+    testWidgets('ON: pill reads ON and surfaces the hold-to-exit gate hint',
+        (tester) async {
+      await tester.pumpWidget(_buildScreen(kidMode: true));
+      await openMoodPage(tester);
+
+      expect(find.textContaining('Kid Mode: ON', findRichText: true),
+          findsOneWidget);
+      // The exit gate is advertised: a tap won't exit, only a 3s hold.
+      expect(find.text('Hold to exit'), findsOneWidget);
     });
   });
 }

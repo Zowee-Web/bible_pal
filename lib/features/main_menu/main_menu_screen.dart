@@ -280,16 +280,16 @@ class _MainMenuBodyState extends ConsumerState<_MainMenuBody> {
 
   @override
   Widget build(BuildContext context) {
-    final palette = LivingSky.resolvePalette(kidMode: widget.kidMode);
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
 
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Stack(
         children: [
           // Living Sky fills entire background, continuous across pages.
-          // In Kids mode it recolors to the warm peach/cream palette
-          // (SPEC Feature 51.1).
-          LivingSkyBackground(kidMode: widget.kidMode),
+          // The time-of-day background is unchanged in Kids mode — only the
+          // PAL orb recolors (SPEC Feature 51.1).
+          const LivingSkyBackground(),
           SafeArea(
             bottom: true,
             child: Column(
@@ -419,13 +419,15 @@ class _SanctuaryPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final palette = LivingSky.resolvePalette(kidMode: kidMode);
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
 
     return Column(
       children: [
         const Spacer(flex: 3),
 
-        // PAL orb — THE hero, bigger and bolder
+        // PAL orb — THE hero. Recolors to the warm Kids palette in kid
+        // mode; the rest of the Sanctuary keeps the time-of-day palette
+        // (SPEC Feature 51.1).
         _PalButtonWithIntro(theme: theme, kidMode: kidMode),
 
         const SizedBox(height: 8),
@@ -895,58 +897,6 @@ class _StudyPageState extends ConsumerState<_StudyPage>
     if (mounted) _textFocusNode.unfocus();
   }
 
-  Widget _buildKidModePill(BuildContext context, SkyPalette palette) {
-    final appState = ref.watch(appStateProvider).valueOrNull;
-    final isOn = appState?.userPreferences.kidFriendlyOnly ?? false;
-
-    return GestureDetector(
-      onTap: () {
-        HapticFeedback.lightImpact();
-        ref.read(appStateProvider.notifier).updateKidFriendlyOnly(!isOn);
-      },
-      behavior: HitTestBehavior.opaque,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 180),
-        curve: Curves.easeOut,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        decoration: BoxDecoration(
-          color: isOn
-              ? palette.warmHighlight.withOpacity(0.08)
-              : palette.cardColor,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: isOn
-                ? palette.warmHighlight.withOpacity(0.8)
-                : palette.cardBorder,
-            width: isOn ? 2 : 1,
-          ),
-        ),
-        child: RichText(
-          text: TextSpan(
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w500,
-              color: isOn
-                  ? palette.foreground.primaryText
-                  : palette.foreground.secondaryText,
-              shadows: palette.foreground.subtitleShadow,
-            ),
-            children: [
-              const TextSpan(text: 'Kid Mode: '),
-              TextSpan(
-                text: isOn ? 'ON' : 'OFF',
-                style: TextStyle(
-                  color: isOn ? palette.warmHighlight : palette.foreground.tertiaryText,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final palette = LivingSky.getPalette(LivingSky.getPhase());
@@ -1040,8 +990,9 @@ class _StudyPageState extends ConsumerState<_StudyPage>
 
                       const SizedBox(height: 8),
 
-                      // Kid Mode pill
-                      Center(child: _buildKidModePill(context, palette)),
+                      // Kid Mode pill — entering is a tap; exiting requires
+                      // the parent gate (hold 3s, SPEC Feature 51.2).
+                      Center(child: _KidModeToggle(palette: palette)),
 
                       const SizedBox(height: 12),
                     ],
@@ -1099,6 +1050,210 @@ class _StudyPageState extends ConsumerState<_StudyPage>
         ),
       ],
       ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Kid Mode toggle + parent gate (SPEC Feature 51.2)
+// ---------------------------------------------------------------------------
+
+/// The "Kid Mode" pill on the Mood page.
+///
+/// Entering Kids mode is a single tap. **Exiting** is guarded by the parent
+/// gate (SPEC Feature 51.2): the grown-up must press and hold the pill for
+/// [_kHoldToExit] before `kidFriendlyOnly` flips back to false. A tap while
+/// ON only nudges a "Hold to exit" hint — it never exits. This preserves the
+/// Kid Safety Contract Invariant (a child cannot wander out of Kids mode).
+class _KidModeToggle extends ConsumerStatefulWidget {
+  final SkyPalette palette;
+  const _KidModeToggle({required this.palette});
+
+  @override
+  ConsumerState<_KidModeToggle> createState() => _KidModeToggleState();
+}
+
+class _KidModeToggleState extends ConsumerState<_KidModeToggle>
+    with SingleTickerProviderStateMixin {
+  /// How long a grown-up must hold to exit Kids mode.
+  static const Duration _kHoldToExit = Duration(seconds: 3);
+
+  late final AnimationController _holdController;
+  bool _holding = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _holdController = AnimationController(vsync: this, duration: _kHoldToExit)
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _completeExit();
+        }
+      });
+  }
+
+  @override
+  void dispose() {
+    _holdController.dispose();
+    super.dispose();
+  }
+
+  void _enterKidMode() {
+    HapticFeedback.lightImpact();
+    ref.read(appStateProvider.notifier).updateKidFriendlyOnly(true);
+  }
+
+  void _startHold() {
+    HapticFeedback.selectionClick();
+    setState(() => _holding = true);
+    _holdController.forward(from: 0.0);
+  }
+
+  void _cancelHold() {
+    if (!_holding) return;
+    setState(() => _holding = false);
+    _holdController.stop();
+    _holdController.reset();
+  }
+
+  void _completeExit() {
+    HapticFeedback.mediumImpact();
+    setState(() => _holding = false);
+    _holdController.reset();
+    ref.read(appStateProvider.notifier).updateKidFriendlyOnly(false);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final palette = widget.palette;
+    final appState = ref.watch(appStateProvider).valueOrNull;
+    final isOn = appState?.userPreferences.kidFriendlyOnly ?? false;
+
+    // OFF → simple tap to enter. No gate on entry.
+    if (!isOn) {
+      return GestureDetector(
+        onTap: _enterKidMode,
+        behavior: HitTestBehavior.opaque,
+        child: _pill(
+          palette: palette,
+          isOn: false,
+          fill: 0.0,
+          label: 'OFF',
+          hint: null,
+        ),
+      );
+    }
+
+    // ON → hold-to-exit parent gate.
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTapDown: (_) => _startHold(),
+      onTapUp: (_) => _cancelHold(),
+      onTapCancel: _cancelHold,
+      child: AnimatedBuilder(
+        animation: _holdController,
+        builder: (context, _) {
+          return _pill(
+            palette: palette,
+            isOn: true,
+            fill: _holdController.value,
+            label: 'ON',
+            hint: _holding ? 'Keep holding to exit…' : 'Hold to exit',
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _pill({
+    required SkyPalette palette,
+    required bool isOn,
+    required double fill,
+    required String label,
+    required String? hint,
+  }) {
+    final borderRadius = BorderRadius.circular(20);
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ClipRRect(
+          borderRadius: borderRadius,
+          child: Stack(
+            children: [
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 180),
+                curve: Curves.easeOut,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                decoration: BoxDecoration(
+                  color: isOn
+                      ? palette.warmHighlight.withOpacity(0.08)
+                      : palette.cardColor,
+                  borderRadius: borderRadius,
+                  border: Border.all(
+                    color: isOn
+                        ? palette.warmHighlight.withOpacity(0.8)
+                        : palette.cardBorder,
+                    width: isOn ? 2 : 1,
+                  ),
+                ),
+                child: RichText(
+                  text: TextSpan(
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      color: isOn
+                          ? palette.foreground.primaryText
+                          : palette.foreground.secondaryText,
+                      shadows: palette.foreground.subtitleShadow,
+                    ),
+                    children: [
+                      const TextSpan(text: 'Kid Mode: '),
+                      TextSpan(
+                        text: label,
+                        style: TextStyle(
+                          color: isOn
+                              ? palette.warmHighlight
+                              : palette.foreground.tertiaryText,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              // Hold-to-exit progress fill — grows left→right as the
+              // grown-up holds. Purely visual feedback for the gate.
+              if (fill > 0.0)
+                Positioned.fill(
+                  child: FractionallySizedBox(
+                    alignment: Alignment.centerLeft,
+                    widthFactor: fill.clamp(0.0, 1.0),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: palette.warmHighlight.withOpacity(0.25),
+                        borderRadius: borderRadius,
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+        if (hint != null) ...[
+          const SizedBox(height: 6),
+          Text(
+            hint,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: palette.foreground.tertiaryText,
+              letterSpacing: 0.2,
+              shadows: palette.foreground.subtitleShadow,
+            ),
+          ),
+        ],
+      ],
     );
   }
 }
@@ -2059,7 +2214,11 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   @override
   Widget build(BuildContext context) {
     final theme = widget.theme;
-    final palette = LivingSky.resolvePalette(kidMode: widget.kidMode);
+    // All text/overlay tracks the time-of-day palette so it stays legible
+    // on the (unchanged) Living Sky background. Only the orb's own colors
+    // swap to the warm Kids palette in kid mode (SPEC Feature 51.1).
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
+    final orbPalette = LivingSky.resolvePalette(kidMode: widget.kidMode);
 
     if (!_introChecked) {
       return const SizedBox(height: 140);
@@ -2143,30 +2302,30 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
                           gradient: RadialGradient(
                             center: const Alignment(-0.3, -0.4),
                             radius: 1.1,
-                            colors: palette.orbGradientColors,
+                            colors: orbPalette.orbGradientColors,
                             stops: const [0.0, 0.55, 1.0],
                           ),
                           border: Border.all(
-                            color: AppTheme.warmGold.withOpacity(0.7),
+                            color: orbPalette.warmHighlight.withOpacity(0.7),
                             width: 1.5,
                           ),
                           boxShadow: [
                             // Ambient celestial glow — driven by breathing
                             BoxShadow(
-                              color: palette.orbGlowColor.withOpacity(ambientGlow),
+                              color: orbPalette.orbGlowColor.withOpacity(ambientGlow),
                               blurRadius: 32,
                               spreadRadius: 4,
                             ),
                             // Outer ring
                             BoxShadow(
-                              color: palette.orbGlowColor.withOpacity(ambientGlow * 0.4),
+                              color: orbPalette.orbGlowColor.withOpacity(ambientGlow * 0.4),
                               blurRadius: 60,
                               spreadRadius: 12,
                             ),
                             // Tap flash
                             if (tapGlow > 0.01)
                               BoxShadow(
-                                color: AppTheme.warmGold.withOpacity(tapGlow),
+                                color: orbPalette.warmHighlight.withOpacity(tapGlow),
                                 blurRadius: 48,
                                 spreadRadius: 10,
                               ),
@@ -2233,7 +2392,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
   /// Build the voice flow overlay showing greeting text, transcript, or response.
   Widget _buildVoiceFlowOverlay(ThemeData theme) {
-    final palette = LivingSky.resolvePalette(kidMode: widget.kidMode);
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
     switch (_voiceFlow) {
       case _VoiceFlowState.inactive:
         return const SizedBox.shrink();

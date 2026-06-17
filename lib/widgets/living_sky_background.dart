@@ -17,12 +17,7 @@ class LivingSkyBackground extends StatefulWidget {
   /// When null, the phase is auto-detected from the device clock.
   final SkyPhase? phase;
 
-  /// When true, renders the warm Kids Mode palette regardless of phase
-  /// (SPEC Feature 51.1). The night starfield is suppressed so Kids mode
-  /// always reads as bright and warm.
-  final bool kidMode;
-
-  const LivingSkyBackground({super.key, this.phase, this.kidMode = false});
+  const LivingSkyBackground({super.key, this.phase});
 
   @override
   State<LivingSkyBackground> createState() => _LivingSkyBackgroundState();
@@ -79,9 +74,8 @@ class _LivingSkyBackgroundState extends State<LivingSkyBackground>
 
   @override
   Widget build(BuildContext context) {
-    final palette = LivingSky.resolvePalette(phase: _phase, kidMode: widget.kidMode);
-    // Kids mode is always bright/warm — never show the night starfield.
-    final isNight = !widget.kidMode && _phase == SkyPhase.night;
+    final palette = LivingSky.getPalette(_phase);
+    final isNight = _phase == SkyPhase.night;
 
     return Stack(
       fit: StackFit.expand,

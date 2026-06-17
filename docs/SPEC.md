@@ -1048,15 +1048,29 @@ A first-class visual experience when kid-friendly mode is active.
 Extends Feature 46 with a child-facing surface for the dedicated ages-4-7 kid lane. The story-selection engine is reused unchanged; Feature 51 only changes the surface a child touches. The mode is still a single bool (`kidFriendlyOnly`); there is no "Who is PAL for today?" screen — entry/exit is the existing Kid toggle only.
 
 **51.1 Kid toggle + visual theming**
-- When the Kid toggle is ON, the main menu PAL orb and the Living Sky background recolor into the warm Kids palette (warm peach orb, lavender→peach→cream background, sunshine-gold sparkle). When OFF, both revert to the time-of-day Living Sky phase palette.
-- The Kids palette is time-independent — Kids mode always reads bright and warm, and the Night starfield is suppressed while it is active.
+- When the Kid toggle is ON, the main menu PAL orb recolors into the warm Kids palette (warm peach orb gradient, glow, and border). When OFF, the orb reverts to the time-of-day Living Sky phase palette.
+- The Living Sky background is intentionally left unchanged in Kids mode — only the PAL orb recolors. All other foreground text/icons continue to track the time-of-day phase palette so contrast is never affected.
 - The choice persists across launches (via `kidFriendlyOnly`).
 
 **Implementation:**
-- `LivingSky.kids` — a time-independent `SkyPalette` reusing the `AppTheme` Kids color identity; black-text (bright) bucket per Feature 47.
-- `LivingSky.resolvePalette({phase, kidMode})` — returns `kids` when `kidMode`, else the phase palette. Used by the main menu background, Sanctuary page, and PAL orb.
-- `LivingSkyBackground(kidMode:)` — renders the Kids palette and suppresses the night starfield when true.
+- `LivingSky.kids` — a time-independent `SkyPalette` reusing the `AppTheme` Kids color identity (warm peach orb, sunshine sparkle); black-text (bright) bucket per Feature 47.
+- `LivingSky.resolvePalette({phase, kidMode})` — returns `kids` when `kidMode`, else the phase palette. Used by the PAL orb to source its gradient/glow/border colors.
+- The orb reads `orbPalette` (kid-aware) for its own colors while all surrounding text/voice-overlay still reads the phase palette.
 - The existing `AppTheme.kidsTheme` `ThemeData` wrapper (Feature 46) still applies.
+
+**51.2 Parent gate (exit Kids mode)**
+
+Leaving Kids mode requires a grown-up check; entering does not.
+
+- **Entry:** a single tap on the "Kid Mode: OFF" pill turns Kids mode ON immediately. No gate on entry.
+- **Exit:** while ON, a tap does NOT exit — it only shows a "Hold to exit" hint. The grown-up must **press and hold the pill for 3 seconds** to flip `kidFriendlyOnly` back to false. A growing fill animates across the pill during the hold; releasing early cancels and resets.
+- The gate guards only the exit. `kidFriendlyOnly` stays true until the hold completes, preserving the Kid Safety Contract Invariant (a child cannot wander out of Kids mode).
+- v1 is hold-3s only — no math problem, no new dependencies, no new stored fields.
+
+**Implementation:**
+- `_KidModeToggle` — a `ConsumerStatefulWidget` (replaces the prior `_buildKidModePill`). OFF → tap calls `updateKidFriendlyOnly(true)`. ON → `onTapDown` starts a 3s `AnimationController`; on completion it calls `updateKidFriendlyOnly(false)`; `onTapUp`/`onTapCancel` resets.
+
+**SPEC note (future, deferred):** an optional parent lock in Settings — a 4-digit PIN plus Face ID / Touch ID (`local_auth`) where supported; when set, exit requires PIN or biometric, with hold-3s as fallback. Deferred from v1 to avoid new deps/data fields.
 
 ---
 
