@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1829,
+  "anchorId": "bethlehem_night",
+  "kidLane": "dedicated-4-7",
+  "title": "The Night in Bethlehem",
+  "scriptureAnchorId": "luke_2_1-7",
+  "bibleSourceRef": "Luke 2:1-7",
+  "bibleStoryKey": "bethlehem_night",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "wonder",
+    "faith"
+  ],
+  "themeTags": [
+    "Jesus is born",
+    "Gods Son",
+    "Christmas",
+    "wonder"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "What do you think it was like in that quiet stable, the night the baby Jesus was born?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "The NATIVITY -- a cornerstone the lane lacked (had wise_men 1809, not the birth itself). Hushed/peaceful telling (shepherds + angels are separate anchors, not here), tagged calm_peaceful to match the quiet holy-night register (bedtime-perfect). Same VOICE_MARY_PONDER as 1824 (Mary Says Yes) -- deliberate continuity, the same 'Mary' voice through both Mary stories. 'No room' kept gentle; stable cozy not grim. Luke 2:19 'held it in her heart' echo, softened ending. One image: baby Jesus asleep in the manger on the hay.",
+  "files": {
+    "short": {
+      "storyText": "story_1829_short.txt",
+      "audio": "audio_1829_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1829_full.txt",
+      "audio": "audio_1829_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1829.txt",
+      "audio": "audio_1829_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

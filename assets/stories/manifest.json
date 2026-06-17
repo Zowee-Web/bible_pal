@@ -44806,9 +44806,8 @@
       "title": "Jairus' Little Girl",
       "mood": "hurting",
       "emotionalTags": [
-        "comforted",
-        "hope",
-        "safe"
+        "grief",
+        "sad"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -44833,9 +44832,8 @@
       "title": "Jairus' Little Girl",
       "mood": "hurting",
       "emotionalTags": [
-        "comforted",
-        "hope",
-        "safe"
+        "grief",
+        "sad"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45134,9 +45132,8 @@
       "title": "Jesus Walks on the Water",
       "mood": "anxious",
       "emotionalTags": [
-        "safe",
-        "courage",
-        "wonder"
+        "anxious",
+        "fear"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45162,9 +45159,8 @@
       "title": "Jesus Walks on the Water",
       "mood": "anxious",
       "emotionalTags": [
-        "safe",
-        "courage",
-        "wonder"
+        "anxious",
+        "fear"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45190,9 +45186,8 @@
       "title": "The Lord Is My Shepherd",
       "mood": "weary",
       "emotionalTags": [
-        "safe",
-        "calm",
-        "comforted"
+        "overwhelmed",
+        "faith"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45606,9 +45601,8 @@
       "title": "Jesus Calms the Storm",
       "mood": "anxious",
       "emotionalTags": [
-        "reassured",
-        "safe",
-        "calm"
+        "anxious",
+        "overwhelmed"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45634,9 +45628,8 @@
       "title": "Jesus Calms the Storm",
       "mood": "anxious",
       "emotionalTags": [
-        "reassured",
-        "safe",
-        "calm"
+        "anxious",
+        "overwhelmed"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45886,9 +45879,8 @@
       "title": "The Cross",
       "mood": "hurting",
       "emotionalTags": [
-        "loved",
-        "comforted",
-        "hope"
+        "sad",
+        "hopeless"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45914,9 +45906,8 @@
       "title": "The Cross",
       "mood": "hurting",
       "emotionalTags": [
-        "loved",
-        "comforted",
-        "hope"
+        "sad",
+        "hopeless"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -46158,6 +46149,251 @@
         "gratitude",
         "generosity",
         "Gods power"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_lost_sheep_short",
+      "title": "The Lost Sheep",
+      "mood": "hurting",
+      "emotionalTags": [
+        "lonely",
+        "rejection",
+        "sad"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1826/audio_1826_short.mp3",
+      "textFilePath": "kids/1826/story_1826_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "short",
+      "reflectionQuestion": "What do you think the little sheep felt when it heard the shepherd's voice say, 'I found you'?",
+      "bibleSourceRef": "Luke 15:3-7",
+      "bibleStoryKey": "lost_sheep",
+      "themeTags": [
+        "Gods love",
+        "not forgotten",
+        "being found",
+        "Gods care"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_lost_sheep_full",
+      "title": "The Lost Sheep",
+      "mood": "hurting",
+      "emotionalTags": [
+        "lonely",
+        "rejection",
+        "sad"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1826/audio_1826_full.mp3",
+      "textFilePath": "kids/1826/story_1826_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "full",
+      "reflectionQuestion": "What do you think the little sheep felt when it heard the shepherd's voice say, 'I found you'?",
+      "bibleSourceRef": "Luke 15:3-7",
+      "bibleStoryKey": "lost_sheep",
+      "themeTags": [
+        "Gods love",
+        "not forgotten",
+        "being found",
+        "Gods care"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_two_builders_short",
+      "title": "The Wise and Foolish Builders",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "courage",
+        "faith"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1827/audio_1827_short.mp3",
+      "textFilePath": "kids/1827/story_1827_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
+      "storyLength": "short",
+      "reflectionQuestion": "What do you think it felt like inside the strong house on the rock, while the storm blew all around outside?",
+      "bibleSourceRef": "Matthew 7:24-27",
+      "bibleStoryKey": "two_builders",
+      "themeTags": [
+        "trust in Jesus",
+        "strong foundation",
+        "steadiness in storms",
+        "obedience"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_two_builders_full",
+      "title": "The Wise and Foolish Builders",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "courage",
+        "faith"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1827/audio_1827_full.mp3",
+      "textFilePath": "kids/1827/story_1827_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
+      "storyLength": "full",
+      "reflectionQuestion": "What do you think it felt like inside the strong house on the rock, while the storm blew all around outside?",
+      "bibleSourceRef": "Matthew 7:24-27",
+      "bibleStoryKey": "two_builders",
+      "themeTags": [
+        "trust in Jesus",
+        "strong foundation",
+        "steadiness in storms",
+        "obedience"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_mustard_seed_short",
+      "title": "The Tiny Mustard Seed",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "self_doubt",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1828/audio_1828_short.mp3",
+      "textFilePath": "kids/1828/story_1828_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "short",
+      "reflectionQuestion": "What do you think the little birds felt, building their nests high in the branches of that great and beautiful tree?",
+      "bibleSourceRef": "Matthew 13:31-32",
+      "bibleStoryKey": "mustard_seed",
+      "themeTags": [
+        "Gods kingdom",
+        "small beginnings",
+        "growth",
+        "hope"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_bethlehem_night_short",
+      "title": "The Night in Bethlehem",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1829/audio_1829_short.mp3",
+      "textFilePath": "kids/1829/story_1829_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "storyLength": "short",
+      "reflectionQuestion": "What do you think it was like in that quiet stable, the night the baby Jesus was born?",
+      "bibleSourceRef": "Luke 2:1-7",
+      "bibleStoryKey": "bethlehem_night",
+      "themeTags": [
+        "Jesus is born",
+        "Gods Son",
+        "Christmas",
+        "wonder"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_bethlehem_night_full",
+      "title": "The Night in Bethlehem",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1829/audio_1829_full.mp3",
+      "textFilePath": "kids/1829/story_1829_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "storyLength": "full",
+      "reflectionQuestion": "What do you think it was like in that quiet stable, the night the baby Jesus was born?",
+      "bibleSourceRef": "Luke 2:1-7",
+      "bibleStoryKey": "bethlehem_night",
+      "themeTags": [
+        "Jesus is born",
+        "Gods Son",
+        "Christmas",
+        "wonder"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_water_to_wine_short",
+      "title": "Water into Wine",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1830/audio_1830_short.mp3",
+      "textFilePath": "kids/1830/story_1830_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
+      "storyLength": "short",
+      "reflectionQuestion": "What do you think the servants felt when the plain water they had poured turned out to be something wonderful?",
+      "bibleSourceRef": "John 2:1-11",
+      "bibleStoryKey": "water_to_wine",
+      "themeTags": [
+        "Jesus first miracle",
+        "wonder",
+        "Gods provision",
+        "celebration"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_water_to_wine_full",
+      "title": "Water into Wine",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1830/audio_1830_full.mp3",
+      "textFilePath": "kids/1830/story_1830_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
+      "storyLength": "full",
+      "reflectionQuestion": "What do you think the servants felt when the plain water they had poured turned out to be something wonderful?",
+      "bibleSourceRef": "John 2:1-11",
+      "bibleStoryKey": "water_to_wine",
+      "themeTags": [
+        "Jesus first miracle",
+        "wonder",
+        "Gods provision",
+        "celebration"
       ],
       "kidLane": "dedicated-4-9"
     }

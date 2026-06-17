@@ -35,9 +35,8 @@
       "bibleSourceRef": "Mark 5:21-43",
       "mood": "hurting",
       "emotionalTags": [
-        "comforted",
-        "hope",
-        "safe"
+        "grief",
+        "sad"
       ],
       "themeTags": [
         "healing",
@@ -68,9 +67,8 @@
       "bibleSourceRef": "Mark 5:21-43",
       "mood": "hurting",
       "emotionalTags": [
-        "comforted",
-        "hope",
-        "safe"
+        "grief",
+        "sad"
       ],
       "themeTags": [
         "healing",
@@ -419,9 +417,8 @@
       "bibleSourceRef": "Matthew 14:22-33",
       "mood": "anxious",
       "emotionalTags": [
-        "safe",
-        "courage",
-        "wonder"
+        "anxious",
+        "fear"
       ],
       "themeTags": [
         "trust",
@@ -453,9 +450,8 @@
       "bibleSourceRef": "Matthew 14:22-33",
       "mood": "anxious",
       "emotionalTags": [
-        "safe",
-        "courage",
-        "wonder"
+        "anxious",
+        "fear"
       ],
       "themeTags": [
         "trust",
@@ -488,9 +484,8 @@
       "bibleSourceRef": "Psalm 23",
       "mood": "weary",
       "emotionalTags": [
-        "safe",
-        "calm",
-        "comforted"
+        "overwhelmed",
+        "faith"
       ],
       "themeTags": [
         "comfort",
@@ -890,13 +885,15 @@
       "lengthBucket": "short",
       "targetWords": 250,
       "actualWords": 262,
-      "status": "REVIEW",
+      "status": "SUPERSEDED",
       "narratorVoiceKey": null,
       "audioFilePath": null,
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "Opening reads faithful (shepherd, 100 sheep, counts them). Confirm full arc + ending.",
-      "hardContentFlags": []
+      "hardContentFlags": [],
+      "supersededBy": "kid_lost_sheep_short",
+      "supersededReason": "Replaced by dedicated 4-7 lane anchor lost_sheep (batch 5)"
     },
     {
       "id": "kid_020_joyful_5min",
@@ -1488,9 +1485,8 @@
       "bibleSourceRef": "Mark 4:35-41",
       "mood": "anxious",
       "emotionalTags": [
-        "reassured",
-        "safe",
-        "calm"
+        "anxious",
+        "overwhelmed"
       ],
       "themeTags": [
         "trust",
@@ -1522,9 +1518,8 @@
       "bibleSourceRef": "Mark 4:35-41",
       "mood": "anxious",
       "emotionalTags": [
-        "reassured",
-        "safe",
-        "calm"
+        "anxious",
+        "overwhelmed"
       ],
       "themeTags": [
         "trust",
@@ -1816,9 +1811,8 @@
       "bibleSourceRef": "Luke 23:32-49",
       "mood": "hurting",
       "emotionalTags": [
-        "loved",
-        "comforted",
-        "hope"
+        "sad",
+        "hopeless"
       ],
       "themeTags": [
         "Gods love",
@@ -1851,9 +1845,8 @@
       "bibleSourceRef": "Luke 23:32-49",
       "mood": "hurting",
       "emotionalTags": [
-        "loved",
-        "comforted",
-        "hope"
+        "sad",
+        "hopeless"
       ],
       "themeTags": [
         "Gods love",
@@ -2134,6 +2127,291 @@
       "reflectionText": null,
       "reflectionQuestion": "What do you think the boy felt when his own little lunch became enough for everyone?",
       "kidSafetyNotes": "Gentle, joyful provision. Kid title 'The Big Picnic' (warm, inviting hook for ages 4-7; anchor stays feeding_5000). One image: the boy's five loaves + two fish feeding everyone, with baskets left over. Texture = crowds / daylight / grassy hillside (kinetic-exterior, counters quiet-room drift). Center: God does much with a little freely given. Mood grateful (provision + thankfulness).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_lost_sheep_short",
+      "storyNumber": 1826,
+      "title": "The Lost Sheep",
+      "textFilePath": "kids/1826/story_1826_short.txt",
+      "scriptureAnchorId": "luke_15_3-7",
+      "bibleStoryKey": "lost_sheep",
+      "bibleSourceRef": "Luke 15:3-7",
+      "mood": "hurting",
+      "emotionalTags": [
+        "lonely",
+        "rejection",
+        "sad"
+      ],
+      "themeTags": [
+        "Gods love",
+        "not forgotten",
+        "being found",
+        "Gods care"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 312,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1826/audio_1826_short.mp3",
+      "reflectionAudioPath": "kids/1826/audio_1826_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the little sheep felt when it heard the shepherd's voice say, 'I found you'?",
+      "kidSafetyNotes": "PARABLE -- Jesus's teaching picture; frame made explicit at the close (Adam edit): 'God loves you, just like that good shepherd loved his one little sheep,' so kids know it's a picture, not a literal sheep-hunt. The SIGNATURE story for the lane's confirmed 'God is with me / not alone' spine in its tenderest form: 'when I wander, God comes looking for me.' The lost sheep is alone/afraid but NOT in danger (no predators -- keep it about lostness + love, not peril). One image: carried home on the shepherd's shoulders. Supersedes legacy kid_502_lostsheep_short.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_lost_sheep_full",
+      "storyNumber": 1826,
+      "title": "The Lost Sheep",
+      "textFilePath": "kids/1826/story_1826_full.txt",
+      "scriptureAnchorId": "luke_15_3-7",
+      "bibleStoryKey": "lost_sheep",
+      "bibleSourceRef": "Luke 15:3-7",
+      "mood": "hurting",
+      "emotionalTags": [
+        "lonely",
+        "rejection",
+        "sad"
+      ],
+      "themeTags": [
+        "Gods love",
+        "not forgotten",
+        "being found",
+        "Gods care"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 491,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1826/audio_1826_full.mp3",
+      "reflectionAudioPath": "kids/1826/audio_1826_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the little sheep felt when it heard the shepherd's voice say, 'I found you'?",
+      "kidSafetyNotes": "PARABLE -- Jesus's teaching picture; frame made explicit at the close (Adam edit): 'God loves you, just like that good shepherd loved his one little sheep,' so kids know it's a picture, not a literal sheep-hunt. The SIGNATURE story for the lane's confirmed 'God is with me / not alone' spine in its tenderest form: 'when I wander, God comes looking for me.' The lost sheep is alone/afraid but NOT in danger (no predators -- keep it about lostness + love, not peril). One image: carried home on the shepherd's shoulders. Supersedes legacy kid_502_lostsheep_short.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_two_builders_short",
+      "storyNumber": 1827,
+      "title": "The Wise and Foolish Builders",
+      "textFilePath": "kids/1827/story_1827_short.txt",
+      "scriptureAnchorId": "matthew_7_24-27",
+      "bibleStoryKey": "two_builders",
+      "bibleSourceRef": "Matthew 7:24-27",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "courage",
+        "faith"
+      ],
+      "themeTags": [
+        "trust in Jesus",
+        "strong foundation",
+        "steadiness in storms",
+        "obedience"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 259,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
+      "audioFilePath": "kids/1827/audio_1827_short.mp3",
+      "reflectionAudioPath": "kids/1827/audio_1827_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it felt like inside the strong house on the rock, while the storm blew all around outside?",
+      "kidSafetyNotes": "PARABLE. Pairs with 1816 (Jesus Calms the Storm): 1816 = 'Jesus is with you IN the storm,' this = 'build on Jesus BEFORE the storm.' Sand house washes away GENTLY -- no one in it, no scary collapse ('slowly, quietly, the little house slipped away'). KEY theology edit (Adam): 'strong and STEADY' not 'strong and safe' -- obedience gives steadiness THROUGH storms, never a guarantee bad things won't come (see feedback_kid_god_with_not_cause / faithful_not_gentle). Wise builder 'she' / foolish 'he' (gender variety). Promoted to short+full (storm drama earns it). One image: two houses in the storm, one standing, one washing away.",
+      "hardContentFlags": [
+        "storm_gentle"
+      ]
+    },
+    {
+      "id": "kid_two_builders_full",
+      "storyNumber": 1827,
+      "title": "The Wise and Foolish Builders",
+      "textFilePath": "kids/1827/story_1827_full.txt",
+      "scriptureAnchorId": "matthew_7_24-27",
+      "bibleStoryKey": "two_builders",
+      "bibleSourceRef": "Matthew 7:24-27",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "courage",
+        "faith"
+      ],
+      "themeTags": [
+        "trust in Jesus",
+        "strong foundation",
+        "steadiness in storms",
+        "obedience"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 458,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
+      "audioFilePath": "kids/1827/audio_1827_full.mp3",
+      "reflectionAudioPath": "kids/1827/audio_1827_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it felt like inside the strong house on the rock, while the storm blew all around outside?",
+      "kidSafetyNotes": "PARABLE. Pairs with 1816 (Jesus Calms the Storm): 1816 = 'Jesus is with you IN the storm,' this = 'build on Jesus BEFORE the storm.' Sand house washes away GENTLY -- no one in it, no scary collapse ('slowly, quietly, the little house slipped away'). KEY theology edit (Adam): 'strong and STEADY' not 'strong and safe' -- obedience gives steadiness THROUGH storms, never a guarantee bad things won't come (see feedback_kid_god_with_not_cause / faithful_not_gentle). Wise builder 'she' / foolish 'he' (gender variety). Promoted to short+full (storm drama earns it). One image: two houses in the storm, one standing, one washing away.",
+      "hardContentFlags": [
+        "storm_gentle"
+      ]
+    },
+    {
+      "id": "kid_mustard_seed_short",
+      "storyNumber": 1828,
+      "title": "The Tiny Mustard Seed",
+      "textFilePath": "kids/1828/story_1828_short.txt",
+      "scriptureAnchorId": "matthew_13_31-32",
+      "bibleStoryKey": "mustard_seed",
+      "bibleSourceRef": "Matthew 13:31-32",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "self_doubt",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods kingdom",
+        "small beginnings",
+        "growth",
+        "hope"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 252,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "audioFilePath": "kids/1828/audio_1828_short.mp3",
+      "reflectionAudioPath": "kids/1828/audio_1828_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the little birds felt, building their nests high in the branches of that great and beautiful tree?",
+      "kidSafetyNotes": "PARABLE. SHORT-ONLY by design -- a 2-verse parable; a 'full' would require padding (honor its brevity, per length-bucket doctrine). 'God grows small things into something great and good and beautiful.' Gentle, no peril. One image: the seed too small to see -> the great tree with birds nesting in its branches.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_bethlehem_night_short",
+      "storyNumber": 1829,
+      "title": "The Night in Bethlehem",
+      "textFilePath": "kids/1829/story_1829_short.txt",
+      "scriptureAnchorId": "luke_2_1-7",
+      "bibleStoryKey": "bethlehem_night",
+      "bibleSourceRef": "Luke 2:1-7",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith"
+      ],
+      "themeTags": [
+        "Jesus is born",
+        "Gods Son",
+        "Christmas",
+        "wonder"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 255,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "audioFilePath": "kids/1829/audio_1829_short.mp3",
+      "reflectionAudioPath": "kids/1829/audio_1829_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like in that quiet stable, the night the baby Jesus was born?",
+      "kidSafetyNotes": "The NATIVITY -- a cornerstone the lane lacked (had wise_men 1809, not the birth itself). Hushed/peaceful telling (shepherds + angels are separate anchors, not here), tagged calm_peaceful to match the quiet holy-night register (bedtime-perfect). Same VOICE_MARY_PONDER as 1824 (Mary Says Yes) -- deliberate continuity, the same 'Mary' voice through both Mary stories. 'No room' kept gentle; stable cozy not grim. Luke 2:19 'held it in her heart' echo, softened ending. One image: baby Jesus asleep in the manger on the hay.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_bethlehem_night_full",
+      "storyNumber": 1829,
+      "title": "The Night in Bethlehem",
+      "textFilePath": "kids/1829/story_1829_full.txt",
+      "scriptureAnchorId": "luke_2_1-7",
+      "bibleStoryKey": "bethlehem_night",
+      "bibleSourceRef": "Luke 2:1-7",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith"
+      ],
+      "themeTags": [
+        "Jesus is born",
+        "Gods Son",
+        "Christmas",
+        "wonder"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 455,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "audioFilePath": "kids/1829/audio_1829_full.mp3",
+      "reflectionAudioPath": "kids/1829/audio_1829_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like in that quiet stable, the night the baby Jesus was born?",
+      "kidSafetyNotes": "The NATIVITY -- a cornerstone the lane lacked (had wise_men 1809, not the birth itself). Hushed/peaceful telling (shepherds + angels are separate anchors, not here), tagged calm_peaceful to match the quiet holy-night register (bedtime-perfect). Same VOICE_MARY_PONDER as 1824 (Mary Says Yes) -- deliberate continuity, the same 'Mary' voice through both Mary stories. 'No room' kept gentle; stable cozy not grim. Luke 2:19 'held it in her heart' echo, softened ending. One image: baby Jesus asleep in the manger on the hay.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_water_to_wine_short",
+      "storyNumber": 1830,
+      "title": "Water into Wine",
+      "textFilePath": "kids/1830/story_1830_short.txt",
+      "scriptureAnchorId": "john_2_1-11",
+      "bibleStoryKey": "water_to_wine",
+      "bibleSourceRef": "John 2:1-11",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "Jesus first miracle",
+        "wonder",
+        "Gods provision",
+        "celebration"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 264,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
+      "audioFilePath": "kids/1830/audio_1830_short.mp3",
+      "reflectionAudioPath": "kids/1830/audio_1830_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the servants felt when the plain water they had poured turned out to be something wonderful?",
+      "kidSafetyNotes": "Jesus's FIRST miracle. 'Wine' kept gentle as 'the very best, most delicious drink' -- it's the wedding-feast drink; no alcohol focus (kid-appropriate softening, like 'The Big Picnic' for feeding_5000). Festive/joyful texture (wedding, music, celebration) -- counterweight to the 3 quiet parables in this batch. Mary's line kept ('Whatever he tells you to do, just do it'). FRESH voice VOICE_CHARLOTTE_V3 (first use in the kid lane). Promoted to short+full (full wedding scene earns it). One image: six empty stone jars filled with water -> poured out as something wonderful.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_water_to_wine_full",
+      "storyNumber": 1830,
+      "title": "Water into Wine",
+      "textFilePath": "kids/1830/story_1830_full.txt",
+      "scriptureAnchorId": "john_2_1-11",
+      "bibleStoryKey": "water_to_wine",
+      "bibleSourceRef": "John 2:1-11",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "Jesus first miracle",
+        "wonder",
+        "Gods provision",
+        "celebration"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 460,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
+      "audioFilePath": "kids/1830/audio_1830_full.mp3",
+      "reflectionAudioPath": "kids/1830/audio_1830_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the servants felt when the plain water they had poured turned out to be something wonderful?",
+      "kidSafetyNotes": "Jesus's FIRST miracle. 'Wine' kept gentle as 'the very best, most delicious drink' -- it's the wedding-feast drink; no alcohol focus (kid-appropriate softening, like 'The Big Picnic' for feeding_5000). Festive/joyful texture (wedding, music, celebration) -- counterweight to the 3 quiet parables in this batch. Mary's line kept ('Whatever he tells you to do, just do it'). FRESH voice VOICE_CHARLOTTE_V3 (first use in the kid lane). Promoted to short+full (full wedding scene earns it). One image: six empty stone jars filled with water -> poured out as something wonderful.",
       "hardContentFlags": []
     }
   ]

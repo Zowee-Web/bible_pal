@@ -620,7 +620,11 @@
             "full"
           ],
           "longEligible": true,
-          "launch": true
+          "launch": true,
+          "productionId": 1829,
+          "manifestAnchorIds": [
+            "luke_2_1-7"
+          ]
         },
         {
           "anchorId": "shepherds_angels",
@@ -659,9 +663,14 @@
           "scriptureRef": "John 2:1-11",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1830,
+          "manifestAnchorIds": [
+            "john_2_1-11"
+          ]
         },
         {
           "anchorId": "calming_storm",
@@ -790,7 +799,8 @@
           "manifestAnchorIds": [
             "luke_15_3-7"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1826
         },
         {
           "anchorId": "prodigal_son",
@@ -816,7 +826,11 @@
           "targetLengths": [
             "short"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1828,
+          "manifestAnchorIds": [
+            "matthew_13_31-32"
+          ]
         },
         {
           "anchorId": "sower",
@@ -834,9 +848,14 @@
           "scriptureRef": "Matthew 7:24-27",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1827,
+          "manifestAnchorIds": [
+            "matthew_7_24-27"
+          ]
         },
         {
           "anchorId": "lost_coin",

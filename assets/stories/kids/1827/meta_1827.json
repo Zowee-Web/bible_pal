@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1827,
+  "anchorId": "two_builders",
+  "kidLane": "dedicated-4-7",
+  "title": "The Wise and Foolish Builders",
+  "scriptureAnchorId": "matthew_7_24-27",
+  "bibleSourceRef": "Matthew 7:24-27",
+  "bibleStoryKey": "two_builders",
+  "translation": "WEB",
+  "mood": "brave_courage",
+  "emotionalTags": [
+    "courage",
+    "faith"
+  ],
+  "themeTags": [
+    "trust in Jesus",
+    "strong foundation",
+    "steadiness in storms",
+    "obedience"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "What do you think it felt like inside the strong house on the rock, while the storm blew all around outside?",
+  "hardContentFlags": [
+    "storm_gentle"
+  ],
+  "kidSafetyNotes": "PARABLE. Pairs with 1816 (Jesus Calms the Storm): 1816 = 'Jesus is with you IN the storm,' this = 'build on Jesus BEFORE the storm.' Sand house washes away GENTLY -- no one in it, no scary collapse ('slowly, quietly, the little house slipped away'). KEY theology edit (Adam): 'strong and STEADY' not 'strong and safe' -- obedience gives steadiness THROUGH storms, never a guarantee bad things won't come (see feedback_kid_god_with_not_cause / faithful_not_gentle). Wise builder 'she' / foolish 'he' (gender variety). Promoted to short+full (storm drama earns it). One image: two houses in the storm, one standing, one washing away.",
+  "files": {
+    "short": {
+      "storyText": "story_1827_short.txt",
+      "audio": "audio_1827_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1827_full.txt",
+      "audio": "audio_1827_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1827.txt",
+      "audio": "audio_1827_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}
