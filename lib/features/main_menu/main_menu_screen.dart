@@ -27,6 +27,7 @@ import 'package:flutter/services.dart' show HapticFeedback;
 import '../../providers/parable_player_notifier.dart';
 import '../../models/parable.dart';
 import '../../core/story_length_bucket.dart';
+import '../../core/kid_feeling_cards.dart';
 import '../pals_parables/parable_player_screen.dart';
 import '../consent/voice_consent_dialog.dart';
 import '../../core/app_logger.dart';
@@ -900,6 +901,11 @@ class _StudyPageState extends ConsumerState<_StudyPage>
   @override
   Widget build(BuildContext context) {
     final palette = LivingSky.getPalette(LivingSky.getPhase());
+    // Kids mode (SPEC Feature 51.3): feeling cards replace the adult mood
+    // buttons (in _ReservedPanel) and the typed text field is hidden.
+    final kidMode = ref.watch(appStateProvider).valueOrNull?.userPreferences
+            .kidFriendlyOnly ??
+        false;
 
     // Tap-outside-to-dismiss (Phase 3.2 polish). Opaque hit-test lets
     // taps on empty regions dismiss the keyboard while interactive
@@ -924,9 +930,12 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                       const SizedBox(height: 12),
 
                       // Heading — routes through foreground palette for
-                      // phase-aware contrast (Phase 3.2 global pass).
+                      // phase-aware contrast (Phase 3.2 global pass). Kids
+                      // mode uses a gentler, heart-centered prompt (51.3).
                       Text(
-                        'How are you feeling?',
+                        kidMode
+                            ? 'How is your heart today?'
+                            : 'How are you feeling?',
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
@@ -938,7 +947,9 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'Tap a mood and PAL will find a story for you',
+                        kidMode
+                            ? 'Tap how you feel and PAL will find a story'
+                            : 'Tap a mood and PAL will find a story for you',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
@@ -1003,7 +1014,9 @@ class _StudyPageState extends ConsumerState<_StudyPage>
           ),
         ),
 
-        // Text PAL input — pinned to bottom
+        // Text PAL input — pinned to bottom. Hidden in Kids mode, where the
+        // feeling cards are the only input (no keyboard — SPEC Feature 51.3).
+        if (!kidMode)
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
           child: AnimatedBuilder(
@@ -1945,6 +1958,16 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
     // Micro-response: text always shown; audio gated behind useLegacyPal.
     final appState = ref.read(appStateProvider).valueOrNull;
+    // Kids-mode warm fallback (SPEC Feature 51.3): an unmatched spoken
+    // sentence lands on a joyful story instead of the weary no-match default.
+    // Scoped to story selection; the micro-response audio keeps result.mood.
+    final kidMode = appState?.userPreferences.kidFriendlyOnly ?? false;
+    final effectiveMood = kidMode
+        ? kidFallbackMood(
+            detectedMood: result.mood,
+            confidenceScore: result.confidenceScore,
+          )
+        : result.mood;
     final useLegacy = appState?.userPreferences.useLegacyPal ?? false;
     final voiceKey = appState?.userPreferences.palVoiceKey ?? PalVoiceRegistry.defaultVoiceKey;
 
@@ -2033,7 +2056,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     if (userPrefs != null) {
       final parableService = await ref.read(parableServiceProvider.future);
       previewKey = await parableService.previewBibleStoryKey(
-        mood: result.mood,
+        mood: effectiveMood,
         userPrefs: userPrefs,
         userText: transcript,
       );
@@ -2100,7 +2123,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     await selectStoryAndOpenPlayer(
       ref: ref,
       context: context,
-      mood: result.mood,
+      mood: effectiveMood,
       userText: transcript,
       bibleStoryKey: previewKey,
     );
@@ -2523,6 +2546,65 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
 
 // ---------------------------------------------------------------------------
+// Feeling card tile — Kids mode tap-a-feeling input (SPEC Feature 51.3)
+// ---------------------------------------------------------------------------
+
+/// A single large emoji feeling card shown in the Kids-mode mood grid.
+/// Tapping it submits the card's canonical phrase into the mood pipeline.
+class _FeelingCardTile extends StatelessWidget {
+  final KidFeelingCard card;
+  final SkyPalette palette;
+  final VoidCallback onTap;
+
+  const _FeelingCardTile({
+    required this.card,
+    required this.palette,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 76,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(18),
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 6),
+            decoration: BoxDecoration(
+              color: palette.foreground.subtleSurface,
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(color: palette.foreground.subtleBorder),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(card.emoji, style: const TextStyle(fontSize: 30)),
+                const SizedBox(height: 6),
+                Text(
+                  card.label,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  style: TextStyle(
+                    fontSize: 11,
+                    height: 1.15,
+                    fontWeight: FontWeight.w600,
+                    color: palette.foreground.primaryText,
+                    shadows: palette.foreground.subtitleShadow,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Reserved Panel — crossfades between IDLE / NOW PLAYING / FINISHED
 // ---------------------------------------------------------------------------
 
@@ -2725,13 +2807,59 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
   // --------------- IDLE ---------------
 
   Widget _buildIdlePanel(ThemeData theme) {
+    // Kids mode swaps the adult mood buttons for the tap-a-feeling card grid
+    // (SPEC Feature 51.3). The selection engine is unchanged — a card tap
+    // submits a canonical phrase as userText, exactly like typing it.
+    final kidMode = ref.watch(appStateProvider).valueOrNull?.userPreferences
+            .kidFriendlyOnly ??
+        false;
     return Column(
       key: const ValueKey('idle'),
       mainAxisSize: MainAxisSize.min,
       children: [
-        _buildMoodButtons(theme),
+        kidMode ? _buildFeelingCards(theme) : _buildMoodButtons(theme),
       ],
     );
+  }
+
+  /// Tap-a-feeling card grid for Kids mode (SPEC Feature 51.3).
+  Widget _buildFeelingCards(ThemeData theme) {
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
+    return Wrap(
+      spacing: 10,
+      runSpacing: 10,
+      alignment: WrapAlignment.center,
+      children: kidFeelingCards.map((card) {
+        return _FeelingCardTile(
+          card: card,
+          palette: palette,
+          onTap: () => _handleFeelingCardTap(card),
+        );
+      }).toList(),
+    );
+  }
+
+  Future<void> _handleFeelingCardTap(KidFeelingCard card) async {
+    HapticFeedback.lightImpact();
+    final appStateNotifier = ref.read(appStateProvider.notifier);
+    final moodResult =
+        appStateNotifier.moodService.detectMood(card.canonicalPhrase);
+    // Kids-mode warm fallback: cards always carry a keyword, so this only
+    // matters if the engine ever returns the no-match default.
+    final mood = kidFallbackMood(
+      detectedMood: moodResult.mood,
+      confidenceScore: moodResult.confidenceScore,
+    );
+    appStateNotifier.updateLastDetectedMood(mood);
+    await selectStoryAndOpenPlayer(
+      ref: ref,
+      context: context,
+      mood: mood,
+      // Pass the canonical phrase so RelatabilityMatcher can rank the kid
+      // pool by the situation tags the phrase carries.
+      userText: card.canonicalPhrase,
+    );
+    if (mounted) FocusScope.of(context).unfocus();
   }
 
   // --------------- NOW PLAYING ---------------

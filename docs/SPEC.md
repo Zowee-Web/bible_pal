@@ -1072,6 +1072,23 @@ Leaving Kids mode requires a grown-up check; entering does not.
 
 **SPEC note (future, deferred):** an optional parent lock in Settings — a 4-digit PIN plus Face ID / Touch ID (`local_auth`) where supported; when set, exit requires PIN or biometric, with hold-3s as fallback. Deferred from v1 to avoid new deps/data fields.
 
+**51.3 Tap-a-feeling input (Kids mode)**
+
+In Kids mode the Mood page (Feature 48 page 1) replaces the adult input with a tap-a-feeling card grid. The selection engine is unchanged — a card is a front-end input that produces the same `userText` a child would type.
+
+- **Layout:** Feature 48's three-page PageView and the dedicated PAL Sanctuary page are untouched (no new PAL button added). On the Mood page in Kids mode: heading "How is your heart today?", the adult mood buttons are replaced by 8 large emoji feeling cards, and the typed text field is hidden (no keyboard).
+- **Cards → phrase:** tapping a card submits a fixed canonical phrase as `userText` into the existing pipeline (`detectMood` → `RelatabilityMatcher` → `selectParable`). The 8 cards: 😨 scared, 😟 lonely, 😔 in trouble, 🥺 little, 🫂 miss someone, 😄 happy, 🙏 thankful, 😴 tired.
+- **LOCKED design rule:** every canonical phrase contains at least one MoodService keyword so detection never falls to the no-match default. Phrases may also carry a RelatabilityMatcher situation keyword to bias ranking toward the fitting kid story (e.g. "I got in trouble and I feel upset" → mood `hurting`, tag `in_trouble` → The Loving Father; "I feel lonely and left out" → `hurting`/`lonely` → The Lost Sheep).
+- **Kids-mode mood fallback:** when detection yields the low-confidence no-match default (`weary` @ 0.4, empty tags), Kids mode substitutes `joyful` so unmatched free-form (voice) input lands on a warm story. Scoped to the kid input layer — the global MoodService default is untouched, so the adult fallback stays `weary`. Cards always carry a keyword, so they never hit this path.
+
+**Implementation:**
+- `lib/core/kid_feeling_cards.dart` — the 8 `KidFeelingCard` records + `kidFallbackMood(...)`.
+- The Mood page's idle panel renders the card grid (`_FeelingCardTile`) when `kidFriendlyOnly`; each tap routes through the existing `selectStoryAndOpenPlayer` with the canonical phrase as `userText`. The voice path applies `kidFallbackMood` to story selection.
+
+**51.5 "I miss someone" — no retrofit**
+
+The "miss someone" card submits a `missing_someone`-tagged phrase, but no existing story is retagged. It currently lands in the hurting pool (The Lost Sheep via the `lonely` tag). As kid stories that genuinely fit "missing someone" are written and tagged, they will be picked up automatically. Future dedicated-anchor candidates: Jesus weeps with Mary & Martha; the Ascension; Ruth & Naomi.
+
 ---
 
 ## Living Sky Theme
