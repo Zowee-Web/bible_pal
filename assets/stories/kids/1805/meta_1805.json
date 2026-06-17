@@ -9,9 +9,20 @@
   "bibleStoryKey": "creation",
   "translation": "WEB",
   "mood": "grateful",
-  "emotionalTags": ["wonder", "joy", "gratitude"],
-  "themeTags": ["creation", "wonder", "Gods goodness", "thankfulness"],
-  "lengths": ["short", "full"],
+  "emotionalTags": [
+    "grateful",
+    "wonder"
+  ],
+  "themeTags": [
+    "creation",
+    "wonder",
+    "Gods goodness",
+    "thankfulness"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "longEligible": true,
   "status": "REVIEW",
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
@@ -26,9 +37,19 @@
   "hardContentFlags": [],
   "kidSafetyNotes": "Wonder pillar, pure (no hard content). Discipline: strictly 'God did this / God made this / God saw this' — no telling the child their purpose (per Adam's review, dropped 'to know him and love him'; dropped the 'not tired' rest-explanation). Two-image symmetry: darkness-empty (open) -> darkness-full-of-stars (close). Genesis 1 + day-7 rest. Day counts cleared the word floors via observable creation detail (mountains, giraffes/mice, stars, storks/sparrows, rivers/shores), not re-added explanation.",
   "files": {
-    "short": { "storyText": "story_1805_short.txt", "audio": "audio_1805_short.mp3" },
-    "full": { "storyText": "story_1805_full.txt", "audio": "audio_1805_full.mp3" },
-    "reflection": { "text": "reflection_1805.txt", "audio": "audio_1805_reflection.mp3", "ttsModel": "eleven_v3" }
+    "short": {
+      "storyText": "story_1805_short.txt",
+      "audio": "audio_1805_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1805_full.txt",
+      "audio": "audio_1805_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1805.txt",
+      "audio": "audio_1805_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
   },
   "createdNote": "Wonder pillar, story 2. Foundational. Voice VOICE_NATASHA_AFRICAN_AMERICAN (Warm Strength; 2nd female narrator). Mood grateful (fills an empty mood). Reflection renders in eleven_v3."
 }

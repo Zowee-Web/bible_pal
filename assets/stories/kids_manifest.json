@@ -99,9 +99,8 @@
       "bibleSourceRef": "Mark 10:13-16",
       "mood": "joyful",
       "emotionalTags": [
-        "joy",
-        "welcomed",
-        "loved"
+        "wonder",
+        "hope"
       ],
       "themeTags": [
         "Jesus welcomes children",
@@ -130,9 +129,8 @@
       "bibleSourceRef": "Mark 10:13-16",
       "mood": "joyful",
       "emotionalTags": [
-        "joy",
-        "welcomed",
-        "loved"
+        "wonder",
+        "hope"
       ],
       "themeTags": [
         "Jesus welcomes children",
@@ -162,7 +160,6 @@
       "mood": "encouraging",
       "emotionalTags": [
         "hope",
-        "relief",
         "wonder"
       ],
       "themeTags": [
@@ -193,7 +190,6 @@
       "mood": "encouraging",
       "emotionalTags": [
         "hope",
-        "relief",
         "wonder"
       ],
       "themeTags": [
@@ -223,9 +219,8 @@
       "bibleSourceRef": "Matthew 2:1-12",
       "mood": "joyful",
       "emotionalTags": [
-        "joy",
         "wonder",
-        "worship"
+        "celebration"
       ],
       "themeTags": [
         "seeking Jesus",
@@ -255,9 +250,8 @@
       "bibleSourceRef": "Matthew 2:1-12",
       "mood": "joyful",
       "emotionalTags": [
-        "joy",
         "wonder",
-        "worship"
+        "celebration"
       ],
       "themeTags": [
         "seeking Jesus",
@@ -287,9 +281,8 @@
       "bibleSourceRef": "Exodus 2:1-10",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "safe",
-        "loved",
-        "calm"
+        "faith",
+        "wonder"
       ],
       "themeTags": [
         "Gods protection",
@@ -320,9 +313,8 @@
       "bibleSourceRef": "Exodus 2:1-10",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "safe",
-        "loved",
-        "calm"
+        "faith",
+        "wonder"
       ],
       "themeTags": [
         "Gods protection",
@@ -353,9 +345,8 @@
       "bibleSourceRef": "Genesis 1 - 2:3",
       "mood": "grateful",
       "emotionalTags": [
-        "wonder",
-        "joy",
-        "gratitude"
+        "grateful",
+        "wonder"
       ],
       "themeTags": [
         "creation",
@@ -385,9 +376,8 @@
       "bibleSourceRef": "Genesis 1 - 2:3",
       "mood": "grateful",
       "emotionalTags": [
-        "wonder",
-        "joy",
-        "gratitude"
+        "grateful",
+        "wonder"
       ],
       "themeTags": [
         "creation",
@@ -754,9 +744,8 @@
       "bibleSourceRef": "Jonah 1-4",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "safe",
         "wonder",
-        "mercy"
+        "faith"
       ],
       "themeTags": [
         "mercy",
@@ -788,9 +777,8 @@
       "bibleSourceRef": "Jonah 1-4",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "safe",
         "wonder",
-        "mercy"
+        "faith"
       ],
       "themeTags": [
         "mercy",
@@ -1148,8 +1136,7 @@
       "mood": "encouraging",
       "emotionalTags": [
         "wonder",
-        "reassured",
-        "called"
+        "faith"
       ],
       "themeTags": [
         "Gods name",
@@ -1180,8 +1167,7 @@
       "mood": "encouraging",
       "emotionalTags": [
         "wonder",
-        "reassured",
-        "called"
+        "faith"
       ],
       "themeTags": [
         "Gods name",
@@ -1211,9 +1197,9 @@
       "bibleSourceRef": "Matthew 28:1-10",
       "mood": "joyful",
       "emotionalTags": [
-        "joy",
         "hope",
-        "wonder"
+        "wonder",
+        "celebration"
       ],
       "themeTags": [
         "resurrection",
@@ -1245,9 +1231,9 @@
       "bibleSourceRef": "Matthew 28:1-10",
       "mood": "joyful",
       "emotionalTags": [
-        "joy",
         "hope",
-        "wonder"
+        "wonder",
+        "celebration"
       ],
       "themeTags": [
         "resurrection",
@@ -1279,9 +1265,8 @@
       "bibleSourceRef": "Exodus 14",
       "mood": "brave_courage",
       "emotionalTags": [
-        "wonder",
-        "rescued",
-        "safe"
+        "anxious",
+        "scared_dark"
       ],
       "themeTags": [
         "deliverance",
@@ -1313,9 +1298,8 @@
       "bibleSourceRef": "Exodus 14",
       "mood": "brave_courage",
       "emotionalTags": [
-        "wonder",
-        "rescued",
-        "safe"
+        "anxious",
+        "scared_dark"
       ],
       "themeTags": [
         "deliverance",
@@ -1609,9 +1593,8 @@
       "bibleSourceRef": "Joshua 6",
       "mood": "brave_courage",
       "emotionalTags": [
-        "brave",
-        "trusting",
-        "wonder"
+        "feeling_small",
+        "anxious"
       ],
       "themeTags": [
         "trust",
@@ -1641,9 +1624,8 @@
       "bibleSourceRef": "Joshua 6",
       "mood": "brave_courage",
       "emotionalTags": [
-        "brave",
-        "trusting",
-        "wonder"
+        "feeling_small",
+        "anxious"
       ],
       "themeTags": [
         "trust",
@@ -1673,9 +1655,8 @@
       "bibleSourceRef": "Genesis 45",
       "mood": "encouraging",
       "emotionalTags": [
-        "forgiven",
-        "reconciled",
-        "loved"
+        "rejection",
+        "hope"
       ],
       "themeTags": [
         "forgiveness",
@@ -1707,9 +1688,8 @@
       "bibleSourceRef": "Genesis 45",
       "mood": "encouraging",
       "emotionalTags": [
-        "forgiven",
-        "reconciled",
-        "loved"
+        "rejection",
+        "hope"
       ],
       "themeTags": [
         "forgiveness",
@@ -1741,9 +1721,8 @@
       "bibleSourceRef": "1 Samuel 3",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "calm",
-        "safe",
-        "listening"
+        "wonder",
+        "faith"
       ],
       "themeTags": [
         "listening to God",
@@ -1773,9 +1752,8 @@
       "bibleSourceRef": "1 Samuel 3",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "calm",
-        "safe",
-        "listening"
+        "wonder",
+        "faith"
       ],
       "themeTags": [
         "listening to God",
@@ -1939,9 +1917,8 @@
       "bibleSourceRef": "Genesis 12:1-9",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "trusting",
-        "calm",
-        "hopeful"
+        "faith",
+        "hope"
       ],
       "themeTags": [
         "trust",
@@ -1971,9 +1948,8 @@
       "bibleSourceRef": "Genesis 12:1-9",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "trusting",
-        "calm",
-        "hopeful"
+        "faith",
+        "hope"
       ],
       "themeTags": [
         "trust",
@@ -2004,8 +1980,7 @@
       "mood": "joyful",
       "emotionalTags": [
         "wonder",
-        "joy",
-        "trusting"
+        "faith"
       ],
       "themeTags": [
         "faith",
@@ -2036,8 +2011,7 @@
       "mood": "joyful",
       "emotionalTags": [
         "wonder",
-        "joy",
-        "trusting"
+        "faith"
       ],
       "themeTags": [
         "faith",
@@ -2068,8 +2042,7 @@
       "mood": "grateful",
       "emotionalTags": [
         "grateful",
-        "wonder",
-        "joy"
+        "wonder"
       ],
       "themeTags": [
         "Gods provision",
@@ -2100,8 +2073,7 @@
       "mood": "grateful",
       "emotionalTags": [
         "grateful",
-        "wonder",
-        "joy"
+        "wonder"
       ],
       "themeTags": [
         "Gods provision",

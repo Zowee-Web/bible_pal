@@ -44858,9 +44858,8 @@
       "title": "Jesus and the Children",
       "mood": "joyful",
       "emotionalTags": [
-        "joy",
-        "welcomed",
-        "loved"
+        "wonder",
+        "hope"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -44885,9 +44884,8 @@
       "title": "Jesus and the Children",
       "mood": "joyful",
       "emotionalTags": [
-        "joy",
-        "welcomed",
-        "loved"
+        "wonder",
+        "hope"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -44913,7 +44911,6 @@
       "mood": "encouraging",
       "emotionalTags": [
         "hope",
-        "relief",
         "wonder"
       ],
       "storytellingMode": "traditional",
@@ -44940,7 +44937,6 @@
       "mood": "encouraging",
       "emotionalTags": [
         "hope",
-        "relief",
         "wonder"
       ],
       "storytellingMode": "traditional",
@@ -44966,9 +44962,8 @@
       "title": "The Wise Men and the Star",
       "mood": "joyful",
       "emotionalTags": [
-        "joy",
         "wonder",
-        "worship"
+        "celebration"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -44994,9 +44989,8 @@
       "title": "The Wise Men and the Star",
       "mood": "joyful",
       "emotionalTags": [
-        "joy",
         "wonder",
-        "worship"
+        "celebration"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45022,9 +45016,8 @@
       "title": "Baby Moses",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "safe",
-        "loved",
-        "calm"
+        "faith",
+        "wonder"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45049,9 +45042,8 @@
       "title": "Baby Moses",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "safe",
-        "loved",
-        "calm"
+        "faith",
+        "wonder"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45076,9 +45068,8 @@
       "title": "The World God Made",
       "mood": "grateful",
       "emotionalTags": [
-        "wonder",
-        "joy",
-        "gratitude"
+        "grateful",
+        "wonder"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45104,9 +45095,8 @@
       "title": "The World God Made",
       "mood": "grateful",
       "emotionalTags": [
-        "wonder",
-        "joy",
-        "gratitude"
+        "grateful",
+        "wonder"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45263,9 +45253,8 @@
       "title": "Jonah and the Big Fish",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "safe",
         "wonder",
-        "mercy"
+        "faith"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45291,9 +45280,8 @@
       "title": "Jonah and the Big Fish",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "safe",
         "wonder",
-        "mercy"
+        "faith"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45320,8 +45308,7 @@
       "mood": "encouraging",
       "emotionalTags": [
         "wonder",
-        "reassured",
-        "called"
+        "faith"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45348,8 +45335,7 @@
       "mood": "encouraging",
       "emotionalTags": [
         "wonder",
-        "reassured",
-        "called"
+        "faith"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45375,9 +45361,9 @@
       "title": "The Empty Tomb",
       "mood": "joyful",
       "emotionalTags": [
-        "joy",
         "hope",
-        "wonder"
+        "wonder",
+        "celebration"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45403,9 +45389,9 @@
       "title": "The Empty Tomb",
       "mood": "joyful",
       "emotionalTags": [
-        "joy",
         "hope",
-        "wonder"
+        "wonder",
+        "celebration"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45431,9 +45417,8 @@
       "title": "Crossing the Red Sea",
       "mood": "brave_courage",
       "emotionalTags": [
-        "wonder",
-        "rescued",
-        "safe"
+        "anxious",
+        "scared_dark"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45459,9 +45444,8 @@
       "title": "Crossing the Red Sea",
       "mood": "brave_courage",
       "emotionalTags": [
-        "wonder",
-        "rescued",
-        "safe"
+        "anxious",
+        "scared_dark"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45705,9 +45689,8 @@
       "title": "The Walls of Jericho",
       "mood": "brave_courage",
       "emotionalTags": [
-        "brave",
-        "trusting",
-        "wonder"
+        "feeling_small",
+        "anxious"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45733,9 +45716,8 @@
       "title": "The Walls of Jericho",
       "mood": "brave_courage",
       "emotionalTags": [
-        "brave",
-        "trusting",
-        "wonder"
+        "feeling_small",
+        "anxious"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45761,9 +45743,8 @@
       "title": "Joseph Forgives His Brothers",
       "mood": "encouraging",
       "emotionalTags": [
-        "forgiven",
-        "reconciled",
-        "loved"
+        "rejection",
+        "hope"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45789,9 +45770,8 @@
       "title": "Joseph Forgives His Brothers",
       "mood": "encouraging",
       "emotionalTags": [
-        "forgiven",
-        "reconciled",
-        "loved"
+        "rejection",
+        "hope"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45817,9 +45797,8 @@
       "title": "God Calls Samuel",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "calm",
-        "safe",
-        "listening"
+        "wonder",
+        "faith"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45845,9 +45824,8 @@
       "title": "God Calls Samuel",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "calm",
-        "safe",
-        "listening"
+        "wonder",
+        "faith"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45981,9 +45959,8 @@
       "title": "God Calls Abraham",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "trusting",
-        "calm",
-        "hopeful"
+        "faith",
+        "hope"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -46009,9 +45986,8 @@
       "title": "God Calls Abraham",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "trusting",
-        "calm",
-        "hopeful"
+        "faith",
+        "hope"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -46038,8 +46014,7 @@
       "mood": "joyful",
       "emotionalTags": [
         "wonder",
-        "joy",
-        "trusting"
+        "faith"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -46066,8 +46041,7 @@
       "mood": "joyful",
       "emotionalTags": [
         "wonder",
-        "joy",
-        "trusting"
+        "faith"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -46094,8 +46068,7 @@
       "mood": "grateful",
       "emotionalTags": [
         "grateful",
-        "wonder",
-        "joy"
+        "wonder"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -46122,8 +46095,7 @@
       "mood": "grateful",
       "emotionalTags": [
         "grateful",
-        "wonder",
-        "joy"
+        "wonder"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
