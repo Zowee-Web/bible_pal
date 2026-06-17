@@ -45213,9 +45213,8 @@
       "title": "David and the Giant",
       "mood": "brave_courage",
       "emotionalTags": [
-        "courage",
-        "fear-to-courage",
-        "safe"
+        "feeling_small",
+        "courage"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45239,9 +45238,8 @@
       "title": "David and the Giant",
       "mood": "brave_courage",
       "emotionalTags": [
-        "courage",
-        "fear-to-courage",
-        "safe"
+        "feeling_small",
+        "courage"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45489,9 +45487,8 @@
       "title": "Daniel in the Lions' Den",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "safe",
-        "calm",
-        "trust"
+        "scared_dark",
+        "anxious"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45517,9 +45514,8 @@
       "title": "Daniel in the Lions' Den",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "safe",
-        "calm",
-        "trust"
+        "scared_dark",
+        "anxious"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45545,9 +45541,8 @@
       "title": "The Good Samaritan",
       "mood": "encouraging",
       "emotionalTags": [
-        "compassion",
-        "kindness",
-        "cared-for"
+        "left_out",
+        "rejection"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45573,9 +45568,8 @@
       "title": "The Good Samaritan",
       "mood": "encouraging",
       "emotionalTags": [
-        "compassion",
-        "kindness",
-        "cared-for"
+        "left_out",
+        "rejection"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45602,6 +45596,7 @@
       "mood": "anxious",
       "emotionalTags": [
         "anxious",
+        "scared_dark",
         "overwhelmed"
       ],
       "storytellingMode": "traditional",
@@ -45629,6 +45624,7 @@
       "mood": "anxious",
       "emotionalTags": [
         "anxious",
+        "scared_dark",
         "overwhelmed"
       ],
       "storytellingMode": "traditional",
@@ -45655,8 +45651,7 @@
       "title": "The Loving Father",
       "mood": "grateful",
       "emotionalTags": [
-        "loved",
-        "welcomed",
+        "in_trouble",
         "grateful"
       ],
       "storytellingMode": "traditional",
@@ -45683,8 +45678,7 @@
       "title": "The Loving Father",
       "mood": "grateful",
       "emotionalTags": [
-        "loved",
-        "welcomed",
+        "in_trouble",
         "grateful"
       ],
       "storytellingMode": "traditional",
@@ -45933,9 +45927,8 @@
       "title": "The Fiery Furnace",
       "mood": "brave_courage",
       "emotionalTags": [
-        "brave",
-        "safe",
-        "trusting"
+        "scared_dark",
+        "courage"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -45961,9 +45954,8 @@
       "title": "The Fiery Furnace",
       "mood": "brave_courage",
       "emotionalTags": [
-        "brave",
-        "safe",
-        "trusting"
+        "scared_dark",
+        "courage"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -46158,8 +46150,8 @@
       "mood": "hurting",
       "emotionalTags": [
         "lonely",
-        "rejection",
-        "sad"
+        "left_out",
+        "rejection"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -46186,8 +46178,8 @@
       "mood": "hurting",
       "emotionalTags": [
         "lonely",
-        "rejection",
-        "sad"
+        "left_out",
+        "rejection"
       ],
       "storytellingMode": "traditional",
       "kidFriendly": true,
@@ -46267,6 +46259,7 @@
       "title": "The Tiny Mustard Seed",
       "mood": "encouraging",
       "emotionalTags": [
+        "feeling_small",
         "self_doubt",
         "hope"
       ],
