@@ -1041,6 +1041,25 @@ A first-class visual experience when kid-friendly mode is active.
 
 ---
 
+## Kids Mode Surface
+
+**51. Kids Mode Surface (Feature 51)**
+
+Extends Feature 46 with a child-facing surface for the dedicated ages-4-7 kid lane. The story-selection engine is reused unchanged; Feature 51 only changes the surface a child touches. The mode is still a single bool (`kidFriendlyOnly`); there is no "Who is PAL for today?" screen — entry/exit is the existing Kid toggle only.
+
+**51.1 Kid toggle + visual theming**
+- When the Kid toggle is ON, the main menu PAL orb and the Living Sky background recolor into the warm Kids palette (warm peach orb, lavender→peach→cream background, sunshine-gold sparkle). When OFF, both revert to the time-of-day Living Sky phase palette.
+- The Kids palette is time-independent — Kids mode always reads bright and warm, and the Night starfield is suppressed while it is active.
+- The choice persists across launches (via `kidFriendlyOnly`).
+
+**Implementation:**
+- `LivingSky.kids` — a time-independent `SkyPalette` reusing the `AppTheme` Kids color identity; black-text (bright) bucket per Feature 47.
+- `LivingSky.resolvePalette({phase, kidMode})` — returns `kids` when `kidMode`, else the phase palette. Used by the main menu background, Sanctuary page, and PAL orb.
+- `LivingSkyBackground(kidMode:)` — renders the Kids palette and suppresses the night starfield when true.
+- The existing `AppTheme.kidsTheme` `ThemeData` wrapper (Feature 46) still applies.
+
+---
+
 ## Living Sky Theme
 
 **47. Living Sky Theme (Feature 47) — LOCKED**

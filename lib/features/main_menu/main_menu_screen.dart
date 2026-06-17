@@ -207,6 +207,7 @@ class MainMenuScreen extends ConsumerWidget {
           child: _MainMenuBody(
             theme: theme,
             effectiveTheme: effectiveTheme,
+            kidMode: isKidMode,
             dailyBread: dailyBread,
             verseReference: verseReference,
           ),
@@ -220,12 +221,14 @@ class MainMenuScreen extends ConsumerWidget {
 class _MainMenuBody extends ConsumerStatefulWidget {
   final ThemeData theme;
   final ThemeData effectiveTheme;
+  final bool kidMode;
   final String dailyBread;
   final String verseReference;
 
   const _MainMenuBody({
     required this.theme,
     required this.effectiveTheme,
+    required this.kidMode,
     required this.dailyBread,
     required this.verseReference,
   });
@@ -277,14 +280,16 @@ class _MainMenuBodyState extends ConsumerState<_MainMenuBody> {
 
   @override
   Widget build(BuildContext context) {
-    final palette = LivingSky.getPalette(LivingSky.getPhase());
+    final palette = LivingSky.resolvePalette(kidMode: widget.kidMode);
 
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Stack(
         children: [
-          // Living Sky fills entire background, continuous across pages
-          const LivingSkyBackground(),
+          // Living Sky fills entire background, continuous across pages.
+          // In Kids mode it recolors to the warm peach/cream palette
+          // (SPEC Feature 51.1).
+          LivingSkyBackground(kidMode: widget.kidMode),
           SafeArea(
             bottom: true,
             child: Column(
@@ -334,6 +339,7 @@ class _MainMenuBodyState extends ConsumerState<_MainMenuBody> {
                         // Page 0: PAL Sanctuary (default landing)
                         _SanctuaryPage(
                           theme: widget.theme,
+                          kidMode: widget.kidMode,
                           dailyBread: widget.dailyBread,
                           verseReference: widget.verseReference,
                         ),
@@ -400,25 +406,27 @@ class _PageDots extends StatelessWidget {
 
 class _SanctuaryPage extends ConsumerWidget {
   final ThemeData theme;
+  final bool kidMode;
   final String dailyBread;
   final String verseReference;
 
   const _SanctuaryPage({
     required this.theme,
+    required this.kidMode,
     required this.dailyBread,
     required this.verseReference,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final palette = LivingSky.getPalette(LivingSky.getPhase());
+    final palette = LivingSky.resolvePalette(kidMode: kidMode);
 
     return Column(
       children: [
         const Spacer(flex: 3),
 
         // PAL orb — THE hero, bigger and bolder
-        _PalButtonWithIntro(theme: theme),
+        _PalButtonWithIntro(theme: theme, kidMode: kidMode),
 
         const SizedBox(height: 8),
 
@@ -1127,7 +1135,10 @@ enum _VoiceFlowState {
 class _PalButtonWithIntro extends ConsumerStatefulWidget {
   final ThemeData theme;
 
-  const _PalButtonWithIntro({required this.theme});
+  /// When true the orb recolors to the warm Kids palette (SPEC Feature 51.1).
+  final bool kidMode;
+
+  const _PalButtonWithIntro({required this.theme, this.kidMode = false});
 
   @override
   ConsumerState<_PalButtonWithIntro> createState() => _PalButtonWithIntroState();
@@ -2048,7 +2059,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   @override
   Widget build(BuildContext context) {
     final theme = widget.theme;
-    final palette = LivingSky.getPalette(LivingSky.getPhase());
+    final palette = LivingSky.resolvePalette(kidMode: widget.kidMode);
 
     if (!_introChecked) {
       return const SizedBox(height: 140);
@@ -2222,7 +2233,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
   /// Build the voice flow overlay showing greeting text, transcript, or response.
   Widget _buildVoiceFlowOverlay(ThemeData theme) {
-    final palette = LivingSky.getPalette(LivingSky.getPhase());
+    final palette = LivingSky.resolvePalette(kidMode: widget.kidMode);
     switch (_voiceFlow) {
       case _VoiceFlowState.inactive:
         return const SizedBox.shrink();
