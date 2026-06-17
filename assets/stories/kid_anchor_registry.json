@@ -69,7 +69,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1834,
+          "manifestAnchorIds": [
+            "genesis_2"
+          ]
         },
         {
           "anchorId": "garden_of_eden",
@@ -635,7 +639,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1833,
+          "manifestAnchorIds": [
+            "luke_2_8-20"
+          ]
         },
         {
           "anchorId": "wise_men",
@@ -766,6 +774,21 @@
             "short"
           ],
           "launch": false
+        },
+        {
+          "anchorId": "zacchaeus",
+          "displayName": "Zacchaeus",
+          "scriptureRef": "Luke 19:1-10",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true,
+          "productionId": 1831,
+          "manifestAnchorIds": [
+            "luke_19_1-10"
+          ]
         }
       ]
     },
@@ -891,7 +914,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1832,
+          "manifestAnchorIds": [
+            "matthew_21_1-11"
+          ]
         },
         {
           "anchorId": "last_supper",
@@ -1059,6 +1086,21 @@
             "short"
           ],
           "launch": false
+        },
+        {
+          "anchorId": "psalm_139",
+          "displayName": "God Made You (Psalm 139)",
+          "scriptureRef": "Psalm 139",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true,
+          "productionId": 1835,
+          "manifestAnchorIds": [
+            "psalm_139"
+          ]
         }
       ]
     }

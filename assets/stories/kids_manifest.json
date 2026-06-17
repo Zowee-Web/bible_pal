@@ -2378,6 +2378,322 @@
       "reflectionQuestion": "What do you think the servants felt when the plain water they had poured turned out to be something wonderful?",
       "kidSafetyNotes": "Jesus's FIRST miracle. 'Wine' kept gentle as 'the very best, most delicious drink' -- it's the wedding-feast drink; no alcohol focus (kid-appropriate softening, like 'The Big Picnic' for feeding_5000). Festive/joyful texture (wedding, music, celebration) -- counterweight to the 3 quiet parables in this batch. Mary's line kept ('Whatever he tells you to do, just do it'). FRESH voice VOICE_CHARLOTTE_V3 (first use in the kid lane). Promoted to short+full (full wedding scene earns it). One image: six empty stone jars filled with water -> poured out as something wonderful.",
       "hardContentFlags": []
+    },
+    {
+      "id": "kid_zacchaeus_short",
+      "storyNumber": 1831,
+      "title": "Zacchaeus",
+      "textFilePath": "kids/1831/story_1831_short.txt",
+      "scriptureAnchorId": "luke_19_1-10",
+      "bibleStoryKey": "zacchaeus",
+      "bibleSourceRef": "Luke 19:1-10",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "being seen",
+        "Gods love",
+        "joy",
+        "change of heart"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 281,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1831/audio_1831_short.mp3",
+      "reflectionAudioPath": "kids/1831/audio_1831_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Zacchaeus felt when Jesus looked up into the tree and called him by name?",
+      "kidSafetyNotes": "NEW anchor (Jesus' Miracles). The JOY-side of the 'you are seen' spine -- Lost Sheep comforts the lonely, Zacchaeus DELIGHTS in the overlooked ('Jesus came to YOUR house'). Wrongdoing kept gentle: 'collecting money, took more than he should' -- NO 'tax/cheat/sinner'; lands on the joyful turnaround (gives it back), not the dishonesty. One image: Jesus stopping under the sycamore and looking up. Delight-set batch 6.",
+      "hardContentFlags": [
+        "wrongdoing_softened"
+      ]
+    },
+    {
+      "id": "kid_zacchaeus_full",
+      "storyNumber": 1831,
+      "title": "Zacchaeus",
+      "textFilePath": "kids/1831/story_1831_full.txt",
+      "scriptureAnchorId": "luke_19_1-10",
+      "bibleStoryKey": "zacchaeus",
+      "bibleSourceRef": "Luke 19:1-10",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "being seen",
+        "Gods love",
+        "joy",
+        "change of heart"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 480,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1831/audio_1831_full.mp3",
+      "reflectionAudioPath": "kids/1831/audio_1831_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Zacchaeus felt when Jesus looked up into the tree and called him by name?",
+      "kidSafetyNotes": "NEW anchor (Jesus' Miracles). The JOY-side of the 'you are seen' spine -- Lost Sheep comforts the lonely, Zacchaeus DELIGHTS in the overlooked ('Jesus came to YOUR house'). Wrongdoing kept gentle: 'collecting money, took more than he should' -- NO 'tax/cheat/sinner'; lands on the joyful turnaround (gives it back), not the dishonesty. One image: Jesus stopping under the sycamore and looking up. Delight-set batch 6.",
+      "hardContentFlags": [
+        "wrongdoing_softened"
+      ]
+    },
+    {
+      "id": "kid_palm_sunday_short",
+      "storyNumber": 1832,
+      "title": "The Joyful Parade",
+      "textFilePath": "kids/1832/story_1832_short.txt",
+      "scriptureAnchorId": "matthew_21_1-11",
+      "bibleStoryKey": "palm_sunday",
+      "bibleSourceRef": "Matthew 21:1-11",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "joy",
+        "celebration",
+        "Jesus is king",
+        "welcome"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 259,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "audioFilePath": "kids/1832/audio_1832_short.mp3",
+      "reflectionAudioPath": "kids/1832/audio_1832_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "If you had been there, waving a palm branch in the happy crowd, what do you think it would have felt like?",
+      "kidSafetyNotes": "PURE joy/celebration -- deliberately NO foreshadowing of the cross (this is the parade, kept festive). The gentle king on a little donkey (humble, not a war horse). Kid title 'The Joyful Parade'. One image: the sea of green palms + coats on the road. James Husky is a bright 'good' voice (no de-bloom).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_palm_sunday_full",
+      "storyNumber": 1832,
+      "title": "The Joyful Parade",
+      "textFilePath": "kids/1832/story_1832_full.txt",
+      "scriptureAnchorId": "matthew_21_1-11",
+      "bibleStoryKey": "palm_sunday",
+      "bibleSourceRef": "Matthew 21:1-11",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "joy",
+        "celebration",
+        "Jesus is king",
+        "welcome"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 414,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "audioFilePath": "kids/1832/audio_1832_full.mp3",
+      "reflectionAudioPath": "kids/1832/audio_1832_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "If you had been there, waving a palm branch in the happy crowd, what do you think it would have felt like?",
+      "kidSafetyNotes": "PURE joy/celebration -- deliberately NO foreshadowing of the cross (this is the parade, kept festive). The gentle king on a little donkey (humble, not a war horse). Kid title 'The Joyful Parade'. One image: the sea of green palms + coats on the road. James Husky is a bright 'good' voice (no de-bloom).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_shepherds_angels_short",
+      "storyNumber": 1833,
+      "title": "The Shepherds and the Angels",
+      "textFilePath": "kids/1833/story_1833_short.txt",
+      "scriptureAnchorId": "luke_2_8-20",
+      "bibleStoryKey": "shepherds_angels",
+      "bibleSourceRef": "Luke 2:8-20",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "good news",
+        "great joy",
+        "wonder",
+        "Jesus is born"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 272,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_LILY_WOLFF",
+      "audioFilePath": "kids/1833/audio_1833_short.mp3",
+      "reflectionAudioPath": "kids/1833/audio_1833_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the shepherds felt when the whole dark sky suddenly filled with singing angels?",
+      "kidSafetyNotes": "'Good news of great joy.' The shepherds' side of the Nativity (pairs with 1829 Bethlehem). Angels are awe-not-terror ('Do not be afraid'). One image: the dark hillside suddenly filling with a sky full of singing angels. FRESH voice VOICE_LILY_WOLFF (1st use in kid lane).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_shepherds_angels_full",
+      "storyNumber": 1833,
+      "title": "The Shepherds and the Angels",
+      "textFilePath": "kids/1833/story_1833_full.txt",
+      "scriptureAnchorId": "luke_2_8-20",
+      "bibleStoryKey": "shepherds_angels",
+      "bibleSourceRef": "Luke 2:8-20",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "good news",
+        "great joy",
+        "wonder",
+        "Jesus is born"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 474,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_LILY_WOLFF",
+      "audioFilePath": "kids/1833/audio_1833_full.mp3",
+      "reflectionAudioPath": "kids/1833/audio_1833_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the shepherds felt when the whole dark sky suddenly filled with singing angels?",
+      "kidSafetyNotes": "'Good news of great joy.' The shepherds' side of the Nativity (pairs with 1829 Bethlehem). Angels are awe-not-terror ('Do not be afraid'). One image: the dark hillside suddenly filling with a sky full of singing angels. FRESH voice VOICE_LILY_WOLFF (1st use in kid lane).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_adam_eve_short",
+      "storyNumber": 1834,
+      "title": "The First Garden",
+      "textFilePath": "kids/1834/story_1834_short.txt",
+      "scriptureAnchorId": "genesis_2",
+      "bibleStoryKey": "first_garden",
+      "bibleSourceRef": "Genesis 2",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "grateful"
+      ],
+      "themeTags": [
+        "the world is beautiful",
+        "wonder",
+        "Gods creation",
+        "Gods care"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 263,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "audioFilePath": "kids/1834/audio_1834_short.mp3",
+      "reflectionAudioPath": "kids/1834/audio_1834_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "If you could have given a name to one of the animals in that first garden, which animal would you choose?",
+      "kidSafetyNotes": "'The world is beautiful' register. Adam naming the animals in the garden -- NO fall/sin (separate, harder story); pure wonder + the kid-delightful animal-naming. Distinct from 1805 creation_days (the 7 days); this is the garden/human angle. One image: the animals coming one by one to be named. Kid title 'The First Garden'.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_adam_eve_full",
+      "storyNumber": 1834,
+      "title": "The First Garden",
+      "textFilePath": "kids/1834/story_1834_full.txt",
+      "scriptureAnchorId": "genesis_2",
+      "bibleStoryKey": "first_garden",
+      "bibleSourceRef": "Genesis 2",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "grateful"
+      ],
+      "themeTags": [
+        "the world is beautiful",
+        "wonder",
+        "Gods creation",
+        "Gods care"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 421,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "audioFilePath": "kids/1834/audio_1834_full.mp3",
+      "reflectionAudioPath": "kids/1834/audio_1834_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "If you could have given a name to one of the animals in that first garden, which animal would you choose?",
+      "kidSafetyNotes": "'The world is beautiful' register. Adam naming the animals in the garden -- NO fall/sin (separate, harder story); pure wonder + the kid-delightful animal-naming. Distinct from 1805 creation_days (the 7 days); this is the garden/human angle. One image: the animals coming one by one to be named. Kid title 'The First Garden'.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_psalm_139_short",
+      "storyNumber": 1835,
+      "title": "God Made You",
+      "textFilePath": "kids/1835/story_1835_short.txt",
+      "scriptureAnchorId": "psalm_139",
+      "bibleStoryKey": "psalm_139",
+      "bibleSourceRef": "Psalm 139",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "feeling_small",
+        "self_doubt",
+        "hope"
+      ],
+      "themeTags": [
+        "God made me",
+        "God delights in you",
+        "Gods presence",
+        "wonderfully made"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 254,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": "kids/1835/audio_1835_short.mp3",
+      "reflectionAudioPath": "kids/1835/audio_1835_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God made every part of you on purpose, with love. What is one thing about you that you think God smiles to see?",
+      "kidSafetyNotes": "NEW anchor (Comfort & Bedtime). The LITERAL 'God delights in YOU' -- spoken in second person straight to the child. DOUBLES as comfort for a kid who feels small/unnoticed/not-good-enough: tags feeling_small + self_doubt, mood calm_peaceful is reachable from hurting via expansion, so a 'too little / nobody notices me' kid routes here. 'keeping you safe' was changed to 'loving you' (Adam: no guaranteed-safety promise, see feedback_kid_god_with_not_cause). Ties the not-alone spine ('wherever you go, God is with you', Ps 139:7-10). One image: up past the highest star / down to the deepest sea, God is there.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_psalm_139_full",
+      "storyNumber": 1835,
+      "title": "God Made You",
+      "textFilePath": "kids/1835/story_1835_full.txt",
+      "scriptureAnchorId": "psalm_139",
+      "bibleStoryKey": "psalm_139",
+      "bibleSourceRef": "Psalm 139",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "feeling_small",
+        "self_doubt",
+        "hope"
+      ],
+      "themeTags": [
+        "God made me",
+        "God delights in you",
+        "Gods presence",
+        "wonderfully made"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 431,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": "kids/1835/audio_1835_full.mp3",
+      "reflectionAudioPath": "kids/1835/audio_1835_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God made every part of you on purpose, with love. What is one thing about you that you think God smiles to see?",
+      "kidSafetyNotes": "NEW anchor (Comfort & Bedtime). The LITERAL 'God delights in YOU' -- spoken in second person straight to the child. DOUBLES as comfort for a kid who feels small/unnoticed/not-good-enough: tags feeling_small + self_doubt, mood calm_peaceful is reachable from hurting via expansion, so a 'too little / nobody notices me' kid routes here. 'keeping you safe' was changed to 'loving you' (Adam: no guaranteed-safety promise, see feedback_kid_god_with_not_cause). Ties the not-alone spine ('wherever you go, God is with you', Ps 139:7-10). One image: up past the highest star / down to the deepest sea, God is there.",
+      "hardContentFlags": []
     }
   ]
 }

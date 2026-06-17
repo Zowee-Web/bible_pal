@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1832,
+  "anchorId": "palm_sunday",
+  "kidLane": "dedicated-4-7",
+  "title": "The Joyful Parade",
+  "scriptureAnchorId": "matthew_21_1-11",
+  "bibleSourceRef": "Matthew 21:1-11",
+  "bibleStoryKey": "palm_sunday",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "celebration",
+    "wonder"
+  ],
+  "themeTags": [
+    "joy",
+    "celebration",
+    "Jesus is king",
+    "welcome"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "If you had been there, waving a palm branch in the happy crowd, what do you think it would have felt like?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "PURE joy/celebration -- deliberately NO foreshadowing of the cross (this is the parade, kept festive). The gentle king on a little donkey (humble, not a war horse). Kid title 'The Joyful Parade'. One image: the sea of green palms + coats on the road. James Husky is a bright 'good' voice (no de-bloom).",
+  "files": {
+    "short": {
+      "storyText": "story_1832_short.txt",
+      "audio": "audio_1832_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1832_full.txt",
+      "audio": "audio_1832_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1832.txt",
+      "audio": "audio_1832_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

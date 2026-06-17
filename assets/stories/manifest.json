@@ -46361,6 +46361,278 @@
         "celebration"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_zacchaeus_short",
+      "title": "Zacchaeus",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1831/audio_1831_short.mp3",
+      "textFilePath": "kids/1831/story_1831_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "short",
+      "reflectionQuestion": "What do you think Zacchaeus felt when Jesus looked up into the tree and called him by name?",
+      "bibleSourceRef": "Luke 19:1-10",
+      "bibleStoryKey": "zacchaeus",
+      "themeTags": [
+        "being seen",
+        "Gods love",
+        "joy",
+        "change of heart"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_zacchaeus_full",
+      "title": "Zacchaeus",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1831/audio_1831_full.mp3",
+      "textFilePath": "kids/1831/story_1831_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "full",
+      "reflectionQuestion": "What do you think Zacchaeus felt when Jesus looked up into the tree and called him by name?",
+      "bibleSourceRef": "Luke 19:1-10",
+      "bibleStoryKey": "zacchaeus",
+      "themeTags": [
+        "being seen",
+        "Gods love",
+        "joy",
+        "change of heart"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_palm_sunday_short",
+      "title": "The Joyful Parade",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1832/audio_1832_short.mp3",
+      "textFilePath": "kids/1832/story_1832_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "short",
+      "reflectionQuestion": "If you had been there, waving a palm branch in the happy crowd, what do you think it would have felt like?",
+      "bibleSourceRef": "Matthew 21:1-11",
+      "bibleStoryKey": "palm_sunday",
+      "themeTags": [
+        "joy",
+        "celebration",
+        "Jesus is king",
+        "welcome"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_palm_sunday_full",
+      "title": "The Joyful Parade",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1832/audio_1832_full.mp3",
+      "textFilePath": "kids/1832/story_1832_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "full",
+      "reflectionQuestion": "If you had been there, waving a palm branch in the happy crowd, what do you think it would have felt like?",
+      "bibleSourceRef": "Matthew 21:1-11",
+      "bibleStoryKey": "palm_sunday",
+      "themeTags": [
+        "joy",
+        "celebration",
+        "Jesus is king",
+        "welcome"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_shepherds_angels_short",
+      "title": "The Shepherds and the Angels",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1833/audio_1833_short.mp3",
+      "textFilePath": "kids/1833/story_1833_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_LILY_WOLFF",
+      "storyLength": "short",
+      "reflectionQuestion": "What do you think the shepherds felt when the whole dark sky suddenly filled with singing angels?",
+      "bibleSourceRef": "Luke 2:8-20",
+      "bibleStoryKey": "shepherds_angels",
+      "themeTags": [
+        "good news",
+        "great joy",
+        "wonder",
+        "Jesus is born"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_shepherds_angels_full",
+      "title": "The Shepherds and the Angels",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1833/audio_1833_full.mp3",
+      "textFilePath": "kids/1833/story_1833_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_LILY_WOLFF",
+      "storyLength": "full",
+      "reflectionQuestion": "What do you think the shepherds felt when the whole dark sky suddenly filled with singing angels?",
+      "bibleSourceRef": "Luke 2:8-20",
+      "bibleStoryKey": "shepherds_angels",
+      "themeTags": [
+        "good news",
+        "great joy",
+        "wonder",
+        "Jesus is born"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_adam_eve_short",
+      "title": "The First Garden",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1834/audio_1834_short.mp3",
+      "textFilePath": "kids/1834/story_1834_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "short",
+      "reflectionQuestion": "If you could have given a name to one of the animals in that first garden, which animal would you choose?",
+      "bibleSourceRef": "Genesis 2",
+      "bibleStoryKey": "first_garden",
+      "themeTags": [
+        "the world is beautiful",
+        "wonder",
+        "Gods creation",
+        "Gods care"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_adam_eve_full",
+      "title": "The First Garden",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1834/audio_1834_full.mp3",
+      "textFilePath": "kids/1834/story_1834_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "full",
+      "reflectionQuestion": "If you could have given a name to one of the animals in that first garden, which animal would you choose?",
+      "bibleSourceRef": "Genesis 2",
+      "bibleStoryKey": "first_garden",
+      "themeTags": [
+        "the world is beautiful",
+        "wonder",
+        "Gods creation",
+        "Gods care"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_psalm_139_short",
+      "title": "God Made You",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "feeling_small",
+        "self_doubt",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1835/audio_1835_short.mp3",
+      "textFilePath": "kids/1835/story_1835_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "short",
+      "reflectionQuestion": "God made every part of you on purpose, with love. What is one thing about you that you think God smiles to see?",
+      "bibleSourceRef": "Psalm 139",
+      "bibleStoryKey": "psalm_139",
+      "themeTags": [
+        "God made me",
+        "God delights in you",
+        "Gods presence",
+        "wonderfully made"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_psalm_139_full",
+      "title": "God Made You",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "feeling_small",
+        "self_doubt",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1835/audio_1835_full.mp3",
+      "textFilePath": "kids/1835/story_1835_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "full",
+      "reflectionQuestion": "God made every part of you on purpose, with love. What is one thing about you that you think God smiles to see?",
+      "bibleSourceRef": "Psalm 139",
+      "bibleStoryKey": "psalm_139",
+      "themeTags": [
+        "God made me",
+        "God delights in you",
+        "Gods presence",
+        "wonderfully made"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }
