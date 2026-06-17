@@ -179,14 +179,19 @@ while IFS= read -r src_file; do
   # --force overwrites for refresh_stale; for compress_missing the
   # destination doesn't exist yet so --force is a safe no-op.
   # Destination is always under $DST_DIR — originals at $SRC_DIR are never touched.
-  # Kid-lane files (kids/...) also get an 80 Hz high-pass to strip ElevenLabs
-  # plosive "thump"; adult audio is unaffected.
-  HP_FLAG=""
+  # Kid-lane files get per-voice / per-reflection treatment so the published
+  # mirror reproduces the ear-calibrated levels: an 80 Hz high-pass on all kid
+  # audio (de-plosive), a 250 Hz de-bloom on warm-voiced narrators (they bloom
+  # on bass-boosting speakers), and per-reflection loudness targets (short flat
+  # v3 reflections sit below the -18 stories). The recipe lives in
+  # scripts/kid_audio_flags.py + scripts/kid_audio_overrides.json; see
+  # docs/AUDIO_LOUDNESS.md. Adult audio is unaffected (no flags).
+  KID_FLAGS=""
   case "$rel_path" in
-    kids/*) HP_FLAG="--highpass" ;;
+    kids/*) KID_FLAGS=$(python3 "$PROJECT_ROOT/scripts/kid_audio_flags.py" "$rel_path") ;;
   esac
   if ! "$PROJECT_ROOT/scripts/loudnorm_audio.sh" \
-    "$src_file" "$dst_file" --force $HP_FLAG >/dev/null; then
+    "$src_file" "$dst_file" --force $KID_FLAGS >/dev/null; then
     echo "  ERROR: failed to compress+normalize $rel_path" >&2
     failed=$((failed + 1))
     # Remove partial output

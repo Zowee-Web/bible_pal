@@ -1,0 +1,19 @@
+{
+  "_comment": "Per-voice / per-reflection audio treatment for the dedicated 4-7 kid lane. Calibrated by ear on a Bluetooth speaker (Adam, 2026-06-16). Read by scripts/kid_audio_flags.py, which scripts/compress_audio.sh uses to reproduce the published mirror. See docs/AUDIO_LOUDNESS.md.",
+  "_rationale": "All kid audio gets an 80 Hz high-pass (de-plosive). Warm-voiced narrators bloom in the low-mids and read 'loud' on bass-boosting speakers, so every voice EXCEPT the bright 'good' ones gets a 250 Hz de-bloom. Stories normalize to -18; reflections (short, flat, forward v3) sit lower so they don't read louder than the story.",
+  "goodVoices": [
+    "VOICE_DAVID_SHEPHERD",
+    "VOICE_ARABELLA",
+    "VOICE_JAMES_HUSKY",
+    "VOICE_ARCHER",
+    "VOICE_MIRIAM_JOYFUL"
+  ],
+  "storyTarget": -18,
+  "reflectionTargetGood": -21,
+  "reflectionTargetWarm": -22.5,
+  "reflectionOverrides": {
+    "1816": -21,
+    "1820": -23,
+    "1821": -21
+  }
+}
