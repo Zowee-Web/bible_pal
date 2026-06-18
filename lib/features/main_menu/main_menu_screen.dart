@@ -1204,6 +1204,21 @@ class _KidModeToggleState extends ConsumerState<_KidModeToggle>
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        // Hint sits ABOVE the pill so the grown-up's finger doesn't cover it
+        // while holding to exit (SPEC Feature 51.2).
+        if (hint != null) ...[
+          Text(
+            hint,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: palette.foreground.tertiaryText,
+              letterSpacing: 0.2,
+              shadows: palette.foreground.subtitleShadow,
+            ),
+          ),
+          const SizedBox(height: 6),
+        ],
         ClipRRect(
           borderRadius: borderRadius,
           child: Stack(
@@ -1268,19 +1283,6 @@ class _KidModeToggleState extends ConsumerState<_KidModeToggle>
             ],
           ),
         ),
-        if (hint != null) ...[
-          const SizedBox(height: 6),
-          Text(
-            hint,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              color: palette.foreground.tertiaryText,
-              letterSpacing: 0.2,
-              shadows: palette.foreground.subtitleShadow,
-            ),
-          ),
-        ],
       ],
     );
   }
