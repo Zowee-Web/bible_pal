@@ -15,6 +15,7 @@ import 'package:bible_pal/services/pal_audio_service.dart';
 import 'package:bible_pal/services/pal_tts_client.dart';
 import 'package:bible_pal/services/name_audio_service.dart';
 import 'package:bible_pal/services/completed_stories_store.dart';
+import 'package:bible_pal/features/pal_memory/pal_session_store.dart';
 import 'package:bible_pal/services/path_service.dart';
 import 'package:bible_pal/services/search_service.dart';
 import 'package:bible_pal/core/character_registry.dart';
@@ -145,6 +146,15 @@ final completedStoryIdsProvider = FutureProvider<Set<String>>((ref) async {
   final store = await ref.watch(completedStoriesStoreProvider.future);
   final list = await store.all();
   return Set<String>.unmodifiable(list);
+});
+
+/// PalSessionStore provider — PAL Memory Doctrine Slice 1 persistence
+/// (see docs/PAL_MEMORY_DOCTRINE.md). Depends on StorageService for the
+/// underlying SharedPreferences access. Cap healing is handled by
+/// StorageService.validateAndHealInvariants() on startup.
+final palSessionStoreProvider = FutureProvider<PalSessionStore>((ref) async {
+  final storage = await ref.watch(storageServiceProvider.future);
+  return PalSessionStore(storage);
 });
 
 /// Loads the curated Life of Jesus sequence from the bundled asset
