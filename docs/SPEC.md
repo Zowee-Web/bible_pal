@@ -1089,6 +1089,22 @@ In Kids mode the Mood page (Feature 48 page 1) replaces the adult input with a t
 
 The "miss someone" card submits a `missing_someone`-tagged phrase, but no existing story is retagged. It currently lands in the hurting pool (The Lost Sheep via the `lonely` tag). As kid stories that genuinely fit "missing someone" are written and tagged, they will be picked up automatically. Future dedicated-anchor candidates: Jesus weeps with Mary & Martha; the Ascension; Ruth & Naomi.
 
+**51.6 Parent lock (PIN + biometric)**
+
+An optional lock in Settings that strengthens the exit gate (51.2). It guards only the *exit* from Kids mode; it never weakens kid-content filtering.
+
+- **Setup (Settings → Parent Lock):** the parent sets a 4-digit PIN (entered twice). They may additionally enable Face ID / Touch ID. They may remove the lock (requires the current PIN). A lock requires a PIN; biometric is an optional convenience on top.
+- **When NO lock is set:** the 3-second hold alone exits, as in 51.2.
+- **When a lock IS set:** the 3-second hold remains the trigger, but on completion it requires authentication before exiting — Face ID / Touch ID first (if enabled and available), falling back to the 4-digit PIN pad on biometric failure/unavailability. The hold alone no longer exits (a child can't bypass the lock by holding). Cancelling the auth leaves Kids mode ON.
+- **Storage / security:** the PIN is never stored in plaintext — only a random per-setup salt and the salted SHA-256 hash (`crypto`). Threat model is a young child, so a salted hash in `UserPreferences` is sufficient (no keychain dependency). New fields: `parentLockPinHash`, `parentLockSalt`, `parentLockBiometricEnabled`.
+- **Recovery:** if the parent forgets the PIN, deleting + reinstalling the app clears it (preferences are wiped on delete). No in-app recovery in v1.
+
+**Implementation:**
+- `lib/core/parent_lock.dart` — pure salt/hash/verify helpers + PIN-format check.
+- `AppStateNotifier`: `setParentLockPin`, `clearParentLock`, `setParentLockBiometric`, `verifyParentPin`. `UserPreferences.hasParentLock` getter.
+- Biometric via the `local_auth` package (+ `NSFaceIDUsageDescription` in Info.plist).
+- The exit gate (`_KidModeToggle`) runs the auth flow on hold-complete when `hasParentLock`.
+
 ---
 
 ## Living Sky Theme

@@ -96,6 +96,12 @@ class UserPreferences {
   final int currentStreak; // Consecutive days of listening
   final String? lastListenDate; // ISO date string (yyyy-MM-dd) of last listen
 
+  // Parent Lock (SPEC Feature 51.6) — optional gate on exiting Kids mode.
+  // The PIN is never stored in plaintext: only a salted SHA-256 hash.
+  final String? parentLockPinHash;
+  final String? parentLockSalt;
+  final bool parentLockBiometricEnabled; // Face ID / Touch ID for exit
+
   const UserPreferences({
     this.userName = '',
     required this.bibleTranslation,
@@ -119,6 +125,9 @@ class UserPreferences {
     this.sleepTimerMinutes = 5,
     this.currentStreak = 0,
     this.lastListenDate,
+    this.parentLockPinHash,
+    this.parentLockSalt,
+    this.parentLockBiometricEnabled = false,
   });
 
   /// Default preferences for first-time users
@@ -188,6 +197,10 @@ class UserPreferences {
       sleepTimerMinutes: json['sleepTimerMinutes'] as int? ?? 5,
       currentStreak: json['currentStreak'] as int? ?? 0,
       lastListenDate: json['lastListenDate'] as String?,
+      parentLockPinHash: json['parentLockPinHash'] as String?,
+      parentLockSalt: json['parentLockSalt'] as String?,
+      parentLockBiometricEnabled:
+          json['parentLockBiometricEnabled'] as bool? ?? false,
     );
   }
 
@@ -214,6 +227,9 @@ class UserPreferences {
       'sleepTimerMinutes': sleepTimerMinutes,
       'currentStreak': currentStreak,
       'lastListenDate': lastListenDate,
+      'parentLockPinHash': parentLockPinHash,
+      'parentLockSalt': parentLockSalt,
+      'parentLockBiometricEnabled': parentLockBiometricEnabled,
     };
   }
 
@@ -244,6 +260,13 @@ class UserPreferences {
     int? sleepTimerMinutes,
     int? currentStreak,
     String? lastListenDate,
+    String? parentLockPinHash,
+    String? parentLockSalt,
+    bool? parentLockBiometricEnabled,
+    // Pass true to remove the parent lock (nulls the PIN hash/salt and
+    // disables biometric). Needed because copyWith can't otherwise set
+    // nullable fields back to null.
+    bool resetParentLock = false,
   }) {
     // RUNTIME GUARD: Validate translation if provided
     final validatedTranslation = bibleTranslation != null
@@ -281,12 +304,24 @@ class UserPreferences {
       sleepTimerMinutes: sleepTimerMinutes ?? this.sleepTimerMinutes,
       currentStreak: currentStreak ?? this.currentStreak,
       lastListenDate: lastListenDate ?? this.lastListenDate,
+      parentLockPinHash:
+          resetParentLock ? null : (parentLockPinHash ?? this.parentLockPinHash),
+      parentLockSalt:
+          resetParentLock ? null : (parentLockSalt ?? this.parentLockSalt),
+      parentLockBiometricEnabled: resetParentLock
+          ? false
+          : (parentLockBiometricEnabled ?? this.parentLockBiometricEnabled),
     );
   }
 
   /// Check if onboarding is complete (has required fields)
   bool get isOnboardingComplete =>
       hasCompletedOnboarding && bibleTranslation.isNotEmpty;
+
+  /// True when a parent lock (PIN, optionally biometric) is configured.
+  /// When set, exiting Kids mode requires authentication (SPEC Feature 51.6).
+  bool get hasParentLock =>
+      parentLockPinHash != null && parentLockSalt != null;
 
   // === Voice Consent Helpers ===
 
