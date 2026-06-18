@@ -21,6 +21,7 @@ import '../pal/opening/pal_opening_recency.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/living_sky.dart';
 import '../onboarding/first_launch_screen.dart' show kPalIntroShownKey;
+import '../kids/parent_lock_flows.dart';
 import '../settings/settings_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/services.dart' show HapticFeedback;
@@ -1155,11 +1156,21 @@ class _KidModeToggleState extends ConsumerState<_KidModeToggle>
     _holdController.reset();
   }
 
-  void _completeExit() {
+  Future<void> _completeExit() async {
     HapticFeedback.mediumImpact();
     setState(() => _holding = false);
     _holdController.reset();
-    ref.read(appStateProvider.notifier).updateKidFriendlyOnly(false);
+
+    // Parent lock (SPEC Feature 51.6): when set, the completed hold must be
+    // confirmed by Face ID / Touch ID or the 4-digit PIN before exiting.
+    // Failing/cancelling auth leaves Kids mode ON.
+    final prefs = ref.read(appStateProvider).valueOrNull?.userPreferences;
+    if (prefs?.hasParentLock ?? false) {
+      final authed = await authenticateParent(context, ref);
+      if (!authed) return;
+    }
+
+    await ref.read(appStateProvider.notifier).updateKidFriendlyOnly(false);
   }
 
   @override

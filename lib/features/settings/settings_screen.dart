@@ -7,6 +7,8 @@ import '../../core/diagnostics_config.dart';
 import '../../core/pal_voice_registry.dart';
 import '../../theme/living_sky.dart';
 import '../../widgets/living_sky_background.dart';
+import '../../services/biometric_auth_service.dart';
+import '../kids/parent_lock_flows.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
@@ -179,6 +181,101 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     );
   }
 
+  // === Parent Lock (SPEC Feature 51.6) ===
+
+  List<Widget> _buildParentLockSection(SkyPalette palette) {
+    final prefs = ref.watch(appStateProvider).valueOrNull?.userPreferences;
+    final hasLock = prefs?.hasParentLock ?? false;
+    final bioOn = prefs?.parentLockBiometricEnabled ?? false;
+
+    return [
+      _SectionHeader(title: 'Parent Lock', palette: palette),
+      const SizedBox(height: 4),
+      if (!hasLock)
+        _SettingRow(
+          title: 'Set Up Parent Lock',
+          subtitle: 'Require a PIN to exit Kids mode',
+          palette: palette,
+          trailing:
+              Icon(Icons.lock_outline, size: 20, color: palette.subtitleColor),
+          onTap: _setUpParentLock,
+        )
+      else ...[
+        _SettingRow(
+          title: 'Change PIN',
+          subtitle: 'Update the 4-digit exit PIN',
+          palette: palette,
+          trailing: Icon(Icons.chevron_right, color: palette.subtitleColor),
+          onTap: _changeParentPin,
+        ),
+        const SizedBox(height: 2),
+        _SettingRow(
+          title: 'Use Face ID / Touch ID',
+          subtitle: 'Unlock with biometrics, PIN as fallback',
+          palette: palette,
+          trailing: Switch(
+            value: bioOn,
+            activeColor: palette.warmHighlight,
+            onChanged: _setParentBiometric,
+          ),
+          onTap: () => _setParentBiometric(!bioOn),
+        ),
+        const SizedBox(height: 2),
+        _SettingRow(
+          title: 'Remove Parent Lock',
+          subtitle: 'Exit will use the 3-second hold only',
+          palette: palette,
+          trailing:
+              Icon(Icons.delete_outline, size: 20, color: palette.subtitleColor),
+          onTap: _removeParentLock,
+        ),
+      ],
+    ];
+  }
+
+  Future<void> _setUpParentLock() async {
+    final ok = await setupParentPin(context, ref);
+    if (!mounted || !ok) return;
+    _snack('Parent lock set');
+  }
+
+  Future<void> _changeParentPin() async {
+    final authed =
+        await authenticateParent(context, ref, reason: 'Change parent PIN');
+    if (!mounted || !authed) return;
+    final ok = await setupParentPin(context, ref);
+    if (!mounted || !ok) return;
+    _snack('PIN updated');
+  }
+
+  Future<void> _setParentBiometric(bool enable) async {
+    if (enable) {
+      final available =
+          await ref.read(biometricAuthServiceProvider).isAvailable();
+      if (!mounted) return;
+      if (!available) {
+        _snack('No Face ID / Touch ID is set up on this device');
+        return;
+      }
+    }
+    await ref.read(appStateProvider.notifier).setParentLockBiometric(enable);
+  }
+
+  Future<void> _removeParentLock() async {
+    final authed =
+        await authenticateParent(context, ref, reason: 'Remove parent lock');
+    if (!mounted || !authed) return;
+    await ref.read(appStateProvider.notifier).clearParentLock();
+    if (!mounted) return;
+    _snack('Parent lock removed');
+  }
+
+  void _snack(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message), duration: const Duration(seconds: 2)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final palette = LivingSky.getPalette(LivingSky.getPhase());
@@ -286,6 +383,11 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                           ),
                   ),
                 ],
+
+                const SizedBox(height: 20),
+
+                // ── 3. Parent Lock (SPEC Feature 51.6) ──
+                ..._buildParentLockSection(palette),
 
                 const SizedBox(height: 20),
 
