@@ -7138,7 +7138,7 @@
       ],
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "audioFilePath": "traditional/1083/audio_1083_story_short_take1.mp3",
+      "audioFilePath": "traditional/1083/audio_1083_story_short.mp3",
       "textFilePath": "traditional/1083/story_1083_traditional_web_short.txt",
       "reflectionAudioPath": "",
       "translationId": "WEB",
@@ -7374,7 +7374,7 @@
         "grief",
         "hopeless"
       ],
-      "audioFilePath": "traditional/1083/audio_1083_story_short_take1.mp3",
+      "audioFilePath": "traditional/1083/audio_1083_story_short_kid.mp3",
       "textFilePath": "traditional/1083/story_1083_traditional_web_short_kid.txt",
       "reflectionAudioPath": "traditional/1083/audio_1083_reflection.mp3",
       "languageStyle": "WEB",
