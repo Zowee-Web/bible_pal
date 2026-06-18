@@ -69,6 +69,14 @@ const List<String> tagOrder = [
   'temptation',
   'waiting',
   'injustice',
+  // Kid situations — child's-life equivalents of the adult situation tags.
+  // Additive: adult stories carry none of these (and the kidFriendly filter keeps
+  // kid stories out of adult pools), so adult matching is unchanged.
+  'left_out',
+  'scared_dark',
+  'in_trouble',
+  'missing_someone',
+  'feeling_small',
 ];
 
 /// Map of tag -> keywords that trigger that tag.
@@ -288,6 +296,63 @@ const Map<String, List<String>> tagKeywords = {
     'double standard',
     'played favorites',
     'treated unfairly',
+  ],
+
+  // === KID SITUATIONS (5) ===
+  // Child's-life equivalents of the adult situation tags. Only kid stories are
+  // tagged with these; the kidFriendly filter keeps kid stories out of adult
+  // pools, and no adult story carries these tags, so adult ranking is unchanged.
+  'left_out': [
+    'left me out',
+    'no one played',
+    "wouldn't play with me",
+    "didn't play with me",
+    "didn't sit with me",
+    'picked last',
+    'no friends',
+    'nobody likes me',
+    'no one to play with',
+    'left me behind',
+  ],
+  'scared_dark': [
+    'scared of the dark',
+    'afraid of the dark',
+    'nightmare',
+    'bad dream',
+    'monster',
+    'scared to sleep',
+    'scary dream',
+    'under my bed',
+  ],
+  'in_trouble': [
+    'got in trouble',
+    'in trouble',
+    'did something bad',
+    'i was bad',
+    'i was naughty',
+    'i lied',
+    'did something wrong',
+    'broke it',
+  ],
+  'missing_someone': [
+    'miss my mom',
+    'miss my dad',
+    'miss mommy',
+    'miss daddy',
+    'miss grandma',
+    'miss grandpa',
+    'moved away',
+    'far from home',
+    'went away',
+  ],
+  'feeling_small': [
+    'too little',
+    'too small',
+    'just a kid',
+    "i'm little",
+    'too young',
+    'not big enough',
+    'everyone is bigger',
   ],
 };
 

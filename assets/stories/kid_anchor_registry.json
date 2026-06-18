@@ -35,7 +35,7 @@
     "fulfillmentMatch": "An anchor is fulfilled by kids_manifest.json stories whose scriptureAnchorId is in this anchor's manifestAnchorIds.",
     "generationStatus": "PAUSED until adult corpus closes (see memory project_kid_stories_deferred).",
     "lastUpdated": "2026-06-14",
-    "laneTranslation": "WEB-ONLY (Adam 2026-06-14). The kid lane uses WEB for everything — narrative retellings and verbatim comfort-ritual recitations (e.g. Psalm 23 = 'Yahweh is my shepherd'). No KJV lane for kids, unlike the adult corpus. Pre-staged comfort scripture lives at assets/stories/kids/scripture/scripture_*_web.txt.",
+    "laneTranslation": "WEB-ONLY (Adam 2026-06-14). DIVINE NAME (Adam 2026-06-15): use 'God' by default, 'the Lord' in a directly-quoted line that needs it ('The Lord is my shepherd'). 'Yahweh' is RARE + DELIBERATE — STORY RULE NOT A QUOTA: use it only when hearing God's name is part of the story (covenant-name stories), don't force ~5% or space them out; ~1-in-20 is the natural result, not a target. Covenant-name anchors: Burning Bush (Exodus 3, 'I AM' = single best), Psalm 23 (1803, done), Elijah at Mount Carmel ('Yahweh is God!'), Moses at Sinai / Ten Commandments. Do NOT use in Creation/Noah/David/Jesus-children/walking-on-water/Jairus/Good-Samaritan/Lost-Sheep etc. INTRODUCE GENTLY the first time with context ('God's special name in the Bible is Yahweh...'), never casually ('Yahweh made the stars' = wrong). Default 'God'; 'the Lord' in quoted lines. Full rule: docs/KID_STORY_PROMPT.md section 2. Still WEB-based (rendering choice, not copyright). No KJV lane. 1803 Psalm 23 = one deliberate instance, NOT to be changed (Adam).",
     "laneVoice": "Kid stories ROTATE narrator voices by content-fit (Adam 2026-06-14: 'different voices for different stories'). For each NEW anchor (1803+) pick the approved voice whose warm register best fits that story's tone; keep a gentle bedtime quality and a mix of male + female narrators (lean male ~60-65% per memory feedback_voice_distribution, use female warmth freely). NOT a single lane voice. Existing 1801 David + 1802 Jonah both use VOICE_DAVID_SHEPHERD and stay as-is (NOT re-rendered, per Adam). Banned voices always excluded (see memory feedback_voice_rules).",
     "productionIdBand": "anchorId is the canonical identity. Each anchor that has authored stories ALSO carries a numeric productionId in the reserved 1801+ band (one number per anchor; lengths are files inside kids/<productionId>/, mirroring the adult traditional/<id>/ layout). The number is a production/distribution handle for the existing numeric-keyed audio chain (compression, R2, T9, manifest audioFilePath); it does NOT replace anchorId. Assign lazily (next free number) when an anchor's first story is written. david_goliath = 1801.",
     "launchCutline": "Each anchor carries launch:true/false. launch:true = the v1 cutline (50 anchors); launch:false = deferred to the mature tier (24 anchors). Launch set = all core-tier anchors + the most-replayable secondary ones; obscure/heavier anchors (Paul's road, Gethsemane, lost coin, wisdom-list comfort entries) deferred. Center stays 4-7."
@@ -54,7 +54,11 @@
             "full"
           ],
           "longEligible": true,
-          "launch": true
+          "launch": true,
+          "manifestAnchorIds": [
+            "creation_days"
+          ],
+          "productionId": 1805
         },
         {
           "anchorId": "adam_eve",
@@ -65,7 +69,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1834,
+          "manifestAnchorIds": [
+            "genesis_2"
+          ]
         },
         {
           "anchorId": "garden_of_eden",
@@ -104,7 +112,11 @@
             "full"
           ],
           "sibling": "noah_flood",
-          "launch": true
+          "launch": true,
+          "manifestAnchorIds": [
+            "noah_promise"
+          ],
+          "productionId": 1808
         }
       ]
     },
@@ -120,7 +132,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1823,
+          "manifestAnchorIds": [
+            "genesis_12"
+          ]
         },
         {
           "anchorId": "abraham_stars",
@@ -188,7 +204,11 @@
             "full"
           ],
           "longEligible": true,
-          "launch": true
+          "launch": true,
+          "productionId": 1819,
+          "manifestAnchorIds": [
+            "genesis_45"
+          ]
         }
       ]
     },
@@ -204,7 +224,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "manifestAnchorIds": [
+            "baby_moses"
+          ],
+          "productionId": 1810
         },
         {
           "anchorId": "burning_bush",
@@ -215,7 +239,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1811,
+          "manifestAnchorIds": [
+            "burning_bush"
+          ]
         },
         {
           "anchorId": "red_sea",
@@ -227,7 +255,11 @@
             "full"
           ],
           "longEligible": true,
-          "launch": true
+          "launch": true,
+          "productionId": 1813,
+          "manifestAnchorIds": [
+            "red_sea"
+          ]
         },
         {
           "anchorId": "ten_commandments",
@@ -283,7 +315,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1818,
+          "manifestAnchorIds": [
+            "joshua_6"
+          ]
         }
       ]
     },
@@ -318,7 +354,8 @@
           "manifestAnchorIds": [
             "1_samuel_3"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1820
         },
         {
           "anchorId": "samuel_anoints_david",
@@ -496,7 +533,11 @@
             "full"
           ],
           "longEligible": true,
-          "launch": true
+          "launch": true,
+          "productionId": 1822,
+          "manifestAnchorIds": [
+            "daniel_3"
+          ]
         },
         {
           "anchorId": "daniel_lions_den",
@@ -510,7 +551,8 @@
           "manifestAnchorIds": [
             "daniel_6"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1814
         },
         {
           "anchorId": "writing_on_wall",
@@ -566,7 +608,11 @@
             "full"
           ],
           "sibling": "bethlehem_night",
-          "launch": true
+          "launch": true,
+          "productionId": 1824,
+          "manifestAnchorIds": [
+            "luke_1_26-38"
+          ]
         },
         {
           "anchorId": "bethlehem_night",
@@ -578,7 +624,11 @@
             "full"
           ],
           "longEligible": true,
-          "launch": true
+          "launch": true,
+          "productionId": 1829,
+          "manifestAnchorIds": [
+            "luke_2_1-7"
+          ]
         },
         {
           "anchorId": "shepherds_angels",
@@ -589,7 +639,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1833,
+          "manifestAnchorIds": [
+            "luke_2_8-20"
+          ]
         },
         {
           "anchorId": "wise_men",
@@ -600,7 +654,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "manifestAnchorIds": [
+            "wise_men"
+          ],
+          "productionId": 1809
         }
       ]
     },
@@ -613,9 +671,14 @@
           "scriptureRef": "John 2:1-11",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1830,
+          "manifestAnchorIds": [
+            "john_2_1-11"
+          ]
         },
         {
           "anchorId": "calming_storm",
@@ -626,7 +689,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1816,
+          "manifestAnchorIds": [
+            "mark_4_35-41"
+          ]
         },
         {
           "anchorId": "feeding_5000",
@@ -637,7 +704,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1825,
+          "manifestAnchorIds": [
+            "john_6_1-14"
+          ]
         },
         {
           "anchorId": "walking_on_water",
@@ -663,7 +734,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "manifestAnchorIds": [
+            "jesus_children"
+          ],
+          "productionId": 1807
         },
         {
           "anchorId": "heal_blind",
@@ -681,9 +756,14 @@
           "scriptureRef": "Mark 5:21-43",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": true
+          "launch": true,
+          "manifestAnchorIds": [
+            "jairus_daughter"
+          ],
+          "productionId": 1806
         },
         {
           "anchorId": "ten_lepers",
@@ -694,6 +774,21 @@
             "short"
           ],
           "launch": false
+        },
+        {
+          "anchorId": "zacchaeus",
+          "displayName": "Zacchaeus",
+          "scriptureRef": "Luke 19:1-10",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true,
+          "productionId": 1831,
+          "manifestAnchorIds": [
+            "luke_19_1-10"
+          ]
         }
       ]
     },
@@ -712,7 +807,8 @@
           "manifestAnchorIds": [
             "luke_10_25-37"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1815
         },
         {
           "anchorId": "lost_sheep",
@@ -726,7 +822,8 @@
           "manifestAnchorIds": [
             "luke_15_3-7"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1826
         },
         {
           "anchorId": "prodigal_son",
@@ -738,7 +835,11 @@
             "full"
           ],
           "longEligible": true,
-          "launch": true
+          "launch": true,
+          "productionId": 1817,
+          "manifestAnchorIds": [
+            "luke_15_11-32"
+          ]
         },
         {
           "anchorId": "mustard_seed",
@@ -748,7 +849,11 @@
           "targetLengths": [
             "short"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1828,
+          "manifestAnchorIds": [
+            "matthew_13_31-32"
+          ]
         },
         {
           "anchorId": "sower",
@@ -766,9 +871,14 @@
           "scriptureRef": "Matthew 7:24-27",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1827,
+          "manifestAnchorIds": [
+            "matthew_7_24-27"
+          ]
         },
         {
           "anchorId": "lost_coin",
@@ -804,7 +914,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1832,
+          "manifestAnchorIds": [
+            "matthew_21_1-11"
+          ]
         },
         {
           "anchorId": "last_supper",
@@ -836,19 +950,27 @@
             "full"
           ],
           "sibling": "empty_tomb",
-          "launch": true
+          "launch": true,
+          "productionId": 1821,
+          "manifestAnchorIds": [
+            "luke_23_32-49"
+          ]
         },
         {
           "anchorId": "empty_tomb",
           "displayName": "The Empty Tomb",
-          "scriptureRef": "Luke 24:1-12",
+          "scriptureRef": "Matthew 28:1-10",
           "tier": "core",
           "targetLengths": [
             "short",
             "full"
           ],
           "longEligible": true,
-          "launch": true
+          "launch": true,
+          "productionId": 1812,
+          "manifestAnchorIds": [
+            "empty_tomb"
+          ]
         }
       ]
     },
@@ -964,6 +1086,21 @@
             "short"
           ],
           "launch": false
+        },
+        {
+          "anchorId": "psalm_139",
+          "displayName": "God Made You (Psalm 139)",
+          "scriptureRef": "Psalm 139",
+          "tier": "core",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": true,
+          "productionId": 1835,
+          "manifestAnchorIds": [
+            "psalm_139"
+          ]
         }
       ]
     }

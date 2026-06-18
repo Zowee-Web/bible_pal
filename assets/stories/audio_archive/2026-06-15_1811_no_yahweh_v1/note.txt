@@ -1,0 +1,9 @@
+1811 The Burning Bush — superseded audio (short + full).
+
+These are the NO-Yahweh "I AM" renders ("...that 'I AM' has sent you. It was
+God's holy name."), committed in 2c8b6a17. Superseded 2026-06-15 when Yahweh was
+restored to 1811 per the kid divine-name doctrine (KID_STORY_PROMPT.md S2:
+"Yahweh" rare+deliberate; Burning Bush = the single-best covenant-name anchor).
+Replacement masters say "My name is Yahweh. Tell them I have sent you."
+
+Voice VOICE_ELIJAH_SAGE, eleven_turbo_v2_5. Reflection NOT archived (unchanged).

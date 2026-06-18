@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1811,
+  "anchorId": "burning_bush",
+  "kidLane": "dedicated-4-7",
+  "title": "The Burning Bush",
+  "scriptureAnchorId": "burning_bush",
+  "bibleSourceRef": "Exodus 3:1-15",
+  "bibleStoryKey": "burning_bush",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "wonder",
+    "faith"
+  ],
+  "themeTags": [
+    "Gods name",
+    "Gods call",
+    "presence of God",
+    "holiness"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "What do you think Moses felt when God spoke his name?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "DELIBERATE 'Yahweh' covenant-name story -- the doctrine's single-best Yahweh anchor (KID_STORY_PROMPT.md S2: rare+deliberate, story-rule-not-quota, use in Burning Bush). Name given by God himself ('My name is Yahweh'), framed gently as 'God's holy name' (not casual). Fear->reassurance ('I will be with you'). Part of the lane's 'God is with me / not alone' thread. One image: the bush that burns but is not burned up.",
+  "files": {
+    "short": {
+      "storyText": "story_1811_short.txt",
+      "audio": "audio_1811_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1811_full.txt",
+      "audio": "audio_1811_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1811.txt",
+      "audio": "audio_1811_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

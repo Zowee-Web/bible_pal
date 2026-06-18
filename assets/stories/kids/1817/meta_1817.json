@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1817,
+  "anchorId": "prodigal_son",
+  "kidLane": "dedicated-4-7",
+  "title": "The Loving Father",
+  "scriptureAnchorId": "luke_15_11-32",
+  "bibleSourceRef": "Luke 15:11-32",
+  "bibleStoryKey": "loving_father",
+  "translation": "WEB",
+  "mood": "grateful",
+  "emotionalTags": [
+    "in_trouble",
+    "grateful"
+  ],
+  "themeTags": [
+    "Gods love",
+    "forgiveness",
+    "homecoming",
+    "grace"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "What do you think it was like for the son to look up and see his father running to meet him?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "Framed on the FATHER (title 'The Loving Father'), per registry displayName. Younger son's wild living softened to 'spent it all'; pigs/hunger gentle; older-brother subplot OMITTED (age focus = God runs to welcome you home). One image: the old father running down the road. Receiving-side reflection. Adam: A+.",
+  "files": {
+    "short": {
+      "storyText": "story_1817_short.txt",
+      "audio": "audio_1817_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1817_full.txt",
+      "audio": "audio_1817_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1817.txt",
+      "audio": "audio_1817_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

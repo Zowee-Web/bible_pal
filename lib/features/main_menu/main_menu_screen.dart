@@ -27,6 +27,7 @@ import 'package:flutter/services.dart' show HapticFeedback;
 import '../../providers/parable_player_notifier.dart';
 import '../../models/parable.dart';
 import '../../core/story_length_bucket.dart';
+import '../../core/kid_feeling_cards.dart';
 import '../pals_parables/parable_player_screen.dart';
 import '../consent/voice_consent_dialog.dart';
 import '../../core/app_logger.dart';
@@ -207,6 +208,7 @@ class MainMenuScreen extends ConsumerWidget {
           child: _MainMenuBody(
             theme: theme,
             effectiveTheme: effectiveTheme,
+            kidMode: isKidMode,
             dailyBread: dailyBread,
             verseReference: verseReference,
           ),
@@ -220,12 +222,14 @@ class MainMenuScreen extends ConsumerWidget {
 class _MainMenuBody extends ConsumerStatefulWidget {
   final ThemeData theme;
   final ThemeData effectiveTheme;
+  final bool kidMode;
   final String dailyBread;
   final String verseReference;
 
   const _MainMenuBody({
     required this.theme,
     required this.effectiveTheme,
+    required this.kidMode,
     required this.dailyBread,
     required this.verseReference,
   });
@@ -283,7 +287,9 @@ class _MainMenuBodyState extends ConsumerState<_MainMenuBody> {
       backgroundColor: Colors.transparent,
       body: Stack(
         children: [
-          // Living Sky fills entire background, continuous across pages
+          // Living Sky fills entire background, continuous across pages.
+          // The time-of-day background is unchanged in Kids mode — only the
+          // PAL orb recolors (SPEC Feature 51.1).
           const LivingSkyBackground(),
           SafeArea(
             bottom: true,
@@ -334,6 +340,7 @@ class _MainMenuBodyState extends ConsumerState<_MainMenuBody> {
                         // Page 0: PAL Sanctuary (default landing)
                         _SanctuaryPage(
                           theme: widget.theme,
+                          kidMode: widget.kidMode,
                           dailyBread: widget.dailyBread,
                           verseReference: widget.verseReference,
                         ),
@@ -400,11 +407,13 @@ class _PageDots extends StatelessWidget {
 
 class _SanctuaryPage extends ConsumerWidget {
   final ThemeData theme;
+  final bool kidMode;
   final String dailyBread;
   final String verseReference;
 
   const _SanctuaryPage({
     required this.theme,
+    required this.kidMode,
     required this.dailyBread,
     required this.verseReference,
   });
@@ -417,8 +426,10 @@ class _SanctuaryPage extends ConsumerWidget {
       children: [
         const Spacer(flex: 3),
 
-        // PAL orb — THE hero, bigger and bolder
-        _PalButtonWithIntro(theme: theme),
+        // PAL orb — THE hero. Recolors to the warm Kids palette in kid
+        // mode; the rest of the Sanctuary keeps the time-of-day palette
+        // (SPEC Feature 51.1).
+        _PalButtonWithIntro(theme: theme, kidMode: kidMode),
 
         const SizedBox(height: 8),
 
@@ -887,61 +898,14 @@ class _StudyPageState extends ConsumerState<_StudyPage>
     if (mounted) _textFocusNode.unfocus();
   }
 
-  Widget _buildKidModePill(BuildContext context, SkyPalette palette) {
-    final appState = ref.watch(appStateProvider).valueOrNull;
-    final isOn = appState?.userPreferences.kidFriendlyOnly ?? false;
-
-    return GestureDetector(
-      onTap: () {
-        HapticFeedback.lightImpact();
-        ref.read(appStateProvider.notifier).updateKidFriendlyOnly(!isOn);
-      },
-      behavior: HitTestBehavior.opaque,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 180),
-        curve: Curves.easeOut,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        decoration: BoxDecoration(
-          color: isOn
-              ? palette.warmHighlight.withOpacity(0.08)
-              : palette.cardColor,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: isOn
-                ? palette.warmHighlight.withOpacity(0.8)
-                : palette.cardBorder,
-            width: isOn ? 2 : 1,
-          ),
-        ),
-        child: RichText(
-          text: TextSpan(
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w500,
-              color: isOn
-                  ? palette.foreground.primaryText
-                  : palette.foreground.secondaryText,
-              shadows: palette.foreground.subtitleShadow,
-            ),
-            children: [
-              const TextSpan(text: 'Kid Mode: '),
-              TextSpan(
-                text: isOn ? 'ON' : 'OFF',
-                style: TextStyle(
-                  color: isOn ? palette.warmHighlight : palette.foreground.tertiaryText,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final palette = LivingSky.getPalette(LivingSky.getPhase());
+    // Kids mode (SPEC Feature 51.3): feeling cards replace the adult mood
+    // buttons (in _ReservedPanel) and the typed text field is hidden.
+    final kidMode = ref.watch(appStateProvider).valueOrNull?.userPreferences
+            .kidFriendlyOnly ??
+        false;
 
     // Tap-outside-to-dismiss (Phase 3.2 polish). Opaque hit-test lets
     // taps on empty regions dismiss the keyboard while interactive
@@ -966,9 +930,12 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                       const SizedBox(height: 12),
 
                       // Heading — routes through foreground palette for
-                      // phase-aware contrast (Phase 3.2 global pass).
+                      // phase-aware contrast (Phase 3.2 global pass). Kids
+                      // mode uses a gentler, heart-centered prompt (51.3).
                       Text(
-                        'How are you feeling?',
+                        kidMode
+                            ? 'How is your heart today?'
+                            : 'How are you feeling?',
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
@@ -980,7 +947,9 @@ class _StudyPageState extends ConsumerState<_StudyPage>
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'Tap a mood and PAL will find a story for you',
+                        kidMode
+                            ? 'Tap how you feel and PAL will find a story'
+                            : 'Tap a mood and PAL will find a story for you',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
@@ -1032,8 +1001,9 @@ class _StudyPageState extends ConsumerState<_StudyPage>
 
                       const SizedBox(height: 8),
 
-                      // Kid Mode pill
-                      Center(child: _buildKidModePill(context, palette)),
+                      // Kid Mode pill — entering is a tap; exiting requires
+                      // the parent gate (hold 3s, SPEC Feature 51.2).
+                      Center(child: _KidModeToggle(palette: palette)),
 
                       const SizedBox(height: 12),
                     ],
@@ -1044,7 +1014,9 @@ class _StudyPageState extends ConsumerState<_StudyPage>
           ),
         ),
 
-        // Text PAL input — pinned to bottom
+        // Text PAL input — pinned to bottom. Hidden in Kids mode, where the
+        // feeling cards are the only input (no keyboard — SPEC Feature 51.3).
+        if (!kidMode)
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
           child: AnimatedBuilder(
@@ -1095,6 +1067,227 @@ class _StudyPageState extends ConsumerState<_StudyPage>
   }
 }
 
+// ---------------------------------------------------------------------------
+// Kid Mode toggle + parent gate (SPEC Feature 51.2)
+// ---------------------------------------------------------------------------
+
+/// The "Kid Mode" pill on the Mood page.
+///
+/// Entering Kids mode is a single tap. **Exiting** is guarded by the parent
+/// gate (SPEC Feature 51.2): the grown-up must press and hold the pill for
+/// [_kHoldToExit] before `kidFriendlyOnly` flips back to false. A tap while
+/// ON only nudges a "Hold to exit" hint — it never exits. This preserves the
+/// Kid Safety Contract Invariant (a child cannot wander out of Kids mode).
+class _KidModeToggle extends ConsumerStatefulWidget {
+  final SkyPalette palette;
+  const _KidModeToggle({required this.palette});
+
+  @override
+  ConsumerState<_KidModeToggle> createState() => _KidModeToggleState();
+}
+
+class _KidModeToggleState extends ConsumerState<_KidModeToggle>
+    with SingleTickerProviderStateMixin {
+  /// How long a grown-up must hold to exit Kids mode.
+  static const Duration _kHoldToExit = Duration(seconds: 3);
+
+  late final AnimationController _holdController;
+  bool _holding = false;
+
+  /// Whether the current press began while Kids mode was ON. The tap-up
+  /// action is decided from THIS, not the live state — so a press that began
+  /// as a hold-to-exit can never trigger "enter" on release, even if the gate
+  /// completed mid-hold and the pill rebuilt into the OFF (enter) state under
+  /// the still-down finger. (Fixes the "release re-enables Kids mode" bug.)
+  bool _pressStartedOn = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _holdController = AnimationController(vsync: this, duration: _kHoldToExit)
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _completeExit();
+        }
+      });
+  }
+
+  @override
+  void dispose() {
+    _holdController.dispose();
+    super.dispose();
+  }
+
+  void _enterKidMode() {
+    HapticFeedback.lightImpact();
+    ref.read(appStateProvider.notifier).updateKidFriendlyOnly(true);
+  }
+
+  void _onTapDown(bool isOn) {
+    _pressStartedOn = isOn;
+    if (isOn) {
+      // Begin the hold-to-exit gate.
+      HapticFeedback.selectionClick();
+      setState(() => _holding = true);
+      _holdController.forward(from: 0.0);
+    }
+  }
+
+  void _onTapUp() {
+    if (_pressStartedOn) {
+      // Released during a hold — cancel if the gate hasn't already fired.
+      // Never enters, even if the gate just completed under the finger.
+      _cancelHold();
+    } else {
+      // A tap that began while OFF → enter Kids mode (no gate on entry).
+      _enterKidMode();
+    }
+  }
+
+  void _onTapCancel() {
+    if (_pressStartedOn) _cancelHold();
+  }
+
+  void _cancelHold() {
+    if (!_holding) return;
+    setState(() => _holding = false);
+    _holdController.stop();
+    _holdController.reset();
+  }
+
+  void _completeExit() {
+    HapticFeedback.mediumImpact();
+    setState(() => _holding = false);
+    _holdController.reset();
+    ref.read(appStateProvider.notifier).updateKidFriendlyOnly(false);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final palette = widget.palette;
+    final appState = ref.watch(appStateProvider).valueOrNull;
+    final isOn = appState?.userPreferences.kidFriendlyOnly ?? false;
+
+    // One gesture detector for both states. Entering is a tap; exiting is a
+    // 3s hold. The tap-up branch is chosen from the state at tap-DOWN
+    // (_pressStartedOn), so a release after a completed exit does nothing.
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTapDown: (_) => _onTapDown(isOn),
+      onTapUp: (_) => _onTapUp(),
+      onTapCancel: _onTapCancel,
+      child: AnimatedBuilder(
+        animation: _holdController,
+        builder: (context, _) {
+          return _pill(
+            palette: palette,
+            isOn: isOn,
+            fill: isOn ? _holdController.value : 0.0,
+            label: isOn ? 'ON' : 'OFF',
+            hint: isOn
+                ? (_holding ? 'Keep holding to exit…' : 'Hold to exit')
+                : null,
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _pill({
+    required SkyPalette palette,
+    required bool isOn,
+    required double fill,
+    required String label,
+    required String? hint,
+  }) {
+    final borderRadius = BorderRadius.circular(20);
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        // Hint sits ABOVE the pill so the grown-up's finger doesn't cover it
+        // while holding to exit (SPEC Feature 51.2).
+        if (hint != null) ...[
+          Text(
+            hint,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: palette.foreground.tertiaryText,
+              letterSpacing: 0.2,
+              shadows: palette.foreground.subtitleShadow,
+            ),
+          ),
+          const SizedBox(height: 6),
+        ],
+        ClipRRect(
+          borderRadius: borderRadius,
+          child: Stack(
+            children: [
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 180),
+                curve: Curves.easeOut,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                decoration: BoxDecoration(
+                  color: isOn
+                      ? palette.warmHighlight.withOpacity(0.08)
+                      : palette.cardColor,
+                  borderRadius: borderRadius,
+                  border: Border.all(
+                    color: isOn
+                        ? palette.warmHighlight.withOpacity(0.8)
+                        : palette.cardBorder,
+                    width: isOn ? 2 : 1,
+                  ),
+                ),
+                child: RichText(
+                  text: TextSpan(
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      color: isOn
+                          ? palette.foreground.primaryText
+                          : palette.foreground.secondaryText,
+                      shadows: palette.foreground.subtitleShadow,
+                    ),
+                    children: [
+                      const TextSpan(text: 'Kid Mode: '),
+                      TextSpan(
+                        text: label,
+                        style: TextStyle(
+                          color: isOn
+                              ? palette.warmHighlight
+                              : palette.foreground.tertiaryText,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              // Hold-to-exit progress fill — grows left→right as the
+              // grown-up holds. Purely visual feedback for the gate.
+              if (fill > 0.0)
+                Positioned.fill(
+                  child: FractionallySizedBox(
+                    alignment: Alignment.centerLeft,
+                    widthFactor: fill.clamp(0.0, 1.0),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: palette.warmHighlight.withOpacity(0.25),
+                        borderRadius: borderRadius,
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 
 /// Voice mood flow states for the conversational PAL interaction on main menu.
 enum _VoiceFlowState {
@@ -1127,7 +1320,10 @@ enum _VoiceFlowState {
 class _PalButtonWithIntro extends ConsumerStatefulWidget {
   final ThemeData theme;
 
-  const _PalButtonWithIntro({required this.theme});
+  /// When true the orb recolors to the warm Kids palette (SPEC Feature 51.1).
+  final bool kidMode;
+
+  const _PalButtonWithIntro({required this.theme, this.kidMode = false});
 
   @override
   ConsumerState<_PalButtonWithIntro> createState() => _PalButtonWithIntroState();
@@ -1779,6 +1975,16 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
     // Micro-response: text always shown; audio gated behind useLegacyPal.
     final appState = ref.read(appStateProvider).valueOrNull;
+    // Kids-mode warm fallback (SPEC Feature 51.3): an unmatched spoken
+    // sentence lands on a joyful story instead of the weary no-match default.
+    // Scoped to story selection; the micro-response audio keeps result.mood.
+    final kidMode = appState?.userPreferences.kidFriendlyOnly ?? false;
+    final effectiveMood = kidMode
+        ? kidFallbackMood(
+            detectedMood: result.mood,
+            confidenceScore: result.confidenceScore,
+          )
+        : result.mood;
     final useLegacy = appState?.userPreferences.useLegacyPal ?? false;
     final voiceKey = appState?.userPreferences.palVoiceKey ?? PalVoiceRegistry.defaultVoiceKey;
 
@@ -1867,7 +2073,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     if (userPrefs != null) {
       final parableService = await ref.read(parableServiceProvider.future);
       previewKey = await parableService.previewBibleStoryKey(
-        mood: result.mood,
+        mood: effectiveMood,
         userPrefs: userPrefs,
         userText: transcript,
       );
@@ -1934,7 +2140,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     await selectStoryAndOpenPlayer(
       ref: ref,
       context: context,
-      mood: result.mood,
+      mood: effectiveMood,
       userText: transcript,
       bibleStoryKey: previewKey,
     );
@@ -2048,7 +2254,11 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   @override
   Widget build(BuildContext context) {
     final theme = widget.theme;
+    // All text/overlay tracks the time-of-day palette so it stays legible
+    // on the (unchanged) Living Sky background. Only the orb's own colors
+    // swap to the warm Kids palette in kid mode (SPEC Feature 51.1).
     final palette = LivingSky.getPalette(LivingSky.getPhase());
+    final orbPalette = LivingSky.resolvePalette(kidMode: widget.kidMode);
 
     if (!_introChecked) {
       return const SizedBox(height: 140);
@@ -2132,30 +2342,30 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
                           gradient: RadialGradient(
                             center: const Alignment(-0.3, -0.4),
                             radius: 1.1,
-                            colors: palette.orbGradientColors,
+                            colors: orbPalette.orbGradientColors,
                             stops: const [0.0, 0.55, 1.0],
                           ),
                           border: Border.all(
-                            color: AppTheme.warmGold.withOpacity(0.7),
+                            color: orbPalette.warmHighlight.withOpacity(0.7),
                             width: 1.5,
                           ),
                           boxShadow: [
                             // Ambient celestial glow — driven by breathing
                             BoxShadow(
-                              color: palette.orbGlowColor.withOpacity(ambientGlow),
+                              color: orbPalette.orbGlowColor.withOpacity(ambientGlow),
                               blurRadius: 32,
                               spreadRadius: 4,
                             ),
                             // Outer ring
                             BoxShadow(
-                              color: palette.orbGlowColor.withOpacity(ambientGlow * 0.4),
+                              color: orbPalette.orbGlowColor.withOpacity(ambientGlow * 0.4),
                               blurRadius: 60,
                               spreadRadius: 12,
                             ),
                             // Tap flash
                             if (tapGlow > 0.01)
                               BoxShadow(
-                                color: AppTheme.warmGold.withOpacity(tapGlow),
+                                color: orbPalette.warmHighlight.withOpacity(tapGlow),
                                 blurRadius: 48,
                                 spreadRadius: 10,
                               ),
@@ -2351,6 +2561,65 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   }
 }
 
+
+// ---------------------------------------------------------------------------
+// Feeling card tile — Kids mode tap-a-feeling input (SPEC Feature 51.3)
+// ---------------------------------------------------------------------------
+
+/// A single large emoji feeling card shown in the Kids-mode mood grid.
+/// Tapping it submits the card's canonical phrase into the mood pipeline.
+class _FeelingCardTile extends StatelessWidget {
+  final KidFeelingCard card;
+  final SkyPalette palette;
+  final VoidCallback onTap;
+
+  const _FeelingCardTile({
+    required this.card,
+    required this.palette,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 76,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(18),
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 6),
+            decoration: BoxDecoration(
+              color: palette.foreground.subtleSurface,
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(color: palette.foreground.subtleBorder),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(card.emoji, style: const TextStyle(fontSize: 30)),
+                const SizedBox(height: 6),
+                Text(
+                  card.label,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  style: TextStyle(
+                    fontSize: 11,
+                    height: 1.15,
+                    fontWeight: FontWeight.w600,
+                    color: palette.foreground.primaryText,
+                    shadows: palette.foreground.subtitleShadow,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 // ---------------------------------------------------------------------------
 // Reserved Panel — crossfades between IDLE / NOW PLAYING / FINISHED
@@ -2555,13 +2824,59 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
   // --------------- IDLE ---------------
 
   Widget _buildIdlePanel(ThemeData theme) {
+    // Kids mode swaps the adult mood buttons for the tap-a-feeling card grid
+    // (SPEC Feature 51.3). The selection engine is unchanged — a card tap
+    // submits a canonical phrase as userText, exactly like typing it.
+    final kidMode = ref.watch(appStateProvider).valueOrNull?.userPreferences
+            .kidFriendlyOnly ??
+        false;
     return Column(
       key: const ValueKey('idle'),
       mainAxisSize: MainAxisSize.min,
       children: [
-        _buildMoodButtons(theme),
+        kidMode ? _buildFeelingCards(theme) : _buildMoodButtons(theme),
       ],
     );
+  }
+
+  /// Tap-a-feeling card grid for Kids mode (SPEC Feature 51.3).
+  Widget _buildFeelingCards(ThemeData theme) {
+    final palette = LivingSky.getPalette(LivingSky.getPhase());
+    return Wrap(
+      spacing: 10,
+      runSpacing: 10,
+      alignment: WrapAlignment.center,
+      children: kidFeelingCards.map((card) {
+        return _FeelingCardTile(
+          card: card,
+          palette: palette,
+          onTap: () => _handleFeelingCardTap(card),
+        );
+      }).toList(),
+    );
+  }
+
+  Future<void> _handleFeelingCardTap(KidFeelingCard card) async {
+    HapticFeedback.lightImpact();
+    final appStateNotifier = ref.read(appStateProvider.notifier);
+    final moodResult =
+        appStateNotifier.moodService.detectMood(card.canonicalPhrase);
+    // Kids-mode warm fallback: cards always carry a keyword, so this only
+    // matters if the engine ever returns the no-match default.
+    final mood = kidFallbackMood(
+      detectedMood: moodResult.mood,
+      confidenceScore: moodResult.confidenceScore,
+    );
+    appStateNotifier.updateLastDetectedMood(mood);
+    await selectStoryAndOpenPlayer(
+      ref: ref,
+      context: context,
+      mood: mood,
+      // Pass the canonical phrase so RelatabilityMatcher can rank the kid
+      // pool by the situation tags the phrase carries.
+      userText: card.canonicalPhrase,
+    );
+    if (mounted) FocusScope.of(context).unfocus();
   }
 
   // --------------- NOW PLAYING ---------------

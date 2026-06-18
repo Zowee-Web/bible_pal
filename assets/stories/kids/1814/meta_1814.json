@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1814,
+  "anchorId": "daniel_lions_den",
+  "kidLane": "dedicated-4-7",
+  "title": "Daniel in the Lions' Den",
+  "scriptureAnchorId": "daniel_6",
+  "bibleSourceRef": "Daniel 6",
+  "bibleStoryKey": "daniel_lions_den",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "scared_dark",
+    "anxious"
+  ],
+  "themeTags": [
+    "faith",
+    "protection",
+    "presence of God",
+    "prayer"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Daniel felt safe with God close by. What helps you feel calm and safe?",
+  "hardContentFlags": [
+    "peril_animals_softened"
+  ],
+  "kidSafetyNotes": "SUPERSEDES legacy kid_102 (fixes its scripture error: the old one had 'Daniel ascended to the throne' -- never happened, gone). Lions are awe-not-terror ('lay down... quiet and calm, like great gentle cats'); accusers' fate omitted. Mood calm_peaceful (Daniel's peace), not courage. Part of the 'God is with me / not alone' thread.",
+  "files": {
+    "short": {
+      "storyText": "story_1814_short.txt",
+      "audio": "audio_1814_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1814_full.txt",
+      "audio": "audio_1814_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1814.txt",
+      "audio": "audio_1814_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

@@ -609,8 +609,10 @@ class ParableService {
       userPrefs: userPrefs,
     );
 
-    // Also fetch pools for similar moods
-    final similarMoods = MoodSimilarity.getSimilar(mood);
+    // Also fetch pools for similar moods (kid mode adds the kid-only bridges so
+    // a scared/sorry child can reach the triumphant stories — Furnace, Loving Father).
+    final similarMoods =
+        MoodSimilarity.getSimilar(mood, kidMode: userPrefs.kidFriendlyOnly);
     final similarPools = <Parable>[];
     for (final similarMood in similarMoods) {
       final pool = await getEligibleParables(
@@ -769,6 +771,7 @@ class ParableService {
       pool: combinedPool,
       playedStoryIds: recentStoryIds,
       playHistory: playHistory,
+      kidMode: userPrefs.kidFriendlyOnly,
     );
 
     if (result == null) {

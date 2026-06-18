@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1824,
+  "anchorId": "mary_says_yes",
+  "kidLane": "dedicated-4-7",
+  "title": "Mary Says Yes",
+  "scriptureAnchorId": "luke_1_26-38",
+  "bibleSourceRef": "Luke 1:26-38",
+  "bibleStoryKey": "mary_says_yes",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "wonder",
+    "faith"
+  ],
+  "themeTags": [
+    "faith",
+    "Gods plan",
+    "trust",
+    "Jesus is coming"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "What do you think Mary felt when the angel told her she would be the mother of Jesus?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "Gentle wonder. Angel's greeting + 'nothing is impossible with God' + Mary's trusting 'yes' (her real words softened: 'let it happen just as you have said'). Grounding: an ordinary little room + her chores, the plain walls lit up by the angel (child-can-see-it pass). Voice Mary Ponder (Luke 2:19 nod). Threads to 1821 -- the same Mary who says yes to the baby stands by him at the cross.",
+  "files": {
+    "short": {
+      "storyText": "story_1824_short.txt",
+      "audio": "audio_1824_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1824_full.txt",
+      "audio": "audio_1824_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1824.txt",
+      "audio": "audio_1824_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

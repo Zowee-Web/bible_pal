@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1828,
+  "anchorId": "mustard_seed",
+  "kidLane": "dedicated-4-7",
+  "title": "The Tiny Mustard Seed",
+  "scriptureAnchorId": "matthew_13_31-32",
+  "bibleSourceRef": "Matthew 13:31-32",
+  "bibleStoryKey": "mustard_seed",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "feeling_small",
+    "self_doubt",
+    "hope"
+  ],
+  "themeTags": [
+    "Gods kingdom",
+    "small beginnings",
+    "growth",
+    "hope"
+  ],
+  "lengths": [
+    "short"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "What do you think the little birds felt, building their nests high in the branches of that great and beautiful tree?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "PARABLE. SHORT-ONLY by design -- a 2-verse parable; a 'full' would require padding (honor its brevity, per length-bucket doctrine). 'God grows small things into something great and good and beautiful.' Gentle, no peril. One image: the seed too small to see -> the great tree with birds nesting in its branches.",
+  "files": {
+    "short": {
+      "storyText": "story_1828_short.txt",
+      "audio": "audio_1828_short.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1828.txt",
+      "audio": "audio_1828_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

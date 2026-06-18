@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1818,
+  "anchorId": "jericho",
+  "kidLane": "dedicated-4-7",
+  "title": "The Walls of Jericho",
+  "scriptureAnchorId": "joshua_6",
+  "bibleSourceRef": "Joshua 6",
+  "bibleStoryKey": "walls_of_jericho",
+  "translation": "WEB",
+  "mood": "brave_courage",
+  "emotionalTags": [
+    "feeling_small",
+    "anxious"
+  ],
+  "themeTags": [
+    "trust",
+    "Gods power",
+    "obedience",
+    "presence of God"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "What do you think it was like to march around those great walls so quietly, day after day, waiting?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "Joshua 6 adapted for ages 4-7 (Adam 2026-06-15): conquest/killing OMITTED entirely. Reframed from 'God has given us the city' / 'walked into the city' (dispossession) to Joshua shouting 'God is with us!' + a wonder ending ('all the things God could do'). Theme = TRUSTING God before you see anything happen (the quiet marching, the waiting). 'God is with us!' ties to the not-alone spine (faithful: the ark/God's presence is carried around Jericho). One image: the walls tumbling flat. Texture: kinetic/exterior/sound (marching, trumpets, shout, crash).",
+  "files": {
+    "short": {
+      "storyText": "story_1818_short.txt",
+      "audio": "audio_1818_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1818_full.txt",
+      "audio": "audio_1818_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1818.txt",
+      "audio": "audio_1818_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

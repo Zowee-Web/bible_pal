@@ -35,6 +35,23 @@ that's expected — it's the input, not the output. Always measure
 The values are hard-coded into [`scripts/loudnorm_audio.sh`](../scripts/loudnorm_audio.sh).
 Change them there only with corresponding doc + memory updates.
 
+### Kid-lane treatment
+
+The dedicated 4–7 kid lane (`assets/stories/kids/`) gets per-voice / per-reflection
+treatment so the mirror reproduces an ear-calibration done on a Bluetooth speaker
+(Adam, 2026-06-16). The sweep applies it automatically: `compress_audio.sh` asks
+`scripts/kid_audio_flags.py` for each kid clip's flags, and the recipe lives in
+[`scripts/kid_audio_overrides.json`](../scripts/kid_audio_overrides.json). Adult
+audio is unaffected.
+
+| Treatment | Applies to | Why |
+|-----------|-----------|-----|
+| **80 Hz high-pass** (`--highpass`) | **all** `kids/*` | ElevenLabs renders push plosives ("p"/"b") hot near 0 dBFS; the high-pass strips the sub-bass "thump". Near-silent on clean clips, a safety net when a pop lands. |
+| **250 Hz de-bloom** (`--debloom`, ~−4 dB bell) | **warm-voiced** narrators (every voice except the 5 `goodVoices`: David Shepherd, Arabella, James Husky, Archer, Miriam Joyful) | Warm voices have extra low-mid body that bass-boosting speakers over-emphasize, so they read "loud" regardless of level — dropping volume doesn't fix it, an EQ cut at the bloom does. The bright "good" voices don't bloom, so they're left untouched. |
+| **Reflection loudness** (`--target=`) | reflections | Short, flat, forward **v3** reflections perceive louder than the **turbo** stories, so they sit below −18: **−21** for good voices, **−22.5** for warm voices (post-de-bloom), with per-id overrides (1816/1821 = −21, 1820 = −23). A residual "a touch louder" remains because v3 ≠ turbo — accepted rather than lose v3's question intonation or push reflections too quiet. |
+
+Stories normalize to the standard **−18**; only the warm-voiced ones additionally get the de-bloom.
+
 ---
 
 ## The two scripts

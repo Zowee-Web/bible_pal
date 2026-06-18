@@ -12,7 +12,13 @@
 # Encoder: libmp3lame, 64 kbps CBR, mono, 22050 Hz.
 #
 # Usage:
-#   ./scripts/loudnorm_audio.sh <input.mp3> <output.mp3> [--force]
+#   ./scripts/loudnorm_audio.sh <input.mp3> <output.mp3> [--force] [--highpass] [--target=<LUFS>]
+#
+# --highpass: 80 Hz high-pass before normalization to strip plosive "thump".
+#             Off by default (adult audio unchanged); the kid lane uses it.
+# --target=<LUFS>: override the -18 integrated target. Used for kid REFLECTIONS,
+#             which are short + flat + (v3) forward, so they perceive louder than
+#             the dynamic stories at the same -18; reflections render at -21.
 #
 # Default behavior is idempotent: if <output.mp3> already exists, the
 # script prints "SKIP (exists)" and exits 0 without touching anything.
@@ -55,13 +61,41 @@ fi
 
 IN="$1"
 OUT="$2"
+shift 2
 FORCE=false
-if [ "${3:-}" = "--force" ]; then
-  FORCE=true
-elif [ -n "${3:-}" ]; then
-  echo "ERROR: unknown flag: $3" >&2
-  exit 2
+HIGHPASS=false
+DEBLOOM=false
+for arg in "$@"; do
+  case "$arg" in
+    --force)     FORCE=true ;;
+    --highpass)  HIGHPASS=true ;;
+    --debloom)   DEBLOOM=true ;;
+    --target=*)  TARGET_I="${arg#*=}" ;;
+    *) echo "ERROR: unknown flag: $arg" >&2; exit 2 ;;
+  esac
+done
+
+# Optional high-pass to strip sub-bass plosive "thump" (used by the KID lane;
+# ElevenLabs renders push plosives hot near 0 dBFS). 80 Hz is inaudible-safe for
+# narration and removes the pop at the source. OFF by default — adults unchanged.
+HP_PREFIX=""
+if [ "$HIGHPASS" = "true" ]; then
+  HP_PREFIX="highpass=f=80,"
 fi
+
+# Optional low-mid "de-bloom" — a gentle bell cut at 250 Hz. Warm-voiced kid
+# narrators bloom in the ~150-350 Hz region, which bass-boosting Bluetooth
+# speakers over-emphasize, so the voice reads "loud" regardless of level. A ~4 dB
+# cut tames it at the source (a standard spoken-word de-mud) without losing
+# intelligibility. Placed before loudnorm so the integrated target still lands on
+# TARGET_I. OFF by default — adults and bright-voiced clips unaffected.
+DEBLOOM_PREFIX=""
+if [ "$DEBLOOM" = "true" ]; then
+  DEBLOOM_PREFIX="equalizer=f=250:width_type=q:w=1.0:g=-4,"
+fi
+
+# Combined pre-loudnorm filter prefix (high-pass then de-bloom).
+PRE="${HP_PREFIX}${DEBLOOM_PREFIX}"
 
 if [ ! -f "$IN" ]; then
   echo "ERROR: input not found: $IN" >&2
@@ -82,7 +116,7 @@ mkdir -p "$(dirname "$OUT")"
 
 # ── Pass 1: measure integrated loudness on the raw input ────────────
 JSON=$(ffmpeg -hide_banner -nostdin -i "$IN" \
-  -af "loudnorm=I=${TARGET_I}:TP=${TARGET_TP}:LRA=${TARGET_LRA}:print_format=json" \
+  -af "${PRE}loudnorm=I=${TARGET_I}:TP=${TARGET_TP}:LRA=${TARGET_LRA}:print_format=json" \
   -f null - 2>&1 | sed -n '/^{/,/^}/p')
 
 extract() {
@@ -110,7 +144,7 @@ TOTAL_DUR=$(echo "$DUR + 0.3 + ${TAIL_PAD_S}" | bc -l)
 FADE_OUT_ST=$(echo "$TOTAL_DUR - ${FADE_S}" | bc -l)
 
 # ── Pass 2: apply with measured values + pad + fades + re-encode ────
-FILTERS="adelay=${HEAD_PAD_MS},apad=pad_dur=${TAIL_PAD_S},loudnorm=I=${TARGET_I}:TP=${TARGET_TP}:LRA=${TARGET_LRA}:measured_I=${MI}:measured_TP=${MTP}:measured_LRA=${MLRA}:measured_thresh=${MTH}:offset=${OFF}:linear=true,afade=t=in:d=${FADE_S},afade=t=out:st=${FADE_OUT_ST}:d=${FADE_S}"
+FILTERS="${PRE}adelay=${HEAD_PAD_MS},apad=pad_dur=${TAIL_PAD_S},loudnorm=I=${TARGET_I}:TP=${TARGET_TP}:LRA=${TARGET_LRA}:measured_I=${MI}:measured_TP=${MTP}:measured_LRA=${MLRA}:measured_thresh=${MTH}:offset=${OFF}:linear=true,afade=t=in:d=${FADE_S},afade=t=out:st=${FADE_OUT_ST}:d=${FADE_S}"
 
 if ! ffmpeg -hide_banner -nostdin -loglevel error -y -i "$IN" \
   -af "$FILTERS" \

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1834,
+  "anchorId": "adam_eve",
+  "kidLane": "dedicated-4-7",
+  "title": "The First Garden",
+  "scriptureAnchorId": "genesis_2",
+  "bibleSourceRef": "Genesis 2",
+  "bibleStoryKey": "first_garden",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "wonder",
+    "grateful"
+  ],
+  "themeTags": [
+    "the world is beautiful",
+    "wonder",
+    "Gods creation",
+    "Gods care"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "If you could have given a name to one of the animals in that first garden, which animal would you choose?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "'The world is beautiful' register. Adam naming the animals in the garden -- NO fall/sin (separate, harder story); pure wonder + the kid-delightful animal-naming. Distinct from 1805 creation_days (the 7 days); this is the garden/human angle. One image: the animals coming one by one to be named. Kid title 'The First Garden'.",
+  "files": {
+    "short": {
+      "storyText": "story_1834_short.txt",
+      "audio": "audio_1834_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1834_full.txt",
+      "audio": "audio_1834_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1834.txt",
+      "audio": "audio_1834_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

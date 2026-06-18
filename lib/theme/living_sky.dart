@@ -311,6 +311,17 @@ class LivingSky {
     }
   }
 
+  /// Resolves the active palette for the main menu surface.
+  ///
+  /// When [kidMode] is true the warm, time-independent [kids] palette is
+  /// returned so the PAL orb and Living Sky background recolor into Kids
+  /// mode (SPEC Feature 51.1). Otherwise the time-of-day phase palette is
+  /// used. Pass [phase] to override the auto-detected clock phase.
+  static SkyPalette resolvePalette({SkyPhase? phase, bool kidMode = false}) {
+    if (kidMode) return kids;
+    return getPalette(phase ?? getPhase());
+  }
+
   // ---------------------------------------------------------------------------
   // Palettes
   // ---------------------------------------------------------------------------
@@ -577,5 +588,31 @@ class LivingSky {
     chevronColor: Color(0xFFAABBCC),
     warmHighlight: Color(0xFFD4AF37),
     glowIntensity: 1.0,
+  );
+
+  /// Kids Mode — warm, time-independent peach/cream palette (SPEC Feature
+  /// 51.1). Mirrors the [SkyPhase] palettes so the existing PAL orb and
+  /// Living Sky background recolor without any new rendering path. Bright
+  /// background → black text bucket (matches Dawn/Day/Golden Hour). Reuses
+  /// the Kids color identity from `AppTheme` (warm peach, sunshine, cream).
+  static const kids = SkyPalette(
+    gradientColors: [Color(0xFFE6D5F5), Color(0xFFFFD8B8), Color(0xFFFFF8F0)],
+    gradientStops: [0.0, 0.5, 1.0],
+    particleColor: Color(0xFFFFD700), // sunshine gold sparkle
+    particleOpacity: 0.45,
+    orbGlowColor: Color(0xFFFFA07A), // warm peach
+    orbGradientColors: [
+      Color(0xFFFFC8A2),
+      Color(0xFFFFA07A),
+      Color(0xFFFF8C5A),
+    ],
+    textColor: Color(0xFF000000),
+    subtitleColor: Color(0xFF000000),
+    accentColor: Color(0xFFFFA07A),
+    cardColor: Color(0x25000000),
+    cardBorder: Color(0x20000000),
+    chevronColor: Color(0xFF6B5A4A),
+    warmHighlight: Color(0xFFFFA07A),
+    glowIntensity: 0.7,
   );
 }

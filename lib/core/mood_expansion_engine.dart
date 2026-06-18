@@ -46,9 +46,12 @@ class MoodExpansionEngine {
     required List<Parable> pool,
     required Set<String> playedStoryIds,
     Map<String, DateTime> playHistory = const {},
+    bool kidMode = false,
   }) {
     final exactPool = pool.where((p) => p.mood == selectedMood).toList();
-    final similarMoods = MoodSimilarity.getSimilar(selectedMood);
+    // kidMode unions the kid-only mood bridges so the bridged "triumphant"
+    // stories (already fetched into [pool]) are classified as similar, not dropped.
+    final similarMoods = MoodSimilarity.getSimilar(selectedMood, kidMode: kidMode);
     final similarPool =
         pool.where((p) => similarMoods.contains(p.mood)).toList();
 

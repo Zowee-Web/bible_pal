@@ -16,18 +16,387 @@
     ],
     "promotion": "Stories at status DONE are mirrored into assets/stories/manifest.json (kidFriendly: true) by scripts/promote_kid_stories.py.",
     "lengthBuckets": {
-      "3min": 350,
-      "5min": 600,
-      "10min": 1200,
-      "15min": 1800,
-      "20min": 2400,
-      "short": 250
+      "short": "250-450",
+      "full": "400-750",
+      "long": "700-1100 (special/exceptional anchors only)"
     },
-    "lengthNote": "Word targets inherited from the legacy CSV. Flag for review: 1800-2400w is long for ages 4-9; revisit when generation un-pauses.",
-    "lastUpdated": "2026-06-13",
-    "generationStatus": "PAUSED until adult corpus closes (see memory project_kid_stories_deferred)"
+    "lengthNote": "Kid word bands (Adam 2026-06-15) — serve the child, not the adult corpus. Replace the adult floors (short 300-500 / full 501-900), which were too long for gentle 4-7 bedtime prose and created a 'pad to satisfy the validator' incentive. short+full overlap 400-450 on purpose; pick by intent. Don't pad. Legacy time-bucket values (3min/5min/etc.) are gone; legacy stories still carry those lengthBucket strings until migrated.",
+    "lastUpdated": "2026-06-15",
+    "generationStatus": "ACTIVE (adult corpus closed 2026-06-14)"
   },
   "stories": [
+    {
+      "id": "kid_jairus_daughter_short",
+      "storyNumber": 1806,
+      "title": "Jairus' Little Girl",
+      "textFilePath": "kids/1806/story_1806_short.txt",
+      "scriptureAnchorId": "jairus_daughter",
+      "bibleStoryKey": "jairus_daughter",
+      "bibleSourceRef": "Mark 5:21-43",
+      "mood": "hurting",
+      "emotionalTags": [
+        "grief",
+        "sad"
+      ],
+      "themeTags": [
+        "healing",
+        "faith",
+        "compassion of Jesus"
+      ],
+      "lengthBucket": "short",
+      "targetWords": null,
+      "actualWords": 259,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": "kids/1806/audio_1806_short.mp3",
+      "reflectionAudioPath": "kids/1806/audio_1806_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "When you don't feel well, who do you like to have close to you?",
+      "kidSafetyNotes": "Hurting->hope. Death handled gently: Jesus says she is 'only sleeping' and wakes her (faithful to Mark 5:39). Bleeding-woman subplot omitted. One indelible image (held): Jesus takes her hand, 'it's time to get up'.",
+      "hardContentFlags": [
+        "death_handled_gently"
+      ]
+    },
+    {
+      "id": "kid_jairus_daughter_full",
+      "storyNumber": 1806,
+      "title": "Jairus' Little Girl",
+      "textFilePath": "kids/1806/story_1806_full.txt",
+      "scriptureAnchorId": "jairus_daughter",
+      "bibleStoryKey": "jairus_daughter",
+      "bibleSourceRef": "Mark 5:21-43",
+      "mood": "hurting",
+      "emotionalTags": [
+        "grief",
+        "sad"
+      ],
+      "themeTags": [
+        "healing",
+        "faith",
+        "compassion of Jesus"
+      ],
+      "lengthBucket": "full",
+      "targetWords": null,
+      "actualWords": 451,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": "kids/1806/audio_1806_full.mp3",
+      "reflectionAudioPath": "kids/1806/audio_1806_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "When you don't feel well, who do you like to have close to you?",
+      "kidSafetyNotes": "Hurting->hope. Death handled gently: Jesus says she is 'only sleeping' and wakes her (faithful to Mark 5:39). Bleeding-woman subplot omitted. One indelible image (held): Jesus takes her hand, 'it's time to get up'.",
+      "hardContentFlags": [
+        "death_handled_gently"
+      ]
+    },
+    {
+      "id": "kid_jesus_children_short",
+      "storyNumber": 1807,
+      "title": "Jesus and the Children",
+      "textFilePath": "kids/1807/story_1807_short.txt",
+      "scriptureAnchorId": "jesus_children",
+      "bibleStoryKey": "jesus_blesses_children",
+      "bibleSourceRef": "Mark 10:13-16",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "hope"
+      ],
+      "themeTags": [
+        "Jesus welcomes children",
+        "welcome",
+        "blessing"
+      ],
+      "lengthBucket": "short",
+      "targetWords": null,
+      "actualWords": 272,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": "kids/1807/audio_1807_short.mp3",
+      "reflectionAudioPath": "kids/1807/audio_1807_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "If you could climb up and sit with Jesus, what would you want to tell him?",
+      "kidSafetyNotes": "Joyful. Quoted 'God's kingdom belongs to little children' (NOT 'just like these' — avoids telling the child who they are). Ends on 'Jesus was glad they came' rather than 'still loves children today'. One image (held): Jesus opening his arms wide.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_jesus_children_full",
+      "storyNumber": 1807,
+      "title": "Jesus and the Children",
+      "textFilePath": "kids/1807/story_1807_full.txt",
+      "scriptureAnchorId": "jesus_children",
+      "bibleStoryKey": "jesus_blesses_children",
+      "bibleSourceRef": "Mark 10:13-16",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "hope"
+      ],
+      "themeTags": [
+        "Jesus welcomes children",
+        "welcome",
+        "blessing"
+      ],
+      "lengthBucket": "full",
+      "targetWords": null,
+      "actualWords": 405,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": "kids/1807/audio_1807_full.mp3",
+      "reflectionAudioPath": "kids/1807/audio_1807_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "If you could climb up and sit with Jesus, what would you want to tell him?",
+      "kidSafetyNotes": "Joyful. Quoted 'God's kingdom belongs to little children' (NOT 'just like these' — avoids telling the child who they are). Ends on 'Jesus was glad they came' rather than 'still loves children today'. One image (held): Jesus opening his arms wide.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_noah_promise_short",
+      "storyNumber": 1808,
+      "title": "Noah's Rainbow",
+      "textFilePath": "kids/1808/story_1808_short.txt",
+      "scriptureAnchorId": "noah_promise",
+      "bibleStoryKey": "noah_rainbow_promise",
+      "bibleSourceRef": "Genesis 8-9",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "hope",
+        "wonder"
+      ],
+      "themeTags": [
+        "Gods promise",
+        "new beginnings",
+        "faithfulness"
+      ],
+      "lengthBucket": "short",
+      "targetWords": null,
+      "actualWords": 273,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "audioFilePath": "kids/1808/audio_1808_short.mp3",
+      "reflectionAudioPath": "kids/1808/audio_1808_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think about when you see a rainbow?",
+      "kidSafetyNotes": "Encouraging. This is noah_promise (the rainbow), so the flood is gentle backstory only ('kept everyone safe') — no drowning/death shown. Centered on dove/leaf/rainbow/promise. One image: the rainbow stretched across the sky.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_noah_promise_full",
+      "storyNumber": 1808,
+      "title": "Noah's Rainbow",
+      "textFilePath": "kids/1808/story_1808_full.txt",
+      "scriptureAnchorId": "noah_promise",
+      "bibleStoryKey": "noah_rainbow_promise",
+      "bibleSourceRef": "Genesis 8-9",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "hope",
+        "wonder"
+      ],
+      "themeTags": [
+        "Gods promise",
+        "new beginnings",
+        "faithfulness"
+      ],
+      "lengthBucket": "full",
+      "targetWords": null,
+      "actualWords": 402,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "audioFilePath": "kids/1808/audio_1808_full.mp3",
+      "reflectionAudioPath": "kids/1808/audio_1808_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think about when you see a rainbow?",
+      "kidSafetyNotes": "Encouraging. This is noah_promise (the rainbow), so the flood is gentle backstory only ('kept everyone safe') — no drowning/death shown. Centered on dove/leaf/rainbow/promise. One image: the rainbow stretched across the sky.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_wise_men_short",
+      "storyNumber": 1809,
+      "title": "The Wise Men and the Star",
+      "textFilePath": "kids/1809/story_1809_short.txt",
+      "scriptureAnchorId": "wise_men",
+      "bibleStoryKey": "wise_men_star",
+      "bibleSourceRef": "Matthew 2:1-12",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "celebration"
+      ],
+      "themeTags": [
+        "seeking Jesus",
+        "the star",
+        "worship",
+        "gifts"
+      ],
+      "lengthBucket": "short",
+      "targetWords": null,
+      "actualWords": 263,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "audioFilePath": "kids/1809/audio_1809_short.mp3",
+      "reflectionAudioPath": "kids/1809/audio_1809_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "If you could give baby Jesus a gift, what would you want to bring him?",
+      "kidSafetyNotes": "Joyful/wonder. Herod and the slaughter of the innocents omitted entirely — just the star, the journey, the gifts, the joy. Ending reworked to land on wonder ('just as God had planned all along'). One image: the star stopping over the house.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_wise_men_full",
+      "storyNumber": 1809,
+      "title": "The Wise Men and the Star",
+      "textFilePath": "kids/1809/story_1809_full.txt",
+      "scriptureAnchorId": "wise_men",
+      "bibleStoryKey": "wise_men_star",
+      "bibleSourceRef": "Matthew 2:1-12",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "celebration"
+      ],
+      "themeTags": [
+        "seeking Jesus",
+        "the star",
+        "worship",
+        "gifts"
+      ],
+      "lengthBucket": "full",
+      "targetWords": null,
+      "actualWords": 413,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "audioFilePath": "kids/1809/audio_1809_full.mp3",
+      "reflectionAudioPath": "kids/1809/audio_1809_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "If you could give baby Jesus a gift, what would you want to bring him?",
+      "kidSafetyNotes": "Joyful/wonder. Herod and the slaughter of the innocents omitted entirely — just the star, the journey, the gifts, the joy. Ending reworked to land on wonder ('just as God had planned all along'). One image: the star stopping over the house.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_baby_moses_short",
+      "storyNumber": 1810,
+      "title": "Baby Moses",
+      "textFilePath": "kids/1810/story_1810_short.txt",
+      "scriptureAnchorId": "baby_moses",
+      "bibleStoryKey": "baby_moses_basket",
+      "bibleSourceRef": "Exodus 2:1-10",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "faith",
+        "wonder"
+      ],
+      "themeTags": [
+        "Gods protection",
+        "providence",
+        "family love"
+      ],
+      "lengthBucket": "short",
+      "targetWords": null,
+      "actualWords": 276,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "audioFilePath": "kids/1810/audio_1810_short.mp3",
+      "reflectionAudioPath": "kids/1810/audio_1810_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Who do you feel safe and cozy with at the end of the day?",
+      "kidSafetyNotes": "Calm/protection. Pharaoh's order softened all the way to 'a dangerous time for baby boys' — no killing named. God's care made gently explicit at the end. One image (held): the basket in the reeds / the mother getting to hold her son again.",
+      "hardContentFlags": [
+        "peril_infant_softened"
+      ]
+    },
+    {
+      "id": "kid_baby_moses_full",
+      "storyNumber": 1810,
+      "title": "Baby Moses",
+      "textFilePath": "kids/1810/story_1810_full.txt",
+      "scriptureAnchorId": "baby_moses",
+      "bibleStoryKey": "baby_moses_basket",
+      "bibleSourceRef": "Exodus 2:1-10",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "faith",
+        "wonder"
+      ],
+      "themeTags": [
+        "Gods protection",
+        "providence",
+        "family love"
+      ],
+      "lengthBucket": "full",
+      "targetWords": null,
+      "actualWords": 413,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "audioFilePath": "kids/1810/audio_1810_full.mp3",
+      "reflectionAudioPath": "kids/1810/audio_1810_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Who do you feel safe and cozy with at the end of the day?",
+      "kidSafetyNotes": "Calm/protection. Pharaoh's order softened all the way to 'a dangerous time for baby boys' — no killing named. God's care made gently explicit at the end. One image (held): the basket in the reeds / the mother getting to hold her son again.",
+      "hardContentFlags": [
+        "peril_infant_softened"
+      ]
+    },
+    {
+      "id": "kid_creation_days_short",
+      "storyNumber": 1805,
+      "title": "The World God Made",
+      "textFilePath": "kids/1805/story_1805_short.txt",
+      "scriptureAnchorId": "creation_days",
+      "bibleStoryKey": "creation",
+      "bibleSourceRef": "Genesis 1 - 2:3",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "wonder"
+      ],
+      "themeTags": [
+        "creation",
+        "wonder",
+        "Gods goodness",
+        "thankfulness"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 303,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+      "audioFilePath": "kids/1805/audio_1805_short.mp3",
+      "reflectionAudioPath": "kids/1805/audio_1805_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What is something in God's world that you are thankful for?",
+      "kidSafetyNotes": "Wonder pillar, pure (no hard content). Strict 'God did/made/saw' discipline (no 'to know him and love him'; no rest-explanation). Two-image symmetry darkness->stars.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_creation_days_full",
+      "storyNumber": 1805,
+      "title": "The World God Made",
+      "textFilePath": "kids/1805/story_1805_full.txt",
+      "scriptureAnchorId": "creation_days",
+      "bibleStoryKey": "creation",
+      "bibleSourceRef": "Genesis 1 - 2:3",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "wonder"
+      ],
+      "themeTags": [
+        "creation",
+        "wonder",
+        "Gods goodness",
+        "thankfulness"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 700,
+      "actualWords": 508,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+      "audioFilePath": "kids/1805/audio_1805_full.mp3",
+      "reflectionAudioPath": "kids/1805/audio_1805_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What is something in God's world that you are thankful for?",
+      "kidSafetyNotes": "Wonder pillar, pure (no hard content). Strict 'God did/made/saw' discipline (no 'to know him and love him'; no rest-explanation). Two-image symmetry darkness->stars.",
+      "hardContentFlags": []
+    },
     {
       "id": "kid_walking_on_water_short",
       "storyNumber": 1804,
@@ -38,9 +407,8 @@
       "bibleSourceRef": "Matthew 14:22-33",
       "mood": "anxious",
       "emotionalTags": [
-        "safe",
-        "courage",
-        "wonder"
+        "anxious",
+        "fear"
       ],
       "themeTags": [
         "trust",
@@ -72,9 +440,8 @@
       "bibleSourceRef": "Matthew 14:22-33",
       "mood": "anxious",
       "emotionalTags": [
-        "safe",
-        "courage",
-        "wonder"
+        "anxious",
+        "fear"
       ],
       "themeTags": [
         "trust",
@@ -107,9 +474,8 @@
       "bibleSourceRef": "Psalm 23",
       "mood": "weary",
       "emotionalTags": [
-        "safe",
-        "calm",
-        "comforted"
+        "overwhelmed",
+        "faith"
       ],
       "themeTags": [
         "comfort",
@@ -148,13 +514,15 @@
       "lengthBucket": "5min",
       "targetWords": 600,
       "actualWords": 617,
-      "status": "APPROVED",
+      "status": "SUPERSEDED",
       "narratorVoiceKey": null,
       "audioFilePath": null,
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "Benchmark for the lane: faithful, gentle, complete arc. Bedtime-coziness ending is on the cliche edge (see anti-clumping note).",
-      "hardContentFlags": []
+      "hardContentFlags": [],
+      "supersededBy": "kid_samuel_listens_full",
+      "supersededReason": "Replaced by dedicated 4-7 lane anchor samuel_listens (batch 3)"
     },
     {
       "id": "kid_114_samuel_3min",
@@ -175,13 +543,15 @@
       "lengthBucket": "3min",
       "targetWords": 350,
       "actualWords": 353,
-      "status": "APPROVED",
+      "status": "SUPERSEDED",
       "narratorVoiceKey": null,
       "audioFilePath": null,
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "Short cut of the 5min benchmark.",
-      "hardContentFlags": []
+      "hardContentFlags": [],
+      "supersededBy": "kid_samuel_listens_short",
+      "supersededReason": "Replaced by dedicated 4-7 lane anchor samuel_listens (batch 3)"
     },
     {
       "id": "kid_101_david_5min",
@@ -222,9 +592,8 @@
       "bibleSourceRef": "1 Samuel 17",
       "mood": "brave_courage",
       "emotionalTags": [
-        "courage",
-        "fear-to-courage",
-        "safe"
+        "feeling_small",
+        "courage"
       ],
       "themeTags": [
         "courage",
@@ -254,9 +623,8 @@
       "bibleSourceRef": "1 Samuel 17",
       "mood": "brave_courage",
       "emotionalTags": [
-        "courage",
-        "fear-to-courage",
-        "safe"
+        "feeling_small",
+        "courage"
       ],
       "themeTags": [
         "courage",
@@ -295,7 +663,7 @@
       "lengthBucket": "10min",
       "targetWords": 1200,
       "actualWords": 949,
-      "status": "NEEDS_REWRITE",
+      "status": "SUPERSEDED",
       "narratorVoiceKey": null,
       "audioFilePath": null,
       "reflectionText": null,
@@ -304,7 +672,9 @@
       "hardContentFlags": [
         "violence_threat",
         "scripture_contradiction"
-      ]
+      ],
+      "supersededBy": "kid_daniel_lions_den_short",
+      "supersededReason": "Replaced by dedicated 4-7 lane anchor (batch 2)"
     },
     {
       "id": "kid_110_esther_15min",
@@ -374,9 +744,8 @@
       "bibleSourceRef": "Jonah 1-4",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "safe",
         "wonder",
-        "mercy"
+        "faith"
       ],
       "themeTags": [
         "mercy",
@@ -408,9 +777,8 @@
       "bibleSourceRef": "Jonah 1-4",
       "mood": "calm_peaceful",
       "emotionalTags": [
-        "safe",
         "wonder",
-        "mercy"
+        "faith"
       ],
       "themeTags": [
         "mercy",
@@ -474,13 +842,15 @@
       "lengthBucket": "short",
       "targetWords": 250,
       "actualWords": 181,
-      "status": "REVIEW",
+      "status": "SUPERSEDED",
       "narratorVoiceKey": null,
       "audioFilePath": null,
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "Anchor inferred (Good Samaritan); confirm before approval.",
-      "hardContentFlags": []
+      "hardContentFlags": [],
+      "supersededBy": "kid_good_samaritan_short",
+      "supersededReason": "Replaced by dedicated 4-7 lane anchor (batch 2)"
     },
     {
       "id": "kid_502_lostsheep_short",
@@ -501,13 +871,15 @@
       "lengthBucket": "short",
       "targetWords": 250,
       "actualWords": 262,
-      "status": "REVIEW",
+      "status": "SUPERSEDED",
       "narratorVoiceKey": null,
       "audioFilePath": null,
       "reflectionText": null,
       "reflectionQuestion": null,
       "kidSafetyNotes": "Opening reads faithful (shepherd, 100 sheep, counts them). Confirm full arc + ending.",
-      "hardContentFlags": []
+      "hardContentFlags": [],
+      "supersededBy": "kid_lost_sheep_short",
+      "supersededReason": "Replaced by dedicated 4-7 lane anchor lost_sheep (batch 5)"
     },
     {
       "id": "kid_020_joyful_5min",
@@ -752,6 +1124,1576 @@
       "hardContentFlags": [
         "off_prompt_invented_character"
       ]
+    },
+    {
+      "id": "kid_burning_bush_short",
+      "storyNumber": 1811,
+      "title": "The Burning Bush",
+      "textFilePath": "kids/1811/story_1811_short.txt",
+      "scriptureAnchorId": "burning_bush",
+      "bibleStoryKey": "burning_bush",
+      "bibleSourceRef": "Exodus 3:1-15",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "faith"
+      ],
+      "themeTags": [
+        "Gods name",
+        "Gods call",
+        "presence of God",
+        "holiness"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 273,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "audioFilePath": "kids/1811/audio_1811_short.mp3",
+      "reflectionAudioPath": "kids/1811/audio_1811_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Moses felt when God spoke his name?",
+      "kidSafetyNotes": "FIRST deliberate 'Yahweh' story (covenant-name anchor). Name introduced gently with context ('God gave Moses something very special - his own name... It was God's holy name'), then stops to let the mystery breathe (Adam's edit). Fear->reassurance ('I will be with you'). Part of the lane's 'God is with me / not alone' thread. One image: the bush that burns but is not burned up.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_burning_bush_full",
+      "storyNumber": 1811,
+      "title": "The Burning Bush",
+      "textFilePath": "kids/1811/story_1811_full.txt",
+      "scriptureAnchorId": "burning_bush",
+      "bibleStoryKey": "burning_bush",
+      "bibleSourceRef": "Exodus 3:1-15",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "faith"
+      ],
+      "themeTags": [
+        "Gods name",
+        "Gods call",
+        "presence of God",
+        "holiness"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 406,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "audioFilePath": "kids/1811/audio_1811_full.mp3",
+      "reflectionAudioPath": "kids/1811/audio_1811_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Moses felt when God spoke his name?",
+      "kidSafetyNotes": "FIRST deliberate 'Yahweh' story (covenant-name anchor). Name introduced gently with context ('God gave Moses something very special - his own name... It was God's holy name'), then stops to let the mystery breathe (Adam's edit). Fear->reassurance ('I will be with you'). Part of the lane's 'God is with me / not alone' thread. One image: the bush that burns but is not burned up.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_empty_tomb_short",
+      "storyNumber": 1812,
+      "title": "The Empty Tomb",
+      "textFilePath": "kids/1812/story_1812_short.txt",
+      "scriptureAnchorId": "empty_tomb",
+      "bibleStoryKey": "resurrection_empty_tomb",
+      "bibleSourceRef": "Matthew 28:1-10",
+      "mood": "joyful",
+      "emotionalTags": [
+        "hope",
+        "wonder",
+        "celebration"
+      ],
+      "themeTags": [
+        "resurrection",
+        "hope",
+        "Jesus is alive",
+        "Easter"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 278,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1812/audio_1812_short.mp3",
+      "reflectionAudioPath": "kids/1812/audio_1812_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the women felt when they heard that Jesus was alive?",
+      "kidSafetyNotes": "Easter / empty_tomb = Sunday morning JOY (sibling of the_cross). Jesus's death is gentle backstory only ('Jesus had died... laid to rest'); the weight is on resurrection wonder. Adam: 'It is still true today' kept on purpose -- the resurrection is a proclamation, not a behavior to imitate (unlike a moral). One image: the empty tomb / folded grave cloths.",
+      "hardContentFlags": [
+        "death_handled_gently"
+      ]
+    },
+    {
+      "id": "kid_empty_tomb_full",
+      "storyNumber": 1812,
+      "title": "The Empty Tomb",
+      "textFilePath": "kids/1812/story_1812_full.txt",
+      "scriptureAnchorId": "empty_tomb",
+      "bibleStoryKey": "resurrection_empty_tomb",
+      "bibleSourceRef": "Matthew 28:1-10",
+      "mood": "joyful",
+      "emotionalTags": [
+        "hope",
+        "wonder",
+        "celebration"
+      ],
+      "themeTags": [
+        "resurrection",
+        "hope",
+        "Jesus is alive",
+        "Easter"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 409,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1812/audio_1812_full.mp3",
+      "reflectionAudioPath": "kids/1812/audio_1812_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the women felt when they heard that Jesus was alive?",
+      "kidSafetyNotes": "Easter / empty_tomb = Sunday morning JOY (sibling of the_cross). Jesus's death is gentle backstory only ('Jesus had died... laid to rest'); the weight is on resurrection wonder. Adam: 'It is still true today' kept on purpose -- the resurrection is a proclamation, not a behavior to imitate (unlike a moral). One image: the empty tomb / folded grave cloths.",
+      "hardContentFlags": [
+        "death_handled_gently"
+      ]
+    },
+    {
+      "id": "kid_red_sea_short",
+      "storyNumber": 1813,
+      "title": "Crossing the Red Sea",
+      "textFilePath": "kids/1813/story_1813_short.txt",
+      "scriptureAnchorId": "red_sea",
+      "bibleStoryKey": "red_sea_crossing",
+      "bibleSourceRef": "Exodus 14",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "anxious",
+        "scared_dark"
+      ],
+      "themeTags": [
+        "deliverance",
+        "trust",
+        "wonder",
+        "Gods rescue"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 305,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1813/audio_1813_short.mp3",
+      "reflectionAudioPath": "kids/1813/audio_1813_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it looked like, walking between two walls of water?",
+      "kidSafetyNotes": "Fear->trust->wonder->rescue (NOT punishment). Pharaoh's army drowning OMITTED ('the army could not follow them anymore'). 'Do not be afraid... God will take care of us.' One image: the two walls of water with the dry path between.",
+      "hardContentFlags": [
+        "peril_pursuit"
+      ]
+    },
+    {
+      "id": "kid_red_sea_full",
+      "storyNumber": 1813,
+      "title": "Crossing the Red Sea",
+      "textFilePath": "kids/1813/story_1813_full.txt",
+      "scriptureAnchorId": "red_sea",
+      "bibleStoryKey": "red_sea_crossing",
+      "bibleSourceRef": "Exodus 14",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "anxious",
+        "scared_dark"
+      ],
+      "themeTags": [
+        "deliverance",
+        "trust",
+        "wonder",
+        "Gods rescue"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 449,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1813/audio_1813_full.mp3",
+      "reflectionAudioPath": "kids/1813/audio_1813_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it looked like, walking between two walls of water?",
+      "kidSafetyNotes": "Fear->trust->wonder->rescue (NOT punishment). Pharaoh's army drowning OMITTED ('the army could not follow them anymore'). 'Do not be afraid... God will take care of us.' One image: the two walls of water with the dry path between.",
+      "hardContentFlags": [
+        "peril_pursuit"
+      ]
+    },
+    {
+      "id": "kid_daniel_lions_den_short",
+      "storyNumber": 1814,
+      "title": "Daniel in the Lions' Den",
+      "textFilePath": "kids/1814/story_1814_short.txt",
+      "scriptureAnchorId": "daniel_6",
+      "bibleStoryKey": "daniel_lions_den",
+      "bibleSourceRef": "Daniel 6",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "scared_dark",
+        "anxious"
+      ],
+      "themeTags": [
+        "faith",
+        "protection",
+        "presence of God",
+        "prayer"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 309,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1814/audio_1814_short.mp3",
+      "reflectionAudioPath": "kids/1814/audio_1814_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Daniel felt safe with God close by. What helps you feel calm and safe?",
+      "kidSafetyNotes": "SUPERSEDES legacy kid_102 (fixes its scripture error: the old one had 'Daniel ascended to the throne' -- never happened, gone). Lions are awe-not-terror ('lay down... quiet and calm, like great gentle cats'); accusers' fate omitted. Mood calm_peaceful (Daniel's peace), not courage. Part of the 'God is with me / not alone' thread.",
+      "hardContentFlags": [
+        "peril_animals_softened"
+      ]
+    },
+    {
+      "id": "kid_daniel_lions_den_full",
+      "storyNumber": 1814,
+      "title": "Daniel in the Lions' Den",
+      "textFilePath": "kids/1814/story_1814_full.txt",
+      "scriptureAnchorId": "daniel_6",
+      "bibleStoryKey": "daniel_lions_den",
+      "bibleSourceRef": "Daniel 6",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "scared_dark",
+        "anxious"
+      ],
+      "themeTags": [
+        "faith",
+        "protection",
+        "presence of God",
+        "prayer"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 464,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1814/audio_1814_full.mp3",
+      "reflectionAudioPath": "kids/1814/audio_1814_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Daniel felt safe with God close by. What helps you feel calm and safe?",
+      "kidSafetyNotes": "SUPERSEDES legacy kid_102 (fixes its scripture error: the old one had 'Daniel ascended to the throne' -- never happened, gone). Lions are awe-not-terror ('lay down... quiet and calm, like great gentle cats'); accusers' fate omitted. Mood calm_peaceful (Daniel's peace), not courage. Part of the 'God is with me / not alone' thread.",
+      "hardContentFlags": [
+        "peril_animals_softened"
+      ]
+    },
+    {
+      "id": "kid_good_samaritan_short",
+      "storyNumber": 1815,
+      "title": "The Good Samaritan",
+      "textFilePath": "kids/1815/story_1815_short.txt",
+      "scriptureAnchorId": "luke_10_25-37",
+      "bibleStoryKey": "good_samaritan",
+      "bibleSourceRef": "Luke 10:25-37",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "left_out",
+        "rejection"
+      ],
+      "themeTags": [
+        "love your neighbor",
+        "kindness",
+        "compassion",
+        "mercy"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 286,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "audioFilePath": "kids/1815/audio_1815_short.mp3",
+      "reflectionAudioPath": "kids/1815/audio_1815_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "When has someone been kind to you when you needed them?",
+      "kidSafetyNotes": "SUPERSEDES legacy kid_1005_neighbor_short. Robbery softened ('they hurt the man, and took all his things, and left him lying'); no blood/weapons. Care detailed gently (oil, cloth, cool water - Luke 10:34). Adam-locked ending kept verbatim: Jesus 'Now you know... Go and do the same' (the one story where an explicit do-this is faithful to the parable's point). One image: the Samaritan kneeling in the dust.",
+      "hardContentFlags": [
+        "violence_softened"
+      ]
+    },
+    {
+      "id": "kid_good_samaritan_full",
+      "storyNumber": 1815,
+      "title": "The Good Samaritan",
+      "textFilePath": "kids/1815/story_1815_full.txt",
+      "scriptureAnchorId": "luke_10_25-37",
+      "bibleStoryKey": "good_samaritan",
+      "bibleSourceRef": "Luke 10:25-37",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "left_out",
+        "rejection"
+      ],
+      "themeTags": [
+        "love your neighbor",
+        "kindness",
+        "compassion",
+        "mercy"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 409,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "audioFilePath": "kids/1815/audio_1815_full.mp3",
+      "reflectionAudioPath": "kids/1815/audio_1815_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "When has someone been kind to you when you needed them?",
+      "kidSafetyNotes": "SUPERSEDES legacy kid_1005_neighbor_short. Robbery softened ('they hurt the man, and took all his things, and left him lying'); no blood/weapons. Care detailed gently (oil, cloth, cool water - Luke 10:34). Adam-locked ending kept verbatim: Jesus 'Now you know... Go and do the same' (the one story where an explicit do-this is faithful to the parable's point). One image: the Samaritan kneeling in the dust.",
+      "hardContentFlags": [
+        "violence_softened"
+      ]
+    },
+    {
+      "id": "kid_calming_storm_short",
+      "storyNumber": 1816,
+      "title": "Jesus Calms the Storm",
+      "textFilePath": "kids/1816/story_1816_short.txt",
+      "scriptureAnchorId": "mark_4_35-41",
+      "bibleStoryKey": "jesus_calms_storm",
+      "bibleSourceRef": "Mark 4:35-41",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "scared_dark",
+        "overwhelmed"
+      ],
+      "themeTags": [
+        "trust",
+        "presence of God",
+        "peace",
+        "fear to faith"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 261,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
+      "audioFilePath": "kids/1816/audio_1816_short.mp3",
+      "reflectionAudioPath": "kids/1816/audio_1816_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it felt like in the boat when the wind grew quiet and the water went still?",
+      "kidSafetyNotes": "Storm is exciting-not-terrifying; no one drowns; fear->calm ('Why were you so afraid?'). Part of the 'God is with me / not alone' spine -- Jesus was in the boat the whole time. One image: Jesus asleep on the cushion while the waves crash, then glassy calm. Adam: A+ ('Jesus is with me even when I'm scared' -- not 'nothing bad will happen').",
+      "hardContentFlags": [
+        "peril_storm"
+      ]
+    },
+    {
+      "id": "kid_calming_storm_full",
+      "storyNumber": 1816,
+      "title": "Jesus Calms the Storm",
+      "textFilePath": "kids/1816/story_1816_full.txt",
+      "scriptureAnchorId": "mark_4_35-41",
+      "bibleStoryKey": "jesus_calms_storm",
+      "bibleSourceRef": "Mark 4:35-41",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "scared_dark",
+        "overwhelmed"
+      ],
+      "themeTags": [
+        "trust",
+        "presence of God",
+        "peace",
+        "fear to faith"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 414,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
+      "audioFilePath": "kids/1816/audio_1816_full.mp3",
+      "reflectionAudioPath": "kids/1816/audio_1816_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it felt like in the boat when the wind grew quiet and the water went still?",
+      "kidSafetyNotes": "Storm is exciting-not-terrifying; no one drowns; fear->calm ('Why were you so afraid?'). Part of the 'God is with me / not alone' spine -- Jesus was in the boat the whole time. One image: Jesus asleep on the cushion while the waves crash, then glassy calm. Adam: A+ ('Jesus is with me even when I'm scared' -- not 'nothing bad will happen').",
+      "hardContentFlags": [
+        "peril_storm"
+      ]
+    },
+    {
+      "id": "kid_prodigal_son_short",
+      "storyNumber": 1817,
+      "title": "The Loving Father",
+      "textFilePath": "kids/1817/story_1817_short.txt",
+      "scriptureAnchorId": "luke_15_11-32",
+      "bibleStoryKey": "loving_father",
+      "bibleSourceRef": "Luke 15:11-32",
+      "mood": "grateful",
+      "emotionalTags": [
+        "in_trouble",
+        "grateful"
+      ],
+      "themeTags": [
+        "Gods love",
+        "forgiveness",
+        "homecoming",
+        "grace"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 263,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "audioFilePath": "kids/1817/audio_1817_short.mp3",
+      "reflectionAudioPath": "kids/1817/audio_1817_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like for the son to look up and see his father running to meet him?",
+      "kidSafetyNotes": "Framed on the FATHER (title 'The Loving Father'), per registry displayName. Younger son's wild living softened to 'spent it all'; pigs/hunger gentle; older-brother subplot OMITTED (age focus = God runs to welcome you home). One image: the old father running down the road. Receiving-side reflection. Adam: A+.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_prodigal_son_full",
+      "storyNumber": 1817,
+      "title": "The Loving Father",
+      "textFilePath": "kids/1817/story_1817_full.txt",
+      "scriptureAnchorId": "luke_15_11-32",
+      "bibleStoryKey": "loving_father",
+      "bibleSourceRef": "Luke 15:11-32",
+      "mood": "grateful",
+      "emotionalTags": [
+        "in_trouble",
+        "grateful"
+      ],
+      "themeTags": [
+        "Gods love",
+        "forgiveness",
+        "homecoming",
+        "grace"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 428,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "audioFilePath": "kids/1817/audio_1817_full.mp3",
+      "reflectionAudioPath": "kids/1817/audio_1817_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like for the son to look up and see his father running to meet him?",
+      "kidSafetyNotes": "Framed on the FATHER (title 'The Loving Father'), per registry displayName. Younger son's wild living softened to 'spent it all'; pigs/hunger gentle; older-brother subplot OMITTED (age focus = God runs to welcome you home). One image: the old father running down the road. Receiving-side reflection. Adam: A+.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_jericho_short",
+      "storyNumber": 1818,
+      "title": "The Walls of Jericho",
+      "textFilePath": "kids/1818/story_1818_short.txt",
+      "scriptureAnchorId": "joshua_6",
+      "bibleStoryKey": "walls_of_jericho",
+      "bibleSourceRef": "Joshua 6",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "feeling_small",
+        "anxious"
+      ],
+      "themeTags": [
+        "trust",
+        "Gods power",
+        "obedience",
+        "presence of God"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 268,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "audioFilePath": "kids/1818/audio_1818_short.mp3",
+      "reflectionAudioPath": "kids/1818/audio_1818_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like to march around those great walls so quietly, day after day, waiting?",
+      "kidSafetyNotes": "Joshua 6 adapted for ages 4-7 (Adam 2026-06-15): conquest/killing OMITTED entirely. Reframed from 'God has given us the city' / 'walked into the city' (dispossession) to Joshua shouting 'God is with us!' + a wonder ending ('all the things God could do'). Theme = TRUSTING God before you see anything happen (the quiet marching, the waiting). 'God is with us!' ties to the not-alone spine (faithful: the ark/God's presence is carried around Jericho). One image: the walls tumbling flat. Texture: kinetic/exterior/sound (marching, trumpets, shout, crash).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_jericho_full",
+      "storyNumber": 1818,
+      "title": "The Walls of Jericho",
+      "textFilePath": "kids/1818/story_1818_full.txt",
+      "scriptureAnchorId": "joshua_6",
+      "bibleStoryKey": "walls_of_jericho",
+      "bibleSourceRef": "Joshua 6",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "feeling_small",
+        "anxious"
+      ],
+      "themeTags": [
+        "trust",
+        "Gods power",
+        "obedience",
+        "presence of God"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 427,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "audioFilePath": "kids/1818/audio_1818_full.mp3",
+      "reflectionAudioPath": "kids/1818/audio_1818_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like to march around those great walls so quietly, day after day, waiting?",
+      "kidSafetyNotes": "Joshua 6 adapted for ages 4-7 (Adam 2026-06-15): conquest/killing OMITTED entirely. Reframed from 'God has given us the city' / 'walked into the city' (dispossession) to Joshua shouting 'God is with us!' + a wonder ending ('all the things God could do'). Theme = TRUSTING God before you see anything happen (the quiet marching, the waiting). 'God is with us!' ties to the not-alone spine (faithful: the ark/God's presence is carried around Jericho). One image: the walls tumbling flat. Texture: kinetic/exterior/sound (marching, trumpets, shout, crash).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_joseph_forgives_short",
+      "storyNumber": 1819,
+      "title": "Joseph Forgives His Brothers",
+      "textFilePath": "kids/1819/story_1819_short.txt",
+      "scriptureAnchorId": "genesis_45",
+      "bibleStoryKey": "joseph_forgives",
+      "bibleSourceRef": "Genesis 45",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "rejection",
+        "hope"
+      ],
+      "themeTags": [
+        "forgiveness",
+        "presence of God",
+        "family",
+        "reconciliation"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 282,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": "kids/1819/audio_1819_short.mp3",
+      "reflectionAudioPath": "kids/1819/audio_1819_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Joseph felt when he saw his brothers again, after so many years away?",
+      "kidSafetyNotes": "Backstory softened (brothers 'jealous, sent him far away'; pit + slavery OMITTED); no violence. KEY THEOLOGY (Adam 2026-06-15, see feedback_kid_god_with_not_cause): 'God was still working for good' NOT 'God turned it into something good' -- God WITH Joseph in the sad thing, never the cause of it. A literal 5-year-old must not hear 'God made Joseph sad on purpose.' Not-alone spine ('God never once left his side'). One image: Joseph weeping as he embraces the brothers who wronged him. Adam: A+.",
+      "hardContentFlags": [
+        "family_hurt_softened"
+      ]
+    },
+    {
+      "id": "kid_joseph_forgives_full",
+      "storyNumber": 1819,
+      "title": "Joseph Forgives His Brothers",
+      "textFilePath": "kids/1819/story_1819_full.txt",
+      "scriptureAnchorId": "genesis_45",
+      "bibleStoryKey": "joseph_forgives",
+      "bibleSourceRef": "Genesis 45",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "rejection",
+        "hope"
+      ],
+      "themeTags": [
+        "forgiveness",
+        "presence of God",
+        "family",
+        "reconciliation"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 417,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": "kids/1819/audio_1819_full.mp3",
+      "reflectionAudioPath": "kids/1819/audio_1819_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Joseph felt when he saw his brothers again, after so many years away?",
+      "kidSafetyNotes": "Backstory softened (brothers 'jealous, sent him far away'; pit + slavery OMITTED); no violence. KEY THEOLOGY (Adam 2026-06-15, see feedback_kid_god_with_not_cause): 'God was still working for good' NOT 'God turned it into something good' -- God WITH Joseph in the sad thing, never the cause of it. A literal 5-year-old must not hear 'God made Joseph sad on purpose.' Not-alone spine ('God never once left his side'). One image: Joseph weeping as he embraces the brothers who wronged him. Adam: A+.",
+      "hardContentFlags": [
+        "family_hurt_softened"
+      ]
+    },
+    {
+      "id": "kid_samuel_listens_short",
+      "storyNumber": 1820,
+      "title": "God Calls Samuel",
+      "textFilePath": "kids/1820/story_1820_short.txt",
+      "scriptureAnchorId": "1_samuel_3",
+      "bibleStoryKey": "god_calls_samuel",
+      "bibleSourceRef": "1 Samuel 3",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith"
+      ],
+      "themeTags": [
+        "listening to God",
+        "Gods call",
+        "prayer",
+        "presence of God"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 251,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "audioFilePath": "kids/1820/audio_1820_short.mp3",
+      "reflectionAudioPath": "kids/1820/audio_1820_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Samuel felt when he heard the gentle voice calling his name?",
+      "kidSafetyNotes": "SUPERSEDES legacy kid_114_samuel (5min/3min off-bucket, no audio). The hard message God gives Samuel (judgment on Eli's house) OMITTED entirely -- just 'God spoke to Samuel.' Pure bedtime: nighttime setting, the lamp of God glowing. Not-alone spine -- God calls the child by name. 'Speak, Lord, for your servant is listening' uses 'Lord' in a quoted line (per divine-name doctrine). One image: the lamp of God glowing soft and golden as the boy sits up to listen. Adam: A+ ('pure bedtime magic').",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_samuel_listens_full",
+      "storyNumber": 1820,
+      "title": "God Calls Samuel",
+      "textFilePath": "kids/1820/story_1820_full.txt",
+      "scriptureAnchorId": "1_samuel_3",
+      "bibleStoryKey": "god_calls_samuel",
+      "bibleSourceRef": "1 Samuel 3",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith"
+      ],
+      "themeTags": [
+        "listening to God",
+        "Gods call",
+        "prayer",
+        "presence of God"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 408,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "audioFilePath": "kids/1820/audio_1820_full.mp3",
+      "reflectionAudioPath": "kids/1820/audio_1820_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Samuel felt when he heard the gentle voice calling his name?",
+      "kidSafetyNotes": "SUPERSEDES legacy kid_114_samuel (5min/3min off-bucket, no audio). The hard message God gives Samuel (judgment on Eli's house) OMITTED entirely -- just 'God spoke to Samuel.' Pure bedtime: nighttime setting, the lamp of God glowing. Not-alone spine -- God calls the child by name. 'Speak, Lord, for your servant is listening' uses 'Lord' in a quoted line (per divine-name doctrine). One image: the lamp of God glowing soft and golden as the boy sits up to listen. Adam: A+ ('pure bedtime magic').",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_the_cross_short",
+      "storyNumber": 1821,
+      "title": "The Cross",
+      "textFilePath": "kids/1821/story_1821_short.txt",
+      "scriptureAnchorId": "luke_23_32-49",
+      "bibleStoryKey": "the_cross",
+      "bibleSourceRef": "Luke 23:32-49",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "hopeless"
+      ],
+      "themeTags": [
+        "Gods love",
+        "sacrifice",
+        "hope",
+        "Jesus loves me"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 268,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_SAMUEL_EARNEST",
+      "audioFilePath": "kids/1821/audio_1821_short.mp3",
+      "reflectionAudioPath": "kids/1821/audio_1821_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it means to be loved as much as Jesus loves you?",
+      "kidSafetyNotes": "THE hard story, told via the Joseph method (feedback_kid_god_with_not_cause). LOVE-centered, not suffering-centered: death stated softly ('his breath grew still'); NO nails/blood/gore. Jesus's real words kept ('Father, forgive them'; 'into your hands'). Names that God had NOT left ('there in the dark') and refuses to end in the dark -- ends forward ('Sunday was coming'), gently pointing to Easter (1812). Grounding image: his mother Mary among the watchers (threads to 1824). Mood=hurting: the comfort for a sad child is 'Jesus knows sadness, loves you this much, and God did not leave.' Adam: braver-set centerpiece; reviewed line-by-line.",
+      "hardContentFlags": [
+        "death_handled_gently",
+        "crucifixion_softened"
+      ]
+    },
+    {
+      "id": "kid_the_cross_full",
+      "storyNumber": 1821,
+      "title": "The Cross",
+      "textFilePath": "kids/1821/story_1821_full.txt",
+      "scriptureAnchorId": "luke_23_32-49",
+      "bibleStoryKey": "the_cross",
+      "bibleSourceRef": "Luke 23:32-49",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "hopeless"
+      ],
+      "themeTags": [
+        "Gods love",
+        "sacrifice",
+        "hope",
+        "Jesus loves me"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 441,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_SAMUEL_EARNEST",
+      "audioFilePath": "kids/1821/audio_1821_full.mp3",
+      "reflectionAudioPath": "kids/1821/audio_1821_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it means to be loved as much as Jesus loves you?",
+      "kidSafetyNotes": "THE hard story, told via the Joseph method (feedback_kid_god_with_not_cause). LOVE-centered, not suffering-centered: death stated softly ('his breath grew still'); NO nails/blood/gore. Jesus's real words kept ('Father, forgive them'; 'into your hands'). Names that God had NOT left ('there in the dark') and refuses to end in the dark -- ends forward ('Sunday was coming'), gently pointing to Easter (1812). Grounding image: his mother Mary among the watchers (threads to 1824). Mood=hurting: the comfort for a sad child is 'Jesus knows sadness, loves you this much, and God did not leave.' Adam: braver-set centerpiece; reviewed line-by-line.",
+      "hardContentFlags": [
+        "death_handled_gently",
+        "crucifixion_softened"
+      ]
+    },
+    {
+      "id": "kid_fiery_furnace_short",
+      "storyNumber": 1822,
+      "title": "The Fiery Furnace",
+      "textFilePath": "kids/1822/story_1822_short.txt",
+      "scriptureAnchorId": "daniel_3",
+      "bibleStoryKey": "fiery_furnace",
+      "bibleSourceRef": "Daniel 3",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "scared_dark",
+        "courage"
+      ],
+      "themeTags": [
+        "faith",
+        "presence of God",
+        "courage",
+        "protection"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 253,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "audioFilePath": "kids/1822/audio_1822_short.mp3",
+      "reflectionAudioPath": "kids/1822/audio_1822_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the three friends saw when they looked beside them in the fire?",
+      "kidSafetyNotes": "Braver-set: REAL danger (fire), but no one is harmed; the soldiers' deaths (Dan 3:22) OMITTED. KEPT the hardest faith line -- 'Our God is able to save us, but even if he does not, we will still worship only him' -- faith WITHOUT a guarantee, the deliberate counter to gentleness-drift (feedback_kid_faithful_not_gentle). Not-alone spine made literal: the fourth figure walking WITH them in the flames. One image: the four walking unharmed in the fire. Names Shadrach/Meshach/Abednego kept (rhythmic for kids).",
+      "hardContentFlags": [
+        "peril_fire"
+      ]
+    },
+    {
+      "id": "kid_fiery_furnace_full",
+      "storyNumber": 1822,
+      "title": "The Fiery Furnace",
+      "textFilePath": "kids/1822/story_1822_full.txt",
+      "scriptureAnchorId": "daniel_3",
+      "bibleStoryKey": "fiery_furnace",
+      "bibleSourceRef": "Daniel 3",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "scared_dark",
+        "courage"
+      ],
+      "themeTags": [
+        "faith",
+        "presence of God",
+        "courage",
+        "protection"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 457,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "audioFilePath": "kids/1822/audio_1822_full.mp3",
+      "reflectionAudioPath": "kids/1822/audio_1822_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the three friends saw when they looked beside them in the fire?",
+      "kidSafetyNotes": "Braver-set: REAL danger (fire), but no one is harmed; the soldiers' deaths (Dan 3:22) OMITTED. KEPT the hardest faith line -- 'Our God is able to save us, but even if he does not, we will still worship only him' -- faith WITHOUT a guarantee, the deliberate counter to gentleness-drift (feedback_kid_faithful_not_gentle). Not-alone spine made literal: the fourth figure walking WITH them in the flames. One image: the four walking unharmed in the fire. Names Shadrach/Meshach/Abednego kept (rhythmic for kids).",
+      "hardContentFlags": [
+        "peril_fire"
+      ]
+    },
+    {
+      "id": "kid_abraham_call_short",
+      "storyNumber": 1823,
+      "title": "God Calls Abraham",
+      "textFilePath": "kids/1823/story_1823_short.txt",
+      "scriptureAnchorId": "genesis_12",
+      "bibleStoryKey": "abraham_call",
+      "bibleSourceRef": "Genesis 12:1-9",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "faith",
+        "hope"
+      ],
+      "themeTags": [
+        "trust",
+        "faith",
+        "Gods promise",
+        "obedience"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 258,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOSEPH_DREAMER",
+      "audioFilePath": "kids/1823/audio_1823_short.mp3",
+      "reflectionAudioPath": "kids/1823/audio_1823_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like for Abraham to set out, not yet knowing where God was leading him?",
+      "kidSafetyNotes": "Trust before you can see: God calls Abraham to a land he can't yet see; Abraham goes. Gentle, no peril. Center = 'he did not know the way ahead, but he knew the One who was leading him.' Grounding: tents under a sky of more stars than he could count (Gen 12 call + the stars promise). Mood calm_peaceful (quiet trust on the journey). Part of the not-alone spine -- God beside him every step.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_abraham_call_full",
+      "storyNumber": 1823,
+      "title": "God Calls Abraham",
+      "textFilePath": "kids/1823/story_1823_full.txt",
+      "scriptureAnchorId": "genesis_12",
+      "bibleStoryKey": "abraham_call",
+      "bibleSourceRef": "Genesis 12:1-9",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "faith",
+        "hope"
+      ],
+      "themeTags": [
+        "trust",
+        "faith",
+        "Gods promise",
+        "obedience"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 470,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOSEPH_DREAMER",
+      "audioFilePath": "kids/1823/audio_1823_full.mp3",
+      "reflectionAudioPath": "kids/1823/audio_1823_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like for Abraham to set out, not yet knowing where God was leading him?",
+      "kidSafetyNotes": "Trust before you can see: God calls Abraham to a land he can't yet see; Abraham goes. Gentle, no peril. Center = 'he did not know the way ahead, but he knew the One who was leading him.' Grounding: tents under a sky of more stars than he could count (Gen 12 call + the stars promise). Mood calm_peaceful (quiet trust on the journey). Part of the not-alone spine -- God beside him every step.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_mary_says_yes_short",
+      "storyNumber": 1824,
+      "title": "Mary Says Yes",
+      "textFilePath": "kids/1824/story_1824_short.txt",
+      "scriptureAnchorId": "luke_1_26-38",
+      "bibleStoryKey": "mary_says_yes",
+      "bibleSourceRef": "Luke 1:26-38",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "faith"
+      ],
+      "themeTags": [
+        "faith",
+        "Gods plan",
+        "trust",
+        "Jesus is coming"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 272,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "audioFilePath": "kids/1824/audio_1824_short.mp3",
+      "reflectionAudioPath": "kids/1824/audio_1824_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Mary felt when the angel told her she would be the mother of Jesus?",
+      "kidSafetyNotes": "Gentle wonder. Angel's greeting + 'nothing is impossible with God' + Mary's trusting 'yes' (her real words softened: 'let it happen just as you have said'). Grounding: an ordinary little room + her chores, the plain walls lit up by the angel (child-can-see-it pass). Voice Mary Ponder (Luke 2:19 nod). Threads to 1821 -- the same Mary who says yes to the baby stands by him at the cross.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_mary_says_yes_full",
+      "storyNumber": 1824,
+      "title": "Mary Says Yes",
+      "textFilePath": "kids/1824/story_1824_full.txt",
+      "scriptureAnchorId": "luke_1_26-38",
+      "bibleStoryKey": "mary_says_yes",
+      "bibleSourceRef": "Luke 1:26-38",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "faith"
+      ],
+      "themeTags": [
+        "faith",
+        "Gods plan",
+        "trust",
+        "Jesus is coming"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 422,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "audioFilePath": "kids/1824/audio_1824_full.mp3",
+      "reflectionAudioPath": "kids/1824/audio_1824_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Mary felt when the angel told her she would be the mother of Jesus?",
+      "kidSafetyNotes": "Gentle wonder. Angel's greeting + 'nothing is impossible with God' + Mary's trusting 'yes' (her real words softened: 'let it happen just as you have said'). Grounding: an ordinary little room + her chores, the plain walls lit up by the angel (child-can-see-it pass). Voice Mary Ponder (Luke 2:19 nod). Threads to 1821 -- the same Mary who says yes to the baby stands by him at the cross.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_feeding_5000_short",
+      "storyNumber": 1825,
+      "title": "The Big Picnic",
+      "textFilePath": "kids/1825/story_1825_short.txt",
+      "scriptureAnchorId": "john_6_1-14",
+      "bibleStoryKey": "feeding_5000",
+      "bibleSourceRef": "John 6:1-14",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "wonder"
+      ],
+      "themeTags": [
+        "Gods provision",
+        "gratitude",
+        "generosity",
+        "Gods power"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 262,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "audioFilePath": "kids/1825/audio_1825_short.mp3",
+      "reflectionAudioPath": "kids/1825/audio_1825_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the boy felt when his own little lunch became enough for everyone?",
+      "kidSafetyNotes": "Gentle, joyful provision. Kid title 'The Big Picnic' (warm, inviting hook for ages 4-7; anchor stays feeding_5000). One image: the boy's five loaves + two fish feeding everyone, with baskets left over. Texture = crowds / daylight / grassy hillside (kinetic-exterior, counters quiet-room drift). Center: God does much with a little freely given. Mood grateful (provision + thankfulness).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_feeding_5000_full",
+      "storyNumber": 1825,
+      "title": "The Big Picnic",
+      "textFilePath": "kids/1825/story_1825_full.txt",
+      "scriptureAnchorId": "john_6_1-14",
+      "bibleStoryKey": "feeding_5000",
+      "bibleSourceRef": "John 6:1-14",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "wonder"
+      ],
+      "themeTags": [
+        "Gods provision",
+        "gratitude",
+        "generosity",
+        "Gods power"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 431,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "audioFilePath": "kids/1825/audio_1825_full.mp3",
+      "reflectionAudioPath": "kids/1825/audio_1825_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the boy felt when his own little lunch became enough for everyone?",
+      "kidSafetyNotes": "Gentle, joyful provision. Kid title 'The Big Picnic' (warm, inviting hook for ages 4-7; anchor stays feeding_5000). One image: the boy's five loaves + two fish feeding everyone, with baskets left over. Texture = crowds / daylight / grassy hillside (kinetic-exterior, counters quiet-room drift). Center: God does much with a little freely given. Mood grateful (provision + thankfulness).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_lost_sheep_short",
+      "storyNumber": 1826,
+      "title": "The Lost Sheep",
+      "textFilePath": "kids/1826/story_1826_short.txt",
+      "scriptureAnchorId": "luke_15_3-7",
+      "bibleStoryKey": "lost_sheep",
+      "bibleSourceRef": "Luke 15:3-7",
+      "mood": "hurting",
+      "emotionalTags": [
+        "lonely",
+        "left_out",
+        "rejection"
+      ],
+      "themeTags": [
+        "Gods love",
+        "not forgotten",
+        "being found",
+        "Gods care"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 312,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1826/audio_1826_short.mp3",
+      "reflectionAudioPath": "kids/1826/audio_1826_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the little sheep felt when it heard the shepherd's voice say, 'I found you'?",
+      "kidSafetyNotes": "PARABLE -- Jesus's teaching picture; frame made explicit at the close (Adam edit): 'God loves you, just like that good shepherd loved his one little sheep,' so kids know it's a picture, not a literal sheep-hunt. The SIGNATURE story for the lane's confirmed 'God is with me / not alone' spine in its tenderest form: 'when I wander, God comes looking for me.' The lost sheep is alone/afraid but NOT in danger (no predators -- keep it about lostness + love, not peril). One image: carried home on the shepherd's shoulders. Supersedes legacy kid_502_lostsheep_short.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_lost_sheep_full",
+      "storyNumber": 1826,
+      "title": "The Lost Sheep",
+      "textFilePath": "kids/1826/story_1826_full.txt",
+      "scriptureAnchorId": "luke_15_3-7",
+      "bibleStoryKey": "lost_sheep",
+      "bibleSourceRef": "Luke 15:3-7",
+      "mood": "hurting",
+      "emotionalTags": [
+        "lonely",
+        "left_out",
+        "rejection"
+      ],
+      "themeTags": [
+        "Gods love",
+        "not forgotten",
+        "being found",
+        "Gods care"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 491,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1826/audio_1826_full.mp3",
+      "reflectionAudioPath": "kids/1826/audio_1826_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the little sheep felt when it heard the shepherd's voice say, 'I found you'?",
+      "kidSafetyNotes": "PARABLE -- Jesus's teaching picture; frame made explicit at the close (Adam edit): 'God loves you, just like that good shepherd loved his one little sheep,' so kids know it's a picture, not a literal sheep-hunt. The SIGNATURE story for the lane's confirmed 'God is with me / not alone' spine in its tenderest form: 'when I wander, God comes looking for me.' The lost sheep is alone/afraid but NOT in danger (no predators -- keep it about lostness + love, not peril). One image: carried home on the shepherd's shoulders. Supersedes legacy kid_502_lostsheep_short.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_two_builders_short",
+      "storyNumber": 1827,
+      "title": "The Wise and Foolish Builders",
+      "textFilePath": "kids/1827/story_1827_short.txt",
+      "scriptureAnchorId": "matthew_7_24-27",
+      "bibleStoryKey": "two_builders",
+      "bibleSourceRef": "Matthew 7:24-27",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "courage",
+        "faith"
+      ],
+      "themeTags": [
+        "trust in Jesus",
+        "strong foundation",
+        "steadiness in storms",
+        "obedience"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 259,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
+      "audioFilePath": "kids/1827/audio_1827_short.mp3",
+      "reflectionAudioPath": "kids/1827/audio_1827_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it felt like inside the strong house on the rock, while the storm blew all around outside?",
+      "kidSafetyNotes": "PARABLE. Pairs with 1816 (Jesus Calms the Storm): 1816 = 'Jesus is with you IN the storm,' this = 'build on Jesus BEFORE the storm.' Sand house washes away GENTLY -- no one in it, no scary collapse ('slowly, quietly, the little house slipped away'). KEY theology edit (Adam): 'strong and STEADY' not 'strong and safe' -- obedience gives steadiness THROUGH storms, never a guarantee bad things won't come (see feedback_kid_god_with_not_cause / faithful_not_gentle). Wise builder 'she' / foolish 'he' (gender variety). Promoted to short+full (storm drama earns it). One image: two houses in the storm, one standing, one washing away.",
+      "hardContentFlags": [
+        "storm_gentle"
+      ]
+    },
+    {
+      "id": "kid_two_builders_full",
+      "storyNumber": 1827,
+      "title": "The Wise and Foolish Builders",
+      "textFilePath": "kids/1827/story_1827_full.txt",
+      "scriptureAnchorId": "matthew_7_24-27",
+      "bibleStoryKey": "two_builders",
+      "bibleSourceRef": "Matthew 7:24-27",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "courage",
+        "faith"
+      ],
+      "themeTags": [
+        "trust in Jesus",
+        "strong foundation",
+        "steadiness in storms",
+        "obedience"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 458,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
+      "audioFilePath": "kids/1827/audio_1827_full.mp3",
+      "reflectionAudioPath": "kids/1827/audio_1827_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it felt like inside the strong house on the rock, while the storm blew all around outside?",
+      "kidSafetyNotes": "PARABLE. Pairs with 1816 (Jesus Calms the Storm): 1816 = 'Jesus is with you IN the storm,' this = 'build on Jesus BEFORE the storm.' Sand house washes away GENTLY -- no one in it, no scary collapse ('slowly, quietly, the little house slipped away'). KEY theology edit (Adam): 'strong and STEADY' not 'strong and safe' -- obedience gives steadiness THROUGH storms, never a guarantee bad things won't come (see feedback_kid_god_with_not_cause / faithful_not_gentle). Wise builder 'she' / foolish 'he' (gender variety). Promoted to short+full (storm drama earns it). One image: two houses in the storm, one standing, one washing away.",
+      "hardContentFlags": [
+        "storm_gentle"
+      ]
+    },
+    {
+      "id": "kid_mustard_seed_short",
+      "storyNumber": 1828,
+      "title": "The Tiny Mustard Seed",
+      "textFilePath": "kids/1828/story_1828_short.txt",
+      "scriptureAnchorId": "matthew_13_31-32",
+      "bibleStoryKey": "mustard_seed",
+      "bibleSourceRef": "Matthew 13:31-32",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "feeling_small",
+        "self_doubt",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods kingdom",
+        "small beginnings",
+        "growth",
+        "hope"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 252,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "audioFilePath": "kids/1828/audio_1828_short.mp3",
+      "reflectionAudioPath": "kids/1828/audio_1828_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the little birds felt, building their nests high in the branches of that great and beautiful tree?",
+      "kidSafetyNotes": "PARABLE. SHORT-ONLY by design -- a 2-verse parable; a 'full' would require padding (honor its brevity, per length-bucket doctrine). 'God grows small things into something great and good and beautiful.' Gentle, no peril. One image: the seed too small to see -> the great tree with birds nesting in its branches.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_bethlehem_night_short",
+      "storyNumber": 1829,
+      "title": "The Night in Bethlehem",
+      "textFilePath": "kids/1829/story_1829_short.txt",
+      "scriptureAnchorId": "luke_2_1-7",
+      "bibleStoryKey": "bethlehem_night",
+      "bibleSourceRef": "Luke 2:1-7",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith"
+      ],
+      "themeTags": [
+        "Jesus is born",
+        "Gods Son",
+        "Christmas",
+        "wonder"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 255,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "audioFilePath": "kids/1829/audio_1829_short.mp3",
+      "reflectionAudioPath": "kids/1829/audio_1829_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like in that quiet stable, the night the baby Jesus was born?",
+      "kidSafetyNotes": "The NATIVITY -- a cornerstone the lane lacked (had wise_men 1809, not the birth itself). Hushed/peaceful telling (shepherds + angels are separate anchors, not here), tagged calm_peaceful to match the quiet holy-night register (bedtime-perfect). Same VOICE_MARY_PONDER as 1824 (Mary Says Yes) -- deliberate continuity, the same 'Mary' voice through both Mary stories. 'No room' kept gentle; stable cozy not grim. Luke 2:19 'held it in her heart' echo, softened ending. One image: baby Jesus asleep in the manger on the hay.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_bethlehem_night_full",
+      "storyNumber": 1829,
+      "title": "The Night in Bethlehem",
+      "textFilePath": "kids/1829/story_1829_full.txt",
+      "scriptureAnchorId": "luke_2_1-7",
+      "bibleStoryKey": "bethlehem_night",
+      "bibleSourceRef": "Luke 2:1-7",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith"
+      ],
+      "themeTags": [
+        "Jesus is born",
+        "Gods Son",
+        "Christmas",
+        "wonder"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 455,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "audioFilePath": "kids/1829/audio_1829_full.mp3",
+      "reflectionAudioPath": "kids/1829/audio_1829_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like in that quiet stable, the night the baby Jesus was born?",
+      "kidSafetyNotes": "The NATIVITY -- a cornerstone the lane lacked (had wise_men 1809, not the birth itself). Hushed/peaceful telling (shepherds + angels are separate anchors, not here), tagged calm_peaceful to match the quiet holy-night register (bedtime-perfect). Same VOICE_MARY_PONDER as 1824 (Mary Says Yes) -- deliberate continuity, the same 'Mary' voice through both Mary stories. 'No room' kept gentle; stable cozy not grim. Luke 2:19 'held it in her heart' echo, softened ending. One image: baby Jesus asleep in the manger on the hay.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_water_to_wine_short",
+      "storyNumber": 1830,
+      "title": "Water into Wine",
+      "textFilePath": "kids/1830/story_1830_short.txt",
+      "scriptureAnchorId": "john_2_1-11",
+      "bibleStoryKey": "water_to_wine",
+      "bibleSourceRef": "John 2:1-11",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "Jesus first miracle",
+        "wonder",
+        "Gods provision",
+        "celebration"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 264,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
+      "audioFilePath": "kids/1830/audio_1830_short.mp3",
+      "reflectionAudioPath": "kids/1830/audio_1830_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the servants felt when the plain water they had poured turned out to be something wonderful?",
+      "kidSafetyNotes": "Jesus's FIRST miracle. 'Wine' kept gentle as 'the very best, most delicious drink' -- it's the wedding-feast drink; no alcohol focus (kid-appropriate softening, like 'The Big Picnic' for feeding_5000). Festive/joyful texture (wedding, music, celebration) -- counterweight to the 3 quiet parables in this batch. Mary's line kept ('Whatever he tells you to do, just do it'). FRESH voice VOICE_CHARLOTTE_V3 (first use in the kid lane). Promoted to short+full (full wedding scene earns it). One image: six empty stone jars filled with water -> poured out as something wonderful.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_water_to_wine_full",
+      "storyNumber": 1830,
+      "title": "Water into Wine",
+      "textFilePath": "kids/1830/story_1830_full.txt",
+      "scriptureAnchorId": "john_2_1-11",
+      "bibleStoryKey": "water_to_wine",
+      "bibleSourceRef": "John 2:1-11",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "Jesus first miracle",
+        "wonder",
+        "Gods provision",
+        "celebration"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 460,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
+      "audioFilePath": "kids/1830/audio_1830_full.mp3",
+      "reflectionAudioPath": "kids/1830/audio_1830_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the servants felt when the plain water they had poured turned out to be something wonderful?",
+      "kidSafetyNotes": "Jesus's FIRST miracle. 'Wine' kept gentle as 'the very best, most delicious drink' -- it's the wedding-feast drink; no alcohol focus (kid-appropriate softening, like 'The Big Picnic' for feeding_5000). Festive/joyful texture (wedding, music, celebration) -- counterweight to the 3 quiet parables in this batch. Mary's line kept ('Whatever he tells you to do, just do it'). FRESH voice VOICE_CHARLOTTE_V3 (first use in the kid lane). Promoted to short+full (full wedding scene earns it). One image: six empty stone jars filled with water -> poured out as something wonderful.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_zacchaeus_short",
+      "storyNumber": 1831,
+      "title": "Zacchaeus",
+      "textFilePath": "kids/1831/story_1831_short.txt",
+      "scriptureAnchorId": "luke_19_1-10",
+      "bibleStoryKey": "zacchaeus",
+      "bibleSourceRef": "Luke 19:1-10",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "being seen",
+        "Gods love",
+        "joy",
+        "change of heart"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 281,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1831/audio_1831_short.mp3",
+      "reflectionAudioPath": "kids/1831/audio_1831_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Zacchaeus felt when Jesus looked up into the tree and called him by name?",
+      "kidSafetyNotes": "NEW anchor (Jesus' Miracles). The JOY-side of the 'you are seen' spine -- Lost Sheep comforts the lonely, Zacchaeus DELIGHTS in the overlooked ('Jesus came to YOUR house'). Wrongdoing kept gentle: 'collecting money, took more than he should' -- NO 'tax/cheat/sinner'; lands on the joyful turnaround (gives it back), not the dishonesty. One image: Jesus stopping under the sycamore and looking up. Delight-set batch 6.",
+      "hardContentFlags": [
+        "wrongdoing_softened"
+      ]
+    },
+    {
+      "id": "kid_zacchaeus_full",
+      "storyNumber": 1831,
+      "title": "Zacchaeus",
+      "textFilePath": "kids/1831/story_1831_full.txt",
+      "scriptureAnchorId": "luke_19_1-10",
+      "bibleStoryKey": "zacchaeus",
+      "bibleSourceRef": "Luke 19:1-10",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "being seen",
+        "Gods love",
+        "joy",
+        "change of heart"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 480,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1831/audio_1831_full.mp3",
+      "reflectionAudioPath": "kids/1831/audio_1831_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Zacchaeus felt when Jesus looked up into the tree and called him by name?",
+      "kidSafetyNotes": "NEW anchor (Jesus' Miracles). The JOY-side of the 'you are seen' spine -- Lost Sheep comforts the lonely, Zacchaeus DELIGHTS in the overlooked ('Jesus came to YOUR house'). Wrongdoing kept gentle: 'collecting money, took more than he should' -- NO 'tax/cheat/sinner'; lands on the joyful turnaround (gives it back), not the dishonesty. One image: Jesus stopping under the sycamore and looking up. Delight-set batch 6.",
+      "hardContentFlags": [
+        "wrongdoing_softened"
+      ]
+    },
+    {
+      "id": "kid_palm_sunday_short",
+      "storyNumber": 1832,
+      "title": "The Joyful Parade",
+      "textFilePath": "kids/1832/story_1832_short.txt",
+      "scriptureAnchorId": "matthew_21_1-11",
+      "bibleStoryKey": "palm_sunday",
+      "bibleSourceRef": "Matthew 21:1-11",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "joy",
+        "celebration",
+        "Jesus is king",
+        "welcome"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 259,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "audioFilePath": "kids/1832/audio_1832_short.mp3",
+      "reflectionAudioPath": "kids/1832/audio_1832_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "If you had been there, waving a palm branch in the happy crowd, what do you think it would have felt like?",
+      "kidSafetyNotes": "PURE joy/celebration -- deliberately NO foreshadowing of the cross (this is the parade, kept festive). The gentle king on a little donkey (humble, not a war horse). Kid title 'The Joyful Parade'. One image: the sea of green palms + coats on the road. James Husky is a bright 'good' voice (no de-bloom).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_palm_sunday_full",
+      "storyNumber": 1832,
+      "title": "The Joyful Parade",
+      "textFilePath": "kids/1832/story_1832_full.txt",
+      "scriptureAnchorId": "matthew_21_1-11",
+      "bibleStoryKey": "palm_sunday",
+      "bibleSourceRef": "Matthew 21:1-11",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "joy",
+        "celebration",
+        "Jesus is king",
+        "welcome"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 414,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "audioFilePath": "kids/1832/audio_1832_full.mp3",
+      "reflectionAudioPath": "kids/1832/audio_1832_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "If you had been there, waving a palm branch in the happy crowd, what do you think it would have felt like?",
+      "kidSafetyNotes": "PURE joy/celebration -- deliberately NO foreshadowing of the cross (this is the parade, kept festive). The gentle king on a little donkey (humble, not a war horse). Kid title 'The Joyful Parade'. One image: the sea of green palms + coats on the road. James Husky is a bright 'good' voice (no de-bloom).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_shepherds_angels_short",
+      "storyNumber": 1833,
+      "title": "The Shepherds and the Angels",
+      "textFilePath": "kids/1833/story_1833_short.txt",
+      "scriptureAnchorId": "luke_2_8-20",
+      "bibleStoryKey": "shepherds_angels",
+      "bibleSourceRef": "Luke 2:8-20",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "good news",
+        "great joy",
+        "wonder",
+        "Jesus is born"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 272,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_LILY_WOLFF",
+      "audioFilePath": "kids/1833/audio_1833_short.mp3",
+      "reflectionAudioPath": "kids/1833/audio_1833_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the shepherds felt when the whole dark sky suddenly filled with singing angels?",
+      "kidSafetyNotes": "'Good news of great joy.' The shepherds' side of the Nativity (pairs with 1829 Bethlehem). Angels are awe-not-terror ('Do not be afraid'). One image: the dark hillside suddenly filling with a sky full of singing angels. FRESH voice VOICE_LILY_WOLFF (1st use in kid lane).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_shepherds_angels_full",
+      "storyNumber": 1833,
+      "title": "The Shepherds and the Angels",
+      "textFilePath": "kids/1833/story_1833_full.txt",
+      "scriptureAnchorId": "luke_2_8-20",
+      "bibleStoryKey": "shepherds_angels",
+      "bibleSourceRef": "Luke 2:8-20",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "good news",
+        "great joy",
+        "wonder",
+        "Jesus is born"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 474,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_LILY_WOLFF",
+      "audioFilePath": "kids/1833/audio_1833_full.mp3",
+      "reflectionAudioPath": "kids/1833/audio_1833_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the shepherds felt when the whole dark sky suddenly filled with singing angels?",
+      "kidSafetyNotes": "'Good news of great joy.' The shepherds' side of the Nativity (pairs with 1829 Bethlehem). Angels are awe-not-terror ('Do not be afraid'). One image: the dark hillside suddenly filling with a sky full of singing angels. FRESH voice VOICE_LILY_WOLFF (1st use in kid lane).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_adam_eve_short",
+      "storyNumber": 1834,
+      "title": "The First Garden",
+      "textFilePath": "kids/1834/story_1834_short.txt",
+      "scriptureAnchorId": "genesis_2",
+      "bibleStoryKey": "first_garden",
+      "bibleSourceRef": "Genesis 2",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "grateful"
+      ],
+      "themeTags": [
+        "the world is beautiful",
+        "wonder",
+        "Gods creation",
+        "Gods care"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 263,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "audioFilePath": "kids/1834/audio_1834_short.mp3",
+      "reflectionAudioPath": "kids/1834/audio_1834_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "If you could have given a name to one of the animals in that first garden, which animal would you choose?",
+      "kidSafetyNotes": "'The world is beautiful' register. Adam naming the animals in the garden -- NO fall/sin (separate, harder story); pure wonder + the kid-delightful animal-naming. Distinct from 1805 creation_days (the 7 days); this is the garden/human angle. One image: the animals coming one by one to be named. Kid title 'The First Garden'.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_adam_eve_full",
+      "storyNumber": 1834,
+      "title": "The First Garden",
+      "textFilePath": "kids/1834/story_1834_full.txt",
+      "scriptureAnchorId": "genesis_2",
+      "bibleStoryKey": "first_garden",
+      "bibleSourceRef": "Genesis 2",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "grateful"
+      ],
+      "themeTags": [
+        "the world is beautiful",
+        "wonder",
+        "Gods creation",
+        "Gods care"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 421,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "audioFilePath": "kids/1834/audio_1834_full.mp3",
+      "reflectionAudioPath": "kids/1834/audio_1834_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "If you could have given a name to one of the animals in that first garden, which animal would you choose?",
+      "kidSafetyNotes": "'The world is beautiful' register. Adam naming the animals in the garden -- NO fall/sin (separate, harder story); pure wonder + the kid-delightful animal-naming. Distinct from 1805 creation_days (the 7 days); this is the garden/human angle. One image: the animals coming one by one to be named. Kid title 'The First Garden'.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_psalm_139_short",
+      "storyNumber": 1835,
+      "title": "God Made You",
+      "textFilePath": "kids/1835/story_1835_short.txt",
+      "scriptureAnchorId": "psalm_139",
+      "bibleStoryKey": "psalm_139",
+      "bibleSourceRef": "Psalm 139",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "feeling_small",
+        "self_doubt",
+        "hope"
+      ],
+      "themeTags": [
+        "God made me",
+        "God delights in you",
+        "Gods presence",
+        "wonderfully made"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 254,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": "kids/1835/audio_1835_short.mp3",
+      "reflectionAudioPath": "kids/1835/audio_1835_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God made every part of you on purpose, with love. What is one thing about you that you think God smiles to see?",
+      "kidSafetyNotes": "NEW anchor (Comfort & Bedtime). The LITERAL 'God delights in YOU' -- spoken in second person straight to the child. DOUBLES as comfort for a kid who feels small/unnoticed/not-good-enough: tags feeling_small + self_doubt, mood calm_peaceful is reachable from hurting via expansion, so a 'too little / nobody notices me' kid routes here. 'keeping you safe' was changed to 'loving you' (Adam: no guaranteed-safety promise, see feedback_kid_god_with_not_cause). Ties the not-alone spine ('wherever you go, God is with you', Ps 139:7-10). One image: up past the highest star / down to the deepest sea, God is there.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_psalm_139_full",
+      "storyNumber": 1835,
+      "title": "God Made You",
+      "textFilePath": "kids/1835/story_1835_full.txt",
+      "scriptureAnchorId": "psalm_139",
+      "bibleStoryKey": "psalm_139",
+      "bibleSourceRef": "Psalm 139",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "feeling_small",
+        "self_doubt",
+        "hope"
+      ],
+      "themeTags": [
+        "God made me",
+        "God delights in you",
+        "Gods presence",
+        "wonderfully made"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 431,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": "kids/1835/audio_1835_full.mp3",
+      "reflectionAudioPath": "kids/1835/audio_1835_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God made every part of you on purpose, with love. What is one thing about you that you think God smiles to see?",
+      "kidSafetyNotes": "NEW anchor (Comfort & Bedtime). The LITERAL 'God delights in YOU' -- spoken in second person straight to the child. DOUBLES as comfort for a kid who feels small/unnoticed/not-good-enough: tags feeling_small + self_doubt, mood calm_peaceful is reachable from hurting via expansion, so a 'too little / nobody notices me' kid routes here. 'keeping you safe' was changed to 'loving you' (Adam: no guaranteed-safety promise, see feedback_kid_god_with_not_cause). Ties the not-alone spine ('wherever you go, God is with you', Ps 139:7-10). One image: up past the highest star / down to the deepest sea, God is there.",
+      "hardContentFlags": []
     }
   ]
 }

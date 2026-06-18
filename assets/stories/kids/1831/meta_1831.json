@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1831,
+  "anchorId": "zacchaeus",
+  "kidLane": "dedicated-4-7",
+  "title": "Zacchaeus",
+  "scriptureAnchorId": "luke_19_1-10",
+  "bibleSourceRef": "Luke 19:1-10",
+  "bibleStoryKey": "zacchaeus",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "celebration",
+    "wonder"
+  ],
+  "themeTags": [
+    "being seen",
+    "Gods love",
+    "joy",
+    "change of heart"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "What do you think Zacchaeus felt when Jesus looked up into the tree and called him by name?",
+  "hardContentFlags": [
+    "wrongdoing_softened"
+  ],
+  "kidSafetyNotes": "NEW anchor (Jesus' Miracles). The JOY-side of the 'you are seen' spine -- Lost Sheep comforts the lonely, Zacchaeus DELIGHTS in the overlooked ('Jesus came to YOUR house'). Wrongdoing kept gentle: 'collecting money, took more than he should' -- NO 'tax/cheat/sinner'; lands on the joyful turnaround (gives it back), not the dishonesty. One image: Jesus stopping under the sycamore and looking up. Delight-set batch 6.",
+  "files": {
+    "short": {
+      "storyText": "story_1831_short.txt",
+      "audio": "audio_1831_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1831_full.txt",
+      "audio": "audio_1831_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1831.txt",
+      "audio": "audio_1831_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

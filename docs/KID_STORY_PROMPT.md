@@ -37,9 +37,33 @@ remember it. You are **not** rewriting Scripture or inventing a fantasy. You are
 - **The kid lane is WEB-only** (Adam, 2026-06-14). Unlike the adult corpus (which
   runs WEB + KJV lanes), kid stories — both narrative retellings and
   comfort-ritual recitations — use **WEB exclusively**. No KJV/ASV/YLT/DRA lane
-  for kids. Any directly-quoted Scripture (especially comfort-ritual anchors like
-  Psalm 23 / the Lord's Prayer) is verbatim **WEB**. Never quote NIV/ESV/NLT/etc.
+  for kids. Directly-quoted Scripture (comfort-ritual anchors like Psalm 23 / the
+  Lord's Prayer) is WEB, **with the divine name rendered traditionally** (next
+  bullet). Never quote NIV/ESV/NLT/etc.
   See [BIBLE_TRANSLATION_COMPLIANCE.md](BIBLE_TRANSLATION_COMPLIANCE.md).
+- **Divine name (Adam, 2026-06-15):** use **"God"** by default; use **"the Lord"**
+  in a directly-quoted line that reads better with it ("The Lord is my shepherd").
+  **"Yahweh" is rare and deliberate — used only when hearing God's name is part of
+  the story itself** (covenant identity, or original wording that's especially
+  meaningful). This is a **story rule, not a quota**: don't force ~5%, and don't
+  space them out. If a long stretch of stories has no covenant-name anchor, use
+  "God" the whole way; if several covenant-name stories land close together, that's
+  fine — write the right story. (It works out to roughly 1 in 20, but that's the
+  *result*, not a target.) Rare keeps it special: heard once in a while it becomes
+  "this is one of the stories where we hear God's special name," and invites the
+  parent moment ("Mom, who is Yahweh?" → "That's God's special name in the Bible").
+  - **Use Yahweh in (covenant-name stories):** the **Burning Bush** (Exodus 3, "I AM
+    WHO I AM" — the single best), **Psalm 23** ("Yahweh is my shepherd"), **Elijah on
+    Mount Carmel** ("Yahweh is God!"), **Moses at Sinai / the Ten Commandments**.
+  - **Do NOT use Yahweh in** stories that aren't about the name — Creation, Noah,
+    David & Goliath, Jesus & the Children, Jesus Walks on Water, Jairus' Daughter,
+    the Good Samaritan, the Lost Sheep, etc. Use "God" there.
+  - **Introduce it gently the first time it appears** — give the child a little
+    context, never drop it casually. NOT "Yahweh made the stars." YES: "God's
+    special name in the Bible is Yahweh. And Yahweh loved his people very much," or
+    "The psalm begins, 'Yahweh is my shepherd…'"
+  - Compliance: "Yahweh" and "the LORD" both render YHWH — a rendering choice, not
+    a copyrighted-translation change.
 
 ### 3. Emotional safety
 - Children should feel safe while listening.
@@ -86,6 +110,13 @@ If you remove this image and the story loses its heartbeat, you found the right
 image. Do **not** force multiple showpieces — one memorable image is enough
 (this complements §5: restraint everywhere, except the single image you let land).
 
+> **The strongest image is often someone being held** (Adam, 2026-06-15). The
+> stories children remember aren't usually the miracle — they're the moment of
+> being *held*: Jesus taking the little girl's hand ("it's time to get up");
+> Moses's mother getting her son back to hold; Jesus opening his arms to the
+> children. When a story has a held/hand/embrace moment, let *that* be the
+> indelible image, and let the ending rest there.
+
 ### 6. Characters feel human
 Show the turn: fear→courage, sadness→joy, confusion→understanding,
 loneliness→comfort, weakness→trust in God. Let action carry the feeling; don't
@@ -103,19 +134,21 @@ feeling **"God is with me,"** never "I am scared."
 
 ## Length buckets
 
-Pick one bucket per story; do not pad to hit a number. Targets are guides, ±15%.
+Kid buckets serve the **child**, not the adult corpus (Adam, 2026-06-15). Gentle
+4–7 bedtime stories are naturally short; do **not** pad to hit a number — if a
+story is complete at the low end, leave it.
 
-| Bucket | Target words | Notes |
-|--------|-------------:|-------|
-| short  | ~250 | a single parable beat |
-| 3min   | ~350 | |
-| 5min   | ~600 | |
-| 10min  | ~1200 | |
-| 15min  | ~1800 | review: long for the youngest listeners |
-| 20min  | ~2400 | review: long for the youngest listeners |
+| Bucket | Words | Notes |
+|--------|------:|-------|
+| short  | **250–450** | the everyday length; a single, complete telling |
+| full   | **400–750** | a meaningfully fuller telling; should feel bigger than the short |
+| long   | **700–1100** | special/exceptional anchors only (earned, not default) |
 
-(Targets inherited from the legacy CSV. The 15/20-min buckets are flagged for
-re-evaluation — 2,400 words is a lot for a 4-year-old.)
+Short and full overlap (400–450) on purpose — pick the bucket by **intent** (is
+this the brief telling or the fuller one?), and let the full be a real expansion
+of the short, not just a few words more. These replace the adult floors
+(short 300–500 / full 501–900), which were too long for the kid lane and created
+a "add words so the validator is happy" incentive.
 
 ---
 

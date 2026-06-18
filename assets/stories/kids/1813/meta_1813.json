@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1813,
+  "anchorId": "red_sea",
+  "kidLane": "dedicated-4-7",
+  "title": "Crossing the Red Sea",
+  "scriptureAnchorId": "red_sea",
+  "bibleSourceRef": "Exodus 14",
+  "bibleStoryKey": "red_sea_crossing",
+  "translation": "WEB",
+  "mood": "brave_courage",
+  "emotionalTags": [
+    "anxious",
+    "scared_dark"
+  ],
+  "themeTags": [
+    "deliverance",
+    "trust",
+    "wonder",
+    "Gods rescue"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "What do you think it looked like, walking between two walls of water?",
+  "hardContentFlags": [
+    "peril_pursuit"
+  ],
+  "kidSafetyNotes": "Fear->trust->wonder->rescue (NOT punishment). Pharaoh's army drowning OMITTED ('the army could not follow them anymore'). 'Do not be afraid... God will take care of us.' One image: the two walls of water with the dry path between.",
+  "files": {
+    "short": {
+      "storyText": "story_1813_short.txt",
+      "audio": "audio_1813_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1813_full.txt",
+      "audio": "audio_1813_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1813.txt",
+      "audio": "audio_1813_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

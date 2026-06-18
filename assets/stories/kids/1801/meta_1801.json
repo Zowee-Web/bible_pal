@@ -8,9 +8,18 @@
   "bibleSourceRef": "1 Samuel 17",
   "bibleStoryKey": "david_and_goliath",
   "mood": "brave_courage",
-  "emotionalTags": ["courage", "fear-to-courage", "safe"],
-  "themeTags": ["courage", "trust"],
-  "lengths": ["short", "full"],
+  "emotionalTags": [
+    "feeling_small",
+    "courage"
+  ],
+  "themeTags": [
+    "courage",
+    "trust"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
   "longEligible": true,
   "longRendered": false,
   "status": "REVIEW",
@@ -23,12 +32,23 @@
     "use_speaker_boost": true
   },
   "reflectionQuestion": "What do you think helped David feel brave when everyone else was afraid?",
-  "hardContentFlags": ["violence_combat"],
+  "hardContentFlags": [
+    "violence_combat"
+  ],
   "kidSafetyNotes": "Combat safe: beheading (1 Sam 17:51) omitted; outcome in one calm sentence. Menace de-stacked to thud + Goliath's scriptural taunt. One indelible image: five smooth stones.",
   "files": {
-    "short": { "storyText": "story_1801_short.txt", "audio": "audio_1801_short.mp3" },
-    "full": { "storyText": "story_1801_full.txt", "audio": "audio_1801_full.mp3" },
-    "reflection": { "text": "reflection_1801.txt", "audio": "audio_1801_reflection.mp3" }
+    "short": {
+      "storyText": "story_1801_short.txt",
+      "audio": "audio_1801_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1801_full.txt",
+      "audio": "audio_1801_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1801.txt",
+      "audio": "audio_1801_reflection.mp3"
+    }
   },
   "createdNote": "Doctrine-v2 Rosetta Stone; first dedicated kid-lane anchor. productionId band 1801+ (anchor stays canonical in kid_anchor_registry.json)."
 }

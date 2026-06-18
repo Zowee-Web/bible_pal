@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1825,
+  "anchorId": "feeding_5000",
+  "kidLane": "dedicated-4-7",
+  "title": "The Big Picnic",
+  "scriptureAnchorId": "john_6_1-14",
+  "bibleSourceRef": "John 6:1-14",
+  "bibleStoryKey": "feeding_5000",
+  "translation": "WEB",
+  "mood": "grateful",
+  "emotionalTags": [
+    "grateful",
+    "wonder"
+  ],
+  "themeTags": [
+    "Gods provision",
+    "gratitude",
+    "generosity",
+    "Gods power"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "What do you think the boy felt when his own little lunch became enough for everyone?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "Gentle, joyful provision. Kid title 'The Big Picnic' (warm, inviting hook for ages 4-7; anchor stays feeding_5000). One image: the boy's five loaves + two fish feeding everyone, with baskets left over. Texture = crowds / daylight / grassy hillside (kinetic-exterior, counters quiet-room drift). Center: God does much with a little freely given. Mood grateful (provision + thankfulness).",
+  "files": {
+    "short": {
+      "storyText": "story_1825_short.txt",
+      "audio": "audio_1825_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1825_full.txt",
+      "audio": "audio_1825_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1825.txt",
+      "audio": "audio_1825_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

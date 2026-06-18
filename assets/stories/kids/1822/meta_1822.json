@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1822,
+  "anchorId": "fiery_furnace",
+  "kidLane": "dedicated-4-7",
+  "title": "The Fiery Furnace",
+  "scriptureAnchorId": "daniel_3",
+  "bibleSourceRef": "Daniel 3",
+  "bibleStoryKey": "fiery_furnace",
+  "translation": "WEB",
+  "mood": "brave_courage",
+  "emotionalTags": [
+    "scared_dark",
+    "courage"
+  ],
+  "themeTags": [
+    "faith",
+    "presence of God",
+    "courage",
+    "protection"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "What do you think the three friends saw when they looked beside them in the fire?",
+  "hardContentFlags": [
+    "peril_fire"
+  ],
+  "kidSafetyNotes": "Braver-set: REAL danger (fire), but no one is harmed; the soldiers' deaths (Dan 3:22) OMITTED. KEPT the hardest faith line -- 'Our God is able to save us, but even if he does not, we will still worship only him' -- faith WITHOUT a guarantee, the deliberate counter to gentleness-drift (feedback_kid_faithful_not_gentle). Not-alone spine made literal: the fourth figure walking WITH them in the flames. One image: the four walking unharmed in the fire. Names Shadrach/Meshach/Abednego kept (rhythmic for kids).",
+  "files": {
+    "short": {
+      "storyText": "story_1822_short.txt",
+      "audio": "audio_1822_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1822_full.txt",
+      "audio": "audio_1822_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1822.txt",
+      "audio": "audio_1822_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

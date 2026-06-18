@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1835,
+  "anchorId": "psalm_139",
+  "kidLane": "dedicated-4-7",
+  "title": "God Made You",
+  "scriptureAnchorId": "psalm_139",
+  "bibleSourceRef": "Psalm 139",
+  "bibleStoryKey": "psalm_139",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "feeling_small",
+    "self_doubt",
+    "hope"
+  ],
+  "themeTags": [
+    "God made me",
+    "God delights in you",
+    "Gods presence",
+    "wonderfully made"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "God made every part of you on purpose, with love. What is one thing about you that you think God smiles to see?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Comfort & Bedtime). The LITERAL 'God delights in YOU' -- spoken in second person straight to the child. DOUBLES as comfort for a kid who feels small/unnoticed/not-good-enough: tags feeling_small + self_doubt, mood calm_peaceful is reachable from hurting via expansion, so a 'too little / nobody notices me' kid routes here. 'keeping you safe' was changed to 'loving you' (Adam: no guaranteed-safety promise, see feedback_kid_god_with_not_cause). Ties the not-alone spine ('wherever you go, God is with you', Ps 139:7-10). One image: up past the highest star / down to the deepest sea, God is there.",
+  "files": {
+    "short": {
+      "storyText": "story_1835_short.txt",
+      "audio": "audio_1835_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1835_full.txt",
+      "audio": "audio_1835_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1835.txt",
+      "audio": "audio_1835_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

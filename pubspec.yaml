@@ -627,6 +627,43 @@ flutter:
     - assets/stories/traditional/832/
     - assets/stories/traditional/833/
     - assets/stories/traditional/834/
+    # Dedicated kid lane (kids/<id>/). Build scripts regenerate this list for
+    # release; these entries make kid audio load in dev (flutter run) too.
+    - assets/stories/kids/1801/
+    - assets/stories/kids/1802/
+    - assets/stories/kids/1803/
+    - assets/stories/kids/1804/
+    - assets/stories/kids/1805/
+    - assets/stories/kids/1806/
+    - assets/stories/kids/1807/
+    - assets/stories/kids/1808/
+    - assets/stories/kids/1809/
+    - assets/stories/kids/1810/
+    - assets/stories/kids/1811/
+    - assets/stories/kids/1812/
+    - assets/stories/kids/1813/
+    - assets/stories/kids/1814/
+    - assets/stories/kids/1815/
+    - assets/stories/kids/1816/
+    - assets/stories/kids/1817/
+    - assets/stories/kids/1818/
+    - assets/stories/kids/1819/
+    - assets/stories/kids/1820/
+    - assets/stories/kids/1821/
+    - assets/stories/kids/1822/
+    - assets/stories/kids/1823/
+    - assets/stories/kids/1824/
+    - assets/stories/kids/1825/
+    - assets/stories/kids/1826/
+    - assets/stories/kids/1827/
+    - assets/stories/kids/1828/
+    - assets/stories/kids/1829/
+    - assets/stories/kids/1830/
+    - assets/stories/kids/1831/
+    - assets/stories/kids/1832/
+    - assets/stories/kids/1833/
+    - assets/stories/kids/1834/
+    - assets/stories/kids/1835/
     - assets/audio/
     - assets/audio/ambient/
     - assets/safety/kid_safety_blocklist.txt
