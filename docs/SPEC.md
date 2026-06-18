@@ -1107,6 +1107,32 @@ An optional lock in Settings that strengthens the exit gate (51.2). It guards on
 - Biometric via the `local_auth` package (+ `NSFaceIDUsageDescription` in Info.plist).
 - The exit gate (`_KidModeToggle`) runs the auth flow on hold-complete when `hasParentLock`.
 
+**51.7 Kid PAL response language**
+
+PAL's spoken/shown response to a child's feeling. The locked decision is: **acknowledge the feeling first, then tell a fitting story.** The story (selected by the unchanged engine) is the path to hope; PAL's response is the acknowledgement beat before it.
+
+- **Locked rules:**
+  - PAL acknowledges the feeling first.
+  - PAL stays WITH the child in the feeling — every reflection line carries a presence signal ("with you", "here", "stay close", "together", "beside you", "lean on me", and sparingly "not alone"/"by yourself"). PAL must never leave a child alone with a scary feeling.
+  - PAL leads to hope through the STORY, not through explanation. PAL stays with the child; it does not explain everything.
+  - **Never say:** "Everything will be okay" (or any okay/fine reassurance); "Grandpa will not die" (or any "will not die" promise); "Do not be scared"; "God did this for a reason" (or any "for a reason" theodicy); and — equally — the adult-comfort phrasings a child hears as *"your feeling is wrong"*: "there's nothing to be afraid of", "you don't need/have to worry", "it's okay to be scared", "nothing bad will happen", "don't worry", "cheer up". No false promises, no permission, no commands to stop feeling, no explaining away the feeling.
+  - **Doctrine test:** if a child hears the line and thinks *"PAL is with me,"* it is right; if they hear *"PAL is explaining me,"* it is wrong.
+- **Three buckets (Adam, 2026-06-18), mixed across the response:**
+  - **Presence** (the reflection line): acknowledge + stay. Lead with CONCRETE presence ("I'm right here with you", "I'll stay close") over abstract "you are not alone" — a young child grasps someone being WITH them better than the idea of not-aloneness. "not alone"/"by yourself" are kept but used sparingly (<= ~25% of lines; test-enforced).
+  - **Gentle invitation** (the transition line): "Let's hear a story together.", "I know a story that might help."
+  - **Wonder** (the transition line): "Want to hear something wonderful?", "I have something beautiful to share."
+- **Diction:** short, literal, ages 4-7. Mood-scoped reflection, one line per response, persistent recency rotation; reflection covers all eight MoodService moods so Kids mode never falls back to the adult lines. The transition pool is generic (not story-keyed) and mixes invitation + wonder so the child never hears the same kind of line twice in a row.
+- **Scope:** applies to the **peach orb voice flow only** (the hero interaction). The feeling cards remain the silent helper path (per the "one hero interaction" lock under 51.3) — they are not a second voice surface, so they do not speak a separate acknowledgement. There is no separate "Tell PAL More" / mic button.
+- **Displayed text == spoken line:** in Kids mode the on-screen response and the spoken reflection are the same kid line, so the adult micro-responses (which carry banned reassurance phrasing) never surface for a child.
+- **Grief granularity (future):** the reflection is keyed by mood, so "I miss someone", "I got in trouble", and "I feel lonely" all draw from the tender `hurting` pool. Finer per-situation grief lines (e.g. a dedicated "I miss someone" response that names the missing) are a future enhancement once kid stories are tagged for it (see 51.5).
+
+**Implementation:**
+- `lib/core/kid_pal_reflection_lines.dart` — the locked `kidReflectionLines` (Presence) library + `KidPalReflectionLines` selector (recency family `kid_reflection`).
+- `lib/core/kid_pal_transition_lines.dart` — the locked `kidTransitionLines` (invitation + wonder) pool + `KidPalTransitionLines` selector (recency family `kid_transition`), replacing the adult abstract transition pool in Kids mode.
+- `_processMoodFromVoice` (main menu voice flow) selects the kid reflection + kid transition when `kidFriendlyOnly`; the reflection is used for both the displayed text and the spoken ref. The adult `PalReflectionLines` / `PalTransitionLines` paths are unchanged.
+- Audio: kid clips are rendered for all 3 PAL voices (Hope/Shepherd/Stillwater) to `assets/pal/audio/{voiceKey}/KID_REFL_*.mp3` and `KID_TRANS_*.mp3` (38 lines x 3 voices = 114 clips), using the PAL standard premium engine `eleven_v3` (stability 0.35 / similarity_boost 0.75 / style 0.40 / speaker boost). Generated 2026-06-18. Pipeline: `python3 server/extract_kid_pal_lines.py` (Dart const -> `server/kid_pal_lines_manifest.json`) then `server/generate_kid_pal_audio.sh` (skip-if-exists; `FORCE_REGEN=1` to overwrite; optional voice-key arg). If a clip is missing, playback no-ops gracefully and the line still surfaces as displayed text.
+- Safety rules are enforced by `test/core/kid_pal_reflection_lines_test.dart` (banned phrases/words incl. the "your feeling is wrong" set, presence signal, sparing-"alone" cap, mood coverage, diction, and the kid transition pool).
+
 ---
 
 ## Living Sky Theme

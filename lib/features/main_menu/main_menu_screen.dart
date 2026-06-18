@@ -29,6 +29,9 @@ import '../../providers/parable_player_notifier.dart';
 import '../../models/parable.dart';
 import '../../core/story_length_bucket.dart';
 import '../../core/kid_feeling_cards.dart';
+import '../../core/kid_pal_reflection_lines.dart';
+import '../../core/kid_pal_transition_lines.dart';
+import '../../core/pal_line_ref.dart';
 import '../pals_parables/parable_player_screen.dart';
 import '../consent/voice_consent_dialog.dart';
 import '../../core/app_logger.dart';
@@ -2003,7 +2006,20 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     if (!useLegacy ||
         appState?.userPreferences.palGreetingsEnabled == false) {
       // New path: spoken reflection line as PAL's response to the user.
-      responseText = moodService.getMicroResponseText(result.mood);
+      // Kids mode (SPEC 51.7): PAL acknowledges the feeling first in
+      // kid-specific language (short, literal, stays WITH the child) before
+      // the story leads to hope. The displayed text and the spoken line are
+      // the SAME kid line so the adult micro-responses (which carry
+      // reassurance phrasing banned for kids) never surface in Kids mode.
+      PalLineRef? kidReflectionRef;
+      if (kidMode) {
+        await KidPalReflectionLines.ensureLoaded();
+        kidReflectionRef = KidPalReflectionLines.getLineRef(result.mood);
+        responseText =
+            kidReflectionRef?.text ?? moodService.getMicroResponseText(result.mood);
+      } else {
+        responseText = moodService.getMicroResponseText(result.mood);
+      }
 
       // Feature 5.1a — Play a single reflection line as spoken response.
       final palResponseEnabled =
@@ -2013,8 +2029,12 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         await PalReflectionLines.ensureLoaded();
         // Feature 5.1 tone-biased reflection retired with 12-line
         // time-bucketed opening library (SPEC §2.0). Reflection uses
-        // default mood ref.
-        final reflectionRef = PalReflectionLines.getLineRef(result.mood);
+        // default mood ref. Kids mode speaks the same kid line already
+        // chosen for display (audio falls back gracefully until kid clips
+        // are generated).
+        final reflectionRef = kidMode
+            ? kidReflectionRef
+            : PalReflectionLines.getLineRef(result.mood);
         if (reflectionRef != null && mounted) {
           final palAudio = ref.read(palAudioServiceProvider);
           try {
@@ -2091,8 +2111,18 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
       if (previewKey != null && mounted && palResponseEnabled) {
         await BiblicalFigureRegistry.ensureLoaded();
-        await PalTransitionLines.ensureLoaded();
-        final transitionRef = PalTransitionLines.getLineRef(previewKey);
+        // Kids mode (SPEC 51.7): the transition is a concrete invitation /
+        // wonder line ("Let's hear a story together"), not the adult
+        // abstract pool ("There's something in Scripture that understands
+        // that"), which a 4-7 year old does not parse.
+        PalLineRef? transitionRef;
+        if (kidMode) {
+          await KidPalTransitionLines.ensureLoaded();
+          transitionRef = KidPalTransitionLines.getLineRef();
+        } else {
+          await PalTransitionLines.ensureLoaded();
+          transitionRef = PalTransitionLines.getLineRef(previewKey);
+        }
         final framingRef =
             BiblicalFigureRegistry.getFramingLineRef(previewKey);
 
