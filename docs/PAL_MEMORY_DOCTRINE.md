@@ -2,7 +2,7 @@
 
 > PAL should never tell the user who they are. PAL should remember where they've been.
 
-**Status:** Captured 2026-06-18. No implementation yet. Return after R2 Phase 2 and Play release.
+**Status:** Captured 2026-06-18. Slice 1 (session log) and Slice 2a (rules engine) shipped — pure infrastructure, no surface integration. Slice 2b (audio + delivery) pending after R2 Phase 2 and Play release.
 
 ---
 
@@ -90,6 +90,20 @@ When the implementation slot opens (after R2 Phase 2 and Play release), ship Lev
 > "Yesterday you sat with Daniel. Want to hear what came after?"
 
 Nothing else. No pattern recognition, no milestones, no meaning. Measure return behavior. If users light up, the upper levels are earned. If they don't, the elegance of the doctrine doesn't save you, and you've spent one slice instead of a quarter.
+
+---
+
+## Slice 2b Audio Architecture
+
+When Slice 2b lands, this is how the engine's output gets spoken.
+
+**The magic isn't the generation; it's the remembering.** Memory audio is pre-rendered and audited, never runtime TTS. The same voice, the same prosody, every time — that consistency is the trust the user comes back for. Runtime TTS would erode it without anyone realizing why, and would break Bible PAL's offline guarantee. The discipline matches the rest of the voiced surface: story audio, PAL greetings, and name audio are all pre-rendered and editorially reviewed.
+
+**Delivery is stitched, not generated.** A spoken line concatenates three pre-rendered components: a carrier fragment ("Yesterday you sat with"), a `palMemoryDisplayName` clip for the source story ("Daniel"), and an optional follow-up question ("Want to hear what came after?"). `palMemoryDisplayName` is an editorial field on each anchor — the speakable form chosen deliberately ("Daniel" / "the parable of the lost son" / "Psalm 139"), not the title or `bibleStoryKey`. Carrier fragments are rendered with leading-into-a-name prosody so the stitch reads as a sentence, not a collage; programmatic silences (~250ms intra-line, ~700ms before the follow-up) preserve natural cadence.
+
+**Missing clip means silence, not fallback generation.** If any component required by the engine's chosen line is missing from the bundle or R2, the line does not get spoken. PAL stays silent. The editorial discipline only holds if every line that ships was rendered and listened to — there is no runtime widening of the spoken surface for missing combinations.
+
+**Build-time integrity check ships before Slice 2b ships.** Because [PalMemoryEngine](../lib/features/pal_memory/pal_memory_engine.dart) deterministically picks a variant per source session, every combination of (band × variant × `palMemoryDisplayName` × PAL voice) that can ever fire is enumerable at build time. A test asserts that each combination has a bundled clip or a registered R2 asset. No surprise gaps in production, no silent regressions when a new template or anchor lands without its audio.
 
 ---
 
