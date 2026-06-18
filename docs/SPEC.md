@@ -1085,6 +1085,8 @@ In Kids mode the Mood page (Feature 48 page 1) replaces the adult input with a t
 - `lib/core/kid_feeling_cards.dart` — the 8 `KidFeelingCard` records + `kidFallbackMood(...)`.
 - The Mood page's idle panel renders the card grid (`_FeelingCardTile`) when `kidFriendlyOnly`; each tap routes through the existing `selectStoryAndOpenPlayer` with the canonical phrase as `userText`. The voice path applies `kidFallbackMood` to story selection.
 
+**LOCKED — one hero interaction (Kids mode):** the peach PAL orb is the single hero interaction; a child *taps PAL to talk* (the existing voice flow runs in Kids mode). The feeling cards are the **helper path** for shy/younger/pre-verbal kids — they are NOT a second voice surface. There is deliberately **no separate "Tell PAL More" / mic button**. The mental model is "PAL becomes a kid": one PAL that changes color, language, and tone when Kids mode is ON. Helper rule: *tap PAL to talk; tap a card if you don't know what to say.*
+
 **51.5 "I miss someone" — no retrofit**
 
 The "miss someone" card submits a `missing_someone`-tagged phrase, but no existing story is retagged. It currently lands in the hurting pool (The Lost Sheep via the `lonely` tag). As kid stories that genuinely fit "missing someone" are written and tagged, they will be picked up automatically. Future dedicated-anchor candidates: Jesus weeps with Mary & Martha; the Ascension; Ruth & Naomi.
