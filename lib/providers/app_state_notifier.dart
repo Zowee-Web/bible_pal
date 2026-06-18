@@ -10,6 +10,7 @@ import 'package:bible_pal/models/pal.dart';
 import 'package:bible_pal/models/share_record.dart';
 import 'package:bible_pal/core/story_length_bucket.dart';
 import 'package:bible_pal/core/analytics_events.dart';
+import 'package:bible_pal/core/parent_lock.dart';
 import 'package:bible_pal/services/storage_service.dart';
 import 'package:bible_pal/services/parable_service.dart';
 import 'package:bible_pal/services/mood_service.dart';
@@ -144,6 +145,43 @@ class AppStateNotifier extends AsyncNotifier<AppState> {
       languageStyle: shouldForceWeb ? 'WEB' : current.languageStyle,
     );
     await updateUserPreferences(prefs);
+  }
+
+  // === Parent Lock (SPEC Feature 51.6) ===
+
+  /// Set or change the parent-lock PIN. Stores only a fresh salt + salted
+  /// SHA-256 hash — never the plaintext PIN. [pin] must be 4 digits.
+  Future<void> setParentLockPin(String pin) async {
+    final salt = ParentLock.generateSalt();
+    final prefs = state.requireValue.userPreferences.copyWith(
+      parentLockPinHash: ParentLock.hashPin(pin, salt),
+      parentLockSalt: salt,
+    );
+    await updateUserPreferences(prefs);
+  }
+
+  /// Remove the parent lock entirely (clears PIN hash/salt and biometric).
+  Future<void> clearParentLock() async {
+    final prefs =
+        state.requireValue.userPreferences.copyWith(resetParentLock: true);
+    await updateUserPreferences(prefs);
+  }
+
+  /// Enable/disable Face ID / Touch ID for the exit gate. Has no effect
+  /// unless a PIN is also set (the PIN is the base credential + fallback).
+  Future<void> setParentLockBiometric(bool enabled) async {
+    final prefs = state.requireValue.userPreferences
+        .copyWith(parentLockBiometricEnabled: enabled);
+    await updateUserPreferences(prefs);
+  }
+
+  /// True when [pin] matches the stored parent-lock credential.
+  bool verifyParentPin(String pin) {
+    final p = state.requireValue.userPreferences;
+    final hash = p.parentLockPinHash;
+    final salt = p.parentLockSalt;
+    if (hash == null || salt == null) return false;
+    return ParentLock.verify(pin, hash: hash, salt: salt);
   }
 
   Future<void> updateShowEverydayReflections(
