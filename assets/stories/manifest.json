@@ -7543,35 +7543,6 @@
       ]
     },
     {
-      "storyId": "story_1084_encouraging_short_kid_traditional",
-      "mood": "encouraging",
-      "emotionalTags": [
-        "rejection",
-        "injustice"
-      ],
-      "audioFilePath": "traditional/1084/audio_1084_story_short_take1.mp3",
-      "textFilePath": "traditional/1084/story_1084_traditional_web_short_kid.txt",
-      "reflectionAudioPath": "traditional/1084/audio_1084_reflection.mp3",
-      "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
-      "storyLength": "short",
-      "kidFriendly": true,
-      "scriptureTextFilePath": "traditional/1084/scripture_1084_web.txt",
-      "title": "The Man on the Jericho Road",
-      "storytellingMode": "traditional",
-      "translationId": "WEB",
-      "reflectionQuestion": "When was the last time you stopped for someone you didn't have to stop for?",
-      "bibleSourceRef": "Luke 10:25-37",
-      "bibleStoryKey": "good_samaritan",
-      "primaryCharacterId": "good_samaritan",
-      "primaryCharacterDisplayName": "Good Samaritan",
-      "bibleOrderIndex": 630,
-      "timelineEra": "jesus_ministry",
-      "themeTags": [
-        "mercy"
-      ]
-    },
-    {
       "storyId": "story_1085_hurting_full_traditional",
       "mood": "hurting",
       "emotionalTags": [
@@ -7709,36 +7680,6 @@
       "title": "Through the Roof",
       "storytellingMode": "traditional",
       "kidFriendly": false,
-      "reflectionQuestion": "Has someone ever carried you through something you couldn't face alone?",
-      "bibleSourceRef": "Mark 2:1-12",
-      "bibleStoryKey": "paralytic_through_roof",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
-      "bibleOrderIndex": 662,
-      "timelineEra": "jesus_ministry",
-      "themeTags": [
-        "faith",
-        "forgiveness"
-      ]
-    },
-    {
-      "storyId": "story_1085_hurting_short_kid_traditional",
-      "mood": "hurting",
-      "emotionalTags": [
-        "illness",
-        "hopeless"
-      ],
-      "audioFilePath": "traditional/1085/audio_1085_story_short_take1.mp3",
-      "textFilePath": "traditional/1085/story_1085_traditional_web_short_kid.txt",
-      "reflectionAudioPath": "traditional/1085/audio_1085_reflection.mp3",
-      "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_ARABELLA",
-      "storyLength": "short",
-      "kidFriendly": true,
-      "scriptureTextFilePath": "traditional/1085/scripture_1085_web.txt",
-      "title": "Through the Roof",
-      "storytellingMode": "traditional",
-      "translationId": "WEB",
       "reflectionQuestion": "Has someone ever carried you through something you couldn't face alone?",
       "bibleSourceRef": "Mark 2:1-12",
       "bibleStoryKey": "paralytic_through_roof",
@@ -7938,7 +7879,7 @@
         "illness",
         "hopeless"
       ],
-      "audioFilePath": "traditional/1080/audio_1080_story_short.mp3",
+      "audioFilePath": "traditional/1080/audio_1080_story_short_kid.mp3",
       "textFilePath": "traditional/1080/story_1080_traditional_web_short_kid.txt",
       "reflectionAudioPath": "",
       "translationId": "WEB",
@@ -8148,7 +8089,7 @@
         "overwhelmed",
         "waiting"
       ],
-      "audioFilePath": "traditional/1081/audio_1081_story_short.mp3",
+      "audioFilePath": "traditional/1081/audio_1081_story_short_kid.mp3",
       "textFilePath": "traditional/1081/story_1081_traditional_web_short_kid.txt",
       "reflectionAudioPath": "",
       "translationId": "WEB",
@@ -8358,7 +8299,7 @@
         "self_doubt",
         "waiting"
       ],
-      "audioFilePath": "traditional/1082/audio_1082_story_short_take1.mp3",
+      "audioFilePath": "traditional/1082/audio_1082_story_short_kid.mp3",
       "textFilePath": "traditional/1082/story_1082_traditional_web_short_kid.txt",
       "reflectionAudioPath": "",
       "translationId": "WEB",
@@ -8568,7 +8509,7 @@
         "illness",
         "rejection"
       ],
-      "audioFilePath": "traditional/1086/audio_1086_story_short.mp3",
+      "audioFilePath": "traditional/1086/audio_1086_story_short_kid.mp3",
       "textFilePath": "traditional/1086/story_1086_traditional_web_short_kid.txt",
       "reflectionAudioPath": "traditional/1086/audio_1086_reflection.mp3",
       "translationId": "WEB",
@@ -8778,7 +8719,7 @@
         "waiting",
         "self_doubt"
       ],
-      "audioFilePath": "traditional/1087/audio_1087_story_short.mp3",
+      "audioFilePath": "traditional/1087/audio_1087_story_short_kid.mp3",
       "textFilePath": "traditional/1087/story_1087_traditional_web_short_kid.txt",
       "reflectionAudioPath": "traditional/1087/audio_1087_reflection.mp3",
       "translationId": "WEB",
@@ -8988,7 +8929,7 @@
         "overwhelmed",
         "grateful"
       ],
-      "audioFilePath": "traditional/1088/audio_1088_story_short.mp3",
+      "audioFilePath": "traditional/1088/audio_1088_story_short_kid.mp3",
       "textFilePath": "traditional/1088/story_1088_traditional_web_short_kid.txt",
       "reflectionAudioPath": "traditional/1088/audio_1088_reflection.mp3",
       "translationId": "WEB",
@@ -9198,7 +9139,7 @@
         "self_doubt",
         "waiting"
       ],
-      "audioFilePath": "traditional/1089/audio_1089_story_short.mp3",
+      "audioFilePath": "traditional/1089/audio_1089_story_short_kid.mp3",
       "textFilePath": "traditional/1089/story_1089_traditional_web_short_kid.txt",
       "reflectionAudioPath": "traditional/1089/audio_1089_reflection.mp3",
       "translationId": "WEB",
@@ -9408,7 +9349,7 @@
         "anxious",
         "overwhelmed"
       ],
-      "audioFilePath": "traditional/1090/audio_1090_story_short.mp3",
+      "audioFilePath": "traditional/1090/audio_1090_story_short_kid.mp3",
       "textFilePath": "traditional/1090/story_1090_traditional_web_short_kid.txt",
       "reflectionAudioPath": "traditional/1090/audio_1090_reflection.mp3",
       "translationId": "WEB",
@@ -9618,7 +9559,7 @@
         "self_doubt",
         "injustice"
       ],
-      "audioFilePath": "traditional/1091/audio_1091_story_short.mp3",
+      "audioFilePath": "traditional/1091/audio_1091_story_short_kid.mp3",
       "textFilePath": "traditional/1091/story_1091_traditional_web_short_kid.txt",
       "reflectionAudioPath": "",
       "translationId": "WEB",
@@ -9828,7 +9769,7 @@
         "grief",
         "hopeless"
       ],
-      "audioFilePath": "traditional/1092/audio_1092_story_short.mp3",
+      "audioFilePath": "traditional/1092/audio_1092_story_short_kid.mp3",
       "textFilePath": "traditional/1092/story_1092_traditional_web_short_kid.txt",
       "reflectionAudioPath": "",
       "translationId": "WEB",
@@ -10038,7 +9979,7 @@
         "rejection",
         "self_doubt"
       ],
-      "audioFilePath": "traditional/1093/audio_1093_story_short.mp3",
+      "audioFilePath": "traditional/1093/audio_1093_story_short_kid.mp3",
       "textFilePath": "traditional/1093/story_1093_traditional_web_short_kid.txt",
       "reflectionAudioPath": "",
       "translationId": "WEB",
@@ -10248,7 +10189,7 @@
         "anxious",
         "self_doubt"
       ],
-      "audioFilePath": "traditional/1094/audio_1094_story_short.mp3",
+      "audioFilePath": "traditional/1094/audio_1094_story_short_kid.mp3",
       "textFilePath": "traditional/1094/story_1094_traditional_web_short_kid.txt",
       "reflectionAudioPath": "",
       "translationId": "WEB",
@@ -10458,313 +10399,13 @@
         "self_doubt",
         "failure"
       ],
-      "audioFilePath": "traditional/1095/audio_1095_story_short.mp3",
+      "audioFilePath": "traditional/1095/audio_1095_story_short_kid.mp3",
       "textFilePath": "traditional/1095/story_1095_traditional_web_short_kid.txt",
       "reflectionAudioPath": "",
       "translationId": "WEB",
       "languageStyle": "WEB",
       "narratorVoiceKey": "VOICE_BRADFORD",
       "storyLength": "short",
-      "kidFriendly": true,
-      "scriptureTextFilePath": "traditional/1095/scripture_1095_web.txt",
-      "title": "The Road to Damascus",
-      "storytellingMode": "traditional",
-      "reflectionQuestion": "Have you ever discovered that the thing you were most certain about was the thing you most needed to let go?",
-      "bibleSourceRef": "Acts 9:1-19",
-      "bibleStoryKey": "saul_on_road_to_damascus",
-      "primaryCharacterId": "paul",
-      "primaryCharacterDisplayName": "Paul",
-      "bibleOrderIndex": 700,
-      "timelineEra": "early_church",
-      "themeTags": [
-        "faith",
-        "mercy"
-      ]
-    },
-    {
-      "storyId": "story_1091_brave_courage_full_kid_traditional",
-      "mood": "brave_courage",
-      "emotionalTags": [
-        "self_doubt",
-        "injustice"
-      ],
-      "audioFilePath": "",
-      "textFilePath": "traditional/1091/story_1091_traditional_web_full_kid.txt",
-      "reflectionAudioPath": "",
-      "translationId": "WEB",
-      "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_JOHN_DOE",
-      "storyLength": "full",
-      "kidFriendly": true,
-      "scriptureTextFilePath": "traditional/1091/scripture_1091_web.txt",
-      "title": "The Fiery Furnace",
-      "storytellingMode": "traditional",
-      "reflectionQuestion": "Have you ever had to make a choice knowing it could cost you everything?",
-      "bibleSourceRef": "Daniel 3:1-30",
-      "bibleStoryKey": "fiery_furnace",
-      "primaryCharacterId": "shadrach",
-      "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
-      "bibleOrderIndex": 390,
-      "timelineEra": "exile",
-      "themeTags": [
-        "faith",
-        "courage"
-      ]
-    },
-    {
-      "storyId": "story_1091_brave_courage_long_kid_traditional",
-      "mood": "brave_courage",
-      "emotionalTags": [
-        "self_doubt",
-        "injustice"
-      ],
-      "audioFilePath": "",
-      "textFilePath": "traditional/1091/story_1091_traditional_web_long_kid.txt",
-      "reflectionAudioPath": "",
-      "translationId": "WEB",
-      "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_JOHN_DOE",
-      "storyLength": "long",
-      "kidFriendly": true,
-      "scriptureTextFilePath": "traditional/1091/scripture_1091_web.txt",
-      "title": "The Fiery Furnace",
-      "storytellingMode": "traditional",
-      "reflectionQuestion": "Have you ever had to make a choice knowing it could cost you everything?",
-      "bibleSourceRef": "Daniel 3:1-30",
-      "bibleStoryKey": "fiery_furnace",
-      "primaryCharacterId": "shadrach",
-      "primaryCharacterDisplayName": "Shadrach, Meshach, and Abednego",
-      "bibleOrderIndex": 390,
-      "timelineEra": "exile",
-      "themeTags": [
-        "faith",
-        "courage"
-      ]
-    },
-    {
-      "storyId": "story_1092_joyful_full_kid_traditional",
-      "mood": "joyful",
-      "emotionalTags": [
-        "grief",
-        "hopeless"
-      ],
-      "audioFilePath": "",
-      "textFilePath": "traditional/1092/story_1092_traditional_web_full_kid.txt",
-      "reflectionAudioPath": "",
-      "translationId": "WEB",
-      "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
-      "storyLength": "full",
-      "kidFriendly": true,
-      "scriptureTextFilePath": "traditional/1092/scripture_1092_web.txt",
-      "title": "The Garden at Dawn",
-      "storytellingMode": "traditional",
-      "reflectionQuestion": "Has someone ever spoken your name in a way that changed everything?",
-      "bibleSourceRef": "John 20:1-18",
-      "bibleStoryKey": "mary_at_empty_tomb",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
-      "bibleOrderIndex": 690,
-      "timelineEra": "jesus_ministry",
-      "themeTags": [
-        "faith",
-        "hope"
-      ]
-    },
-    {
-      "storyId": "story_1092_joyful_long_kid_traditional",
-      "mood": "joyful",
-      "emotionalTags": [
-        "grief",
-        "hopeless"
-      ],
-      "audioFilePath": "",
-      "textFilePath": "traditional/1092/story_1092_traditional_web_long_kid.txt",
-      "reflectionAudioPath": "",
-      "translationId": "WEB",
-      "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_CHARLOTTE_V3",
-      "storyLength": "long",
-      "kidFriendly": true,
-      "scriptureTextFilePath": "traditional/1092/scripture_1092_web.txt",
-      "title": "The Garden at Dawn",
-      "storytellingMode": "traditional",
-      "reflectionQuestion": "Has someone ever spoken your name in a way that changed everything?",
-      "bibleSourceRef": "John 20:1-18",
-      "bibleStoryKey": "mary_at_empty_tomb",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
-      "bibleOrderIndex": 690,
-      "timelineEra": "jesus_ministry",
-      "themeTags": [
-        "faith",
-        "hope"
-      ]
-    },
-    {
-      "storyId": "story_1093_hurting_full_kid_traditional",
-      "mood": "hurting",
-      "emotionalTags": [
-        "rejection",
-        "self_doubt"
-      ],
-      "audioFilePath": "",
-      "textFilePath": "traditional/1093/story_1093_traditional_web_full_kid.txt",
-      "reflectionAudioPath": "",
-      "translationId": "WEB",
-      "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
-      "storyLength": "full",
-      "kidFriendly": true,
-      "scriptureTextFilePath": "traditional/1093/scripture_1093_web.txt",
-      "title": "The Woman with the Perfume",
-      "storytellingMode": "traditional",
-      "reflectionQuestion": "Have you ever given something that cost you everything, without knowing if it would be received?",
-      "bibleSourceRef": "Luke 7:36-50",
-      "bibleStoryKey": "woman_anoints_jesus_feet",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
-      "bibleOrderIndex": 628,
-      "timelineEra": "jesus_ministry",
-      "themeTags": [
-        "mercy",
-        "forgiveness"
-      ]
-    },
-    {
-      "storyId": "story_1093_hurting_long_kid_traditional",
-      "mood": "hurting",
-      "emotionalTags": [
-        "rejection",
-        "self_doubt"
-      ],
-      "audioFilePath": "",
-      "textFilePath": "traditional/1093/story_1093_traditional_web_long_kid.txt",
-      "reflectionAudioPath": "",
-      "translationId": "WEB",
-      "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
-      "storyLength": "long",
-      "kidFriendly": true,
-      "scriptureTextFilePath": "traditional/1093/scripture_1093_web.txt",
-      "title": "The Woman with the Perfume",
-      "storytellingMode": "traditional",
-      "reflectionQuestion": "Have you ever given something that cost you everything, without knowing if it would be received?",
-      "bibleSourceRef": "Luke 7:36-50",
-      "bibleStoryKey": "woman_anoints_jesus_feet",
-      "primaryCharacterId": "jesus",
-      "primaryCharacterDisplayName": "Jesus",
-      "bibleOrderIndex": 628,
-      "timelineEra": "jesus_ministry",
-      "themeTags": [
-        "mercy",
-        "forgiveness"
-      ]
-    },
-    {
-      "storyId": "story_1094_anxious_full_kid_traditional",
-      "mood": "anxious",
-      "emotionalTags": [
-        "anxious",
-        "self_doubt"
-      ],
-      "audioFilePath": "",
-      "textFilePath": "traditional/1094/story_1094_traditional_web_full_kid.txt",
-      "reflectionAudioPath": "",
-      "translationId": "WEB",
-      "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_ARCHER",
-      "storyLength": "full",
-      "kidFriendly": true,
-      "scriptureTextFilePath": "traditional/1094/scripture_1094_web.txt",
-      "title": "The Man Who Ran from God",
-      "storytellingMode": "traditional",
-      "reflectionQuestion": "Have you ever known exactly what you were supposed to do — and done the opposite?",
-      "bibleSourceRef": "Jonah 1:1-17",
-      "bibleStoryKey": "jonah_flees",
-      "primaryCharacterId": "jonah",
-      "primaryCharacterDisplayName": "Jonah",
-      "bibleOrderIndex": 460,
-      "timelineEra": "prophets",
-      "themeTags": [
-        "obedience",
-        "faith"
-      ]
-    },
-    {
-      "storyId": "story_1094_anxious_long_kid_traditional",
-      "mood": "anxious",
-      "emotionalTags": [
-        "anxious",
-        "self_doubt"
-      ],
-      "audioFilePath": "",
-      "textFilePath": "traditional/1094/story_1094_traditional_web_long_kid.txt",
-      "reflectionAudioPath": "",
-      "translationId": "WEB",
-      "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_ARCHER",
-      "storyLength": "long",
-      "kidFriendly": true,
-      "scriptureTextFilePath": "traditional/1094/scripture_1094_web.txt",
-      "title": "The Man Who Ran from God",
-      "storytellingMode": "traditional",
-      "reflectionQuestion": "Have you ever known exactly what you were supposed to do — and done the opposite?",
-      "bibleSourceRef": "Jonah 1:1-17",
-      "bibleStoryKey": "jonah_flees",
-      "primaryCharacterId": "jonah",
-      "primaryCharacterDisplayName": "Jonah",
-      "bibleOrderIndex": 460,
-      "timelineEra": "prophets",
-      "themeTags": [
-        "obedience",
-        "faith"
-      ]
-    },
-    {
-      "storyId": "story_1095_encouraging_full_kid_traditional",
-      "mood": "encouraging",
-      "emotionalTags": [
-        "self_doubt",
-        "failure"
-      ],
-      "audioFilePath": "",
-      "textFilePath": "traditional/1095/story_1095_traditional_web_full_kid.txt",
-      "reflectionAudioPath": "",
-      "translationId": "WEB",
-      "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_BRADFORD",
-      "storyLength": "full",
-      "kidFriendly": true,
-      "scriptureTextFilePath": "traditional/1095/scripture_1095_web.txt",
-      "title": "The Road to Damascus",
-      "storytellingMode": "traditional",
-      "reflectionQuestion": "Have you ever discovered that the thing you were most certain about was the thing you most needed to let go?",
-      "bibleSourceRef": "Acts 9:1-19",
-      "bibleStoryKey": "saul_on_road_to_damascus",
-      "primaryCharacterId": "paul",
-      "primaryCharacterDisplayName": "Paul",
-      "bibleOrderIndex": 700,
-      "timelineEra": "early_church",
-      "themeTags": [
-        "faith",
-        "mercy"
-      ]
-    },
-    {
-      "storyId": "story_1095_encouraging_long_kid_traditional",
-      "mood": "encouraging",
-      "emotionalTags": [
-        "self_doubt",
-        "failure"
-      ],
-      "audioFilePath": "",
-      "textFilePath": "traditional/1095/story_1095_traditional_web_long_kid.txt",
-      "reflectionAudioPath": "",
-      "translationId": "WEB",
-      "languageStyle": "WEB",
-      "narratorVoiceKey": "VOICE_BRADFORD",
-      "storyLength": "long",
       "kidFriendly": true,
       "scriptureTextFilePath": "traditional/1095/scripture_1095_web.txt",
       "title": "The Road to Damascus",
