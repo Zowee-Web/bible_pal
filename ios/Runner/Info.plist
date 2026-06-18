@@ -30,6 +30,8 @@
 	<string>Bible PAL needs the microphone to listen to your prompt for Whisper stories.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Bible PAL uses speech recognition to understand your spoken words and create a related story.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Bible PAL uses Face ID so a grown-up can unlock and exit Kids mode.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

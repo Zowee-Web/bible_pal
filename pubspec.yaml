@@ -39,6 +39,9 @@ dependencies:
   # Permissions
   permission_handler: ^11.3.0
 
+  # Biometric auth (Face ID / Touch ID) for the Kids-mode parent lock (51.6)
+  local_auth: ^2.3.0
+
   # Env vars
   flutter_dotenv: ^5.1.0
 
