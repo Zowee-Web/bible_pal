@@ -1094,6 +1094,13 @@ class _KidModeToggleState extends ConsumerState<_KidModeToggle>
   late final AnimationController _holdController;
   bool _holding = false;
 
+  /// Whether the current press began while Kids mode was ON. The tap-up
+  /// action is decided from THIS, not the live state — so a press that began
+  /// as a hold-to-exit can never trigger "enter" on release, even if the gate
+  /// completed mid-hold and the pill rebuilt into the OFF (enter) state under
+  /// the still-down finger. (Fixes the "release re-enables Kids mode" bug.)
+  bool _pressStartedOn = false;
+
   @override
   void initState() {
     super.initState();
@@ -1116,10 +1123,29 @@ class _KidModeToggleState extends ConsumerState<_KidModeToggle>
     ref.read(appStateProvider.notifier).updateKidFriendlyOnly(true);
   }
 
-  void _startHold() {
-    HapticFeedback.selectionClick();
-    setState(() => _holding = true);
-    _holdController.forward(from: 0.0);
+  void _onTapDown(bool isOn) {
+    _pressStartedOn = isOn;
+    if (isOn) {
+      // Begin the hold-to-exit gate.
+      HapticFeedback.selectionClick();
+      setState(() => _holding = true);
+      _holdController.forward(from: 0.0);
+    }
+  }
+
+  void _onTapUp() {
+    if (_pressStartedOn) {
+      // Released during a hold — cancel if the gate hasn't already fired.
+      // Never enters, even if the gate just completed under the finger.
+      _cancelHold();
+    } else {
+      // A tap that began while OFF → enter Kids mode (no gate on entry).
+      _enterKidMode();
+    }
+  }
+
+  void _onTapCancel() {
+    if (_pressStartedOn) _cancelHold();
   }
 
   void _cancelHold() {
@@ -1142,36 +1168,25 @@ class _KidModeToggleState extends ConsumerState<_KidModeToggle>
     final appState = ref.watch(appStateProvider).valueOrNull;
     final isOn = appState?.userPreferences.kidFriendlyOnly ?? false;
 
-    // OFF → simple tap to enter. No gate on entry.
-    if (!isOn) {
-      return GestureDetector(
-        onTap: _enterKidMode,
-        behavior: HitTestBehavior.opaque,
-        child: _pill(
-          palette: palette,
-          isOn: false,
-          fill: 0.0,
-          label: 'OFF',
-          hint: null,
-        ),
-      );
-    }
-
-    // ON → hold-to-exit parent gate.
+    // One gesture detector for both states. Entering is a tap; exiting is a
+    // 3s hold. The tap-up branch is chosen from the state at tap-DOWN
+    // (_pressStartedOn), so a release after a completed exit does nothing.
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTapDown: (_) => _startHold(),
-      onTapUp: (_) => _cancelHold(),
-      onTapCancel: _cancelHold,
+      onTapDown: (_) => _onTapDown(isOn),
+      onTapUp: (_) => _onTapUp(),
+      onTapCancel: _onTapCancel,
       child: AnimatedBuilder(
         animation: _holdController,
         builder: (context, _) {
           return _pill(
             palette: palette,
-            isOn: true,
-            fill: _holdController.value,
-            label: 'ON',
-            hint: _holding ? 'Keep holding to exit…' : 'Hold to exit',
+            isOn: isOn,
+            fill: isOn ? _holdController.value : 0.0,
+            label: isOn ? 'ON' : 'OFF',
+            hint: isOn
+                ? (_holding ? 'Keep holding to exit…' : 'Hold to exit')
+                : null,
           );
         },
       ),
