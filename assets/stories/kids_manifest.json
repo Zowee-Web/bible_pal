@@ -3026,6 +3026,307 @@
       "hardContentFlags": [
         "references_loss_softened"
       ]
+    },
+    {
+      "id": "kid_noah_flood_short",
+      "storyNumber": 1841,
+      "title": "Noah and the Great Flood",
+      "textFilePath": "kids/1841/story_1841_short.txt",
+      "scriptureAnchorId": "noah_flood",
+      "bibleStoryKey": "noah_flood",
+      "bibleSourceRef": "Genesis 6-7",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods protection",
+        "faithfulness",
+        "Gods care",
+        "safety"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 279,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "audioFilePath": "kids/1841/audio_1841_short.mp3",
+      "reflectionAudioPath": "kids/1841/audio_1841_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Outside the ark the storm raged all night, but inside, Noah and the animals were warm and safe, and God watched over them. When things feel stormy around you, who helps you feel safe?",
+      "kidSafetyNotes": "NEW anchor (Noah, core-launch finale). DE-OVERLAPPED from sibling 1808 Noah's Rainbow (Adam 2026-06-18): 1808 owns the back half (Gen 8-9: rain stops -> dove sent 3x -> dry land -> rainbow promise), so 1841 owns the FRONT half (Gen 6-7): why God chose Noah, building the ark while neighbors mock, animals coming IN two by two, God shutting the door, the flood rising, riding safe THROUGH the storm. NO dove, NO landing, NO coming-out, NO rainbow -- those are 1808's territory; ends mid-storm on God watching over, gesturing to (not retelling) the rains stopping. This honors the registry secondInterpretationRule (different verse range + a kid would not call it 'the same one'). The flood is named calmly (rain/wind/water rising) with NO drowning/destruction detail -- focus stays on safety inside the ark (KID_STORY_PROMPT 3). Flag peril_flood_softened. Indelible image = God shutting the great door ('Safe.') + the ark rocking 'like a cradle rocked by a loving hand'. 'God' throughout, no Yahweh (Noah is not a covenant-name story). VOICE_REVEREND_MICHAEL (pastoral grandfather) -- patriarch register, avoids the two-James clash with 1844.",
+      "hardContentFlags": [
+        "peril_flood_softened"
+      ]
+    },
+    {
+      "id": "kid_noah_flood_full",
+      "storyNumber": 1841,
+      "title": "Noah and the Great Flood",
+      "textFilePath": "kids/1841/story_1841_full.txt",
+      "scriptureAnchorId": "noah_flood",
+      "bibleStoryKey": "noah_flood",
+      "bibleSourceRef": "Genesis 6-7",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods protection",
+        "faithfulness",
+        "Gods care",
+        "safety"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 432,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "audioFilePath": "kids/1841/audio_1841_full.mp3",
+      "reflectionAudioPath": "kids/1841/audio_1841_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Outside the ark the storm raged all night, but inside, Noah and the animals were warm and safe, and God watched over them. When things feel stormy around you, who helps you feel safe?",
+      "kidSafetyNotes": "NEW anchor (Noah, core-launch finale). DE-OVERLAPPED from sibling 1808 Noah's Rainbow (Adam 2026-06-18): 1808 owns the back half (Gen 8-9: rain stops -> dove sent 3x -> dry land -> rainbow promise), so 1841 owns the FRONT half (Gen 6-7): why God chose Noah, building the ark while neighbors mock, animals coming IN two by two, God shutting the door, the flood rising, riding safe THROUGH the storm. NO dove, NO landing, NO coming-out, NO rainbow -- those are 1808's territory; ends mid-storm on God watching over, gesturing to (not retelling) the rains stopping. This honors the registry secondInterpretationRule (different verse range + a kid would not call it 'the same one'). The flood is named calmly (rain/wind/water rising) with NO drowning/destruction detail -- focus stays on safety inside the ark (KID_STORY_PROMPT 3). Flag peril_flood_softened. Indelible image = God shutting the great door ('Safe.') + the ark rocking 'like a cradle rocked by a loving hand'. 'God' throughout, no Yahweh (Noah is not a covenant-name story). VOICE_REVEREND_MICHAEL (pastoral grandfather) -- patriarch register, avoids the two-James clash with 1844.",
+      "hardContentFlags": [
+        "peril_flood_softened"
+      ]
+    },
+    {
+      "id": "kid_elijah_carmel_short",
+      "storyNumber": 1842,
+      "title": "Fire on Mount Carmel",
+      "textFilePath": "kids/1842/story_1842_short.txt",
+      "scriptureAnchorId": "1_kings_18",
+      "bibleStoryKey": "1_kings_18",
+      "bibleSourceRef": "1 Kings 18",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "courage",
+        "faith",
+        "wonder"
+      ],
+      "themeTags": [
+        "the one true God",
+        "courage",
+        "Gods power",
+        "trusting God"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 278,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "audioFilePath": "kids/1842/audio_1842_short.mp3",
+      "reflectionAudioPath": "kids/1842/audio_1842_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Elijah trusted God even when he stood all alone. When you need to be brave, who do you like to have beside you?",
+      "kidSafetyNotes": "NEW anchor (Elijah at Carmel) -- THE Yahweh covenant-name story, the deliberate ~1-in-20 deployment Adam reserved for 'where the name is the point' (first Yahweh since 1811 Burning Bush; 1803 Psalm 23 also has it). Yahweh is introduced GENTLY at the CLIMAX with context ('in the Bible, God's own name is Yahweh') -- the whole story builds to hearing the name, then the people cry 'Yahweh, he is God!'. Default 'God' everywhere else. HARD CONTENT SOFTENED: the prophets of Baal are NOT killed (1 Kings 18:40 omitted) -- they are simply shown to be wrong ('Baal was not real, could not answer'); no taunting cruelty, no slaughter. Flag violence_omitted. Fire here = PROOF/'Yahweh is God' (contrast 1845 Pentecost, where fire = presence/joy -- deliberate same-batch pairing, Adam approved). Indelible image = fire rushing down on the water-soaked altar. Courage model: Elijah brave standing alone, trusting God. VOICE_BRADFORD (passionate conviction).",
+      "hardContentFlags": [
+        "violence_omitted"
+      ]
+    },
+    {
+      "id": "kid_elijah_carmel_full",
+      "storyNumber": 1842,
+      "title": "Fire on Mount Carmel",
+      "textFilePath": "kids/1842/story_1842_full.txt",
+      "scriptureAnchorId": "1_kings_18",
+      "bibleStoryKey": "1_kings_18",
+      "bibleSourceRef": "1 Kings 18",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "courage",
+        "faith",
+        "wonder"
+      ],
+      "themeTags": [
+        "the one true God",
+        "courage",
+        "Gods power",
+        "trusting God"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 442,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "audioFilePath": "kids/1842/audio_1842_full.mp3",
+      "reflectionAudioPath": "kids/1842/audio_1842_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Elijah trusted God even when he stood all alone. When you need to be brave, who do you like to have beside you?",
+      "kidSafetyNotes": "NEW anchor (Elijah at Carmel) -- THE Yahweh covenant-name story, the deliberate ~1-in-20 deployment Adam reserved for 'where the name is the point' (first Yahweh since 1811 Burning Bush; 1803 Psalm 23 also has it). Yahweh is introduced GENTLY at the CLIMAX with context ('in the Bible, God's own name is Yahweh') -- the whole story builds to hearing the name, then the people cry 'Yahweh, he is God!'. Default 'God' everywhere else. HARD CONTENT SOFTENED: the prophets of Baal are NOT killed (1 Kings 18:40 omitted) -- they are simply shown to be wrong ('Baal was not real, could not answer'); no taunting cruelty, no slaughter. Flag violence_omitted. Fire here = PROOF/'Yahweh is God' (contrast 1845 Pentecost, where fire = presence/joy -- deliberate same-batch pairing, Adam approved). Indelible image = fire rushing down on the water-soaked altar. Courage model: Elijah brave standing alone, trusting God. VOICE_BRADFORD (passionate conviction).",
+      "hardContentFlags": [
+        "violence_omitted"
+      ]
+    },
+    {
+      "id": "kid_lords_prayer_short",
+      "storyNumber": 1843,
+      "title": "The Lord's Prayer",
+      "type": "comfort-ritual",
+      "textFilePath": "kids/1843/story_1843_short.txt",
+      "scriptureAnchorId": "lords_prayer",
+      "bibleStoryKey": "lords_prayer",
+      "bibleSourceRef": "Matthew 6:9-13",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "grateful"
+      ],
+      "themeTags": [
+        "prayer",
+        "talking to God",
+        "Gods love",
+        "comfort"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 146,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "audioFilePath": "kids/1843/audio_1843_short.mp3",
+      "reflectionAudioPath": "kids/1843/audio_1843_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus showed us we can talk to God about anything at all. What is something you would most love to thank God for?",
+      "kidSafetyNotes": "NEW anchor (Comfort & Bedtime, core-launch finale). COMFORT-RITUAL: the prayer is quoted VERBATIM from WEB Matthew 6:9-13 (incl. the doxology, which WEB carries), NOT a loose retelling -- per registry comfortRitualRule + KID_STORY_PROMPT 2. Structured exactly like 1803 Psalm 23: gentle frame -> verbatim prayer -> soft bedtime close. Per Adam (2026-06-18): keep it like Psalm 23 -- gentle frame + the prayer + soft close, DO NOT over-explain each line ('debts/debtors' left as WEB verbatim, unexplained, the way 1803 left 'valley of the shadow of death'). NO Yahweh -- the Lord's Prayer is an 'Our Father' prayer, not a covenant-name story; 'God'/'Father' throughout. Short-only (comfort-ritual); ~190w is correct, below the 250 floor like Psalm 23 (exempt -- don't pad). VOICE_PRISCILLA_TEACHER (clear, instructive -- teaching a child to pray).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_joseph_coat_short",
+      "storyNumber": 1844,
+      "title": "Joseph's Colorful Coat",
+      "textFilePath": "kids/1844/story_1844_short.txt",
+      "scriptureAnchorId": "genesis_37",
+      "bibleStoryKey": "genesis_37",
+      "bibleSourceRef": "Genesis 37",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "left_out",
+        "lonely",
+        "hope"
+      ],
+      "themeTags": [
+        "God is with us",
+        "Gods plan",
+        "hope in hard times",
+        "not alone"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 260,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": "kids/1844/audio_1844_short.mp3",
+      "reflectionAudioPath": "kids/1844/audio_1844_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Even far from home, God was always with Joseph. When you go somewhere new, what helps you feel that God is near you?",
+      "kidSafetyNotes": "NEW anchor (Joseph, core-launch finale). The HARD origin half that pairs with 1819 Joseph Forgives (the reconciliation); consistent with 1819 ('sent him far away to Egypt'). HARD CONTENT handled by the Joseph method (Adam 2026-06-18: heavy is OK, but do NOT make the brothers' cruelty vivid): the pit and the selling-for-silver are OMITTED -- softened to 'the brothers decided to send him away' with passing traders; show the brothers' JEALOUSY (a feeling) not violence. Lands hard on 'God was with Joseph' (the 1819-proven move, feedback_kid_not_alone_thread / feedback_kid_god_with_not_cause -- God stays WITH him in the hard thing, doesn't cause it) and points FORWARD to the rescue without spoiling it. Flag family_betrayal_softened. For a left-out / lonely child: jealousy + being sent away -> God-never-left routes a 'left out / far from home' kid to comfort. Indelible image = the colorful coat (and the coat-weaving / God-weaving-a-plan callback in the full). 'God' throughout, no Yahweh. VOICE_JAMES_BRITISH (reassuring father) -- steady warmth through hardship.",
+      "hardContentFlags": [
+        "family_betrayal_softened"
+      ]
+    },
+    {
+      "id": "kid_joseph_coat_full",
+      "storyNumber": 1844,
+      "title": "Joseph's Colorful Coat",
+      "textFilePath": "kids/1844/story_1844_full.txt",
+      "scriptureAnchorId": "genesis_37",
+      "bibleStoryKey": "genesis_37",
+      "bibleSourceRef": "Genesis 37",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "left_out",
+        "lonely",
+        "hope"
+      ],
+      "themeTags": [
+        "God is with us",
+        "Gods plan",
+        "hope in hard times",
+        "not alone"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 418,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": "kids/1844/audio_1844_full.mp3",
+      "reflectionAudioPath": "kids/1844/audio_1844_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Even far from home, God was always with Joseph. When you go somewhere new, what helps you feel that God is near you?",
+      "kidSafetyNotes": "NEW anchor (Joseph, core-launch finale). The HARD origin half that pairs with 1819 Joseph Forgives (the reconciliation); consistent with 1819 ('sent him far away to Egypt'). HARD CONTENT handled by the Joseph method (Adam 2026-06-18: heavy is OK, but do NOT make the brothers' cruelty vivid): the pit and the selling-for-silver are OMITTED -- softened to 'the brothers decided to send him away' with passing traders; show the brothers' JEALOUSY (a feeling) not violence. Lands hard on 'God was with Joseph' (the 1819-proven move, feedback_kid_not_alone_thread / feedback_kid_god_with_not_cause -- God stays WITH him in the hard thing, doesn't cause it) and points FORWARD to the rescue without spoiling it. Flag family_betrayal_softened. For a left-out / lonely child: jealousy + being sent away -> God-never-left routes a 'left out / far from home' kid to comfort. Indelible image = the colorful coat (and the coat-weaving / God-weaving-a-plan callback in the full). 'God' throughout, no Yahweh. VOICE_JAMES_BRITISH (reassuring father) -- steady warmth through hardship.",
+      "hardContentFlags": [
+        "family_betrayal_softened"
+      ]
+    },
+    {
+      "id": "kid_pentecost_short",
+      "storyNumber": 1845,
+      "title": "The Holy Spirit Comes",
+      "textFilePath": "kids/1845/story_1845_short.txt",
+      "scriptureAnchorId": "pentecost",
+      "bibleStoryKey": "pentecost",
+      "bibleSourceRef": "Acts 2",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "celebration",
+        "hope"
+      ],
+      "themeTags": [
+        "the Holy Spirit",
+        "Gods presence",
+        "joy",
+        "the church"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 252,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1845/audio_1845_short.mp3",
+      "reflectionAudioPath": "kids/1845/audio_1845_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "On that happy day, God's Spirit came to be with Jesus' friends always. What is something that fills you with joy?",
+      "kidSafetyNotes": "NEW anchor (Early Church, core-launch finale). The birthday of the church -- wind, gentle flames, every language, bold joy. FIRE here = PRESENCE / joy / the Spirit (soft, warm little flames resting on each friend) -- deliberately CONTRASTED with 1842 Carmel's fire = proof ('Yahweh is God'). Adam approved the same-batch fire pairing precisely because the meaning is opposite (proof vs presence); the prose keeps Pentecost fire gentle, never consuming. Character turn = Peter (once too afraid to admit he knew Jesus -> now bold with joy) -- a kid-readable fear->courage arc. Lands on the not-alone spine: God's Spirit comes to stay, 'never leave them alone' (feedback_kid_not_alone_thread). Church defined as a FAMILY, not a building (kid-concrete). 'God' throughout, no Yahweh. VOICE_HANNAH_HOPE (bright, encouraging -- Acts uplift). One of 4 kid registers = JOY/wonder (feedback_kid_four_registers).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_pentecost_full",
+      "storyNumber": 1845,
+      "title": "The Holy Spirit Comes",
+      "textFilePath": "kids/1845/story_1845_full.txt",
+      "scriptureAnchorId": "pentecost",
+      "bibleStoryKey": "pentecost",
+      "bibleSourceRef": "Acts 2",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "celebration",
+        "hope"
+      ],
+      "themeTags": [
+        "the Holy Spirit",
+        "Gods presence",
+        "joy",
+        "the church"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 406,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1845/audio_1845_full.mp3",
+      "reflectionAudioPath": "kids/1845/audio_1845_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "On that happy day, God's Spirit came to be with Jesus' friends always. What is something that fills you with joy?",
+      "kidSafetyNotes": "NEW anchor (Early Church, core-launch finale). The birthday of the church -- wind, gentle flames, every language, bold joy. FIRE here = PRESENCE / joy / the Spirit (soft, warm little flames resting on each friend) -- deliberately CONTRASTED with 1842 Carmel's fire = proof ('Yahweh is God'). Adam approved the same-batch fire pairing precisely because the meaning is opposite (proof vs presence); the prose keeps Pentecost fire gentle, never consuming. Character turn = Peter (once too afraid to admit he knew Jesus -> now bold with joy) -- a kid-readable fear->courage arc. Lands on the not-alone spine: God's Spirit comes to stay, 'never leave them alone' (feedback_kid_not_alone_thread). Church defined as a FAMILY, not a building (kid-concrete). 'God' throughout, no Yahweh. VOICE_HANNAH_HOPE (bright, encouraging -- Acts uplift). One of 4 kid registers = JOY/wonder (feedback_kid_four_registers).",
+      "hardContentFlags": []
     }
   ]
 }

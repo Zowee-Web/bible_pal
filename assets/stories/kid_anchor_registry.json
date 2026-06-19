@@ -100,7 +100,11 @@
             "full"
           ],
           "longEligible": true,
-          "launch": true
+          "launch": true,
+          "productionId": 1841,
+          "manifestAnchorIds": [
+            "noah_flood"
+          ]
         },
         {
           "anchorId": "noah_promise",
@@ -172,7 +176,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1844,
+          "manifestAnchorIds": [
+            "genesis_37"
+          ]
         },
         {
           "anchorId": "joseph_dreams",
@@ -472,7 +480,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1842,
+          "manifestAnchorIds": [
+            "1_kings_18"
+          ]
         },
         {
           "anchorId": "elijah_whisper",
@@ -999,7 +1011,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1845,
+          "manifestAnchorIds": [
+            "pentecost"
+          ]
         },
         {
           "anchorId": "peter_prison",
@@ -1080,7 +1096,11 @@
           "targetLengths": [
             "short"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1843,
+          "manifestAnchorIds": [
+            "lords_prayer"
+          ]
         },
         {
           "anchorId": "beatitudes",

@@ -46913,6 +46913,258 @@
         "comfort"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_noah_flood_short",
+      "title": "Noah and the Great Flood",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1841/audio_1841_short.mp3",
+      "textFilePath": "kids/1841/story_1841_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "storyLength": "short",
+      "reflectionQuestion": "Outside the ark the storm raged all night, but inside, Noah and the animals were warm and safe, and God watched over them. When things feel stormy around you, who helps you feel safe?",
+      "bibleSourceRef": "Genesis 6-7",
+      "bibleStoryKey": "noah_flood",
+      "themeTags": [
+        "Gods protection",
+        "faithfulness",
+        "Gods care",
+        "safety"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_noah_flood_full",
+      "title": "Noah and the Great Flood",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1841/audio_1841_full.mp3",
+      "textFilePath": "kids/1841/story_1841_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "storyLength": "full",
+      "reflectionQuestion": "Outside the ark the storm raged all night, but inside, Noah and the animals were warm and safe, and God watched over them. When things feel stormy around you, who helps you feel safe?",
+      "bibleSourceRef": "Genesis 6-7",
+      "bibleStoryKey": "noah_flood",
+      "themeTags": [
+        "Gods protection",
+        "faithfulness",
+        "Gods care",
+        "safety"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_elijah_carmel_short",
+      "title": "Fire on Mount Carmel",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "courage",
+        "faith",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1842/audio_1842_short.mp3",
+      "textFilePath": "kids/1842/story_1842_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "storyLength": "short",
+      "reflectionQuestion": "Elijah trusted God even when he stood all alone. When you need to be brave, who do you like to have beside you?",
+      "bibleSourceRef": "1 Kings 18",
+      "bibleStoryKey": "1_kings_18",
+      "themeTags": [
+        "the one true God",
+        "courage",
+        "Gods power",
+        "trusting God"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_elijah_carmel_full",
+      "title": "Fire on Mount Carmel",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "courage",
+        "faith",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1842/audio_1842_full.mp3",
+      "textFilePath": "kids/1842/story_1842_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "storyLength": "full",
+      "reflectionQuestion": "Elijah trusted God even when he stood all alone. When you need to be brave, who do you like to have beside you?",
+      "bibleSourceRef": "1 Kings 18",
+      "bibleStoryKey": "1_kings_18",
+      "themeTags": [
+        "the one true God",
+        "courage",
+        "Gods power",
+        "trusting God"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_lords_prayer_short",
+      "title": "The Lord's Prayer",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1843/audio_1843_short.mp3",
+      "textFilePath": "kids/1843/story_1843_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "storyLength": "short",
+      "reflectionQuestion": "Jesus showed us we can talk to God about anything at all. What is something you would most love to thank God for?",
+      "bibleSourceRef": "Matthew 6:9-13",
+      "bibleStoryKey": "lords_prayer",
+      "themeTags": [
+        "prayer",
+        "talking to God",
+        "Gods love",
+        "comfort"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_joseph_coat_short",
+      "title": "Joseph's Colorful Coat",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "left_out",
+        "lonely",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1844/audio_1844_short.mp3",
+      "textFilePath": "kids/1844/story_1844_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "storyLength": "short",
+      "reflectionQuestion": "Even far from home, God was always with Joseph. When you go somewhere new, what helps you feel that God is near you?",
+      "bibleSourceRef": "Genesis 37",
+      "bibleStoryKey": "genesis_37",
+      "themeTags": [
+        "God is with us",
+        "Gods plan",
+        "hope in hard times",
+        "not alone"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_joseph_coat_full",
+      "title": "Joseph's Colorful Coat",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "left_out",
+        "lonely",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1844/audio_1844_full.mp3",
+      "textFilePath": "kids/1844/story_1844_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "storyLength": "full",
+      "reflectionQuestion": "Even far from home, God was always with Joseph. When you go somewhere new, what helps you feel that God is near you?",
+      "bibleSourceRef": "Genesis 37",
+      "bibleStoryKey": "genesis_37",
+      "themeTags": [
+        "God is with us",
+        "Gods plan",
+        "hope in hard times",
+        "not alone"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_pentecost_short",
+      "title": "The Holy Spirit Comes",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "celebration",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1845/audio_1845_short.mp3",
+      "textFilePath": "kids/1845/story_1845_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "short",
+      "reflectionQuestion": "On that happy day, God's Spirit came to be with Jesus' friends always. What is something that fills you with joy?",
+      "bibleSourceRef": "Acts 2",
+      "bibleStoryKey": "pentecost",
+      "themeTags": [
+        "the Holy Spirit",
+        "Gods presence",
+        "joy",
+        "the church"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_pentecost_full",
+      "title": "The Holy Spirit Comes",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "celebration",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1845/audio_1845_full.mp3",
+      "textFilePath": "kids/1845/story_1845_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "full",
+      "reflectionQuestion": "On that happy day, God's Spirit came to be with Jesus' friends always. What is something that fills you with joy?",
+      "bibleSourceRef": "Acts 2",
+      "bibleStoryKey": "pentecost",
+      "themeTags": [
+        "the Holy Spirit",
+        "Gods presence",
+        "joy",
+        "the church"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }

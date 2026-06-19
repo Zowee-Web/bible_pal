@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1845,
+  "anchorId": "pentecost",
+  "kidLane": "dedicated-4-7",
+  "title": "The Holy Spirit Comes",
+  "scriptureAnchorId": "pentecost",
+  "bibleSourceRef": "Acts 2",
+  "bibleStoryKey": "pentecost",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "wonder",
+    "celebration",
+    "hope"
+  ],
+  "themeTags": [
+    "the Holy Spirit",
+    "Gods presence",
+    "joy",
+    "the church"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "On that happy day, God's Spirit came to be with Jesus' friends always. What is something that fills you with joy?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Early Church, core-launch finale). The birthday of the church -- wind, gentle flames, every language, bold joy. FIRE here = PRESENCE / joy / the Spirit (soft, warm little flames resting on each friend) -- deliberately CONTRASTED with 1842 Carmel's fire = proof ('Yahweh is God'). Adam approved the same-batch fire pairing precisely because the meaning is opposite (proof vs presence); the prose keeps Pentecost fire gentle, never consuming. Character turn = Peter (once too afraid to admit he knew Jesus -> now bold with joy) -- a kid-readable fear->courage arc. Lands on the not-alone spine: God's Spirit comes to stay, 'never leave them alone' (feedback_kid_not_alone_thread). Church defined as a FAMILY, not a building (kid-concrete). 'God' throughout, no Yahweh. VOICE_HANNAH_HOPE (bright, encouraging -- Acts uplift). One of 4 kid registers = JOY/wonder (feedback_kid_four_registers).",
+  "files": {
+    "short": {
+      "storyText": "story_1845_short.txt",
+      "audio": "audio_1845_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1845_full.txt",
+      "audio": "audio_1845_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1845.txt",
+      "audio": "audio_1845_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}
