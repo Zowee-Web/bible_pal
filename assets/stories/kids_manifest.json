@@ -3327,6 +3327,168 @@
       "reflectionQuestion": "On that happy day, God's Spirit came to be with Jesus' friends always. What is something that fills you with joy?",
       "kidSafetyNotes": "NEW anchor (Early Church, core-launch finale). The birthday of the church -- wind, gentle flames, every language, bold joy. FIRE here = PRESENCE / joy / the Spirit (soft, warm little flames resting on each friend) -- deliberately CONTRASTED with 1842 Carmel's fire = proof ('Yahweh is God'). Adam approved the same-batch fire pairing precisely because the meaning is opposite (proof vs presence); the prose keeps Pentecost fire gentle, never consuming. Character turn = Peter (once too afraid to admit he knew Jesus -> now bold with joy) -- a kid-readable fear->courage arc. Lands on the not-alone spine: God's Spirit comes to stay, 'never leave them alone' (feedback_kid_not_alone_thread). Church defined as a FAMILY, not a building (kid-concrete). 'God' throughout, no Yahweh. VOICE_HANNAH_HOPE (bright, encouraging -- Acts uplift). One of 4 kid registers = JOY/wonder (feedback_kid_four_registers).",
       "hardContentFlags": []
+    },
+    {
+      "id": "kid_david_jonathan_short",
+      "storyNumber": 1846,
+      "title": "David and Jonathan, Best Friends",
+      "textFilePath": "kids/1846/story_1846_short.txt",
+      "scriptureAnchorId": "1_samuel_18-20",
+      "bibleStoryKey": "1_samuel_18-20",
+      "bibleSourceRef": "1 Samuel 18-20",
+      "mood": "joyful",
+      "emotionalTags": [
+        "lonely",
+        "celebration",
+        "hope"
+      ],
+      "themeTags": [
+        "friendship",
+        "loyalty",
+        "kindness",
+        "love"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 276,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "audioFilePath": "kids/1846/audio_1846_short.mp3",
+      "reflectionAudioPath": "kids/1846/audio_1846_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jonathan and David loved each other like brothers, and stayed friends no matter what. What do you love most about your friends?",
+      "kidSafetyNotes": "NEW anchor (David, secondary/short-only). The KINDNESS/friendship thread; distinct scene from 1801 (giant) + 1836 (anointing) -- this is the loyal best-friends story. Per Adam (2026-06-18): keep SAUL MOSTLY OFFSTAGE so it stays friendship, not danger -- the spear/jealousy/pursuit is softened to 'a hard time came, and David had to go far away for a while' with no villain or threat shown. Indelible image = Jonathan the prince giving David his own robe, belt, bow, sword (a true friend keeps nothing back). For a lonely / left-out child: routes to the joy of a real friend. The covenant line 'God is between us, watching over you and me' carries the not-alone spine. 'God' throughout, no Yahweh. VOICE_ARCHER (bold, inspiring) -- warm friendship register; rests the 4x voices.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_elijah_ravens_short",
+      "storyNumber": 1847,
+      "title": "Elijah Fed by Ravens",
+      "textFilePath": "kids/1847/story_1847_short.txt",
+      "scriptureAnchorId": "1_kings_17",
+      "bibleStoryKey": "1_kings_17",
+      "bibleSourceRef": "1 Kings 17:1-6",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "grateful"
+      ],
+      "themeTags": [
+        "Gods provision",
+        "Gods care",
+        "trust",
+        "thankfulness"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 252,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "audioFilePath": "kids/1847/audio_1847_short.mp3",
+      "reflectionAudioPath": "kids/1847/audio_1847_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God sent birds to bring Elijah food, every morning and every evening. When you sit down to eat, what are some of the good things you are thankful for?",
+      "kidSafetyNotes": "NEW anchor (Elijah, secondary/short-only). WONDER/provision/comfort. Distinct Elijah scene from 1842 Carmel (fire) + 1839 whisper -- no fire, no contest, no mountain; this is God quietly providing by the brook. The drought/famine is kept gentle ('a long, dry time... food became hard to find') with no suffering shown -- focus is God's care. Indelible image = ravens (big black birds) carrying bread in their beaks, morning and evening. Routes a worried / 'will there be enough' child to trust + thankfulness. 'God' throughout, no Yahweh. VOICE_ELIJAH_SAGE (thoughtful, measured -- prophet register); consistent with 1839 Elijah, fits the quiet provision tone.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_heal_blind_short",
+      "storyNumber": 1848,
+      "title": "Jesus Heals a Blind Man",
+      "textFilePath": "kids/1848/story_1848_short.txt",
+      "scriptureAnchorId": "mark_10_46-52",
+      "bibleStoryKey": "mark_10_46-52",
+      "bibleSourceRef": "Mark 10:46-52",
+      "mood": "grateful",
+      "emotionalTags": [
+        "hope",
+        "grateful",
+        "celebration"
+      ],
+      "themeTags": [
+        "Jesus heals",
+        "faith",
+        "perseverance",
+        "gratitude"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 253,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "audioFilePath": "kids/1848/audio_1848_short.mp3",
+      "reflectionAudioPath": "kids/1848/audio_1848_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Bartimaeus called and called, and Jesus stopped just for him. What is something you would most love to thank Jesus for?",
+      "kidSafetyNotes": "NEW anchor (Jesus' Miracles, secondary/short-only). JOY/gratitude/wonder; bright daylight register (texture variety per feedback_texture_diversity) + NT balance. Blindness handled gently (no distress dwelt on); the heart of it is persistence ('called even louder' when shushed) and the joy of healing. Indelible image = the FIRST thing Bartimaeus sees with new eyes is Jesus' smiling face. Distinct from other healings (1806 Jairus = raising a girl). Routes a child who wants to be heard / keeps asking -> Jesus hears the one voice in the crowd. 'I want to see' kept literal + simple; ends on following Jesus, thanking God. 'God'/'Jesus' throughout, no Yahweh. VOICE_MIRIAM_JOYFUL (lively, celebratory) -- fits the joy of seeing; keeps the JOY register alive (feedback_kid_four_registers).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_ten_commandments_short",
+      "storyNumber": 1849,
+      "title": "The Ten Commandments",
+      "textFilePath": "kids/1849/story_1849_short.txt",
+      "scriptureAnchorId": "exodus_20",
+      "bibleStoryKey": "exodus_20",
+      "bibleSourceRef": "Exodus 20",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "faith",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods good ways",
+        "living together",
+        "love God and others",
+        "Gods love"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 254,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "audioFilePath": "kids/1849/audio_1849_short.mp3",
+      "reflectionAudioPath": "kids/1849/audio_1849_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God gave his people good ways to live together, because he loved them. What is one kind way you can treat the people you love?",
+      "kidSafetyNotes": "NEW anchor (Moses, secondary/short-only). Per Adam (2026-06-18): the emotional center is 'God gave his people GOOD WAYS TO LIVE TOGETHER' (warm/relational), NOT 'rules' -- and DO NOT let it become a list. So only a few commandments are voiced, each framed warmly (love God, a rest day, honor parents, tell the truth, don't take, be kind), with the 'loving path through a forest' image carrying the meaning. Sinai wonder (cloud, thunder, God near) provides awe. KEEP 'God' -- NOT a Yahweh story; we just used Yahweh at Carmel (1842), don't repeat the covenant name so soon and the name is not this story's point. 4th Moses story (1810/1811/1813) but a distinct scene (Sinai/the good ways). Indelible image = Moses carrying God's good words down the cloud-wrapped mountain. Lands on 'one big family -- loving God, and loving each other'. VOICE_DEBORAH_WISE (authoritative yet kind female) -- leadership/law register, warm not stern.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_last_supper_short",
+      "storyNumber": 1850,
+      "title": "The Last Supper",
+      "textFilePath": "kids/1850/story_1850_short.txt",
+      "scriptureAnchorId": "luke_22_7-20",
+      "bibleStoryKey": "luke_22_7-20",
+      "bibleSourceRef": "Luke 22:7-20",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hope",
+        "grateful",
+        "faith"
+      ],
+      "themeTags": [
+        "Jesus love",
+        "remembrance",
+        "Gods presence",
+        "belonging"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 255,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1850/audio_1850_short.mp3",
+      "reflectionAudioPath": "kids/1850/audio_1850_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus gave his friends a way to always remember how much he loved them. What helps you remember someone you love when they are far away?",
+      "kidSafetyNotes": "NEW anchor (Easter, secondary/short-only). Completes the Easter path (1832 Palm Sunday -> 1850 Last Supper -> 1821 Cross -> 1812 Empty Tomb). Per Adam (2026-06-18): 'Jesus gave his friends a meal to remember his love' -- TENDER REMEMBRANCE ONLY, NO body/blood explanation. So the bread + cup are framed simply as a way to 'remember me / remember that I love you / I am always with you'; no doctrine of the elements. Jesus' coming death is kept OFFSTAGE and gentle -- 'he would have to go away from his friends for a while' (not 'he was about to die'); flag references_departure_softened. Warm not somber: lamplight, friends close together, peaceful. Connects to today (people still share bread + cup) and lands on the CHILD being loved + Jesus near (not-alone spine). Distinct Easter scene (the meal), no overlap with 1832/1821/1812. 'God'/'Jesus' throughout, no Yahweh. VOICE_JOHN_BELOVED (tender, loving -- Johannine intimate register; John was at this table).",
+      "hardContentFlags": [
+        "references_departure_softened"
+      ]
     }
   ]
 }

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1850,
+  "anchorId": "last_supper",
+  "kidLane": "dedicated-4-7",
+  "title": "The Last Supper",
+  "scriptureAnchorId": "luke_22_7-20",
+  "bibleSourceRef": "Luke 22:7-20",
+  "bibleStoryKey": "luke_22_7-20",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "hope",
+    "grateful",
+    "faith"
+  ],
+  "themeTags": [
+    "Jesus love",
+    "remembrance",
+    "Gods presence",
+    "belonging"
+  ],
+  "lengths": [
+    "short"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Jesus gave his friends a way to always remember how much he loved them. What helps you remember someone you love when they are far away?",
+  "hardContentFlags": [
+    "references_departure_softened"
+  ],
+  "kidSafetyNotes": "NEW anchor (Easter, secondary/short-only). Completes the Easter path (1832 Palm Sunday -> 1850 Last Supper -> 1821 Cross -> 1812 Empty Tomb). Per Adam (2026-06-18): 'Jesus gave his friends a meal to remember his love' -- TENDER REMEMBRANCE ONLY, NO body/blood explanation. So the bread + cup are framed simply as a way to 'remember me / remember that I love you / I am always with you'; no doctrine of the elements. Jesus' coming death is kept OFFSTAGE and gentle -- 'he would have to go away from his friends for a while' (not 'he was about to die'); flag references_departure_softened. Warm not somber: lamplight, friends close together, peaceful. Connects to today (people still share bread + cup) and lands on the CHILD being loved + Jesus near (not-alone spine). Distinct Easter scene (the meal), no overlap with 1832/1821/1812. 'God'/'Jesus' throughout, no Yahweh. VOICE_JOHN_BELOVED (tender, loving -- Johannine intimate register; John was at this table).",
+  "files": {
+    "short": {
+      "storyText": "story_1850_short.txt",
+      "audio": "audio_1850_short.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1850.txt",
+      "audio": "audio_1850_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1847,
+  "anchorId": "elijah_ravens",
+  "kidLane": "dedicated-4-7",
+  "title": "Elijah Fed by Ravens",
+  "scriptureAnchorId": "1_kings_17",
+  "bibleSourceRef": "1 Kings 17:1-6",
+  "bibleStoryKey": "1_kings_17",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "faith",
+    "hope",
+    "grateful"
+  ],
+  "themeTags": [
+    "Gods provision",
+    "Gods care",
+    "trust",
+    "thankfulness"
+  ],
+  "lengths": [
+    "short"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "God sent birds to bring Elijah food, every morning and every evening. When you sit down to eat, what are some of the good things you are thankful for?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Elijah, secondary/short-only). WONDER/provision/comfort. Distinct Elijah scene from 1842 Carmel (fire) + 1839 whisper -- no fire, no contest, no mountain; this is God quietly providing by the brook. The drought/famine is kept gentle ('a long, dry time... food became hard to find') with no suffering shown -- focus is God's care. Indelible image = ravens (big black birds) carrying bread in their beaks, morning and evening. Routes a worried / 'will there be enough' child to trust + thankfulness. 'God' throughout, no Yahweh. VOICE_ELIJAH_SAGE (thoughtful, measured -- prophet register); consistent with 1839 Elijah, fits the quiet provision tone.",
+  "files": {
+    "short": {
+      "storyText": "story_1847_short.txt",
+      "audio": "audio_1847_short.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1847.txt",
+      "audio": "audio_1847_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}
