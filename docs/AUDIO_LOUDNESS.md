@@ -52,6 +52,38 @@ audio is unaffected.
 
 Stories normalize to the standard **−18**; only the warm-voiced ones additionally get the de-bloom.
 
+### Reflection Audio Rule
+
+> Kid reflections use ElevenLabs **v3** for expressiveness.
+> All renders pass through the **end-clip guard**.
+> **Tail padding** protects file-boundary clips (Pattern B).
+> **Auto-reroll** protects synthesis drops (Pattern A).
+> **Preserve v3 unless reliability measurably regresses.**
+
+Six months from now, Future Adam will ask: *"Why are reflections still on v3 when
+stories use turbo?"* The answer: because bedtime questions sounded magical enough
+that it was worth building infrastructure to protect them. That tradeoff —
+spending engineering to keep a small thing that gives the product its identity —
+is deliberate, not an oversight.
+
+**How it's enforced** (added 2026-06-18):
+- The expressive v3 model is the one model still prone to the non-deterministic
+  *synthesis-drop* end-clip (it omits the final word's audio during generation).
+  A reflection's final word *is* the meaning-bearing word of its question, so it
+  cannot use the story-style trailing-safety-phrase.
+- [`scripts/audio_endclip.py`](../scripts/audio_endclip.py) scores the rendered
+  tail: `clip_score = RMS(final 30 ms of speech) / RMS(avg speech)` — a clean
+  ending decays to a release (low), a clipped one is cut while hot (high).
+  Threshold **0.40** (calibrated; clips 0.56–1.38 vs clean 0.19–0.21).
+- [`generate_kid_audio.py`](../scripts/generate_kid_audio.py)
+  `render_with_clip_guard()` re-rolls a flagged reflection (default 3 retries),
+  keeps the best take and warns for ear-check if all fail. It guards the **raw**
+  render (where the drop occurs); the 400 ms tail-pad in `generate_audio.py`
+  handles the narrower file-boundary clip. See [[feedback_audio_end_clip]].
+- **Don't apply the 0.40 raw threshold to compressed-mirror files** — loudnorm
+  (high-pass / de-bloom / normalize / fade) shifts the score up ~0.15–0.20, so a
+  clean raw can read ~0.40 on the mirror without being an audible clip.
+
 ---
 
 ## The two scripts
