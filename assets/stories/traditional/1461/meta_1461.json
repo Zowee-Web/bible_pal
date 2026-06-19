@@ -38,7 +38,7 @@
   "primaryCharacterId": "daniel",
   "primaryCharacterDisplayName": "Daniel",
   "bibleOrderIndex": 433,
-  "timelineEra": "return",
+  "timelineEra": "exile",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.85,
