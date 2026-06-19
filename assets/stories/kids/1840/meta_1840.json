@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1840,
+  "anchorId": "new_heaven",
+  "kidLane": "dedicated-4-7",
+  "title": "A New Heaven and a New Earth",
+  "scriptureAnchorId": "revelation_21",
+  "bibleSourceRef": "Revelation 21:1-7",
+  "bibleStoryKey": "revelation_21",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "hope",
+    "wonder",
+    "sad"
+  ],
+  "themeTags": [
+    "hope",
+    "Gods promises",
+    "heaven",
+    "comfort"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "God promised to come close and wipe away every tear with his very own hand. What is something happy you hope to do in that beautiful new place?",
+  "hardContentFlags": [
+    "references_loss_softened"
+  ],
+  "kidSafetyNotes": "NEW anchor (Heaven/Revelation). Closes the batch on resurrection HOPE + wonder (the_cross 1821 + empty_tomb 1812 already done; this is the unwritten hope anchor). Revelation 21's 'no more death/mourning/crying/pain' is framed entirely as COMFORT and promise -- the focus is God wiping away every tear and making everything new, never dwelling on death. Flag references_loss_softened. Tagged 'sad' so a grieving / missing-someone child can route to this comfort. Indelible image = God reaching out with his own hand to wipe away every tear. 'God' throughout, no Yahweh. VOICE_JOHN_BELOVED -- John is the author of Revelation; tender/loving register fits the new-creation hope. Bedtime-test strong: gentle, wonder-filled, replayable.",
+  "files": {
+    "short": {
+      "storyText": "story_1840_short.txt",
+      "audio": "audio_1840_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1840_full.txt",
+      "audio": "audio_1840_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1840.txt",
+      "audio": "audio_1840_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

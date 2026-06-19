@@ -335,7 +335,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1837,
+          "manifestAnchorIds": [
+            "ruth"
+          ]
         }
       ]
     },
@@ -382,7 +386,11 @@
             "full"
           ],
           "sibling": "david_goliath",
-          "launch": true
+          "launch": true,
+          "productionId": 1836,
+          "manifestAnchorIds": [
+            "1_samuel_16"
+          ]
         },
         {
           "anchorId": "david_goliath",
@@ -475,7 +483,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1839,
+          "manifestAnchorIds": [
+            "1_kings_19"
+          ]
         },
         {
           "anchorId": "elisha_widow_oil",
@@ -591,7 +603,8 @@
           "manifestAnchorIds": [
             "esther"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1838
         }
       ]
     },
@@ -1022,7 +1035,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1840,
+          "manifestAnchorIds": [
+            "revelation_21"
+          ]
         },
         {
           "anchorId": "no_more_tears",

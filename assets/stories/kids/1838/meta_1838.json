@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1838,
+  "anchorId": "esther_brave",
+  "kidLane": "dedicated-4-7",
+  "title": "Esther's Brave Choice",
+  "scriptureAnchorId": "esther",
+  "bibleSourceRef": "Esther 4-8",
+  "bibleStoryKey": "esther",
+  "translation": "WEB",
+  "mood": "brave_courage",
+  "emotionalTags": [
+    "anxious",
+    "courage",
+    "hope"
+  ],
+  "themeTags": [
+    "courage",
+    "trusting God",
+    "standing up for others",
+    "Gods timing"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_ESTHER_BRAVE",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Esther was frightened, but she did the brave thing anyway, and helped so many people. What is something brave that you have done, or want to do?",
+  "hardContentFlags": [
+    "peril_threat_softened"
+  ],
+  "kidSafetyNotes": "NEW anchor (Esther). Courage thread + a female hero for register variety. Haman's plot is named abstractly ('a proud man wanted to harm God's people') with NO violence, no killing, no naming of Haman's fate -- per KID_STORY_PROMPT 3 (name danger calmly, emphasize rescue). Flag peril_threat_softened. Courage model is the right kind: 'scared but went anyway' (feeling fear AND being brave), not fearlessness -- routes an anxious child to brave_courage via the kid mood bridge (anxious->brave_courage). She prays first and is not alone. Indelible image = the king holding out the golden scepter (welcome / you are safe to come close). 'God' throughout, no Yahweh. VOICE_ESTHER_BRAVE (strong, determined female) -- approved; NOTE deliberately NOT VOICE_LILY_WOLFF (banned for new authoring, feedback_voice_rules).",
+  "files": {
+    "short": {
+      "storyText": "story_1838_short.txt",
+      "audio": "audio_1838_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1838_full.txt",
+      "audio": "audio_1838_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1838.txt",
+      "audio": "audio_1838_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

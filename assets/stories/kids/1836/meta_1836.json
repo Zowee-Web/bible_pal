@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1836,
+  "anchorId": "david_shepherd",
+  "kidLane": "dedicated-4-7",
+  "title": "David the Shepherd Boy",
+  "scriptureAnchorId": "1_samuel_16",
+  "bibleSourceRef": "1 Samuel 16:11-13",
+  "bibleStoryKey": "1_samuel_16",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "feeling_small",
+    "hope",
+    "wonder"
+  ],
+  "themeTags": [
+    "God looks at the heart",
+    "being chosen",
+    "Gods care",
+    "humility"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Everyone else looked at David's big, strong brothers. But God looked at what was inside David's heart, and chose him. What do you think God sees when he looks at you?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (David). Quiet origin story BEFORE David & Goliath (1801) -- sheep, field, oil, 'God looks at the heart' (1 Sam 16:7). Reuses VOICE_DAVID_SHEPHERD for character continuity across 1801/1802/1836. For the feeling_small / overlooked child: David is the smallest, last-called, yet chosen -- routes a 'too little / nobody picks me' kid to being seen and chosen by God. Indelible image = warm oil poured over the shepherd boy's head. No violence, no Yahweh (name is not the point; 'God' throughout). Held/seen ending rests on God watching the love in his heart.",
+  "files": {
+    "short": {
+      "storyText": "story_1836_short.txt",
+      "audio": "audio_1836_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1836_full.txt",
+      "audio": "audio_1836_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1836.txt",
+      "audio": "audio_1836_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

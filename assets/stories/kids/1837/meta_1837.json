@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1837,
+  "anchorId": "ruth_naomi",
+  "kidLane": "dedicated-4-7",
+  "title": "Ruth and Naomi",
+  "scriptureAnchorId": "ruth",
+  "bibleSourceRef": "Ruth 1-4",
+  "bibleStoryKey": "ruth",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "lonely",
+    "grief",
+    "hope"
+  ],
+  "themeTags": [
+    "loyalty",
+    "kindness",
+    "Gods provision",
+    "belonging"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Ruth loved Naomi so much that she would not let her be alone. Who is someone you love that you like to take care of?",
+  "hardContentFlags": [
+    "bereavement_softened"
+  ],
+  "kidSafetyNotes": "NEW anchor (Ruth). Premier kindness/loyalty story; gentle, relational. Ruth 1's deaths of Naomi's husband and sons are named in ONE calm sentence ('they had grown sick and died'), no lingering on grief -- per KID_STORY_PROMPT 3 (name the outcome calmly, do not dwell). Flag bereavement_softened. For a lonely / missing-someone child: Naomi loses everyone, then is carried home by Ruth's loyalty -- routes a 'left alone / sad' kid toward comfort + belonging. Indelible HELD image = old Naomi holding the baby, her sad heart filled with joy (the not-alone spine, feedback_kid_not_alone_thread). 'God' throughout, no Yahweh. VOICE_RUTH_COMFORT (soft, empathetic) -- on-the-nose register fit.",
+  "files": {
+    "short": {
+      "storyText": "story_1837_short.txt",
+      "audio": "audio_1837_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1837_full.txt",
+      "audio": "audio_1837_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1837.txt",
+      "audio": "audio_1837_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

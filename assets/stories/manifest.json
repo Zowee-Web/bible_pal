@@ -46633,6 +46633,286 @@
         "wonderfully made"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_david_shepherd_short",
+      "title": "David the Shepherd Boy",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "feeling_small",
+        "hope",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1836/audio_1836_short.mp3",
+      "textFilePath": "kids/1836/story_1836_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "short",
+      "reflectionQuestion": "Everyone else looked at David's big, strong brothers. But God looked at what was inside David's heart, and chose him. What do you think God sees when he looks at you?",
+      "bibleSourceRef": "1 Samuel 16:11-13",
+      "bibleStoryKey": "1_samuel_16",
+      "themeTags": [
+        "God looks at the heart",
+        "being chosen",
+        "Gods care",
+        "humility"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_david_shepherd_full",
+      "title": "David the Shepherd Boy",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "feeling_small",
+        "hope",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1836/audio_1836_full.mp3",
+      "textFilePath": "kids/1836/story_1836_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "full",
+      "reflectionQuestion": "Everyone else looked at David's big, strong brothers. But God looked at what was inside David's heart, and chose him. What do you think God sees when he looks at you?",
+      "bibleSourceRef": "1 Samuel 16:11-13",
+      "bibleStoryKey": "1_samuel_16",
+      "themeTags": [
+        "God looks at the heart",
+        "being chosen",
+        "Gods care",
+        "humility"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_ruth_naomi_short",
+      "title": "Ruth and Naomi",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "lonely",
+        "grief",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1837/audio_1837_short.mp3",
+      "textFilePath": "kids/1837/story_1837_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "short",
+      "reflectionQuestion": "Ruth loved Naomi so much that she would not let her be alone. Who is someone you love that you like to take care of?",
+      "bibleSourceRef": "Ruth 1-4",
+      "bibleStoryKey": "ruth",
+      "themeTags": [
+        "loyalty",
+        "kindness",
+        "Gods provision",
+        "belonging"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_ruth_naomi_full",
+      "title": "Ruth and Naomi",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "lonely",
+        "grief",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1837/audio_1837_full.mp3",
+      "textFilePath": "kids/1837/story_1837_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "full",
+      "reflectionQuestion": "Ruth loved Naomi so much that she would not let her be alone. Who is someone you love that you like to take care of?",
+      "bibleSourceRef": "Ruth 1-4",
+      "bibleStoryKey": "ruth",
+      "themeTags": [
+        "loyalty",
+        "kindness",
+        "Gods provision",
+        "belonging"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_esther_brave_short",
+      "title": "Esther's Brave Choice",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "anxious",
+        "courage",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1838/audio_1838_short.mp3",
+      "textFilePath": "kids/1838/story_1838_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "storyLength": "short",
+      "reflectionQuestion": "Esther was frightened, but she did the brave thing anyway, and helped so many people. What is something brave that you have done, or want to do?",
+      "bibleSourceRef": "Esther 4-8",
+      "bibleStoryKey": "esther",
+      "themeTags": [
+        "courage",
+        "trusting God",
+        "standing up for others",
+        "Gods timing"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_esther_brave_full",
+      "title": "Esther's Brave Choice",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "anxious",
+        "courage",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1838/audio_1838_full.mp3",
+      "textFilePath": "kids/1838/story_1838_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "storyLength": "full",
+      "reflectionQuestion": "Esther was frightened, but she did the brave thing anyway, and helped so many people. What is something brave that you have done, or want to do?",
+      "bibleSourceRef": "Esther 4-8",
+      "bibleStoryKey": "esther",
+      "themeTags": [
+        "courage",
+        "trusting God",
+        "standing up for others",
+        "Gods timing"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_elijah_whisper_short",
+      "title": "The Gentle Whisper",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed",
+        "lonely",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1839/audio_1839_short.mp3",
+      "textFilePath": "kids/1839/story_1839_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "storyLength": "short",
+      "reflectionQuestion": "God did not come to Elijah in the loud and scary things, but in a soft little whisper. When everything is quiet, what do you think God might whisper to you?",
+      "bibleSourceRef": "1 Kings 19:9-13",
+      "bibleStoryKey": "1_kings_19",
+      "themeTags": [
+        "Gods presence",
+        "Gods gentleness",
+        "rest",
+        "not alone"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_elijah_whisper_full",
+      "title": "The Gentle Whisper",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed",
+        "lonely",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1839/audio_1839_full.mp3",
+      "textFilePath": "kids/1839/story_1839_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "storyLength": "full",
+      "reflectionQuestion": "God did not come to Elijah in the loud and scary things, but in a soft little whisper. When everything is quiet, what do you think God might whisper to you?",
+      "bibleSourceRef": "1 Kings 19:9-13",
+      "bibleStoryKey": "1_kings_19",
+      "themeTags": [
+        "Gods presence",
+        "Gods gentleness",
+        "rest",
+        "not alone"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_new_heaven_short",
+      "title": "A New Heaven and a New Earth",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hope",
+        "wonder",
+        "sad"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1840/audio_1840_short.mp3",
+      "textFilePath": "kids/1840/story_1840_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "short",
+      "reflectionQuestion": "God promised to come close and wipe away every tear with his very own hand. What is something happy you hope to do in that beautiful new place?",
+      "bibleSourceRef": "Revelation 21:1-7",
+      "bibleStoryKey": "revelation_21",
+      "themeTags": [
+        "hope",
+        "Gods promises",
+        "heaven",
+        "comfort"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_new_heaven_full",
+      "title": "A New Heaven and a New Earth",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hope",
+        "wonder",
+        "sad"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1840/audio_1840_full.mp3",
+      "textFilePath": "kids/1840/story_1840_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "full",
+      "reflectionQuestion": "God promised to come close and wipe away every tear with his very own hand. What is something happy you hope to do in that beautiful new place?",
+      "bibleSourceRef": "Revelation 21:1-7",
+      "bibleStoryKey": "revelation_21",
+      "themeTags": [
+        "hope",
+        "Gods promises",
+        "heaven",
+        "comfort"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }

@@ -2694,6 +2694,338 @@
       "reflectionQuestion": "God made every part of you on purpose, with love. What is one thing about you that you think God smiles to see?",
       "kidSafetyNotes": "NEW anchor (Comfort & Bedtime). The LITERAL 'God delights in YOU' -- spoken in second person straight to the child. DOUBLES as comfort for a kid who feels small/unnoticed/not-good-enough: tags feeling_small + self_doubt, mood calm_peaceful is reachable from hurting via expansion, so a 'too little / nobody notices me' kid routes here. 'keeping you safe' was changed to 'loving you' (Adam: no guaranteed-safety promise, see feedback_kid_god_with_not_cause). Ties the not-alone spine ('wherever you go, God is with you', Ps 139:7-10). One image: up past the highest star / down to the deepest sea, God is there.",
       "hardContentFlags": []
+    },
+    {
+      "id": "kid_david_shepherd_short",
+      "storyNumber": 1836,
+      "title": "David the Shepherd Boy",
+      "textFilePath": "kids/1836/story_1836_short.txt",
+      "scriptureAnchorId": "1_samuel_16",
+      "bibleStoryKey": "1_samuel_16",
+      "bibleSourceRef": "1 Samuel 16:11-13",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "feeling_small",
+        "hope",
+        "wonder"
+      ],
+      "themeTags": [
+        "God looks at the heart",
+        "being chosen",
+        "Gods care",
+        "humility"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 285,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "audioFilePath": "kids/1836/audio_1836_short.mp3",
+      "reflectionAudioPath": "kids/1836/audio_1836_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Everyone else looked at David's big, strong brothers. But God looked at what was inside David's heart, and chose him. What do you think God sees when he looks at you?",
+      "kidSafetyNotes": "NEW anchor (David). Quiet origin story BEFORE David & Goliath (1801) -- sheep, field, oil, 'God looks at the heart' (1 Sam 16:7). Reuses VOICE_DAVID_SHEPHERD for character continuity across 1801/1802/1836. For the feeling_small / overlooked child: David is the smallest, last-called, yet chosen -- routes a 'too little / nobody picks me' kid to being seen and chosen by God. Indelible image = warm oil poured over the shepherd boy's head. No violence, no Yahweh (name is not the point; 'God' throughout). Held/seen ending rests on God watching the love in his heart.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_david_shepherd_full",
+      "storyNumber": 1836,
+      "title": "David the Shepherd Boy",
+      "textFilePath": "kids/1836/story_1836_full.txt",
+      "scriptureAnchorId": "1_samuel_16",
+      "bibleStoryKey": "1_samuel_16",
+      "bibleSourceRef": "1 Samuel 16:11-13",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "feeling_small",
+        "hope",
+        "wonder"
+      ],
+      "themeTags": [
+        "God looks at the heart",
+        "being chosen",
+        "Gods care",
+        "humility"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 419,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "audioFilePath": "kids/1836/audio_1836_full.mp3",
+      "reflectionAudioPath": "kids/1836/audio_1836_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Everyone else looked at David's big, strong brothers. But God looked at what was inside David's heart, and chose him. What do you think God sees when he looks at you?",
+      "kidSafetyNotes": "NEW anchor (David). Quiet origin story BEFORE David & Goliath (1801) -- sheep, field, oil, 'God looks at the heart' (1 Sam 16:7). Reuses VOICE_DAVID_SHEPHERD for character continuity across 1801/1802/1836. For the feeling_small / overlooked child: David is the smallest, last-called, yet chosen -- routes a 'too little / nobody picks me' kid to being seen and chosen by God. Indelible image = warm oil poured over the shepherd boy's head. No violence, no Yahweh (name is not the point; 'God' throughout). Held/seen ending rests on God watching the love in his heart.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_ruth_naomi_short",
+      "storyNumber": 1837,
+      "title": "Ruth and Naomi",
+      "textFilePath": "kids/1837/story_1837_short.txt",
+      "scriptureAnchorId": "ruth",
+      "bibleStoryKey": "ruth",
+      "bibleSourceRef": "Ruth 1-4",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "lonely",
+        "grief",
+        "hope"
+      ],
+      "themeTags": [
+        "loyalty",
+        "kindness",
+        "Gods provision",
+        "belonging"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 294,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": "kids/1837/audio_1837_short.mp3",
+      "reflectionAudioPath": "kids/1837/audio_1837_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Ruth loved Naomi so much that she would not let her be alone. Who is someone you love that you like to take care of?",
+      "kidSafetyNotes": "NEW anchor (Ruth). Premier kindness/loyalty story; gentle, relational. Ruth 1's deaths of Naomi's husband and sons are named in ONE calm sentence ('they had grown sick and died'), no lingering on grief -- per KID_STORY_PROMPT 3 (name the outcome calmly, do not dwell). Flag bereavement_softened. For a lonely / missing-someone child: Naomi loses everyone, then is carried home by Ruth's loyalty -- routes a 'left alone / sad' kid toward comfort + belonging. Indelible HELD image = old Naomi holding the baby, her sad heart filled with joy (the not-alone spine, feedback_kid_not_alone_thread). 'God' throughout, no Yahweh. VOICE_RUTH_COMFORT (soft, empathetic) -- on-the-nose register fit.",
+      "hardContentFlags": [
+        "bereavement_softened"
+      ]
+    },
+    {
+      "id": "kid_ruth_naomi_full",
+      "storyNumber": 1837,
+      "title": "Ruth and Naomi",
+      "textFilePath": "kids/1837/story_1837_full.txt",
+      "scriptureAnchorId": "ruth",
+      "bibleStoryKey": "ruth",
+      "bibleSourceRef": "Ruth 1-4",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "lonely",
+        "grief",
+        "hope"
+      ],
+      "themeTags": [
+        "loyalty",
+        "kindness",
+        "Gods provision",
+        "belonging"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 458,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": "kids/1837/audio_1837_full.mp3",
+      "reflectionAudioPath": "kids/1837/audio_1837_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Ruth loved Naomi so much that she would not let her be alone. Who is someone you love that you like to take care of?",
+      "kidSafetyNotes": "NEW anchor (Ruth). Premier kindness/loyalty story; gentle, relational. Ruth 1's deaths of Naomi's husband and sons are named in ONE calm sentence ('they had grown sick and died'), no lingering on grief -- per KID_STORY_PROMPT 3 (name the outcome calmly, do not dwell). Flag bereavement_softened. For a lonely / missing-someone child: Naomi loses everyone, then is carried home by Ruth's loyalty -- routes a 'left alone / sad' kid toward comfort + belonging. Indelible HELD image = old Naomi holding the baby, her sad heart filled with joy (the not-alone spine, feedback_kid_not_alone_thread). 'God' throughout, no Yahweh. VOICE_RUTH_COMFORT (soft, empathetic) -- on-the-nose register fit.",
+      "hardContentFlags": [
+        "bereavement_softened"
+      ]
+    },
+    {
+      "id": "kid_esther_brave_short",
+      "storyNumber": 1838,
+      "title": "Esther's Brave Choice",
+      "textFilePath": "kids/1838/story_1838_short.txt",
+      "scriptureAnchorId": "esther",
+      "bibleStoryKey": "esther",
+      "bibleSourceRef": "Esther 4-8",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "anxious",
+        "courage",
+        "hope"
+      ],
+      "themeTags": [
+        "courage",
+        "trusting God",
+        "standing up for others",
+        "Gods timing"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 281,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "audioFilePath": "kids/1838/audio_1838_short.mp3",
+      "reflectionAudioPath": "kids/1838/audio_1838_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Esther was frightened, but she did the brave thing anyway, and helped so many people. What is something brave that you have done, or want to do?",
+      "kidSafetyNotes": "NEW anchor (Esther). Courage thread + a female hero for register variety. Haman's plot is named abstractly ('a proud man wanted to harm God's people') with NO violence, no killing, no naming of Haman's fate -- per KID_STORY_PROMPT 3 (name danger calmly, emphasize rescue). Flag peril_threat_softened. Courage model is the right kind: 'scared but went anyway' (feeling fear AND being brave), not fearlessness -- routes an anxious child to brave_courage via the kid mood bridge (anxious->brave_courage). She prays first and is not alone. Indelible image = the king holding out the golden scepter (welcome / you are safe to come close). 'God' throughout, no Yahweh. VOICE_ESTHER_BRAVE (strong, determined female) -- approved; NOTE deliberately NOT VOICE_LILY_WOLFF (banned for new authoring, feedback_voice_rules).",
+      "hardContentFlags": [
+        "peril_threat_softened"
+      ]
+    },
+    {
+      "id": "kid_esther_brave_full",
+      "storyNumber": 1838,
+      "title": "Esther's Brave Choice",
+      "textFilePath": "kids/1838/story_1838_full.txt",
+      "scriptureAnchorId": "esther",
+      "bibleStoryKey": "esther",
+      "bibleSourceRef": "Esther 4-8",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "anxious",
+        "courage",
+        "hope"
+      ],
+      "themeTags": [
+        "courage",
+        "trusting God",
+        "standing up for others",
+        "Gods timing"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 466,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "audioFilePath": "kids/1838/audio_1838_full.mp3",
+      "reflectionAudioPath": "kids/1838/audio_1838_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Esther was frightened, but she did the brave thing anyway, and helped so many people. What is something brave that you have done, or want to do?",
+      "kidSafetyNotes": "NEW anchor (Esther). Courage thread + a female hero for register variety. Haman's plot is named abstractly ('a proud man wanted to harm God's people') with NO violence, no killing, no naming of Haman's fate -- per KID_STORY_PROMPT 3 (name danger calmly, emphasize rescue). Flag peril_threat_softened. Courage model is the right kind: 'scared but went anyway' (feeling fear AND being brave), not fearlessness -- routes an anxious child to brave_courage via the kid mood bridge (anxious->brave_courage). She prays first and is not alone. Indelible image = the king holding out the golden scepter (welcome / you are safe to come close). 'God' throughout, no Yahweh. VOICE_ESTHER_BRAVE (strong, determined female) -- approved; NOTE deliberately NOT VOICE_LILY_WOLFF (banned for new authoring, feedback_voice_rules).",
+      "hardContentFlags": [
+        "peril_threat_softened"
+      ]
+    },
+    {
+      "id": "kid_elijah_whisper_short",
+      "storyNumber": 1839,
+      "title": "The Gentle Whisper",
+      "textFilePath": "kids/1839/story_1839_short.txt",
+      "scriptureAnchorId": "1_kings_19",
+      "bibleStoryKey": "1_kings_19",
+      "bibleSourceRef": "1 Kings 19:9-13",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed",
+        "lonely",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods presence",
+        "Gods gentleness",
+        "rest",
+        "not alone"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 272,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "audioFilePath": "kids/1839/audio_1839_short.mp3",
+      "reflectionAudioPath": "kids/1839/audio_1839_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God did not come to Elijah in the loud and scary things, but in a soft little whisper. When everything is quiet, what do you think God might whisper to you?",
+      "kidSafetyNotes": "NEW anchor (Elijah whisper). The quintessential COMFORT/weary anchor -- counterweight to the louder stories in the batch. Elijah is tired/afraid/lonely; God feeds and rests him (the angel + bread, one gentle beat) and then comes not in wind/quake/fire but in a gentle whisper. The loud things are kept brief and not scary; the whole story lands on the quiet whisper. mood=weary (the lane's main weary anchor); the kid mood bridge routes a worn-out / overwhelmed child here. Indelible image = the gentle whisper / Elijah's coat over his face. 'You are loved... not alone' = the not-alone spine, said softly (feedback_kid_not_alone_thread). NO Yahweh -- this is the whisper, the NAME is not the point; save covenant-name Yahweh for Carmel later (Adam). VOICE_ELIJAH_SAGE (thoughtful, measured) -- register fit for the contemplative tone.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_elijah_whisper_full",
+      "storyNumber": 1839,
+      "title": "The Gentle Whisper",
+      "textFilePath": "kids/1839/story_1839_full.txt",
+      "scriptureAnchorId": "1_kings_19",
+      "bibleStoryKey": "1_kings_19",
+      "bibleSourceRef": "1 Kings 19:9-13",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed",
+        "lonely",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods presence",
+        "Gods gentleness",
+        "rest",
+        "not alone"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 432,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "audioFilePath": "kids/1839/audio_1839_full.mp3",
+      "reflectionAudioPath": "kids/1839/audio_1839_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God did not come to Elijah in the loud and scary things, but in a soft little whisper. When everything is quiet, what do you think God might whisper to you?",
+      "kidSafetyNotes": "NEW anchor (Elijah whisper). The quintessential COMFORT/weary anchor -- counterweight to the louder stories in the batch. Elijah is tired/afraid/lonely; God feeds and rests him (the angel + bread, one gentle beat) and then comes not in wind/quake/fire but in a gentle whisper. The loud things are kept brief and not scary; the whole story lands on the quiet whisper. mood=weary (the lane's main weary anchor); the kid mood bridge routes a worn-out / overwhelmed child here. Indelible image = the gentle whisper / Elijah's coat over his face. 'You are loved... not alone' = the not-alone spine, said softly (feedback_kid_not_alone_thread). NO Yahweh -- this is the whisper, the NAME is not the point; save covenant-name Yahweh for Carmel later (Adam). VOICE_ELIJAH_SAGE (thoughtful, measured) -- register fit for the contemplative tone.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_new_heaven_short",
+      "storyNumber": 1840,
+      "title": "A New Heaven and a New Earth",
+      "textFilePath": "kids/1840/story_1840_short.txt",
+      "scriptureAnchorId": "revelation_21",
+      "bibleStoryKey": "revelation_21",
+      "bibleSourceRef": "Revelation 21:1-7",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hope",
+        "wonder",
+        "sad"
+      ],
+      "themeTags": [
+        "hope",
+        "Gods promises",
+        "heaven",
+        "comfort"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 264,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1840/audio_1840_short.mp3",
+      "reflectionAudioPath": "kids/1840/audio_1840_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God promised to come close and wipe away every tear with his very own hand. What is something happy you hope to do in that beautiful new place?",
+      "kidSafetyNotes": "NEW anchor (Heaven/Revelation). Closes the batch on resurrection HOPE + wonder (the_cross 1821 + empty_tomb 1812 already done; this is the unwritten hope anchor). Revelation 21's 'no more death/mourning/crying/pain' is framed entirely as COMFORT and promise -- the focus is God wiping away every tear and making everything new, never dwelling on death. Flag references_loss_softened. Tagged 'sad' so a grieving / missing-someone child can route to this comfort. Indelible image = God reaching out with his own hand to wipe away every tear. 'God' throughout, no Yahweh. VOICE_JOHN_BELOVED -- John is the author of Revelation; tender/loving register fits the new-creation hope. Bedtime-test strong: gentle, wonder-filled, replayable.",
+      "hardContentFlags": [
+        "references_loss_softened"
+      ]
+    },
+    {
+      "id": "kid_new_heaven_full",
+      "storyNumber": 1840,
+      "title": "A New Heaven and a New Earth",
+      "textFilePath": "kids/1840/story_1840_full.txt",
+      "scriptureAnchorId": "revelation_21",
+      "bibleStoryKey": "revelation_21",
+      "bibleSourceRef": "Revelation 21:1-7",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hope",
+        "wonder",
+        "sad"
+      ],
+      "themeTags": [
+        "hope",
+        "Gods promises",
+        "heaven",
+        "comfort"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 409,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1840/audio_1840_full.mp3",
+      "reflectionAudioPath": "kids/1840/audio_1840_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God promised to come close and wipe away every tear with his very own hand. What is something happy you hope to do in that beautiful new place?",
+      "kidSafetyNotes": "NEW anchor (Heaven/Revelation). Closes the batch on resurrection HOPE + wonder (the_cross 1821 + empty_tomb 1812 already done; this is the unwritten hope anchor). Revelation 21's 'no more death/mourning/crying/pain' is framed entirely as COMFORT and promise -- the focus is God wiping away every tear and making everything new, never dwelling on death. Flag references_loss_softened. Tagged 'sad' so a grieving / missing-someone child can route to this comfort. Indelible image = God reaching out with his own hand to wipe away every tear. 'God' throughout, no Yahweh. VOICE_JOHN_BELOVED -- John is the author of Revelation; tender/loving register fits the new-creation hope. Bedtime-test strong: gentle, wonder-filled, replayable.",
+      "hardContentFlags": [
+        "references_loss_softened"
+      ]
     }
   ]
 }
