@@ -4806,6 +4806,72 @@
       "reflectionQuestion": "God gave Joseph wisdom, and Joseph used it to help a whole land of people. What is a wise and helpful thing you could do?",
       "kidSafetyNotes": "NEW anchor (Joseph, mature tier). The WISDOM/helping story -- a deliberately different Joseph lane (Adam): coat=beloved child (1844), reunion=forgiveness (1819), this=dreams->wisdom, saving Egypt->helping others. Keeps the BROTHERS out: the painful backstory is compressed to 'it had not been an easy road... but God had been with him' (no pit/sale/betrayal -- consistent with 1844 softening). The famine is gentle ('hard years when food is scarce'), framed as something Joseph's wisdom prepares for. God is the source of the wisdom (Joseph: 'I cannot do it on my own, but God can'). Indelible image = Joseph before Pharaoh reading the dreams / the full barns saving people. 'God' throughout, no Yahweh. VOICE_JAMES_BRITISH (reassuring father; continuity with 1844 coat, the lead-up to his rise).",
       "hardContentFlags": []
+    },
+    {
+      "id": "kid_peter_prison_long",
+      "storyNumber": 1856,
+      "title": "Peter Set Free from Prison",
+      "textFilePath": "kids/1856/story_1856_long.txt",
+      "scriptureAnchorId": "acts_12",
+      "bibleStoryKey": "acts_12",
+      "bibleSourceRef": "Acts 12:1-19",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "celebration"
+      ],
+      "themeTags": [
+        "Gods rescue",
+        "prayer",
+        "Gods power",
+        "freedom"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 750,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "audioFilePath": "kids/1856/audio_1856_long.mp3",
+      "reflectionAudioPath": "kids/1856/audio_1856_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Peter's friends prayed and prayed for him, and God set him free. Who is someone you would like to pray for?",
+      "kidSafetyNotes": "NEW anchor (Early Church, mature tier). Rescue/wonder. Herod's earlier killing of James is OMITTED entirely; the prison is kept gentle ('a heavy locked door, soldiers to guard him') with no threat of harm dwelt on -- focus is the angel + chains falling + doors opening + Peter walking free. Per Adam: lean into the Rhoda beat (she's so overjoyed she forgets to open the door) -- a funny, sweet, kid-memorable human moment. Spine: the friends' prayers are heard and answered (prayer + Gods rescue). 'God'/'Jesus' throughout, no Yahweh. VOICE_ARCHER (bold guide) -- rescue energy.",
+      "hardContentFlags": [
+        "imprisonment_softened"
+      ]
+    },
+    {
+      "id": "kid_joseph_dreams_long",
+      "storyNumber": 1860,
+      "title": "Joseph and the King's Dreams",
+      "textFilePath": "kids/1860/story_1860_long.txt",
+      "scriptureAnchorId": "genesis_41",
+      "bibleStoryKey": "genesis_41",
+      "bibleSourceRef": "Genesis 41",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "wonder"
+      ],
+      "themeTags": [
+        "wisdom",
+        "Gods plan",
+        "helping others",
+        "provision"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 751,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": "kids/1860/audio_1860_long.mp3",
+      "reflectionAudioPath": "kids/1860/audio_1860_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God gave Joseph wisdom, and Joseph used it to help a whole land of people. What is a wise and helpful thing you could do?",
+      "kidSafetyNotes": "NEW anchor (Joseph, mature tier). The WISDOM/helping story -- a deliberately different Joseph lane (Adam): coat=beloved child (1844), reunion=forgiveness (1819), this=dreams->wisdom, saving Egypt->helping others. Keeps the BROTHERS out: the painful backstory is compressed to 'it had not been an easy road... but God had been with him' (no pit/sale/betrayal -- consistent with 1844 softening). The famine is gentle ('hard years when food is scarce'), framed as something Joseph's wisdom prepares for. God is the source of the wisdom (Joseph: 'I cannot do it on my own, but God can'). Indelible image = Joseph before Pharaoh reading the dreams / the full barns saving people. 'God' throughout, no Yahweh. VOICE_JAMES_BRITISH (reassuring father; continuity with 1844 coat, the lead-up to his rise).",
+      "hardContentFlags": []
     }
   ]
 }

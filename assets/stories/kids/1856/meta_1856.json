@@ -22,9 +22,10 @@
   ],
   "lengths": [
     "short",
-    "full"
+    "full",
+    "long"
   ],
-  "longEligible": false,
+  "longEligible": true,
   "status": "REVIEW",
   "storyVoiceKey": "VOICE_ARCHER",
   "ttsModel": "eleven_turbo_v2_5",
@@ -52,6 +53,10 @@
       "text": "reflection_1856.txt",
       "audio": "audio_1856_reflection.mp3",
       "ttsModel": "eleven_v3"
+    },
+    "long": {
+      "storyText": "story_1856_long.txt",
+      "audio": "audio_1856_long.mp3"
     }
   }
 }
