@@ -47831,6 +47831,142 @@
         "Gods care"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_empty_tomb_long",
+      "title": "The Empty Tomb",
+      "mood": "joyful",
+      "emotionalTags": [
+        "hope",
+        "wonder",
+        "celebration"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1812/audio_1812_long.mp3",
+      "textFilePath": "kids/1812/story_1812_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "long",
+      "reflectionQuestion": "What do you think the women felt when they heard that Jesus was alive?",
+      "bibleSourceRef": "Matthew 28:1-10",
+      "bibleStoryKey": "resurrection_empty_tomb",
+      "themeTags": [
+        "resurrection",
+        "hope",
+        "Jesus is alive",
+        "Easter"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_red_sea_long",
+      "title": "Crossing the Red Sea",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "anxious",
+        "scared_dark"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1813/audio_1813_long.mp3",
+      "textFilePath": "kids/1813/story_1813_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "long",
+      "reflectionQuestion": "What do you think it looked like, walking between two walls of water?",
+      "bibleSourceRef": "Exodus 14",
+      "bibleStoryKey": "red_sea_crossing",
+      "themeTags": [
+        "deliverance",
+        "trust",
+        "wonder",
+        "Gods rescue"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_daniel_lions_den_long",
+      "title": "Daniel in the Lions' Den",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "scared_dark",
+        "anxious"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1814/audio_1814_long.mp3",
+      "textFilePath": "kids/1814/story_1814_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "long",
+      "reflectionQuestion": "Daniel felt safe with God close by. What helps you feel calm and safe?",
+      "bibleSourceRef": "Daniel 6",
+      "bibleStoryKey": "daniel_lions_den",
+      "themeTags": [
+        "faith",
+        "protection",
+        "presence of God",
+        "prayer"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_the_cross_long",
+      "title": "The Cross",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "hopeless"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1821/audio_1821_long.mp3",
+      "textFilePath": "kids/1821/story_1821_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_SAMUEL_EARNEST",
+      "storyLength": "long",
+      "reflectionQuestion": "What do you think it means to be loved as much as Jesus loves you?",
+      "bibleSourceRef": "Luke 23:32-49",
+      "bibleStoryKey": "the_cross",
+      "themeTags": [
+        "Gods love",
+        "sacrifice",
+        "hope",
+        "Jesus loves me"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_fiery_furnace_long",
+      "title": "The Fiery Furnace",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "scared_dark",
+        "courage"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1822/audio_1822_long.mp3",
+      "textFilePath": "kids/1822/story_1822_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "storyLength": "long",
+      "reflectionQuestion": "What do you think the three friends saw when they looked beside them in the fire?",
+      "bibleSourceRef": "Daniel 3",
+      "bibleStoryKey": "fiery_furnace",
+      "themeTags": [
+        "faith",
+        "presence of God",
+        "courage",
+        "protection"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }

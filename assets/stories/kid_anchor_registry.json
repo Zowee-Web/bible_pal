@@ -266,7 +266,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
           "launch": true,
@@ -587,7 +588,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
           "launch": true,
@@ -603,13 +605,15 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "manifestAnchorIds": [
             "daniel_6"
           ],
           "launch": true,
-          "productionId": 1814
+          "productionId": 1814,
+          "longEligible": true
         },
         {
           "anchorId": "writing_on_wall",
@@ -1022,14 +1026,16 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "sibling": "empty_tomb",
           "launch": true,
           "productionId": 1821,
           "manifestAnchorIds": [
             "luke_23_32-49"
-          ]
+          ],
+          "longEligible": true
         },
         {
           "anchorId": "empty_tomb",
@@ -1038,7 +1044,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
           "launch": true,

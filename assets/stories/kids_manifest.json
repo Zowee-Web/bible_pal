@@ -4111,6 +4111,173 @@
       "reflectionQuestion": "Daniel chose to honor God, even far from home, and God took care of him. What is one good way you can honor God today?",
       "kidSafetyNotes": "NEW anchor (Daniel, secondary/short-only). QUIET FAITHFULNESS -- honoring God in small things, far from home (mood=encouraging, set 2026-06-20: the prose is gentle/faithful, not tense-brave; 'courage' kept only as a minor relatability tag for the quiet-courage element). WATCH (Adam): do NOT moralize into 'eat your vegetables' -- the vegetables/water are the plot, but the POINT is faithfulness (Daniel honoring God even in a new land) and God's care (he gave them health AND wisdom). The framing is 'wanted to honor God in everything,' not 'healthy food is good for you.' Distinct Daniel scene from 1814 lions + 1822 furnace (this is Daniel 1, the quiet choice). Gentle, low-peril (the guard's mild worry is the only tension). Indelible image = the four friends looking brighter/healthier after ten days. 'God' throughout, no Yahweh (Daniel is not a covenant-name story). VOICE_PRISCILLA_TEACHER (clear, instructive) -- fits the wise-choice story; female balance.",
       "hardContentFlags": []
+    },
+    {
+      "id": "kid_empty_tomb_long",
+      "storyNumber": 1812,
+      "title": "The Empty Tomb",
+      "textFilePath": "kids/1812/story_1812_long.txt",
+      "scriptureAnchorId": "empty_tomb",
+      "bibleStoryKey": "resurrection_empty_tomb",
+      "bibleSourceRef": "Matthew 28:1-10",
+      "mood": "joyful",
+      "emotionalTags": [
+        "hope",
+        "wonder",
+        "celebration"
+      ],
+      "themeTags": [
+        "resurrection",
+        "hope",
+        "Jesus is alive",
+        "Easter"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 758,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1812/audio_1812_long.mp3",
+      "reflectionAudioPath": "kids/1812/audio_1812_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the women felt when they heard that Jesus was alive?",
+      "kidSafetyNotes": "Easter / empty_tomb = Sunday morning JOY (sibling of the_cross). Jesus's death is gentle backstory only ('Jesus had died... laid to rest'); the weight is on resurrection wonder. Adam: 'It is still true today' kept on purpose -- the resurrection is a proclamation, not a behavior to imitate (unlike a moral). One image: the empty tomb / folded grave cloths.",
+      "hardContentFlags": [
+        "death_handled_gently"
+      ]
+    },
+    {
+      "id": "kid_red_sea_long",
+      "storyNumber": 1813,
+      "title": "Crossing the Red Sea",
+      "textFilePath": "kids/1813/story_1813_long.txt",
+      "scriptureAnchorId": "red_sea",
+      "bibleStoryKey": "red_sea_crossing",
+      "bibleSourceRef": "Exodus 14",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "anxious",
+        "scared_dark"
+      ],
+      "themeTags": [
+        "deliverance",
+        "trust",
+        "wonder",
+        "Gods rescue"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 746,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1813/audio_1813_long.mp3",
+      "reflectionAudioPath": "kids/1813/audio_1813_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it looked like, walking between two walls of water?",
+      "kidSafetyNotes": "Fear->trust->wonder->rescue (NOT punishment). Pharaoh's army drowning OMITTED ('the army could not follow them anymore'). 'Do not be afraid... God will take care of us.' One image: the two walls of water with the dry path between.",
+      "hardContentFlags": [
+        "peril_pursuit"
+      ]
+    },
+    {
+      "id": "kid_daniel_lions_den_long",
+      "storyNumber": 1814,
+      "title": "Daniel in the Lions' Den",
+      "textFilePath": "kids/1814/story_1814_long.txt",
+      "scriptureAnchorId": "daniel_6",
+      "bibleStoryKey": "daniel_lions_den",
+      "bibleSourceRef": "Daniel 6",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "scared_dark",
+        "anxious"
+      ],
+      "themeTags": [
+        "faith",
+        "protection",
+        "presence of God",
+        "prayer"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 786,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1814/audio_1814_long.mp3",
+      "reflectionAudioPath": "kids/1814/audio_1814_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Daniel felt safe with God close by. What helps you feel calm and safe?",
+      "kidSafetyNotes": "SUPERSEDES legacy kid_102 (fixes its scripture error: the old one had 'Daniel ascended to the throne' -- never happened, gone). Lions are awe-not-terror ('lay down... quiet and calm, like great gentle cats'); accusers' fate omitted. Mood calm_peaceful (Daniel's peace), not courage. Part of the 'God is with me / not alone' thread.",
+      "hardContentFlags": [
+        "peril_animals_softened"
+      ]
+    },
+    {
+      "id": "kid_the_cross_long",
+      "storyNumber": 1821,
+      "title": "The Cross",
+      "textFilePath": "kids/1821/story_1821_long.txt",
+      "scriptureAnchorId": "luke_23_32-49",
+      "bibleStoryKey": "the_cross",
+      "bibleSourceRef": "Luke 23:32-49",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "hopeless"
+      ],
+      "themeTags": [
+        "Gods love",
+        "sacrifice",
+        "hope",
+        "Jesus loves me"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 766,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_SAMUEL_EARNEST",
+      "audioFilePath": "kids/1821/audio_1821_long.mp3",
+      "reflectionAudioPath": "kids/1821/audio_1821_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it means to be loved as much as Jesus loves you?",
+      "kidSafetyNotes": "THE hard story, told via the Joseph method (feedback_kid_god_with_not_cause). LOVE-centered, not suffering-centered: death stated softly ('his breath grew still'); NO nails/blood/gore. Jesus's real words kept ('Father, forgive them'; 'into your hands'). Names that God had NOT left ('there in the dark') and refuses to end in the dark -- ends forward ('Sunday was coming'), gently pointing to Easter (1812). Grounding image: his mother Mary among the watchers (threads to 1824). Mood=hurting: the comfort for a sad child is 'Jesus knows sadness, loves you this much, and God did not leave.' Adam: braver-set centerpiece; reviewed line-by-line.",
+      "hardContentFlags": [
+        "death_handled_gently",
+        "crucifixion_softened"
+      ]
+    },
+    {
+      "id": "kid_fiery_furnace_long",
+      "storyNumber": 1822,
+      "title": "The Fiery Furnace",
+      "textFilePath": "kids/1822/story_1822_long.txt",
+      "scriptureAnchorId": "daniel_3",
+      "bibleStoryKey": "fiery_furnace",
+      "bibleSourceRef": "Daniel 3",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "scared_dark",
+        "courage"
+      ],
+      "themeTags": [
+        "faith",
+        "presence of God",
+        "courage",
+        "protection"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 766,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "audioFilePath": "kids/1822/audio_1822_long.mp3",
+      "reflectionAudioPath": "kids/1822/audio_1822_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the three friends saw when they looked beside them in the fire?",
+      "kidSafetyNotes": "Braver-set: REAL danger (fire), but no one is harmed; the soldiers' deaths (Dan 3:22) OMITTED. KEPT the hardest faith line -- 'Our God is able to save us, but even if he does not, we will still worship only him' -- faith WITHOUT a guarantee, the deliberate counter to gentleness-drift (feedback_kid_faithful_not_gentle). Not-alone spine made literal: the fourth figure walking WITH them in the flames. One image: the four walking unharmed in the fire. Names Shadrach/Meshach/Abednego kept (rhythmic for kids).",
+      "hardContentFlags": [
+        "peril_fire"
+      ]
     }
   ]
 }
