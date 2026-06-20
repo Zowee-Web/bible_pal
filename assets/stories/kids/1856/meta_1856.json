@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1856,
+  "anchorId": "peter_prison",
+  "kidLane": "dedicated-4-7",
+  "title": "Peter Set Free from Prison",
+  "scriptureAnchorId": "acts_12",
+  "bibleSourceRef": "Acts 12:1-19",
+  "bibleStoryKey": "acts_12",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "faith",
+    "hope",
+    "celebration"
+  ],
+  "themeTags": [
+    "Gods rescue",
+    "prayer",
+    "Gods power",
+    "freedom"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Peter's friends prayed and prayed for him, and God set him free. Who is someone you would like to pray for?",
+  "hardContentFlags": [
+    "imprisonment_softened"
+  ],
+  "kidSafetyNotes": "NEW anchor (Early Church, mature tier). Rescue/wonder. Herod's earlier killing of James is OMITTED entirely; the prison is kept gentle ('a heavy locked door, soldiers to guard him') with no threat of harm dwelt on -- focus is the angel + chains falling + doors opening + Peter walking free. Per Adam: lean into the Rhoda beat (she's so overjoyed she forgets to open the door) -- a funny, sweet, kid-memorable human moment. Spine: the friends' prayers are heard and answered (prayer + Gods rescue). 'God'/'Jesus' throughout, no Yahweh. VOICE_ARCHER (bold guide) -- rescue energy.",
+  "files": {
+    "short": {
+      "storyText": "story_1856_short.txt",
+      "audio": "audio_1856_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1856_full.txt",
+      "audio": "audio_1856_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1856.txt",
+      "audio": "audio_1856_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

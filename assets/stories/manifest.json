@@ -48160,6 +48160,258 @@
         "transformation"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_peter_prison_short",
+      "title": "Peter Set Free from Prison",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "celebration"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1856/audio_1856_short.mp3",
+      "textFilePath": "kids/1856/story_1856_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "storyLength": "short",
+      "reflectionQuestion": "Peter's friends prayed and prayed for him, and God set him free. Who is someone you would like to pray for?",
+      "bibleSourceRef": "Acts 12:1-19",
+      "bibleStoryKey": "acts_12",
+      "themeTags": [
+        "Gods rescue",
+        "prayer",
+        "Gods power",
+        "freedom"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_peter_prison_full",
+      "title": "Peter Set Free from Prison",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "celebration"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1856/audio_1856_full.mp3",
+      "textFilePath": "kids/1856/story_1856_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "storyLength": "full",
+      "reflectionQuestion": "Peter's friends prayed and prayed for him, and God set him free. Who is someone you would like to pray for?",
+      "bibleSourceRef": "Acts 12:1-19",
+      "bibleStoryKey": "acts_12",
+      "themeTags": [
+        "Gods rescue",
+        "prayer",
+        "Gods power",
+        "freedom"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_david_harp_short",
+      "title": "David Plays for King Saul",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "overwhelmed",
+        "hope",
+        "faith"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1857/audio_1857_short.mp3",
+      "textFilePath": "kids/1857/story_1857_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "short",
+      "reflectionQuestion": "When David played his gentle music, the troubled king felt calm again. What helps your heart feel calm and peaceful?",
+      "bibleSourceRef": "1 Samuel 16:14-23",
+      "bibleStoryKey": "1_samuel_16_14-23",
+      "themeTags": [
+        "Gods peace",
+        "comfort",
+        "music",
+        "calm"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_david_harp_full",
+      "title": "David Plays for King Saul",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "overwhelmed",
+        "hope",
+        "faith"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1857/audio_1857_full.mp3",
+      "textFilePath": "kids/1857/story_1857_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "full",
+      "reflectionQuestion": "When David played his gentle music, the troubled king felt calm again. What helps your heart feel calm and peaceful?",
+      "bibleSourceRef": "1 Samuel 16:14-23",
+      "bibleStoryKey": "1_samuel_16_14-23",
+      "themeTags": [
+        "Gods peace",
+        "comfort",
+        "music",
+        "calm"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_abraham_stars_short",
+      "title": "Abraham and the Stars",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1858/audio_1858_short.mp3",
+      "textFilePath": "kids/1858/story_1858_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "storyLength": "short",
+      "reflectionQuestion": "God showed Abraham the stars to show how big his promise was. What do you love to look for up in the night sky?",
+      "bibleSourceRef": "Genesis 15:1-6",
+      "bibleStoryKey": "genesis_15",
+      "themeTags": [
+        "Gods promises",
+        "wonder",
+        "trust",
+        "faith"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_abraham_stars_full",
+      "title": "Abraham and the Stars",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1858/audio_1858_full.mp3",
+      "textFilePath": "kids/1858/story_1858_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "storyLength": "full",
+      "reflectionQuestion": "God showed Abraham the stars to show how big his promise was. What do you love to look for up in the night sky?",
+      "bibleSourceRef": "Genesis 15:1-6",
+      "bibleStoryKey": "genesis_15",
+      "themeTags": [
+        "Gods promises",
+        "wonder",
+        "trust",
+        "faith"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_beatitudes_short",
+      "title": "The Beatitudes",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "sad",
+        "hope",
+        "faith"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1859/audio_1859_short.mp3",
+      "textFilePath": "kids/1859/story_1859_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARABELLA",
+      "storyLength": "short",
+      "reflectionQuestion": "Jesus said God holds the gentle and the kind especially close. What is a kind or gentle thing you could do tomorrow?",
+      "bibleSourceRef": "Matthew 5:1-12",
+      "bibleStoryKey": "matthew_5",
+      "themeTags": [
+        "Gods blessing",
+        "comfort",
+        "kindness",
+        "Gods love"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_joseph_dreams_short",
+      "title": "Joseph and the King's Dreams",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1860/audio_1860_short.mp3",
+      "textFilePath": "kids/1860/story_1860_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "storyLength": "short",
+      "reflectionQuestion": "God gave Joseph wisdom, and Joseph used it to help a whole land of people. What is a wise and helpful thing you could do?",
+      "bibleSourceRef": "Genesis 41",
+      "bibleStoryKey": "genesis_41",
+      "themeTags": [
+        "wisdom",
+        "Gods plan",
+        "helping others",
+        "provision"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_joseph_dreams_full",
+      "title": "Joseph and the King's Dreams",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1860/audio_1860_full.mp3",
+      "textFilePath": "kids/1860/story_1860_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "storyLength": "full",
+      "reflectionQuestion": "God gave Joseph wisdom, and Joseph used it to help a whole land of people. What is a wise and helpful thing you could do?",
+      "bibleSourceRef": "Genesis 41",
+      "bibleStoryKey": "genesis_41",
+      "themeTags": [
+        "wisdom",
+        "Gods plan",
+        "helping others",
+        "provision"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }

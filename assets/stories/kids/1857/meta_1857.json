@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1857,
+  "anchorId": "david_harp",
+  "kidLane": "dedicated-4-7",
+  "title": "David Plays for King Saul",
+  "scriptureAnchorId": "1_samuel_16_14-23",
+  "bibleSourceRef": "1 Samuel 16:14-23",
+  "bibleStoryKey": "1_samuel_16_14-23",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "overwhelmed",
+    "hope",
+    "faith"
+  ],
+  "themeTags": [
+    "Gods peace",
+    "comfort",
+    "music",
+    "calm"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "When David played his gentle music, the troubled king felt calm again. What helps your heart feel calm and peaceful?",
+  "hardContentFlags": [
+    "distress_softened"
+  ],
+  "kidSafetyNotes": "NEW anchor (David, mature tier). A signature CALM/comfort story (Adam: 'bedtime gold' -- a troubled king, a shepherd boy, soft music, peace returning). Saul's torment by an evil spirit (1 Sam 16:14) is SOFTENED to 'his heart felt sad and troubled... a heavy gloom' -- NO evil-spirit darkness; the gentle music + God's peace bring calm. Distinct David beat from 1801 (giant), 1836 (anointing), 1846 (Jonathan). For a worried/overwhelmed child: routes troubled-feelings -> peace returning. Indelible image = David playing the harp softly, the king's gloom lifting like clouds from the sun. Reuses VOICE_DAVID_SHEPHERD (David's own voice; warm, shepherd-musician -- perfect content fit). 'God' throughout, no Yahweh.",
+  "files": {
+    "short": {
+      "storyText": "story_1857_short.txt",
+      "audio": "audio_1857_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1857_full.txt",
+      "audio": "audio_1857_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1857.txt",
+      "audio": "audio_1857_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

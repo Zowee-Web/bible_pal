@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1858,
+  "anchorId": "abraham_stars",
+  "kidLane": "dedicated-4-7",
+  "title": "Abraham and the Stars",
+  "scriptureAnchorId": "genesis_15",
+  "bibleSourceRef": "Genesis 15:1-6",
+  "bibleStoryKey": "genesis_15",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "wonder",
+    "faith",
+    "hope"
+  ],
+  "themeTags": [
+    "Gods promises",
+    "wonder",
+    "trust",
+    "faith"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "God showed Abraham the stars to show how big his promise was. What do you love to look for up in the night sky?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Abraham & Sarah, mature tier). NIGHT-SKY WONDER. The quiet ache of being childless is named gently (a 'quiet sadness,' longing for a family) -- not dwelt on; the heart is God's starry promise + Abraham's trust. Distinct from 1852 Sarah's Promised Baby (the fulfillment/Isaac) and 1823 God Calls Abraham (the call) -- this is the promise under the stars (Gen 15). Indelible image (Adam) = 'Count the stars, Abraham... that's how big my promise is' -- kids grasp wonder before they grasp promises. 'God' throughout, no Yahweh (the name is not the point here). VOICE_DEBORAH_WISE (authoritative-kind female) -- the gravity + warmth of a covenant promise.",
+  "files": {
+    "short": {
+      "storyText": "story_1858_short.txt",
+      "audio": "audio_1858_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1858_full.txt",
+      "audio": "audio_1858_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1858.txt",
+      "audio": "audio_1858_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

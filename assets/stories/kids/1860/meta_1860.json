@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1860,
+  "anchorId": "joseph_dreams",
+  "kidLane": "dedicated-4-7",
+  "title": "Joseph and the King's Dreams",
+  "scriptureAnchorId": "genesis_41",
+  "bibleSourceRef": "Genesis 41",
+  "bibleStoryKey": "genesis_41",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "faith",
+    "hope",
+    "wonder"
+  ],
+  "themeTags": [
+    "wisdom",
+    "Gods plan",
+    "helping others",
+    "provision"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "God gave Joseph wisdom, and Joseph used it to help a whole land of people. What is a wise and helpful thing you could do?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Joseph, mature tier). The WISDOM/helping story -- a deliberately different Joseph lane (Adam): coat=beloved child (1844), reunion=forgiveness (1819), this=dreams->wisdom, saving Egypt->helping others. Keeps the BROTHERS out: the painful backstory is compressed to 'it had not been an easy road... but God had been with him' (no pit/sale/betrayal -- consistent with 1844 softening). The famine is gentle ('hard years when food is scarce'), framed as something Joseph's wisdom prepares for. God is the source of the wisdom (Joseph: 'I cannot do it on my own, but God can'). Indelible image = Joseph before Pharaoh reading the dreams / the full barns saving people. 'God' throughout, no Yahweh. VOICE_JAMES_BRITISH (reassuring father; continuity with 1844 coat, the lead-up to his rise).",
+  "files": {
+    "short": {
+      "storyText": "story_1860_short.txt",
+      "audio": "audio_1860_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1860_full.txt",
+      "audio": "audio_1860_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1860.txt",
+      "audio": "audio_1860_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

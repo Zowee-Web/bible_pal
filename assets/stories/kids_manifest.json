@@ -4509,6 +4509,303 @@
       "hardContentFlags": [
         "persecution_softened"
       ]
+    },
+    {
+      "id": "kid_peter_prison_short",
+      "storyNumber": 1856,
+      "title": "Peter Set Free from Prison",
+      "textFilePath": "kids/1856/story_1856_short.txt",
+      "scriptureAnchorId": "acts_12",
+      "bibleStoryKey": "acts_12",
+      "bibleSourceRef": "Acts 12:1-19",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "celebration"
+      ],
+      "themeTags": [
+        "Gods rescue",
+        "prayer",
+        "Gods power",
+        "freedom"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 269,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "audioFilePath": "kids/1856/audio_1856_short.mp3",
+      "reflectionAudioPath": "kids/1856/audio_1856_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Peter's friends prayed and prayed for him, and God set him free. Who is someone you would like to pray for?",
+      "kidSafetyNotes": "NEW anchor (Early Church, mature tier). Rescue/wonder. Herod's earlier killing of James is OMITTED entirely; the prison is kept gentle ('a heavy locked door, soldiers to guard him') with no threat of harm dwelt on -- focus is the angel + chains falling + doors opening + Peter walking free. Per Adam: lean into the Rhoda beat (she's so overjoyed she forgets to open the door) -- a funny, sweet, kid-memorable human moment. Spine: the friends' prayers are heard and answered (prayer + Gods rescue). 'God'/'Jesus' throughout, no Yahweh. VOICE_ARCHER (bold guide) -- rescue energy.",
+      "hardContentFlags": [
+        "imprisonment_softened"
+      ]
+    },
+    {
+      "id": "kid_peter_prison_full",
+      "storyNumber": 1856,
+      "title": "Peter Set Free from Prison",
+      "textFilePath": "kids/1856/story_1856_full.txt",
+      "scriptureAnchorId": "acts_12",
+      "bibleStoryKey": "acts_12",
+      "bibleSourceRef": "Acts 12:1-19",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "celebration"
+      ],
+      "themeTags": [
+        "Gods rescue",
+        "prayer",
+        "Gods power",
+        "freedom"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 513,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "audioFilePath": "kids/1856/audio_1856_full.mp3",
+      "reflectionAudioPath": "kids/1856/audio_1856_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Peter's friends prayed and prayed for him, and God set him free. Who is someone you would like to pray for?",
+      "kidSafetyNotes": "NEW anchor (Early Church, mature tier). Rescue/wonder. Herod's earlier killing of James is OMITTED entirely; the prison is kept gentle ('a heavy locked door, soldiers to guard him') with no threat of harm dwelt on -- focus is the angel + chains falling + doors opening + Peter walking free. Per Adam: lean into the Rhoda beat (she's so overjoyed she forgets to open the door) -- a funny, sweet, kid-memorable human moment. Spine: the friends' prayers are heard and answered (prayer + Gods rescue). 'God'/'Jesus' throughout, no Yahweh. VOICE_ARCHER (bold guide) -- rescue energy.",
+      "hardContentFlags": [
+        "imprisonment_softened"
+      ]
+    },
+    {
+      "id": "kid_david_harp_short",
+      "storyNumber": 1857,
+      "title": "David Plays for King Saul",
+      "textFilePath": "kids/1857/story_1857_short.txt",
+      "scriptureAnchorId": "1_samuel_16_14-23",
+      "bibleStoryKey": "1_samuel_16_14-23",
+      "bibleSourceRef": "1 Samuel 16:14-23",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "overwhelmed",
+        "hope",
+        "faith"
+      ],
+      "themeTags": [
+        "Gods peace",
+        "comfort",
+        "music",
+        "calm"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 254,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "audioFilePath": "kids/1857/audio_1857_short.mp3",
+      "reflectionAudioPath": "kids/1857/audio_1857_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "When David played his gentle music, the troubled king felt calm again. What helps your heart feel calm and peaceful?",
+      "kidSafetyNotes": "NEW anchor (David, mature tier). A signature CALM/comfort story (Adam: 'bedtime gold' -- a troubled king, a shepherd boy, soft music, peace returning). Saul's torment by an evil spirit (1 Sam 16:14) is SOFTENED to 'his heart felt sad and troubled... a heavy gloom' -- NO evil-spirit darkness; the gentle music + God's peace bring calm. Distinct David beat from 1801 (giant), 1836 (anointing), 1846 (Jonathan). For a worried/overwhelmed child: routes troubled-feelings -> peace returning. Indelible image = David playing the harp softly, the king's gloom lifting like clouds from the sun. Reuses VOICE_DAVID_SHEPHERD (David's own voice; warm, shepherd-musician -- perfect content fit). 'God' throughout, no Yahweh.",
+      "hardContentFlags": [
+        "distress_softened"
+      ]
+    },
+    {
+      "id": "kid_david_harp_full",
+      "storyNumber": 1857,
+      "title": "David Plays for King Saul",
+      "textFilePath": "kids/1857/story_1857_full.txt",
+      "scriptureAnchorId": "1_samuel_16_14-23",
+      "bibleStoryKey": "1_samuel_16_14-23",
+      "bibleSourceRef": "1 Samuel 16:14-23",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "overwhelmed",
+        "hope",
+        "faith"
+      ],
+      "themeTags": [
+        "Gods peace",
+        "comfort",
+        "music",
+        "calm"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 517,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "audioFilePath": "kids/1857/audio_1857_full.mp3",
+      "reflectionAudioPath": "kids/1857/audio_1857_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "When David played his gentle music, the troubled king felt calm again. What helps your heart feel calm and peaceful?",
+      "kidSafetyNotes": "NEW anchor (David, mature tier). A signature CALM/comfort story (Adam: 'bedtime gold' -- a troubled king, a shepherd boy, soft music, peace returning). Saul's torment by an evil spirit (1 Sam 16:14) is SOFTENED to 'his heart felt sad and troubled... a heavy gloom' -- NO evil-spirit darkness; the gentle music + God's peace bring calm. Distinct David beat from 1801 (giant), 1836 (anointing), 1846 (Jonathan). For a worried/overwhelmed child: routes troubled-feelings -> peace returning. Indelible image = David playing the harp softly, the king's gloom lifting like clouds from the sun. Reuses VOICE_DAVID_SHEPHERD (David's own voice; warm, shepherd-musician -- perfect content fit). 'God' throughout, no Yahweh.",
+      "hardContentFlags": [
+        "distress_softened"
+      ]
+    },
+    {
+      "id": "kid_abraham_stars_short",
+      "storyNumber": 1858,
+      "title": "Abraham and the Stars",
+      "textFilePath": "kids/1858/story_1858_short.txt",
+      "scriptureAnchorId": "genesis_15",
+      "bibleStoryKey": "genesis_15",
+      "bibleSourceRef": "Genesis 15:1-6",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods promises",
+        "wonder",
+        "trust",
+        "faith"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 256,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "audioFilePath": "kids/1858/audio_1858_short.mp3",
+      "reflectionAudioPath": "kids/1858/audio_1858_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God showed Abraham the stars to show how big his promise was. What do you love to look for up in the night sky?",
+      "kidSafetyNotes": "NEW anchor (Abraham & Sarah, mature tier). NIGHT-SKY WONDER. The quiet ache of being childless is named gently (a 'quiet sadness,' longing for a family) -- not dwelt on; the heart is God's starry promise + Abraham's trust. Distinct from 1852 Sarah's Promised Baby (the fulfillment/Isaac) and 1823 God Calls Abraham (the call) -- this is the promise under the stars (Gen 15). Indelible image (Adam) = 'Count the stars, Abraham... that's how big my promise is' -- kids grasp wonder before they grasp promises. 'God' throughout, no Yahweh (the name is not the point here). VOICE_DEBORAH_WISE (authoritative-kind female) -- the gravity + warmth of a covenant promise.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_abraham_stars_full",
+      "storyNumber": 1858,
+      "title": "Abraham and the Stars",
+      "textFilePath": "kids/1858/story_1858_full.txt",
+      "scriptureAnchorId": "genesis_15",
+      "bibleStoryKey": "genesis_15",
+      "bibleSourceRef": "Genesis 15:1-6",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods promises",
+        "wonder",
+        "trust",
+        "faith"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 507,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "audioFilePath": "kids/1858/audio_1858_full.mp3",
+      "reflectionAudioPath": "kids/1858/audio_1858_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God showed Abraham the stars to show how big his promise was. What do you love to look for up in the night sky?",
+      "kidSafetyNotes": "NEW anchor (Abraham & Sarah, mature tier). NIGHT-SKY WONDER. The quiet ache of being childless is named gently (a 'quiet sadness,' longing for a family) -- not dwelt on; the heart is God's starry promise + Abraham's trust. Distinct from 1852 Sarah's Promised Baby (the fulfillment/Isaac) and 1823 God Calls Abraham (the call) -- this is the promise under the stars (Gen 15). Indelible image (Adam) = 'Count the stars, Abraham... that's how big my promise is' -- kids grasp wonder before they grasp promises. 'God' throughout, no Yahweh (the name is not the point here). VOICE_DEBORAH_WISE (authoritative-kind female) -- the gravity + warmth of a covenant promise.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_beatitudes_short",
+      "storyNumber": 1859,
+      "title": "The Beatitudes",
+      "type": "comfort-ritual",
+      "textFilePath": "kids/1859/story_1859_short.txt",
+      "scriptureAnchorId": "matthew_5",
+      "bibleStoryKey": "matthew_5",
+      "bibleSourceRef": "Matthew 5:1-12",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "sad",
+        "hope",
+        "faith"
+      ],
+      "themeTags": [
+        "Gods blessing",
+        "comfort",
+        "kindness",
+        "Gods love"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 207,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARABELLA",
+      "audioFilePath": "kids/1859/audio_1859_short.mp3",
+      "reflectionAudioPath": "kids/1859/audio_1859_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus said God holds the gentle and the kind especially close. What is a kind or gentle thing you could do tomorrow?",
+      "kidSafetyNotes": "NEW anchor (Comfort & Bedtime, comfort-ritual, short-only). GENTLE SELECTIVE version per Adam (2026-06-20): comfort, not theology class. Includes the kid-reachable blessings -- the sad/comforted, the gentle, the merciful, the pure in heart, the peacemakers -- plus 'poor in spirit' rendered as 'those who know they need God.' DELIBERATELY OMITS 'persecuted for righteousness' (too heavy for 4-7). Same softening doctrine as the Cross (held not sad), Esther (courage not danger), etc. Comfort-ritual = WEB-faithful but child-rendered (a paraphrase frame, not a verbatim recitation, because the literal Beatitudes are abstract here -- unlike Psalm 23 / Lord's Prayer which recite whole). Gentle frame (Jesus on the hillside) + soft bedtime close ('rest now, little one... you are blessed'). 'blessed' explained as loved/cared for/safe with God. VOICE_ARABELLA (tender nurturer; also narrates Psalm 23 -- consistent comfort-ritual voice).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_joseph_dreams_short",
+      "storyNumber": 1860,
+      "title": "Joseph and the King's Dreams",
+      "textFilePath": "kids/1860/story_1860_short.txt",
+      "scriptureAnchorId": "genesis_41",
+      "bibleStoryKey": "genesis_41",
+      "bibleSourceRef": "Genesis 41",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "wonder"
+      ],
+      "themeTags": [
+        "wisdom",
+        "Gods plan",
+        "helping others",
+        "provision"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 279,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": "kids/1860/audio_1860_short.mp3",
+      "reflectionAudioPath": "kids/1860/audio_1860_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God gave Joseph wisdom, and Joseph used it to help a whole land of people. What is a wise and helpful thing you could do?",
+      "kidSafetyNotes": "NEW anchor (Joseph, mature tier). The WISDOM/helping story -- a deliberately different Joseph lane (Adam): coat=beloved child (1844), reunion=forgiveness (1819), this=dreams->wisdom, saving Egypt->helping others. Keeps the BROTHERS out: the painful backstory is compressed to 'it had not been an easy road... but God had been with him' (no pit/sale/betrayal -- consistent with 1844 softening). The famine is gentle ('hard years when food is scarce'), framed as something Joseph's wisdom prepares for. God is the source of the wisdom (Joseph: 'I cannot do it on my own, but God can'). Indelible image = Joseph before Pharaoh reading the dreams / the full barns saving people. 'God' throughout, no Yahweh. VOICE_JAMES_BRITISH (reassuring father; continuity with 1844 coat, the lead-up to his rise).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_joseph_dreams_full",
+      "storyNumber": 1860,
+      "title": "Joseph and the King's Dreams",
+      "textFilePath": "kids/1860/story_1860_full.txt",
+      "scriptureAnchorId": "genesis_41",
+      "bibleStoryKey": "genesis_41",
+      "bibleSourceRef": "Genesis 41",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "wonder"
+      ],
+      "themeTags": [
+        "wisdom",
+        "Gods plan",
+        "helping others",
+        "provision"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 579,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": "kids/1860/audio_1860_full.mp3",
+      "reflectionAudioPath": "kids/1860/audio_1860_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God gave Joseph wisdom, and Joseph used it to help a whole land of people. What is a wise and helpful thing you could do?",
+      "kidSafetyNotes": "NEW anchor (Joseph, mature tier). The WISDOM/helping story -- a deliberately different Joseph lane (Adam): coat=beloved child (1844), reunion=forgiveness (1819), this=dreams->wisdom, saving Egypt->helping others. Keeps the BROTHERS out: the painful backstory is compressed to 'it had not been an easy road... but God had been with him' (no pit/sale/betrayal -- consistent with 1844 softening). The famine is gentle ('hard years when food is scarce'), framed as something Joseph's wisdom prepares for. God is the source of the wisdom (Joseph: 'I cannot do it on my own, but God can'). Indelible image = Joseph before Pharaoh reading the dreams / the full barns saving people. 'God' throughout, no Yahweh. VOICE_JAMES_BRITISH (reassuring father; continuity with 1844 coat, the lead-up to his rise).",
+      "hardContentFlags": []
     }
   ]
 }
