@@ -21,7 +21,8 @@
     "nothing too hard for God"
   ],
   "lengths": [
-    "short"
+    "short",
+    "full"
   ],
   "longEligible": false,
   "status": "REVIEW",
@@ -45,6 +46,10 @@
       "text": "reflection_1852.txt",
       "audio": "audio_1852_reflection.mp3",
       "ttsModel": "eleven_v3"
+    },
+    "full": {
+      "storyText": "story_1852_full.txt",
+      "audio": "audio_1852_full.mp3"
     }
   }
 }

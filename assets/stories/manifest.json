@@ -47691,6 +47691,146 @@
         "belonging"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_paul_road_full",
+      "title": "Paul Meets Jesus on the Road",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "hope",
+        "faith"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1851/audio_1851_full.mp3",
+      "textFilePath": "kids/1851/story_1851_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "storyLength": "full",
+      "reflectionQuestion": "Jesus met Saul with love, and Saul's whole heart changed. Who is someone you would like to show God's love to?",
+      "bibleSourceRef": "Acts 9:1-19",
+      "bibleStoryKey": "acts_9",
+      "themeTags": [
+        "God changes hearts",
+        "Gods love",
+        "new beginnings",
+        "transformation"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_sarah_isaac_full",
+      "title": "Sarah's Promised Baby",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "hope",
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1852/audio_1852_full.mp3",
+      "textFilePath": "kids/1852/story_1852_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARABELLA",
+      "storyLength": "full",
+      "reflectionQuestion": "God kept his promise and filled Sarah's home with laughter. What is something that fills your home with happy laughter?",
+      "bibleSourceRef": "Genesis 18:1-15; 21:1-7",
+      "bibleStoryKey": "genesis_18-21",
+      "themeTags": [
+        "Gods promises",
+        "joy",
+        "laughter",
+        "nothing too hard for God"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_ten_lepers_full",
+      "title": "The Thankful Leper",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "celebration",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1853/audio_1853_full.mp3",
+      "textFilePath": "kids/1853/story_1853_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "storyLength": "full",
+      "reflectionQuestion": "The thankful man ran all the way back just to say thank you. What is something you feel thankful for right now?",
+      "bibleSourceRef": "Luke 17:11-19",
+      "bibleStoryKey": "luke_17_11-19",
+      "themeTags": [
+        "thankfulness",
+        "gratitude",
+        "Jesus heals",
+        "praising God"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_david_kindness_mephibosheth_full",
+      "title": "David's Kindness to Mephibosheth",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "left_out",
+        "lonely",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1854/audio_1854_full.mp3",
+      "textFilePath": "kids/1854/story_1854_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "storyLength": "full",
+      "reflectionQuestion": "David gave Mephibosheth a place at his table, so he would always feel welcome. Who is someone you could help feel that they belong?",
+      "bibleSourceRef": "2 Samuel 9",
+      "bibleStoryKey": "2_samuel_9",
+      "themeTags": [
+        "kindness",
+        "belonging",
+        "keeping promises",
+        "welcome"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_daniel_food_full",
+      "title": "Daniel's Healthy Food",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "courage"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1855/audio_1855_full.mp3",
+      "textFilePath": "kids/1855/story_1855_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "storyLength": "full",
+      "reflectionQuestion": "Daniel chose to honor God, even far from home, and God took care of him. What is one good way you can honor God today?",
+      "bibleSourceRef": "Daniel 1",
+      "bibleStoryKey": "daniel_1",
+      "themeTags": [
+        "honoring God",
+        "faithfulness",
+        "courage",
+        "Gods care"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }

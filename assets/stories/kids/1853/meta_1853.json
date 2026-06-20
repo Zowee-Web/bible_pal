@@ -21,7 +21,8 @@
     "praising God"
   ],
   "lengths": [
-    "short"
+    "short",
+    "full"
   ],
   "longEligible": false,
   "status": "REVIEW",
@@ -47,6 +48,10 @@
       "text": "reflection_1853.txt",
       "audio": "audio_1853_reflection.mp3",
       "ttsModel": "eleven_v3"
+    },
+    "full": {
+      "storyText": "story_1853_full.txt",
+      "audio": "audio_1853_full.mp3"
     }
   }
 }

@@ -21,7 +21,8 @@
     "Gods care"
   ],
   "lengths": [
-    "short"
+    "short",
+    "full"
   ],
   "longEligible": false,
   "status": "REVIEW",
@@ -45,6 +46,10 @@
       "text": "reflection_1855.txt",
       "audio": "audio_1855_reflection.mp3",
       "ttsModel": "eleven_v3"
+    },
+    "full": {
+      "storyText": "story_1855_full.txt",
+      "audio": "audio_1855_full.mp3"
     }
   }
 }

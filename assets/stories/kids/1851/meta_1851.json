@@ -21,7 +21,8 @@
     "transformation"
   ],
   "lengths": [
-    "short"
+    "short",
+    "full"
   ],
   "longEligible": false,
   "status": "REVIEW",
@@ -47,6 +48,10 @@
       "text": "reflection_1851.txt",
       "audio": "audio_1851_reflection.mp3",
       "ttsModel": "eleven_v3"
+    },
+    "full": {
+      "storyText": "story_1851_full.txt",
+      "audio": "audio_1851_full.mp3"
     }
   }
 }
