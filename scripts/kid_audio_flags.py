@@ -36,7 +36,7 @@ def voice_for(story_id: str) -> str | None:
 
 
 def flags_for(rel_path: str) -> str:
-    m = re.search(r"kids/(\d+)/audio_\d+_(short|full|reflection)\.mp3$", rel_path)
+    m = re.search(r"kids/(\d+)/audio_\d+_(short|full|long|reflection)\.mp3$", rel_path)
     if not m:
         # Not a recognized kid story clip — high-pass only (safe kid default).
         return "--highpass"
