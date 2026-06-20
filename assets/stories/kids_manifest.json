@@ -3489,6 +3489,172 @@
       "hardContentFlags": [
         "references_departure_softened"
       ]
+    },
+    {
+      "id": "kid_paul_road_short",
+      "storyNumber": 1851,
+      "title": "Paul Meets Jesus on the Road",
+      "textFilePath": "kids/1851/story_1851_short.txt",
+      "scriptureAnchorId": "acts_9",
+      "bibleStoryKey": "acts_9",
+      "bibleSourceRef": "Acts 9:1-19",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "hope",
+        "faith"
+      ],
+      "themeTags": [
+        "God changes hearts",
+        "Gods love",
+        "new beginnings",
+        "transformation"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 266,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "audioFilePath": "kids/1851/audio_1851_short.mp3",
+      "reflectionAudioPath": "kids/1851/audio_1851_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus met Saul with love, and Saul's whole heart changed. Who is someone you would like to show God's love to?",
+      "kidSafetyNotes": "NEW anchor (Early Church, secondary/short-only). A brand-new character (Saul/Paul) + the TRANSFORMATION register -- God can change and love anyone. Saul's persecution is SOFTENED to 'did not like Jesus' friends and wanted to stop them' -- no arrests, no violence; the only conflict-word is Jesus' own gentle 'why are you trying to hurt me?'. Indelible image = the bright light on the road + the voice from heaven. The 3 days blind + kind Ananias kept simple. Lands on the change of heart + a life of telling everyone God loves them. 'God'/'Jesus' throughout, no Yahweh. VOICE_BRADFORD (passionate conviction) -- fits the dramatic conversion; rests the over-used voices.",
+      "hardContentFlags": [
+        "persecution_softened"
+      ]
+    },
+    {
+      "id": "kid_sarah_isaac_short",
+      "storyNumber": 1852,
+      "title": "Sarah's Promised Baby",
+      "textFilePath": "kids/1852/story_1852_short.txt",
+      "scriptureAnchorId": "genesis_18-21",
+      "bibleStoryKey": "genesis_18-21",
+      "bibleSourceRef": "Genesis 18:1-15; 21:1-7",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "hope",
+        "grateful"
+      ],
+      "themeTags": [
+        "Gods promises",
+        "joy",
+        "laughter",
+        "nothing too hard for God"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 271,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARABELLA",
+      "audioFilePath": "kids/1852/audio_1852_short.mp3",
+      "reflectionAudioPath": "kids/1852/audio_1852_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God kept his promise and filled Sarah's home with laughter. What is something that fills your home with happy laughter?",
+      "kidSafetyNotes": "NEW anchor (Abraham & Sarah, secondary/short-only). The JOY/laughter register (feedback_kid_four_registers) + female-led. A long-awaited baby (Isaac = 'laughter') after old age -- 'is anything too hard for God?' + 'God always keeps his promises'. Distinct from 1823 God Calls Abraham (Gen 12, the call) -- this is the promise kept (Gen 18 + 21). Sarah's doubt-laugh turns to joy-laugh, handled gently (not scolded). Indelible image = old Sarah holding baby Isaac, eyes shining with happy tears; the once-quiet tent full of a baby's sound. 'God' throughout, no Yahweh. VOICE_ARABELLA (tender nurturer) -- mother/baby warmth.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_ten_lepers_short",
+      "storyNumber": 1853,
+      "title": "The Thankful Leper",
+      "textFilePath": "kids/1853/story_1853_short.txt",
+      "scriptureAnchorId": "luke_17_11-19",
+      "bibleStoryKey": "luke_17_11-19",
+      "bibleSourceRef": "Luke 17:11-19",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "celebration",
+        "hope"
+      ],
+      "themeTags": [
+        "thankfulness",
+        "gratitude",
+        "Jesus heals",
+        "praising God"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 263,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "audioFilePath": "kids/1853/audio_1853_short.mp3",
+      "reflectionAudioPath": "kids/1853/audio_1853_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The thankful man ran all the way back just to say thank you. What is something you feel thankful for right now?",
+      "kidSafetyNotes": "NEW anchor (Jesus' Miracles, secondary/short-only). The GRATITUDE thread, centered on JOY not guilt (Adam): the nine are mentioned gently ('so excited to get home they did not look back') with NO scolding/guilt-lesson; the heart is the one man's joyful thankfulness. Leprosy softened to 'a sickness that made them sore and sad, had to live apart' -- no graphic detail; flag illness_softened. Indelible image = the one man running all the way back, kneeling at Jesus' feet, 'Thank you! Oh, thank you!'. Distinct healing from 1806 Jairus + 1848 Bartimaeus (this one is about giving thanks). 'God'/'Jesus' throughout, no Yahweh. VOICE_REVEREND_MICHAEL (pastoral) -- fits returning to praise/give thanks.",
+      "hardContentFlags": [
+        "illness_softened"
+      ]
+    },
+    {
+      "id": "kid_david_kindness_mephibosheth_short",
+      "storyNumber": 1854,
+      "title": "David's Kindness to Mephibosheth",
+      "textFilePath": "kids/1854/story_1854_short.txt",
+      "scriptureAnchorId": "2_samuel_9",
+      "bibleStoryKey": "2_samuel_9",
+      "bibleSourceRef": "2 Samuel 9",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "left_out",
+        "lonely",
+        "hope"
+      ],
+      "themeTags": [
+        "kindness",
+        "belonging",
+        "keeping promises",
+        "welcome"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 253,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": "kids/1854/audio_1854_short.mp3",
+      "reflectionAudioPath": "kids/1854/audio_1854_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "David gave Mephibosheth a place at his table, so he would always feel welcome. Who is someone you could help feel that they belong?",
+      "kidSafetyNotes": "NEW anchor (David, secondary/short-only). The KINDNESS gem -- pays off 1846 David & Jonathan (David keeps his promise to Jonathan by welcoming Jonathan's SON) WITHOUT repeating it: distinct scene (the king's table), distinct beat (welcome/belonging). Mephibosheth's disability ('his feet were hurt when he was little, so he cannot walk') is stated matter-of-factly, with DIGNITY -- the story is about welcome + a place at the table, NEVER pity; flag disability_portrayed_with_dignity. For a left-out / forgotten / 'do I belong' child: Mephibosheth thought he was forgotten -> welcomed like family. Indelible image = a place set just for him at the king's table, every day, for life. 'God' not central here (kindness story); no Yahweh. VOICE_JAMES_BRITISH (reassuring father) -- warm, steady welcome. NOTE: reuses David character but NOT VOICE_DAVID_SHEPHERD (rested; and the narrator isn't David).",
+      "hardContentFlags": [
+        "disability_portrayed_with_dignity"
+      ]
+    },
+    {
+      "id": "kid_daniel_food_short",
+      "storyNumber": 1855,
+      "title": "Daniel's Healthy Food",
+      "textFilePath": "kids/1855/story_1855_short.txt",
+      "scriptureAnchorId": "daniel_1",
+      "bibleStoryKey": "daniel_1",
+      "bibleSourceRef": "Daniel 1",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "courage"
+      ],
+      "themeTags": [
+        "honoring God",
+        "faithfulness",
+        "courage",
+        "Gods care"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 272,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "audioFilePath": "kids/1855/audio_1855_short.mp3",
+      "reflectionAudioPath": "kids/1855/audio_1855_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Daniel chose to honor God, even far from home, and God took care of him. What is one good way you can honor God today?",
+      "kidSafetyNotes": "NEW anchor (Daniel, secondary/short-only). QUIET FAITHFULNESS -- honoring God in small things, far from home (mood=encouraging, set 2026-06-20: the prose is gentle/faithful, not tense-brave; 'courage' kept only as a minor relatability tag for the quiet-courage element). WATCH (Adam): do NOT moralize into 'eat your vegetables' -- the vegetables/water are the plot, but the POINT is faithfulness (Daniel honoring God even in a new land) and God's care (he gave them health AND wisdom). The framing is 'wanted to honor God in everything,' not 'healthy food is good for you.' Distinct Daniel scene from 1814 lions + 1822 furnace (this is Daniel 1, the quiet choice). Gentle, low-peril (the guard's mild worry is the only tension). Indelible image = the four friends looking brighter/healthier after ten days. 'God' throughout, no Yahweh (Daniel is not a covenant-name story). VOICE_PRISCILLA_TEACHER (clear, instructive) -- fits the wise-choice story; female balance.",
+      "hardContentFlags": []
     }
   ]
 }

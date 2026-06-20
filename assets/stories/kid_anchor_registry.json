@@ -160,7 +160,11 @@
           "targetLengths": [
             "short"
           ],
-          "launch": false
+          "launch": false,
+          "productionId": 1852,
+          "manifestAnchorIds": [
+            "genesis_18-21"
+          ]
         }
       ]
     },
@@ -462,7 +466,11 @@
           "targetLengths": [
             "short"
           ],
-          "launch": false
+          "launch": false,
+          "productionId": 1854,
+          "manifestAnchorIds": [
+            "2_samuel_9"
+          ]
         }
       ]
     },
@@ -557,7 +565,11 @@
           "targetLengths": [
             "short"
           ],
-          "launch": false
+          "launch": false,
+          "productionId": 1855,
+          "manifestAnchorIds": [
+            "daniel_1"
+          ]
         },
         {
           "anchorId": "fiery_furnace",
@@ -814,7 +826,11 @@
           "targetLengths": [
             "short"
           ],
-          "launch": false
+          "launch": false,
+          "productionId": 1853,
+          "manifestAnchorIds": [
+            "luke_17_11-19"
+          ]
         },
         {
           "anchorId": "zacchaeus",
@@ -1055,7 +1071,11 @@
           "targetLengths": [
             "short"
           ],
-          "launch": false
+          "launch": false,
+          "productionId": 1851,
+          "manifestAnchorIds": [
+            "acts_9"
+          ]
         }
       ]
     },

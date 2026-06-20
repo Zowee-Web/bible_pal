@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1852,
+  "anchorId": "sarah_isaac",
+  "kidLane": "dedicated-4-7",
+  "title": "Sarah's Promised Baby",
+  "scriptureAnchorId": "genesis_18-21",
+  "bibleSourceRef": "Genesis 18:1-15; 21:1-7",
+  "bibleStoryKey": "genesis_18-21",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "celebration",
+    "hope",
+    "grateful"
+  ],
+  "themeTags": [
+    "Gods promises",
+    "joy",
+    "laughter",
+    "nothing too hard for God"
+  ],
+  "lengths": [
+    "short"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "God kept his promise and filled Sarah's home with laughter. What is something that fills your home with happy laughter?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Abraham & Sarah, secondary/short-only). The JOY/laughter register (feedback_kid_four_registers) + female-led. A long-awaited baby (Isaac = 'laughter') after old age -- 'is anything too hard for God?' + 'God always keeps his promises'. Distinct from 1823 God Calls Abraham (Gen 12, the call) -- this is the promise kept (Gen 18 + 21). Sarah's doubt-laugh turns to joy-laugh, handled gently (not scolded). Indelible image = old Sarah holding baby Isaac, eyes shining with happy tears; the once-quiet tent full of a baby's sound. 'God' throughout, no Yahweh. VOICE_ARABELLA (tender nurturer) -- mother/baby warmth.",
+  "files": {
+    "short": {
+      "storyText": "story_1852_short.txt",
+      "audio": "audio_1852_short.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1852.txt",
+      "audio": "audio_1852_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}
