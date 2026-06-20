@@ -22,9 +22,10 @@
   ],
   "lengths": [
     "short",
-    "full"
+    "full",
+    "long"
   ],
-  "longEligible": false,
+  "longEligible": true,
   "status": "REVIEW",
   "storyVoiceKey": "VOICE_JOHN_BELOVED",
   "ttsModel": "eleven_turbo_v2_5",
@@ -52,6 +53,10 @@
     "full": {
       "storyText": "story_1850_full.txt",
       "audio": "audio_1850_full.mp3"
+    },
+    "long": {
+      "storyText": "story_1850_long.txt",
+      "audio": "audio_1850_long.mp3"
     }
   }
 }

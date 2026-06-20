@@ -48104,6 +48104,62 @@
         "safety"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_last_supper_long",
+      "title": "The Last Supper",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hope",
+        "grateful",
+        "faith"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1850/audio_1850_long.mp3",
+      "textFilePath": "kids/1850/story_1850_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "long",
+      "reflectionQuestion": "Jesus gave his friends a way to always remember how much he loved them. What helps you remember someone you love when they are far away?",
+      "bibleSourceRef": "Luke 22:7-20",
+      "bibleStoryKey": "luke_22_7-20",
+      "themeTags": [
+        "Jesus love",
+        "remembrance",
+        "Gods presence",
+        "belonging"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_paul_road_long",
+      "title": "Paul Meets Jesus on the Road",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "hope",
+        "faith"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1851/audio_1851_long.mp3",
+      "textFilePath": "kids/1851/story_1851_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "storyLength": "long",
+      "reflectionQuestion": "Jesus met Saul with love, and Saul's whole heart changed. Who is someone you would like to show God's love to?",
+      "bibleSourceRef": "Acts 9:1-19",
+      "bibleStoryKey": "acts_9",
+      "themeTags": [
+        "God changes hearts",
+        "Gods love",
+        "new beginnings",
+        "transformation"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }

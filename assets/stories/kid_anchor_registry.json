@@ -1008,13 +1008,15 @@
           "tier": "secondary",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": true,
           "productionId": 1850,
           "manifestAnchorIds": [
             "luke_22_7-20"
-          ]
+          ],
+          "longEligible": true
         },
         {
           "anchorId": "gethsemane",
@@ -1098,13 +1100,15 @@
           "tier": "secondary",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": false,
           "productionId": 1851,
           "manifestAnchorIds": [
             "acts_9"
-          ]
+          ],
+          "longEligible": true
         }
       ]
     },
