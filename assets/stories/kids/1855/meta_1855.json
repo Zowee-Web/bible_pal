@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1855,
+  "anchorId": "daniel_food",
+  "kidLane": "dedicated-4-7",
+  "title": "Daniel's Healthy Food",
+  "scriptureAnchorId": "daniel_1",
+  "bibleSourceRef": "Daniel 1",
+  "bibleStoryKey": "daniel_1",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "faith",
+    "hope",
+    "courage"
+  ],
+  "themeTags": [
+    "honoring God",
+    "faithfulness",
+    "courage",
+    "Gods care"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Daniel chose to honor God, even far from home, and God took care of him. What is one good way you can honor God today?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Daniel, secondary/short-only). QUIET FAITHFULNESS -- honoring God in small things, far from home (mood=encouraging, set 2026-06-20: the prose is gentle/faithful, not tense-brave; 'courage' kept only as a minor relatability tag for the quiet-courage element). WATCH (Adam): do NOT moralize into 'eat your vegetables' -- the vegetables/water are the plot, but the POINT is faithfulness (Daniel honoring God even in a new land) and God's care (he gave them health AND wisdom). The framing is 'wanted to honor God in everything,' not 'healthy food is good for you.' Distinct Daniel scene from 1814 lions + 1822 furnace (this is Daniel 1, the quiet choice). Gentle, low-peril (the guard's mild worry is the only tension). Indelible image = the four friends looking brighter/healthier after ten days. 'God' throughout, no Yahweh (Daniel is not a covenant-name story). VOICE_PRISCILLA_TEACHER (clear, instructive) -- fits the wise-choice story; female balance.",
+  "files": {
+    "short": {
+      "storyText": "story_1855_short.txt",
+      "audio": "audio_1855_short.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1855.txt",
+      "audio": "audio_1855_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    },
+    "full": {
+      "storyText": "story_1855_full.txt",
+      "audio": "audio_1855_full.mp3"
+    }
+  }
+}

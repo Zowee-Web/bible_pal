@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1846,
+  "anchorId": "david_jonathan",
+  "kidLane": "dedicated-4-7",
+  "title": "David and Jonathan, Best Friends",
+  "scriptureAnchorId": "1_samuel_18-20",
+  "bibleSourceRef": "1 Samuel 18-20",
+  "bibleStoryKey": "1_samuel_18-20",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "lonely",
+    "celebration",
+    "hope"
+  ],
+  "themeTags": [
+    "friendship",
+    "loyalty",
+    "kindness",
+    "love"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Jonathan and David loved each other like brothers, and stayed friends no matter what. What do you love most about your friends?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (David, secondary/short-only). The KINDNESS/friendship thread; distinct scene from 1801 (giant) + 1836 (anointing) -- this is the loyal best-friends story. Per Adam (2026-06-18): keep SAUL MOSTLY OFFSTAGE so it stays friendship, not danger -- the spear/jealousy/pursuit is softened to 'a hard time came, and David had to go far away for a while' with no villain or threat shown. Indelible image = Jonathan the prince giving David his own robe, belt, bow, sword (a true friend keeps nothing back). For a lonely / left-out child: routes to the joy of a real friend. The covenant line 'God is between us, watching over you and me' carries the not-alone spine. 'God' throughout, no Yahweh. VOICE_ARCHER (bold, inspiring) -- warm friendship register; rests the 4x voices.",
+  "files": {
+    "short": {
+      "storyText": "story_1846_short.txt",
+      "audio": "audio_1846_short.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1846.txt",
+      "audio": "audio_1846_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    },
+    "full": {
+      "storyText": "story_1846_full.txt",
+      "audio": "audio_1846_full.mp3"
+    }
+  }
+}

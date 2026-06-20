@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1853,
+  "anchorId": "ten_lepers",
+  "kidLane": "dedicated-4-7",
+  "title": "The Thankful Leper",
+  "scriptureAnchorId": "luke_17_11-19",
+  "bibleSourceRef": "Luke 17:11-19",
+  "bibleStoryKey": "luke_17_11-19",
+  "translation": "WEB",
+  "mood": "grateful",
+  "emotionalTags": [
+    "grateful",
+    "celebration",
+    "hope"
+  ],
+  "themeTags": [
+    "thankfulness",
+    "gratitude",
+    "Jesus heals",
+    "praising God"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "The thankful man ran all the way back just to say thank you. What is something you feel thankful for right now?",
+  "hardContentFlags": [
+    "illness_softened"
+  ],
+  "kidSafetyNotes": "NEW anchor (Jesus' Miracles, secondary/short-only). The GRATITUDE thread, centered on JOY not guilt (Adam): the nine are mentioned gently ('so excited to get home they did not look back') with NO scolding/guilt-lesson; the heart is the one man's joyful thankfulness. Leprosy softened to 'a sickness that made them sore and sad, had to live apart' -- no graphic detail; flag illness_softened. Indelible image = the one man running all the way back, kneeling at Jesus' feet, 'Thank you! Oh, thank you!'. Distinct healing from 1806 Jairus + 1848 Bartimaeus (this one is about giving thanks). 'God'/'Jesus' throughout, no Yahweh. VOICE_REVEREND_MICHAEL (pastoral) -- fits returning to praise/give thanks.",
+  "files": {
+    "short": {
+      "storyText": "story_1853_short.txt",
+      "audio": "audio_1853_short.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1853.txt",
+      "audio": "audio_1853_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    },
+    "full": {
+      "storyText": "story_1853_full.txt",
+      "audio": "audio_1853_full.mp3"
+    }
+  }
+}

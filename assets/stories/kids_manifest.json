@@ -1475,7 +1475,7 @@
       ],
       "lengthBucket": "short",
       "targetWords": 400,
-      "actualWords": 261,
+      "actualWords": 264,
       "status": "REVIEW",
       "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
       "audioFilePath": "kids/1816/audio_1816_short.mp3",
@@ -1509,7 +1509,7 @@
       ],
       "lengthBucket": "full",
       "targetWords": 600,
-      "actualWords": 414,
+      "actualWords": 406,
       "status": "REVIEW",
       "narratorVoiceKey": "VOICE_MARCUS_ANCHOR",
       "audioFilePath": "kids/1816/audio_1816_full.mp3",
@@ -2694,6 +2694,1821 @@
       "reflectionQuestion": "God made every part of you on purpose, with love. What is one thing about you that you think God smiles to see?",
       "kidSafetyNotes": "NEW anchor (Comfort & Bedtime). The LITERAL 'God delights in YOU' -- spoken in second person straight to the child. DOUBLES as comfort for a kid who feels small/unnoticed/not-good-enough: tags feeling_small + self_doubt, mood calm_peaceful is reachable from hurting via expansion, so a 'too little / nobody notices me' kid routes here. 'keeping you safe' was changed to 'loving you' (Adam: no guaranteed-safety promise, see feedback_kid_god_with_not_cause). Ties the not-alone spine ('wherever you go, God is with you', Ps 139:7-10). One image: up past the highest star / down to the deepest sea, God is there.",
       "hardContentFlags": []
+    },
+    {
+      "id": "kid_david_shepherd_short",
+      "storyNumber": 1836,
+      "title": "David the Shepherd Boy",
+      "textFilePath": "kids/1836/story_1836_short.txt",
+      "scriptureAnchorId": "1_samuel_16",
+      "bibleStoryKey": "1_samuel_16",
+      "bibleSourceRef": "1 Samuel 16:11-13",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "feeling_small",
+        "hope",
+        "wonder"
+      ],
+      "themeTags": [
+        "God looks at the heart",
+        "being chosen",
+        "Gods care",
+        "humility"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 285,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "audioFilePath": "kids/1836/audio_1836_short.mp3",
+      "reflectionAudioPath": "kids/1836/audio_1836_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Everyone else looked at David's big, strong brothers. But God looked at what was inside David's heart, and chose him. What do you think God sees when he looks at you?",
+      "kidSafetyNotes": "NEW anchor (David). Quiet origin story BEFORE David & Goliath (1801) -- sheep, field, oil, 'God looks at the heart' (1 Sam 16:7). Reuses VOICE_DAVID_SHEPHERD for character continuity across 1801/1802/1836. For the feeling_small / overlooked child: David is the smallest, last-called, yet chosen -- routes a 'too little / nobody picks me' kid to being seen and chosen by God. Indelible image = warm oil poured over the shepherd boy's head. No violence, no Yahweh (name is not the point; 'God' throughout). Held/seen ending rests on God watching the love in his heart.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_david_shepherd_full",
+      "storyNumber": 1836,
+      "title": "David the Shepherd Boy",
+      "textFilePath": "kids/1836/story_1836_full.txt",
+      "scriptureAnchorId": "1_samuel_16",
+      "bibleStoryKey": "1_samuel_16",
+      "bibleSourceRef": "1 Samuel 16:11-13",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "feeling_small",
+        "hope",
+        "wonder"
+      ],
+      "themeTags": [
+        "God looks at the heart",
+        "being chosen",
+        "Gods care",
+        "humility"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 419,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "audioFilePath": "kids/1836/audio_1836_full.mp3",
+      "reflectionAudioPath": "kids/1836/audio_1836_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Everyone else looked at David's big, strong brothers. But God looked at what was inside David's heart, and chose him. What do you think God sees when he looks at you?",
+      "kidSafetyNotes": "NEW anchor (David). Quiet origin story BEFORE David & Goliath (1801) -- sheep, field, oil, 'God looks at the heart' (1 Sam 16:7). Reuses VOICE_DAVID_SHEPHERD for character continuity across 1801/1802/1836. For the feeling_small / overlooked child: David is the smallest, last-called, yet chosen -- routes a 'too little / nobody picks me' kid to being seen and chosen by God. Indelible image = warm oil poured over the shepherd boy's head. No violence, no Yahweh (name is not the point; 'God' throughout). Held/seen ending rests on God watching the love in his heart.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_ruth_naomi_short",
+      "storyNumber": 1837,
+      "title": "Ruth and Naomi",
+      "textFilePath": "kids/1837/story_1837_short.txt",
+      "scriptureAnchorId": "ruth",
+      "bibleStoryKey": "ruth",
+      "bibleSourceRef": "Ruth 1-4",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "lonely",
+        "grief",
+        "hope"
+      ],
+      "themeTags": [
+        "loyalty",
+        "kindness",
+        "Gods provision",
+        "belonging"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 294,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": "kids/1837/audio_1837_short.mp3",
+      "reflectionAudioPath": "kids/1837/audio_1837_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Ruth loved Naomi so much that she would not let her be alone. Who is someone you love that you like to take care of?",
+      "kidSafetyNotes": "NEW anchor (Ruth). Premier kindness/loyalty story; gentle, relational. Ruth 1's deaths of Naomi's husband and sons are named in ONE calm sentence ('they had grown sick and died'), no lingering on grief -- per KID_STORY_PROMPT 3 (name the outcome calmly, do not dwell). Flag bereavement_softened. For a lonely / missing-someone child: Naomi loses everyone, then is carried home by Ruth's loyalty -- routes a 'left alone / sad' kid toward comfort + belonging. Indelible HELD image = old Naomi holding the baby, her sad heart filled with joy (the not-alone spine, feedback_kid_not_alone_thread). 'God' throughout, no Yahweh. VOICE_RUTH_COMFORT (soft, empathetic) -- on-the-nose register fit.",
+      "hardContentFlags": [
+        "bereavement_softened"
+      ]
+    },
+    {
+      "id": "kid_ruth_naomi_full",
+      "storyNumber": 1837,
+      "title": "Ruth and Naomi",
+      "textFilePath": "kids/1837/story_1837_full.txt",
+      "scriptureAnchorId": "ruth",
+      "bibleStoryKey": "ruth",
+      "bibleSourceRef": "Ruth 1-4",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "lonely",
+        "grief",
+        "hope"
+      ],
+      "themeTags": [
+        "loyalty",
+        "kindness",
+        "Gods provision",
+        "belonging"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 458,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": "kids/1837/audio_1837_full.mp3",
+      "reflectionAudioPath": "kids/1837/audio_1837_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Ruth loved Naomi so much that she would not let her be alone. Who is someone you love that you like to take care of?",
+      "kidSafetyNotes": "NEW anchor (Ruth). Premier kindness/loyalty story; gentle, relational. Ruth 1's deaths of Naomi's husband and sons are named in ONE calm sentence ('they had grown sick and died'), no lingering on grief -- per KID_STORY_PROMPT 3 (name the outcome calmly, do not dwell). Flag bereavement_softened. For a lonely / missing-someone child: Naomi loses everyone, then is carried home by Ruth's loyalty -- routes a 'left alone / sad' kid toward comfort + belonging. Indelible HELD image = old Naomi holding the baby, her sad heart filled with joy (the not-alone spine, feedback_kid_not_alone_thread). 'God' throughout, no Yahweh. VOICE_RUTH_COMFORT (soft, empathetic) -- on-the-nose register fit.",
+      "hardContentFlags": [
+        "bereavement_softened"
+      ]
+    },
+    {
+      "id": "kid_esther_brave_short",
+      "storyNumber": 1838,
+      "title": "Esther's Brave Choice",
+      "textFilePath": "kids/1838/story_1838_short.txt",
+      "scriptureAnchorId": "esther",
+      "bibleStoryKey": "esther",
+      "bibleSourceRef": "Esther 4-8",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "anxious",
+        "courage",
+        "hope"
+      ],
+      "themeTags": [
+        "courage",
+        "trusting God",
+        "standing up for others",
+        "Gods timing"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 281,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "audioFilePath": "kids/1838/audio_1838_short.mp3",
+      "reflectionAudioPath": "kids/1838/audio_1838_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Esther was frightened, but she did the brave thing anyway, and helped so many people. What is something brave that you have done, or want to do?",
+      "kidSafetyNotes": "NEW anchor (Esther). Courage thread + a female hero for register variety. Haman's plot is named abstractly ('a proud man wanted to harm God's people') with NO violence, no killing, no naming of Haman's fate -- per KID_STORY_PROMPT 3 (name danger calmly, emphasize rescue). Flag peril_threat_softened. Courage model is the right kind: 'scared but went anyway' (feeling fear AND being brave), not fearlessness -- routes an anxious child to brave_courage via the kid mood bridge (anxious->brave_courage). She prays first and is not alone. Indelible image = the king holding out the golden scepter (welcome / you are safe to come close). 'God' throughout, no Yahweh. VOICE_ESTHER_BRAVE (strong, determined female) -- approved; NOTE deliberately NOT VOICE_LILY_WOLFF (banned for new authoring, feedback_voice_rules).",
+      "hardContentFlags": [
+        "peril_threat_softened"
+      ]
+    },
+    {
+      "id": "kid_esther_brave_full",
+      "storyNumber": 1838,
+      "title": "Esther's Brave Choice",
+      "textFilePath": "kids/1838/story_1838_full.txt",
+      "scriptureAnchorId": "esther",
+      "bibleStoryKey": "esther",
+      "bibleSourceRef": "Esther 4-8",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "anxious",
+        "courage",
+        "hope"
+      ],
+      "themeTags": [
+        "courage",
+        "trusting God",
+        "standing up for others",
+        "Gods timing"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 466,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "audioFilePath": "kids/1838/audio_1838_full.mp3",
+      "reflectionAudioPath": "kids/1838/audio_1838_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Esther was frightened, but she did the brave thing anyway, and helped so many people. What is something brave that you have done, or want to do?",
+      "kidSafetyNotes": "NEW anchor (Esther). Courage thread + a female hero for register variety. Haman's plot is named abstractly ('a proud man wanted to harm God's people') with NO violence, no killing, no naming of Haman's fate -- per KID_STORY_PROMPT 3 (name danger calmly, emphasize rescue). Flag peril_threat_softened. Courage model is the right kind: 'scared but went anyway' (feeling fear AND being brave), not fearlessness -- routes an anxious child to brave_courage via the kid mood bridge (anxious->brave_courage). She prays first and is not alone. Indelible image = the king holding out the golden scepter (welcome / you are safe to come close). 'God' throughout, no Yahweh. VOICE_ESTHER_BRAVE (strong, determined female) -- approved; NOTE deliberately NOT VOICE_LILY_WOLFF (banned for new authoring, feedback_voice_rules).",
+      "hardContentFlags": [
+        "peril_threat_softened"
+      ]
+    },
+    {
+      "id": "kid_elijah_whisper_short",
+      "storyNumber": 1839,
+      "title": "The Gentle Whisper",
+      "textFilePath": "kids/1839/story_1839_short.txt",
+      "scriptureAnchorId": "1_kings_19",
+      "bibleStoryKey": "1_kings_19",
+      "bibleSourceRef": "1 Kings 19:9-13",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed",
+        "lonely",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods presence",
+        "Gods gentleness",
+        "rest",
+        "not alone"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 272,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "audioFilePath": "kids/1839/audio_1839_short.mp3",
+      "reflectionAudioPath": "kids/1839/audio_1839_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God did not come to Elijah in the loud and scary things, but in a soft little whisper. When everything is quiet, what do you think God might whisper to you?",
+      "kidSafetyNotes": "NEW anchor (Elijah whisper). The quintessential COMFORT/weary anchor -- counterweight to the louder stories in the batch. Elijah is tired/afraid/lonely; God feeds and rests him (the angel + bread, one gentle beat) and then comes not in wind/quake/fire but in a gentle whisper. The loud things are kept brief and not scary; the whole story lands on the quiet whisper. mood=weary (the lane's main weary anchor); the kid mood bridge routes a worn-out / overwhelmed child here. Indelible image = the gentle whisper / Elijah's coat over his face. 'You are loved... not alone' = the not-alone spine, said softly (feedback_kid_not_alone_thread). NO Yahweh -- this is the whisper, the NAME is not the point; save covenant-name Yahweh for Carmel later (Adam). VOICE_ELIJAH_SAGE (thoughtful, measured) -- register fit for the contemplative tone.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_elijah_whisper_full",
+      "storyNumber": 1839,
+      "title": "The Gentle Whisper",
+      "textFilePath": "kids/1839/story_1839_full.txt",
+      "scriptureAnchorId": "1_kings_19",
+      "bibleStoryKey": "1_kings_19",
+      "bibleSourceRef": "1 Kings 19:9-13",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed",
+        "lonely",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods presence",
+        "Gods gentleness",
+        "rest",
+        "not alone"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 432,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "audioFilePath": "kids/1839/audio_1839_full.mp3",
+      "reflectionAudioPath": "kids/1839/audio_1839_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God did not come to Elijah in the loud and scary things, but in a soft little whisper. When everything is quiet, what do you think God might whisper to you?",
+      "kidSafetyNotes": "NEW anchor (Elijah whisper). The quintessential COMFORT/weary anchor -- counterweight to the louder stories in the batch. Elijah is tired/afraid/lonely; God feeds and rests him (the angel + bread, one gentle beat) and then comes not in wind/quake/fire but in a gentle whisper. The loud things are kept brief and not scary; the whole story lands on the quiet whisper. mood=weary (the lane's main weary anchor); the kid mood bridge routes a worn-out / overwhelmed child here. Indelible image = the gentle whisper / Elijah's coat over his face. 'You are loved... not alone' = the not-alone spine, said softly (feedback_kid_not_alone_thread). NO Yahweh -- this is the whisper, the NAME is not the point; save covenant-name Yahweh for Carmel later (Adam). VOICE_ELIJAH_SAGE (thoughtful, measured) -- register fit for the contemplative tone.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_new_heaven_short",
+      "storyNumber": 1840,
+      "title": "A New Heaven and a New Earth",
+      "textFilePath": "kids/1840/story_1840_short.txt",
+      "scriptureAnchorId": "revelation_21",
+      "bibleStoryKey": "revelation_21",
+      "bibleSourceRef": "Revelation 21:1-7",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hope",
+        "wonder",
+        "sad"
+      ],
+      "themeTags": [
+        "hope",
+        "Gods promises",
+        "heaven",
+        "comfort"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 264,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1840/audio_1840_short.mp3",
+      "reflectionAudioPath": "kids/1840/audio_1840_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God promised to come close and wipe away every tear with his very own hand. What is something happy you hope to do in that beautiful new place?",
+      "kidSafetyNotes": "NEW anchor (Heaven/Revelation). Closes the batch on resurrection HOPE + wonder (the_cross 1821 + empty_tomb 1812 already done; this is the unwritten hope anchor). Revelation 21's 'no more death/mourning/crying/pain' is framed entirely as COMFORT and promise -- the focus is God wiping away every tear and making everything new, never dwelling on death. Flag references_loss_softened. Tagged 'sad' so a grieving / missing-someone child can route to this comfort. Indelible image = God reaching out with his own hand to wipe away every tear. 'God' throughout, no Yahweh. VOICE_JOHN_BELOVED -- John is the author of Revelation; tender/loving register fits the new-creation hope. Bedtime-test strong: gentle, wonder-filled, replayable.",
+      "hardContentFlags": [
+        "references_loss_softened"
+      ]
+    },
+    {
+      "id": "kid_new_heaven_full",
+      "storyNumber": 1840,
+      "title": "A New Heaven and a New Earth",
+      "textFilePath": "kids/1840/story_1840_full.txt",
+      "scriptureAnchorId": "revelation_21",
+      "bibleStoryKey": "revelation_21",
+      "bibleSourceRef": "Revelation 21:1-7",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hope",
+        "wonder",
+        "sad"
+      ],
+      "themeTags": [
+        "hope",
+        "Gods promises",
+        "heaven",
+        "comfort"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 409,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1840/audio_1840_full.mp3",
+      "reflectionAudioPath": "kids/1840/audio_1840_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God promised to come close and wipe away every tear with his very own hand. What is something happy you hope to do in that beautiful new place?",
+      "kidSafetyNotes": "NEW anchor (Heaven/Revelation). Closes the batch on resurrection HOPE + wonder (the_cross 1821 + empty_tomb 1812 already done; this is the unwritten hope anchor). Revelation 21's 'no more death/mourning/crying/pain' is framed entirely as COMFORT and promise -- the focus is God wiping away every tear and making everything new, never dwelling on death. Flag references_loss_softened. Tagged 'sad' so a grieving / missing-someone child can route to this comfort. Indelible image = God reaching out with his own hand to wipe away every tear. 'God' throughout, no Yahweh. VOICE_JOHN_BELOVED -- John is the author of Revelation; tender/loving register fits the new-creation hope. Bedtime-test strong: gentle, wonder-filled, replayable.",
+      "hardContentFlags": [
+        "references_loss_softened"
+      ]
+    },
+    {
+      "id": "kid_noah_flood_short",
+      "storyNumber": 1841,
+      "title": "Noah and the Great Flood",
+      "textFilePath": "kids/1841/story_1841_short.txt",
+      "scriptureAnchorId": "noah_flood",
+      "bibleStoryKey": "noah_flood",
+      "bibleSourceRef": "Genesis 6-7",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods protection",
+        "faithfulness",
+        "Gods care",
+        "safety"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 279,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "audioFilePath": "kids/1841/audio_1841_short.mp3",
+      "reflectionAudioPath": "kids/1841/audio_1841_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Outside the ark the storm raged all night, but inside, Noah and the animals were warm and safe, and God watched over them. When things feel stormy around you, who helps you feel safe?",
+      "kidSafetyNotes": "NEW anchor (Noah, core-launch finale). DE-OVERLAPPED from sibling 1808 Noah's Rainbow (Adam 2026-06-18): 1808 owns the back half (Gen 8-9: rain stops -> dove sent 3x -> dry land -> rainbow promise), so 1841 owns the FRONT half (Gen 6-7): why God chose Noah, building the ark while neighbors mock, animals coming IN two by two, God shutting the door, the flood rising, riding safe THROUGH the storm. NO dove, NO landing, NO coming-out, NO rainbow -- those are 1808's territory; ends mid-storm on God watching over, gesturing to (not retelling) the rains stopping. This honors the registry secondInterpretationRule (different verse range + a kid would not call it 'the same one'). The flood is named calmly (rain/wind/water rising) with NO drowning/destruction detail -- focus stays on safety inside the ark (KID_STORY_PROMPT 3). Flag peril_flood_softened. Indelible image = God shutting the great door ('Safe.') + the ark rocking 'like a cradle rocked by a loving hand'. 'God' throughout, no Yahweh (Noah is not a covenant-name story). VOICE_REVEREND_MICHAEL (pastoral grandfather) -- patriarch register, avoids the two-James clash with 1844.",
+      "hardContentFlags": [
+        "peril_flood_softened"
+      ]
+    },
+    {
+      "id": "kid_noah_flood_full",
+      "storyNumber": 1841,
+      "title": "Noah and the Great Flood",
+      "textFilePath": "kids/1841/story_1841_full.txt",
+      "scriptureAnchorId": "noah_flood",
+      "bibleStoryKey": "noah_flood",
+      "bibleSourceRef": "Genesis 6-7",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods protection",
+        "faithfulness",
+        "Gods care",
+        "safety"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 432,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "audioFilePath": "kids/1841/audio_1841_full.mp3",
+      "reflectionAudioPath": "kids/1841/audio_1841_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Outside the ark the storm raged all night, but inside, Noah and the animals were warm and safe, and God watched over them. When things feel stormy around you, who helps you feel safe?",
+      "kidSafetyNotes": "NEW anchor (Noah, core-launch finale). DE-OVERLAPPED from sibling 1808 Noah's Rainbow (Adam 2026-06-18): 1808 owns the back half (Gen 8-9: rain stops -> dove sent 3x -> dry land -> rainbow promise), so 1841 owns the FRONT half (Gen 6-7): why God chose Noah, building the ark while neighbors mock, animals coming IN two by two, God shutting the door, the flood rising, riding safe THROUGH the storm. NO dove, NO landing, NO coming-out, NO rainbow -- those are 1808's territory; ends mid-storm on God watching over, gesturing to (not retelling) the rains stopping. This honors the registry secondInterpretationRule (different verse range + a kid would not call it 'the same one'). The flood is named calmly (rain/wind/water rising) with NO drowning/destruction detail -- focus stays on safety inside the ark (KID_STORY_PROMPT 3). Flag peril_flood_softened. Indelible image = God shutting the great door ('Safe.') + the ark rocking 'like a cradle rocked by a loving hand'. 'God' throughout, no Yahweh (Noah is not a covenant-name story). VOICE_REVEREND_MICHAEL (pastoral grandfather) -- patriarch register, avoids the two-James clash with 1844.",
+      "hardContentFlags": [
+        "peril_flood_softened"
+      ]
+    },
+    {
+      "id": "kid_elijah_carmel_short",
+      "storyNumber": 1842,
+      "title": "Fire on Mount Carmel",
+      "textFilePath": "kids/1842/story_1842_short.txt",
+      "scriptureAnchorId": "1_kings_18",
+      "bibleStoryKey": "1_kings_18",
+      "bibleSourceRef": "1 Kings 18",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "courage",
+        "faith",
+        "wonder"
+      ],
+      "themeTags": [
+        "the one true God",
+        "courage",
+        "Gods power",
+        "trusting God"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 278,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "audioFilePath": "kids/1842/audio_1842_short.mp3",
+      "reflectionAudioPath": "kids/1842/audio_1842_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Elijah trusted God even when he stood all alone. When you need to be brave, who do you like to have beside you?",
+      "kidSafetyNotes": "NEW anchor (Elijah at Carmel) -- THE Yahweh covenant-name story, the deliberate ~1-in-20 deployment Adam reserved for 'where the name is the point' (first Yahweh since 1811 Burning Bush; 1803 Psalm 23 also has it). Yahweh is introduced GENTLY at the CLIMAX with context ('in the Bible, God's own name is Yahweh') -- the whole story builds to hearing the name, then the people cry 'Yahweh, he is God!'. Default 'God' everywhere else. HARD CONTENT SOFTENED: the prophets of Baal are NOT killed (1 Kings 18:40 omitted) -- they are simply shown to be wrong ('Baal was not real, could not answer'); no taunting cruelty, no slaughter. Flag violence_omitted. Fire here = PROOF/'Yahweh is God' (contrast 1845 Pentecost, where fire = presence/joy -- deliberate same-batch pairing, Adam approved). Indelible image = fire rushing down on the water-soaked altar. Courage model: Elijah brave standing alone, trusting God. VOICE_BRADFORD (passionate conviction).",
+      "hardContentFlags": [
+        "violence_omitted"
+      ]
+    },
+    {
+      "id": "kid_elijah_carmel_full",
+      "storyNumber": 1842,
+      "title": "Fire on Mount Carmel",
+      "textFilePath": "kids/1842/story_1842_full.txt",
+      "scriptureAnchorId": "1_kings_18",
+      "bibleStoryKey": "1_kings_18",
+      "bibleSourceRef": "1 Kings 18",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "courage",
+        "faith",
+        "wonder"
+      ],
+      "themeTags": [
+        "the one true God",
+        "courage",
+        "Gods power",
+        "trusting God"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 442,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "audioFilePath": "kids/1842/audio_1842_full.mp3",
+      "reflectionAudioPath": "kids/1842/audio_1842_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Elijah trusted God even when he stood all alone. When you need to be brave, who do you like to have beside you?",
+      "kidSafetyNotes": "NEW anchor (Elijah at Carmel) -- THE Yahweh covenant-name story, the deliberate ~1-in-20 deployment Adam reserved for 'where the name is the point' (first Yahweh since 1811 Burning Bush; 1803 Psalm 23 also has it). Yahweh is introduced GENTLY at the CLIMAX with context ('in the Bible, God's own name is Yahweh') -- the whole story builds to hearing the name, then the people cry 'Yahweh, he is God!'. Default 'God' everywhere else. HARD CONTENT SOFTENED: the prophets of Baal are NOT killed (1 Kings 18:40 omitted) -- they are simply shown to be wrong ('Baal was not real, could not answer'); no taunting cruelty, no slaughter. Flag violence_omitted. Fire here = PROOF/'Yahweh is God' (contrast 1845 Pentecost, where fire = presence/joy -- deliberate same-batch pairing, Adam approved). Indelible image = fire rushing down on the water-soaked altar. Courage model: Elijah brave standing alone, trusting God. VOICE_BRADFORD (passionate conviction).",
+      "hardContentFlags": [
+        "violence_omitted"
+      ]
+    },
+    {
+      "id": "kid_lords_prayer_short",
+      "storyNumber": 1843,
+      "title": "The Lord's Prayer",
+      "type": "comfort-ritual",
+      "textFilePath": "kids/1843/story_1843_short.txt",
+      "scriptureAnchorId": "lords_prayer",
+      "bibleStoryKey": "lords_prayer",
+      "bibleSourceRef": "Matthew 6:9-13",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "grateful"
+      ],
+      "themeTags": [
+        "prayer",
+        "talking to God",
+        "Gods love",
+        "comfort"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 146,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "audioFilePath": "kids/1843/audio_1843_short.mp3",
+      "reflectionAudioPath": "kids/1843/audio_1843_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus showed us we can talk to God about anything at all. What is something you would most love to thank God for?",
+      "kidSafetyNotes": "NEW anchor (Comfort & Bedtime, core-launch finale). COMFORT-RITUAL: the prayer is quoted VERBATIM from WEB Matthew 6:9-13 (incl. the doxology, which WEB carries), NOT a loose retelling -- per registry comfortRitualRule + KID_STORY_PROMPT 2. Structured exactly like 1803 Psalm 23: gentle frame -> verbatim prayer -> soft bedtime close. Per Adam (2026-06-18): keep it like Psalm 23 -- gentle frame + the prayer + soft close, DO NOT over-explain each line ('debts/debtors' left as WEB verbatim, unexplained, the way 1803 left 'valley of the shadow of death'). NO Yahweh -- the Lord's Prayer is an 'Our Father' prayer, not a covenant-name story; 'God'/'Father' throughout. Short-only (comfort-ritual); ~190w is correct, below the 250 floor like Psalm 23 (exempt -- don't pad). VOICE_PRISCILLA_TEACHER (clear, instructive -- teaching a child to pray).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_joseph_coat_short",
+      "storyNumber": 1844,
+      "title": "Joseph's Colorful Coat",
+      "textFilePath": "kids/1844/story_1844_short.txt",
+      "scriptureAnchorId": "genesis_37",
+      "bibleStoryKey": "genesis_37",
+      "bibleSourceRef": "Genesis 37",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "left_out",
+        "lonely",
+        "hope"
+      ],
+      "themeTags": [
+        "God is with us",
+        "Gods plan",
+        "hope in hard times",
+        "not alone"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 260,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": "kids/1844/audio_1844_short.mp3",
+      "reflectionAudioPath": "kids/1844/audio_1844_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Even far from home, God was always with Joseph. When you go somewhere new, what helps you feel that God is near you?",
+      "kidSafetyNotes": "NEW anchor (Joseph, core-launch finale). The HARD origin half that pairs with 1819 Joseph Forgives (the reconciliation); consistent with 1819 ('sent him far away to Egypt'). HARD CONTENT handled by the Joseph method (Adam 2026-06-18: heavy is OK, but do NOT make the brothers' cruelty vivid): the pit and the selling-for-silver are OMITTED -- softened to 'the brothers decided to send him away' with passing traders; show the brothers' JEALOUSY (a feeling) not violence. Lands hard on 'God was with Joseph' (the 1819-proven move, feedback_kid_not_alone_thread / feedback_kid_god_with_not_cause -- God stays WITH him in the hard thing, doesn't cause it) and points FORWARD to the rescue without spoiling it. Flag family_betrayal_softened. For a left-out / lonely child: jealousy + being sent away -> God-never-left routes a 'left out / far from home' kid to comfort. Indelible image = the colorful coat (and the coat-weaving / God-weaving-a-plan callback in the full). 'God' throughout, no Yahweh. VOICE_JAMES_BRITISH (reassuring father) -- steady warmth through hardship.",
+      "hardContentFlags": [
+        "family_betrayal_softened"
+      ]
+    },
+    {
+      "id": "kid_joseph_coat_full",
+      "storyNumber": 1844,
+      "title": "Joseph's Colorful Coat",
+      "textFilePath": "kids/1844/story_1844_full.txt",
+      "scriptureAnchorId": "genesis_37",
+      "bibleStoryKey": "genesis_37",
+      "bibleSourceRef": "Genesis 37",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "left_out",
+        "lonely",
+        "hope"
+      ],
+      "themeTags": [
+        "God is with us",
+        "Gods plan",
+        "hope in hard times",
+        "not alone"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 418,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": "kids/1844/audio_1844_full.mp3",
+      "reflectionAudioPath": "kids/1844/audio_1844_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Even far from home, God was always with Joseph. When you go somewhere new, what helps you feel that God is near you?",
+      "kidSafetyNotes": "NEW anchor (Joseph, core-launch finale). The HARD origin half that pairs with 1819 Joseph Forgives (the reconciliation); consistent with 1819 ('sent him far away to Egypt'). HARD CONTENT handled by the Joseph method (Adam 2026-06-18: heavy is OK, but do NOT make the brothers' cruelty vivid): the pit and the selling-for-silver are OMITTED -- softened to 'the brothers decided to send him away' with passing traders; show the brothers' JEALOUSY (a feeling) not violence. Lands hard on 'God was with Joseph' (the 1819-proven move, feedback_kid_not_alone_thread / feedback_kid_god_with_not_cause -- God stays WITH him in the hard thing, doesn't cause it) and points FORWARD to the rescue without spoiling it. Flag family_betrayal_softened. For a left-out / lonely child: jealousy + being sent away -> God-never-left routes a 'left out / far from home' kid to comfort. Indelible image = the colorful coat (and the coat-weaving / God-weaving-a-plan callback in the full). 'God' throughout, no Yahweh. VOICE_JAMES_BRITISH (reassuring father) -- steady warmth through hardship.",
+      "hardContentFlags": [
+        "family_betrayal_softened"
+      ]
+    },
+    {
+      "id": "kid_pentecost_short",
+      "storyNumber": 1845,
+      "title": "The Holy Spirit Comes",
+      "textFilePath": "kids/1845/story_1845_short.txt",
+      "scriptureAnchorId": "pentecost",
+      "bibleStoryKey": "pentecost",
+      "bibleSourceRef": "Acts 2",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "celebration",
+        "hope"
+      ],
+      "themeTags": [
+        "the Holy Spirit",
+        "Gods presence",
+        "joy",
+        "the church"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 252,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1845/audio_1845_short.mp3",
+      "reflectionAudioPath": "kids/1845/audio_1845_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "On that happy day, God's Spirit came to be with Jesus' friends always. What is something that fills you with joy?",
+      "kidSafetyNotes": "NEW anchor (Early Church, core-launch finale). The birthday of the church -- wind, gentle flames, every language, bold joy. FIRE here = PRESENCE / joy / the Spirit (soft, warm little flames resting on each friend) -- deliberately CONTRASTED with 1842 Carmel's fire = proof ('Yahweh is God'). Adam approved the same-batch fire pairing precisely because the meaning is opposite (proof vs presence); the prose keeps Pentecost fire gentle, never consuming. Character turn = Peter (once too afraid to admit he knew Jesus -> now bold with joy) -- a kid-readable fear->courage arc. Lands on the not-alone spine: God's Spirit comes to stay, 'never leave them alone' (feedback_kid_not_alone_thread). Church defined as a FAMILY, not a building (kid-concrete). 'God' throughout, no Yahweh. VOICE_HANNAH_HOPE (bright, encouraging -- Acts uplift). One of 4 kid registers = JOY/wonder (feedback_kid_four_registers).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_pentecost_full",
+      "storyNumber": 1845,
+      "title": "The Holy Spirit Comes",
+      "textFilePath": "kids/1845/story_1845_full.txt",
+      "scriptureAnchorId": "pentecost",
+      "bibleStoryKey": "pentecost",
+      "bibleSourceRef": "Acts 2",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "celebration",
+        "hope"
+      ],
+      "themeTags": [
+        "the Holy Spirit",
+        "Gods presence",
+        "joy",
+        "the church"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 406,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1845/audio_1845_full.mp3",
+      "reflectionAudioPath": "kids/1845/audio_1845_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "On that happy day, God's Spirit came to be with Jesus' friends always. What is something that fills you with joy?",
+      "kidSafetyNotes": "NEW anchor (Early Church, core-launch finale). The birthday of the church -- wind, gentle flames, every language, bold joy. FIRE here = PRESENCE / joy / the Spirit (soft, warm little flames resting on each friend) -- deliberately CONTRASTED with 1842 Carmel's fire = proof ('Yahweh is God'). Adam approved the same-batch fire pairing precisely because the meaning is opposite (proof vs presence); the prose keeps Pentecost fire gentle, never consuming. Character turn = Peter (once too afraid to admit he knew Jesus -> now bold with joy) -- a kid-readable fear->courage arc. Lands on the not-alone spine: God's Spirit comes to stay, 'never leave them alone' (feedback_kid_not_alone_thread). Church defined as a FAMILY, not a building (kid-concrete). 'God' throughout, no Yahweh. VOICE_HANNAH_HOPE (bright, encouraging -- Acts uplift). One of 4 kid registers = JOY/wonder (feedback_kid_four_registers).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_david_jonathan_short",
+      "storyNumber": 1846,
+      "title": "David and Jonathan, Best Friends",
+      "textFilePath": "kids/1846/story_1846_short.txt",
+      "scriptureAnchorId": "1_samuel_18-20",
+      "bibleStoryKey": "1_samuel_18-20",
+      "bibleSourceRef": "1 Samuel 18-20",
+      "mood": "joyful",
+      "emotionalTags": [
+        "lonely",
+        "celebration",
+        "hope"
+      ],
+      "themeTags": [
+        "friendship",
+        "loyalty",
+        "kindness",
+        "love"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 276,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "audioFilePath": "kids/1846/audio_1846_short.mp3",
+      "reflectionAudioPath": "kids/1846/audio_1846_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jonathan and David loved each other like brothers, and stayed friends no matter what. What do you love most about your friends?",
+      "kidSafetyNotes": "NEW anchor (David, secondary/short-only). The KINDNESS/friendship thread; distinct scene from 1801 (giant) + 1836 (anointing) -- this is the loyal best-friends story. Per Adam (2026-06-18): keep SAUL MOSTLY OFFSTAGE so it stays friendship, not danger -- the spear/jealousy/pursuit is softened to 'a hard time came, and David had to go far away for a while' with no villain or threat shown. Indelible image = Jonathan the prince giving David his own robe, belt, bow, sword (a true friend keeps nothing back). For a lonely / left-out child: routes to the joy of a real friend. The covenant line 'God is between us, watching over you and me' carries the not-alone spine. 'God' throughout, no Yahweh. VOICE_ARCHER (bold, inspiring) -- warm friendship register; rests the 4x voices.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_elijah_ravens_short",
+      "storyNumber": 1847,
+      "title": "Elijah Fed by Ravens",
+      "textFilePath": "kids/1847/story_1847_short.txt",
+      "scriptureAnchorId": "1_kings_17",
+      "bibleStoryKey": "1_kings_17",
+      "bibleSourceRef": "1 Kings 17:1-6",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "grateful"
+      ],
+      "themeTags": [
+        "Gods provision",
+        "Gods care",
+        "trust",
+        "thankfulness"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 252,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "audioFilePath": "kids/1847/audio_1847_short.mp3",
+      "reflectionAudioPath": "kids/1847/audio_1847_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God sent birds to bring Elijah food, every morning and every evening. When you sit down to eat, what are some of the good things you are thankful for?",
+      "kidSafetyNotes": "NEW anchor (Elijah, secondary/short-only). WONDER/provision/comfort. Distinct Elijah scene from 1842 Carmel (fire) + 1839 whisper -- no fire, no contest, no mountain; this is God quietly providing by the brook. The drought/famine is kept gentle ('a long, dry time... food became hard to find') with no suffering shown -- focus is God's care. Indelible image = ravens (big black birds) carrying bread in their beaks, morning and evening. Routes a worried / 'will there be enough' child to trust + thankfulness. 'God' throughout, no Yahweh. VOICE_ELIJAH_SAGE (thoughtful, measured -- prophet register); consistent with 1839 Elijah, fits the quiet provision tone.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_heal_blind_short",
+      "storyNumber": 1848,
+      "title": "Jesus Heals a Blind Man",
+      "textFilePath": "kids/1848/story_1848_short.txt",
+      "scriptureAnchorId": "mark_10_46-52",
+      "bibleStoryKey": "mark_10_46-52",
+      "bibleSourceRef": "Mark 10:46-52",
+      "mood": "grateful",
+      "emotionalTags": [
+        "hope",
+        "grateful",
+        "celebration"
+      ],
+      "themeTags": [
+        "Jesus heals",
+        "faith",
+        "perseverance",
+        "gratitude"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 253,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "audioFilePath": "kids/1848/audio_1848_short.mp3",
+      "reflectionAudioPath": "kids/1848/audio_1848_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Bartimaeus called and called, and Jesus stopped just for him. What is something you would most love to thank Jesus for?",
+      "kidSafetyNotes": "NEW anchor (Jesus' Miracles, secondary/short-only). JOY/gratitude/wonder; bright daylight register (texture variety per feedback_texture_diversity) + NT balance. Blindness handled gently (no distress dwelt on); the heart of it is persistence ('called even louder' when shushed) and the joy of healing. Indelible image = the FIRST thing Bartimaeus sees with new eyes is Jesus' smiling face. Distinct from other healings (1806 Jairus = raising a girl). Routes a child who wants to be heard / keeps asking -> Jesus hears the one voice in the crowd. 'I want to see' kept literal + simple; ends on following Jesus, thanking God. 'God'/'Jesus' throughout, no Yahweh. VOICE_MIRIAM_JOYFUL (lively, celebratory) -- fits the joy of seeing; keeps the JOY register alive (feedback_kid_four_registers).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_ten_commandments_short",
+      "storyNumber": 1849,
+      "title": "The Ten Commandments",
+      "textFilePath": "kids/1849/story_1849_short.txt",
+      "scriptureAnchorId": "exodus_20",
+      "bibleStoryKey": "exodus_20",
+      "bibleSourceRef": "Exodus 20",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "faith",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods good ways",
+        "living together",
+        "love God and others",
+        "Gods love"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 254,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "audioFilePath": "kids/1849/audio_1849_short.mp3",
+      "reflectionAudioPath": "kids/1849/audio_1849_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God gave his people good ways to live together, because he loved them. What is one kind way you can treat the people you love?",
+      "kidSafetyNotes": "NEW anchor (Moses, secondary/short-only). Per Adam (2026-06-18): the emotional center is 'God gave his people GOOD WAYS TO LIVE TOGETHER' (warm/relational), NOT 'rules' -- and DO NOT let it become a list. So only a few commandments are voiced, each framed warmly (love God, a rest day, honor parents, tell the truth, don't take, be kind), with the 'loving path through a forest' image carrying the meaning. Sinai wonder (cloud, thunder, God near) provides awe. KEEP 'God' -- NOT a Yahweh story; we just used Yahweh at Carmel (1842), don't repeat the covenant name so soon and the name is not this story's point. 4th Moses story (1810/1811/1813) but a distinct scene (Sinai/the good ways). Indelible image = Moses carrying God's good words down the cloud-wrapped mountain. Lands on 'one big family -- loving God, and loving each other'. VOICE_DEBORAH_WISE (authoritative yet kind female) -- leadership/law register, warm not stern.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_last_supper_short",
+      "storyNumber": 1850,
+      "title": "The Last Supper",
+      "textFilePath": "kids/1850/story_1850_short.txt",
+      "scriptureAnchorId": "luke_22_7-20",
+      "bibleStoryKey": "luke_22_7-20",
+      "bibleSourceRef": "Luke 22:7-20",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hope",
+        "grateful",
+        "faith"
+      ],
+      "themeTags": [
+        "Jesus love",
+        "remembrance",
+        "Gods presence",
+        "belonging"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 255,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1850/audio_1850_short.mp3",
+      "reflectionAudioPath": "kids/1850/audio_1850_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus gave his friends a way to always remember how much he loved them. What helps you remember someone you love when they are far away?",
+      "kidSafetyNotes": "NEW anchor (Easter, secondary/short-only). Completes the Easter path (1832 Palm Sunday -> 1850 Last Supper -> 1821 Cross -> 1812 Empty Tomb). Per Adam (2026-06-18): 'Jesus gave his friends a meal to remember his love' -- TENDER REMEMBRANCE ONLY, NO body/blood explanation. So the bread + cup are framed simply as a way to 'remember me / remember that I love you / I am always with you'; no doctrine of the elements. Jesus' coming death is kept OFFSTAGE and gentle -- 'he would have to go away from his friends for a while' (not 'he was about to die'); flag references_departure_softened. Warm not somber: lamplight, friends close together, peaceful. Connects to today (people still share bread + cup) and lands on the CHILD being loved + Jesus near (not-alone spine). Distinct Easter scene (the meal), no overlap with 1832/1821/1812. 'God'/'Jesus' throughout, no Yahweh. VOICE_JOHN_BELOVED (tender, loving -- Johannine intimate register; John was at this table).",
+      "hardContentFlags": [
+        "references_departure_softened"
+      ]
+    },
+    {
+      "id": "kid_paul_road_short",
+      "storyNumber": 1851,
+      "title": "Paul Meets Jesus on the Road",
+      "textFilePath": "kids/1851/story_1851_short.txt",
+      "scriptureAnchorId": "acts_9",
+      "bibleStoryKey": "acts_9",
+      "bibleSourceRef": "Acts 9:1-19",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "hope",
+        "faith"
+      ],
+      "themeTags": [
+        "God changes hearts",
+        "Gods love",
+        "new beginnings",
+        "transformation"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 266,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "audioFilePath": "kids/1851/audio_1851_short.mp3",
+      "reflectionAudioPath": "kids/1851/audio_1851_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus met Saul with love, and Saul's whole heart changed. Who is someone you would like to show God's love to?",
+      "kidSafetyNotes": "NEW anchor (Early Church, secondary/short-only). A brand-new character (Saul/Paul) + the TRANSFORMATION register -- God can change and love anyone. Saul's persecution is SOFTENED to 'did not like Jesus' friends and wanted to stop them' -- no arrests, no violence; the only conflict-word is Jesus' own gentle 'why are you trying to hurt me?'. Indelible image = the bright light on the road + the voice from heaven. The 3 days blind + kind Ananias kept simple. Lands on the change of heart + a life of telling everyone God loves them. 'God'/'Jesus' throughout, no Yahweh. VOICE_BRADFORD (passionate conviction) -- fits the dramatic conversion; rests the over-used voices.",
+      "hardContentFlags": [
+        "persecution_softened"
+      ]
+    },
+    {
+      "id": "kid_sarah_isaac_short",
+      "storyNumber": 1852,
+      "title": "Sarah's Promised Baby",
+      "textFilePath": "kids/1852/story_1852_short.txt",
+      "scriptureAnchorId": "genesis_18-21",
+      "bibleStoryKey": "genesis_18-21",
+      "bibleSourceRef": "Genesis 18:1-15; 21:1-7",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "hope",
+        "grateful"
+      ],
+      "themeTags": [
+        "Gods promises",
+        "joy",
+        "laughter",
+        "nothing too hard for God"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 271,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARABELLA",
+      "audioFilePath": "kids/1852/audio_1852_short.mp3",
+      "reflectionAudioPath": "kids/1852/audio_1852_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God kept his promise and filled Sarah's home with laughter. What is something that fills your home with happy laughter?",
+      "kidSafetyNotes": "NEW anchor (Abraham & Sarah, secondary/short-only). The JOY/laughter register (feedback_kid_four_registers) + female-led. A long-awaited baby (Isaac = 'laughter') after old age -- 'is anything too hard for God?' + 'God always keeps his promises'. Distinct from 1823 God Calls Abraham (Gen 12, the call) -- this is the promise kept (Gen 18 + 21). Sarah's doubt-laugh turns to joy-laugh, handled gently (not scolded). Indelible image = old Sarah holding baby Isaac, eyes shining with happy tears; the once-quiet tent full of a baby's sound. 'God' throughout, no Yahweh. VOICE_ARABELLA (tender nurturer) -- mother/baby warmth.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_ten_lepers_short",
+      "storyNumber": 1853,
+      "title": "The Thankful Leper",
+      "textFilePath": "kids/1853/story_1853_short.txt",
+      "scriptureAnchorId": "luke_17_11-19",
+      "bibleStoryKey": "luke_17_11-19",
+      "bibleSourceRef": "Luke 17:11-19",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "celebration",
+        "hope"
+      ],
+      "themeTags": [
+        "thankfulness",
+        "gratitude",
+        "Jesus heals",
+        "praising God"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 263,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "audioFilePath": "kids/1853/audio_1853_short.mp3",
+      "reflectionAudioPath": "kids/1853/audio_1853_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The thankful man ran all the way back just to say thank you. What is something you feel thankful for right now?",
+      "kidSafetyNotes": "NEW anchor (Jesus' Miracles, secondary/short-only). The GRATITUDE thread, centered on JOY not guilt (Adam): the nine are mentioned gently ('so excited to get home they did not look back') with NO scolding/guilt-lesson; the heart is the one man's joyful thankfulness. Leprosy softened to 'a sickness that made them sore and sad, had to live apart' -- no graphic detail; flag illness_softened. Indelible image = the one man running all the way back, kneeling at Jesus' feet, 'Thank you! Oh, thank you!'. Distinct healing from 1806 Jairus + 1848 Bartimaeus (this one is about giving thanks). 'God'/'Jesus' throughout, no Yahweh. VOICE_REVEREND_MICHAEL (pastoral) -- fits returning to praise/give thanks.",
+      "hardContentFlags": [
+        "illness_softened"
+      ]
+    },
+    {
+      "id": "kid_david_kindness_mephibosheth_short",
+      "storyNumber": 1854,
+      "title": "David's Kindness to Mephibosheth",
+      "textFilePath": "kids/1854/story_1854_short.txt",
+      "scriptureAnchorId": "2_samuel_9",
+      "bibleStoryKey": "2_samuel_9",
+      "bibleSourceRef": "2 Samuel 9",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "left_out",
+        "lonely",
+        "hope"
+      ],
+      "themeTags": [
+        "kindness",
+        "belonging",
+        "keeping promises",
+        "welcome"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 253,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": "kids/1854/audio_1854_short.mp3",
+      "reflectionAudioPath": "kids/1854/audio_1854_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "David gave Mephibosheth a place at his table, so he would always feel welcome. Who is someone you could help feel that they belong?",
+      "kidSafetyNotes": "NEW anchor (David, secondary/short-only). The KINDNESS gem -- pays off 1846 David & Jonathan (David keeps his promise to Jonathan by welcoming Jonathan's SON) WITHOUT repeating it: distinct scene (the king's table), distinct beat (welcome/belonging). Mephibosheth's disability ('his feet were hurt when he was little, so he cannot walk') is stated matter-of-factly, with DIGNITY -- the story is about welcome + a place at the table, NEVER pity; flag disability_portrayed_with_dignity. For a left-out / forgotten / 'do I belong' child: Mephibosheth thought he was forgotten -> welcomed like family. Indelible image = a place set just for him at the king's table, every day, for life. 'God' not central here (kindness story); no Yahweh. VOICE_JAMES_BRITISH (reassuring father) -- warm, steady welcome. NOTE: reuses David character but NOT VOICE_DAVID_SHEPHERD (rested; and the narrator isn't David).",
+      "hardContentFlags": [
+        "disability_portrayed_with_dignity"
+      ]
+    },
+    {
+      "id": "kid_daniel_food_short",
+      "storyNumber": 1855,
+      "title": "Daniel's Healthy Food",
+      "textFilePath": "kids/1855/story_1855_short.txt",
+      "scriptureAnchorId": "daniel_1",
+      "bibleStoryKey": "daniel_1",
+      "bibleSourceRef": "Daniel 1",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "courage"
+      ],
+      "themeTags": [
+        "honoring God",
+        "faithfulness",
+        "courage",
+        "Gods care"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 272,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "audioFilePath": "kids/1855/audio_1855_short.mp3",
+      "reflectionAudioPath": "kids/1855/audio_1855_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Daniel chose to honor God, even far from home, and God took care of him. What is one good way you can honor God today?",
+      "kidSafetyNotes": "NEW anchor (Daniel, secondary/short-only). QUIET FAITHFULNESS -- honoring God in small things, far from home (mood=encouraging, set 2026-06-20: the prose is gentle/faithful, not tense-brave; 'courage' kept only as a minor relatability tag for the quiet-courage element). WATCH (Adam): do NOT moralize into 'eat your vegetables' -- the vegetables/water are the plot, but the POINT is faithfulness (Daniel honoring God even in a new land) and God's care (he gave them health AND wisdom). The framing is 'wanted to honor God in everything,' not 'healthy food is good for you.' Distinct Daniel scene from 1814 lions + 1822 furnace (this is Daniel 1, the quiet choice). Gentle, low-peril (the guard's mild worry is the only tension). Indelible image = the four friends looking brighter/healthier after ten days. 'God' throughout, no Yahweh (Daniel is not a covenant-name story). VOICE_PRISCILLA_TEACHER (clear, instructive) -- fits the wise-choice story; female balance.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_david_goliath_long",
+      "storyNumber": 1801,
+      "title": "David and the Giant",
+      "textFilePath": "kids/1801/story_1801_long.txt",
+      "scriptureAnchorId": "1_samuel_17",
+      "bibleStoryKey": "david_and_goliath",
+      "bibleSourceRef": "1 Samuel 17",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "feeling_small",
+        "courage"
+      ],
+      "themeTags": [
+        "courage",
+        "trust"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 932,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "audioFilePath": "kids/1801/audio_1801_long.mp3",
+      "reflectionAudioPath": "kids/1801/audio_1801_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think helped David feel brave when everyone else was afraid?",
+      "kidSafetyNotes": "Doctrine-v2 pilot (Rosetta Stone). Combat safe: beheading omitted; outcome in one calm sentence. Menace de-stacked to thud + Goliath's scriptural taunt ('Send out a man to fight me!'). One indelible image: five smooth stones.",
+      "hardContentFlags": [
+        "violence_combat"
+      ]
+    },
+    {
+      "id": "kid_jonah_fish_long",
+      "storyNumber": 1802,
+      "title": "Jonah and the Big Fish",
+      "textFilePath": "kids/1802/story_1802_long.txt",
+      "scriptureAnchorId": "jonah",
+      "bibleStoryKey": "jonah_nineveh",
+      "bibleSourceRef": "Jonah 1-4",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith"
+      ],
+      "themeTags": [
+        "mercy",
+        "second chances",
+        "presence of God",
+        "forgiveness"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 924,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "audioFilePath": "kids/1802/audio_1802_long.mp3",
+      "reflectionAudioPath": "kids/1802/audio_1802_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Where do you think God was, the whole time Jonah was inside the big fish?",
+      "kidSafetyNotes": "Danger-as-awe (storm/fish handled safe, not terror). Fish sets Jonah on dry land, then he travels to Nineveh (fixes kid_113 error); no invented crown. Jonah 4 epilogue omitted (tonally wrong for 4-7). One indelible image: eyes opening inside the fish.",
+      "hardContentFlags": [
+        "peril_water"
+      ]
+    },
+    {
+      "id": "kid_walking_on_water_long",
+      "storyNumber": 1804,
+      "title": "Jesus Walks on the Water",
+      "textFilePath": "kids/1804/story_1804_long.txt",
+      "scriptureAnchorId": "walking_on_water",
+      "bibleStoryKey": "jesus_walks_on_water",
+      "bibleSourceRef": "Matthew 14:22-33",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "fear"
+      ],
+      "themeTags": [
+        "trust",
+        "presence of God",
+        "courage",
+        "wonder"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 780,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "audioFilePath": "kids/1804/audio_1804_long.mp3",
+      "reflectionAudioPath": "kids/1804/audio_1804_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "When something feels scary, who helps you feel safe again?",
+      "kidSafetyNotes": "Wonder + anxious->safe. Storm/sinking as awe not terror; immediate rescue. Softened 'why did you doubt' -> 'why were you afraid', 'ghost' -> 'what is it'. Image: hand catching Peter.",
+      "hardContentFlags": [
+        "peril_water"
+      ]
+    },
+    {
+      "id": "kid_creation_days_long",
+      "storyNumber": 1805,
+      "title": "The World God Made",
+      "textFilePath": "kids/1805/story_1805_long.txt",
+      "scriptureAnchorId": "creation_days",
+      "bibleStoryKey": "creation",
+      "bibleSourceRef": "Genesis 1 - 2:3",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "wonder"
+      ],
+      "themeTags": [
+        "creation",
+        "wonder",
+        "Gods goodness",
+        "thankfulness"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 788,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+      "audioFilePath": "kids/1805/audio_1805_long.mp3",
+      "reflectionAudioPath": "kids/1805/audio_1805_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What is something in God's world that you are thankful for?",
+      "kidSafetyNotes": "Wonder pillar, pure (no hard content). Strict 'God did/made/saw' discipline (no 'to know him and love him'; no rest-explanation). Two-image symmetry darkness->stars.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_david_jonathan_full",
+      "storyNumber": 1846,
+      "title": "David and Jonathan, Best Friends",
+      "textFilePath": "kids/1846/story_1846_full.txt",
+      "scriptureAnchorId": "1_samuel_18-20",
+      "bibleStoryKey": "1_samuel_18-20",
+      "bibleSourceRef": "1 Samuel 18-20",
+      "mood": "joyful",
+      "emotionalTags": [
+        "lonely",
+        "celebration",
+        "hope"
+      ],
+      "themeTags": [
+        "friendship",
+        "loyalty",
+        "kindness",
+        "love"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 525,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "audioFilePath": "kids/1846/audio_1846_full.mp3",
+      "reflectionAudioPath": "kids/1846/audio_1846_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jonathan and David loved each other like brothers, and stayed friends no matter what. What do you love most about your friends?",
+      "kidSafetyNotes": "NEW anchor (David, secondary/short-only). The KINDNESS/friendship thread; distinct scene from 1801 (giant) + 1836 (anointing) -- this is the loyal best-friends story. Per Adam (2026-06-18): keep SAUL MOSTLY OFFSTAGE so it stays friendship, not danger -- the spear/jealousy/pursuit is softened to 'a hard time came, and David had to go far away for a while' with no villain or threat shown. Indelible image = Jonathan the prince giving David his own robe, belt, bow, sword (a true friend keeps nothing back). For a lonely / left-out child: routes to the joy of a real friend. The covenant line 'God is between us, watching over you and me' carries the not-alone spine. 'God' throughout, no Yahweh. VOICE_ARCHER (bold, inspiring) -- warm friendship register; rests the 4x voices.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_elijah_ravens_full",
+      "storyNumber": 1847,
+      "title": "Elijah Fed by Ravens",
+      "textFilePath": "kids/1847/story_1847_full.txt",
+      "scriptureAnchorId": "1_kings_17",
+      "bibleStoryKey": "1_kings_17",
+      "bibleSourceRef": "1 Kings 17:1-6",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "grateful"
+      ],
+      "themeTags": [
+        "Gods provision",
+        "Gods care",
+        "trust",
+        "thankfulness"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 519,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "audioFilePath": "kids/1847/audio_1847_full.mp3",
+      "reflectionAudioPath": "kids/1847/audio_1847_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God sent birds to bring Elijah food, every morning and every evening. When you sit down to eat, what are some of the good things you are thankful for?",
+      "kidSafetyNotes": "NEW anchor (Elijah, secondary/short-only). WONDER/provision/comfort. Distinct Elijah scene from 1842 Carmel (fire) + 1839 whisper -- no fire, no contest, no mountain; this is God quietly providing by the brook. The drought/famine is kept gentle ('a long, dry time... food became hard to find') with no suffering shown -- focus is God's care. Indelible image = ravens (big black birds) carrying bread in their beaks, morning and evening. Routes a worried / 'will there be enough' child to trust + thankfulness. 'God' throughout, no Yahweh. VOICE_ELIJAH_SAGE (thoughtful, measured -- prophet register); consistent with 1839 Elijah, fits the quiet provision tone.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_heal_blind_full",
+      "storyNumber": 1848,
+      "title": "Jesus Heals a Blind Man",
+      "textFilePath": "kids/1848/story_1848_full.txt",
+      "scriptureAnchorId": "mark_10_46-52",
+      "bibleStoryKey": "mark_10_46-52",
+      "bibleSourceRef": "Mark 10:46-52",
+      "mood": "grateful",
+      "emotionalTags": [
+        "hope",
+        "grateful",
+        "celebration"
+      ],
+      "themeTags": [
+        "Jesus heals",
+        "faith",
+        "perseverance",
+        "gratitude"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 505,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "audioFilePath": "kids/1848/audio_1848_full.mp3",
+      "reflectionAudioPath": "kids/1848/audio_1848_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Bartimaeus called and called, and Jesus stopped just for him. What is something you would most love to thank Jesus for?",
+      "kidSafetyNotes": "NEW anchor (Jesus' Miracles, secondary/short-only). JOY/gratitude/wonder; bright daylight register (texture variety per feedback_texture_diversity) + NT balance. Blindness handled gently (no distress dwelt on); the heart of it is persistence ('called even louder' when shushed) and the joy of healing. Indelible image = the FIRST thing Bartimaeus sees with new eyes is Jesus' smiling face. Distinct from other healings (1806 Jairus = raising a girl). Routes a child who wants to be heard / keeps asking -> Jesus hears the one voice in the crowd. 'I want to see' kept literal + simple; ends on following Jesus, thanking God. 'God'/'Jesus' throughout, no Yahweh. VOICE_MIRIAM_JOYFUL (lively, celebratory) -- fits the joy of seeing; keeps the JOY register alive (feedback_kid_four_registers).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_ten_commandments_full",
+      "storyNumber": 1849,
+      "title": "The Ten Commandments",
+      "textFilePath": "kids/1849/story_1849_full.txt",
+      "scriptureAnchorId": "exodus_20",
+      "bibleStoryKey": "exodus_20",
+      "bibleSourceRef": "Exodus 20",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "faith",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods good ways",
+        "living together",
+        "love God and others",
+        "Gods love"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 500,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "audioFilePath": "kids/1849/audio_1849_full.mp3",
+      "reflectionAudioPath": "kids/1849/audio_1849_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God gave his people good ways to live together, because he loved them. What is one kind way you can treat the people you love?",
+      "kidSafetyNotes": "NEW anchor (Moses, secondary/short-only). Per Adam (2026-06-18): the emotional center is 'God gave his people GOOD WAYS TO LIVE TOGETHER' (warm/relational), NOT 'rules' -- and DO NOT let it become a list. So only a few commandments are voiced, each framed warmly (love God, a rest day, honor parents, tell the truth, don't take, be kind), with the 'loving path through a forest' image carrying the meaning. Sinai wonder (cloud, thunder, God near) provides awe. KEEP 'God' -- NOT a Yahweh story; we just used Yahweh at Carmel (1842), don't repeat the covenant name so soon and the name is not this story's point. 4th Moses story (1810/1811/1813) but a distinct scene (Sinai/the good ways). Indelible image = Moses carrying God's good words down the cloud-wrapped mountain. Lands on 'one big family -- loving God, and loving each other'. VOICE_DEBORAH_WISE (authoritative yet kind female) -- leadership/law register, warm not stern.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_last_supper_full",
+      "storyNumber": 1850,
+      "title": "The Last Supper",
+      "textFilePath": "kids/1850/story_1850_full.txt",
+      "scriptureAnchorId": "luke_22_7-20",
+      "bibleStoryKey": "luke_22_7-20",
+      "bibleSourceRef": "Luke 22:7-20",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hope",
+        "grateful",
+        "faith"
+      ],
+      "themeTags": [
+        "Jesus love",
+        "remembrance",
+        "Gods presence",
+        "belonging"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 514,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1850/audio_1850_full.mp3",
+      "reflectionAudioPath": "kids/1850/audio_1850_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus gave his friends a way to always remember how much he loved them. What helps you remember someone you love when they are far away?",
+      "kidSafetyNotes": "NEW anchor (Easter, secondary/short-only). Completes the Easter path (1832 Palm Sunday -> 1850 Last Supper -> 1821 Cross -> 1812 Empty Tomb). Per Adam (2026-06-18): 'Jesus gave his friends a meal to remember his love' -- TENDER REMEMBRANCE ONLY, NO body/blood explanation. So the bread + cup are framed simply as a way to 'remember me / remember that I love you / I am always with you'; no doctrine of the elements. Jesus' coming death is kept OFFSTAGE and gentle -- 'he would have to go away from his friends for a while' (not 'he was about to die'); flag references_departure_softened. Warm not somber: lamplight, friends close together, peaceful. Connects to today (people still share bread + cup) and lands on the CHILD being loved + Jesus near (not-alone spine). Distinct Easter scene (the meal), no overlap with 1832/1821/1812. 'God'/'Jesus' throughout, no Yahweh. VOICE_JOHN_BELOVED (tender, loving -- Johannine intimate register; John was at this table).",
+      "hardContentFlags": [
+        "references_departure_softened"
+      ]
+    },
+    {
+      "id": "kid_paul_road_full",
+      "storyNumber": 1851,
+      "title": "Paul Meets Jesus on the Road",
+      "textFilePath": "kids/1851/story_1851_full.txt",
+      "scriptureAnchorId": "acts_9",
+      "bibleStoryKey": "acts_9",
+      "bibleSourceRef": "Acts 9:1-19",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "hope",
+        "faith"
+      ],
+      "themeTags": [
+        "God changes hearts",
+        "Gods love",
+        "new beginnings",
+        "transformation"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 536,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "audioFilePath": "kids/1851/audio_1851_full.mp3",
+      "reflectionAudioPath": "kids/1851/audio_1851_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus met Saul with love, and Saul's whole heart changed. Who is someone you would like to show God's love to?",
+      "kidSafetyNotes": "NEW anchor (Early Church, secondary/short-only). A brand-new character (Saul/Paul) + the TRANSFORMATION register -- God can change and love anyone. Saul's persecution is SOFTENED to 'did not like Jesus' friends and wanted to stop them' -- no arrests, no violence; the only conflict-word is Jesus' own gentle 'why are you trying to hurt me?'. Indelible image = the bright light on the road + the voice from heaven. The 3 days blind + kind Ananias kept simple. Lands on the change of heart + a life of telling everyone God loves them. 'God'/'Jesus' throughout, no Yahweh. VOICE_BRADFORD (passionate conviction) -- fits the dramatic conversion; rests the over-used voices.",
+      "hardContentFlags": [
+        "persecution_softened"
+      ]
+    },
+    {
+      "id": "kid_sarah_isaac_full",
+      "storyNumber": 1852,
+      "title": "Sarah's Promised Baby",
+      "textFilePath": "kids/1852/story_1852_full.txt",
+      "scriptureAnchorId": "genesis_18-21",
+      "bibleStoryKey": "genesis_18-21",
+      "bibleSourceRef": "Genesis 18:1-15; 21:1-7",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "hope",
+        "grateful"
+      ],
+      "themeTags": [
+        "Gods promises",
+        "joy",
+        "laughter",
+        "nothing too hard for God"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 505,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARABELLA",
+      "audioFilePath": "kids/1852/audio_1852_full.mp3",
+      "reflectionAudioPath": "kids/1852/audio_1852_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God kept his promise and filled Sarah's home with laughter. What is something that fills your home with happy laughter?",
+      "kidSafetyNotes": "NEW anchor (Abraham & Sarah, secondary/short-only). The JOY/laughter register (feedback_kid_four_registers) + female-led. A long-awaited baby (Isaac = 'laughter') after old age -- 'is anything too hard for God?' + 'God always keeps his promises'. Distinct from 1823 God Calls Abraham (Gen 12, the call) -- this is the promise kept (Gen 18 + 21). Sarah's doubt-laugh turns to joy-laugh, handled gently (not scolded). Indelible image = old Sarah holding baby Isaac, eyes shining with happy tears; the once-quiet tent full of a baby's sound. 'God' throughout, no Yahweh. VOICE_ARABELLA (tender nurturer) -- mother/baby warmth.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_ten_lepers_full",
+      "storyNumber": 1853,
+      "title": "The Thankful Leper",
+      "textFilePath": "kids/1853/story_1853_full.txt",
+      "scriptureAnchorId": "luke_17_11-19",
+      "bibleStoryKey": "luke_17_11-19",
+      "bibleSourceRef": "Luke 17:11-19",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "celebration",
+        "hope"
+      ],
+      "themeTags": [
+        "thankfulness",
+        "gratitude",
+        "Jesus heals",
+        "praising God"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 510,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "audioFilePath": "kids/1853/audio_1853_full.mp3",
+      "reflectionAudioPath": "kids/1853/audio_1853_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The thankful man ran all the way back just to say thank you. What is something you feel thankful for right now?",
+      "kidSafetyNotes": "NEW anchor (Jesus' Miracles, secondary/short-only). The GRATITUDE thread, centered on JOY not guilt (Adam): the nine are mentioned gently ('so excited to get home they did not look back') with NO scolding/guilt-lesson; the heart is the one man's joyful thankfulness. Leprosy softened to 'a sickness that made them sore and sad, had to live apart' -- no graphic detail; flag illness_softened. Indelible image = the one man running all the way back, kneeling at Jesus' feet, 'Thank you! Oh, thank you!'. Distinct healing from 1806 Jairus + 1848 Bartimaeus (this one is about giving thanks). 'God'/'Jesus' throughout, no Yahweh. VOICE_REVEREND_MICHAEL (pastoral) -- fits returning to praise/give thanks.",
+      "hardContentFlags": [
+        "illness_softened"
+      ]
+    },
+    {
+      "id": "kid_david_kindness_mephibosheth_full",
+      "storyNumber": 1854,
+      "title": "David's Kindness to Mephibosheth",
+      "textFilePath": "kids/1854/story_1854_full.txt",
+      "scriptureAnchorId": "2_samuel_9",
+      "bibleStoryKey": "2_samuel_9",
+      "bibleSourceRef": "2 Samuel 9",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "left_out",
+        "lonely",
+        "hope"
+      ],
+      "themeTags": [
+        "kindness",
+        "belonging",
+        "keeping promises",
+        "welcome"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 507,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": "kids/1854/audio_1854_full.mp3",
+      "reflectionAudioPath": "kids/1854/audio_1854_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "David gave Mephibosheth a place at his table, so he would always feel welcome. Who is someone you could help feel that they belong?",
+      "kidSafetyNotes": "NEW anchor (David, secondary/short-only). The KINDNESS gem -- pays off 1846 David & Jonathan (David keeps his promise to Jonathan by welcoming Jonathan's SON) WITHOUT repeating it: distinct scene (the king's table), distinct beat (welcome/belonging). Mephibosheth's disability ('his feet were hurt when he was little, so he cannot walk') is stated matter-of-factly, with DIGNITY -- the story is about welcome + a place at the table, NEVER pity; flag disability_portrayed_with_dignity. For a left-out / forgotten / 'do I belong' child: Mephibosheth thought he was forgotten -> welcomed like family. Indelible image = a place set just for him at the king's table, every day, for life. 'God' not central here (kindness story); no Yahweh. VOICE_JAMES_BRITISH (reassuring father) -- warm, steady welcome. NOTE: reuses David character but NOT VOICE_DAVID_SHEPHERD (rested; and the narrator isn't David).",
+      "hardContentFlags": [
+        "disability_portrayed_with_dignity"
+      ]
+    },
+    {
+      "id": "kid_daniel_food_full",
+      "storyNumber": 1855,
+      "title": "Daniel's Healthy Food",
+      "textFilePath": "kids/1855/story_1855_full.txt",
+      "scriptureAnchorId": "daniel_1",
+      "bibleStoryKey": "daniel_1",
+      "bibleSourceRef": "Daniel 1",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "courage"
+      ],
+      "themeTags": [
+        "honoring God",
+        "faithfulness",
+        "courage",
+        "Gods care"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 501,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "audioFilePath": "kids/1855/audio_1855_full.mp3",
+      "reflectionAudioPath": "kids/1855/audio_1855_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Daniel chose to honor God, even far from home, and God took care of him. What is one good way you can honor God today?",
+      "kidSafetyNotes": "NEW anchor (Daniel, secondary/short-only). QUIET FAITHFULNESS -- honoring God in small things, far from home (mood=encouraging, set 2026-06-20: the prose is gentle/faithful, not tense-brave; 'courage' kept only as a minor relatability tag for the quiet-courage element). WATCH (Adam): do NOT moralize into 'eat your vegetables' -- the vegetables/water are the plot, but the POINT is faithfulness (Daniel honoring God even in a new land) and God's care (he gave them health AND wisdom). The framing is 'wanted to honor God in everything,' not 'healthy food is good for you.' Distinct Daniel scene from 1814 lions + 1822 furnace (this is Daniel 1, the quiet choice). Gentle, low-peril (the guard's mild worry is the only tension). Indelible image = the four friends looking brighter/healthier after ten days. 'God' throughout, no Yahweh (Daniel is not a covenant-name story). VOICE_PRISCILLA_TEACHER (clear, instructive) -- fits the wise-choice story; female balance.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_empty_tomb_long",
+      "storyNumber": 1812,
+      "title": "The Empty Tomb",
+      "textFilePath": "kids/1812/story_1812_long.txt",
+      "scriptureAnchorId": "empty_tomb",
+      "bibleStoryKey": "resurrection_empty_tomb",
+      "bibleSourceRef": "Matthew 28:1-10",
+      "mood": "joyful",
+      "emotionalTags": [
+        "hope",
+        "wonder",
+        "celebration"
+      ],
+      "themeTags": [
+        "resurrection",
+        "hope",
+        "Jesus is alive",
+        "Easter"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 758,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1812/audio_1812_long.mp3",
+      "reflectionAudioPath": "kids/1812/audio_1812_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the women felt when they heard that Jesus was alive?",
+      "kidSafetyNotes": "Easter / empty_tomb = Sunday morning JOY (sibling of the_cross). Jesus's death is gentle backstory only ('Jesus had died... laid to rest'); the weight is on resurrection wonder. Adam: 'It is still true today' kept on purpose -- the resurrection is a proclamation, not a behavior to imitate (unlike a moral). One image: the empty tomb / folded grave cloths.",
+      "hardContentFlags": [
+        "death_handled_gently"
+      ]
+    },
+    {
+      "id": "kid_red_sea_long",
+      "storyNumber": 1813,
+      "title": "Crossing the Red Sea",
+      "textFilePath": "kids/1813/story_1813_long.txt",
+      "scriptureAnchorId": "red_sea",
+      "bibleStoryKey": "red_sea_crossing",
+      "bibleSourceRef": "Exodus 14",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "anxious",
+        "scared_dark"
+      ],
+      "themeTags": [
+        "deliverance",
+        "trust",
+        "wonder",
+        "Gods rescue"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 746,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1813/audio_1813_long.mp3",
+      "reflectionAudioPath": "kids/1813/audio_1813_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it looked like, walking between two walls of water?",
+      "kidSafetyNotes": "Fear->trust->wonder->rescue (NOT punishment). Pharaoh's army drowning OMITTED ('the army could not follow them anymore'). 'Do not be afraid... God will take care of us.' One image: the two walls of water with the dry path between.",
+      "hardContentFlags": [
+        "peril_pursuit"
+      ]
+    },
+    {
+      "id": "kid_daniel_lions_den_long",
+      "storyNumber": 1814,
+      "title": "Daniel in the Lions' Den",
+      "textFilePath": "kids/1814/story_1814_long.txt",
+      "scriptureAnchorId": "daniel_6",
+      "bibleStoryKey": "daniel_lions_den",
+      "bibleSourceRef": "Daniel 6",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "scared_dark",
+        "anxious"
+      ],
+      "themeTags": [
+        "faith",
+        "protection",
+        "presence of God",
+        "prayer"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 786,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1814/audio_1814_long.mp3",
+      "reflectionAudioPath": "kids/1814/audio_1814_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Daniel felt safe with God close by. What helps you feel calm and safe?",
+      "kidSafetyNotes": "SUPERSEDES legacy kid_102 (fixes its scripture error: the old one had 'Daniel ascended to the throne' -- never happened, gone). Lions are awe-not-terror ('lay down... quiet and calm, like great gentle cats'); accusers' fate omitted. Mood calm_peaceful (Daniel's peace), not courage. Part of the 'God is with me / not alone' thread.",
+      "hardContentFlags": [
+        "peril_animals_softened"
+      ]
+    },
+    {
+      "id": "kid_the_cross_long",
+      "storyNumber": 1821,
+      "title": "The Cross",
+      "textFilePath": "kids/1821/story_1821_long.txt",
+      "scriptureAnchorId": "luke_23_32-49",
+      "bibleStoryKey": "the_cross",
+      "bibleSourceRef": "Luke 23:32-49",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "hopeless"
+      ],
+      "themeTags": [
+        "Gods love",
+        "sacrifice",
+        "hope",
+        "Jesus loves me"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 766,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_SAMUEL_EARNEST",
+      "audioFilePath": "kids/1821/audio_1821_long.mp3",
+      "reflectionAudioPath": "kids/1821/audio_1821_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it means to be loved as much as Jesus loves you?",
+      "kidSafetyNotes": "THE hard story, told via the Joseph method (feedback_kid_god_with_not_cause). LOVE-centered, not suffering-centered: death stated softly ('his breath grew still'); NO nails/blood/gore. Jesus's real words kept ('Father, forgive them'; 'into your hands'). Names that God had NOT left ('there in the dark') and refuses to end in the dark -- ends forward ('Sunday was coming'), gently pointing to Easter (1812). Grounding image: his mother Mary among the watchers (threads to 1824). Mood=hurting: the comfort for a sad child is 'Jesus knows sadness, loves you this much, and God did not leave.' Adam: braver-set centerpiece; reviewed line-by-line.",
+      "hardContentFlags": [
+        "death_handled_gently",
+        "crucifixion_softened"
+      ]
+    },
+    {
+      "id": "kid_fiery_furnace_long",
+      "storyNumber": 1822,
+      "title": "The Fiery Furnace",
+      "textFilePath": "kids/1822/story_1822_long.txt",
+      "scriptureAnchorId": "daniel_3",
+      "bibleStoryKey": "fiery_furnace",
+      "bibleSourceRef": "Daniel 3",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "scared_dark",
+        "courage"
+      ],
+      "themeTags": [
+        "faith",
+        "presence of God",
+        "courage",
+        "protection"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 766,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "audioFilePath": "kids/1822/audio_1822_long.mp3",
+      "reflectionAudioPath": "kids/1822/audio_1822_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the three friends saw when they looked beside them in the fire?",
+      "kidSafetyNotes": "Braver-set: REAL danger (fire), but no one is harmed; the soldiers' deaths (Dan 3:22) OMITTED. KEPT the hardest faith line -- 'Our God is able to save us, but even if he does not, we will still worship only him' -- faith WITHOUT a guarantee, the deliberate counter to gentleness-drift (feedback_kid_faithful_not_gentle). Not-alone spine made literal: the fourth figure walking WITH them in the flames. One image: the four walking unharmed in the fire. Names Shadrach/Meshach/Abednego kept (rhythmic for kids).",
+      "hardContentFlags": [
+        "peril_fire"
+      ]
+    },
+    {
+      "id": "kid_prodigal_son_long",
+      "storyNumber": 1817,
+      "title": "The Loving Father",
+      "textFilePath": "kids/1817/story_1817_long.txt",
+      "scriptureAnchorId": "luke_15_11-32",
+      "bibleStoryKey": "loving_father",
+      "bibleSourceRef": "Luke 15:11-32",
+      "mood": "grateful",
+      "emotionalTags": [
+        "in_trouble",
+        "grateful"
+      ],
+      "themeTags": [
+        "Gods love",
+        "forgiveness",
+        "homecoming",
+        "grace"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 800,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "audioFilePath": "kids/1817/audio_1817_long.mp3",
+      "reflectionAudioPath": "kids/1817/audio_1817_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like for the son to look up and see his father running to meet him?",
+      "kidSafetyNotes": "Framed on the FATHER (title 'The Loving Father'), per registry displayName. Younger son's wild living softened to 'spent it all'; pigs/hunger gentle; older-brother subplot OMITTED (age focus = God runs to welcome you home). One image: the old father running down the road. Receiving-side reflection. Adam: A+.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_joseph_forgives_long",
+      "storyNumber": 1819,
+      "title": "Joseph Forgives His Brothers",
+      "textFilePath": "kids/1819/story_1819_long.txt",
+      "scriptureAnchorId": "genesis_45",
+      "bibleStoryKey": "joseph_forgives",
+      "bibleSourceRef": "Genesis 45",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "rejection",
+        "hope"
+      ],
+      "themeTags": [
+        "forgiveness",
+        "presence of God",
+        "family",
+        "reconciliation"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 750,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": "kids/1819/audio_1819_long.mp3",
+      "reflectionAudioPath": "kids/1819/audio_1819_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Joseph felt when he saw his brothers again, after so many years away?",
+      "kidSafetyNotes": "Backstory softened (brothers 'jealous, sent him far away'; pit + slavery OMITTED); no violence. KEY THEOLOGY (Adam 2026-06-15, see feedback_kid_god_with_not_cause): 'God was still working for good' NOT 'God turned it into something good' -- God WITH Joseph in the sad thing, never the cause of it. A literal 5-year-old must not hear 'God made Joseph sad on purpose.' Not-alone spine ('God never once left his side'). One image: Joseph weeping as he embraces the brothers who wronged him. Adam: A+.",
+      "hardContentFlags": [
+        "family_hurt_softened"
+      ]
+    },
+    {
+      "id": "kid_palm_sunday_long",
+      "storyNumber": 1832,
+      "title": "The Joyful Parade",
+      "textFilePath": "kids/1832/story_1832_long.txt",
+      "scriptureAnchorId": "matthew_21_1-11",
+      "bibleStoryKey": "palm_sunday",
+      "bibleSourceRef": "Matthew 21:1-11",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "joy",
+        "celebration",
+        "Jesus is king",
+        "welcome"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 752,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "audioFilePath": "kids/1832/audio_1832_long.mp3",
+      "reflectionAudioPath": "kids/1832/audio_1832_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "If you had been there, waving a palm branch in the happy crowd, what do you think it would have felt like?",
+      "kidSafetyNotes": "PURE joy/celebration -- deliberately NO foreshadowing of the cross (this is the parade, kept festive). The gentle king on a little donkey (humble, not a war horse). Kid title 'The Joyful Parade'. One image: the sea of green palms + coats on the road. James Husky is a bright 'good' voice (no de-bloom).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_esther_brave_long",
+      "storyNumber": 1838,
+      "title": "Esther's Brave Choice",
+      "textFilePath": "kids/1838/story_1838_long.txt",
+      "scriptureAnchorId": "esther",
+      "bibleStoryKey": "esther",
+      "bibleSourceRef": "Esther 4-8",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "anxious",
+        "courage",
+        "hope"
+      ],
+      "themeTags": [
+        "courage",
+        "trusting God",
+        "standing up for others",
+        "Gods timing"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 762,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "audioFilePath": "kids/1838/audio_1838_long.mp3",
+      "reflectionAudioPath": "kids/1838/audio_1838_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Esther was frightened, but she did the brave thing anyway, and helped so many people. What is something brave that you have done, or want to do?",
+      "kidSafetyNotes": "NEW anchor (Esther). Courage thread + a female hero for register variety. Haman's plot is named abstractly ('a proud man wanted to harm God's people') with NO violence, no killing, no naming of Haman's fate -- per KID_STORY_PROMPT 3 (name danger calmly, emphasize rescue). Flag peril_threat_softened. Courage model is the right kind: 'scared but went anyway' (feeling fear AND being brave), not fearlessness -- routes an anxious child to brave_courage via the kid mood bridge (anxious->brave_courage). She prays first and is not alone. Indelible image = the king holding out the golden scepter (welcome / you are safe to come close). 'God' throughout, no Yahweh. VOICE_ESTHER_BRAVE (strong, determined female) -- approved; NOTE deliberately NOT VOICE_LILY_WOLFF (banned for new authoring, feedback_voice_rules).",
+      "hardContentFlags": [
+        "peril_threat_softened"
+      ]
+    },
+    {
+      "id": "kid_noah_flood_long",
+      "storyNumber": 1841,
+      "title": "Noah and the Great Flood",
+      "textFilePath": "kids/1841/story_1841_long.txt",
+      "scriptureAnchorId": "noah_flood",
+      "bibleStoryKey": "noah_flood",
+      "bibleSourceRef": "Genesis 6-7",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods protection",
+        "faithfulness",
+        "Gods care",
+        "safety"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 752,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "audioFilePath": "kids/1841/audio_1841_long.mp3",
+      "reflectionAudioPath": "kids/1841/audio_1841_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Outside the ark the storm raged all night, but inside, Noah and the animals were warm and safe, and God watched over them. When things feel stormy around you, who helps you feel safe?",
+      "kidSafetyNotes": "NEW anchor (Noah, core-launch finale). DE-OVERLAPPED from sibling 1808 Noah's Rainbow (Adam 2026-06-18): 1808 owns the back half (Gen 8-9: rain stops -> dove sent 3x -> dry land -> rainbow promise), so 1841 owns the FRONT half (Gen 6-7): why God chose Noah, building the ark while neighbors mock, animals coming IN two by two, God shutting the door, the flood rising, riding safe THROUGH the storm. NO dove, NO landing, NO coming-out, NO rainbow -- those are 1808's territory; ends mid-storm on God watching over, gesturing to (not retelling) the rains stopping. This honors the registry secondInterpretationRule (different verse range + a kid would not call it 'the same one'). The flood is named calmly (rain/wind/water rising) with NO drowning/destruction detail -- focus stays on safety inside the ark (KID_STORY_PROMPT 3). Flag peril_flood_softened. Indelible image = God shutting the great door ('Safe.') + the ark rocking 'like a cradle rocked by a loving hand'. 'God' throughout, no Yahweh (Noah is not a covenant-name story). VOICE_REVEREND_MICHAEL (pastoral grandfather) -- patriarch register, avoids the two-James clash with 1844.",
+      "hardContentFlags": [
+        "peril_flood_softened"
+      ]
+    },
+    {
+      "id": "kid_last_supper_long",
+      "storyNumber": 1850,
+      "title": "The Last Supper",
+      "textFilePath": "kids/1850/story_1850_long.txt",
+      "scriptureAnchorId": "luke_22_7-20",
+      "bibleStoryKey": "luke_22_7-20",
+      "bibleSourceRef": "Luke 22:7-20",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hope",
+        "grateful",
+        "faith"
+      ],
+      "themeTags": [
+        "Jesus love",
+        "remembrance",
+        "Gods presence",
+        "belonging"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 764,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1850/audio_1850_long.mp3",
+      "reflectionAudioPath": "kids/1850/audio_1850_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus gave his friends a way to always remember how much he loved them. What helps you remember someone you love when they are far away?",
+      "kidSafetyNotes": "NEW anchor (Easter, secondary/short-only). Completes the Easter path (1832 Palm Sunday -> 1850 Last Supper -> 1821 Cross -> 1812 Empty Tomb). Per Adam (2026-06-18): 'Jesus gave his friends a meal to remember his love' -- TENDER REMEMBRANCE ONLY, NO body/blood explanation. So the bread + cup are framed simply as a way to 'remember me / remember that I love you / I am always with you'; no doctrine of the elements. Jesus' coming death is kept OFFSTAGE and gentle -- 'he would have to go away from his friends for a while' (not 'he was about to die'); flag references_departure_softened. Warm not somber: lamplight, friends close together, peaceful. Connects to today (people still share bread + cup) and lands on the CHILD being loved + Jesus near (not-alone spine). Distinct Easter scene (the meal), no overlap with 1832/1821/1812. 'God'/'Jesus' throughout, no Yahweh. VOICE_JOHN_BELOVED (tender, loving -- Johannine intimate register; John was at this table).",
+      "hardContentFlags": [
+        "references_departure_softened"
+      ]
+    },
+    {
+      "id": "kid_paul_road_long",
+      "storyNumber": 1851,
+      "title": "Paul Meets Jesus on the Road",
+      "textFilePath": "kids/1851/story_1851_long.txt",
+      "scriptureAnchorId": "acts_9",
+      "bibleStoryKey": "acts_9",
+      "bibleSourceRef": "Acts 9:1-19",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "hope",
+        "faith"
+      ],
+      "themeTags": [
+        "God changes hearts",
+        "Gods love",
+        "new beginnings",
+        "transformation"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 745,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "audioFilePath": "kids/1851/audio_1851_long.mp3",
+      "reflectionAudioPath": "kids/1851/audio_1851_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus met Saul with love, and Saul's whole heart changed. Who is someone you would like to show God's love to?",
+      "kidSafetyNotes": "NEW anchor (Early Church, secondary/short-only). A brand-new character (Saul/Paul) + the TRANSFORMATION register -- God can change and love anyone. Saul's persecution is SOFTENED to 'did not like Jesus' friends and wanted to stop them' -- no arrests, no violence; the only conflict-word is Jesus' own gentle 'why are you trying to hurt me?'. Indelible image = the bright light on the road + the voice from heaven. The 3 days blind + kind Ananias kept simple. Lands on the change of heart + a life of telling everyone God loves them. 'God'/'Jesus' throughout, no Yahweh. VOICE_BRADFORD (passionate conviction) -- fits the dramatic conversion; rests the over-used voices.",
+      "hardContentFlags": [
+        "persecution_softened"
+      ]
     }
   ]
 }

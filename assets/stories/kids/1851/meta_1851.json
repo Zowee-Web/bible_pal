@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1851,
+  "anchorId": "paul_road",
+  "kidLane": "dedicated-4-7",
+  "title": "Paul Meets Jesus on the Road",
+  "scriptureAnchorId": "acts_9",
+  "bibleSourceRef": "Acts 9:1-19",
+  "bibleStoryKey": "acts_9",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "wonder",
+    "hope",
+    "faith"
+  ],
+  "themeTags": [
+    "God changes hearts",
+    "Gods love",
+    "new beginnings",
+    "transformation"
+  ],
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Jesus met Saul with love, and Saul's whole heart changed. Who is someone you would like to show God's love to?",
+  "hardContentFlags": [
+    "persecution_softened"
+  ],
+  "kidSafetyNotes": "NEW anchor (Early Church, secondary/short-only). A brand-new character (Saul/Paul) + the TRANSFORMATION register -- God can change and love anyone. Saul's persecution is SOFTENED to 'did not like Jesus' friends and wanted to stop them' -- no arrests, no violence; the only conflict-word is Jesus' own gentle 'why are you trying to hurt me?'. Indelible image = the bright light on the road + the voice from heaven. The 3 days blind + kind Ananias kept simple. Lands on the change of heart + a life of telling everyone God loves them. 'God'/'Jesus' throughout, no Yahweh. VOICE_BRADFORD (passionate conviction) -- fits the dramatic conversion; rests the over-used voices.",
+  "files": {
+    "short": {
+      "storyText": "story_1851_short.txt",
+      "audio": "audio_1851_short.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1851.txt",
+      "audio": "audio_1851_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    },
+    "full": {
+      "storyText": "story_1851_full.txt",
+      "audio": "audio_1851_full.mp3"
+    },
+    "long": {
+      "storyText": "story_1851_long.txt",
+      "audio": "audio_1851_long.mp3"
+    }
+  }
+}

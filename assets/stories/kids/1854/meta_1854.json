@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1854,
+  "anchorId": "david_kindness_mephibosheth",
+  "kidLane": "dedicated-4-7",
+  "title": "David's Kindness to Mephibosheth",
+  "scriptureAnchorId": "2_samuel_9",
+  "bibleSourceRef": "2 Samuel 9",
+  "bibleStoryKey": "2_samuel_9",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "left_out",
+    "lonely",
+    "hope"
+  ],
+  "themeTags": [
+    "kindness",
+    "belonging",
+    "keeping promises",
+    "welcome"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "David gave Mephibosheth a place at his table, so he would always feel welcome. Who is someone you could help feel that they belong?",
+  "hardContentFlags": [
+    "disability_portrayed_with_dignity"
+  ],
+  "kidSafetyNotes": "NEW anchor (David, secondary/short-only). The KINDNESS gem -- pays off 1846 David & Jonathan (David keeps his promise to Jonathan by welcoming Jonathan's SON) WITHOUT repeating it: distinct scene (the king's table), distinct beat (welcome/belonging). Mephibosheth's disability ('his feet were hurt when he was little, so he cannot walk') is stated matter-of-factly, with DIGNITY -- the story is about welcome + a place at the table, NEVER pity; flag disability_portrayed_with_dignity. For a left-out / forgotten / 'do I belong' child: Mephibosheth thought he was forgotten -> welcomed like family. Indelible image = a place set just for him at the king's table, every day, for life. 'God' not central here (kindness story); no Yahweh. VOICE_JAMES_BRITISH (reassuring father) -- warm, steady welcome. NOTE: reuses David character but NOT VOICE_DAVID_SHEPHERD (rested; and the narrator isn't David).",
+  "files": {
+    "short": {
+      "storyText": "story_1854_short.txt",
+      "audio": "audio_1854_short.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1854.txt",
+      "audio": "audio_1854_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    },
+    "full": {
+      "storyText": "story_1854_full.txt",
+      "audio": "audio_1854_full.mp3"
+    }
+  }
+}

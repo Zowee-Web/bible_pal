@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1843,
+  "anchorId": "lords_prayer",
+  "kidLane": "dedicated-4-7",
+  "title": "The Lord's Prayer",
+  "scriptureAnchorId": "lords_prayer",
+  "bibleSourceRef": "Matthew 6:9-13",
+  "bibleStoryKey": "lords_prayer",
+  "translation": "WEB",
+  "type": "comfort-ritual",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "faith",
+    "hope",
+    "grateful"
+  ],
+  "themeTags": [
+    "prayer",
+    "talking to God",
+    "Gods love",
+    "comfort"
+  ],
+  "lengths": [
+    "short"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Jesus showed us we can talk to God about anything at all. What is something you would most love to thank God for?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Comfort & Bedtime, core-launch finale). COMFORT-RITUAL: the prayer is quoted VERBATIM from WEB Matthew 6:9-13 (incl. the doxology, which WEB carries), NOT a loose retelling -- per registry comfortRitualRule + KID_STORY_PROMPT 2. Structured exactly like 1803 Psalm 23: gentle frame -> verbatim prayer -> soft bedtime close. Per Adam (2026-06-18): keep it like Psalm 23 -- gentle frame + the prayer + soft close, DO NOT over-explain each line ('debts/debtors' left as WEB verbatim, unexplained, the way 1803 left 'valley of the shadow of death'). NO Yahweh -- the Lord's Prayer is an 'Our Father' prayer, not a covenant-name story; 'God'/'Father' throughout. Short-only (comfort-ritual); ~190w is correct, below the 250 floor like Psalm 23 (exempt -- don't pad). VOICE_PRISCILLA_TEACHER (clear, instructive -- teaching a child to pray).",
+  "files": {
+    "short": {
+      "storyText": "story_1843_short.txt",
+      "audio": "audio_1843_short.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1843.txt",
+      "audio": "audio_1843_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

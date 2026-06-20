@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1848,
+  "anchorId": "heal_blind",
+  "kidLane": "dedicated-4-7",
+  "title": "Jesus Heals a Blind Man",
+  "scriptureAnchorId": "mark_10_46-52",
+  "bibleSourceRef": "Mark 10:46-52",
+  "bibleStoryKey": "mark_10_46-52",
+  "translation": "WEB",
+  "mood": "grateful",
+  "emotionalTags": [
+    "hope",
+    "grateful",
+    "celebration"
+  ],
+  "themeTags": [
+    "Jesus heals",
+    "faith",
+    "perseverance",
+    "gratitude"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Bartimaeus called and called, and Jesus stopped just for him. What is something you would most love to thank Jesus for?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Jesus' Miracles, secondary/short-only). JOY/gratitude/wonder; bright daylight register (texture variety per feedback_texture_diversity) + NT balance. Blindness handled gently (no distress dwelt on); the heart of it is persistence ('called even louder' when shushed) and the joy of healing. Indelible image = the FIRST thing Bartimaeus sees with new eyes is Jesus' smiling face. Distinct from other healings (1806 Jairus = raising a girl). Routes a child who wants to be heard / keeps asking -> Jesus hears the one voice in the crowd. 'I want to see' kept literal + simple; ends on following Jesus, thanking God. 'God'/'Jesus' throughout, no Yahweh. VOICE_MIRIAM_JOYFUL (lively, celebratory) -- fits the joy of seeing; keeps the JOY register alive (feedback_kid_four_registers).",
+  "files": {
+    "short": {
+      "storyText": "story_1848_short.txt",
+      "audio": "audio_1848_short.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1848.txt",
+      "audio": "audio_1848_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    },
+    "full": {
+      "storyText": "story_1848_full.txt",
+      "audio": "audio_1848_full.mp3"
+    }
+  }
+}

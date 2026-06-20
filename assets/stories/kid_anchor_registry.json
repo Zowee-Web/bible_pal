@@ -51,7 +51,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
           "launch": true,
@@ -97,10 +98,15 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
-          "launch": true
+          "launch": true,
+          "productionId": 1841,
+          "manifestAnchorIds": [
+            "noah_flood"
+          ]
         },
         {
           "anchorId": "noah_promise",
@@ -154,9 +160,14 @@
           "scriptureRef": "Genesis 18:1-15; 21:1-7",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": false
+          "launch": false,
+          "productionId": 1852,
+          "manifestAnchorIds": [
+            "genesis_18-21"
+          ]
         }
       ]
     },
@@ -172,7 +183,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1844,
+          "manifestAnchorIds": [
+            "genesis_37"
+          ]
         },
         {
           "anchorId": "joseph_dreams",
@@ -201,7 +216,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
           "launch": true,
@@ -252,7 +268,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
           "launch": true,
@@ -267,9 +284,14 @@
           "scriptureRef": "Exodus 20",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1849,
+          "manifestAnchorIds": [
+            "exodus_20"
+          ]
         },
         {
           "anchorId": "manna",
@@ -335,7 +357,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1837,
+          "manifestAnchorIds": [
+            "ruth"
+          ]
         }
       ]
     },
@@ -382,7 +408,11 @@
             "full"
           ],
           "sibling": "david_goliath",
-          "launch": true
+          "launch": true,
+          "productionId": 1836,
+          "manifestAnchorIds": [
+            "1_samuel_16"
+          ]
         },
         {
           "anchorId": "david_goliath",
@@ -391,7 +421,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
           "manifestAnchorIds": [
@@ -416,9 +447,14 @@
           "scriptureRef": "1 Samuel 18-20",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1846,
+          "manifestAnchorIds": [
+            "1_samuel_18-20"
+          ]
         },
         {
           "anchorId": "david_king",
@@ -436,9 +472,14 @@
           "scriptureRef": "2 Samuel 9",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": false
+          "launch": false,
+          "productionId": 1854,
+          "manifestAnchorIds": [
+            "2_samuel_9"
+          ]
         }
       ]
     },
@@ -451,9 +492,14 @@
           "scriptureRef": "1 Kings 17:1-6",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1847,
+          "manifestAnchorIds": [
+            "1_kings_17"
+          ]
         },
         {
           "anchorId": "elijah_carmel",
@@ -464,7 +510,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1842,
+          "manifestAnchorIds": [
+            "1_kings_18"
+          ]
         },
         {
           "anchorId": "elijah_whisper",
@@ -475,7 +525,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1839,
+          "manifestAnchorIds": [
+            "1_kings_19"
+          ]
         },
         {
           "anchorId": "elisha_widow_oil",
@@ -499,7 +553,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
           "manifestAnchorIds": [
@@ -519,9 +574,14 @@
           "scriptureRef": "Daniel 1",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": false
+          "launch": false,
+          "productionId": 1855,
+          "manifestAnchorIds": [
+            "daniel_1"
+          ]
         },
         {
           "anchorId": "fiery_furnace",
@@ -530,7 +590,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
           "launch": true,
@@ -546,13 +607,15 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "manifestAnchorIds": [
             "daniel_6"
           ],
           "launch": true,
-          "productionId": 1814
+          "productionId": 1814,
+          "longEligible": true
         },
         {
           "anchorId": "writing_on_wall",
@@ -586,12 +649,15 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "manifestAnchorIds": [
             "esther"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1838,
+          "longEligible": true
         }
       ]
     },
@@ -717,13 +783,15 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": true,
           "manifestAnchorIds": [
             "walking_on_water"
           ],
-          "productionId": 1804
+          "productionId": 1804,
+          "longEligible": true
         },
         {
           "anchorId": "jesus_children",
@@ -746,9 +814,14 @@
           "scriptureRef": "Mark 10:46-52",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1848,
+          "manifestAnchorIds": [
+            "mark_10_46-52"
+          ]
         },
         {
           "anchorId": "jairus_daughter",
@@ -771,9 +844,14 @@
           "scriptureRef": "Luke 17:11-19",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": false
+          "launch": false,
+          "productionId": 1853,
+          "manifestAnchorIds": [
+            "luke_17_11-19"
+          ]
         },
         {
           "anchorId": "zacchaeus",
@@ -832,7 +910,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
           "launch": true,
@@ -912,13 +991,15 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": true,
           "productionId": 1832,
           "manifestAnchorIds": [
             "matthew_21_1-11"
-          ]
+          ],
+          "longEligible": true
         },
         {
           "anchorId": "last_supper",
@@ -926,9 +1007,16 @@
           "scriptureRef": "Luke 22:7-20",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full",
+            "long"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1850,
+          "manifestAnchorIds": [
+            "luke_22_7-20"
+          ],
+          "longEligible": true
         },
         {
           "anchorId": "gethsemane",
@@ -947,14 +1035,16 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "sibling": "empty_tomb",
           "launch": true,
           "productionId": 1821,
           "manifestAnchorIds": [
             "luke_23_32-49"
-          ]
+          ],
+          "longEligible": true
         },
         {
           "anchorId": "empty_tomb",
@@ -963,7 +1053,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
           "launch": true,
@@ -986,7 +1077,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1845,
+          "manifestAnchorIds": [
+            "pentecost"
+          ]
         },
         {
           "anchorId": "peter_prison",
@@ -1004,9 +1099,16 @@
           "scriptureRef": "Acts 9:1-19",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full",
+            "long"
           ],
-          "launch": false
+          "launch": false,
+          "productionId": 1851,
+          "manifestAnchorIds": [
+            "acts_9"
+          ],
+          "longEligible": true
         }
       ]
     },
@@ -1022,7 +1124,11 @@
             "short",
             "full"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1840,
+          "manifestAnchorIds": [
+            "revelation_21"
+          ]
         },
         {
           "anchorId": "no_more_tears",
@@ -1063,7 +1169,11 @@
           "targetLengths": [
             "short"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1843,
+          "manifestAnchorIds": [
+            "lords_prayer"
+          ]
         },
         {
           "anchorId": "beatitudes",

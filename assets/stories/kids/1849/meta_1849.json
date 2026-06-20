@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1849,
+  "anchorId": "ten_commandments",
+  "kidLane": "dedicated-4-7",
+  "title": "The Ten Commandments",
+  "scriptureAnchorId": "exodus_20",
+  "bibleSourceRef": "Exodus 20",
+  "bibleStoryKey": "exodus_20",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "wonder",
+    "faith",
+    "hope"
+  ],
+  "themeTags": [
+    "Gods good ways",
+    "living together",
+    "love God and others",
+    "Gods love"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "God gave his people good ways to live together, because he loved them. What is one kind way you can treat the people you love?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Moses, secondary/short-only). Per Adam (2026-06-18): the emotional center is 'God gave his people GOOD WAYS TO LIVE TOGETHER' (warm/relational), NOT 'rules' -- and DO NOT let it become a list. So only a few commandments are voiced, each framed warmly (love God, a rest day, honor parents, tell the truth, don't take, be kind), with the 'loving path through a forest' image carrying the meaning. Sinai wonder (cloud, thunder, God near) provides awe. KEEP 'God' -- NOT a Yahweh story; we just used Yahweh at Carmel (1842), don't repeat the covenant name so soon and the name is not this story's point. 4th Moses story (1810/1811/1813) but a distinct scene (Sinai/the good ways). Indelible image = Moses carrying God's good words down the cloud-wrapped mountain. Lands on 'one big family -- loving God, and loving each other'. VOICE_DEBORAH_WISE (authoritative yet kind female) -- leadership/law register, warm not stern.",
+  "files": {
+    "short": {
+      "storyText": "story_1849_short.txt",
+      "audio": "audio_1849_short.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1849.txt",
+      "audio": "audio_1849_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    },
+    "full": {
+      "storyText": "story_1849_full.txt",
+      "audio": "audio_1849_full.mp3"
+    }
+  }
+}

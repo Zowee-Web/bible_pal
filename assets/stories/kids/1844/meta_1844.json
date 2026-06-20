@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1844,
+  "anchorId": "joseph_coat",
+  "kidLane": "dedicated-4-7",
+  "title": "Joseph's Colorful Coat",
+  "scriptureAnchorId": "genesis_37",
+  "bibleSourceRef": "Genesis 37",
+  "bibleStoryKey": "genesis_37",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "left_out",
+    "lonely",
+    "hope"
+  ],
+  "themeTags": [
+    "God is with us",
+    "Gods plan",
+    "hope in hard times",
+    "not alone"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Even far from home, God was always with Joseph. When you go somewhere new, what helps you feel that God is near you?",
+  "hardContentFlags": [
+    "family_betrayal_softened"
+  ],
+  "kidSafetyNotes": "NEW anchor (Joseph, core-launch finale). The HARD origin half that pairs with 1819 Joseph Forgives (the reconciliation); consistent with 1819 ('sent him far away to Egypt'). HARD CONTENT handled by the Joseph method (Adam 2026-06-18: heavy is OK, but do NOT make the brothers' cruelty vivid): the pit and the selling-for-silver are OMITTED -- softened to 'the brothers decided to send him away' with passing traders; show the brothers' JEALOUSY (a feeling) not violence. Lands hard on 'God was with Joseph' (the 1819-proven move, feedback_kid_not_alone_thread / feedback_kid_god_with_not_cause -- God stays WITH him in the hard thing, doesn't cause it) and points FORWARD to the rescue without spoiling it. Flag family_betrayal_softened. For a left-out / lonely child: jealousy + being sent away -> God-never-left routes a 'left out / far from home' kid to comfort. Indelible image = the colorful coat (and the coat-weaving / God-weaving-a-plan callback in the full). 'God' throughout, no Yahweh. VOICE_JAMES_BRITISH (reassuring father) -- steady warmth through hardship.",
+  "files": {
+    "short": {
+      "storyText": "story_1844_short.txt",
+      "audio": "audio_1844_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1844_full.txt",
+      "audio": "audio_1844_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1844.txt",
+      "audio": "audio_1844_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

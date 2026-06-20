@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1842,
+  "anchorId": "elijah_carmel",
+  "kidLane": "dedicated-4-7",
+  "title": "Fire on Mount Carmel",
+  "scriptureAnchorId": "1_kings_18",
+  "bibleSourceRef": "1 Kings 18",
+  "bibleStoryKey": "1_kings_18",
+  "translation": "WEB",
+  "mood": "brave_courage",
+  "emotionalTags": [
+    "courage",
+    "faith",
+    "wonder"
+  ],
+  "themeTags": [
+    "the one true God",
+    "courage",
+    "Gods power",
+    "trusting God"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Elijah trusted God even when he stood all alone. When you need to be brave, who do you like to have beside you?",
+  "hardContentFlags": [
+    "violence_omitted"
+  ],
+  "kidSafetyNotes": "NEW anchor (Elijah at Carmel) -- THE Yahweh covenant-name story, the deliberate ~1-in-20 deployment Adam reserved for 'where the name is the point' (first Yahweh since 1811 Burning Bush; 1803 Psalm 23 also has it). Yahweh is introduced GENTLY at the CLIMAX with context ('in the Bible, God's own name is Yahweh') -- the whole story builds to hearing the name, then the people cry 'Yahweh, he is God!'. Default 'God' everywhere else. HARD CONTENT SOFTENED: the prophets of Baal are NOT killed (1 Kings 18:40 omitted) -- they are simply shown to be wrong ('Baal was not real, could not answer'); no taunting cruelty, no slaughter. Flag violence_omitted. Fire here = PROOF/'Yahweh is God' (contrast 1845 Pentecost, where fire = presence/joy -- deliberate same-batch pairing, Adam approved). Indelible image = fire rushing down on the water-soaked altar. Courage model: Elijah brave standing alone, trusting God. VOICE_BRADFORD (passionate conviction).",
+  "files": {
+    "short": {
+      "storyText": "story_1842_short.txt",
+      "audio": "audio_1842_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1842_full.txt",
+      "audio": "audio_1842_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1842.txt",
+      "audio": "audio_1842_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

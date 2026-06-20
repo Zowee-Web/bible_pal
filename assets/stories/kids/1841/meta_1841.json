@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1841,
+  "anchorId": "noah_flood",
+  "kidLane": "dedicated-4-7",
+  "title": "Noah and the Great Flood",
+  "scriptureAnchorId": "noah_flood",
+  "bibleSourceRef": "Genesis 6-7",
+  "bibleStoryKey": "noah_flood",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "wonder",
+    "faith",
+    "hope"
+  ],
+  "themeTags": [
+    "Gods protection",
+    "faithfulness",
+    "Gods care",
+    "safety"
+  ],
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Outside the ark the storm raged all night, but inside, Noah and the animals were warm and safe, and God watched over them. When things feel stormy around you, who helps you feel safe?",
+  "hardContentFlags": [
+    "peril_flood_softened"
+  ],
+  "kidSafetyNotes": "NEW anchor (Noah, core-launch finale). DE-OVERLAPPED from sibling 1808 Noah's Rainbow (Adam 2026-06-18): 1808 owns the back half (Gen 8-9: rain stops -> dove sent 3x -> dry land -> rainbow promise), so 1841 owns the FRONT half (Gen 6-7): why God chose Noah, building the ark while neighbors mock, animals coming IN two by two, God shutting the door, the flood rising, riding safe THROUGH the storm. NO dove, NO landing, NO coming-out, NO rainbow -- those are 1808's territory; ends mid-storm on God watching over, gesturing to (not retelling) the rains stopping. This honors the registry secondInterpretationRule (different verse range + a kid would not call it 'the same one'). The flood is named calmly (rain/wind/water rising) with NO drowning/destruction detail -- focus stays on safety inside the ark (KID_STORY_PROMPT 3). Flag peril_flood_softened. Indelible image = God shutting the great door ('Safe.') + the ark rocking 'like a cradle rocked by a loving hand'. 'God' throughout, no Yahweh (Noah is not a covenant-name story). VOICE_REVEREND_MICHAEL (pastoral grandfather) -- patriarch register, avoids the two-James clash with 1844.",
+  "files": {
+    "short": {
+      "storyText": "story_1841_short.txt",
+      "audio": "audio_1841_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1841_full.txt",
+      "audio": "audio_1841_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1841.txt",
+      "audio": "audio_1841_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    },
+    "long": {
+      "storyText": "story_1841_long.txt",
+      "audio": "audio_1841_long.mp3"
+    }
+  }
+}

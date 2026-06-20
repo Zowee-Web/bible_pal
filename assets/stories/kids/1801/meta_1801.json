@@ -18,7 +18,8 @@
   ],
   "lengths": [
     "short",
-    "full"
+    "full",
+    "long"
   ],
   "longEligible": true,
   "longRendered": false,
@@ -48,6 +49,10 @@
     "reflection": {
       "text": "reflection_1801.txt",
       "audio": "audio_1801_reflection.mp3"
+    },
+    "long": {
+      "storyText": "story_1801_long.txt",
+      "audio": "audio_1801_long.mp3"
     }
   },
   "createdNote": "Doctrine-v2 Rosetta Stone; first dedicated kid-lane anchor. productionId band 1801+ (anchor stays canonical in kid_anchor_registry.json)."
