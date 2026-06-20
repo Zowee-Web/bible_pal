@@ -51,7 +51,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
           "launch": true,
@@ -415,7 +416,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
           "manifestAnchorIds": [
@@ -543,7 +545,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
           "manifestAnchorIds": [
@@ -766,13 +769,15 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": true,
           "manifestAnchorIds": [
             "walking_on_water"
           ],
-          "productionId": 1804
+          "productionId": 1804,
+          "longEligible": true
         },
         {
           "anchorId": "jesus_children",

@@ -21,7 +21,8 @@
   ],
   "lengths": [
     "short",
-    "full"
+    "full",
+    "long"
   ],
   "longEligible": true,
   "status": "REVIEW",
@@ -49,6 +50,10 @@
       "text": "reflection_1805.txt",
       "audio": "audio_1805_reflection.mp3",
       "ttsModel": "eleven_v3"
+    },
+    "long": {
+      "storyText": "story_1805_long.txt",
+      "audio": "audio_1805_long.mp3"
     }
   },
   "createdNote": "Wonder pillar, story 2. Foundational. Voice VOICE_NATASHA_AFRICAN_AMERICAN (Warm Strength; 2nd female narrator). Mood grateful (fills an empty mood). Reflection renders in eleven_v3."

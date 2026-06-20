@@ -21,9 +21,10 @@
   ],
   "lengths": [
     "short",
-    "full"
+    "full",
+    "long"
   ],
-  "longEligible": false,
+  "longEligible": true,
   "status": "REVIEW",
   "storyVoiceKey": "VOICE_NOAH_PATIENT",
   "ttsModel": "eleven_turbo_v2_5",
@@ -51,6 +52,10 @@
       "text": "reflection_1804.txt",
       "audio": "audio_1804_reflection.mp3",
       "ttsModel": "eleven_v3"
+    },
+    "long": {
+      "storyText": "story_1804_long.txt",
+      "audio": "audio_1804_long.mp3"
     }
   },
   "createdNote": "Wonder pillar, story 1. Voice VOICE_NOAH_PATIENT (story + reflection). Reflection wording chosen by Adam, matches the story (fear->safe). Reflection renders in eleven_v3 per wrapper."

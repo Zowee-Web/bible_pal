@@ -47445,6 +47445,112 @@
         "Gods care"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_david_goliath_long",
+      "title": "David and the Giant",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "feeling_small",
+        "courage"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1801/audio_1801_long.mp3",
+      "textFilePath": "kids/1801/story_1801_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "long",
+      "reflectionQuestion": "What do you think helped David feel brave when everyone else was afraid?",
+      "bibleSourceRef": "1 Samuel 17",
+      "bibleStoryKey": "david_and_goliath",
+      "themeTags": [
+        "courage",
+        "trust"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jonah_fish_long",
+      "title": "Jonah and the Big Fish",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1802/audio_1802_long.mp3",
+      "textFilePath": "kids/1802/story_1802_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "long",
+      "reflectionQuestion": "Where do you think God was, the whole time Jonah was inside the big fish?",
+      "bibleSourceRef": "Jonah 1-4",
+      "bibleStoryKey": "jonah_nineveh",
+      "themeTags": [
+        "mercy",
+        "second chances",
+        "presence of God",
+        "forgiveness"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_walking_on_water_long",
+      "title": "Jesus Walks on the Water",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "fear"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1804/audio_1804_long.mp3",
+      "textFilePath": "kids/1804/story_1804_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "long",
+      "reflectionQuestion": "When something feels scary, who helps you feel safe again?",
+      "bibleSourceRef": "Matthew 14:22-33",
+      "bibleStoryKey": "jesus_walks_on_water",
+      "themeTags": [
+        "trust",
+        "presence of God",
+        "courage",
+        "wonder"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_creation_days_long",
+      "title": "The World God Made",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1805/audio_1805_long.mp3",
+      "textFilePath": "kids/1805/story_1805_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+      "storyLength": "long",
+      "reflectionQuestion": "What is something in God's world that you are thankful for?",
+      "bibleSourceRef": "Genesis 1 - 2:3",
+      "bibleStoryKey": "creation",
+      "themeTags": [
+        "creation",
+        "wonder",
+        "Gods goodness",
+        "thankfulness"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }

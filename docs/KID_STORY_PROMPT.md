@@ -140,15 +140,33 @@ story is complete at the low end, leave it.
 
 | Bucket | Words | Notes |
 |--------|------:|-------|
-| short  | **250–450** | the everyday length; a single, complete telling |
-| full   | **400–750** | a meaningfully fuller telling; should feel bigger than the short |
-| long   | **700–1100** | special/exceptional anchors only (earned, not default) |
+| short  | **250–500** | the everyday length; a single, complete telling. Every story gets one. |
+| full   | **500–900** | a meaningfully fuller telling; should feel bigger than the short. Most stories get one. |
+| long   | **750–1500** | a genuinely **deeper** telling — only if the story grows. Big narrative arcs, not prayers/parables. |
 
-Short and full overlap (400–450) on purpose — pick the bucket by **intent** (is
-this the brief telling or the fuller one?), and let the full be a real expansion
-of the short, not just a few words more. These replace the adult floors
-(short 300–500 / full 501–900), which were too long for the kid lane and created
-a "add words so the validator is happy" incentive.
+**The "grow with the child" model (Adam, 2026-06-19).** A child can hear the same
+story at different depths as they grow: a 4-year-old hears the ~300-word short, a
+6-year-old the ~700-word full, a 7-year-old the ~1000–1200-word long with all the
+emotional beats. That is the goal — **not** padding. Pick the bucket by **intent**,
+and let each longer cut be a real expansion, not a few words more.
+
+**Long = a deeper version, NOT a padded version (the locked rule).** Add a long
+**only if the story genuinely grows** through dramatic progression and observable
+continuity. If a story told faithfully tops out below 750 (e.g. Walking on Water
+and Creation land ~785), that *is* its long — do not stretch it to a round number.
+The kid Long floor is **750** precisely so honest deeper tellings qualify without
+padding (revised down from 900 on 2026-06-19 after 1804/1805).
+
+**Story-shape tiers — which cuts a story gets:**
+- **Big narrative arcs** (David & Goliath, Jonah, Noah, Joseph, Red Sea, Daniel's
+  lions, the Fiery Furnace, Esther, Paul on the road, Walking on Water, Palm
+  Sunday, Last Supper, the Cross, Empty Tomb, Creation) → **short + full + long.**
+- **Smaller parables / contained miracles** → **short, or short + full.**
+- **Prayers, teachings, comfort-rituals** (Psalm 23, the Lord's Prayer, the
+  Beatitudes, the Fruit of the Spirit) → **short only.** More words don't make a
+  prayer stronger; a "full/long" would just be framing around an unchanging
+  recitation. (We retired the "secondary anchor = short-only-at-first" framing
+  once the lane passed 50 stories — tier by story shape, not by launch status.)
 
 ---
 

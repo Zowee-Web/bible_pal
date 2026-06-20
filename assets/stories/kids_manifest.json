@@ -3655,6 +3655,134 @@
       "reflectionQuestion": "Daniel chose to honor God, even far from home, and God took care of him. What is one good way you can honor God today?",
       "kidSafetyNotes": "NEW anchor (Daniel, secondary/short-only). QUIET FAITHFULNESS -- honoring God in small things, far from home (mood=encouraging, set 2026-06-20: the prose is gentle/faithful, not tense-brave; 'courage' kept only as a minor relatability tag for the quiet-courage element). WATCH (Adam): do NOT moralize into 'eat your vegetables' -- the vegetables/water are the plot, but the POINT is faithfulness (Daniel honoring God even in a new land) and God's care (he gave them health AND wisdom). The framing is 'wanted to honor God in everything,' not 'healthy food is good for you.' Distinct Daniel scene from 1814 lions + 1822 furnace (this is Daniel 1, the quiet choice). Gentle, low-peril (the guard's mild worry is the only tension). Indelible image = the four friends looking brighter/healthier after ten days. 'God' throughout, no Yahweh (Daniel is not a covenant-name story). VOICE_PRISCILLA_TEACHER (clear, instructive) -- fits the wise-choice story; female balance.",
       "hardContentFlags": []
+    },
+    {
+      "id": "kid_david_goliath_long",
+      "storyNumber": 1801,
+      "title": "David and the Giant",
+      "textFilePath": "kids/1801/story_1801_long.txt",
+      "scriptureAnchorId": "1_samuel_17",
+      "bibleStoryKey": "david_and_goliath",
+      "bibleSourceRef": "1 Samuel 17",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "feeling_small",
+        "courage"
+      ],
+      "themeTags": [
+        "courage",
+        "trust"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 932,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "audioFilePath": "kids/1801/audio_1801_long.mp3",
+      "reflectionAudioPath": "kids/1801/audio_1801_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think helped David feel brave when everyone else was afraid?",
+      "kidSafetyNotes": "Doctrine-v2 pilot (Rosetta Stone). Combat safe: beheading omitted; outcome in one calm sentence. Menace de-stacked to thud + Goliath's scriptural taunt ('Send out a man to fight me!'). One indelible image: five smooth stones.",
+      "hardContentFlags": [
+        "violence_combat"
+      ]
+    },
+    {
+      "id": "kid_jonah_fish_long",
+      "storyNumber": 1802,
+      "title": "Jonah and the Big Fish",
+      "textFilePath": "kids/1802/story_1802_long.txt",
+      "scriptureAnchorId": "jonah",
+      "bibleStoryKey": "jonah_nineveh",
+      "bibleSourceRef": "Jonah 1-4",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith"
+      ],
+      "themeTags": [
+        "mercy",
+        "second chances",
+        "presence of God",
+        "forgiveness"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 924,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "audioFilePath": "kids/1802/audio_1802_long.mp3",
+      "reflectionAudioPath": "kids/1802/audio_1802_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Where do you think God was, the whole time Jonah was inside the big fish?",
+      "kidSafetyNotes": "Danger-as-awe (storm/fish handled safe, not terror). Fish sets Jonah on dry land, then he travels to Nineveh (fixes kid_113 error); no invented crown. Jonah 4 epilogue omitted (tonally wrong for 4-7). One indelible image: eyes opening inside the fish.",
+      "hardContentFlags": [
+        "peril_water"
+      ]
+    },
+    {
+      "id": "kid_walking_on_water_long",
+      "storyNumber": 1804,
+      "title": "Jesus Walks on the Water",
+      "textFilePath": "kids/1804/story_1804_long.txt",
+      "scriptureAnchorId": "walking_on_water",
+      "bibleStoryKey": "jesus_walks_on_water",
+      "bibleSourceRef": "Matthew 14:22-33",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "fear"
+      ],
+      "themeTags": [
+        "trust",
+        "presence of God",
+        "courage",
+        "wonder"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 780,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "audioFilePath": "kids/1804/audio_1804_long.mp3",
+      "reflectionAudioPath": "kids/1804/audio_1804_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "When something feels scary, who helps you feel safe again?",
+      "kidSafetyNotes": "Wonder + anxious->safe. Storm/sinking as awe not terror; immediate rescue. Softened 'why did you doubt' -> 'why were you afraid', 'ghost' -> 'what is it'. Image: hand catching Peter.",
+      "hardContentFlags": [
+        "peril_water"
+      ]
+    },
+    {
+      "id": "kid_creation_days_long",
+      "storyNumber": 1805,
+      "title": "The World God Made",
+      "textFilePath": "kids/1805/story_1805_long.txt",
+      "scriptureAnchorId": "creation_days",
+      "bibleStoryKey": "creation",
+      "bibleSourceRef": "Genesis 1 - 2:3",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "wonder"
+      ],
+      "themeTags": [
+        "creation",
+        "wonder",
+        "Gods goodness",
+        "thankfulness"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 788,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+      "audioFilePath": "kids/1805/audio_1805_long.mp3",
+      "reflectionAudioPath": "kids/1805/audio_1805_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What is something in God's world that you are thankful for?",
+      "kidSafetyNotes": "Wonder pillar, pure (no hard content). Strict 'God did/made/saw' discipline (no 'to know him and love him'; no rest-explanation). Two-image symmetry darkness->stars.",
+      "hardContentFlags": []
     }
   ]
 }

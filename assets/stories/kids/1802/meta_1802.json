@@ -20,7 +20,8 @@
   ],
   "lengths": [
     "short",
-    "full"
+    "full",
+    "long"
   ],
   "longEligible": true,
   "longRendered": false,
@@ -50,6 +51,10 @@
     "reflection": {
       "text": "reflection_1802.txt",
       "audio": "audio_1802_reflection.mp3"
+    },
+    "long": {
+      "storyText": "story_1802_long.txt",
+      "audio": "audio_1802_long.mp3"
     }
   },
   "createdNote": "Second dedicated kid-lane anchor (Mercy pillar). Supersedes legacy kid_113. Voice not yet chosen; storyVoiceKey null until audio approval."
