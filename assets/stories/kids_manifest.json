@@ -4278,6 +4278,169 @@
       "hardContentFlags": [
         "peril_fire"
       ]
+    },
+    {
+      "id": "kid_prodigal_son_long",
+      "storyNumber": 1817,
+      "title": "The Loving Father",
+      "textFilePath": "kids/1817/story_1817_long.txt",
+      "scriptureAnchorId": "luke_15_11-32",
+      "bibleStoryKey": "loving_father",
+      "bibleSourceRef": "Luke 15:11-32",
+      "mood": "grateful",
+      "emotionalTags": [
+        "in_trouble",
+        "grateful"
+      ],
+      "themeTags": [
+        "Gods love",
+        "forgiveness",
+        "homecoming",
+        "grace"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 800,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "audioFilePath": "kids/1817/audio_1817_long.mp3",
+      "reflectionAudioPath": "kids/1817/audio_1817_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like for the son to look up and see his father running to meet him?",
+      "kidSafetyNotes": "Framed on the FATHER (title 'The Loving Father'), per registry displayName. Younger son's wild living softened to 'spent it all'; pigs/hunger gentle; older-brother subplot OMITTED (age focus = God runs to welcome you home). One image: the old father running down the road. Receiving-side reflection. Adam: A+.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_joseph_forgives_long",
+      "storyNumber": 1819,
+      "title": "Joseph Forgives His Brothers",
+      "textFilePath": "kids/1819/story_1819_long.txt",
+      "scriptureAnchorId": "genesis_45",
+      "bibleStoryKey": "joseph_forgives",
+      "bibleSourceRef": "Genesis 45",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "rejection",
+        "hope"
+      ],
+      "themeTags": [
+        "forgiveness",
+        "presence of God",
+        "family",
+        "reconciliation"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 750,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": "kids/1819/audio_1819_long.mp3",
+      "reflectionAudioPath": "kids/1819/audio_1819_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Joseph felt when he saw his brothers again, after so many years away?",
+      "kidSafetyNotes": "Backstory softened (brothers 'jealous, sent him far away'; pit + slavery OMITTED); no violence. KEY THEOLOGY (Adam 2026-06-15, see feedback_kid_god_with_not_cause): 'God was still working for good' NOT 'God turned it into something good' -- God WITH Joseph in the sad thing, never the cause of it. A literal 5-year-old must not hear 'God made Joseph sad on purpose.' Not-alone spine ('God never once left his side'). One image: Joseph weeping as he embraces the brothers who wronged him. Adam: A+.",
+      "hardContentFlags": [
+        "family_hurt_softened"
+      ]
+    },
+    {
+      "id": "kid_palm_sunday_long",
+      "storyNumber": 1832,
+      "title": "The Joyful Parade",
+      "textFilePath": "kids/1832/story_1832_long.txt",
+      "scriptureAnchorId": "matthew_21_1-11",
+      "bibleStoryKey": "palm_sunday",
+      "bibleSourceRef": "Matthew 21:1-11",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "joy",
+        "celebration",
+        "Jesus is king",
+        "welcome"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 752,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "audioFilePath": "kids/1832/audio_1832_long.mp3",
+      "reflectionAudioPath": "kids/1832/audio_1832_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "If you had been there, waving a palm branch in the happy crowd, what do you think it would have felt like?",
+      "kidSafetyNotes": "PURE joy/celebration -- deliberately NO foreshadowing of the cross (this is the parade, kept festive). The gentle king on a little donkey (humble, not a war horse). Kid title 'The Joyful Parade'. One image: the sea of green palms + coats on the road. James Husky is a bright 'good' voice (no de-bloom).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_esther_brave_long",
+      "storyNumber": 1838,
+      "title": "Esther's Brave Choice",
+      "textFilePath": "kids/1838/story_1838_long.txt",
+      "scriptureAnchorId": "esther",
+      "bibleStoryKey": "esther",
+      "bibleSourceRef": "Esther 4-8",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "anxious",
+        "courage",
+        "hope"
+      ],
+      "themeTags": [
+        "courage",
+        "trusting God",
+        "standing up for others",
+        "Gods timing"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 762,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "audioFilePath": "kids/1838/audio_1838_long.mp3",
+      "reflectionAudioPath": "kids/1838/audio_1838_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Esther was frightened, but she did the brave thing anyway, and helped so many people. What is something brave that you have done, or want to do?",
+      "kidSafetyNotes": "NEW anchor (Esther). Courage thread + a female hero for register variety. Haman's plot is named abstractly ('a proud man wanted to harm God's people') with NO violence, no killing, no naming of Haman's fate -- per KID_STORY_PROMPT 3 (name danger calmly, emphasize rescue). Flag peril_threat_softened. Courage model is the right kind: 'scared but went anyway' (feeling fear AND being brave), not fearlessness -- routes an anxious child to brave_courage via the kid mood bridge (anxious->brave_courage). She prays first and is not alone. Indelible image = the king holding out the golden scepter (welcome / you are safe to come close). 'God' throughout, no Yahweh. VOICE_ESTHER_BRAVE (strong, determined female) -- approved; NOTE deliberately NOT VOICE_LILY_WOLFF (banned for new authoring, feedback_voice_rules).",
+      "hardContentFlags": [
+        "peril_threat_softened"
+      ]
+    },
+    {
+      "id": "kid_noah_flood_long",
+      "storyNumber": 1841,
+      "title": "Noah and the Great Flood",
+      "textFilePath": "kids/1841/story_1841_long.txt",
+      "scriptureAnchorId": "noah_flood",
+      "bibleStoryKey": "noah_flood",
+      "bibleSourceRef": "Genesis 6-7",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith",
+        "hope"
+      ],
+      "themeTags": [
+        "Gods protection",
+        "faithfulness",
+        "Gods care",
+        "safety"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 752,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "audioFilePath": "kids/1841/audio_1841_long.mp3",
+      "reflectionAudioPath": "kids/1841/audio_1841_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Outside the ark the storm raged all night, but inside, Noah and the animals were warm and safe, and God watched over them. When things feel stormy around you, who helps you feel safe?",
+      "kidSafetyNotes": "NEW anchor (Noah, core-launch finale). DE-OVERLAPPED from sibling 1808 Noah's Rainbow (Adam 2026-06-18): 1808 owns the back half (Gen 8-9: rain stops -> dove sent 3x -> dry land -> rainbow promise), so 1841 owns the FRONT half (Gen 6-7): why God chose Noah, building the ark while neighbors mock, animals coming IN two by two, God shutting the door, the flood rising, riding safe THROUGH the storm. NO dove, NO landing, NO coming-out, NO rainbow -- those are 1808's territory; ends mid-storm on God watching over, gesturing to (not retelling) the rains stopping. This honors the registry secondInterpretationRule (different verse range + a kid would not call it 'the same one'). The flood is named calmly (rain/wind/water rising) with NO drowning/destruction detail -- focus stays on safety inside the ark (KID_STORY_PROMPT 3). Flag peril_flood_softened. Indelible image = God shutting the great door ('Safe.') + the ark rocking 'like a cradle rocked by a loving hand'. 'God' throughout, no Yahweh (Noah is not a covenant-name story). VOICE_REVEREND_MICHAEL (pastoral grandfather) -- patriarch register, avoids the two-James clash with 1844.",
+      "hardContentFlags": [
+        "peril_flood_softened"
+      ]
     }
   ]
 }

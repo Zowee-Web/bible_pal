@@ -22,9 +22,10 @@
   ],
   "lengths": [
     "short",
-    "full"
+    "full",
+    "long"
   ],
-  "longEligible": false,
+  "longEligible": true,
   "status": "REVIEW",
   "storyVoiceKey": "VOICE_ESTHER_BRAVE",
   "ttsModel": "eleven_turbo_v2_5",
@@ -52,6 +53,10 @@
       "text": "reflection_1838.txt",
       "audio": "audio_1838_reflection.mp3",
       "ttsModel": "eleven_v3"
+    },
+    "long": {
+      "storyText": "story_1838_long.txt",
+      "audio": "audio_1838_long.mp3"
     }
   }
 }

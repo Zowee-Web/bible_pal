@@ -47967,6 +47967,143 @@
         "protection"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_prodigal_son_long",
+      "title": "The Loving Father",
+      "mood": "grateful",
+      "emotionalTags": [
+        "in_trouble",
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1817/audio_1817_long.mp3",
+      "textFilePath": "kids/1817/story_1817_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "long",
+      "reflectionQuestion": "What do you think it was like for the son to look up and see his father running to meet him?",
+      "bibleSourceRef": "Luke 15:11-32",
+      "bibleStoryKey": "loving_father",
+      "themeTags": [
+        "Gods love",
+        "forgiveness",
+        "homecoming",
+        "grace"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_joseph_forgives_long",
+      "title": "Joseph Forgives His Brothers",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "rejection",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1819/audio_1819_long.mp3",
+      "textFilePath": "kids/1819/story_1819_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "long",
+      "reflectionQuestion": "What do you think Joseph felt when he saw his brothers again, after so many years away?",
+      "bibleSourceRef": "Genesis 45",
+      "bibleStoryKey": "joseph_forgives",
+      "themeTags": [
+        "forgiveness",
+        "presence of God",
+        "family",
+        "reconciliation"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_palm_sunday_long",
+      "title": "The Joyful Parade",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1832/audio_1832_long.mp3",
+      "textFilePath": "kids/1832/story_1832_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "long",
+      "reflectionQuestion": "If you had been there, waving a palm branch in the happy crowd, what do you think it would have felt like?",
+      "bibleSourceRef": "Matthew 21:1-11",
+      "bibleStoryKey": "palm_sunday",
+      "themeTags": [
+        "joy",
+        "celebration",
+        "Jesus is king",
+        "welcome"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_esther_brave_long",
+      "title": "Esther's Brave Choice",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "anxious",
+        "courage",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1838/audio_1838_long.mp3",
+      "textFilePath": "kids/1838/story_1838_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "storyLength": "long",
+      "reflectionQuestion": "Esther was frightened, but she did the brave thing anyway, and helped so many people. What is something brave that you have done, or want to do?",
+      "bibleSourceRef": "Esther 4-8",
+      "bibleStoryKey": "esther",
+      "themeTags": [
+        "courage",
+        "trusting God",
+        "standing up for others",
+        "Gods timing"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_noah_flood_long",
+      "title": "Noah and the Great Flood",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1841/audio_1841_long.mp3",
+      "textFilePath": "kids/1841/story_1841_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "storyLength": "long",
+      "reflectionQuestion": "Outside the ark the storm raged all night, but inside, Noah and the animals were warm and safe, and God watched over them. When things feel stormy around you, who helps you feel safe?",
+      "bibleSourceRef": "Genesis 6-7",
+      "bibleStoryKey": "noah_flood",
+      "themeTags": [
+        "Gods protection",
+        "faithfulness",
+        "Gods care",
+        "safety"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }

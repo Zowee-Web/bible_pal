@@ -98,7 +98,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
           "launch": true,
@@ -215,7 +216,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
           "launch": true,
@@ -647,13 +649,15 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "manifestAnchorIds": [
             "esther"
           ],
           "launch": true,
-          "productionId": 1838
+          "productionId": 1838,
+          "longEligible": true
         }
       ]
     },
@@ -906,7 +910,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
           "launch": true,
@@ -986,13 +991,15 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": true,
           "productionId": 1832,
           "manifestAnchorIds": [
             "matthew_21_1-11"
-          ]
+          ],
+          "longEligible": true
         },
         {
           "anchorId": "last_supper",
