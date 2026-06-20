@@ -21,7 +21,8 @@
     "gratitude"
   ],
   "lengths": [
-    "short"
+    "short",
+    "full"
   ],
   "longEligible": false,
   "status": "REVIEW",
@@ -45,6 +46,10 @@
       "text": "reflection_1848.txt",
       "audio": "audio_1848_reflection.mp3",
       "ttsModel": "eleven_v3"
+    },
+    "full": {
+      "storyText": "story_1848_full.txt",
+      "audio": "audio_1848_full.mp3"
     }
   }
 }

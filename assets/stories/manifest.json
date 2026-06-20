@@ -47551,6 +47551,146 @@
         "thankfulness"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_david_jonathan_full",
+      "title": "David and Jonathan, Best Friends",
+      "mood": "joyful",
+      "emotionalTags": [
+        "lonely",
+        "celebration",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1846/audio_1846_full.mp3",
+      "textFilePath": "kids/1846/story_1846_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "storyLength": "full",
+      "reflectionQuestion": "Jonathan and David loved each other like brothers, and stayed friends no matter what. What do you love most about your friends?",
+      "bibleSourceRef": "1 Samuel 18-20",
+      "bibleStoryKey": "1_samuel_18-20",
+      "themeTags": [
+        "friendship",
+        "loyalty",
+        "kindness",
+        "love"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_elijah_ravens_full",
+      "title": "Elijah Fed by Ravens",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1847/audio_1847_full.mp3",
+      "textFilePath": "kids/1847/story_1847_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "storyLength": "full",
+      "reflectionQuestion": "God sent birds to bring Elijah food, every morning and every evening. When you sit down to eat, what are some of the good things you are thankful for?",
+      "bibleSourceRef": "1 Kings 17:1-6",
+      "bibleStoryKey": "1_kings_17",
+      "themeTags": [
+        "Gods provision",
+        "Gods care",
+        "trust",
+        "thankfulness"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_heal_blind_full",
+      "title": "Jesus Heals a Blind Man",
+      "mood": "grateful",
+      "emotionalTags": [
+        "hope",
+        "grateful",
+        "celebration"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1848/audio_1848_full.mp3",
+      "textFilePath": "kids/1848/story_1848_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "storyLength": "full",
+      "reflectionQuestion": "Bartimaeus called and called, and Jesus stopped just for him. What is something you would most love to thank Jesus for?",
+      "bibleSourceRef": "Mark 10:46-52",
+      "bibleStoryKey": "mark_10_46-52",
+      "themeTags": [
+        "Jesus heals",
+        "faith",
+        "perseverance",
+        "gratitude"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_ten_commandments_full",
+      "title": "The Ten Commandments",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "faith",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1849/audio_1849_full.mp3",
+      "textFilePath": "kids/1849/story_1849_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "storyLength": "full",
+      "reflectionQuestion": "God gave his people good ways to live together, because he loved them. What is one kind way you can treat the people you love?",
+      "bibleSourceRef": "Exodus 20",
+      "bibleStoryKey": "exodus_20",
+      "themeTags": [
+        "Gods good ways",
+        "living together",
+        "love God and others",
+        "Gods love"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_last_supper_full",
+      "title": "The Last Supper",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hope",
+        "grateful",
+        "faith"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1850/audio_1850_full.mp3",
+      "textFilePath": "kids/1850/story_1850_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "full",
+      "reflectionQuestion": "Jesus gave his friends a way to always remember how much he loved them. What helps you remember someone you love when they are far away?",
+      "bibleSourceRef": "Luke 22:7-20",
+      "bibleStoryKey": "luke_22_7-20",
+      "themeTags": [
+        "Jesus love",
+        "remembrance",
+        "Gods presence",
+        "belonging"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }

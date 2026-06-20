@@ -280,7 +280,8 @@
           "scriptureRef": "Exodus 20",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
           "launch": true,
           "productionId": 1849,
@@ -442,7 +443,8 @@
           "scriptureRef": "1 Samuel 18-20",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
           "launch": true,
           "productionId": 1846,
@@ -485,7 +487,8 @@
           "scriptureRef": "1 Kings 17:1-6",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
           "launch": true,
           "productionId": 1847,
@@ -800,7 +803,8 @@
           "scriptureRef": "Mark 10:46-52",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
           "launch": true,
           "productionId": 1848,
@@ -988,7 +992,8 @@
           "scriptureRef": "Luke 22:7-20",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
           "launch": true,
           "productionId": 1850,

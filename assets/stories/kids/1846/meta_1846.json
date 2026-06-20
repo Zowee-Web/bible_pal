@@ -21,7 +21,8 @@
     "love"
   ],
   "lengths": [
-    "short"
+    "short",
+    "full"
   ],
   "longEligible": false,
   "status": "REVIEW",
@@ -45,6 +46,10 @@
       "text": "reflection_1846.txt",
       "audio": "audio_1846_reflection.mp3",
       "ttsModel": "eleven_v3"
+    },
+    "full": {
+      "storyText": "story_1846_full.txt",
+      "audio": "audio_1846_full.mp3"
     }
   }
 }

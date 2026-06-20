@@ -21,7 +21,8 @@
     "belonging"
   ],
   "lengths": [
-    "short"
+    "short",
+    "full"
   ],
   "longEligible": false,
   "status": "REVIEW",
@@ -47,6 +48,10 @@
       "text": "reflection_1850.txt",
       "audio": "audio_1850_reflection.mp3",
       "ttsModel": "eleven_v3"
+    },
+    "full": {
+      "storyText": "story_1850_full.txt",
+      "audio": "audio_1850_full.mp3"
     }
   }
 }

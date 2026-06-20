@@ -21,7 +21,8 @@
     "Gods love"
   ],
   "lengths": [
-    "short"
+    "short",
+    "full"
   ],
   "longEligible": false,
   "status": "REVIEW",
@@ -45,6 +46,10 @@
       "text": "reflection_1849.txt",
       "audio": "audio_1849_reflection.mp3",
       "ttsModel": "eleven_v3"
+    },
+    "full": {
+      "storyText": "story_1849_full.txt",
+      "audio": "audio_1849_full.mp3"
     }
   }
 }
