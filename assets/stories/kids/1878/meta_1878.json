@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1878,
+  "anchorId": "balaam_donkey",
+  "kidLane": "dedicated-4-7",
+  "title": "The Donkey Who Talked",
+  "scriptureAnchorId": "numbers_22",
+  "bibleSourceRef": "Numbers 22:21-35",
+  "bibleStoryKey": "numbers_22",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "delighted",
+    "amazed",
+    "curious",
+    "joyful"
+  ],
+  "themeTags": [
+    "God uses anyone",
+    "talking donkey",
+    "pay attention",
+    "God protects"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Balaam could not see the angel, but his faithful donkey could. I wonder who God might use to help you, in a way that would surprise you?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (filed under Moses & Exodus -- wilderness era). Batch D 'talking-animal / funny' piece -- likely a top replay candidate (a donkey that talks = peak 5-year-old). SOFTENED per Adam: the angel's sword is omitted; Balaam is 'frustrated' and gives 'a little smack' (NOT beating/cruelty), nothing dwelt on. The donkey is the lovable hero -- she SEES the angel Balaam can't, and stops THREE times to PROTECT him; the angel is framed as keeping Balaam safe, not threatening. God lets her speak: 'why are you cross with me? Haven't I always been your good donkey?' Room = God can use anyone (even a donkey!) / stop and pay attention. Donkey referred to as 'she' (faithful companion). Soft close ('attention'). VOICE_ARCHER (bright, lively, characterful -- carries the comedy).",
+  "files": {
+    "short": {
+      "storyText": "story_1878_short.txt",
+      "audio": "audio_1878_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1878_full.txt",
+      "audio": "audio_1878_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1878.txt",
+      "audio": "audio_1878_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

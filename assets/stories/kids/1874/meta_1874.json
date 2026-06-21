@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1874,
+  "anchorId": "esther_queen",
+  "kidLane": "dedicated-4-7",
+  "title": "Esther Becomes Queen",
+  "scriptureAnchorId": "esther_2",
+  "bibleSourceRef": "Esther 2",
+  "bibleStoryKey": "esther_2",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "joyful",
+    "delighted",
+    "hope",
+    "valued"
+  ],
+  "themeTags": [
+    "ordinary girl lifted up",
+    "God has a plan",
+    "kind heart",
+    "becoming queen"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JANE_PROFESSIONAL",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Esther was just an ordinary girl, and God had a special plan for her all along. I wonder what wonderful plans God might have for someone like you?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "Claims OPEN registry anchor esther_queen (Esther 2; was short-only -> now short+full). DELIBERATELY DISTINCT from 1838 Esther's Brave Choice (Esther 4-8): this is the BECOMING (ordinary orphan girl chosen -> queen), NOT the brave plea/Haman, which 1838 owns. Adam's tweak baked in: full fairy-tale register -- opens 'Once there was a girl named Esther' (NOT 'orphan living in exile'); palace, beautiful clothes, big doors, kind heart. Orphanhood named gently ('no mother or father of her own... but she was not alone'). Danger only hinted at the end as a bridge to 1838, kept light. End line per Adam: 'Nobody knew it yet... but God had a special plan for Esther... a story for another day.' VOICE_JANE_PROFESSIONAL (regal/court register, distinct from 1838's Esther voice so the pair sounds different).",
+  "files": {
+    "short": {
+      "storyText": "story_1874_short.txt",
+      "audio": "audio_1874_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1874_full.txt",
+      "audio": "audio_1874_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1874.txt",
+      "audio": "audio_1874_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

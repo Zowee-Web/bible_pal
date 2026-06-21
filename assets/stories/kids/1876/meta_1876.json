@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1876,
+  "anchorId": "transfiguration",
+  "kidLane": "dedicated-4-7",
+  "title": "Jesus Shines Like the Sun",
+  "scriptureAnchorId": "matthew_17",
+  "bibleSourceRef": "Matthew 17:1-9",
+  "bibleStoryKey": "matthew_17",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "wonder",
+    "awe",
+    "joyful",
+    "amazed"
+  ],
+  "themeTags": [
+    "Jesus shines",
+    "awe and wonder",
+    "this is my Son",
+    "glimpse of glory"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "The friends saw Jesus shining bright as the sun, and they were filled with wonder. I wonder what fills your heart with wonder when you think about God?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Jesus' Miracles). Batch D 'replayability/wonder' piece. Adam's rule: AWE not scary. The bright cloud + the voice are wonder-filled and KIND ('This is my Son, whom I love. Listen to him.') -- explicitly 'not a scary voice... warm, and kind, and full of love'. Moses & Elijah kept simple ('two of God's great friends from long, long ago') -- no theology load for 4-7. Peter's 'let's build tents!' is the comic/relatable beat. Ends with the cloud lifting, Jesus back to normal ('their own dear friend'), 'Do not be afraid', walking back down -- safe landing. Soft close ('shine'/'sun'). VOICE_JAMES_BRITISH_PROFESSIONAL (stately, cinematic awe register).",
+  "files": {
+    "short": {
+      "storyText": "story_1876_short.txt",
+      "audio": "audio_1876_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1876_full.txt",
+      "audio": "audio_1876_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1876.txt",
+      "audio": "audio_1876_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

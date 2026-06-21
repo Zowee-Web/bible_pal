@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1871,
+  "anchorId": "thomas_believes",
+  "kidLane": "dedicated-4-7",
+  "title": "Thomas Wanted to See",
+  "scriptureAnchorId": "john_20",
+  "bibleSourceRef": "John 20:24-29",
+  "bibleStoryKey": "john_20",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "curious",
+    "reassured",
+    "loved",
+    "hope"
+  ],
+  "themeTags": [
+    "questions are welcome",
+    "Jesus is not angry at doubt",
+    "come closer",
+    "resurrection"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Jesus was not upset that Thomas had questions -- he simply said, \"Come closer.\" I wonder what question you would most like to bring to God?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Easter). Room per Adam = not merely 'questions' but 'Jesus isn't angry when you don't understand.' Protected beats: Thomas 'I want to believe... I just need to see' + Jesus does NOT sigh/scold/'you should have more faith' -> only 'Come closer.' Especially valuable for older kids who start asking hard questions. Wounds shown gently ('the marks on his hands'), no blood/nails detail. Soft close ('Come closer.'). VOICE_REVEREND_MICHAEL_C_VINCENT (pastoral, gentle-welcoming; distinct from Lazarus's John).",
+  "files": {
+    "short": {
+      "storyText": "story_1871_short.txt",
+      "audio": "audio_1871_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1871_full.txt",
+      "audio": "audio_1871_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1871.txt",
+      "audio": "audio_1871_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

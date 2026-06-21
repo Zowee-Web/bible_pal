@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1870,
+  "anchorId": "lazarus_raised",
+  "kidLane": "dedicated-4-7",
+  "title": "Jesus Cried Too",
+  "scriptureAnchorId": "john_11",
+  "bibleSourceRef": "John 11:1-44",
+  "bibleStoryKey": "john_11",
+  "translation": "WEB",
+  "mood": "hurting",
+  "emotionalTags": [
+    "sad",
+    "hope",
+    "comforted",
+    "loved"
+  ],
+  "themeTags": [
+    "Jesus wept",
+    "grief and tears",
+    "God is close when we hurt",
+    "grief turns to hope"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Jesus loved his friends so much that he cried right along with them. I wonder what it feels like to know God is that close to you, even when you are sad?",
+  "hardContentFlags": [
+    "death-of-a-loved-one"
+  ],
+  "kidSafetyNotes": "NEW anchor (Jesus' Miracles). Emotional center per Adam = Mary crying + Jesus crying -> then hope; NOT 'dead man comes back'. Protected line: 'Jesus loved his friends so much that he cried right along with them.' Grief handled gently: Lazarus 'had died' (soft), no tomb/decay detail, no four-days, the raising kept warm and brief for the hopeful last word. Death-of-a-loved-one flag set; routes a grieving/sad child (mood hurting -- lane is thin here). Soft-consonant close ('always'). God-with-not-cause honored: God does not cause the death; Jesus weeps WITH them. VOICE_JOHN_BELOVED (John's own gospel; tender, intimate).",
+  "files": {
+    "short": {
+      "storyText": "story_1870_short.txt",
+      "audio": "audio_1870_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1870_full.txt",
+      "audio": "audio_1870_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1870.txt",
+      "audio": "audio_1870_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}
