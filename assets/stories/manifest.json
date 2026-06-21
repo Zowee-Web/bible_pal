@@ -48972,6 +48972,34 @@
         "Jesus love"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_fruit_of_spirit_short",
+      "title": "The Fruit of the Spirit",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hope",
+        "faith",
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1869/audio_1869_short.mp3",
+      "textFilePath": "kids/1869/story_1869_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "storyLength": "short",
+      "reflectionQuestion": "God loves to grow good things in your heart, like kindness, joy, and peace. Which one would you most like to share with someone?",
+      "bibleSourceRef": "Galatians 5:22-23",
+      "bibleStoryKey": "galatians_5",
+      "themeTags": [
+        "fruit of the Spirit",
+        "God grows good in us",
+        "becoming kind",
+        "Gods love"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }
