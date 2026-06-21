@@ -85,6 +85,22 @@
             "short"
           ],
           "launch": false
+        },
+        {
+          "anchorId": "tower_of_babel",
+          "displayName": "The Tower of Babel",
+          "scriptureRef": "Genesis 11:1-9",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "genesis_11"
+          ],
+          "launch": true,
+          "productionId": 1884,
+          "longEligible": false
         }
       ]
     },
@@ -390,6 +406,22 @@
           ],
           "launch": true,
           "productionId": 1879,
+          "longEligible": false
+        },
+        {
+          "anchorId": "gideon",
+          "displayName": "Gideon's Three Hundred",
+          "scriptureRef": "Judges 7",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "judges_7"
+          ],
+          "launch": true,
+          "productionId": 1881,
           "longEligible": false
         }
       ]
@@ -1039,6 +1071,22 @@
           ],
           "launch": true,
           "productionId": 1877,
+          "longEligible": false
+        },
+        {
+          "anchorId": "great_catch",
+          "displayName": "The Great Catch of Fish",
+          "scriptureRef": "Luke 5:1-11",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "luke_5"
+          ],
+          "launch": true,
+          "productionId": 1883,
           "longEligible": false
         }
       ]

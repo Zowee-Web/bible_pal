@@ -6125,6 +6125,204 @@
       "reflectionQuestion": "God filled Samson with courage the moment the lion leaped out. I wonder what feels a little scary to you, that God could help you face?",
       "kidSafetyNotes": "NEW anchor (new 'Judges' category -- room for future Gideon/Deborah). Batch D 'courage / action' piece. SOFTENED per Adam: just the lion encounter (Judges 14:5-6), NOT Delilah, NOT the wider tragedy. Soft on violence -- the lion 'could not hurt him', Samson 'was kept completely safe'; no killing/tearing dwelt on (the gore is omitted). CRUCIAL framing: strength is GOD'S GIFT, not Samson's muscles ('It had not come from his big strong arms. It had come from God.') -- avoids a self-reliance/strongman message. Room = God gives courage in scary moments / you are not alone / you don't have to be brave all by yourself. Ends safe. Soft close ('difference'/'brave'). VOICE_DAVID_SHEPHERD (bright, strong, good-voice; courage register).",
       "hardContentFlags": []
+    },
+    {
+      "id": "kid_gideon_short",
+      "storyNumber": 1881,
+      "title": "Gideon's Three Hundred",
+      "textFilePath": "kids/1881/story_1881_short.txt",
+      "scriptureAnchorId": "judges_7",
+      "bibleStoryKey": "judges_7",
+      "bibleSourceRef": "Judges 7",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "amazed",
+        "reassured",
+        "hope"
+      ],
+      "themeTags": [
+        "God makes the small mighty",
+        "courage from God",
+        "you are not alone",
+        "few with God beat many"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 303,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "audioFilePath": "kids/1881/audio_1881_short.mp3",
+      "reflectionAudioPath": "kids/1881/audio_1881_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Gideon had only three hundred men, but God was with them, and that was enough. I wonder what feels too big for you right now, that God could help you with?",
+      "kidSafetyNotes": "NEW anchor -- second story in the new Judges category (gives it life). Phase 2 'Beloved': the smashing jars + blazing torches + trumpets are the highly-visual replay hook. WATCH-ITEM (Adam): soft on battle -- no fighting, no gore; the enemy is simply frightened/confused and 'ran away'. Frame = God makes a small, scared group brave; the victory is God's, not muscle's ('not because they were strong, but because God was with them'). Gideon himself is 'not brave at all' to start (relatable). Water-test simplified to 'God made the army smaller and smaller.' Soft close ('you'/'beside you'). VOICE_BRADFORD (strong, warm male; action/courage register).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_gideon_full",
+      "storyNumber": 1881,
+      "title": "Gideon's Three Hundred",
+      "textFilePath": "kids/1881/story_1881_full.txt",
+      "scriptureAnchorId": "judges_7",
+      "bibleStoryKey": "judges_7",
+      "bibleSourceRef": "Judges 7",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "amazed",
+        "reassured",
+        "hope"
+      ],
+      "themeTags": [
+        "God makes the small mighty",
+        "courage from God",
+        "you are not alone",
+        "few with God beat many"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 531,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "audioFilePath": "kids/1881/audio_1881_full.mp3",
+      "reflectionAudioPath": "kids/1881/audio_1881_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Gideon had only three hundred men, but God was with them, and that was enough. I wonder what feels too big for you right now, that God could help you with?",
+      "kidSafetyNotes": "NEW anchor -- second story in the new Judges category (gives it life). Phase 2 'Beloved': the smashing jars + blazing torches + trumpets are the highly-visual replay hook. WATCH-ITEM (Adam): soft on battle -- no fighting, no gore; the enemy is simply frightened/confused and 'ran away'. Frame = God makes a small, scared group brave; the victory is God's, not muscle's ('not because they were strong, but because God was with them'). Gideon himself is 'not brave at all' to start (relatable). Water-test simplified to 'God made the army smaller and smaller.' Soft close ('you'/'beside you'). VOICE_BRADFORD (strong, warm male; action/courage register).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_great_catch_short",
+      "storyNumber": 1883,
+      "title": "Nets Full of Fish",
+      "textFilePath": "kids/1883/story_1883_short.txt",
+      "scriptureAnchorId": "luke_5",
+      "bibleStoryKey": "luke_5",
+      "bibleSourceRef": "Luke 5:1-11",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "amazed",
+        "reassured",
+        "hope",
+        "joyful"
+      ],
+      "themeTags": [
+        "trust Jesus' word",
+        "from empty to overflowing",
+        "Jesus provides",
+        "following Jesus"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 295,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "audioFilePath": "kids/1883/audio_1883_short.mp3",
+      "reflectionAudioPath": "kids/1883/audio_1883_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Peter was tired and his nets were empty, but he trusted Jesus and tried once more. I wonder what it would feel like to trust Jesus, even when you feel tired or unsure?",
+      "kidSafetyNotes": "NEW anchor (Jesus' Miracles). Phase 2 'Beloved': the empty-nets -> overflowing-boats arc is the big visual payoff (nets tearing, boats nearly sinking). Room = trust Jesus' word even when you are tired / from empty to overflowing. Peter's honest tiredness + doubt ('we worked all night and caught nothing') makes the trust real and relatable ('but if you say so'). Distinct from 1804 Jesus Walks on the Water (no walking/sinking here). Soft close ('overflowing'). VOICE_NOAH_PATIENT (patient, steady -- fits the all-night fisherman).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_great_catch_full",
+      "storyNumber": 1883,
+      "title": "Nets Full of Fish",
+      "textFilePath": "kids/1883/story_1883_full.txt",
+      "scriptureAnchorId": "luke_5",
+      "bibleStoryKey": "luke_5",
+      "bibleSourceRef": "Luke 5:1-11",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "amazed",
+        "reassured",
+        "hope",
+        "joyful"
+      ],
+      "themeTags": [
+        "trust Jesus' word",
+        "from empty to overflowing",
+        "Jesus provides",
+        "following Jesus"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 517,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "audioFilePath": "kids/1883/audio_1883_full.mp3",
+      "reflectionAudioPath": "kids/1883/audio_1883_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Peter was tired and his nets were empty, but he trusted Jesus and tried once more. I wonder what it would feel like to trust Jesus, even when you feel tired or unsure?",
+      "kidSafetyNotes": "NEW anchor (Jesus' Miracles). Phase 2 'Beloved': the empty-nets -> overflowing-boats arc is the big visual payoff (nets tearing, boats nearly sinking). Room = trust Jesus' word even when you are tired / from empty to overflowing. Peter's honest tiredness + doubt ('we worked all night and caught nothing') makes the trust real and relatable ('but if you say so'). Distinct from 1804 Jesus Walks on the Water (no walking/sinking here). Soft close ('overflowing'). VOICE_NOAH_PATIENT (patient, steady -- fits the all-night fisherman).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_tower_of_babel_short",
+      "storyNumber": 1884,
+      "title": "The Tall, Tall Tower",
+      "textFilePath": "kids/1884/story_1884_short.txt",
+      "scriptureAnchorId": "genesis_11",
+      "bibleStoryKey": "genesis_11",
+      "bibleSourceRef": "Genesis 11:1-9",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "amazed",
+        "curious",
+        "hope",
+        "loved"
+      ],
+      "themeTags": [
+        "we need God and each other",
+        "many languages",
+        "filling the world",
+        "God loves everyone"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 300,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "audioFilePath": "kids/1884/audio_1884_short.mp3",
+      "reflectionAudioPath": "kids/1884/audio_1884_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The people built a tall tower, but they forgot they needed God and each other. I wonder who helps you, when something is too big to do all by yourself?",
+      "kidSafetyNotes": "NEW anchor (filed under Creation -- primeval Genesis 1-11 bucket). Phase 2 'Beloved' swap-in (replaced Manna per Adam: replayability > lesson density). The strange-wonderful IMAGE is the hook: a tower into the clouds + everyone suddenly speaking different languages. Pride theme SOFTENED per Adam to 'they forgot they needed God, and they forgot they needed each other' -- NO punishment emphasis. The language-change is framed as surprising (a 'wonderful, mixed-up jumble of voices'), the scattering as HOPEFUL (families spreading to fill the world), and the ending is SAFE ('God still loved them -- every family, in every land, speaking every language'). Explains why the world has many languages -- satisfying origin-story for kids. Soft close ('tower'/'clouds'). VOICE_SARAH_STORYTELLER (warm storyteller; 'let me tell you a strange tale' wonder).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_tower_of_babel_full",
+      "storyNumber": 1884,
+      "title": "The Tall, Tall Tower",
+      "textFilePath": "kids/1884/story_1884_full.txt",
+      "scriptureAnchorId": "genesis_11",
+      "bibleStoryKey": "genesis_11",
+      "bibleSourceRef": "Genesis 11:1-9",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "amazed",
+        "curious",
+        "hope",
+        "loved"
+      ],
+      "themeTags": [
+        "we need God and each other",
+        "many languages",
+        "filling the world",
+        "God loves everyone"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 515,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "audioFilePath": "kids/1884/audio_1884_full.mp3",
+      "reflectionAudioPath": "kids/1884/audio_1884_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The people built a tall tower, but they forgot they needed God and each other. I wonder who helps you, when something is too big to do all by yourself?",
+      "kidSafetyNotes": "NEW anchor (filed under Creation -- primeval Genesis 1-11 bucket). Phase 2 'Beloved' swap-in (replaced Manna per Adam: replayability > lesson density). The strange-wonderful IMAGE is the hook: a tower into the clouds + everyone suddenly speaking different languages. Pride theme SOFTENED per Adam to 'they forgot they needed God, and they forgot they needed each other' -- NO punishment emphasis. The language-change is framed as surprising (a 'wonderful, mixed-up jumble of voices'), the scattering as HOPEFUL (families spreading to fill the world), and the ending is SAFE ('God still loved them -- every family, in every land, speaking every language'). Explains why the world has many languages -- satisfying origin-story for kids. Soft close ('tower'/'clouds'). VOICE_SARAH_STORYTELLER (warm storyteller; 'let me tell you a strange tale' wonder).",
+      "hardContentFlags": []
     }
   ]
 }

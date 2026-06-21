@@ -49551,6 +49551,180 @@
         "facing scary things"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_gideon_short",
+      "title": "Gideon's Three Hundred",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "amazed",
+        "reassured",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1881/audio_1881_short.mp3",
+      "textFilePath": "kids/1881/story_1881_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "storyLength": "short",
+      "reflectionQuestion": "Gideon had only three hundred men, but God was with them, and that was enough. I wonder what feels too big for you right now, that God could help you with?",
+      "bibleSourceRef": "Judges 7",
+      "bibleStoryKey": "judges_7",
+      "themeTags": [
+        "God makes the small mighty",
+        "courage from God",
+        "you are not alone",
+        "few with God beat many"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_gideon_full",
+      "title": "Gideon's Three Hundred",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "amazed",
+        "reassured",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1881/audio_1881_full.mp3",
+      "textFilePath": "kids/1881/story_1881_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "storyLength": "full",
+      "reflectionQuestion": "Gideon had only three hundred men, but God was with them, and that was enough. I wonder what feels too big for you right now, that God could help you with?",
+      "bibleSourceRef": "Judges 7",
+      "bibleStoryKey": "judges_7",
+      "themeTags": [
+        "God makes the small mighty",
+        "courage from God",
+        "you are not alone",
+        "few with God beat many"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_great_catch_short",
+      "title": "Nets Full of Fish",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "amazed",
+        "reassured",
+        "hope",
+        "joyful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1883/audio_1883_short.mp3",
+      "textFilePath": "kids/1883/story_1883_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "short",
+      "reflectionQuestion": "Peter was tired and his nets were empty, but he trusted Jesus and tried once more. I wonder what it would feel like to trust Jesus, even when you feel tired or unsure?",
+      "bibleSourceRef": "Luke 5:1-11",
+      "bibleStoryKey": "luke_5",
+      "themeTags": [
+        "trust Jesus' word",
+        "from empty to overflowing",
+        "Jesus provides",
+        "following Jesus"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_great_catch_full",
+      "title": "Nets Full of Fish",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "amazed",
+        "reassured",
+        "hope",
+        "joyful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1883/audio_1883_full.mp3",
+      "textFilePath": "kids/1883/story_1883_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "full",
+      "reflectionQuestion": "Peter was tired and his nets were empty, but he trusted Jesus and tried once more. I wonder what it would feel like to trust Jesus, even when you feel tired or unsure?",
+      "bibleSourceRef": "Luke 5:1-11",
+      "bibleStoryKey": "luke_5",
+      "themeTags": [
+        "trust Jesus' word",
+        "from empty to overflowing",
+        "Jesus provides",
+        "following Jesus"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_tower_of_babel_short",
+      "title": "The Tall, Tall Tower",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "amazed",
+        "curious",
+        "hope",
+        "loved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1884/audio_1884_short.mp3",
+      "textFilePath": "kids/1884/story_1884_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "storyLength": "short",
+      "reflectionQuestion": "The people built a tall tower, but they forgot they needed God and each other. I wonder who helps you, when something is too big to do all by yourself?",
+      "bibleSourceRef": "Genesis 11:1-9",
+      "bibleStoryKey": "genesis_11",
+      "themeTags": [
+        "we need God and each other",
+        "many languages",
+        "filling the world",
+        "God loves everyone"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_tower_of_babel_full",
+      "title": "The Tall, Tall Tower",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "amazed",
+        "curious",
+        "hope",
+        "loved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1884/audio_1884_full.mp3",
+      "textFilePath": "kids/1884/story_1884_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_SARAH_STORYTELLER",
+      "storyLength": "full",
+      "reflectionQuestion": "The people built a tall tower, but they forgot they needed God and each other. I wonder who helps you, when something is too big to do all by yourself?",
+      "bibleSourceRef": "Genesis 11:1-9",
+      "bibleStoryKey": "genesis_11",
+      "themeTags": [
+        "we need God and each other",
+        "many languages",
+        "filling the world",
+        "God loves everyone"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }

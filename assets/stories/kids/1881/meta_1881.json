@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1881,
+  "anchorId": "gideon",
+  "kidLane": "dedicated-4-7",
+  "title": "Gideon's Three Hundred",
+  "scriptureAnchorId": "judges_7",
+  "bibleSourceRef": "Judges 7",
+  "bibleStoryKey": "judges_7",
+  "translation": "WEB",
+  "mood": "brave_courage",
+  "emotionalTags": [
+    "brave",
+    "amazed",
+    "reassured",
+    "hope"
+  ],
+  "themeTags": [
+    "God makes the small mighty",
+    "courage from God",
+    "you are not alone",
+    "few with God beat many"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Gideon had only three hundred men, but God was with them, and that was enough. I wonder what feels too big for you right now, that God could help you with?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor -- second story in the new Judges category (gives it life). Phase 2 'Beloved': the smashing jars + blazing torches + trumpets are the highly-visual replay hook. WATCH-ITEM (Adam): soft on battle -- no fighting, no gore; the enemy is simply frightened/confused and 'ran away'. Frame = God makes a small, scared group brave; the victory is God's, not muscle's ('not because they were strong, but because God was with them'). Gideon himself is 'not brave at all' to start (relatable). Water-test simplified to 'God made the army smaller and smaller.' Soft close ('you'/'beside you'). VOICE_BRADFORD (strong, warm male; action/courage register).",
+  "files": {
+    "short": {
+      "storyText": "story_1881_short.txt",
+      "audio": "audio_1881_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1881_full.txt",
+      "audio": "audio_1881_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1881.txt",
+      "audio": "audio_1881_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}
