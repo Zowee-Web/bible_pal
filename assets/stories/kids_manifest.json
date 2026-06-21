@@ -5300,6 +5300,167 @@
       "reflectionQuestion": "Jesus was walking beside his friends even before they knew it was him. When might Jesus be close to you, even when you cannot see him?",
       "kidSafetyNotes": "NEW anchor (extra, emotional room = JESUS WALKS BESIDE US even when we don't realize it). Easter-adjacent, follows Empty Tomb. The friends start sad (grieving Jesus' death -- gentle, no detail); kept CONCRETE for the youngest (a stranger joins, opens the scriptures, hearts warm, then at supper breaks bread -> 'it's Jesus!' -> gone -> they run back full of joy). Lands on 'he was with them the whole time' (the not-alone spine, for the 6-7 end especially). longEligible=TRUE (upgraded 2026-06-20: the walk + conversation + burning hearts + recognition + run-back is a genuine journey-and-reveal arc). Will get short+full+long. 'God'/'Jesus' throughout, no Yahweh. VOICE_REVEREND_MICHAEL (pastoral -- the contemplative walk + gentle reveal).",
       "hardContentFlags": []
+    },
+    {
+      "id": "kid_come_to_me_short",
+      "storyNumber": 1866,
+      "title": "Come to Me and Rest",
+      "type": "comfort-ritual",
+      "textFilePath": "kids/1866/story_1866_short.txt",
+      "scriptureAnchorId": "matthew_11",
+      "bibleStoryKey": "matthew_11",
+      "bibleSourceRef": "Matthew 11:28-30",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed",
+        "sad",
+        "hope"
+      ],
+      "themeTags": [
+        "rest",
+        "comfort",
+        "Jesus invites us",
+        "Gods love"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 182,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARABELLA",
+      "audioFilePath": "kids/1866/audio_1866_short.mp3",
+      "reflectionAudioPath": "kids/1866/audio_1866_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus said you can bring him anything at all. What would you most like to tell him about today?",
+      "kidSafetyNotes": "NEW anchor (Comfort & Bedtime, comfort-ritual short-only). Adam's 'the one I'd fight hardest to include' -- pure medicine for the tired/sad/overwhelmed/scared child. mood=weary so it routes directly to that distress mood (Psalm 23's cousin). KEEP: 'Come to me, all you who are tired and carrying heavy things... and I will give you rest' + 'come just as you are' + 'you can bring him anything.' SKIP (per Adam): the 'yoke' imagery and any burden/obedience/discipleship explanation -- too abstract; this is comfort, not teaching. Closing is Adam's verbatim all-timer: 'Rest now, little one. Jesus is gentle and kind. You can bring him anything.' WEB-faithful but child-rendered (gentle frame + invitation), like the Beatitudes. VOICE_ARABELLA (the comfort-ritual voice -- Psalm 23, Beatitudes).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_dont_worry_short",
+      "storyNumber": 1867,
+      "title": "Don't Worry, Look at the Birds",
+      "textFilePath": "kids/1867/story_1867_short.txt",
+      "scriptureAnchorId": "matthew_6_25-34",
+      "bibleStoryKey": "matthew_6_25-34",
+      "bibleSourceRef": "Matthew 6:25-34",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "hope",
+        "faith"
+      ],
+      "themeTags": [
+        "do not worry",
+        "Gods care",
+        "trust",
+        "peace"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 257,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+      "audioFilePath": "kids/1867/audio_1867_short.mp3",
+      "reflectionAudioPath": "kids/1867/audio_1867_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus said you don't have to carry your worries all by yourself. What is a worry you could hand over, so you don't carry it alone?",
+      "kidSafetyNotes": "NEW anchor (Comfort & Bedtime). THE anxiety room -- mood=anxious routes a worried child straight here; likely one of the most-played stories. The IMAGES are the teaching (birds don't plant/store yet are fed; lilies dressed better than a king; 'how much more you'). CRITICAL (Adam): AVOID 'God will take care of you' -- kids hear it literally and it breaks on hard days. Instead: 'you don't have to carry your worries all by yourself' + 'God is with you, God sees you, God cares' (the god-with-not-cause doctrine, feedback_kid_god_with_not_cause). Worry framed as something you can HAND OVER, never something you're scolded for. short+full (the full deepens the bird/flower imagery; no long -- it's a teaching, not an arc). 'God'/'Jesus' throughout, no Yahweh. VOICE_NATASHA (warm strength -- reassuring without over-promising).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_dont_worry_full",
+      "storyNumber": 1867,
+      "title": "Don't Worry, Look at the Birds",
+      "textFilePath": "kids/1867/story_1867_full.txt",
+      "scriptureAnchorId": "matthew_6_25-34",
+      "bibleStoryKey": "matthew_6_25-34",
+      "bibleSourceRef": "Matthew 6:25-34",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "hope",
+        "faith"
+      ],
+      "themeTags": [
+        "do not worry",
+        "Gods care",
+        "trust",
+        "peace"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 496,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+      "audioFilePath": "kids/1867/audio_1867_full.mp3",
+      "reflectionAudioPath": "kids/1867/audio_1867_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus said you don't have to carry your worries all by yourself. What is a worry you could hand over, so you don't carry it alone?",
+      "kidSafetyNotes": "NEW anchor (Comfort & Bedtime). THE anxiety room -- mood=anxious routes a worried child straight here; likely one of the most-played stories. The IMAGES are the teaching (birds don't plant/store yet are fed; lilies dressed better than a king; 'how much more you'). CRITICAL (Adam): AVOID 'God will take care of you' -- kids hear it literally and it breaks on hard days. Instead: 'you don't have to carry your worries all by yourself' + 'God is with you, God sees you, God cares' (the god-with-not-cause doctrine, feedback_kid_god_with_not_cause). Worry framed as something you can HAND OVER, never something you're scolded for. short+full (the full deepens the bird/flower imagery; no long -- it's a teaching, not an arc). 'God'/'Jesus' throughout, no Yahweh. VOICE_NATASHA (warm strength -- reassuring without over-promising).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_foot_washing_short",
+      "storyNumber": 1868,
+      "title": "Jesus Washes Their Feet",
+      "textFilePath": "kids/1868/story_1868_short.txt",
+      "scriptureAnchorId": "john_13",
+      "bibleStoryKey": "john_13",
+      "bibleSourceRef": "John 13:1-17",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hope",
+        "faith",
+        "grateful"
+      ],
+      "themeTags": [
+        "love serves",
+        "humility",
+        "gentle strength",
+        "Jesus love"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 281,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1868/audio_1868_short.mp3",
+      "reflectionAudioPath": "kids/1868/audio_1868_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus, the greatest of all, knelt down to wash his friends' feet. What is a kind, helpful thing you could do for someone you love?",
+      "kidSafetyNotes": "NEW anchor (Easter, John 13). The emotional room = LOVE KNEELS -- the embodiment of Bible PAL's whole doctrine (being held, gentle strength, the big One stooping for the small). Its own story (the foot-washing is a grace-note beat in 1850 Last Supper long; this OWNS it -- managed overlap, coat-precedent). Peter's 'You should never wash my feet!' included. Per Adam: the lesson is NOT 'you should serve people' -- it's 'the GREATEST person in the room chose to kneel' (much more powerful). Cross kept OFFSTAGE -- this is not sadness-before-goodbye; it is 'love gets down low to help.' Peter's protest -> Jesus 'this is how much I love you.' short+full, NO long (one tender scene). 'God'/'Jesus' throughout, no Yahweh. VOICE_JOHN_BELOVED (John was at this table; tender, intimate Johannine register).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_foot_washing_full",
+      "storyNumber": 1868,
+      "title": "Jesus Washes Their Feet",
+      "textFilePath": "kids/1868/story_1868_full.txt",
+      "scriptureAnchorId": "john_13",
+      "bibleStoryKey": "john_13",
+      "bibleSourceRef": "John 13:1-17",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hope",
+        "faith",
+        "grateful"
+      ],
+      "themeTags": [
+        "love serves",
+        "humility",
+        "gentle strength",
+        "Jesus love"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 501,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1868/audio_1868_full.mp3",
+      "reflectionAudioPath": "kids/1868/audio_1868_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus, the greatest of all, knelt down to wash his friends' feet. What is a kind, helpful thing you could do for someone you love?",
+      "kidSafetyNotes": "NEW anchor (Easter, John 13). The emotional room = LOVE KNEELS -- the embodiment of Bible PAL's whole doctrine (being held, gentle strength, the big One stooping for the small). Its own story (the foot-washing is a grace-note beat in 1850 Last Supper long; this OWNS it -- managed overlap, coat-precedent). Peter's 'You should never wash my feet!' included. Per Adam: the lesson is NOT 'you should serve people' -- it's 'the GREATEST person in the room chose to kneel' (much more powerful). Cross kept OFFSTAGE -- this is not sadness-before-goodbye; it is 'love gets down low to help.' Peter's protest -> Jesus 'this is how much I love you.' short+full, NO long (one tender scene). 'God'/'Jesus' throughout, no Yahweh. VOICE_JOHN_BELOVED (John was at this table; tender, intimate Johannine register).",
+      "hardContentFlags": []
     }
   ]
 }

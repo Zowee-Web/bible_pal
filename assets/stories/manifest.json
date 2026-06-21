@@ -48832,6 +48832,146 @@
         "Gods presence"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_come_to_me_short",
+      "title": "Come to Me and Rest",
+      "mood": "weary",
+      "emotionalTags": [
+        "overwhelmed",
+        "sad",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1866/audio_1866_short.mp3",
+      "textFilePath": "kids/1866/story_1866_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARABELLA",
+      "storyLength": "short",
+      "reflectionQuestion": "Jesus said you can bring him anything at all. What would you most like to tell him about today?",
+      "bibleSourceRef": "Matthew 11:28-30",
+      "bibleStoryKey": "matthew_11",
+      "themeTags": [
+        "rest",
+        "comfort",
+        "Jesus invites us",
+        "Gods love"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_dont_worry_short",
+      "title": "Don't Worry, Look at the Birds",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "hope",
+        "faith"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1867/audio_1867_short.mp3",
+      "textFilePath": "kids/1867/story_1867_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+      "storyLength": "short",
+      "reflectionQuestion": "Jesus said you don't have to carry your worries all by yourself. What is a worry you could hand over, so you don't carry it alone?",
+      "bibleSourceRef": "Matthew 6:25-34",
+      "bibleStoryKey": "matthew_6_25-34",
+      "themeTags": [
+        "do not worry",
+        "Gods care",
+        "trust",
+        "peace"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_dont_worry_full",
+      "title": "Don't Worry, Look at the Birds",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "hope",
+        "faith"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1867/audio_1867_full.mp3",
+      "textFilePath": "kids/1867/story_1867_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+      "storyLength": "full",
+      "reflectionQuestion": "Jesus said you don't have to carry your worries all by yourself. What is a worry you could hand over, so you don't carry it alone?",
+      "bibleSourceRef": "Matthew 6:25-34",
+      "bibleStoryKey": "matthew_6_25-34",
+      "themeTags": [
+        "do not worry",
+        "Gods care",
+        "trust",
+        "peace"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_foot_washing_short",
+      "title": "Jesus Washes Their Feet",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hope",
+        "faith",
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1868/audio_1868_short.mp3",
+      "textFilePath": "kids/1868/story_1868_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "short",
+      "reflectionQuestion": "Jesus, the greatest of all, knelt down to wash his friends' feet. What is a kind, helpful thing you could do for someone you love?",
+      "bibleSourceRef": "John 13:1-17",
+      "bibleStoryKey": "john_13",
+      "themeTags": [
+        "love serves",
+        "humility",
+        "gentle strength",
+        "Jesus love"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_foot_washing_full",
+      "title": "Jesus Washes Their Feet",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hope",
+        "faith",
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1868/audio_1868_full.mp3",
+      "textFilePath": "kids/1868/story_1868_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "full",
+      "reflectionQuestion": "Jesus, the greatest of all, knelt down to wash his friends' feet. What is a kind, helpful thing you could do for someone you love?",
+      "bibleSourceRef": "John 13:1-17",
+      "bibleStoryKey": "john_13",
+      "themeTags": [
+        "love serves",
+        "humility",
+        "gentle strength",
+        "Jesus love"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }

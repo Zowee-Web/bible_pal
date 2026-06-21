@@ -1146,6 +1146,22 @@
           "manifestAnchorIds": [
             "luke_24"
           ]
+        },
+        {
+          "anchorId": "foot_washing",
+          "displayName": "Jesus Washes Their Feet",
+          "scriptureRef": "John 13:1-17",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "longEligible": false,
+          "launch": false,
+          "productionId": 1868,
+          "manifestAnchorIds": [
+            "john_13"
+          ]
         }
       ]
     },
@@ -1321,6 +1337,38 @@
           "productionId": 1835,
           "manifestAnchorIds": [
             "psalm_139"
+          ]
+        },
+        {
+          "anchorId": "come_to_me",
+          "displayName": "Come to Me and Rest",
+          "scriptureRef": "Matthew 11:28-30",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "longEligible": false,
+          "launch": false,
+          "productionId": 1866,
+          "manifestAnchorIds": [
+            "matthew_11"
+          ],
+          "type": "comfort-ritual"
+        },
+        {
+          "anchorId": "dont_worry",
+          "displayName": "Don't Worry, Look at the Birds",
+          "scriptureRef": "Matthew 6:25-34",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "longEligible": false,
+          "launch": false,
+          "productionId": 1867,
+          "manifestAnchorIds": [
+            "matthew_6_25-34"
           ]
         }
       ]
