@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1872,
+  "anchorId": "widows_offering",
+  "kidLane": "dedicated-4-7",
+  "title": "The Two Tiny Coins",
+  "scriptureAnchorId": "mark_12",
+  "bibleSourceRef": "Mark 12:41-44",
+  "bibleStoryKey": "mark_12",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "loved",
+    "valued",
+    "grateful",
+    "hope"
+  ],
+  "themeTags": [
+    "small gifts matter",
+    "God sees the heart",
+    "giving with love",
+    "you are enough"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_MARTHA_CARING",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "The woman's two coins were tiny, but Jesus said she gave the most of all. I wonder what small thing you could give to someone, with all your heart?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (filed under Jesus' Parables as the de-facto Jesus-teaching bucket; it is an event, not a parable). Adam's tweak baked in: sound-forward visual -- big coins go 'Clink! Clink! Clink!', the widow's two go 'Ting. Ting.', then Jesus smiled (kids remember sounds). Do NOT shame the rich -- LIFT the widow; room = small gift given with whole heart is the biggest of all / you are enough. Widowhood named gently ('her husband had died'). Soft close ('precious to him'). VOICE_MARTHA_CARING (warm, down-to-earth, female -- fits the humble widow).",
+  "files": {
+    "short": {
+      "storyText": "story_1872_short.txt",
+      "audio": "audio_1872_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1872_full.txt",
+      "audio": "audio_1872_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1872.txt",
+      "audio": "audio_1872_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

@@ -404,6 +404,22 @@
             "short"
           ],
           "launch": false
+        },
+        {
+          "anchorId": "hannah_prayer",
+          "displayName": "Hannah's Prayer",
+          "scriptureRef": "1 Samuel 1",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "1_samuel_1"
+          ],
+          "launch": true,
+          "productionId": 1875,
+          "longEligible": false
         }
       ]
     },
@@ -672,9 +688,15 @@
           "scriptureRef": "Esther 2",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": true
+          "launch": true,
+          "manifestAnchorIds": [
+            "esther_2"
+          ],
+          "productionId": 1874,
+          "longEligible": false
         },
         {
           "anchorId": "esther_brave",
@@ -934,6 +956,22 @@
           "manifestAnchorIds": [
             "luke_10_38-42"
           ]
+        },
+        {
+          "anchorId": "lazarus_raised",
+          "displayName": "Jesus Raises Lazarus",
+          "scriptureRef": "John 11:1-44",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "john_11"
+          ],
+          "launch": true,
+          "productionId": 1870,
+          "longEligible": false
         }
       ]
     },
@@ -1032,9 +1070,15 @@
           "scriptureRef": "Luke 15:8-10",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": false
+          "launch": true,
+          "manifestAnchorIds": [
+            "luke_15_8-10"
+          ],
+          "productionId": 1873,
+          "longEligible": false
         },
         {
           "anchorId": "hidden_treasure",
@@ -1045,6 +1089,22 @@
             "short"
           ],
           "launch": false
+        },
+        {
+          "anchorId": "widows_offering",
+          "displayName": "The Widow's Two Coins",
+          "scriptureRef": "Mark 12:41-44",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "mark_12"
+          ],
+          "launch": true,
+          "productionId": 1872,
+          "longEligible": false
         }
       ]
     },
@@ -1162,6 +1222,22 @@
           "manifestAnchorIds": [
             "john_13"
           ]
+        },
+        {
+          "anchorId": "thomas_believes",
+          "displayName": "Doubting Thomas",
+          "scriptureRef": "John 20:24-29",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "john_20"
+          ],
+          "launch": true,
+          "productionId": 1871,
+          "longEligible": false
         }
       ]
     },

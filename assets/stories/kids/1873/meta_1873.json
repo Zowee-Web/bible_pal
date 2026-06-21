@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1873,
+  "anchorId": "lost_coin",
+  "kidLane": "dedicated-4-7",
+  "title": "The Lost Coin",
+  "scriptureAnchorId": "luke_15_8-10",
+  "bibleSourceRef": "Luke 15:8-10",
+  "bibleStoryKey": "luke_15_8-10",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "joyful",
+    "loved",
+    "valued",
+    "delighted"
+  ],
+  "themeTags": [
+    "God looks for lost things",
+    "you are precious",
+    "never gives up",
+    "joy of being found"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "The woman searched and swept and would not give up until she found her little coin. I wonder how it feels to know that God looks for you just like that?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "Claims OPEN registry anchor lost_coin (Jesus' Parables; was short-only/launch:false -> now short+full, claimed). Adam's 'lost-toy energy' tweak baked in: under the table, in the corners, swept and swept, would not give up -> 'I found it!' pure joy -> celebration. Room = God looks for lost things / you are precious / never gives up (relatable: lost stuffed animals, blankets, toys). Counting beat (one..ten) is participatory for 4-7. Soft close ('joy of all'). VOICE_MIRIAM_JOYFUL (lively, celebratory -- carries the finding-joy).",
+  "files": {
+    "short": {
+      "storyText": "story_1873_short.txt",
+      "audio": "audio_1873_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1873_full.txt",
+      "audio": "audio_1873_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1873.txt",
+      "audio": "audio_1873_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

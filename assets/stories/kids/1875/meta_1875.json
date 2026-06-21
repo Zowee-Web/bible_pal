@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1875,
+  "anchorId": "hannah_prayer",
+  "kidLane": "dedicated-4-7",
+  "title": "Hannah's Prayer",
+  "scriptureAnchorId": "1_samuel_1",
+  "bibleSourceRef": "1 Samuel 1",
+  "bibleStoryKey": "1_samuel_1",
+  "translation": "WEB",
+  "mood": "hurting",
+  "emotionalTags": [
+    "sad",
+    "hope",
+    "comforted",
+    "grateful"
+  ],
+  "themeTags": [
+    "honest prayer",
+    "it is okay to cry to God",
+    "God remembers",
+    "prayer brings peace"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Hannah was so sad that she cried while she prayed, and God heard every single word. I wonder what you would most like to tell God about today?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Samuel category; prequel to 1820 God Calls Samuel). Adam added to Batch C overruling earlier Sarah-overlap hold: DISTINCT from 1852 Sarah (which is old-couple/waiting/laughter). Hannah's room = honest prayer with tears: 'sometimes you tell God something so important it makes you cry.' Arc: crying quietly -> praying honestly -> peace -> thanks -> Samuel! Childlessness/longing kept gentle and age-safe ('longed for a baby... to hold and rock and love'). Routes a sad child (mood hurting); pairs with 1870 as the batch's two tender pieces. Soft close ('remember you'). VOICE_RUTH_COMFORT (the lane's grief/comfort female voice).",
+  "files": {
+    "short": {
+      "storyText": "story_1875_short.txt",
+      "audio": "audio_1875_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1875_full.txt",
+      "audio": "audio_1875_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1875.txt",
+      "audio": "audio_1875_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

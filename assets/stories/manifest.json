@@ -49000,6 +49000,354 @@
         "Gods love"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_lazarus_short",
+      "title": "Jesus Cried Too",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "hope",
+        "comforted",
+        "loved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1870/audio_1870_short.mp3",
+      "textFilePath": "kids/1870/story_1870_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "short",
+      "reflectionQuestion": "Jesus loved his friends so much that he cried right along with them. I wonder what it feels like to know God is that close to you, even when you are sad?",
+      "bibleSourceRef": "John 11:1-44",
+      "bibleStoryKey": "john_11",
+      "themeTags": [
+        "Jesus wept",
+        "grief and tears",
+        "God is close when we hurt",
+        "grief turns to hope"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_lazarus_full",
+      "title": "Jesus Cried Too",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "hope",
+        "comforted",
+        "loved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1870/audio_1870_full.mp3",
+      "textFilePath": "kids/1870/story_1870_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "full",
+      "reflectionQuestion": "Jesus loved his friends so much that he cried right along with them. I wonder what it feels like to know God is that close to you, even when you are sad?",
+      "bibleSourceRef": "John 11:1-44",
+      "bibleStoryKey": "john_11",
+      "themeTags": [
+        "Jesus wept",
+        "grief and tears",
+        "God is close when we hurt",
+        "grief turns to hope"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_thomas_short",
+      "title": "Thomas Wanted to See",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "curious",
+        "reassured",
+        "loved",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1871/audio_1871_short.mp3",
+      "textFilePath": "kids/1871/story_1871_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "storyLength": "short",
+      "reflectionQuestion": "Jesus was not upset that Thomas had questions -- he simply said, \"Come closer.\" I wonder what question you would most like to bring to God?",
+      "bibleSourceRef": "John 20:24-29",
+      "bibleStoryKey": "john_20",
+      "themeTags": [
+        "questions are welcome",
+        "Jesus is not angry at doubt",
+        "come closer",
+        "resurrection"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_thomas_full",
+      "title": "Thomas Wanted to See",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "curious",
+        "reassured",
+        "loved",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1871/audio_1871_full.mp3",
+      "textFilePath": "kids/1871/story_1871_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "storyLength": "full",
+      "reflectionQuestion": "Jesus was not upset that Thomas had questions -- he simply said, \"Come closer.\" I wonder what question you would most like to bring to God?",
+      "bibleSourceRef": "John 20:24-29",
+      "bibleStoryKey": "john_20",
+      "themeTags": [
+        "questions are welcome",
+        "Jesus is not angry at doubt",
+        "come closer",
+        "resurrection"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_widows_coins_short",
+      "title": "The Two Tiny Coins",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "loved",
+        "valued",
+        "grateful",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1872/audio_1872_short.mp3",
+      "textFilePath": "kids/1872/story_1872_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "storyLength": "short",
+      "reflectionQuestion": "The woman's two coins were tiny, but Jesus said she gave the most of all. I wonder what small thing you could give to someone, with all your heart?",
+      "bibleSourceRef": "Mark 12:41-44",
+      "bibleStoryKey": "mark_12",
+      "themeTags": [
+        "small gifts matter",
+        "God sees the heart",
+        "giving with love",
+        "you are enough"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_widows_coins_full",
+      "title": "The Two Tiny Coins",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "loved",
+        "valued",
+        "grateful",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1872/audio_1872_full.mp3",
+      "textFilePath": "kids/1872/story_1872_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "storyLength": "full",
+      "reflectionQuestion": "The woman's two coins were tiny, but Jesus said she gave the most of all. I wonder what small thing you could give to someone, with all your heart?",
+      "bibleSourceRef": "Mark 12:41-44",
+      "bibleStoryKey": "mark_12",
+      "themeTags": [
+        "small gifts matter",
+        "God sees the heart",
+        "giving with love",
+        "you are enough"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_lost_coin_short",
+      "title": "The Lost Coin",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joyful",
+        "loved",
+        "valued",
+        "delighted"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1873/audio_1873_short.mp3",
+      "textFilePath": "kids/1873/story_1873_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "storyLength": "short",
+      "reflectionQuestion": "The woman searched and swept and would not give up until she found her little coin. I wonder how it feels to know that God looks for you just like that?",
+      "bibleSourceRef": "Luke 15:8-10",
+      "bibleStoryKey": "luke_15_8-10",
+      "themeTags": [
+        "God looks for lost things",
+        "you are precious",
+        "never gives up",
+        "joy of being found"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_lost_coin_full",
+      "title": "The Lost Coin",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joyful",
+        "loved",
+        "valued",
+        "delighted"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1873/audio_1873_full.mp3",
+      "textFilePath": "kids/1873/story_1873_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "storyLength": "full",
+      "reflectionQuestion": "The woman searched and swept and would not give up until she found her little coin. I wonder how it feels to know that God looks for you just like that?",
+      "bibleSourceRef": "Luke 15:8-10",
+      "bibleStoryKey": "luke_15_8-10",
+      "themeTags": [
+        "God looks for lost things",
+        "you are precious",
+        "never gives up",
+        "joy of being found"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_esther_queen_short",
+      "title": "Esther Becomes Queen",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joyful",
+        "delighted",
+        "hope",
+        "valued"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1874/audio_1874_short.mp3",
+      "textFilePath": "kids/1874/story_1874_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JANE_PROFESSIONAL",
+      "storyLength": "short",
+      "reflectionQuestion": "Esther was just an ordinary girl, and God had a special plan for her all along. I wonder what wonderful plans God might have for someone like you?",
+      "bibleSourceRef": "Esther 2",
+      "bibleStoryKey": "esther_2",
+      "themeTags": [
+        "ordinary girl lifted up",
+        "God has a plan",
+        "kind heart",
+        "becoming queen"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_esther_queen_full",
+      "title": "Esther Becomes Queen",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joyful",
+        "delighted",
+        "hope",
+        "valued"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1874/audio_1874_full.mp3",
+      "textFilePath": "kids/1874/story_1874_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JANE_PROFESSIONAL",
+      "storyLength": "full",
+      "reflectionQuestion": "Esther was just an ordinary girl, and God had a special plan for her all along. I wonder what wonderful plans God might have for someone like you?",
+      "bibleSourceRef": "Esther 2",
+      "bibleStoryKey": "esther_2",
+      "themeTags": [
+        "ordinary girl lifted up",
+        "God has a plan",
+        "kind heart",
+        "becoming queen"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_hannah_short",
+      "title": "Hannah's Prayer",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "hope",
+        "comforted",
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1875/audio_1875_short.mp3",
+      "textFilePath": "kids/1875/story_1875_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "short",
+      "reflectionQuestion": "Hannah was so sad that she cried while she prayed, and God heard every single word. I wonder what you would most like to tell God about today?",
+      "bibleSourceRef": "1 Samuel 1",
+      "bibleStoryKey": "1_samuel_1",
+      "themeTags": [
+        "honest prayer",
+        "it is okay to cry to God",
+        "God remembers",
+        "prayer brings peace"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_hannah_full",
+      "title": "Hannah's Prayer",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "hope",
+        "comforted",
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1875/audio_1875_full.mp3",
+      "textFilePath": "kids/1875/story_1875_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "full",
+      "reflectionQuestion": "Hannah was so sad that she cried while she prayed, and God heard every single word. I wonder what you would most like to tell God about today?",
+      "bibleSourceRef": "1 Samuel 1",
+      "bibleStoryKey": "1_samuel_1",
+      "themeTags": [
+        "honest prayer",
+        "it is okay to cry to God",
+        "God remembers",
+        "prayer brings peace"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }
