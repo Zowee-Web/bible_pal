@@ -49348,6 +49348,209 @@
         "prayer brings peace"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_transfiguration_short",
+      "title": "Jesus Shines Like the Sun",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "awe",
+        "joyful",
+        "amazed"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1876/audio_1876_short.mp3",
+      "textFilePath": "kids/1876/story_1876_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "storyLength": "short",
+      "reflectionQuestion": "The friends saw Jesus shining bright as the sun, and they were filled with wonder. I wonder what fills your heart with wonder when you think about God?",
+      "bibleSourceRef": "Matthew 17:1-9",
+      "bibleStoryKey": "matthew_17",
+      "themeTags": [
+        "Jesus shines",
+        "awe and wonder",
+        "this is my Son",
+        "glimpse of glory"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_transfiguration_full",
+      "title": "Jesus Shines Like the Sun",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "awe",
+        "joyful",
+        "amazed"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1876/audio_1876_full.mp3",
+      "textFilePath": "kids/1876/story_1876_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "storyLength": "full",
+      "reflectionQuestion": "The friends saw Jesus shining bright as the sun, and they were filled with wonder. I wonder what fills your heart with wonder when you think about God?",
+      "bibleSourceRef": "Matthew 17:1-9",
+      "bibleStoryKey": "matthew_17",
+      "themeTags": [
+        "Jesus shines",
+        "awe and wonder",
+        "this is my Son",
+        "glimpse of glory"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_coin_in_fish_short",
+      "title": "The Coin in the Fish",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "delighted",
+        "amazed",
+        "reassured",
+        "joyful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1877/audio_1877_short.mp3",
+      "textFilePath": "kids/1877/story_1877_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "short",
+      "reflectionQuestion": "God gave Peter what he needed in such a funny way. I wonder what little worry you could hand to God today?",
+      "bibleSourceRef": "Matthew 17:24-27",
+      "bibleStoryKey": "matthew_17_24-27",
+      "themeTags": [
+        "God provides",
+        "funny miracle",
+        "do not worry",
+        "God knows what you need"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_balaam_donkey_short",
+      "title": "The Donkey Who Talked",
+      "mood": "joyful",
+      "emotionalTags": [
+        "delighted",
+        "amazed",
+        "curious",
+        "joyful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1878/audio_1878_short.mp3",
+      "textFilePath": "kids/1878/story_1878_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "storyLength": "short",
+      "reflectionQuestion": "Balaam could not see the angel, but his faithful donkey could. I wonder who God might use to help you, in a way that would surprise you?",
+      "bibleSourceRef": "Numbers 22:21-35",
+      "bibleStoryKey": "numbers_22",
+      "themeTags": [
+        "God uses anyone",
+        "talking donkey",
+        "pay attention",
+        "God protects"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_balaam_donkey_full",
+      "title": "The Donkey Who Talked",
+      "mood": "joyful",
+      "emotionalTags": [
+        "delighted",
+        "amazed",
+        "curious",
+        "joyful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1878/audio_1878_full.mp3",
+      "textFilePath": "kids/1878/story_1878_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "storyLength": "full",
+      "reflectionQuestion": "Balaam could not see the angel, but his faithful donkey could. I wonder who God might use to help you, in a way that would surprise you?",
+      "bibleSourceRef": "Numbers 22:21-35",
+      "bibleStoryKey": "numbers_22",
+      "themeTags": [
+        "God uses anyone",
+        "talking donkey",
+        "pay attention",
+        "God protects"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_samson_lion_short",
+      "title": "Samson and the Lion",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "strong",
+        "reassured",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1879/audio_1879_short.mp3",
+      "textFilePath": "kids/1879/story_1879_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "short",
+      "reflectionQuestion": "God filled Samson with courage the moment the lion leaped out. I wonder what feels a little scary to you, that God could help you face?",
+      "bibleSourceRef": "Judges 14:5-6",
+      "bibleStoryKey": "judges_14",
+      "themeTags": [
+        "God gives courage",
+        "strength is God's gift",
+        "you are not alone",
+        "facing scary things"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_samson_lion_full",
+      "title": "Samson and the Lion",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "strong",
+        "reassured",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1879/audio_1879_full.mp3",
+      "textFilePath": "kids/1879/story_1879_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "full",
+      "reflectionQuestion": "God filled Samson with courage the moment the lion leaped out. I wonder what feels a little scary to you, that God could help you face?",
+      "bibleSourceRef": "Judges 14:5-6",
+      "bibleStoryKey": "judges_14",
+      "themeTags": [
+        "God gives courage",
+        "strength is God's gift",
+        "you are not alone",
+        "facing scary things"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }

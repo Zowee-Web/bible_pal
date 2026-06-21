@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1879,
+  "anchorId": "samson_lion",
+  "kidLane": "dedicated-4-7",
+  "title": "Samson and the Lion",
+  "scriptureAnchorId": "judges_14",
+  "bibleSourceRef": "Judges 14:5-6",
+  "bibleStoryKey": "judges_14",
+  "translation": "WEB",
+  "mood": "brave_courage",
+  "emotionalTags": [
+    "brave",
+    "strong",
+    "reassured",
+    "hope"
+  ],
+  "themeTags": [
+    "God gives courage",
+    "strength is God's gift",
+    "you are not alone",
+    "facing scary things"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "God filled Samson with courage the moment the lion leaped out. I wonder what feels a little scary to you, that God could help you face?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (new 'Judges' category -- room for future Gideon/Deborah). Batch D 'courage / action' piece. SOFTENED per Adam: just the lion encounter (Judges 14:5-6), NOT Delilah, NOT the wider tragedy. Soft on violence -- the lion 'could not hurt him', Samson 'was kept completely safe'; no killing/tearing dwelt on (the gore is omitted). CRUCIAL framing: strength is GOD'S GIFT, not Samson's muscles ('It had not come from his big strong arms. It had come from God.') -- avoids a self-reliance/strongman message. Room = God gives courage in scary moments / you are not alone / you don't have to be brave all by yourself. Ends safe. Soft close ('difference'/'brave'). VOICE_DAVID_SHEPHERD (bright, strong, good-voice; courage register).",
+  "files": {
+    "short": {
+      "storyText": "story_1879_short.txt",
+      "audio": "audio_1879_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1879_full.txt",
+      "audio": "audio_1879_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1879.txt",
+      "audio": "audio_1879_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

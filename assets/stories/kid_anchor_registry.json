@@ -324,6 +324,22 @@
             "short"
           ],
           "launch": false
+        },
+        {
+          "anchorId": "balaam_donkey",
+          "displayName": "Balaam's Donkey",
+          "scriptureRef": "Numbers 22:21-35",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "numbers_22"
+          ],
+          "launch": true,
+          "productionId": 1878,
+          "longEligible": false
         }
       ]
     },
@@ -354,6 +370,27 @@
           "manifestAnchorIds": [
             "joshua_6"
           ]
+        }
+      ]
+    },
+    {
+      "name": "Judges",
+      "anchors": [
+        {
+          "anchorId": "samson_lion",
+          "displayName": "Samson and the Lion",
+          "scriptureRef": "Judges 14:5-6",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "judges_14"
+          ],
+          "launch": true,
+          "productionId": 1879,
+          "longEligible": false
         }
       ]
     },
@@ -971,6 +1008,37 @@
           ],
           "launch": true,
           "productionId": 1870,
+          "longEligible": false
+        },
+        {
+          "anchorId": "transfiguration",
+          "displayName": "Jesus Shines Like the Sun",
+          "scriptureRef": "Matthew 17:1-9",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "matthew_17"
+          ],
+          "launch": true,
+          "productionId": 1876,
+          "longEligible": false
+        },
+        {
+          "anchorId": "coin_in_fish",
+          "displayName": "The Coin in the Fish",
+          "scriptureRef": "Matthew 17:24-27",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "manifestAnchorIds": [
+            "matthew_17_24-27"
+          ],
+          "launch": true,
+          "productionId": 1877,
           "longEligible": false
         }
       ]

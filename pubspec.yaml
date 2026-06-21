@@ -707,6 +707,10 @@ flutter:
     - assets/stories/kids/1873/
     - assets/stories/kids/1874/
     - assets/stories/kids/1875/
+    - assets/stories/kids/1876/
+    - assets/stories/kids/1877/
+    - assets/stories/kids/1878/
+    - assets/stories/kids/1879/
     - assets/audio/
     - assets/audio/ambient/
     - assets/safety/kid_safety_blocklist.txt

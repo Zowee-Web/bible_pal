@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1877,
+  "anchorId": "coin_in_fish",
+  "kidLane": "dedicated-4-7",
+  "title": "The Coin in the Fish",
+  "scriptureAnchorId": "matthew_17_24-27",
+  "bibleSourceRef": "Matthew 17:24-27",
+  "bibleStoryKey": "matthew_17_24-27",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "delighted",
+    "amazed",
+    "reassured",
+    "joyful"
+  ],
+  "themeTags": [
+    "God provides",
+    "funny miracle",
+    "do not worry",
+    "God knows what you need"
+  ],
+  "lengths": [
+    "short"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "God gave Peter what he needed in such a funny way. I wonder what little worry you could hand to God today?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Jesus' Miracles). Batch D 'weird-funny / replayability' piece -- SHORT-ONLY by design (Adam: the charm is the punchy brevity, 'Done.'). The delightfully strange detail (a coin inside a fish's mouth) IS the hook -- kids remember weird details forever. Room = God provides / God takes care of the little worries too, sometimes in ways that make you laugh. Kept light and quick; Peter trusts, obeys, laughs. Soft close ('laugh'). VOICE_BARNABAS_ENCOURAGER (warm, light, twinkly).",
+  "files": {
+    "short": {
+      "storyText": "story_1877_short.txt",
+      "audio": "audio_1877_short.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1877.txt",
+      "audio": "audio_1877_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

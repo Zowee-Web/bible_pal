@@ -5894,6 +5894,237 @@
       "reflectionQuestion": "Hannah was so sad that she cried while she prayed, and God heard every single word. I wonder what you would most like to tell God about today?",
       "kidSafetyNotes": "NEW anchor (Samuel category; prequel to 1820 God Calls Samuel). Adam added to Batch C overruling earlier Sarah-overlap hold: DISTINCT from 1852 Sarah (which is old-couple/waiting/laughter). Hannah's room = honest prayer with tears: 'sometimes you tell God something so important it makes you cry.' Arc: crying quietly -> praying honestly -> peace -> thanks -> Samuel! Childlessness/longing kept gentle and age-safe ('longed for a baby... to hold and rock and love'). Routes a sad child (mood hurting); pairs with 1870 as the batch's two tender pieces. Soft close ('remember you'). VOICE_RUTH_COMFORT (the lane's grief/comfort female voice).",
       "hardContentFlags": []
+    },
+    {
+      "id": "kid_transfiguration_short",
+      "storyNumber": 1876,
+      "title": "Jesus Shines Like the Sun",
+      "textFilePath": "kids/1876/story_1876_short.txt",
+      "scriptureAnchorId": "matthew_17",
+      "bibleStoryKey": "matthew_17",
+      "bibleSourceRef": "Matthew 17:1-9",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "awe",
+        "joyful",
+        "amazed"
+      ],
+      "themeTags": [
+        "Jesus shines",
+        "awe and wonder",
+        "this is my Son",
+        "glimpse of glory"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 275,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": "kids/1876/audio_1876_short.mp3",
+      "reflectionAudioPath": "kids/1876/audio_1876_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The friends saw Jesus shining bright as the sun, and they were filled with wonder. I wonder what fills your heart with wonder when you think about God?",
+      "kidSafetyNotes": "NEW anchor (Jesus' Miracles). Batch D 'replayability/wonder' piece. Adam's rule: AWE not scary. The bright cloud + the voice are wonder-filled and KIND ('This is my Son, whom I love. Listen to him.') -- explicitly 'not a scary voice... warm, and kind, and full of love'. Moses & Elijah kept simple ('two of God's great friends from long, long ago') -- no theology load for 4-7. Peter's 'let's build tents!' is the comic/relatable beat. Ends with the cloud lifting, Jesus back to normal ('their own dear friend'), 'Do not be afraid', walking back down -- safe landing. Soft close ('shine'/'sun'). VOICE_JAMES_BRITISH_PROFESSIONAL (stately, cinematic awe register).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_transfiguration_full",
+      "storyNumber": 1876,
+      "title": "Jesus Shines Like the Sun",
+      "textFilePath": "kids/1876/story_1876_full.txt",
+      "scriptureAnchorId": "matthew_17",
+      "bibleStoryKey": "matthew_17",
+      "bibleSourceRef": "Matthew 17:1-9",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "awe",
+        "joyful",
+        "amazed"
+      ],
+      "themeTags": [
+        "Jesus shines",
+        "awe and wonder",
+        "this is my Son",
+        "glimpse of glory"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 523,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": "kids/1876/audio_1876_full.mp3",
+      "reflectionAudioPath": "kids/1876/audio_1876_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The friends saw Jesus shining bright as the sun, and they were filled with wonder. I wonder what fills your heart with wonder when you think about God?",
+      "kidSafetyNotes": "NEW anchor (Jesus' Miracles). Batch D 'replayability/wonder' piece. Adam's rule: AWE not scary. The bright cloud + the voice are wonder-filled and KIND ('This is my Son, whom I love. Listen to him.') -- explicitly 'not a scary voice... warm, and kind, and full of love'. Moses & Elijah kept simple ('two of God's great friends from long, long ago') -- no theology load for 4-7. Peter's 'let's build tents!' is the comic/relatable beat. Ends with the cloud lifting, Jesus back to normal ('their own dear friend'), 'Do not be afraid', walking back down -- safe landing. Soft close ('shine'/'sun'). VOICE_JAMES_BRITISH_PROFESSIONAL (stately, cinematic awe register).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_coin_in_fish_short",
+      "storyNumber": 1877,
+      "title": "The Coin in the Fish",
+      "textFilePath": "kids/1877/story_1877_short.txt",
+      "scriptureAnchorId": "matthew_17_24-27",
+      "bibleStoryKey": "matthew_17_24-27",
+      "bibleSourceRef": "Matthew 17:24-27",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "delighted",
+        "amazed",
+        "reassured",
+        "joyful"
+      ],
+      "themeTags": [
+        "God provides",
+        "funny miracle",
+        "do not worry",
+        "God knows what you need"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 279,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1877/audio_1877_short.mp3",
+      "reflectionAudioPath": "kids/1877/audio_1877_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God gave Peter what he needed in such a funny way. I wonder what little worry you could hand to God today?",
+      "kidSafetyNotes": "NEW anchor (Jesus' Miracles). Batch D 'weird-funny / replayability' piece -- SHORT-ONLY by design (Adam: the charm is the punchy brevity, 'Done.'). The delightfully strange detail (a coin inside a fish's mouth) IS the hook -- kids remember weird details forever. Room = God provides / God takes care of the little worries too, sometimes in ways that make you laugh. Kept light and quick; Peter trusts, obeys, laughs. Soft close ('laugh'). VOICE_BARNABAS_ENCOURAGER (warm, light, twinkly).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_balaam_donkey_short",
+      "storyNumber": 1878,
+      "title": "The Donkey Who Talked",
+      "textFilePath": "kids/1878/story_1878_short.txt",
+      "scriptureAnchorId": "numbers_22",
+      "bibleStoryKey": "numbers_22",
+      "bibleSourceRef": "Numbers 22:21-35",
+      "mood": "joyful",
+      "emotionalTags": [
+        "delighted",
+        "amazed",
+        "curious",
+        "joyful"
+      ],
+      "themeTags": [
+        "God uses anyone",
+        "talking donkey",
+        "pay attention",
+        "God protects"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 274,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "audioFilePath": "kids/1878/audio_1878_short.mp3",
+      "reflectionAudioPath": "kids/1878/audio_1878_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Balaam could not see the angel, but his faithful donkey could. I wonder who God might use to help you, in a way that would surprise you?",
+      "kidSafetyNotes": "NEW anchor (filed under Moses & Exodus -- wilderness era). Batch D 'talking-animal / funny' piece -- likely a top replay candidate (a donkey that talks = peak 5-year-old). SOFTENED per Adam: the angel's sword is omitted; Balaam is 'frustrated' and gives 'a little smack' (NOT beating/cruelty), nothing dwelt on. The donkey is the lovable hero -- she SEES the angel Balaam can't, and stops THREE times to PROTECT him; the angel is framed as keeping Balaam safe, not threatening. God lets her speak: 'why are you cross with me? Haven't I always been your good donkey?' Room = God can use anyone (even a donkey!) / stop and pay attention. Donkey referred to as 'she' (faithful companion). Soft close ('attention'). VOICE_ARCHER (bright, lively, characterful -- carries the comedy).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_balaam_donkey_full",
+      "storyNumber": 1878,
+      "title": "The Donkey Who Talked",
+      "textFilePath": "kids/1878/story_1878_full.txt",
+      "scriptureAnchorId": "numbers_22",
+      "bibleStoryKey": "numbers_22",
+      "bibleSourceRef": "Numbers 22:21-35",
+      "mood": "joyful",
+      "emotionalTags": [
+        "delighted",
+        "amazed",
+        "curious",
+        "joyful"
+      ],
+      "themeTags": [
+        "God uses anyone",
+        "talking donkey",
+        "pay attention",
+        "God protects"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 511,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "audioFilePath": "kids/1878/audio_1878_full.mp3",
+      "reflectionAudioPath": "kids/1878/audio_1878_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Balaam could not see the angel, but his faithful donkey could. I wonder who God might use to help you, in a way that would surprise you?",
+      "kidSafetyNotes": "NEW anchor (filed under Moses & Exodus -- wilderness era). Batch D 'talking-animal / funny' piece -- likely a top replay candidate (a donkey that talks = peak 5-year-old). SOFTENED per Adam: the angel's sword is omitted; Balaam is 'frustrated' and gives 'a little smack' (NOT beating/cruelty), nothing dwelt on. The donkey is the lovable hero -- she SEES the angel Balaam can't, and stops THREE times to PROTECT him; the angel is framed as keeping Balaam safe, not threatening. God lets her speak: 'why are you cross with me? Haven't I always been your good donkey?' Room = God can use anyone (even a donkey!) / stop and pay attention. Donkey referred to as 'she' (faithful companion). Soft close ('attention'). VOICE_ARCHER (bright, lively, characterful -- carries the comedy).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_samson_lion_short",
+      "storyNumber": 1879,
+      "title": "Samson and the Lion",
+      "textFilePath": "kids/1879/story_1879_short.txt",
+      "scriptureAnchorId": "judges_14",
+      "bibleStoryKey": "judges_14",
+      "bibleSourceRef": "Judges 14:5-6",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "strong",
+        "reassured",
+        "hope"
+      ],
+      "themeTags": [
+        "God gives courage",
+        "strength is God's gift",
+        "you are not alone",
+        "facing scary things"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 264,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "audioFilePath": "kids/1879/audio_1879_short.mp3",
+      "reflectionAudioPath": "kids/1879/audio_1879_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God filled Samson with courage the moment the lion leaped out. I wonder what feels a little scary to you, that God could help you face?",
+      "kidSafetyNotes": "NEW anchor (new 'Judges' category -- room for future Gideon/Deborah). Batch D 'courage / action' piece. SOFTENED per Adam: just the lion encounter (Judges 14:5-6), NOT Delilah, NOT the wider tragedy. Soft on violence -- the lion 'could not hurt him', Samson 'was kept completely safe'; no killing/tearing dwelt on (the gore is omitted). CRUCIAL framing: strength is GOD'S GIFT, not Samson's muscles ('It had not come from his big strong arms. It had come from God.') -- avoids a self-reliance/strongman message. Room = God gives courage in scary moments / you are not alone / you don't have to be brave all by yourself. Ends safe. Soft close ('difference'/'brave'). VOICE_DAVID_SHEPHERD (bright, strong, good-voice; courage register).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_samson_lion_full",
+      "storyNumber": 1879,
+      "title": "Samson and the Lion",
+      "textFilePath": "kids/1879/story_1879_full.txt",
+      "scriptureAnchorId": "judges_14",
+      "bibleStoryKey": "judges_14",
+      "bibleSourceRef": "Judges 14:5-6",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "strong",
+        "reassured",
+        "hope"
+      ],
+      "themeTags": [
+        "God gives courage",
+        "strength is God's gift",
+        "you are not alone",
+        "facing scary things"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 535,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "audioFilePath": "kids/1879/audio_1879_full.mp3",
+      "reflectionAudioPath": "kids/1879/audio_1879_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God filled Samson with courage the moment the lion leaped out. I wonder what feels a little scary to you, that God could help you face?",
+      "kidSafetyNotes": "NEW anchor (new 'Judges' category -- room for future Gideon/Deborah). Batch D 'courage / action' piece. SOFTENED per Adam: just the lion encounter (Judges 14:5-6), NOT Delilah, NOT the wider tragedy. Soft on violence -- the lion 'could not hurt him', Samson 'was kept completely safe'; no killing/tearing dwelt on (the gore is omitted). CRUCIAL framing: strength is GOD'S GIFT, not Samson's muscles ('It had not come from his big strong arms. It had come from God.') -- avoids a self-reliance/strongman message. Room = God gives courage in scary moments / you are not alone / you don't have to be brave all by yourself. Ends safe. Soft close ('difference'/'brave'). VOICE_DAVID_SHEPHERD (bright, strong, good-voice; courage register).",
+      "hardContentFlags": []
     }
   ]
 }
