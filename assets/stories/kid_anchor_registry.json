@@ -557,6 +557,23 @@
             "short"
           ],
           "launch": false
+        },
+        {
+          "anchorId": "naaman",
+          "displayName": "Naaman and the Servant Girl",
+          "scriptureRef": "2 Kings 5",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full",
+            "long"
+          ],
+          "longEligible": true,
+          "launch": false,
+          "productionId": 1862,
+          "manifestAnchorIds": [
+            "2_kings_5"
+          ]
         }
       ]
     },
@@ -884,6 +901,39 @@
           "manifestAnchorIds": [
             "luke_19_1-10"
           ]
+        },
+        {
+          "anchorId": "friends_roof",
+          "displayName": "Friends Through the Roof",
+          "scriptureRef": "Mark 2:1-12",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full",
+            "long"
+          ],
+          "longEligible": true,
+          "launch": false,
+          "productionId": 1861,
+          "manifestAnchorIds": [
+            "mark_2"
+          ]
+        },
+        {
+          "anchorId": "mary_martha",
+          "displayName": "Mary and Martha",
+          "scriptureRef": "Luke 10:38-42",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "longEligible": false,
+          "launch": false,
+          "productionId": 1863,
+          "manifestAnchorIds": [
+            "luke_10_38-42"
+          ]
         }
       ]
     },
@@ -1079,6 +1129,23 @@
           "manifestAnchorIds": [
             "empty_tomb"
           ]
+        },
+        {
+          "anchorId": "emmaus",
+          "displayName": "The Friends at Emmaus",
+          "scriptureRef": "Luke 24:13-35",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full",
+            "long"
+          ],
+          "longEligible": true,
+          "launch": false,
+          "productionId": 1865,
+          "manifestAnchorIds": [
+            "luke_24"
+          ]
         }
       ]
     },
@@ -1133,6 +1200,22 @@
             "acts_9"
           ],
           "longEligible": true
+        },
+        {
+          "anchorId": "ascension",
+          "displayName": "The Ascension",
+          "scriptureRef": "Acts 1:6-11",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "longEligible": false,
+          "launch": false,
+          "productionId": 1864,
+          "manifestAnchorIds": [
+            "acts_1"
+          ]
         }
       ]
     },

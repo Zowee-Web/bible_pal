@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1862,
+  "anchorId": "naaman",
+  "kidLane": "dedicated-4-7",
+  "title": "Naaman and the Servant Girl",
+  "scriptureAnchorId": "2_kings_5",
+  "bibleSourceRef": "2 Kings 5",
+  "bibleStoryKey": "2_kings_5",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "feeling_small",
+    "courage",
+    "hope"
+  ],
+  "themeTags": [
+    "kindness",
+    "humility",
+    "a child helps",
+    "Gods healing"
+  ],
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "A little servant girl helped someone in a great big way. What is a kind thing you could do for someone, even a small one?",
+  "hardContentFlags": [
+    "illness_softened"
+  ],
+  "kidSafetyNotes": "NEW anchor (extra, emotional room = A CHILD CAN CHANGE A LIFE + humility). The hero is the little servant girl -- brave, kind to a man who was NOT always kind to her (Adam's key angle); routes a feeling_small child to 'even the smallest person matters.' Leprosy softened to 'a sickness on his skin' (no spots, like 1853). Naaman's pride/anger softened to grumpy-then-humble (no rage). The seven dips = the repetition kids love + suspense. longEligible=TRUE (upgraded 2026-06-20: the servant girl + journey + insulting muddy-river + pride->humility + 7 dips genuinely grows). Will get short+full+long. 'God' throughout, no Yahweh (Elisha is God's prophet; name not the point). VOICE_HANNAH_HOPE (bright, hopeful -- the little girl's faith).",
+  "files": {
+    "short": {
+      "storyText": "story_1862_short.txt",
+      "audio": "audio_1862_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1862_full.txt",
+      "audio": "audio_1862_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1862.txt",
+      "audio": "audio_1862_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    },
+    "long": {
+      "storyText": "story_1862_long.txt",
+      "audio": "audio_1862_long.mp3"
+    }
+  }
+}

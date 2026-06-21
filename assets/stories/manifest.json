@@ -48468,6 +48468,370 @@
         "provision"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_friends_roof_short",
+      "title": "Friends Through the Roof",
+      "mood": "joyful",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "celebration"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1861/audio_1861_short.mp3",
+      "textFilePath": "kids/1861/story_1861_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "short",
+      "reflectionQuestion": "Four friends would not give up until they got their friend to Jesus. Who is a good friend you are thankful for?",
+      "bibleSourceRef": "Mark 2:1-12",
+      "bibleStoryKey": "mark_2",
+      "themeTags": [
+        "friendship",
+        "faith",
+        "Jesus heals",
+        "never giving up"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_friends_roof_full",
+      "title": "Friends Through the Roof",
+      "mood": "joyful",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "celebration"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1861/audio_1861_full.mp3",
+      "textFilePath": "kids/1861/story_1861_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "full",
+      "reflectionQuestion": "Four friends would not give up until they got their friend to Jesus. Who is a good friend you are thankful for?",
+      "bibleSourceRef": "Mark 2:1-12",
+      "bibleStoryKey": "mark_2",
+      "themeTags": [
+        "friendship",
+        "faith",
+        "Jesus heals",
+        "never giving up"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_naaman_short",
+      "title": "Naaman and the Servant Girl",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "feeling_small",
+        "courage",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1862/audio_1862_short.mp3",
+      "textFilePath": "kids/1862/story_1862_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "short",
+      "reflectionQuestion": "A little servant girl helped someone in a great big way. What is a kind thing you could do for someone, even a small one?",
+      "bibleSourceRef": "2 Kings 5",
+      "bibleStoryKey": "2_kings_5",
+      "themeTags": [
+        "kindness",
+        "humility",
+        "a child helps",
+        "Gods healing"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_naaman_full",
+      "title": "Naaman and the Servant Girl",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "feeling_small",
+        "courage",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1862/audio_1862_full.mp3",
+      "textFilePath": "kids/1862/story_1862_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "full",
+      "reflectionQuestion": "A little servant girl helped someone in a great big way. What is a kind thing you could do for someone, even a small one?",
+      "bibleSourceRef": "2 Kings 5",
+      "bibleStoryKey": "2_kings_5",
+      "themeTags": [
+        "kindness",
+        "humility",
+        "a child helps",
+        "Gods healing"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_mary_martha_short",
+      "title": "Mary and Martha",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "overwhelmed",
+        "hope",
+        "faith"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1863/audio_1863_short.mp3",
+      "textFilePath": "kids/1863/story_1863_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "storyLength": "short",
+      "reflectionQuestion": "Mary loved to sit close and simply be with Jesus. When do you feel happiest just being near someone you love?",
+      "bibleSourceRef": "Luke 10:38-42",
+      "bibleStoryKey": "luke_10_38-42",
+      "themeTags": [
+        "being with Jesus",
+        "rest",
+        "what matters most",
+        "Gods peace"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_mary_martha_full",
+      "title": "Mary and Martha",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "overwhelmed",
+        "hope",
+        "faith"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1863/audio_1863_full.mp3",
+      "textFilePath": "kids/1863/story_1863_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "storyLength": "full",
+      "reflectionQuestion": "Mary loved to sit close and simply be with Jesus. When do you feel happiest just being near someone you love?",
+      "bibleSourceRef": "Luke 10:38-42",
+      "bibleStoryKey": "luke_10_38-42",
+      "themeTags": [
+        "being with Jesus",
+        "rest",
+        "what matters most",
+        "Gods peace"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_ascension_short",
+      "title": "The Ascension",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "hope",
+        "faith",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1864/audio_1864_short.mp3",
+      "textFilePath": "kids/1864/story_1864_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "short",
+      "reflectionQuestion": "Jesus promised to be with his friends always, even after he went to heaven. When do you feel that God is close to you?",
+      "bibleSourceRef": "Acts 1:6-11",
+      "bibleStoryKey": "acts_1",
+      "themeTags": [
+        "Jesus is with us",
+        "hope",
+        "heaven",
+        "Gods promise"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_ascension_full",
+      "title": "The Ascension",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "hope",
+        "faith",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1864/audio_1864_full.mp3",
+      "textFilePath": "kids/1864/story_1864_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "full",
+      "reflectionQuestion": "Jesus promised to be with his friends always, even after he went to heaven. When do you feel that God is close to you?",
+      "bibleSourceRef": "Acts 1:6-11",
+      "bibleStoryKey": "acts_1",
+      "themeTags": [
+        "Jesus is with us",
+        "hope",
+        "heaven",
+        "Gods promise"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_emmaus_short",
+      "title": "The Friends at Emmaus",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "sad",
+        "hope",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1865/audio_1865_short.mp3",
+      "textFilePath": "kids/1865/story_1865_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "storyLength": "short",
+      "reflectionQuestion": "Jesus was walking beside his friends even before they knew it was him. When might Jesus be close to you, even when you cannot see him?",
+      "bibleSourceRef": "Luke 24:13-35",
+      "bibleStoryKey": "luke_24",
+      "themeTags": [
+        "Jesus is near",
+        "hope",
+        "wonder",
+        "Gods presence"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_emmaus_full",
+      "title": "The Friends at Emmaus",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "sad",
+        "hope",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1865/audio_1865_full.mp3",
+      "textFilePath": "kids/1865/story_1865_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "storyLength": "full",
+      "reflectionQuestion": "Jesus was walking beside his friends even before they knew it was him. When might Jesus be close to you, even when you cannot see him?",
+      "bibleSourceRef": "Luke 24:13-35",
+      "bibleStoryKey": "luke_24",
+      "themeTags": [
+        "Jesus is near",
+        "hope",
+        "wonder",
+        "Gods presence"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_friends_roof_long",
+      "title": "Friends Through the Roof",
+      "mood": "joyful",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "celebration"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1861/audio_1861_long.mp3",
+      "textFilePath": "kids/1861/story_1861_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "long",
+      "reflectionQuestion": "Four friends would not give up until they got their friend to Jesus. Who is a good friend you are thankful for?",
+      "bibleSourceRef": "Mark 2:1-12",
+      "bibleStoryKey": "mark_2",
+      "themeTags": [
+        "friendship",
+        "faith",
+        "Jesus heals",
+        "never giving up"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_naaman_long",
+      "title": "Naaman and the Servant Girl",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "feeling_small",
+        "courage",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1862/audio_1862_long.mp3",
+      "textFilePath": "kids/1862/story_1862_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "long",
+      "reflectionQuestion": "A little servant girl helped someone in a great big way. What is a kind thing you could do for someone, even a small one?",
+      "bibleSourceRef": "2 Kings 5",
+      "bibleStoryKey": "2_kings_5",
+      "themeTags": [
+        "kindness",
+        "humility",
+        "a child helps",
+        "Gods healing"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_emmaus_long",
+      "title": "The Friends at Emmaus",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "sad",
+        "hope",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1865/audio_1865_long.mp3",
+      "textFilePath": "kids/1865/story_1865_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "storyLength": "long",
+      "reflectionQuestion": "Jesus was walking beside his friends even before they knew it was him. When might Jesus be close to you, even when you cannot see him?",
+      "bibleSourceRef": "Luke 24:13-35",
+      "bibleStoryKey": "luke_24",
+      "themeTags": [
+        "Jesus is near",
+        "hope",
+        "wonder",
+        "Gods presence"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }

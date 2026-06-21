@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1864,
+  "anchorId": "ascension",
+  "kidLane": "dedicated-4-7",
+  "title": "The Ascension",
+  "scriptureAnchorId": "acts_1",
+  "bibleSourceRef": "Acts 1:6-11",
+  "bibleStoryKey": "acts_1",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "hope",
+    "faith",
+    "wonder"
+  ],
+  "themeTags": [
+    "Jesus is with us",
+    "hope",
+    "heaven",
+    "Gods promise"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Jesus promised to be with his friends always, even after he went to heaven. When do you feel that God is close to you?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (extra, emotional room = JESUS IS STILL WITH US). Bridges the gap between Empty Tomb (1812) and Pentecost (1845) -- completes the Jesus arc. Per Adam: HOPEFUL, not sad -- Jesus blesses them, promises 'I am with you always' + the Spirit, then rises; the angels' gentle 'why are you looking up at the sky?'; the friends go home with JOY, not grief. The not-alone spine. NO long (full-only): one luminous moment (blessing -> rising -> angels -> joyful return); complete at full, a long would stretch it. mood encouraging. 'God'/'Jesus' throughout, no Yahweh. VOICE_JAMES_HUSKY (wise elder -- steady hope).",
+  "files": {
+    "short": {
+      "storyText": "story_1864_short.txt",
+      "audio": "audio_1864_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1864_full.txt",
+      "audio": "audio_1864_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1864.txt",
+      "audio": "audio_1864_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

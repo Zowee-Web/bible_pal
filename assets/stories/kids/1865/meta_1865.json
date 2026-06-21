@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1865,
+  "anchorId": "emmaus",
+  "kidLane": "dedicated-4-7",
+  "title": "The Friends at Emmaus",
+  "scriptureAnchorId": "luke_24",
+  "bibleSourceRef": "Luke 24:13-35",
+  "bibleStoryKey": "luke_24",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "sad",
+    "hope",
+    "wonder"
+  ],
+  "themeTags": [
+    "Jesus is near",
+    "hope",
+    "wonder",
+    "Gods presence"
+  ],
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Jesus was walking beside his friends even before they knew it was him. When might Jesus be close to you, even when you cannot see him?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (extra, emotional room = JESUS WALKS BESIDE US even when we don't realize it). Easter-adjacent, follows Empty Tomb. The friends start sad (grieving Jesus' death -- gentle, no detail); kept CONCRETE for the youngest (a stranger joins, opens the scriptures, hearts warm, then at supper breaks bread -> 'it's Jesus!' -> gone -> they run back full of joy). Lands on 'he was with them the whole time' (the not-alone spine, for the 6-7 end especially). longEligible=TRUE (upgraded 2026-06-20: the walk + conversation + burning hearts + recognition + run-back is a genuine journey-and-reveal arc). Will get short+full+long. 'God'/'Jesus' throughout, no Yahweh. VOICE_REVEREND_MICHAEL (pastoral -- the contemplative walk + gentle reveal).",
+  "files": {
+    "short": {
+      "storyText": "story_1865_short.txt",
+      "audio": "audio_1865_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1865_full.txt",
+      "audio": "audio_1865_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1865.txt",
+      "audio": "audio_1865_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    },
+    "long": {
+      "storyText": "story_1865_long.txt",
+      "audio": "audio_1865_long.mp3"
+    }
+  }
+}

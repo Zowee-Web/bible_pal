@@ -4872,6 +4872,434 @@
       "reflectionQuestion": "God gave Joseph wisdom, and Joseph used it to help a whole land of people. What is a wise and helpful thing you could do?",
       "kidSafetyNotes": "NEW anchor (Joseph, mature tier). The WISDOM/helping story -- a deliberately different Joseph lane (Adam): coat=beloved child (1844), reunion=forgiveness (1819), this=dreams->wisdom, saving Egypt->helping others. Keeps the BROTHERS out: the painful backstory is compressed to 'it had not been an easy road... but God had been with him' (no pit/sale/betrayal -- consistent with 1844 softening). The famine is gentle ('hard years when food is scarce'), framed as something Joseph's wisdom prepares for. God is the source of the wisdom (Joseph: 'I cannot do it on my own, but God can'). Indelible image = Joseph before Pharaoh reading the dreams / the full barns saving people. 'God' throughout, no Yahweh. VOICE_JAMES_BRITISH (reassuring father; continuity with 1844 coat, the lead-up to his rise).",
       "hardContentFlags": []
+    },
+    {
+      "id": "kid_friends_roof_short",
+      "storyNumber": 1861,
+      "title": "Friends Through the Roof",
+      "textFilePath": "kids/1861/story_1861_short.txt",
+      "scriptureAnchorId": "mark_2",
+      "bibleStoryKey": "mark_2",
+      "bibleSourceRef": "Mark 2:1-12",
+      "mood": "joyful",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "celebration"
+      ],
+      "themeTags": [
+        "friendship",
+        "faith",
+        "Jesus heals",
+        "never giving up"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 291,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1861/audio_1861_short.mp3",
+      "reflectionAudioPath": "kids/1861/audio_1861_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Four friends would not give up until they got their friend to Jesus. Who is a good friend you are thankful for?",
+      "kidSafetyNotes": "NEW anchor (extra, emotional room = FRIENDSHIP + determination). Adam's #1 missing story. The man who cannot walk is portrayed with dignity (matter-of-fact, the friends' love is the point, not pity). 'Your sins are forgiven' is kept simple, with the heart on the friends' faith + the healing + walking home. The roof-digging is the indelible/joyful image. longEligible=TRUE -- the long earns it (the crowd, the roof, the lowering, the healing). Will get short+full+long. 'God'/'Jesus' throughout, no Yahweh. VOICE_BARNABAS_ENCOURAGER (encourager -- friends lifting up a friend).",
+      "hardContentFlags": [
+        "disability_portrayed_with_dignity"
+      ]
+    },
+    {
+      "id": "kid_friends_roof_full",
+      "storyNumber": 1861,
+      "title": "Friends Through the Roof",
+      "textFilePath": "kids/1861/story_1861_full.txt",
+      "scriptureAnchorId": "mark_2",
+      "bibleStoryKey": "mark_2",
+      "bibleSourceRef": "Mark 2:1-12",
+      "mood": "joyful",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "celebration"
+      ],
+      "themeTags": [
+        "friendship",
+        "faith",
+        "Jesus heals",
+        "never giving up"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 555,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1861/audio_1861_full.mp3",
+      "reflectionAudioPath": "kids/1861/audio_1861_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Four friends would not give up until they got their friend to Jesus. Who is a good friend you are thankful for?",
+      "kidSafetyNotes": "NEW anchor (extra, emotional room = FRIENDSHIP + determination). Adam's #1 missing story. The man who cannot walk is portrayed with dignity (matter-of-fact, the friends' love is the point, not pity). 'Your sins are forgiven' is kept simple, with the heart on the friends' faith + the healing + walking home. The roof-digging is the indelible/joyful image. longEligible=TRUE -- the long earns it (the crowd, the roof, the lowering, the healing). Will get short+full+long. 'God'/'Jesus' throughout, no Yahweh. VOICE_BARNABAS_ENCOURAGER (encourager -- friends lifting up a friend).",
+      "hardContentFlags": [
+        "disability_portrayed_with_dignity"
+      ]
+    },
+    {
+      "id": "kid_naaman_short",
+      "storyNumber": 1862,
+      "title": "Naaman and the Servant Girl",
+      "textFilePath": "kids/1862/story_1862_short.txt",
+      "scriptureAnchorId": "2_kings_5",
+      "bibleStoryKey": "2_kings_5",
+      "bibleSourceRef": "2 Kings 5",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "feeling_small",
+        "courage",
+        "hope"
+      ],
+      "themeTags": [
+        "kindness",
+        "humility",
+        "a child helps",
+        "Gods healing"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 292,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1862/audio_1862_short.mp3",
+      "reflectionAudioPath": "kids/1862/audio_1862_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "A little servant girl helped someone in a great big way. What is a kind thing you could do for someone, even a small one?",
+      "kidSafetyNotes": "NEW anchor (extra, emotional room = A CHILD CAN CHANGE A LIFE + humility). The hero is the little servant girl -- brave, kind to a man who was NOT always kind to her (Adam's key angle); routes a feeling_small child to 'even the smallest person matters.' Leprosy softened to 'a sickness on his skin' (no spots, like 1853). Naaman's pride/anger softened to grumpy-then-humble (no rage). The seven dips = the repetition kids love + suspense. longEligible=TRUE (upgraded 2026-06-20: the servant girl + journey + insulting muddy-river + pride->humility + 7 dips genuinely grows). Will get short+full+long. 'God' throughout, no Yahweh (Elisha is God's prophet; name not the point). VOICE_HANNAH_HOPE (bright, hopeful -- the little girl's faith).",
+      "hardContentFlags": [
+        "illness_softened"
+      ]
+    },
+    {
+      "id": "kid_naaman_full",
+      "storyNumber": 1862,
+      "title": "Naaman and the Servant Girl",
+      "textFilePath": "kids/1862/story_1862_full.txt",
+      "scriptureAnchorId": "2_kings_5",
+      "bibleStoryKey": "2_kings_5",
+      "bibleSourceRef": "2 Kings 5",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "feeling_small",
+        "courage",
+        "hope"
+      ],
+      "themeTags": [
+        "kindness",
+        "humility",
+        "a child helps",
+        "Gods healing"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 553,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1862/audio_1862_full.mp3",
+      "reflectionAudioPath": "kids/1862/audio_1862_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "A little servant girl helped someone in a great big way. What is a kind thing you could do for someone, even a small one?",
+      "kidSafetyNotes": "NEW anchor (extra, emotional room = A CHILD CAN CHANGE A LIFE + humility). The hero is the little servant girl -- brave, kind to a man who was NOT always kind to her (Adam's key angle); routes a feeling_small child to 'even the smallest person matters.' Leprosy softened to 'a sickness on his skin' (no spots, like 1853). Naaman's pride/anger softened to grumpy-then-humble (no rage). The seven dips = the repetition kids love + suspense. longEligible=TRUE (upgraded 2026-06-20: the servant girl + journey + insulting muddy-river + pride->humility + 7 dips genuinely grows). Will get short+full+long. 'God' throughout, no Yahweh (Elisha is God's prophet; name not the point). VOICE_HANNAH_HOPE (bright, hopeful -- the little girl's faith).",
+      "hardContentFlags": [
+        "illness_softened"
+      ]
+    },
+    {
+      "id": "kid_mary_martha_short",
+      "storyNumber": 1863,
+      "title": "Mary and Martha",
+      "textFilePath": "kids/1863/story_1863_short.txt",
+      "scriptureAnchorId": "luke_10_38-42",
+      "bibleStoryKey": "luke_10_38-42",
+      "bibleSourceRef": "Luke 10:38-42",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "overwhelmed",
+        "hope",
+        "faith"
+      ],
+      "themeTags": [
+        "being with Jesus",
+        "rest",
+        "what matters most",
+        "Gods peace"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 259,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "audioFilePath": "kids/1863/audio_1863_short.mp3",
+      "reflectionAudioPath": "kids/1863/audio_1863_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Mary loved to sit close and simply be with Jesus. When do you feel happiest just being near someone you love?",
+      "kidSafetyNotes": "NEW anchor (extra, emotional room = BEING WITH > BEING BUSY; the quiet register the lane lacked). Per Adam: do NOT make Martha the villain -- she loves Jesus too, she's just frazzled/distracted; Jesus gently invites her, warm to BOTH sisters (the close explicitly says both were dearly loved). For an overwhelmed/overstimulated child: routes to slowing down + being close. NO long (full-only): a single quiet scene with one gentle turn; a long would pad and dull its stillness (same call as Abraham's stars / David's harp). mood calm_peaceful. 'God'/'Jesus' throughout, no Yahweh. VOICE_MARY_PONDER (contemplative -- fits being-with-Jesus). Female-led.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_mary_martha_full",
+      "storyNumber": 1863,
+      "title": "Mary and Martha",
+      "textFilePath": "kids/1863/story_1863_full.txt",
+      "scriptureAnchorId": "luke_10_38-42",
+      "bibleStoryKey": "luke_10_38-42",
+      "bibleSourceRef": "Luke 10:38-42",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "overwhelmed",
+        "hope",
+        "faith"
+      ],
+      "themeTags": [
+        "being with Jesus",
+        "rest",
+        "what matters most",
+        "Gods peace"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 518,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "audioFilePath": "kids/1863/audio_1863_full.mp3",
+      "reflectionAudioPath": "kids/1863/audio_1863_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Mary loved to sit close and simply be with Jesus. When do you feel happiest just being near someone you love?",
+      "kidSafetyNotes": "NEW anchor (extra, emotional room = BEING WITH > BEING BUSY; the quiet register the lane lacked). Per Adam: do NOT make Martha the villain -- she loves Jesus too, she's just frazzled/distracted; Jesus gently invites her, warm to BOTH sisters (the close explicitly says both were dearly loved). For an overwhelmed/overstimulated child: routes to slowing down + being close. NO long (full-only): a single quiet scene with one gentle turn; a long would pad and dull its stillness (same call as Abraham's stars / David's harp). mood calm_peaceful. 'God'/'Jesus' throughout, no Yahweh. VOICE_MARY_PONDER (contemplative -- fits being-with-Jesus). Female-led.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_ascension_short",
+      "storyNumber": 1864,
+      "title": "The Ascension",
+      "textFilePath": "kids/1864/story_1864_short.txt",
+      "scriptureAnchorId": "acts_1",
+      "bibleStoryKey": "acts_1",
+      "bibleSourceRef": "Acts 1:6-11",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "hope",
+        "faith",
+        "wonder"
+      ],
+      "themeTags": [
+        "Jesus is with us",
+        "hope",
+        "heaven",
+        "Gods promise"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 280,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "audioFilePath": "kids/1864/audio_1864_short.mp3",
+      "reflectionAudioPath": "kids/1864/audio_1864_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus promised to be with his friends always, even after he went to heaven. When do you feel that God is close to you?",
+      "kidSafetyNotes": "NEW anchor (extra, emotional room = JESUS IS STILL WITH US). Bridges the gap between Empty Tomb (1812) and Pentecost (1845) -- completes the Jesus arc. Per Adam: HOPEFUL, not sad -- Jesus blesses them, promises 'I am with you always' + the Spirit, then rises; the angels' gentle 'why are you looking up at the sky?'; the friends go home with JOY, not grief. The not-alone spine. NO long (full-only): one luminous moment (blessing -> rising -> angels -> joyful return); complete at full, a long would stretch it. mood encouraging. 'God'/'Jesus' throughout, no Yahweh. VOICE_JAMES_HUSKY (wise elder -- steady hope).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_ascension_full",
+      "storyNumber": 1864,
+      "title": "The Ascension",
+      "textFilePath": "kids/1864/story_1864_full.txt",
+      "scriptureAnchorId": "acts_1",
+      "bibleStoryKey": "acts_1",
+      "bibleSourceRef": "Acts 1:6-11",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "hope",
+        "faith",
+        "wonder"
+      ],
+      "themeTags": [
+        "Jesus is with us",
+        "hope",
+        "heaven",
+        "Gods promise"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 503,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "audioFilePath": "kids/1864/audio_1864_full.mp3",
+      "reflectionAudioPath": "kids/1864/audio_1864_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus promised to be with his friends always, even after he went to heaven. When do you feel that God is close to you?",
+      "kidSafetyNotes": "NEW anchor (extra, emotional room = JESUS IS STILL WITH US). Bridges the gap between Empty Tomb (1812) and Pentecost (1845) -- completes the Jesus arc. Per Adam: HOPEFUL, not sad -- Jesus blesses them, promises 'I am with you always' + the Spirit, then rises; the angels' gentle 'why are you looking up at the sky?'; the friends go home with JOY, not grief. The not-alone spine. NO long (full-only): one luminous moment (blessing -> rising -> angels -> joyful return); complete at full, a long would stretch it. mood encouraging. 'God'/'Jesus' throughout, no Yahweh. VOICE_JAMES_HUSKY (wise elder -- steady hope).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_emmaus_short",
+      "storyNumber": 1865,
+      "title": "The Friends at Emmaus",
+      "textFilePath": "kids/1865/story_1865_short.txt",
+      "scriptureAnchorId": "luke_24",
+      "bibleStoryKey": "luke_24",
+      "bibleSourceRef": "Luke 24:13-35",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "sad",
+        "hope",
+        "wonder"
+      ],
+      "themeTags": [
+        "Jesus is near",
+        "hope",
+        "wonder",
+        "Gods presence"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 275,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "audioFilePath": "kids/1865/audio_1865_short.mp3",
+      "reflectionAudioPath": "kids/1865/audio_1865_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus was walking beside his friends even before they knew it was him. When might Jesus be close to you, even when you cannot see him?",
+      "kidSafetyNotes": "NEW anchor (extra, emotional room = JESUS WALKS BESIDE US even when we don't realize it). Easter-adjacent, follows Empty Tomb. The friends start sad (grieving Jesus' death -- gentle, no detail); kept CONCRETE for the youngest (a stranger joins, opens the scriptures, hearts warm, then at supper breaks bread -> 'it's Jesus!' -> gone -> they run back full of joy). Lands on 'he was with them the whole time' (the not-alone spine, for the 6-7 end especially). longEligible=TRUE (upgraded 2026-06-20: the walk + conversation + burning hearts + recognition + run-back is a genuine journey-and-reveal arc). Will get short+full+long. 'God'/'Jesus' throughout, no Yahweh. VOICE_REVEREND_MICHAEL (pastoral -- the contemplative walk + gentle reveal).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_emmaus_full",
+      "storyNumber": 1865,
+      "title": "The Friends at Emmaus",
+      "textFilePath": "kids/1865/story_1865_full.txt",
+      "scriptureAnchorId": "luke_24",
+      "bibleStoryKey": "luke_24",
+      "bibleSourceRef": "Luke 24:13-35",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "sad",
+        "hope",
+        "wonder"
+      ],
+      "themeTags": [
+        "Jesus is near",
+        "hope",
+        "wonder",
+        "Gods presence"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 551,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "audioFilePath": "kids/1865/audio_1865_full.mp3",
+      "reflectionAudioPath": "kids/1865/audio_1865_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus was walking beside his friends even before they knew it was him. When might Jesus be close to you, even when you cannot see him?",
+      "kidSafetyNotes": "NEW anchor (extra, emotional room = JESUS WALKS BESIDE US even when we don't realize it). Easter-adjacent, follows Empty Tomb. The friends start sad (grieving Jesus' death -- gentle, no detail); kept CONCRETE for the youngest (a stranger joins, opens the scriptures, hearts warm, then at supper breaks bread -> 'it's Jesus!' -> gone -> they run back full of joy). Lands on 'he was with them the whole time' (the not-alone spine, for the 6-7 end especially). longEligible=TRUE (upgraded 2026-06-20: the walk + conversation + burning hearts + recognition + run-back is a genuine journey-and-reveal arc). Will get short+full+long. 'God'/'Jesus' throughout, no Yahweh. VOICE_REVEREND_MICHAEL (pastoral -- the contemplative walk + gentle reveal).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_friends_roof_long",
+      "storyNumber": 1861,
+      "title": "Friends Through the Roof",
+      "textFilePath": "kids/1861/story_1861_long.txt",
+      "scriptureAnchorId": "mark_2",
+      "bibleStoryKey": "mark_2",
+      "bibleSourceRef": "Mark 2:1-12",
+      "mood": "joyful",
+      "emotionalTags": [
+        "faith",
+        "hope",
+        "celebration"
+      ],
+      "themeTags": [
+        "friendship",
+        "faith",
+        "Jesus heals",
+        "never giving up"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 765,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1861/audio_1861_long.mp3",
+      "reflectionAudioPath": "kids/1861/audio_1861_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Four friends would not give up until they got their friend to Jesus. Who is a good friend you are thankful for?",
+      "kidSafetyNotes": "NEW anchor (extra, emotional room = FRIENDSHIP + determination). Adam's #1 missing story. The man who cannot walk is portrayed with dignity (matter-of-fact, the friends' love is the point, not pity). 'Your sins are forgiven' is kept simple, with the heart on the friends' faith + the healing + walking home. The roof-digging is the indelible/joyful image. longEligible=TRUE -- the long earns it (the crowd, the roof, the lowering, the healing). Will get short+full+long. 'God'/'Jesus' throughout, no Yahweh. VOICE_BARNABAS_ENCOURAGER (encourager -- friends lifting up a friend).",
+      "hardContentFlags": [
+        "disability_portrayed_with_dignity"
+      ]
+    },
+    {
+      "id": "kid_naaman_long",
+      "storyNumber": 1862,
+      "title": "Naaman and the Servant Girl",
+      "textFilePath": "kids/1862/story_1862_long.txt",
+      "scriptureAnchorId": "2_kings_5",
+      "bibleStoryKey": "2_kings_5",
+      "bibleSourceRef": "2 Kings 5",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "feeling_small",
+        "courage",
+        "hope"
+      ],
+      "themeTags": [
+        "kindness",
+        "humility",
+        "a child helps",
+        "Gods healing"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 745,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1862/audio_1862_long.mp3",
+      "reflectionAudioPath": "kids/1862/audio_1862_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "A little servant girl helped someone in a great big way. What is a kind thing you could do for someone, even a small one?",
+      "kidSafetyNotes": "NEW anchor (extra, emotional room = A CHILD CAN CHANGE A LIFE + humility). The hero is the little servant girl -- brave, kind to a man who was NOT always kind to her (Adam's key angle); routes a feeling_small child to 'even the smallest person matters.' Leprosy softened to 'a sickness on his skin' (no spots, like 1853). Naaman's pride/anger softened to grumpy-then-humble (no rage). The seven dips = the repetition kids love + suspense. longEligible=TRUE (upgraded 2026-06-20: the servant girl + journey + insulting muddy-river + pride->humility + 7 dips genuinely grows). Will get short+full+long. 'God' throughout, no Yahweh (Elisha is God's prophet; name not the point). VOICE_HANNAH_HOPE (bright, hopeful -- the little girl's faith).",
+      "hardContentFlags": [
+        "illness_softened"
+      ]
+    },
+    {
+      "id": "kid_emmaus_long",
+      "storyNumber": 1865,
+      "title": "The Friends at Emmaus",
+      "textFilePath": "kids/1865/story_1865_long.txt",
+      "scriptureAnchorId": "luke_24",
+      "bibleStoryKey": "luke_24",
+      "bibleSourceRef": "Luke 24:13-35",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "sad",
+        "hope",
+        "wonder"
+      ],
+      "themeTags": [
+        "Jesus is near",
+        "hope",
+        "wonder",
+        "Gods presence"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 761,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "audioFilePath": "kids/1865/audio_1865_long.mp3",
+      "reflectionAudioPath": "kids/1865/audio_1865_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus was walking beside his friends even before they knew it was him. When might Jesus be close to you, even when you cannot see him?",
+      "kidSafetyNotes": "NEW anchor (extra, emotional room = JESUS WALKS BESIDE US even when we don't realize it). Easter-adjacent, follows Empty Tomb. The friends start sad (grieving Jesus' death -- gentle, no detail); kept CONCRETE for the youngest (a stranger joins, opens the scriptures, hearts warm, then at supper breaks bread -> 'it's Jesus!' -> gone -> they run back full of joy). Lands on 'he was with them the whole time' (the not-alone spine, for the 6-7 end especially). longEligible=TRUE (upgraded 2026-06-20: the walk + conversation + burning hearts + recognition + run-back is a genuine journey-and-reveal arc). Will get short+full+long. 'God'/'Jesus' throughout, no Yahweh. VOICE_REVEREND_MICHAEL (pastoral -- the contemplative walk + gentle reveal).",
+      "hardContentFlags": []
     }
   ]
 }
