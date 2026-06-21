@@ -1322,7 +1322,11 @@
           "targetLengths": [
             "short"
           ],
-          "launch": false
+          "launch": false,
+          "productionId": 1869,
+          "manifestAnchorIds": [
+            "galatians_5"
+          ]
         },
         {
           "anchorId": "psalm_139",

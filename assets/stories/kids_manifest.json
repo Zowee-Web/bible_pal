@@ -5461,6 +5461,39 @@
       "reflectionQuestion": "Jesus, the greatest of all, knelt down to wash his friends' feet. What is a kind, helpful thing you could do for someone you love?",
       "kidSafetyNotes": "NEW anchor (Easter, John 13). The emotional room = LOVE KNEELS -- the embodiment of Bible PAL's whole doctrine (being held, gentle strength, the big One stooping for the small). Its own story (the foot-washing is a grace-note beat in 1850 Last Supper long; this OWNS it -- managed overlap, coat-precedent). Peter's 'You should never wash my feet!' included. Per Adam: the lesson is NOT 'you should serve people' -- it's 'the GREATEST person in the room chose to kneel' (much more powerful). Cross kept OFFSTAGE -- this is not sadness-before-goodbye; it is 'love gets down low to help.' Peter's protest -> Jesus 'this is how much I love you.' short+full, NO long (one tender scene). 'God'/'Jesus' throughout, no Yahweh. VOICE_JOHN_BELOVED (John was at this table; tender, intimate Johannine register).",
       "hardContentFlags": []
+    },
+    {
+      "id": "kid_fruit_of_spirit_short",
+      "storyNumber": 1869,
+      "title": "The Fruit of the Spirit",
+      "type": "comfort-ritual",
+      "textFilePath": "kids/1869/story_1869_short.txt",
+      "scriptureAnchorId": "galatians_5",
+      "bibleStoryKey": "galatians_5",
+      "bibleSourceRef": "Galatians 5:22-23",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hope",
+        "faith",
+        "grateful"
+      ],
+      "themeTags": [
+        "fruit of the Spirit",
+        "God grows good in us",
+        "becoming kind",
+        "Gods love"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 206,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "audioFilePath": "kids/1869/audio_1869_short.mp3",
+      "reflectionAudioPath": "kids/1869/audio_1869_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God loves to grow good things in your heart, like kindness, joy, and peace. Which one would you most like to share with someone?",
+      "kidSafetyNotes": "NEW anchor (Comfort & Bedtime, comfort-ritual short-only) -- the disciplined FINAL add, completing the comfort-ritual quartet (Psalm 23 / Lord's Prayer / Beatitudes / Fruit of the Spirit). Emotional room = 'the good things God GROWS in your heart' (becoming kind/gentle) -- the one room nothing else squarely covered. Gentle apple-tree frame makes the abstract concrete; the nine fruits rendered warmly + kid-simply (patience='wait without fussing', self-control='stop and choose what is right'), NOT a dry list. Crucial framing per god-with-not-cause + no-self-improvement-pressure: 'you do not have to grow these by yourself or all at once... they grow as you stay close to God' -- it's God's gift, not a to-do list for the child. Soft bedtime close. WEB-faithful but child-rendered (like the Beatitudes). 'God' throughout, no Yahweh. VOICE_PRISCILLA_TEACHER (clear, gentle-instructive; varies from Arabella's three comfort-rituals). NOTE: anchor already existed in registry (open) -- registration sets productionId + manifestAnchorIds only.",
+      "hardContentFlags": []
     }
   ]
 }
