@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1884,
+  "anchorId": "tower_of_babel",
+  "kidLane": "dedicated-4-7",
+  "title": "The Tall, Tall Tower",
+  "scriptureAnchorId": "genesis_11",
+  "bibleSourceRef": "Genesis 11:1-9",
+  "bibleStoryKey": "genesis_11",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "amazed",
+    "curious",
+    "hope",
+    "loved"
+  ],
+  "themeTags": [
+    "we need God and each other",
+    "many languages",
+    "filling the world",
+    "God loves everyone"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_SARAH_STORYTELLER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "The people built a tall tower, but they forgot they needed God and each other. I wonder who helps you, when something is too big to do all by yourself?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (filed under Creation -- primeval Genesis 1-11 bucket). Phase 2 'Beloved' swap-in (replaced Manna per Adam: replayability > lesson density). The strange-wonderful IMAGE is the hook: a tower into the clouds + everyone suddenly speaking different languages. Pride theme SOFTENED per Adam to 'they forgot they needed God, and they forgot they needed each other' -- NO punishment emphasis. The language-change is framed as surprising (a 'wonderful, mixed-up jumble of voices'), the scattering as HOPEFUL (families spreading to fill the world), and the ending is SAFE ('God still loved them -- every family, in every land, speaking every language'). Explains why the world has many languages -- satisfying origin-story for kids. Soft close ('tower'/'clouds'). VOICE_SARAH_STORYTELLER (warm storyteller; 'let me tell you a strange tale' wonder).",
+  "files": {
+    "short": {
+      "storyText": "story_1884_short.txt",
+      "audio": "audio_1884_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1884_full.txt",
+      "audio": "audio_1884_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1884.txt",
+      "audio": "audio_1884_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}
