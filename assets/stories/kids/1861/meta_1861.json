@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1861,
+  "anchorId": "friends_roof",
+  "kidLane": "dedicated-4-7",
+  "title": "Friends Through the Roof",
+  "scriptureAnchorId": "mark_2",
+  "bibleSourceRef": "Mark 2:1-12",
+  "bibleStoryKey": "mark_2",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "faith",
+    "hope",
+    "celebration"
+  ],
+  "themeTags": [
+    "friendship",
+    "faith",
+    "Jesus heals",
+    "never giving up"
+  ],
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Four friends would not give up until they got their friend to Jesus. Who is a good friend you are thankful for?",
+  "hardContentFlags": [
+    "disability_portrayed_with_dignity"
+  ],
+  "kidSafetyNotes": "NEW anchor (extra, emotional room = FRIENDSHIP + determination). Adam's #1 missing story. The man who cannot walk is portrayed with dignity (matter-of-fact, the friends' love is the point, not pity). 'Your sins are forgiven' is kept simple, with the heart on the friends' faith + the healing + walking home. The roof-digging is the indelible/joyful image. longEligible=TRUE -- the long earns it (the crowd, the roof, the lowering, the healing). Will get short+full+long. 'God'/'Jesus' throughout, no Yahweh. VOICE_BARNABAS_ENCOURAGER (encourager -- friends lifting up a friend).",
+  "files": {
+    "short": {
+      "storyText": "story_1861_short.txt",
+      "audio": "audio_1861_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1861_full.txt",
+      "audio": "audio_1861_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1861.txt",
+      "audio": "audio_1861_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    },
+    "long": {
+      "storyText": "story_1861_long.txt",
+      "audio": "audio_1861_long.mp3"
+    }
+  }
+}

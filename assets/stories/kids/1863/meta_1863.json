@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1863,
+  "anchorId": "mary_martha",
+  "kidLane": "dedicated-4-7",
+  "title": "Mary and Martha",
+  "scriptureAnchorId": "luke_10_38-42",
+  "bibleSourceRef": "Luke 10:38-42",
+  "bibleStoryKey": "luke_10_38-42",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "overwhelmed",
+    "hope",
+    "faith"
+  ],
+  "themeTags": [
+    "being with Jesus",
+    "rest",
+    "what matters most",
+    "Gods peace"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Mary loved to sit close and simply be with Jesus. When do you feel happiest just being near someone you love?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (extra, emotional room = BEING WITH > BEING BUSY; the quiet register the lane lacked). Per Adam: do NOT make Martha the villain -- she loves Jesus too, she's just frazzled/distracted; Jesus gently invites her, warm to BOTH sisters (the close explicitly says both were dearly loved). For an overwhelmed/overstimulated child: routes to slowing down + being close. NO long (full-only): a single quiet scene with one gentle turn; a long would pad and dull its stillness (same call as Abraham's stars / David's harp). mood calm_peaceful. 'God'/'Jesus' throughout, no Yahweh. VOICE_MARY_PONDER (contemplative -- fits being-with-Jesus). Female-led.",
+  "files": {
+    "short": {
+      "storyText": "story_1863_short.txt",
+      "audio": "audio_1863_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1863_full.txt",
+      "audio": "audio_1863_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1863.txt",
+      "audio": "audio_1863_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

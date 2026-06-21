@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1867,
+  "anchorId": "dont_worry",
+  "kidLane": "dedicated-4-7",
+  "title": "Don't Worry, Look at the Birds",
+  "scriptureAnchorId": "matthew_6_25-34",
+  "bibleSourceRef": "Matthew 6:25-34",
+  "bibleStoryKey": "matthew_6_25-34",
+  "translation": "WEB",
+  "mood": "anxious",
+  "emotionalTags": [
+    "anxious",
+    "hope",
+    "faith"
+  ],
+  "themeTags": [
+    "do not worry",
+    "Gods care",
+    "trust",
+    "peace"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Jesus said you don't have to carry your worries all by yourself. What is a worry you could hand over, so you don't carry it alone?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Comfort & Bedtime). THE anxiety room -- mood=anxious routes a worried child straight here; likely one of the most-played stories. The IMAGES are the teaching (birds don't plant/store yet are fed; lilies dressed better than a king; 'how much more you'). CRITICAL (Adam): AVOID 'God will take care of you' -- kids hear it literally and it breaks on hard days. Instead: 'you don't have to carry your worries all by yourself' + 'God is with you, God sees you, God cares' (the god-with-not-cause doctrine, feedback_kid_god_with_not_cause). Worry framed as something you can HAND OVER, never something you're scolded for. short+full (the full deepens the bird/flower imagery; no long -- it's a teaching, not an arc). 'God'/'Jesus' throughout, no Yahweh. VOICE_NATASHA (warm strength -- reassuring without over-promising).",
+  "files": {
+    "short": {
+      "storyText": "story_1867_short.txt",
+      "audio": "audio_1867_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1867_full.txt",
+      "audio": "audio_1867_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1867.txt",
+      "audio": "audio_1867_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

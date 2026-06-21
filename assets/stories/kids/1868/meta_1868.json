@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1868,
+  "anchorId": "foot_washing",
+  "kidLane": "dedicated-4-7",
+  "title": "Jesus Washes Their Feet",
+  "scriptureAnchorId": "john_13",
+  "bibleSourceRef": "John 13:1-17",
+  "bibleStoryKey": "john_13",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "hope",
+    "faith",
+    "grateful"
+  ],
+  "themeTags": [
+    "love serves",
+    "humility",
+    "gentle strength",
+    "Jesus love"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Jesus, the greatest of all, knelt down to wash his friends' feet. What is a kind, helpful thing you could do for someone you love?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Easter, John 13). The emotional room = LOVE KNEELS -- the embodiment of Bible PAL's whole doctrine (being held, gentle strength, the big One stooping for the small). Its own story (the foot-washing is a grace-note beat in 1850 Last Supper long; this OWNS it -- managed overlap, coat-precedent). Peter's 'You should never wash my feet!' included. Per Adam: the lesson is NOT 'you should serve people' -- it's 'the GREATEST person in the room chose to kneel' (much more powerful). Cross kept OFFSTAGE -- this is not sadness-before-goodbye; it is 'love gets down low to help.' Peter's protest -> Jesus 'this is how much I love you.' short+full, NO long (one tender scene). 'God'/'Jesus' throughout, no Yahweh. VOICE_JOHN_BELOVED (John was at this table; tender, intimate Johannine register).",
+  "files": {
+    "short": {
+      "storyText": "story_1868_short.txt",
+      "audio": "audio_1868_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1868_full.txt",
+      "audio": "audio_1868_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1868.txt",
+      "audio": "audio_1868_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

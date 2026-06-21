@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1859,
+  "anchorId": "beatitudes",
+  "kidLane": "dedicated-4-7",
+  "title": "The Beatitudes",
+  "scriptureAnchorId": "matthew_5",
+  "bibleSourceRef": "Matthew 5:1-12",
+  "bibleStoryKey": "matthew_5",
+  "translation": "WEB",
+  "type": "comfort-ritual",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "sad",
+    "hope",
+    "faith"
+  ],
+  "themeTags": [
+    "Gods blessing",
+    "comfort",
+    "kindness",
+    "Gods love"
+  ],
+  "lengths": [
+    "short"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Jesus said God holds the gentle and the kind especially close. What is a kind or gentle thing you could do tomorrow?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Comfort & Bedtime, comfort-ritual, short-only). GENTLE SELECTIVE version per Adam (2026-06-20): comfort, not theology class. Includes the kid-reachable blessings -- the sad/comforted, the gentle, the merciful, the pure in heart, the peacemakers -- plus 'poor in spirit' rendered as 'those who know they need God.' DELIBERATELY OMITS 'persecuted for righteousness' (too heavy for 4-7). Same softening doctrine as the Cross (held not sad), Esther (courage not danger), etc. Comfort-ritual = WEB-faithful but child-rendered (a paraphrase frame, not a verbatim recitation, because the literal Beatitudes are abstract here -- unlike Psalm 23 / Lord's Prayer which recite whole). Gentle frame (Jesus on the hillside) + soft bedtime close ('rest now, little one... you are blessed'). 'blessed' explained as loved/cared for/safe with God. VOICE_ARABELLA (tender nurturer; also narrates Psalm 23 -- consistent comfort-ritual voice).",
+  "files": {
+    "short": {
+      "storyText": "story_1859_short.txt",
+      "audio": "audio_1859_short.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1859.txt",
+      "audio": "audio_1859_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

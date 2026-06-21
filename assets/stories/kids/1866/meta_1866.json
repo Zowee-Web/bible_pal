@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1866,
+  "anchorId": "come_to_me",
+  "kidLane": "dedicated-4-7",
+  "title": "Come to Me and Rest",
+  "scriptureAnchorId": "matthew_11",
+  "bibleSourceRef": "Matthew 11:28-30",
+  "bibleStoryKey": "matthew_11",
+  "translation": "WEB",
+  "type": "comfort-ritual",
+  "mood": "weary",
+  "emotionalTags": [
+    "overwhelmed",
+    "sad",
+    "hope"
+  ],
+  "themeTags": [
+    "rest",
+    "comfort",
+    "Jesus invites us",
+    "Gods love"
+  ],
+  "lengths": [
+    "short"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Jesus said you can bring him anything at all. What would you most like to tell him about today?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Comfort & Bedtime, comfort-ritual short-only). Adam's 'the one I'd fight hardest to include' -- pure medicine for the tired/sad/overwhelmed/scared child. mood=weary so it routes directly to that distress mood (Psalm 23's cousin). KEEP: 'Come to me, all you who are tired and carrying heavy things... and I will give you rest' + 'come just as you are' + 'you can bring him anything.' SKIP (per Adam): the 'yoke' imagery and any burden/obedience/discipleship explanation -- too abstract; this is comfort, not teaching. Closing is Adam's verbatim all-timer: 'Rest now, little one. Jesus is gentle and kind. You can bring him anything.' WEB-faithful but child-rendered (gentle frame + invitation), like the Beatitudes. VOICE_ARABELLA (the comfort-ritual voice -- Psalm 23, Beatitudes).",
+  "files": {
+    "short": {
+      "storyText": "story_1866_short.txt",
+      "audio": "audio_1866_short.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1866.txt",
+      "audio": "audio_1866_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}
