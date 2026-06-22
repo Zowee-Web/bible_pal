@@ -327,9 +327,15 @@
           "scriptureRef": "Exodus 16",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": false
+          "launch": true,
+          "productionId": 1886,
+          "manifestAnchorIds": [
+            "exodus_16"
+          ],
+          "longEligible": false
         },
         {
           "anchorId": "passover",
@@ -368,9 +374,15 @@
           "scriptureRef": "Joshua 3",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": false
+          "launch": true,
+          "productionId": 1888,
+          "manifestAnchorIds": [
+            "joshua_3"
+          ],
+          "longEligible": false
         },
         {
           "anchorId": "jericho",
@@ -639,9 +651,15 @@
           "scriptureRef": "2 Kings 4:1-7",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": false
+          "launch": true,
+          "productionId": 1885,
+          "manifestAnchorIds": [
+            "2_kings_4"
+          ],
+          "longEligible": false
         },
         {
           "anchorId": "naaman",
@@ -1204,7 +1222,12 @@
           "targetLengths": [
             "short"
           ],
-          "launch": false
+          "launch": true,
+          "productionId": 1887,
+          "manifestAnchorIds": [
+            "matthew_13_44"
+          ],
+          "longEligible": false
         },
         {
           "anchorId": "widows_offering",

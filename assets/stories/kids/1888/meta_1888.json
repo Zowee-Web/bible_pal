@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1888,
+  "anchorId": "jordan_crossing",
+  "kidLane": "dedicated-4-7",
+  "title": "The River That Stood Still",
+  "scriptureAnchorId": "joshua_3",
+  "bibleSourceRef": "Joshua 3",
+  "bibleStoryKey": "joshua_3",
+  "translation": "WEB",
+  "mood": "brave_courage",
+  "emotionalTags": [
+    "brave",
+    "amazed",
+    "reassured",
+    "hope"
+  ],
+  "themeTags": [
+    "step of faith",
+    "God makes a way",
+    "trust before you see",
+    "remembering what God did"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "The priests had to step into the water before God parted the river. I wonder how it feels to trust God enough to take that first brave step, even before you can see the way?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "Claims OPEN registry anchor jordan_crossing (Joshua). WATCH-ITEM: the STEP OF FAITH is the heart -- the priests step INTO the water BEFORE it parts (trust first, then see). Framed as wonder/trust, NOT a battle (they are entering the promised land/home, no enemies/conquest). Visual replay hooks: water 'piled up in a heap', dry riverbed, twelve memorial stones + the 'tell your children' beat. Pairs with Red Sea (1813) but distinct event. Soft close ('all'). VOICE_ELIJAH_SAGE (OT gravitas/wonder).",
+  "files": {
+    "short": {
+      "storyText": "story_1888_short.txt",
+      "audio": "audio_1888_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1888_full.txt",
+      "audio": "audio_1888_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1888.txt",
+      "audio": "audio_1888_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

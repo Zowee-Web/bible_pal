@@ -49725,6 +49725,209 @@
         "God loves everyone"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_widow_oil_short",
+      "title": "The Oil That Did Not Stop",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "reassured",
+        "amazed",
+        "hope",
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1885/audio_1885_short.mp3",
+      "textFilePath": "kids/1885/story_1885_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "short",
+      "reflectionQuestion": "The woman had only one little jar, but she trusted God, and he filled every empty jar in the house. I wonder what you could bring to God, even when it feels like only a little?",
+      "bibleSourceRef": "2 Kings 4:1-7",
+      "bibleStoryKey": "2_kings_4",
+      "themeTags": [
+        "God provides",
+        "bring your empty jars",
+        "a little becomes more than enough",
+        "trust in trouble"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_widow_oil_full",
+      "title": "The Oil That Did Not Stop",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "reassured",
+        "amazed",
+        "hope",
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1885/audio_1885_full.mp3",
+      "textFilePath": "kids/1885/story_1885_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "full",
+      "reflectionQuestion": "The woman had only one little jar, but she trusted God, and he filled every empty jar in the house. I wonder what you could bring to God, even when it feels like only a little?",
+      "bibleSourceRef": "2 Kings 4:1-7",
+      "bibleStoryKey": "2_kings_4",
+      "themeTags": [
+        "God provides",
+        "bring your empty jars",
+        "a little becomes more than enough",
+        "trust in trouble"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_manna_short",
+      "title": "Bread from Heaven",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "reassured",
+        "amazed",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1886/audio_1886_short.mp3",
+      "textFilePath": "kids/1886/story_1886_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "storyLength": "short",
+      "reflectionQuestion": "God sent fresh bread every single morning, just enough for that day. I wonder what good thing you could thank God for giving you today?",
+      "bibleSourceRef": "Exodus 16",
+      "bibleStoryKey": "exodus_16",
+      "themeTags": [
+        "God provides daily",
+        "bread from heaven",
+        "do not worry about tomorrow",
+        "one day at a time"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_manna_full",
+      "title": "Bread from Heaven",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "reassured",
+        "amazed",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1886/audio_1886_full.mp3",
+      "textFilePath": "kids/1886/story_1886_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "storyLength": "full",
+      "reflectionQuestion": "God sent fresh bread every single morning, just enough for that day. I wonder what good thing you could thank God for giving you today?",
+      "bibleSourceRef": "Exodus 16",
+      "bibleStoryKey": "exodus_16",
+      "themeTags": [
+        "God provides daily",
+        "bread from heaven",
+        "do not worry about tomorrow",
+        "one day at a time"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_hidden_treasure_short",
+      "title": "The Hidden Treasure",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joyful",
+        "delighted",
+        "amazed",
+        "loved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1887/audio_1887_short.mp3",
+      "textFilePath": "kids/1887/story_1887_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "short",
+      "reflectionQuestion": "The man was so full of joy that he gladly gave everything for the treasure he found. I wonder what feels like the most precious treasure of all to you?",
+      "bibleSourceRef": "Matthew 13:44",
+      "bibleStoryKey": "matthew_13_44",
+      "themeTags": [
+        "God's love is the greatest treasure",
+        "joy of finding",
+        "the kingdom of heaven",
+        "worth more than anything"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jordan_short",
+      "title": "The River That Stood Still",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "amazed",
+        "reassured",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1888/audio_1888_short.mp3",
+      "textFilePath": "kids/1888/story_1888_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "storyLength": "short",
+      "reflectionQuestion": "The priests had to step into the water before God parted the river. I wonder how it feels to trust God enough to take that first brave step, even before you can see the way?",
+      "bibleSourceRef": "Joshua 3",
+      "bibleStoryKey": "joshua_3",
+      "themeTags": [
+        "step of faith",
+        "God makes a way",
+        "trust before you see",
+        "remembering what God did"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jordan_full",
+      "title": "The River That Stood Still",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "amazed",
+        "reassured",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1888/audio_1888_full.mp3",
+      "textFilePath": "kids/1888/story_1888_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "storyLength": "full",
+      "reflectionQuestion": "The priests had to step into the water before God parted the river. I wonder how it feels to trust God enough to take that first brave step, even before you can see the way?",
+      "bibleSourceRef": "Joshua 3",
+      "bibleStoryKey": "joshua_3",
+      "themeTags": [
+        "step of faith",
+        "God makes a way",
+        "trust before you see",
+        "remembering what God did"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }
