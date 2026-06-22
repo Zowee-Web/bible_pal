@@ -49928,6 +49928,296 @@
         "remembering what God did"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_paul_silas_short",
+      "title": "Singing in the Dark",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "reassured",
+        "brave",
+        "hope",
+        "joyful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1890/audio_1890_short.mp3",
+      "textFilePath": "kids/1890/story_1890_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "storyLength": "short",
+      "reflectionQuestion": "Paul and Silas sang to God even in a dark prison, and they were not alone. I wonder what song or prayer you could turn to when something feels dark or scary?",
+      "bibleSourceRef": "Acts 16:16-34",
+      "bibleStoryKey": "acts_16",
+      "themeTags": [
+        "joy in hard places",
+        "God is with you in the dark",
+        "praise and trust",
+        "you are never alone"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_paul_silas_full",
+      "title": "Singing in the Dark",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "reassured",
+        "brave",
+        "hope",
+        "joyful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1890/audio_1890_full.mp3",
+      "textFilePath": "kids/1890/story_1890_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "storyLength": "full",
+      "reflectionQuestion": "Paul and Silas sang to God even in a dark prison, and they were not alone. I wonder what song or prayer you could turn to when something feels dark or scary?",
+      "bibleSourceRef": "Acts 16:16-34",
+      "bibleStoryKey": "acts_16",
+      "themeTags": [
+        "joy in hard places",
+        "God is with you in the dark",
+        "praise and trust",
+        "you are never alone"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jesus_baptized_short",
+      "title": "The Voice from Heaven",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "loved",
+        "calm",
+        "wonder",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1891/audio_1891_short.mp3",
+      "textFilePath": "kids/1891/story_1891_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "short",
+      "reflectionQuestion": "When Jesus came up from the water, God said, \"This is my Son, whom I love.\" I wonder how it feels to know that God says he loves you, too?",
+      "bibleSourceRef": "Matthew 3:13-17",
+      "bibleStoryKey": "matthew_3",
+      "themeTags": [
+        "you are beloved",
+        "the Father's voice",
+        "the dove",
+        "God delights in you"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jesus_baptized_full",
+      "title": "The Voice from Heaven",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "loved",
+        "calm",
+        "wonder",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1891/audio_1891_full.mp3",
+      "textFilePath": "kids/1891/story_1891_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "full",
+      "reflectionQuestion": "When Jesus came up from the water, God said, \"This is my Son, whom I love.\" I wonder how it feels to know that God says he loves you, too?",
+      "bibleSourceRef": "Matthew 3:13-17",
+      "bibleStoryKey": "matthew_3",
+      "themeTags": [
+        "you are beloved",
+        "the Father's voice",
+        "the dove",
+        "God delights in you"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_water_rock_short",
+      "title": "Water from the Rock",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "amazed",
+        "reassured",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1892/audio_1892_short.mp3",
+      "textFilePath": "kids/1892/story_1892_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "storyLength": "short",
+      "reflectionQuestion": "The people were so thirsty, but God brought cool water right out of a dry rock. I wonder what you could ask God for, when you feel like you have run dry?",
+      "bibleSourceRef": "Exodus 17:1-7",
+      "bibleStoryKey": "exodus_17",
+      "themeTags": [
+        "God provides",
+        "bring your needs to God",
+        "good from surprising places",
+        "water in the desert"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_water_rock_full",
+      "title": "Water from the Rock",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "amazed",
+        "reassured",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1892/audio_1892_full.mp3",
+      "textFilePath": "kids/1892/story_1892_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "storyLength": "full",
+      "reflectionQuestion": "The people were so thirsty, but God brought cool water right out of a dry rock. I wonder what you could ask God for, when you feel like you have run dry?",
+      "bibleSourceRef": "Exodus 17:1-7",
+      "bibleStoryKey": "exodus_17",
+      "themeTags": [
+        "God provides",
+        "bring your needs to God",
+        "good from surprising places",
+        "water in the desert"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_deborah_short",
+      "title": "Deborah, the Wise and Brave",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "reassured",
+        "hope",
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1893/audio_1893_short.mp3",
+      "textFilePath": "kids/1893/story_1893_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "storyLength": "short",
+      "reflectionQuestion": "Deborah was wise and brave, and God went ahead of his people to keep them safe. I wonder what brave thing God might help you do, knowing he goes ahead of you?",
+      "bibleSourceRef": "Judges 4",
+      "bibleStoryKey": "judges_4",
+      "themeTags": [
+        "God gives wisdom and courage",
+        "brave women too",
+        "God goes ahead of you",
+        "you are not alone"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_deborah_full",
+      "title": "Deborah, the Wise and Brave",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "reassured",
+        "hope",
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1893/audio_1893_full.mp3",
+      "textFilePath": "kids/1893/story_1893_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "storyLength": "full",
+      "reflectionQuestion": "Deborah was wise and brave, and God went ahead of his people to keep them safe. I wonder what brave thing God might help you do, knowing he goes ahead of you?",
+      "bibleSourceRef": "Judges 4",
+      "bibleStoryKey": "judges_4",
+      "themeTags": [
+        "God gives wisdom and courage",
+        "brave women too",
+        "God goes ahead of you",
+        "you are not alone"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_boy_jesus_temple_short",
+      "title": "The Boy in the Temple",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "curious",
+        "reassured",
+        "loved",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1894/audio_1894_short.mp3",
+      "textFilePath": "kids/1894/story_1894_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "storyLength": "short",
+      "reflectionQuestion": "Young Jesus loved being in God's house, asking and answering big questions. I wonder what you would most like to ask God about?",
+      "bibleSourceRef": "Luke 2:41-52",
+      "bibleStoryKey": "luke_2_41",
+      "themeTags": [
+        "a relatable kid",
+        "questions about God are good",
+        "loving God's house",
+        "never too young"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_boy_jesus_temple_full",
+      "title": "The Boy in the Temple",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "curious",
+        "reassured",
+        "loved",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1894/audio_1894_full.mp3",
+      "textFilePath": "kids/1894/story_1894_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "storyLength": "full",
+      "reflectionQuestion": "Young Jesus loved being in God's house, asking and answering big questions. I wonder what you would most like to ask God about?",
+      "bibleSourceRef": "Luke 2:41-52",
+      "bibleStoryKey": "luke_2_41",
+      "themeTags": [
+        "a relatable kid",
+        "questions about God are good",
+        "loving God's house",
+        "never too young"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }

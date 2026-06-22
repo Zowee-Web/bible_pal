@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1892,
+  "anchorId": "water_from_rock",
+  "kidLane": "dedicated-4-7",
+  "title": "Water from the Rock",
+  "scriptureAnchorId": "exodus_17",
+  "bibleSourceRef": "Exodus 17:1-7",
+  "bibleStoryKey": "exodus_17",
+  "translation": "WEB",
+  "mood": "grateful",
+  "emotionalTags": [
+    "grateful",
+    "amazed",
+    "reassured",
+    "hope"
+  ],
+  "themeTags": [
+    "God provides",
+    "bring your needs to God",
+    "good from surprising places",
+    "water in the desert"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "The people were so thirsty, but God brought cool water right out of a dry rock. I wonder what you could ask God for, when you feel like you have run dry?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Moses & Exodus, Exodus 17). Toward-100. Visual provision-miracle (water gushing from a dry rock) -- pairs with Manna (1886) as the desert-provision pair. WATCH-ITEM: the grumbling kept LIGHT (thirsty + worried, like Manna), and God PROVIDES, not punishes (Moses' later striking-in-anger episode is NOT this story). Moses models bringing the need to God in prayer. Room = God provides / bring your needs to God / good things from surprising places. Soft close ('him'). VOICE_BRADFORD (strong male; Moses).",
+  "files": {
+    "short": {
+      "storyText": "story_1892_short.txt",
+      "audio": "audio_1892_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1892_full.txt",
+      "audio": "audio_1892_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1892.txt",
+      "audio": "audio_1892_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

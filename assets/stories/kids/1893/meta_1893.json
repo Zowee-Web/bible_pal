@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1893,
+  "anchorId": "deborah",
+  "kidLane": "dedicated-4-7",
+  "title": "Deborah, the Wise and Brave",
+  "scriptureAnchorId": "judges_4",
+  "bibleSourceRef": "Judges 4",
+  "bibleStoryKey": "judges_4",
+  "translation": "WEB",
+  "mood": "brave_courage",
+  "emotionalTags": [
+    "brave",
+    "reassured",
+    "hope",
+    "grateful"
+  ],
+  "themeTags": [
+    "God gives wisdom and courage",
+    "brave women too",
+    "God goes ahead of you",
+    "you are not alone"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Deborah was wise and brave, and God went ahead of his people to keep them safe. I wonder what brave thing God might help you do, knowing he goes ahead of you?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Judges -- 3rd story in the category). Toward-100 + REGISTER VARIETY: a brave WOMAN (most kid courage stories are male -- David, Gideon, Samson); fills the four-registers/anti-all-comfort need. WATCH-ITEM: soft on battle -- NO fighting/gore; God sends a storm, the enemy chariots get stuck in mud, the enemy 'ran far away'. Sisera's tent-peg death is OMITTED entirely. The HEART = God gives wisdom + courage to all kinds of people (girls and women too), and 'God goes ahead of you' so you are never alone. Deborah the wise judge under her palm tree; Barak braver with her along. Ends with Deborah's song of thanks. Soft close ('way'). VOICE_DEBORAH_WISE (on-the-nose: voices Deborah herself; wise/warm female).",
+  "files": {
+    "short": {
+      "storyText": "story_1893_short.txt",
+      "audio": "audio_1893_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1893_full.txt",
+      "audio": "audio_1893_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1893.txt",
+      "audio": "audio_1893_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

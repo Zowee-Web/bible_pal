@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1891,
+  "anchorId": "jesus_baptized",
+  "kidLane": "dedicated-4-7",
+  "title": "The Voice from Heaven",
+  "scriptureAnchorId": "matthew_3",
+  "bibleSourceRef": "Matthew 3:13-17",
+  "bibleStoryKey": "matthew_3",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "loved",
+    "calm",
+    "wonder",
+    "hope"
+  ],
+  "themeTags": [
+    "you are beloved",
+    "the Father's voice",
+    "the dove",
+    "God delights in you"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "When Jesus came up from the water, God said, \"This is my Son, whom I love.\" I wonder how it feels to know that God says he loves you, too?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Jesus' life -- place under 'Birth of Jesus'/early-life bucket OR a new Jesus' Life category at registration). WATCH-ITEM: warm + gentle, NOT theological -- John prepares the way, baptizes Jesus, the sky opens, the Spirit comes down like a dove, the Father's voice 'This is my Son, whom I love.' The HEART = belovedness/God's delight, turned to the child ('God feels that very same love for YOU... his dear child'). Ties the kid lane's 'you are loved / not alone' thread. Calm, bedtime-gentle register. Soft close ('own'). VOICE_JOHN_BELOVED (tender; fits 'beloved Son').",
+  "files": {
+    "short": {
+      "storyText": "story_1891_short.txt",
+      "audio": "audio_1891_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1891_full.txt",
+      "audio": "audio_1891_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1891.txt",
+      "audio": "audio_1891_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

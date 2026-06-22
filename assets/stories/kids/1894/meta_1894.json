@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1894,
+  "anchorId": "boy_jesus_temple",
+  "kidLane": "dedicated-4-7",
+  "title": "The Boy in the Temple",
+  "scriptureAnchorId": "luke_2_41",
+  "bibleSourceRef": "Luke 2:41-52",
+  "bibleStoryKey": "luke_2_41",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "curious",
+    "reassured",
+    "loved",
+    "hope"
+  ],
+  "themeTags": [
+    "a relatable kid",
+    "questions about God are good",
+    "loving God's house",
+    "never too young"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Young Jesus loved being in God's house, asking and answering big questions. I wonder what you would most like to ask God about?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (early life of Jesus -- place under 'Birth of Jesus'/childhood bucket at registration; distinct passage from the nativity Luke 2:1-20 = 1829/1833). Toward-100 + a relatable KID hero (12-yo Jesus). WATCH-ITEM: the 'lost' kept GENTLE -- Mary/Joseph 'worried' (not frantic-terror), and Jesus was safe all along, in God's house. The HEART = Jesus loved God's house / asking questions about God is good / you are never too young to come close to God. Mary's relief, Jesus' gentle 'my Father's house', then home + 'grew taller, wiser, closer to God.' Soft close ('you'). VOICE_MARY_PONDER (Mary is the worried mother in this story; gentle pondering register).",
+  "files": {
+    "short": {
+      "storyText": "story_1894_short.txt",
+      "audio": "audio_1894_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1894_full.txt",
+      "audio": "audio_1894_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1894.txt",
+      "audio": "audio_1894_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

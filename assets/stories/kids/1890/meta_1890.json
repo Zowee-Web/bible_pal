@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1890,
+  "anchorId": "paul_silas_prison",
+  "kidLane": "dedicated-4-7",
+  "title": "Singing in the Dark",
+  "scriptureAnchorId": "acts_16",
+  "bibleSourceRef": "Acts 16:16-34",
+  "bibleStoryKey": "acts_16",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "reassured",
+    "brave",
+    "hope",
+    "joyful"
+  ],
+  "themeTags": [
+    "joy in hard places",
+    "God is with you in the dark",
+    "praise and trust",
+    "you are never alone"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Paul and Silas sang to God even in a dark prison, and they were not alone. I wonder what song or prayer you could turn to when something feels dark or scary?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Early Church, Acts 16). Toward-100. WATCH-ITEM: the arrest/beating kept ABSTRACT ('some people did not like what they were saying... put into prison'); no violence dwelt on (the jailer 'washed their hurts' is the only gentle nod). The HEART = they SANG in the dark at midnight (joy/praise even in hard, scary places); the earthquake opens the doors + chains fall; they DON'T run; the jailer is kept SAFE and becomes a friend (whole family). Room = God is with you in the dark / you are never alone / you can always find a song. Ties the not-alone thread. Soft close ('song'). VOICE_REVEREND_MICHAEL_C_VINCENT (pastoral, hope-in-hard-places).",
+  "files": {
+    "short": {
+      "storyText": "story_1890_short.txt",
+      "audio": "audio_1890_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1890_full.txt",
+      "audio": "audio_1890_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1890.txt",
+      "audio": "audio_1890_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}
