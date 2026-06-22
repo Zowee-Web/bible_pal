@@ -22,9 +22,10 @@
   ],
   "lengths": [
     "short",
-    "full"
+    "full",
+    "long"
   ],
-  "longEligible": false,
+  "longEligible": true,
   "status": "REVIEW",
   "storyVoiceKey": "VOICE_BRADFORD",
   "ttsModel": "eleven_turbo_v2_5",
@@ -52,6 +53,10 @@
       "text": "reflection_1842.txt",
       "audio": "audio_1842_reflection.mp3",
       "ttsModel": "eleven_v3"
+    },
+    "long": {
+      "storyText": "story_1842_long.txt",
+      "audio": "audio_1842_long.mp3"
     }
   }
 }

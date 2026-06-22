@@ -22,9 +22,10 @@
   ],
   "lengths": [
     "short",
-    "full"
+    "full",
+    "long"
   ],
-  "longEligible": false,
+  "longEligible": true,
   "status": "REVIEW",
   "storyVoiceKey": "VOICE_HANNAH_HOPE",
   "ttsModel": "eleven_turbo_v2_5",
@@ -50,6 +51,10 @@
       "text": "reflection_1845.txt",
       "audio": "audio_1845_reflection.mp3",
       "ttsModel": "eleven_v3"
+    },
+    "long": {
+      "storyText": "story_1845_long.txt",
+      "audio": "audio_1845_long.mp3"
     }
   }
 }

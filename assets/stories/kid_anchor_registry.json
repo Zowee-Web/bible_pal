@@ -288,13 +288,15 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": true,
           "manifestAnchorIds": [
             "baby_moses"
           ],
-          "productionId": 1810
+          "productionId": 1810,
+          "longEligible": true
         },
         {
           "anchorId": "burning_bush",
@@ -429,13 +431,15 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": true,
           "productionId": 1818,
           "manifestAnchorIds": [
             "joshua_6"
-          ]
+          ],
+          "longEligible": true
         },
         {
           "anchorId": "sun_stood_still",
@@ -518,13 +522,15 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": true,
           "productionId": 1837,
           "manifestAnchorIds": [
             "ruth"
-          ]
+          ],
+          "longEligible": true
         }
       ]
     },
@@ -730,13 +736,15 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": true,
           "productionId": 1842,
           "manifestAnchorIds": [
             "1_kings_18"
-          ]
+          ],
+          "longEligible": true
         },
         {
           "anchorId": "elijah_whisper",
@@ -954,7 +962,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "longEligible": true,
           "launch": true,
@@ -1104,13 +1113,15 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": true,
           "productionId": 1825,
           "manifestAnchorIds": [
             "john_6_1-14"
-          ]
+          ],
+          "longEligible": true
         },
         {
           "anchorId": "walking_on_water",
@@ -1260,14 +1271,15 @@
           "tier": "secondary",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "manifestAnchorIds": [
             "matthew_17"
           ],
           "launch": true,
           "productionId": 1876,
-          "longEligible": false
+          "longEligible": true
         },
         {
           "anchorId": "coin_in_fish",
@@ -1583,13 +1595,15 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": true,
           "productionId": 1845,
           "manifestAnchorIds": [
             "pentecost"
-          ]
+          ],
+          "longEligible": true
         },
         {
           "anchorId": "peter_prison",

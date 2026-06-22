@@ -50798,6 +50798,226 @@
         "wonder"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_ruth_naomi_long",
+      "title": "Ruth and Naomi",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "lonely",
+        "grief",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1837/audio_1837_long.mp3",
+      "textFilePath": "kids/1837/story_1837_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "long",
+      "reflectionQuestion": "Ruth loved Naomi so much that she would not let her be alone. Who is someone you love that you like to take care of?",
+      "bibleSourceRef": "Ruth 1-4",
+      "bibleStoryKey": "ruth",
+      "themeTags": [
+        "loyalty",
+        "kindness",
+        "Gods provision",
+        "belonging"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_baby_moses_long",
+      "title": "Baby Moses",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "faith",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1810/audio_1810_long.mp3",
+      "textFilePath": "kids/1810/story_1810_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "storyLength": "long",
+      "reflectionQuestion": "Who do you feel safe and cozy with at the end of the day?",
+      "bibleSourceRef": "Exodus 2:1-10",
+      "bibleStoryKey": "baby_moses_basket",
+      "themeTags": [
+        "Gods protection",
+        "providence",
+        "family love"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_pentecost_long",
+      "title": "The Holy Spirit Comes",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "celebration",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1845/audio_1845_long.mp3",
+      "textFilePath": "kids/1845/story_1845_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "long",
+      "reflectionQuestion": "On that happy day, God's Spirit came to be with Jesus' friends always. What is something that fills you with joy?",
+      "bibleSourceRef": "Acts 2",
+      "bibleStoryKey": "pentecost",
+      "themeTags": [
+        "the Holy Spirit",
+        "Gods presence",
+        "joy",
+        "the church"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_bethlehem_night_long",
+      "title": "The Night in Bethlehem",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1829/audio_1829_long.mp3",
+      "textFilePath": "kids/1829/story_1829_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "storyLength": "long",
+      "reflectionQuestion": "What do you think it was like in that quiet stable, the night the baby Jesus was born?",
+      "bibleSourceRef": "Luke 2:1-7",
+      "bibleStoryKey": "bethlehem_night",
+      "themeTags": [
+        "Jesus is born",
+        "Gods Son",
+        "Christmas",
+        "wonder"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jericho_long",
+      "title": "The Walls of Jericho",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "feeling_small",
+        "anxious"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1818/audio_1818_long.mp3",
+      "textFilePath": "kids/1818/story_1818_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "storyLength": "long",
+      "reflectionQuestion": "What do you think it was like to march around those great walls so quietly, day after day, waiting?",
+      "bibleSourceRef": "Joshua 6",
+      "bibleStoryKey": "walls_of_jericho",
+      "themeTags": [
+        "trust",
+        "Gods power",
+        "obedience",
+        "presence of God"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_elijah_carmel_long",
+      "title": "Fire on Mount Carmel",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "courage",
+        "faith",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1842/audio_1842_long.mp3",
+      "textFilePath": "kids/1842/story_1842_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "storyLength": "long",
+      "reflectionQuestion": "Elijah trusted God even when he stood all alone. When you need to be brave, who do you like to have beside you?",
+      "bibleSourceRef": "1 Kings 18",
+      "bibleStoryKey": "1_kings_18",
+      "themeTags": [
+        "the one true God",
+        "courage",
+        "Gods power",
+        "trusting God"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_transfiguration_long",
+      "title": "Jesus Shines Like the Sun",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "awe",
+        "joyful",
+        "amazed"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1876/audio_1876_long.mp3",
+      "textFilePath": "kids/1876/story_1876_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "storyLength": "long",
+      "reflectionQuestion": "The friends saw Jesus shining bright as the sun, and they were filled with wonder. I wonder what fills your heart with wonder when you think about God?",
+      "bibleSourceRef": "Matthew 17:1-9",
+      "bibleStoryKey": "matthew_17",
+      "themeTags": [
+        "Jesus shines",
+        "awe and wonder",
+        "this is my Son",
+        "glimpse of glory"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_feeding_5000_long",
+      "title": "The Big Picnic",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "wonder"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1825/audio_1825_long.mp3",
+      "textFilePath": "kids/1825/story_1825_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "storyLength": "long",
+      "reflectionQuestion": "What do you think the boy felt when his own little lunch became enough for everyone?",
+      "bibleSourceRef": "John 6:1-14",
+      "bibleStoryKey": "feeding_5000",
+      "themeTags": [
+        "Gods provision",
+        "gratitude",
+        "generosity",
+        "Gods power"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }
