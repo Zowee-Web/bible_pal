@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1889,
+  "anchorId": "woman_at_well",
+  "kidLane": "dedicated-4-7",
+  "title": "The Woman at the Well",
+  "scriptureAnchorId": "john_4",
+  "bibleSourceRef": "John 4:1-30",
+  "bibleStoryKey": "john_4",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "loved",
+    "valued",
+    "comforted",
+    "joyful"
+  ],
+  "themeTags": [
+    "Jesus sees you",
+    "you are not invisible",
+    "kindness to the left-out",
+    "living water"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "The woman felt left out by everyone, until Jesus truly saw her and was kind. I wonder how it feels to know that Jesus sees you, and loves every part of you?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Jesus' Life, John 4). Fills freed ID 1889. The 'Jesus sees you' room -- for a child who feels left out / unseen / invisible. WATCH-ITEM: the five-husbands detail is OMITTED entirely; rendered gently as 'Jesus knew everything about her... even the things she felt ashamed of, and STILL he was kind / looked at her with nothing but love.' She is the left-out outsider (comes alone in the heat); Jesus crosses the social line to see + value her; she runs to tell the whole town. 'Living water' = a gladness deep inside that never runs dry. Soft close ('invisible'). VOICE_NOAH_PATIENT (a warm FEMALE voice Adam loves -- ideal tender fit for a 'you are truly seen' story; female voice for a woman-centered story).",
+  "files": {
+    "short": {
+      "storyText": "story_1889_short.txt",
+      "audio": "audio_1889_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1889_full.txt",
+      "audio": "audio_1889_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1889.txt",
+      "audio": "audio_1889_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

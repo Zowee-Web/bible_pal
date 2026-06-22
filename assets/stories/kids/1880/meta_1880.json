@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1880,
+  "anchorId": "elijah_chariot",
+  "kidLane": "dedicated-4-7",
+  "title": "The Chariot of Fire",
+  "scriptureAnchorId": "2_kings_2",
+  "bibleSourceRef": "2 Kings 2:1-15",
+  "bibleStoryKey": "2_kings_2",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "wonder",
+    "amazed",
+    "comforted",
+    "hope"
+  ],
+  "themeTags": [
+    "God takes his friends home",
+    "not left alone when someone leaves",
+    "chariot of fire",
+    "carrying on"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Elijah went home to God, but Elisha was not left alone -- God gave him all he needed to carry on. I wonder who stays close to you, even when someone you love is far away?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Elijah & Elisha, 2 Kings 2). Fills freed ID 1880. The unforgettable VISUAL (chariot + horses of fire, whirlwind) is the replay hook. WATCH-ITEM: the goodbye kept GENTLE + HOPEFUL -- Elijah does NOT die; God takes him home to heaven; the fiery chariot is 'blazing bright and beautiful, and not frightening at all'. Elisha is 'sad to see his friend go' but knows Elijah is safe/happy with God, and receives Elijah's cloak + the same Spirit to carry on. Room = God takes his friends home / when someone you love goes away, God stays close and gives you what you need. A gentle on-ramp to loss/separation without death-fear. Soft close ('on'/'strong'). VOICE_REVEREND_MICHAEL_C_VINCENT (ear-verified male; resonant for the awe).",
+  "files": {
+    "short": {
+      "storyText": "story_1880_short.txt",
+      "audio": "audio_1880_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1880_full.txt",
+      "audio": "audio_1880_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1880.txt",
+      "audio": "audio_1880_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

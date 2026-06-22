@@ -630,6 +630,27 @@
       ]
     },
     {
+      "name": "Solomon",
+      "anchors": [
+        {
+          "anchorId": "solomon_wisdom",
+          "displayName": "Solomon Asks for Wisdom",
+          "scriptureRef": "1 Kings 3:5-14",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "1_kings_3"
+          ],
+          "launch": true,
+          "productionId": 1882,
+          "longEligible": false
+        }
+      ]
+    },
+    {
       "name": "Elijah & Elisha",
       "anchors": [
         {
@@ -709,6 +730,22 @@
           "manifestAnchorIds": [
             "2_kings_5"
           ]
+        },
+        {
+          "anchorId": "elijah_chariot",
+          "displayName": "The Chariot of Fire",
+          "scriptureRef": "2 Kings 2:1-15",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "2_kings_2"
+          ],
+          "launch": true,
+          "productionId": 1880,
+          "longEligible": false
         }
       ]
     },
@@ -936,6 +973,22 @@
           ],
           "launch": true,
           "productionId": 1894,
+          "longEligible": false
+        },
+        {
+          "anchorId": "woman_at_well",
+          "displayName": "The Woman at the Well",
+          "scriptureRef": "John 4:1-30",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "john_4"
+          ],
+          "launch": true,
+          "productionId": 1889,
           "longEligible": false
         }
       ]
@@ -1531,6 +1584,22 @@
           ],
           "launch": true,
           "productionId": 1890,
+          "longEligible": false
+        },
+        {
+          "anchorId": "philip_ethiopian",
+          "displayName": "Philip and the Ethiopian",
+          "scriptureRef": "Acts 8:26-39",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "acts_8"
+          ],
+          "launch": true,
+          "productionId": 1895,
           "longEligible": false
         }
       ]
