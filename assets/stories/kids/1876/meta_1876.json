@@ -23,9 +23,10 @@
   ],
   "lengths": [
     "short",
-    "full"
+    "full",
+    "long"
   ],
-  "longEligible": false,
+  "longEligible": true,
   "status": "REVIEW",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "ttsModel": "eleven_turbo_v2_5",
@@ -51,6 +52,10 @@
       "text": "reflection_1876.txt",
       "audio": "audio_1876_reflection.mp3",
       "ttsModel": "eleven_v3"
+    },
+    "long": {
+      "storyText": "story_1876_long.txt",
+      "audio": "audio_1876_long.mp3"
     }
   }
 }

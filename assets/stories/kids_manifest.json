@@ -7544,6 +7544,264 @@
       "reflectionQuestion": "God promised Jacob, \"I am with you wherever you go.\" I wonder how it feels to know that God is right beside you, watching over you, always?",
       "kidSafetyNotes": "NEW anchor (Genesis 28; place under patriarchs/'Abraham & Sarah' or a new 'Jacob' grouping at registration). THE 100th WRITTEN STORY -- chosen as the milestone CAPSTONE because it IS the kid lane's emergent identity: 'God is with me / I am not alone' (feedback_kid_not_alone_thread). HAS A LONG -- earned through scenic/emotional progression (the goodbye + lonely road -> gathering dark + smallness -> the stone pillow -> the dream unfolding slowly: stairway, angels up/down, God at the top -> the gentle promise -> the awe of waking 'God was here and I didn't know it' -> the stone marker + vow -> tender bedtime benediction turned to the child), NOT padding. Backstory (the Esau deception) OMITTED -- Jacob is simply 'traveling to family far away'. Gentle bedtime register; the promise 'I am with you wherever you go / I will never leave you / I will bring you home'. Soft close ('side'/'always'). VOICE_NOAH_PATIENT (warm female voice Adam loves -- ideal tender, bedtime fit for the capstone).",
       "hardContentFlags": []
+    },
+    {
+      "id": "kid_ruth_naomi_long",
+      "storyNumber": 1837,
+      "title": "Ruth and Naomi",
+      "textFilePath": "kids/1837/story_1837_long.txt",
+      "scriptureAnchorId": "ruth",
+      "bibleStoryKey": "ruth",
+      "bibleSourceRef": "Ruth 1-4",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "lonely",
+        "grief",
+        "hope"
+      ],
+      "themeTags": [
+        "loyalty",
+        "kindness",
+        "Gods provision",
+        "belonging"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1100,
+      "actualWords": 882,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": "kids/1837/audio_1837_long.mp3",
+      "reflectionAudioPath": "kids/1837/audio_1837_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Ruth loved Naomi so much that she would not let her be alone. Who is someone you love that you like to take care of?",
+      "kidSafetyNotes": "NEW anchor (Ruth). Premier kindness/loyalty story; gentle, relational. Ruth 1's deaths of Naomi's husband and sons are named in ONE calm sentence ('they had grown sick and died'), no lingering on grief -- per KID_STORY_PROMPT 3 (name the outcome calmly, do not dwell). Flag bereavement_softened. For a lonely / missing-someone child: Naomi loses everyone, then is carried home by Ruth's loyalty -- routes a 'left alone / sad' kid toward comfort + belonging. Indelible HELD image = old Naomi holding the baby, her sad heart filled with joy (the not-alone spine, feedback_kid_not_alone_thread). 'God' throughout, no Yahweh. VOICE_RUTH_COMFORT (soft, empathetic) -- on-the-nose register fit.",
+      "hardContentFlags": [
+        "bereavement_softened"
+      ]
+    },
+    {
+      "id": "kid_baby_moses_long",
+      "storyNumber": 1810,
+      "title": "Baby Moses",
+      "textFilePath": "kids/1810/story_1810_long.txt",
+      "scriptureAnchorId": "baby_moses",
+      "bibleStoryKey": "baby_moses_basket",
+      "bibleSourceRef": "Exodus 2:1-10",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "faith",
+        "wonder"
+      ],
+      "themeTags": [
+        "Gods protection",
+        "providence",
+        "family love"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1100,
+      "actualWords": 843,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "audioFilePath": "kids/1810/audio_1810_long.mp3",
+      "reflectionAudioPath": "kids/1810/audio_1810_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Who do you feel safe and cozy with at the end of the day?",
+      "kidSafetyNotes": "Calm/protection. Pharaoh's order softened all the way to 'a dangerous time for baby boys' — no killing named. God's care made gently explicit at the end. One image (held): the basket in the reeds / the mother getting to hold her son again.",
+      "hardContentFlags": [
+        "peril_infant_softened"
+      ]
+    },
+    {
+      "id": "kid_pentecost_long",
+      "storyNumber": 1845,
+      "title": "The Holy Spirit Comes",
+      "textFilePath": "kids/1845/story_1845_long.txt",
+      "scriptureAnchorId": "pentecost",
+      "bibleStoryKey": "pentecost",
+      "bibleSourceRef": "Acts 2",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "celebration",
+        "hope"
+      ],
+      "themeTags": [
+        "the Holy Spirit",
+        "Gods presence",
+        "joy",
+        "the church"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1100,
+      "actualWords": 786,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1845/audio_1845_long.mp3",
+      "reflectionAudioPath": "kids/1845/audio_1845_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "On that happy day, God's Spirit came to be with Jesus' friends always. What is something that fills you with joy?",
+      "kidSafetyNotes": "NEW anchor (Early Church, core-launch finale). The birthday of the church -- wind, gentle flames, every language, bold joy. FIRE here = PRESENCE / joy / the Spirit (soft, warm little flames resting on each friend) -- deliberately CONTRASTED with 1842 Carmel's fire = proof ('Yahweh is God'). Adam approved the same-batch fire pairing precisely because the meaning is opposite (proof vs presence); the prose keeps Pentecost fire gentle, never consuming. Character turn = Peter (once too afraid to admit he knew Jesus -> now bold with joy) -- a kid-readable fear->courage arc. Lands on the not-alone spine: God's Spirit comes to stay, 'never leave them alone' (feedback_kid_not_alone_thread). Church defined as a FAMILY, not a building (kid-concrete). 'God' throughout, no Yahweh. VOICE_HANNAH_HOPE (bright, encouraging -- Acts uplift). One of 4 kid registers = JOY/wonder (feedback_kid_four_registers).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_bethlehem_night_long",
+      "storyNumber": 1829,
+      "title": "The Night in Bethlehem",
+      "textFilePath": "kids/1829/story_1829_long.txt",
+      "scriptureAnchorId": "luke_2_1-7",
+      "bibleStoryKey": "bethlehem_night",
+      "bibleSourceRef": "Luke 2:1-7",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "wonder",
+        "faith"
+      ],
+      "themeTags": [
+        "Jesus is born",
+        "Gods Son",
+        "Christmas",
+        "wonder"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1100,
+      "actualWords": 848,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MARY_PONDER",
+      "audioFilePath": "kids/1829/audio_1829_long.mp3",
+      "reflectionAudioPath": "kids/1829/audio_1829_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like in that quiet stable, the night the baby Jesus was born?",
+      "kidSafetyNotes": "The NATIVITY -- a cornerstone the lane lacked (had wise_men 1809, not the birth itself). Hushed/peaceful telling (shepherds + angels are separate anchors, not here), tagged calm_peaceful to match the quiet holy-night register (bedtime-perfect). Same VOICE_MARY_PONDER as 1824 (Mary Says Yes) -- deliberate continuity, the same 'Mary' voice through both Mary stories. 'No room' kept gentle; stable cozy not grim. Luke 2:19 'held it in her heart' echo, softened ending. One image: baby Jesus asleep in the manger on the hay.",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_jericho_long",
+      "storyNumber": 1818,
+      "title": "The Walls of Jericho",
+      "textFilePath": "kids/1818/story_1818_long.txt",
+      "scriptureAnchorId": "joshua_6",
+      "bibleStoryKey": "walls_of_jericho",
+      "bibleSourceRef": "Joshua 6",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "feeling_small",
+        "anxious"
+      ],
+      "themeTags": [
+        "trust",
+        "Gods power",
+        "obedience",
+        "presence of God"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1100,
+      "actualWords": 864,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "audioFilePath": "kids/1818/audio_1818_long.mp3",
+      "reflectionAudioPath": "kids/1818/audio_1818_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like to march around those great walls so quietly, day after day, waiting?",
+      "kidSafetyNotes": "Joshua 6 adapted for ages 4-7 (Adam 2026-06-15): conquest/killing OMITTED entirely. Reframed from 'God has given us the city' / 'walked into the city' (dispossession) to Joshua shouting 'God is with us!' + a wonder ending ('all the things God could do'). Theme = TRUSTING God before you see anything happen (the quiet marching, the waiting). 'God is with us!' ties to the not-alone spine (faithful: the ark/God's presence is carried around Jericho). One image: the walls tumbling flat. Texture: kinetic/exterior/sound (marching, trumpets, shout, crash).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_elijah_carmel_long",
+      "storyNumber": 1842,
+      "title": "Fire on Mount Carmel",
+      "textFilePath": "kids/1842/story_1842_long.txt",
+      "scriptureAnchorId": "1_kings_18",
+      "bibleStoryKey": "1_kings_18",
+      "bibleSourceRef": "1 Kings 18",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "courage",
+        "faith",
+        "wonder"
+      ],
+      "themeTags": [
+        "the one true God",
+        "courage",
+        "Gods power",
+        "trusting God"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1100,
+      "actualWords": 859,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "audioFilePath": "kids/1842/audio_1842_long.mp3",
+      "reflectionAudioPath": "kids/1842/audio_1842_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Elijah trusted God even when he stood all alone. When you need to be brave, who do you like to have beside you?",
+      "kidSafetyNotes": "NEW anchor (Elijah at Carmel) -- THE Yahweh covenant-name story, the deliberate ~1-in-20 deployment Adam reserved for 'where the name is the point' (first Yahweh since 1811 Burning Bush; 1803 Psalm 23 also has it). Yahweh is introduced GENTLY at the CLIMAX with context ('in the Bible, God's own name is Yahweh') -- the whole story builds to hearing the name, then the people cry 'Yahweh, he is God!'. Default 'God' everywhere else. HARD CONTENT SOFTENED: the prophets of Baal are NOT killed (1 Kings 18:40 omitted) -- they are simply shown to be wrong ('Baal was not real, could not answer'); no taunting cruelty, no slaughter. Flag violence_omitted. Fire here = PROOF/'Yahweh is God' (contrast 1845 Pentecost, where fire = presence/joy -- deliberate same-batch pairing, Adam approved). Indelible image = fire rushing down on the water-soaked altar. Courage model: Elijah brave standing alone, trusting God. VOICE_BRADFORD (passionate conviction).",
+      "hardContentFlags": [
+        "violence_omitted"
+      ]
+    },
+    {
+      "id": "kid_transfiguration_long",
+      "storyNumber": 1876,
+      "title": "Jesus Shines Like the Sun",
+      "textFilePath": "kids/1876/story_1876_long.txt",
+      "scriptureAnchorId": "matthew_17",
+      "bibleStoryKey": "matthew_17",
+      "bibleSourceRef": "Matthew 17:1-9",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "awe",
+        "joyful",
+        "amazed"
+      ],
+      "themeTags": [
+        "Jesus shines",
+        "awe and wonder",
+        "this is my Son",
+        "glimpse of glory"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1100,
+      "actualWords": 839,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": "kids/1876/audio_1876_long.mp3",
+      "reflectionAudioPath": "kids/1876/audio_1876_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The friends saw Jesus shining bright as the sun, and they were filled with wonder. I wonder what fills your heart with wonder when you think about God?",
+      "kidSafetyNotes": "NEW anchor (Jesus' Miracles). Batch D 'replayability/wonder' piece. Adam's rule: AWE not scary. The bright cloud + the voice are wonder-filled and KIND ('This is my Son, whom I love. Listen to him.') -- explicitly 'not a scary voice... warm, and kind, and full of love'. Moses & Elijah kept simple ('two of God's great friends from long, long ago') -- no theology load for 4-7. Peter's 'let's build tents!' is the comic/relatable beat. Ends with the cloud lifting, Jesus back to normal ('their own dear friend'), 'Do not be afraid', walking back down -- safe landing. Soft close ('shine'/'sun'). VOICE_JAMES_BRITISH_PROFESSIONAL (stately, cinematic awe register).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_feeding_5000_long",
+      "storyNumber": 1825,
+      "title": "The Big Picnic",
+      "textFilePath": "kids/1825/story_1825_long.txt",
+      "scriptureAnchorId": "john_6_1-14",
+      "bibleStoryKey": "feeding_5000",
+      "bibleSourceRef": "John 6:1-14",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "wonder"
+      ],
+      "themeTags": [
+        "Gods provision",
+        "gratitude",
+        "generosity",
+        "Gods power"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1100,
+      "actualWords": 868,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "audioFilePath": "kids/1825/audio_1825_long.mp3",
+      "reflectionAudioPath": "kids/1825/audio_1825_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think the boy felt when his own little lunch became enough for everyone?",
+      "kidSafetyNotes": "Gentle, joyful provision. Kid title 'The Big Picnic' (warm, inviting hook for ages 4-7; anchor stays feeding_5000). One image: the boy's five loaves + two fish feeding everyone, with baskets left over. Texture = crowds / daylight / grassy hillside (kinetic-exterior, counters quiet-room drift). Center: God does much with a little freely given. Mood grateful (provision + thankfulness).",
+      "hardContentFlags": []
     }
   ]
 }
