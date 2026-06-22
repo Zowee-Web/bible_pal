@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1898,
+  "anchorId": "centurion_faith",
+  "kidLane": "dedicated-4-7",
+  "title": "Just Say the Word",
+  "scriptureAnchorId": "matthew_8",
+  "bibleSourceRef": "Matthew 8:5-13",
+  "bibleStoryKey": "matthew_8",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "reassured",
+    "amazed",
+    "hope",
+    "loved"
+  ],
+  "themeTags": [
+    "great faith",
+    "Jesus' power reaches anywhere",
+    "trust when you cannot see",
+    "an outsider believes"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "The captain trusted that Jesus could help, even from far away. I wonder when you might need to trust Jesus, even when you cannot see what he is doing?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Jesus' Life, Matthew 8). WATCH-ITEM: the soldier is KIND (cares for his servant 'like family'); NO war/violence -- the 'authority' point is gentle (he gives orders, soldiers obey, so he trusts Jesus commands sickness). Room = great faith / Jesus' power reaches anywhere, even from far away / an unexpected outsider (a Roman) believes deeply. 'Just say the word' is the memorable line. Servant healed at-a-distance, that same hour. Soft close ('away'/'distance'). VOICE_REVEREND_MICHAEL_C_VINCENT (ear-verified male; warm, resonant).",
+  "files": {
+    "short": {
+      "storyText": "story_1898_short.txt",
+      "audio": "audio_1898_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1898_full.txt",
+      "audio": "audio_1898_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1898.txt",
+      "audio": "audio_1898_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}
