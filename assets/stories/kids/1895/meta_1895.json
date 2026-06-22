@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1895,
+  "anchorId": "philip_ethiopian",
+  "kidLane": "dedicated-4-7",
+  "title": "The Man in the Chariot",
+  "scriptureAnchorId": "acts_8",
+  "bibleSourceRef": "Acts 8:26-39",
+  "bibleStoryKey": "acts_8",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "joyful",
+    "curious",
+    "delighted",
+    "hope"
+  ],
+  "themeTags": [
+    "the good news is for everyone",
+    "joy of understanding",
+    "God sends the right helper",
+    "going on rejoicing"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "The man from far away was filled with joy when he learned about Jesus, and went on his way rejoicing. I wonder what part of God's good news fills your own heart with joy?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Early Church, Acts 8). Fills freed ID 1895. Joyful + curious + Scripture-opening. The good-news-is-for-EVERYONE room (a foreigner from far-away Ethiopia is fully welcomed) -- distinct from the lane's raising stories. Beats: God sends Philip to the desert road -> the Ethiopian reads but is puzzled -> 'Do you understand what you are reading?' -> Philip explains it's all about Jesus -> baptism at roadside water -> goes on his way REJOICING. Room = the good news is for every person/land / the joy of understanding / God brings the right helper at the right time. Light, warm, joyful. Soft close ('discover'). VOICE_JAMES_BRITISH_PROFESSIONAL (ear-verified male; warm + clear).",
+  "files": {
+    "short": {
+      "storyText": "story_1895_short.txt",
+      "audio": "audio_1895_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1895_full.txt",
+      "audio": "audio_1895_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1895.txt",
+      "audio": "audio_1895_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

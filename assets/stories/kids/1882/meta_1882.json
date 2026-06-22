@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1882,
+  "anchorId": "solomon_wisdom",
+  "kidLane": "dedicated-4-7",
+  "title": "The Wish of a King",
+  "scriptureAnchorId": "1_kings_3",
+  "bibleSourceRef": "1 Kings 3:5-14",
+  "bibleStoryKey": "1_kings_3",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "calm",
+    "reassured",
+    "hope",
+    "grateful"
+  ],
+  "themeTags": [
+    "asking God for a wise heart",
+    "what matters most",
+    "God gives good gifts",
+    "humility"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Solomon could have asked God for anything, and he asked for a wise and understanding heart. I wonder -- if God said you could ask him for anything at all, what would you ask for?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Solomon / 1 Kings 3; placed under 'David' or a new 'Solomon' category at registration). Fills freed ID 1882. The HOOK is the reflection question Adam wanted: 'if God said you could ask for anything -- what would YOU ask for?' Solomon (young, unsure) could ask for riches/long-life/power but asks for a wise + understanding heart; God is so pleased he gives wisdom AND the rest. Room = what's worth asking God for / a good heart matters most / God gives good gifts. The dream-encounter is gentle. Story file is prose-only (the wonder-question lives in the reflection file, not inline). Soft close ('one'). VOICE_JAMES_HUSKY (ear-verified male; wise-elder register fits the wisdom theme).",
+  "files": {
+    "short": {
+      "storyText": "story_1882_short.txt",
+      "audio": "audio_1882_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1882_full.txt",
+      "audio": "audio_1882_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1882.txt",
+      "audio": "audio_1882_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}
