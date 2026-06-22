@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1886,
+  "anchorId": "manna",
+  "kidLane": "dedicated-4-7",
+  "title": "Bread from Heaven",
+  "scriptureAnchorId": "exodus_16",
+  "bibleSourceRef": "Exodus 16",
+  "bibleStoryKey": "exodus_16",
+  "translation": "WEB",
+  "mood": "grateful",
+  "emotionalTags": [
+    "grateful",
+    "reassured",
+    "amazed",
+    "hope"
+  ],
+  "themeTags": [
+    "God provides daily",
+    "bread from heaven",
+    "do not worry about tomorrow",
+    "one day at a time"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "God sent fresh bread every single morning, just enough for that day. I wonder what good thing you could thank God for giving you today?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "Claims OPEN registry anchor manna (Moses & Exodus). Toward-100. The 'What is it?' naming (manna) is the kid-delight beat. WATCH-ITEM: 'gather just enough for today' framed as God providing DAY BY DAY / do-not-worry-about-tomorrow -- gentle, NOT an anti-hoarding scold. The grumbling kept light + God 'not angry' (god-with-not-cause spirit). Sky-bread wonder is the replay hook (waking to fresh frost-flakes each morning). Soft close ('time'). VOICE_DEBORAH_WISE (warm, wise; provision/gratitude register).",
+  "files": {
+    "short": {
+      "storyText": "story_1886_short.txt",
+      "audio": "audio_1886_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1886_full.txt",
+      "audio": "audio_1886_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1886.txt",
+      "audio": "audio_1886_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1887,
+  "anchorId": "hidden_treasure",
+  "kidLane": "dedicated-4-7",
+  "title": "The Hidden Treasure",
+  "scriptureAnchorId": "matthew_13_44",
+  "bibleSourceRef": "Matthew 13:44",
+  "bibleStoryKey": "matthew_13_44",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "joyful",
+    "delighted",
+    "amazed",
+    "loved"
+  ],
+  "themeTags": [
+    "God's love is the greatest treasure",
+    "joy of finding",
+    "the kingdom of heaven",
+    "worth more than anything"
+  ],
+  "lengths": [
+    "short"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "The man was so full of joy that he gladly gave everything for the treasure he found. I wonder what feels like the most precious treasure of all to you?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "Claims OPEN registry anchor hidden_treasure (Jesus' Parables). SHORT-ONLY (tiny one-verse parable; a full would pad). WATCH-ITEM: keep it pure JOY of finding, NOT 'sell everything' guilt/duty -- 'he gave up everything GLADLY, with a great big smile, because the treasure was worth so much more.' Room = God's love/kingdom is the greatest treasure of all, and finding it fills your heart with joy. Soft close ('finding'). VOICE_JAMES_HUSKY (warm storyteller).",
+  "files": {
+    "short": {
+      "storyText": "story_1887_short.txt",
+      "audio": "audio_1887_short.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1887.txt",
+      "audio": "audio_1887_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

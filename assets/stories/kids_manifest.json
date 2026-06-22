@@ -6323,6 +6323,237 @@
       "reflectionQuestion": "The people built a tall tower, but they forgot they needed God and each other. I wonder who helps you, when something is too big to do all by yourself?",
       "kidSafetyNotes": "NEW anchor (filed under Creation -- primeval Genesis 1-11 bucket). Phase 2 'Beloved' swap-in (replaced Manna per Adam: replayability > lesson density). The strange-wonderful IMAGE is the hook: a tower into the clouds + everyone suddenly speaking different languages. Pride theme SOFTENED per Adam to 'they forgot they needed God, and they forgot they needed each other' -- NO punishment emphasis. The language-change is framed as surprising (a 'wonderful, mixed-up jumble of voices'), the scattering as HOPEFUL (families spreading to fill the world), and the ending is SAFE ('God still loved them -- every family, in every land, speaking every language'). Explains why the world has many languages -- satisfying origin-story for kids. Soft close ('tower'/'clouds'). VOICE_SARAH_STORYTELLER (warm storyteller; 'let me tell you a strange tale' wonder).",
       "hardContentFlags": []
+    },
+    {
+      "id": "kid_widow_oil_short",
+      "storyNumber": 1885,
+      "title": "The Oil That Did Not Stop",
+      "textFilePath": "kids/1885/story_1885_short.txt",
+      "scriptureAnchorId": "2_kings_4",
+      "bibleStoryKey": "2_kings_4",
+      "bibleSourceRef": "2 Kings 4:1-7",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "reassured",
+        "amazed",
+        "hope",
+        "grateful"
+      ],
+      "themeTags": [
+        "God provides",
+        "bring your empty jars",
+        "a little becomes more than enough",
+        "trust in trouble"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 312,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1885/audio_1885_short.mp3",
+      "reflectionAudioPath": "kids/1885/audio_1885_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The woman had only one little jar, but she trusted God, and he filled every empty jar in the house. I wonder what you could bring to God, even when it feels like only a little?",
+      "kidSafetyNotes": "Claims OPEN registry anchor elisha_widow_oil (Elijah & Elisha). Phase 2 'Beloved' / toward-100. WATCH-ITEM: the mother's trouble (widowed, in debt, creditor would take her sons) kept GENTLE -- 'a poor mother, so worried... owed money she could not pay'; the sons-as-servants threat omitted. The overflowing-oil wonder is the joy (fills every jar). Room = bring God your empty jars / a little + trust becomes more than enough / God provides in trouble. Distinct from 1880-area feeding miracles (this is the oil-overflow). Soft close ('brim'). VOICE_LYDIA_GRACIOUS (warm, gracious female).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_widow_oil_full",
+      "storyNumber": 1885,
+      "title": "The Oil That Did Not Stop",
+      "textFilePath": "kids/1885/story_1885_full.txt",
+      "scriptureAnchorId": "2_kings_4",
+      "bibleStoryKey": "2_kings_4",
+      "bibleSourceRef": "2 Kings 4:1-7",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "reassured",
+        "amazed",
+        "hope",
+        "grateful"
+      ],
+      "themeTags": [
+        "God provides",
+        "bring your empty jars",
+        "a little becomes more than enough",
+        "trust in trouble"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 510,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1885/audio_1885_full.mp3",
+      "reflectionAudioPath": "kids/1885/audio_1885_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The woman had only one little jar, but she trusted God, and he filled every empty jar in the house. I wonder what you could bring to God, even when it feels like only a little?",
+      "kidSafetyNotes": "Claims OPEN registry anchor elisha_widow_oil (Elijah & Elisha). Phase 2 'Beloved' / toward-100. WATCH-ITEM: the mother's trouble (widowed, in debt, creditor would take her sons) kept GENTLE -- 'a poor mother, so worried... owed money she could not pay'; the sons-as-servants threat omitted. The overflowing-oil wonder is the joy (fills every jar). Room = bring God your empty jars / a little + trust becomes more than enough / God provides in trouble. Distinct from 1880-area feeding miracles (this is the oil-overflow). Soft close ('brim'). VOICE_LYDIA_GRACIOUS (warm, gracious female).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_manna_short",
+      "storyNumber": 1886,
+      "title": "Bread from Heaven",
+      "textFilePath": "kids/1886/story_1886_short.txt",
+      "scriptureAnchorId": "exodus_16",
+      "bibleStoryKey": "exodus_16",
+      "bibleSourceRef": "Exodus 16",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "reassured",
+        "amazed",
+        "hope"
+      ],
+      "themeTags": [
+        "God provides daily",
+        "bread from heaven",
+        "do not worry about tomorrow",
+        "one day at a time"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 263,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "audioFilePath": "kids/1886/audio_1886_short.mp3",
+      "reflectionAudioPath": "kids/1886/audio_1886_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God sent fresh bread every single morning, just enough for that day. I wonder what good thing you could thank God for giving you today?",
+      "kidSafetyNotes": "Claims OPEN registry anchor manna (Moses & Exodus). Toward-100. The 'What is it?' naming (manna) is the kid-delight beat. WATCH-ITEM: 'gather just enough for today' framed as God providing DAY BY DAY / do-not-worry-about-tomorrow -- gentle, NOT an anti-hoarding scold. The grumbling kept light + God 'not angry' (god-with-not-cause spirit). Sky-bread wonder is the replay hook (waking to fresh frost-flakes each morning). Soft close ('time'). VOICE_DEBORAH_WISE (warm, wise; provision/gratitude register).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_manna_full",
+      "storyNumber": 1886,
+      "title": "Bread from Heaven",
+      "textFilePath": "kids/1886/story_1886_full.txt",
+      "scriptureAnchorId": "exodus_16",
+      "bibleStoryKey": "exodus_16",
+      "bibleSourceRef": "Exodus 16",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "reassured",
+        "amazed",
+        "hope"
+      ],
+      "themeTags": [
+        "God provides daily",
+        "bread from heaven",
+        "do not worry about tomorrow",
+        "one day at a time"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 509,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "audioFilePath": "kids/1886/audio_1886_full.mp3",
+      "reflectionAudioPath": "kids/1886/audio_1886_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God sent fresh bread every single morning, just enough for that day. I wonder what good thing you could thank God for giving you today?",
+      "kidSafetyNotes": "Claims OPEN registry anchor manna (Moses & Exodus). Toward-100. The 'What is it?' naming (manna) is the kid-delight beat. WATCH-ITEM: 'gather just enough for today' framed as God providing DAY BY DAY / do-not-worry-about-tomorrow -- gentle, NOT an anti-hoarding scold. The grumbling kept light + God 'not angry' (god-with-not-cause spirit). Sky-bread wonder is the replay hook (waking to fresh frost-flakes each morning). Soft close ('time'). VOICE_DEBORAH_WISE (warm, wise; provision/gratitude register).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_hidden_treasure_short",
+      "storyNumber": 1887,
+      "title": "The Hidden Treasure",
+      "textFilePath": "kids/1887/story_1887_short.txt",
+      "scriptureAnchorId": "matthew_13_44",
+      "bibleStoryKey": "matthew_13_44",
+      "bibleSourceRef": "Matthew 13:44",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joyful",
+        "delighted",
+        "amazed",
+        "loved"
+      ],
+      "themeTags": [
+        "God's love is the greatest treasure",
+        "joy of finding",
+        "the kingdom of heaven",
+        "worth more than anything"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 291,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "audioFilePath": "kids/1887/audio_1887_short.mp3",
+      "reflectionAudioPath": "kids/1887/audio_1887_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The man was so full of joy that he gladly gave everything for the treasure he found. I wonder what feels like the most precious treasure of all to you?",
+      "kidSafetyNotes": "Claims OPEN registry anchor hidden_treasure (Jesus' Parables). SHORT-ONLY (tiny one-verse parable; a full would pad). WATCH-ITEM: keep it pure JOY of finding, NOT 'sell everything' guilt/duty -- 'he gave up everything GLADLY, with a great big smile, because the treasure was worth so much more.' Room = God's love/kingdom is the greatest treasure of all, and finding it fills your heart with joy. Soft close ('finding'). VOICE_JAMES_HUSKY (warm storyteller).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_jordan_short",
+      "storyNumber": 1888,
+      "title": "The River That Stood Still",
+      "textFilePath": "kids/1888/story_1888_short.txt",
+      "scriptureAnchorId": "joshua_3",
+      "bibleStoryKey": "joshua_3",
+      "bibleSourceRef": "Joshua 3",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "amazed",
+        "reassured",
+        "hope"
+      ],
+      "themeTags": [
+        "step of faith",
+        "God makes a way",
+        "trust before you see",
+        "remembering what God did"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 283,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "audioFilePath": "kids/1888/audio_1888_short.mp3",
+      "reflectionAudioPath": "kids/1888/audio_1888_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The priests had to step into the water before God parted the river. I wonder how it feels to trust God enough to take that first brave step, even before you can see the way?",
+      "kidSafetyNotes": "Claims OPEN registry anchor jordan_crossing (Joshua). WATCH-ITEM: the STEP OF FAITH is the heart -- the priests step INTO the water BEFORE it parts (trust first, then see). Framed as wonder/trust, NOT a battle (they are entering the promised land/home, no enemies/conquest). Visual replay hooks: water 'piled up in a heap', dry riverbed, twelve memorial stones + the 'tell your children' beat. Pairs with Red Sea (1813) but distinct event. Soft close ('all'). VOICE_ELIJAH_SAGE (OT gravitas/wonder).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_jordan_full",
+      "storyNumber": 1888,
+      "title": "The River That Stood Still",
+      "textFilePath": "kids/1888/story_1888_full.txt",
+      "scriptureAnchorId": "joshua_3",
+      "bibleStoryKey": "joshua_3",
+      "bibleSourceRef": "Joshua 3",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "amazed",
+        "reassured",
+        "hope"
+      ],
+      "themeTags": [
+        "step of faith",
+        "God makes a way",
+        "trust before you see",
+        "remembering what God did"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 600,
+      "actualWords": 506,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ELIJAH_SAGE",
+      "audioFilePath": "kids/1888/audio_1888_full.mp3",
+      "reflectionAudioPath": "kids/1888/audio_1888_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The priests had to step into the water before God parted the river. I wonder how it feels to trust God enough to take that first brave step, even before you can see the way?",
+      "kidSafetyNotes": "Claims OPEN registry anchor jordan_crossing (Joshua). WATCH-ITEM: the STEP OF FAITH is the heart -- the priests step INTO the water BEFORE it parts (trust first, then see). Framed as wonder/trust, NOT a battle (they are entering the promised land/home, no enemies/conquest). Visual replay hooks: water 'piled up in a heap', dry riverbed, twelve memorial stones + the 'tell your children' beat. Pairs with Red Sea (1813) but distinct event. Soft close ('all'). VOICE_ELIJAH_SAGE (OT gravitas/wonder).",
+      "hardContentFlags": []
     }
   ]
 }

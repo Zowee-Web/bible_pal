@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1885,
+  "anchorId": "elisha_widow_oil",
+  "kidLane": "dedicated-4-7",
+  "title": "The Oil That Did Not Stop",
+  "scriptureAnchorId": "2_kings_4",
+  "bibleSourceRef": "2 Kings 4:1-7",
+  "bibleStoryKey": "2_kings_4",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "reassured",
+    "amazed",
+    "hope",
+    "grateful"
+  ],
+  "themeTags": [
+    "God provides",
+    "bring your empty jars",
+    "a little becomes more than enough",
+    "trust in trouble"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "The woman had only one little jar, but she trusted God, and he filled every empty jar in the house. I wonder what you could bring to God, even when it feels like only a little?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "Claims OPEN registry anchor elisha_widow_oil (Elijah & Elisha). Phase 2 'Beloved' / toward-100. WATCH-ITEM: the mother's trouble (widowed, in debt, creditor would take her sons) kept GENTLE -- 'a poor mother, so worried... owed money she could not pay'; the sons-as-servants threat omitted. The overflowing-oil wonder is the joy (fills every jar). Room = bring God your empty jars / a little + trust becomes more than enough / God provides in trouble. Distinct from 1880-area feeding miracles (this is the oil-overflow). Soft close ('brim'). VOICE_HANNAH_HOPE (warm, hopeful female; LYDIA_GRACIOUS was banned).",
+  "files": {
+    "short": {
+      "storyText": "story_1885_short.txt",
+      "audio": "audio_1885_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1885_full.txt",
+      "audio": "audio_1885_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1885.txt",
+      "audio": "audio_1885_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}
