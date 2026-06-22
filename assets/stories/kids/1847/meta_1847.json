@@ -26,7 +26,7 @@
   ],
   "longEligible": false,
   "status": "REVIEW",
-  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.6,
@@ -36,7 +36,7 @@
   },
   "reflectionQuestion": "God sent birds to bring Elijah food, every morning and every evening. When you sit down to eat, what are some of the good things you are thankful for?",
   "hardContentFlags": [],
-  "kidSafetyNotes": "NEW anchor (Elijah, secondary/short-only). WONDER/provision/comfort. Distinct Elijah scene from 1842 Carmel (fire) + 1839 whisper -- no fire, no contest, no mountain; this is God quietly providing by the brook. The drought/famine is kept gentle ('a long, dry time... food became hard to find') with no suffering shown -- focus is God's care. Indelible image = ravens (big black birds) carrying bread in their beaks, morning and evening. Routes a worried / 'will there be enough' child to trust + thankfulness. 'God' throughout, no Yahweh. VOICE_ELIJAH_SAGE (thoughtful, measured -- prophet register); consistent with 1839 Elijah, fits the quiet provision tone.",
+  "kidSafetyNotes": "NEW anchor (Elijah, secondary/short-only). WONDER/provision/comfort. Distinct Elijah scene from 1842 Carmel (fire) + 1839 whisper -- no fire, no contest, no mountain; this is God quietly providing by the brook. The drought/famine is kept gentle ('a long, dry time... food became hard to find') with no suffering shown -- focus is God's care. Indelible image = ravens (big black birds) carrying bread in their beaks, morning and evening. Routes a worried / 'will there be enough' child to trust + thankfulness. 'God' throughout, no Yahweh. VOICE_JAMES_HUSKY (wise elder, calm) -- fits the quiet provision tone; re-voiced 2026-06-22 from the now-banned ELIJAH_SAGE.",
   "files": {
     "short": {
       "storyText": "story_1847_short.txt",
