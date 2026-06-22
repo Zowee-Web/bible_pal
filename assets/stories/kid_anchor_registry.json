@@ -362,6 +362,22 @@
           "launch": true,
           "productionId": 1878,
           "longEligible": false
+        },
+        {
+          "anchorId": "water_from_rock",
+          "displayName": "Water from the Rock",
+          "scriptureRef": "Exodus 17:1-7",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "exodus_17"
+          ],
+          "launch": true,
+          "productionId": 1892,
+          "longEligible": false
         }
       ]
     },
@@ -434,6 +450,22 @@
           ],
           "launch": true,
           "productionId": 1881,
+          "longEligible": false
+        },
+        {
+          "anchorId": "deborah",
+          "displayName": "Deborah, the Brave Judge",
+          "scriptureRef": "Judges 4",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "judges_4"
+          ],
+          "launch": true,
+          "productionId": 1893,
           "longEligible": false
         }
       ]
@@ -868,6 +900,43 @@
             "wise_men"
           ],
           "productionId": 1809
+        }
+      ]
+    },
+    {
+      "name": "Jesus' Life",
+      "anchors": [
+        {
+          "anchorId": "jesus_baptized",
+          "displayName": "Jesus Is Baptized",
+          "scriptureRef": "Matthew 3:13-17",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "matthew_3"
+          ],
+          "launch": true,
+          "productionId": 1891,
+          "longEligible": false
+        },
+        {
+          "anchorId": "boy_jesus_temple",
+          "displayName": "The Boy Jesus in the Temple",
+          "scriptureRef": "Luke 2:41-52",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "luke_2_41"
+          ],
+          "launch": true,
+          "productionId": 1894,
+          "longEligible": false
         }
       ]
     },
@@ -1447,6 +1516,22 @@
           "manifestAnchorIds": [
             "acts_1"
           ]
+        },
+        {
+          "anchorId": "paul_silas_prison",
+          "displayName": "Paul and Silas in Prison",
+          "scriptureRef": "Acts 16:16-34",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "acts_16"
+          ],
+          "launch": true,
+          "productionId": 1890,
+          "longEligible": false
         }
       ]
     },

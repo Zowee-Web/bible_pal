@@ -27,7 +27,7 @@
   ],
   "longEligible": false,
   "status": "REVIEW",
-  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.6,
@@ -37,7 +37,7 @@
   },
   "reflectionQuestion": "The priests had to step into the water before God parted the river. I wonder how it feels to trust God enough to take that first brave step, even before you can see the way?",
   "hardContentFlags": [],
-  "kidSafetyNotes": "Claims OPEN registry anchor jordan_crossing (Joshua). WATCH-ITEM: the STEP OF FAITH is the heart -- the priests step INTO the water BEFORE it parts (trust first, then see). Framed as wonder/trust, NOT a battle (they are entering the promised land/home, no enemies/conquest). Visual replay hooks: water 'piled up in a heap', dry riverbed, twelve memorial stones + the 'tell your children' beat. Pairs with Red Sea (1813) but distinct event. Soft close ('all'). VOICE_ELIJAH_SAGE (OT gravitas/wonder).",
+  "kidSafetyNotes": "Claims OPEN registry anchor jordan_crossing (Joshua). WATCH-ITEM: the STEP OF FAITH is the heart -- the priests step INTO the water BEFORE it parts (trust first, then see). Framed as wonder/trust, NOT a battle (they are entering the promised land/home, no enemies/conquest). Visual replay hooks: water 'piled up in a heap', dry riverbed, twelve memorial stones + the 'tell your children' beat. Pairs with Red Sea (1813) but distinct event. Soft close ('all'). VOICE_JAMES_BRITISH_PROFESSIONAL (clear diction; swapped from ELIJAH_SAGE, which mis-pronounced 'wide').",
   "files": {
     "short": {
       "storyText": "story_1888_short.txt",
