@@ -193,6 +193,28 @@
       ]
     },
     {
+      "name": "Jacob",
+      "anchors": [
+        {
+          "anchorId": "jacobs_ladder",
+          "displayName": "Jacob's Ladder",
+          "scriptureRef": "Genesis 28:10-22",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full",
+            "long"
+          ],
+          "manifestAnchorIds": [
+            "genesis_28"
+          ],
+          "launch": true,
+          "productionId": 1900,
+          "longEligible": true
+        }
+      ]
+    },
+    {
       "name": "Joseph",
       "anchors": [
         {
@@ -414,6 +436,22 @@
           "manifestAnchorIds": [
             "joshua_6"
           ]
+        },
+        {
+          "anchorId": "sun_stood_still",
+          "displayName": "The Day the Sun Stood Still",
+          "scriptureRef": "Joshua 10:1-14",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "joshua_10"
+          ],
+          "launch": true,
+          "productionId": 1899,
+          "longEligible": false
         }
       ]
     },
@@ -647,6 +685,23 @@
           "launch": true,
           "productionId": 1882,
           "longEligible": false
+        },
+        {
+          "anchorId": "solomon_temple",
+          "displayName": "Solomon Builds the Temple",
+          "scriptureRef": "1 Kings 6-8",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full",
+            "long"
+          ],
+          "manifestAnchorIds": [
+            "1_kings_6"
+          ],
+          "launch": true,
+          "productionId": 1896,
+          "longEligible": true
         }
       ]
     },
@@ -989,6 +1044,22 @@
           ],
           "launch": true,
           "productionId": 1889,
+          "longEligible": false
+        },
+        {
+          "anchorId": "centurion_faith",
+          "displayName": "The Centurion's Faith",
+          "scriptureRef": "Matthew 8:5-13",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "matthew_8"
+          ],
+          "launch": true,
+          "productionId": 1898,
           "longEligible": false
         }
       ]
@@ -1600,6 +1671,22 @@
           ],
           "launch": true,
           "productionId": 1895,
+          "longEligible": false
+        },
+        {
+          "anchorId": "tabitha",
+          "displayName": "Tabitha's Kindness",
+          "scriptureRef": "Acts 9:36-42",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "acts_9_36"
+          ],
+          "launch": true,
+          "productionId": 1897,
           "longEligible": false
         }
       ]

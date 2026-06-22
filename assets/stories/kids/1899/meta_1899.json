@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1899,
+  "anchorId": "sun_stood_still",
+  "kidLane": "dedicated-4-7",
+  "title": "The Day the Sun Stood Still",
+  "scriptureAnchorId": "joshua_10",
+  "bibleSourceRef": "Joshua 10:1-14",
+  "bibleStoryKey": "joshua_10",
+  "translation": "WEB",
+  "mood": "brave_courage",
+  "emotionalTags": [
+    "amazed",
+    "brave",
+    "hope",
+    "reassured"
+  ],
+  "themeTags": [
+    "nothing is too hard for God",
+    "bold prayer",
+    "God fights for his people",
+    "God answers"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Joshua prayed a bold prayer, and God made the sun stand still. I wonder what big thing you would like to ask the God who can do anything?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Joshua category, Joshua 10). The unforgettable VISUAL (the sun standing still) is the replay hook. WATCH-ITEM: SOFT on battle -- no fighting/gore; the enemy is 'frightened' and 'ran away'; God sends hail to drive them off (kept light, not deadly-detailed); framing is rescue of friends + God's power, NOT war. The HEART = nothing is too hard for God / bold prayer / God answers + fights for his people. Joshua marches all night to RESCUE friends in danger (heroic, protective). Soft close ('you'). VOICE_JAMES_HUSKY (ear-verified male; steady leader register).",
+  "files": {
+    "short": {
+      "storyText": "story_1899_short.txt",
+      "audio": "audio_1899_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1899_full.txt",
+      "audio": "audio_1899_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1899.txt",
+      "audio": "audio_1899_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

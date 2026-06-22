@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1896,
+  "anchorId": "solomon_temple",
+  "kidLane": "dedicated-4-7",
+  "title": "A House for God",
+  "scriptureAnchorId": "1_kings_6",
+  "bibleSourceRef": "1 Kings 6-8",
+  "bibleStoryKey": "1_kings_6",
+  "translation": "WEB",
+  "mood": "grateful",
+  "emotionalTags": [
+    "grateful",
+    "wonder",
+    "joyful",
+    "loved"
+  ],
+  "themeTags": [
+    "giving God our best",
+    "gratitude and worship",
+    "God's presence with us",
+    "a house for God"
+  ],
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Solomon spent seven years building the most beautiful house he could, to thank God. I wonder what beautiful thing you could make or do to show God how thankful you are?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Solomon category, 1 Kings 6-8). Pairs with 1882 Solomon's Wisdom. HAS A LONG -- earned through dramatic/scenic progression (David's longing + handoff -> the deal with King Hiram for cedar -> thousands of workers -> the wonder-detail that no hammer/tool was heard at the site -> the carvings + gold + pillars + golden angels -> 7 years -> the great dedication -> ark carried in -> the cloud of glory fills the house -> Solomon's kneeling prayer -> the feast), NOT padding. Room = giving God our best / gratitude + worship / God's presence comes to dwell with his people. Wonder + thankfulness, not a building-instructions list. Soft close ('him'). VOICE_JAMES_BRITISH_PROFESSIONAL (ear-verified male; stately, grand register fits the temple).",
+  "files": {
+    "short": {
+      "storyText": "story_1896_short.txt",
+      "audio": "audio_1896_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1896_full.txt",
+      "audio": "audio_1896_full.mp3"
+    },
+    "long": {
+      "storyText": "story_1896_long.txt",
+      "audio": "audio_1896_long.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1896.txt",
+      "audio": "audio_1896_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

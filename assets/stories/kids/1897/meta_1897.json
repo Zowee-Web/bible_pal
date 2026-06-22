@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1897,
+  "anchorId": "tabitha",
+  "kidLane": "dedicated-4-7",
+  "title": "The Kindest Woman in Town",
+  "scriptureAnchorId": "acts_9_36",
+  "bibleSourceRef": "Acts 9:36-42",
+  "bibleStoryKey": "acts_9_36",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "loved",
+    "comforted",
+    "grateful",
+    "joyful"
+  ],
+  "themeTags": [
+    "a life of kindness",
+    "loved by community",
+    "God's gentle restoration",
+    "helping those in need"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_MARTHA_CARING",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Tabitha spent her whole life sewing warm clothes and caring for people in need. I wonder what kind thing you could do to help someone today?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Early Church, Acts 9:36-42; distinct from 1851 Paul/Acts 9:1). The gentle-kindness room + a beloved woman. WATCH-ITEM: death kept GENTLE ('became sick and... very gently, she died'); the raising is quiet + tender (Peter prays, 'Tabitha, get up', she opens her eyes). The HEART is a life of everyday kindness (sewing clothes for poor widows) and a community that loved her -> God's gentle restoration. Room = kindness matters / being loved / God's care. Tabitha=Dorcas (used Tabitha throughout). Soft close ('her'). VOICE_MARTHA_CARING (caring/domestic female -- ideal for the kind seamstress).",
+  "files": {
+    "short": {
+      "storyText": "story_1897_short.txt",
+      "audio": "audio_1897_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1897_full.txt",
+      "audio": "audio_1897_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1897.txt",
+      "audio": "audio_1897_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

@@ -50450,6 +50450,354 @@
         "going on rejoicing"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_solomon_temple_short",
+      "title": "A House for God",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "wonder",
+        "joyful",
+        "loved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1896/audio_1896_short.mp3",
+      "textFilePath": "kids/1896/story_1896_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "storyLength": "short",
+      "reflectionQuestion": "Solomon spent seven years building the most beautiful house he could, to thank God. I wonder what beautiful thing you could make or do to show God how thankful you are?",
+      "bibleSourceRef": "1 Kings 6-8",
+      "bibleStoryKey": "1_kings_6",
+      "themeTags": [
+        "giving God our best",
+        "gratitude and worship",
+        "God's presence with us",
+        "a house for God"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_solomon_temple_full",
+      "title": "A House for God",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "wonder",
+        "joyful",
+        "loved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1896/audio_1896_full.mp3",
+      "textFilePath": "kids/1896/story_1896_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "storyLength": "full",
+      "reflectionQuestion": "Solomon spent seven years building the most beautiful house he could, to thank God. I wonder what beautiful thing you could make or do to show God how thankful you are?",
+      "bibleSourceRef": "1 Kings 6-8",
+      "bibleStoryKey": "1_kings_6",
+      "themeTags": [
+        "giving God our best",
+        "gratitude and worship",
+        "God's presence with us",
+        "a house for God"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_solomon_temple_long",
+      "title": "A House for God",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "wonder",
+        "joyful",
+        "loved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1896/audio_1896_long.mp3",
+      "textFilePath": "kids/1896/story_1896_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "storyLength": "long",
+      "reflectionQuestion": "Solomon spent seven years building the most beautiful house he could, to thank God. I wonder what beautiful thing you could make or do to show God how thankful you are?",
+      "bibleSourceRef": "1 Kings 6-8",
+      "bibleStoryKey": "1_kings_6",
+      "themeTags": [
+        "giving God our best",
+        "gratitude and worship",
+        "God's presence with us",
+        "a house for God"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_tabitha_short",
+      "title": "The Kindest Woman in Town",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "loved",
+        "comforted",
+        "grateful",
+        "joyful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1897/audio_1897_short.mp3",
+      "textFilePath": "kids/1897/story_1897_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "storyLength": "short",
+      "reflectionQuestion": "Tabitha spent her whole life sewing warm clothes and caring for people in need. I wonder what kind thing you could do to help someone today?",
+      "bibleSourceRef": "Acts 9:36-42",
+      "bibleStoryKey": "acts_9_36",
+      "themeTags": [
+        "a life of kindness",
+        "loved by community",
+        "God's gentle restoration",
+        "helping those in need"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_tabitha_full",
+      "title": "The Kindest Woman in Town",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "loved",
+        "comforted",
+        "grateful",
+        "joyful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1897/audio_1897_full.mp3",
+      "textFilePath": "kids/1897/story_1897_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "storyLength": "full",
+      "reflectionQuestion": "Tabitha spent her whole life sewing warm clothes and caring for people in need. I wonder what kind thing you could do to help someone today?",
+      "bibleSourceRef": "Acts 9:36-42",
+      "bibleStoryKey": "acts_9_36",
+      "themeTags": [
+        "a life of kindness",
+        "loved by community",
+        "God's gentle restoration",
+        "helping those in need"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_centurion_faith_short",
+      "title": "Just Say the Word",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "reassured",
+        "amazed",
+        "hope",
+        "loved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1898/audio_1898_short.mp3",
+      "textFilePath": "kids/1898/story_1898_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "storyLength": "short",
+      "reflectionQuestion": "The captain trusted that Jesus could help, even from far away. I wonder when you might need to trust Jesus, even when you cannot see what he is doing?",
+      "bibleSourceRef": "Matthew 8:5-13",
+      "bibleStoryKey": "matthew_8",
+      "themeTags": [
+        "great faith",
+        "Jesus' power reaches anywhere",
+        "trust when you cannot see",
+        "an outsider believes"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_centurion_faith_full",
+      "title": "Just Say the Word",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "reassured",
+        "amazed",
+        "hope",
+        "loved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1898/audio_1898_full.mp3",
+      "textFilePath": "kids/1898/story_1898_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "storyLength": "full",
+      "reflectionQuestion": "The captain trusted that Jesus could help, even from far away. I wonder when you might need to trust Jesus, even when you cannot see what he is doing?",
+      "bibleSourceRef": "Matthew 8:5-13",
+      "bibleStoryKey": "matthew_8",
+      "themeTags": [
+        "great faith",
+        "Jesus' power reaches anywhere",
+        "trust when you cannot see",
+        "an outsider believes"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_sun_stood_still_short",
+      "title": "The Day the Sun Stood Still",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "amazed",
+        "brave",
+        "hope",
+        "reassured"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1899/audio_1899_short.mp3",
+      "textFilePath": "kids/1899/story_1899_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "short",
+      "reflectionQuestion": "Joshua prayed a bold prayer, and God made the sun stand still. I wonder what big thing you would like to ask the God who can do anything?",
+      "bibleSourceRef": "Joshua 10:1-14",
+      "bibleStoryKey": "joshua_10",
+      "themeTags": [
+        "nothing is too hard for God",
+        "bold prayer",
+        "God fights for his people",
+        "God answers"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_sun_stood_still_full",
+      "title": "The Day the Sun Stood Still",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "amazed",
+        "brave",
+        "hope",
+        "reassured"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1899/audio_1899_full.mp3",
+      "textFilePath": "kids/1899/story_1899_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "full",
+      "reflectionQuestion": "Joshua prayed a bold prayer, and God made the sun stand still. I wonder what big thing you would like to ask the God who can do anything?",
+      "bibleSourceRef": "Joshua 10:1-14",
+      "bibleStoryKey": "joshua_10",
+      "themeTags": [
+        "nothing is too hard for God",
+        "bold prayer",
+        "God fights for his people",
+        "God answers"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jacobs_ladder_short",
+      "title": "The Stairway to Heaven",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "comforted",
+        "loved",
+        "wonder",
+        "reassured"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1900/audio_1900_short.mp3",
+      "textFilePath": "kids/1900/story_1900_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "short",
+      "reflectionQuestion": "God promised Jacob, \"I am with you wherever you go.\" I wonder how it feels to know that God is right beside you, watching over you, always?",
+      "bibleSourceRef": "Genesis 28:10-22",
+      "bibleStoryKey": "genesis_28",
+      "themeTags": [
+        "God is with you wherever you go",
+        "you are never alone",
+        "God watches over you at night",
+        "wonder"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jacobs_ladder_full",
+      "title": "The Stairway to Heaven",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "comforted",
+        "loved",
+        "wonder",
+        "reassured"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1900/audio_1900_full.mp3",
+      "textFilePath": "kids/1900/story_1900_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "full",
+      "reflectionQuestion": "God promised Jacob, \"I am with you wherever you go.\" I wonder how it feels to know that God is right beside you, watching over you, always?",
+      "bibleSourceRef": "Genesis 28:10-22",
+      "bibleStoryKey": "genesis_28",
+      "themeTags": [
+        "God is with you wherever you go",
+        "you are never alone",
+        "God watches over you at night",
+        "wonder"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jacobs_ladder_long",
+      "title": "The Stairway to Heaven",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "comforted",
+        "loved",
+        "wonder",
+        "reassured"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1900/audio_1900_long.mp3",
+      "textFilePath": "kids/1900/story_1900_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_NOAH_PATIENT",
+      "storyLength": "long",
+      "reflectionQuestion": "God promised Jacob, \"I am with you wherever you go.\" I wonder how it feels to know that God is right beside you, watching over you, always?",
+      "bibleSourceRef": "Genesis 28:10-22",
+      "bibleStoryKey": "genesis_28",
+      "themeTags": [
+        "God is with you wherever you go",
+        "you are never alone",
+        "God watches over you at night",
+        "wonder"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }

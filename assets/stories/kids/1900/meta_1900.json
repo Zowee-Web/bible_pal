@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1900,
+  "anchorId": "jacobs_ladder",
+  "kidLane": "dedicated-4-7",
+  "title": "The Stairway to Heaven",
+  "scriptureAnchorId": "genesis_28",
+  "bibleSourceRef": "Genesis 28:10-22",
+  "bibleStoryKey": "genesis_28",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "comforted",
+    "loved",
+    "wonder",
+    "reassured"
+  ],
+  "themeTags": [
+    "God is with you wherever you go",
+    "you are never alone",
+    "God watches over you at night",
+    "wonder"
+  ],
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "God promised Jacob, \"I am with you wherever you go.\" I wonder how it feels to know that God is right beside you, watching over you, always?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Genesis 28; place under patriarchs/'Abraham & Sarah' or a new 'Jacob' grouping at registration). THE 100th WRITTEN STORY -- chosen as the milestone CAPSTONE because it IS the kid lane's emergent identity: 'God is with me / I am not alone' (feedback_kid_not_alone_thread). HAS A LONG -- earned through scenic/emotional progression (the goodbye + lonely road -> gathering dark + smallness -> the stone pillow -> the dream unfolding slowly: stairway, angels up/down, God at the top -> the gentle promise -> the awe of waking 'God was here and I didn't know it' -> the stone marker + vow -> tender bedtime benediction turned to the child), NOT padding. Backstory (the Esau deception) OMITTED -- Jacob is simply 'traveling to family far away'. Gentle bedtime register; the promise 'I am with you wherever you go / I will never leave you / I will bring you home'. Soft close ('side'/'always'). VOICE_NOAH_PATIENT (warm female voice Adam loves -- ideal tender, bedtime fit for the capstone).",
+  "files": {
+    "short": {
+      "storyText": "story_1900_short.txt",
+      "audio": "audio_1900_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1900_full.txt",
+      "audio": "audio_1900_full.mp3"
+    },
+    "long": {
+      "storyText": "story_1900_long.txt",
+      "audio": "audio_1900_long.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1900.txt",
+      "audio": "audio_1900_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}
