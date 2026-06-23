@@ -48,5 +48,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1869/scripture_1869_web.txt"
+  "scriptureTextFilePath": "kids/1869/scripture_1869_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Galatians 5:22",
+    "text": "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faith,"
+  }
 }

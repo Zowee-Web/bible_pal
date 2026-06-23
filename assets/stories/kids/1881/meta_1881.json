@@ -53,5 +53,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1881/scripture_1881_web.txt"
+  "scriptureTextFilePath": "kids/1881/scripture_1881_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Judges 7:7",
+    "text": "Yahweh said to Gideon, “I will save you by the three hundred men who lapped, and deliver the Midianites into your hand. Let all the other people go, each to his own place.”"
+  }
 }

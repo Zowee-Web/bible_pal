@@ -59,5 +59,9 @@
     }
   },
   "createdNote": "Wonder pillar, story 1. Voice VOICE_NOAH_PATIENT (story + reflection). Reflection wording chosen by Adam, matches the story (fear->safe). Reflection renders in eleven_v3 per wrapper.",
-  "scriptureTextFilePath": "kids/1804/scripture_1804_web.txt"
+  "scriptureTextFilePath": "kids/1804/scripture_1804_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Matthew 14:27",
+    "text": "But immediately Jesus spoke to them, saying, “Cheer up! It is I! Don’t be afraid.”"
+  }
 }

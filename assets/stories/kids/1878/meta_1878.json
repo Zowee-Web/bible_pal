@@ -53,5 +53,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1878/scripture_1878_web.txt"
+  "scriptureTextFilePath": "kids/1878/scripture_1878_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Numbers 22:28",
+    "text": "Yahweh opened the mouth of the donkey, and she said to Balaam, “What have I done to you, that you have struck me these three times?”"
+  }
 }

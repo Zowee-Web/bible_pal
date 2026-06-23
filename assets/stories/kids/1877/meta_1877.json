@@ -48,5 +48,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1877/scripture_1877_web.txt"
+  "scriptureTextFilePath": "kids/1877/scripture_1877_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Matthew 17:27",
+    "text": "But, lest we cause them to stumble, go to the sea, cast a hook, and take up the first fish that comes up. When you have opened its mouth, you will find a stater coin. Take that, and give it to them for me and you.”"
+  }
 }

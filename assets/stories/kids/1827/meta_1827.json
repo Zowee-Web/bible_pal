@@ -53,5 +53,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1827/scripture_1827_web.txt"
+  "scriptureTextFilePath": "kids/1827/scripture_1827_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Matthew 7:24",
+    "text": "“Everyone therefore who hears these words of mine and does them, I will liken him to a wise man who built his house on the rock."
+  }
 }

@@ -51,5 +51,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1820/scripture_1820_web.txt"
+  "scriptureTextFilePath": "kids/1820/scripture_1820_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "1 Samuel 3:10",
+    "text": "Yahweh came, and stood, and called as at other times, “Samuel! Samuel!” Then Samuel said, “Speak; for your servant hears.”"
+  }
 }

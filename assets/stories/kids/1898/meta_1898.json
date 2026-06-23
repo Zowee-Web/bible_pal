@@ -53,5 +53,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1898/scripture_1898_web.txt"
+  "scriptureTextFilePath": "kids/1898/scripture_1898_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Matthew 8:8",
+    "text": "The centurion answered, “Lord, I’m not worthy for you to come under my roof. Just say the word, and my servant will be healed."
+  }
 }

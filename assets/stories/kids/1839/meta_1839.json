@@ -52,5 +52,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1839/scripture_1839_web.txt"
+  "scriptureTextFilePath": "kids/1839/scripture_1839_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "1 Kings 19:12",
+    "text": "After the earthquake a fire passed; but Yahweh was not in the fire. After the fire, there was a still small voice."
+  }
 }

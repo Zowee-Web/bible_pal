@@ -59,5 +59,9 @@
       "audio": "audio_1838_long.mp3"
     }
   },
-  "scriptureTextFilePath": "kids/1838/scripture_1838_web.txt"
+  "scriptureTextFilePath": "kids/1838/scripture_1838_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Esther 4:14",
+    "text": "For if you remain silent now, then relief and deliverance will come to the Jews from another place, but you and your father’s house will perish. Who knows if you haven’t come to the kingdom for such a time as this?”"
+  }
 }

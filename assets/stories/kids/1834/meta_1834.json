@@ -51,5 +51,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1834/scripture_1834_web.txt"
+  "scriptureTextFilePath": "kids/1834/scripture_1834_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Genesis 2:8",
+    "text": "Yahweh God planted a garden eastward, in Eden, and there he put the man whom he had formed."
+  }
 }

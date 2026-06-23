@@ -53,5 +53,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1895/scripture_1895_web.txt"
+  "scriptureTextFilePath": "kids/1895/scripture_1895_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Acts 8:39",
+    "text": "When they came up out of the water, the Spirit of the Lord caught Philip away, and the eunuch didn’t see him any more, for he went on his way rejoicing."
+  }
 }

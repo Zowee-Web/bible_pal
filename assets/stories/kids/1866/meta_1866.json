@@ -48,5 +48,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1866/scripture_1866_web.txt"
+  "scriptureTextFilePath": "kids/1866/scripture_1866_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Matthew 11:28",
+    "text": "“Come to me, all you who labor and are heavily burdened, and I will give you rest."
+  }
 }

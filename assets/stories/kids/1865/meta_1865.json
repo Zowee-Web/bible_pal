@@ -57,5 +57,9 @@
       "audio": "audio_1865_long.mp3"
     }
   },
-  "scriptureTextFilePath": "kids/1865/scripture_1865_web.txt"
+  "scriptureTextFilePath": "kids/1865/scripture_1865_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Luke 24:31",
+    "text": "Their eyes were opened and they recognized him; then he vanished out of their sight."
+  }
 }

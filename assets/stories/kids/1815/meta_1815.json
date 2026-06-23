@@ -53,5 +53,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1815/scripture_1815_web.txt"
+  "scriptureTextFilePath": "kids/1815/scripture_1815_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Luke 10:33",
+    "text": "But a certain Samaritan, as he traveled, came where he was. When he saw him, he was moved with compassion,"
+  }
 }

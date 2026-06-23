@@ -53,5 +53,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1890/scripture_1890_web.txt"
+  "scriptureTextFilePath": "kids/1890/scripture_1890_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Acts 16:25",
+    "text": "But about midnight Paul and Silas were praying and singing hymns to God, and the prisoners were listening to them."
+  }
 }

@@ -52,5 +52,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1867/scripture_1867_web.txt"
+  "scriptureTextFilePath": "kids/1867/scripture_1867_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Matthew 6:26",
+    "text": "See the birds of the sky, that they don’t sow, neither do they reap, nor gather into barns. Your heavenly Father feeds them. Aren’t you of much more value than they?"
+  }
 }

@@ -55,5 +55,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1870/scripture_1870_web.txt"
+  "scriptureTextFilePath": "kids/1870/scripture_1870_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "John 11:35",
+    "text": "Jesus wept."
+  }
 }

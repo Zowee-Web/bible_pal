@@ -56,5 +56,9 @@
       "audio": "audio_1818_long.mp3"
     }
   },
-  "scriptureTextFilePath": "kids/1818/scripture_1818_web.txt"
+  "scriptureTextFilePath": "kids/1818/scripture_1818_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Joshua 6:20",
+    "text": "So the people shouted and the priests blew the trumpets. When the people heard the sound of the trumpet, the people shouted with a great shout, and the wall fell down flat, so that the people went up into the city, every man straight in front of him, and they took the city."
+  }
 }

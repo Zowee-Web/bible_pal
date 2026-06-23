@@ -53,5 +53,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1831/scripture_1831_web.txt"
+  "scriptureTextFilePath": "kids/1831/scripture_1831_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Luke 19:5",
+    "text": "When Jesus came to the place, he looked up and saw him, and said to him, “Zacchaeus, hurry and come down, for today I must stay at your house.”"
+  }
 }

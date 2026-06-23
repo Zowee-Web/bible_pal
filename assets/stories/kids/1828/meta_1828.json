@@ -47,5 +47,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1828/scripture_1828_web.txt"
+  "scriptureTextFilePath": "kids/1828/scripture_1828_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Matthew 13:32",
+    "text": "which indeed is smaller than all seeds. But when it is grown, it is greater than the herbs and becomes a tree, so that the birds of the air come and lodge in its branches.”"
+  }
 }

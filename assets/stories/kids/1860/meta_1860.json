@@ -57,5 +57,9 @@
       "audio": "audio_1860_long.mp3"
     }
   },
-  "scriptureTextFilePath": "kids/1860/scripture_1860_web.txt"
+  "scriptureTextFilePath": "kids/1860/scripture_1860_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Genesis 41:16",
+    "text": "Joseph answered Pharaoh, saying, “It isn’t in me. God will give Pharaoh an answer of peace.”"
+  }
 }

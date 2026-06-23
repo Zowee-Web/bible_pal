@@ -51,5 +51,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1830/scripture_1830_web.txt"
+  "scriptureTextFilePath": "kids/1830/scripture_1830_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "John 2:11",
+    "text": "This beginning of his signs Jesus did in Cana of Galilee, and revealed his glory; and his disciples believed in him."
+  }
 }

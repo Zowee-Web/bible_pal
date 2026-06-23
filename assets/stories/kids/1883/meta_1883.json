@@ -53,5 +53,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1883/scripture_1883_web.txt"
+  "scriptureTextFilePath": "kids/1883/scripture_1883_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Luke 5:5",
+    "text": "Simon answered him, “Master, we worked all night and caught nothing; but at your word I will let down the net.”"
+  }
 }

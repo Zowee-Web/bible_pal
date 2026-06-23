@@ -53,5 +53,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1885/scripture_1885_web.txt"
+  "scriptureTextFilePath": "kids/1885/scripture_1885_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "2 Kings 4:6",
+    "text": "When the containers were full, she said to her son, “Bring me another container.” He said to her, “There isn’t another container.” Then the oil stopped flowing."
+  }
 }

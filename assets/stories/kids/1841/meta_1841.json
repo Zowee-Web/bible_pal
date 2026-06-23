@@ -59,5 +59,9 @@
       "audio": "audio_1841_long.mp3"
     }
   },
-  "scriptureTextFilePath": "kids/1841/scripture_1841_web.txt"
+  "scriptureTextFilePath": "kids/1841/scripture_1841_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Genesis 7:16",
+    "text": "Those who went in, went in male and female of all flesh, as God commanded him; then Yahweh shut him in."
+  }
 }

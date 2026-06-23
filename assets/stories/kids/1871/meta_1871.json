@@ -53,5 +53,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1871/scripture_1871_web.txt"
+  "scriptureTextFilePath": "kids/1871/scripture_1871_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "John 20:27",
+    "text": "Then he said to Thomas, “Reach here your finger, and see my hands. Reach here your hand, and put it into my side. Don’t be unbelieving, but believing.”"
+  }
 }

@@ -74,6 +74,7 @@ def to_manifest_entry(kid):
         "bibleSourceRef": kid.get("bibleSourceRef"),
         "bibleStoryKey": kid.get("bibleStoryKey"),
         "scriptureTextFilePath": kid.get("scriptureTextFilePath"),
+        "scriptureKeyVerse": kid.get("scriptureKeyVerse"),
         "themeTags": kid.get("themeTags", []),
         "kidLane": "dedicated-4-9",
     }

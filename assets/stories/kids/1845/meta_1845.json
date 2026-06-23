@@ -57,5 +57,9 @@
       "audio": "audio_1845_long.mp3"
     }
   },
-  "scriptureTextFilePath": "kids/1845/scripture_1845_web.txt"
+  "scriptureTextFilePath": "kids/1845/scripture_1845_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Acts 2:4",
+    "text": "They were all filled with the Holy Spirit and began to speak with other languages, as the Spirit gave them the ability to speak."
+  }
 }

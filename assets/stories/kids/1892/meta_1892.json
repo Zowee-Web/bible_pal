@@ -53,5 +53,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1892/scripture_1892_web.txt"
+  "scriptureTextFilePath": "kids/1892/scripture_1892_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Exodus 17:6",
+    "text": "Behold, I will stand before you there on the rock in Horeb. You shall strike the rock, and water will come out of it, that the people may drink.” Moses did so in the sight of the elders of Israel."
+  }
 }

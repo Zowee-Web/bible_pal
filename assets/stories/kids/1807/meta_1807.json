@@ -50,5 +50,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1807/scripture_1807_web.txt"
+  "scriptureTextFilePath": "kids/1807/scripture_1807_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Mark 10:14",
+    "text": "But when Jesus saw it, he was moved with indignation and said to them, “Allow the little children to come to me! Don’t forbid them, for God’s Kingdom belongs to such as these."
+  }
 }

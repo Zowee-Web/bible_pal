@@ -56,5 +56,9 @@
       "audio": "audio_1829_long.mp3"
     }
   },
-  "scriptureTextFilePath": "kids/1829/scripture_1829_web.txt"
+  "scriptureTextFilePath": "kids/1829/scripture_1829_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Luke 2:7",
+    "text": "She gave birth to her firstborn son. She wrapped him in bands of cloth and laid him in a feeding trough, because there was no room for them in the inn."
+  }
 }

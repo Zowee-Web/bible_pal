@@ -56,5 +56,9 @@
       "audio": "audio_1817_long.mp3"
     }
   },
-  "scriptureTextFilePath": "kids/1817/scripture_1817_web.txt"
+  "scriptureTextFilePath": "kids/1817/scripture_1817_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Luke 15:20",
+    "text": "“He arose and came to his father. But while he was still far off, his father saw him and was moved with compassion, and ran, fell on his neck, and kissed him."
+  }
 }

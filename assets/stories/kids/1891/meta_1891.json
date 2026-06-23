@@ -53,5 +53,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1891/scripture_1891_web.txt"
+  "scriptureTextFilePath": "kids/1891/scripture_1891_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Matthew 3:17",
+    "text": "Behold, a voice out of the heavens said, “This is my beloved Son, with whom I am well pleased.”"
+  }
 }

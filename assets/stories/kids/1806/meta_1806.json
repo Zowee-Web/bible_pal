@@ -52,5 +52,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1806/scripture_1806_web.txt"
+  "scriptureTextFilePath": "kids/1806/scripture_1806_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Mark 5:36",
+    "text": "But Jesus, when he heard the message spoken, immediately said to the ruler of the synagogue, “Don’t be afraid, only believe.”"
+  }
 }

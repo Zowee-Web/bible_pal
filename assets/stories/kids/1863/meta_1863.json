@@ -52,5 +52,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1863/scripture_1863_web.txt"
+  "scriptureTextFilePath": "kids/1863/scripture_1863_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Luke 10:42",
+    "text": "but one thing is needed. Mary has chosen the good part, which will not be taken away from her.”"
+  }
 }

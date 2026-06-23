@@ -54,5 +54,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1840/scripture_1840_web.txt"
+  "scriptureTextFilePath": "kids/1840/scripture_1840_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Revelation 21:4",
+    "text": "He will wipe away every tear from their eyes. Death will be no more; neither will there be mourning, nor crying, nor pain any more. The first things have passed away.”"
+  }
 }

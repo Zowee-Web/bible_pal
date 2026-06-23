@@ -52,5 +52,9 @@
       "ttsModel": "eleven_v3"
     }
   },
-  "scriptureTextFilePath": "kids/1868/scripture_1868_web.txt"
+  "scriptureTextFilePath": "kids/1868/scripture_1868_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "John 13:14",
+    "text": "If I then, the Lord and the Teacher, have washed your feet, you also ought to wash one another’s feet."
+  }
 }
