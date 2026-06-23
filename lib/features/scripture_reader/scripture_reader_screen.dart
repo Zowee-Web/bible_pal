@@ -6,6 +6,7 @@ import 'package:bible_pal/core/bible_translation_registry.dart';
 import 'package:bible_pal/core/app_logger.dart';
 import '../../widgets/living_sky_background.dart';
 import '../../widgets/scripture_verse_block.dart';
+import '../kids/parent_lock_flows.dart';
 
 /// Scripture Reader Screen — scrollable full-text scripture display.
 ///
@@ -22,6 +23,17 @@ class ScriptureReaderScreen extends ConsumerStatefulWidget {
 class _ScriptureReaderScreenState extends ConsumerState<ScriptureReaderScreen> {
   String? _scriptureText;
   bool _loading = true;
+
+  // Kid lane (SPEC 12.1): full WEB passage is parent-gated. Default is the
+  // kid-simple view (reference + key verse). Unlocking reveals the full passage;
+  // returning to the simple view is instant (no auth).
+  bool _parentUnlocked = false;
+
+  Future<void> _unlockParent() async {
+    final ok =
+        await authenticateParent(context, ref, reason: 'Read full Scripture');
+    if (ok && mounted) setState(() => _parentUnlocked = true);
+  }
 
   @override
   void initState() {
@@ -74,6 +86,13 @@ class _ScriptureReaderScreenState extends ConsumerState<ScriptureReaderScreen> {
       verseBody = lines.sublist(startIdx).join('\n').trim();
     }
 
+    // SPEC 12.1: kid stories default to the simple view (reference + key verse);
+    // the full WEB passage is parent-gated. Adult/Traditional stories are
+    // unaffected (no scriptureKeyVerse) and render the full passage as before.
+    final keyVerse = parable?.scriptureKeyVerse;
+    final isKidGated = parable?.kidFriendly == true && keyVerse != null;
+    final showKidSimple = isKidGated && !_parentUnlocked;
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       extendBodyBehindAppBar: true,
@@ -89,29 +108,120 @@ class _ScriptureReaderScreenState extends ConsumerState<ScriptureReaderScreen> {
         children: [
           const LivingSkyBackground(),
           SafeArea(
-            child: _loading
-          ? const Center(child: CircularProgressIndicator())
-          : verseBody == null || verseBody.isEmpty
-              ? Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Text(
-                      'Scripture text is not yet available for this story.',
-                      style: theme.textTheme.bodyLarge?.copyWith(
-                        color: theme.colorScheme.onSurfaceVariant,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                )
-              : SingleChildScrollView(
-                  padding: const EdgeInsets.fromLTRB(28, 16, 28, 48),
-                  child: ScripturePassageView(
-                    rawScriptureText: verseBody,
-                    reference: reference.isNotEmpty ? reference : null,
-                    translationLabel: translationLabel,
-                  ),
+            child: showKidSimple
+                ? _buildKidSimple(theme, reference, keyVerse)
+                : _buildFullPassage(
+                    theme, reference, translationLabel, verseBody, isKidGated),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Kid-simple, ungated view: reference + one curated key verse (SPEC 12.1).
+  /// The full passage is never shown here — it lives behind the parent gate.
+  Widget _buildKidSimple(
+      ThemeData theme, String reference, Map<String, dynamic> keyVerse) {
+    final muted = theme.colorScheme.onSurfaceVariant;
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(28, 24, 28, 48),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'This story comes from',
+            style: theme.textTheme.titleMedium?.copyWith(color: muted),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            reference.isNotEmpty ? reference : 'the Bible',
+            style: theme.textTheme.headlineSmall
+                ?.copyWith(fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 36),
+          Text(
+            'Key Verse',
+            style: theme.textTheme.titleMedium
+                ?.copyWith(color: muted, letterSpacing: 1.2),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 14),
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              border: Border.all(color: theme.dividerColor),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  (keyVerse['ref'] ?? '').toString(),
+                  style: theme.textTheme.labelLarge
+                      ?.copyWith(fontWeight: FontWeight.bold, color: muted),
                 ),
+                const SizedBox(height: 10),
+                Text(
+                  (keyVerse['text'] ?? '').toString(),
+                  style: theme.textTheme.titleMedium?.copyWith(height: 1.5),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 40),
+          OutlinedButton.icon(
+            icon: const Icon(Icons.lock_outline, size: 18),
+            label: const Text('Parent: Read Full Scripture'),
+            onPressed: _unlockParent,
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Full WEB passage — adult/Traditional default, or the kid lane once the
+  /// parent has unlocked. When unlocked in kid mode, offers an instant
+  /// (no-auth) return to the kid-simple view.
+  Widget _buildFullPassage(ThemeData theme, String reference,
+      String translationLabel, String? verseBody, bool isKidGated) {
+    if (_loading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    if (verseBody == null || verseBody.isEmpty) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Text(
+            'Scripture text is not yet available for this story.',
+            style: theme.textTheme.bodyLarge
+                ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
+    }
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(28, 16, 28, 48),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (isKidGated && _parentUnlocked) ...[
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton.icon(
+                icon: const Icon(Icons.child_care, size: 18),
+                label: const Text('Return to Kid View'),
+                onPressed: () => setState(() => _parentUnlocked = false),
+              ),
+            ),
+            const SizedBox(height: 8),
+          ],
+          ScripturePassageView(
+            rawScriptureText: verseBody,
+            reference: reference.isNotEmpty ? reference : null,
+            translationLabel: translationLabel,
           ),
         ],
       ),

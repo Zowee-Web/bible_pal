@@ -29,6 +29,8 @@ class Parable {
   final String? audioFilePath; // Path to pre-generated audio file
   final String? textFilePath; // Path to story text file
   final String? scriptureTextFilePath; // Path to scripture passage text file
+  final Map<String, dynamic>?
+      scriptureKeyVerse; // Kid-lane single key verse {ref, text} (SPEC 12.1)
   final String? reflectionAudioPath; // Path to pre-generated reflection audio
   final String?
       narratorVoiceKey; // Symbolic voice key (e.g., 'VOICE_JAMES_HUSKY')
@@ -80,6 +82,7 @@ class Parable {
     this.audioFilePath,
     this.textFilePath,
     this.scriptureTextFilePath,
+    this.scriptureKeyVerse,
     this.reflectionAudioPath,
     this.narratorVoiceKey,
     this.reflectionQuestion,
@@ -134,6 +137,7 @@ class Parable {
       audioFilePath: json['audioFilePath'] as String?,
       textFilePath: json['textFilePath'] as String?,
       scriptureTextFilePath: json['scriptureTextFilePath'] as String?,
+      scriptureKeyVerse: json['scriptureKeyVerse'] as Map<String, dynamic>?,
       reflectionAudioPath: json['reflectionAudioPath'] as String?,
       narratorVoiceKey: json['narratorVoiceKey'] as String?,
       reflectionQuestion: json['reflectionQuestion'] as String?,
@@ -180,6 +184,7 @@ class Parable {
       'audioFilePath': audioFilePath,
       'textFilePath': textFilePath,
       'scriptureTextFilePath': scriptureTextFilePath,
+      'scriptureKeyVerse': scriptureKeyVerse,
       'reflectionAudioPath': reflectionAudioPath,
       'narratorVoiceKey': narratorVoiceKey,
       'reflectionQuestion': reflectionQuestion,
@@ -258,6 +263,7 @@ class Parable {
     String? audioFilePath,
     String? textFilePath,
     String? scriptureTextFilePath,
+    Map<String, dynamic>? scriptureKeyVerse,
     String? reflectionAudioPath,
     String? narratorVoiceKey,
     String? reflectionQuestion,
@@ -292,6 +298,7 @@ class Parable {
       textFilePath: textFilePath ?? this.textFilePath,
       scriptureTextFilePath:
           scriptureTextFilePath ?? this.scriptureTextFilePath,
+      scriptureKeyVerse: scriptureKeyVerse ?? this.scriptureKeyVerse,
       reflectionAudioPath: reflectionAudioPath ?? this.reflectionAudioPath,
       narratorVoiceKey: narratorVoiceKey ?? this.narratorVoiceKey,
       reflectionQuestion: reflectionQuestion ?? this.reflectionQuestion,
