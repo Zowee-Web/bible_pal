@@ -8132,6 +8132,72 @@
       "reflectionQuestion": "Jesus said to keep talking to God and never give up, because God always loves to listen. I wonder what you would like to keep on talking to God about?",
       "kidSafetyNotes": "NEW anchor (Jesus' Parables, Luke 18:1-8). WATCH-ITEM (Adam): the lesson is 'don't give up TALKING to God', NOT 'wear God down'. Jesus' explanation is explicit: God is NOTHING like the grumpy judge -- 'not to wear God down... but because he loves us, and he loves to listen.' The judge is grumpy/uncaring (mild, comic), God is the loving contrast. Room = keep praying / don't lose heart / God always gladly listens. Parable framed as Jesus telling a story. Soft close ('you'/'always'). VOICE_PRISCILLA_TEACHER (clear, gentle-instructive female -- fits a parable).",
       "hardContentFlags": []
+    },
+    {
+      "id": "kid_gethsemane_long",
+      "storyNumber": 1901,
+      "title": "The Garden at Night",
+      "textFilePath": "kids/1901/story_1901_long.txt",
+      "scriptureAnchorId": "luke_22_39",
+      "bibleStoryKey": "luke_22_39",
+      "bibleSourceRef": "Luke 22:39-46",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "comforted",
+        "brave",
+        "loved"
+      ],
+      "themeTags": [
+        "courage and fear together",
+        "praying honestly",
+        "God sends comfort",
+        "you are not alone in the dark"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1100,
+      "actualWords": 772,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1901/audio_1901_long.mp3",
+      "reflectionAudioPath": "kids/1901/audio_1901_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus was afraid, but he told God honestly, and God sent an angel to comfort him. I wonder what you would like to tell God about, when something feels scary?",
+      "kidSafetyNotes": "NEW anchor (Gethsemane, Luke 22:39-46). Adam's #1 priority. Mood=anxious -- routes a scared/anxious/bedtime-frightened child. WATCH-ITEM (Adam): keep the focus on Jesus PRAYING HONESTLY and RECEIVING COMFORT; the angel comforting him is the emotional center. The coming cross is kept OFFSTAGE ('a very hard day was coming' -- no detail, no violence). The teaching: courage and fear can exist together ('not never being scared, but trusting God even when you are'). Jesus asks friends to stay close; they fall asleep (gentle, 'eyes so heavy', not a rebuke). 'Not my will but yours' kept simple. Soft close ('comfort you'). VOICE_JOHN_BELOVED (tender; John was there in the garden).",
+      "hardContentFlags": []
+    },
+    {
+      "id": "kid_jacob_esau_long",
+      "storyNumber": 1902,
+      "title": "The Brother Who Ran to Hug Him",
+      "textFilePath": "kids/1902/story_1902_long.txt",
+      "scriptureAnchorId": "genesis_33",
+      "bibleStoryKey": "genesis_33",
+      "bibleSourceRef": "Genesis 33:1-11",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "reassured",
+        "loved",
+        "hope",
+        "comforted"
+      ],
+      "themeTags": [
+        "forgiveness and grace",
+        "broken things can heal",
+        "saying sorry",
+        "a brother's open arms"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1100,
+      "actualWords": 833,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "audioFilePath": "kids/1902/audio_1902_long.mp3",
+      "reflectionAudioPath": "kids/1902/audio_1902_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jacob was so afraid, but Esau ran to hug him and forgave him. I wonder who you might want to hug, or say sorry to, or forgive?",
+      "kidSafetyNotes": "NEW anchor (Jacob category, Genesis 33). Pairs with 1900 Jacob's Ladder -> arc: God is with Jacob -> Jacob grows -> the brother he feared runs to hug him (grace in story form). WATCH-ITEM (Adam): let Esau's RUNNING HUG breathe -- that's the moment. The old hurt kept gentle/vague ('Jacob had done something that hurt Esau... had taken something that should have been his brother's') -- no deception details. Jacob models making things right: gifts, humble bowing, honest prayer. The HEART = forgiveness/grace; broken things can heal; the one you most fear to face may run to embrace you. Soft close ('hold you close'). VOICE_JAMES_HUSKY (ear-verified male; warm).",
+      "hardContentFlags": []
     }
   ]
 }

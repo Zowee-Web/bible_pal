@@ -219,14 +219,15 @@
           "tier": "secondary",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "manifestAnchorIds": [
             "genesis_33"
           ],
           "launch": true,
           "productionId": 1902,
-          "longEligible": false
+          "longEligible": true
         }
       ]
     },
@@ -1544,14 +1545,15 @@
           "tier": "secondary",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": true,
           "productionId": 1901,
           "manifestAnchorIds": [
             "luke_22_39"
           ],
-          "longEligible": false
+          "longEligible": true
         },
         {
           "anchorId": "the_cross",

@@ -51308,6 +51308,64 @@
         "do not lose heart"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_gethsemane_long",
+      "title": "The Garden at Night",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "comforted",
+        "brave",
+        "loved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1901/audio_1901_long.mp3",
+      "textFilePath": "kids/1901/story_1901_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "long",
+      "reflectionQuestion": "Jesus was afraid, but he told God honestly, and God sent an angel to comfort him. I wonder what you would like to tell God about, when something feels scary?",
+      "bibleSourceRef": "Luke 22:39-46",
+      "bibleStoryKey": "luke_22_39",
+      "themeTags": [
+        "courage and fear together",
+        "praying honestly",
+        "God sends comfort",
+        "you are not alone in the dark"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jacob_esau_long",
+      "title": "The Brother Who Ran to Hug Him",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "reassured",
+        "loved",
+        "hope",
+        "comforted"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1902/audio_1902_long.mp3",
+      "textFilePath": "kids/1902/story_1902_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "long",
+      "reflectionQuestion": "Jacob was so afraid, but Esau ran to hug him and forgave him. I wonder who you might want to hug, or say sorry to, or forgive?",
+      "bibleSourceRef": "Genesis 33:1-11",
+      "bibleStoryKey": "genesis_33",
+      "themeTags": [
+        "forgiveness and grace",
+        "broken things can heal",
+        "saying sorry",
+        "a brother's open arms"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }
