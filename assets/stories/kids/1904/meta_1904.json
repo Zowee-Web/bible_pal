@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1904,
+  "anchorId": "widow_zarephath",
+  "kidLane": "dedicated-4-7",
+  "title": "The Jar That Never Ran Empty",
+  "scriptureAnchorId": "1_kings_17_7",
+  "bibleSourceRef": "1 Kings 17:7-16",
+  "bibleStoryKey": "1_kings_17_7",
+  "translation": "WEB",
+  "mood": "grateful",
+  "emotionalTags": [
+    "grateful",
+    "generous",
+    "reassured",
+    "hope"
+  ],
+  "themeTags": [
+    "sharing the last little bit",
+    "God provides",
+    "trust in hard times",
+    "an empty jar filled"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_MARTHA_CARING",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "The widow shared her very last meal, and God made sure her jar never ran empty. I wonder what you could share, even when it feels like you have only a little?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Elijah & Elisha, 1 Kings 17:7-16). Distinct from 1885 Elisha's widow oil (2 Kings 4) -- different widow, different prophet, flour+oil vs oil-to-sell. WATCH-ITEM (Adam): frame Elijah as a GUEST asking for trust, NOT testing her ('his heart was kind... he did not want to take her last food away... a gentle promise'). The widow's fear/poverty kept gentle (one last small meal). Room = sharing your last little bit + discovering God's provision / generosity / trust in hard times / an empty jar filled. Soft close ('jar'/'again'). VOICE_MARTHA_CARING (warm, domestic female).",
+  "files": {
+    "short": {
+      "storyText": "story_1904_short.txt",
+      "audio": "audio_1904_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1904_full.txt",
+      "audio": "audio_1904_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1904.txt",
+      "audio": "audio_1904_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

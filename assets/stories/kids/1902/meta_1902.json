@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1902,
+  "anchorId": "jacob_esau",
+  "kidLane": "dedicated-4-7",
+  "title": "The Brother Who Ran to Hug Him",
+  "scriptureAnchorId": "genesis_33",
+  "bibleSourceRef": "Genesis 33:1-11",
+  "bibleStoryKey": "genesis_33",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "reassured",
+    "loved",
+    "hope",
+    "comforted"
+  ],
+  "themeTags": [
+    "forgiveness and grace",
+    "broken things can heal",
+    "saying sorry",
+    "a brother's open arms"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Jacob was so afraid, but Esau ran to hug him and forgave him. I wonder who you might want to hug, or say sorry to, or forgive?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Jacob category, Genesis 33). Pairs with 1900 Jacob's Ladder -> arc: God is with Jacob -> Jacob grows -> the brother he feared runs to hug him (grace in story form). WATCH-ITEM (Adam): let Esau's RUNNING HUG breathe -- that's the moment. The old hurt kept gentle/vague ('Jacob had done something that hurt Esau... had taken something that should have been his brother's') -- no deception details. Jacob models making things right: gifts, humble bowing, honest prayer. The HEART = forgiveness/grace; broken things can heal; the one you most fear to face may run to embrace you. Soft close ('hold you close'). VOICE_JAMES_HUSKY (ear-verified male; warm).",
+  "files": {
+    "short": {
+      "storyText": "story_1902_short.txt",
+      "audio": "audio_1902_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1902_full.txt",
+      "audio": "audio_1902_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1902.txt",
+      "audio": "audio_1902_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

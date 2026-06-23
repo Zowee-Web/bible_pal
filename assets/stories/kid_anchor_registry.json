@@ -211,6 +211,22 @@
           "launch": true,
           "productionId": 1900,
           "longEligible": true
+        },
+        {
+          "anchorId": "jacob_esau",
+          "displayName": "Jacob and Esau Reconcile",
+          "scriptureRef": "Genesis 33:1-11",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "genesis_33"
+          ],
+          "launch": true,
+          "productionId": 1902,
+          "longEligible": false
         }
       ]
     },
@@ -808,6 +824,22 @@
           ],
           "launch": true,
           "productionId": 1880,
+          "longEligible": false
+        },
+        {
+          "anchorId": "widow_zarephath",
+          "displayName": "The Widow of Zarephath",
+          "scriptureRef": "1 Kings 17:7-16",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "1_kings_17_7"
+          ],
+          "launch": true,
+          "productionId": 1904,
           "longEligible": false
         }
       ]
@@ -1449,6 +1481,22 @@
           "launch": true,
           "productionId": 1872,
           "longEligible": false
+        },
+        {
+          "anchorId": "persistent_widow",
+          "displayName": "The Persistent Widow",
+          "scriptureRef": "Luke 18:1-8",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "luke_18"
+          ],
+          "launch": true,
+          "productionId": 1905,
+          "longEligible": false
         }
       ]
     },
@@ -1495,9 +1543,15 @@
           "scriptureRef": "Luke 22:39-46",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": false
+          "launch": true,
+          "productionId": 1901,
+          "manifestAnchorIds": [
+            "luke_22_39"
+          ],
+          "longEligible": false
         },
         {
           "anchorId": "the_cross",
@@ -1581,6 +1635,22 @@
           ],
           "launch": true,
           "productionId": 1871,
+          "longEligible": false
+        },
+        {
+          "anchorId": "jesus_breakfast",
+          "displayName": "Breakfast on the Shore",
+          "scriptureRef": "John 21:1-14",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "manifestAnchorIds": [
+            "john_21"
+          ],
+          "launch": true,
+          "productionId": 1903,
           "longEligible": false
         }
       ]
