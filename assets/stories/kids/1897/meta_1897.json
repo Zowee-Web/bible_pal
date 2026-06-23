@@ -52,5 +52,10 @@
       "audio": "audio_1897_reflection.mp3",
       "ttsModel": "eleven_v3"
     }
+  },
+  "scriptureTextFilePath": "kids/1897/scripture_1897_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Acts 9:40",
+    "text": "Peter sent them all out, and knelt down and prayed. Turning to the body, he said, “Tabitha, get up!” She opened her eyes, and when she saw Peter, she sat up."
   }
 }

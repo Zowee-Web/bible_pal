@@ -57,5 +57,10 @@
       "storyText": "story_1822_long.txt",
       "audio": "audio_1822_long.mp3"
     }
+  },
+  "scriptureTextFilePath": "kids/1822/scripture_1822_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Daniel 3:25",
+    "text": "He answered, “Look, I see four men loose, walking in the middle of the fire, and they are unharmed. The appearance of the fourth is like a son of the gods.”"
   }
 }

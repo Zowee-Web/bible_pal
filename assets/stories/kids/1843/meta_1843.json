@@ -47,5 +47,10 @@
       "audio": "audio_1843_reflection.mp3",
       "ttsModel": "eleven_v3"
     }
+  },
+  "scriptureTextFilePath": "kids/1843/scripture_1843_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Matthew 6:9",
+    "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy."
   }
 }

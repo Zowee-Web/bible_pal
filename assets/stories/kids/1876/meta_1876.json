@@ -57,5 +57,10 @@
       "storyText": "story_1876_long.txt",
       "audio": "audio_1876_long.mp3"
     }
+  },
+  "scriptureTextFilePath": "kids/1876/scripture_1876_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Matthew 17:5",
+    "text": "While he was still speaking, behold, a bright cloud overshadowed them. Behold, a voice came out of the cloud, saying, “This is my beloved Son, in whom I am well pleased. Listen to him.”"
   }
 }

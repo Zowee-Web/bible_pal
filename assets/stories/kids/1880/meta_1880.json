@@ -52,5 +52,10 @@
       "audio": "audio_1880_reflection.mp3",
       "ttsModel": "eleven_v3"
     }
+  },
+  "scriptureTextFilePath": "kids/1880/scripture_1880_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "2 Kings 2:11",
+    "text": "As they continued on and talked, behold, a chariot of fire and horses of fire separated them; and Elijah went up by a whirlwind into heaven."
   }
 }

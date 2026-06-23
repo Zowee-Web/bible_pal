@@ -52,5 +52,10 @@
       "audio": "audio_1884_reflection.mp3",
       "ttsModel": "eleven_v3"
     }
+  },
+  "scriptureTextFilePath": "kids/1884/scripture_1884_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Genesis 11:9",
+    "text": "Therefore its name was called Babel, because there Yahweh confused the language of all the earth. From there, Yahweh scattered them abroad on the surface of all the earth."
   }
 }

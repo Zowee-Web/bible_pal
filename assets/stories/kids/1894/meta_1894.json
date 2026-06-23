@@ -52,5 +52,10 @@
       "audio": "audio_1894_reflection.mp3",
       "ttsModel": "eleven_v3"
     }
+  },
+  "scriptureTextFilePath": "kids/1894/scripture_1894_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Luke 2:49",
+    "text": "He said to them, “Why were you looking for me? Didn’t you know that I must be in my Father’s house?”"
   }
 }

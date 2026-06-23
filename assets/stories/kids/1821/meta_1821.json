@@ -58,5 +58,10 @@
       "storyText": "story_1821_long.txt",
       "audio": "audio_1821_long.mp3"
     }
+  },
+  "scriptureTextFilePath": "kids/1821/scripture_1821_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Luke 23:46",
+    "text": "Jesus, crying with a loud voice, said, “Father, into your hands I commit my spirit!” Having said this, he breathed his last."
   }
 }

@@ -51,5 +51,10 @@
       "storyText": "story_1852_full.txt",
       "audio": "audio_1852_full.mp3"
     }
+  },
+  "scriptureTextFilePath": "kids/1852/scripture_1852_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Genesis 18:14",
+    "text": "Is anything too hard for Yahweh? At the set time I will return to you, when the season comes around, and Sarah will have a son.”"
   }
 }

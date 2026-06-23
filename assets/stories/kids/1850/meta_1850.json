@@ -58,5 +58,10 @@
       "storyText": "story_1850_long.txt",
       "audio": "audio_1850_long.mp3"
     }
+  },
+  "scriptureTextFilePath": "kids/1850/scripture_1850_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Luke 22:19",
+    "text": "He took bread, and when he had given thanks, he broke and gave it to them, saying, “This is my body which is given for you. Do this in memory of me.”"
   }
 }

@@ -58,5 +58,10 @@
       "storyText": "story_1856_long.txt",
       "audio": "audio_1856_long.mp3"
     }
+  },
+  "scriptureTextFilePath": "kids/1856/scripture_1856_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Acts 12:7",
+    "text": "And behold, an angel of the Lord stood by him, and a light shone in the cell. He struck Peter on the side and woke him up, saying, “Stand up quickly!” His chains fell off his hands."
   }
 }

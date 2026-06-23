@@ -51,5 +51,10 @@
       "storyText": "story_1846_full.txt",
       "audio": "audio_1846_full.mp3"
     }
+  },
+  "scriptureTextFilePath": "kids/1846/scripture_1846_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "1 Samuel 18:3",
+    "text": "Then Jonathan and David made a covenant, because he loved him as his own soul."
   }
 }

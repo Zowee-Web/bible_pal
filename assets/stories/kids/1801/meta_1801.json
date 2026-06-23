@@ -55,5 +55,10 @@
       "audio": "audio_1801_long.mp3"
     }
   },
-  "createdNote": "Doctrine-v2 Rosetta Stone; first dedicated kid-lane anchor. productionId band 1801+ (anchor stays canonical in kid_anchor_registry.json)."
+  "createdNote": "Doctrine-v2 Rosetta Stone; first dedicated kid-lane anchor. productionId band 1801+ (anchor stays canonical in kid_anchor_registry.json).",
+  "scriptureTextFilePath": "kids/1801/scripture_1801_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "1 Samuel 17:47",
+    "text": "and that all this assembly may know that Yahweh doesn’t save with sword and spear; for the battle is Yahweh’s, and he will give you into our hand.”"
+  }
 }

@@ -53,5 +53,10 @@
       "audio": "audio_1857_reflection.mp3",
       "ttsModel": "eleven_v3"
     }
+  },
+  "scriptureTextFilePath": "kids/1857/scripture_1857_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "1 Samuel 16:23",
+    "text": "When the spirit from God was on Saul, David took the harp and played with his hand; so Saul was refreshed and was well, and the evil spirit departed from him."
   }
 }

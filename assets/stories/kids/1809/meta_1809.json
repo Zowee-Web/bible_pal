@@ -50,5 +50,10 @@
       "audio": "audio_1809_reflection.mp3",
       "ttsModel": "eleven_v3"
     }
+  },
+  "scriptureTextFilePath": "kids/1809/scripture_1809_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Matthew 2:10",
+    "text": "When they saw the star, they rejoiced with exceedingly great joy."
   }
 }

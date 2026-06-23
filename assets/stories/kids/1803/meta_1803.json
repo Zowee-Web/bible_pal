@@ -46,5 +46,10 @@
       "audio": "audio_1803_reflection.mp3"
     }
   },
-  "createdNote": "Comfort pillar; first comfort-ritual build (template for Lord's Prayer / Beatitudes). Voice VOICE_ARABELLA (lane's first female narrator). Mood weary (fills an empty mood)."
+  "createdNote": "Comfort pillar; first comfort-ritual build (template for Lord's Prayer / Beatitudes). Voice VOICE_ARABELLA (lane's first female narrator). Mood weary (fills an empty mood).",
+  "scriptureTextFilePath": "kids/1803/scripture_1803_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Psalm 23:1",
+    "text": "Yahweh is my shepherd; I shall lack nothing."
+  }
 }

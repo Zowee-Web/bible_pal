@@ -51,5 +51,10 @@
       "storyText": "story_1847_full.txt",
       "audio": "audio_1847_full.mp3"
     }
+  },
+  "scriptureTextFilePath": "kids/1847/scripture_1847_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "1 Kings 17:6",
+    "text": "The ravens brought him bread and meat in the morning, and bread and meat in the evening; and he drank from the brook."
   }
 }

@@ -52,5 +52,10 @@
       "audio": "audio_1888_reflection.mp3",
       "ttsModel": "eleven_v3"
     }
+  },
+  "scriptureTextFilePath": "kids/1888/scripture_1888_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Joshua 3:17",
+    "text": "The priests who bore the ark of Yahweh’s covenant stood firm on dry ground in the middle of the Jordan; and all Israel crossed over on dry ground, until all the nation had passed completely over the Jordan."
   }
 }

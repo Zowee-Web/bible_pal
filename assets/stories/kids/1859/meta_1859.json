@@ -47,5 +47,10 @@
       "audio": "audio_1859_reflection.mp3",
       "ttsModel": "eleven_v3"
     }
+  },
+  "scriptureTextFilePath": "kids/1859/scripture_1859_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Matthew 5:9",
+    "text": "Blessed are the peacemakers, for they shall be called children of God."
   }
 }

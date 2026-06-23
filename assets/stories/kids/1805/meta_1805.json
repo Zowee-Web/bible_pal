@@ -56,5 +56,10 @@
       "audio": "audio_1805_long.mp3"
     }
   },
-  "createdNote": "Wonder pillar, story 2. Foundational. Voice VOICE_NATASHA_AFRICAN_AMERICAN (Warm Strength; 2nd female narrator). Mood grateful (fills an empty mood). Reflection renders in eleven_v3."
+  "createdNote": "Wonder pillar, story 2. Foundational. Voice VOICE_NATASHA_AFRICAN_AMERICAN (Warm Strength; 2nd female narrator). Mood grateful (fills an empty mood). Reflection renders in eleven_v3.",
+  "scriptureTextFilePath": "kids/1805/scripture_1805_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Genesis 1:31",
+    "text": "God saw everything that he had made, and, behold, it was very good. There was evening and there was morning, a sixth day."
+  }
 }

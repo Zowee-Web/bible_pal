@@ -58,5 +58,10 @@
       "storyText": "story_1851_long.txt",
       "audio": "audio_1851_long.mp3"
     }
+  },
+  "scriptureTextFilePath": "kids/1851/scripture_1851_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Acts 9:4",
+    "text": "He fell on the earth, and heard a voice saying to him, “Saul, Saul, why do you persecute me?”"
   }
 }

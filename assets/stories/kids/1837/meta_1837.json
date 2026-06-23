@@ -58,5 +58,10 @@
       "storyText": "story_1837_long.txt",
       "audio": "audio_1837_long.mp3"
     }
+  },
+  "scriptureTextFilePath": "kids/1837/scripture_1837_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Ruth 1:16",
+    "text": "Ruth said, “Don’t urge me to leave you, and to return from following you, for where you go, I will go; and where you stay, I will stay. Your people will be my people, and your God my God."
   }
 }

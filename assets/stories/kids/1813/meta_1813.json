@@ -57,5 +57,10 @@
       "storyText": "story_1813_long.txt",
       "audio": "audio_1813_long.mp3"
     }
+  },
+  "scriptureTextFilePath": "kids/1813/scripture_1813_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Exodus 14:14",
+    "text": "Yahweh will fight for you, and you shall be still.”"
   }
 }

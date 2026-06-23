@@ -47,5 +47,10 @@
       "audio": "audio_1887_reflection.mp3",
       "ttsModel": "eleven_v3"
     }
+  },
+  "scriptureTextFilePath": "kids/1887/scripture_1887_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Matthew 13:44",
+    "text": "“Again, the Kingdom of Heaven is like treasure hidden in the field, which a man found and hid. In his joy, he goes and sells all that he has and buys that field."
   }
 }

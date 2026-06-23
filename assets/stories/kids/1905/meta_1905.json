@@ -52,5 +52,10 @@
       "audio": "audio_1905_reflection.mp3",
       "ttsModel": "eleven_v3"
     }
+  },
+  "scriptureTextFilePath": "kids/1905/scripture_1905_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Luke 18:1",
+    "text": "He also spoke a parable to them that they must always pray and not give up,"
   }
 }

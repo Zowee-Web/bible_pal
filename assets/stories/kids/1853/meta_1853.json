@@ -53,5 +53,10 @@
       "storyText": "story_1853_full.txt",
       "audio": "audio_1853_full.mp3"
     }
+  },
+  "scriptureTextFilePath": "kids/1853/scripture_1853_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Luke 17:16",
+    "text": "He fell on his face at Jesus’ feet, giving him thanks; and he was a Samaritan."
   }
 }

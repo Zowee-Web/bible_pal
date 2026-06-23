@@ -50,5 +50,10 @@
       "audio": "audio_1824_reflection.mp3",
       "ttsModel": "eleven_v3"
     }
+  },
+  "scriptureTextFilePath": "kids/1824/scripture_1824_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Luke 1:38",
+    "text": "Mary said, “Behold, the servant of the Lord; let it be done to me according to your word.” Then the angel departed from her."
   }
 }

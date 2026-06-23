@@ -56,5 +56,10 @@
       "storyText": "story_1810_long.txt",
       "audio": "audio_1810_long.mp3"
     }
+  },
+  "scriptureTextFilePath": "kids/1810/scripture_1810_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Exodus 2:10",
+    "text": "The child grew, and she brought him to Pharaoh’s daughter, and he became her son. She named him Moses, and said, “Because I drew him out of the water.”"
   }
 }

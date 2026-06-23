@@ -51,5 +51,10 @@
       "storyText": "story_1848_full.txt",
       "audio": "audio_1848_full.mp3"
     }
+  },
+  "scriptureTextFilePath": "kids/1848/scripture_1848_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Mark 10:52",
+    "text": "Jesus said to him, “Go your way. Your faith has made you well.” Immediately he received his sight and followed Jesus on the way."
   }
 }

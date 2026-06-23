@@ -50,5 +50,10 @@
       "audio": "audio_1833_reflection.mp3",
       "ttsModel": "eleven_v3"
     }
+  },
+  "scriptureTextFilePath": "kids/1833/scripture_1833_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Luke 2:11",
+    "text": "For there is born to you today, in David’s city, a Savior, who is Christ the Lord."
   }
 }

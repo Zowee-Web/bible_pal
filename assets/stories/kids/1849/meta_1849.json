@@ -51,5 +51,10 @@
       "storyText": "story_1849_full.txt",
       "audio": "audio_1849_full.mp3"
     }
+  },
+  "scriptureTextFilePath": "kids/1849/scripture_1849_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Exodus 20:2",
+    "text": "“I am Yahweh your God, who brought you out of the land of Egypt, out of the house of bondage."
   }
 }

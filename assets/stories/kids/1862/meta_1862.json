@@ -58,5 +58,10 @@
       "storyText": "story_1862_long.txt",
       "audio": "audio_1862_long.mp3"
     }
+  },
+  "scriptureTextFilePath": "kids/1862/scripture_1862_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "2 Kings 5:14",
+    "text": "Then went he down and dipped himself seven times in the Jordan, according to the saying of the man of God; and his flesh was restored like the flesh of a little child, and he was clean."
   }
 }

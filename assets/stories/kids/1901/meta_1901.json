@@ -57,5 +57,10 @@
       "storyText": "story_1901_long.txt",
       "audio": "audio_1901_long.mp3"
     }
+  },
+  "scriptureTextFilePath": "kids/1901/scripture_1901_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Luke 22:42",
+    "text": "saying, “Father, if you are willing, remove this cup from me. Nevertheless, not my will, but yours, be done.”"
   }
 }

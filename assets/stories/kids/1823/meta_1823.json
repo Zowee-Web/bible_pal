@@ -50,5 +50,10 @@
       "audio": "audio_1823_reflection.mp3",
       "ttsModel": "eleven_v3"
     }
+  },
+  "scriptureTextFilePath": "kids/1823/scripture_1823_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Genesis 12:2",
+    "text": "I will make of you a great nation. I will bless you and make your name great. You will be a blessing."
   }
 }

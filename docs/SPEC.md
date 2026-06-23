@@ -372,6 +372,17 @@ These fields apply to Traditional stories only (the only active mode after Creat
 - Scripture reference display is driven by story metadata for the current `storyId`
 - Reused in Favorites and History views (future)
 
+**12.1 Kid-Lane Scripture Sources (parent-gated)**
+
+The dedicated kid lane (ages 4–7) also carries scripture sources, with a two-tier, **parent-gated** presentation. Rationale: a parent can verify "this really came from the Bible," and the same passage becomes a bridge the child can return to as they grow — without surfacing full, sometimes-intense passages (e.g. Gethsemane's "sweat like drops of blood") to a young child unprompted.
+
+- **Data (WEB-only — kid compliance):** each kid story bundles `scripture_{id}_web.txt`, generated from its `bibleSourceRef` by `scripts/backfill_kid_scripture.py`. For broad citations where the story draws on a portion (e.g. 1 Kings 6–8, mostly building measurements), the bundled text is the **key passages**; the displayed `bibleSourceRef` citation is unchanged. Each kid story also carries `scriptureKeyVerse` (`{ ref, text }`) — one central verse.
+- **Default view (no gate — "simple kid-friendly scripture"):** the Scripture panel / Read Scripture page shows the reference (*"This story comes from {bibleSourceRef}"*) and the single `scriptureKeyVerse`. This is the only scripture a child sees ungated.
+- **Parent view (gated):** a parent toggle on the Read Scripture page reveals the **full WEB passage** (`scriptureTextFilePath`).
+- **The gate (mirrors the Kids-mode toggle exactly):** the "Parent: Hold to Read Full Scripture" affordance always requires a **3-second hold** (with a fill animation). On hold completion, `parent_lock_flows.authenticateParent` runs — which is **instant when no parent lock is set** (so the 3-second hold *is* the gate) or requires **Face ID → 4-digit PIN** when a lock is configured. Same hold-then-auth pattern and same lock as the kid-mode toggle in `main_menu`. No new auth mechanism.
+- **Asymmetry (LOCKED):** unlocking the parent/full view requires the gate; toggling **back** to the simple kid view is **instant — no gate**.
+- **Kid-mode detection:** `userPreferences.kidFriendlyOnly`. Outside kid mode (adult / Traditional), Feature 12 behaves exactly as before — full scripture, no gate.
+
 ### Storytelling Mode
 
 Bible PAL is Traditional-only as of 2026-05-13. Creative mode was retired and archived; see [archive/CREATIVE_RETIREMENT_2026_05_13.md](archive/CREATIVE_RETIREMENT_2026_05_13.md). Reactivation requires a SPEC update and restoration from the T9 archive or git tag `pre-creative-retirement-2026-05-13`.

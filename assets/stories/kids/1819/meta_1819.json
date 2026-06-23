@@ -57,5 +57,10 @@
       "storyText": "story_1819_long.txt",
       "audio": "audio_1819_long.mp3"
     }
+  },
+  "scriptureTextFilePath": "kids/1819/scripture_1819_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Genesis 45:5",
+    "text": "Now don’t be grieved, nor angry with yourselves, that you sold me here, for God sent me before you to preserve life."
   }
 }
