@@ -51,5 +51,6 @@
       "audio": "audio_1863_reflection.mp3",
       "ttsModel": "eleven_v3"
     }
-  }
+  },
+  "scriptureTextFilePath": "kids/1863/scripture_1863_web.txt"
 }

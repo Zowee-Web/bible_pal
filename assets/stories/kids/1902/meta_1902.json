@@ -57,5 +57,6 @@
       "storyText": "story_1902_long.txt",
       "audio": "audio_1902_long.mp3"
     }
-  }
+  },
+  "scriptureTextFilePath": "kids/1902/scripture_1902_web.txt"
 }

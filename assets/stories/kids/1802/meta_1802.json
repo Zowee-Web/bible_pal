@@ -57,5 +57,6 @@
       "audio": "audio_1802_long.mp3"
     }
   },
-  "createdNote": "Second dedicated kid-lane anchor (Mercy pillar). Supersedes legacy kid_113. Voice not yet chosen; storyVoiceKey null until audio approval."
+  "createdNote": "Second dedicated kid-lane anchor (Mercy pillar). Supersedes legacy kid_113. Voice not yet chosen; storyVoiceKey null until audio approval.",
+  "scriptureTextFilePath": "kids/1802/scripture_1802_web.txt"
 }

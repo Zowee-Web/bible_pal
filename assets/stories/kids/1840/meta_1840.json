@@ -53,5 +53,6 @@
       "audio": "audio_1840_reflection.mp3",
       "ttsModel": "eleven_v3"
     }
-  }
+  },
+  "scriptureTextFilePath": "kids/1840/scripture_1840_web.txt"
 }
