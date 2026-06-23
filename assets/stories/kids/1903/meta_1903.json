@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1903,
+  "anchorId": "jesus_breakfast",
+  "kidLane": "dedicated-4-7",
+  "title": "Breakfast on the Shore",
+  "scriptureAnchorId": "john_21",
+  "bibleSourceRef": "John 21:1-14",
+  "bibleStoryKey": "john_21",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "calm",
+    "comforted",
+    "loved",
+    "joyful"
+  ],
+  "themeTags": [
+    "Jesus' gentle care",
+    "cozy belonging",
+    "alive again",
+    "breakfast with friends"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Jesus made a warm breakfast for his tired friends, just because he loved them. I wonder what cozy moment makes you feel safe and loved?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Easter / post-resurrection, John 21:1-14). Adam's sleeper-favorite pick. Distinct from 1883 Nets Full of Fish (Luke 5, the FIRST catch / calling) -- this is the post-resurrection SECOND catch + breakfast. WATCH-ITEM (Adam): linger on the fire, the smell of bread, the lake at sunrise -- the COZINESS is the point; no crowd, no spectacle, no sermon. mood=calm_peaceful (a cozy bedtime-adjacent piece). Peter's joyful jump kept; Peter's restoration kept offstage to preserve the gentle warmth. Room = Jesus' gentle, human care / belonging / he is alive and loves us. Soft close ('say'). VOICE_JOHN_BELOVED (John 21 is John's own gospel; tender).",
+  "files": {
+    "short": {
+      "storyText": "story_1903_short.txt",
+      "audio": "audio_1903_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1903_full.txt",
+      "audio": "audio_1903_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1903.txt",
+      "audio": "audio_1903_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

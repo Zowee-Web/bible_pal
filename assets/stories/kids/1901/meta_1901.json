@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1901,
+  "anchorId": "gethsemane",
+  "kidLane": "dedicated-4-7",
+  "title": "The Garden at Night",
+  "scriptureAnchorId": "luke_22_39",
+  "bibleSourceRef": "Luke 22:39-46",
+  "bibleStoryKey": "luke_22_39",
+  "translation": "WEB",
+  "mood": "anxious",
+  "emotionalTags": [
+    "anxious",
+    "comforted",
+    "brave",
+    "loved"
+  ],
+  "themeTags": [
+    "courage and fear together",
+    "praying honestly",
+    "God sends comfort",
+    "you are not alone in the dark"
+  ],
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Jesus was afraid, but he told God honestly, and God sent an angel to comfort him. I wonder what you would like to tell God about, when something feels scary?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Gethsemane, Luke 22:39-46). Adam's #1 priority. Mood=anxious -- routes a scared/anxious/bedtime-frightened child. WATCH-ITEM (Adam): keep the focus on Jesus PRAYING HONESTLY and RECEIVING COMFORT; the angel comforting him is the emotional center. The coming cross is kept OFFSTAGE ('a very hard day was coming' -- no detail, no violence). The teaching: courage and fear can exist together ('not never being scared, but trusting God even when you are'). Jesus asks friends to stay close; they fall asleep (gentle, 'eyes so heavy', not a rebuke). 'Not my will but yours' kept simple. Soft close ('comfort you'). VOICE_JOHN_BELOVED (tender; John was there in the garden).",
+  "files": {
+    "short": {
+      "storyText": "story_1901_short.txt",
+      "audio": "audio_1901_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1901_full.txt",
+      "audio": "audio_1901_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1901.txt",
+      "audio": "audio_1901_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    },
+    "long": {
+      "storyText": "story_1901_long.txt",
+      "audio": "audio_1901_long.mp3"
+    }
+  }
+}

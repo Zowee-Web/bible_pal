@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1905,
+  "anchorId": "persistent_widow",
+  "kidLane": "dedicated-4-7",
+  "title": "The Woman Who Kept Asking",
+  "scriptureAnchorId": "luke_18",
+  "bibleSourceRef": "Luke 18:1-8",
+  "bibleStoryKey": "luke_18",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "hope",
+    "reassured",
+    "encouraged",
+    "loved"
+  ],
+  "themeTags": [
+    "keep talking to God",
+    "do not give up",
+    "God loves to listen",
+    "do not lose heart"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Jesus said to keep talking to God and never give up, because God always loves to listen. I wonder what you would like to keep on talking to God about?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Jesus' Parables, Luke 18:1-8). WATCH-ITEM (Adam): the lesson is 'don't give up TALKING to God', NOT 'wear God down'. Jesus' explanation is explicit: God is NOTHING like the grumpy judge -- 'not to wear God down... but because he loves us, and he loves to listen.' The judge is grumpy/uncaring (mild, comic), God is the loving contrast. Room = keep praying / don't lose heart / God always gladly listens. Parable framed as Jesus telling a story. Soft close ('you'/'always'). VOICE_PRISCILLA_TEACHER (clear, gentle-instructive female -- fits a parable).",
+  "files": {
+    "short": {
+      "storyText": "story_1905_short.txt",
+      "audio": "audio_1905_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1905_full.txt",
+      "audio": "audio_1905_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1905.txt",
+      "audio": "audio_1905_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  }
+}

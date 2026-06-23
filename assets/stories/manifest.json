@@ -51018,6 +51018,354 @@
         "Gods power"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_gethsemane_short",
+      "title": "The Garden at Night",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "comforted",
+        "brave",
+        "loved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1901/audio_1901_short.mp3",
+      "textFilePath": "kids/1901/story_1901_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "short",
+      "reflectionQuestion": "Jesus was afraid, but he told God honestly, and God sent an angel to comfort him. I wonder what you would like to tell God about, when something feels scary?",
+      "bibleSourceRef": "Luke 22:39-46",
+      "bibleStoryKey": "luke_22_39",
+      "themeTags": [
+        "courage and fear together",
+        "praying honestly",
+        "God sends comfort",
+        "you are not alone in the dark"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_gethsemane_full",
+      "title": "The Garden at Night",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "comforted",
+        "brave",
+        "loved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1901/audio_1901_full.mp3",
+      "textFilePath": "kids/1901/story_1901_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "full",
+      "reflectionQuestion": "Jesus was afraid, but he told God honestly, and God sent an angel to comfort him. I wonder what you would like to tell God about, when something feels scary?",
+      "bibleSourceRef": "Luke 22:39-46",
+      "bibleStoryKey": "luke_22_39",
+      "themeTags": [
+        "courage and fear together",
+        "praying honestly",
+        "God sends comfort",
+        "you are not alone in the dark"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jacob_esau_short",
+      "title": "The Brother Who Ran to Hug Him",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "reassured",
+        "loved",
+        "hope",
+        "comforted"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1902/audio_1902_short.mp3",
+      "textFilePath": "kids/1902/story_1902_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "short",
+      "reflectionQuestion": "Jacob was so afraid, but Esau ran to hug him and forgave him. I wonder who you might want to hug, or say sorry to, or forgive?",
+      "bibleSourceRef": "Genesis 33:1-11",
+      "bibleStoryKey": "genesis_33",
+      "themeTags": [
+        "forgiveness and grace",
+        "broken things can heal",
+        "saying sorry",
+        "a brother's open arms"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jacob_esau_full",
+      "title": "The Brother Who Ran to Hug Him",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "reassured",
+        "loved",
+        "hope",
+        "comforted"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1902/audio_1902_full.mp3",
+      "textFilePath": "kids/1902/story_1902_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "full",
+      "reflectionQuestion": "Jacob was so afraid, but Esau ran to hug him and forgave him. I wonder who you might want to hug, or say sorry to, or forgive?",
+      "bibleSourceRef": "Genesis 33:1-11",
+      "bibleStoryKey": "genesis_33",
+      "themeTags": [
+        "forgiveness and grace",
+        "broken things can heal",
+        "saying sorry",
+        "a brother's open arms"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jesus_breakfast_short",
+      "title": "Breakfast on the Shore",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "calm",
+        "comforted",
+        "loved",
+        "joyful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1903/audio_1903_short.mp3",
+      "textFilePath": "kids/1903/story_1903_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "short",
+      "reflectionQuestion": "Jesus made a warm breakfast for his tired friends, just because he loved them. I wonder what cozy moment makes you feel safe and loved?",
+      "bibleSourceRef": "John 21:1-14",
+      "bibleStoryKey": "john_21",
+      "themeTags": [
+        "Jesus' gentle care",
+        "cozy belonging",
+        "alive again",
+        "breakfast with friends"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jesus_breakfast_full",
+      "title": "Breakfast on the Shore",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "calm",
+        "comforted",
+        "loved",
+        "joyful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1903/audio_1903_full.mp3",
+      "textFilePath": "kids/1903/story_1903_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "full",
+      "reflectionQuestion": "Jesus made a warm breakfast for his tired friends, just because he loved them. I wonder what cozy moment makes you feel safe and loved?",
+      "bibleSourceRef": "John 21:1-14",
+      "bibleStoryKey": "john_21",
+      "themeTags": [
+        "Jesus' gentle care",
+        "cozy belonging",
+        "alive again",
+        "breakfast with friends"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_widow_zarephath_short",
+      "title": "The Jar That Never Ran Empty",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "generous",
+        "reassured",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1904/audio_1904_short.mp3",
+      "textFilePath": "kids/1904/story_1904_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "storyLength": "short",
+      "reflectionQuestion": "The widow shared her very last meal, and God made sure her jar never ran empty. I wonder what you could share, even when it feels like you have only a little?",
+      "bibleSourceRef": "1 Kings 17:7-16",
+      "bibleStoryKey": "1_kings_17_7",
+      "themeTags": [
+        "sharing the last little bit",
+        "God provides",
+        "trust in hard times",
+        "an empty jar filled"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_widow_zarephath_full",
+      "title": "The Jar That Never Ran Empty",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "generous",
+        "reassured",
+        "hope"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1904/audio_1904_full.mp3",
+      "textFilePath": "kids/1904/story_1904_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MARTHA_CARING",
+      "storyLength": "full",
+      "reflectionQuestion": "The widow shared her very last meal, and God made sure her jar never ran empty. I wonder what you could share, even when it feels like you have only a little?",
+      "bibleSourceRef": "1 Kings 17:7-16",
+      "bibleStoryKey": "1_kings_17_7",
+      "themeTags": [
+        "sharing the last little bit",
+        "God provides",
+        "trust in hard times",
+        "an empty jar filled"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_persistent_widow_short",
+      "title": "The Woman Who Kept Asking",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "hope",
+        "reassured",
+        "encouraged",
+        "loved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1905/audio_1905_short.mp3",
+      "textFilePath": "kids/1905/story_1905_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "storyLength": "short",
+      "reflectionQuestion": "Jesus said to keep talking to God and never give up, because God always loves to listen. I wonder what you would like to keep on talking to God about?",
+      "bibleSourceRef": "Luke 18:1-8",
+      "bibleStoryKey": "luke_18",
+      "themeTags": [
+        "keep talking to God",
+        "do not give up",
+        "God loves to listen",
+        "do not lose heart"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_persistent_widow_full",
+      "title": "The Woman Who Kept Asking",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "hope",
+        "reassured",
+        "encouraged",
+        "loved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1905/audio_1905_full.mp3",
+      "textFilePath": "kids/1905/story_1905_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_PRISCILLA_TEACHER",
+      "storyLength": "full",
+      "reflectionQuestion": "Jesus said to keep talking to God and never give up, because God always loves to listen. I wonder what you would like to keep on talking to God about?",
+      "bibleSourceRef": "Luke 18:1-8",
+      "bibleStoryKey": "luke_18",
+      "themeTags": [
+        "keep talking to God",
+        "do not give up",
+        "God loves to listen",
+        "do not lose heart"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_gethsemane_long",
+      "title": "The Garden at Night",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "comforted",
+        "brave",
+        "loved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1901/audio_1901_long.mp3",
+      "textFilePath": "kids/1901/story_1901_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "long",
+      "reflectionQuestion": "Jesus was afraid, but he told God honestly, and God sent an angel to comfort him. I wonder what you would like to tell God about, when something feels scary?",
+      "bibleSourceRef": "Luke 22:39-46",
+      "bibleStoryKey": "luke_22_39",
+      "themeTags": [
+        "courage and fear together",
+        "praying honestly",
+        "God sends comfort",
+        "you are not alone in the dark"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jacob_esau_long",
+      "title": "The Brother Who Ran to Hug Him",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "reassured",
+        "loved",
+        "hope",
+        "comforted"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1902/audio_1902_long.mp3",
+      "textFilePath": "kids/1902/story_1902_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "storyLength": "long",
+      "reflectionQuestion": "Jacob was so afraid, but Esau ran to hug him and forgave him. I wonder who you might want to hug, or say sorry to, or forgive?",
+      "bibleSourceRef": "Genesis 33:1-11",
+      "bibleStoryKey": "genesis_33",
+      "themeTags": [
+        "forgiveness and grace",
+        "broken things can heal",
+        "saying sorry",
+        "a brother's open arms"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }
