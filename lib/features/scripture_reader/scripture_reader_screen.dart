@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show HapticFeedback;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bible_pal/providers/parable_player_notifier.dart';
 import 'package:bible_pal/providers/service_providers.dart';
@@ -20,25 +21,61 @@ class ScriptureReaderScreen extends ConsumerStatefulWidget {
       _ScriptureReaderScreenState();
 }
 
-class _ScriptureReaderScreenState extends ConsumerState<ScriptureReaderScreen> {
+class _ScriptureReaderScreenState extends ConsumerState<ScriptureReaderScreen>
+    with SingleTickerProviderStateMixin {
   String? _scriptureText;
   bool _loading = true;
 
   // Kid lane (SPEC 12.1): full WEB passage is parent-gated. Default is the
   // kid-simple view (reference + key verse). Unlocking reveals the full passage;
   // returning to the simple view is instant (no auth).
+  //
+  // The unlock affordance mirrors the Kids-mode toggle exactly: a 3-second HOLD
+  // (always), then authenticateParent layered on completion — which is instant
+  // when no parent lock is set (so the hold IS the gate), or Face ID / PIN when
+  // a lock is configured.
   bool _parentUnlocked = false;
-
-  Future<void> _unlockParent() async {
-    final ok =
-        await authenticateParent(context, ref, reason: 'Read full Scripture');
-    if (ok && mounted) setState(() => _parentUnlocked = true);
-  }
+  bool _authInFlight = false;
+  late final AnimationController _holdController;
 
   @override
   void initState() {
     super.initState();
+    _holdController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3),
+    )..addStatusListener((status) {
+        if (status == AnimationStatus.completed) _onHoldComplete();
+      });
     _loadScripture();
+  }
+
+  @override
+  void dispose() {
+    _holdController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _onHoldComplete() async {
+    if (_authInFlight) return;
+    _authInFlight = true;
+    HapticFeedback.mediumImpact();
+    final ok =
+        await authenticateParent(context, ref, reason: 'Read full Scripture');
+    _authInFlight = false;
+    if (!mounted) return;
+    if (ok) {
+      setState(() => _parentUnlocked = true);
+    } else {
+      _holdController.reset(); // auth cancelled → ready to hold again
+    }
+  }
+
+  void _cancelHold() {
+    if (_holdController.status != AnimationStatus.completed) {
+      _holdController.stop();
+      _holdController.reset();
+    }
   }
 
   Future<void> _loadScripture() async {
@@ -171,12 +208,65 @@ class _ScriptureReaderScreenState extends ConsumerState<ScriptureReaderScreen> {
             ),
           ),
           const SizedBox(height: 40),
-          OutlinedButton.icon(
-            icon: const Icon(Icons.lock_outline, size: 18),
-            label: const Text('Parent: Read Full Scripture'),
-            onPressed: _unlockParent,
-          ),
+          _buildHoldToUnlock(theme),
         ],
+      ),
+    );
+  }
+
+  /// Hold-to-unlock the full passage (kid lane). Like the Kids-mode toggle:
+  /// a 3-second hold drives the fill; on completion authenticateParent runs
+  /// (instant when no lock — the hold is the gate — or Face ID / PIN if set).
+  Widget _buildHoldToUnlock(ThemeData theme) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTapDown: (_) => _holdController.forward(from: 0),
+      onTapUp: (_) => _cancelHold(),
+      onTapCancel: _cancelHold,
+      child: AnimatedBuilder(
+        animation: _holdController,
+        builder: (context, _) {
+          final v = _holdController.value.clamp(0.0, 1.0);
+          final holding = _holdController.isAnimating;
+          return Container(
+            width: double.infinity,
+            height: 54,
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(color: theme.colorScheme.primary),
+            ),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: FractionallySizedBox(
+                    widthFactor: v,
+                    heightFactor: 1.0,
+                    child: ColoredBox(color: theme.colorScheme.primaryContainer),
+                  ),
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.lock_outline, size: 18),
+                    const SizedBox(width: 8),
+                    Flexible(
+                      child: Text(
+                        holding
+                            ? 'Keep holding…'
+                            : 'Parent: Hold to Read Full Scripture',
+                        style: theme.textTheme.labelLarge,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
