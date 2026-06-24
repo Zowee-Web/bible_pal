@@ -53001,6 +53001,246 @@
         "a brother's open arms"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_joseph_egypt_short",
+      "title": "Joseph Far From Home",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "alone",
+        "comforted",
+        "trusting"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1906/audio_1906_short.mp3",
+      "textFilePath": "kids/1906/story_1906_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "short",
+      "reflectionQuestion": "When everything felt wrong and Joseph was far from home, he was never really alone — God stayed right beside him in the dark. When have you felt a little bit alone, and who helps you remember God is close?",
+      "bibleSourceRef": "Genesis 39-40",
+      "bibleStoryKey": "joseph_egypt",
+      "scriptureTextFilePath": "kids/1906/scripture_1906_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Genesis 39:21",
+        "text": "But Yahweh was with Joseph, and showed kindness to him, and gave him favor in the sight of the keeper of the prison."
+      },
+      "themeTags": [
+        "God is with me in hard places",
+        "faithfulness in waiting",
+        "you are not alone",
+        "God works quietly for good"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_joseph_egypt_full",
+      "title": "Joseph Far From Home",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "alone",
+        "comforted",
+        "trusting"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1906/audio_1906_full.mp3",
+      "textFilePath": "kids/1906/story_1906_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "full",
+      "reflectionQuestion": "When everything felt wrong and Joseph was far from home, he was never really alone — God stayed right beside him in the dark. When have you felt a little bit alone, and who helps you remember God is close?",
+      "bibleSourceRef": "Genesis 39-40",
+      "bibleStoryKey": "joseph_egypt",
+      "scriptureTextFilePath": "kids/1906/scripture_1906_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Genesis 39:21",
+        "text": "But Yahweh was with Joseph, and showed kindness to him, and gave him favor in the sight of the keeper of the prison."
+      },
+      "themeTags": [
+        "God is with me in hard places",
+        "faithfulness in waiting",
+        "you are not alone",
+        "God works quietly for good"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_joseph_egypt_long",
+      "title": "Joseph Far From Home",
+      "mood": "anxious",
+      "emotionalTags": [
+        "anxious",
+        "alone",
+        "comforted",
+        "trusting"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1906/audio_1906_long.mp3",
+      "textFilePath": "kids/1906/story_1906_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "long",
+      "reflectionQuestion": "When everything felt wrong and Joseph was far from home, he was never really alone — God stayed right beside him in the dark. When have you felt a little bit alone, and who helps you remember God is close?",
+      "bibleSourceRef": "Genesis 39-40",
+      "bibleStoryKey": "joseph_egypt",
+      "scriptureTextFilePath": "kids/1906/scripture_1906_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Genesis 39:21",
+        "text": "But Yahweh was with Joseph, and showed kindness to him, and gave him favor in the sight of the keeper of the prison."
+      },
+      "themeTags": [
+        "God is with me in hard places",
+        "faithfulness in waiting",
+        "you are not alone",
+        "God works quietly for good"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_passover_short",
+      "title": "The Night God Set His People Free",
+      "mood": "grateful",
+      "emotionalTags": [
+        "longing",
+        "hopeful",
+        "grateful",
+        "relieved",
+        "free"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1907/audio_1907_short.mp3",
+      "textFilePath": "kids/1907/story_1907_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "storyLength": "short",
+      "reflectionQuestion": "God's people waited a long, long time, but God never forgot them — and at just the right moment, he set them free. What is something good that you are waiting and hoping for?",
+      "bibleSourceRef": "Exodus 12",
+      "bibleStoryKey": "first_passover",
+      "scriptureTextFilePath": "kids/1907/scripture_1907_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Exodus 12:51",
+        "text": "That same day, Yahweh brought the children of Israel out of the land of Egypt by their armies."
+      },
+      "themeTags": [
+        "God hears his people",
+        "rescue and freedom",
+        "God keeps his people safe",
+        "remembering God is faithful"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_passover_full",
+      "title": "The Night God Set His People Free",
+      "mood": "grateful",
+      "emotionalTags": [
+        "longing",
+        "hopeful",
+        "grateful",
+        "relieved",
+        "free"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1907/audio_1907_full.mp3",
+      "textFilePath": "kids/1907/story_1907_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "storyLength": "full",
+      "reflectionQuestion": "God's people waited a long, long time, but God never forgot them — and at just the right moment, he set them free. What is something good that you are waiting and hoping for?",
+      "bibleSourceRef": "Exodus 12",
+      "bibleStoryKey": "first_passover",
+      "scriptureTextFilePath": "kids/1907/scripture_1907_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Exodus 12:51",
+        "text": "That same day, Yahweh brought the children of Israel out of the land of Egypt by their armies."
+      },
+      "themeTags": [
+        "God hears his people",
+        "rescue and freedom",
+        "God keeps his people safe",
+        "remembering God is faithful"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_david_king_short",
+      "title": "The Shepherd Boy Becomes King",
+      "mood": "joyful",
+      "emotionalTags": [
+        "hopeful",
+        "patient",
+        "joyful",
+        "trusting"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1908/audio_1908_short.mp3",
+      "textFilePath": "kids/1908/story_1908_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "storyLength": "short",
+      "reflectionQuestion": "God promised David something wonderful, then stayed close through all the long waiting until the day it came true. When you have to wait a long time for something, what helps you keep on trusting?",
+      "bibleSourceRef": "2 Samuel 5",
+      "bibleStoryKey": "david_king",
+      "scriptureTextFilePath": "kids/1908/scripture_1908_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "2 Samuel 5:10",
+        "text": "David grew greater and greater, for Yahweh, the God of Armies, was with him."
+      },
+      "themeTags": [
+        "God keeps his promises",
+        "faithfulness over long waiting",
+        "God is with me",
+        "from small beginnings"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_david_king_full",
+      "title": "The Shepherd Boy Becomes King",
+      "mood": "joyful",
+      "emotionalTags": [
+        "hopeful",
+        "patient",
+        "joyful",
+        "trusting"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1908/audio_1908_full.mp3",
+      "textFilePath": "kids/1908/story_1908_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "storyLength": "full",
+      "reflectionQuestion": "God promised David something wonderful, then stayed close through all the long waiting until the day it came true. When you have to wait a long time for something, what helps you keep on trusting?",
+      "bibleSourceRef": "2 Samuel 5",
+      "bibleStoryKey": "david_king",
+      "scriptureTextFilePath": "kids/1908/scripture_1908_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "2 Samuel 5:10",
+        "text": "David grew greater and greater, for Yahweh, the God of Armies, was with him."
+      },
+      "themeTags": [
+        "God keeps his promises",
+        "faithfulness over long waiting",
+        "God is with me",
+        "from small beginnings"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }
