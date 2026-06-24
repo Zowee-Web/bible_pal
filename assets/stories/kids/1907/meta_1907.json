@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1907,
+  "anchorId": "passover",
+  "kidLane": "dedicated-4-7",
+  "title": "The Night God Set His People Free",
+  "scriptureAnchorId": "exodus_12",
+  "bibleSourceRef": "Exodus 12",
+  "bibleStoryKey": "first_passover",
+  "translation": "WEB",
+  "mood": "grateful",
+  "emotionalTags": [
+    "longing",
+    "hopeful",
+    "grateful",
+    "relieved",
+    "free"
+  ],
+  "themeTags": [
+    "God hears his people",
+    "rescue and freedom",
+    "God keeps his people safe",
+    "remembering God is faithful"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "God's people waited a long, long time, but God never forgot them — and at just the right moment, he set them free. What is something good that you are waiting and hoping for?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (The First Passover, Exodus 12). Mood=grateful; God rescues + frees his people. WATCH: hard content handled by SUBTRACTION -- the firstborn night is told only as 'God passed over and kept his people safe'; no death, no plague detail (Joseph-method). Focus on rescue / freedom / remembering. Indelible image: the family eating standing up, sandals on, ready to run; the long line walking out free. Voice TBC at audio (proposed VOICE_REVEREND_MICHAEL_C_VINCENT).",
+  "files": {
+    "short": {
+      "storyText": "story_1907_short.txt",
+      "audio": "audio_1907_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1907_full.txt",
+      "audio": "audio_1907_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1907.txt",
+      "audio": "audio_1907_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1907/scripture_1907_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Exodus 12:51",
+    "text": "That same day, Yahweh brought the children of Israel out of the land of Egypt by their armies."
+  }
+}

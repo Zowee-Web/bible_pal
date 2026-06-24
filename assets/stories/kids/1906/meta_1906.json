@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1906,
+  "anchorId": "joseph_egypt",
+  "kidLane": "dedicated-4-7",
+  "title": "Joseph Far From Home",
+  "scriptureAnchorId": "genesis_39-40",
+  "bibleSourceRef": "Genesis 39-40",
+  "bibleStoryKey": "joseph_egypt",
+  "translation": "WEB",
+  "mood": "anxious",
+  "emotionalTags": [
+    "anxious",
+    "alone",
+    "comforted",
+    "trusting"
+  ],
+  "themeTags": [
+    "God is with me in hard places",
+    "faithfulness in waiting",
+    "you are not alone",
+    "God works quietly for good"
+  ],
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "When everything felt wrong and Joseph was far from home, he was never really alone — God stayed right beside him in the dark. When have you felt a little bit alone, and who helps you remember God is close?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Joseph in Egypt, Genesis 39-40) -- fills the missing middle of the Joseph arc between the coat (Gen 37) and Pharaoh's dreams (Gen 41, existing kid_joseph_dreams). Mood=anxious; routes a child far-from-home / facing unfairness. WATCH: the not-alone thread -- 'God was with Joseph' through slavery + prison; God-with-not-cause (God didn't cause the betrayal/prison, stayed WITH him, working quietly for good). Injustice named in one calm line ('blamed for something he did not do'), never dwelt on. Ends BEFORE the rise (that's kid_joseph_dreams). Indelible image: God beside Joseph in the dark prison. Voice TBC at audio (proposed VOICE_DAVID_SHEPHERD).",
+  "files": {
+    "short": {
+      "storyText": "story_1906_short.txt",
+      "audio": "audio_1906_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1906_full.txt",
+      "audio": "audio_1906_full.mp3"
+    },
+    "long": {
+      "storyText": "story_1906_long.txt",
+      "audio": "audio_1906_long.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1906.txt",
+      "audio": "audio_1906_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1906/scripture_1906_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Genesis 39:21",
+    "text": "But Yahweh was with Joseph, and showed kindness to him, and gave him favor in the sight of the keeper of the prison."
+  }
+}

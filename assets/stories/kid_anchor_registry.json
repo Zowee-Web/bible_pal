@@ -269,12 +269,18 @@
         {
           "anchorId": "joseph_egypt",
           "displayName": "Joseph in Egypt",
-          "scriptureRef": "Genesis 41:37-57",
+          "scriptureRef": "Genesis 39-40",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full",
+            "long"
           ],
-          "launch": false
+          "launch": false,
+          "productionId": 1906,
+          "manifestAnchorIds": [
+            "genesis_39-40"
+          ]
         },
         {
           "anchorId": "joseph_forgives",
@@ -384,9 +390,14 @@
           "scriptureRef": "Exodus 12",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": false
+          "launch": false,
+          "productionId": 1907,
+          "manifestAnchorIds": [
+            "exodus_12"
+          ]
         },
         {
           "anchorId": "balaam_donkey",
@@ -669,9 +680,14 @@
           "scriptureRef": "2 Samuel 5",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full"
           ],
-          "launch": false
+          "launch": false,
+          "productionId": 1908,
+          "manifestAnchorIds": [
+            "2_samuel_5"
+          ]
         },
         {
           "anchorId": "david_kindness_mephibosheth",
