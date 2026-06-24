@@ -54,5 +54,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 33082
+  "bibleOrderIndex": 33082,
+  "scriptureKeyVerse": {
+    "ref": "Genesis 32:28",
+    "text": "He said, “Your name will no longer be called Jacob, but Israel; for you have fought with God and with men, and have prevailed.”"
+  }
 }

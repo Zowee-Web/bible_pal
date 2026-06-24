@@ -61,5 +61,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 7069
+  "bibleOrderIndex": 7069,
+  "scriptureKeyVerse": {
+    "ref": "Genesis 6:22",
+    "text": "Thus Noah did. He did all that God commanded him."
+  }
 }

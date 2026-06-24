@@ -16,7 +16,7 @@
   "voiceKey": "VOICE_LILY_WOLFF",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
-  "reflectionQuestion": "Job lost everything in one day \u2014 his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?",
+  "reflectionQuestion": "Job lost everything in one day — his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?",
   "title": "Job's Terrible Day",
   "files": {
     "short": {
@@ -45,7 +45,7 @@
   "storyVoiceKey": "VOICE_LILY_WOLFF",
   "scriptureAnchor": "Job 1:1-22",
   "bibleStoryKey": "job_tested",
-  "reflectionText": "Job lost everything in one day \u2014 his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?",
+  "reflectionText": "Job lost everything in one day — his animals, his workers, and his children. But he still said he trusted God. What do you think makes someone able to trust even when everything goes wrong?",
   "timelineEra": "wisdom",
   "primaryCharacterId": "job",
   "primaryCharacterDisplayName": "Job",
@@ -54,5 +54,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 2461
+  "bibleOrderIndex": 2461,
+  "scriptureKeyVerse": {
+    "ref": "Job 1:21",
+    "text": "He said, “Naked I came out of my mother’s womb, and naked will I return there. Yahweh gave, and Yahweh has taken away. Blessed be Yahweh’s name.”"
+  }
 }

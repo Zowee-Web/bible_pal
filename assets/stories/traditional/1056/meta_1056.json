@@ -54,5 +54,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 15092
+  "bibleOrderIndex": 15092,
+  "scriptureKeyVerse": {
+    "ref": "Exodus 14:14",
+    "text": "Yahweh will fight for you, and you shall be still.”"
+  }
 }

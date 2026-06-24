@@ -45,7 +45,7 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_LILY_WOLFF",
-  "reflectionText": "The people were tired and hungry, and they did not know where their next meal would come from. But God sent food right to the ground where they camped. Every person had just exactly enough \u2014 not too much and not too little.\n\nWhen you feel tired or worried, what is something that helps you feel taken care of?",
+  "reflectionText": "The people were tired and hungry, and they did not know where their next meal would come from. But God sent food right to the ground where they camped. Every person had just exactly enough — not too much and not too little.\n\nWhen you feel tired or worried, what is something that helps you feel taken care of?",
   "timelineEra": "exodus",
   "primaryCharacterId": "moses",
   "primaryCharacterDisplayName": "Moses",
@@ -54,5 +54,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 17083
+  "bibleOrderIndex": 17083,
+  "scriptureKeyVerse": {
+    "ref": "Exodus 16:12",
+    "text": "“I have heard the murmurings of the children of Israel. Speak to them, saying, ‘At evening you shall eat meat, and in the morning you shall be filled with bread. Then you will know that I am Yahweh your God.’”"
+  }
 }

@@ -48,5 +48,9 @@
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
+  },
+  "scriptureKeyVerse": {
+    "ref": "Acts 9:15",
+    "text": "But the Lord said to him, “Go your way, for he is my chosen vessel to bear my name before the nations and kings, and the children of Israel."
   }
 }

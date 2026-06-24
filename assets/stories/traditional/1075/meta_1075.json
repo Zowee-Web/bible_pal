@@ -61,5 +61,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 7759
+  "bibleOrderIndex": 7759,
+  "scriptureKeyVerse": {
+    "ref": "Isaiah 6:8",
+    "text": "I heard the Lord’s voice, saying, “Whom shall I send, and who will go for us?” Then I said, “Here I am. Send me!”"
+  }
 }

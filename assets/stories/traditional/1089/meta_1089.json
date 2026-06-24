@@ -50,5 +50,9 @@
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
+  },
+  "scriptureKeyVerse": {
+    "ref": "Matthew 4:10",
+    "text": "Then Jesus said to him, “Get behind me, Satan! For it is written, ‘You shall worship the Lord your God, and you shall serve him only.’”"
   }
 }

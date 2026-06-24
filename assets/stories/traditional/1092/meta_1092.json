@@ -48,5 +48,9 @@
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
+  },
+  "scriptureKeyVerse": {
+    "ref": "John 20:16",
+    "text": "Jesus said to her, “Mary.” She turned and said to him, “Rabboni!” which is to say, “Teacher!”"
   }
 }

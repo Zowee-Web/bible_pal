@@ -54,5 +54,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 4083
+  "bibleOrderIndex": 4083,
+  "scriptureKeyVerse": {
+    "ref": "Exodus 3:12",
+    "text": "He said, “Certainly I will be with you. This will be the token to you, that I have sent you: when you have brought the people out of Egypt, you shall serve God on this mountain.”"
+  }
 }

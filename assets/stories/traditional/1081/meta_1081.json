@@ -49,5 +49,9 @@
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
+  },
+  "scriptureKeyVerse": {
+    "ref": "Matthew 14:20",
+    "text": "They all ate and were filled. They took up twelve baskets full of that which remained left over from the broken pieces."
   }
 }

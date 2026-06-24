@@ -61,5 +61,9 @@
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
+  },
+  "scriptureKeyVerse": {
+    "ref": "Psalm 23:4",
+    "text": "Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff, they comfort me."
   }
 }

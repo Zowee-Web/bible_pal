@@ -664,7 +664,11 @@
         "hope",
         "faith"
       ],
-      "characterPathOrder": 1
+      "characterPathOrder": 1,
+      "scriptureKeyVerse": {
+        "ref": "Luke 2:10",
+        "text": "The angel said to them, “Don’t be afraid, for behold, I bring you good news of great joy which will be to all the people."
+      }
     },
     {
       "storyId": "story_1004_joyful_full_kid_traditional",
@@ -690,7 +694,11 @@
       "primaryCharacterId": "jesus",
       "primaryCharacterDisplayName": "Jesus",
       "timelineEra": "jesus_ministry",
-      "bibleOrderIndex": 620
+      "bibleOrderIndex": 620,
+      "scriptureKeyVerse": {
+        "ref": "Luke 2:10",
+        "text": "The angel said to them, “Don’t be afraid, for behold, I bring you good news of great joy which will be to all the people."
+      }
     },
     {
       "storyId": "story_1004_joyful_long_kid_traditional",
@@ -716,7 +724,11 @@
       "primaryCharacterId": "jesus",
       "primaryCharacterDisplayName": "Jesus",
       "timelineEra": "jesus_ministry",
-      "bibleOrderIndex": 620
+      "bibleOrderIndex": 620,
+      "scriptureKeyVerse": {
+        "ref": "Luke 2:10",
+        "text": "The angel said to them, “Don’t be afraid, for behold, I bring you good news of great joy which will be to all the people."
+      }
     },
     {
       "storyId": "story_1005_joyful_short_traditional",
@@ -1376,7 +1388,11 @@
       "primaryCharacterId": "david",
       "primaryCharacterDisplayName": "David",
       "timelineEra": "wisdom",
-      "bibleOrderIndex": 24584
+      "bibleOrderIndex": 24584,
+      "scriptureKeyVerse": {
+        "ref": "Psalm 23:4",
+        "text": "Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff, they comfort me."
+      }
     },
     {
       "storyId": "story_1009_calm_peaceful_full_kid_traditional",
@@ -1402,7 +1418,11 @@
       "primaryCharacterId": "david",
       "primaryCharacterDisplayName": "David",
       "timelineEra": "wisdom",
-      "bibleOrderIndex": 24584
+      "bibleOrderIndex": 24584,
+      "scriptureKeyVerse": {
+        "ref": "Psalm 23:4",
+        "text": "Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff, they comfort me."
+      }
     },
     {
       "storyId": "story_1009_calm_peaceful_long_kid_traditional",
@@ -1428,7 +1448,11 @@
       "primaryCharacterId": "david",
       "primaryCharacterDisplayName": "David",
       "timelineEra": "wisdom",
-      "bibleOrderIndex": 24584
+      "bibleOrderIndex": 24584,
+      "scriptureKeyVerse": {
+        "ref": "Psalm 23:4",
+        "text": "Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff, they comfort me."
+      }
     },
     {
       "storyId": "story_1010_weary_short_kid_traditional",
@@ -1454,7 +1478,11 @@
       "primaryCharacterId": "psalmist",
       "primaryCharacterDisplayName": "The Psalmist",
       "timelineEra": "wisdom",
-      "bibleOrderIndex": 122584
+      "bibleOrderIndex": 122584,
+      "scriptureKeyVerse": {
+        "ref": "Psalm 121:3",
+        "text": "He will not allow your foot to be moved. He who keeps you will not slumber."
+      }
     },
     {
       "storyId": "story_1010_weary_full_kid_traditional",
@@ -1480,7 +1508,11 @@
       "primaryCharacterId": "psalmist",
       "primaryCharacterDisplayName": "The Psalmist",
       "timelineEra": "wisdom",
-      "bibleOrderIndex": 122584
+      "bibleOrderIndex": 122584,
+      "scriptureKeyVerse": {
+        "ref": "Psalm 121:3",
+        "text": "He will not allow your foot to be moved. He who keeps you will not slumber."
+      }
     },
     {
       "storyId": "story_1010_weary_long_kid_traditional",
@@ -1506,7 +1538,11 @@
       "primaryCharacterId": "psalmist",
       "primaryCharacterDisplayName": "The Psalmist",
       "timelineEra": "wisdom",
-      "bibleOrderIndex": 122584
+      "bibleOrderIndex": 122584,
+      "scriptureKeyVerse": {
+        "ref": "Psalm 121:3",
+        "text": "He will not allow your foot to be moved. He who keeps you will not slumber."
+      }
     },
     {
       "storyId": "story_1011_anxious_short_kid_traditional",
@@ -1532,7 +1568,11 @@
       "primaryCharacterId": "jesus",
       "primaryCharacterDisplayName": "Jesus",
       "timelineEra": "jesus_ministry",
-      "bibleOrderIndex": 645
+      "bibleOrderIndex": 645,
+      "scriptureKeyVerse": {
+        "ref": "Luke 12:24",
+        "text": "Consider the ravens: they don’t sow, they don’t reap, they have no warehouse or barn, and God feeds them. How much more valuable are you than birds!"
+      }
     },
     {
       "storyId": "story_1011_anxious_full_kid_traditional",
@@ -1558,7 +1598,11 @@
       "primaryCharacterId": "jesus",
       "primaryCharacterDisplayName": "Jesus",
       "timelineEra": "jesus_ministry",
-      "bibleOrderIndex": 645
+      "bibleOrderIndex": 645,
+      "scriptureKeyVerse": {
+        "ref": "Luke 12:24",
+        "text": "Consider the ravens: they don’t sow, they don’t reap, they have no warehouse or barn, and God feeds them. How much more valuable are you than birds!"
+      }
     },
     {
       "storyId": "story_1011_anxious_long_kid_traditional",
@@ -1584,7 +1628,11 @@
       "primaryCharacterId": "jesus",
       "primaryCharacterDisplayName": "Jesus",
       "timelineEra": "jesus_ministry",
-      "bibleOrderIndex": 645
+      "bibleOrderIndex": 645,
+      "scriptureKeyVerse": {
+        "ref": "Luke 12:24",
+        "text": "Consider the ravens: they don’t sow, they don’t reap, they have no warehouse or barn, and God feeds them. How much more valuable are you than birds!"
+      }
     },
     {
       "storyId": "story_1012_hurting_short_kid_traditional",
@@ -1610,7 +1658,11 @@
       "primaryCharacterId": "jesus",
       "primaryCharacterDisplayName": "Jesus",
       "timelineEra": "jesus_ministry",
-      "bibleOrderIndex": 690
+      "bibleOrderIndex": 690,
+      "scriptureKeyVerse": {
+        "ref": "John 21:12",
+        "text": "Jesus said to them, “Come and eat breakfast!” None of the disciples dared inquire of him, “Who are you?” knowing that it was the Lord."
+      }
     },
     {
       "storyId": "story_1012_hurting_full_kid_traditional",
@@ -1636,7 +1688,11 @@
       "primaryCharacterId": "jesus",
       "primaryCharacterDisplayName": "Jesus",
       "timelineEra": "jesus_ministry",
-      "bibleOrderIndex": 690
+      "bibleOrderIndex": 690,
+      "scriptureKeyVerse": {
+        "ref": "John 21:12",
+        "text": "Jesus said to them, “Come and eat breakfast!” None of the disciples dared inquire of him, “Who are you?” knowing that it was the Lord."
+      }
     },
     {
       "storyId": "story_1012_hurting_long_kid_traditional",
@@ -1662,7 +1718,11 @@
       "primaryCharacterId": "jesus",
       "primaryCharacterDisplayName": "Jesus",
       "timelineEra": "jesus_ministry",
-      "bibleOrderIndex": 690
+      "bibleOrderIndex": 690,
+      "scriptureKeyVerse": {
+        "ref": "John 21:12",
+        "text": "Jesus said to them, “Come and eat breakfast!” None of the disciples dared inquire of him, “Who are you?” knowing that it was the Lord."
+      }
     },
     {
       "storyId": "story_1013_brave_courage_short_kid_traditional",
@@ -1688,7 +1748,11 @@
       "primaryCharacterId": "joshua",
       "primaryCharacterDisplayName": "Joshua",
       "timelineEra": "conquest",
-      "bibleOrderIndex": 4208
+      "bibleOrderIndex": 4208,
+      "scriptureKeyVerse": {
+        "ref": "Joshua 3:7",
+        "text": "Yahweh said to Joshua, “Today I will begin to magnify you in the sight of all Israel, that they may know that as I was with Moses, so I will be with you."
+      }
     },
     {
       "storyId": "story_1013_brave_courage_full_kid_traditional",
@@ -1714,7 +1778,11 @@
       "primaryCharacterId": "joshua",
       "primaryCharacterDisplayName": "Joshua",
       "timelineEra": "conquest",
-      "bibleOrderIndex": 4208
+      "bibleOrderIndex": 4208,
+      "scriptureKeyVerse": {
+        "ref": "Joshua 3:7",
+        "text": "Yahweh said to Joshua, “Today I will begin to magnify you in the sight of all Israel, that they may know that as I was with Moses, so I will be with you."
+      }
     },
     {
       "storyId": "story_1013_brave_courage_long_kid_traditional",
@@ -1740,7 +1808,11 @@
       "primaryCharacterId": "joshua",
       "primaryCharacterDisplayName": "Joshua",
       "timelineEra": "conquest",
-      "bibleOrderIndex": 4208
+      "bibleOrderIndex": 4208,
+      "scriptureKeyVerse": {
+        "ref": "Joshua 3:7",
+        "text": "Yahweh said to Joshua, “Today I will begin to magnify you in the sight of all Israel, that they may know that as I was with Moses, so I will be with you."
+      }
     },
     {
       "storyId": "story_1014_grateful_short_kid_traditional",
@@ -1766,7 +1838,11 @@
       "primaryCharacterId": "jesus",
       "primaryCharacterDisplayName": "Jesus",
       "timelineEra": "jesus_ministry",
-      "bibleOrderIndex": 620
+      "bibleOrderIndex": 620,
+      "scriptureKeyVerse": {
+        "ref": "Luke 5:10",
+        "text": "and so also were James and John, sons of Zebedee, who were partners with Simon. Jesus said to Simon, “Don’t be afraid. From now on you will be catching people alive.”"
+      }
     },
     {
       "storyId": "story_1014_grateful_full_kid_traditional",
@@ -1792,7 +1868,11 @@
       "primaryCharacterId": "jesus",
       "primaryCharacterDisplayName": "Jesus",
       "timelineEra": "jesus_ministry",
-      "bibleOrderIndex": 620
+      "bibleOrderIndex": 620,
+      "scriptureKeyVerse": {
+        "ref": "Luke 5:10",
+        "text": "and so also were James and John, sons of Zebedee, who were partners with Simon. Jesus said to Simon, “Don’t be afraid. From now on you will be catching people alive.”"
+      }
     },
     {
       "storyId": "story_1014_grateful_long_kid_traditional",
@@ -1818,7 +1898,11 @@
       "primaryCharacterId": "jesus",
       "primaryCharacterDisplayName": "Jesus",
       "timelineEra": "jesus_ministry",
-      "bibleOrderIndex": 620
+      "bibleOrderIndex": 620,
+      "scriptureKeyVerse": {
+        "ref": "Luke 5:10",
+        "text": "and so also were James and John, sons of Zebedee, who were partners with Simon. Jesus said to Simon, “Don’t be afraid. From now on you will be catching people alive.”"
+      }
     },
     {
       "storyId": "story_1015_encouraging_short_kid_traditional",
@@ -1844,7 +1928,11 @@
       "primaryCharacterId": "peter",
       "primaryCharacterDisplayName": "Peter",
       "timelineEra": "early_church",
-      "bibleOrderIndex": 5067
+      "bibleOrderIndex": 5067,
+      "scriptureKeyVerse": {
+        "ref": "Acts 3:6",
+        "text": "But Peter said, “I have no silver or gold, but what I have, that I give you. In the name of Jesus Christ of Nazareth, get up and walk!”"
+      }
     },
     {
       "storyId": "story_1015_encouraging_full_kid_traditional",
@@ -1870,7 +1958,11 @@
       "primaryCharacterId": "peter",
       "primaryCharacterDisplayName": "Peter",
       "timelineEra": "early_church",
-      "bibleOrderIndex": 5067
+      "bibleOrderIndex": 5067,
+      "scriptureKeyVerse": {
+        "ref": "Acts 3:6",
+        "text": "But Peter said, “I have no silver or gold, but what I have, that I give you. In the name of Jesus Christ of Nazareth, get up and walk!”"
+      }
     },
     {
       "storyId": "story_1015_encouraging_long_kid_traditional",
@@ -1896,7 +1988,11 @@
       "primaryCharacterId": "peter",
       "primaryCharacterDisplayName": "Peter",
       "timelineEra": "early_church",
-      "bibleOrderIndex": 5067
+      "bibleOrderIndex": 5067,
+      "scriptureKeyVerse": {
+        "ref": "Acts 3:6",
+        "text": "But Peter said, “I have no silver or gold, but what I have, that I give you. In the name of Jesus Christ of Nazareth, get up and walk!”"
+      }
     },
     {
       "storyId": "story_1016_anxious_short_traditional",
@@ -2904,7 +3000,11 @@
       "primaryCharacterId": "abraham",
       "primaryCharacterDisplayName": "Abraham",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 13061
+      "bibleOrderIndex": 13061,
+      "scriptureKeyVerse": {
+        "ref": "Genesis 12:2",
+        "text": "I will make of you a great nation. I will bless you and make your name great. You will be a blessing."
+      }
     },
     {
       "storyId": "story_1024_anxious_full_kid_traditional",
@@ -2930,7 +3030,11 @@
       "primaryCharacterId": "abraham",
       "primaryCharacterDisplayName": "Abraham",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 13061
+      "bibleOrderIndex": 13061,
+      "scriptureKeyVerse": {
+        "ref": "Genesis 12:2",
+        "text": "I will make of you a great nation. I will bless you and make your name great. You will be a blessing."
+      }
     },
     {
       "storyId": "story_1025_brave_courage_short_kid_traditional",
@@ -2956,7 +3060,11 @@
       "primaryCharacterId": "noah",
       "primaryCharacterDisplayName": "Noah",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 7069
+      "bibleOrderIndex": 7069,
+      "scriptureKeyVerse": {
+        "ref": "Genesis 6:22",
+        "text": "Thus Noah did. He did all that God commanded him."
+      }
     },
     {
       "storyId": "story_1025_brave_courage_full_kid_traditional",
@@ -2982,7 +3090,11 @@
       "primaryCharacterId": "noah",
       "primaryCharacterDisplayName": "Noah",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 7069
+      "bibleOrderIndex": 7069,
+      "scriptureKeyVerse": {
+        "ref": "Genesis 6:22",
+        "text": "Thus Noah did. He did all that God commanded him."
+      }
     },
     {
       "storyId": "story_1025_brave_courage_long_kid_traditional",
@@ -3008,7 +3120,11 @@
       "primaryCharacterId": "noah",
       "primaryCharacterDisplayName": "Noah",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 7069
+      "bibleOrderIndex": 7069,
+      "scriptureKeyVerse": {
+        "ref": "Genesis 6:22",
+        "text": "Thus Noah did. He did all that God commanded him."
+      }
     },
     {
       "storyId": "story_1026_calm_peaceful_short_kid_traditional",
@@ -3034,7 +3150,11 @@
       "primaryCharacterId": "jacob",
       "primaryCharacterDisplayName": "Jacob",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 29070
+      "bibleOrderIndex": 29070,
+      "scriptureKeyVerse": {
+        "ref": "Genesis 28:15",
+        "text": "Behold, I am with you, and will keep you, wherever you go, and will bring you again into this land. For I will not leave you until I have done that which I have spoken of to you.”"
+      }
     },
     {
       "storyId": "story_1026_calm_peaceful_full_kid_traditional",
@@ -3060,7 +3180,11 @@
       "primaryCharacterId": "jacob",
       "primaryCharacterDisplayName": "Jacob",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 29070
+      "bibleOrderIndex": 29070,
+      "scriptureKeyVerse": {
+        "ref": "Genesis 28:15",
+        "text": "Behold, I am with you, and will keep you, wherever you go, and will bring you again into this land. For I will not leave you until I have done that which I have spoken of to you.”"
+      }
     },
     {
       "storyId": "story_1027_encouraging_short_kid_traditional",
@@ -3086,7 +3210,11 @@
       "primaryCharacterId": "moses",
       "primaryCharacterDisplayName": "Moses",
       "timelineEra": "exodus",
-      "bibleOrderIndex": 4083
+      "bibleOrderIndex": 4083,
+      "scriptureKeyVerse": {
+        "ref": "Exodus 3:12",
+        "text": "He said, “Certainly I will be with you. This will be the token to you, that I have sent you: when you have brought the people out of Egypt, you shall serve God on this mountain.”"
+      }
     },
     {
       "storyId": "story_1027_encouraging_full_kid_traditional",
@@ -3112,7 +3240,11 @@
       "primaryCharacterId": "moses",
       "primaryCharacterDisplayName": "Moses",
       "timelineEra": "exodus",
-      "bibleOrderIndex": 4083
+      "bibleOrderIndex": 4083,
+      "scriptureKeyVerse": {
+        "ref": "Exodus 3:12",
+        "text": "He said, “Certainly I will be with you. This will be the token to you, that I have sent you: when you have brought the people out of Egypt, you shall serve God on this mountain.”"
+      }
     },
     {
       "storyId": "story_1028_grateful_short_kid_traditional",
@@ -3138,7 +3270,11 @@
       "primaryCharacterId": "abraham",
       "primaryCharacterDisplayName": "Abraham",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 19061
+      "bibleOrderIndex": 19061,
+      "scriptureKeyVerse": {
+        "ref": "Genesis 18:14",
+        "text": "Is anything too hard for Yahweh? At the set time I will return to you, when the season comes around, and Sarah will have a son.”"
+      }
     },
     {
       "storyId": "story_1028_grateful_full_kid_traditional",
@@ -3164,7 +3300,11 @@
       "primaryCharacterId": "abraham",
       "primaryCharacterDisplayName": "Abraham",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 19061
+      "bibleOrderIndex": 19061,
+      "scriptureKeyVerse": {
+        "ref": "Genesis 18:14",
+        "text": "Is anything too hard for Yahweh? At the set time I will return to you, when the season comes around, and Sarah will have a son.”"
+      }
     },
     {
       "storyId": "story_1029_hurting_short_kid_traditional",
@@ -3190,7 +3330,11 @@
       "primaryCharacterId": "jacob",
       "primaryCharacterDisplayName": "Jacob",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 33082
+      "bibleOrderIndex": 33082,
+      "scriptureKeyVerse": {
+        "ref": "Genesis 32:28",
+        "text": "He said, “Your name will no longer be called Jacob, but Israel; for you have fought with God and with men, and have prevailed.”"
+      }
     },
     {
       "storyId": "story_1029_hurting_full_kid_traditional",
@@ -3216,7 +3360,11 @@
       "primaryCharacterId": "jacob",
       "primaryCharacterDisplayName": "Jacob",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 33082
+      "bibleOrderIndex": 33082,
+      "scriptureKeyVerse": {
+        "ref": "Genesis 32:28",
+        "text": "He said, “Your name will no longer be called Jacob, but Israel; for you have fought with God and with men, and have prevailed.”"
+      }
     },
     {
       "storyId": "story_1030_joyful_short_kid_traditional",
@@ -3242,7 +3390,11 @@
       "primaryCharacterId": "david",
       "primaryCharacterDisplayName": "David",
       "timelineEra": "kingdom",
-      "bibleOrderIndex": 17255
+      "bibleOrderIndex": 17255,
+      "scriptureKeyVerse": {
+        "ref": "1 Samuel 16:7",
+        "text": "But Yahweh said to Samuel, “Don’t look on his face, or on the height of his stature, because I have rejected him; for I don’t see as man sees. For man looks at the outward appearance, but Yahweh looks at the heart.”"
+      }
     },
     {
       "storyId": "story_1030_joyful_full_kid_traditional",
@@ -3268,7 +3420,11 @@
       "primaryCharacterId": "david",
       "primaryCharacterDisplayName": "David",
       "timelineEra": "kingdom",
-      "bibleOrderIndex": 17255
+      "bibleOrderIndex": 17255,
+      "scriptureKeyVerse": {
+        "ref": "1 Samuel 16:7",
+        "text": "But Yahweh said to Samuel, “Don’t look on his face, or on the height of his stature, because I have rejected him; for I don’t see as man sees. For man looks at the outward appearance, but Yahweh looks at the heart.”"
+      }
     },
     {
       "storyId": "story_1031_weary_short_kid_traditional",
@@ -3294,7 +3450,11 @@
       "primaryCharacterId": "moses",
       "primaryCharacterDisplayName": "Moses",
       "timelineEra": "exodus",
-      "bibleOrderIndex": 17083
+      "bibleOrderIndex": 17083,
+      "scriptureKeyVerse": {
+        "ref": "Exodus 16:12",
+        "text": "“I have heard the murmurings of the children of Israel. Speak to them, saying, ‘At evening you shall eat meat, and in the morning you shall be filled with bread. Then you will know that I am Yahweh your God.’”"
+      }
     },
     {
       "storyId": "story_1031_weary_full_kid_traditional",
@@ -3320,7 +3480,11 @@
       "primaryCharacterId": "moses",
       "primaryCharacterDisplayName": "Moses",
       "timelineEra": "exodus",
-      "bibleOrderIndex": 17083
+      "bibleOrderIndex": 17083,
+      "scriptureKeyVerse": {
+        "ref": "Exodus 16:12",
+        "text": "“I have heard the murmurings of the children of Israel. Speak to them, saying, ‘At evening you shall eat meat, and in the morning you shall be filled with bread. Then you will know that I am Yahweh your God.’”"
+      }
     },
     {
       "storyId": "story_1032_anxious_short_traditional",
@@ -4183,7 +4347,11 @@
       "primaryCharacterId": "abraham",
       "primaryCharacterDisplayName": "Abraham",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 23061
+      "bibleOrderIndex": 23061,
+      "scriptureKeyVerse": {
+        "ref": "Genesis 22:8",
+        "text": "Abraham said, “God will provide himself the lamb for a burnt offering, my son.” So they both went together."
+      }
     },
     {
       "storyId": "story_1040_anxious_full_kid_traditional",
@@ -4209,7 +4377,11 @@
       "primaryCharacterId": "abraham",
       "primaryCharacterDisplayName": "Abraham",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 23061
+      "bibleOrderIndex": 23061,
+      "scriptureKeyVerse": {
+        "ref": "Genesis 22:8",
+        "text": "Abraham said, “God will provide himself the lamb for a burnt offering, my son.” So they both went together."
+      }
     },
     {
       "storyId": "story_1041_brave_courage_short_kid_traditional",
@@ -4235,7 +4407,11 @@
       "primaryCharacterId": "moses",
       "primaryCharacterDisplayName": "Moses",
       "timelineEra": "exodus",
-      "bibleOrderIndex": 3083
+      "bibleOrderIndex": 3083,
+      "scriptureKeyVerse": {
+        "ref": "Exodus 2:6",
+        "text": "She opened it, and saw the child, and behold, the baby cried. She had compassion on him, and said, “This is one of the Hebrews’ children.”"
+      }
     },
     {
       "storyId": "story_1041_brave_courage_full_kid_traditional",
@@ -4261,7 +4437,11 @@
       "primaryCharacterId": "moses",
       "primaryCharacterDisplayName": "Moses",
       "timelineEra": "exodus",
-      "bibleOrderIndex": 3083
+      "bibleOrderIndex": 3083,
+      "scriptureKeyVerse": {
+        "ref": "Exodus 2:6",
+        "text": "She opened it, and saw the child, and behold, the baby cried. She had compassion on him, and said, “This is one of the Hebrews’ children.”"
+      }
     },
     {
       "storyId": "story_1042_calm_peaceful_short_kid_traditional",
@@ -4287,7 +4467,11 @@
       "primaryCharacterId": "solomon",
       "primaryCharacterDisplayName": "Solomon",
       "timelineEra": "kingdom",
-      "bibleOrderIndex": 4314
+      "bibleOrderIndex": 4314,
+      "scriptureKeyVerse": {
+        "ref": "1 Kings 3:9",
+        "text": "Give your servant therefore an understanding heart to judge your people, that I may discern between good and evil; for who is able to judge this great people of yours?”"
+      }
     },
     {
       "storyId": "story_1042_calm_peaceful_full_kid_traditional",
@@ -4313,7 +4497,11 @@
       "primaryCharacterId": "solomon",
       "primaryCharacterDisplayName": "Solomon",
       "timelineEra": "kingdom",
-      "bibleOrderIndex": 4314
+      "bibleOrderIndex": 4314,
+      "scriptureKeyVerse": {
+        "ref": "1 Kings 3:9",
+        "text": "Give your servant therefore an understanding heart to judge your people, that I may discern between good and evil; for who is able to judge this great people of yours?”"
+      }
     },
     {
       "storyId": "story_1043_encouraging_short_kid_traditional",
@@ -4339,7 +4527,11 @@
       "primaryCharacterId": "gideon",
       "primaryCharacterDisplayName": "Gideon",
       "timelineEra": "judges",
-      "bibleOrderIndex": 7231
+      "bibleOrderIndex": 7231,
+      "scriptureKeyVerse": {
+        "ref": "Judges 6:12",
+        "text": "Yahweh’s angel appeared to him, and said to him, “Yahweh is with you, you mighty man of valor!”"
+      }
     },
     {
       "storyId": "story_1043_encouraging_full_kid_traditional",
@@ -4365,7 +4557,11 @@
       "primaryCharacterId": "gideon",
       "primaryCharacterDisplayName": "Gideon",
       "timelineEra": "judges",
-      "bibleOrderIndex": 7231
+      "bibleOrderIndex": 7231,
+      "scriptureKeyVerse": {
+        "ref": "Judges 6:12",
+        "text": "Yahweh’s angel appeared to him, and said to him, “Yahweh is with you, you mighty man of valor!”"
+      }
     },
     {
       "storyId": "story_1044_grateful_short_kid_traditional",
@@ -4391,7 +4587,11 @@
       "primaryCharacterId": "ruth",
       "primaryCharacterDisplayName": "Ruth",
       "timelineEra": "judges",
-      "bibleOrderIndex": 3239
+      "bibleOrderIndex": 3239,
+      "scriptureKeyVerse": {
+        "ref": "Ruth 2:12",
+        "text": "May Yahweh repay your work, and a full reward be given to you from Yahweh, the God of Israel, under whose wings you have come to take refuge.”"
+      }
     },
     {
       "storyId": "story_1044_grateful_full_kid_traditional",
@@ -4417,7 +4617,11 @@
       "primaryCharacterId": "ruth",
       "primaryCharacterDisplayName": "Ruth",
       "timelineEra": "judges",
-      "bibleOrderIndex": 3239
+      "bibleOrderIndex": 3239,
+      "scriptureKeyVerse": {
+        "ref": "Ruth 2:12",
+        "text": "May Yahweh repay your work, and a full reward be given to you from Yahweh, the God of Israel, under whose wings you have come to take refuge.”"
+      }
     },
     {
       "storyId": "story_1045_hurting_short_kid_traditional",
@@ -4444,7 +4648,11 @@
       "primaryCharacterId": "joseph",
       "primaryCharacterDisplayName": "Joseph",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 38061
+      "bibleOrderIndex": 38061,
+      "scriptureKeyVerse": {
+        "ref": "Genesis 37:3",
+        "text": "Now Israel loved Joseph more than all his children, because he was the son of his old age, and he made him a tunic of many colors."
+      }
     },
     {
       "storyId": "story_1045_hurting_full_kid_traditional",
@@ -4471,7 +4679,11 @@
       "primaryCharacterId": "joseph",
       "primaryCharacterDisplayName": "Joseph",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 38061
+      "bibleOrderIndex": 38061,
+      "scriptureKeyVerse": {
+        "ref": "Genesis 37:3",
+        "text": "Now Israel loved Joseph more than all his children, because he was the son of his old age, and he made him a tunic of many colors."
+      }
     },
     {
       "storyId": "story_1046_joyful_short_kid_traditional",
@@ -4496,7 +4708,11 @@
       "primaryCharacterId": "god",
       "primaryCharacterDisplayName": "God",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 2061
+      "bibleOrderIndex": 2061,
+      "scriptureKeyVerse": {
+        "ref": "Genesis 1:31",
+        "text": "God saw everything that he had made, and, behold, it was very good. There was evening and there was morning, a sixth day."
+      }
     },
     {
       "storyId": "story_1046_joyful_full_kid_traditional",
@@ -4521,7 +4737,11 @@
       "primaryCharacterId": "god",
       "primaryCharacterDisplayName": "God",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 2061
+      "bibleOrderIndex": 2061,
+      "scriptureKeyVerse": {
+        "ref": "Genesis 1:31",
+        "text": "God saw everything that he had made, and, behold, it was very good. There was evening and there was morning, a sixth day."
+      }
     },
     {
       "storyId": "story_1047_weary_short_kid_traditional",
@@ -4547,7 +4767,11 @@
       "primaryCharacterId": "elijah",
       "primaryCharacterDisplayName": "Elijah",
       "timelineEra": "kingdom",
-      "bibleOrderIndex": 18310
+      "bibleOrderIndex": 18310,
+      "scriptureKeyVerse": {
+        "ref": "1 Kings 17:13",
+        "text": "Elijah said to her, “Don’t be afraid. Go and do as you have said; but make me a little cake from it first, and bring it out to me, and afterward make some for you and for your son."
+      }
     },
     {
       "storyId": "story_1047_weary_full_kid_traditional",
@@ -4573,7 +4797,11 @@
       "primaryCharacterId": "elijah",
       "primaryCharacterDisplayName": "Elijah",
       "timelineEra": "kingdom",
-      "bibleOrderIndex": 18310
+      "bibleOrderIndex": 18310,
+      "scriptureKeyVerse": {
+        "ref": "1 Kings 17:13",
+        "text": "Elijah said to her, “Don’t be afraid. Go and do as you have said; but make me a little cake from it first, and bring it out to me, and afterward make some for you and for your son."
+      }
     },
     {
       "storyId": "story_1048_anxious_short_traditional",
@@ -5436,7 +5664,11 @@
       "primaryCharacterId": "moses",
       "primaryCharacterDisplayName": "Moses",
       "timelineEra": "exodus",
-      "bibleOrderIndex": 15092
+      "bibleOrderIndex": 15092,
+      "scriptureKeyVerse": {
+        "ref": "Exodus 14:14",
+        "text": "Yahweh will fight for you, and you shall be still.”"
+      }
     },
     {
       "storyId": "story_1056_anxious_full_kid_traditional",
@@ -5462,7 +5694,11 @@
       "primaryCharacterId": "moses",
       "primaryCharacterDisplayName": "Moses",
       "timelineEra": "exodus",
-      "bibleOrderIndex": 15092
+      "bibleOrderIndex": 15092,
+      "scriptureKeyVerse": {
+        "ref": "Exodus 14:14",
+        "text": "Yahweh will fight for you, and you shall be still.”"
+      }
     },
     {
       "storyId": "story_1057_brave_courage_short_kid_traditional",
@@ -5488,7 +5724,11 @@
       "primaryCharacterId": "caleb",
       "primaryCharacterDisplayName": "Caleb",
       "timelineEra": "exodus",
-      "bibleOrderIndex": 14179
+      "bibleOrderIndex": 14179,
+      "scriptureKeyVerse": {
+        "ref": "Numbers 13:30",
+        "text": "Caleb stilled the people before Moses, and said, “Let’s go up at once, and possess it; for we are well able to overcome it!”"
+      }
     },
     {
       "storyId": "story_1057_brave_courage_full_kid_traditional",
@@ -5514,7 +5754,11 @@
       "primaryCharacterId": "caleb",
       "primaryCharacterDisplayName": "Caleb",
       "timelineEra": "exodus",
-      "bibleOrderIndex": 14179
+      "bibleOrderIndex": 14179,
+      "scriptureKeyVerse": {
+        "ref": "Numbers 13:30",
+        "text": "Caleb stilled the people before Moses, and said, “Let’s go up at once, and possess it; for we are well able to overcome it!”"
+      }
     },
     {
       "storyId": "story_1058_calm_peaceful_short_kid_traditional",
@@ -5539,7 +5783,11 @@
       "primaryCharacterId": "jeremiah",
       "primaryCharacterDisplayName": "Jeremiah",
       "timelineEra": "prophets",
-      "bibleOrderIndex": 19498
+      "bibleOrderIndex": 19498,
+      "scriptureKeyVerse": {
+        "ref": "Jeremiah 18:6",
+        "text": "“House of Israel, can’t I do with you as this potter?” says Yahweh. “Behold, as the clay in the potter’s hand, so are you in my hand, house of Israel."
+      }
     },
     {
       "storyId": "story_1058_calm_peaceful_full_kid_traditional",
@@ -5564,7 +5812,11 @@
       "primaryCharacterId": "jeremiah",
       "primaryCharacterDisplayName": "Jeremiah",
       "timelineEra": "prophets",
-      "bibleOrderIndex": 19498
+      "bibleOrderIndex": 19498,
+      "scriptureKeyVerse": {
+        "ref": "Jeremiah 18:6",
+        "text": "“House of Israel, can’t I do with you as this potter?” says Yahweh. “Behold, as the clay in the potter’s hand, so are you in my hand, house of Israel."
+      }
     },
     {
       "storyId": "story_1059_encouraging_short_kid_traditional",
@@ -5590,7 +5842,11 @@
       "primaryCharacterId": "nehemiah",
       "primaryCharacterDisplayName": "Nehemiah",
       "timelineEra": "return",
-      "bibleOrderIndex": 3531
+      "bibleOrderIndex": 3531,
+      "scriptureKeyVerse": {
+        "ref": "Nehemiah 2:8",
+        "text": "and a letter to Asaph the keeper of the king’s forest, that he may give me timber to make beams for the gates of the citadel by the temple, for the wall of the city, and for the house that I will occupy.” The king granted my requests, because of the good hand of my God on me."
+      }
     },
     {
       "storyId": "story_1059_encouraging_full_kid_traditional",
@@ -5616,7 +5872,11 @@
       "primaryCharacterId": "nehemiah",
       "primaryCharacterDisplayName": "Nehemiah",
       "timelineEra": "return",
-      "bibleOrderIndex": 3531
+      "bibleOrderIndex": 3531,
+      "scriptureKeyVerse": {
+        "ref": "Nehemiah 2:8",
+        "text": "and a letter to Asaph the keeper of the king’s forest, that he may give me timber to make beams for the gates of the citadel by the temple, for the wall of the city, and for the house that I will occupy.” The king granted my requests, because of the good hand of my God on me."
+      }
     },
     {
       "storyId": "story_1060_grateful_short_kid_traditional",
@@ -5642,7 +5902,11 @@
       "primaryCharacterId": "david",
       "primaryCharacterDisplayName": "David",
       "timelineEra": "kingdom",
-      "bibleOrderIndex": 19255
+      "bibleOrderIndex": 19255,
+      "scriptureKeyVerse": {
+        "ref": "1 Samuel 18:3",
+        "text": "Then Jonathan and David made a covenant, because he loved him as his own soul."
+      }
     },
     {
       "storyId": "story_1060_grateful_full_kid_traditional",
@@ -5668,7 +5932,11 @@
       "primaryCharacterId": "david",
       "primaryCharacterDisplayName": "David",
       "timelineEra": "kingdom",
-      "bibleOrderIndex": 19255
+      "bibleOrderIndex": 19255,
+      "scriptureKeyVerse": {
+        "ref": "1 Samuel 18:3",
+        "text": "Then Jonathan and David made a covenant, because he loved him as his own soul."
+      }
     },
     {
       "storyId": "story_1061_hurting_short_kid_traditional",
@@ -5694,7 +5962,11 @@
       "primaryCharacterId": "naaman",
       "primaryCharacterDisplayName": "Naaman",
       "timelineEra": "kingdom",
-      "bibleOrderIndex": 6410
+      "bibleOrderIndex": 6410,
+      "scriptureKeyVerse": {
+        "ref": "2 Kings 5:14",
+        "text": "Then went he down and dipped himself seven times in the Jordan, according to the saying of the man of God; and his flesh was restored like the flesh of a little child, and he was clean."
+      }
     },
     {
       "storyId": "story_1061_hurting_full_kid_traditional",
@@ -5720,7 +5992,11 @@
       "primaryCharacterId": "naaman",
       "primaryCharacterDisplayName": "Naaman",
       "timelineEra": "kingdom",
-      "bibleOrderIndex": 6410
+      "bibleOrderIndex": 6410,
+      "scriptureKeyVerse": {
+        "ref": "2 Kings 5:14",
+        "text": "Then went he down and dipped himself seven times in the Jordan, according to the saying of the man of God; and his flesh was restored like the flesh of a little child, and he was clean."
+      }
     },
     {
       "storyId": "story_1062_joyful_short_kid_traditional",
@@ -5746,7 +6022,11 @@
       "primaryCharacterId": "david",
       "primaryCharacterDisplayName": "David",
       "timelineEra": "kingdom",
-      "bibleOrderIndex": 10291
+      "bibleOrderIndex": 10291,
+      "scriptureKeyVerse": {
+        "ref": "2 Samuel 9:7",
+        "text": "David said to him, “Don’t be afraid, for I will surely show you kindness for Jonathan your father’s sake, and will restore to you all the land of Saul your father. You will eat bread at my table continually.”"
+      }
     },
     {
       "storyId": "story_1062_joyful_full_kid_traditional",
@@ -5772,7 +6052,11 @@
       "primaryCharacterId": "david",
       "primaryCharacterDisplayName": "David",
       "timelineEra": "kingdom",
-      "bibleOrderIndex": 10291
+      "bibleOrderIndex": 10291,
+      "scriptureKeyVerse": {
+        "ref": "2 Samuel 9:7",
+        "text": "David said to him, “Don’t be afraid, for I will surely show you kindness for Jonathan your father’s sake, and will restore to you all the land of Saul your father. You will eat bread at my table continually.”"
+      }
     },
     {
       "storyId": "story_1063_weary_short_kid_traditional",
@@ -5799,7 +6083,11 @@
       "primaryCharacterId": "job",
       "primaryCharacterDisplayName": "Job",
       "timelineEra": "wisdom",
-      "bibleOrderIndex": 2461
+      "bibleOrderIndex": 2461,
+      "scriptureKeyVerse": {
+        "ref": "Job 1:21",
+        "text": "He said, “Naked I came out of my mother’s womb, and naked will I return there. Yahweh gave, and Yahweh has taken away. Blessed be Yahweh’s name.”"
+      }
     },
     {
       "storyId": "story_1063_weary_full_kid_traditional",
@@ -5826,7 +6114,11 @@
       "primaryCharacterId": "job",
       "primaryCharacterDisplayName": "Job",
       "timelineEra": "wisdom",
-      "bibleOrderIndex": 2461
+      "bibleOrderIndex": 2461,
+      "scriptureKeyVerse": {
+        "ref": "Job 1:21",
+        "text": "He said, “Naked I came out of my mother’s womb, and naked will I return there. Yahweh gave, and Yahweh has taken away. Blessed be Yahweh’s name.”"
+      }
     },
     {
       "storyId": "story_1064_anxious_short_traditional",
@@ -6736,7 +7028,11 @@
       "primaryCharacterId": "elisha",
       "primaryCharacterDisplayName": "Elisha",
       "timelineEra": "kingdom",
-      "bibleOrderIndex": 7417
+      "bibleOrderIndex": 7417,
+      "scriptureKeyVerse": {
+        "ref": "2 Kings 6:16",
+        "text": "He answered, “Don’t be afraid, for those who are with us are more than those who are with them.”"
+      }
     },
     {
       "storyId": "story_1072_anxious_full_kid_traditional",
@@ -6762,7 +7058,11 @@
       "primaryCharacterId": "elisha",
       "primaryCharacterDisplayName": "Elisha",
       "timelineEra": "kingdom",
-      "bibleOrderIndex": 7417
+      "bibleOrderIndex": 7417,
+      "scriptureKeyVerse": {
+        "ref": "2 Kings 6:16",
+        "text": "He answered, “Don’t be afraid, for those who are with us are more than those who are with them.”"
+      }
     },
     {
       "storyId": "story_1073_brave_courage_short_kid_traditional",
@@ -6788,7 +7088,11 @@
       "primaryCharacterId": "elijah",
       "primaryCharacterDisplayName": "Elijah",
       "timelineEra": "kingdom",
-      "bibleOrderIndex": 19329
+      "bibleOrderIndex": 19329,
+      "scriptureKeyVerse": {
+        "ref": "1 Kings 18:39",
+        "text": "When all the people saw it, they fell on their faces. They said, “Yahweh, he is God! Yahweh, he is God!”"
+      }
     },
     {
       "storyId": "story_1073_brave_courage_full_kid_traditional",
@@ -6814,7 +7118,11 @@
       "primaryCharacterId": "elijah",
       "primaryCharacterDisplayName": "Elijah",
       "timelineEra": "kingdom",
-      "bibleOrderIndex": 19329
+      "bibleOrderIndex": 19329,
+      "scriptureKeyVerse": {
+        "ref": "1 Kings 18:39",
+        "text": "When all the people saw it, they fell on their faces. They said, “Yahweh, he is God! Yahweh, he is God!”"
+      }
     },
     {
       "storyId": "story_1074_calm_peaceful_short_kid_traditional",
@@ -6840,7 +7148,11 @@
       "primaryCharacterId": "jesus",
       "primaryCharacterDisplayName": "Jesus",
       "timelineEra": "jesus_ministry",
-      "bibleOrderIndex": 611
+      "bibleOrderIndex": 611,
+      "scriptureKeyVerse": {
+        "ref": "Matthew 6:26",
+        "text": "See the birds of the sky, that they don’t sow, neither do they reap, nor gather into barns. Your heavenly Father feeds them. Aren’t you of much more value than they?"
+      }
     },
     {
       "storyId": "story_1074_calm_peaceful_full_kid_traditional",
@@ -6866,7 +7178,11 @@
       "primaryCharacterId": "jesus",
       "primaryCharacterDisplayName": "Jesus",
       "timelineEra": "jesus_ministry",
-      "bibleOrderIndex": 611
+      "bibleOrderIndex": 611,
+      "scriptureKeyVerse": {
+        "ref": "Matthew 6:26",
+        "text": "See the birds of the sky, that they don’t sow, neither do they reap, nor gather into barns. Your heavenly Father feeds them. Aren’t you of much more value than they?"
+      }
     },
     {
       "storyId": "story_1075_encouraging_short_kid_traditional",
@@ -6892,7 +7208,11 @@
       "primaryCharacterId": "isaiah",
       "primaryCharacterDisplayName": "Isaiah",
       "timelineEra": "prophets",
-      "bibleOrderIndex": 7759
+      "bibleOrderIndex": 7759,
+      "scriptureKeyVerse": {
+        "ref": "Isaiah 6:8",
+        "text": "I heard the Lord’s voice, saying, “Whom shall I send, and who will go for us?” Then I said, “Here I am. Send me!”"
+      }
     },
     {
       "storyId": "story_1075_encouraging_full_kid_traditional",
@@ -6918,7 +7238,11 @@
       "primaryCharacterId": "isaiah",
       "primaryCharacterDisplayName": "Isaiah",
       "timelineEra": "prophets",
-      "bibleOrderIndex": 7759
+      "bibleOrderIndex": 7759,
+      "scriptureKeyVerse": {
+        "ref": "Isaiah 6:8",
+        "text": "I heard the Lord’s voice, saying, “Whom shall I send, and who will go for us?” Then I said, “Here I am. Send me!”"
+      }
     },
     {
       "storyId": "story_1076_grateful_short_kid_traditional",
@@ -6944,7 +7268,11 @@
       "primaryCharacterId": "job",
       "primaryCharacterDisplayName": "Job",
       "timelineEra": "wisdom",
-      "bibleOrderIndex": 43461
+      "bibleOrderIndex": 43461,
+      "scriptureKeyVerse": {
+        "ref": "Job 42:5",
+        "text": "I had heard of you by the hearing of the ear, but now my eye sees you."
+      }
     },
     {
       "storyId": "story_1076_grateful_full_kid_traditional",
@@ -6970,7 +7298,11 @@
       "primaryCharacterId": "job",
       "primaryCharacterDisplayName": "Job",
       "timelineEra": "wisdom",
-      "bibleOrderIndex": 43461
+      "bibleOrderIndex": 43461,
+      "scriptureKeyVerse": {
+        "ref": "Job 42:5",
+        "text": "I had heard of you by the hearing of the ear, but now my eye sees you."
+      }
     },
     {
       "storyId": "story_1077_hurting_short_kid_traditional",
@@ -6996,7 +7328,11 @@
       "primaryCharacterId": "david",
       "primaryCharacterDisplayName": "David",
       "timelineEra": "wisdom",
-      "bibleOrderIndex": 140584
+      "bibleOrderIndex": 140584,
+      "scriptureKeyVerse": {
+        "ref": "Psalm 139:10",
+        "text": "even there your hand will lead me, and your right hand will hold me."
+      }
     },
     {
       "storyId": "story_1077_hurting_full_kid_traditional",
@@ -7022,7 +7358,11 @@
       "primaryCharacterId": "david",
       "primaryCharacterDisplayName": "David",
       "timelineEra": "wisdom",
-      "bibleOrderIndex": 140584
+      "bibleOrderIndex": 140584,
+      "scriptureKeyVerse": {
+        "ref": "Psalm 139:10",
+        "text": "even there your hand will lead me, and your right hand will hold me."
+      }
     },
     {
       "storyId": "story_1078_joyful_short_kid_traditional",
@@ -7048,7 +7388,11 @@
       "primaryCharacterId": "jesus",
       "primaryCharacterDisplayName": "Jesus",
       "timelineEra": "jesus_ministry",
-      "bibleOrderIndex": 605
+      "bibleOrderIndex": 605,
+      "scriptureKeyVerse": {
+        "ref": "Matthew 2:10",
+        "text": "When they saw the star, they rejoiced with exceedingly great joy."
+      }
     },
     {
       "storyId": "story_1078_joyful_full_kid_traditional",
@@ -7074,7 +7418,11 @@
       "primaryCharacterId": "jesus",
       "primaryCharacterDisplayName": "Jesus",
       "timelineEra": "jesus_ministry",
-      "bibleOrderIndex": 605
+      "bibleOrderIndex": 605,
+      "scriptureKeyVerse": {
+        "ref": "Matthew 2:10",
+        "text": "When they saw the star, they rejoiced with exceedingly great joy."
+      }
     },
     {
       "storyId": "story_1079_weary_short_kid_traditional",
@@ -7100,7 +7448,11 @@
       "primaryCharacterId": "isaiah",
       "primaryCharacterDisplayName": "Isaiah",
       "timelineEra": "prophets",
-      "bibleOrderIndex": 41786
+      "bibleOrderIndex": 41786,
+      "scriptureKeyVerse": {
+        "ref": "Isaiah 40:31",
+        "text": "but those who wait for Yahweh will renew their strength. They will mount up with wings like eagles. They will run, and not be weary. They will walk, and not faint."
+      }
     },
     {
       "storyId": "story_1079_weary_full_kid_traditional",
@@ -7126,7 +7478,11 @@
       "primaryCharacterId": "isaiah",
       "primaryCharacterDisplayName": "Isaiah",
       "timelineEra": "prophets",
-      "bibleOrderIndex": 41786
+      "bibleOrderIndex": 41786,
+      "scriptureKeyVerse": {
+        "ref": "Isaiah 40:31",
+        "text": "but those who wait for Yahweh will renew their strength. They will mount up with wings like eagles. They will run, and not be weary. They will walk, and not faint."
+      }
     },
     {
       "storyId": "story_1083_hurting_short_traditional",
@@ -7395,7 +7751,11 @@
       "themeTags": [
         "faith",
         "hope"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "John 11:35",
+        "text": "Jesus wept."
+      }
     },
     {
       "storyId": "story_1084_encouraging_full_traditional",
@@ -7569,7 +7929,11 @@
       "timelineEra": "jesus_ministry",
       "themeTags": [
         "mercy"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Luke 10:37",
+        "text": "He said, “He who showed mercy on him.” Then Jesus said to him, “Go and do likewise.”"
+      }
     },
     {
       "storyId": "story_1085_hurting_full_traditional",
@@ -7749,7 +8113,11 @@
       "themeTags": [
         "faith",
         "forgiveness"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Mark 2:5",
+        "text": "Jesus, seeing their faith, said to the paralytic, “Son, your sins are forgiven you.”"
+      }
     },
     {
       "storyId": "story_1080_hurting_short_traditional",
@@ -7959,7 +8327,11 @@
       "themeTags": [
         "faith",
         "courage"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Mark 5:34",
+        "text": "He said to her, “Daughter, your faith has made you well. Go in peace, and be cured of your disease.”"
+      }
     },
     {
       "storyId": "story_1081_grateful_short_traditional",
@@ -8169,7 +8541,11 @@
       "themeTags": [
         "provision",
         "mercy"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Matthew 14:20",
+        "text": "They all ate and were filled. They took up twelve baskets full of that which remained left over from the broken pieces."
+      }
     },
     {
       "storyId": "story_1082_anxious_short_traditional",
@@ -8379,7 +8755,11 @@
       "themeTags": [
         "faith",
         "obedience"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Luke 1:30",
+        "text": "The angel said to her, “Don’t be afraid, Mary, for you have found favor with God."
+      }
     },
     {
       "storyId": "story_1086_hurting_short_traditional",
@@ -8589,7 +8969,11 @@
       "themeTags": [
         "faith",
         "courage"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "John 9:25",
+        "text": "He therefore answered, “I don’t know if he is a sinner. One thing I do know: that though I was blind, now I see.”"
+      }
     },
     {
       "storyId": "story_1087_encouraging_short_traditional",
@@ -8799,7 +9183,11 @@
       "themeTags": [
         "faith",
         "obedience"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Matthew 3:17",
+        "text": "Behold, a voice out of the heavens said, “This is my beloved Son, with whom I am well pleased.”"
+      }
     },
     {
       "storyId": "story_1088_grateful_short_traditional",
@@ -9009,7 +9397,11 @@
       "themeTags": [
         "mercy",
         "obedience"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "John 13:15",
+        "text": "For I have given you an example, that you should also do as I have done to you."
+      }
     },
     {
       "storyId": "story_1089_brave_courage_short_traditional",
@@ -9219,7 +9611,11 @@
       "themeTags": [
         "faith",
         "courage"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Matthew 4:10",
+        "text": "Then Jesus said to him, “Get behind me, Satan! For it is written, ‘You shall worship the Lord your God, and you shall serve him only.’”"
+      }
     },
     {
       "storyId": "story_1090_anxious_short_traditional",
@@ -9429,7 +9825,11 @@
       "themeTags": [
         "faith",
         "hope"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Matthew 8:26",
+        "text": "He said to them, “Why are you fearful, O you of little faith?” Then he got up, rebuked the wind and the sea, and there was a great calm."
+      }
     },
     {
       "storyId": "story_1091_brave_courage_short_traditional",
@@ -9639,7 +10039,11 @@
       "themeTags": [
         "faith",
         "courage"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Daniel 3:17",
+        "text": "If it happens, our God whom we serve is able to deliver us from the burning fiery furnace; and he will deliver us out of your hand, O king."
+      }
     },
     {
       "storyId": "story_1092_joyful_short_traditional",
@@ -9849,7 +10253,11 @@
       "themeTags": [
         "faith",
         "hope"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "John 20:16",
+        "text": "Jesus said to her, “Mary.” She turned and said to him, “Rabboni!” which is to say, “Teacher!”"
+      }
     },
     {
       "storyId": "story_1093_hurting_short_traditional",
@@ -10059,7 +10467,11 @@
       "themeTags": [
         "mercy",
         "forgiveness"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Luke 7:50",
+        "text": "He said to the woman, “Your faith has saved you. Go in peace.”"
+      }
     },
     {
       "storyId": "story_1094_anxious_short_traditional",
@@ -10269,7 +10681,11 @@
       "themeTags": [
         "obedience",
         "faith"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Jonah 1:9",
+        "text": "He said to them, “I am a Hebrew, and I fear Yahweh, the God of heaven, who has made the sea and the dry land.”"
+      }
     },
     {
       "storyId": "story_1095_encouraging_short_traditional",
@@ -10479,7 +10895,11 @@
       "themeTags": [
         "faith",
         "mercy"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Acts 9:15",
+        "text": "But the Lord said to him, “Go your way, for he is my chosen vessel to bear my name before the nations and kings, and the children of Israel."
+      }
     },
     {
       "storyId": "story_1091_brave_courage_full_kid_traditional",
@@ -10509,7 +10929,11 @@
       "themeTags": [
         "faith",
         "courage"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Daniel 3:17",
+        "text": "If it happens, our God whom we serve is able to deliver us from the burning fiery furnace; and he will deliver us out of your hand, O king."
+      }
     },
     {
       "storyId": "story_1091_brave_courage_long_kid_traditional",
@@ -10539,7 +10963,11 @@
       "themeTags": [
         "faith",
         "courage"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Daniel 3:17",
+        "text": "If it happens, our God whom we serve is able to deliver us from the burning fiery furnace; and he will deliver us out of your hand, O king."
+      }
     },
     {
       "storyId": "story_1092_joyful_full_kid_traditional",
@@ -10569,7 +10997,11 @@
       "themeTags": [
         "faith",
         "hope"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "John 20:16",
+        "text": "Jesus said to her, “Mary.” She turned and said to him, “Rabboni!” which is to say, “Teacher!”"
+      }
     },
     {
       "storyId": "story_1092_joyful_long_kid_traditional",
@@ -10599,7 +11031,11 @@
       "themeTags": [
         "faith",
         "hope"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "John 20:16",
+        "text": "Jesus said to her, “Mary.” She turned and said to him, “Rabboni!” which is to say, “Teacher!”"
+      }
     },
     {
       "storyId": "story_1093_hurting_full_kid_traditional",
@@ -10629,7 +11065,11 @@
       "themeTags": [
         "mercy",
         "forgiveness"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Luke 7:50",
+        "text": "He said to the woman, “Your faith has saved you. Go in peace.”"
+      }
     },
     {
       "storyId": "story_1093_hurting_long_kid_traditional",
@@ -10659,7 +11099,11 @@
       "themeTags": [
         "mercy",
         "forgiveness"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Luke 7:50",
+        "text": "He said to the woman, “Your faith has saved you. Go in peace.”"
+      }
     },
     {
       "storyId": "story_1094_anxious_full_kid_traditional",
@@ -10689,7 +11133,11 @@
       "themeTags": [
         "obedience",
         "faith"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Jonah 1:9",
+        "text": "He said to them, “I am a Hebrew, and I fear Yahweh, the God of heaven, who has made the sea and the dry land.”"
+      }
     },
     {
       "storyId": "story_1094_anxious_long_kid_traditional",
@@ -10719,7 +11167,11 @@
       "themeTags": [
         "obedience",
         "faith"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Jonah 1:9",
+        "text": "He said to them, “I am a Hebrew, and I fear Yahweh, the God of heaven, who has made the sea and the dry land.”"
+      }
     },
     {
       "storyId": "story_1095_encouraging_full_kid_traditional",
@@ -10749,7 +11201,11 @@
       "themeTags": [
         "faith",
         "mercy"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Acts 9:15",
+        "text": "But the Lord said to him, “Go your way, for he is my chosen vessel to bear my name before the nations and kings, and the children of Israel."
+      }
     },
     {
       "storyId": "story_1095_encouraging_long_kid_traditional",
@@ -10779,7 +11235,11 @@
       "themeTags": [
         "faith",
         "mercy"
-      ]
+      ],
+      "scriptureKeyVerse": {
+        "ref": "Acts 9:15",
+        "text": "But the Lord said to him, “Go your way, for he is my chosen vessel to bear my name before the nations and kings, and the children of Israel."
+      }
     },
     {
       "storyId": "story_1096_weary_short_traditional",

@@ -16,7 +16,7 @@
   "voiceKey": "VOICE_LILY_WOLFF",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_03",
-  "reflectionQuestion": "The potter didn't throw the clay away when it broke \u2014 he made it into something new. Have you ever felt broken and then been surprised that something good still came from it?",
+  "reflectionQuestion": "The potter didn't throw the clay away when it broke — he made it into something new. Have you ever felt broken and then been surprised that something good still came from it?",
   "title": "The Potter's Wheel",
   "files": {
     "short": {
@@ -45,7 +45,7 @@
   "storyVoiceKey": "VOICE_LILY_WOLFF",
   "scriptureAnchor": "Jeremiah 18:1-6",
   "bibleStoryKey": "potter_and_clay",
-  "reflectionText": "The potter didn't throw the clay away when it broke \u2014 he made it into something new. Have you ever felt broken and then been surprised that something good still came from it?",
+  "reflectionText": "The potter didn't throw the clay away when it broke — he made it into something new. Have you ever felt broken and then been surprised that something good still came from it?",
   "timelineEra": "prophets",
   "primaryCharacterId": "jeremiah",
   "primaryCharacterDisplayName": "Jeremiah",
@@ -54,5 +54,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 19498
+  "bibleOrderIndex": 19498,
+  "scriptureKeyVerse": {
+    "ref": "Jeremiah 18:6",
+    "text": "“House of Israel, can’t I do with you as this potter?” says Yahweh. “Behold, as the clay in the potter’s hand, so are you in my hand, house of Israel."
+  }
 }

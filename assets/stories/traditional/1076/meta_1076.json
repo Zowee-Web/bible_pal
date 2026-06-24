@@ -61,5 +61,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 43461
+  "bibleOrderIndex": 43461,
+  "scriptureKeyVerse": {
+    "ref": "Job 42:5",
+    "text": "I had heard of you by the hearing of the ear, but now my eye sees you."
+  }
 }

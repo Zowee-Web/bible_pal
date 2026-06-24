@@ -54,5 +54,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 14179
+  "bibleOrderIndex": 14179,
+  "scriptureKeyVerse": {
+    "ref": "Numbers 13:30",
+    "text": "Caleb stilled the people before Moses, and said, “Let’s go up at once, and possess it; for we are well able to overcome it!”"
+  }
 }

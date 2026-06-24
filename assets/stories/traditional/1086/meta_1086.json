@@ -50,5 +50,9 @@
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
+  },
+  "scriptureKeyVerse": {
+    "ref": "John 9:25",
+    "text": "He therefore answered, “I don’t know if he is a sinner. One thing I do know: that though I was blind, now I see.”"
   }
 }

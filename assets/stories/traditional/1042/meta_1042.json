@@ -45,7 +45,7 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_ARABELLA",
-  "reflectionText": "God told Solomon he could have anything he wanted. Solomon did not ask for toys or money or to be the strongest. He asked for wisdom \u2014 the ability to understand what is right. And God was so happy with that choice that he gave Solomon even more than he asked for.\n\nIf God said you could ask for one thing, what would you ask for?",
+  "reflectionText": "God told Solomon he could have anything he wanted. Solomon did not ask for toys or money or to be the strongest. He asked for wisdom — the ability to understand what is right. And God was so happy with that choice that he gave Solomon even more than he asked for.\n\nIf God said you could ask for one thing, what would you ask for?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "solomon",
   "primaryCharacterDisplayName": "Solomon",
@@ -54,5 +54,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 4314
+  "bibleOrderIndex": 4314,
+  "scriptureKeyVerse": {
+    "ref": "1 Kings 3:9",
+    "text": "Give your servant therefore an understanding heart to judge your people, that I may discern between good and evil; for who is able to judge this great people of yours?”"
+  }
 }

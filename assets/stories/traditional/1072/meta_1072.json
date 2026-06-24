@@ -61,5 +61,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 7417
+  "bibleOrderIndex": 7417,
+  "scriptureKeyVerse": {
+    "ref": "2 Kings 6:16",
+    "text": "He answered, “Don’t be afraid, for those who are with us are more than those who are with them.”"
+  }
 }

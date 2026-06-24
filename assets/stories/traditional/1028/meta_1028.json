@@ -45,7 +45,7 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_CHARLOTTE_V3",
-  "reflectionText": "Abraham saw three visitors and did not wait to be asked. He ran to greet them, brought water to wash their feet, and gave them the very best food he had. He was happy to share. When we give gladly, wonderful things can happen \u2014 sometimes things we never expected.\n\nWhat is something you have been really happy to share with someone else?",
+  "reflectionText": "Abraham saw three visitors and did not wait to be asked. He ran to greet them, brought water to wash their feet, and gave them the very best food he had. He was happy to share. When we give gladly, wonderful things can happen — sometimes things we never expected.\n\nWhat is something you have been really happy to share with someone else?",
   "timelineEra": "patriarchs",
   "primaryCharacterId": "abraham",
   "primaryCharacterDisplayName": "Abraham",
@@ -54,5 +54,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 19061
+  "bibleOrderIndex": 19061,
+  "scriptureKeyVerse": {
+    "ref": "Genesis 18:14",
+    "text": "Is anything too hard for Yahweh? At the set time I will return to you, when the season comes around, and Sarah will have a son.”"
+  }
 }

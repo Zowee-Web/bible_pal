@@ -61,5 +61,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 19329
+  "bibleOrderIndex": 19329,
+  "scriptureKeyVerse": {
+    "ref": "1 Kings 18:39",
+    "text": "When all the people saw it, they fell on their faces. They said, “Yahweh, he is God! Yahweh, he is God!”"
+  }
 }

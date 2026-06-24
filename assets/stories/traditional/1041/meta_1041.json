@@ -54,5 +54,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 3083
+  "bibleOrderIndex": 3083,
+  "scriptureKeyVerse": {
+    "ref": "Exodus 2:6",
+    "text": "She opened it, and saw the child, and behold, the baby cried. She had compassion on him, and said, “This is one of the Hebrews’ children.”"
+  }
 }
