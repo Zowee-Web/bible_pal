@@ -90,6 +90,10 @@ def manifest_entry(meta: dict, sid: int, length: str, lane: str, trans: str,
         "scriptureAnchor": meta["scriptureAnchor"],
         "storyVoiceKey": voice,
         "scriptureTextFilePath": f"traditional/{sid}/scripture_{sid}_{lane}.txt",
+        # SPEC 12.1: kidFriendly stories gate the full passage behind a single
+        # key verse (kid-simple view). Carried from meta when present so newly
+        # promoted kidFriendly stories surface the parent gate; null otherwise.
+        "scriptureKeyVerse": meta.get("scriptureKeyVerse"),
     }
 
 

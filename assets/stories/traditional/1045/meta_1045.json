@@ -60,5 +60,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 38061
+  "bibleOrderIndex": 38061,
+  "scriptureKeyVerse": {
+    "ref": "Genesis 37:3",
+    "text": "Now Israel loved Joseph more than all his children, because he was the son of his old age, and he made him a tunic of many colors."
+  }
 }

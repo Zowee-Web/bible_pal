@@ -54,5 +54,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 13061
+  "bibleOrderIndex": 13061,
+  "scriptureKeyVerse": {
+    "ref": "Genesis 12:2",
+    "text": "I will make of you a great nation. I will bless you and make your name great. You will be a blessing."
+  }
 }

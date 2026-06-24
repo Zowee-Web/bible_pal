@@ -54,5 +54,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 18310
+  "bibleOrderIndex": 18310,
+  "scriptureKeyVerse": {
+    "ref": "1 Kings 17:13",
+    "text": "Elijah said to her, “Don’t be afraid. Go and do as you have said; but make me a little cake from it first, and bring it out to me, and afterward make some for you and for your son."
+  }
 }

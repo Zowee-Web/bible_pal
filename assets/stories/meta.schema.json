@@ -60,6 +60,16 @@
     "title": { "type": "string", "minLength": 1 },
     "scriptureAnchor": { "type": "string", "minLength": 1 },
     "scriptureAnchorId": { "type": "string", "minLength": 1 },
+    "scriptureKeyVerse": {
+      "type": "object",
+      "description": "SPEC 12.1 kid-simple key verse: one central verse shown ungated before the parent gate.",
+      "properties": {
+        "ref": { "type": "string", "minLength": 1 },
+        "text": { "type": "string", "minLength": 1 }
+      },
+      "required": ["ref", "text"],
+      "additionalProperties": false
+    },
     "bibleStoryKey": { "type": "string", "minLength": 1 },
     "bibleOrderIndex": { "type": "integer", "minimum": 0 },
     "storyVoiceKey": {

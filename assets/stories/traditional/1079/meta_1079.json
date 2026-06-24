@@ -61,5 +61,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 41786
+  "bibleOrderIndex": 41786,
+  "scriptureKeyVerse": {
+    "ref": "Isaiah 40:31",
+    "text": "but those who wait for Yahweh will renew their strength. They will mount up with wings like eagles. They will run, and not be weary. They will walk, and not faint."
+  }
 }

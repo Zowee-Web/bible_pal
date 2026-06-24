@@ -61,5 +61,9 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 140584
+  "bibleOrderIndex": 140584,
+  "scriptureKeyVerse": {
+    "ref": "Psalm 139:10",
+    "text": "even there your hand will lead me, and your right hand will hold me."
+  }
 }

@@ -123,11 +123,13 @@ class _ScriptureReaderScreenState extends ConsumerState<ScriptureReaderScreen>
       verseBody = lines.sublist(startIdx).join('\n').trim();
     }
 
-    // SPEC 12.1: kid stories default to the simple view (reference + key verse);
-    // the full WEB passage is parent-gated. Adult/Traditional stories are
-    // unaffected (no scriptureKeyVerse) and render the full passage as before.
+    // SPEC 12.1: the parent gate keys off kidFriendly ALONE — never the key
+    // verse. A kid story always opens in the simple view first; the full WEB
+    // passage is always behind the parent unlock. The key verse only enriches
+    // the simple view: present -> reference + key verse; missing -> reference
+    // only. A missing key verse must never leak the full (adult) passage.
     final keyVerse = parable?.scriptureKeyVerse;
-    final isKidGated = parable?.kidFriendly == true && keyVerse != null;
+    final isKidGated = parable?.kidFriendly == true;
     final showKidSimple = isKidGated && !_parentUnlocked;
 
     return Scaffold(
@@ -155,10 +157,12 @@ class _ScriptureReaderScreenState extends ConsumerState<ScriptureReaderScreen>
     );
   }
 
-  /// Kid-simple, ungated view: reference + one curated key verse (SPEC 12.1).
-  /// The full passage is never shown here — it lives behind the parent gate.
+  /// Kid-simple, ungated view: reference + (when available) one curated key
+  /// verse (SPEC 12.1). When [keyVerse] is null the view falls back to the
+  /// reference only — the full passage is NEVER shown here; it lives behind the
+  /// parent gate. [keyVerse] is nullable so a missing verse can't leak scripture.
   Widget _buildKidSimple(
-      ThemeData theme, String reference, Map<String, dynamic> keyVerse) {
+      ThemeData theme, String reference, Map<String, dynamic>? keyVerse) {
     final muted = theme.colorScheme.onSurfaceVariant;
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(28, 24, 28, 48),
@@ -177,36 +181,38 @@ class _ScriptureReaderScreenState extends ConsumerState<ScriptureReaderScreen>
                 ?.copyWith(fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 36),
-          Text(
-            'Key Verse',
-            style: theme.textTheme.titleMedium
-                ?.copyWith(color: muted, letterSpacing: 1.2),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 14),
-          Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              border: Border.all(color: theme.dividerColor),
-              borderRadius: BorderRadius.circular(16),
+          if (keyVerse != null) ...[
+            const SizedBox(height: 36),
+            Text(
+              'Key Verse',
+              style: theme.textTheme.titleMedium
+                  ?.copyWith(color: muted, letterSpacing: 1.2),
+              textAlign: TextAlign.center,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  (keyVerse['ref'] ?? '').toString(),
-                  style: theme.textTheme.labelLarge
-                      ?.copyWith(fontWeight: FontWeight.bold, color: muted),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  (keyVerse['text'] ?? '').toString(),
-                  style: theme.textTheme.titleMedium?.copyWith(height: 1.5),
-                ),
-              ],
+            const SizedBox(height: 14),
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                border: Border.all(color: theme.dividerColor),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    (keyVerse['ref'] ?? '').toString(),
+                    style: theme.textTheme.labelLarge
+                        ?.copyWith(fontWeight: FontWeight.bold, color: muted),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    (keyVerse['text'] ?? '').toString(),
+                    style: theme.textTheme.titleMedium?.copyWith(height: 1.5),
+                  ),
+                ],
+              ),
             ),
-          ),
+          ],
           const SizedBox(height: 40),
           _buildHoldToUnlock(theme),
         ],

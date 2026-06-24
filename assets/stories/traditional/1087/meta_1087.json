@@ -50,5 +50,9 @@
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
+  },
+  "scriptureKeyVerse": {
+    "ref": "Matthew 3:17",
+    "text": "Behold, a voice out of the heavens said, “This is my beloved Son, with whom I am well pleased.”"
   }
 }

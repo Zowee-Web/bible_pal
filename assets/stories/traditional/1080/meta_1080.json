@@ -49,5 +49,9 @@
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
+  },
+  "scriptureKeyVerse": {
+    "ref": "Mark 5:34",
+    "text": "He said to her, “Daughter, your faith has made you well. Go in peace, and be cured of your disease.”"
   }
 }

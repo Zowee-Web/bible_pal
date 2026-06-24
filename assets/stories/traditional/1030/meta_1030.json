@@ -15,7 +15,7 @@
     "short",
     "full"
   ],
-  "voiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "voiceKey": "VOICE_JAMES_HUSKY",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_01",
   "reflectionQuestion": "What is something about you that people might not notice from the outside, but that you think is really special?",
@@ -44,15 +44,23 @@
     }
   },
   "reflectionSource": "llm",
-  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
-  "reflectionText": "Everyone looked at the tall brothers and thought one of them would be chosen. But God chose David \u2014 the smallest, the youngest, the one who was out watching sheep. God does not care about how big or strong or popular you are. God looks at what is inside your heart.\n\nWhat is something about you that people might not notice from the outside, but that you think is really special?",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "reflectionText": "Everyone looked at the tall brothers and thought one of them would be chosen. But God chose David — the smallest, the youngest, the one who was out watching sheep. God does not care about how big or strong or popular you are. God looks at what is inside your heart.\n\nWhat is something about you that people might not notice from the outside, but that you think is really special?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "david",
   "primaryCharacterDisplayName": "David",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.5,
-    "similarity_boost": 0.75
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
   },
-  "bibleOrderIndex": 17255
+  "bibleOrderIndex": 17255,
+  "renderedAt": "2026-06-23T14:08:10Z",
+  "generatorVersion": "generate_opus_audio.sh",
+  "scriptureKeyVerse": {
+    "ref": "1 Samuel 16:7",
+    "text": "But Yahweh said to Samuel, “Don’t look on his face, or on the height of his stature, because I have rejected him; for I don’t see as man sees. For man looks at the outward appearance, but Yahweh looks at the heart.”"
+  }
 }
