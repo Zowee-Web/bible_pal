@@ -29,7 +29,7 @@
   "bibleOrderIndex": 665,
   "timelineEra": "jesus_ministry",
   "reflectionQuestion": "Have you ever reached for something when you had nothing left to lose?",
-  "reflectionText": "Twelve years is a long time to carry something alone. She reached out and touched the edge of a robe in a crowded street — the last thing she had left to try. And Jesus stopped, in the middle of the press, because someone had reached for him. What is it to be the one whose smallest reach is the one the One who carries the world stops to claim?",
+  "reflectionText": "Twelve years is a long time to carry something alone. She reached out and touched the edge of a robe in a crowded street \u2014 the last thing she had left to try. And Jesus stopped, in the middle of the press, because someone had reached for him. What is it to be the one whose smallest reach is the one the One who carries the world stops to claim?",
   "files": {
     "short": {
       "storyText": "story_1080_traditional_web_short.txt",
@@ -47,11 +47,15 @@
   },
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.5,
-    "similarity_boost": 0.75
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
   },
   "scriptureKeyVerse": {
     "ref": "Mark 5:34",
-    "text": "He said to her, “Daughter, your faith has made you well. Go in peace, and be cured of your disease.”"
-  }
+    "text": "He said to her, \u201cDaughter, your faith has made you well. Go in peace, and be cured of your disease.\u201d"
+  },
+  "renderedAt": "2026-06-24T03:35:59Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

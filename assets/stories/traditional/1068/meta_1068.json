@@ -63,5 +63,14 @@
   "timelineEra": "wisdom",
   "primaryCharacterId": "job",
   "primaryCharacterDisplayName": "Job",
-  "bibleOrderIndex": 43461
+  "bibleOrderIndex": 43461,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-06-24T03:36:05Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

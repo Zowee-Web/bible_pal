@@ -40,8 +40,8 @@
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.6,
-    "similarity_boost": 0.85,
-    "style": 0.15,
+    "similarity_boost": 0.8,
+    "style": 0.0,
     "use_speaker_boost": true
   },
   "files": {
@@ -71,5 +71,7 @@
     }
   },
   "reflectionText": "A scroll was sealed with seven seals, and no one in heaven or on earth could open it. Then a Lamb appeared, looking as though it had been slain, and the Lamb took the scroll. Every creature in heaven and on earth sang: Worthy is the Lamb. What is it to find that the One who can open the future is the One the song calls Lamb?",
-  "editorialNotes": "Coverage round-out batch. Refined-spec reflection (Earned Question form, <=80w)."
+  "editorialNotes": "Coverage round-out batch. Refined-spec reflection (Earned Question form, <=80w).",
+  "renderedAt": "2026-06-24T03:36:38Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

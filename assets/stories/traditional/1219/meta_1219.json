@@ -39,9 +39,9 @@
   "timelineEra": "exile",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.85,
-    "similarity_boost": 0.85,
-    "style": 0.15,
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
     "use_speaker_boost": true
   },
   "files": {
@@ -70,5 +70,7 @@
       "reflectionText": "reflection_1219_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Ezekiel was among the captives by the river Chebar when the heavens opened: a stormy wind, four living creatures, wheels within wheels, a throne of sapphire. He fell on his face and heard a voice. How do you receive a vision of the throne of God when you are sitting by the river of your exile?"
+  "reflectionText": "Ezekiel was among the captives by the river Chebar when the heavens opened: a stormy wind, four living creatures, wheels within wheels, a throne of sapphire. He fell on his face and heard a voice. How do you receive a vision of the throne of God when you are sitting by the river of your exile?",
+  "renderedAt": "2026-06-24T03:37:17Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

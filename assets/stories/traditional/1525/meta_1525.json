@@ -41,13 +41,12 @@
   "primaryCharacterDisplayName": "Micaiah",
   "bibleOrderIndex": 260,
   "timelineEra": "kingdom",
-  "ttsModel": "eleven_multilingual_v2",
+  "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.85,
-    "similarity_boost": 0.85,
-    "style": 0.15,
-    "use_speaker_boost": true,
-    "speed": 0.95
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
   },
   "files": {
     "short": {
@@ -77,5 +76,7 @@
   },
   "reflectionQuestion": "Four hundred prophets told Ahab to go up to the battle. Micaiah said the LORD had shown him Israel scattered as sheep without a shepherd. They struck him on the cheek and sent him to prison on bread of affliction. He went alone. The four hundred stayed in the room. What is it to be the one whose word is true, in a room of four hundred whose word goes the other way?",
   "reflectionText": "Four hundred prophets bade Ahab go up to the battle. Micaiah said the LORD had shown him Israel scattered as sheep that have not a shepherd. They smote him on the cheek and sent him unto the prison on bread of affliction. He went alone. The four hundred stayed in the room. What is it to be the one whose word is true, in a room of four hundred whose word goes the other way?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "renderedAt": "2026-06-24T03:35:53Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }
