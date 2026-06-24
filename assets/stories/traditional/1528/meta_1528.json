@@ -79,5 +79,7 @@
     "style": 0.0,
     "use_speaker_boost": true
   },
-  "bibleOrderIndex": 33080
+  "bibleOrderIndex": 33080,
+  "renderedAt": "2026-06-24T03:37:02Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

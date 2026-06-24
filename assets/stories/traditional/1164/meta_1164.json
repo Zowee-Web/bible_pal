@@ -38,9 +38,9 @@
   "timelineEra": "early_church",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.85,
-    "similarity_boost": 0.85,
-    "style": 0.15,
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
     "use_speaker_boost": true
   },
   "files": {
@@ -69,5 +69,7 @@
       "reflectionText": "reflection_1164_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Stephen stood before the council and told them the story of their fathers from Abraham forward, and ended by calling them stiff-necked, resisters of the Spirit. What is the courage of telling the whole long history to the men who hold your life, and laying the verdict at their feet before they reach it on their own?"
+  "reflectionText": "Stephen stood before the council and told them the story of their fathers from Abraham forward, and ended by calling them stiff-necked, resisters of the Spirit. What is the courage of telling the whole long history to the men who hold your life, and laying the verdict at their feet before they reach it on their own?",
+  "renderedAt": "2026-06-24T03:36:29Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

@@ -52,18 +52,22 @@
   "scriptureAnchor": "Joshua 3:1-17",
   "bibleStoryKey": "crossing_the_jordan",
   "storyVoiceKey": "VOICE_CHARLOTTE_V3",
-  "reflectionText": "A big river stood right in the way. The water was deep and moving fast. But God went ahead of the people, and the water stopped flowing. The ground became dry enough for everyone to walk across — even the little ones. Sometimes things look too big to get past. Can you think of one time something felt too hard, and then you found a path to walk on?",
+  "reflectionText": "A big river stood right in the way. The water was deep and moving fast. But God went ahead of the people, and the water stopped flowing. The ground became dry enough for everyone to walk across \u2014 even the little ones. Sometimes things look too big to get past. Can you think of one time something felt too hard, and then you found a path to walk on?",
   "timelineEra": "conquest",
   "primaryCharacterId": "joshua",
   "primaryCharacterDisplayName": "Joshua",
   "bibleOrderIndex": 4208,
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.5,
-    "similarity_boost": 0.75
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
   },
   "scriptureKeyVerse": {
     "ref": "Joshua 3:7",
-    "text": "Yahweh said to Joshua, “Today I will begin to magnify you in the sight of all Israel, that they may know that as I was with Moses, so I will be with you."
-  }
+    "text": "Yahweh said to Joshua, \u201cToday I will begin to magnify you in the sight of all Israel, that they may know that as I was with Moses, so I will be with you."
+  },
+  "renderedAt": "2026-06-24T03:35:28Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }
