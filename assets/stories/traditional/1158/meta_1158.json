@@ -17,7 +17,7 @@
   "title": "Nehemiah's Prayer",
   "scriptureAnchor": "Nehemiah 1:1-11",
   "bibleStoryKey": "nehemiah_prays",
-  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
   "themeTags": [
     "suffering",
     "lament",
@@ -41,9 +41,9 @@
   "timelineEra": "return",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.85,
-    "similarity_boost": 0.85,
-    "style": 0.15,
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
     "use_speaker_boost": true
   },
   "files": {
@@ -60,5 +60,7 @@
       "reflectionText": "reflection_1158_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Nehemiah heard the news from Jerusalem in the citadel of Susa, sat down, wept, and prayed for many days. He confessed his own house's sins along with the people's. What is the hurt of mourning for a city you have never seen, whose walls have been broken in the days of your fathers?"
+  "reflectionText": "Nehemiah heard the news from Jerusalem in the citadel of Susa, sat down, wept, and prayed for many days. He confessed his own house's sins along with the people's. What is the hurt of mourning for a city you have never seen, whose walls have been broken in the days of your fathers?",
+  "renderedAt": "2026-06-24T02:56:38Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }
