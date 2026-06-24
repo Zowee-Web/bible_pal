@@ -19,7 +19,7 @@
   "title": "The Child Opened His Eyes",
   "scriptureAnchor": "2 Kings 4:8-37",
   "bibleStoryKey": "elisha_shunammite",
-  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
   "themeTags": [
     "hope",
     "healing",
@@ -38,9 +38,9 @@
   "timelineEra": "prophets",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.85,
-    "similarity_boost": 0.85,
-    "style": 0.15,
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
     "use_speaker_boost": true
   },
   "files": {
@@ -69,5 +69,7 @@
       "reflectionText": "reflection_1145_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The Shunammite saddled her donkey, rode to Carmel, caught hold of Elisha's feet, and would not be turned back. Elisha came, shut the door, and the boy sneezed seven times. What does it take to refuse to leave the man of God's side until you have brought him home with you?"
+  "reflectionText": "The Shunammite saddled her donkey, rode to Carmel, caught hold of Elisha's feet, and would not be turned back. Elisha came, shut the door, and the boy sneezed seven times. What does it take to refuse to leave the man of God's side until you have brought him home with you?",
+  "renderedAt": "2026-06-24T02:52:10Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

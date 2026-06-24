@@ -18,10 +18,10 @@
   "voiceKey": "VOICE_JAMES_HUSKY",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
   "voiceKeys": {
-    "short": "VOICE_MARCUS_ANCHOR",
-    "full": "VOICE_MARCUS_ANCHOR",
-    "long": "VOICE_MARCUS_ANCHOR",
-    "reflection": "VOICE_MARCUS_ANCHOR"
+    "short": "VOICE_JAMES_HUSKY",
+    "full": "VOICE_JAMES_HUSKY",
+    "long": "VOICE_JAMES_HUSKY",
+    "reflection": "VOICE_JAMES_HUSKY"
   },
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_46",
