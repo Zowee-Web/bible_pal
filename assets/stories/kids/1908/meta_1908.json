@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1908,
+  "anchorId": "david_king",
+  "kidLane": "dedicated-4-7",
+  "title": "The Shepherd Boy Becomes King",
+  "scriptureAnchorId": "2_samuel_5",
+  "bibleSourceRef": "2 Samuel 5",
+  "bibleStoryKey": "david_king",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "hopeful",
+    "patient",
+    "joyful",
+    "trusting"
+  ],
+  "themeTags": [
+    "God keeps his promises",
+    "faithfulness over long waiting",
+    "God is with me",
+    "from small beginnings"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "God promised David something wonderful, then stayed close through all the long waiting until the day it came true. When you have to wait a long time for something, what helps you keep on trusting?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (David Becomes King, 2 Samuel 5) -- the David cluster's culmination (promise kept), distinct from the anointing (kid_david_shepherd). Mood=joyful. Theme: God keeps his promise over long waiting; God-with-David from sheep to throne. Hard days (fleeing from Saul) named gently in one line. Indelible image: the shepherd boy who carried lambs, now crowned king. Adam: accepted as short+full, NO long. Voice TBC at audio (proposed VOICE_MIRIAM_JOYFUL).",
+  "files": {
+    "short": {
+      "storyText": "story_1908_short.txt",
+      "audio": "audio_1908_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1908_full.txt",
+      "audio": "audio_1908_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1908.txt",
+      "audio": "audio_1908_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1908/scripture_1908_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "2 Samuel 5:10",
+    "text": "David grew greater and greater, for Yahweh, the God of Armies, was with him."
+  }
+}
