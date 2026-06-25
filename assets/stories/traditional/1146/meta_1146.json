@@ -17,7 +17,7 @@
   "title": "Then Joseph Wept",
   "scriptureAnchor": "Genesis 50:15-21",
   "bibleStoryKey": "joseph_forgives",
-  "storyVoiceKey": "VOICE_JOSEPH_DREAMER",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
   "themeTags": [
     "hope",
     "promise",
@@ -39,9 +39,9 @@
   "timelineEra": "patriarchs",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.85,
-    "similarity_boost": 0.85,
-    "style": 0.15,
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
     "use_speaker_boost": true
   },
   "files": {
@@ -65,5 +65,7 @@
     "mercy_to_enemies",
     "restoration_after_loss"
   ],
-  "reflectionText": "After Jacob was buried, the brothers feared Joseph would now pay them back. Joseph wept when their message came. He said: you meant evil against me, but God meant it for good. What is it to be told the harm done to you has been turned over in the hand of God?"
+  "reflectionText": "After Jacob was buried, the brothers feared Joseph would now pay them back. Joseph wept when their message came. He said: you meant evil against me, but God meant it for good. What is it to be told the harm done to you has been turned over in the hand of God?",
+  "renderedAt": "2026-06-25T03:04:36Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

@@ -240,6 +240,41 @@
       }
     },
     {
+      "id": "kid_noah_promise_long",
+      "storyNumber": 1808,
+      "title": "Noah's Rainbow",
+      "textFilePath": "kids/1808/story_1808_long.txt",
+      "scriptureAnchorId": "noah_promise",
+      "bibleStoryKey": "noah_rainbow_promise",
+      "bibleSourceRef": "Genesis 8-9",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "hope",
+        "wonder"
+      ],
+      "themeTags": [
+        "Gods promise",
+        "new beginnings",
+        "faithfulness"
+      ],
+      "lengthBucket": "long",
+      "targetWords": null,
+      "actualWords": 946,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_HUSKY",
+      "audioFilePath": "kids/1808/audio_1808_long.mp3",
+      "reflectionAudioPath": "kids/1808/audio_1808_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think about when you see a rainbow?",
+      "kidSafetyNotes": "Encouraging. This is noah_promise (the rainbow), so the flood is gentle backstory only ('kept everyone safe') — no drowning/death shown. Centered on dove/leaf/rainbow/promise. One image: the rainbow stretched across the sky.",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1808/scripture_1808_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Genesis 9:13",
+        "text": "I set my rainbow in the cloud, and it will be a sign of a covenant between me and the earth."
+      }
+    },
+    {
       "id": "kid_wise_men_short",
       "storyNumber": 1809,
       "title": "The Wise Men and the Star",
@@ -1293,6 +1328,42 @@
       }
     },
     {
+      "id": "kid_burning_bush_long",
+      "storyNumber": 1811,
+      "title": "The Burning Bush",
+      "textFilePath": "kids/1811/story_1811_long.txt",
+      "scriptureAnchorId": "burning_bush",
+      "bibleStoryKey": "burning_bush",
+      "bibleSourceRef": "Exodus 3:1-15",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "faith"
+      ],
+      "themeTags": [
+        "Gods name",
+        "Gods call",
+        "presence of God",
+        "holiness"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 600,
+      "actualWords": 1007,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "audioFilePath": "kids/1811/audio_1811_long.mp3",
+      "reflectionAudioPath": "kids/1811/audio_1811_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Moses felt when God spoke his name?",
+      "kidSafetyNotes": "FIRST deliberate 'Yahweh' story (covenant-name anchor). Name introduced gently with context ('God gave Moses something very special - his own name... It was God's holy name'), then stops to let the mystery breathe (Adam's edit). Fear->reassurance ('I will be with you'). Part of the lane's 'God is with me / not alone' thread. One image: the bush that burns but is not burned up.",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1811/scripture_1811_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Exodus 3:14",
+        "text": "God said to Moses, “I AM WHO I AM,” and he said, “You shall tell the children of Israel this: ‘I AM has sent me to you.’”"
+      }
+    },
+    {
       "id": "kid_empty_tomb_short",
       "storyNumber": 1812,
       "title": "The Empty Tomb",
@@ -2145,7 +2216,7 @@
       "targetWords": 400,
       "actualWords": 258,
       "status": "REVIEW",
-      "narratorVoiceKey": "VOICE_JOSEPH_DREAMER",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
       "audioFilePath": "kids/1823/audio_1823_short.mp3",
       "reflectionAudioPath": "kids/1823/audio_1823_reflection.mp3",
       "reflectionText": null,
@@ -2181,8 +2252,44 @@
       "targetWords": 600,
       "actualWords": 470,
       "status": "REVIEW",
-      "narratorVoiceKey": "VOICE_JOSEPH_DREAMER",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
       "audioFilePath": "kids/1823/audio_1823_full.mp3",
+      "reflectionAudioPath": "kids/1823/audio_1823_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think it was like for Abraham to set out, not yet knowing where God was leading him?",
+      "kidSafetyNotes": "Trust before you can see: God calls Abraham to a land he can't yet see; Abraham goes. Gentle, no peril. Center = 'he did not know the way ahead, but he knew the One who was leading him.' Grounding: tents under a sky of more stars than he could count (Gen 12 call + the stars promise). Mood calm_peaceful (quiet trust on the journey). Part of the not-alone spine -- God beside him every step.",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1823/scripture_1823_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Genesis 12:2",
+        "text": "I will make of you a great nation. I will bless you and make your name great. You will be a blessing."
+      }
+    },
+    {
+      "id": "kid_abraham_call_long",
+      "storyNumber": 1823,
+      "title": "God Calls Abraham",
+      "textFilePath": "kids/1823/story_1823_long.txt",
+      "scriptureAnchorId": "genesis_12",
+      "bibleStoryKey": "abraham_call",
+      "bibleSourceRef": "Genesis 12:1-9",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "faith",
+        "hope"
+      ],
+      "themeTags": [
+        "trust",
+        "faith",
+        "Gods promise",
+        "obedience"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 600,
+      "actualWords": 1058,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "audioFilePath": "kids/1823/audio_1823_long.mp3",
       "reflectionAudioPath": "kids/1823/audio_1823_reflection.mp3",
       "reflectionText": null,
       "reflectionQuestion": "What do you think it was like for Abraham to set out, not yet knowing where God was leading him?",
@@ -2732,6 +2839,44 @@
       "status": "REVIEW",
       "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
       "audioFilePath": "kids/1831/audio_1831_full.mp3",
+      "reflectionAudioPath": "kids/1831/audio_1831_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "What do you think Zacchaeus felt when Jesus looked up into the tree and called him by name?",
+      "kidSafetyNotes": "NEW anchor (Jesus' Miracles). The JOY-side of the 'you are seen' spine -- Lost Sheep comforts the lonely, Zacchaeus DELIGHTS in the overlooked ('Jesus came to YOUR house'). Wrongdoing kept gentle: 'collecting money, took more than he should' -- NO 'tax/cheat/sinner'; lands on the joyful turnaround (gives it back), not the dishonesty. One image: Jesus stopping under the sycamore and looking up. Delight-set batch 6.",
+      "hardContentFlags": [
+        "wrongdoing_softened"
+      ],
+      "scriptureTextFilePath": "kids/1831/scripture_1831_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Luke 19:5",
+        "text": "When Jesus came to the place, he looked up and saw him, and said to him, “Zacchaeus, hurry and come down, for today I must stay at your house.”"
+      }
+    },
+    {
+      "id": "kid_zacchaeus_long",
+      "storyNumber": 1831,
+      "title": "Zacchaeus",
+      "textFilePath": "kids/1831/story_1831_long.txt",
+      "scriptureAnchorId": "luke_19_1-10",
+      "bibleStoryKey": "zacchaeus",
+      "bibleSourceRef": "Luke 19:1-10",
+      "mood": "joyful",
+      "emotionalTags": [
+        "celebration",
+        "wonder"
+      ],
+      "themeTags": [
+        "being seen",
+        "Gods love",
+        "joy",
+        "change of heart"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 600,
+      "actualWords": 1039,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1831/audio_1831_long.mp3",
       "reflectionAudioPath": "kids/1831/audio_1831_reflection.mp3",
       "reflectionText": null,
       "reflectionQuestion": "What do you think Zacchaeus felt when Jesus looked up into the tree and called him by name?",
@@ -3676,6 +3821,45 @@
       "status": "REVIEW",
       "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
       "audioFilePath": "kids/1844/audio_1844_full.mp3",
+      "reflectionAudioPath": "kids/1844/audio_1844_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Even far from home, God was always with Joseph. When you go somewhere new, what helps you feel that God is near you?",
+      "kidSafetyNotes": "NEW anchor (Joseph, core-launch finale). The HARD origin half that pairs with 1819 Joseph Forgives (the reconciliation); consistent with 1819 ('sent him far away to Egypt'). HARD CONTENT handled by the Joseph method (Adam 2026-06-18: heavy is OK, but do NOT make the brothers' cruelty vivid): the pit and the selling-for-silver are OMITTED -- softened to 'the brothers decided to send him away' with passing traders; show the brothers' JEALOUSY (a feeling) not violence. Lands hard on 'God was with Joseph' (the 1819-proven move, feedback_kid_not_alone_thread / feedback_kid_god_with_not_cause -- God stays WITH him in the hard thing, doesn't cause it) and points FORWARD to the rescue without spoiling it. Flag family_betrayal_softened. For a left-out / lonely child: jealousy + being sent away -> God-never-left routes a 'left out / far from home' kid to comfort. Indelible image = the colorful coat (and the coat-weaving / God-weaving-a-plan callback in the full). 'God' throughout, no Yahweh. VOICE_JAMES_BRITISH (reassuring father) -- steady warmth through hardship.",
+      "hardContentFlags": [
+        "family_betrayal_softened"
+      ],
+      "scriptureTextFilePath": "kids/1844/scripture_1844_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Genesis 37:3",
+        "text": "Now Israel loved Joseph more than all his children, because he was the son of his old age, and he made him a tunic of many colors."
+      }
+    },
+    {
+      "id": "kid_joseph_coat_long",
+      "storyNumber": 1844,
+      "title": "Joseph's Colorful Coat",
+      "textFilePath": "kids/1844/story_1844_long.txt",
+      "scriptureAnchorId": "genesis_37",
+      "bibleStoryKey": "genesis_37",
+      "bibleSourceRef": "Genesis 37",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "left_out",
+        "lonely",
+        "hope"
+      ],
+      "themeTags": [
+        "God is with us",
+        "Gods plan",
+        "hope in hard times",
+        "not alone"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 600,
+      "actualWords": 1065,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": "kids/1844/audio_1844_long.mp3",
       "reflectionAudioPath": "kids/1844/audio_1844_reflection.mp3",
       "reflectionText": null,
       "reflectionQuestion": "Even far from home, God was always with Joseph. When you go somewhere new, what helps you feel that God is near you?",
@@ -6645,6 +6829,44 @@
       }
     },
     {
+      "id": "kid_esther_queen_long",
+      "storyNumber": 1874,
+      "title": "Esther Becomes Queen",
+      "textFilePath": "kids/1874/story_1874_long.txt",
+      "scriptureAnchorId": "esther_2",
+      "bibleStoryKey": "esther_2",
+      "bibleSourceRef": "Esther 2",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joyful",
+        "delighted",
+        "hope",
+        "valued"
+      ],
+      "themeTags": [
+        "ordinary girl lifted up",
+        "God has a plan",
+        "kind heart",
+        "becoming queen"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 600,
+      "actualWords": 1082,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JANE_PROFESSIONAL",
+      "audioFilePath": "kids/1874/audio_1874_long.mp3",
+      "reflectionAudioPath": "kids/1874/audio_1874_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Esther was just an ordinary girl, and God had a special plan for her all along. I wonder what wonderful plans God might have for someone like you?",
+      "kidSafetyNotes": "Claims OPEN registry anchor esther_queen (Esther 2; was short-only -> now short+full). DELIBERATELY DISTINCT from 1838 Esther's Brave Choice (Esther 4-8): this is the BECOMING (ordinary orphan girl chosen -> queen), NOT the brave plea/Haman, which 1838 owns. Adam's tweak baked in: full fairy-tale register -- opens 'Once there was a girl named Esther' (NOT 'orphan living in exile'); palace, beautiful clothes, big doors, kind heart. Orphanhood named gently ('no mother or father of her own... but she was not alone'). Danger only hinted at the end as a bridge to 1838, kept light. End line per Adam: 'Nobody knew it yet... but God had a special plan for Esther... a story for another day.' VOICE_JANE_PROFESSIONAL (regal/court register, distinct from 1838's Esther voice so the pair sounds different).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1874/scripture_1874_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Esther 2:17",
+        "text": "The king loved Esther more than all the women, and she obtained favor and kindness in his sight more than all the virgins; so that he set the royal crown on her head, and made her queen instead of Vashti."
+      }
+    },
+    {
       "id": "kid_hannah_short",
       "storyNumber": 1875,
       "title": "Hannah's Prayer",
@@ -7063,6 +7285,44 @@
       }
     },
     {
+      "id": "kid_gideon_long",
+      "storyNumber": 1881,
+      "title": "Gideon's Three Hundred",
+      "textFilePath": "kids/1881/story_1881_long.txt",
+      "scriptureAnchorId": "judges_7",
+      "bibleStoryKey": "judges_7",
+      "bibleSourceRef": "Judges 7",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "amazed",
+        "reassured",
+        "hope"
+      ],
+      "themeTags": [
+        "God makes the small mighty",
+        "courage from God",
+        "you are not alone",
+        "few with God beat many"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 600,
+      "actualWords": 993,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BRADFORD",
+      "audioFilePath": "kids/1881/audio_1881_long.mp3",
+      "reflectionAudioPath": "kids/1881/audio_1881_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Gideon had only three hundred men, but God was with them, and that was enough. I wonder what feels too big for you right now, that God could help you with?",
+      "kidSafetyNotes": "NEW anchor -- second story in the new Judges category (gives it life). Phase 2 'Beloved': the smashing jars + blazing torches + trumpets are the highly-visual replay hook. WATCH-ITEM (Adam): soft on battle -- no fighting, no gore; the enemy is simply frightened/confused and 'ran away'. Frame = God makes a small, scared group brave; the victory is God's, not muscle's ('not because they were strong, but because God was with them'). Gideon himself is 'not brave at all' to start (relatable). Water-test simplified to 'God made the army smaller and smaller.' Soft close ('you'/'beside you'). VOICE_BRADFORD (strong, warm male; action/courage register).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1881/scripture_1881_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Judges 7:7",
+        "text": "Yahweh said to Gideon, “I will save you by the three hundred men who lapped, and deliver the Midianites into your hand. Let all the other people go, each to his own place.”"
+      }
+    },
+    {
       "id": "kid_great_catch_short",
       "storyNumber": 1883,
       "title": "Nets Full of Fish",
@@ -7367,6 +7627,44 @@
       }
     },
     {
+      "id": "kid_manna_long",
+      "storyNumber": 1886,
+      "title": "Bread from Heaven",
+      "textFilePath": "kids/1886/story_1886_long.txt",
+      "scriptureAnchorId": "exodus_16",
+      "bibleStoryKey": "exodus_16",
+      "bibleSourceRef": "Exodus 16",
+      "mood": "grateful",
+      "emotionalTags": [
+        "grateful",
+        "reassured",
+        "amazed",
+        "hope"
+      ],
+      "themeTags": [
+        "God provides daily",
+        "bread from heaven",
+        "do not worry about tomorrow",
+        "one day at a time"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 600,
+      "actualWords": 1087,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "audioFilePath": "kids/1886/audio_1886_long.mp3",
+      "reflectionAudioPath": "kids/1886/audio_1886_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "God sent fresh bread every single morning, just enough for that day. I wonder what good thing you could thank God for giving you today?",
+      "kidSafetyNotes": "Claims OPEN registry anchor manna (Moses & Exodus). Toward-100. The 'What is it?' naming (manna) is the kid-delight beat. WATCH-ITEM: 'gather just enough for today' framed as God providing DAY BY DAY / do-not-worry-about-tomorrow -- gentle, NOT an anti-hoarding scold. The grumbling kept light + God 'not angry' (god-with-not-cause spirit). Sky-bread wonder is the replay hook (waking to fresh frost-flakes each morning). Soft close ('time'). VOICE_DEBORAH_WISE (warm, wise; provision/gratitude register).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1886/scripture_1886_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Exodus 16:15",
+        "text": "When the children of Israel saw it, they said to one another, “What is it?” For they didn’t know what it was. Moses said to them, “It is the bread which Yahweh has given you to eat."
+      }
+    },
+    {
       "id": "kid_hidden_treasure_short",
       "storyNumber": 1887,
       "title": "The Hidden Treasure",
@@ -7545,6 +7843,44 @@
       "status": "REVIEW",
       "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
       "audioFilePath": "kids/1890/audio_1890_full.mp3",
+      "reflectionAudioPath": "kids/1890/audio_1890_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Paul and Silas sang to God even in a dark prison, and they were not alone. I wonder what song or prayer you could turn to when something feels dark or scary?",
+      "kidSafetyNotes": "NEW anchor (Early Church, Acts 16). Toward-100. WATCH-ITEM: the arrest/beating kept ABSTRACT ('some people did not like what they were saying... put into prison'); no violence dwelt on (the jailer 'washed their hurts' is the only gentle nod). The HEART = they SANG in the dark at midnight (joy/praise even in hard, scary places); the earthquake opens the doors + chains fall; they DON'T run; the jailer is kept SAFE and becomes a friend (whole family). Room = God is with you in the dark / you are never alone / you can always find a song. Ties the not-alone thread. Soft close ('song'). VOICE_REVEREND_MICHAEL_C_VINCENT (pastoral, hope-in-hard-places).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1890/scripture_1890_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Acts 16:25",
+        "text": "But about midnight Paul and Silas were praying and singing hymns to God, and the prisoners were listening to them."
+      }
+    },
+    {
+      "id": "kid_paul_silas_prison_long",
+      "storyNumber": 1890,
+      "title": "Singing in the Dark",
+      "textFilePath": "kids/1890/story_1890_long.txt",
+      "scriptureAnchorId": "acts_16",
+      "bibleStoryKey": "acts_16",
+      "bibleSourceRef": "Acts 16:16-34",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "reassured",
+        "brave",
+        "hope",
+        "joyful"
+      ],
+      "themeTags": [
+        "joy in hard places",
+        "God is with you in the dark",
+        "praise and trust",
+        "you are never alone"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 600,
+      "actualWords": 1120,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "audioFilePath": "kids/1890/audio_1890_long.mp3",
       "reflectionAudioPath": "kids/1890/audio_1890_reflection.mp3",
       "reflectionText": null,
       "reflectionQuestion": "Paul and Silas sang to God even in a dark prison, and they were not alone. I wonder what song or prayer you could turn to when something feels dark or scary?",
@@ -7773,6 +8109,44 @@
       "status": "REVIEW",
       "narratorVoiceKey": "VOICE_DEBORAH_WISE",
       "audioFilePath": "kids/1893/audio_1893_full.mp3",
+      "reflectionAudioPath": "kids/1893/audio_1893_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Deborah was wise and brave, and God went ahead of his people to keep them safe. I wonder what brave thing God might help you do, knowing he goes ahead of you?",
+      "kidSafetyNotes": "NEW anchor (Judges -- 3rd story in the category). Toward-100 + REGISTER VARIETY: a brave WOMAN (most kid courage stories are male -- David, Gideon, Samson); fills the four-registers/anti-all-comfort need. WATCH-ITEM: soft on battle -- NO fighting/gore; God sends a storm, the enemy chariots get stuck in mud, the enemy 'ran far away'. Sisera's tent-peg death is OMITTED entirely. The HEART = God gives wisdom + courage to all kinds of people (girls and women too), and 'God goes ahead of you' so you are never alone. Deborah the wise judge under her palm tree; Barak braver with her along. Ends with Deborah's song of thanks. Soft close ('way'). VOICE_DEBORAH_WISE (on-the-nose: voices Deborah herself; wise/warm female).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1893/scripture_1893_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Judges 4:14",
+        "text": "Deborah said to Barak, “Go; for this is the day in which Yahweh has delivered Sisera into your hand. Hasn’t Yahweh gone out before you?” So Barak went down from Mount Tabor, and ten thousand men after him."
+      }
+    },
+    {
+      "id": "kid_deborah_long",
+      "storyNumber": 1893,
+      "title": "Deborah, the Wise and Brave",
+      "textFilePath": "kids/1893/story_1893_long.txt",
+      "scriptureAnchorId": "judges_4",
+      "bibleStoryKey": "judges_4",
+      "bibleSourceRef": "Judges 4",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "reassured",
+        "hope",
+        "grateful"
+      ],
+      "themeTags": [
+        "God gives wisdom and courage",
+        "brave women too",
+        "God goes ahead of you",
+        "you are not alone"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 600,
+      "actualWords": 1020,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DEBORAH_WISE",
+      "audioFilePath": "kids/1893/audio_1893_long.mp3",
       "reflectionAudioPath": "kids/1893/audio_1893_reflection.mp3",
       "reflectionText": null,
       "reflectionQuestion": "Deborah was wise and brave, and God went ahead of his people to keep them safe. I wonder what brave thing God might help you do, knowing he goes ahead of you?",

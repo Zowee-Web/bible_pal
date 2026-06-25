@@ -23,9 +23,10 @@
   ],
   "lengths": [
     "short",
-    "full"
+    "full",
+    "long"
   ],
-  "longEligible": false,
+  "longEligible": true,
   "status": "REVIEW",
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
   "ttsModel": "eleven_turbo_v2_5",
@@ -51,6 +52,10 @@
       "text": "reflection_1890.txt",
       "audio": "audio_1890_reflection.mp3",
       "ttsModel": "eleven_v3"
+    },
+    "long": {
+      "storyText": "story_1890_long.txt",
+      "audio": "audio_1890_long.mp3"
     }
   },
   "scriptureTextFilePath": "kids/1890/scripture_1890_web.txt",
