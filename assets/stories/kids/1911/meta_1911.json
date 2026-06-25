@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1911,
+  "anchorId": "widow_nain",
+  "kidLane": "dedicated-4-7",
+  "title": "The Boy Given Back to His Mother",
+  "scriptureAnchorId": "luke_7_11-17",
+  "bibleSourceRef": "Luke 7:11-17",
+  "bibleStoryKey": "widow_nain",
+  "translation": "WEB",
+  "mood": "hurting",
+  "emotionalTags": [
+    "sad",
+    "crying",
+    "comforted",
+    "loved"
+  ],
+  "themeTags": [
+    "Jesus sees our tears",
+    "Jesus comes close when we cry",
+    "God's compassion",
+    "given back to be held"
+  ],
+  "lengths": [
+    "short"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Jesus saw one mother crying, and he didn't pass her by -- he came close and helped her. When you are sad, it helps to know that Jesus always sees you. What is something that comforts you when you feel like crying?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Widow of Nain, Luke 7:11-17). Mood=hurting (thin register). FEELING-FIRST: crying. Centered on JESUS' COMPASSION for one grieving mother, NOT the resurrection-miracle (Adam: 'the hug is the emotional climax, not the miracle'). Death stated once, gently. SHORT ONLY (Adam: its power is its simplicity). Indelible image: Jesus giving the boy back to his mother. Voice TBC (proposed VOICE_RUTH_COMFORT).",
+  "files": {
+    "short": {
+      "storyText": "story_1911_short.txt",
+      "audio": "audio_1911_short.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1911.txt",
+      "audio": "audio_1911_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1911/scripture_1911_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Luke 7:13",
+    "text": "When the Lord saw her, he had compassion on her and said to her, “Don’t cry.”"
+  }
+}

@@ -9641,6 +9641,462 @@
         "ref": "2 Samuel 5:10",
         "text": "David grew greater and greater, for Yahweh, the God of Armies, was with him."
       }
+    },
+    {
+      "id": "kid_moses_hands_short",
+      "storyNumber": 1909,
+      "title": "When Moses' Arms Grew Tired",
+      "textFilePath": "kids/1909/story_1909_short.txt",
+      "scriptureAnchorId": "exodus_17_8-13",
+      "bibleStoryKey": "moses_hands",
+      "bibleSourceRef": "Exodus 17:8-13",
+      "mood": "weary",
+      "emotionalTags": [
+        "weary",
+        "tired",
+        "helped",
+        "not alone"
+      ],
+      "themeTags": [
+        "God sends people to help us",
+        "you don't have to do it alone",
+        "friends hold each other up",
+        "God's strength when we are weak"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 341,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1909/audio_1909_short.mp3",
+      "reflectionAudioPath": "kids/1909/audio_1909_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Moses was too tired to hold his own arms up — so God gave him two friends to hold them for him. When you feel tired or worn out, who are the people who come and stand beside you?",
+      "kidSafetyNotes": "NEW anchor (Moses' Hands Held Up, Exodus 17:8-13 -- distinct from water_from_rock at 17:1-7). Mood=weary (thin register). FEELING-FIRST: opens on being too tired to keep going. Battle handled by SUBTRACTION (no violence, no enemy named); the story is the FRIENDS holding up Moses' arms, not the fight. Indelible image: 'one friend on the left, one friend on the right, Moses in the middle.' Teaches 'sometimes God helps us by sending people' (Adam: fits the 'held' philosophy). Voice TBC (proposed VOICE_BARNABAS_ENCOURAGER).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1909/scripture_1909_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Exodus 17:12",
+        "text": "But Moses’ hands were heavy; so they took a stone, and put it under him, and he sat on it. Aaron and Hur held up his hands, the one on the one side, and the other on the other side. His hands were steady until sunset."
+      }
+    },
+    {
+      "id": "kid_moses_hands_full",
+      "storyNumber": 1909,
+      "title": "When Moses' Arms Grew Tired",
+      "textFilePath": "kids/1909/story_1909_full.txt",
+      "scriptureAnchorId": "exodus_17_8-13",
+      "bibleStoryKey": "moses_hands",
+      "bibleSourceRef": "Exodus 17:8-13",
+      "mood": "weary",
+      "emotionalTags": [
+        "weary",
+        "tired",
+        "helped",
+        "not alone"
+      ],
+      "themeTags": [
+        "God sends people to help us",
+        "you don't have to do it alone",
+        "friends hold each other up",
+        "God's strength when we are weak"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 700,
+      "actualWords": 511,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1909/audio_1909_full.mp3",
+      "reflectionAudioPath": "kids/1909/audio_1909_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Moses was too tired to hold his own arms up — so God gave him two friends to hold them for him. When you feel tired or worn out, who are the people who come and stand beside you?",
+      "kidSafetyNotes": "NEW anchor (Moses' Hands Held Up, Exodus 17:8-13 -- distinct from water_from_rock at 17:1-7). Mood=weary (thin register). FEELING-FIRST: opens on being too tired to keep going. Battle handled by SUBTRACTION (no violence, no enemy named); the story is the FRIENDS holding up Moses' arms, not the fight. Indelible image: 'one friend on the left, one friend on the right, Moses in the middle.' Teaches 'sometimes God helps us by sending people' (Adam: fits the 'held' philosophy). Voice TBC (proposed VOICE_BARNABAS_ENCOURAGER).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1909/scripture_1909_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Exodus 17:12",
+        "text": "But Moses’ hands were heavy; so they took a stone, and put it under him, and he sat on it. Aaron and Hur held up his hands, the one on the one side, and the other on the other side. His hands were steady until sunset."
+      }
+    },
+    {
+      "id": "kid_moses_hands_long",
+      "storyNumber": 1909,
+      "title": "When Moses' Arms Grew Tired",
+      "textFilePath": "kids/1909/story_1909_long.txt",
+      "scriptureAnchorId": "exodus_17_8-13",
+      "bibleStoryKey": "moses_hands",
+      "bibleSourceRef": "Exodus 17:8-13",
+      "mood": "weary",
+      "emotionalTags": [
+        "weary",
+        "tired",
+        "helped",
+        "not alone"
+      ],
+      "themeTags": [
+        "God sends people to help us",
+        "you don't have to do it alone",
+        "friends hold each other up",
+        "God's strength when we are weak"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 759,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1909/audio_1909_long.mp3",
+      "reflectionAudioPath": "kids/1909/audio_1909_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Moses was too tired to hold his own arms up — so God gave him two friends to hold them for him. When you feel tired or worn out, who are the people who come and stand beside you?",
+      "kidSafetyNotes": "NEW anchor (Moses' Hands Held Up, Exodus 17:8-13 -- distinct from water_from_rock at 17:1-7). Mood=weary (thin register). FEELING-FIRST: opens on being too tired to keep going. Battle handled by SUBTRACTION (no violence, no enemy named); the story is the FRIENDS holding up Moses' arms, not the fight. Indelible image: 'one friend on the left, one friend on the right, Moses in the middle.' Teaches 'sometimes God helps us by sending people' (Adam: fits the 'held' philosophy). Voice TBC (proposed VOICE_BARNABAS_ENCOURAGER).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1909/scripture_1909_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Exodus 17:12",
+        "text": "But Moses’ hands were heavy; so they took a stone, and put it under him, and he sat on it. Aaron and Hur held up his hands, the one on the one side, and the other on the other side. His hands were steady until sunset."
+      }
+    },
+    {
+      "id": "kid_jacob_new_name_short",
+      "storyNumber": 1910,
+      "title": "The Night Jacob Held On",
+      "textFilePath": "kids/1910/story_1910_short.txt",
+      "scriptureAnchorId": "genesis_32_22-32",
+      "bibleStoryKey": "jacob_new_name",
+      "bibleSourceRef": "Genesis 32:22-32",
+      "mood": "anxious",
+      "emotionalTags": [
+        "afraid",
+        "alone",
+        "holding on",
+        "blessed"
+      ],
+      "themeTags": [
+        "holding on to God in the dark",
+        "God stays with us at night",
+        "God is close when we feel alone",
+        "from fear to courage"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 289,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1910/audio_1910_short.mp3",
+      "reflectionAudioPath": "kids/1910/audio_1910_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jacob was alone and afraid in the dark, but he held on to God all night long — and God stayed right there with him until morning. When the dark feels a little scary, what helps you feel safe again?",
+      "kidSafetyNotes": "NEW anchor (Jacob's New Name, Genesis 32:22-32). Mood=anxious. FEELING-FIRST: afraid + alone in the dark. EDITORIAL CHOICE (Adam-approved): told as HOLDING ON through the night, NOT wrestling/fighting. Hip-touch/limp omitted (subtraction). Indelible image: holding on until morning; new name Israel. Voice TBC (proposed VOICE_JOHN_BELOVED).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1910/scripture_1910_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Genesis 32:26",
+        "text": "The man said, “Let me go, for the day breaks.” Jacob said, “I won’t let you go unless you bless me.”"
+      }
+    },
+    {
+      "id": "kid_jacob_new_name_full",
+      "storyNumber": 1910,
+      "title": "The Night Jacob Held On",
+      "textFilePath": "kids/1910/story_1910_full.txt",
+      "scriptureAnchorId": "genesis_32_22-32",
+      "bibleStoryKey": "jacob_new_name",
+      "bibleSourceRef": "Genesis 32:22-32",
+      "mood": "anxious",
+      "emotionalTags": [
+        "afraid",
+        "alone",
+        "holding on",
+        "blessed"
+      ],
+      "themeTags": [
+        "holding on to God in the dark",
+        "God stays with us at night",
+        "God is close when we feel alone",
+        "from fear to courage"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 700,
+      "actualWords": 505,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1910/audio_1910_full.mp3",
+      "reflectionAudioPath": "kids/1910/audio_1910_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jacob was alone and afraid in the dark, but he held on to God all night long — and God stayed right there with him until morning. When the dark feels a little scary, what helps you feel safe again?",
+      "kidSafetyNotes": "NEW anchor (Jacob's New Name, Genesis 32:22-32). Mood=anxious. FEELING-FIRST: afraid + alone in the dark. EDITORIAL CHOICE (Adam-approved): told as HOLDING ON through the night, NOT wrestling/fighting. Hip-touch/limp omitted (subtraction). Indelible image: holding on until morning; new name Israel. Voice TBC (proposed VOICE_JOHN_BELOVED).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1910/scripture_1910_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Genesis 32:26",
+        "text": "The man said, “Let me go, for the day breaks.” Jacob said, “I won’t let you go unless you bless me.”"
+      }
+    },
+    {
+      "id": "kid_jacob_new_name_long",
+      "storyNumber": 1910,
+      "title": "The Night Jacob Held On",
+      "textFilePath": "kids/1910/story_1910_long.txt",
+      "scriptureAnchorId": "genesis_32_22-32",
+      "bibleStoryKey": "jacob_new_name",
+      "bibleSourceRef": "Genesis 32:22-32",
+      "mood": "anxious",
+      "emotionalTags": [
+        "afraid",
+        "alone",
+        "holding on",
+        "blessed"
+      ],
+      "themeTags": [
+        "holding on to God in the dark",
+        "God stays with us at night",
+        "God is close when we feel alone",
+        "from fear to courage"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 762,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "audioFilePath": "kids/1910/audio_1910_long.mp3",
+      "reflectionAudioPath": "kids/1910/audio_1910_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jacob was alone and afraid in the dark, but he held on to God all night long — and God stayed right there with him until morning. When the dark feels a little scary, what helps you feel safe again?",
+      "kidSafetyNotes": "NEW anchor (Jacob's New Name, Genesis 32:22-32). Mood=anxious. FEELING-FIRST: afraid + alone in the dark. EDITORIAL CHOICE (Adam-approved): told as HOLDING ON through the night, NOT wrestling/fighting. Hip-touch/limp omitted (subtraction). Indelible image: holding on until morning; new name Israel. Voice TBC (proposed VOICE_JOHN_BELOVED).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1910/scripture_1910_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Genesis 32:26",
+        "text": "The man said, “Let me go, for the day breaks.” Jacob said, “I won’t let you go unless you bless me.”"
+      }
+    },
+    {
+      "id": "kid_widow_nain_short",
+      "storyNumber": 1911,
+      "title": "The Boy Given Back to His Mother",
+      "textFilePath": "kids/1911/story_1911_short.txt",
+      "scriptureAnchorId": "luke_7_11-17",
+      "bibleStoryKey": "widow_nain",
+      "bibleSourceRef": "Luke 7:11-17",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "crying",
+        "comforted",
+        "loved"
+      ],
+      "themeTags": [
+        "Jesus sees our tears",
+        "Jesus comes close when we cry",
+        "God's compassion",
+        "given back to be held"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 282,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "audioFilePath": "kids/1911/audio_1911_short.mp3",
+      "reflectionAudioPath": "kids/1911/audio_1911_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Jesus saw one mother crying, and he didn't pass her by -- he came close and helped her. When you are sad, it helps to know that Jesus always sees you. What is something that comforts you when you feel like crying?",
+      "kidSafetyNotes": "NEW anchor (Widow of Nain, Luke 7:11-17). Mood=hurting (thin register). FEELING-FIRST: crying. Centered on JESUS' COMPASSION for one grieving mother, NOT the resurrection-miracle (Adam: 'the hug is the emotional climax, not the miracle'). Death stated once, gently. SHORT ONLY (Adam: its power is its simplicity). Indelible image: Jesus giving the boy back to his mother. Voice TBC (proposed VOICE_RUTH_COMFORT).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1911/scripture_1911_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Luke 7:13",
+        "text": "When the Lord saw her, he had compassion on her and said to her, “Don’t cry.”"
+      }
+    },
+    {
+      "id": "kid_sower_short",
+      "storyNumber": 1912,
+      "title": "The Farmer and the Seeds",
+      "textFilePath": "kids/1912/story_1912_short.txt",
+      "scriptureAnchorId": "mark_4_1-9",
+      "bibleStoryKey": "sower",
+      "bibleSourceRef": "Mark 4:1-9",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "hopeful",
+        "listening",
+        "growing"
+      ],
+      "themeTags": [
+        "a heart that listens",
+        "God's love grows in us",
+        "small beginnings, big growth",
+        "wonderful things can grow"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 254,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1912/audio_1912_short.mp3",
+      "reflectionAudioPath": "kids/1912/audio_1912_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The seeds that landed in good, soft soil grew up tall and strong and made more than the farmer ever dreamed. What do you think helps God's love grow big and strong inside a person?",
+      "kidSafetyNotes": "Claims the existing OPEN 'sower' anchor (Adam lifted the earlier defer-hold 2026-06-24). Mark 4:1-9. Mood=encouraging/wonder. Ends on the PICTURE not the explanation (Adam) -- closes with Jesus: 'A heart that listens is like good soil. Wonderful things can grow there.' Indelible image: one tiny seed -> a huge golden harvest. Voice TBC (proposed VOICE_HANNAH_HOPE).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1912/scripture_1912_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Mark 4:8",
+        "text": "Others fell into the good ground and yielded fruit, growing up and increasing. Some produced thirty times, some sixty times, and some one hundred times as much.”"
+      }
+    },
+    {
+      "id": "kid_sower_full",
+      "storyNumber": 1912,
+      "title": "The Farmer and the Seeds",
+      "textFilePath": "kids/1912/story_1912_full.txt",
+      "scriptureAnchorId": "mark_4_1-9",
+      "bibleStoryKey": "sower",
+      "bibleSourceRef": "Mark 4:1-9",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "hopeful",
+        "listening",
+        "growing"
+      ],
+      "themeTags": [
+        "a heart that listens",
+        "God's love grows in us",
+        "small beginnings, big growth",
+        "wonderful things can grow"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 700,
+      "actualWords": 506,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1912/audio_1912_full.mp3",
+      "reflectionAudioPath": "kids/1912/audio_1912_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The seeds that landed in good, soft soil grew up tall and strong and made more than the farmer ever dreamed. What do you think helps God's love grow big and strong inside a person?",
+      "kidSafetyNotes": "Claims the existing OPEN 'sower' anchor (Adam lifted the earlier defer-hold 2026-06-24). Mark 4:1-9. Mood=encouraging/wonder. Ends on the PICTURE not the explanation (Adam) -- closes with Jesus: 'A heart that listens is like good soil. Wonderful things can grow there.' Indelible image: one tiny seed -> a huge golden harvest. Voice TBC (proposed VOICE_HANNAH_HOPE).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1912/scripture_1912_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Mark 4:8",
+        "text": "Others fell into the good ground and yielded fruit, growing up and increasing. Some produced thirty times, some sixty times, and some one hundred times as much.”"
+      }
+    },
+    {
+      "id": "kid_sower_long",
+      "storyNumber": 1912,
+      "title": "The Farmer and the Seeds",
+      "textFilePath": "kids/1912/story_1912_long.txt",
+      "scriptureAnchorId": "mark_4_1-9",
+      "bibleStoryKey": "sower",
+      "bibleSourceRef": "Mark 4:1-9",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "hopeful",
+        "listening",
+        "growing"
+      ],
+      "themeTags": [
+        "a heart that listens",
+        "God's love grows in us",
+        "small beginnings, big growth",
+        "wonderful things can grow"
+      ],
+      "lengthBucket": "long",
+      "targetWords": 1000,
+      "actualWords": 754,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "audioFilePath": "kids/1912/audio_1912_long.mp3",
+      "reflectionAudioPath": "kids/1912/audio_1912_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The seeds that landed in good, soft soil grew up tall and strong and made more than the farmer ever dreamed. What do you think helps God's love grow big and strong inside a person?",
+      "kidSafetyNotes": "Claims the existing OPEN 'sower' anchor (Adam lifted the earlier defer-hold 2026-06-24). Mark 4:1-9. Mood=encouraging/wonder. Ends on the PICTURE not the explanation (Adam) -- closes with Jesus: 'A heart that listens is like good soil. Wonderful things can grow there.' Indelible image: one tiny seed -> a huge golden harvest. Voice TBC (proposed VOICE_HANNAH_HOPE).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1912/scripture_1912_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Mark 4:8",
+        "text": "Others fell into the good ground and yielded fruit, growing up and increasing. Some produced thirty times, some sixty times, and some one hundred times as much.”"
+      }
+    },
+    {
+      "id": "kid_good_shepherd_short",
+      "storyNumber": 1913,
+      "title": "The Shepherd Who Knows My Name",
+      "textFilePath": "kids/1913/story_1913_short.txt",
+      "scriptureAnchorId": "john_10_1-18",
+      "bibleStoryKey": "good_shepherd",
+      "bibleSourceRef": "John 10:1-18",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "safe",
+        "known",
+        "loved",
+        "calm"
+      ],
+      "themeTags": [
+        "God knows your name",
+        "the Good Shepherd",
+        "you are not just a face in the crowd",
+        "known and kept safe"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 303,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "audioFilePath": "kids/1913/audio_1913_short.mp3",
+      "reflectionAudioPath": "kids/1913/audio_1913_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The good shepherd knows every one of his sheep by name -- and Jesus said that's how well he knows and loves you. How does it feel to know that God knows your name?",
+      "kidSafetyNotes": "NEW anchor (Good Shepherd, John 10:1-18). Mood=calm_peaceful. FEELING-FIRST: known by name. DISTINCT from Psalm 23 / Lost Sheep -- the center is 'he knows MY name' (Adam approved keeping it). Full expands per Adam: sheepfold gate, stranger's voice, leading to pasture, standing between wolf and flock, counting home. SHORT+FULL, NO long (Adam: 'the full is exactly where it should stop'). Indelible image: hearing your own name. Voice TBC (proposed VOICE_DAVID_SHEPHERD).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1913/scripture_1913_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "John 10:14",
+        "text": "I am the good shepherd. I know my own, and I’m known by my own;"
+      }
+    },
+    {
+      "id": "kid_good_shepherd_full",
+      "storyNumber": 1913,
+      "title": "The Shepherd Who Knows My Name",
+      "textFilePath": "kids/1913/story_1913_full.txt",
+      "scriptureAnchorId": "john_10_1-18",
+      "bibleStoryKey": "good_shepherd",
+      "bibleSourceRef": "John 10:1-18",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "safe",
+        "known",
+        "loved",
+        "calm"
+      ],
+      "themeTags": [
+        "God knows your name",
+        "the Good Shepherd",
+        "you are not just a face in the crowd",
+        "known and kept safe"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 700,
+      "actualWords": 544,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "audioFilePath": "kids/1913/audio_1913_full.mp3",
+      "reflectionAudioPath": "kids/1913/audio_1913_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The good shepherd knows every one of his sheep by name -- and Jesus said that's how well he knows and loves you. How does it feel to know that God knows your name?",
+      "kidSafetyNotes": "NEW anchor (Good Shepherd, John 10:1-18). Mood=calm_peaceful. FEELING-FIRST: known by name. DISTINCT from Psalm 23 / Lost Sheep -- the center is 'he knows MY name' (Adam approved keeping it). Full expands per Adam: sheepfold gate, stranger's voice, leading to pasture, standing between wolf and flock, counting home. SHORT+FULL, NO long (Adam: 'the full is exactly where it should stop'). Indelible image: hearing your own name. Voice TBC (proposed VOICE_DAVID_SHEPHERD).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1913/scripture_1913_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "John 10:14",
+        "text": "I am the good shepherd. I know my own, and I’m known by my own;"
+      }
     }
   ]
 }

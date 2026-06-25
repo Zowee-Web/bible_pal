@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1910,
+  "anchorId": "jacob_new_name",
+  "kidLane": "dedicated-4-7",
+  "title": "The Night Jacob Held On",
+  "scriptureAnchorId": "genesis_32_22-32",
+  "bibleSourceRef": "Genesis 32:22-32",
+  "bibleStoryKey": "jacob_new_name",
+  "translation": "WEB",
+  "mood": "anxious",
+  "emotionalTags": [
+    "afraid",
+    "alone",
+    "holding on",
+    "blessed"
+  ],
+  "themeTags": [
+    "holding on to God in the dark",
+    "God stays with us at night",
+    "God is close when we feel alone",
+    "from fear to courage"
+  ],
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Jacob was alone and afraid in the dark, but he held on to God all night long — and God stayed right there with him until morning. When the dark feels a little scary, what helps you feel safe again?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Jacob's New Name, Genesis 32:22-32). Mood=anxious. FEELING-FIRST: afraid + alone in the dark. EDITORIAL CHOICE (Adam-approved): told as HOLDING ON through the night, NOT wrestling/fighting. Hip-touch/limp omitted (subtraction). Indelible image: holding on until morning; new name Israel. Voice TBC (proposed VOICE_JOHN_BELOVED).",
+  "files": {
+    "short": {
+      "storyText": "story_1910_short.txt",
+      "audio": "audio_1910_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1910_full.txt",
+      "audio": "audio_1910_full.mp3"
+    },
+    "long": {
+      "storyText": "story_1910_long.txt",
+      "audio": "audio_1910_long.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1910.txt",
+      "audio": "audio_1910_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1910/scripture_1910_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Genesis 32:26",
+    "text": "The man said, “Let me go, for the day breaks.” Jacob said, “I won’t let you go unless you bless me.”"
+  }
+}

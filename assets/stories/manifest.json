@@ -53241,6 +53241,414 @@
         "from small beginnings"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_moses_hands_short",
+      "title": "When Moses' Arms Grew Tired",
+      "mood": "weary",
+      "emotionalTags": [
+        "weary",
+        "tired",
+        "helped",
+        "not alone"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1909/audio_1909_short.mp3",
+      "textFilePath": "kids/1909/story_1909_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "short",
+      "reflectionQuestion": "Moses was too tired to hold his own arms up — so God gave him two friends to hold them for him. When you feel tired or worn out, who are the people who come and stand beside you?",
+      "bibleSourceRef": "Exodus 17:8-13",
+      "bibleStoryKey": "moses_hands",
+      "scriptureTextFilePath": "kids/1909/scripture_1909_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Exodus 17:12",
+        "text": "But Moses’ hands were heavy; so they took a stone, and put it under him, and he sat on it. Aaron and Hur held up his hands, the one on the one side, and the other on the other side. His hands were steady until sunset."
+      },
+      "themeTags": [
+        "God sends people to help us",
+        "you don't have to do it alone",
+        "friends hold each other up",
+        "God's strength when we are weak"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_moses_hands_full",
+      "title": "When Moses' Arms Grew Tired",
+      "mood": "weary",
+      "emotionalTags": [
+        "weary",
+        "tired",
+        "helped",
+        "not alone"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1909/audio_1909_full.mp3",
+      "textFilePath": "kids/1909/story_1909_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "full",
+      "reflectionQuestion": "Moses was too tired to hold his own arms up — so God gave him two friends to hold them for him. When you feel tired or worn out, who are the people who come and stand beside you?",
+      "bibleSourceRef": "Exodus 17:8-13",
+      "bibleStoryKey": "moses_hands",
+      "scriptureTextFilePath": "kids/1909/scripture_1909_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Exodus 17:12",
+        "text": "But Moses’ hands were heavy; so they took a stone, and put it under him, and he sat on it. Aaron and Hur held up his hands, the one on the one side, and the other on the other side. His hands were steady until sunset."
+      },
+      "themeTags": [
+        "God sends people to help us",
+        "you don't have to do it alone",
+        "friends hold each other up",
+        "God's strength when we are weak"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_moses_hands_long",
+      "title": "When Moses' Arms Grew Tired",
+      "mood": "weary",
+      "emotionalTags": [
+        "weary",
+        "tired",
+        "helped",
+        "not alone"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1909/audio_1909_long.mp3",
+      "textFilePath": "kids/1909/story_1909_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "storyLength": "long",
+      "reflectionQuestion": "Moses was too tired to hold his own arms up — so God gave him two friends to hold them for him. When you feel tired or worn out, who are the people who come and stand beside you?",
+      "bibleSourceRef": "Exodus 17:8-13",
+      "bibleStoryKey": "moses_hands",
+      "scriptureTextFilePath": "kids/1909/scripture_1909_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Exodus 17:12",
+        "text": "But Moses’ hands were heavy; so they took a stone, and put it under him, and he sat on it. Aaron and Hur held up his hands, the one on the one side, and the other on the other side. His hands were steady until sunset."
+      },
+      "themeTags": [
+        "God sends people to help us",
+        "you don't have to do it alone",
+        "friends hold each other up",
+        "God's strength when we are weak"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jacob_new_name_short",
+      "title": "The Night Jacob Held On",
+      "mood": "anxious",
+      "emotionalTags": [
+        "afraid",
+        "alone",
+        "holding on",
+        "blessed"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1910/audio_1910_short.mp3",
+      "textFilePath": "kids/1910/story_1910_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "short",
+      "reflectionQuestion": "Jacob was alone and afraid in the dark, but he held on to God all night long — and God stayed right there with him until morning. When the dark feels a little scary, what helps you feel safe again?",
+      "bibleSourceRef": "Genesis 32:22-32",
+      "bibleStoryKey": "jacob_new_name",
+      "scriptureTextFilePath": "kids/1910/scripture_1910_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Genesis 32:26",
+        "text": "The man said, “Let me go, for the day breaks.” Jacob said, “I won’t let you go unless you bless me.”"
+      },
+      "themeTags": [
+        "holding on to God in the dark",
+        "God stays with us at night",
+        "God is close when we feel alone",
+        "from fear to courage"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jacob_new_name_full",
+      "title": "The Night Jacob Held On",
+      "mood": "anxious",
+      "emotionalTags": [
+        "afraid",
+        "alone",
+        "holding on",
+        "blessed"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1910/audio_1910_full.mp3",
+      "textFilePath": "kids/1910/story_1910_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "full",
+      "reflectionQuestion": "Jacob was alone and afraid in the dark, but he held on to God all night long — and God stayed right there with him until morning. When the dark feels a little scary, what helps you feel safe again?",
+      "bibleSourceRef": "Genesis 32:22-32",
+      "bibleStoryKey": "jacob_new_name",
+      "scriptureTextFilePath": "kids/1910/scripture_1910_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Genesis 32:26",
+        "text": "The man said, “Let me go, for the day breaks.” Jacob said, “I won’t let you go unless you bless me.”"
+      },
+      "themeTags": [
+        "holding on to God in the dark",
+        "God stays with us at night",
+        "God is close when we feel alone",
+        "from fear to courage"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jacob_new_name_long",
+      "title": "The Night Jacob Held On",
+      "mood": "anxious",
+      "emotionalTags": [
+        "afraid",
+        "alone",
+        "holding on",
+        "blessed"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1910/audio_1910_long.mp3",
+      "textFilePath": "kids/1910/story_1910_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JOHN_BELOVED",
+      "storyLength": "long",
+      "reflectionQuestion": "Jacob was alone and afraid in the dark, but he held on to God all night long — and God stayed right there with him until morning. When the dark feels a little scary, what helps you feel safe again?",
+      "bibleSourceRef": "Genesis 32:22-32",
+      "bibleStoryKey": "jacob_new_name",
+      "scriptureTextFilePath": "kids/1910/scripture_1910_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Genesis 32:26",
+        "text": "The man said, “Let me go, for the day breaks.” Jacob said, “I won’t let you go unless you bless me.”"
+      },
+      "themeTags": [
+        "holding on to God in the dark",
+        "God stays with us at night",
+        "God is close when we feel alone",
+        "from fear to courage"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_widow_nain_short",
+      "title": "The Boy Given Back to His Mother",
+      "mood": "hurting",
+      "emotionalTags": [
+        "sad",
+        "crying",
+        "comforted",
+        "loved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1911/audio_1911_short.mp3",
+      "textFilePath": "kids/1911/story_1911_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_RUTH_COMFORT",
+      "storyLength": "short",
+      "reflectionQuestion": "Jesus saw one mother crying, and he didn't pass her by -- he came close and helped her. When you are sad, it helps to know that Jesus always sees you. What is something that comforts you when you feel like crying?",
+      "bibleSourceRef": "Luke 7:11-17",
+      "bibleStoryKey": "widow_nain",
+      "scriptureTextFilePath": "kids/1911/scripture_1911_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Luke 7:13",
+        "text": "When the Lord saw her, he had compassion on her and said to her, “Don’t cry.”"
+      },
+      "themeTags": [
+        "Jesus sees our tears",
+        "Jesus comes close when we cry",
+        "God's compassion",
+        "given back to be held"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_sower_short",
+      "title": "The Farmer and the Seeds",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "hopeful",
+        "listening",
+        "growing"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1912/audio_1912_short.mp3",
+      "textFilePath": "kids/1912/story_1912_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "short",
+      "reflectionQuestion": "The seeds that landed in good, soft soil grew up tall and strong and made more than the farmer ever dreamed. What do you think helps God's love grow big and strong inside a person?",
+      "bibleSourceRef": "Mark 4:1-9",
+      "bibleStoryKey": "sower",
+      "scriptureTextFilePath": "kids/1912/scripture_1912_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Mark 4:8",
+        "text": "Others fell into the good ground and yielded fruit, growing up and increasing. Some produced thirty times, some sixty times, and some one hundred times as much.”"
+      },
+      "themeTags": [
+        "a heart that listens",
+        "God's love grows in us",
+        "small beginnings, big growth",
+        "wonderful things can grow"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_sower_full",
+      "title": "The Farmer and the Seeds",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "hopeful",
+        "listening",
+        "growing"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1912/audio_1912_full.mp3",
+      "textFilePath": "kids/1912/story_1912_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "full",
+      "reflectionQuestion": "The seeds that landed in good, soft soil grew up tall and strong and made more than the farmer ever dreamed. What do you think helps God's love grow big and strong inside a person?",
+      "bibleSourceRef": "Mark 4:1-9",
+      "bibleStoryKey": "sower",
+      "scriptureTextFilePath": "kids/1912/scripture_1912_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Mark 4:8",
+        "text": "Others fell into the good ground and yielded fruit, growing up and increasing. Some produced thirty times, some sixty times, and some one hundred times as much.”"
+      },
+      "themeTags": [
+        "a heart that listens",
+        "God's love grows in us",
+        "small beginnings, big growth",
+        "wonderful things can grow"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_sower_long",
+      "title": "The Farmer and the Seeds",
+      "mood": "encouraging",
+      "emotionalTags": [
+        "wonder",
+        "hopeful",
+        "listening",
+        "growing"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1912/audio_1912_long.mp3",
+      "textFilePath": "kids/1912/story_1912_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_HANNAH_HOPE",
+      "storyLength": "long",
+      "reflectionQuestion": "The seeds that landed in good, soft soil grew up tall and strong and made more than the farmer ever dreamed. What do you think helps God's love grow big and strong inside a person?",
+      "bibleSourceRef": "Mark 4:1-9",
+      "bibleStoryKey": "sower",
+      "scriptureTextFilePath": "kids/1912/scripture_1912_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Mark 4:8",
+        "text": "Others fell into the good ground and yielded fruit, growing up and increasing. Some produced thirty times, some sixty times, and some one hundred times as much.”"
+      },
+      "themeTags": [
+        "a heart that listens",
+        "God's love grows in us",
+        "small beginnings, big growth",
+        "wonderful things can grow"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_good_shepherd_short",
+      "title": "The Shepherd Who Knows My Name",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "safe",
+        "known",
+        "loved",
+        "calm"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1913/audio_1913_short.mp3",
+      "textFilePath": "kids/1913/story_1913_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "short",
+      "reflectionQuestion": "The good shepherd knows every one of his sheep by name -- and Jesus said that's how well he knows and loves you. How does it feel to know that God knows your name?",
+      "bibleSourceRef": "John 10:1-18",
+      "bibleStoryKey": "good_shepherd",
+      "scriptureTextFilePath": "kids/1913/scripture_1913_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "John 10:14",
+        "text": "I am the good shepherd. I know my own, and I’m known by my own;"
+      },
+      "themeTags": [
+        "God knows your name",
+        "the Good Shepherd",
+        "you are not just a face in the crowd",
+        "known and kept safe"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_good_shepherd_full",
+      "title": "The Shepherd Who Knows My Name",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "safe",
+        "known",
+        "loved",
+        "calm"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1913/audio_1913_full.mp3",
+      "textFilePath": "kids/1913/story_1913_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "full",
+      "reflectionQuestion": "The good shepherd knows every one of his sheep by name -- and Jesus said that's how well he knows and loves you. How does it feel to know that God knows your name?",
+      "bibleSourceRef": "John 10:1-18",
+      "bibleStoryKey": "good_shepherd",
+      "scriptureTextFilePath": "kids/1913/scripture_1913_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "John 10:14",
+        "text": "I am the good shepherd. I know my own, and I’m known by my own;"
+      },
+      "themeTags": [
+        "God knows your name",
+        "the Good Shepherd",
+        "you are not just a face in the crowd",
+        "known and kept safe"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }
