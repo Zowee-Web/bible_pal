@@ -131,7 +131,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "sibling": "noah_flood",
           "launch": true,
@@ -152,7 +153,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": true,
           "productionId": 1823,
@@ -287,7 +289,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": true,
           "productionId": 1844,
@@ -374,7 +377,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": true,
           "productionId": 1811,
@@ -421,7 +425,8 @@
           "tier": "secondary",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": true,
           "productionId": 1886,
@@ -590,7 +595,8 @@
           "tier": "secondary",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "manifestAnchorIds": [
             "judges_7"
@@ -606,7 +612,8 @@
           "tier": "secondary",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "manifestAnchorIds": [
             "judges_4"
@@ -1050,7 +1057,8 @@
           "tier": "secondary",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": true,
           "manifestAnchorIds": [
@@ -1349,7 +1357,8 @@
           "tier": "core",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "launch": true,
           "productionId": 1831,
@@ -1878,7 +1887,8 @@
           "tier": "secondary",
           "targetLengths": [
             "short",
-            "full"
+            "full",
+            "long"
           ],
           "manifestAnchorIds": [
             "acts_16"

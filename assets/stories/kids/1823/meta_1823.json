@@ -21,9 +21,10 @@
   ],
   "lengths": [
     "short",
-    "full"
+    "full",
+    "long"
   ],
-  "longEligible": false,
+  "longEligible": true,
   "status": "REVIEW",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
   "ttsModel": "eleven_turbo_v2_5",
@@ -49,6 +50,10 @@
       "text": "reflection_1823.txt",
       "audio": "audio_1823_reflection.mp3",
       "ttsModel": "eleven_v3"
+    },
+    "long": {
+      "storyText": "story_1823_long.txt",
+      "audio": "audio_1823_long.mp3"
     }
   },
   "scriptureTextFilePath": "kids/1823/scripture_1823_web.txt",

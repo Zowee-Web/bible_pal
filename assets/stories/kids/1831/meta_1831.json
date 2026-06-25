@@ -21,9 +21,10 @@
   ],
   "lengths": [
     "short",
-    "full"
+    "full",
+    "long"
   ],
-  "longEligible": false,
+  "longEligible": true,
   "status": "REVIEW",
   "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
   "ttsModel": "eleven_turbo_v2_5",
@@ -51,6 +52,10 @@
       "text": "reflection_1831.txt",
       "audio": "audio_1831_reflection.mp3",
       "ttsModel": "eleven_v3"
+    },
+    "long": {
+      "storyText": "story_1831_long.txt",
+      "audio": "audio_1831_long.mp3"
     }
   },
   "scriptureTextFilePath": "kids/1831/scripture_1831_web.txt",
