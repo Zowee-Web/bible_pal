@@ -189,6 +189,36 @@
           "manifestAnchorIds": [
             "genesis_18-21"
           ]
+        },
+        {
+          "anchorId": "hagar_sees",
+          "displayName": "The God Who Sees Me",
+          "scriptureRef": "Genesis 21:8-21",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": false,
+          "productionId": 1915,
+          "manifestAnchorIds": [
+            "genesis_21_8-21"
+          ]
+        },
+        {
+          "anchorId": "isaac_rebekah",
+          "displayName": "The Girl at the Well",
+          "scriptureRef": "Genesis 24",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": false,
+          "productionId": 1918,
+          "manifestAnchorIds": [
+            "genesis_24"
+          ]
         }
       ]
     },
@@ -516,6 +546,21 @@
           "launch": true,
           "productionId": 1899,
           "longEligible": false
+        },
+        {
+          "anchorId": "rahab",
+          "displayName": "The Red Cord in the Window",
+          "scriptureRef": "Joshua 2",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": false,
+          "productionId": 1917,
+          "manifestAnchorIds": [
+            "joshua_2"
+          ]
         }
       ]
     },
@@ -890,6 +935,22 @@
           "launch": true,
           "productionId": 1904,
           "longEligible": false
+        },
+        {
+          "anchorId": "elisha_invisible_army",
+          "displayName": "The Hills Full of Fire",
+          "scriptureRef": "2 Kings 6:8-23",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full",
+            "long"
+          ],
+          "launch": false,
+          "productionId": 1914,
+          "manifestAnchorIds": [
+            "2_kings_6_8-23"
+          ]
         }
       ]
     },
@@ -1998,6 +2059,27 @@
           "productionId": 1867,
           "manifestAnchorIds": [
             "matthew_6_25-34"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Kings of Judah",
+      "anchors": [
+        {
+          "anchorId": "jehoshaphat_sings",
+          "displayName": "The Army That Sang",
+          "scriptureRef": "2 Chronicles 20",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full",
+            "long"
+          ],
+          "launch": false,
+          "productionId": 1916,
+          "manifestAnchorIds": [
+            "2_chronicles_20"
           ]
         }
       ]

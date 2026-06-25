@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1916,
+  "anchorId": "jehoshaphat_sings",
+  "kidLane": "dedicated-4-7",
+  "title": "The Army That Sang",
+  "scriptureAnchorId": "2_chronicles_20",
+  "bibleSourceRef": "2 Chronicles 20",
+  "bibleStoryKey": "jehoshaphat_sings",
+  "translation": "WEB",
+  "mood": "anxious",
+  "emotionalTags": [
+    "afraid",
+    "trusting",
+    "brave",
+    "joyful"
+  ],
+  "themeTags": [
+    "the battle is God's",
+    "trust instead of fear",
+    "praise in hard times",
+    "God fights for us"
+  ],
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "When a scary, too-big thing was coming, God's people didn't fight — they trusted God and sang. When something feels too big for you, what is a song or a thought that helps you feel brave?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Jehoshaphat / Win by Singing, 2 Chronicles 20). Mood=anxious (thin) -> brave/joy. FEELING-FIRST: something too big and scary is coming. Arc Adam loved: fear -> prayer -> trust -> singing -> joy. Battle by SUBTRACTION (God 'took care of the army,' danger 'simply gone' -- no violence). Image: an army marching out SINGING, not fighting. Adam trim: only one 'the battle is not yours' so it lands. Voice TBC (proposed VOICE_ARCHER).",
+  "files": {
+    "short": {
+      "storyText": "story_1916_short.txt",
+      "audio": "audio_1916_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1916_full.txt",
+      "audio": "audio_1916_full.mp3"
+    },
+    "long": {
+      "storyText": "story_1916_long.txt",
+      "audio": "audio_1916_long.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1916.txt",
+      "audio": "audio_1916_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1916/scripture_1916_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "2 Chronicles 20:15",
+    "text": "and he said, “Listen, all Judah, and you inhabitants of Jerusalem, and you, King Jehoshaphat. Yahweh says to you, ‘Don’t be afraid, and don’t be dismayed because of this great multitude; for the battle is not yours, but God’s."
+  }
+}

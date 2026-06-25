@@ -53649,6 +53649,414 @@
         "known and kept safe"
       ],
       "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_elisha_invisible_army_short",
+      "title": "The Hills Full of Fire",
+      "mood": "anxious",
+      "emotionalTags": [
+        "afraid",
+        "surrounded",
+        "safe",
+        "not alone"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1914/audio_1914_short.mp3",
+      "textFilePath": "kids/1914/story_1914_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "storyLength": "short",
+      "reflectionQuestion": "Elisha and his helper were surrounded by something scary — but God was with them the whole time, even when they couldn't see it. When you feel afraid, what helps you remember that God is near?",
+      "bibleSourceRef": "2 Kings 6:8-23",
+      "bibleStoryKey": "elisha_invisible_army",
+      "scriptureTextFilePath": "kids/1914/scripture_1914_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "2 Kings 6:16",
+        "text": "He answered, “Don’t be afraid, for those who are with us are more than those who are with them.”"
+      },
+      "themeTags": [
+        "God is with us even when we can't see",
+        "God's protection all around",
+        "do not be afraid",
+        "God is bigger than what scares us"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_elisha_invisible_army_full",
+      "title": "The Hills Full of Fire",
+      "mood": "anxious",
+      "emotionalTags": [
+        "afraid",
+        "surrounded",
+        "safe",
+        "not alone"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1914/audio_1914_full.mp3",
+      "textFilePath": "kids/1914/story_1914_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "storyLength": "full",
+      "reflectionQuestion": "Elisha and his helper were surrounded by something scary — but God was with them the whole time, even when they couldn't see it. When you feel afraid, what helps you remember that God is near?",
+      "bibleSourceRef": "2 Kings 6:8-23",
+      "bibleStoryKey": "elisha_invisible_army",
+      "scriptureTextFilePath": "kids/1914/scripture_1914_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "2 Kings 6:16",
+        "text": "He answered, “Don’t be afraid, for those who are with us are more than those who are with them.”"
+      },
+      "themeTags": [
+        "God is with us even when we can't see",
+        "God's protection all around",
+        "do not be afraid",
+        "God is bigger than what scares us"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_elisha_invisible_army_long",
+      "title": "The Hills Full of Fire",
+      "mood": "anxious",
+      "emotionalTags": [
+        "afraid",
+        "surrounded",
+        "safe",
+        "not alone"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1914/audio_1914_long.mp3",
+      "textFilePath": "kids/1914/story_1914_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "storyLength": "long",
+      "reflectionQuestion": "Elisha and his helper were surrounded by something scary — but God was with them the whole time, even when they couldn't see it. When you feel afraid, what helps you remember that God is near?",
+      "bibleSourceRef": "2 Kings 6:8-23",
+      "bibleStoryKey": "elisha_invisible_army",
+      "scriptureTextFilePath": "kids/1914/scripture_1914_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "2 Kings 6:16",
+        "text": "He answered, “Don’t be afraid, for those who are with us are more than those who are with them.”"
+      },
+      "themeTags": [
+        "God is with us even when we can't see",
+        "God's protection all around",
+        "do not be afraid",
+        "God is bigger than what scares us"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_hagar_sees_short",
+      "title": "The God Who Sees Me",
+      "mood": "hurting",
+      "emotionalTags": [
+        "lonely",
+        "sad",
+        "seen",
+        "comforted"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1915/audio_1915_short.mp3",
+      "textFilePath": "kids/1915/story_1915_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARABELLA",
+      "storyLength": "short",
+      "reflectionQuestion": "Hagar felt all alone in the desert — but God saw her, and heard her, and gave her just what she needed. When you feel lonely, who helps you remember that God sees you too?",
+      "bibleSourceRef": "Genesis 21:8-21",
+      "bibleStoryKey": "hagar_sees",
+      "scriptureTextFilePath": "kids/1915/scripture_1915_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Genesis 21:19",
+        "text": "God opened her eyes, and she saw a well of water. She went, filled the container with water, and gave the boy a drink."
+      },
+      "themeTags": [
+        "God sees me",
+        "God hears our tears",
+        "you are not alone",
+        "God meets us in the hard place"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_hagar_sees_full",
+      "title": "The God Who Sees Me",
+      "mood": "hurting",
+      "emotionalTags": [
+        "lonely",
+        "sad",
+        "seen",
+        "comforted"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1915/audio_1915_full.mp3",
+      "textFilePath": "kids/1915/story_1915_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARABELLA",
+      "storyLength": "full",
+      "reflectionQuestion": "Hagar felt all alone in the desert — but God saw her, and heard her, and gave her just what she needed. When you feel lonely, who helps you remember that God sees you too?",
+      "bibleSourceRef": "Genesis 21:8-21",
+      "bibleStoryKey": "hagar_sees",
+      "scriptureTextFilePath": "kids/1915/scripture_1915_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Genesis 21:19",
+        "text": "God opened her eyes, and she saw a well of water. She went, filled the container with water, and gave the boy a drink."
+      },
+      "themeTags": [
+        "God sees me",
+        "God hears our tears",
+        "you are not alone",
+        "God meets us in the hard place"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jehoshaphat_sings_short",
+      "title": "The Army That Sang",
+      "mood": "anxious",
+      "emotionalTags": [
+        "afraid",
+        "trusting",
+        "brave",
+        "joyful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1916/audio_1916_short.mp3",
+      "textFilePath": "kids/1916/story_1916_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "storyLength": "short",
+      "reflectionQuestion": "When a scary, too-big thing was coming, God's people didn't fight — they trusted God and sang. When something feels too big for you, what is a song or a thought that helps you feel brave?",
+      "bibleSourceRef": "2 Chronicles 20",
+      "bibleStoryKey": "jehoshaphat_sings",
+      "scriptureTextFilePath": "kids/1916/scripture_1916_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "2 Chronicles 20:15",
+        "text": "and he said, “Listen, all Judah, and you inhabitants of Jerusalem, and you, King Jehoshaphat. Yahweh says to you, ‘Don’t be afraid, and don’t be dismayed because of this great multitude; for the battle is not yours, but God’s."
+      },
+      "themeTags": [
+        "the battle is God's",
+        "trust instead of fear",
+        "praise in hard times",
+        "God fights for us"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jehoshaphat_sings_full",
+      "title": "The Army That Sang",
+      "mood": "anxious",
+      "emotionalTags": [
+        "afraid",
+        "trusting",
+        "brave",
+        "joyful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1916/audio_1916_full.mp3",
+      "textFilePath": "kids/1916/story_1916_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "storyLength": "full",
+      "reflectionQuestion": "When a scary, too-big thing was coming, God's people didn't fight — they trusted God and sang. When something feels too big for you, what is a song or a thought that helps you feel brave?",
+      "bibleSourceRef": "2 Chronicles 20",
+      "bibleStoryKey": "jehoshaphat_sings",
+      "scriptureTextFilePath": "kids/1916/scripture_1916_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "2 Chronicles 20:15",
+        "text": "and he said, “Listen, all Judah, and you inhabitants of Jerusalem, and you, King Jehoshaphat. Yahweh says to you, ‘Don’t be afraid, and don’t be dismayed because of this great multitude; for the battle is not yours, but God’s."
+      },
+      "themeTags": [
+        "the battle is God's",
+        "trust instead of fear",
+        "praise in hard times",
+        "God fights for us"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_jehoshaphat_sings_long",
+      "title": "The Army That Sang",
+      "mood": "anxious",
+      "emotionalTags": [
+        "afraid",
+        "trusting",
+        "brave",
+        "joyful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1916/audio_1916_long.mp3",
+      "textFilePath": "kids/1916/story_1916_long.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "storyLength": "long",
+      "reflectionQuestion": "When a scary, too-big thing was coming, God's people didn't fight — they trusted God and sang. When something feels too big for you, what is a song or a thought that helps you feel brave?",
+      "bibleSourceRef": "2 Chronicles 20",
+      "bibleStoryKey": "jehoshaphat_sings",
+      "scriptureTextFilePath": "kids/1916/scripture_1916_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "2 Chronicles 20:15",
+        "text": "and he said, “Listen, all Judah, and you inhabitants of Jerusalem, and you, King Jehoshaphat. Yahweh says to you, ‘Don’t be afraid, and don’t be dismayed because of this great multitude; for the battle is not yours, but God’s."
+      },
+      "themeTags": [
+        "the battle is God's",
+        "trust instead of fear",
+        "praise in hard times",
+        "God fights for us"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_rahab_short",
+      "title": "The Red Cord in the Window",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "loving",
+        "trusting",
+        "safe"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1917/audio_1917_short.mp3",
+      "textFilePath": "kids/1917/story_1917_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "storyLength": "short",
+      "reflectionQuestion": "Rahab was brave, and she trusted the promise of the red cord — and God kept her whole family safe. When have you had to be brave and trust that everything would be okay?",
+      "bibleSourceRef": "Joshua 2",
+      "bibleStoryKey": "rahab",
+      "scriptureTextFilePath": "kids/1917/scripture_1917_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Joshua 2:18",
+        "text": "Behold, when we come into the land, tie this line of scarlet thread in the window which you used to let us down. Gather to yourself into the house your father, your mother, your brothers, and all your father’s household."
+      },
+      "themeTags": [
+        "being brave to help",
+        "trusting God's promise",
+        "keeping family safe",
+        "the red cord"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_rahab_full",
+      "title": "The Red Cord in the Window",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "brave",
+        "loving",
+        "trusting",
+        "safe"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1917/audio_1917_full.mp3",
+      "textFilePath": "kids/1917/story_1917_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_ESTHER_BRAVE",
+      "storyLength": "full",
+      "reflectionQuestion": "Rahab was brave, and she trusted the promise of the red cord — and God kept her whole family safe. When have you had to be brave and trust that everything would be okay?",
+      "bibleSourceRef": "Joshua 2",
+      "bibleStoryKey": "rahab",
+      "scriptureTextFilePath": "kids/1917/scripture_1917_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Joshua 2:18",
+        "text": "Behold, when we come into the land, tie this line of scarlet thread in the window which you used to let us down. Gather to yourself into the house your father, your mother, your brothers, and all your father’s household."
+      },
+      "themeTags": [
+        "being brave to help",
+        "trusting God's promise",
+        "keeping family safe",
+        "the red cord"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_isaac_rebekah_short",
+      "title": "The Girl at the Well",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hopeful",
+        "kind",
+        "wondering",
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1918/audio_1918_short.mp3",
+      "textFilePath": "kids/1918/story_1918_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "short",
+      "reflectionQuestion": "The servant prayed for help, and God answered by leading him to a kind girl named Rebekah at the well. What is something you could pray to God about, and then watch to see how he answers?",
+      "bibleSourceRef": "Genesis 24",
+      "bibleStoryKey": "isaac_rebekah",
+      "scriptureTextFilePath": "kids/1918/scripture_1918_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Genesis 24:27",
+        "text": "He said, “Blessed be Yahweh, the God of my master Abraham, who has not forsaken his loving kindness and his truth toward my master. As for me, Yahweh has led me on the way to the house of my master’s relatives.”"
+      },
+      "themeTags": [
+        "God guides us",
+        "God answers prayer",
+        "a kind and willing heart",
+        "God leads the way"
+      ],
+      "kidLane": "dedicated-4-9"
+    },
+    {
+      "storyId": "kidstory_kid_isaac_rebekah_full",
+      "title": "The Girl at the Well",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "hopeful",
+        "kind",
+        "wondering",
+        "grateful"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": true,
+      "audioFilePath": "kids/1918/audio_1918_full.mp3",
+      "textFilePath": "kids/1918/story_1918_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "full",
+      "reflectionQuestion": "The servant prayed for help, and God answered by leading him to a kind girl named Rebekah at the well. What is something you could pray to God about, and then watch to see how he answers?",
+      "bibleSourceRef": "Genesis 24",
+      "bibleStoryKey": "isaac_rebekah",
+      "scriptureTextFilePath": "kids/1918/scripture_1918_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Genesis 24:27",
+        "text": "He said, “Blessed be Yahweh, the God of my master Abraham, who has not forsaken his loving kindness and his truth toward my master. As for me, Yahweh has led me on the way to the house of my master’s relatives.”"
+      },
+      "themeTags": [
+        "God guides us",
+        "God answers prayer",
+        "a kind and willing heart",
+        "God leads the way"
+      ],
+      "kidLane": "dedicated-4-9"
     }
   ]
 }

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1915,
+  "anchorId": "hagar_sees",
+  "kidLane": "dedicated-4-7",
+  "title": "The God Who Sees Me",
+  "scriptureAnchorId": "genesis_21_8-21",
+  "bibleSourceRef": "Genesis 21:8-21",
+  "bibleStoryKey": "hagar_sees",
+  "translation": "WEB",
+  "mood": "hurting",
+  "emotionalTags": [
+    "lonely",
+    "sad",
+    "seen",
+    "comforted"
+  ],
+  "themeTags": [
+    "God sees me",
+    "God hears our tears",
+    "you are not alone",
+    "God meets us in the hard place"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Hagar felt all alone in the desert — but God saw her, and heard her, and gave her just what she needed. When you feel lonely, who helps you remember that God sees you too?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Hagar, Genesis 21:8-21). Mood=hurting (thin). FEELING-FIRST: alone, forgotten. Despair handled LIGHTLY (Adam) -- no dwelling on the dying; focus on God hearing + the well. Image: the WELL. Ends ON the well image (Adam): 'God helps us see the well that was there all along' (Gen 21 = God opens her eyes to a well that is there, NOT 'prepared it beforehand'). The Gen-16 naming ('God who sees me') removed from the body; title keeps it. SHORT+FULL only (Adam: don't stretch). Voice TBC (proposed VOICE_ARABELLA).",
+  "files": {
+    "short": {
+      "storyText": "story_1915_short.txt",
+      "audio": "audio_1915_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1915_full.txt",
+      "audio": "audio_1915_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1915.txt",
+      "audio": "audio_1915_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1915/scripture_1915_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Genesis 21:19",
+    "text": "God opened her eyes, and she saw a well of water. She went, filled the container with water, and gave the boy a drink."
+  }
+}
