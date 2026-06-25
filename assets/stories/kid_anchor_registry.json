@@ -228,6 +228,22 @@
           "launch": true,
           "productionId": 1902,
           "longEligible": true
+        },
+        {
+          "anchorId": "jacob_new_name",
+          "displayName": "Jacob's New Name",
+          "scriptureRef": "Genesis 32:22-32",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full",
+            "long"
+          ],
+          "launch": false,
+          "productionId": 1910,
+          "manifestAnchorIds": [
+            "genesis_32_22-32"
+          ]
         }
       ]
     },
@@ -430,6 +446,22 @@
           "launch": true,
           "productionId": 1892,
           "longEligible": false
+        },
+        {
+          "anchorId": "moses_hands",
+          "displayName": "Moses' Hands Held Up",
+          "scriptureRef": "Exodus 17:8-13",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full",
+            "long"
+          ],
+          "launch": false,
+          "productionId": 1909,
+          "manifestAnchorIds": [
+            "exodus_17_8-13"
+          ]
         }
       ]
     },
@@ -1360,6 +1392,20 @@
           "launch": true,
           "productionId": 1883,
           "longEligible": false
+        },
+        {
+          "anchorId": "widow_nain",
+          "displayName": "Widow of Nain",
+          "scriptureRef": "Luke 7:11-17",
+          "tier": "secondary",
+          "targetLengths": [
+            "short"
+          ],
+          "launch": false,
+          "productionId": 1911,
+          "manifestAnchorIds": [
+            "luke_7_11-17"
+          ]
         }
       ]
     },
@@ -1430,12 +1476,18 @@
         {
           "anchorId": "sower",
           "displayName": "The Farmer and the Seeds",
-          "scriptureRef": "Mark 4:1-20",
+          "scriptureRef": "Mark 4:1-9",
           "tier": "secondary",
           "targetLengths": [
-            "short"
+            "short",
+            "full",
+            "long"
           ],
-          "launch": true
+          "launch": true,
+          "productionId": 1912,
+          "manifestAnchorIds": [
+            "mark_4_1-9"
+          ]
         },
         {
           "anchorId": "two_builders",
@@ -1514,6 +1566,21 @@
           "launch": true,
           "productionId": 1905,
           "longEligible": false
+        },
+        {
+          "anchorId": "good_shepherd",
+          "displayName": "The Good Shepherd",
+          "scriptureRef": "John 10:1-18",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": false,
+          "productionId": 1913,
+          "manifestAnchorIds": [
+            "john_10_1-18"
+          ]
         }
       ]
     },

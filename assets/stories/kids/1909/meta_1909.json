@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1909,
+  "anchorId": "moses_hands",
+  "kidLane": "dedicated-4-7",
+  "title": "When Moses' Arms Grew Tired",
+  "scriptureAnchorId": "exodus_17_8-13",
+  "bibleSourceRef": "Exodus 17:8-13",
+  "bibleStoryKey": "moses_hands",
+  "translation": "WEB",
+  "mood": "weary",
+  "emotionalTags": [
+    "weary",
+    "tired",
+    "helped",
+    "not alone"
+  ],
+  "themeTags": [
+    "God sends people to help us",
+    "you don't have to do it alone",
+    "friends hold each other up",
+    "God's strength when we are weak"
+  ],
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Moses was too tired to hold his own arms up -- so God gave him two friends to hold them for him. When you feel tired or worn out, who are the people who help hold you up?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Moses' Hands Held Up, Exodus 17:8-13 -- distinct from water_from_rock at 17:1-7). Mood=weary (thin register). FEELING-FIRST: opens on being too tired to keep going. Battle handled by SUBTRACTION (no violence, no enemy named); the story is the FRIENDS holding up Moses' arms, not the fight. Indelible image: 'one friend on the left, one friend on the right, Moses in the middle.' Teaches 'sometimes God helps us by sending people' (Adam: fits the 'held' philosophy). Voice TBC (proposed VOICE_BARNABAS_ENCOURAGER).",
+  "files": {
+    "short": {
+      "storyText": "story_1909_short.txt",
+      "audio": "audio_1909_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1909_full.txt",
+      "audio": "audio_1909_full.mp3"
+    },
+    "long": {
+      "storyText": "story_1909_long.txt",
+      "audio": "audio_1909_long.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1909.txt",
+      "audio": "audio_1909_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1909/scripture_1909_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Exodus 17:12",
+    "text": "But Moses’ hands were heavy; so they took a stone, and put it under him, and he sat on it. Aaron and Hur held up his hands, the one on the one side, and the other on the other side. His hands were steady until sunset."
+  }
+}

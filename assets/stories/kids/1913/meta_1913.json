@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1913,
+  "anchorId": "good_shepherd",
+  "kidLane": "dedicated-4-7",
+  "title": "The Shepherd Who Knows My Name",
+  "scriptureAnchorId": "john_10_1-18",
+  "bibleSourceRef": "John 10:1-18",
+  "bibleStoryKey": "good_shepherd",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "safe",
+    "known",
+    "loved",
+    "calm"
+  ],
+  "themeTags": [
+    "God knows your name",
+    "the Good Shepherd",
+    "you are not just a face in the crowd",
+    "known and kept safe"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "The good shepherd knows every one of his sheep by name -- and Jesus said that's how well he knows and loves you. How does it feel to know that God knows your name?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Good Shepherd, John 10:1-18). Mood=calm_peaceful. FEELING-FIRST: known by name. DISTINCT from Psalm 23 / Lost Sheep -- the center is 'he knows MY name' (Adam approved keeping it). Full expands per Adam: sheepfold gate, stranger's voice, leading to pasture, standing between wolf and flock, counting home. SHORT+FULL, NO long (Adam: 'the full is exactly where it should stop'). Indelible image: hearing your own name. Voice TBC (proposed VOICE_DAVID_SHEPHERD).",
+  "files": {
+    "short": {
+      "storyText": "story_1913_short.txt",
+      "audio": "audio_1913_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1913_full.txt",
+      "audio": "audio_1913_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1913.txt",
+      "audio": "audio_1913_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1913/scripture_1913_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "John 10:14",
+    "text": "I am the good shepherd. I know my own, and I’m known by my own;"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1912,
+  "anchorId": "sower",
+  "kidLane": "dedicated-4-7",
+  "title": "The Farmer and the Seeds",
+  "scriptureAnchorId": "mark_4_1-9",
+  "bibleSourceRef": "Mark 4:1-9",
+  "bibleStoryKey": "sower",
+  "translation": "WEB",
+  "mood": "encouraging",
+  "emotionalTags": [
+    "wonder",
+    "hopeful",
+    "listening",
+    "growing"
+  ],
+  "themeTags": [
+    "a heart that listens",
+    "God's love grows in us",
+    "small beginnings, big growth",
+    "wonderful things can grow"
+  ],
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "The seeds that landed in good, soft soil grew up tall and strong and made more than the farmer ever dreamed. What do you think helps God's love grow big and strong inside a person?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "Claims the existing OPEN 'sower' anchor (Adam lifted the earlier defer-hold 2026-06-24). Mark 4:1-9. Mood=encouraging/wonder. Ends on the PICTURE not the explanation (Adam) -- closes with Jesus: 'A heart that listens is like good soil. Wonderful things can grow there.' Indelible image: one tiny seed -> a huge golden harvest. Voice TBC (proposed VOICE_HANNAH_HOPE).",
+  "files": {
+    "short": {
+      "storyText": "story_1912_short.txt",
+      "audio": "audio_1912_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1912_full.txt",
+      "audio": "audio_1912_full.mp3"
+    },
+    "long": {
+      "storyText": "story_1912_long.txt",
+      "audio": "audio_1912_long.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1912.txt",
+      "audio": "audio_1912_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1912/scripture_1912_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Mark 4:8",
+    "text": "Others fell into the good ground and yielded fruit, growing up and increasing. Some produced thirty times, some sixty times, and some one hundred times as much.”"
+  }
+}
