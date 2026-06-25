@@ -787,6 +787,21 @@
           "manifestAnchorIds": [
             "2_samuel_9"
           ]
+        },
+        {
+          "anchorId": "david_dances_ark",
+          "displayName": "The Day the King Danced",
+          "scriptureRef": "2 Samuel 6:12-15",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": false,
+          "productionId": 1920,
+          "manifestAnchorIds": [
+            "2_samuel_6_12-15"
+          ]
         }
       ]
     },
@@ -825,6 +840,21 @@
           "launch": true,
           "productionId": 1896,
           "longEligible": true
+        },
+        {
+          "anchorId": "queen_of_sheba",
+          "displayName": "The Queen Who Came to See",
+          "scriptureRef": "1 Kings 10:1-9",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": false,
+          "productionId": 1921,
+          "manifestAnchorIds": [
+            "1_kings_10_1-9"
+          ]
         }
       ]
     },
@@ -2090,6 +2120,26 @@
           "productionId": 1916,
           "manifestAnchorIds": [
             "2_chronicles_20"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Nehemiah",
+      "anchors": [
+        {
+          "anchorId": "nehemiah_wall",
+          "displayName": "Nehemiah Builds the Wall",
+          "scriptureRef": "Nehemiah 2:17-20",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": false,
+          "productionId": 1919,
+          "manifestAnchorIds": [
+            "nehemiah_2_17-20"
           ]
         }
       ]

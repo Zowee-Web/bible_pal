@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1921,
+  "anchorId": "queen_of_sheba",
+  "kidLane": "dedicated-4-7",
+  "title": "The Queen Who Came to See",
+  "scriptureAnchorId": "1_kings_10_1-9",
+  "bibleSourceRef": "1 Kings 10:1-9",
+  "bibleStoryKey": "queen_of_sheba",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "wonder",
+    "curious",
+    "amazed",
+    "grateful"
+  ],
+  "themeTags": [
+    "wonder",
+    "seeking God",
+    "Gods wisdom",
+    "discovery"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JANE_PROFESSIONAL",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "The queen traveled a long, long way just to see for herself, and found it was even better than the stories. I wonder what you would most love to go and see for yourself?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Queen of Sheba, 1 Kings 10:1-13). Register=WONDER ('come and see for yourself -- it's even better than the stories'); mood=joyful + 'wonder' tag (matches 1809 Wise Men / 1830 Water into Wine pattern). Feeling-first open (curiosity: is it really true?). No subtraction needed; gold/wealth NOT moralized -- the wonder is the point. One image: the caravan of camels crossing the desert to see if it's true. SHORT ending edited (Adam) to land on God. Voice VOICE_JANE_PROFESSIONAL (confident/regal -- she's a queen).",
+  "files": {
+    "short": {
+      "storyText": "story_1921_short.txt",
+      "audio": "audio_1921_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1921_full.txt",
+      "audio": "audio_1921_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1921.txt",
+      "audio": "audio_1921_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1921/scripture_1921_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "1 Kings 10:7",
+    "text": "However, I didn’t believe the words until I came and my eyes had seen it. Behold, not even half was told me! Your wisdom and prosperity exceed the fame which I heard."
+  }
+}

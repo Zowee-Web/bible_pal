@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1920,
+  "anchorId": "david_dances_ark",
+  "kidLane": "dedicated-4-7",
+  "title": "The Day the King Danced",
+  "scriptureAnchorId": "2_samuel_6_12-15",
+  "bibleSourceRef": "2 Samuel 6:12-15",
+  "bibleStoryKey": "david_dances_ark",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "joyful",
+    "thankful",
+    "celebrating",
+    "free"
+  ],
+  "themeTags": [
+    "celebrating God",
+    "joy",
+    "worship",
+    "gratitude"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "David was so glad and so thankful that he danced down the road with all his might. I wonder what makes your heart so happy that you want to sing or dance?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (David dances before the Ark, 2 Sam 6). Register=JOY (fills the lane's joy/celebration gap). Feeling-first open (so glad you can't hold still). SUBTRACTION: Uzzah ENTIRELY absent (no death); Michal ENTIRELY absent (no contempt) -- scripture extract bounded to 6:12-15 to match. One image: a king dancing in the dust like a child. Ending lets joy simply EXIST (non-moralizing, per ending-shape-variety) + God loves a happy heart. 'God' in prose (key verse WEB reads 'Yahweh' -- raw scripture, fine). Voice VOICE_BARNABAS_ENCOURAGER (uplifting/joyful).",
+  "files": {
+    "short": {
+      "storyText": "story_1920_short.txt",
+      "audio": "audio_1920_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1920_full.txt",
+      "audio": "audio_1920_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1920.txt",
+      "audio": "audio_1920_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1920/scripture_1920_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "2 Samuel 6:14",
+    "text": "David danced before Yahweh with all his might; and David was clothed in a linen ephod."
+  }
+}
