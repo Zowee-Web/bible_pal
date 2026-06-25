@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1919,
+  "anchorId": "nehemiah_wall",
+  "kidLane": "dedicated-4-7",
+  "title": "Nehemiah Builds the Wall",
+  "scriptureAnchorId": "nehemiah_2_17-20",
+  "bibleSourceRef": "Nehemiah 2:17-20",
+  "bibleStoryKey": "nehemiah_wall",
+  "translation": "WEB",
+  "mood": "brave_courage",
+  "emotionalTags": [
+    "determined",
+    "hopeful",
+    "encouraged",
+    "joyful"
+  ],
+  "themeTags": [
+    "working together",
+    "perseverance",
+    "rebuilding",
+    "God helps us"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Nehemiah's friends each mended the piece of wall closest to their own home, all together. I wonder which part of the wall you would have liked to help build, stone by stone?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Nehemiah rebuilds the wall, Neh 2-6). Register=PURPOSE ('one stone at a time, together'); mood=brave_courage (NON-battle, diversifies the brave pool away from rescue stories per emotional-color-balance). Feeling-first open (ache of something loved, broken). SUBTRACTION: opposition is ONLY jeering words (the fox jeer), NO weapons/violence; ruined city is rubble, sad-not-traumatic. One image: families each mending the stretch of wall nearest their own home, stone upon stone. Ends on shared joy + God who helps His people do hard things together. 'God' (no Yahweh). Voice VOICE_ARCHER (steady+inspiring).",
+  "files": {
+    "short": {
+      "storyText": "story_1919_short.txt",
+      "audio": "audio_1919_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1919_full.txt",
+      "audio": "audio_1919_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1919.txt",
+      "audio": "audio_1919_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1919/scripture_1919_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Nehemiah 2:18",
+    "text": "I told them about the hand of my God which was good on me, and also about the king’s words that he had spoken to me. They said, “Let’s rise up and build.” So they strengthened their hands for the good work."
+  }
+}

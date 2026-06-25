@@ -10927,6 +10927,234 @@
         "ref": "Genesis 24:27",
         "text": "He said, “Blessed be Yahweh, the God of my master Abraham, who has not forsaken his loving kindness and his truth toward my master. As for me, Yahweh has led me on the way to the house of my master’s relatives.”"
       }
+    },
+    {
+      "id": "kid_nehemiah_wall_short",
+      "storyNumber": 1919,
+      "title": "Nehemiah Builds the Wall",
+      "textFilePath": "kids/1919/story_1919_short.txt",
+      "scriptureAnchorId": "nehemiah_2_17-20",
+      "bibleStoryKey": "nehemiah_wall",
+      "bibleSourceRef": "Nehemiah 2:17-20",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "determined",
+        "hopeful",
+        "encouraged",
+        "joyful"
+      ],
+      "themeTags": [
+        "working together",
+        "perseverance",
+        "rebuilding",
+        "God helps us"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 391,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "audioFilePath": "kids/1919/audio_1919_short.mp3",
+      "reflectionAudioPath": "kids/1919/audio_1919_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Nehemiah's friends each mended the piece of wall closest to their own home, all together. I wonder which part of the wall you would have liked to help build, stone by stone?",
+      "kidSafetyNotes": "NEW anchor (Nehemiah rebuilds the wall, Neh 2-6). Register=PURPOSE ('one stone at a time, together'); mood=brave_courage (NON-battle, diversifies the brave pool away from rescue stories per emotional-color-balance). Feeling-first open (ache of something loved, broken). SUBTRACTION: opposition is ONLY jeering words (the fox jeer), NO weapons/violence; ruined city is rubble, sad-not-traumatic. One image: families each mending the stretch of wall nearest their own home, stone upon stone. Ends on shared joy + God who helps His people do hard things together. 'God' (no Yahweh). Voice VOICE_ARCHER (steady+inspiring).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1919/scripture_1919_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Nehemiah 2:18",
+        "text": "I told them about the hand of my God which was good on me, and also about the king’s words that he had spoken to me. They said, “Let’s rise up and build.” So they strengthened their hands for the good work."
+      }
+    },
+    {
+      "id": "kid_nehemiah_wall_full",
+      "storyNumber": 1919,
+      "title": "Nehemiah Builds the Wall",
+      "textFilePath": "kids/1919/story_1919_full.txt",
+      "scriptureAnchorId": "nehemiah_2_17-20",
+      "bibleStoryKey": "nehemiah_wall",
+      "bibleSourceRef": "Nehemiah 2:17-20",
+      "mood": "brave_courage",
+      "emotionalTags": [
+        "determined",
+        "hopeful",
+        "encouraged",
+        "joyful"
+      ],
+      "themeTags": [
+        "working together",
+        "perseverance",
+        "rebuilding",
+        "God helps us"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 700,
+      "actualWords": 854,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "audioFilePath": "kids/1919/audio_1919_full.mp3",
+      "reflectionAudioPath": "kids/1919/audio_1919_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Nehemiah's friends each mended the piece of wall closest to their own home, all together. I wonder which part of the wall you would have liked to help build, stone by stone?",
+      "kidSafetyNotes": "NEW anchor (Nehemiah rebuilds the wall, Neh 2-6). Register=PURPOSE ('one stone at a time, together'); mood=brave_courage (NON-battle, diversifies the brave pool away from rescue stories per emotional-color-balance). Feeling-first open (ache of something loved, broken). SUBTRACTION: opposition is ONLY jeering words (the fox jeer), NO weapons/violence; ruined city is rubble, sad-not-traumatic. One image: families each mending the stretch of wall nearest their own home, stone upon stone. Ends on shared joy + God who helps His people do hard things together. 'God' (no Yahweh). Voice VOICE_ARCHER (steady+inspiring).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1919/scripture_1919_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Nehemiah 2:18",
+        "text": "I told them about the hand of my God which was good on me, and also about the king’s words that he had spoken to me. They said, “Let’s rise up and build.” So they strengthened their hands for the good work."
+      }
+    },
+    {
+      "id": "kid_david_dances_ark_short",
+      "storyNumber": 1920,
+      "title": "The Day the King Danced",
+      "textFilePath": "kids/1920/story_1920_short.txt",
+      "scriptureAnchorId": "2_samuel_6_12-15",
+      "bibleStoryKey": "david_dances_ark",
+      "bibleSourceRef": "2 Samuel 6:12-15",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joyful",
+        "thankful",
+        "celebrating",
+        "free"
+      ],
+      "themeTags": [
+        "celebrating God",
+        "joy",
+        "worship",
+        "gratitude"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 477,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1920/audio_1920_short.mp3",
+      "reflectionAudioPath": "kids/1920/audio_1920_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "David was so glad and so thankful that he danced down the road with all his might. I wonder what makes your heart so happy that you want to sing or dance?",
+      "kidSafetyNotes": "NEW anchor (David dances before the Ark, 2 Sam 6). Register=JOY (fills the lane's joy/celebration gap). Feeling-first open (so glad you can't hold still). SUBTRACTION: Uzzah ENTIRELY absent (no death); Michal ENTIRELY absent (no contempt) -- scripture extract bounded to 6:12-15 to match. One image: a king dancing in the dust like a child. Ending lets joy simply EXIST (non-moralizing, per ending-shape-variety) + God loves a happy heart. 'God' in prose (key verse WEB reads 'Yahweh' -- raw scripture, fine). Voice VOICE_BARNABAS_ENCOURAGER (uplifting/joyful).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1920/scripture_1920_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "2 Samuel 6:14",
+        "text": "David danced before Yahweh with all his might; and David was clothed in a linen ephod."
+      }
+    },
+    {
+      "id": "kid_david_dances_ark_full",
+      "storyNumber": 1920,
+      "title": "The Day the King Danced",
+      "textFilePath": "kids/1920/story_1920_full.txt",
+      "scriptureAnchorId": "2_samuel_6_12-15",
+      "bibleStoryKey": "david_dances_ark",
+      "bibleSourceRef": "2 Samuel 6:12-15",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joyful",
+        "thankful",
+        "celebrating",
+        "free"
+      ],
+      "themeTags": [
+        "celebrating God",
+        "joy",
+        "worship",
+        "gratitude"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 700,
+      "actualWords": 822,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+      "audioFilePath": "kids/1920/audio_1920_full.mp3",
+      "reflectionAudioPath": "kids/1920/audio_1920_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "David was so glad and so thankful that he danced down the road with all his might. I wonder what makes your heart so happy that you want to sing or dance?",
+      "kidSafetyNotes": "NEW anchor (David dances before the Ark, 2 Sam 6). Register=JOY (fills the lane's joy/celebration gap). Feeling-first open (so glad you can't hold still). SUBTRACTION: Uzzah ENTIRELY absent (no death); Michal ENTIRELY absent (no contempt) -- scripture extract bounded to 6:12-15 to match. One image: a king dancing in the dust like a child. Ending lets joy simply EXIST (non-moralizing, per ending-shape-variety) + God loves a happy heart. 'God' in prose (key verse WEB reads 'Yahweh' -- raw scripture, fine). Voice VOICE_BARNABAS_ENCOURAGER (uplifting/joyful).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1920/scripture_1920_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "2 Samuel 6:14",
+        "text": "David danced before Yahweh with all his might; and David was clothed in a linen ephod."
+      }
+    },
+    {
+      "id": "kid_queen_of_sheba_short",
+      "storyNumber": 1921,
+      "title": "The Queen Who Came to See",
+      "textFilePath": "kids/1921/story_1921_short.txt",
+      "scriptureAnchorId": "1_kings_10_1-9",
+      "bibleStoryKey": "queen_of_sheba",
+      "bibleSourceRef": "1 Kings 10:1-9",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "curious",
+        "amazed",
+        "grateful"
+      ],
+      "themeTags": [
+        "wonder",
+        "seeking God",
+        "Gods wisdom",
+        "discovery"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 364,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JANE_PROFESSIONAL",
+      "audioFilePath": "kids/1921/audio_1921_short.mp3",
+      "reflectionAudioPath": "kids/1921/audio_1921_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The queen traveled a long, long way just to see for herself, and found it was even better than the stories. I wonder what you would most love to go and see for yourself?",
+      "kidSafetyNotes": "NEW anchor (Queen of Sheba, 1 Kings 10:1-13). Register=WONDER ('come and see for yourself -- it's even better than the stories'); mood=joyful + 'wonder' tag (matches 1809 Wise Men / 1830 Water into Wine pattern). Feeling-first open (curiosity: is it really true?). No subtraction needed; gold/wealth NOT moralized -- the wonder is the point. One image: the caravan of camels crossing the desert to see if it's true. SHORT ending edited (Adam) to land on God. Voice VOICE_JANE_PROFESSIONAL (confident/regal -- she's a queen).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1921/scripture_1921_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "1 Kings 10:7",
+        "text": "However, I didn’t believe the words until I came and my eyes had seen it. Behold, not even half was told me! Your wisdom and prosperity exceed the fame which I heard."
+      }
+    },
+    {
+      "id": "kid_queen_of_sheba_full",
+      "storyNumber": 1921,
+      "title": "The Queen Who Came to See",
+      "textFilePath": "kids/1921/story_1921_full.txt",
+      "scriptureAnchorId": "1_kings_10_1-9",
+      "bibleStoryKey": "queen_of_sheba",
+      "bibleSourceRef": "1 Kings 10:1-9",
+      "mood": "joyful",
+      "emotionalTags": [
+        "wonder",
+        "curious",
+        "amazed",
+        "grateful"
+      ],
+      "themeTags": [
+        "wonder",
+        "seeking God",
+        "Gods wisdom",
+        "discovery"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 700,
+      "actualWords": 684,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JANE_PROFESSIONAL",
+      "audioFilePath": "kids/1921/audio_1921_full.mp3",
+      "reflectionAudioPath": "kids/1921/audio_1921_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The queen traveled a long, long way just to see for herself, and found it was even better than the stories. I wonder what you would most love to go and see for yourself?",
+      "kidSafetyNotes": "NEW anchor (Queen of Sheba, 1 Kings 10:1-13). Register=WONDER ('come and see for yourself -- it's even better than the stories'); mood=joyful + 'wonder' tag (matches 1809 Wise Men / 1830 Water into Wine pattern). Feeling-first open (curiosity: is it really true?). No subtraction needed; gold/wealth NOT moralized -- the wonder is the point. One image: the caravan of camels crossing the desert to see if it's true. SHORT ending edited (Adam) to land on God. Voice VOICE_JANE_PROFESSIONAL (confident/regal -- she's a queen).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1921/scripture_1921_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "1 Kings 10:7",
+        "text": "However, I didn’t believe the words until I came and my eyes had seen it. Behold, not even half was told me! Your wisdom and prosperity exceed the fame which I heard."
+      }
     }
   ]
 }
