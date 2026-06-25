@@ -19,7 +19,7 @@
   "title": "But the Cupbearer Forgot Him",
   "scriptureAnchor": "Genesis 40:1-23",
   "bibleStoryKey": "joseph_in_prison",
-  "storyVoiceKey": "VOICE_JOSEPH_DREAMER",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
   "themeTags": [
     "fear",
     "trust",
@@ -38,9 +38,9 @@
   "timelineEra": "patriarchs",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.85,
-    "similarity_boost": 0.85,
-    "style": 0.15,
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
     "use_speaker_boost": true
   },
   "files": {
@@ -76,5 +76,7 @@
     "forgotten_in_waiting",
     "delayed_promise"
   ],
-  "reflectionText": "Joseph interpreted the cupbearer's dream in the prison and asked to be remembered. The cupbearer was restored on the third day. The cupbearer forgot him. What is it to wait in the prison for the one you released to remember you, while the days pass and your name does not yet come up at the king's table?"
+  "reflectionText": "Joseph interpreted the cupbearer's dream in the prison and asked to be remembered. The cupbearer was restored on the third day. The cupbearer forgot him. What is it to wait in the prison for the one you released to remember you, while the days pass and your name does not yet come up at the king's table?",
+  "renderedAt": "2026-06-25T03:05:32Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

@@ -25,7 +25,7 @@
   ],
   "longEligible": false,
   "status": "REVIEW",
-  "storyVoiceKey": "VOICE_JOSEPH_DREAMER",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.6,
