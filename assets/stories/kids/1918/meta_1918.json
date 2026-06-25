@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1918,
+  "anchorId": "isaac_rebekah",
+  "kidLane": "dedicated-4-7",
+  "title": "The Girl at the Well",
+  "scriptureAnchorId": "genesis_24",
+  "bibleSourceRef": "Genesis 24",
+  "bibleStoryKey": "isaac_rebekah",
+  "translation": "WEB",
+  "mood": "calm_peaceful",
+  "emotionalTags": [
+    "hopeful",
+    "kind",
+    "wondering",
+    "grateful"
+  ],
+  "themeTags": [
+    "God guides us",
+    "God answers prayer",
+    "a kind and willing heart",
+    "God leads the way"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "The servant prayed for help, and God answered by leading him to kind Rebekah at the well. What is something you could pray to God about, and then watch to see how he answers?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Isaac & Rebekah, Genesis 24). Mood=calm_peaceful (calm/wonder). FEELING-FIRST: 'how will I know?' -> God guides + answers prayer. Image: Rebekah drawing water for all TEN thirsty camels (Adam: kids love repetitive helping; unforgettable). SHORT+FULL only. Voice TBC (proposed VOICE_DAVID_SHEPHERD).",
+  "files": {
+    "short": {
+      "storyText": "story_1918_short.txt",
+      "audio": "audio_1918_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1918_full.txt",
+      "audio": "audio_1918_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1918.txt",
+      "audio": "audio_1918_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1918/scripture_1918_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Genesis 24:27",
+    "text": "He said, “Blessed be Yahweh, the God of my master Abraham, who has not forsaken his loving kindness and his truth toward my master. As for me, Yahweh has led me on the way to the house of my master’s relatives.”"
+  }
+}

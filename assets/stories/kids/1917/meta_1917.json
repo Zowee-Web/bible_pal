@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1917,
+  "anchorId": "rahab",
+  "kidLane": "dedicated-4-7",
+  "title": "The Red Cord in the Window",
+  "scriptureAnchorId": "joshua_2",
+  "bibleSourceRef": "Joshua 2",
+  "bibleStoryKey": "rahab",
+  "translation": "WEB",
+  "mood": "brave_courage",
+  "emotionalTags": [
+    "brave",
+    "loving",
+    "trusting",
+    "safe"
+  ],
+  "themeTags": [
+    "being brave to help",
+    "trusting God's promise",
+    "keeping family safe",
+    "the red cord"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_ESTHER_BRAVE",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Rahab was brave, and she trusted the promise of the red cord — and God kept her whole family safe. When have you had to be brave and trust that everything would be okay?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Rahab, Joshua 2). Mood=brave_courage. FRAMED GENTLY (Adam): NO 'harlot' -- 'a brave woman in Jericho who loved her family and trusted God.' Re-anchored on her LOVE FOR FAMILY, not spies/politics (Adam): opens 'more than anything Rahab loved her family.' Spies -> 'travelers / the two men.' Image: the scarlet/red cord in the window; ends on the cord keeping her family safe. SHORT+FULL only. Voice TBC (proposed VOICE_ESTHER_BRAVE).",
+  "files": {
+    "short": {
+      "storyText": "story_1917_short.txt",
+      "audio": "audio_1917_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1917_full.txt",
+      "audio": "audio_1917_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1917.txt",
+      "audio": "audio_1917_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1917/scripture_1917_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Joshua 2:18",
+    "text": "Behold, when we come into the land, tie this line of scarlet thread in the window which you used to let us down. Gather to yourself into the house your father, your mother, your brothers, and all your father’s household."
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1914,
+  "anchorId": "elisha_invisible_army",
+  "kidLane": "dedicated-4-7",
+  "title": "The Hills Full of Fire",
+  "scriptureAnchorId": "2_kings_6_8-23",
+  "bibleSourceRef": "2 Kings 6:8-23",
+  "bibleStoryKey": "elisha_invisible_army",
+  "translation": "WEB",
+  "mood": "anxious",
+  "emotionalTags": [
+    "afraid",
+    "surrounded",
+    "safe",
+    "not alone"
+  ],
+  "themeTags": [
+    "God is with us even when we can't see",
+    "God's protection all around",
+    "do not be afraid",
+    "God is bigger than what scares us"
+  ],
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "longEligible": true,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Elisha and his helper were surrounded by something scary — but God was with them the whole time, even when they couldn't see it. When you feel afraid, what helps you remember that God is near?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Elisha's Invisible Army, 2 Kings 6:8-23). Mood=anxious (thin). FEELING-FIRST: scared, surrounded, outnumbered. Image: the hills full of horses and chariots of FIRE all around Elisha ('more on our side than theirs'). Adam edit: do NOT call them 'God's army' (Scripture doesn't) -- 'they had been there... around Elisha.' War handled by subtraction (no violence); the beautiful mercy ending kept (Elisha feeds the enemy + sends them home). Final line = God's PRESENCE not 'God's help'. Voice TBC (proposed VOICE_JAMES_BRITISH_PROFESSIONAL).",
+  "files": {
+    "short": {
+      "storyText": "story_1914_short.txt",
+      "audio": "audio_1914_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1914_full.txt",
+      "audio": "audio_1914_full.mp3"
+    },
+    "long": {
+      "storyText": "story_1914_long.txt",
+      "audio": "audio_1914_long.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1914.txt",
+      "audio": "audio_1914_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1914/scripture_1914_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "2 Kings 6:16",
+    "text": "He answered, “Don’t be afraid, for those who are with us are more than those who are with them.”"
+  }
+}
