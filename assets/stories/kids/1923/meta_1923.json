@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1923,
+  "anchorId": "lame_man_healed",
+  "kidLane": "dedicated-4-7",
+  "title": "The Man Who Leaped for Joy",
+  "scriptureAnchorId": "acts_3_1-10",
+  "bibleSourceRef": "Acts 3:1-10",
+  "bibleStoryKey": "lame_man_healed",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "joyful",
+    "amazed",
+    "grateful",
+    "celebrating"
+  ],
+  "themeTags": [
+    "Gods power",
+    "healing",
+    "joy",
+    "amazement"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "The man who had never walked jumped up and went leaping and praising God. I wonder what makes you so happy that you want to jump and leap for joy?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (lame man healed at the Beautiful Gate, Acts 3:1-10). Register=LEAPING/AMAZEMENT (bright batch). Feeling-first open (the man who couldn't walk). Subtraction: years of not-walking framed gently in one line. One image: the man leaping into the temple holding Peter & John. Ends on the leap + crowd's wonder, no moral coda. 'God' in prose. Voice VOICE_BARNABAS_ENCOURAGER (uplifting joy).",
+  "files": {
+    "short": {
+      "storyText": "story_1923_short.txt",
+      "audio": "audio_1923_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1923_full.txt",
+      "audio": "audio_1923_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1923.txt",
+      "audio": "audio_1923_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1923/scripture_1923_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Acts 3:8",
+    "text": "Leaping up, he stood and began to walk. He entered with them into the temple, walking, leaping, and praising God."
+  }
+}

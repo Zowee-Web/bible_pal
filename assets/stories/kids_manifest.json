@@ -11157,6 +11157,234 @@
         "ref": "1 Kings 10:7",
         "text": "However, I didn’t believe the words until I came and my eyes had seen it. Behold, not even half was told me! Your wisdom and prosperity exceed the fame which I heard."
       }
+    },
+    {
+      "id": "kid_miriam_song_short",
+      "storyNumber": 1922,
+      "title": "Miriam's Song",
+      "textFilePath": "kids/1922/story_1922_short.txt",
+      "scriptureAnchorId": "exodus_15_19-21",
+      "bibleStoryKey": "miriam_song",
+      "bibleSourceRef": "Exodus 15:19-21",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joyful",
+        "celebrating",
+        "thankful",
+        "free"
+      ],
+      "themeTags": [
+        "celebrating God",
+        "joy",
+        "thankfulness",
+        "singing"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 343,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "audioFilePath": "kids/1922/audio_1922_short.mp3",
+      "reflectionAudioPath": "kids/1922/audio_1922_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Miriam was so thankful that she grabbed a tambourine and danced and sang. When something wonderful happens, what is a way you like to show God how happy and thankful you are?",
+      "kidSafetyNotes": "NEW anchor (Miriam's Song, Exodus 15:19-21). Register=SINGING/CELEBRATION (bright-ending batch per emotional-color-balance). Feeling-first open (relief on the far shore). SUBTRACTION: army/drowning ENTIRELY absent ('danger all behind them now' only) -- this is the JOY aftermath, NOT the Red Sea crossing (separate anchor). One image: women + tambourines dancing on the far shore. Ends on the singing/dancing itself, no moral coda (ending-shape-variety). 'God' in prose; key verse WEB reads 'Yahweh' (raw scripture, fine). Voice VOICE_MIRIAM_JOYFUL (lively/celebratory -- character-perfect).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1922/scripture_1922_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Exodus 15:21",
+        "text": "Miriam answered them, “Sing to Yahweh, for he has triumphed gloriously. He has thrown the horse and his rider into the sea.”"
+      }
+    },
+    {
+      "id": "kid_miriam_song_full",
+      "storyNumber": 1922,
+      "title": "Miriam's Song",
+      "textFilePath": "kids/1922/story_1922_full.txt",
+      "scriptureAnchorId": "exodus_15_19-21",
+      "bibleStoryKey": "miriam_song",
+      "bibleSourceRef": "Exodus 15:19-21",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joyful",
+        "celebrating",
+        "thankful",
+        "free"
+      ],
+      "themeTags": [
+        "celebrating God",
+        "joy",
+        "thankfulness",
+        "singing"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 700,
+      "actualWords": 761,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_MIRIAM_JOYFUL",
+      "audioFilePath": "kids/1922/audio_1922_full.mp3",
+      "reflectionAudioPath": "kids/1922/audio_1922_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Miriam was so thankful that she grabbed a tambourine and danced and sang. When something wonderful happens, what is a way you like to show God how happy and thankful you are?",
+      "kidSafetyNotes": "NEW anchor (Miriam's Song, Exodus 15:19-21). Register=SINGING/CELEBRATION (bright-ending batch per emotional-color-balance). Feeling-first open (relief on the far shore). SUBTRACTION: army/drowning ENTIRELY absent ('danger all behind them now' only) -- this is the JOY aftermath, NOT the Red Sea crossing (separate anchor). One image: women + tambourines dancing on the far shore. Ends on the singing/dancing itself, no moral coda (ending-shape-variety). 'God' in prose; key verse WEB reads 'Yahweh' (raw scripture, fine). Voice VOICE_MIRIAM_JOYFUL (lively/celebratory -- character-perfect).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1922/scripture_1922_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Exodus 15:21",
+        "text": "Miriam answered them, “Sing to Yahweh, for he has triumphed gloriously. He has thrown the horse and his rider into the sea.”"
+      }
+    },
+    {
+      "id": "kid_lame_man_healed_short",
+      "storyNumber": 1923,
+      "title": "The Man Who Leaped for Joy",
+      "textFilePath": "kids/1923/story_1923_short.txt",
+      "scriptureAnchorId": "acts_3_1-10",
+      "bibleStoryKey": "lame_man_healed",
+      "bibleSourceRef": "Acts 3:1-10",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joyful",
+        "amazed",
+        "grateful",
+        "celebrating"
+      ],
+      "themeTags": [
+        "Gods power",
+        "healing",
+        "joy",
+        "amazement"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 373,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "audioFilePath": "kids/1923/audio_1923_short.mp3",
+      "reflectionAudioPath": "kids/1923/audio_1923_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The man who had never walked jumped up and went leaping and praising God. I wonder what makes you so happy that you want to jump and leap for joy?",
+      "kidSafetyNotes": "NEW anchor (lame man healed at the Beautiful Gate, Acts 3:1-10). Register=LEAPING/AMAZEMENT (bright batch). Feeling-first open (the man who couldn't walk). Subtraction: years of not-walking framed gently in one line. One image: the man leaping into the temple holding Peter & John. Ends on the leap + crowd's wonder, no moral coda. 'God' in prose. Voice VOICE_BARNABAS_ENCOURAGER (uplifting joy).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1923/scripture_1923_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Acts 3:8",
+        "text": "Leaping up, he stood and began to walk. He entered with them into the temple, walking, leaping, and praising God."
+      }
+    },
+    {
+      "id": "kid_lame_man_healed_full",
+      "storyNumber": 1923,
+      "title": "The Man Who Leaped for Joy",
+      "textFilePath": "kids/1923/story_1923_full.txt",
+      "scriptureAnchorId": "acts_3_1-10",
+      "bibleStoryKey": "lame_man_healed",
+      "bibleSourceRef": "Acts 3:1-10",
+      "mood": "joyful",
+      "emotionalTags": [
+        "joyful",
+        "amazed",
+        "grateful",
+        "celebrating"
+      ],
+      "themeTags": [
+        "Gods power",
+        "healing",
+        "joy",
+        "amazement"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 700,
+      "actualWords": 697,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_ARCHER",
+      "audioFilePath": "kids/1923/audio_1923_full.mp3",
+      "reflectionAudioPath": "kids/1923/audio_1923_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "The man who had never walked jumped up and went leaping and praising God. I wonder what makes you so happy that you want to jump and leap for joy?",
+      "kidSafetyNotes": "NEW anchor (lame man healed at the Beautiful Gate, Acts 3:1-10). Register=LEAPING/AMAZEMENT (bright batch). Feeling-first open (the man who couldn't walk). Subtraction: years of not-walking framed gently in one line. One image: the man leaping into the temple holding Peter & John. Ends on the leap + crowd's wonder, no moral coda. 'God' in prose. Voice VOICE_BARNABAS_ENCOURAGER (uplifting joy).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1923/scripture_1923_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Acts 3:8",
+        "text": "Leaping up, he stood and began to walk. He entered with them into the temple, walking, leaping, and praising God."
+      }
+    },
+    {
+      "id": "kid_cornelius_short",
+      "storyNumber": 1924,
+      "title": "The Good News Is for Everyone",
+      "textFilePath": "kids/1924/story_1924_short.txt",
+      "scriptureAnchorId": "acts_10_34-48",
+      "bibleStoryKey": "cornelius",
+      "bibleSourceRef": "Acts 10:34-48",
+      "mood": "joyful",
+      "emotionalTags": [
+        "amazed",
+        "joyful",
+        "welcomed",
+        "grateful"
+      ],
+      "themeTags": [
+        "Gods love for all",
+        "belonging",
+        "good news",
+        "joy"
+      ],
+      "lengthBucket": "short",
+      "targetWords": 400,
+      "actualWords": 322,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": "kids/1924/audio_1924_short.mp3",
+      "reflectionAudioPath": "kids/1924/audio_1924_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Peter learned that God's love is for everyone — no favorites, no one left out. When have you helped someone feel like they truly belong?",
+      "kidSafetyNotes": "NEW anchor (Cornelius, Acts 10). Register=AMAZEMENT/BELONGING (bright batch) -> 'the good news is for EVERYONE, no one left out.' Feeling-first open (Cornelius wondering if God loves an outsider like him). SUBTRACTION: Peter's rooftop vision (sheet/animals) simplified to 'God showed Peter his love is for everyone' -- no confusing vision detail. One image: a houseful of 'outsiders' lit up with God's Spirit. Ends on amazement/joy, no moral coda. Scripture bounded Acts 10:34-48 (Peter's no-favoritism speech + Spirit falls). 'God' in prose. Voice VOICE_JAMES_BRITISH_PROFESSIONAL (reassuring/warm for belonging).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1924/scripture_1924_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Acts 10:34-35",
+        "text": "Peter opened his mouth and said, “Truly I perceive that God doesn’t show favoritism; but in every nation he who fears him and works righteousness is acceptable to him."
+      }
+    },
+    {
+      "id": "kid_cornelius_full",
+      "storyNumber": 1924,
+      "title": "The Good News Is for Everyone",
+      "textFilePath": "kids/1924/story_1924_full.txt",
+      "scriptureAnchorId": "acts_10_34-48",
+      "bibleStoryKey": "cornelius",
+      "bibleSourceRef": "Acts 10:34-48",
+      "mood": "joyful",
+      "emotionalTags": [
+        "amazed",
+        "joyful",
+        "welcomed",
+        "grateful"
+      ],
+      "themeTags": [
+        "Gods love for all",
+        "belonging",
+        "good news",
+        "joy"
+      ],
+      "lengthBucket": "full",
+      "targetWords": 700,
+      "actualWords": 674,
+      "status": "REVIEW",
+      "narratorVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+      "audioFilePath": "kids/1924/audio_1924_full.mp3",
+      "reflectionAudioPath": "kids/1924/audio_1924_reflection.mp3",
+      "reflectionText": null,
+      "reflectionQuestion": "Peter learned that God's love is for everyone — no favorites, no one left out. When have you helped someone feel like they truly belong?",
+      "kidSafetyNotes": "NEW anchor (Cornelius, Acts 10). Register=AMAZEMENT/BELONGING (bright batch) -> 'the good news is for EVERYONE, no one left out.' Feeling-first open (Cornelius wondering if God loves an outsider like him). SUBTRACTION: Peter's rooftop vision (sheet/animals) simplified to 'God showed Peter his love is for everyone' -- no confusing vision detail. One image: a houseful of 'outsiders' lit up with God's Spirit. Ends on amazement/joy, no moral coda. Scripture bounded Acts 10:34-48 (Peter's no-favoritism speech + Spirit falls). 'God' in prose. Voice VOICE_JAMES_BRITISH_PROFESSIONAL (reassuring/warm for belonging).",
+      "hardContentFlags": [],
+      "scriptureTextFilePath": "kids/1924/scripture_1924_web.txt",
+      "scriptureKeyVerse": {
+        "ref": "Acts 10:34-35",
+        "text": "Peter opened his mouth and said, “Truly I perceive that God doesn’t show favoritism; but in every nation he who fears him and works righteousness is acceptable to him."
+      }
     }
   ]
 }
