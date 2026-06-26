@@ -20,13 +20,6 @@
   "scriptureAnchorId": "mark_4_35-41",
   "bibleStoryKey": "jesus_calms_storm_who_then_is_this",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "themeTags": [
-    "going_over_to_the_other_side",
-    "jesus_asleep_on_the_cushion",
-    "peace_be_still",
-    "great_calm_on_the_water",
-    "who_then_is_this"
-  ],
   "emotionalTags": [
     "anxious",
     "awed",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1465_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Jesus was asleep in the stern while the wind tore the sail and the water filled the boat. The disciples shook him awake. He said: peace, be still. The wind ceased. What is it to wake the only one who could help, only to find that the storm that woke you had not been enough to trouble his sleeping?"
+  "reflectionText": "Jesus was asleep in the stern while the wind tore the sail and the water filled the boat. The disciples shook him awake. He said: peace, be still. The wind ceased. What is it to wake the only one who could help, only to find that the storm that woke you had not been enough to trouble his sleeping?",
+  "sceneBeats": [
+    "going_over_to_the_other_side",
+    "great_calm_on_the_water",
+    "jesus_asleep_on_the_cushion",
+    "peace_be_still",
+    "who_then_is_this"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

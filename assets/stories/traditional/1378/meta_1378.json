@@ -20,13 +20,6 @@
   "scriptureAnchorId": "daniel_6_19-23",
   "bibleStoryKey": "daniel_delivered_from_lions",
   "storyVoiceKey": "VOICE_ELIJAH_SAGE",
-  "themeTags": [
-    "delivered_from_lions",
-    "lions_mouths_shut",
-    "king_at_the_den_at_dawn",
-    "innocence_preserved",
-    "trusted_in_his_god"
-  ],
   "emotionalTags": [
     "grateful",
     "delivered",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1378_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The men lowered ropes into the den at first light, and drew Daniel up whole into the morning. What is it to be lifted out of a night that should have eaten you, not bearing the mark of any lion at all?"
+  "reflectionText": "The men lowered ropes into the den at first light, and drew Daniel up whole into the morning. What is it to be lifted out of a night that should have eaten you, not bearing the mark of any lion at all?",
+  "sceneBeats": [
+    "delivered_from_lions",
+    "innocence_preserved",
+    "king_at_the_den_at_dawn",
+    "lions_mouths_shut",
+    "trusted_in_his_god"
+  ]
 }

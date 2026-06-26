@@ -22,13 +22,6 @@
   "scriptureAnchorId": "daniel_6_10-23",
   "bibleStoryKey": "daniel_in_the_lions_den",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "windows_open_toward_jerusalem",
-    "knelt_three_times_a_day",
-    "decree_of_the_medes_and_persians",
-    "stone_sealed_with_kings_signet",
-    "angel_shut_the_lions_mouths"
-  ],
   "emotionalTags": [
     "brave",
     "resolute",
@@ -77,5 +70,12 @@
   },
   "reflectionQuestion": "The window faced Jerusalem when the den was sealed below. Daniel had knelt at it before the decree was signed, and he would kneel at it again the morning after he walked out alive. What is it to keep doing the thing you have always done, knowing the law has been written to break you for doing it?",
   "reflectionText": "The window faced Jerusalem when the den was sealed below. Daniel had kneeled at it before the decree was signed, and he would kneel at it again on the morning after he came forth alive. What is it to keep doing the thing thou hast ever done, knowing the law hath been written to break thee for doing it?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "angel_shut_the_lions_mouths",
+    "decree_of_the_medes_and_persians",
+    "knelt_three_times_a_day",
+    "stone_sealed_with_kings_signet",
+    "windows_open_toward_jerusalem"
+  ]
 }

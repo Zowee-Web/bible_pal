@@ -20,13 +20,6 @@
   "scriptureAnchorId": "1_samuel_28_5-15",
   "bibleStoryKey": "saul_at_endor",
   "storyVoiceKey": "VOICE_NOAH_PATIENT",
-  "themeTags": [
-    "heart_trembled_greatly",
-    "yahweh_silent_through_dreams_urim_prophets",
-    "disguised_king_consults_medium",
-    "samuel_brought_up",
-    "night_at_endor"
-  ],
   "emotionalTags": [
     "anxious",
     "fearful",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1398_traditional_kjv.txt"
     }
   },
-  "reflectionText": "When the Lord did not answer Saul by dreams or prophets or Urim, he disguised himself and went by night to the woman at Endor. Have you ever stood at the door of a place you knew you should not be, only because the place you used to go has gone still?"
+  "reflectionText": "When the Lord did not answer Saul by dreams or prophets or Urim, he disguised himself and went by night to the woman at Endor. Have you ever stood at the door of a place you knew you should not be, only because the place you used to go has gone still?",
+  "sceneBeats": [
+    "disguised_king_consults_medium",
+    "heart_trembled_greatly",
+    "night_at_endor",
+    "samuel_brought_up",
+    "yahweh_silent_through_dreams_urim_prophets"
+  ]
 }

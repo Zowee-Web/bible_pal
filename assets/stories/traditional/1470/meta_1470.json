@@ -20,13 +20,6 @@
   "scriptureAnchorId": "luke_7_11-17",
   "bibleStoryKey": "widow_of_nain_son_raised",
   "storyVoiceKey": "VOICE_RUTH_COMFORT",
-  "themeTags": [
-    "widow_of_nain_son_raised",
-    "bier_at_the_city_gate",
-    "young_man_i_tell_you_arise",
-    "jesus_gave_him_back_to_his_mother",
-    "god_has_visited_his_people"
-  ],
   "emotionalTags": [
     "grateful",
     "tender",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1470_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Jesus stopped the bier at the gate of Nain and gave the young man back to his mother. The procession that had come out in mourning did not go on to the tomb. Have you ever had your direction turned around by a stranger coming up the way you were going down?"
+  "reflectionText": "Jesus stopped the bier at the gate of Nain and gave the young man back to his mother. The procession that had come out in mourning did not go on to the tomb. Have you ever had your direction turned around by a stranger coming up the way you were going down?",
+  "sceneBeats": [
+    "bier_at_the_city_gate",
+    "god_has_visited_his_people",
+    "jesus_gave_him_back_to_his_mother",
+    "widow_of_nain_son_raised",
+    "young_man_i_tell_you_arise"
+  ]
 }

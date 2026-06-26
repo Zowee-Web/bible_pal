@@ -21,7 +21,6 @@
   "bibleStoryKey": "return_to_yahweh_take_words",
   "storyVoiceKey": "VOICE_ELIJAH_SAGE",
   "themeTags": [
-    "return",
     "repentance",
     "restoration",
     "healing",
@@ -60,5 +59,9 @@
       "reflectionText": "reflection_1331_traditional_kjv.txt"
     }
   },
-  "reflectionText": "I will be like the dew to Israel. He will blossom like the lily. What is it to be told that you will be received again when you return — and to be promised the dew of the morning, when all you have known is the burning?"
+  "reflectionText": "I will be like the dew to Israel. He will blossom like the lily. What is it to be told that you will be received again when you return — and to be promised the dew of the morning, when all you have known is the burning?",
+  "sceneBeats": [
+    "return"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

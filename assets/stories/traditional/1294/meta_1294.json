@@ -24,7 +24,6 @@
     "grief",
     "lament",
     "intercession",
-    "defeat",
     "consequence"
   ],
   "emotionalTags": [
@@ -60,5 +59,9 @@
       "reflectionText": "reflection_1294_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Thirty-six of Israel had fallen at Ai. Joshua tore his clothes and fell on his face before the ark until evening. He asked: what will you do for your great name? The Lord said: get up. Israel has sinned. What is it to fall on your face in grief for the people, and to be told to get up because the matter is not what you have thought it was?"
+  "reflectionText": "Thirty-six of Israel had fallen at Ai. Joshua tore his clothes and fell on his face before the ark until evening. He asked: what will you do for your great name? The Lord said: get up. Israel has sinned. What is it to fall on your face in grief for the people, and to be told to get up because the matter is not what you have thought it was?",
+  "sceneBeats": [
+    "defeat"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

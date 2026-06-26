@@ -20,13 +20,6 @@
   "scriptureAnchorId": "jeremiah_32_1-15",
   "bibleStoryKey": "jeremiah_buys_field_in_anathoth",
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
-  "themeTags": [
-    "court_of_the_guard",
-    "seventeen_shekels_of_silver",
-    "deed_in_earthen_vessel",
-    "fields_shall_be_bought_again",
-    "babylons_siege_around_jerusalem"
-  ],
   "emotionalTags": [
     "encouraged",
     "hopeful",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1453_traditional_kjv.txt"
     }
   },
-  "reflectionText": "While Babylon held Anathoth, Jeremiah bought a field he could not walk to, sealed the deeds in an earthen vessel, and said: houses and fields shall yet again be bought in this land. What is it to buy a field whose roads are closed, and to seal the deed in an earthen vessel against the day when the roads will be open again?"
+  "reflectionText": "While Babylon held Anathoth, Jeremiah bought a field he could not walk to, sealed the deeds in an earthen vessel, and said: houses and fields shall yet again be bought in this land. What is it to buy a field whose roads are closed, and to seal the deed in an earthen vessel against the day when the roads will be open again?",
+  "sceneBeats": [
+    "babylons_siege_around_jerusalem",
+    "court_of_the_guard",
+    "deed_in_earthen_vessel",
+    "fields_shall_be_bought_again",
+    "seventeen_shekels_of_silver"
+  ]
 }

@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_kings_4_32-37",
   "bibleStoryKey": "shunammites_son_raised",
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
-  "themeTags": [
-    "child_restored_to_mother",
-    "prophet_stretches_on_child",
-    "seven_sneezes",
-    "upper_room_at_shunem",
-    "elisha_raises_the_dead"
-  ],
   "emotionalTags": [
     "grateful",
     "restored",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1379_traditional_kjv.txt"
     }
   },
-  "reflectionText": "She had come up the stairs carrying nothing. She went down them carrying her son. What does gratitude look like when it has to be picked up by your own arms and carried home in your own arms?"
+  "reflectionText": "She had come up the stairs carrying nothing. She went down them carrying her son. What does gratitude look like when it has to be picked up by your own arms and carried home in your own arms?",
+  "sceneBeats": [
+    "child_restored_to_mother",
+    "elisha_raises_the_dead",
+    "prophet_stretches_on_child",
+    "seven_sneezes",
+    "upper_room_at_shunem"
+  ]
 }

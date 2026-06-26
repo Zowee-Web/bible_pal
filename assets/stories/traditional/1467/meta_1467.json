@@ -20,13 +20,6 @@
   "scriptureAnchorId": "hebrews_12_18-24",
   "bibleStoryKey": "two_mountains_sinai_and_zion",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "themeTags": [
-    "mountain_burning_with_fire",
-    "moses_terrified_and_trembling",
-    "city_of_living_god_heavenly_jerusalem",
-    "innumerable_multitudes_of_angels",
-    "blood_of_sprinkling_speaks_better_than_abel"
-  ],
   "emotionalTags": [
     "encouraged",
     "awed",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1467_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The writer set two mountains before them: the burning fire of Sinai, and the heavenly Jerusalem of Zion. He told them they had not come to the first one. They had come to the other. How does it land to be shown which mountain you are standing on?"
+  "reflectionText": "The writer set two mountains before them: the burning fire of Sinai, and the heavenly Jerusalem of Zion. He told them they had not come to the first one. They had come to the other. How does it land to be shown which mountain you are standing on?",
+  "sceneBeats": [
+    "blood_of_sprinkling_speaks_better_than_abel",
+    "city_of_living_god_heavenly_jerusalem",
+    "innumerable_multitudes_of_angels",
+    "moses_terrified_and_trembling",
+    "mountain_burning_with_fire"
+  ]
 }

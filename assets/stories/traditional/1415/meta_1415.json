@@ -20,13 +20,6 @@
   "scriptureAnchorId": "psalm_118_19-29",
   "bibleStoryKey": "this_is_the_day_yahweh_has_made",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "this_is_the_day_yahweh_has_made",
-    "gates_of_righteousness",
-    "stone_the_builders_rejected",
-    "blessed_is_he_who_comes_in_yahwehs_name",
-    "last_psalm_of_the_hallel"
-  ],
   "emotionalTags": [
     "grateful",
     "exultant",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1415_traditional_kjv.txt"
     }
   },
-  "reflectionText": "This is the day that the Lord has made. The Hallel singers sang it at the gate, with the sacrifice bound to the horns of the altar. How do you receive a day as a thing given — not endured, not survived, but given — and sing it back as a song?"
+  "reflectionText": "This is the day that the Lord has made. The Hallel singers sang it at the gate, with the sacrifice bound to the horns of the altar. How do you receive a day as a thing given — not endured, not survived, but given — and sing it back as a song?",
+  "sceneBeats": [
+    "blessed_is_he_who_comes_in_yahwehs_name",
+    "gates_of_righteousness",
+    "last_psalm_of_the_hallel",
+    "stone_the_builders_rejected",
+    "this_is_the_day_yahweh_has_made"
+  ]
 }

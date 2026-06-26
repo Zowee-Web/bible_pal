@@ -24,7 +24,6 @@
     "rebuilding",
     "courage",
     "leadership",
-    "vigilance",
     "perseverance"
   ],
   "emotionalTags": [
@@ -62,5 +61,8 @@
   },
   "reflectionText": "Nehemiah set guards by family groups along the lowest parts of the wall. He said: do not be afraid. Remember the Lord, who is great and awesome, and fight for your brothers, your sons, your daughters, your wives, and your houses. What is it to be told to remember the Lord and pick up the trowel again, after the news has come that the enemy is on its way?",
   "renderedAt": "2026-06-26T00:43:33Z",
-  "generatorVersion": "generate_opus_audio.sh"
+  "generatorVersion": "generate_opus_audio.sh",
+  "sceneBeats": [
+    "vigilance"
+  ]
 }

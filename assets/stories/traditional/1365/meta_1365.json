@@ -21,11 +21,7 @@
   "bibleStoryKey": "naomi_returns_empty_to_bethlehem",
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
   "themeTags": [
-    "bereavement",
-    "homecoming_in_grief",
-    "naming_the_pain",
-    "empty_returning",
-    "before_the_barley_harvest"
+    "bereavement"
   ],
   "emotionalTags": [
     "hurting",
@@ -66,5 +62,12 @@
   "secondaryLifeSituationTags": [
     "starting_over"
   ],
-  "reflectionText": "Don't call me Naomi. Call me Mara. I went out full, and Yahweh has brought me home again empty. What is it to come back to the city you left as one person, and to insist that it call you by a name that names the truth — even as the hand you say is empty already holds the one who would not leave you to walk home alone?"
+  "reflectionText": "Don't call me Naomi. Call me Mara. I went out full, and Yahweh has brought me home again empty. What is it to come back to the city you left as one person, and to insist that it call you by a name that names the truth — even as the hand you say is empty already holds the one who would not leave you to walk home alone?",
+  "sceneBeats": [
+    "before_the_barley_harvest",
+    "empty_returning",
+    "homecoming_in_grief",
+    "naming_the_pain"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

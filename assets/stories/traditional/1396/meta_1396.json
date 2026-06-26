@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_kings_7_3-9",
   "bibleStoryKey": "four_lepers_at_samaria_gate",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "if_we_go_in_we_die",
-    "siege_famine_at_samaria",
-    "four_outsiders_at_the_gate",
-    "empty_syrian_camp",
-    "good_news_we_cannot_keep_silent"
-  ],
   "emotionalTags": [
     "anxious",
     "desperate",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1396_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Four lepers sat at the gate of the city and reasoned out their odds: dying inside, dying still, dying surrendered. What is it to discover that the choice you thought was no choice was actually a way to be saved alive?"
+  "reflectionText": "Four lepers sat at the gate of the city and reasoned out their odds: dying inside, dying still, dying surrendered. What is it to discover that the choice you thought was no choice was actually a way to be saved alive?",
+  "sceneBeats": [
+    "empty_syrian_camp",
+    "four_outsiders_at_the_gate",
+    "good_news_we_cannot_keep_silent",
+    "if_we_go_in_we_die",
+    "siege_famine_at_samaria"
+  ]
 }

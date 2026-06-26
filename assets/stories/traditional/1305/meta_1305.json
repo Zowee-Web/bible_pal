@@ -23,7 +23,6 @@
   "themeTags": [
     "promise",
     "fulfillment",
-    "land",
     "gratitude",
     "remembrance"
   ],
@@ -60,5 +59,8 @@
       "reflectionText": "reflection_1305_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Moses stood on the plains of Moab before the crossing and told Israel of the good land: brooks of water, springs, valleys and hills, wheat and barley, vines and fig trees and pomegranates, olive trees and honey. You shall eat and be full, and bless the Lord your God for the good land. What is it to be promised a land with the names of its fruits already written down, before you have yet crossed the river to taste them?"
+  "reflectionText": "Moses stood on the plains of Moab before the crossing and told Israel of the good land: brooks of water, springs, valleys and hills, wheat and barley, vines and fig trees and pomegranates, olive trees and honey. You shall eat and be full, and bless the Lord your God for the good land. What is it to be promised a land with the names of its fruits already written down, before you have yet crossed the river to taste them?",
+  "sceneBeats": [
+    "land"
+  ]
 }

@@ -20,13 +20,6 @@
   "scriptureAnchorId": "john_11_38-44",
   "bibleStoryKey": "thanks_at_lazarus_tomb",
   "storyVoiceKey": "VOICE_RUTH_COMFORT",
-  "themeTags": [
-    "thanks_at_lazarus_tomb",
-    "stone_taken_away",
-    "you_listened_to_me",
-    "lazarus_come_out",
-    "graveclothes_unbound"
-  ],
   "emotionalTags": [
     "grateful",
     "tender",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1385_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Jesus lifted up his eyes and gave thanks to the Father before the stone was rolled away. What does it look like to give thanks for the answer in the moment before the answer has been seen?"
+  "reflectionText": "Jesus lifted up his eyes and gave thanks to the Father before the stone was rolled away. What does it look like to give thanks for the answer in the moment before the answer has been seen?",
+  "sceneBeats": [
+    "graveclothes_unbound",
+    "lazarus_come_out",
+    "stone_taken_away",
+    "thanks_at_lazarus_tomb",
+    "you_listened_to_me"
+  ]
 }

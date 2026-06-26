@@ -20,13 +20,6 @@
   "scriptureAnchorId": "luke_5_12-16",
   "bibleStoryKey": "leper_healed_jesus_withdrew_to_pray",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "themeTags": [
-    "leper_falls_at_jesus_feet",
-    "if_you_want_to_you_can_make_me_clean",
-    "jesus_stretched_out_his_hand_and_touched_him",
-    "show_yourself_to_the_priest",
-    "jesus_withdrew_to_pray_alone"
-  ],
   "emotionalTags": [
     "grateful",
     "reverent",
@@ -63,5 +56,13 @@
   },
   "reflectionQuestion": "The hand did not draw back from the leprosy. What is the part of you that has been kept apart from human touch for so long that you have stopped expecting it could be made clean — and what would it feel like to hear someone say, \"I want to. Be made clean\"?",
   "reflectionText": "The hand drew not back from the leprosy. What is the part of thee that hath been kept apart from the touch of man for so long that thou hast ceased expecting it could be made clean — and what would it feel like to hear one say, \"I will. Be thou clean\"?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "if_you_want_to_you_can_make_me_clean",
+    "jesus_stretched_out_his_hand_and_touched_him",
+    "jesus_withdrew_to_pray_alone",
+    "leper_falls_at_jesus_feet",
+    "show_yourself_to_the_priest"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

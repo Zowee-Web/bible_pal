@@ -8,8 +8,8 @@ import 'package:bible_pal/features/paths/theme_vocabulary.dart';
 /// expanded vocabulary so further drift is intentional rather than accidental.
 void main() {
   group('ThemeTag wire ids — expanded vocabulary (SPEC 50, PR β)', () {
-    test('exactly 58 theme tags exist', () {
-      expect(ThemeTag.values.length, 58);
+    test('exactly 146 theme tags exist', () {
+      expect(ThemeTag.values.length, 146);
     });
 
     test('original locked-8 wire ids remain present and exact', () {
@@ -30,71 +30,37 @@ void main() {
       }
     });
 
-    test('all 58 expanded wire ids are present and exact', () {
+    test('all 146 expanded wire ids are present and exact', () {
       final wireIds = ThemeTag.values.map((t) => t.wireId).toSet();
       expect(
         wireIds,
         equals({
-          // v1 locked-8
-          'faith',
-          'hope',
-          'mercy',
-          'courage',
-          'obedience',
-          'provision',
-          'patience',
-          'forgiveness',
-          // PR β expansion (corpus-canonical themes)
-          'promise',
-          'presence',
-          'trust',
-          'guidance',
-          'prayer',
-          'calling',
-          'lament',
-          'gratitude',
-          'suffering',
-          'praise',
-          'deliverance',
-          'love',
-          'perseverance',
-          'restoration',
-          'endurance',
-          'faithfulness',
-          'transformation',
-          'rest',
-          'fear',
-          'healing',
-          'rebuilding',
-          'blessing',
-          'celebration',
-          'wisdom',
-          'peace',
-          'waiting',
-          'freedom',
-          'testing',
-          'covenant',
-          'longing',
-          'redemption',
-          'comfort',
-          'repentance',
-          'sacrifice',
-          'protection',
-          'refuge',
-          'witness',
-          'scripture',
-          'humility',
-          'service',
-          'kingdom',
-          'loyalty',
-          'shame',
-          'abandonment',
-          'justice',
-          'wrestling',
-          'grief',
-          'joy',
-          'hospitality',
-          'devotion',
+          // Theme Vocabulary v2 (frozen 2026-06 test-health pass) — 146 tags.
+          'abandonment', 'abundance', 'ark', 'authority', 'bereavement', 'birth',
+          'blessing', 'blossoming', 'burden', 'calling', 'celebration', 'choice',
+          'comfort', 'commission', 'commissioning', 'community', 'compassion', 'completion',
+          'confession', 'consequence', 'conspiracy', 'courage', 'covenant', 'death',
+          'decree', 'dedication', 'deliverance', 'desolation', 'destruction', 'devotion',
+          'discipleship', 'doxology', 'elegy', 'endurance', 'evangelism', 'exhaustion',
+          'exhortation', 'exile', 'expansion', 'faith', 'faithfulness', 'fasting',
+          'fatherhood', 'fear', 'fellowship', 'flight', 'forgiveness', 'freedom',
+          'friendship', 'fulfillment', 'futility', 'gathering', 'generosity', 'giving',
+          'gratitude', 'grief', 'guidance', 'healing', 'homecoming', 'hope',
+          'hospitality', 'household', 'humility', 'idolatry', 'injustice', 'intercession',
+          'intervention', 'intimacy', 'journey', 'joy', 'judgment', 'justice',
+          'kingdom', 'kingship', 'labor', 'lament', 'language', 'laughter',
+          'leadership', 'legacy', 'loneliness', 'longing', 'loss', 'love',
+          'loyalty', 'meditation', 'menace', 'mercy', 'miracles', 'music',
+          'mystery', 'obedience', 'patience', 'peace', 'perseverance', 'petition',
+          'pilgrimage', 'praise', 'prayer', 'presence', 'pride', 'promise',
+          'protection', 'providence', 'provision', 'pursuit', 'rebuilding', 'redemption',
+          'refuge', 'remembrance', 'repentance', 'resolve', 'rest', 'restoration',
+          'revelation', 'righteousness', 'sacrifice', 'salvation', 'scattering', 'scripture',
+          'service', 'shame', 'sleeplessness', 'song', 'sovereignty', 'sowing',
+          'stewardship', 'stillness', 'suffering', 'testing', 'thanksgiving', 'toil',
+          'transformation', 'trust', 'vanity', 'vindication', 'vision', 'waiting',
+          'wedding', 'wilderness', 'wisdom', 'withdrawal', 'witness', 'worship',
+          'worthiness', 'wrestling',
         }),
       );
     });
@@ -170,7 +136,7 @@ void main() {
 
     test('allWireIds returns the full expanded set', () {
       final all = ThemeTagParse.allWireIds;
-      expect(all.length, 58);
+      expect(all.length, 146);
       // Sample membership across the v1 + expansion split
       expect(all, contains('faith'));
       expect(all, contains('forgiveness'));

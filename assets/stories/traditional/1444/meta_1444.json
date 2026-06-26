@@ -20,13 +20,6 @@
   "scriptureAnchorId": "luke_21_1-4",
   "bibleStoryKey": "widow_two_mites",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "themeTags": [
-    "widows_two_mites",
-    "jesus_watches_at_treasury",
-    "more_than_all_of_them",
-    "all_she_had_to_live_on",
-    "eyes_of_the_lord_on_her_hand"
-  ],
   "emotionalTags": [
     "grateful",
     "humble",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1444_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The widow put in two small coins and walked out of the court without turning back. She did not know that anyone had seen what they had cost her. How does a gift become a gift when no one watching knew what was given?"
+  "reflectionText": "The widow put in two small coins and walked out of the court without turning back. She did not know that anyone had seen what they had cost her. How does a gift become a gift when no one watching knew what was given?",
+  "sceneBeats": [
+    "all_she_had_to_live_on",
+    "eyes_of_the_lord_on_her_hand",
+    "jesus_watches_at_treasury",
+    "more_than_all_of_them",
+    "widows_two_mites"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

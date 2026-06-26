@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_samuel_7_18-29",
   "bibleStoryKey": "davids_prayer_after_the_covenant",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "themeTags": [
-    "who_am_i_lord_yahweh",
-    "what_is_my_house",
-    "yahweh_of_armies_is_god_over_israel",
-    "house_of_your_servant_blessed_forever",
-    "davidic_covenant_response"
-  ],
   "emotionalTags": [
     "grateful",
     "awed",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1473_traditional_kjv.txt"
     }
   },
-  "reflectionText": "David took off his sandals, sat down on the floor before the ark, and said: who am I, Lord, that you have brought me thus far? How does gratitude sound when the only sentence you can complete is a question about who you are to be receiving this at all?"
+  "reflectionText": "David took off his sandals, sat down on the floor before the ark, and said: who am I, Lord, that you have brought me thus far? How does gratitude sound when the only sentence you can complete is a question about who you are to be receiving this at all?",
+  "sceneBeats": [
+    "davidic_covenant_response",
+    "house_of_your_servant_blessed_forever",
+    "what_is_my_house",
+    "who_am_i_lord_yahweh",
+    "yahweh_of_armies_is_god_over_israel"
+  ]
 }

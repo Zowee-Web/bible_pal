@@ -20,13 +20,6 @@
   "scriptureAnchorId": "lamentations_3_55-58",
   "bibleStoryKey": "jeremiah_calls_from_the_low_dungeon",
   "storyVoiceKey": "VOICE_NOAH_PATIENT",
-  "themeTags": [
-    "voice_from_the_lowest_dungeon",
-    "yahweh_came_near_in_the_day_i_called",
-    "do_not_be_afraid",
-    "redeemed_my_life",
-    "lament_carried_up_into_a_book"
-  ],
   "emotionalTags": [
     "hurting",
     "trusting",
@@ -63,5 +56,13 @@
   },
   "reflectionQuestion": "The pit was dark and the cry rose out of it. What does it feel like to call out from a place so low you no longer believed any voice could reach above it, and to find that the hearing had been waiting before the words left your mouth?",
   "reflectionText": "The pit was dark and the cry went up out of it. What doth it feel like to call out from a place so low thou couldst not believe any voice would reach above it, and to find that the hearing had been waiting before ever the words left thy mouth?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "do_not_be_afraid",
+    "lament_carried_up_into_a_book",
+    "redeemed_my_life",
+    "voice_from_the_lowest_dungeon",
+    "yahweh_came_near_in_the_day_i_called"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

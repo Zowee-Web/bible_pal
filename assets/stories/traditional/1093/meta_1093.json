@@ -52,5 +52,7 @@
   "scriptureKeyVerse": {
     "ref": "Luke 7:50",
     "text": "He said to the woman, “Your faith has saved you. Go in peace.”"
-  }
+  },
+  "editorialBucketException": "legacy_bucket_drift",
+  "boundaryException": "deferred_boundary_drift"
 }

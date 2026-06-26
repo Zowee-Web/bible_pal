@@ -20,13 +20,6 @@
   "scriptureAnchorId": "joshua_17_14-18",
   "bibleStoryKey": "sons_of_joseph_complain",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
-  "themeTags": [
-    "tribal_inheritance_strain",
-    "chariots_of_iron",
-    "joshuas_matter_of_fact_reply",
-    "work_of_clearing_ahead",
-    "after_the_lots_at_shiloh"
-  ],
   "emotionalTags": [
     "weary",
     "burdened",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1386_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The sons of Joseph asked for more land, and Joshua told them to go up and clear the forest. What does it feel like to ask for an inheritance and be given a forest that has to be cleared by your own hands?"
+  "reflectionText": "The sons of Joseph asked for more land, and Joshua told them to go up and clear the forest. What does it feel like to ask for an inheritance and be given a forest that has to be cleared by your own hands?",
+  "sceneBeats": [
+    "after_the_lots_at_shiloh",
+    "chariots_of_iron",
+    "joshuas_matter_of_fact_reply",
+    "tribal_inheritance_strain",
+    "work_of_clearing_ahead"
+  ]
 }

@@ -20,13 +20,6 @@
   "scriptureAnchorId": "acts_10_30-48",
   "bibleStoryKey": "cornelius_household_baptized",
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
-  "themeTags": [
-    "gentile_pentecost_at_caesarea",
-    "your_prayer_is_heard",
-    "spirit_falls_while_peter_speaks",
-    "household_baptized",
-    "no_favoritism_with_god"
-  ],
   "emotionalTags": [
     "joyful",
     "awed",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1416_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The Holy Spirit fell on the Gentiles while Peter was still speaking, before the baptism that Peter had not yet thought to offer. How does the gift arrive when it comes before the gatekeepers were ready to give the answer themselves?"
+  "reflectionText": "The Holy Spirit fell on the Gentiles while Peter was still speaking, before the baptism that Peter had not yet thought to offer. How does the gift arrive when it comes before the gatekeepers were ready to give the answer themselves?",
+  "sceneBeats": [
+    "gentile_pentecost_at_caesarea",
+    "household_baptized",
+    "no_favoritism_with_god",
+    "spirit_falls_while_peter_speaks",
+    "your_prayer_is_heard"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

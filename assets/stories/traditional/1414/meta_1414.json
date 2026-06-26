@@ -20,13 +20,6 @@
   "scriptureAnchorId": "genesis_22_14-19",
   "bibleStoryKey": "abraham_after_the_ram",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "themeTags": [
-    "yahweh_will_provide_after_ram",
-    "angel_calls_a_second_time",
-    "covenant_oath_renewed",
-    "offspring_like_stars_and_sand",
-    "return_to_beersheba"
-  ],
   "emotionalTags": [
     "grateful",
     "humbled",
@@ -67,5 +60,14 @@
     "lifelong_waiting",
     "surrender_to_god"
   ],
-  "reflectionText": "Abraham and Isaac came down the mountain together, and the name Abraham left in the place behind them was: Yahweh Will Provide. What does it take to walk back down toward your own people from a mountain where you have learned a new name you will carry all your days?"
+  "reflectionText": "Abraham and Isaac came down the mountain together, and the name Abraham left in the place behind them was: Yahweh Will Provide. What does it take to walk back down toward your own people from a mountain where you have learned a new name you will carry all your days?",
+  "sceneBeats": [
+    "angel_calls_a_second_time",
+    "covenant_oath_renewed",
+    "offspring_like_stars_and_sand",
+    "return_to_beersheba",
+    "yahweh_will_provide_after_ram"
+  ],
+  "editorialBucketException": "legacy_bucket_drift",
+  "boundaryException": "deferred_boundary_drift"
 }

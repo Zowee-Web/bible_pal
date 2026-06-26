@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_chronicles_33_10-13",
   "bibleStoryKey": "manasseh_humbled_then_restored",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
-  "themeTags": [
-    "humbled_then_restored",
-    "carried_away_in_hooks",
-    "begged_yahweh_in_distress",
-    "brought_back_to_jerusalem",
-    "knew_yahweh_was_god"
-  ],
   "emotionalTags": [
     "grateful",
     "humbled",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1407_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Manasseh was carried to Babylon in chains for the evil of fifty-five years. He humbled himself in distress, and the Lord brought him back. What is gratitude when it comes through chains, and the king who returns is not the same king who was taken?"
+  "reflectionText": "Manasseh was carried to Babylon in chains for the evil of fifty-five years. He humbled himself in distress, and the Lord brought him back. What is gratitude when it comes through chains, and the king who returns is not the same king who was taken?",
+  "sceneBeats": [
+    "begged_yahweh_in_distress",
+    "brought_back_to_jerusalem",
+    "carried_away_in_hooks",
+    "humbled_then_restored",
+    "knew_yahweh_was_god"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

@@ -20,13 +20,6 @@
   "scriptureAnchorId": "1_kings_18_30-39",
   "bibleStoryKey": "fire_falls_on_carmel_altar",
   "storyVoiceKey": "VOICE_ELIJAH_SAGE",
-  "themeTags": [
-    "twelve_stones_for_twelve_tribes",
-    "water_poured_three_times",
-    "fire_of_yahweh_fell",
-    "consumed_burnt_offering_and_water",
-    "yahweh_he_is_god"
-  ],
   "emotionalTags": [
     "brave",
     "awed",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1460_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Elijah laid the wood, cut the bull, and had the water poured over it three times until the trench was filled. Then the fire of Yahweh fell. Have you ever drenched what you were about to give to God so that no one watching could mistake what was happening?"
+  "reflectionText": "Elijah laid the wood, cut the bull, and had the water poured over it three times until the trench was filled. Then the fire of Yahweh fell. Have you ever drenched what you were about to give to God so that no one watching could mistake what was happening?",
+  "sceneBeats": [
+    "consumed_burnt_offering_and_water",
+    "fire_of_yahweh_fell",
+    "twelve_stones_for_twelve_tribes",
+    "water_poured_three_times",
+    "yahweh_he_is_god"
+  ]
 }

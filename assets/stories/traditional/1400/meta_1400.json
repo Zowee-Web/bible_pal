@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_kings_11_1-3",
   "bibleStoryKey": "jehosheba_hides_joash",
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
-  "themeTags": [
-    "child_hidden_from_athaliah",
-    "infant_stolen_from_among_the_slain",
-    "six_years_in_yahwehs_house",
-    "queens_destruction_of_royal_offspring",
-    "preserved_line_of_david"
-  ],
   "emotionalTags": [
     "anxious",
     "protective",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1400_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Jehosheba hid the infant Joash in the chambers of the priests for six years while Athaliah sat on his father's throne. What does survival look like when it has to grow up in a temple room while the wrong reign holds the throne outside the wall?"
+  "reflectionText": "Jehosheba hid the infant Joash in the chambers of the priests for six years while Athaliah sat on his father's throne. What does survival look like when it has to grow up in a temple room while the wrong reign holds the throne outside the wall?",
+  "sceneBeats": [
+    "child_hidden_from_athaliah",
+    "infant_stolen_from_among_the_slain",
+    "preserved_line_of_david",
+    "queens_destruction_of_royal_offspring",
+    "six_years_in_yahwehs_house"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

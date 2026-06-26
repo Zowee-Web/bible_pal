@@ -20,13 +20,6 @@
   "scriptureAnchorId": "exodus_18_1-12",
   "bibleStoryKey": "jethro_hears_and_blesses_yahweh",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "themeTags": [
-    "outsider_hears_and_blesses",
-    "midian_priest_meets_moses",
-    "burnt_offering_at_the_mountain",
-    "yahweh_greater_than_all_gods",
-    "elders_eat_bread_together"
-  ],
   "emotionalTags": [
     "grateful",
     "honoring",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1380_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The priest of Midian — outsider to the covenant — heard the story of Egypt and said: Blessed be Yahweh. Have you ever heard the first thanksgiving come from the lips of someone who was watching from across the desert all along?"
+  "reflectionText": "The priest of Midian — outsider to the covenant — heard the story of Egypt and said: Blessed be Yahweh. Have you ever heard the first thanksgiving come from the lips of someone who was watching from across the desert all along?",
+  "sceneBeats": [
+    "burnt_offering_at_the_mountain",
+    "elders_eat_bread_together",
+    "midian_priest_meets_moses",
+    "outsider_hears_and_blesses",
+    "yahweh_greater_than_all_gods"
+  ]
 }

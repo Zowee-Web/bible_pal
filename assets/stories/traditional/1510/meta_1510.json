@@ -22,13 +22,6 @@
   "scriptureAnchorId": "2_kings_5_1-14",
   "bibleStoryKey": "naaman_dips_seven_times_in_the_jordan",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "themeTags": [
-    "little_maid_speaks_of_prophet_in_samaria",
-    "chariots_stopped_at_elishas_door",
-    "naaman_wroth_at_simple_word",
-    "servants_counsel_what_if_great_thing",
-    "dipped_seven_times_flesh_like_a_child"
-  ],
   "emotionalTags": [
     "grateful",
     "tender",
@@ -77,5 +70,12 @@
   },
   "reflectionQuestion": "He stood at the door with his horses and his chariots. He was angry when the prophet did not come out. His servants spoke to him. He dipped seven times in the Jordan and came up with the flesh of a little child. What is it to be the great man at the door who finds the cure is to go down to the river seven times and wash?",
   "reflectionText": "He stood at the door with his horses and his chariot. He was wroth when the prophet came not out. His servants spake unto him. He dipped himself seven times in Jordan and came up with the flesh of a little child. What is it to be the great man at the door who findeth the cure is to go down unto the river seven times and wash?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "chariots_stopped_at_elishas_door",
+    "dipped_seven_times_flesh_like_a_child",
+    "little_maid_speaks_of_prophet_in_samaria",
+    "naaman_wroth_at_simple_word",
+    "servants_counsel_what_if_great_thing"
+  ]
 }

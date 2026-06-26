@@ -20,13 +20,6 @@
   "scriptureAnchorId": "acts_27_35-44",
   "bibleStoryKey": "paul_breaks_bread_on_the_ship",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "thanks_on_the_ship_all_saved",
-    "breaking_bread_in_the_storm",
-    "ship_runs_aground",
-    "centurion_saves_paul",
-    "all_escaped_safely"
-  ],
   "emotionalTags": [
     "grateful",
     "settled",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1384_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Two weeks of storm. The ship breaking apart. Paul stood up and gave thanks for bread before he ate it, and not one of the two hundred seventy-six souls on the ship was lost. What is it to thank God for the bread of survival before the survival itself has come?"
+  "reflectionText": "Two weeks of storm. The ship breaking apart. Paul stood up and gave thanks for bread before he ate it, and not one of the two hundred seventy-six souls on the ship was lost. What is it to thank God for the bread of survival before the survival itself has come?",
+  "sceneBeats": [
+    "all_escaped_safely",
+    "breaking_bread_in_the_storm",
+    "centurion_saves_paul",
+    "ship_runs_aground",
+    "thanks_on_the_ship_all_saved"
+  ]
 }

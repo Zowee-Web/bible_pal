@@ -20,13 +20,6 @@
   "scriptureAnchorId": "genesis_35_1-7",
   "bibleStoryKey": "jacob_renews_vow_at_bethel",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "themeTags": [
-    "renewed_vow_at_bethel",
-    "foreign_gods_put_away",
-    "altar_for_the_god_who_answered",
-    "terror_of_god_on_the_cities",
-    "after_shechem"
-  ],
   "emotionalTags": [
     "grateful",
     "humbled",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1382_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Jacob buried the foreign gods of his household under an oak at Shechem before he could go up and build the altar at Bethel. What does it take to bury the things you have been carrying before you can go back and stand where you first met him?"
+  "reflectionText": "Jacob buried the foreign gods of his household under an oak at Shechem before he could go up and build the altar at Bethel. What does it take to bury the things you have been carrying before you can go back and stand where you first met him?",
+  "sceneBeats": [
+    "after_shechem",
+    "altar_for_the_god_who_answered",
+    "foreign_gods_put_away",
+    "renewed_vow_at_bethel",
+    "terror_of_god_on_the_cities"
+  ]
 }

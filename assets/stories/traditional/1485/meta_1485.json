@@ -20,13 +20,6 @@
   "scriptureAnchorId": "mark_1_35-39",
   "bibleStoryKey": "jesus_rises_early_to_pray_in_deserted_place",
   "storyVoiceKey": "VOICE_ELIJAH_SAGE",
-  "themeTags": [
-    "rose_before_dawn_to_pray_alone",
-    "deserted_place_outside_capernaum",
-    "disciples_came_looking_for_him",
-    "let_us_go_to_the_next_towns",
-    "preaching_throughout_galilee"
-  ],
   "emotionalTags": [
     "calm",
     "settled",
@@ -63,5 +56,13 @@
   },
   "reflectionQuestion": "He went out before the day came up. He prayed in the empty country. They came looking for him, and he went on with them. What does it cost you to walk out to the deserted place before the day begins, and what does it cost to be found there when the morning has come?",
   "reflectionText": "He went out while it was yet dark. He prayed in the solitary country. They came looking for him, and he went on with them. What doth it cost thee to walk out unto the solitary place before the day cometh up, and what doth it cost thee to be found there when the morning is come?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "deserted_place_outside_capernaum",
+    "disciples_came_looking_for_him",
+    "let_us_go_to_the_next_towns",
+    "preaching_throughout_galilee",
+    "rose_before_dawn_to_pray_alone"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

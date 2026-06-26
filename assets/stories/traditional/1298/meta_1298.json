@@ -21,11 +21,7 @@
   "bibleStoryKey": "commander_of_yahwehs_army",
   "storyVoiceKey": "VOICE_NOAH_PATIENT",
   "themeTags": [
-    "holy_ground",
-    "encounter",
-    "reverence",
-    "presence",
-    "command"
+    "presence"
   ],
   "emotionalTags": [
     "awed",
@@ -60,5 +56,12 @@
       "reflectionText": "reflection_1298_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Joshua walked out from the camp alone and lifted up his eyes, and a man stood before him with his sword drawn. Joshua asked: are you for us, or for our enemies? He said: no; but I have come as commander of the Lord's army. Take off your sandals. What is it to ask whose side the captain is on and be told he is on his own side, and you are on his ground?"
+  "reflectionText": "Joshua walked out from the camp alone and lifted up his eyes, and a man stood before him with his sword drawn. Joshua asked: are you for us, or for our enemies? He said: no; but I have come as commander of the Lord's army. Take off your sandals. What is it to ask whose side the captain is on and be told he is on his own side, and you are on his ground?",
+  "sceneBeats": [
+    "command",
+    "encounter",
+    "holy_ground",
+    "reverence"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

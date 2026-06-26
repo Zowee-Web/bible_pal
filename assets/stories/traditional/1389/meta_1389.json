@@ -20,13 +20,6 @@
   "scriptureAnchorId": "genesis_40_14-23",
   "bibleStoryKey": "joseph_forgotten_by_cupbearer",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "forgotten_in_prison",
-    "interpretation_of_two_dreams",
-    "cupbearer_restored",
-    "baker_hanged",
-    "asking_to_be_remembered"
-  ],
   "emotionalTags": [
     "weary",
     "longing",
@@ -66,5 +59,12 @@
   "secondaryLifeSituationTags": [
     "delayed_promise"
   ],
-  "reflectionText": "Joseph interpreted the cupbearer's dream and asked to be remembered. The dust gathered in Joseph's cell, and the cupbearer did not yet remember. Have you ever waited through long months when the one who promised to remember you has not yet returned to your name?"
+  "reflectionText": "Joseph interpreted the cupbearer's dream and asked to be remembered. The dust gathered in Joseph's cell, and the cupbearer did not yet remember. Have you ever waited through long months when the one who promised to remember you has not yet returned to your name?",
+  "sceneBeats": [
+    "asking_to_be_remembered",
+    "baker_hanged",
+    "cupbearer_restored",
+    "forgotten_in_prison",
+    "interpretation_of_two_dreams"
+  ]
 }

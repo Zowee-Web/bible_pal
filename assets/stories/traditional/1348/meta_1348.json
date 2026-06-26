@@ -20,13 +20,6 @@
   "scriptureAnchorId": "exodus_1_15-22",
   "bibleStoryKey": "the_hebrew_midwives_feared_god",
   "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
-  "themeTags": [
-    "single_decisive_act",
-    "fearing_god_over_king",
-    "defying_pharaoh",
-    "saving_the_innocent",
-    "before_the_deliverer"
-  ],
   "emotionalTags": [
     "brave",
     "resolute",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1348_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Shiphrah and Puah feared God more than they feared the king, and God gave them families. What is it to be remembered by name in the book of God for the day you refused to do what the king commanded, and to find that your own house was built in the doing?"
+  "reflectionText": "Shiphrah and Puah feared God more than they feared the king, and God gave them families. What is it to be remembered by name in the book of God for the day you refused to do what the king commanded, and to find that your own house was built in the doing?",
+  "sceneBeats": [
+    "before_the_deliverer",
+    "defying_pharaoh",
+    "fearing_god_over_king",
+    "saving_the_innocent",
+    "single_decisive_act"
+  ]
 }

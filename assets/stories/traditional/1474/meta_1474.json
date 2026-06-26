@@ -20,13 +20,6 @@
   "scriptureAnchorId": "psalm_133_1-3",
   "bibleStoryKey": "psalm_133_song_of_ascent_unity",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
-  "themeTags": [
-    "song_of_the_steps",
-    "oil_on_aarons_beard",
-    "dew_of_hermon_on_zion",
-    "brothers_dwell_together_in_unity",
-    "yahweh_gives_the_blessing"
-  ],
   "emotionalTags": [
     "calm",
     "settled",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1474_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The pilgrims sang it as they came up the road together, the brothers and sisters and families joined on the climb. What is it to walk up the road together with the families coming up beside you, and to sing the song that has been waiting for this morning all along?"
+  "reflectionText": "The pilgrims sang it as they came up the road together, the brothers and sisters and families joined on the climb. What is it to walk up the road together with the families coming up beside you, and to sing the song that has been waiting for this morning all along?",
+  "sceneBeats": [
+    "brothers_dwell_together_in_unity",
+    "dew_of_hermon_on_zion",
+    "oil_on_aarons_beard",
+    "song_of_the_steps",
+    "yahweh_gives_the_blessing"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

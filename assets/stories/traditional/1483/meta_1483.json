@@ -20,13 +20,6 @@
   "scriptureAnchorId": "psalm_84_1-7",
   "bibleStoryKey": "psalm_of_pilgrims_walking_up_to_zion",
   "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
-  "themeTags": [
-    "pilgrim_song_walking_up_to_jerusalem",
-    "sparrow_and_swallow_nesting_near_altar",
-    "valley_of_weeping_made_into_springs",
-    "they_go_from_strength_to_strength",
-    "blessed_are_those_set_on_pilgrimage"
-  ],
   "emotionalTags": [
     "joyful",
     "longing",
@@ -63,5 +56,12 @@
   },
   "reflectionQuestion": "The pilgrims sang as they climbed. The valley of weeping was on the road. What does it feel like to walk a long road toward a place you have longed to be, when the valley is still ahead of you and the song is the only thing carrying you forward?",
   "reflectionText": "The pilgrims sang as they climbed. The valley of Baca was on the road. What doth it feel like to walk a long road toward a place thou hast longed to be, when the valley is yet ahead of thee and the song is the only thing carrying thee forward?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "blessed_are_those_set_on_pilgrimage",
+    "pilgrim_song_walking_up_to_jerusalem",
+    "sparrow_and_swallow_nesting_near_altar",
+    "they_go_from_strength_to_strength",
+    "valley_of_weeping_made_into_springs"
+  ]
 }

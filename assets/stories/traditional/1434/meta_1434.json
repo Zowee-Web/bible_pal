@@ -20,13 +20,6 @@
   "scriptureAnchorId": "psalm_131_1-3",
   "bibleStoryKey": "weaned_child_with_mother",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "themeTags": [
-    "weaned_child_with_mother",
-    "stilled_and_quieted_soul",
-    "things_too_wonderful_for_me",
-    "song_of_ascents",
-    "three_short_verses"
-  ],
   "emotionalTags": [
     "calm",
     "humble",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1434_traditional_kjv.txt"
     }
   },
-  "reflectionText": "David stilled his soul like a weaned child with his mother, and set the line in three short verses among the songs of the ascents. What does it look like to quiet yourself enough to rest beside the Lord without grasping for anything?"
+  "reflectionText": "David stilled his soul like a weaned child with his mother, and set the line in three short verses among the songs of the ascents. What does it look like to quiet yourself enough to rest beside the Lord without grasping for anything?",
+  "sceneBeats": [
+    "song_of_ascents",
+    "stilled_and_quieted_soul",
+    "things_too_wonderful_for_me",
+    "three_short_verses",
+    "weaned_child_with_mother"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

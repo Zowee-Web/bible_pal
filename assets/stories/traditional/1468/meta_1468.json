@@ -20,13 +20,6 @@
   "scriptureAnchorId": "exodus_34_29-35",
   "bibleStoryKey": "moses_shining_face_and_veil",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
-  "themeTags": [
-    "two_tablets_of_testimony",
-    "skin_of_face_shone",
-    "people_afraid_to_come_near",
-    "veil_on_and_off",
-    "between_speaking_with_yahweh_and_camp"
-  ],
   "emotionalTags": [
     "brave",
     "awed",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1468_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Moses came down with the skin of his face shining and did not know it. He put on the veil so the people would come back. What is it to come down from where you have been with God with the skin of your face shining — and to find that you must cover the very thing that has changed about you, so that those who fear it can stand near you again?"
+  "reflectionText": "Moses came down with the skin of his face shining and did not know it. He put on the veil so the people would come back. What is it to come down from where you have been with God with the skin of your face shining — and to find that you must cover the very thing that has changed about you, so that those who fear it can stand near you again?",
+  "sceneBeats": [
+    "between_speaking_with_yahweh_and_camp",
+    "people_afraid_to_come_near",
+    "skin_of_face_shone",
+    "two_tablets_of_testimony",
+    "veil_on_and_off"
+  ]
 }

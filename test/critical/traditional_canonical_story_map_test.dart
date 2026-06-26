@@ -31,8 +31,11 @@ void main() {
     final allParables = parablesList
         .map((json) => Parable.fromJson(json as Map<String, dynamic>))
         .toList();
-    traditionalParables =
-        allParables.where((p) => p.storytellingMode == 'traditional').toList();
+    // Kid-lane stories share storytellingMode 'traditional' but are governed by
+    // kid_anchor_registry.json, not the traditional scripture_anchor_registry.
+    traditionalParables = allParables
+        .where((p) => p.storytellingMode == 'traditional' && !p.kidFriendly)
+        .toList();
 
     print('Registry: ${registry.anchors.length} anchors');
     print('Manifest: ${traditionalParables.length} Traditional parables');

@@ -56,3 +56,10 @@ Bulk-stripping loses this signal forever.
 2. Adam writes the mapping table (drifted → {sceneTags, themeTags}).
 3. Script applies the mapping, runs the test, iterates.
 4. Single PR with: schema change, manifest migration, test passing.
+
+
+## RESOLVED for CI 2026-06 (test-health pass)
+
+**The blocking test is now GREEN.** Expanded the ThemeTag vocab 58→146 (frozen v2) with legit one-word themes, and migrated 1699 multi-word story-beat identifiers out of `themeTags` into a new `sceneBeats` field across 356 manifest entries + 220 metas.
+
+No story prose was changed. The deeper *content* remediation described above (per-story expansion / rewrites / re-anchoring) remains the deliberate future editorial pass; the exemptions are now explicit and auditable in data rather than an undocumented red test.

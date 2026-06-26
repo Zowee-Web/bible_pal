@@ -20,13 +20,6 @@
   "scriptureAnchorId": "matthew_11_2-6",
   "bibleStoryKey": "john_baptist_sends_from_prison",
   "storyVoiceKey": "VOICE_NOAH_PATIENT",
-  "themeTags": [
-    "prison_doubt_message",
-    "two_disciples_sent",
-    "the_works_of_christ",
-    "no_occasion_for_stumbling",
-    "imprisoned_forerunner"
-  ],
   "emotionalTags": [
     "weary",
     "questioning",
@@ -66,5 +59,13 @@
   "secondaryLifeSituationTags": [
     "unjust_imprisonment"
   ],
-  "reflectionText": "John sent his disciples to ask if Jesus was the one. The answer was not yes — it was the works themselves: the blind seeing, the lame walking, the dead raised. How do you carry an answer that came in the form of works, back to a man in a cell?"
+  "reflectionText": "John sent his disciples to ask if Jesus was the one. The answer was not yes — it was the works themselves: the blind seeing, the lame walking, the dead raised. How do you carry an answer that came in the form of works, back to a man in a cell?",
+  "sceneBeats": [
+    "imprisoned_forerunner",
+    "no_occasion_for_stumbling",
+    "prison_doubt_message",
+    "the_works_of_christ",
+    "two_disciples_sent"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

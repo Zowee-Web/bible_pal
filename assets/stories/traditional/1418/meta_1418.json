@@ -20,13 +20,6 @@
   "scriptureAnchorId": "ruth_4_1-12",
   "bibleStoryKey": "boaz_redeems_at_the_gate",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
-  "themeTags": [
-    "kinsman_redeemer_at_the_gate",
-    "ten_elders_seated",
-    "sandal_exchange_custom",
-    "blessing_of_rachel_and_leah",
-    "public_redemption_in_bethlehem"
-  ],
   "emotionalTags": [
     "joyful",
     "settled",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1418_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Boaz called the elders to the gate and laid the matter out before them. The near kinsman took off his shoe. The redemption passed to Boaz. What does it look like for the deepest mercy to be done in public — at the gate, with the elders watching, in the morning sun?"
+  "reflectionText": "Boaz called the elders to the gate and laid the matter out before them. The near kinsman took off his shoe. The redemption passed to Boaz. What does it look like for the deepest mercy to be done in public — at the gate, with the elders watching, in the morning sun?",
+  "sceneBeats": [
+    "blessing_of_rachel_and_leah",
+    "kinsman_redeemer_at_the_gate",
+    "public_redemption_in_bethlehem",
+    "sandal_exchange_custom",
+    "ten_elders_seated"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

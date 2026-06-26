@@ -20,13 +20,6 @@
   "scriptureAnchorId": "luke_24_13-24",
   "bibleStoryKey": "emmaus_road_before_recognition",
   "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "themeTags": [
-    "disappointed_hope",
-    "third_day",
-    "walking_in_grief",
-    "stranger_drew_near",
-    "before_the_breaking_of_bread"
-  ],
   "emotionalTags": [
     "hurting",
     "grieving",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1360_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Their eyes were kept from recognizing him. The stranger walked between them on the road to Emmaus. What is it to walk seven miles in grief beside the One you are mourning for, and not to know that the answer to your grief has already come up beside you in the dust of the afternoon?"
+  "reflectionText": "Their eyes were kept from recognizing him. The stranger walked between them on the road to Emmaus. What is it to walk seven miles in grief beside the One you are mourning for, and not to know that the answer to your grief has already come up beside you in the dust of the afternoon?",
+  "sceneBeats": [
+    "before_the_breaking_of_bread",
+    "disappointed_hope",
+    "stranger_drew_near",
+    "third_day",
+    "walking_in_grief"
+  ]
 }

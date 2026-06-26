@@ -20,13 +20,6 @@
   "scriptureAnchorId": "acts_8_1-4",
   "bibleStoryKey": "scattered_believers_preach_word",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "persecution_in_jerusalem",
-    "scattered_throughout_judea_samaria",
-    "saul_ravages_assembly",
-    "preached_the_word_everywhere",
-    "stephen_buried_by_devout_men"
-  ],
   "emotionalTags": [
     "anxious",
     "urgent",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1443_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The persecution came. The believers were scattered out of Jerusalem. They went into Judea and Samaria, and the word went with them. They preached at every well and gate and field. How does a word move faster on its scattered legs than its enemies can chase down?"
+  "reflectionText": "The persecution came. The believers were scattered out of Jerusalem. They went into Judea and Samaria, and the word went with them. They preached at every well and gate and field. How does a word move faster on its scattered legs than its enemies can chase down?",
+  "sceneBeats": [
+    "persecution_in_jerusalem",
+    "preached_the_word_everywhere",
+    "saul_ravages_assembly",
+    "scattered_throughout_judea_samaria",
+    "stephen_buried_by_devout_men"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

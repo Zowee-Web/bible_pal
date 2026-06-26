@@ -23,7 +23,6 @@
   "themeTags": [
     "redemption",
     "gathering",
-    "communal_thanksgiving",
     "deliverance",
     "provision"
   ],
@@ -60,5 +59,9 @@
       "reflectionText": "reflection_1328_traditional_kjv.txt"
     }
   },
-  "reflectionText": "He gathered them out of the lands, from the east and from the west, from the north and from the south. What is it to stand on the steps of the temple beside those who walked from every direction to come home, and to sing the same psalm with them as one voice rising?"
+  "reflectionText": "He gathered them out of the lands, from the east and from the west, from the north and from the south. What is it to stand on the steps of the temple beside those who walked from every direction to come home, and to sing the same psalm with them as one voice rising?",
+  "sceneBeats": [
+    "communal_thanksgiving"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

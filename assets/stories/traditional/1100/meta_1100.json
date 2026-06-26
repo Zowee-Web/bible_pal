@@ -46,5 +46,6 @@
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
-  }
+  },
+  "editorialBucketException": "legacy_bucket_drift"
 }

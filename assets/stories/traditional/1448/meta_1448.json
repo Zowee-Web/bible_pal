@@ -20,13 +20,6 @@
   "scriptureAnchorId": "1_samuel_22_1-2",
   "bibleStoryKey": "david_cave_of_adullam_four_hundred",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "themeTags": [
-    "cave_of_adullam",
-    "four_hundred_men_gather",
-    "everyone_in_distress_in_debt",
-    "david_becomes_captain",
-    "running_from_saul_and_achish"
-  ],
   "emotionalTags": [
     "weary",
     "alone",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1448_traditional_kjv.txt"
     }
   },
-  "reflectionText": "David came alone to the cave of Adullam. The people in distress and debt and bitterness of soul came down through the rocks. By the end of the days they were four hundred. Have you ever found yourself in the company of fellow-fugitives, none of you better off than the others?"
+  "reflectionText": "David came alone to the cave of Adullam. The people in distress and debt and bitterness of soul came down through the rocks. By the end of the days they were four hundred. Have you ever found yourself in the company of fellow-fugitives, none of you better off than the others?",
+  "sceneBeats": [
+    "cave_of_adullam",
+    "david_becomes_captain",
+    "everyone_in_distress_in_debt",
+    "four_hundred_men_gather",
+    "running_from_saul_and_achish"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

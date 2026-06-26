@@ -20,13 +20,6 @@
   "scriptureAnchorId": "lamentations_3_1-9",
   "bibleStoryKey": "i_am_the_man_who_has_seen_affliction",
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
-  "themeTags": [
-    "chronic_suffering",
-    "personal_lament",
-    "after_the_city_falls",
-    "walled_in",
-    "shut_out_prayer"
-  ],
   "emotionalTags": [
     "hurting",
     "afflicted",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1359_traditional_kjv.txt"
     }
   },
-  "reflectionText": "I am the man who has seen affliction by the rod of his wrath. What is it to set down on a scroll the bitterness that has been your own life, and to find that the bitterness has not lifted — but the words are no longer locked inside your bones?"
+  "reflectionText": "I am the man who has seen affliction by the rod of his wrath. What is it to set down on a scroll the bitterness that has been your own life, and to find that the bitterness has not lifted — but the words are no longer locked inside your bones?",
+  "sceneBeats": [
+    "after_the_city_falls",
+    "chronic_suffering",
+    "personal_lament",
+    "shut_out_prayer",
+    "walled_in"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

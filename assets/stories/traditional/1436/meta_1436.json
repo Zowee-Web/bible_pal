@@ -20,13 +20,6 @@
   "scriptureAnchorId": "numbers_27_1-11",
   "bibleStoryKey": "daughters_of_zelophehad_inheritance",
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
-  "themeTags": [
-    "daughters_of_zelophehad_inheritance",
-    "five_sisters_at_tent_of_meeting",
-    "statute_in_israel",
-    "courage_to_petition",
-    "names_spoken_aloud"
-  ],
   "emotionalTags": [
     "encouraged",
     "hopeful",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1436_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Five sisters came to the door of the Tent of Meeting and asked for an inheritance no statute had yet imagined giving them. Moses brought their cause before the Lord. What does it take to stand at a door and ask for something no one before you has been heard requesting at all?"
+  "reflectionText": "Five sisters came to the door of the Tent of Meeting and asked for an inheritance no statute had yet imagined giving them. Moses brought their cause before the Lord. What does it take to stand at a door and ask for something no one before you has been heard requesting at all?",
+  "sceneBeats": [
+    "courage_to_petition",
+    "daughters_of_zelophehad_inheritance",
+    "five_sisters_at_tent_of_meeting",
+    "names_spoken_aloud",
+    "statute_in_israel"
+  ]
 }

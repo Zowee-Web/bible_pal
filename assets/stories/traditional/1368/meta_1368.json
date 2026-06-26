@@ -20,13 +20,6 @@
   "scriptureAnchorId": "luke_1_67-79",
   "bibleStoryKey": "zechariahs_benedictus",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
-  "themeTags": [
-    "priestly_song_after_silence",
-    "tongue_loosed",
-    "covenant_remembered",
-    "prophet_of_the_most_high",
-    "dawn_from_on_high"
-  ],
   "emotionalTags": [
     "joyful",
     "exultant",
@@ -58,5 +51,13 @@
       "reflectionText": "reflection_1368_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Zacharias had been silent for nine months. The first words his mouth made were about a dawn that would visit from on high. What is the shape of a song that has been waiting to be spoken for that long?"
+  "reflectionText": "Zacharias had been silent for nine months. The first words his mouth made were about a dawn that would visit from on high. What is the shape of a song that has been waiting to be spoken for that long?",
+  "sceneBeats": [
+    "covenant_remembered",
+    "dawn_from_on_high",
+    "priestly_song_after_silence",
+    "prophet_of_the_most_high",
+    "tongue_loosed"
+  ],
+  "boundaryException": "deferred_boundary_drift"
 }

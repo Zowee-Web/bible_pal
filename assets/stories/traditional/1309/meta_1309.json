@@ -21,7 +21,6 @@
   "bibleStoryKey": "reubenites_return_with_blessing",
   "storyVoiceKey": "VOICE_NOAH_PATIENT",
   "themeTags": [
-    "return_home",
     "blessing",
     "fulfillment",
     "fellowship",
@@ -60,5 +59,8 @@
       "reflectionText": "reflection_1309_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Joshua called the Reubenites and the Gadites and the half-tribe of Manasseh and blessed them and sent them away. They had not left their brothers all the days of the fighting. They went home across the Jordan to the land of their possession, with much wealth and very much livestock. What is it to be sent home with a blessing after standing with your brothers through the whole war that was not yours to win alone?"
+  "reflectionText": "Joshua called the Reubenites and the Gadites and the half-tribe of Manasseh and blessed them and sent them away. They had not left their brothers all the days of the fighting. They went home across the Jordan to the land of their possession, with much wealth and very much livestock. What is it to be sent home with a blessing after standing with your brothers through the whole war that was not yours to win alone?",
+  "sceneBeats": [
+    "return_home"
+  ]
 }

@@ -20,13 +20,6 @@
   "scriptureAnchorId": "psalm_6_1-7",
   "bibleStoryKey": "davids_psalm_of_weariness",
   "storyVoiceKey": "VOICE_NOAH_PATIENT",
-  "themeTags": [
-    "how_long_o_yahweh",
-    "bones_troubled_soul_anguished",
-    "drench_the_couch_with_tears",
-    "eye_wastes_with_grief",
-    "psalm_for_the_sheminith"
-  ],
   "emotionalTags": [
     "weary",
     "hurting",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1471_traditional_kjv.txt"
     }
   },
-  "reflectionText": "David wrote a psalm for the nights when his bones felt sick. He gave it to the music director so the people would have words for nights like his. What is it to write a prayer for the nights your bones feel sick, and to hand it to the music director so that someone you will never meet may have words for nights of their own?"
+  "reflectionText": "David wrote a psalm for the nights when his bones felt sick. He gave it to the music director so the people would have words for nights like his. What is it to write a prayer for the nights your bones feel sick, and to hand it to the music director so that someone you will never meet may have words for nights of their own?",
+  "sceneBeats": [
+    "bones_troubled_soul_anguished",
+    "drench_the_couch_with_tears",
+    "eye_wastes_with_grief",
+    "how_long_o_yahweh",
+    "psalm_for_the_sheminith"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

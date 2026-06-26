@@ -20,13 +20,6 @@
   "scriptureAnchorId": "mark_5_25-34",
   "bibleStoryKey": "woman_with_issue_of_blood_touches_hem",
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
-  "themeTags": [
-    "twelve_years_of_bleeding",
-    "reaching_through_the_crowd",
-    "who_touched_my_clothes",
-    "daughter_your_faith_has_made_you_well",
-    "walked_alive_to_her_own_door"
-  ],
   "emotionalTags": [
     "grateful",
     "tender",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1463_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The woman had been sick twelve years and had spent everything on physicians. She reached through the crowd and touched the hem of his garment without speaking. How does it land when the one whose hem you touched without a word turns and calls you by name?"
+  "reflectionText": "The woman had been sick twelve years and had spent everything on physicians. She reached through the crowd and touched the hem of his garment without speaking. How does it land when the one whose hem you touched without a word turns and calls you by name?",
+  "sceneBeats": [
+    "daughter_your_faith_has_made_you_well",
+    "reaching_through_the_crowd",
+    "twelve_years_of_bleeding",
+    "walked_alive_to_her_own_door",
+    "who_touched_my_clothes"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

@@ -20,13 +20,6 @@
   "scriptureAnchorId": "genesis_14_13-16",
   "bibleStoryKey": "abram_rescues_lot",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
-  "themeTags": [
-    "protective_courage",
-    "rescue_of_kin",
-    "night_attack",
-    "household_loyalty",
-    "patriarchal_initiative"
-  ],
   "emotionalTags": [
     "brave",
     "resolute",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1351_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Abram led out three hundred and eighteen men, and pursued the kings to Hobah. What is it to ride through the night for a relative who chose the cities you would not live in, and to come home to bread and wine set out by a priest who had come down from Salem?"
+  "reflectionText": "Abram led out three hundred and eighteen men, and pursued the kings to Hobah. What is it to ride through the night for a relative who chose the cities you would not live in, and to come home to bread and wine set out by a priest who had come down from Salem?",
+  "sceneBeats": [
+    "household_loyalty",
+    "night_attack",
+    "patriarchal_initiative",
+    "protective_courage",
+    "rescue_of_kin"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

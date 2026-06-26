@@ -21,13 +21,6 @@
   "scriptureAnchorId": "john_10_11-15",
   "bibleStoryKey": "good_shepherd_lays_down_his_life_for_the_sheep",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "themeTags": [
-    "the_good_shepherd_lays_down_his_life",
-    "the_hireling_flees_when_the_wolf_comes",
-    "i_know_my_own_and_my_own_know_me",
-    "flocks_on_the_hills_of_judea",
-    "as_the_father_knows_me_so_i_know_the_father"
-  ],
   "emotionalTags": [
     "calm",
     "settled",
@@ -70,5 +63,13 @@
   },
   "reflectionQuestion": "The good shepherd lays down his life for the sheep. The hired hand flees when the wolf comes. What does it mean to be known by a voice that will not flee from what threatens you — even when that voice has not yet been heard above the noise of the hills?",
   "reflectionText": "The good shepherd giveth his life for the sheep. The hireling fleeth when the wolf cometh. What doth it mean to be known by a voice that will not flee from what threateneth thee — even when that voice hath not yet been heard above the noise of the hills?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "as_the_father_knows_me_so_i_know_the_father",
+    "flocks_on_the_hills_of_judea",
+    "i_know_my_own_and_my_own_know_me",
+    "the_good_shepherd_lays_down_his_life",
+    "the_hireling_flees_when_the_wolf_comes"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

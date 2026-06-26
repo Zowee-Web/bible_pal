@@ -21,13 +21,6 @@
   "scriptureAnchorId": "isaiah_40_1-11",
   "bibleStoryKey": "comfort_my_people_voice_in_the_wilderness",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "voice_in_the_wilderness_prepare_the_way",
-    "all_flesh_is_grass",
-    "word_of_our_god_shall_stand_forever",
-    "behold_your_god",
-    "shepherd_carries_the_lambs_in_his_bosom"
-  ],
   "emotionalTags": [
     "encouraged",
     "awed",
@@ -70,5 +63,12 @@
   },
   "reflectionQuestion": "The voice ended on the shepherd carrying the lambs in his bosom. That was the last picture it left for the country to hold. What is it to wait for the day when the one who comes with strong hand will be the same one who gathers the small ones gently against his chest and walks with them?",
   "reflectionText": "The voice ended upon the shepherd carrying the lambs in his bosom. That was the last picture it left for the country to hold. What is it to wait for the day when he that cometh with strong hand shall be the same that gathereth the small ones gently against his bosom and walketh with them?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "all_flesh_is_grass",
+    "behold_your_god",
+    "shepherd_carries_the_lambs_in_his_bosom",
+    "voice_in_the_wilderness_prepare_the_way",
+    "word_of_our_god_shall_stand_forever"
+  ]
 }

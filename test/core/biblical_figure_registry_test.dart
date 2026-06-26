@@ -9,7 +9,12 @@ void main() {
   late List<dynamic> entries;
 
   // Load the manifest for cross-validation.
+  // `manifestBibleStoryKeys` = ALL story keys (used to assert registry keys are
+  // real). `traditionalBibleStoryKeys` = adult traditional only (kid-lane stories
+  // are governed by kid_anchor_registry, so only the adult corpus is REQUIRED to
+  // have figure-registry entries).
   late Set<String> manifestBibleStoryKeys;
+  late Set<String> traditionalBibleStoryKeys;
 
   setUpAll(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
@@ -24,11 +29,18 @@ void main() {
     final manifestData = jsonDecode(manifestJson) as Map<String, dynamic>;
     final parables = manifestData['parables'] as List<dynamic>;
     manifestBibleStoryKeys = <String>{};
+    traditionalBibleStoryKeys = <String>{};
     for (final p in parables) {
       final m = p as Map<String, dynamic>;
-      if (m['storytellingMode'] == 'traditional') {
-        final key = m['bibleStoryKey'] as String?;
-        if (key != null) manifestBibleStoryKeys.add(key);
+      final key = m['bibleStoryKey'] as String?;
+      if (key == null) continue;
+      // Every story key (incl. kid-lane) — registry entries must map to a real story.
+      manifestBibleStoryKeys.add(key);
+      // Adult traditional only — kid-lane uses kid_anchor_registry, so only these
+      // are REQUIRED to have a figure-registry entry.
+      final isKid = m['kidFriendly'] == true;
+      if (m['storytellingMode'] == 'traditional' && !isKid) {
+        traditionalBibleStoryKeys.add(key);
       }
     }
   });
@@ -184,7 +196,7 @@ void main() {
       final registryKeys = entries
           .map((e) => (e as Map<String, dynamic>)['bibleStoryKey'] as String)
           .toSet();
-      final missing = manifestBibleStoryKeys
+      final missing = traditionalBibleStoryKeys
           .where((key) => !registryKeys.contains(key))
           .toList()
         ..sort();

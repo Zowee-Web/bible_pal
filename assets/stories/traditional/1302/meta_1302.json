@@ -21,11 +21,7 @@
   "bibleStoryKey": "israel_in_the_days_of_midian",
   "storyVoiceKey": "VOICE_ELIJAH_SAGE",
   "themeTags": [
-    "oppression",
-    "lament",
-    "covenant_memory",
-    "warning",
-    "wandering"
+    "lament"
   ],
   "emotionalTags": [
     "weary",
@@ -60,5 +56,11 @@
       "reflectionText": "reflection_1302_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Israel hid in the caves and the strongholds while Midian came up at harvest year after year. The children of Israel cried to the Lord. The Lord sent a prophet to them, and the days went on as the days before them had gone on. What is it to cry to the Lord and be answered, at first, only with a prophet who calls you back to the voice you had not listened to?"
+  "reflectionText": "Israel hid in the caves and the strongholds while Midian came up at harvest year after year. The children of Israel cried to the Lord. The Lord sent a prophet to them, and the days went on as the days before them had gone on. What is it to cry to the Lord and be answered, at first, only with a prophet who calls you back to the voice you had not listened to?",
+  "sceneBeats": [
+    "covenant_memory",
+    "oppression",
+    "wandering",
+    "warning"
+  ]
 }

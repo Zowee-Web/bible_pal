@@ -45,7 +45,7 @@
   },
   "reflectionSource": "llm",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
-  "reflectionText": "Everyone looked at the tall brothers and thought one of them would be chosen. But God chose David \u2014 the smallest, the youngest, the one who was out watching sheep. God does not care about how big or strong or popular you are. God looks at what is inside your heart.\n\nWhat is something about you that people might not notice from the outside, but that you think is really special?",
+  "reflectionText": "Everyone looked at the tall brothers and thought one of them would be chosen. But God chose David — the smallest, the youngest, the one who was out watching sheep. God does not care about how big or strong or popular you are. God looks at what is inside your heart.\n\nWhat is something about you that people might not notice from the outside, but that you think is really special?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "david",
   "primaryCharacterDisplayName": "David",
@@ -61,6 +61,7 @@
   "generatorVersion": "generate_opus_audio.sh",
   "scriptureKeyVerse": {
     "ref": "1 Samuel 16:7",
-    "text": "But Yahweh said to Samuel, \u201cDon\u2019t look on his face, or on the height of his stature, because I have rejected him; for I don\u2019t see as man sees. For man looks at the outward appearance, but Yahweh looks at the heart.\u201d"
-  }
+    "text": "But Yahweh said to Samuel, “Don’t look on his face, or on the height of his stature, because I have rejected him; for I don’t see as man sees. For man looks at the outward appearance, but Yahweh looks at the heart.”"
+  },
+  "boundaryException": "scriptural"
 }

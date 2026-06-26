@@ -21,7 +21,6 @@
   "bibleStoryKey": "wearied_servant_prophet",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
   "themeTags": [
-    "suffering_servant",
     "endurance",
     "trust",
     "vindication",
@@ -60,5 +59,8 @@
       "reflectionText": "reflection_1320_traditional_kjv.txt"
     }
   },
-  "reflectionText": "He gave his back to those who struck him, and did not hide his face from shame. What is it to set your face like a flint and walk forward into the very thing you cannot yet see how you will survive?"
+  "reflectionText": "He gave his back to those who struck him, and did not hide his face from shame. What is it to set your face like a flint and walk forward into the very thing you cannot yet see how you will survive?",
+  "sceneBeats": [
+    "suffering_servant"
+  ]
 }

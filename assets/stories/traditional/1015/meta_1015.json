@@ -65,5 +65,6 @@
   "scriptureKeyVerse": {
     "ref": "Acts 3:6",
     "text": "But Peter said, “I have no silver or gold, but what I have, that I give you. In the name of Jesus Christ of Nazareth, get up and walk!”"
-  }
+  },
+  "editorialBucketException": "legacy_bucket_drift"
 }

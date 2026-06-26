@@ -54,15 +54,16 @@ void main() {
   /// field. Used for both positive (integrity) and negative
   /// (Creative-never-annotated) scans.
   List<Map<String, dynamic>> annotated() {
+    // A story is a genuine PALs Paths annotation only when it carries a
+    // Paths-SPECIFIC field. `themeTags`/`primaryCharacterDisplayName` are NOT
+    // sufficient triggers: themeTags was backfilled corpus-wide as editorial
+    // metadata, and dedicated kid-lane stories carry it in a different style.
     return entries
         .where((e) =>
             e.containsKey('primaryCharacterId') ||
-            e.containsKey('primaryCharacterDisplayName') ||
             e.containsKey('characterIds') ||
-            e.containsKey('characterDisplayNames') ||
             e.containsKey('bibleOrderIndex') ||
             e.containsKey('timelineEra') ||
-            e.containsKey('themeTags') ||
             e.containsKey('characterPathOrder'))
         .toList();
   }

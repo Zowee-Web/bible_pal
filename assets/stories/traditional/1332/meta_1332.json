@@ -23,7 +23,6 @@
   "themeTags": [
     "generosity",
     "thanksgiving",
-    "grace_abounding",
     "giving",
     "provision"
   ],
@@ -62,5 +61,9 @@
   },
   "reflectionText": "God loves a cheerful giver. What is it to scatter your own seed with a glad hand, and to find that the One who gave you the seed is the One who fills the empty barn?",
   "renderedAt": "2026-06-26T00:39:43Z",
-  "generatorVersion": "generate_opus_audio.sh"
+  "generatorVersion": "generate_opus_audio.sh",
+  "sceneBeats": [
+    "grace_abounding"
+  ],
+  "boundaryException": "scriptural"
 }

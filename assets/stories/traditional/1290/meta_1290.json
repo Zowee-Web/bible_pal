@@ -23,7 +23,6 @@
   "themeTags": [
     "stewardship",
     "faithfulness",
-    "responsibility",
     "trust"
   ],
   "emotionalTags": [
@@ -56,5 +55,8 @@
       "reflectionText": "reflection_1290_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The lord came back and reckoned with his servants. To the two who had traded: well done, good and faithful servant. Enter into the joy of your lord. To the one who had buried: take the talent. What does it take to take the one talent out of the ground and trade it, before the day comes when the lord comes back to reckon?"
+  "reflectionText": "The lord came back and reckoned with his servants. To the two who had traded: well done, good and faithful servant. Enter into the joy of your lord. To the one who had buried: take the talent. What does it take to take the one talent out of the ground and trade it, before the day comes when the lord comes back to reckon?",
+  "sceneBeats": [
+    "responsibility"
+  ]
 }

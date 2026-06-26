@@ -21,13 +21,6 @@
   "scriptureAnchorId": "isaiah_43_1-7",
   "bibleStoryKey": "isaiah_word_fear_not_through_waters_and_fire",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "fear_not_for_i_have_redeemed_thee",
-    "called_thee_by_thy_name_thou_art_mine",
-    "pass_through_the_waters_walk_through_the_fire",
-    "gave_egypt_for_thy_ransom",
-    "gather_thee_from_east_west_north_south"
-  ],
   "emotionalTags": [
     "brave",
     "resolute",
@@ -70,5 +63,12 @@
   },
   "reflectionQuestion": "The voice called the people by their two names. It said: fear not. It promised waters that would not overflow and fire that would not burn. Then it gathered the sons and daughters from the four directions. What is it to be told you have been called by name, and that the waters you are about to pass through will not be deep enough to drown you?",
   "reflectionText": "The voice called the people by their two names. It said: fear not. It promised waters that should not overflow and fire that should not burn. Then it gathered the sons and daughters from the four directions. What is it to be told thou hast been called by name, and that the waters thou art about to pass through shall not be deep enough to drown thee?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "called_thee_by_thy_name_thou_art_mine",
+    "fear_not_for_i_have_redeemed_thee",
+    "gather_thee_from_east_west_north_south",
+    "gave_egypt_for_thy_ransom",
+    "pass_through_the_waters_walk_through_the_fire"
+  ]
 }

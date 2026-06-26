@@ -20,13 +20,6 @@
   "scriptureAnchorId": "jeremiah_9_1-3",
   "bibleStoryKey": "the_weeping_prophet",
   "storyVoiceKey": "VOICE_NOAH_PATIENT",
-  "themeTags": [
-    "weeping_prophet",
-    "grief_for_a_people",
-    "fountain_of_tears",
-    "indictment_in_lament",
-    "prophet_who_stays"
-  ],
   "emotionalTags": [
     "hurting",
     "weeping",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1363_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Oh that my head were waters, and my eyes a spring of tears. What is it to cry that you might leave your people forever, and then to lay down the cry on the page and stay in the city with them through every day of what is coming?"
+  "reflectionText": "Oh that my head were waters, and my eyes a spring of tears. What is it to cry that you might leave your people forever, and then to lay down the cry on the page and stay in the city with them through every day of what is coming?",
+  "sceneBeats": [
+    "fountain_of_tears",
+    "grief_for_a_people",
+    "indictment_in_lament",
+    "prophet_who_stays",
+    "weeping_prophet"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

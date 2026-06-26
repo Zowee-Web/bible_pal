@@ -21,10 +21,8 @@
   "bibleStoryKey": "twelve_stones_memorial",
   "storyVoiceKey": "VOICE_NOAH_PATIENT",
   "themeTags": [
-    "memorial",
     "remembrance",
     "covenant",
-    "crossing",
     "gratitude"
   ],
   "emotionalTags": [
@@ -60,5 +58,9 @@
       "reflectionText": "reflection_1297_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Joshua took twelve men, one from every tribe, and they each carried a stone from the middle of the Jordan to the lodging place at Gilgal. The stones stood there in the open ground. Joshua said no more. What is it to set down stones on the bank that will tell your children what their fathers walked through in dry sandals at the morning?"
+  "reflectionText": "Joshua took twelve men, one from every tribe, and they each carried a stone from the middle of the Jordan to the lodging place at Gilgal. The stones stood there in the open ground. Joshua said no more. What is it to set down stones on the bank that will tell your children what their fathers walked through in dry sandals at the morning?",
+  "sceneBeats": [
+    "crossing",
+    "memorial"
+  ]
 }

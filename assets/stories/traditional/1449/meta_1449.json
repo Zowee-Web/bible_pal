@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_samuel_5_6-10",
   "bibleStoryKey": "david_takes_stronghold_zion",
   "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "themeTags": [
-    "jebusites_taunt_from_wall",
-    "watercourse_climb_into_zion",
-    "city_of_david_taken",
-    "millo_and_inward",
-    "yahweh_god_of_armies_with_him"
-  ],
   "emotionalTags": [
     "joyful",
     "victorious",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1449_traditional_kjv.txt"
     }
   },
-  "reflectionText": "David sat below the wall the Jebusites had held since before he was born, and sent his men up the watercourse in the dark. They came out at the top and opened the gate from the inside. What is it to take a stronghold no one before you could take, by going up through the channel beneath rather than over the wall you were never going to climb?"
+  "reflectionText": "David sat below the wall the Jebusites had held since before he was born, and sent his men up the watercourse in the dark. They came out at the top and opened the gate from the inside. What is it to take a stronghold no one before you could take, by going up through the channel beneath rather than over the wall you were never going to climb?",
+  "sceneBeats": [
+    "city_of_david_taken",
+    "jebusites_taunt_from_wall",
+    "millo_and_inward",
+    "watercourse_climb_into_zion",
+    "yahweh_god_of_armies_with_him"
+  ]
 }

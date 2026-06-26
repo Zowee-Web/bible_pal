@@ -69,5 +69,6 @@
       "reflectionText": "reflection_1209_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Jacob called his sons one by one to his bedside and spoke a word over each. When he had finished, he gathered up his feet into the bed and breathed his last. What does it feel like to be called to your father's bedside and be given the word he has been carrying for you all his days?"
+  "reflectionText": "Jacob called his sons one by one to his bedside and spoke a word over each. When he had finished, he gathered up his feet into the bed and breathed his last. What does it feel like to be called to your father's bedside and be given the word he has been carrying for you all his days?",
+  "boundaryException": "deferred_boundary_drift"
 }

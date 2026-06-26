@@ -20,13 +20,6 @@
   "scriptureAnchorId": "ezra_3_10-13",
   "bibleStoryKey": "second_temple_foundation_dedication",
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
-  "themeTags": [
-    "foundation_laying_jubilation",
-    "trumpets_and_cymbals",
-    "joy_mixed_with_memory_weeping",
-    "post_exile_dedication",
-    "great_shout_heard_far_away"
-  ],
   "emotionalTags": [
     "joyful",
     "exultant",
@@ -58,5 +51,12 @@
       "reflectionText": "reflection_1366_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The shout of joy and the weeping of memory rose at the same hour, and the people could not tell them apart. What is it to stand in a moment where the new thing arriving and the old thing remembered come up as a single voice you cannot untangle?"
+  "reflectionText": "The shout of joy and the weeping of memory rose at the same hour, and the people could not tell them apart. What is it to stand in a moment where the new thing arriving and the old thing remembered come up as a single voice you cannot untangle?",
+  "sceneBeats": [
+    "foundation_laying_jubilation",
+    "great_shout_heard_far_away",
+    "joy_mixed_with_memory_weeping",
+    "post_exile_dedication",
+    "trumpets_and_cymbals"
+  ]
 }

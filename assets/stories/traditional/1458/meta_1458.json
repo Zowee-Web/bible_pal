@@ -20,13 +20,6 @@
   "scriptureAnchorId": "ruth_4_13-22",
   "bibleStoryKey": "obed_to_jesse_to_david",
   "storyVoiceKey": "VOICE_RUTH_COMFORT",
-  "themeTags": [
-    "boaz_and_ruth_have_son_obed",
-    "naomi_nurses_the_child",
-    "obed_father_of_jesse",
-    "jesse_father_of_david",
-    "moabite_woman_in_messianic_line"
-  ],
   "emotionalTags": [
     "grateful",
     "tender",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1458_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The king of Israel came down a line that began with a Moabite woman who had said your people shall be my people. Obed to Jesse, Jesse to David. What is it to come into a kingdom through a line that began with a foreign woman saying your people shall be my people — and to count her among the names you were given when you were born?"
+  "reflectionText": "The king of Israel came down a line that began with a Moabite woman who had said your people shall be my people. Obed to Jesse, Jesse to David. What is it to come into a kingdom through a line that began with a foreign woman saying your people shall be my people — and to count her among the names you were given when you were born?",
+  "sceneBeats": [
+    "boaz_and_ruth_have_son_obed",
+    "jesse_father_of_david",
+    "moabite_woman_in_messianic_line",
+    "naomi_nurses_the_child",
+    "obed_father_of_jesse"
+  ]
 }

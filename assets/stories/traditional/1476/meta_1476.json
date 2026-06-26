@@ -20,13 +20,6 @@
   "scriptureAnchorId": "ecclesiastes_12_1-7",
   "bibleStoryKey": "preacher_remember_thy_creator_in_youth",
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
-  "themeTags": [
-    "remember_creator_in_days_of_youth",
-    "before_the_evil_days_come",
-    "almond_tree_blossoms_grasshopper_burden",
-    "silver_cord_and_golden_bowl_broken",
-    "spirit_returns_to_god_who_gave_it"
-  ],
   "emotionalTags": [
     "calm",
     "settled",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1476_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The Preacher told the young men: remember your Creator in the days of your youth, before the silver cord is severed. How do you receive a gift you cannot yet count, while you are still young enough to spend it well?"
+  "reflectionText": "The Preacher told the young men: remember your Creator in the days of your youth, before the silver cord is severed. How do you receive a gift you cannot yet count, while you are still young enough to spend it well?",
+  "sceneBeats": [
+    "almond_tree_blossoms_grasshopper_burden",
+    "before_the_evil_days_come",
+    "remember_creator_in_days_of_youth",
+    "silver_cord_and_golden_bowl_broken",
+    "spirit_returns_to_god_who_gave_it"
+  ]
 }

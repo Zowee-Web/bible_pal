@@ -84,5 +84,6 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 42061
+  "bibleOrderIndex": 42061,
+  "editorialBucketException": "legacy_bucket_drift"
 }

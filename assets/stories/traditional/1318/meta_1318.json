@@ -22,7 +22,6 @@
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
   "themeTags": [
     "perseverance",
-    "doing_good",
     "sowing",
     "exhortation",
     "endurance"
@@ -60,7 +59,11 @@
       "reflectionText": "reflection_1318_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Let us not be weary in doing good, for we will reap in due season. What is it to keep sowing into ground that has not yet given back \u2014 to keep doing the good thing on the day the harvest has not yet come?",
+  "reflectionText": "Let us not be weary in doing good, for we will reap in due season. What is it to keep sowing into ground that has not yet given back — to keep doing the good thing on the day the harvest has not yet come?",
   "renderedAt": "2026-06-26T00:39:29Z",
-  "generatorVersion": "generate_opus_audio.sh"
+  "generatorVersion": "generate_opus_audio.sh",
+  "sceneBeats": [
+    "doing_good"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

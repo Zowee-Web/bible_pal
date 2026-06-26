@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_chronicles_23_11-13",
   "bibleStoryKey": "joash_crowned_in_the_temple",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "boy_king_crowned",
-    "trumpets_in_temple_courts",
-    "after_six_years_hidden",
-    "athaliah_cries_treason",
-    "long_live_the_king"
-  ],
   "emotionalTags": [
     "joyful",
     "exultant",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1420_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The hidden child was brought out, crowned, and anointed. The trumpets sounded across the inner court. Athaliah ran in and tore her clothes, crying treason. Have you ever been the heir all along, kept alive in a hidden room, only to step out one morning into a crown?"
+  "reflectionText": "The hidden child was brought out, crowned, and anointed. The trumpets sounded across the inner court. Athaliah ran in and tore her clothes, crying treason. Have you ever been the heir all along, kept alive in a hidden room, only to step out one morning into a crown?",
+  "sceneBeats": [
+    "after_six_years_hidden",
+    "athaliah_cries_treason",
+    "boy_king_crowned",
+    "long_live_the_king",
+    "trumpets_in_temple_courts"
+  ]
 }

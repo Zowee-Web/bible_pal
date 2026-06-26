@@ -22,13 +22,6 @@
   "scriptureAnchorId": "daniel_5_1-30",
   "bibleStoryKey": "belshazzar_writing_on_wall",
   "storyVoiceKey": "VOICE_ELIJAH_SAGE",
-  "themeTags": [
-    "belshazzars_feast",
-    "vessels_of_jerusalem_temple",
-    "fingers_writing_on_plaster",
-    "mene_mene_tekel_upharsin",
-    "kingdom_given_to_medes_and_persians"
-  ],
   "emotionalTags": [
     "anxious",
     "fearful",
@@ -74,5 +67,12 @@
       "reflectionText": "reflection_1450_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The hand appeared over the lamp-stand and traced letters on the plaster. The king's color went out of his face. The astrologers stood and could not read. What is the silence of a room that is suddenly full of writing no one in it can explain?"
+  "reflectionText": "The hand appeared over the lamp-stand and traced letters on the plaster. The king's color went out of his face. The astrologers stood and could not read. What is the silence of a room that is suddenly full of writing no one in it can explain?",
+  "sceneBeats": [
+    "belshazzars_feast",
+    "fingers_writing_on_plaster",
+    "kingdom_given_to_medes_and_persians",
+    "mene_mene_tekel_upharsin",
+    "vessels_of_jerusalem_temple"
+  ]
 }

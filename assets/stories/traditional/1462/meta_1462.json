@@ -20,13 +20,6 @@
   "scriptureAnchorId": "acts_12_6-11",
   "bibleStoryKey": "peter_freed_from_prison_by_angel",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "sleeping_between_two_soldiers",
-    "chains_fell_off_hands",
-    "iron_gate_opened_by_itself",
-    "now_i_truly_know",
-    "house_of_mary_the_mother_of_john"
-  ],
   "emotionalTags": [
     "encouraged",
     "awed",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1462_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The chains fell from Peter's hands. The angel led him past the first guard and the second, and the iron gate opened by itself. Peter walked into the empty street. What is it to find that the gate you were sure would never open has swung open without any hand on it, and to walk into the street still not certain you are not dreaming?"
+  "reflectionText": "The chains fell from Peter's hands. The angel led him past the first guard and the second, and the iron gate opened by itself. Peter walked into the empty street. What is it to find that the gate you were sure would never open has swung open without any hand on it, and to walk into the street still not certain you are not dreaming?",
+  "sceneBeats": [
+    "chains_fell_off_hands",
+    "house_of_mary_the_mother_of_john",
+    "iron_gate_opened_by_itself",
+    "now_i_truly_know",
+    "sleeping_between_two_soldiers"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

@@ -20,13 +20,6 @@
   "scriptureAnchorId": "mark_14_43-50",
   "bibleStoryKey": "judas_kiss_arrest_in_gethsemane",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "judas_leads_arresting_multitude",
-    "betrayal_kiss_in_gethsemane",
-    "ear_cut_off_with_sword",
-    "disciples_fled_into_the_dark",
-    "arrest_of_jesus_in_the_garden"
-  ],
   "emotionalTags": [
     "anxious",
     "tense",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1478_traditional_kjv.txt"
     }
   },
-  "reflectionText": "While Jesus was still speaking, Judas came down through the trees of the garden with a crowd carrying swords and clubs. He kissed him. The disciples fled. Jesus stood between the men. Have you ever been betrayed in the shape of an embrace by the one you had trusted with your name?"
+  "reflectionText": "While Jesus was still speaking, Judas came down through the trees of the garden with a crowd carrying swords and clubs. He kissed him. The disciples fled. Jesus stood between the men. Have you ever been betrayed in the shape of an embrace by the one you had trusted with your name?",
+  "sceneBeats": [
+    "arrest_of_jesus_in_the_garden",
+    "betrayal_kiss_in_gethsemane",
+    "disciples_fled_into_the_dark",
+    "ear_cut_off_with_sword",
+    "judas_leads_arresting_multitude"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

@@ -17,7 +17,7 @@
   "voiceKey": "VOICE_ARCHER",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_04",
-  "reflectionQuestion": "When you think about a moment in your own life where you stood alone in what you believed to be true \u2014 with no guarantee of how things would turn out \u2014 what gave you the courage to stay, and what did that cost you?",
+  "reflectionQuestion": "When you think about a moment in your own life where you stood alone in what you believed to be true — with no guarantee of how things would turn out — what gave you the courage to stay, and what did that cost you?",
   "title": "Elijah on Mount Carmel",
   "files": {
     "short": {
@@ -59,9 +59,10 @@
     "web": "reflection_1065_traditional_web.txt",
     "kjv": "reflection_1065_traditional_kjv.txt"
   },
-  "reflectionText": "When thou dost contemplate upon a moment in thine own life wherein thou didst stand alone in that which thou believest to be true\u2014with no assurance of how all things should come to pass\u2014what hath given unto thee the courage to remain steadfast, and what price hath been exacted of thee?",
+  "reflectionText": "When thou dost contemplate upon a moment in thine own life wherein thou didst stand alone in that which thou believest to be true—with no assurance of how all things should come to pass—what hath given unto thee the courage to remain steadfast, and what price hath been exacted of thee?",
   "timelineEra": "kingdom",
   "primaryCharacterId": "elijah",
   "primaryCharacterDisplayName": "Elijah",
-  "bibleOrderIndex": 19329
+  "bibleOrderIndex": 19329,
+  "editorialBucketException": "legacy_bucket_drift"
 }

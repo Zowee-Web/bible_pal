@@ -20,13 +20,6 @@
   "scriptureAnchorId": "psalm_96_1-13",
   "bibleStoryKey": "psalm_96_communal_sung_praise",
   "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
-  "themeTags": [
-    "sing_to_yahweh_a_new_song",
-    "for_he_comes_to_judge_the_earth",
-    "ascribe_glory_to_yahweh",
-    "trees_of_the_woods_sing_for_joy",
-    "song_of_the_assemblies"
-  ],
   "emotionalTags": [
     "joyful",
     "celebratory",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1472_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The song called on all the earth to sing: the families of the peoples, the heavens, the sea, the fields, the trees. What is it to be summoned into a chorus you cannot finish on your own — to sing your one part with all the earth singing the parts that are not yours alone?"
+  "reflectionText": "The song called on all the earth to sing: the families of the peoples, the heavens, the sea, the fields, the trees. What is it to be summoned into a chorus you cannot finish on your own — to sing your one part with all the earth singing the parts that are not yours alone?",
+  "sceneBeats": [
+    "ascribe_glory_to_yahweh",
+    "for_he_comes_to_judge_the_earth",
+    "sing_to_yahweh_a_new_song",
+    "song_of_the_assemblies",
+    "trees_of_the_woods_sing_for_joy"
+  ]
 }

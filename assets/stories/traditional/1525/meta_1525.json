@@ -22,13 +22,6 @@
   "scriptureAnchorId": "1_kings_22_1-28",
   "bibleStoryKey": "micaiah_prophesies_against_ahab",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "themeTags": [
-    "lone_true_prophet",
-    "false_prophets_in_unison",
-    "vision_of_the_throne",
-    "imprisonment_for_truth",
-    "word_against_the_king"
-  ],
   "emotionalTags": [
     "resolute",
     "brave",
@@ -78,5 +71,12 @@
   "reflectionText": "Four hundred prophets bade Ahab go up to the battle. Micaiah said the LORD had shown him Israel scattered as sheep that have not a shepherd. They smote him on the cheek and sent him unto the prison on bread of affliction. He went alone. The four hundred stayed in the room. What is it to be the one whose word is true, in a room of four hundred whose word goes the other way?",
   "reflectionSource": "claude-opus-4-7",
   "renderedAt": "2026-06-24T03:35:53Z",
-  "generatorVersion": "generate_opus_audio.sh"
+  "generatorVersion": "generate_opus_audio.sh",
+  "sceneBeats": [
+    "false_prophets_in_unison",
+    "imprisonment_for_truth",
+    "lone_true_prophet",
+    "vision_of_the_throne",
+    "word_against_the_king"
+  ]
 }

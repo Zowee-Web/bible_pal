@@ -20,13 +20,6 @@
   "scriptureAnchorId": "nehemiah_4_16-23",
   "bibleStoryKey": "nehemiah_sword_and_trowel_at_the_wall",
   "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "themeTags": [
-    "half_at_work_half_with_spears",
-    "sword_girded_by_every_builders_side",
-    "trumpeter_beside_nehemiah_on_the_wall",
-    "our_god_shall_fight_for_us",
-    "from_the_rising_of_the_morning_till_the_stars_appeared"
-  ],
   "emotionalTags": [
     "brave",
     "resolute",
@@ -63,5 +56,12 @@
   },
   "reflectionQuestion": "Half of them worked. Half of them stood with spears. Every builder had a sword by his side. Nehemiah kept the trumpeter beside him on the wall. What is it to do your work with one hand and hold a weapon in the other, every day, until the stars come out and the wall is closed?",
   "reflectionText": "Half of them wrought. Half of them stood with spears. Every builder had his sword girded by his side. Nehemiah kept the trumpeter beside him upon the wall. What is it to do thy work with one hand and hold a weapon in the other, every day, until the stars come out and the wall is closed?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "from_the_rising_of_the_morning_till_the_stars_appeared",
+    "half_at_work_half_with_spears",
+    "our_god_shall_fight_for_us",
+    "sword_girded_by_every_builders_side",
+    "trumpeter_beside_nehemiah_on_the_wall"
+  ]
 }

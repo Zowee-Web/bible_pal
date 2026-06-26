@@ -35,8 +35,12 @@ void main() {
         .map((json) => Parable.fromJson(json as Map<String, dynamic>))
         .toList();
 
-    traditionalParables =
-        allParables.where((p) => p.storytellingMode == 'traditional').toList();
+    // Kid-lane stories carry storytellingMode 'traditional' in the shared
+    // manifest but are governed by kid_anchor_registry.json (separate schema),
+    // not the traditional scripture_anchor_registry. Exclude them here.
+    traditionalParables = allParables
+        .where((p) => p.storytellingMode == 'traditional' && !p.kidFriendly)
+        .toList();
 
     print('Loaded ${allParables.length} total parables');
     print('  - ${traditionalParables.length} Traditional');

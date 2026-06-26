@@ -21,7 +21,6 @@
   "bibleStoryKey": "sarah_laughs_at_isaacs_birth",
   "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
   "themeTags": [
-    "promise_fulfilled",
     "laughter",
     "birth",
     "faithfulness",
@@ -66,5 +65,8 @@
   "secondaryLifeSituationTags": [
     "unmet_longing"
   ],
-  "reflectionText": "Sarah conceived and bore Abraham a son in his old age. She said: God has made me laugh. Everyone who hears will laugh with me. Who would have said that Sarah should nurse children? What is it to be the woman whose laughter at the tent door becomes the laughter of a household where the promised son has finally been laid against your arm?"
+  "reflectionText": "Sarah conceived and bore Abraham a son in his old age. She said: God has made me laugh. Everyone who hears will laugh with me. Who would have said that Sarah should nurse children? What is it to be the woman whose laughter at the tent door becomes the laughter of a household where the promised son has finally been laid against your arm?",
+  "sceneBeats": [
+    "promise_fulfilled"
+  ]
 }

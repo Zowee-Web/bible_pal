@@ -20,13 +20,6 @@
   "scriptureAnchorId": "joshua_2_1-15",
   "bibleStoryKey": "rahab_hides_the_spies",
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
-  "themeTags": [
-    "protective_courage",
-    "harboring_the_stranger",
-    "fear_of_yahweh",
-    "covenant_kindness",
-    "outsider_faith"
-  ],
   "emotionalTags": [
     "brave",
     "shrewd",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1347_traditional_kjv.txt"
     }
   },
-  "reflectionText": "She let them down by a cord through the window, for her house was on the wall. What is it to be hidden under the flax of a roof in a city you came to spy, by a woman who has set her name on your side of the wall before you can offer her anything in return?"
+  "reflectionText": "She let them down by a cord through the window, for her house was on the wall. What is it to be hidden under the flax of a roof in a city you came to spy, by a woman who has set her name on your side of the wall before you can offer her anything in return?",
+  "sceneBeats": [
+    "covenant_kindness",
+    "fear_of_yahweh",
+    "harboring_the_stranger",
+    "outsider_faith",
+    "protective_courage"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

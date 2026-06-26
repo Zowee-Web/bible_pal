@@ -20,13 +20,6 @@
   "scriptureAnchorId": "1_samuel_14_43-45",
   "bibleStoryKey": "jonathan_honey_rescue",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "themeTags": [
-    "jonathan_taste_of_honey",
-    "sauls_great_oath",
-    "people_rescue_jonathan",
-    "salvation_in_israel",
-    "rod_and_honeycomb"
-  ],
   "emotionalTags": [
     "grateful",
     "relieved",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1439_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Saul condemned Jonathan to die for tasting honey. The men of Israel stood up as one voice and rescued him. What is it to be saved from your own father's vow by the people whose victory your honey was tasted in — and to stand among them with the rod still in your hand and the honey still on your fingers?"
+  "reflectionText": "Saul condemned Jonathan to die for tasting honey. The men of Israel stood up as one voice and rescued him. What is it to be saved from your own father's vow by the people whose victory your honey was tasted in — and to stand among them with the rod still in your hand and the honey still on your fingers?",
+  "sceneBeats": [
+    "jonathan_taste_of_honey",
+    "people_rescue_jonathan",
+    "rod_and_honeycomb",
+    "salvation_in_israel",
+    "sauls_great_oath"
+  ]
 }

@@ -20,13 +20,6 @@
   "scriptureAnchorId": "joshua_22_30-34",
   "bibleStoryKey": "phinehas_at_altar_of_ed",
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
-  "themeTags": [
-    "altar_of_witness_peace",
-    "tribes_reconciled",
-    "yahweh_among_us",
-    "war_averted_at_the_jordan",
-    "altar_named_ed"
-  ],
   "emotionalTags": [
     "grateful",
     "relieved",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1406_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The eastern tribes built an altar by the Jordan, and when the western tribes came to ask, the answer was: not for sacrifice — for witness. What does it take for a thing built between people to stop a war that was almost a war among brothers?"
+  "reflectionText": "The eastern tribes built an altar by the Jordan, and when the western tribes came to ask, the answer was: not for sacrifice — for witness. What does it take for a thing built between people to stop a war that was almost a war among brothers?",
+  "sceneBeats": [
+    "altar_named_ed",
+    "altar_of_witness_peace",
+    "tribes_reconciled",
+    "war_averted_at_the_jordan",
+    "yahweh_among_us"
+  ]
 }

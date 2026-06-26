@@ -20,13 +20,6 @@
   "scriptureAnchorId": "genesis_24_62-67",
   "bibleStoryKey": "isaac_meets_rebekah_at_beer_lahai_roi",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
-  "themeTags": [
-    "isaac_meets_rebekah_at_evening",
-    "meditating_in_the_field_at_sunset",
-    "camels_coming_up_from_the_south",
-    "veil_of_the_aramean_bride",
-    "comforted_after_his_mothers_death"
-  ],
   "emotionalTags": [
     "calm",
     "tender",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1428_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Isaac walked out into the field at evening, and lifted up his eyes, and saw the camels coming. He had been comforted after the death of his mother. What is it to look up from a field at the end of a long day, and to see the comfort you had stopped expecting moving toward you in the open evening?"
+  "reflectionText": "Isaac walked out into the field at evening, and lifted up his eyes, and saw the camels coming. He had been comforted after the death of his mother. What is it to look up from a field at the end of a long day, and to see the comfort you had stopped expecting moving toward you in the open evening?",
+  "sceneBeats": [
+    "camels_coming_up_from_the_south",
+    "comforted_after_his_mothers_death",
+    "isaac_meets_rebekah_at_evening",
+    "meditating_in_the_field_at_sunset",
+    "veil_of_the_aramean_bride"
+  ]
 }

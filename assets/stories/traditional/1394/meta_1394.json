@@ -20,13 +20,6 @@
   "scriptureAnchorId": "psalm_88_1-9",
   "bibleStoryKey": "heman_psalm_of_unrelieved_darkness",
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
-  "themeTags": [
-    "unrelieved_darkness_lament",
-    "psalm_that_does_not_turn",
-    "soul_full_of_troubles",
-    "friends_taken_away",
-    "mahalath_leannoth"
-  ],
   "emotionalTags": [
     "weary",
     "alone",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1394_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Heman set down a song that did not turn. It began in darkness and stayed there. The singers kept it among the psalms for any who could not yet make the turn. What kind of prayer is allowed to leave the question open and not yet know its own ending?"
+  "reflectionText": "Heman set down a song that did not turn. It began in darkness and stayed there. The singers kept it among the psalms for any who could not yet make the turn. What kind of prayer is allowed to leave the question open and not yet know its own ending?",
+  "sceneBeats": [
+    "friends_taken_away",
+    "mahalath_leannoth",
+    "psalm_that_does_not_turn",
+    "soul_full_of_troubles",
+    "unrelieved_darkness_lament"
+  ]
 }

@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_kings_8_1-6",
   "bibleStoryKey": "shunammite_returns_after_famine",
   "storyVoiceKey": "VOICE_RUTH_COMFORT",
-  "themeTags": [
-    "seven_years_of_famine",
-    "shunammite_to_philistia_and_back",
-    "gehazi_tells_kings_story",
-    "providential_convergence_at_court",
-    "restoration_of_house_and_field"
-  ],
   "emotionalTags": [
     "weary",
     "tender",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1454_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The Shunammite came back from seven years in Philistia to find her house and field taken. She walked into the king's court in the very hour Gehazi was telling the story of her own restored son. What is it to walk into the king's court at the very hour your own son's story is being told there — and to find that the door you had given up on opening was opening for you all along?"
+  "reflectionText": "The Shunammite came back from seven years in Philistia to find her house and field taken. She walked into the king's court in the very hour Gehazi was telling the story of her own restored son. What is it to walk into the king's court at the very hour your own son's story is being told there — and to find that the door you had given up on opening was opening for you all along?",
+  "sceneBeats": [
+    "gehazi_tells_kings_story",
+    "providential_convergence_at_court",
+    "restoration_of_house_and_field",
+    "seven_years_of_famine",
+    "shunammite_to_philistia_and_back"
+  ]
 }

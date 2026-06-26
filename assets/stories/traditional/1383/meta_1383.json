@@ -20,13 +20,6 @@
   "scriptureAnchorId": "numbers_21_16-18",
   "bibleStoryKey": "song_of_the_well_at_beer",
   "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
-  "themeTags": [
-    "song_of_the_well",
-    "princes_dug_with_scepters",
-    "gift_of_water_in_wilderness",
-    "song_of_the_journey",
-    "from_beer_to_mattanah"
-  ],
   "emotionalTags": [
     "grateful",
     "exultant",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1383_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The princes dug the well with their scepters, and when the water rose, Israel sang over it. Have you ever wanted to sing over a gift while the water was still rising through the dirt of the morning?"
+  "reflectionText": "The princes dug the well with their scepters, and when the water rose, Israel sang over it. Have you ever wanted to sing over a gift while the water was still rising through the dirt of the morning?",
+  "sceneBeats": [
+    "from_beer_to_mattanah",
+    "gift_of_water_in_wilderness",
+    "princes_dug_with_scepters",
+    "song_of_the_journey",
+    "song_of_the_well"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

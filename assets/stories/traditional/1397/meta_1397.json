@@ -20,13 +20,6 @@
   "scriptureAnchorId": "ruth_3_1-9",
   "bibleStoryKey": "ruth_at_the_threshing_floor",
   "storyVoiceKey": "VOICE_RUTH_COMFORT",
-  "themeTags": [
-    "midnight_at_threshing_floor",
-    "kinsman_redeemer_request",
-    "naomis_plan",
-    "uncovered_feet_at_the_heap",
-    "spread_your_garment_over_me"
-  ],
   "emotionalTags": [
     "anxious",
     "obedient",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1397_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Ruth went down to the threshing floor at Naomi's word, uncovered the feet of the man, and lay down. He woke and said: who are you? What is it to walk into a future that hinges entirely on the answer you have come to give?"
+  "reflectionText": "Ruth went down to the threshing floor at Naomi's word, uncovered the feet of the man, and lay down. He woke and said: who are you? What is it to walk into a future that hinges entirely on the answer you have come to give?",
+  "sceneBeats": [
+    "kinsman_redeemer_request",
+    "midnight_at_threshing_floor",
+    "naomis_plan",
+    "spread_your_garment_over_me",
+    "uncovered_feet_at_the_heap"
+  ]
 }

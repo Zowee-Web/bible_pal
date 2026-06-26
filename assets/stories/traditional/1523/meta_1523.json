@@ -22,13 +22,6 @@
   "scriptureAnchorId": "ezra_4_1-24",
   "bibleStoryKey": "adversaries_stop_the_temple_rebuilding",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
-  "themeTags": [
-    "opposition_to_the_work",
-    "refused_assistance",
-    "letters_against_the_city",
-    "long_delay",
-    "unfinished_house"
-  ],
   "emotionalTags": [
     "anxious",
     "discouraged",
@@ -77,5 +70,12 @@
   },
   "reflectionQuestion": "The work of the LORD's house had begun. The foundation had been laid. The adversaries weakened the hands of the people and wrote letters to the king. The king commanded the work to stop. The grass came up among the stones. Many years passed. What is it to live in a city where the unfinished house of the LORD is sitting in the middle of it every day?",
   "reflectionText": "The work of the LORD's house had begun. The foundation had been laid. The adversaries weakened the hands of the people and wrote letters unto the king. The king commanded the work to cease. The grass came up among the stones. Many years passed. What is it to dwell in a city where the unfinished house of the LORD sitteth in the midst of it every day?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "letters_against_the_city",
+    "long_delay",
+    "opposition_to_the_work",
+    "refused_assistance",
+    "unfinished_house"
+  ]
 }

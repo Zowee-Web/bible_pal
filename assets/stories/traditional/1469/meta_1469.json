@@ -20,13 +20,6 @@
   "scriptureAnchorId": "daniel_3_19-25",
   "bibleStoryKey": "fourth_in_the_furnace",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "furnace_heated_seven_times_more",
-    "shadrach_meshach_abednego_bound",
-    "soldiers_killed_at_mouth_of_furnace",
-    "four_men_loose_walking_in_fire",
-    "fourth_like_son_of_gods"
-  ],
   "emotionalTags": [
     "anxious",
     "awed",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1469_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The men were thrown into the furnace bound. The king looked in and saw four men, loose, walking. The appearance of the fourth was like a son of the gods. What is it for a king to count three men cast into the fire, and to look in and see four — and to know that the one walking with them is not any of his own?"
+  "reflectionText": "The men were thrown into the furnace bound. The king looked in and saw four men, loose, walking. The appearance of the fourth was like a son of the gods. What is it for a king to count three men cast into the fire, and to look in and see four — and to know that the one walking with them is not any of his own?",
+  "sceneBeats": [
+    "four_men_loose_walking_in_fire",
+    "fourth_like_son_of_gods",
+    "furnace_heated_seven_times_more",
+    "shadrach_meshach_abednego_bound",
+    "soldiers_killed_at_mouth_of_furnace"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

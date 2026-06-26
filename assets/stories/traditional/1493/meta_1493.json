@@ -20,13 +20,6 @@
   "scriptureAnchorId": "daniel_9_20-23",
   "bibleStoryKey": "gabriel_answers_daniels_prayer",
   "storyVoiceKey": "VOICE_NOAH_PATIENT",
-  "themeTags": [
-    "prayer_for_the_holy_mountain",
-    "gabriel_at_the_evening_offering",
-    "hand_laid_upon_the_shoulder",
-    "called_greatly_beloved",
-    "vision_understood_in_the_dim_chamber"
-  ],
   "emotionalTags": [
     "encouraged",
     "tender",
@@ -63,5 +56,12 @@
   },
   "reflectionQuestion": "The hand was laid on his shoulder while his mouth was still shaped around the prayer for his people. Before he had finished, the word had gone out. What does it do to hear yourself called \"greatly beloved\" before you have even managed to finish the sentence you were saying?",
   "reflectionText": "The hand was laid upon his shoulder while his mouth was yet shaped about the prayer for his people. Or ever he had finished, the commandment had gone forth. What doth it work in thee to hear thyself called \"greatly beloved\" before thou hast yet finished the sentence thou wast speaking?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "called_greatly_beloved",
+    "gabriel_at_the_evening_offering",
+    "hand_laid_upon_the_shoulder",
+    "prayer_for_the_holy_mountain",
+    "vision_understood_in_the_dim_chamber"
+  ]
 }

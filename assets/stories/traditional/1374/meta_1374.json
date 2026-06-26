@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_samuel_22_1-7",
   "bibleStoryKey": "davids_deliverance_song",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "themeTags": [
-    "personal_deliverance_song",
-    "after_all_enemies_subdued",
-    "yahweh_my_rock_fortress_deliverer",
-    "cry_heard_out_of_the_temple",
-    "kings_thanksgiving"
-  ],
   "emotionalTags": [
     "joyful",
     "exultant",
@@ -58,5 +51,12 @@
       "reflectionText": "reflection_1374_traditional_kjv.txt"
     }
   },
-  "reflectionText": "David called the Lord seven names in one line: rock, fortress, deliverer, shield, horn, high tower, refuge. What does gratitude look like when one name is not enough for what one life has been given?"
+  "reflectionText": "David called the Lord seven names in one line: rock, fortress, deliverer, shield, horn, high tower, refuge. What does gratitude look like when one name is not enough for what one life has been given?",
+  "sceneBeats": [
+    "after_all_enemies_subdued",
+    "cry_heard_out_of_the_temple",
+    "kings_thanksgiving",
+    "personal_deliverance_song",
+    "yahweh_my_rock_fortress_deliverer"
+  ]
 }

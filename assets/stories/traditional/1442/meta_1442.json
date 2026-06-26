@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_kings_2_11-14",
   "bibleStoryKey": "elijah_chariot_elisha_at_jordan",
   "storyVoiceKey": "VOICE_ELIJAH_SAGE",
-  "themeTags": [
-    "chariot_of_fire",
-    "elijah_taken_up_in_whirlwind",
-    "elisha_tears_clothes",
-    "mantle_strikes_jordan",
-    "succession_of_the_prophet"
-  ],
   "emotionalTags": [
     "grieving",
     "awed",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1442_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The chariot of fire came down between them. Elijah went up. Elisha tore his clothes and stood alone. The cloak lay in the dust. What is it to have the mantle given to you in the very hour the one who wore it before you was taken from the place where you had been walking?"
+  "reflectionText": "The chariot of fire came down between them. Elijah went up. Elisha tore his clothes and stood alone. The cloak lay in the dust. What is it to have the mantle given to you in the very hour the one who wore it before you was taken from the place where you had been walking?",
+  "sceneBeats": [
+    "chariot_of_fire",
+    "elijah_taken_up_in_whirlwind",
+    "elisha_tears_clothes",
+    "mantle_strikes_jordan",
+    "succession_of_the_prophet"
+  ]
 }

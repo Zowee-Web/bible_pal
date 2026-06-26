@@ -21,13 +21,6 @@
   "scriptureAnchorId": "1_samuel_11_1-11",
   "bibleStoryKey": "saul_rescues_jabesh_gilead_three_companies",
   "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "themeTags": [
-    "nahash_threatens_to_thrust_out_right_eyes",
-    "messengers_seven_days_respite",
-    "saul_at_the_plow_hears_the_weeping",
-    "hewed_oxen_sent_in_pieces",
-    "three_companies_at_morning_watch"
-  ],
   "emotionalTags": [
     "brave",
     "resolute",
@@ -70,5 +63,12 @@
   },
   "reflectionQuestion": "Saul was plowing the field. The messengers came. He heard the news. The Spirit of God came on him. He hewed the oxen in pieces. He sent the pieces throughout Israel. At dawn watch the next day three companies came into the camp of the Ammonites. What is it to be plowing one morning and leading three companies into battle by the same time the next day?",
   "reflectionText": "Saul was plowing the field. The messengers came. He heard the tidings. The Spirit of God came upon him. He hewed the oxen in pieces. He sent the pieces throughout Israel. At the morning watch the day after, three companies came into the host of the Ammonites. What is it to be plowing one morning and leading three companies into battle by the same time the next day?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "hewed_oxen_sent_in_pieces",
+    "messengers_seven_days_respite",
+    "nahash_threatens_to_thrust_out_right_eyes",
+    "saul_at_the_plow_hears_the_weeping",
+    "three_companies_at_morning_watch"
+  ]
 }

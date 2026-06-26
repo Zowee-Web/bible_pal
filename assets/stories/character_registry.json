@@ -754,6 +754,18 @@
       "descriptor": "",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05-30 manifest backfill. displayName from manifest.primaryCharacterDisplayName. descriptor pending manual curation."
+    },
+    "noble_woman": {
+      "displayName": "A Woman of Noble Character",
+      "descriptor": "The capable, God-fearing woman of Proverbs 31"
+    },
+    "queen_of_sheba": {
+      "displayName": "The Queen of Sheba",
+      "descriptor": "Foreign queen who came to test Solomon’s wisdom"
+    },
+    "babel_builders": {
+      "displayName": "The Builders of Babel",
+      "descriptor": "The people who built the Tower of Babel"
     }
   }
 }

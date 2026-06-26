@@ -20,13 +20,6 @@
   "scriptureAnchorId": "luke_15_8-10",
   "bibleStoryKey": "lost_coin_parable",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "themeTags": [
-    "finding_what_was_lost",
-    "joy_in_heaven",
-    "lamp_lit_house_swept",
-    "rejoice_with_me_neighbors",
-    "parable_of_the_lost_coin"
-  ],
   "emotionalTags": [
     "joyful",
     "delighted",
@@ -65,5 +58,13 @@
     "searching",
     "found_again"
   ],
-  "reflectionText": "The woman lit the lamp, swept the house, and would not rest until she had found the one coin. What does it tell you about heaven that the joy over a single returning sinner is told in the shape of a woman calling her neighbors over a coin?"
+  "reflectionText": "The woman lit the lamp, swept the house, and would not rest until she had found the one coin. What does it tell you about heaven that the joy over a single returning sinner is told in the shape of a woman calling her neighbors over a coin?",
+  "sceneBeats": [
+    "finding_what_was_lost",
+    "joy_in_heaven",
+    "lamp_lit_house_swept",
+    "parable_of_the_lost_coin",
+    "rejoice_with_me_neighbors"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

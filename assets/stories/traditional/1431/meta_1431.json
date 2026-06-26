@@ -20,13 +20,6 @@
   "scriptureAnchorId": "esther_2_5-11",
   "bibleStoryKey": "mordecai_raises_orphan_esther",
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
-  "themeTags": [
-    "orphan_in_susa_taken_by_mordecai",
-    "womens_quarters_under_hegai",
-    "seven_choice_maidens",
-    "secret_of_her_people_kept",
-    "mordecai_walking_outside_the_court"
-  ],
   "emotionalTags": [
     "calm",
     "tender",
@@ -66,5 +59,12 @@
   "secondaryLifeSituationTags": [
     "quiet_provision"
   ],
-  "reflectionText": "Mordecai walked every day along the wall outside the women's house in the citadel of Susa, asking after Esther, with the secret of her people kept between them. What is it to walk the same path every day in front of a wall, asking after a person whose name no one watching from the wall has yet learned to call?"
+  "reflectionText": "Mordecai walked every day along the wall outside the women's house in the citadel of Susa, asking after Esther, with the secret of her people kept between them. What is it to walk the same path every day in front of a wall, asking after a person whose name no one watching from the wall has yet learned to call?",
+  "sceneBeats": [
+    "mordecai_walking_outside_the_court",
+    "orphan_in_susa_taken_by_mordecai",
+    "secret_of_her_people_kept",
+    "seven_choice_maidens",
+    "womens_quarters_under_hegai"
+  ]
 }

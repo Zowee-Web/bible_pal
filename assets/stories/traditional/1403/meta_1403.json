@@ -20,13 +20,6 @@
   "scriptureAnchorId": "acts_21_10-14",
   "bibleStoryKey": "agabus_prophesies_pauls_binding",
   "storyVoiceKey": "VOICE_ELIJAH_SAGE",
-  "themeTags": [
-    "binding_prophesied",
-    "agabus_takes_pauls_belt",
-    "company_begs_him_not_to_go",
-    "ready_to_die_at_jerusalem",
-    "the_lords_will_be_done"
-  ],
   "emotionalTags": [
     "anxious",
     "grieving",
@@ -60,5 +53,13 @@
       "reflectionText": "reflection_1403_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Agabus took Paul's belt and bound his own hands and feet with it, showing what the Jews would do at Jerusalem. Paul went up anyway. How do you walk into a bondage that has been shown to you in advance, into the very form you were warned of?"
+  "reflectionText": "Agabus took Paul's belt and bound his own hands and feet with it, showing what the Jews would do at Jerusalem. Paul went up anyway. How do you walk into a bondage that has been shown to you in advance, into the very form you were warned of?",
+  "sceneBeats": [
+    "agabus_takes_pauls_belt",
+    "binding_prophesied",
+    "company_begs_him_not_to_go",
+    "ready_to_die_at_jerusalem",
+    "the_lords_will_be_done"
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }
