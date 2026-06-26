@@ -25,7 +25,7 @@
   ],
   "longEligible": false,
   "status": "REVIEW",
-  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
     "stability": 0.6,
