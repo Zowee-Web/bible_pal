@@ -497,6 +497,21 @@
           "manifestAnchorIds": [
             "exodus_17_8-13"
           ]
+        },
+        {
+          "anchorId": "miriam_song",
+          "displayName": "Miriam's Song",
+          "scriptureRef": "Exodus 15:19-21",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": false,
+          "productionId": 1922,
+          "manifestAnchorIds": [
+            "exodus_15_19-21"
+          ]
         }
       ]
     },
@@ -1958,6 +1973,36 @@
           "launch": true,
           "productionId": 1897,
           "longEligible": false
+        },
+        {
+          "anchorId": "lame_man_healed",
+          "displayName": "The Man Who Leaped for Joy",
+          "scriptureRef": "Acts 3:1-10",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": false,
+          "productionId": 1923,
+          "manifestAnchorIds": [
+            "acts_3_1-10"
+          ]
+        },
+        {
+          "anchorId": "cornelius",
+          "displayName": "The Good News Is for Everyone",
+          "scriptureRef": "Acts 10:34-48",
+          "tier": "secondary",
+          "targetLengths": [
+            "short",
+            "full"
+          ],
+          "launch": false,
+          "productionId": 1924,
+          "manifestAnchorIds": [
+            "acts_10_34-48"
+          ]
         }
       ]
     },

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1922,
+  "anchorId": "miriam_song",
+  "kidLane": "dedicated-4-7",
+  "title": "Miriam's Song",
+  "scriptureAnchorId": "exodus_15_19-21",
+  "bibleSourceRef": "Exodus 15:19-21",
+  "bibleStoryKey": "miriam_song",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "joyful",
+    "celebrating",
+    "thankful",
+    "free"
+  ],
+  "themeTags": [
+    "celebrating God",
+    "joy",
+    "thankfulness",
+    "singing"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Miriam was so thankful that she grabbed a tambourine and danced and sang. When something wonderful happens, what is a way you like to show God how happy and thankful you are?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Miriam's Song, Exodus 15:19-21). Register=SINGING/CELEBRATION (bright-ending batch per emotional-color-balance). Feeling-first open (relief on the far shore). SUBTRACTION: army/drowning ENTIRELY absent ('danger all behind them now' only) -- this is the JOY aftermath, NOT the Red Sea crossing (separate anchor). One image: women + tambourines dancing on the far shore. Ends on the singing/dancing itself, no moral coda (ending-shape-variety). 'God' in prose; key verse WEB reads 'Yahweh' (raw scripture, fine). Voice VOICE_MIRIAM_JOYFUL (lively/celebratory -- character-perfect).",
+  "files": {
+    "short": {
+      "storyText": "story_1922_short.txt",
+      "audio": "audio_1922_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1922_full.txt",
+      "audio": "audio_1922_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1922.txt",
+      "audio": "audio_1922_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1922/scripture_1922_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Exodus 15:21",
+    "text": "Miriam answered them, “Sing to Yahweh, for he has triumphed gloriously. He has thrown the horse and his rider into the sea.”"
+  }
+}

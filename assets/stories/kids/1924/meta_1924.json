@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "kid-1",
+  "storyNumber": 1924,
+  "anchorId": "cornelius",
+  "kidLane": "dedicated-4-7",
+  "title": "The Good News Is for Everyone",
+  "scriptureAnchorId": "acts_10_34-48",
+  "bibleSourceRef": "Acts 10:34-48",
+  "bibleStoryKey": "cornelius",
+  "translation": "WEB",
+  "mood": "joyful",
+  "emotionalTags": [
+    "amazed",
+    "joyful",
+    "welcomed",
+    "grateful"
+  ],
+  "themeTags": [
+    "Gods love for all",
+    "belonging",
+    "good news",
+    "joy"
+  ],
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "longEligible": false,
+  "status": "REVIEW",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "reflectionQuestion": "Peter learned that God's love is for everyone — no favorites, no one left out. When have you helped someone feel like they truly belong?",
+  "hardContentFlags": [],
+  "kidSafetyNotes": "NEW anchor (Cornelius, Acts 10). Register=AMAZEMENT/BELONGING (bright batch) -> 'the good news is for EVERYONE, no one left out.' Feeling-first open (Cornelius wondering if God loves an outsider like him). SUBTRACTION: Peter's rooftop vision (sheet/animals) simplified to 'God showed Peter his love is for everyone' -- no confusing vision detail. One image: a houseful of 'outsiders' lit up with God's Spirit. Ends on amazement/joy, no moral coda. Scripture bounded Acts 10:34-48 (Peter's no-favoritism speech + Spirit falls). 'God' in prose. Voice VOICE_JAMES_BRITISH_PROFESSIONAL (reassuring/warm for belonging).",
+  "files": {
+    "short": {
+      "storyText": "story_1924_short.txt",
+      "audio": "audio_1924_short.mp3"
+    },
+    "full": {
+      "storyText": "story_1924_full.txt",
+      "audio": "audio_1924_full.mp3"
+    },
+    "reflection": {
+      "text": "reflection_1924.txt",
+      "audio": "audio_1924_reflection.mp3",
+      "ttsModel": "eleven_v3"
+    }
+  },
+  "scriptureTextFilePath": "kids/1924/scripture_1924_web.txt",
+  "scriptureKeyVerse": {
+    "ref": "Acts 10:34-35",
+    "text": "Peter opened his mouth and said, “Truly I perceive that God doesn’t show favoritism; but in every nation he who fears him and works righteousness is acceptable to him."
+  }
+}
