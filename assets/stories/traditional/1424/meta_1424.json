@@ -60,5 +60,6 @@
     "obed_grandfather_of_david",
     "restorer_of_life_in_old_age",
     "women_sing_for_naomi"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

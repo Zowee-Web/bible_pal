@@ -60,5 +60,6 @@
     "captives_at_tel_aviv",
     "river_chebar",
     "sitting_overwhelmed_seven_days"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

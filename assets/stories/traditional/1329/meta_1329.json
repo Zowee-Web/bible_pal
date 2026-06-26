@@ -62,5 +62,7 @@
     "answered_prayer",
     "loving_kindness",
     "personal_thanksgiving"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift",
+  "boundaryException": "deferred_boundary_drift"
 }

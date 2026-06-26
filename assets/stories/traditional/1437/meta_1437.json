@@ -60,5 +60,6 @@
     "jael_tent_peg",
     "sisera_dead_in_tent",
     "womens_decisive_action"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

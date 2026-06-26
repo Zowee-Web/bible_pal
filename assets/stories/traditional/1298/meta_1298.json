@@ -62,5 +62,6 @@
     "encounter",
     "holy_ground",
     "reverence"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

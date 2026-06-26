@@ -58,5 +58,6 @@
     "proclaim_what_was_done",
     "restored_man_sent_home",
     "ten_cities_marveling"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

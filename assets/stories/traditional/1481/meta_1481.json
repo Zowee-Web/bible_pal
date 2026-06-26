@@ -63,5 +63,6 @@
     "redeemed_my_life",
     "voice_from_the_lowest_dungeon",
     "yahweh_came_near_in_the_day_i_called"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

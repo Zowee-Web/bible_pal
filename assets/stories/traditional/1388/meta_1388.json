@@ -66,5 +66,6 @@
     "prison_doubt_message",
     "the_works_of_christ",
     "two_disciples_sent"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

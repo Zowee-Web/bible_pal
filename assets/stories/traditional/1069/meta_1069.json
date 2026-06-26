@@ -17,7 +17,7 @@
   "voiceKey": "VOICE_JAMES_HUSKY",
   "createdByModel": "claude-opus-4-6",
   "generationBatch": "PAL_OPUS_BATCH_04",
-  "reflectionQuestion": "What does it feel like to be fully known \u2014 every hidden wound, every unspoken thought \u2014 and to wonder whether being that deeply seen is something you long for or something you fear?",
+  "reflectionQuestion": "What does it feel like to be fully known — every hidden wound, every unspoken thought — and to wonder whether being that deeply seen is something you long for or something you fear?",
   "title": "You Have Searched Me and Known Me",
   "files": {
     "short": {
@@ -59,7 +59,7 @@
     "web": "reflection_1069_traditional_web.txt",
     "kjv": "reflection_1069_traditional_kjv.txt"
   },
-  "reflectionText": "What doth it feel like to be fully known \u2014 every hidden wound, every unspoken thought \u2014 and to wonder whether being that deeply seen is something thou dost long for or something thou dost fear?",
+  "reflectionText": "What doth it feel like to be fully known — every hidden wound, every unspoken thought — and to wonder whether being that deeply seen is something thou dost long for or something thou dost fear?",
   "timelineEra": "wisdom",
   "primaryCharacterId": "david",
   "primaryCharacterDisplayName": "David",
@@ -68,5 +68,6 @@
     "stability": 0.5,
     "similarity_boost": 0.75
   },
-  "bibleOrderIndex": 140584
+  "bibleOrderIndex": 140584,
+  "boundaryException": "deferred_boundary_drift"
 }

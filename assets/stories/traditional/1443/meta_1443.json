@@ -60,5 +60,6 @@
     "saul_ravages_assembly",
     "scattered_throughout_judea_samaria",
     "stephen_buried_by_devout_men"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

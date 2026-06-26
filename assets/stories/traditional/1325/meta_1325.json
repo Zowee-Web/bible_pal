@@ -62,5 +62,6 @@
   "reflectionText": "Few and evil have been the days of the years of my life. What is it to stand before a king in your last years, and to call your long life a pilgrimage that has been shorter than the path of the fathers who came home?",
   "sceneBeats": [
     "old_age"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

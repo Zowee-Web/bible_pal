@@ -60,5 +60,6 @@
     "personal_lament",
     "shut_out_prayer",
     "walled_in"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

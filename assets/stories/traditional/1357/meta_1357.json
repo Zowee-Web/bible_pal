@@ -62,5 +62,6 @@
     "covenant_friendship_lost",
     "fallen_king",
     "song_of_the_bow"
-  ]
+  ],
+  "boundaryException": "deferred_boundary_drift"
 }

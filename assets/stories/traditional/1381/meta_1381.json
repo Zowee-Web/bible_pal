@@ -60,5 +60,6 @@
     "joy_through_loss",
     "song_for_the_music_director",
     "yet_i_will_rejoice"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

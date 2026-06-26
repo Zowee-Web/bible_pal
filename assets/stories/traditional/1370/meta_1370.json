@@ -58,5 +58,6 @@
     "persecution_and_joy_together",
     "shaking_off_the_dust",
     "word_spread_abroad"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

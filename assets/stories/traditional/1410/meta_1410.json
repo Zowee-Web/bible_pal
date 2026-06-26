@@ -60,5 +60,6 @@
     "brothers_come_out_to_meet_the_apostle",
     "courage_renewed_at_the_meeting",
     "thanked_god_at_forum_of_appius"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

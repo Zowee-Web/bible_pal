@@ -70,5 +70,6 @@
     "i_know_my_own_and_my_own_know_me",
     "the_good_shepherd_lays_down_his_life",
     "the_hireling_flees_when_the_wolf_comes"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

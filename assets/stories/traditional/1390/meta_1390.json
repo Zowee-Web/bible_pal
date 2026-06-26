@@ -60,5 +60,6 @@
     "saints_praying_together",
     "sentence_of_death_within",
     "trust_in_god_who_raises_dead"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

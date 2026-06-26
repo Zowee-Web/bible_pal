@@ -65,5 +65,6 @@
     "lamp_lit_house_swept",
     "parable_of_the_lost_coin",
     "rejoice_with_me_neighbors"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

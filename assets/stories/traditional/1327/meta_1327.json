@@ -60,5 +60,6 @@
       "reflectionText": "reflection_1327_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Blessed are the eyes which see the things that you see. What does it feel like to be told by him that what you have just witnessed with your own eyes is what kings and prophets had longed for in their own days, and were not given?"
+  "reflectionText": "Blessed are the eyes which see the things that you see. What does it feel like to be told by him that what you have just witnessed with your own eyes is what kings and prophets had longed for in their own days, and were not given?",
+  "editorialBucketException": "legacy_bucket_drift"
 }

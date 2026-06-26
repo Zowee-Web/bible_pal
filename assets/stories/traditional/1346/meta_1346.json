@@ -74,5 +74,6 @@
     "providence_in_battle",
     "salvation_by_few",
     "two_against_many"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

@@ -60,5 +60,6 @@
     "philip_caught_away_by_spirit",
     "water_at_the_desert_road",
     "went_on_his_way_rejoicing"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

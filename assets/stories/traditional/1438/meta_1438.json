@@ -60,5 +60,6 @@
     "mighty_men_of_david",
     "standing_alone_against_philistines",
     "yahweh_works_great_victory"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

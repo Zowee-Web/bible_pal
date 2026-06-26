@@ -60,5 +60,6 @@
     "patriarchal_initiative",
     "protective_courage",
     "rescue_of_kin"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

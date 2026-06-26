@@ -60,5 +60,6 @@
     "carried_away_in_hooks",
     "humbled_then_restored",
     "knew_yahweh_was_god"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

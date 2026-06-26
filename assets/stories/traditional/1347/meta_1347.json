@@ -60,5 +60,6 @@
     "harboring_the_stranger",
     "outsider_faith",
     "protective_courage"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

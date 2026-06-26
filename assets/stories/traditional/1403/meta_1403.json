@@ -60,5 +60,6 @@
     "company_begs_him_not_to_go",
     "ready_to_die_at_jerusalem",
     "the_lords_will_be_done"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

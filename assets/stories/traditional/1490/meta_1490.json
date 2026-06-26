@@ -70,5 +70,6 @@
     "field_sold_money_at_apostles_feet",
     "joses_named_barnabas_son_of_encouragement",
     "no_one_among_them_lacked"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

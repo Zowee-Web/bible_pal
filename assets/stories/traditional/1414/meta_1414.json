@@ -67,5 +67,7 @@
     "offspring_like_stars_and_sand",
     "return_to_beersheba",
     "yahweh_will_provide_after_ram"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift",
+  "boundaryException": "deferred_boundary_drift"
 }

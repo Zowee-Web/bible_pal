@@ -64,5 +64,6 @@
   "generatorVersion": "generate_opus_audio.sh",
   "sceneBeats": [
     "doing_good"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

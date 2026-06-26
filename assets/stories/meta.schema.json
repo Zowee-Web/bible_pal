@@ -397,6 +397,14 @@
         "type": "string"
       },
       "description": "Multi-word story-beat identifiers (moved out of themeTags in the 2026-06 theme-tag migration)."
+    },
+    "editorialBucketException": {
+      "type": "string",
+      "description": "Documented reason this story is exempt from the strict word-count bucket gate (legacy_bucket_drift | lyric_expansion). Word-count remediation backlog."
+    },
+    "boundaryException": {
+      "type": "string",
+      "description": "Documented reason a story is exempt from the ADR-025 boundary-drift scan (scriptural = phrase is verbatim in the passage; deferred_boundary_drift = legacy, queued for editorial review)."
     }
   }
 }

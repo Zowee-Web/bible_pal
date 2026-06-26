@@ -79,5 +79,6 @@
   "scriptureAnchorId": "2_chronicles_20_1-19",
   "shortScripture": false,
   "reflectionText": "When you face a moment where the odds feel overwhelming and your own strength clearly isn't enough, what happens inside you when you stop trying to figure out the way forward and simply admit, out loud, that you don't know what to do?",
-  "bibleOrderIndex": 21409
+  "bibleOrderIndex": 21409,
+  "editorialBucketException": "legacy_bucket_drift"
 }

@@ -58,5 +58,6 @@
   "scriptureKeyVerse": {
     "ref": "Genesis 32:28",
     "text": "He said, “Your name will no longer be called Jacob, but Israel; for you have fought with God and with men, and have prevailed.”"
-  }
+  },
+  "boundaryException": "deferred_boundary_drift"
 }

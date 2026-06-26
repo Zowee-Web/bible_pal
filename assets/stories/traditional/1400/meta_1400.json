@@ -60,5 +60,6 @@
     "preserved_line_of_david",
     "queens_destruction_of_royal_offspring",
     "six_years_in_yahwehs_house"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

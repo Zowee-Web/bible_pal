@@ -64,5 +64,6 @@
   "generatorVersion": "generate_opus_audio.sh",
   "sceneBeats": [
     "grace_abounding"
-  ]
+  ],
+  "boundaryException": "scriptural"
 }

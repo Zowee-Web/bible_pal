@@ -60,5 +60,6 @@
     "hospitality_offered_to_the_company",
     "household_baptized",
     "seller_of_purple_from_thyatira"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

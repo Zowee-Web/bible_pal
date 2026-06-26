@@ -60,5 +60,6 @@
     "mountain_full_of_horses_and_chariots_of_fire",
     "those_with_us_are_more_than_those_with_them",
     "yahweh_open_his_eyes"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

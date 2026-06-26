@@ -65,5 +65,6 @@
   "scriptureKeyVerse": {
     "ref": "2 Kings 6:16",
     "text": "He answered, “Don’t be afraid, for those who are with us are more than those who are with them.”"
-  }
+  },
+  "editorialBucketException": "lyric_expansion"
 }

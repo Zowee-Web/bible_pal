@@ -60,5 +60,6 @@
     "furnace_heated_seven_times_more",
     "shadrach_meshach_abednego_bound",
     "soldiers_killed_at_mouth_of_furnace"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

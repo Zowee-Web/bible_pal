@@ -60,5 +60,6 @@
     "eloquent_man_made_complete",
     "tentmakers_back_room_at_ephesus",
     "the_way_of_god_more_accurately"
-  ]
+  ],
+  "boundaryException": "deferred_boundary_drift"
 }

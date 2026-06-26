@@ -60,5 +60,6 @@
     "twelve_years_of_bleeding",
     "walked_alive_to_her_own_door",
     "who_touched_my_clothes"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

@@ -60,5 +60,6 @@
     "things_too_wonderful_for_me",
     "three_short_verses",
     "weaned_child_with_mother"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

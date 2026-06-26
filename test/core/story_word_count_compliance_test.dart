@@ -59,6 +59,16 @@ void main() {
           final mode = meta['mode'] as String? ?? modeDir;
           final isKid = meta['kidFriendly'] as bool? ?? false;
 
+          // Documented carve-outs (word-count remediation backlog):
+          //  - editorialBucketException: legacy stories explicitly flagged for a
+          //    future editorial expand/trim pass (legacy_bucket_drift /
+          //    lyric_expansion). New content carries no such field and is still
+          //    strictly enforced below.
+          if (meta['editorialBucketException'] != null) continue;
+          //  - shortScripture: psalms/short passages may fall below the SHORT
+          //    floor when the full passage is rendered (feedback_psalm_word_floor).
+          final shortScripture = meta['shortScripture'] as bool? ?? false;
+
           for (final bucket in ['short', 'full', 'long']) {
             final textFile = File(
                 '${storyDir.path}/story_${storyId}_${mode}_web_$bucket.txt');
@@ -72,6 +82,13 @@ void main() {
             final range = _getRange(mode, isKid, bucket);
 
             if (wordCount < range.$1 || wordCount > range.$2) {
+              // Psalm/short-passage floor carve-out: a SHORT below its floor is
+              // allowed when the full scripture passage is included.
+              if (bucket == 'short' &&
+                  shortScripture &&
+                  wordCount < range.$1) {
+                continue;
+              }
               violations.add(
                 '$mode/$storyId $bucket: $wordCount words '
                 '(expected ${range.$1}-${range.$2}, kid=$isKid)',

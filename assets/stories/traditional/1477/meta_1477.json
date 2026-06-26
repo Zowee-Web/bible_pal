@@ -60,5 +60,6 @@
     "my_redeemer_lives",
     "oh_that_my_words_were_written",
     "words_from_the_ash_heap"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

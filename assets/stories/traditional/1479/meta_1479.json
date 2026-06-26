@@ -60,5 +60,6 @@
     "jesus_wept_over_jerusalem",
     "lament_from_the_road_above_the_valley",
     "not_one_stone_upon_another"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

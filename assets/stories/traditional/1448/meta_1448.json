@@ -60,5 +60,6 @@
     "everyone_in_distress_in_debt",
     "four_hundred_men_gather",
     "running_from_saul_and_achish"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

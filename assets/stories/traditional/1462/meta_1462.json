@@ -60,5 +60,6 @@
     "iron_gate_opened_by_itself",
     "now_i_truly_know",
     "sleeping_between_two_soldiers"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

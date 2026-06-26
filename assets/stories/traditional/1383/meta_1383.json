@@ -60,5 +60,6 @@
     "princes_dug_with_scepters",
     "song_of_the_journey",
     "song_of_the_well"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

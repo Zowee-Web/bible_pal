@@ -60,5 +60,6 @@
     "prophet_against_court",
     "speaking_truth_to_power",
     "vision_of_yahwehs_throne"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

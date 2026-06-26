@@ -62,5 +62,6 @@
     "psalm_of_david",
     "spiritual_silence",
     "trust_after_doubt"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

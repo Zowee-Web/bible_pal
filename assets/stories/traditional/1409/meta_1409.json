@@ -60,5 +60,6 @@
     "one_hundred_fifty_three_fish",
     "risen_lord_at_tiberias",
     "third_revelation_to_disciples"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

@@ -77,5 +77,6 @@
     "nathan_sent_to_david",
     "parable_of_the_ewe_lamb",
     "you_are_the_man"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

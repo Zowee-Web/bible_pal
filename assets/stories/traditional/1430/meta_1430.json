@@ -60,5 +60,6 @@
     "stir_up_the_gift",
     "three_generations_of_faith",
     "unfeigned_faith_lois_eunice"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

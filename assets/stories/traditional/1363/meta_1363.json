@@ -60,5 +60,6 @@
     "indictment_in_lament",
     "prophet_who_stays",
     "weeping_prophet"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

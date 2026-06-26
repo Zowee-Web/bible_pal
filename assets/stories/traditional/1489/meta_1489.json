@@ -70,5 +70,6 @@
     "i_will_lie_down_in_peace_and_sleep",
     "let_the_light_of_your_face_shine_on_us",
     "search_your_own_heart_on_your_bed"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

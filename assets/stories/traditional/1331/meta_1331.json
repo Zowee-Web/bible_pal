@@ -62,5 +62,6 @@
   "reflectionText": "I will be like the dew to Israel. He will blossom like the lily. What is it to be told that you will be received again when you return — and to be promised the dew of the morning, when all you have known is the burning?",
   "sceneBeats": [
     "return"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

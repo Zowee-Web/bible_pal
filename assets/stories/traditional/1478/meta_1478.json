@@ -60,5 +60,6 @@
     "disciples_fled_into_the_dark",
     "ear_cut_off_with_sword",
     "judas_leads_arresting_multitude"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

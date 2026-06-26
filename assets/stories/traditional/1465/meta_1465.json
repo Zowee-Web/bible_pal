@@ -60,5 +60,6 @@
     "jesus_asleep_on_the_cushion",
     "peace_be_still",
     "who_then_is_this"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

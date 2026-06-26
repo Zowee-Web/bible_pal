@@ -60,5 +60,6 @@
     "perseverance_in_mission",
     "physical_persecution",
     "strengthening_the_disciples"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

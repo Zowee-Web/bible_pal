@@ -30,7 +30,7 @@
   "bibleOrderIndex": 710,
   "timelineEra": "early_church",
   "reflectionQuestion": "Have you ever chosen to praise in a moment when everything around you said there was nothing to praise about?",
-  "reflectionText": "They were in the deepest cell. Their backs were bleeding. Their feet were locked in stocks. It was midnight. And they were singing. There is no explanation for why. They simply sang. And the other prisoners listened. What is it to sing before the earthquake, before the open doors, before the jailer's question \u2014 to sing before anything has changed at all?",
+  "reflectionText": "They were in the deepest cell. Their backs were bleeding. Their feet were locked in stocks. It was midnight. And they were singing. There is no explanation for why. They simply sang. And the other prisoners listened. What is it to sing before the earthquake, before the open doors, before the jailer's question — to sing before anything has changed at all?",
   "files": {
     "short": {
       "storyText": "story_1104_traditional_web_short.txt"
@@ -57,5 +57,6 @@
     "use_speaker_boost": true
   },
   "renderedAt": "2026-06-26T00:32:27Z",
-  "generatorVersion": "generate_opus_audio.sh"
+  "generatorVersion": "generate_opus_audio.sh",
+  "editorialBucketException": "legacy_bucket_drift"
 }

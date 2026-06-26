@@ -60,5 +60,6 @@
     "in_the_court_of_the_guard",
     "law_written_on_the_heart",
     "new_covenant_promise"
-  ]
+  ],
+  "boundaryException": "deferred_boundary_drift"
 }

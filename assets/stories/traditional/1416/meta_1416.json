@@ -60,5 +60,6 @@
     "no_favoritism_with_god",
     "spirit_falls_while_peter_speaks",
     "your_prayer_is_heard"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

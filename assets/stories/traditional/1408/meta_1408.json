@@ -60,5 +60,6 @@
     "mary_journeys_to_elizabeth",
     "two_mothers_of_the_promise",
     "visitation_leaping_in_womb"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

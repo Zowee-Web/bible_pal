@@ -60,5 +60,6 @@
     "joshua_defeated_amalek",
     "moses_held_up_his_hand_israel_prevailed",
     "rod_of_god_in_moses_hand"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

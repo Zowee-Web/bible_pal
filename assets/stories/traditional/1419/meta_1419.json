@@ -60,5 +60,6 @@
     "portions_to_neighbors_gifts_to_poor",
     "purim_established",
     "sorrow_turned_to_gladness"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

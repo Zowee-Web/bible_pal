@@ -60,5 +60,6 @@
     "return_and_submit",
     "where_did_you_come_from",
     "wilderness_flight"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

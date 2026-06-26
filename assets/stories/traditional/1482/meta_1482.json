@@ -63,5 +63,6 @@
     "paul_embraces_him_his_life_is_in_him",
     "upper_room_at_troas_many_lights",
     "young_man_falls_from_third_floor"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

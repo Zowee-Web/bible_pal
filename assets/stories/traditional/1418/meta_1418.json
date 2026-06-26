@@ -60,5 +60,6 @@
     "public_redemption_in_bethlehem",
     "sandal_exchange_custom",
     "ten_elders_seated"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

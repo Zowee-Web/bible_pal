@@ -71,5 +71,6 @@
     }
   },
   "reflectionText": "Moses had been on the mountain for forty days. The people grew tired of waiting and made a calf of gold. God said to Moses: let me alone, that I may consume them. And Moses said: if you will not forgive their sin, blot me out of your book that you have written. What is it to stand between God and the people you are responsible for, and to offer yourself in their place before they have seen what is coming?",
-  "editorialNotes": "Coverage round-out batch. Refined-spec reflection (Earned Question form, <=80w)."
+  "editorialNotes": "Coverage round-out batch. Refined-spec reflection (Earned Question form, <=80w).",
+  "editorialBucketException": "legacy_bucket_drift"
 }

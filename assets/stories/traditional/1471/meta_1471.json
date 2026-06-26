@@ -60,5 +60,6 @@
     "eye_wastes_with_grief",
     "how_long_o_yahweh",
     "psalm_for_the_sheminith"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

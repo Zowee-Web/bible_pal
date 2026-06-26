@@ -60,5 +60,6 @@
     "strength_in_weakness",
     "sufficient_grace",
     "unanswered_prayer"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

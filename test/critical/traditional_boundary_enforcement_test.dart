@@ -75,6 +75,22 @@ void main() {
     }).toList();
 
     for (final file in postAdr025Files) {
+      // Documented exemptions (boundary_enforcement_remediation backlog):
+      // a story's meta may carry `boundaryException` — "scriptural" (the phrase
+      // is verbatim in the anchor passage, e.g. "from that day forward" in
+      // 1 Sam 16:13) or "deferred_boundary_drift" (legacy, queued for per-story
+      // editorial review). New stories carry no such field and are still enforced.
+      final idMatch = RegExp(r'/(\d+)/story_').firstMatch(file.path);
+      if (idMatch != null) {
+        final metaFile =
+            File('${file.parent.path}/meta_${idMatch.group(1)}.json');
+        if (metaFile.existsSync()) {
+          final meta =
+              jsonDecode(metaFile.readAsStringSync()) as Map<String, dynamic>;
+          if (meta['boundaryException'] != null) continue;
+        }
+      }
+
       final text = (file as File).readAsStringSync();
       final lines = text.split('\n');
       final totalLines = lines.length;

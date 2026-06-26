@@ -60,5 +60,6 @@
     "first_brother_brings_brother",
     "peter_named_cephas",
     "quiet_morning_at_bethsaida"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

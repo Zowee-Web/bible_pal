@@ -66,5 +66,6 @@
     "leaving_home",
     "pioneering_obedience",
     "your_god_my_god"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

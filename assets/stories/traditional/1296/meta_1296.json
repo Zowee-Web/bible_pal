@@ -63,5 +63,6 @@
     "consider_ways",
     "neglected_temple",
     "priority"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

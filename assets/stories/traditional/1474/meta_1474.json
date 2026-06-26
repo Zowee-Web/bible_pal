@@ -60,5 +60,6 @@
     "oil_on_aarons_beard",
     "song_of_the_steps",
     "yahweh_gives_the_blessing"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

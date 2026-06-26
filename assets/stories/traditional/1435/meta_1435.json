@@ -60,5 +60,6 @@
     "peaceful_habitation_safe_dwellings",
     "quiet_resting_places",
     "work_of_righteousness_is_peace"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

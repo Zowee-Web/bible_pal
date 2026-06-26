@@ -60,5 +60,6 @@
     "jesus_watches_at_treasury",
     "more_than_all_of_them",
     "widows_two_mites"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

@@ -63,5 +63,6 @@
     "let_us_go_to_the_next_towns",
     "preaching_throughout_galilee",
     "rose_before_dawn_to_pray_alone"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

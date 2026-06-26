@@ -62,5 +62,7 @@
     "daily_praise",
     "generational_witness",
     "kingship_of_god"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift",
+  "boundaryException": "deferred_boundary_drift"
 }

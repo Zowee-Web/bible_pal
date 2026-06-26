@@ -63,5 +63,6 @@
     "jesus_withdrew_to_pray_alone",
     "leper_falls_at_jesus_feet",
     "show_yourself_to_the_priest"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

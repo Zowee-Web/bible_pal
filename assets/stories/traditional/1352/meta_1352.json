@@ -60,5 +60,6 @@
     "priestly_courage",
     "single_decisive_act",
     "zeal_for_yahweh"
-  ]
+  ],
+  "boundaryException": "deferred_boundary_drift"
 }

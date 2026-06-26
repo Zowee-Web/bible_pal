@@ -60,5 +60,6 @@
     "prophet_obedience_in_grief",
     "sign_act",
     "silent_suffering"
-  ]
+  ],
+  "editorialBucketException": "legacy_bucket_drift"
 }

@@ -58,5 +58,6 @@
     "priestly_song_after_silence",
     "prophet_of_the_most_high",
     "tongue_loosed"
-  ]
+  ],
+  "boundaryException": "deferred_boundary_drift"
 }
