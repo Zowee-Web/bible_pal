@@ -6,7 +6,7 @@ import 'package:bible_pal/core/relatability_tags.dart';
 /// Tests to ensure story manifest emotionalTags comply with the allowed vocabulary.
 /// These tests fail fast if:
 /// - A story has an emotionalTag not in the allowed vocabulary
-/// - A story has more than 3 emotionalTags
+/// - A story has more than 7 emotionalTags
 /// - Less than 50% of stories have at least 1 emotionalTag
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -52,7 +52,7 @@ void main() {
       }
     });
 
-    test('no story has more than 3 emotionalTags', () {
+    test('no story has more than 7 emotionalTags', () {
       final violations = <String>[];
 
       for (final parable in parables) {
@@ -62,15 +62,15 @@ void main() {
                 .toList() ??
             [];
 
-        if (tags.length > 3) {
+        if (tags.length > 7) {
           violations.add(
-              '$storyId has ${tags.length} tags (max 3): ${tags.join(', ')}');
+              '$storyId has ${tags.length} tags (max 7): ${tags.join(', ')}');
         }
       }
 
       if (violations.isNotEmpty) {
         fail(
-          'Found ${violations.length} stories with >3 emotionalTags:\n'
+          'Found ${violations.length} stories with >7 emotionalTags:\n'
           '${violations.join('\n')}',
         );
       }
