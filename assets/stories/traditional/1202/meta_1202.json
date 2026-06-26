@@ -17,7 +17,7 @@
   "title": "Let Us Also Go",
   "scriptureAnchor": "John 11:7-16",
   "bibleStoryKey": "thomas_loyalty",
-  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "storyVoiceKey": "VOICE_ARCHER",
   "themeTags": [
     "courage",
     "obedience",
@@ -36,9 +36,9 @@
   "timelineEra": "jesus_ministry",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.85,
-    "similarity_boost": 0.85,
-    "style": 0.15,
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
     "use_speaker_boost": true
   },
   "files": {
@@ -55,5 +55,7 @@
       "reflectionText": "reflection_1202_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Jesus said: let us go into Judea again. The disciples reminded him the Jews had tried to stone him. Thomas said: let us also go, that we may die with him. Have you ever walked back toward the place you were driven out of, with the friend who would rather die with you than be safe at home?"
+  "reflectionText": "Jesus said: let us go into Judea again. The disciples reminded him the Jews had tried to stone him. Thomas said: let us also go, that we may die with him. Have you ever walked back toward the place you were driven out of, with the friend who would rather die with you than be safe at home?",
+  "renderedAt": "2026-06-26T00:36:03Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

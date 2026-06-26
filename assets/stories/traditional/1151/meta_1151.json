@@ -19,7 +19,7 @@
   "title": "Sun, Stand Still",
   "scriptureAnchor": "Joshua 10:1-15",
   "bibleStoryKey": "sun_stands_still",
-  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "storyVoiceKey": "VOICE_ARCHER",
   "themeTags": [
     "courage",
     "obedience",
@@ -38,9 +38,9 @@
   "timelineEra": "conquest",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.85,
-    "similarity_boost": 0.85,
-    "style": 0.15,
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
     "use_speaker_boost": true
   },
   "files": {
@@ -69,5 +69,7 @@
       "reflectionText": "reflection_1151_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Joshua marched up from Gilgal all night, struck the five kings at Gibeon, and said in the sight of Israel: sun, stand still on Gibeon. The sun stood still until the avenging was finished. What is the courage of asking the heavens to wait for you, in the hearing of every man under arms?"
+  "reflectionText": "Joshua marched up from Gilgal all night, struck the five kings at Gibeon, and said in the sight of Israel: sun, stand still on Gibeon. The sun stood still until the avenging was finished. What is the courage of asking the heavens to wait for you, in the hearing of every man under arms?",
+  "renderedAt": "2026-06-26T00:34:20Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

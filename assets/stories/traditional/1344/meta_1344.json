@@ -19,7 +19,7 @@
   "scriptureAnchor": "Acts 23:12-22",
   "scriptureAnchorId": "acts_23_12-22",
   "bibleStoryKey": "pauls_nephew_warns_of_conspiracy",
-  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "themeTags": [
     "hidden_threat",
     "conspiracy",
@@ -41,9 +41,9 @@
   "timelineEra": "early_church",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.85,
-    "similarity_boost": 0.85,
-    "style": 0.15,
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
     "use_speaker_boost": true
   },
   "files": {
@@ -60,5 +60,7 @@
       "reflectionText": "reflection_1344_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Forty men had bound themselves under a curse to neither eat nor drink until they had killed Paul. What is it to be saved from a plot you never heard of, by a young man who was only the son of your sister, and whose name no one would think to write down?"
+  "reflectionText": "Forty men had bound themselves under a curse to neither eat nor drink until they had killed Paul. What is it to be saved from a plot you never heard of, by a young man who was only the son of your sister, and whose name no one would think to write down?",
+  "renderedAt": "2026-06-26T00:39:58Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }
