@@ -20,13 +20,6 @@
   "scriptureAnchorId": "daniel_6_16-23",
   "bibleStoryKey": "daniel_in_lions_den_kings_vigil",
   "storyVoiceKey": "VOICE_CHARLOTTE_V3",
-  "themeTags": [
-    "stone_sealed_with_kings_signet",
-    "king_passes_night_fasting",
-    "lamentable_voice_at_dawn",
-    "angel_shut_the_lions_mouths",
-    "daniel_trusted_in_his_god"
-  ],
   "emotionalTags": [
     "anxious",
     "trusting",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1461_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Daniel was cast into the den. The stone was sealed. The king passed the night fasting in his rooms. What is it to lie in the den while the stone is sealed above you, and to know that the morning the king is waiting for is the morning you cannot yet see coming?"
+  "reflectionText": "Daniel was cast into the den. The stone was sealed. The king passed the night fasting in his rooms. What is it to lie in the den while the stone is sealed above you, and to know that the morning the king is waiting for is the morning you cannot yet see coming?",
+  "sceneBeats": [
+    "angel_shut_the_lions_mouths",
+    "daniel_trusted_in_his_god",
+    "king_passes_night_fasting",
+    "lamentable_voice_at_dawn",
+    "stone_sealed_with_kings_signet"
+  ]
 }

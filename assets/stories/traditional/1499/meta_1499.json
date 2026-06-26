@@ -21,13 +21,6 @@
   "scriptureAnchorId": "nehemiah_1_1-11",
   "bibleStoryKey": "nehemiah_weeps_over_the_news_from_jerusalem",
   "storyVoiceKey": "VOICE_NOAH_PATIENT",
-  "themeTags": [
-    "hanani_brought_news_of_jerusalem",
-    "the_wall_was_broken_down",
-    "sat_down_and_wept_certain_days",
-    "confessed_the_sins_of_his_people",
-    "kings_cupbearer_at_the_window"
-  ],
   "emotionalTags": [
     "hurting",
     "weary",
@@ -70,5 +63,12 @@
   },
   "reflectionQuestion": "He asked after the city he had not yet seen, and the answer was that the wall was broken down. He sat down where he was and wept. What is it to weep for a place you have never set foot in, but which is somehow already the place your own heart has been carried by?",
   "reflectionText": "He inquired after the city he had not yet seen, and the answer was that the wall was broken down. He sat him down where he was and wept. What is it to weep for a place thou hast never set foot in, but which hath somehow already become the place whither thine own heart hath been carried?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "confessed_the_sins_of_his_people",
+    "hanani_brought_news_of_jerusalem",
+    "kings_cupbearer_at_the_window",
+    "sat_down_and_wept_certain_days",
+    "the_wall_was_broken_down"
+  ]
 }

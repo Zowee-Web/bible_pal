@@ -20,13 +20,6 @@
   "scriptureAnchorId": "ruth_4_13-17",
   "bibleStoryKey": "naomi_takes_obed_to_her_bosom",
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
-  "themeTags": [
-    "women_sing_for_naomi",
-    "restorer_of_life_in_old_age",
-    "better_to_you_than_seven_sons",
-    "obed_grandfather_of_david",
-    "near_kinsman_remembered"
-  ],
   "emotionalTags": [
     "joyful",
     "tender",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1424_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Ruth bore a son. The women of the neighborhood named him Obed. Naomi held the child against her shoulder, the grandfather of David asleep on her old chest. What is it to hold against your shoulder the child who will one day be a king, after every name you had been given to keep had been taken?"
+  "reflectionText": "Ruth bore a son. The women of the neighborhood named him Obed. Naomi held the child against her shoulder, the grandfather of David asleep on her old chest. What is it to hold against your shoulder the child who will one day be a king, after every name you had been given to keep had been taken?",
+  "sceneBeats": [
+    "better_to_you_than_seven_sons",
+    "near_kinsman_remembered",
+    "obed_grandfather_of_david",
+    "restorer_of_life_in_old_age",
+    "women_sing_for_naomi"
+  ]
 }

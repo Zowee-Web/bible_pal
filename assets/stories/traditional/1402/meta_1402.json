@@ -20,13 +20,6 @@
   "scriptureAnchorId": "jeremiah_38_1-6",
   "bibleStoryKey": "jeremiah_lowered_into_cistern",
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
-  "themeTags": [
-    "lowered_into_cistern",
-    "preaching_surrender_to_babylon",
-    "princes_complain_to_zedekiah",
-    "no_water_only_mire",
-    "court_of_the_guard"
-  ],
   "emotionalTags": [
     "anxious",
     "exposed",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1402_traditional_kjv.txt"
     }
   },
-  "reflectionText": "They let Jeremiah down by cords into the dungeon of Malchijah's well, where there was no water, only mire. He sank in the mire. Have you ever been put into the lowest place by your own people for telling them the truth they did not want to hear at all?"
+  "reflectionText": "They let Jeremiah down by cords into the dungeon of Malchijah's well, where there was no water, only mire. He sank in the mire. Have you ever been put into the lowest place by your own people for telling them the truth they did not want to hear at all?",
+  "sceneBeats": [
+    "court_of_the_guard",
+    "lowered_into_cistern",
+    "no_water_only_mire",
+    "preaching_surrender_to_babylon",
+    "princes_complain_to_zedekiah"
+  ]
 }

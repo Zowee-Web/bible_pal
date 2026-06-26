@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_kings_6_15-17",
   "bibleStoryKey": "elisha_servant_sees_chariots_of_fire",
   "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "themeTags": [
-    "army_of_aram_surrounds_dothan",
-    "those_with_us_are_more_than_those_with_them",
-    "yahweh_open_his_eyes",
-    "mountain_full_of_horses_and_chariots_of_fire",
-    "elisha_at_dothan"
-  ],
   "emotionalTags": [
     "encouraged",
     "awed",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1464_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Elisha prayed for his servant's eyes to be opened, and the servant looked again, and the mountain above Dothan was on fire with horses and chariots. What is it to be shown the army that has been around you all along, that no one watching with their eyes alone could see — and to find that the hill above the city was never alone?"
+  "reflectionText": "Elisha prayed for his servant's eyes to be opened, and the servant looked again, and the mountain above Dothan was on fire with horses and chariots. What is it to be shown the army that has been around you all along, that no one watching with their eyes alone could see — and to find that the hill above the city was never alone?",
+  "sceneBeats": [
+    "army_of_aram_surrounds_dothan",
+    "elisha_at_dothan",
+    "mountain_full_of_horses_and_chariots_of_fire",
+    "those_with_us_are_more_than_those_with_them",
+    "yahweh_open_his_eyes"
+  ]
 }

@@ -20,13 +20,6 @@
   "scriptureAnchorId": "john_3_1-8",
   "bibleStoryKey": "nicodemus_comes_by_night",
   "storyVoiceKey": "VOICE_NOAH_PATIENT",
-  "themeTags": [
-    "nicodemus_by_night",
-    "ruler_of_the_jews_seeking_privately",
-    "born_of_water_and_spirit",
-    "wind_blows_where_it_wishes",
-    "lamplight_upper_room"
-  ],
   "emotionalTags": [
     "calm",
     "contemplative",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1426_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Nicodemus came by night up the stone steps to the upper room, and went down again with the words about the wind that blows where it wishes still moving in him. What is it to have a question quietly carried into the night, and to leave it with an answer you cannot yet contain?"
+  "reflectionText": "Nicodemus came by night up the stone steps to the upper room, and went down again with the words about the wind that blows where it wishes still moving in him. What is it to have a question quietly carried into the night, and to leave it with an answer you cannot yet contain?",
+  "sceneBeats": [
+    "born_of_water_and_spirit",
+    "lamplight_upper_room",
+    "nicodemus_by_night",
+    "ruler_of_the_jews_seeking_privately",
+    "wind_blows_where_it_wishes"
+  ]
 }

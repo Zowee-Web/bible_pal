@@ -20,13 +20,6 @@
   "scriptureAnchorId": "numbers_20_1-13",
   "bibleStoryKey": "miriam_dies_moses_strikes_the_rock",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "compounded_grief",
-    "bereavement_of_sister",
-    "people_complain_in_wilderness",
-    "moses_speaks_in_haste",
-    "waters_of_meribah"
-  ],
   "emotionalTags": [
     "hurting",
     "grieving",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1364_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The water came out of the rock abundantly. The people drank. What is it to give your people the thing they need in the very hour they need it — and to be told that the manner of your giving has cost you the land you have led them toward for forty years?"
+  "reflectionText": "The water came out of the rock abundantly. The people drank. What is it to give your people the thing they need in the very hour they need it — and to be told that the manner of your giving has cost you the land you have led them toward for forty years?",
+  "sceneBeats": [
+    "bereavement_of_sister",
+    "compounded_grief",
+    "moses_speaks_in_haste",
+    "people_complain_in_wilderness",
+    "waters_of_meribah"
+  ]
 }

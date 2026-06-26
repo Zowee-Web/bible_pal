@@ -21,10 +21,8 @@
   "bibleStoryKey": "wedding_at_cana",
   "storyVoiceKey": "VOICE_BRADFORD",
   "themeTags": [
-    "first_sign",
     "abundance",
     "celebration",
-    "glory_revealed",
     "wedding"
   ],
   "emotionalTags": [
@@ -60,5 +58,9 @@
       "reflectionText": "reflection_1314_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Everyone serves the good wine first. He kept the good wine until now. What is it like to find that the One you have known longest has kept his best gift for the moment when nothing remains?"
+  "reflectionText": "Everyone serves the good wine first. He kept the good wine until now. What is it like to find that the One you have known longest has kept his best gift for the moment when nothing remains?",
+  "sceneBeats": [
+    "first_sign",
+    "glory_revealed"
+  ]
 }

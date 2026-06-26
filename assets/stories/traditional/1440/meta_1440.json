@@ -20,13 +20,6 @@
   "scriptureAnchorId": "esther_5_1-8",
   "bibleStoryKey": "esther_approaches_king_scepter",
   "storyVoiceKey": "VOICE_ARABELLA",
-  "themeTags": [
-    "esther_approaches_king",
-    "golden_scepter_held_out",
-    "queens_petition",
-    "banquet_of_wine",
-    "third_day_courage"
-  ],
   "emotionalTags": [
     "anxious",
     "brave",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1440_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Esther walked through the long colonnade in her royal robe and stood in the inner court. The king looked up. He held out the scepter. What is the silence between knowing the law is death and feeling the scepter touched to the top of your reaching arm?"
+  "reflectionText": "Esther walked through the long colonnade in her royal robe and stood in the inner court. The king looked up. He held out the scepter. What is the silence between knowing the law is death and feeling the scepter touched to the top of your reaching arm?",
+  "sceneBeats": [
+    "banquet_of_wine",
+    "esther_approaches_king",
+    "golden_scepter_held_out",
+    "queens_petition",
+    "third_day_courage"
+  ]
 }

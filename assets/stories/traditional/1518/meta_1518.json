@@ -20,13 +20,6 @@
   "scriptureAnchorId": "psalm_137_1-6",
   "bibleStoryKey": "captives_by_the_rivers_of_babylon_remember_zion",
   "storyVoiceKey": "VOICE_NOAH_PATIENT",
-  "themeTags": [
-    "by_the_rivers_of_babylon_we_sat_down_and_wept",
-    "hanged_our_harps_upon_the_willows",
-    "how_shall_we_sing_the_lords_song_in_a_strange_land",
-    "if_i_forget_thee_o_jerusalem",
-    "right_hand_forget_her_cunning_vow_of_remembrance"
-  ],
   "emotionalTags": [
     "hurting",
     "weary",
@@ -63,5 +56,12 @@
   },
   "reflectionQuestion": "They hung the harps on the willows. The captors asked for songs. One man said: how shall we sing the LORD's song in a strange land? Then he made a vow not to forget Jerusalem. What is it to be asked to sing the songs of your home in a country where you cannot make yourself sing them?",
   "reflectionText": "They hanged the harps upon the willows. The captors required of them songs. One man said: how shall we sing the LORD's song in a strange land? Then he made a vow not to forget Jerusalem. What is it to be required to sing the songs of thine home in a land where thou canst not bring thyself to sing them?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "by_the_rivers_of_babylon_we_sat_down_and_wept",
+    "hanged_our_harps_upon_the_willows",
+    "how_shall_we_sing_the_lords_song_in_a_strange_land",
+    "if_i_forget_thee_o_jerusalem",
+    "right_hand_forget_her_cunning_vow_of_remembrance"
+  ]
 }

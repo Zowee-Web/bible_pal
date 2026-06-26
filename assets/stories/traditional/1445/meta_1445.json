@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_chronicles_28_9-15",
   "bibleStoryKey": "oded_ephraim_return_captives",
   "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "themeTags": [
-    "prophet_oded_warns_israel",
-    "four_heads_of_ephraim",
-    "captives_clothed_and_anointed",
-    "jericho_city_of_palm_trees",
-    "mercy_to_brothers"
-  ],
   "emotionalTags": [
     "encouraged",
     "merciful",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1445_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The army of Israel brought the captives of Judah up to Samaria. Four men of Ephraim stood up, took the captives, clothed them, fed them, anointed their wounds, and led them to Jericho. What is it to be carried back to your own city by the very people who took you captive, anointed and fed and clothed by the hands you had been afraid of?"
+  "reflectionText": "The army of Israel brought the captives of Judah up to Samaria. Four men of Ephraim stood up, took the captives, clothed them, fed them, anointed their wounds, and led them to Jericho. What is it to be carried back to your own city by the very people who took you captive, anointed and fed and clothed by the hands you had been afraid of?",
+  "sceneBeats": [
+    "captives_clothed_and_anointed",
+    "four_heads_of_ephraim",
+    "jericho_city_of_palm_trees",
+    "mercy_to_brothers",
+    "prophet_oded_warns_israel"
+  ]
 }

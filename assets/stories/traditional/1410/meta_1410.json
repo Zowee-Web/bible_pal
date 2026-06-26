@@ -20,13 +20,6 @@
   "scriptureAnchorId": "acts_28_11-15",
   "bibleStoryKey": "paul_at_three_taverns",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "themeTags": [
-    "thanked_god_at_forum_of_appius",
-    "brothers_come_out_to_meet_the_apostle",
-    "after_the_long_voyage",
-    "appian_way_into_rome",
-    "courage_renewed_at_the_meeting"
-  ],
   "emotionalTags": [
     "grateful",
     "encouraged",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1410_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Paul walked the last day of the Appian Way into Rome with brothers from the city beside him. When he saw them, he thanked God and took courage. What is it to come around the last bend of a long road and find that the brothers you had hoped to meet at the end have walked out to meet you before the road is yet done?"
+  "reflectionText": "Paul walked the last day of the Appian Way into Rome with brothers from the city beside him. When he saw them, he thanked God and took courage. What is it to come around the last bend of a long road and find that the brothers you had hoped to meet at the end have walked out to meet you before the road is yet done?",
+  "sceneBeats": [
+    "after_the_long_voyage",
+    "appian_way_into_rome",
+    "brothers_come_out_to_meet_the_apostle",
+    "courage_renewed_at_the_meeting",
+    "thanked_god_at_forum_of_appius"
+  ]
 }

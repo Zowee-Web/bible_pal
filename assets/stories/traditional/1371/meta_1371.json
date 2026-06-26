@@ -20,13 +20,6 @@
   "scriptureAnchorId": "nehemiah_8_9-12",
   "bibleStoryKey": "joy_of_yahweh_is_your_strength",
   "storyVoiceKey": "VOICE_CHARLOTTE_V3",
-  "themeTags": [
-    "joy_as_strength",
-    "water_gate_assembly",
-    "weeping_turned_to_eating",
-    "portions_to_the_poor",
-    "after_the_reading_of_the_law"
-  ],
   "emotionalTags": [
     "joyful",
     "encouraged",
@@ -58,5 +51,12 @@
       "reflectionText": "reflection_1371_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The people wept at the Water Gate when the Law was read aloud, and Nehemiah told them to go home and feast. What is it to be told to go home and feast on a day your grief had only just begun to speak — and to find that the joy you had no room for must be the day's portion still?"
+  "reflectionText": "The people wept at the Water Gate when the Law was read aloud, and Nehemiah told them to go home and feast. What is it to be told to go home and feast on a day your grief had only just begun to speak — and to find that the joy you had no room for must be the day's portion still?",
+  "sceneBeats": [
+    "after_the_reading_of_the_law",
+    "joy_as_strength",
+    "portions_to_the_poor",
+    "water_gate_assembly",
+    "weeping_turned_to_eating"
+  ]
 }

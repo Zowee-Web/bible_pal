@@ -21,11 +21,9 @@
   "bibleStoryKey": "giving_thanks_always_for_all",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "themeTags": [
-    "spirit_filled",
     "community",
     "thanksgiving",
-    "song",
-    "mutual_submission"
+    "song"
   ],
   "emotionalTags": [
     "grateful",
@@ -60,5 +58,9 @@
       "reflectionText": "reflection_1333_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Speak to one another in psalms, hymns, and spiritual songs; sing, and make melody in your heart to the Lord. What is it to live in a house where the ordinary speaking has been replaced with singing — where the giving of thanks has become the thing that holds the day open?"
+  "reflectionText": "Speak to one another in psalms, hymns, and spiritual songs; sing, and make melody in your heart to the Lord. What is it to live in a house where the ordinary speaking has been replaced with singing — where the giving of thanks has become the thing that holds the day open?",
+  "sceneBeats": [
+    "mutual_submission",
+    "spirit_filled"
+  ]
 }

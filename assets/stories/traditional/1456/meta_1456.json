@@ -20,13 +20,6 @@
   "scriptureAnchorId": "joshua_24_14-25",
   "bibleStoryKey": "covenant_at_shechem",
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
-  "themeTags": [
-    "covenant_renewal_at_shechem",
-    "stone_under_the_oak",
-    "but_as_for_me_and_my_house",
-    "witnesses_against_themselves",
-    "joshuas_farewell_to_israel"
-  ],
   "emotionalTags": [
     "brave",
     "resolute",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1456_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Joshua set a great stone under the oak in Yahweh's sanctuary, and the stone stood for what had been said in the hearing of all Israel. What is it to speak a choice aloud before all the people, with a stone set under the oak as the thing that will remember it for you longer than you can on your own?"
+  "reflectionText": "Joshua set a great stone under the oak in Yahweh's sanctuary, and the stone stood for what had been said in the hearing of all Israel. What is it to speak a choice aloud before all the people, with a stone set under the oak as the thing that will remember it for you longer than you can on your own?",
+  "sceneBeats": [
+    "but_as_for_me_and_my_house",
+    "covenant_renewal_at_shechem",
+    "joshuas_farewell_to_israel",
+    "stone_under_the_oak",
+    "witnesses_against_themselves"
+  ]
 }

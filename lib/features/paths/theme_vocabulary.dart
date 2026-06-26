@@ -77,6 +77,23 @@ enum ThemeTag {
   joy,
   hospitality,
   devotion,
+  // === Theme Vocabulary v2 (test-health 2026-06) — corpus-canonical themes.
+  // FROZEN after this migration: new additions require deliberate review. ===
+  abundance, ark, authority, bereavement, birth, blossoming,
+  burden, choice, commission, commissioning, community, compassion,
+  completion, confession, consequence, conspiracy, death, decree,
+  dedication, desolation, destruction, discipleship, doxology, elegy,
+  evangelism, exhaustion, exhortation, exile, expansion, fasting,
+  fatherhood, fellowship, flight, friendship, fulfillment, futility,
+  gathering, generosity, giving, homecoming, household, idolatry,
+  injustice, intercession, intervention, intimacy, journey, judgment,
+  kingship, labor, language, laughter, leadership, legacy,
+  loneliness, loss, meditation, menace, miracles, music,
+  mystery, petition, pilgrimage, pride, providence, pursuit,
+  remembrance, resolve, revelation, righteousness, salvation, scattering,
+  sleeplessness, song, sovereignty, sowing, stewardship, stillness,
+  thanksgiving, toil, vanity, vindication, vision, wedding,
+  wilderness, withdrawal, worship, worthiness,
 }
 
 extension ThemeTagWire on ThemeTag {

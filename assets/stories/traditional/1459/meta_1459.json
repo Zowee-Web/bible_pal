@@ -20,13 +20,6 @@
   "scriptureAnchorId": "ezra_3_10-13",
   "bibleStoryKey": "second_temple_foundation_weeping_and_shouting",
   "storyVoiceKey": "VOICE_ARABELLA",
-  "themeTags": [
-    "foundation_of_second_temple",
-    "old_men_who_saw_first_temple_weep",
-    "young_men_shout_for_joy",
-    "trumpets_and_cymbals_of_asaph",
-    "noise_heard_far_away"
-  ],
   "emotionalTags": [
     "encouraged",
     "tender",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1459_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The old men who had seen Solomon's temple wept, and the young men who had never seen it shouted for joy, and the foundation under their feet was the same foundation. What is it to stand on the same foundation as the ones beside you, and to find that what arrives as joy in one set of hands is grief to the one who remembers an older stone?"
+  "reflectionText": "The old men who had seen Solomon's temple wept, and the young men who had never seen it shouted for joy, and the foundation under their feet was the same foundation. What is it to stand on the same foundation as the ones beside you, and to find that what arrives as joy in one set of hands is grief to the one who remembers an older stone?",
+  "sceneBeats": [
+    "foundation_of_second_temple",
+    "noise_heard_far_away",
+    "old_men_who_saw_first_temple_weep",
+    "trumpets_and_cymbals_of_asaph",
+    "young_men_shout_for_joy"
+  ]
 }

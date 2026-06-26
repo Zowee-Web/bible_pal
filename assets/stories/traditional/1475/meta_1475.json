@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_kings_22_14-20",
   "bibleStoryKey": "huldah_prophesies_to_josiahs_men",
   "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
-  "themeTags": [
-    "huldah_the_prophetess",
-    "second_quarter_of_jerusalem",
-    "word_for_the_place_and_word_for_the_king",
-    "gathered_to_grave_in_peace",
-    "sequel_to_book_found_in_the_house"
-  ],
   "emotionalTags": [
     "brave",
     "resolute",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1475_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The five men of the king came to Huldah's house in the second quarter. She gave them Yahweh's word from where she sat — without raising her voice, without standing. What is it to give the king's messengers the word of the Lord from where you sit, without lifting your voice or standing to your feet, and to know they will carry it back to the king without changing one word from your own?"
+  "reflectionText": "The five men of the king came to Huldah's house in the second quarter. She gave them Yahweh's word from where she sat — without raising her voice, without standing. What is it to give the king's messengers the word of the Lord from where you sit, without lifting your voice or standing to your feet, and to know they will carry it back to the king without changing one word from your own?",
+  "sceneBeats": [
+    "gathered_to_grave_in_peace",
+    "huldah_the_prophetess",
+    "second_quarter_of_jerusalem",
+    "sequel_to_book_found_in_the_house",
+    "word_for_the_place_and_word_for_the_king"
+  ]
 }

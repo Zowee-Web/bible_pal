@@ -25,14 +25,35 @@
     "files"
   ],
   "properties": {
-    "schemaVersion": { "const": 2 },
-    "storyId": { "type": "integer", "minimum": 1 },
-    "mode": { "const": "traditional" },
-    "kidFriendly": { "type": "boolean" },
-    "languageStyle": { "type": "string", "enum": ["WEB", "KJV"] },
+    "schemaVersion": {
+      "const": 2
+    },
+    "storyId": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "mode": {
+      "const": "traditional"
+    },
+    "kidFriendly": {
+      "type": "boolean"
+    },
+    "languageStyle": {
+      "type": "string",
+      "enum": [
+        "WEB",
+        "KJV"
+      ]
+    },
     "lanes": {
       "type": "array",
-      "items": { "type": "string", "enum": ["web", "kjv"] },
+      "items": {
+        "type": "string",
+        "enum": [
+          "web",
+          "kjv"
+        ]
+      },
       "uniqueItems": true,
       "minItems": 1
     },
@@ -51,27 +72,64 @@
     },
     "lengths": {
       "type": "array",
-      "items": { "type": "string", "enum": ["short", "full", "long"] },
+      "items": {
+        "type": "string",
+        "enum": [
+          "short",
+          "full",
+          "long"
+        ]
+      },
       "uniqueItems": true,
       "minItems": 1
     },
-    "createdByModel": { "type": "string", "minLength": 1 },
-    "generationBatch": { "type": "string", "minLength": 1 },
-    "title": { "type": "string", "minLength": 1 },
-    "scriptureAnchor": { "type": "string", "minLength": 1 },
-    "scriptureAnchorId": { "type": "string", "minLength": 1 },
+    "createdByModel": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generationBatch": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scriptureAnchor": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scriptureAnchorId": {
+      "type": "string",
+      "minLength": 1
+    },
     "scriptureKeyVerse": {
       "type": "object",
       "description": "SPEC 12.1 kid-simple key verse: one central verse shown ungated before the parent gate.",
       "properties": {
-        "ref": { "type": "string", "minLength": 1 },
-        "text": { "type": "string", "minLength": 1 }
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        }
       },
-      "required": ["ref", "text"],
+      "required": [
+        "ref",
+        "text"
+      ],
       "additionalProperties": false
     },
-    "bibleStoryKey": { "type": "string", "minLength": 1 },
-    "bibleOrderIndex": { "type": "integer", "minimum": 0 },
+    "bibleStoryKey": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bibleOrderIndex": {
+      "type": "integer",
+      "minimum": 0
+    },
     "storyVoiceKey": {
       "type": "string",
       "description": "Narrator voice. Enum is the union of all values currently shipping in the corpus. Source of truth for *new* authoring is scripts/story_factory/story_voice_registry.py:APPROVED_NARRATOR_VOICES + the character voices documented in feedback_voice_rules.md. Banned-for-new voices (LILY_WOLFF, PETER_BOLD, MARCUS_ANCHOR, JOSEPH_DREAMER) and legacy retired voices (JOHN_DOE, CHRIS_DEFAULT) remain in this enum so existing metas validate; new authoring should still go through validate_story_voice().",
@@ -126,39 +184,79 @@
         "early_church"
       ]
     },
-    "primaryCharacterId": { "type": "string", "minLength": 1 },
-    "primaryCharacterDisplayName": { "type": "string", "minLength": 1 },
+    "primaryCharacterId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "primaryCharacterDisplayName": {
+      "type": "string",
+      "minLength": 1
+    },
     "themeTags": {
       "type": "array",
-      "items": { "type": "string", "minLength": 1 }
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     },
     "emotionalTags": {
       "type": "array",
-      "items": { "type": "string", "minLength": 1 }
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     },
     "primaryLifeSituationTags": {
       "type": "array",
-      "items": { "type": "string", "minLength": 1 }
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     },
     "secondaryLifeSituationTags": {
       "type": "array",
-      "items": { "type": "string", "minLength": 1 }
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     },
     "ttsModel": {
       "type": "string",
       "description": "RENDER-CONFIG DOCTRINE: the audio-generation pipeline (scripts/generate_opus_audio.sh) is the single source of truth for what was actually sent to ElevenLabs. For stories rendered before 2026-06-14, ttsModel/ttsVoiceSettings in meta may not match the real render config and are NOT authoritative — do not bulk-reconcile the corpus. New stories should record the pipeline's actual settings at render time. Never assert meta == pipeline in tests/validators; it fails on legacy. (As of 2026-06-14 the pipeline hardcodes eleven_turbo_v2_5.)",
-      "enum": ["eleven_v3", "eleven_multilingual_v2", "eleven_turbo_v2_5"]
+      "enum": [
+        "eleven_v3",
+        "eleven_multilingual_v2",
+        "eleven_turbo_v2_5"
+      ]
     },
     "ttsVoiceSettings": {
       "type": "object",
       "description": "See ttsModel description for the render-config doctrine: pipeline is authoritative; pre-2026-06-14 metas may drift; do not bulk-reconcile or test meta == pipeline.",
       "additionalProperties": false,
       "properties": {
-        "stability": { "type": "number", "minimum": 0, "maximum": 1 },
-        "similarity_boost": { "type": "number", "minimum": 0, "maximum": 1 },
-        "style": { "type": "number", "minimum": 0, "maximum": 1 },
-        "use_speaker_boost": { "type": "boolean" },
-        "speed": { "type": "number", "minimum": 0.5, "maximum": 2.0 }
+        "stability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "similarity_boost": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "style": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "use_speaker_boost": {
+          "type": "boolean"
+        },
+        "speed": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 2.0
+        }
       }
     },
     "renderedAt": {
@@ -169,18 +267,32 @@
       "type": "string",
       "description": "Which generator wrote the render metadata (ttsModel/ttsVoiceSettings/renderedAt). Written only on successful real renders; never in --dry-run."
     },
-    "shortScripture": { "type": "boolean" },
-    "reflectionText": { "type": "string" },
-    "reflectionQuestion": { "type": "string" },
+    "shortScripture": {
+      "type": "boolean"
+    },
+    "reflectionText": {
+      "type": "string"
+    },
+    "reflectionQuestion": {
+      "type": "string"
+    },
     "reflectionSource": {
       "type": "string",
-      "enum": ["llm", "claude-opus-4-7", "template"]
+      "enum": [
+        "llm",
+        "claude-opus-4-7",
+        "template"
+      ]
     },
     "editorialFlag": {
       "type": "string",
-      "enum": ["exceptional"]
+      "enum": [
+        "exceptional"
+      ]
     },
-    "editorialNotes": { "type": "string" },
+    "editorialNotes": {
+      "type": "string"
+    },
     "source": {
       "type": "string",
       "description": "LEGACY (grandfathered, do not write in new generation). Provenance marker for the 800-series cohort produced by the retired STORY_FACTORY v2.3 pipeline. Observed only on storyIds 801-834."
@@ -192,12 +304,16 @@
     "voiceKeys": {
       "type": "object",
       "description": "LEGACY (grandfathered, do not write in new generation). Per-length voice override map from the STORY_FACTORY v2.3 cohort (storyIds 809-834). Superseded by the single canonical `storyVoiceKey` field.",
-      "additionalProperties": { "type": "string" }
+      "additionalProperties": {
+        "type": "string"
+      }
     },
     "boundaryValidation": {
       "type": "object",
       "description": "LEGACY (grandfathered, do not write in new generation). Per-length pass/fail marker from the STORY_FACTORY v2.3 pipeline (storyIds 827-834).",
-      "additionalProperties": { "type": "string" }
+      "additionalProperties": {
+        "type": "string"
+      }
     },
     "wordCountFlags": {
       "type": "object",
@@ -207,15 +323,23 @@
     "skippedLengths": {
       "type": "object",
       "description": "LEGACY (grandfathered, do not write in new generation). Records intentionally-skipped lengths in STORY_FACTORY v2.3 (storyIds 827, 829). Modern flow: omit the length from `lengths` and don't add a `files.{length}` entry.",
-      "additionalProperties": { "type": "string" }
+      "additionalProperties": {
+        "type": "string"
+      }
     },
     "reflections": {
       "type": "object",
       "description": "LEGACY (grandfathered, do not write in new generation). Object form of reflection filenames keyed by lane (web/kjv), observed on storyIds 1016-1071. Superseded by `files.reflection.reflectionText` and `files.reflection_kjv.reflectionText`.",
       "additionalProperties": false,
       "properties": {
-        "web": { "type": "string", "minLength": 1 },
-        "kjv": { "type": "string", "minLength": 1 }
+        "web": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kjv": {
+          "type": "string",
+          "minLength": 1
+        }
       }
     },
     "files": {
@@ -226,8 +350,14 @@
           "type": "object",
           "additionalProperties": false,
           "properties": {
-            "storyText": { "type": "string", "minLength": 1 },
-            "storyAudio": { "type": "string", "minLength": 1 },
+            "storyText": {
+              "type": "string",
+              "minLength": 1
+            },
+            "storyAudio": {
+              "type": "string",
+              "minLength": 1
+            },
             "storyTextV3": {
               "type": "string",
               "minLength": 1,
@@ -249,11 +379,24 @@
           "type": "object",
           "additionalProperties": false,
           "properties": {
-            "reflectionText": { "type": "string", "minLength": 1 },
-            "reflectionAudio": { "type": "string", "minLength": 1 }
+            "reflectionText": {
+              "type": "string",
+              "minLength": 1
+            },
+            "reflectionAudio": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         }
       }
+    },
+    "sceneBeats": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Multi-word story-beat identifiers (moved out of themeTags in the 2026-06 theme-tag migration)."
     }
   }
 }

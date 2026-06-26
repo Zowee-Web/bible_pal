@@ -22,8 +22,6 @@
   "storyVoiceKey": "VOICE_RUTH_COMFORT",
   "themeTags": [
     "providence",
-    "answered_prayer",
-    "loving_kindness",
     "journey",
     "blessing"
   ],
@@ -60,5 +58,9 @@
       "reflectionText": "reflection_1334_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The camels had finished drinking. The bracelets on her wrist caught the last of the light. What is it to bow your head beside a well in a country far from home, and to know that the One you set out to obey has gone before you and placed the answer at the well, and at the very first asking?"
+  "reflectionText": "The camels had finished drinking. The bracelets on her wrist caught the last of the light. What is it to bow your head beside a well in a country far from home, and to know that the One you set out to obey has gone before you and placed the answer at the well, and at the very first asking?",
+  "sceneBeats": [
+    "answered_prayer",
+    "loving_kindness"
+  ]
 }

@@ -20,13 +20,6 @@
   "scriptureAnchorId": "esther_9_20-22",
   "bibleStoryKey": "purim_established_by_mordecai",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "themeTags": [
-    "purim_established",
-    "mordecai_writes_letters_to_provinces",
-    "sorrow_turned_to_gladness",
-    "portions_to_neighbors_gifts_to_poor",
-    "after_the_deliverance_in_adar"
-  ],
   "emotionalTags": [
     "joyful",
     "settled",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1419_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Mordecai wrote out the letters: the month had been turned from sorrow to gladness, from mourning into a good day. What does it take to set down on a calendar the day of a deliverance, so that those who come after will keep the gladness of it on?"
+  "reflectionText": "Mordecai wrote out the letters: the month had been turned from sorrow to gladness, from mourning into a good day. What does it take to set down on a calendar the day of a deliverance, so that those who come after will keep the gladness of it on?",
+  "sceneBeats": [
+    "after_the_deliverance_in_adar",
+    "mordecai_writes_letters_to_provinces",
+    "portions_to_neighbors_gifts_to_poor",
+    "purim_established",
+    "sorrow_turned_to_gladness"
+  ]
 }

@@ -22,13 +22,6 @@
   "scriptureAnchorId": "daniel_1_8-21",
   "bibleStoryKey": "daniel_purposed_in_his_heart_ten_day_test",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "daniel_purposed_in_his_heart",
-    "refusing_the_kings_portion",
-    "ten_day_test_with_vegetables_and_water",
-    "faces_appeared_fairer_and_fatter",
-    "continued_unto_the_first_year_of_cyrus"
-  ],
   "emotionalTags": [
     "brave",
     "resolute",
@@ -75,7 +68,14 @@
       "storyText": "story_1486_traditional_kjv_long.txt"
     }
   },
-  "reflectionQuestion": "Daniel purposed in his heart that he would not defile himself, and the decision did not show in his face when he made it. What is the choice you have made inside yourself that the men around you cannot see \u2014 and how do you keep it through all the years that follow?",
-  "reflectionText": "Daniel purposed in his heart that he would not defile himself, and the decision shewed not in his face when he made it. What is the choice thou hast made within thyself that they that are round about thee cannot see \u2014 and how dost thou keep it through all the years that follow?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionQuestion": "Daniel purposed in his heart that he would not defile himself, and the decision did not show in his face when he made it. What is the choice you have made inside yourself that the men around you cannot see — and how do you keep it through all the years that follow?",
+  "reflectionText": "Daniel purposed in his heart that he would not defile himself, and the decision shewed not in his face when he made it. What is the choice thou hast made within thyself that they that are round about thee cannot see — and how dost thou keep it through all the years that follow?",
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "continued_unto_the_first_year_of_cyrus",
+    "daniel_purposed_in_his_heart",
+    "faces_appeared_fairer_and_fatter",
+    "refusing_the_kings_portion",
+    "ten_day_test_with_vegetables_and_water"
+  ]
 }

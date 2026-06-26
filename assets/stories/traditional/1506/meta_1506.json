@@ -22,13 +22,6 @@
   "scriptureAnchorId": "daniel_7_1-14",
   "bibleStoryKey": "daniels_vision_of_four_beasts_and_ancient_of_days",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "themeTags": [
-    "four_winds_striving_on_the_great_sea",
-    "four_beasts_lion_bear_leopard_fourth",
-    "thrones_cast_down_ancient_of_days_seated",
-    "wheels_of_fire_books_opened",
-    "son_of_man_came_with_the_clouds"
-  ],
   "emotionalTags": [
     "anxious",
     "awed",
@@ -74,7 +67,14 @@
       "reflectionText": "reflection_1506_traditional_kjv.txt"
     }
   },
-  "reflectionQuestion": "The beasts came up out of the sea. The thrones were cast down. The Ancient of Days sat in white garment with wheels of fire under his throne. The fourth beast was slain. The Son of Man came with the clouds. What is it to be lying in your bed and to see, in one night, every kingdom that will ever be brought down \u2014 and the one that will last forever?",
-  "reflectionText": "The beasts came up out of the sea. The thrones were cast down. The Ancient of Days sat in white garment with wheels of fire beneath his throne. The fourth beast was slain. The Son of Man came with the clouds. What is it to be lying upon thy bed and to see, in one night, every kingdom that shall ever be brought down \u2014 and the one that shall last for ever?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionQuestion": "The beasts came up out of the sea. The thrones were cast down. The Ancient of Days sat in white garment with wheels of fire under his throne. The fourth beast was slain. The Son of Man came with the clouds. What is it to be lying in your bed and to see, in one night, every kingdom that will ever be brought down — and the one that will last forever?",
+  "reflectionText": "The beasts came up out of the sea. The thrones were cast down. The Ancient of Days sat in white garment with wheels of fire beneath his throne. The fourth beast was slain. The Son of Man came with the clouds. What is it to be lying upon thy bed and to see, in one night, every kingdom that shall ever be brought down — and the one that shall last for ever?",
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "four_beasts_lion_bear_leopard_fourth",
+    "four_winds_striving_on_the_great_sea",
+    "son_of_man_came_with_the_clouds",
+    "thrones_cast_down_ancient_of_days_seated",
+    "wheels_of_fire_books_opened"
+  ]
 }

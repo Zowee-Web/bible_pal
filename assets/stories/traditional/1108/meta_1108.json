@@ -24,8 +24,7 @@
     "patience",
     "suffering",
     "lament",
-    "mercy",
-    "surrender"
+    "mercy"
   ],
   "primaryCharacterId": "jesus",
   "primaryCharacterDisplayName": "Jesus",
@@ -62,5 +61,8 @@
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
-  }
+  },
+  "sceneBeats": [
+    "surrender"
+  ]
 }

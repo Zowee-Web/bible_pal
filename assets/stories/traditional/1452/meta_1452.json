@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_kings_22_8-13",
   "bibleStoryKey": "josiah_book_of_law_found",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "themeTags": [
-    "hilkiah_finds_book_in_temple",
-    "shaphan_reads_to_king",
-    "king_tears_clothes",
-    "five_men_sent_to_inquire",
-    "wrath_of_yahweh_kindled"
-  ],
   "emotionalTags": [
     "encouraged",
     "awed",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1452_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Hilkiah found the book of the law in the temple and Shaphan read it before the king. The king tore his clothes. How does an old word land on you when it has just been opened in front of you for the first time?"
+  "reflectionText": "Hilkiah found the book of the law in the temple and Shaphan read it before the king. The king tore his clothes. How does an old word land on you when it has just been opened in front of you for the first time?",
+  "sceneBeats": [
+    "five_men_sent_to_inquire",
+    "hilkiah_finds_book_in_temple",
+    "king_tears_clothes",
+    "shaphan_reads_to_king",
+    "wrath_of_yahweh_kindled"
+  ]
 }

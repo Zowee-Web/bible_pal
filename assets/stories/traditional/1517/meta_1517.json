@@ -21,13 +21,6 @@
   "scriptureAnchorId": "psalm_27_1-14",
   "bibleStoryKey": "david_sings_of_light_salvation_and_waiting",
   "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "themeTags": [
-    "the_lord_my_light_and_my_salvation",
-    "one_thing_have_i_desired_dwell_in_the_house",
-    "hide_me_in_his_pavilion_secret_of_the_tabernacle",
-    "set_me_upon_a_rock",
-    "wait_on_the_lord_be_of_good_courage"
-  ],
   "emotionalTags": [
     "encouraged",
     "settled",
@@ -70,5 +63,12 @@
   },
   "reflectionQuestion": "He sang of the LORD as light, salvation, strength, the rock in the secret of the tabernacle. He had been in trouble enough to know what each name meant. He closed with \"Wait on the LORD.\" What is it to sing a song you have learned in the years that are already behind you, and to close it by telling yourself to wait?",
   "reflectionText": "He sang of the LORD as light, salvation, strength, the rock in the secret of the tabernacle. He had been in trouble enough to know what each name meant. He closed with \"Wait on the LORD.\" What is it to sing a song thou hast learned in the years that are already behind thee, and to close it by telling thyself to wait?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "hide_me_in_his_pavilion_secret_of_the_tabernacle",
+    "one_thing_have_i_desired_dwell_in_the_house",
+    "set_me_upon_a_rock",
+    "the_lord_my_light_and_my_salvation",
+    "wait_on_the_lord_be_of_good_courage"
+  ]
 }

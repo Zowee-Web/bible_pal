@@ -20,13 +20,6 @@
   "scriptureAnchorId": "ruth_1_14-18",
   "bibleStoryKey": "ruth_clings_to_naomi",
   "storyVoiceKey": "VOICE_RUTH_COMFORT",
-  "themeTags": [
-    "pioneering_obedience",
-    "covenant_loyalty",
-    "leaving_home",
-    "foreigner_in_israel",
-    "your_god_my_god"
-  ],
   "emotionalTags": [
     "brave",
     "determined",
@@ -66,5 +59,12 @@
   "secondaryLifeSituationTags": [
     "starting_over"
   ],
-  "reflectionText": "Where you go, I will go. Your people will be my people, and your God my God. What is it to be bound to someone by words you can never take back, and to walk the road with her on a journey she would have made alone?"
+  "reflectionText": "Where you go, I will go. Your people will be my people, and your God my God. What is it to be bound to someone by words you can never take back, and to walk the road with her on a journey she would have made alone?",
+  "sceneBeats": [
+    "covenant_loyalty",
+    "foreigner_in_israel",
+    "leaving_home",
+    "pioneering_obedience",
+    "your_god_my_god"
+  ]
 }

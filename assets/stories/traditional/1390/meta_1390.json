@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_corinthians_1_8-11",
   "bibleStoryKey": "paul_affliction_in_asia",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "themeTags": [
-    "despaired_of_life",
-    "sentence_of_death_within",
-    "trust_in_god_who_raises_dead",
-    "saints_praying_together",
-    "after_ephesus"
-  ],
   "emotionalTags": [
     "weary",
     "humbled",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1390_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Paul wrote about the affliction in Asia — how he had been weighed down beyond his own power, and had carried the sentence of death within himself. What does it take to discover that the thing that nearly killed you was teaching you where your trust had been resting all along?"
+  "reflectionText": "Paul wrote about the affliction in Asia — how he had been weighed down beyond his own power, and had carried the sentence of death within himself. What does it take to discover that the thing that nearly killed you was teaching you where your trust had been resting all along?",
+  "sceneBeats": [
+    "after_ephesus",
+    "despaired_of_life",
+    "saints_praying_together",
+    "sentence_of_death_within",
+    "trust_in_god_who_raises_dead"
+  ]
 }

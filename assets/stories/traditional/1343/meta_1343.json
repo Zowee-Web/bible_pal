@@ -21,11 +21,7 @@
   "bibleStoryKey": "i_am_a_child",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "themeTags": [
-    "prophetic_call",
-    "fear_before_obedience",
-    "commissioning",
-    "presence_of_yahweh",
-    "words_in_his_mouth"
+    "commissioning"
   ],
   "emotionalTags": [
     "anxious",
@@ -60,5 +56,11 @@
       "reflectionText": "reflection_1343_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Before I formed you in the womb, I knew you. Then I said, ah Lord Yahweh, I do not know how to speak, for I am a child. What is it to be called by name from before your own beginning, and to know that the One who calls you has already heard the protest you have not yet spoken?"
+  "reflectionText": "Before I formed you in the womb, I knew you. Then I said, ah Lord Yahweh, I do not know how to speak, for I am a child. What is it to be called by name from before your own beginning, and to know that the One who calls you has already heard the protest you have not yet spoken?",
+  "sceneBeats": [
+    "fear_before_obedience",
+    "presence_of_yahweh",
+    "prophetic_call",
+    "words_in_his_mouth"
+  ]
 }

@@ -20,13 +20,6 @@
   "scriptureAnchorId": "genesis_32_9-12",
   "bibleStoryKey": "jacob_prays_before_meeting_esau",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "long_uncertainty",
-    "prayer_before_meeting",
-    "covenant_promise_recalled",
-    "fear_of_brother",
-    "household_protection"
-  ],
   "emotionalTags": [
     "anxious",
     "fearful",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1345_traditional_kjv.txt"
     }
   },
-  "reflectionText": "With just my staff I crossed over this Jordan, and now I have become two companies. What is it to stand on the near side of the river that you crossed alone, and to count the people you carry now, and to remember the staff you carried then?"
+  "reflectionText": "With just my staff I crossed over this Jordan, and now I have become two companies. What is it to stand on the near side of the river that you crossed alone, and to count the people you carry now, and to remember the staff you carried then?",
+  "sceneBeats": [
+    "covenant_promise_recalled",
+    "fear_of_brother",
+    "household_protection",
+    "long_uncertainty",
+    "prayer_before_meeting"
+  ]
 }

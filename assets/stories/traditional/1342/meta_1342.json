@@ -21,11 +21,9 @@
   "bibleStoryKey": "david_fasts_for_the_child",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
   "themeTags": [
-    "fear_of_loss",
     "fasting",
     "bereavement",
-    "consequence",
-    "submission_to_yahweh"
+    "consequence"
   ],
   "emotionalTags": [
     "anxious",
@@ -60,5 +58,9 @@
       "reflectionText": "reflection_1342_traditional_kjv.txt"
     }
   },
-  "reflectionText": "While the child was yet alive, I fasted and wept. But now he is dead. I will go to him, but he will not return to me. What is it to weep with all that is in you until the answer comes, and then to stand up and wash, because the grief belongs now to a place the prayer cannot follow him?"
+  "reflectionText": "While the child was yet alive, I fasted and wept. But now he is dead. I will go to him, but he will not return to me. What is it to weep with all that is in you until the answer comes, and then to stand up and wash, because the grief belongs now to a place the prayer cannot follow him?",
+  "sceneBeats": [
+    "fear_of_loss",
+    "submission_to_yahweh"
+  ]
 }

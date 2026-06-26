@@ -21,11 +21,7 @@
   "bibleStoryKey": "davids_lament_for_saul_and_jonathan",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
   "themeTags": [
-    "communal_grief",
-    "elegy",
-    "covenant_friendship_lost",
-    "fallen_king",
-    "song_of_the_bow"
+    "elegy"
   ],
   "emotionalTags": [
     "hurting",
@@ -60,5 +56,11 @@
       "reflectionText": "reflection_1357_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Your love to me was wonderful, passing the love of women. How the mighty have fallen. What is it to teach the children of your people a song for the friend whose love had outweighed every love of your life, and for the king who had hunted you through long years?"
+  "reflectionText": "Your love to me was wonderful, passing the love of women. How the mighty have fallen. What is it to teach the children of your people a song for the friend whose love had outweighed every love of your life, and for the king who had hunted you through long years?",
+  "sceneBeats": [
+    "communal_grief",
+    "covenant_friendship_lost",
+    "fallen_king",
+    "song_of_the_bow"
+  ]
 }

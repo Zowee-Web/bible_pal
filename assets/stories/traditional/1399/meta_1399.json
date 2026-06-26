@@ -20,13 +20,6 @@
   "scriptureAnchorId": "judges_7_9-15",
   "bibleStoryKey": "gideon_overhears_the_dream",
   "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "themeTags": [
-    "overheard_dream",
-    "if_you_are_afraid_go_with_purah",
-    "valley_like_locusts_for_multitude",
-    "barley_loaf_topples_tent",
-    "gideon_worships_in_camp"
-  ],
   "emotionalTags": [
     "anxious",
     "wary",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1399_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Gideon went down into the camp afraid, and he overheard a man telling a dream of a barley cake tumbling into the camp and bringing the tent down flat. What does it take to be sent down toward your fear and given your encouragement from inside your enemy's own dream?"
+  "reflectionText": "Gideon went down into the camp afraid, and he overheard a man telling a dream of a barley cake tumbling into the camp and bringing the tent down flat. What does it take to be sent down toward your fear and given your encouragement from inside your enemy's own dream?",
+  "sceneBeats": [
+    "barley_loaf_topples_tent",
+    "gideon_worships_in_camp",
+    "if_you_are_afraid_go_with_purah",
+    "overheard_dream",
+    "valley_like_locusts_for_multitude"
+  ]
 }

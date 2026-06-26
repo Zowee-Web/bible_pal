@@ -21,11 +21,7 @@
   "bibleStoryKey": "elijah_raises_the_widows_son",
   "storyVoiceKey": "VOICE_RUTH_COMFORT",
   "themeTags": [
-    "bereavement",
-    "prophet_intercession",
-    "child_restored",
-    "famine_house",
-    "yahwehs_word_is_truth"
+    "bereavement"
   ],
   "emotionalTags": [
     "hurting",
@@ -60,5 +56,11 @@
       "reflectionText": "reflection_1358_traditional_kjv.txt"
     }
   },
-  "reflectionText": "He stretched himself on the child three times, and cried to Yahweh. What is it to give a child back into the arms of his mother, alive \u2014 and to hear from her lips, for the first time, that the One who sent you to her was the God you said he was?"
+  "reflectionText": "He stretched himself on the child three times, and cried to Yahweh. What is it to give a child back into the arms of his mother, alive — and to hear from her lips, for the first time, that the One who sent you to her was the God you said he was?",
+  "sceneBeats": [
+    "child_restored",
+    "famine_house",
+    "prophet_intercession",
+    "yahwehs_word_is_truth"
+  ]
 }

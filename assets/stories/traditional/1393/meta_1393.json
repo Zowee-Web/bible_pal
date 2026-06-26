@@ -20,13 +20,6 @@
   "scriptureAnchorId": "nehemiah_4_10-14",
   "bibleStoryKey": "wall_builders_exhausted",
   "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "themeTags": [
-    "communal_exhaustion",
-    "rubble_and_burdens",
-    "guards_in_lowest_places",
-    "remember_the_lord",
-    "fight_for_your_houses"
-  ],
   "emotionalTags": [
     "weary",
     "spent",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1393_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The strength of the bearers was fading, and the rubble was much, and the enemies were threatening. Nehemiah cried out: don't be afraid, remember the Lord. What does weariness need when your shoulders have already told you they have nothing more to give?"
+  "reflectionText": "The strength of the bearers was fading, and the rubble was much, and the enemies were threatening. Nehemiah cried out: don't be afraid, remember the Lord. What does weariness need when your shoulders have already told you they have nothing more to give?",
+  "sceneBeats": [
+    "communal_exhaustion",
+    "fight_for_your_houses",
+    "guards_in_lowest_places",
+    "remember_the_lord",
+    "rubble_and_burdens"
+  ]
 }

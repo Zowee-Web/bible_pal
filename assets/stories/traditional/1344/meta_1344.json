@@ -21,7 +21,6 @@
   "bibleStoryKey": "pauls_nephew_warns_of_conspiracy",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "themeTags": [
-    "hidden_threat",
     "conspiracy",
     "protection",
     "providence",
@@ -62,5 +61,8 @@
   },
   "reflectionText": "Forty men had bound themselves under a curse to neither eat nor drink until they had killed Paul. What is it to be saved from a plot you never heard of, by a young man who was only the son of your sister, and whose name no one would think to write down?",
   "renderedAt": "2026-06-26T00:39:58Z",
-  "generatorVersion": "generate_opus_audio.sh"
+  "generatorVersion": "generate_opus_audio.sh",
+  "sceneBeats": [
+    "hidden_threat"
+  ]
 }

@@ -21,13 +21,6 @@
   "scriptureAnchorId": "matthew_6_25-34",
   "bibleStoryKey": "jesus_teaches_take_no_thought_for_the_morrow",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "themeTags": [
-    "take_no_thought_for_your_life",
-    "behold_the_fowls_of_the_air",
-    "consider_the_lilies_of_the_field",
-    "solomon_in_all_his_glory_not_arrayed_like_one_of_these",
-    "seek_ye_first_the_kingdom_of_god"
-  ],
   "emotionalTags": [
     "calm",
     "settled",
@@ -70,5 +63,12 @@
   },
   "reflectionQuestion": "He pointed at the bird going over their heads. He gestured toward the lilies in the grass at his feet. He said: take no thought for the morrow. What is it to be told not to worry by someone who is standing in the grass, pointing to the lilies and the birds while he says it?",
   "reflectionText": "He pointed at the bird going over their heads. He gestured toward the lilies in the grass at his feet. He said: take no thought for the morrow. What is it to be told not to take thought by one that is standing in the grass, pointing unto the lilies and the birds while he saith it?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "behold_the_fowls_of_the_air",
+    "consider_the_lilies_of_the_field",
+    "seek_ye_first_the_kingdom_of_god",
+    "solomon_in_all_his_glory_not_arrayed_like_one_of_these",
+    "take_no_thought_for_your_life"
+  ]
 }

@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_samuel_23_8-12",
   "bibleStoryKey": "eleazar_hand_froze_to_sword",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
-  "themeTags": [
-    "mighty_men_of_david",
-    "eleazar_son_of_dodai",
-    "hand_froze_to_sword",
-    "standing_alone_against_philistines",
-    "yahweh_works_great_victory"
-  ],
   "emotionalTags": [
     "brave",
     "resolute",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1438_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Eleazar stood when the line of Israel had broken and ran. He struck until his hand was weary, and his hand froze to the sword. Have you ever held a position alone when everyone who should have held it with you had already gone past you and home?"
+  "reflectionText": "Eleazar stood when the line of Israel had broken and ran. He struck until his hand was weary, and his hand froze to the sword. Have you ever held a position alone when everyone who should have held it with you had already gone past you and home?",
+  "sceneBeats": [
+    "eleazar_son_of_dodai",
+    "hand_froze_to_sword",
+    "mighty_men_of_david",
+    "standing_alone_against_philistines",
+    "yahweh_works_great_victory"
+  ]
 }

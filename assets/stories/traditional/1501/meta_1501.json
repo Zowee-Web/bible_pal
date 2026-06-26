@@ -20,13 +20,6 @@
   "scriptureAnchorId": "isaiah_50_4-9",
   "bibleStoryKey": "servant_song_tongue_of_the_learned",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "themeTags": [
-    "tongue_of_the_learned_for_the_weary",
-    "wakens_my_ear_morning_by_morning",
-    "face_set_like_a_flint",
-    "gave_my_back_to_the_smiters",
-    "he_is_near_who_justifies"
-  ],
   "emotionalTags": [
     "weary",
     "resolute",
@@ -63,5 +56,12 @@
   },
   "reflectionQuestion": "The servant said: he wakens my ear morning by morning. The tongue I was given is for the weary. What is it to be woken every day for the work of speaking gently to the people who are tired, knowing the tongue you have been given was opened for that purpose alone?",
   "reflectionText": "The servant said: he wakeneth mine ear morning by morning. The tongue I was given is for the weary. What is it to be wakened every day for the work of speaking gently unto them that are tired, knowing the tongue thou hast been given was opened for that purpose alone?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "face_set_like_a_flint",
+    "gave_my_back_to_the_smiters",
+    "he_is_near_who_justifies",
+    "tongue_of_the_learned_for_the_weary",
+    "wakens_my_ear_morning_by_morning"
+  ]
 }

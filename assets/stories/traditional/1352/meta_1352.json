@@ -20,13 +20,6 @@
   "scriptureAnchorId": "numbers_25_6-13",
   "bibleStoryKey": "phinehas_stays_the_plague",
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
-  "themeTags": [
-    "single_decisive_act",
-    "zeal_for_yahweh",
-    "covenant_of_peace",
-    "atonement_and_intervention",
-    "priestly_courage"
-  ],
   "emotionalTags": [
     "brave",
     "zealous",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1352_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Phinehas was jealous for his God, and the plague was stayed. What is it to be given a covenant of peace as the answer to a jealousy — and to find that what the camp recalls from your hand is the spear, while what Yahweh recalls is the peace you brought home?"
+  "reflectionText": "Phinehas was jealous for his God, and the plague was stayed. What is it to be given a covenant of peace as the answer to a jealousy — and to find that what the camp recalls from your hand is the spear, while what Yahweh recalls is the peace you brought home?",
+  "sceneBeats": [
+    "atonement_and_intervention",
+    "covenant_of_peace",
+    "priestly_courage",
+    "single_decisive_act",
+    "zeal_for_yahweh"
+  ]
 }

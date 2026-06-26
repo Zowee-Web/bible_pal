@@ -20,13 +20,6 @@
   "scriptureAnchorId": "acts_20_7-12",
   "bibleStoryKey": "eutychus_falls_from_window_paul_raises",
   "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "themeTags": [
-    "upper_room_at_troas_many_lights",
-    "long_speech_until_midnight",
-    "young_man_falls_from_third_floor",
-    "paul_embraces_him_his_life_is_in_him",
-    "comforted_at_break_of_day"
-  ],
   "emotionalTags": [
     "encouraged",
     "awed",
@@ -63,5 +56,12 @@
   },
   "reflectionQuestion": "The boy fell from the third floor and was taken up dead. By morning he was alive in the upper room. What would it be like to be counted among the gone, and then to be brought back into the room before the day broke?",
   "reflectionText": "The young man fell from the third loft and was taken up dead. By morning he was alive again in the upper chamber. What would it be to be counted among the gone, and then to be brought back into the chamber before the day brake?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "comforted_at_break_of_day",
+    "long_speech_until_midnight",
+    "paul_embraces_him_his_life_is_in_him",
+    "upper_room_at_troas_many_lights",
+    "young_man_falls_from_third_floor"
+  ]
 }

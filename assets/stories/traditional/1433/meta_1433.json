@@ -20,13 +20,6 @@
   "scriptureAnchorId": "john_15_1-11",
   "bibleStoryKey": "vine_and_branches",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "themeTags": [
-    "vine_and_branches",
-    "remain_in_me_and_i_in_you",
-    "father_is_the_farmer",
-    "joy_made_full",
-    "upper_room_after_the_meal"
-  ],
   "emotionalTags": [
     "calm",
     "tender",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1433_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Jesus told the disciples in the upper room: remain in me, and I in you. The branch cannot bear fruit unless it remains in the vine. What is it to bear fruit not by striving for it, but by staying where the Lord has set you down — and to find that the staying does all the bearing?"
+  "reflectionText": "Jesus told the disciples in the upper room: remain in me, and I in you. The branch cannot bear fruit unless it remains in the vine. What is it to bear fruit not by striving for it, but by staying where the Lord has set you down — and to find that the staying does all the bearing?",
+  "sceneBeats": [
+    "father_is_the_farmer",
+    "joy_made_full",
+    "remain_in_me_and_i_in_you",
+    "upper_room_after_the_meal",
+    "vine_and_branches"
+  ]
 }

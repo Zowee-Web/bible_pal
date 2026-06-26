@@ -21,13 +21,6 @@
   "scriptureAnchorId": "1_samuel_30_1-8",
   "bibleStoryKey": "david_at_ziklag_encouraged_himself",
   "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "themeTags": [
-    "ziklag_burned_with_fire",
-    "wept_until_no_more_strength",
-    "men_spake_of_stoning_him",
-    "encouraged_himself_in_the_lord",
-    "pursue_thou_shalt_surely_overtake"
-  ],
   "emotionalTags": [
     "hurting",
     "weary",
@@ -70,5 +63,12 @@
   },
   "reflectionQuestion": "He sat alone in the ashes of the city while the men around him spoke of stoning him. He did not get up. Something steadied in him in the silence first. What is it to be the one who has to find a strength inside himself before he can speak again to the people who are turning against him?",
   "reflectionText": "He sat alone in the ashes of the city while the men round about him spake of stoning him. He arose not. Something steadied within him in the silence first. What is it to be the one that must find a strength within himself or ever he can speak again unto them that are turning against him?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "encouraged_himself_in_the_lord",
+    "men_spake_of_stoning_him",
+    "pursue_thou_shalt_surely_overtake",
+    "wept_until_no_more_strength",
+    "ziklag_burned_with_fire"
+  ]
 }

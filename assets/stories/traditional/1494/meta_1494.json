@@ -21,13 +21,6 @@
   "scriptureAnchorId": "jeremiah_29_4-14",
   "bibleStoryKey": "jeremiahs_letter_to_the_babylonian_exiles",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "themeTags": [
-    "letter_from_jerusalem_to_the_captives",
-    "build_houses_plant_gardens_take_wives",
-    "seek_the_peace_of_the_city",
-    "thoughts_of_peace_not_evil",
-    "seventy_years_until_return"
-  ],
   "emotionalTags": [
     "weary",
     "settled",
@@ -70,5 +63,12 @@
   },
   "reflectionQuestion": "The letter did not say the time would be short. It said: build. Plant. Take wives. Multiply. Pray for the city. What does it do to be told that the country you did not choose is the country in which you are to live, and that the LORD's thoughts toward you in it are thoughts of peace?",
   "reflectionText": "The letter said not that the time should be short. It said: build. Plant. Take ye wives. Multiply. Pray for the city. What doth it work in thee to be told that the land thou didst not choose is the land wherein thou art to dwell, and that the thoughts of the LORD toward thee in it are thoughts of peace?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "build_houses_plant_gardens_take_wives",
+    "letter_from_jerusalem_to_the_captives",
+    "seek_the_peace_of_the_city",
+    "seventy_years_until_return",
+    "thoughts_of_peace_not_evil"
+  ]
 }

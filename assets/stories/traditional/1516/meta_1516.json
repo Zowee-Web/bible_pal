@@ -20,13 +20,6 @@
   "scriptureAnchorId": "1_kings_19_9-13",
   "bibleStoryKey": "elijah_at_horeb_still_small_voice",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "themeTags": [
-    "elijah_walked_forty_days_to_horeb",
-    "wind_earthquake_fire_pass_before_the_lord",
-    "the_lord_was_not_in_the_wind",
-    "after_the_fire_a_still_small_voice",
-    "wrapped_his_face_in_his_mantle"
-  ],
   "emotionalTags": [
     "calm",
     "settled",
@@ -63,5 +56,12 @@
   },
   "reflectionQuestion": "He had walked forty days to get to the mount. The word came in the cave. The wind. The earthquake. The fire. After all of it, a still small voice. What is it to come a long way through the wilderness for a meeting, and to find the meeting comes only after the wind and the earthquake and the fire have gone past you?",
   "reflectionText": "He had walked forty days to come unto the mount. The word came in the cave. The wind. The earthquake. The fire. After all of it, a still small voice. What is it to come a long way through the wilderness for a meeting, and to find the meeting cometh only after the wind and the earthquake and the fire have gone past thee?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "after_the_fire_a_still_small_voice",
+    "elijah_walked_forty_days_to_horeb",
+    "the_lord_was_not_in_the_wind",
+    "wind_earthquake_fire_pass_before_the_lord",
+    "wrapped_his_face_in_his_mantle"
+  ]
 }

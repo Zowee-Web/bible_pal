@@ -22,13 +22,6 @@
   "scriptureAnchorId": "daniel_2_31-45",
   "bibleStoryKey": "daniel_interprets_nebuchadnezzars_dream_of_the_statue",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "themeTags": [
-    "nebuchadnezzars_dream_of_the_great_image",
-    "head_of_gold_silver_brass_iron_and_clay",
-    "stone_cut_out_without_hands",
-    "kingdom_that_shall_never_be_destroyed",
-    "stone_became_a_mountain_filled_the_whole_earth"
-  ],
   "emotionalTags": [
     "encouraged",
     "awed",
@@ -75,7 +68,14 @@
       "reflectionText": "reflection_1515_traditional_kjv.txt"
     }
   },
-  "reflectionQuestion": "The stone was cut out of the mountain without hands. It struck the image on its feet of iron and clay. The iron and brass and silver and gold broke together like chaff. The stone became a mountain that filled the whole earth. What is it to see, in a single night, every kingdom that will ever be brought down \u2014 and the one that will fill the earth?",
-  "reflectionText": "The stone was cut out of the mountain without hands. It struck the image on its feet of iron and clay. The iron and brass and silver and gold broke together like chaff. The stone became a mountain that filled the whole earth. What is it to see, in a single night, the kingdoms shown in the dream brought down \u2014 and the one that will fill the earth?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionQuestion": "The stone was cut out of the mountain without hands. It struck the image on its feet of iron and clay. The iron and brass and silver and gold broke together like chaff. The stone became a mountain that filled the whole earth. What is it to see, in a single night, every kingdom that will ever be brought down — and the one that will fill the earth?",
+  "reflectionText": "The stone was cut out of the mountain without hands. It struck the image on its feet of iron and clay. The iron and brass and silver and gold broke together like chaff. The stone became a mountain that filled the whole earth. What is it to see, in a single night, the kingdoms shown in the dream brought down — and the one that will fill the earth?",
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "head_of_gold_silver_brass_iron_and_clay",
+    "kingdom_that_shall_never_be_destroyed",
+    "nebuchadnezzars_dream_of_the_great_image",
+    "stone_became_a_mountain_filled_the_whole_earth",
+    "stone_cut_out_without_hands"
+  ]
 }

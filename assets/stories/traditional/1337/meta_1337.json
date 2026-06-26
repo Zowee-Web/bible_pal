@@ -21,10 +21,7 @@
   "bibleStoryKey": "hamans_decree",
   "storyVoiceKey": "VOICE_ELIJAH_SAGE",
   "themeTags": [
-    "hidden_threat",
-    "court_intrigue",
     "decree",
-    "exile_life",
     "menace"
   ],
   "emotionalTags": [
@@ -60,5 +57,10 @@
       "reflectionText": "reflection_1337_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The king and his servant drank wine. The people of Shushan stood with the parchments in their hands, and the city was perplexed. What is it to hold in your hand a piece of parchment that names the day you and your children will die, while in the palace above you the men who wrote it sit down to their wine?"
+  "reflectionText": "The king and his servant drank wine. The people of Shushan stood with the parchments in their hands, and the city was perplexed. What is it to hold in your hand a piece of parchment that names the day you and your children will die, while in the palace above you the men who wrote it sit down to their wine?",
+  "sceneBeats": [
+    "court_intrigue",
+    "exile_life",
+    "hidden_threat"
+  ]
 }

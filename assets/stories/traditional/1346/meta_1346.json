@@ -22,13 +22,6 @@
   "scriptureAnchorId": "1_samuel_14_1-15",
   "bibleStoryKey": "jonathan_climbs_the_garrison",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "themeTags": [
-    "pioneering_obedience",
-    "two_against_many",
-    "providence_in_battle",
-    "faithful_initiative",
-    "salvation_by_few"
-  ],
   "emotionalTags": [
     "brave",
     "alert",
@@ -74,5 +67,12 @@
       "reflectionText": "reflection_1346_traditional_kjv.txt"
     }
   },
-  "reflectionText": "There is no restraint on Yahweh to save by many or by few. What is it to climb on your hands and on your feet toward a garrison you cannot take, because you have decided that the One who saves does not need a great host standing with him?"
+  "reflectionText": "There is no restraint on Yahweh to save by many or by few. What is it to climb on your hands and on your feet toward a garrison you cannot take, because you have decided that the One who saves does not need a great host standing with him?",
+  "sceneBeats": [
+    "faithful_initiative",
+    "pioneering_obedience",
+    "providence_in_battle",
+    "salvation_by_few",
+    "two_against_many"
+  ]
 }

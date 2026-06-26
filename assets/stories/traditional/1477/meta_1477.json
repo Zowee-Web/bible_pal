@@ -20,13 +20,6 @@
   "scriptureAnchorId": "job_19_23-27",
   "bibleStoryKey": "job_my_redeemer_liveth_from_ash_heap",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "themeTags": [
-    "oh_that_my_words_were_written",
-    "engraved_in_the_rock_forever",
-    "my_redeemer_lives",
-    "in_my_flesh_shall_i_see_god",
-    "words_from_the_ash_heap"
-  ],
   "emotionalTags": [
     "hurting",
     "hopeful",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1477_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Job sat on the ash heap, lifted his face out of the dust, and said: I know that my Redeemer lives. The words went out toward a day he could not yet see. What is it to lift your face out of the dust and speak toward a day you cannot yet see, addressing someone whose face you have not yet been shown?"
+  "reflectionText": "Job sat on the ash heap, lifted his face out of the dust, and said: I know that my Redeemer lives. The words went out toward a day he could not yet see. What is it to lift your face out of the dust and speak toward a day you cannot yet see, addressing someone whose face you have not yet been shown?",
+  "sceneBeats": [
+    "engraved_in_the_rock_forever",
+    "in_my_flesh_shall_i_see_god",
+    "my_redeemer_lives",
+    "oh_that_my_words_were_written",
+    "words_from_the_ash_heap"
+  ]
 }

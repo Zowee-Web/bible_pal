@@ -21,13 +21,6 @@
   "scriptureAnchorId": "2_kings_25_1-12",
   "bibleStoryKey": "fall_of_jerusalem_to_babylon",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "themeTags": [
-    "siege_and_famine",
-    "fall_of_the_city",
-    "burning_of_the_temple",
-    "blinded_king",
-    "remnant_carried_away"
-  ],
   "emotionalTags": [
     "devastated",
     "grieving",
@@ -71,5 +64,12 @@
   },
   "reflectionQuestion": "The walls had stood since Solomon. The temple had stood since Solomon. The Chaldees broke them both down in the same month. What is it to live in a place all your life and to see the wood and the stone of it go in one summer?",
   "reflectionText": "The walls had stood since Solomon. The temple had stood since Solomon. The Chaldees brake them both down in the same month. What is it to dwell in a place all thy days and to behold the wood and the stone of it go in one summer?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "blinded_king",
+    "burning_of_the_temple",
+    "fall_of_the_city",
+    "remnant_carried_away",
+    "siege_and_famine"
+  ]
 }

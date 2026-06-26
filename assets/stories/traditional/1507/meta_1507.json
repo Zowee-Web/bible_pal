@@ -22,13 +22,6 @@
   "scriptureAnchorId": "joshua_6_1-21",
   "bibleStoryKey": "jericho_falls_after_seven_day_procession",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "jericho_straitly_shut_up",
-    "seven_priests_with_rams_horn_trumpets",
-    "ark_compassing_the_city_six_days",
-    "shout_on_the_seventh_day",
-    "wall_fell_down_flat"
-  ],
   "emotionalTags": [
     "brave",
     "resolute",
@@ -77,5 +70,12 @@
   },
   "reflectionQuestion": "Six days the procession went around the city in silence. The people did not shout. The wall watched them from above. On the seventh day they marched seven times. The trumpets blew. The people shouted. The wall fell down flat. What is it to be told to walk and not to speak, every day, until the day comes when you are told to shout?",
   "reflectionText": "Six days the procession went round about the city in silence. The people shouted not. The wall watched them from above. On the seventh day they compassed it seven times. The trumpets blew. The people shouted. The wall fell down flat. What is it to be told to walk and not to speak, every day, until the day cometh when thou art bidden to shout?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "ark_compassing_the_city_six_days",
+    "jericho_straitly_shut_up",
+    "seven_priests_with_rams_horn_trumpets",
+    "shout_on_the_seventh_day",
+    "wall_fell_down_flat"
+  ]
 }

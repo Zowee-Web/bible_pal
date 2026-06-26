@@ -21,9 +21,6 @@
   "bibleStoryKey": "i_will_give_thanks_with_my_whole_heart",
   "storyVoiceKey": "VOICE_NOAH_PATIENT",
   "themeTags": [
-    "personal_thanksgiving",
-    "answered_prayer",
-    "loving_kindness",
     "worship",
     "intimacy"
   ],
@@ -60,5 +57,10 @@
       "reflectionText": "reflection_1329_traditional_kjv.txt"
     }
   },
-  "reflectionText": "You called on the day when I called. You encouraged me with strength in my soul. What does it feel like to look back on the trouble that has already passed, and to know that the One you cried to had heard you in the very hour the prayer rose?"
+  "reflectionText": "You called on the day when I called. You encouraged me with strength in my soul. What does it feel like to look back on the trouble that has already passed, and to know that the One you cried to had heard you in the very hour the prayer rose?",
+  "sceneBeats": [
+    "answered_prayer",
+    "loving_kindness",
+    "personal_thanksgiving"
+  ]
 }

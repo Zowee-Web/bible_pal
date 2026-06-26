@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_timothy_1_3-7",
   "bibleStoryKey": "unfeigned_faith_lois_eunice",
   "storyVoiceKey": "VOICE_RUTH_COMFORT",
-  "themeTags": [
-    "unfeigned_faith_lois_eunice",
-    "three_generations_of_faith",
-    "spirit_of_power_and_love_and_self_control",
-    "stir_up_the_gift",
-    "letter_from_pauls_last_imprisonment"
-  ],
   "emotionalTags": [
     "calm",
     "tender",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1430_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Paul wrote from the cell in Rome about the faith that had lived first in Timothy's grandmother Lois and his mother Eunice, and now in him. How does a faith get handed down the household stairs from grandmother to mother to son?"
+  "reflectionText": "Paul wrote from the cell in Rome about the faith that had lived first in Timothy's grandmother Lois and his mother Eunice, and now in him. How does a faith get handed down the household stairs from grandmother to mother to son?",
+  "sceneBeats": [
+    "letter_from_pauls_last_imprisonment",
+    "spirit_of_power_and_love_and_self_control",
+    "stir_up_the_gift",
+    "three_generations_of_faith",
+    "unfeigned_faith_lois_eunice"
+  ]
 }

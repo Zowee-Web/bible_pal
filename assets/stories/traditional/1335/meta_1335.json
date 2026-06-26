@@ -22,7 +22,6 @@
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
   "themeTags": [
     "doxology",
-    "wisdom_of_god",
     "mystery",
     "thanksgiving",
     "sovereignty"
@@ -60,5 +59,8 @@
       "reflectionText": "reflection_1335_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Oh the depth of the riches both of the wisdom and the knowledge of God! How unsearchable are his judgments. What does it feel like to look at the whole long pattern of what God has done, is doing, and will yet do — and to find that no theology is wide enough to hold what rises in you then?"
+  "reflectionText": "Oh the depth of the riches both of the wisdom and the knowledge of God! How unsearchable are his judgments. What does it feel like to look at the whole long pattern of what God has done, is doing, and will yet do — and to find that no theology is wide enough to hold what rises in you then?",
+  "sceneBeats": [
+    "wisdom_of_god"
+  ]
 }

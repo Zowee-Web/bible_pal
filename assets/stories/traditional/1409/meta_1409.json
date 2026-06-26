@@ -20,13 +20,6 @@
   "scriptureAnchorId": "john_21_9-14",
   "bibleStoryKey": "breakfast_on_the_beach",
   "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
-  "themeTags": [
-    "breakfast_on_the_beach",
-    "coals_and_fish_and_bread",
-    "third_revelation_to_disciples",
-    "one_hundred_fifty_three_fish",
-    "risen_lord_at_tiberias"
-  ],
   "emotionalTags": [
     "grateful",
     "tender",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1409_traditional_kjv.txt"
     }
   },
-  "reflectionText": "After a night of catching nothing, the disciples came to shore in the morning and found the risen Lord at a fire of coals with fish laid on it and bread. What is it to be met by the one you thought you had lost, with breakfast already waiting on the coals?"
+  "reflectionText": "After a night of catching nothing, the disciples came to shore in the morning and found the risen Lord at a fire of coals with fish laid on it and bread. What is it to be met by the one you thought you had lost, with breakfast already waiting on the coals?",
+  "sceneBeats": [
+    "breakfast_on_the_beach",
+    "coals_and_fish_and_bread",
+    "one_hundred_fifty_three_fish",
+    "risen_lord_at_tiberias",
+    "third_revelation_to_disciples"
+  ]
 }

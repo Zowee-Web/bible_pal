@@ -20,13 +20,6 @@
   "scriptureAnchorId": "1_samuel_3_1-10",
   "bibleStoryKey": "samuel_hears_the_voice_in_the_night",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "themeTags": [
-    "lamp_of_god_not_yet_gone_out",
-    "voice_calls_in_the_night",
-    "ran_three_times_unto_eli",
-    "speak_for_thy_servant_heareth",
-    "first_words_the_boy_would_carry"
-  ],
   "emotionalTags": [
     "calm",
     "settled",
@@ -63,5 +56,12 @@
   },
   "reflectionQuestion": "The lamp had not yet gone out. The boy ran to Eli three times before either of them understood. What is it to hear a voice and not yet know that you are the one being called, and to keep going to the wrong person because you have not yet been told that the voice belongs to the LORD?",
   "reflectionText": "The lamp was not yet gone out. The boy ran unto Eli three times or ever either of them understood. What is it to hear a voice and not yet know that thou art the one being called, and to keep going unto the wrong man because thou hast not yet been told that the voice belongeth unto the LORD?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "first_words_the_boy_would_carry",
+    "lamp_of_god_not_yet_gone_out",
+    "ran_three_times_unto_eli",
+    "speak_for_thy_servant_heareth",
+    "voice_calls_in_the_night"
+  ]
 }

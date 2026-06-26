@@ -22,13 +22,6 @@
   "scriptureAnchorId": "2_samuel_12_1-7",
   "bibleStoryKey": "nathans_parable_thou_art_the_man",
   "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
-  "themeTags": [
-    "nathan_sent_to_david",
-    "parable_of_the_ewe_lamb",
-    "davids_anger_burned_hot",
-    "you_are_the_man",
-    "anointed_king_delivered_from_saul"
-  ],
   "emotionalTags": [
     "anxious",
     "solemn",
@@ -77,5 +70,12 @@
   },
   "reflectionQuestion": "Nathan looked at David. He said the three words that named him. What is it to hear those words spoken about yourself, and to sit where you have been sitting while the silence holds you there before you answer?",
   "reflectionText": "Nathan looked at David. He spake the three words that named him. What is it to hear those words spoken about thyself, and to sit where thou hast been sitting while the silence holdeth thee there before thou answerest?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "anointed_king_delivered_from_saul",
+    "davids_anger_burned_hot",
+    "nathan_sent_to_david",
+    "parable_of_the_ewe_lamb",
+    "you_are_the_man"
+  ]
 }

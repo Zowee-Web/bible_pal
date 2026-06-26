@@ -20,13 +20,6 @@
   "scriptureAnchorId": "genesis_50_22-26",
   "bibleStoryKey": "joseph_deathbed_oath_carry_up_bones",
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
-  "themeTags": [
-    "joseph_one_hundred_ten_years",
-    "ephraim_to_third_generation",
-    "god_will_surely_visit_you",
-    "carry_up_my_bones",
-    "coffin_in_egypt_promise_held"
-  ],
   "emotionalTags": [
     "hurting",
     "tender",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1466_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Joseph's coffin stood quiet in Egypt for four hundred years before the children of Israel carried his bones up out of that land. What is it to leave an oath behind you that will not be kept for four hundred years, by people whose names you will never live long enough to learn?"
+  "reflectionText": "Joseph's coffin stood quiet in Egypt for four hundred years before the children of Israel carried his bones up out of that land. What is it to leave an oath behind you that will not be kept for four hundred years, by people whose names you will never live long enough to learn?",
+  "sceneBeats": [
+    "carry_up_my_bones",
+    "coffin_in_egypt_promise_held",
+    "ephraim_to_third_generation",
+    "god_will_surely_visit_you",
+    "joseph_one_hundred_ten_years"
+  ]
 }

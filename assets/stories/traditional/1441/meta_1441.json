@@ -20,13 +20,6 @@
   "scriptureAnchorId": "hebrews_11_8-12",
   "bibleStoryKey": "hebrews_faith_of_abraham",
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
-  "themeTags": [
-    "faith_of_abraham",
-    "looking_for_city_with_foundations",
-    "sarah_received_power_to_conceive",
-    "stars_and_sand",
-    "strangers_and_pilgrims_in_tents"
-  ],
   "emotionalTags": [
     "encouraged",
     "trusting",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1441_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Abraham went out not knowing where, dwelt in tents, and looked for the city with foundations. The promise was kept in the line of one man who waited for what he could not yet see. What is it to set out from your country not knowing where, and to spend the rest of your life looking for a city no one in your line has yet seen?"
+  "reflectionText": "Abraham went out not knowing where, dwelt in tents, and looked for the city with foundations. The promise was kept in the line of one man who waited for what he could not yet see. What is it to set out from your country not knowing where, and to spend the rest of your life looking for a city no one in your line has yet seen?",
+  "sceneBeats": [
+    "faith_of_abraham",
+    "looking_for_city_with_foundations",
+    "sarah_received_power_to_conceive",
+    "stars_and_sand",
+    "strangers_and_pilgrims_in_tents"
+  ]
 }

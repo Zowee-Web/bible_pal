@@ -21,13 +21,6 @@
   "scriptureAnchorId": "2_kings_22_8-20",
   "bibleStoryKey": "josiah_finds_the_book_huldah_prophesies",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "hilkiah_found_the_book_in_the_temple",
-    "shaphan_read_it_before_josiah",
-    "the_king_rent_his_clothes",
-    "huldah_the_prophetess_in_jerusalem",
-    "eyes_shall_not_see_the_evil_because_heart_was_tender"
-  ],
   "emotionalTags": [
     "anxious",
     "solemn",
@@ -68,7 +61,14 @@
       "reflectionText": "reflection_1512_traditional_kjv.txt"
     }
   },
-  "reflectionQuestion": "The book was found in the house of the LORD where it had been lost. Shaphan read it before Josiah. The king rent his clothes when he heard the words. Huldah said his eyes would not see the evil because his heart had been tender. What is it to be the one who tears his clothes upon hearing what has been forgotten \u2014 and to be told you will not see what is coming because of it?",
-  "reflectionText": "The book was found in the house of the LORD where it had been lost. Shaphan read it before Josiah. The king rent his clothes when he heard the words. Huldah said his eyes should not see the evil because his heart had been tender. What is it to be the one that rendeth his clothes upon hearing what hath been forgotten \u2014 and to be told thine eyes shall not see what is coming because of it?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionQuestion": "The book was found in the house of the LORD where it had been lost. Shaphan read it before Josiah. The king rent his clothes when he heard the words. Huldah said his eyes would not see the evil because his heart had been tender. What is it to be the one who tears his clothes upon hearing what has been forgotten — and to be told you will not see what is coming because of it?",
+  "reflectionText": "The book was found in the house of the LORD where it had been lost. Shaphan read it before Josiah. The king rent his clothes when he heard the words. Huldah said his eyes should not see the evil because his heart had been tender. What is it to be the one that rendeth his clothes upon hearing what hath been forgotten — and to be told thine eyes shall not see what is coming because of it?",
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "eyes_shall_not_see_the_evil_because_heart_was_tender",
+    "hilkiah_found_the_book_in_the_temple",
+    "huldah_the_prophetess_in_jerusalem",
+    "shaphan_read_it_before_josiah",
+    "the_king_rent_his_clothes"
+  ]
 }

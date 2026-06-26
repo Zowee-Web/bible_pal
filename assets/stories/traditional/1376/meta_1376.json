@@ -20,13 +20,6 @@
   "scriptureAnchorId": "1_kings_8_54-61",
   "bibleStoryKey": "solomon_blesses_the_assembly",
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
-  "themeTags": [
-    "kingly_blessing_after_dedication",
-    "promise_kept_by_yahweh",
-    "blessing_the_assembly",
-    "covenant_remembrance",
-    "after_the_long_prayer"
-  ],
   "emotionalTags": [
     "grateful",
     "reverent",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1376_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Solomon stood up from his knees and said: there has not failed one word of all his good promise. What does it take to look back over a long history and find that every word once given has held still?"
+  "reflectionText": "Solomon stood up from his knees and said: there has not failed one word of all his good promise. What does it take to look back over a long history and find that every word once given has held still?",
+  "sceneBeats": [
+    "after_the_long_prayer",
+    "blessing_the_assembly",
+    "covenant_remembrance",
+    "kingly_blessing_after_dedication",
+    "promise_kept_by_yahweh"
+  ]
 }

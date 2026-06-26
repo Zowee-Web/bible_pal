@@ -20,13 +20,6 @@
   "scriptureAnchorId": "joshua_6_15-21",
   "bibleStoryKey": "walls_of_jericho_fall",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "seventh_day_seventh_circuit",
-    "rams_horns_long_blast",
-    "people_held_silent_until_shout",
-    "wall_fell_down_flat",
-    "rahabs_house_preserved"
-  ],
   "emotionalTags": [
     "joyful",
     "awed",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1455_traditional_kjv.txt"
     }
   },
-  "reflectionText": "On the seventh morning they walked the seventh circuit in silence, and at the long blast of the horns Joshua said: shout. The people shouted. The wall fell down flat. How does silence become joy when it has been kept six days and seven circuits, finally permitted to be sung?"
+  "reflectionText": "On the seventh morning they walked the seventh circuit in silence, and at the long blast of the horns Joshua said: shout. The people shouted. The wall fell down flat. How does silence become joy when it has been kept six days and seven circuits, finally permitted to be sung?",
+  "sceneBeats": [
+    "people_held_silent_until_shout",
+    "rahabs_house_preserved",
+    "rams_horns_long_blast",
+    "seventh_day_seventh_circuit",
+    "wall_fell_down_flat"
+  ]
 }

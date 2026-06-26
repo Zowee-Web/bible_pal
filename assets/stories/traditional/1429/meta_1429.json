@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_chronicles_34_1-7",
   "bibleStoryKey": "young_josiah_seeks_god",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "young_josiah_seeks_god",
-    "boy_king_at_eight_years_old",
-    "early_seeking_at_sixteen",
-    "purging_high_places_at_twenty",
-    "long_quiet_reformation"
-  ],
   "emotionalTags": [
     "calm",
     "resolute",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1429_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Josiah began seeking the Lord when he was sixteen. By the twelfth year of his reign he was tearing down the high places his grandfather had built. What does it take to begin seeking what your fathers neglected, while you are still too young to be expected to have begun?"
+  "reflectionText": "Josiah began seeking the Lord when he was sixteen. By the twelfth year of his reign he was tearing down the high places his grandfather had built. What does it take to begin seeking what your fathers neglected, while you are still too young to be expected to have begun?",
+  "sceneBeats": [
+    "boy_king_at_eight_years_old",
+    "early_seeking_at_sixteen",
+    "long_quiet_reformation",
+    "purging_high_places_at_twenty",
+    "young_josiah_seeks_god"
+  ]
 }

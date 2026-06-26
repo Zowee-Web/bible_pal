@@ -21,13 +21,6 @@
   "scriptureAnchorId": "psalm_4_1-8",
   "bibleStoryKey": "psalm_of_evening_rest_amid_dishonor",
   "storyVoiceKey": "VOICE_NOAH_PATIENT",
-  "themeTags": [
-    "evening_prayer_amid_dishonor",
-    "search_your_own_heart_on_your_bed",
-    "let_the_light_of_your_face_shine_on_us",
-    "gladness_more_than_grain_and_wine",
-    "i_will_lie_down_in_peace_and_sleep"
-  ],
   "emotionalTags": [
     "weary",
     "trusting",
@@ -70,5 +63,12 @@
   },
   "reflectionQuestion": "The lamp had gone low in his chamber. The men who had spoken against him kept speaking elsewhere in the city. What is it to lie down in your own house at the end of a day when the words against you are still being said, and to find that you can sleep in peace anyway?",
   "reflectionText": "The lamp had gone low in his chamber. They that had spoken against him kept speaking elsewhere in the city. What is it to lie down in thine own house at the end of a day when the words against thee are yet being spoken, and to find that thou canst sleep in peace nonetheless?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "evening_prayer_amid_dishonor",
+    "gladness_more_than_grain_and_wine",
+    "i_will_lie_down_in_peace_and_sleep",
+    "let_the_light_of_your_face_shine_on_us",
+    "search_your_own_heart_on_your_bed"
+  ]
 }

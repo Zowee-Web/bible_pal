@@ -20,13 +20,6 @@
   "scriptureAnchorId": "mark_5_18-20",
   "bibleStoryKey": "decapolis_proclamation_restored_man",
   "storyVoiceKey": "VOICE_NOAH_PATIENT",
-  "themeTags": [
-    "proclaim_what_was_done",
-    "restored_man_sent_home",
-    "mercy_recounted_in_decapolis",
-    "ten_cities_marveling",
-    "after_the_legion_was_cast_out"
-  ],
   "emotionalTags": [
     "joyful",
     "marveling",
@@ -58,5 +51,12 @@
       "reflectionText": "reflection_1375_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The man who had been restored asked to come with Jesus, and was told instead to go home and tell what had been done for him. Have you ever been sent back to the very people who had known you in your sickness, with nothing to bring but your healing?"
+  "reflectionText": "The man who had been restored asked to come with Jesus, and was told instead to go home and tell what had been done for him. Have you ever been sent back to the very people who had known you in your sickness, with nothing to bring but your healing?",
+  "sceneBeats": [
+    "after_the_legion_was_cast_out",
+    "mercy_recounted_in_decapolis",
+    "proclaim_what_was_done",
+    "restored_man_sent_home",
+    "ten_cities_marveling"
+  ]
 }

@@ -21,11 +21,7 @@
   "bibleStoryKey": "israel_groans_in_bondage",
   "storyVoiceKey": "VOICE_RUTH_COMFORT",
   "themeTags": [
-    "bondage",
-    "covenant_memory",
-    "cry",
-    "remembrance",
-    "long_waiting"
+    "remembrance"
   ],
   "emotionalTags": [
     "hurting",
@@ -60,5 +56,11 @@
       "reflectionText": "reflection_1303_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Four hundred years had passed in Egypt. The king who did not know Joseph had set taskmasters over them, and the cry of Israel rose up. God heard their groaning, and God remembered his covenant with Abraham, with Isaac, and with Jacob. God saw, and God was concerned. What is it to be the people whose cry has been heard while the bricks are still being made, before the answer has yet come down to the fields?"
+  "reflectionText": "Four hundred years had passed in Egypt. The king who did not know Joseph had set taskmasters over them, and the cry of Israel rose up. God heard their groaning, and God remembered his covenant with Abraham, with Isaac, and with Jacob. God saw, and God was concerned. What is it to be the people whose cry has been heard while the bricks are still being made, before the answer has yet come down to the fields?",
+  "sceneBeats": [
+    "bondage",
+    "covenant_memory",
+    "cry",
+    "long_waiting"
+  ]
 }

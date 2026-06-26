@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_chronicles_29_25-30",
   "bibleStoryKey": "hezekiah_restores_temple_worship",
   "storyVoiceKey": "VOICE_NOAH_PATIENT",
-  "themeTags": [
-    "temple_worship_restored",
-    "instruments_waking_after_silence",
-    "smoke_and_song_together",
-    "song_of_david_sung_again",
-    "after_sixteen_years_shut"
-  ],
   "emotionalTags": [
     "joyful",
     "exultant",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1421_traditional_kjv.txt"
     }
   },
-  "reflectionText": "For sixteen years the temple doors had been shut and the songs of David had not been sung. Hezekiah opened the doors, and the singers stood in their stations, and the song was sung again. What is it to hear the songs you grew up not hearing finally rise again in the room they were meant to fill?"
+  "reflectionText": "For sixteen years the temple doors had been shut and the songs of David had not been sung. Hezekiah opened the doors, and the singers stood in their stations, and the song was sung again. What is it to hear the songs you grew up not hearing finally rise again in the room they were meant to fill?",
+  "sceneBeats": [
+    "after_sixteen_years_shut",
+    "instruments_waking_after_silence",
+    "smoke_and_song_together",
+    "song_of_david_sung_again",
+    "temple_worship_restored"
+  ]
 }

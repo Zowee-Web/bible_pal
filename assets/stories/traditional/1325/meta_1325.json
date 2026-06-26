@@ -21,7 +21,6 @@
   "bibleStoryKey": "few_and_evil_my_years",
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
   "themeTags": [
-    "old_age",
     "pilgrimage",
     "blessing",
     "remembrance",
@@ -60,5 +59,8 @@
       "reflectionText": "reflection_1325_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Few and evil have been the days of the years of my life. What is it to stand before a king in your last years, and to call your long life a pilgrimage that has been shorter than the path of the fathers who came home?"
+  "reflectionText": "Few and evil have been the days of the years of my life. What is it to stand before a king in your last years, and to call your long life a pilgrimage that has been shorter than the path of the fathers who came home?",
+  "sceneBeats": [
+    "old_age"
+  ]
 }

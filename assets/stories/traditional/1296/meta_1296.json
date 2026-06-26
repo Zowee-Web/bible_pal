@@ -21,10 +21,7 @@
   "bibleStoryKey": "consider_your_ways",
   "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
   "themeTags": [
-    "priority",
-    "exhortation",
-    "neglected_temple",
-    "consider_ways"
+    "exhortation"
   ],
   "emotionalTags": [
     "weary",
@@ -61,5 +58,10 @@
   },
   "reflectionText": "Haggai said: consider your ways. You have sown much and bring in little. You earn wages to put them into a bag with holes. The house of the Lord lies waste while each of you is busy with your own house. What is it to be told the leaking in your own bag is bound to the work you have walked away from on the holy hill?",
   "renderedAt": "2026-06-26T00:38:04Z",
-  "generatorVersion": "generate_opus_audio.sh"
+  "generatorVersion": "generate_opus_audio.sh",
+  "sceneBeats": [
+    "consider_ways",
+    "neglected_temple",
+    "priority"
+  ]
 }

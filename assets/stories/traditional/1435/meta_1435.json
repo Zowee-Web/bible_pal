@@ -20,13 +20,6 @@
   "scriptureAnchorId": "isaiah_32_17-18",
   "bibleStoryKey": "quiet_resting_places",
   "storyVoiceKey": "VOICE_ELIJAH_SAGE",
-  "themeTags": [
-    "quiet_resting_places",
-    "work_of_righteousness_is_peace",
-    "peaceful_habitation_safe_dwellings",
-    "after_the_spirit_poured_out_oracle",
-    "isaiah_picture_of_coming_kingdom"
-  ],
   "emotionalTags": [
     "calm",
     "settled",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1435_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Isaiah set down a few short lines about the work of righteousness as peace, the dwellings as safe, the resting places as quiet. What is the shape of a quiet that has been worked for rather than wished for — peace as the effect of righteousness, not as the empty room?"
+  "reflectionText": "Isaiah set down a few short lines about the work of righteousness as peace, the dwellings as safe, the resting places as quiet. What is the shape of a quiet that has been worked for rather than wished for — peace as the effect of righteousness, not as the empty room?",
+  "sceneBeats": [
+    "after_the_spirit_poured_out_oracle",
+    "isaiah_picture_of_coming_kingdom",
+    "peaceful_habitation_safe_dwellings",
+    "quiet_resting_places",
+    "work_of_righteousness_is_peace"
+  ]
 }

@@ -20,13 +20,6 @@
   "scriptureAnchorId": "luke_1_39-45",
   "bibleStoryKey": "visitation_at_zacharias_house",
   "storyVoiceKey": "VOICE_RUTH_COMFORT",
-  "themeTags": [
-    "visitation_leaping_in_womb",
-    "mary_journeys_to_elizabeth",
-    "blessed_among_women",
-    "fulfillment_of_things_spoken",
-    "two_mothers_of_the_promise"
-  ],
   "emotionalTags": [
     "grateful",
     "tender",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1408_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Mary came into the house of Zacharias, and at the sound of her voice the baby in Elizabeth's womb leaped, and Elizabeth was filled with the Spirit. How does news arrive when it is heard first by an unborn child still inside the womb?"
+  "reflectionText": "Mary came into the house of Zacharias, and at the sound of her voice the baby in Elizabeth's womb leaped, and Elizabeth was filled with the Spirit. How does news arrive when it is heard first by an unborn child still inside the womb?",
+  "sceneBeats": [
+    "blessed_among_women",
+    "fulfillment_of_things_spoken",
+    "mary_journeys_to_elizabeth",
+    "two_mothers_of_the_promise",
+    "visitation_leaping_in_womb"
+  ]
 }

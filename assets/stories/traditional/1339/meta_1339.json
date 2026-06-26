@@ -23,9 +23,7 @@
   "themeTags": [
     "waiting",
     "loss",
-    "judgment",
-    "end_of_an_era",
-    "ark_captured"
+    "judgment"
   ],
   "emotionalTags": [
     "anxious",
@@ -60,5 +58,9 @@
       "reflectionText": "reflection_1339_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The seat by the side of the gate stood empty. The crying continued through the streets of Shiloh. What is it for forty years of judging Israel to come to their end in a single sentence — and for the seat where you sat to be empty before the day is done?"
+  "reflectionText": "The seat by the side of the gate stood empty. The crying continued through the streets of Shiloh. What is it for forty years of judging Israel to come to their end in a single sentence — and for the seat where you sat to be empty before the day is done?",
+  "sceneBeats": [
+    "ark_captured",
+    "end_of_an_era"
+  ]
 }

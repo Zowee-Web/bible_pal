@@ -20,13 +20,6 @@
   "scriptureAnchorId": "acts_16_13-15",
   "bibleStoryKey": "lydia_conversion_at_philippi",
   "storyVoiceKey": "VOICE_CHARLOTTE_V3",
-  "themeTags": [
-    "heart_opened_at_riverside",
-    "seller_of_purple_from_thyatira",
-    "household_baptized",
-    "hospitality_offered_to_the_company",
-    "first_european_convert"
-  ],
   "emotionalTags": [
     "grateful",
     "opened",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1413_traditional_kjv.txt"
     }
   },
-  "reflectionText": "At the riverside outside Philippi, a seller of purple from Thyatira sat among the women of prayer. The Lord opened her heart. What is the moment when the door inside someone has been opened, before anyone watching has yet seen the hinge swing?"
+  "reflectionText": "At the riverside outside Philippi, a seller of purple from Thyatira sat among the women of prayer. The Lord opened her heart. What is the moment when the door inside someone has been opened, before anyone watching has yet seen the hinge swing?",
+  "sceneBeats": [
+    "first_european_convert",
+    "heart_opened_at_riverside",
+    "hospitality_offered_to_the_company",
+    "household_baptized",
+    "seller_of_purple_from_thyatira"
+  ]
 }

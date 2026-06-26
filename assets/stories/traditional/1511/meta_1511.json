@@ -22,13 +22,6 @@
   "scriptureAnchorId": "2_kings_19_14-37",
   "bibleStoryKey": "hezekiah_spreads_the_letter_angel_smites_assyrians",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "themeTags": [
-    "letter_spread_before_the_lord_on_temple_floor",
-    "hezekiahs_prayer_for_kingdoms_to_know",
-    "isaiah_he_shall_not_come_into_this_city",
-    "angel_smote_in_camp_by_night",
-    "morning_found_them_dead"
-  ],
   "emotionalTags": [
     "anxious",
     "earnest",
@@ -77,5 +70,12 @@
   },
   "reflectionQuestion": "Hezekiah spread the letter on the floor of the temple before the LORD. He asked to be heard. That night the angel went out into the Assyrian camp. The morning came and the bodies were there. What is it to spread a letter before the LORD on a stone floor at noon, and to be answered before the next dawn?",
   "reflectionText": "Hezekiah spread the letter upon the floor of the temple before the LORD. He asked to be heard. That night the angel went forth into the camp of the Assyrians. The morning came and the bodies were there. What is it to spread a letter before the LORD upon a stone floor at noon, and to be answered or ever the next dawn?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "angel_smote_in_camp_by_night",
+    "hezekiahs_prayer_for_kingdoms_to_know",
+    "isaiah_he_shall_not_come_into_this_city",
+    "letter_spread_before_the_lord_on_temple_floor",
+    "morning_found_them_dead"
+  ]
 }

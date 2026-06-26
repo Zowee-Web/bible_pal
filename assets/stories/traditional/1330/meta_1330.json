@@ -21,9 +21,6 @@
   "bibleStoryKey": "i_will_extol_you_my_god_and_king",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
   "themeTags": [
-    "daily_praise",
-    "generational_witness",
-    "kingship_of_god",
     "meditation",
     "thanksgiving"
   ],
@@ -60,5 +57,10 @@
       "reflectionText": "reflection_1330_traditional_kjv.txt"
     }
   },
-  "reflectionText": "One generation will commend your works to another, and will declare your mighty acts. What is it to set down the last psalm of your life with a hand that no longer holds the harp, and to know that the song will be carried into the mouths of children not yet born?"
+  "reflectionText": "One generation will commend your works to another, and will declare your mighty acts. What is it to set down the last psalm of your life with a hand that no longer holds the harp, and to know that the song will be carried into the mouths of children not yet born?",
+  "sceneBeats": [
+    "daily_praise",
+    "generational_witness",
+    "kingship_of_god"
+  ]
 }

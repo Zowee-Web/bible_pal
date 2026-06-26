@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_corinthians_12_7-10",
   "bibleStoryKey": "pauls_thorn_and_sufficient_grace",
   "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
-  "themeTags": [
-    "chronic_physical_suffering",
-    "unanswered_prayer",
-    "sufficient_grace",
-    "strength_in_weakness",
-    "apostolic_humility"
-  ],
   "emotionalTags": [
     "hurting",
     "humbled",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1362_traditional_kjv.txt"
     }
   },
-  "reflectionText": "I begged the Lord three times that it might depart from me. He has said to me, my grace is sufficient for you. What is it to ask three times for a thing to be taken away, and to be answered with a grace that does not lift it — but that goes with you into every place the thing has gone?"
+  "reflectionText": "I begged the Lord three times that it might depart from me. He has said to me, my grace is sufficient for you. What is it to ask three times for a thing to be taken away, and to be answered with a grace that does not lift it — but that goes with you into every place the thing has gone?",
+  "sceneBeats": [
+    "apostolic_humility",
+    "chronic_physical_suffering",
+    "strength_in_weakness",
+    "sufficient_grace",
+    "unanswered_prayer"
+  ]
 }

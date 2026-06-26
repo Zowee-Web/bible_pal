@@ -20,13 +20,6 @@
   "scriptureAnchorId": "mark_7_31-37",
   "bibleStoryKey": "deaf_mute_healed_in_decapolis",
   "storyVoiceKey": "VOICE_RUTH_COMFORT",
-  "themeTags": [
-    "ephphatha_be_opened",
-    "fingers_in_ears_then_sigh",
-    "taken_aside_privately",
-    "astonished_beyond_measure",
-    "deaf_hear_and_mute_speak"
-  ],
   "emotionalTags": [
     "joyful",
     "astonished",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1423_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Jesus took the man aside, put his fingers into his ears, sighed, and said: be opened. What is it to be the one whose ears and tongue are unstopped by a single word, while the crowd that brought you stands watching at the edge of the small clearing?"
+  "reflectionText": "Jesus took the man aside, put his fingers into his ears, sighed, and said: be opened. What is it to be the one whose ears and tongue are unstopped by a single word, while the crowd that brought you stands watching at the edge of the small clearing?",
+  "sceneBeats": [
+    "astonished_beyond_measure",
+    "deaf_hear_and_mute_speak",
+    "ephphatha_be_opened",
+    "fingers_in_ears_then_sigh",
+    "taken_aside_privately"
+  ]
 }

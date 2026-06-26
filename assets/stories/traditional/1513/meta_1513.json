@@ -22,13 +22,6 @@
   "scriptureAnchorId": "1_samuel_25_14-42",
   "bibleStoryKey": "abigail_intercepts_david_with_bread_and_wine",
   "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
-  "themeTags": [
-    "nabal_railed_on_davids_young_men",
-    "abigail_loaded_donkeys_with_loaves_wine_sheep",
-    "bowed_herself_to_the_ground_at_davids_feet",
-    "kept_my_lord_from_shedding_blood",
-    "bound_in_the_bundle_of_life_with_the_lord"
-  ],
   "emotionalTags": [
     "brave",
     "resolute",
@@ -77,5 +70,12 @@
   },
   "reflectionQuestion": "The servant told her in haste. She made the bread and the wine ready. She set out on the donkey. She met David coming down on the road. She bowed to the ground at his feet and spoke for the whole household. What is it to come out on a road by yourself, with bread and wine on donkeys, to stand between four hundred men and the house you have been keeping?",
   "reflectionText": "The servant told her in haste. She made the bread and the wine ready. She set out upon the ass. She met David coming down on the road. She bowed to the ground at his feet and spake for the whole household. What is it to come forth on a road by thyself, with bread and wine upon asses, to stand between four hundred men and the house thou hast been keeping?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "abigail_loaded_donkeys_with_loaves_wine_sheep",
+    "bound_in_the_bundle_of_life_with_the_lord",
+    "bowed_herself_to_the_ground_at_davids_feet",
+    "kept_my_lord_from_shedding_blood",
+    "nabal_railed_on_davids_young_men"
+  ]
 }

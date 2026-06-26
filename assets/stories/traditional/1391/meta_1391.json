@@ -20,13 +20,6 @@
   "scriptureAnchorId": "zechariah_1_7-17",
   "bibleStoryKey": "zechariahs_vision_of_horsemen",
   "storyVoiceKey": "VOICE_ELIJAH_SAGE",
-  "themeTags": [
-    "how_long_o_yahweh",
-    "horsemen_among_myrtle_trees",
-    "seventy_years_of_indignation",
-    "mercy_returns_to_jerusalem",
-    "night_vision_in_shebat"
-  ],
   "emotionalTags": [
     "weary",
     "waiting",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1391_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The angel among the myrtle trees lifted up the question that had been waiting in the land for seventy years: how long? The answer that came back was mercy. What is it to have your oldest question answered with words you had stopped asking?"
+  "reflectionText": "The angel among the myrtle trees lifted up the question that had been waiting in the land for seventy years: how long? The answer that came back was mercy. What is it to have your oldest question answered with words you had stopped asking?",
+  "sceneBeats": [
+    "horsemen_among_myrtle_trees",
+    "how_long_o_yahweh",
+    "mercy_returns_to_jerusalem",
+    "night_vision_in_shebat",
+    "seventy_years_of_indignation"
+  ]
 }

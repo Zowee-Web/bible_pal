@@ -22,13 +22,6 @@
   "scriptureAnchorId": "1_samuel_12_1-25",
   "bibleStoryKey": "samuel_farewell_address",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "leadership_transition",
-    "witness_of_a_clean_record",
-    "rehearsal_of_god_acts",
-    "warning_with_hope",
-    "intercessory_commitment"
-  ],
   "emotionalTags": [
     "solemn",
     "settled",
@@ -77,5 +70,12 @@
   },
   "reflectionQuestion": "Samuel called the people to witness against him. They said he had taken nothing. Then he asked the LORD for thunder and rain in the wheat harvest, and it came down on them all. He told them he would not stop praying for them. What is it to be prayed for by the man you have just replaced, while the rain you asked of him is still falling?",
   "reflectionText": "Samuel called the people to witness against him. They said he had taken nothing. Then he called unto the LORD for thunder and rain in the wheat harvest, and it came down on them all. He told them he would not cease to pray for them. What is it to be prayed for by the man ye have just replaced, while the rain ye asked of him is yet falling?",
-  "reflectionSource": "claude-opus-4-7"
+  "reflectionSource": "claude-opus-4-7",
+  "sceneBeats": [
+    "intercessory_commitment",
+    "leadership_transition",
+    "rehearsal_of_god_acts",
+    "warning_with_hope",
+    "witness_of_a_clean_record"
+  ]
 }

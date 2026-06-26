@@ -20,13 +20,6 @@
   "scriptureAnchorId": "ezekiel_24_15-18",
   "bibleStoryKey": "ezekiels_wife_dies_as_a_sign",
   "storyVoiceKey": "VOICE_ELIJAH_SAGE",
-  "themeTags": [
-    "silent_suffering",
-    "sign_act",
-    "prophet_obedience_in_grief",
-    "exile_pain",
-    "deferred_mourning"
-  ],
   "emotionalTags": [
     "hurting",
     "stricken",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1361_traditional_kjv.txt"
     }
   },
-  "reflectionText": "At evening my wife died. So I did in the morning as I was commanded. What is it to bury your grief beneath your headdress and to walk out among your people as a sign of what they will lose when the city they love is taken?"
+  "reflectionText": "At evening my wife died. So I did in the morning as I was commanded. What is it to bury your grief beneath your headdress and to walk out among your people as a sign of what they will lose when the city they love is taken?",
+  "sceneBeats": [
+    "deferred_mourning",
+    "exile_pain",
+    "prophet_obedience_in_grief",
+    "sign_act",
+    "silent_suffering"
+  ]
 }

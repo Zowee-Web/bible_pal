@@ -20,13 +20,6 @@
   "scriptureAnchorId": "2_chronicles_5_11-14",
   "bibleStoryKey": "glory_fills_solomons_temple",
   "storyVoiceKey": "VOICE_BRADFORD",
-  "themeTags": [
-    "divine_glory_response",
-    "trumpeters_and_singers_as_one",
-    "temple_dedication",
-    "cloud_fills_the_house",
-    "for_he_is_good"
-  ],
   "emotionalTags": [
     "joyful",
     "awed",
@@ -58,5 +51,12 @@
       "reflectionText": "reflection_1369_traditional_kjv.txt"
     }
   },
-  "reflectionText": "The cloud came in without coming through any door. The priests stepped back through it because they could not minister. Have you ever been inside a glory so near that the work itself had to be set down?"
+  "reflectionText": "The cloud came in without coming through any door. The priests stepped back through it because they could not minister. Have you ever been inside a glory so near that the work itself had to be set down?",
+  "sceneBeats": [
+    "cloud_fills_the_house",
+    "divine_glory_response",
+    "for_he_is_good",
+    "temple_dedication",
+    "trumpeters_and_singers_as_one"
+  ]
 }

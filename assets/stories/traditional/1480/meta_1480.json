@@ -20,13 +20,6 @@
   "scriptureAnchorId": "exodus_17_8-13",
   "bibleStoryKey": "moses_hands_held_up_by_aaron_hur",
   "storyVoiceKey": "VOICE_JAMES_HUSKY",
-  "themeTags": [
-    "amalek_fought_with_israel_in_rephidim",
-    "rod_of_god_in_moses_hand",
-    "moses_held_up_his_hand_israel_prevailed",
-    "aaron_and_hur_held_up_moses_hands",
-    "joshua_defeated_amalek"
-  ],
   "emotionalTags": [
     "brave",
     "resolute",
@@ -60,5 +53,12 @@
       "reflectionText": "reflection_1480_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Moses' hands grew heavy on the hill. Aaron and Hur put a stone under him and stood on either side, holding up his hands. They were steady until the going down of the sun. What is it to have the arm you can no longer keep up held up for you by the two men standing on either side of you, until the going down of the sun?"
+  "reflectionText": "Moses' hands grew heavy on the hill. Aaron and Hur put a stone under him and stood on either side, holding up his hands. They were steady until the going down of the sun. What is it to have the arm you can no longer keep up held up for you by the two men standing on either side of you, until the going down of the sun?",
+  "sceneBeats": [
+    "aaron_and_hur_held_up_moses_hands",
+    "amalek_fought_with_israel_in_rephidim",
+    "joshua_defeated_amalek",
+    "moses_held_up_his_hand_israel_prevailed",
+    "rod_of_god_in_moses_hand"
+  ]
 }

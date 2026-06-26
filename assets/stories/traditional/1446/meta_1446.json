@@ -22,13 +22,6 @@
   "scriptureAnchorId": "joshua_2_1-21",
   "bibleStoryKey": "rahab_scarlet_cord",
   "storyVoiceKey": "VOICE_CHARLOTTE_V3",
-  "themeTags": [
-    "rahab_hides_spies",
-    "scarlet_cord_at_window",
-    "flax_on_the_roof",
-    "king_of_jerichos_captain",
-    "yahweh_has_given_the_land"
-  ],
   "emotionalTags": [
     "anxious",
     "watchful",
@@ -74,5 +67,12 @@
       "reflectionText": "reflection_1446_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Rahab spoke a lie at the door, then sent the men down by a cord through the window, and tied a scarlet thread to the frame. What does it look like to live in the wall of a doomed city with a cord hanging outside to mark your house for saving?"
+  "reflectionText": "Rahab spoke a lie at the door, then sent the men down by a cord through the window, and tied a scarlet thread to the frame. What does it look like to live in the wall of a doomed city with a cord hanging outside to mark your house for saving?",
+  "sceneBeats": [
+    "flax_on_the_roof",
+    "king_of_jerichos_captain",
+    "rahab_hides_spies",
+    "scarlet_cord_at_window",
+    "yahweh_has_given_the_land"
+  ]
 }
