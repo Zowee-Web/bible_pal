@@ -17,7 +17,7 @@
   "title": "Fishers of Men",
   "scriptureAnchor": "Matthew 4:18-25",
   "bibleStoryKey": "calling_first_disciples",
-  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
   "themeTags": [
     "hope",
     "promise",
@@ -39,9 +39,9 @@
   "timelineEra": "jesus_ministry",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.85,
-    "similarity_boost": 0.85,
-    "style": 0.15,
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
     "use_speaker_boost": true
   },
   "files": {
@@ -58,5 +58,7 @@
       "reflectionText": "reflection_1175_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Jesus walked by the sea and said: come after me, and I will make you fishers of men. The four left their nets, their boat, their father, and walked away along the shore. What is it to leave the trade you knew at the sound of one voice calling from a single morning?"
+  "reflectionText": "Jesus walked by the sea and said: come after me, and I will make you fishers of men. The four left their nets, their boat, their father, and walked away along the shore. What is it to leave the trade you knew at the sound of one voice calling from a single morning?",
+  "renderedAt": "2026-06-26T00:35:38Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

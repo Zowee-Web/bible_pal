@@ -19,7 +19,7 @@
   "scriptureAnchor": "Galatians 6:7-10",
   "scriptureAnchorId": "galatians_6_7-10",
   "bibleStoryKey": "let_us_not_be_weary_in_well_doing",
-  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
   "themeTags": [
     "perseverance",
     "doing_good",
@@ -41,9 +41,9 @@
   "timelineEra": "early_church",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.85,
-    "similarity_boost": 0.85,
-    "style": 0.15,
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
     "use_speaker_boost": true
   },
   "files": {
@@ -60,5 +60,7 @@
       "reflectionText": "reflection_1318_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Let us not be weary in doing good, for we will reap in due season. What is it to keep sowing into ground that has not yet given back — to keep doing the good thing on the day the harvest has not yet come?"
+  "reflectionText": "Let us not be weary in doing good, for we will reap in due season. What is it to keep sowing into ground that has not yet given back \u2014 to keep doing the good thing on the day the harvest has not yet come?",
+  "renderedAt": "2026-06-26T00:39:29Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

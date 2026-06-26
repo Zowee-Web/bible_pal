@@ -19,7 +19,7 @@
   "title": "David Danced Before the Lord",
   "scriptureAnchor": "2 Samuel 6:1-19",
   "bibleStoryKey": "david_brings_the_ark",
-  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
   "themeTags": [
     "celebration",
     "praise",
@@ -38,9 +38,9 @@
   "timelineEra": "kingdom",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.85,
-    "similarity_boost": 0.85,
-    "style": 0.15,
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
     "use_speaker_boost": true
   },
   "files": {
@@ -69,5 +69,7 @@
       "reflectionText": "reflection_1221_traditional_kjv.txt"
     }
   },
-  "reflectionText": "David danced before the Lord with all his might in a linen ephod as the ark came up. He sacrificed at every six paces. He blessed the people with cakes and meat and raisins. Have you ever danced with no regard for what the windows of the palace might see, in the linen ephod the king has put on?"
+  "reflectionText": "David danced before the Lord with all his might in a linen ephod as the ark came up. He sacrificed at every six paces. He blessed the people with cakes and meat and raisins. Have you ever danced with no regard for what the windows of the palace might see, in the linen ephod the king has put on?",
+  "renderedAt": "2026-06-26T00:37:07Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

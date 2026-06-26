@@ -19,7 +19,7 @@
   "scriptureAnchor": "2 Corinthians 9:6-15",
   "scriptureAnchorId": "2_corinthians_9_6-15",
   "bibleStoryKey": "thanks_be_to_god_for_his_unspeakable_gift",
-  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
   "themeTags": [
     "generosity",
     "thanksgiving",
@@ -41,9 +41,9 @@
   "timelineEra": "early_church",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.85,
-    "similarity_boost": 0.85,
-    "style": 0.15,
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
     "use_speaker_boost": true
   },
   "files": {
@@ -60,5 +60,7 @@
       "reflectionText": "reflection_1332_traditional_kjv.txt"
     }
   },
-  "reflectionText": "God loves a cheerful giver. What is it to scatter your own seed with a glad hand, and to find that the One who gave you the seed is the One who fills the empty barn?"
+  "reflectionText": "God loves a cheerful giver. What is it to scatter your own seed with a glad hand, and to find that the One who gave you the seed is the One who fills the empty barn?",
+  "renderedAt": "2026-06-26T00:39:43Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

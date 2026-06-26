@@ -18,7 +18,7 @@
   "scriptureAnchor": "Joshua 23:1-16",
   "scriptureAnchorId": "joshua_23_1_16",
   "bibleStoryKey": "joshua_farewell_charge",
-  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
   "themeTags": [
     "perseverance",
     "obedience",
@@ -37,13 +37,12 @@
   "primaryCharacterDisplayName": "Joshua",
   "bibleOrderIndex": 130,
   "timelineEra": "conquest",
-  "ttsModel": "eleven_v3",
+  "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.85,
-    "similarity_boost": 0.85,
-    "style": 0.15,
-    "use_speaker_boost": true,
-    "speed": 0.95
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
   },
   "files": {
     "short": {
@@ -53,5 +52,7 @@
       "storyText": "story_1270_traditional_kjv_short.txt"
     }
   },
-  "reflectionText": "Joshua said to all Israel in his old age: hold fast to the Lord your God, as you have done to this day. One man of you shall chase a thousand; for it is the Lord your God who fights for you. What does it take to hear an old leader say 'hold fast,' and to keep holding fast after he is no longer there at all?"
+  "reflectionText": "Joshua said to all Israel in his old age: hold fast to the Lord your God, as you have done to this day. One man of you shall chase a thousand; for it is the Lord your God who fights for you. What does it take to hear an old leader say 'hold fast,' and to keep holding fast after he is no longer there at all?",
+  "renderedAt": "2026-06-26T00:37:43Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

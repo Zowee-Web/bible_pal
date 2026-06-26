@@ -19,7 +19,7 @@
   "scriptureAnchor": "Nehemiah 4:7-15",
   "scriptureAnchorId": "nehemiah_4_7-15",
   "bibleStoryKey": "fight_for_your_brothers",
-  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "storyVoiceKey": "VOICE_ARCHER",
   "themeTags": [
     "rebuilding",
     "courage",
@@ -41,9 +41,9 @@
   "timelineEra": "return",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.85,
-    "similarity_boost": 0.85,
-    "style": 0.15,
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
     "use_speaker_boost": true
   },
   "files": {
@@ -60,5 +60,7 @@
       "reflectionText": "reflection_1301_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Nehemiah set guards by family groups along the lowest parts of the wall. He said: do not be afraid. Remember the Lord, who is great and awesome, and fight for your brothers, your sons, your daughters, your wives, and your houses. What is it to be told to remember the Lord and pick up the trowel again, after the news has come that the enemy is on its way?"
+  "reflectionText": "Nehemiah set guards by family groups along the lowest parts of the wall. He said: do not be afraid. Remember the Lord, who is great and awesome, and fight for your brothers, your sons, your daughters, your wives, and your houses. What is it to be told to remember the Lord and pick up the trowel again, after the news has come that the enemy is on its way?",
+  "renderedAt": "2026-06-26T00:43:33Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

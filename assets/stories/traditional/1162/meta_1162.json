@@ -19,7 +19,7 @@
   "title": "Three Thousand Souls",
   "scriptureAnchor": "Acts 2:14-41",
   "bibleStoryKey": "peters_pentecost_sermon",
-  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "storyVoiceKey": "VOICE_BRADFORD",
   "themeTags": [
     "courage",
     "obedience",
@@ -41,9 +41,9 @@
   "timelineEra": "early_church",
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.85,
-    "similarity_boost": 0.85,
-    "style": 0.15,
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
     "use_speaker_boost": true
   },
   "files": {
@@ -72,5 +72,7 @@
       "reflectionText": "reflection_1162_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Peter stood up with the eleven and lifted up his voice: this is what was spoken through the prophet Joel. Three thousand souls were baptized that day. What is the courage of standing up in front of the crowd that was just laughing, and being heard by them before the sun is yet noon?"
+  "reflectionText": "Peter stood up with the eleven and lifted up his voice: this is what was spoken through the prophet Joel. Three thousand souls were baptized that day. What is the courage of standing up in front of the crowd that was just laughing, and being heard by them before the sun is yet noon?",
+  "renderedAt": "2026-06-26T00:35:21Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }
