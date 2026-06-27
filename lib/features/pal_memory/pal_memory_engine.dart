@@ -75,7 +75,9 @@ class PalMemoryEngine {
     final variant = variants[_stableHash(source) % variants.length];
 
     return PalMemoryLine(
-      template: variant,
+      template: variant.fullTemplate,
+      carrierClipId: variant.carrierClipId,
+      carrierText: variant.carrierText,
       band: band,
       sourceStoryId: source.storyId,
       sourceBibleStoryKey: source.bibleStoryKey,

@@ -1,0 +1,37 @@
+{
+  "$schema": "pal_memory_display_name_registry_schema_v1",
+  "version": 1,
+  "description": "Editorial registry of spoken memory names per Bible story (PAL Memory Doctrine, Slice 2c.1). Each entry pairs a bibleStoryKey with the exact phrase PAL should speak when referring to that story in a memory line — e.g. 'Yesterday you sat with {displayName}.' OPT-IN: stories without an entry will not produce a memory line; the engine's silence floor catches them. NEVER inferred from story titles; every choice is editorial. Adam authors. The clipId is the audio-layer identifier (eventually maps to one MP3 per PAL voice); decoupled from displayName so a future re-wording can reuse the existing render. See docs/PAL_MEMORY_DOCTRINE.md.",
+  "entries": [
+    {
+      "bibleStoryKey": "daniel_in_the_lions_den",
+      "displayName": "Daniel",
+      "clipId": "name_daniel",
+      "notes": "Just the character. The lions' den is implicit in the listening context."
+    },
+    {
+      "bibleStoryKey": "good_samaritan",
+      "displayName": "the Good Samaritan",
+      "clipId": "name_the_good_samaritan",
+      "notes": "Definite article — it's a person we describe, not a personal name."
+    },
+    {
+      "bibleStoryKey": "prodigal_son",
+      "displayName": "the lost son",
+      "clipId": "name_the_lost_son",
+      "notes": "'Lost son' lands warmer than 'prodigal'; the parable reads from the father's grief, not the son's reputation."
+    },
+    {
+      "bibleStoryKey": "jonah_in_fish",
+      "displayName": "Jonah",
+      "clipId": "name_jonah",
+      "notes": "The fish moment is the gravity well of the whole arc; just the name carries it."
+    },
+    {
+      "bibleStoryKey": "david_and_goliath",
+      "displayName": "David and Goliath",
+      "clipId": "name_david_and_goliath",
+      "notes": "Both names — the contest is the story; neither character makes sense alone."
+    }
+  ]
+}
