@@ -4355,6 +4355,30 @@
       "moodTags": [
         "joyful"
       ]
+    },
+    {
+      "scriptureAnchorId": "romans_8_28",
+      "bibleStoryKey": "all_things_work_together",
+      "bibleSourceRef": "Romans 8:28",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "psalm_127_1-2",
+      "bibleStoryKey": "unless_the_lord_builds",
+      "bibleSourceRef": "Psalm 127:1-2",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "psalm_19_1-6",
+      "bibleStoryKey": "heavens_declare_gods_glory",
+      "bibleSourceRef": "Psalm 19:1-6",
+      "moodTags": [
+        "calm_peaceful"
+      ]
     }
   ]
 }
