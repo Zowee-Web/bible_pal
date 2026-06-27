@@ -679,6 +679,8 @@ flutter:
     - assets/pal/audio/VOICE_SHEPHERD/
     - assets/pal/audio/VOICE_HOPE/
     - assets/pal/audio/VOICE_STILLWATER/
+    # PAL Memory (Slice 2c.1) — editorial display-name registry
+    - assets/pal/memory/display_name_registry.json
 
 # App icon configuration
 flutter_launcher_icons:
