@@ -42,13 +42,24 @@ void main() {
       return;
     }
 
-    // Find voice directories with a memory/ subdirectory. A voice
-    // without one hasn't started rendering memory audio yet — that's
-    // an expected pre-launch state, not a failure.
+    // Find voice directories that are *actively rendering* memory audio
+    // — i.e. their memory/ subdirectory contains at least one .mp3. A
+    // dir with only a marker file (.gitkeep) is "declared in pubspec
+    // ready for the next render" — same logical state as the dir not
+    // existing — and must not be treated as a partial render.
+    bool hasRenderedClips(Directory voiceDir) {
+      final memoryDir = Directory('${voiceDir.path}/memory');
+      if (!memoryDir.existsSync()) return false;
+      return memoryDir
+          .listSync()
+          .whereType<File>()
+          .any((f) => f.path.endsWith('.mp3'));
+    }
+
     final voicesWithMemory = palAudioRoot
         .listSync()
         .whereType<Directory>()
-        .where((d) => Directory('${d.path}/memory').existsSync())
+        .where(hasRenderedClips)
         .map((d) => d.uri.pathSegments
             .where((s) => s.isNotEmpty)
             .last)
@@ -56,7 +67,7 @@ void main() {
 
     if (voicesWithMemory.isEmpty) {
       markTestSkipped(
-          'No PAL voice has a memory/ subdirectory yet. Slice 2c.4 (audio '
+          'No PAL voice has any rendered memory clips yet. Slice 2d (audio '
           'render) hasn\'t shipped. This test will activate automatically '
           'once any voice has memory audio rendered.');
       return;
