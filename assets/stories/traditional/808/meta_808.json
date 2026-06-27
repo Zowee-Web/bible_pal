@@ -10,7 +10,7 @@
     "kjv"
   ],
   "mood": "calm_peaceful",
-  "scriptureAnchor": "Psalm 19:1–6",
+  "scriptureAnchor": "Psalm 19:1-6",
   "scriptureAnchorId": "ps_19_1_6",
   "bibleStoryKey": "heavens_declare_gods_glory",
   "title": "The Heavens Declare God's Glory",
@@ -58,5 +58,6 @@
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
-  }
+  },
+  "editorialBucketException": "legacy_800_series_promotion_2026-06-19"
 }

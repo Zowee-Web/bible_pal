@@ -8,7 +8,15 @@
     "maxSecondaryPerStory": 3,
     "noOverlapPrimarySecondary": true,
     "snakeCaseRequired": true,
-    "bannedGenerics": ["restoration", "waiting_on_god", "comfort", "hope", "mercy", "faith", "love"]
+    "bannedGenerics": [
+      "restoration",
+      "waiting_on_god",
+      "comfort",
+      "hope",
+      "mercy",
+      "faith",
+      "love"
+    ]
   },
   "categories": {
     "relational": [
@@ -81,272 +89,381 @@
     {
       "tagId": "family_estrangement",
       "displayName": "Family Estrangement",
-      "description": "A close family bond has fractured — through running away, exile, betrayal, or silence. The pain is specifically familial, not romantic or social.",
-      "siblings": ["betrayal_by_family", "coming_home"]
+      "description": "A close family bond has fractured \u2014 through running away, exile, betrayal, or silence. The pain is specifically familial, not romantic or social.",
+      "siblings": [
+        "betrayal_by_family",
+        "coming_home"
+      ]
     },
     {
       "tagId": "betrayal_by_family",
       "displayName": "Betrayal by Family",
-      "description": "A family member did something cruel or treacherous — sold you out, lied, abandoned. Distinct from general estrangement because there is a specific wrongdoer.",
-      "siblings": ["family_estrangement", "unjust_persecution"]
+      "description": "A family member did something cruel or treacherous \u2014 sold you out, lied, abandoned. Distinct from general estrangement because there is a specific wrongdoer.",
+      "siblings": [
+        "family_estrangement",
+        "unjust_persecution"
+      ]
     },
     {
       "tagId": "coming_home",
       "displayName": "Coming Home",
       "description": "Returning, often humbled, to a place or people you left. The motion is inward and reconciling, not a triumphal arrival.",
-      "siblings": ["forgiveness_received", "starting_over"]
+      "siblings": [
+        "forgiveness_received",
+        "starting_over"
+      ]
     },
     {
       "tagId": "forgiveness_given",
       "displayName": "Forgiveness Given",
-      "description": "I am the one extending forgiveness to someone who hurt me — and it costs something. The narrative angle is from the wounded party choosing release.",
-      "siblings": ["mercy_to_enemies", "forgiveness_received"]
+      "description": "I am the one extending forgiveness to someone who hurt me \u2014 and it costs something. The narrative angle is from the wounded party choosing release.",
+      "siblings": [
+        "mercy_to_enemies",
+        "forgiveness_received"
+      ]
     },
     {
       "tagId": "forgiveness_received",
       "displayName": "Forgiveness Received",
-      "description": "I am the one who failed, and someone — God, a parent, a friend — has welcomed me back without making me earn it.",
-      "siblings": ["unexpected_grace", "coming_home", "second_chance"]
+      "description": "I am the one who failed, and someone \u2014 God, a parent, a friend \u2014 has welcomed me back without making me earn it.",
+      "siblings": [
+        "unexpected_grace",
+        "coming_home",
+        "second_chance"
+      ]
     },
     {
       "tagId": "loyalty_in_loss",
       "displayName": "Loyalty in Loss",
       "description": "Staying with someone through their grief or ruin when leaving would be easier. The loyalty is the story, not the loss itself.",
-      "siblings": ["loss_of_spouse", "starting_over"]
+      "siblings": [
+        "loss_of_spouse",
+        "starting_over"
+      ]
     },
     {
       "tagId": "loss_of_spouse",
       "displayName": "Loss of Spouse",
-      "description": "Widowhood — the specific grief of losing a husband or wife. Includes the practical and identity disruption that follows.",
-      "siblings": ["loyalty_in_loss", "starting_over"]
+      "description": "Widowhood \u2014 the specific grief of losing a husband or wife. Includes the practical and identity disruption that follows.",
+      "siblings": [
+        "loyalty_in_loss",
+        "starting_over"
+      ]
     },
     {
       "tagId": "mercy_to_enemies",
       "displayName": "Mercy to Enemies",
-      "description": "Choosing kindness toward people who harmed or opposed you — including people you might rightfully condemn. Distinct from general forgiveness because the recipient is genuinely hostile.",
-      "siblings": ["forgiveness_given"]
+      "description": "Choosing kindness toward people who harmed or opposed you \u2014 including people you might rightfully condemn. Distinct from general forgiveness because the recipient is genuinely hostile.",
+      "siblings": [
+        "forgiveness_given"
+      ]
     },
     {
       "tagId": "let_someone_down",
       "displayName": "Let Someone Down",
-      "description": "I failed someone who trusted me — broke a promise, lost something entrusted to me, or wasn't there when needed. The shame is relational, not anonymous.",
-      "siblings": ["bitter_failure", "forgiveness_received"]
+      "description": "I failed someone who trusted me \u2014 broke a promise, lost something entrusted to me, or wasn't there when needed. The shame is relational, not anonymous.",
+      "siblings": [
+        "bitter_failure",
+        "forgiveness_received"
+      ]
     },
     {
       "tagId": "bitter_failure",
       "displayName": "Bitter Failure",
-      "description": "I failed in a way that is hard to face. Not just a mistake — a moral or character failure that I have to live with. The grief is self-directed.",
-      "siblings": ["let_someone_down", "second_chance"]
+      "description": "I failed in a way that is hard to face. Not just a mistake \u2014 a moral or character failure that I have to live with. The grief is self-directed.",
+      "siblings": [
+        "let_someone_down",
+        "second_chance"
+      ]
     },
     {
       "tagId": "second_chance",
       "displayName": "Second Chance",
-      "description": "After failing or refusing, I'm being given another opportunity — not because I earned it, but because someone is patient. The story emphasizes the do-over, not the original fall.",
-      "siblings": ["forgiveness_received", "bitter_failure"]
+      "description": "After failing or refusing, I'm being given another opportunity \u2014 not because I earned it, but because someone is patient. The story emphasizes the do-over, not the original fall.",
+      "siblings": [
+        "forgiveness_received",
+        "bitter_failure"
+      ]
     },
     {
       "tagId": "restoration_after_loss",
       "displayName": "Restoration After Loss",
-      "description": "Something that was lost — relationship, dignity, possession, health — is being returned. Specifically a return-to-state, not a brand-new beginning.",
-      "siblings": ["coming_home", "found_again"]
+      "description": "Something that was lost \u2014 relationship, dignity, possession, health \u2014 is being returned. Specifically a return-to-state, not a brand-new beginning.",
+      "siblings": [
+        "coming_home",
+        "found_again"
+      ]
     },
     {
       "tagId": "unmet_longing",
       "displayName": "Unmet Longing",
-      "description": "I have wanted something for a long time — a child, a calling, healing — and it hasn't come. The story sits inside the unfulfilled wait, not the answer.",
-      "siblings": ["delayed_promise", "prayer_in_anguish"]
+      "description": "I have wanted something for a long time \u2014 a child, a calling, healing \u2014 and it hasn't come. The story sits inside the unfulfilled wait, not the answer.",
+      "siblings": [
+        "delayed_promise",
+        "prayer_in_anguish"
+      ]
     },
     {
       "tagId": "delayed_promise",
       "displayName": "Delayed Promise",
-      "description": "Something was promised — explicitly or implicitly — and the fulfillment is taking far longer than expected. The faith struggle is the gap itself.",
-      "siblings": ["unmet_longing", "lifelong_waiting", "forgotten_in_waiting"]
+      "description": "Something was promised \u2014 explicitly or implicitly \u2014 and the fulfillment is taking far longer than expected. The faith struggle is the gap itself.",
+      "siblings": [
+        "unmet_longing",
+        "lifelong_waiting",
+        "forgotten_in_waiting"
+      ]
     },
     {
       "tagId": "forgotten_in_waiting",
       "displayName": "Forgotten in Waiting",
       "description": "I helped someone and they forgot me. Or I'm in a hard place and the people who could remember me have moved on. Distinct from delayed_promise because the felt wound is being forgotten, not just delay.",
-      "siblings": ["delayed_promise"]
+      "siblings": [
+        "delayed_promise"
+      ]
     },
     {
       "tagId": "prayer_in_anguish",
       "displayName": "Prayer in Anguish",
-      "description": "Praying through deep grief, dread, or desperation — not composed, not eloquent. The body is in it.",
-      "siblings": ["unmet_longing", "fear_overwhelm"]
+      "description": "Praying through deep grief, dread, or desperation \u2014 not composed, not eloquent. The body is in it.",
+      "siblings": [
+        "unmet_longing",
+        "fear_overwhelm"
+      ]
     },
     {
       "tagId": "lifelong_waiting",
       "displayName": "Lifelong Waiting",
-      "description": "Waiting that took most of a life — and was honored at the end. The story rewards endurance over decades, not weeks.",
-      "siblings": ["delayed_promise"]
+      "description": "Waiting that took most of a life \u2014 and was honored at the end. The story rewards endurance over decades, not weeks.",
+      "siblings": [
+        "delayed_promise"
+      ]
     },
     {
       "tagId": "running_from_calling",
       "displayName": "Running from Calling",
       "description": "I know what I'm supposed to do and I'm going the other direction. Active avoidance, not passive reluctance.",
-      "siblings": ["reluctant_obedience"]
+      "siblings": [
+        "reluctant_obedience"
+      ]
     },
     {
       "tagId": "reluctant_obedience",
       "displayName": "Reluctant Obedience",
       "description": "I'll do it, but I don't want to and I'm not pretending otherwise. The story includes the unwillingness as part of the obedience.",
-      "siblings": ["running_from_calling", "feeling_inadequate"]
+      "siblings": [
+        "running_from_calling",
+        "feeling_inadequate"
+      ]
     },
     {
       "tagId": "surrender_to_god",
       "displayName": "Surrender to God",
-      "description": "Yielding to a path I didn't choose — saying \"let it be\" or \"not my will.\" Broader than surrender_what_you_love; this is the posture, not the specific object given up.",
-      "siblings": ["surrender_what_you_love", "reluctant_obedience"]
+      "description": "Yielding to a path I didn't choose \u2014 saying \"let it be\" or \"not my will.\" Broader than surrender_what_you_love; this is the posture, not the specific object given up.",
+      "siblings": [
+        "surrender_what_you_love",
+        "reluctant_obedience"
+      ]
     },
     {
       "tagId": "surrender_what_you_love",
       "displayName": "Surrender What You Love",
-      "description": "Being asked to give up something specific and precious — a child, a future, a possession. The cost has a name.",
-      "siblings": ["surrender_to_god"]
+      "description": "Being asked to give up something specific and precious \u2014 a child, a future, a possession. The cost has a name.",
+      "siblings": [
+        "surrender_to_god"
+      ]
     },
     {
       "tagId": "quiet_calling",
       "displayName": "Quiet Calling",
       "description": "Being chosen for something significant when you're young, hidden, or unlikely. The call comes in private, before anyone else knows.",
-      "siblings": ["feeling_inadequate", "surrender_to_god"]
+      "siblings": [
+        "feeling_inadequate",
+        "surrender_to_god"
+      ]
     },
     {
       "tagId": "feeling_inadequate",
       "displayName": "Feeling Inadequate",
-      "description": "Being asked to do something I don't feel equipped for — by background, skill, or status. The self-doubt is specific and named.",
-      "siblings": ["reluctant_obedience", "burnout"]
+      "description": "Being asked to do something I don't feel equipped for \u2014 by background, skill, or status. The self-doubt is specific and named.",
+      "siblings": [
+        "reluctant_obedience",
+        "burnout"
+      ]
     },
     {
       "tagId": "burnout",
       "displayName": "Burnout",
-      "description": "Depleted to the point of wanting to quit or disappear. Not a hard week — a fundamental wearing-out that requires rest and food, not pep talks.",
-      "siblings": ["feeling_inadequate"]
+      "description": "Depleted to the point of wanting to quit or disappear. Not a hard week \u2014 a fundamental wearing-out that requires rest and food, not pep talks.",
+      "siblings": [
+        "feeling_inadequate"
+      ]
     },
     {
       "tagId": "unjust_persecution",
       "displayName": "Unjust Persecution",
       "description": "Being harmed for doing the right thing, or for who I am, by someone with power. Includes social, legal, or violent harm.",
-      "siblings": ["unjust_imprisonment", "quiet_courage"]
+      "siblings": [
+        "unjust_imprisonment",
+        "quiet_courage"
+      ]
     },
     {
       "tagId": "unjust_imprisonment",
       "displayName": "Unjust Imprisonment",
-      "description": "Locked up or confined when I didn't deserve it — literal or institutional captivity rather than general persecution.",
-      "siblings": ["unjust_persecution", "forgotten_in_waiting"]
+      "description": "Locked up or confined when I didn't deserve it \u2014 literal or institutional captivity rather than general persecution.",
+      "siblings": [
+        "unjust_persecution",
+        "forgotten_in_waiting"
+      ]
     },
     {
       "tagId": "quiet_courage",
       "displayName": "Quiet Courage",
-      "description": "Standing firm without drama — keeping a habit, telling the truth once, refusing once. The courage is shown by what you don't do (cave, lie, flee).",
-      "siblings": ["costly_witness", "speaking_truth_to_power"]
+      "description": "Standing firm without drama \u2014 keeping a habit, telling the truth once, refusing once. The courage is shown by what you don't do (cave, lie, flee).",
+      "siblings": [
+        "costly_witness",
+        "speaking_truth_to_power"
+      ]
     },
     {
       "tagId": "costly_witness",
       "displayName": "Costly Witness",
-      "description": "Speaking or living a truth that costs you something serious — your safety, your community, your life.",
-      "siblings": ["quiet_courage", "costly_choice"]
-    },
-    {
-      "tagId": "costly_choice",
-      "displayName": "Costly Choice",
-      "description": "A decision point where doing right has real consequences and there is no safe option. The story turns on the moment of choosing.",
-      "siblings": ["costly_witness", "speaking_truth_to_power"]
-    },
-    {
-      "tagId": "speaking_truth_to_power",
-      "displayName": "Speaking Truth to Power",
-      "description": "Confronting a ruler, authority, or institution with what they don't want to hear. Risk is asymmetric — they hold the power.",
-      "siblings": ["costly_witness", "costly_choice"]
+      "description": "Speaking or living a truth that costs you something serious \u2014 your safety, your community, your life.",
+      "siblings": [
+        "quiet_courage",
+        "costly_choice"
+      ]
     },
     {
       "tagId": "illness",
       "displayName": "Illness",
-      "description": "Living with sickness — chronic, sudden, or shameful. Includes the disability and the social weight that comes with it.",
-      "siblings": ["humbling_to_heal"]
+      "description": "Living with sickness \u2014 chronic, sudden, or shameful. Includes the disability and the social weight that comes with it.",
+      "siblings": [
+        "humbling_to_heal"
+      ]
     },
     {
       "tagId": "humbling_to_heal",
       "displayName": "Humbling to Heal",
-      "description": "Healing required setting aside pride or prestige — accepting help on someone else's terms. The pride is the obstacle, not the disease.",
-      "siblings": ["illness"]
+      "description": "Healing required setting aside pride or prestige \u2014 accepting help on someone else's terms. The pride is the obstacle, not the disease.",
+      "siblings": [
+        "illness"
+      ]
     },
     {
       "tagId": "sudden_crisis",
       "displayName": "Sudden Crisis",
-      "description": "A storm — literal or otherwise — arrives without warning and overwhelms. The story sits inside the surprise, not the aftermath.",
-      "siblings": ["fear_overwhelm", "presence_in_the_storm"]
+      "description": "A storm \u2014 literal or otherwise \u2014 arrives without warning and overwhelms. The story sits inside the surprise, not the aftermath.",
+      "siblings": [
+        "fear_overwhelm",
+        "presence_in_the_storm"
+      ]
     },
     {
       "tagId": "fear_overwhelm",
       "displayName": "Fear Overwhelm",
-      "description": "Fear that takes over the body — sleeplessness, panic, paralysis. Not anxiety as a mood but fear as a flood.",
-      "siblings": ["sudden_crisis", "prayer_in_anguish"]
+      "description": "Fear that takes over the body \u2014 sleeplessness, panic, paralysis. Not anxiety as a mood but fear as a flood.",
+      "siblings": [
+        "sudden_crisis",
+        "prayer_in_anguish"
+      ]
     },
     {
       "tagId": "presence_in_the_storm",
       "displayName": "Presence in the Storm",
       "description": "The crisis hasn't ended, but someone is *with me* inside it. The comfort is companionship in the danger, not removal of the danger.",
-      "siblings": ["sudden_crisis", "fear_overwhelm"]
+      "siblings": [
+        "sudden_crisis",
+        "fear_overwhelm"
+      ]
     },
     {
       "tagId": "sinking_in_fear",
       "displayName": "Sinking in Fear",
-      "description": "I started well and then fear pulled me under mid-action — losing nerve in the middle of obedience. Specifically about momentum lost partway.",
-      "siblings": ["wavering_faith", "fear_overwhelm"]
+      "description": "I started well and then fear pulled me under mid-action \u2014 losing nerve in the middle of obedience. Specifically about momentum lost partway.",
+      "siblings": [
+        "wavering_faith",
+        "fear_overwhelm"
+      ]
     },
     {
       "tagId": "wavering_faith",
       "displayName": "Wavering Faith",
-      "description": "Belief that flickers — not lost, not solid. Doubt that coexists with continued reaching.",
-      "siblings": ["sinking_in_fear"]
+      "description": "Belief that flickers \u2014 not lost, not solid. Doubt that coexists with continued reaching.",
+      "siblings": [
+        "sinking_in_fear"
+      ]
     },
     {
       "tagId": "secret_shame",
       "displayName": "Secret Shame",
       "description": "Something about my history or current life that I work to keep hidden. The story turns on being known anyway.",
-      "siblings": ["seen_and_known", "unexpected_grace"]
+      "siblings": [
+        "seen_and_known",
+        "unexpected_grace"
+      ]
     },
     {
       "tagId": "unexpected_grace",
       "displayName": "Unexpected Grace",
       "description": "Kindness arriving where I expected judgment or being passed over. The surprise is the kindness, not the situation that prompted it.",
-      "siblings": ["secret_shame", "forgiveness_received"]
+      "siblings": [
+        "secret_shame",
+        "forgiveness_received"
+      ]
     },
     {
       "tagId": "seen_and_known",
       "displayName": "Seen and Known",
-      "description": "Encountered by someone who knows the truth about me without my telling them — and stays. The relief is being fully visible without being rejected.",
-      "siblings": ["secret_shame", "unexpected_grace"]
+      "description": "Encountered by someone who knows the truth about me without my telling them \u2014 and stays. The relief is being fully visible without being rejected.",
+      "siblings": [
+        "secret_shame",
+        "unexpected_grace"
+      ]
     },
     {
       "tagId": "losing_something_precious",
       "displayName": "Losing Something Precious",
-      "description": "Something irreplaceable went missing — a possession, a person, an opportunity. The story sits inside the loss itself.",
-      "siblings": ["searching", "found_again"]
+      "description": "Something irreplaceable went missing \u2014 a possession, a person, an opportunity. The story sits inside the loss itself.",
+      "siblings": [
+        "searching",
+        "found_again"
+      ]
     },
     {
       "tagId": "searching",
       "displayName": "Searching",
-      "description": "Active, diligent pursuit of what is lost — sweeping the house, walking the hills. The labor of looking is the story.",
-      "siblings": ["losing_something_precious", "found_again"]
+      "description": "Active, diligent pursuit of what is lost \u2014 sweeping the house, walking the hills. The labor of looking is the story.",
+      "siblings": [
+        "losing_something_precious",
+        "found_again"
+      ]
     },
     {
       "tagId": "found_again",
       "displayName": "Found Again",
-      "description": "The lost thing — coin, sheep, person — is recovered, and the recovery prompts unreasonable joy. The story ends in shared celebration.",
-      "siblings": ["losing_something_precious", "searching"]
+      "description": "The lost thing \u2014 coin, sheep, person \u2014 is recovered, and the recovery prompts unreasonable joy. The story ends in shared celebration.",
+      "siblings": [
+        "losing_something_precious",
+        "searching"
+      ]
     },
     {
       "tagId": "quiet_provision",
       "displayName": "Quiet Provision",
-      "description": "Needs being met through small, often unnoticed channels — extra grain, a daily jar, a stranger's kindness. Distinct from miraculous rescue.",
-      "siblings": ["starting_over"]
+      "description": "Needs being met through small, often unnoticed channels \u2014 extra grain, a daily jar, a stranger's kindness. Distinct from miraculous rescue.",
+      "siblings": [
+        "starting_over"
+      ]
     },
     {
       "tagId": "starting_over",
       "displayName": "Starting Over",
-      "description": "Beginning again in a new place or season after loss — with little, but moving forward. The story is the first steps of the new chapter, not the catastrophe behind.",
-      "siblings": ["coming_home", "loyalty_in_loss"]
+      "description": "Beginning again in a new place or season after loss \u2014 with little, but moving forward. The story is the first steps of the new chapter, not the catastrophe behind.",
+      "siblings": [
+        "coming_home",
+        "loyalty_in_loss"
+      ]
     }
   ]
 }

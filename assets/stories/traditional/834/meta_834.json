@@ -83,5 +83,6 @@
   "ttsVoiceSettings": {
     "stability": 0.5,
     "similarity_boost": 0.75
-  }
+  },
+  "editorialBucketException": "legacy_800_series_promotion_2026-06-19"
 }
