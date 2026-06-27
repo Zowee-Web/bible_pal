@@ -9,6 +9,7 @@ import '../models/share_record.dart';
 import '../models/pending_share.dart';
 import '../models/journal_entry.dart';
 import '../features/onboarding/first_launch_screen.dart' show kFirstLaunchCompleteKey, kPalIntroShownKey;
+import '../features/pal_memory/pal_session.dart';
 
 /// Storage Service - handles all local data persistence
 /// Based on SPEC.md Feature #25: User Data Encryption (secure storage)
@@ -35,6 +36,12 @@ class StorageService {
   // See SPEC.md Feature #11 (note on decoupling).
   static const String _keyPlayLog = 'play_log';
   static const int _playLogCap = 1000;
+
+  // PAL Memory Doctrine — Slice 1 (see docs/PAL_MEMORY_DOCTRINE.md). Append
+  // log of completed-story sessions consumed by future Level 2 templates.
+  // Versioned key so a future schema change can migrate without colliding.
+  static const String _keyPalSessions = 'pal_sessions_v1';
+  static const int _palSessionsCap = 1000;
 
   final SharedPreferences _prefs;
 
@@ -293,6 +300,44 @@ class StorageService {
     await _prefs.remove(_keyPlayLog);
   }
 
+  // ========== PAL Memory Sessions (Doctrine Slice 1) ==========
+  // See docs/PAL_MEMORY_DOCTRINE.md. Append log of completed-story sessions
+  // — one record per ≥90% playback completion. Storage is JSON-array under
+  // [_keyPalSessions], oldest-first. The 1000-entry cap is FIFO by
+  // completion timestamp; heal logic mirrors the play log.
+
+  /// Read every persisted PAL session, oldest first. Empty if none.
+  Future<List<PalSession>> getPalSessions() async {
+    final json = _prefs.getString(_keyPalSessions);
+    if (json == null) return <PalSession>[];
+    final list = jsonDecode(json) as List<dynamic>;
+    return list
+        .map((e) => PalSession.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
+
+  /// Append a completed-session record. Evicts oldest (by completedAt) if
+  /// the 1000-entry cap is exceeded.
+  Future<void> addPalSession(PalSession session) async {
+    final sessions = await getPalSessions();
+    sessions.add(session);
+
+    if (sessions.length > _palSessionsCap) {
+      sessions.sort((a, b) => a.completedAt.compareTo(b.completedAt));
+      final excess = sessions.length - _palSessionsCap;
+      sessions.removeRange(0, excess);
+    }
+
+    final encoded = jsonEncode(sessions.map((s) => s.toJson()).toList());
+    await _prefs.setString(_keyPalSessions, encoded);
+  }
+
+  /// Wipe every persisted PAL session. Backs the trust-protective
+  /// "Clear PAL Memory" path described in the doctrine.
+  Future<void> clearPalSessions() async {
+    await _prefs.remove(_keyPalSessions);
+  }
+
   // ========== Awarded Badges (PALs Paths, Feature 50.11) ==========
 
   /// Return the set of awarded badge IDs as a list (insertion order).
@@ -393,6 +438,26 @@ class StorageService {
         final keep = Map<String, dynamic>.fromEntries(entries.skip(excess));
         await _prefs.setString(_keyPlayLog, jsonEncode(keep));
         report['play_log_trimmed'] = excess;
+      }
+    }
+
+    // Heal PAL Sessions cap (1000 entries, oldest-completedAt-first).
+    // PAL Memory Doctrine Slice 1.
+    final palSessionsJson = _prefs.getString(_keyPalSessions);
+    if (palSessionsJson != null) {
+      final list = jsonDecode(palSessionsJson) as List<dynamic>;
+      if (list.length > _palSessionsCap) {
+        final sessions = list
+            .map((e) => PalSession.fromJson(e as Map<String, dynamic>))
+            .toList()
+          ..sort((a, b) => a.completedAt.compareTo(b.completedAt));
+        final excess = sessions.length - _palSessionsCap;
+        final trimmed = sessions.skip(excess).toList();
+        await _prefs.setString(
+          _keyPalSessions,
+          jsonEncode(trimmed.map((s) => s.toJson()).toList()),
+        );
+        report['pal_sessions_trimmed'] = excess;
       }
     }
 

@@ -609,6 +609,27 @@ class ParablePlayerNotifier extends Notifier<ParablePlayerState> {
       }, level: LogLevel.warn);
     }
 
+    // PAL Memory Doctrine Slice 1 — record a completed-session snapshot
+    // for future Level 2 (Facts) memory templates. Fire-and-forget,
+    // wrapped independently of the CompletedStoriesStore write so a
+    // failure here can never affect path-completion semantics.
+    // See docs/PAL_MEMORY_DOCTRINE.md.
+    try {
+      final palSessionStore =
+          await ref.read(palSessionStoreProvider.future);
+      final mood = ref
+          .read(appStateProvider)
+          .valueOrNull
+          ?.userPreferences
+          .lastDetectedMood;
+      await palSessionStore.recordCompletion(parable, mood: mood);
+    } catch (e) {
+      logEvent('pal_session_persist_fail', {
+        'story_id': parable.storyId,
+        'error_type': e.runtimeType.toString(),
+      }, level: LogLevel.warn);
+    }
+
     // SPEC Feature 50.10: `source` enum is one of
     // mood | path | favorite | history | search. Phase 1 infers two
     // values: `path` when launched from PALs Paths (launchContext
