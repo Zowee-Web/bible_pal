@@ -105,7 +105,7 @@ void main() {
       expect(plan.clips[1].kind, ClipKind.name);
       expect(plan.clips[1].assetPath,
           'assets/pal/audio/VOICE_HOPE/memory/name_daniel.mp3');
-      expect(plan.gapsBetween, [const Duration(milliseconds: 250)]);
+      expect(plan.gapsBetween, [const Duration(milliseconds: 50)]);
     });
 
     test('same session repeated → same plan (full pipeline determinism)',
@@ -260,7 +260,7 @@ class _PerfectAllowlistResolver implements MemoryAudioResolver {
               voiceKey: line.voiceKey, clipId: line.displayNameClipId),
         ),
       ],
-      gapsBetween: const [Duration(milliseconds: 250)],
+      gapsBetween: const [Duration(milliseconds: 50)],
     );
   }
 }
