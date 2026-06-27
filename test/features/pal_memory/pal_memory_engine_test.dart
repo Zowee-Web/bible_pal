@@ -336,6 +336,28 @@ void main() {
           sessions: sessions, lastSpokenAt: null, now: now);
       expect(line!.template, contains('{storyName}'));
     });
+
+    test('memory line carries a non-empty carrierClipId (Slice 2c.2)', () {
+      // The carrierClipId is the audio-layer identifier the resolver
+      // uses to locate the pre-rendered fragment. The engine must
+      // populate it on every returned line; nothing downstream can
+      // recover from a missing or malformed id.
+      final sessions = [
+        session(
+            storyId: 'a',
+            completedAt: now.subtract(const Duration(days: 5))),
+        session(
+            storyId: 'b',
+            completedAt: now.subtract(const Duration(days: 4))),
+        session(
+            storyId: 'c',
+            completedAt: now.subtract(const Duration(days: 1))),
+      ];
+      final line = engine.nextLine(
+          sessions: sessions, lastSpokenAt: null, now: now);
+      expect(line!.carrierClipId, isNotEmpty);
+      expect(line.carrierClipId.startsWith('carrier_'), isTrue);
+    });
   });
 
   group('Empty input', () {
