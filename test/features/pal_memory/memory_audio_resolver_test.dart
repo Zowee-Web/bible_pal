@@ -185,7 +185,7 @@ class _AllowlistMemoryAudioResolver implements MemoryAudioResolver {
               voiceKey: line.voiceKey, clipId: line.displayNameClipId),
         ),
       ],
-      gapsBetween: const [Duration(milliseconds: 250)],
+      gapsBetween: const [Duration(milliseconds: 50)],
     );
   }
 }
@@ -220,7 +220,7 @@ class _VoiceAwareAllowlistResolver implements MemoryAudioResolver {
           assetPath: namePath,
         ),
       ],
-      gapsBetween: const [Duration(milliseconds: 250)],
+      gapsBetween: const [Duration(milliseconds: 50)],
     );
   }
 }
