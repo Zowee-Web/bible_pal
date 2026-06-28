@@ -19,6 +19,7 @@ import 'package:bible_pal/features/pal_memory/pal_session_store.dart';
 import 'package:bible_pal/features/pal_memory/pal_memory_display_name_registry.dart';
 import 'package:bible_pal/features/pal_memory/memory_audio_resolver.dart';
 import 'package:bible_pal/features/pal_memory/bundled_asset_memory_audio_resolver.dart';
+import 'package:bible_pal/features/journey/journey_registry.dart';
 import 'package:bible_pal/services/path_service.dart';
 import 'package:bible_pal/services/search_service.dart';
 import 'package:bible_pal/core/character_registry.dart';
@@ -181,6 +182,19 @@ final memoryAudioResolverProvider =
     FutureProvider<MemoryAudioResolver>((ref) async {
   ref.keepAlive();
   return BundledAssetMemoryAudioResolver.load();
+});
+
+/// Journey registry — Journey Doctrine Slice 2. Loaded once from
+/// `assets/stories/journeys/*.json` at first read; `keepAlive` holds
+/// the instance for the app lifetime. Construction validates structural
+/// invariants (journeyId uniqueness, sealed-lanes per Slice 2) and
+/// throws [StateError] on malformed assets — the schema validator test
+/// (test/features/journey/journey_registry_validator_test.dart) catches
+/// those at CI time so runtime construction is normally clean.
+final journeyRegistryProvider =
+    FutureProvider<JourneyRegistry>((ref) async {
+  ref.keepAlive();
+  return JourneyRegistry.load();
 });
 
 /// Loads the curated Life of Jesus sequence from the bundled asset

@@ -774,6 +774,8 @@ flutter:
     - assets/pal/audio/VOICE_STILLWATER/memory/
     # PAL Memory (Slice 2c.1) — editorial display-name registry
     - assets/pal/memory/display_name_registry.json
+    # Journey Doctrine (Slice 2) — editorial journey registry
+    - assets/stories/journeys/
 
 # App icon configuration
 flutter_launcher_icons:
