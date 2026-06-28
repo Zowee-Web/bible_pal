@@ -48,6 +48,15 @@ class StorageService {
   // lastSpokenAt cooldown anchor. Advanced ONLY on successful playback.
   static const String _keyLastMemoryLineSpokenAt = 'last_memory_line_spoken_at';
 
+  // Journey Doctrine — Slice 2 Phase 5. Truthful producer of "PAL
+  // spoke a journey continuation offer" — fed back into
+  // JourneyEngine.nextOffer() as the lastJourneyContinuationSpokenAt
+  // cooldown anchor (3 days, adult lane only; kid lane bypasses per
+  // Continuation Invariant rule 3). Advanced ONLY on successful
+  // playback of the offer line, never on offer construction alone.
+  static const String _keyLastJourneyContinuationSpokenAt =
+      'last_journey_continuation_spoken_at';
+
   final SharedPreferences _prefs;
 
   StorageService(this._prefs);
@@ -750,5 +759,37 @@ class StorageService {
   /// resets both the session log AND the cooldown.
   Future<void> clearLastMemoryLineSpokenAt() async {
     await _prefs.remove(_keyLastMemoryLineSpokenAt);
+  }
+
+  // ========== Journey Continuation — Last-Spoken Timestamp (Slice 2 Phase 5) ==========
+
+  /// Persist the moment PAL spoke its most recent journey-continuation
+  /// offer. Feeds the cooldown gate in
+  /// `JourneyEngine.nextOffer` (3 days, adult lane only; kid lane
+  /// bypasses per Continuation Invariant rule 3). Stored as an ISO-8601
+  /// string for parity with [setLastMemoryLineSpokenAt].
+  Future<void> setLastJourneyContinuationSpokenAt(DateTime timestamp) async {
+    await _prefs.setString(
+        _keyLastJourneyContinuationSpokenAt, timestamp.toIso8601String());
+  }
+
+  /// Returns when PAL last spoke a journey continuation, or null if
+  /// never. Uses [DateTime.tryParse] so a corrupt stored value heals
+  /// to null rather than throwing — same defense the memory-line
+  /// timestamp uses; the cold-open path must never crash on a single
+  /// bad preference.
+  Future<DateTime?> getLastJourneyContinuationSpokenAt() async {
+    final s = _prefs.getString(_keyLastJourneyContinuationSpokenAt);
+    if (s == null) return null;
+    return DateTime.tryParse(s);
+  }
+
+  /// Wipe the last-journey-continuation timestamp. Called from
+  /// [PalSessionStore.clear] alongside the memory-line wipe so a
+  /// "clear PAL memory" action resets BOTH cooldowns AND the session
+  /// log — otherwise PAL would stay silent on continuation for up to
+  /// 3 more days after the user explicitly wiped memory.
+  Future<void> clearLastJourneyContinuationSpokenAt() async {
+    await _prefs.remove(_keyLastJourneyContinuationSpokenAt);
   }
 }
