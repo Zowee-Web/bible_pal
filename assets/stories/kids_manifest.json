@@ -812,7 +812,7 @@
         "courage",
         "deliverance"
       ],
-      "lengthBucket": "15min",
+      "lengthBucket": "long",
       "targetWords": 1800,
       "actualWords": 1092,
       "status": "NEEDS_REWRITE",
