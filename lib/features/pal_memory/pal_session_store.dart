@@ -91,6 +91,31 @@ class PalSessionStore {
     return _storage.getLastMemoryLineSpokenAt();
   }
 
+  /// Record that PAL just spoke a journey-continuation offer. The
+  /// single truthful producer of the `lastJourneyContinuationSpokenAt`
+  /// value fed back into `JourneyEngine.nextOffer` as the cooldown
+  /// anchor (3-day cooldown, adult lane only; kid lane bypasses per
+  /// the doctrine's Continuation Invariant rule 3).
+  ///
+  /// Journey Doctrine, Slice 2 Phase 5 (docs/JOURNEY_DOCTRINE.md):
+  /// callers must invoke this ONLY after the offer line + carrier
+  /// finished playing successfully. A missing clip, audio failure,
+  /// or user-cancelled offer must NOT advance the cooldown —
+  /// otherwise PAL falls silent for the next 3 days for an offer the
+  /// user never actually heard.
+  ///
+  /// [at] defaults to `DateTime.now()` and exists for deterministic tests.
+  Future<void> recordJourneyContinuationSpoken({DateTime? at}) async {
+    await _storage.setLastJourneyContinuationSpokenAt(at ?? DateTime.now());
+  }
+
+  /// Returns when PAL last spoke a journey-continuation offer, or null
+  /// if PAL has never spoken one. Pass-through over
+  /// [StorageService.getLastJourneyContinuationSpokenAt].
+  Future<DateTime?> getLastJourneyContinuationSpokenAt() async {
+    return _storage.getLastJourneyContinuationSpokenAt();
+  }
+
   /// Returns every persisted session in append order (oldest first).
   /// Reserved for future Level 2 / Level 3 pattern detection — Slice 1
   /// exposes it for tests and forward compatibility, not for UI.
@@ -98,14 +123,19 @@ class PalSessionStore {
     return _storage.getPalSessions();
   }
 
-  /// Wipe every persisted session AND the last-spoken-memory-line
-  /// timestamp. Trust-protective entry point for the future "Clear PAL
-  /// Memory" settings hook described in docs/PAL_MEMORY_DOCTRINE.md.
-  /// Wiping both ensures that after a clear, PAL is silent only because
-  /// the engine's min-completions gate has reset — never because a
-  /// stale cooldown timestamp lingers.
+  /// Wipe every persisted session AND both cooldown anchors (memory
+  /// line + journey continuation). Trust-protective entry point for
+  /// the future "Clear PAL Memory" settings hook described in
+  /// docs/PAL_MEMORY_DOCTRINE.md.
+  ///
+  /// Wiping all three ensures that after a clear, PAL is silent only
+  /// because the engines' minimum gates have reset — never because a
+  /// stale cooldown timestamp from before the wipe lingers. The
+  /// journey cooldown is included here per Journey Doctrine Slice 2
+  /// Phase 5 (same reasoning as the memory-line cooldown wipe).
   Future<void> clear() async {
     await _storage.clearPalSessions();
     await _storage.clearLastMemoryLineSpokenAt();
+    await _storage.clearLastJourneyContinuationSpokenAt();
   }
 }

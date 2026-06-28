@@ -182,6 +182,24 @@ void main() {
               'Memory" action leaves a stale cooldown that silences '
               'PAL for up to 3 more days.');
     });
+
+    test('also wipes lastJourneyContinuationSpokenAt (Slice 2 Phase 5 cooldown)',
+        () async {
+      // Same reasoning as the memory-line wipe — applied to the
+      // journey-continuation cooldown. Both cooldowns must clear so
+      // a "Clear PAL Memory" leaves PAL silent only because the
+      // engines' min-gates have reset, not because a stale timestamp
+      // lingers.
+      await store.recordJourneyContinuationSpoken(at: DateTime.utc(2026, 6, 28));
+      expect(await store.getLastJourneyContinuationSpokenAt(), isNotNull);
+
+      await store.clear();
+      expect(await store.getLastJourneyContinuationSpokenAt(), isNull,
+          reason: 'PalSessionStore.clear() must wipe the journey-continuation '
+              'cooldown alongside the memory-line cooldown; otherwise a '
+              '"Clear PAL Memory" action silences PAL\'s journey offers for '
+              'up to 3 more days.');
+    });
   });
 
   group('recordMemoryLineSpoken / getLastMemoryLineSpokenAt (Slice 2d)', () {
@@ -231,6 +249,73 @@ void main() {
       expect(await corruptStore.getLastMemoryLineSpokenAt(), isNull,
           reason: 'tryParse must heal corrupt timestamps to null — the '
               'cold-open path must not crash on a single bad preference.');
+    });
+  });
+
+  group('recordJourneyContinuationSpoken / getLastJourneyContinuationSpokenAt (Slice 2 Phase 5)',
+      () {
+    test('returns null when PAL has never spoken a journey continuation',
+        () async {
+      expect(await store.getLastJourneyContinuationSpokenAt(), isNull);
+    });
+
+    test('persists an injected timestamp byte-for-byte (ISO 8601 round-trip)',
+        () async {
+      final at = DateTime.utc(2026, 6, 28, 14, 0, 30);
+      await store.recordJourneyContinuationSpoken(at: at);
+      expect(await store.getLastJourneyContinuationSpokenAt(), at);
+    });
+
+    test('latest call wins (single-scalar, not append-only)', () async {
+      final first = DateTime.utc(2026, 6, 26);
+      final second = DateTime.utc(2026, 6, 28);
+      await store.recordJourneyContinuationSpoken(at: first);
+      await store.recordJourneyContinuationSpoken(at: second);
+      expect(await store.getLastJourneyContinuationSpokenAt(), second);
+    });
+
+    test('omitted at defaults to "now" (close-enough freshness check)',
+        () async {
+      final before = DateTime.now();
+      await store.recordJourneyContinuationSpoken();
+      final after = DateTime.now();
+
+      final got = await store.getLastJourneyContinuationSpokenAt();
+      expect(got, isNotNull);
+      expect(got!.isAfter(before.subtract(const Duration(seconds: 1))),
+          isTrue);
+      expect(got.isBefore(after.add(const Duration(seconds: 1))), isTrue);
+    });
+
+    test('corrupt stored value heals to null instead of throwing', () async {
+      SharedPreferences.setMockInitialValues(
+          {'last_journey_continuation_spoken_at': 'not-a-date'});
+      final corruptPrefs = await SharedPreferences.getInstance();
+      final corruptStorage = StorageService(corruptPrefs);
+      final corruptStore = PalSessionStore(corruptStorage);
+
+      expect(await corruptStore.getLastJourneyContinuationSpokenAt(), isNull,
+          reason: 'tryParse must heal corrupt journey-cooldown timestamps '
+              'to null — the cascade path must not crash on a single bad '
+              'preference, just like the memory-line equivalent.');
+    });
+
+    test(
+        'memory-line and journey-continuation timestamps are independent (one does not poison the other)',
+        () async {
+      // Critical isolation: the two cooldowns must NOT share storage.
+      // Recording a journey continuation must not advance the memory
+      // cooldown, and vice versa. If they collided, accepting a
+      // journey offer would silence memory recognition for 3 days
+      // (or vice versa) — breaking both doctrines.
+      final memoryAt = DateTime.utc(2026, 6, 20);
+      final journeyAt = DateTime.utc(2026, 6, 28);
+
+      await store.recordMemoryLineSpoken(at: memoryAt);
+      await store.recordJourneyContinuationSpoken(at: journeyAt);
+
+      expect(await store.getLastMemoryLineSpokenAt(), memoryAt);
+      expect(await store.getLastJourneyContinuationSpokenAt(), journeyAt);
     });
   });
 
