@@ -10,6 +10,7 @@ import 'package:just_audio/just_audio.dart';
 
 import '../core/app_logger.dart';
 import '../core/pal_voice_registry.dart';
+import '../features/pal_memory/memory_audio_plan.dart';
 
 // Simple data class for a PAL line (id + text).
 class PalLine {
@@ -704,6 +705,53 @@ class PalAudioService {
               state.processingState == ProcessingState.completed ||
               state.processingState == ProcessingState.idle,
         );
+  }
+
+  /// Play a [MemoryAudioPlan] (PAL Memory Doctrine, Slice 2d): stitches
+  /// the plan's carrier + name clips with the policy gap into a single
+  /// [ConcatenatingAudioSource] and plays it through the existing
+  /// [_player]. Awaits playback completion so the caller can decide
+  /// whether to advance the cooldown.
+  ///
+  /// Acquires [_playbackLock] for the same reason every other public
+  /// play method does — concurrent mutation of the shared [_player] is
+  /// the iOS -11849 "Operation Stopped" wedge that this lock pattern
+  /// was introduced to prevent. The cold-open greeting and a memory
+  /// line can be in-flight on the same screen tick (button-tap path);
+  /// the lock serializes them.
+  ///
+  /// Returns true on successful playback, false on any failure. The
+  /// caller (typically `fireMemoryLine` in pal_memory_runtime.dart) MUST
+  /// only record `lastMemoryLineSpokenAt` when this returns true —
+  /// silence-floor honesty: a failed playback must not burn the user's
+  /// next 3-day cooldown window.
+  Future<bool> playMemoryPlan(MemoryAudioPlan plan) async {
+    plan.validateStructure();
+    await _acquireLock();
+    try {
+      final children = <AudioSource>[];
+      for (var i = 0; i < plan.clips.length; i++) {
+        children.add(AudioSource.asset(plan.clips[i].assetPath));
+        if (i < plan.gapsBetween.length) {
+          children.add(SilenceAudioSource(duration: plan.gapsBetween[i]));
+        }
+      }
+      final playlist = ConcatenatingAudioSource(children: children);
+      await _player.setAudioSource(playlist);
+      await _waitForPlayerReady();
+      await _player.play();
+      await awaitPlaybackComplete();
+      return true;
+    } catch (e) {
+      logEvent('pal_audio_error', {
+        'context': 'memory_plan',
+        'voice_key': plan.voiceKey,
+        'error': e.toString(),
+      });
+      return false;
+    } finally {
+      _releaseLock();
+    }
   }
 
   /// Stop any currently playing audio.

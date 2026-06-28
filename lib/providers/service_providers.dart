@@ -16,6 +16,9 @@ import 'package:bible_pal/services/pal_tts_client.dart';
 import 'package:bible_pal/services/name_audio_service.dart';
 import 'package:bible_pal/services/completed_stories_store.dart';
 import 'package:bible_pal/features/pal_memory/pal_session_store.dart';
+import 'package:bible_pal/features/pal_memory/pal_memory_display_name_registry.dart';
+import 'package:bible_pal/features/pal_memory/memory_audio_resolver.dart';
+import 'package:bible_pal/features/pal_memory/bundled_asset_memory_audio_resolver.dart';
 import 'package:bible_pal/services/path_service.dart';
 import 'package:bible_pal/services/search_service.dart';
 import 'package:bible_pal/core/character_registry.dart';
@@ -155,6 +158,29 @@ final completedStoryIdsProvider = FutureProvider<Set<String>>((ref) async {
 final palSessionStoreProvider = FutureProvider<PalSessionStore>((ref) async {
   final storage = await ref.watch(storageServiceProvider.future);
   return PalSessionStore(storage);
+});
+
+/// Editorial display-name registry for PAL memory lines (Slice 2c.1).
+/// Loaded once from the bundled asset at first read; `keepAlive` holds
+/// the instance for the app lifetime so subsequent cascade calls are
+/// synchronous after the first warm-up. Construction validates the
+/// registry's structural invariants and throws [StateError] on a
+/// malformed asset — that's an authoring bug, not a runtime concern.
+final palMemoryDisplayNameRegistryProvider =
+    FutureProvider<PalMemoryDisplayNameRegistry>((ref) async {
+  ref.keepAlive();
+  return PalMemoryDisplayNameRegistry.load();
+});
+
+/// Bundled-asset [MemoryAudioResolver] for PAL memory clips (Slice 2c.3).
+/// Loaded once via AssetManifest scan; `keepAlive` holds the instance
+/// so cascade calls are O(1) Set lookups after first warm-up. Typed as
+/// the interface so a future R2-aware resolver can swap in via
+/// `overrideWithProvider` without touching call sites.
+final memoryAudioResolverProvider =
+    FutureProvider<MemoryAudioResolver>((ref) async {
+  ref.keepAlive();
+  return BundledAssetMemoryAudioResolver.load();
 });
 
 /// Loads the curated Life of Jesus sequence from the bundled asset
