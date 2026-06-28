@@ -1,0 +1,45 @@
+{
+  "$schema": "journey_v1",
+  "version": 1,
+  "journeyId": "kid_david_arc",
+  "journeyType": "narrative",
+  "lane": "kid",
+  "status": "ready",
+
+  "_documentation": {
+    "_purpose": "First-ship KID Narrative journey for Slice 2 of the Journey Doctrine. Validates the Kid-Lane Appendix end-to-end (3-story length cap, character-named offer, no cooldown, gentle decline).",
+    "_offerShape": "Per the doctrine's Kid-Lane Appendix, the kid offer line is character-named and concrete: 'Want to hear another David story?' — NOT 'Want to explore courage?' Per Slice 2 audio pattern B, this would compose as: [kid_offer_carrier_another_story_about] + [characterName clip] + [silence] + [kid_offer_invitation_or_tell_me_something_else]. The characterName clip ('David') is NEW — it does not yet exist in the display_name_registry, which currently only holds 'David and Goliath' (the full story name, not just the character). One new STILLWATER name_david clip is required before this journey can ship."
+  },
+
+  "characterName": "David",
+  "nameRegistryKey": null,
+  "editorialNote": "Three stories. Shepherd boy → giant-killer → king. Spans David's life in three beats, matching the doctrine's 3-story kid sweet spot. All three already exist as kid stories in production (per kid_anchor_registry + recent kid batches).",
+
+  "stories": [
+    {
+      "productionId": 1836,
+      "anchorId": "david_shepherd",
+      "label": "1 Samuel 16:11-13 — David the Shepherd Boy (the unlikely choice)",
+      "editorialNote": "Core/launch=True per kid_anchor_registry. Opens the arc with the smallest David — the child Samuel almost overlooks. The 'God sees what people miss' frame fits the feeling-first kid doctrine."
+    },
+    {
+      "productionId": 1801,
+      "anchorId": "david_goliath",
+      "label": "1 Samuel 17 — David and Goliath (the courage that already lives in him)",
+      "editorialNote": "Core/launch=True. The pilot kid story (per project_kid_lane_manifest). The iconic middle beat."
+    },
+    {
+      "productionId": 1908,
+      "anchorId": "david_king",
+      "label": "2 Samuel 5 — David Becomes King (the shepherd boy now crowned)",
+      "editorialNote": "Secondary tier per registry but DOES ship as a kid story (short+full, no long) per feedback_kid_replayability_filter 2026-06-24 batch. Closes the arc with the indelible image — the shepherd boy wearing the crown — that the project_kid_story_journeys 'one image' editorial pass already identified for David's arc."
+    }
+  ],
+
+  "_excludedFromArcWithRationale": [
+    "1857 (david_harp, 1 Sam 16:14-23, David plays for Saul) — quieter scene; lovely but breaks the shepherd→giant→king momentum",
+    "1846 (david_jonathan, 1 Sam 18-20, David and Jonathan) — about friendship not David's arc; candidate for a future kid friendship/loyalty journey",
+    "1854 (david_kindness_mephibosheth, 2 Sam 9) — about David's kindness; candidate for a future kid kindness journey",
+    "1920 (david_dances_ark, 2 Sam 6:12-15, the day the king danced) — joyful scene; candidate for a future kid joy/celebration journey, also one of the locked-trio anchors per feedback_kid_emotional_color_balance"
+  ]
+}

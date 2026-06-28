@@ -1,0 +1,70 @@
+{
+  "$schema": "journey_v1",
+  "version": 1,
+  "journeyId": "learning_to_wait",
+  "journeyType": "theme",
+  "lane": "adult",
+  "status": "held",
+
+  "_documentation": {
+    "_purpose": "Adult Theme journey — HELD from Slice 2 first ship per Adam's editorial call 2026-06-28. The 5 stories below are editorially right but 4 of 5 are short-WEB-only in the current corpus (1121 Hannah, 1448 David cave, 1477 Job 19, 1177 Simeon). Shipping it alongside the fully-covered Daniel Arc would make this journey feel comparatively thin to any user on a non-default length/translation. Held until either (a) the thin stories are authored-up under the Journey Doctrine's journey-driven-gap exception, or (b) Slice 2 ships with Daniel + Kid David and learns enough to decide whether to invest in the gap-fill.",
+    "_arcShape": "Five pillars of waiting, one story each: longing → danger → suffering → promise → fulfillment.",
+    "_themeWord": "Waiting (or 'waiting on God'). This is the theme-word that the compositional offer line would name. Per Slice 2 audio pattern B, this would be a new clip family — 'theme-word clips' — rendered per voice, parallel to the name clips Slice 2d already renders. For Slice 2 first ship, render one such clip per voice for this journey: 'waiting on God' or similar. Adam to confirm the exact phrasing before audio render.",
+    "_releaseGate": "Loader MUST exclude journeys where status != 'ready'. Held journeys are editorial artifacts visible to curators, never loaded at runtime."
+  },
+
+  "themeWord": "waiting on God",
+  "nameRegistryKey": null,
+  "editorialNote": "Five pillars of waiting, one story each. Each story is the canonical telling of its beat — no padding, no alternates. Spans Hebrew Bible (Hannah, David, Job, Isaiah) and New Testament (Simeon) to make the theme feel like Scripture's larger rhythm, not one tradition's idea.",
+
+  "stories": [
+    {
+      "storyNumber": 1121,
+      "scriptureAnchorId": "1_samuel_1_9-20",
+      "label": "1 Samuel 1:9-20 — Hannah prays for a son (waiting from longing)",
+      "editorialNote": "Chose 1121 (the ACT of waiting prayer) over 1169 (1 Sam 1:21-28, hannah_dedicates_samuel — the after-the-fact dedication). The journey's first beat is the prayer itself, the long ache before the answer."
+    },
+    {
+      "storyNumber": 1448,
+      "scriptureAnchorId": "1_samuel_22_1-2",
+      "label": "1 Samuel 22:1-2 — David in the cave of Adullam (waiting in danger)",
+      "editorialNote": "Cleanest 'cave' story in the corpus — David's first cave, the four hundred gathering to him. Other David-cave moments (sparing Saul at En-gedi etc.) are about RESTRAINT, not waiting. 1448 is the waiting beat."
+    },
+    {
+      "storyNumber": 1477,
+      "scriptureAnchorId": "job_19_23-27",
+      "label": "Job 19:23-27 — 'I know that my Redeemer liveth' (waiting in suffering)",
+      "editorialNote": "Picked over 1055 (Job 1, trial begins) / 1153 (Job 38, whirlwind) / 1068/1076 (Job 42, restored). 1477 is Job DECLARING HOPE mid-wait — the wait expressing itself, not the wait beginning or ending. The theme demands the middle. Alternates: 1153 (Job 38 — God's answer after the wait) would also work as the third beat if you'd rather show the wait ending in encounter rather than declaration."
+    },
+    {
+      "storyNumber": 1230,
+      "scriptureAnchorId": "isaiah_40_12-31",
+      "label": "Isaiah 40:12-31 — 'they that wait upon the Lord shall renew their strength' (the theological core)",
+      "editorialNote": "Picked over 1071/1079/806 (Isaiah 40:28-31, wings_like_eagles — narrower scope) and 1152/1500 (Isaiah 40:1-11, comfort_my_people — different opening). 1230 covers the broader Isaiah 40 wait theology and includes the literal 'wait upon the Lord' phrase. This is the theological hinge of the entire journey."
+    },
+    {
+      "storyNumber": 1177,
+      "scriptureAnchorId": "luke_2_25-38",
+      "label": "Luke 2:25-38 — Simeon and Anna meet baby Jesus (waiting fulfilled)",
+      "editorialNote": "Only telling. The Christological closing of the wait theme — a lifetime of waiting met at the temple. Beautifully natural endpoint for the arc."
+    }
+  ],
+
+  "_excludedFromArcWithRationale": [
+    "1169 (1 Sam 1:21-28, hannah_dedicates_samuel) — after-the-fact dedication, not the wait itself",
+    "1133, 1496 (Hannah's song, 1 Sam 2:1-10) — celebration after the wait; arc ends with Simeon for tonal Christological close, not return to Hannah",
+    "1112, 826 (1 Sam 17, David vs Goliath) — about courage, not waiting",
+    "1022, 1030 (1 Sam 16:1-13, david_anointed) — also a 'long wait until reign' story, but the cave is the lived waiting; anointing is the seed",
+    "1052, 1060 (1 Sam 18:1-4, David & Jonathan) — friendship, not waiting",
+    "1055, 1063 (Job 1:1-22, tested) — the trial BEGINS; not the wait",
+    "1356 (Job 3, curses his birth) — the despair phase; could substitute for the middle Job beat if you want the darker register",
+    "1223 (Job 23, searches for God) — strong wait expression, alternate candidate for the Job beat",
+    "1153, 1530 (Job 38, whirlwind) — God's answer; wait ENDED. Strong alternate if you'd rather the third beat show resolution",
+    "1068, 1076 (Job 42, restored) — restoration; the wait's reward, but tonally heavy for the arc's middle",
+    "1071, 1079, 806 (Isaiah 40:28-31, wings_like_eagles) — narrower than 1230; if you'd rather the more famous 'wings' verses, swap",
+    "1152, 1500 (Isaiah 40:1-11, comfort) — different opening of Isaiah 40; less explicitly about waiting",
+    "1023, 1031 (Exodus 16, manna) — daily provision while waiting in wilderness. Could add as a sixth beat if you want a wilderness-provision pillar; held for tightness",
+    "1346, 1439 (Jonathan stories, 1 Sam 14) — adjacent material from the same era, not about waiting",
+    "1155, 1165, 1508, 1522 (Saul / Samuel stories) — same era, not the theme"
+  ]
+}

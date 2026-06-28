@@ -1,0 +1,63 @@
+{
+  "$schema": "journey_v1",
+  "version": 1,
+  "journeyId": "daniel_arc",
+  "journeyType": "narrative",
+  "lane": "adult",
+  "status": "ready",
+
+  "_documentation": {
+    "_purpose": "First-ship adult Narrative journey for Slice 2 of the Journey Doctrine (docs/JOURNEY_DOCTRINE.md). Daniel's life chronologically — young faithfulness to closing prophetic vision.",
+    "_fields": {
+      "journeyId": "Stable identifier, snake_case. Referenced by primaryJourney on Parable metadata when Slice 3 multi-membership lands.",
+      "journeyType": "One of: narrative / character / theme / teaching / practice. Per doctrine adult lane allows all 5; kid lane allows only narrative / character / practice.",
+      "lane": "adult | kid. Engine routes through different cooldown + offer-line rules based on lane.",
+      "nameRegistryKey": "Key into assets/pal/memory/display_name_registry.json. Drives the compositional offer-line: '[journey-type-carrier] [name from registry]'. Reuses Slice 2d audio — adding a journey costs 0 new clips when the name already exists.",
+      "stories": "Ordered list. Engine plays in this order; user's saved length-bucket + language-style preferences select the variant of each at runtime, same as mood-flow.",
+      "editorialNote": "Curator-only notes. Never shown to the user, never narrated."
+    },
+    "_compositionalAudio": "Per doctrine + design call 2026-06-28, journeys use B-pattern: generic per-journey-type carrier clips ('We could continue X\\'s story'), then the name clip from display_name_registry. So this journey's offer audio is: [carrier_narrative_continue_X_story] + [silence] + [name_daniel from display_name_registry] + [silence] + [invitation_or_tell_me_today]. The name clip is already shipped in Slice 2d for VOICE_STILLWATER."
+  },
+
+  "nameRegistryKey": "daniel_in_the_lions_den",
+  "editorialNote": "Four stories — faithfulness → fire → lions → vision. Daniel's personal arc, not a survey of his book. Daniel 5 is excluded because it's about a king facing judgment, not Daniel facing trial; reserved for a future Kings & Kingdoms / Pride & Judgment journey.",
+
+  "stories": [
+    {
+      "storyNumber": 1486,
+      "scriptureAnchorId": "daniel_1_8-21",
+      "label": "Daniel 1 — the ten-day test (young Daniel refuses the king's food)",
+      "editorialNote": "Only telling of Daniel 1 in the corpus. Opens the arc with Daniel established as faithful from the start."
+    },
+    {
+      "storyNumber": 1002,
+      "scriptureAnchorId": "daniel_3_13-27",
+      "label": "Daniel 3 — the fiery furnace ('but if not', the fourth man)",
+      "editorialNote": "Adam-favorited Long benchmark per feedback_long_discipline. Chose over 1091 (fuller chapter scope) for the tighter Shadrach/Meshach/Abednego focus, and over 1338/1469 (partial scenes) for completeness."
+    },
+    {
+      "storyNumber": 1114,
+      "scriptureAnchorId": "dan_6",
+      "label": "Daniel 6 — the lions' den (Daniel's own trial of faith)",
+      "editorialNote": "The iconic story. Chose 1114 (full Daniel 6, brave_courage) over 1492 (10-23, focused), 1461 (16-23, king's vigil), 1378 (19-23, deliverance). 1114 is the only one covering the full chapter; alternates are scene-focused and could appear as Slice 3 cross-journey alternates later. 816/817 are 800-series legacy variants — skipped per project_800_series_content_audit precedent of preferring 1000-series tellings unless audit promoted them."
+    },
+    {
+      "storyNumber": 1506,
+      "scriptureAnchorId": "daniel_7_1-14",
+      "label": "Daniel 7 — the vision of four beasts (closing prophetic vision)",
+      "editorialNote": "Only telling of Daniel 7 in the corpus. Closes the arc with Daniel as seer rather than actor — the natural endpoint of his life. Daniel 9 (prayer) and Daniel 10 (strengthened by angel) exist as adult stories but felt like over-extension; can add to a future deeper Daniel journey."
+    }
+  ],
+
+  "_excludedFromArcWithRationale": [
+    "1091 (Daniel 3:1-30, fuller furnace) — redundant with 1002 which is the canonical telling",
+    "1338 (Daniel 3:13-18, 'but if not') — scene-focused, could be a Slice 3 alternate",
+    "1469 (Daniel 3:19-25, 'fourth in the furnace') — scene-focused, could be a Slice 3 alternate",
+    "1404 (Daniel 4:4-9), 1451 (Daniel 4:28-37) — Nebuchadnezzar's madness arc. Strong stories but break Daniel's POV; the journey is Daniel's life, not the kings around him.",
+    "1148 (Daniel 5:1-31), 1450 (Daniel 5:1-30) — writing-on-the-wall. About a KING facing judgment, not Daniel facing trial. Adam editorial call 2026-06-28: save for a future Kings & Kingdoms / Pride & Judgment journey.",
+    "1295 (Daniel 2:19-23), 1515 (Daniel 2:31-45) — Daniel 2 statue dream. Strong material but adding 1 more chapter felt like over-extension for a 4-story arc.",
+    "1492 (Daniel 6:10-23), 1461 (Daniel 6:16-23), 1378 (Daniel 6:19-23) — alternate Daniel 6 tellings, deferred to Slice 3 cross-journey alternates",
+    "816, 817 (800-series legacy Daniel 6) — older tellings; defer to Slice 3 or retire per future 800-series audit",
+    "1188 (Daniel 9:1-23, prayer), 1264 (Daniel 10:1-19, strengthened by angel), 1493 (Daniel 9:20-23, Gabriel answers) — late-life prayer/vision sequence. Strong but felt like a separate journey ('Daniel's Inner Life') rather than the headline life-arc."
+  ]
+}
