@@ -68,6 +68,29 @@ class PalSessionStore {
     return null;
   }
 
+  /// Record that PAL just spoke a memory line. The single truthful
+  /// producer of the `lastSpokenAt` value fed back into
+  /// [PalMemoryEngine.nextLine] as the cooldown anchor.
+  ///
+  /// PAL Memory Doctrine, Slice 2d (see docs/PAL_MEMORY_DOCTRINE.md):
+  /// callers must invoke this ONLY after the carrier+name plan finished
+  /// playing successfully. A render gap, missing clip, or playback
+  /// failure must NOT advance the cooldown — otherwise PAL falls silent
+  /// for the next 3 days for a line the user never actually heard.
+  ///
+  /// [at] defaults to `DateTime.now()` and exists for deterministic tests.
+  Future<void> recordMemoryLineSpoken({DateTime? at}) async {
+    await _storage.setLastMemoryLineSpokenAt(at ?? DateTime.now());
+  }
+
+  /// Returns when PAL last spoke a memory line, or null if PAL has
+  /// never spoken one for this user. Pass-through over
+  /// [StorageService.getLastMemoryLineSpokenAt] so consumers depend on
+  /// [PalSessionStore] for both the session log and the cooldown anchor.
+  Future<DateTime?> getLastMemoryLineSpokenAt() async {
+    return _storage.getLastMemoryLineSpokenAt();
+  }
+
   /// Returns every persisted session in append order (oldest first).
   /// Reserved for future Level 2 / Level 3 pattern detection — Slice 1
   /// exposes it for tests and forward compatibility, not for UI.
@@ -75,11 +98,14 @@ class PalSessionStore {
     return _storage.getPalSessions();
   }
 
-  /// Wipe every persisted session. Trust-protective entry point for the
-  /// future "Clear PAL Memory" settings hook described in
-  /// docs/PAL_MEMORY_DOCTRINE.md. Slice 1 has no UI consumer; the method
-  /// exists so it's plumbed when the settings screen needs it.
+  /// Wipe every persisted session AND the last-spoken-memory-line
+  /// timestamp. Trust-protective entry point for the future "Clear PAL
+  /// Memory" settings hook described in docs/PAL_MEMORY_DOCTRINE.md.
+  /// Wiping both ensures that after a clear, PAL is silent only because
+  /// the engine's min-completions gate has reset — never because a
+  /// stale cooldown timestamp lingers.
   Future<void> clear() async {
     await _storage.clearPalSessions();
+    await _storage.clearLastMemoryLineSpokenAt();
   }
 }

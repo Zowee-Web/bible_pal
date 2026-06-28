@@ -10,6 +10,7 @@ import 'package:just_audio/just_audio.dart'
     show PlayerException, PlayerInterruptedException;
 import '../../core/pal_voice_registry.dart';
 import '../../services/pal_audio_service.dart' show PalAudioService;
+import '../pal_memory/pal_memory_runtime.dart';
 import '../../services/pal_prompt_service.dart';
 import '../../services/stt_service.dart';
 import '../../providers/service_providers.dart';
@@ -41,6 +42,36 @@ import '../paths/paths_page.dart';
 /// can't double-tap themselves into two parallel selections.
 bool _moodFlowSelecting = false;
 
+/// PAL Memory Doctrine Slice 2d (see docs/PAL_MEMORY_DOCTRINE.md):
+/// resolve every cascade dependency from Riverpod and run
+/// [fireMemoryLine]. Always awaited from [selectStoryAndOpenPlayer] so
+/// the player screen never opens over a memory carrier. Errors are
+/// absorbed by [fireMemoryLine]; this wrapper exists only to bridge
+/// Riverpod ↔ the pure-ish cascade.
+Future<void> _maybeSpeakMemoryLine(WidgetRef ref) async {
+  final appState = ref.read(appStateProvider).valueOrNull;
+  final preferences = appState?.userPreferences;
+  // Short-circuit cheaply if preferences are missing — avoids loading
+  // any of the heavier providers in the bootstrap-failure case.
+  if (preferences == null) return;
+
+  final sessionStore = await ref.read(palSessionStoreProvider.future);
+  final registry =
+      await ref.read(palMemoryDisplayNameRegistryProvider.future);
+  final audioResolver = await ref.read(memoryAudioResolverProvider.future);
+  final palAudio = ref.read(palAudioServiceProvider);
+
+  await fireMemoryLine(
+    preferences: preferences,
+    sessionStore: sessionStore,
+    displayNameRegistry: registry,
+    audioResolver: audioResolver,
+    playPlan: palAudio.playMemoryPlan,
+    now: DateTime.now(),
+    logger: logEvent,
+  );
+}
+
 /// Selects a story for the given mood using the user's saved
 /// `preferredLengthBucket` and current preferences, loads it into the
 /// player, and navigates straight to the player screen with a one-time
@@ -71,6 +102,12 @@ Future<void> selectStoryAndOpenPlayer({
       'has_user_text': userText.isNotEmpty,
       'has_bible_story_key': bibleStoryKey != null,
     });
+
+    // PAL Memory Doctrine Slice 2d — speak a memory line if the cascade
+    // allows. Awaited so the player screen does NOT open over the
+    // carrier. Errors are absorbed inside the helper.
+    await _maybeSpeakMemoryLine(ref);
+    if (!context.mounted) return;
 
     final parable = await appStateNotifier.selectParable(
       mood: mood,

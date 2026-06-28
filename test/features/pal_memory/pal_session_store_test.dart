@@ -166,6 +166,72 @@ void main() {
       expect(all, hasLength(1));
       expect(all.single.storyId, 'b');
     });
+
+    test('also wipes lastMemoryLineSpokenAt (Slice 2d cooldown)',
+        () async {
+      // The doctrine: a clear must reset the cooldown too. Otherwise
+      // PAL stays silent after a wipe until the cooldown expires —
+      // user has wiped memory but is still paying the cooldown.
+      await store.recordMemoryLineSpoken(at: DateTime.utc(2026, 6, 27));
+      expect(await store.getLastMemoryLineSpokenAt(), isNotNull);
+
+      await store.clear();
+      expect(await store.getLastMemoryLineSpokenAt(), isNull,
+          reason: 'PalSessionStore.clear() must wipe both the session '
+              'log AND the cooldown anchor; otherwise a "Clear PAL '
+              'Memory" action leaves a stale cooldown that silences '
+              'PAL for up to 3 more days.');
+    });
+  });
+
+  group('recordMemoryLineSpoken / getLastMemoryLineSpokenAt (Slice 2d)', () {
+    test('returns null when PAL has never spoken a memory line', () async {
+      expect(await store.getLastMemoryLineSpokenAt(), isNull);
+    });
+
+    test('persists an injected timestamp byte-for-byte (ISO 8601 round-trip)',
+        () async {
+      final at = DateTime.utc(2026, 6, 27, 9, 30, 15);
+      await store.recordMemoryLineSpoken(at: at);
+
+      final got = await store.getLastMemoryLineSpokenAt();
+      expect(got, at);
+    });
+
+    test('latest call wins (single-scalar, not append-only)', () async {
+      final first = DateTime.utc(2026, 6, 25);
+      final second = DateTime.utc(2026, 6, 27);
+      await store.recordMemoryLineSpoken(at: first);
+      await store.recordMemoryLineSpoken(at: second);
+
+      expect(await store.getLastMemoryLineSpokenAt(), second);
+    });
+
+    test('omitted at defaults to "now" (close-enough freshness check)',
+        () async {
+      final before = DateTime.now();
+      await store.recordMemoryLineSpoken();
+      final after = DateTime.now();
+
+      final got = await store.getLastMemoryLineSpokenAt();
+      expect(got, isNotNull);
+      expect(got!.isAfter(before.subtract(const Duration(seconds: 1))),
+          isTrue);
+      expect(got.isBefore(after.add(const Duration(seconds: 1))), isTrue);
+    });
+
+    test('corrupt stored value heals to null instead of throwing', () async {
+      // Simulate a corrupt write (e.g. format change in a future schema).
+      SharedPreferences.setMockInitialValues(
+          {'last_memory_line_spoken_at': 'not-a-date'});
+      final corruptPrefs = await SharedPreferences.getInstance();
+      final corruptStorage = StorageService(corruptPrefs);
+      final corruptStore = PalSessionStore(corruptStorage);
+
+      expect(await corruptStore.getLastMemoryLineSpokenAt(), isNull,
+          reason: 'tryParse must heal corrupt timestamps to null — the '
+              'cold-open path must not crash on a single bad preference.');
+    });
   });
 
   group('cap (1000, FIFO by completedAt)', () {

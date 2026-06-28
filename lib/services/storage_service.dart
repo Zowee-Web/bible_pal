@@ -43,6 +43,11 @@ class StorageService {
   static const String _keyPalSessions = 'pal_sessions_v1';
   static const int _palSessionsCap = 1000;
 
+  // PAL Memory Doctrine — Slice 2d. Truthful producer of "PAL spoke a
+  // memory line" — fed back into PalMemoryEngine.nextLine() as the
+  // lastSpokenAt cooldown anchor. Advanced ONLY on successful playback.
+  static const String _keyLastMemoryLineSpokenAt = 'last_memory_line_spoken_at';
+
   final SharedPreferences _prefs;
 
   StorageService(this._prefs);
@@ -718,5 +723,32 @@ class StorageService {
     final json = _prefs.getString(_keyLastInboxSync);
     if (json == null) return null;
     return DateTime.parse(json);
+  }
+
+  // ========== PAL Memory — Last-Spoken Timestamp (Slice 2d) ==========
+
+  /// Persist the moment PAL spoke its most recent memory line. Feeds the
+  /// `lastSpokenAt` cooldown gate in [PalMemoryEngine.nextLine]. Stored
+  /// as an ISO-8601 string for parity with [setLastInboxSyncTimestamp].
+  Future<void> setLastMemoryLineSpokenAt(DateTime timestamp) async {
+    await _prefs.setString(
+        _keyLastMemoryLineSpokenAt, timestamp.toIso8601String());
+  }
+
+  /// Returns when PAL last spoke a memory line, or null if never. Uses
+  /// [DateTime.tryParse] so a corrupt stored value heals to null rather
+  /// than throwing — the cold-open path must never crash on a single
+  /// bad preference.
+  Future<DateTime?> getLastMemoryLineSpokenAt() async {
+    final s = _prefs.getString(_keyLastMemoryLineSpokenAt);
+    if (s == null) return null;
+    return DateTime.tryParse(s);
+  }
+
+  /// Wipe the last-spoken timestamp. Called from the trust-protective
+  /// [PalSessionStore.clear] entry point so a "clear PAL memory" action
+  /// resets both the session log AND the cooldown.
+  Future<void> clearLastMemoryLineSpokenAt() async {
+    await _prefs.remove(_keyLastMemoryLineSpokenAt);
   }
 }
