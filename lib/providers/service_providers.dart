@@ -20,6 +20,8 @@ import 'package:bible_pal/features/pal_memory/pal_memory_display_name_registry.d
 import 'package:bible_pal/features/pal_memory/memory_audio_resolver.dart';
 import 'package:bible_pal/features/pal_memory/bundled_asset_memory_audio_resolver.dart';
 import 'package:bible_pal/features/journey/journey_registry.dart';
+import 'package:bible_pal/features/journey/journey_audio_resolver.dart';
+import 'package:bible_pal/features/journey/bundled_asset_journey_audio_resolver.dart';
 import 'package:bible_pal/services/path_service.dart';
 import 'package:bible_pal/services/search_service.dart';
 import 'package:bible_pal/core/character_registry.dart';
@@ -195,6 +197,19 @@ final journeyRegistryProvider =
     FutureProvider<JourneyRegistry>((ref) async {
   ref.keepAlive();
   return JourneyRegistry.load();
+});
+
+/// Bundled-asset [JourneyAudioResolver] for journey offer clips
+/// (Slice 2 Phase 6). Loaded once via AssetManifest scan; `keepAlive`
+/// holds the instance so cascade calls are O(1) Set lookups after
+/// first warm-up. Typed as the interface so a future R2-aware
+/// resolver can swap in via `overrideWithProvider` without touching
+/// call sites. Doctrine-honest: missing clip = silence (returns null
+/// from resolve()), never fallback.
+final journeyAudioResolverProvider =
+    FutureProvider<JourneyAudioResolver>((ref) async {
+  ref.keepAlive();
+  return BundledAssetJourneyAudioResolver.load();
 });
 
 /// Loads the curated Life of Jesus sequence from the bundled asset
