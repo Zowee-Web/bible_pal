@@ -27,10 +27,10 @@ void main() {
       expect(plan.voiceKey, 'VOICE_STILLWATER');
       expect(plan.offerClips, hasLength(1));
       expect(plan.offerClips.first.kind, JourneyClipKind.offer);
-      expect(plan.offerClips.first.clipId, 'journey_offer_adult');
+      expect(plan.offerClips.first.clipId, 'offer_narrative_adult');
       expect(plan.offerGapsBetween, isEmpty);
       expect(plan.declineClip.kind, JourneyClipKind.decline);
-      expect(plan.declineClip.clipId, 'journey_decline_adult');
+      expect(plan.declineClip.clipId, 'decline_adult');
     });
   });
 
@@ -101,16 +101,16 @@ void main() {
       plan!.validateStructure();
       expect(plan.offerClips, hasLength(3));
       expect(plan.offerClips[0].kind, JourneyClipKind.carrier);
-      expect(plan.offerClips[0].clipId, 'journey_carrier_kid');
+      expect(plan.offerClips[0].clipId, 'carrier_narrative_kid');
       expect(plan.offerClips[1].kind, JourneyClipKind.name);
       expect(plan.offerClips[1].clipId, 'name_david_journey');
       expect(plan.offerClips[2].kind, JourneyClipKind.invitation);
-      expect(plan.offerClips[2].clipId, 'journey_invitation_kid');
+      expect(plan.offerClips[2].clipId, 'invitation_narrative_kid');
       expect(plan.offerGapsBetween, hasLength(2));
       // Both stitch gaps reuse Slice 2d's 50ms carrier→name gap.
       expect(plan.offerGapsBetween[0], const Duration(milliseconds: 50));
       expect(plan.offerGapsBetween[1], const Duration(milliseconds: 50));
-      expect(plan.declineClip.clipId, 'journey_decline_kid');
+      expect(plan.declineClip.clipId, 'decline_kid');
     });
 
     test('character clip ID is derived per-character (Moses → name_moses_journey)',
@@ -254,17 +254,17 @@ void main() {
 // ---------------------------------------------------------------------------
 
 String _adultOfferPath(String voice) =>
-    'assets/pal/audio/$voice/journey/journey_offer_adult.mp3';
+    'assets/pal/audio/$voice/journey/offer_narrative_adult.mp3';
 String _adultDeclinePath(String voice) =>
-    'assets/pal/audio/$voice/journey/journey_decline_adult.mp3';
+    'assets/pal/audio/$voice/journey/decline_adult.mp3';
 String _kidCarrierPath(String voice) =>
-    'assets/pal/audio/$voice/journey/journey_carrier_kid.mp3';
+    'assets/pal/audio/$voice/journey/carrier_narrative_kid.mp3';
 String _kidNamePath(String voice, String character) =>
     'assets/pal/audio/$voice/journey/name_${character.toLowerCase()}_journey.mp3';
 String _kidInvitationPath(String voice) =>
-    'assets/pal/audio/$voice/journey/journey_invitation_kid.mp3';
+    'assets/pal/audio/$voice/journey/invitation_narrative_kid.mp3';
 String _kidDeclinePath(String voice) =>
-    'assets/pal/audio/$voice/journey/journey_decline_kid.mp3';
+    'assets/pal/audio/$voice/journey/decline_kid.mp3';
 
 // ---------------------------------------------------------------------------
 // Offer fixtures.

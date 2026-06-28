@@ -47,14 +47,14 @@ void main() {
         readyJourneys.any((j) => j.lane == JourneyLane.kid);
 
     requiredAdultClipIds = hasReadyAdult
-        ? const {'journey_offer_adult', 'journey_decline_adult'}
+        ? const {'offer_narrative_adult', 'decline_adult'}
         : const {};
 
     requiredKidStaticClipIds = hasReadyKid
         ? const {
-            'journey_carrier_kid',
-            'journey_invitation_kid',
-            'journey_decline_kid',
+            'carrier_narrative_kid',
+            'invitation_narrative_kid',
+            'decline_kid',
           }
         : const {};
 

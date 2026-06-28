@@ -12,9 +12,9 @@ import 'journey_continuation_offer.dart';
 /// treats null as "stay silent and proceed to mood-flow."
 ///
 /// Required clip set per lane (Slice 2 first ship):
-///   - ADULT: `journey_offer_adult` + `journey_decline_adult`
-///   - KID:   `journey_carrier_kid` + `name_<char>_journey` +
-///            `journey_invitation_kid` + `journey_decline_kid`
+///   - ADULT: `offer_narrative_adult` + `decline_adult`
+///   - KID:   `carrier_narrative_kid` + `name_<char>_journey` +
+///            `invitation_narrative_kid` + `decline_kid`
 abstract class JourneyAudioResolver {
   Future<JourneyAudioPlan?> resolve({
     required JourneyContinuationOffer offer,

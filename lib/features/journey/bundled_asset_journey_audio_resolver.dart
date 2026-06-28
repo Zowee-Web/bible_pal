@@ -60,8 +60,8 @@ class BundledAssetJourneyAudioResolver implements JourneyAudioResolver {
   // No per-journey customization (per Cascade Option C lock).
   // ------------------------------------------------------------
   JourneyAudioPlan? _resolveAdult(String voiceKey) {
-    const offerClipId = 'journey_offer_adult';
-    const declineClipId = 'journey_decline_adult';
+    const offerClipId = 'offer_narrative_adult';
+    const declineClipId = 'decline_adult';
 
     final offerPath = PalJourneyAudioPaths.assetPathFor(
         voiceKey: voiceKey, clipId: offerClipId);
@@ -106,10 +106,10 @@ class BundledAssetJourneyAudioResolver implements JourneyAudioResolver {
       return null;
     }
 
-    const carrierClipId = 'journey_carrier_kid';
+    const carrierClipId = 'carrier_narrative_kid';
     final nameClipId = PalJourneyAudioPaths.nameClipIdFor(characterName);
-    const invitationClipId = 'journey_invitation_kid';
-    const declineClipId = 'journey_decline_kid';
+    const invitationClipId = 'invitation_narrative_kid';
+    const declineClipId = 'decline_kid';
 
     final carrierPath = PalJourneyAudioPaths.assetPathFor(
         voiceKey: voiceKey, clipId: carrierClipId);

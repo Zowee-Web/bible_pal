@@ -10,12 +10,12 @@
 /// scope cleanly to its own asset family.
 ///
 /// Clip ID conventions for first-ship Slice 2 (VOICE_STILLWATER):
-///   - `journey_offer_adult`        — generic adult carrier (single clip
+///   - `offer_narrative_adult`        — generic adult carrier (single clip
 ///     covers every adult journey type; no per-journey customization)
-///   - `journey_decline_adult`      — generic adult decline
-///   - `journey_carrier_kid`        — generic kid carrier (precedes name)
-///   - `journey_invitation_kid`     — generic kid invitation (follows name)
-///   - `journey_decline_kid`        — generic kid decline
+///   - `decline_adult`      — generic adult decline
+///   - `carrier_narrative_kid`        — generic kid carrier (precedes name)
+///   - `invitation_narrative_kid`     — generic kid invitation (follows name)
+///   - `decline_kid`        — generic kid decline
 ///   - `name_<character_snake>_journey` — per-kid-journey character clip
 ///     (e.g. `name_david_journey`). Derived from the journey's
 ///     [Journey.characterName] via [PalJourneyAudioPaths.nameClipIdFor].

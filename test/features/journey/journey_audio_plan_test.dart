@@ -12,10 +12,10 @@ void main() {
     test('composes the expected bundled-asset path', () {
       final p = PalJourneyAudioPaths.assetPathFor(
         voiceKey: 'VOICE_STILLWATER',
-        clipId: 'journey_offer_adult',
+        clipId: 'offer_narrative_adult',
       );
       expect(p,
-          'assets/pal/audio/VOICE_STILLWATER/journey/journey_offer_adult.mp3');
+          'assets/pal/audio/VOICE_STILLWATER/journey/offer_narrative_adult.mp3');
     });
 
     test('lands under journey/ sibling of memory/ (Slice 2d convention)', () {
@@ -174,22 +174,22 @@ JourneyAudioClipRef _clip(String id, JourneyClipKind kind) {
 
 JourneyAudioPlan _adultPlan() => JourneyAudioPlan(
       voiceKey: 'VOICE_STILLWATER',
-      offerClips: [_clip('journey_offer_adult', JourneyClipKind.offer)],
+      offerClips: [_clip('offer_narrative_adult', JourneyClipKind.offer)],
       offerGapsBetween: const [],
       declineClip:
-          _clip('journey_decline_adult', JourneyClipKind.decline),
+          _clip('decline_adult', JourneyClipKind.decline),
     );
 
 JourneyAudioPlan _kidPlan() => JourneyAudioPlan(
       voiceKey: 'VOICE_STILLWATER',
       offerClips: [
-        _clip('journey_carrier_kid', JourneyClipKind.carrier),
+        _clip('carrier_narrative_kid', JourneyClipKind.carrier),
         _clip('name_david_journey', JourneyClipKind.name),
-        _clip('journey_invitation_kid', JourneyClipKind.invitation),
+        _clip('invitation_narrative_kid', JourneyClipKind.invitation),
       ],
       offerGapsBetween: const [
         Duration(milliseconds: 50),
         Duration(milliseconds: 50),
       ],
-      declineClip: _clip('journey_decline_kid', JourneyClipKind.decline),
+      declineClip: _clip('decline_kid', JourneyClipKind.decline),
     );
