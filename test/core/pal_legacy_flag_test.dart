@@ -90,12 +90,15 @@ void main() {
   });
 
   group('PAL voice selection consistency', () {
-    test('palVoiceKey defaults to VOICE_HOPE', () {
-      // Default migrated from VOICE_GRACE → VOICE_RUTH_COMFORT → VOICE_HOPE.
-      // Grace retired 2026-04-23; Ruth v1 retired 2026-04-25; Hope is now the
-      // canonical PAL default per `feedback_pal_canonical_system.md`.
+    test('palVoiceKey defaults to VOICE_STILLWATER', () {
+      // Default lineage: VOICE_GRACE → VOICE_RUTH_COMFORT → VOICE_HOPE
+      // → VOICE_STILLWATER. Grace retired 2026-04-23; Ruth v1 retired
+      // 2026-04-25; default switched HOPE → STILLWATER on 2026-06-27
+      // to align with PAL Memory Slice 2d (Stillwater is the only
+      // voice with rendered memory clips — see pal_voice_registry.dart
+      // docstring).
       final prefs = UserPreferences.defaults();
-      expect(prefs.palVoiceKey, 'VOICE_HOPE');
+      expect(prefs.palVoiceKey, 'VOICE_STILLWATER');
     });
 
     test('all 3 active PAL voices are registered', () {

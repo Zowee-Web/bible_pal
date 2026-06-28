@@ -23,7 +23,17 @@ class PalVoice {
 class PalVoiceRegistry {
   PalVoiceRegistry._();
 
-  static const String defaultVoiceKey = 'VOICE_HOPE';
+  /// Default PAL voice. Switched HOPE → STILLWATER 2026-06-27 to align
+  /// with PAL Memory Slice 2d: Stillwater is the only voice with
+  /// rendered memory clips (PRs #37–#40), so any new install on the
+  /// prior default (HOPE) would silently never hear a memory line
+  /// because the audio resolver gate would close on missing clips.
+  /// Stillwater has equivalent PAL greeting/reflection coverage
+  /// (~520 clips vs HOPE's 521), so the switch is acoustically
+  /// transparent for cold-open greetings. Existing users with
+  /// explicitly-persisted `palVoiceKey` (including HOPE) keep their
+  /// choice — `migrateVoiceKey` only rewrites legacy/unknown keys.
+  static const String defaultVoiceKey = 'VOICE_STILLWATER';
 
   /// Old voice keys that should be migrated to the default.
   /// - VOICE_GRACE was retired 2026-04-23 — audio archived to
@@ -32,7 +42,7 @@ class PalVoiceRegistry {
   ///   `assets/pal/audio_archive_ruth_v1_2026_04_25/` (not bundled).
   ///   Will be rebuilt as Ruth v2 from the archived source audio.
   /// Existing users on any of these keys migrate to the current
-  /// default (VOICE_HOPE) on next launch via `migrateVoiceKey`.
+  /// default ([defaultVoiceKey]) on next launch via `migrateVoiceKey`.
   static const List<String> _legacyVoiceKeys = [
     'VOICE_SARAH_STORYTELLER',
     'VOICE_HANNAH_HOPE',
@@ -42,10 +52,10 @@ class PalVoiceRegistry {
     'VOICE_RUTH_COMFORT',
   ];
 
-  // VOICE_HOPE is the default voice. Ruth v1 was retired
-  // 2026-04-25; existing users on VOICE_RUTH_COMFORT migrate to Hope
-  // on next launch via `migrateVoiceKey` (Ruth is in
-  // `_legacyVoiceKeys`). Ruth's audio is preserved at
+  // Default voice declared above as [defaultVoiceKey]. Ruth v1 was
+  // retired 2026-04-25; existing users on VOICE_RUTH_COMFORT migrate
+  // to the current default on next launch via `migrateVoiceKey`
+  // (Ruth is in `_legacyVoiceKeys`). Ruth's audio is preserved at
   // `assets/pal/audio_archive_ruth_v1_2026_04_25/` for future
   // rebuild as Ruth v2.
   static const List<PalVoice> voices = [
