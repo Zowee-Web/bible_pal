@@ -158,12 +158,12 @@ void main() {
         () {
       final plan = _kidPlan();
       expect(plan.voiceKey, 'VOICE_STILLWATER');
-      // Post-pivot kid plans carry a single OFFER-kind clip
-      // (monolithic per-journey clip), not the older carrier+name+
-      // invitation stitched sequence.
+      // FINAL Slice 2 Phase 6 shape: single OFFER-kind clip with
+      // clipId convention `<journeyId>_offer_<sourceStoryIndex>`.
       expect(plan.offerClips, hasLength(1));
       expect(plan.offerClips[0].kind, JourneyClipKind.offer);
-      expect(plan.offerClips[0].clipId, endsWith('_offer'));
+      expect(plan.offerClips[0].clipId,
+          matches(RegExp(r'_offer_\d+$')));
       expect(plan.declineClip.kind, JourneyClipKind.decline);
     });
   });
@@ -178,22 +178,22 @@ JourneyAudioClipRef _clip(String id, JourneyClipKind kind) {
   );
 }
 
+// FINAL Slice 2 Phase 6 shape (2026-06-28): both lanes use
+// per-source-story monolithic offer clips
+// (`<journeyId>_offer_<sourceStoryIndex>`) + a lane-specific decline.
+// Fixtures use the canonical first-ship clip IDs.
 JourneyAudioPlan _adultPlan() => JourneyAudioPlan(
       voiceKey: 'VOICE_STILLWATER',
-      offerClips: [_clip('offer_narrative_adult', JourneyClipKind.offer)],
+      offerClips: [_clip('daniel_arc_offer_0', JourneyClipKind.offer)],
       offerGapsBetween: const [],
       declineClip:
           _clip('decline_adult', JourneyClipKind.decline),
     );
 
-// Post-pivot 2026-06-28: kid plan is now MONOLITHIC (one full-line
-// per-journey offer clip + generic decline). The older stitched
-// carrier+name+invitation shape was retired; see
-// bundled_asset_journey_audio_resolver.dart for the pivot rationale.
 JourneyAudioPlan _kidPlan() => JourneyAudioPlan(
       voiceKey: 'VOICE_STILLWATER',
       offerClips: [
-        _clip('kid_david_arc_offer', JourneyClipKind.offer),
+        _clip('kid_david_arc_offer_0', JourneyClipKind.offer),
       ],
       offerGapsBetween: const [],
       declineClip: _clip('decline_kid', JourneyClipKind.decline),

@@ -30,15 +30,16 @@ import 'package:bible_pal/features/journey/journey_audio_paths.dart';
 ///      false-fail.
 void main() {
   late List<Journey> readyJourneys;
-  late Set<String> requiredAdultClipIds;
+  late Set<String> requiredAdultStaticClipIds;
   late Set<String> requiredKidStaticClipIds;
-  late Set<String> requiredKidPerJourneyOfferClipIds;
+  late Set<String> requiredPerSourceStoryOfferClipIds;
 
   setUpAll(() {
     // Load every ready adult/kid journey from the live registry on
     // disk. The validator computes its expected-clip set against
-    // these — so adding a new journey automatically updates what
-    // this test demands without requiring a test edit.
+    // these — so adding a new journey (or adding stories to one)
+    // automatically updates what this test demands without
+    // requiring a test edit.
     readyJourneys = _loadReadyJourneys();
 
     final hasReadyAdult =
@@ -46,29 +47,24 @@ void main() {
     final hasReadyKid =
         readyJourneys.any((j) => j.lane == JourneyLane.kid);
 
-    // Adult lane: 2 generic clips (offer_narrative_adult + decline_adult),
-    // shared across all adult journeys per Cascade Option C.
-    requiredAdultClipIds = hasReadyAdult
-        ? const {'offer_narrative_adult', 'decline_adult'}
-        : const {};
+    // Lane statics — just the decline clip per lane (shared across
+    // all journeys in that lane). Post-pivot 2026-06-28: the
+    // generic `offer_narrative_adult` clip is no longer required —
+    // adult offers became per-source-story like kid.
+    requiredAdultStaticClipIds =
+        hasReadyAdult ? const {'decline_adult'} : const {};
+    requiredKidStaticClipIds =
+        hasReadyKid ? const {'decline_kid'} : const {};
 
-    // Kid lane (post-pivot 2026-06-28): 1 generic clip (decline_kid).
-    // The carrier/invitation generic clips were retired when the
-    // compositional carrier+name+invitation pattern was replaced by
-    // per-journey monolithic offer clips (kid offers sound natural
-    // only when the model gets a full sentence context for prosody
-    // — single-syllable name slots punch through even with v3).
-    requiredKidStaticClipIds = hasReadyKid
-        ? const {'decline_kid'}
-        : const {};
-
-    // Kid lane per-journey: one full-line offer clip per ready kid
-    // journey, named `<journeyId>_offer`. Replaces the prior per-
-    // character `name_<x>_journey` clips.
-    requiredKidPerJourneyOfferClipIds = readyJourneys
-        .where((j) => j.lane == JourneyLane.kid)
-        .map((j) => '${j.journeyId}_offer')
-        .toSet();
+    // Per-source-story offers: one clip per (journey, sourceStoryIndex)
+    // where sourceStoryIndex ∈ [0, journey.stories.length - 1).
+    // The LAST index has no offer (end-of-journey is silent in
+    // Slice 2; Slice 5 Guidance Graph handles that surface).
+    requiredPerSourceStoryOfferClipIds = <String>{
+      for (final j in readyJourneys)
+        for (var i = 0; i < j.stories.length - 1; i++)
+          '${j.journeyId}_offer_$i',
+    };
   });
 
   test('every rendered voice has clips for every ready-journey offer', () {
@@ -105,9 +101,9 @@ void main() {
     }
 
     final allRequired = <String>{
-      ...requiredAdultClipIds,
+      ...requiredAdultStaticClipIds,
       ...requiredKidStaticClipIds,
-      ...requiredKidPerJourneyOfferClipIds,
+      ...requiredPerSourceStoryOfferClipIds,
     };
 
     // For each voice that is actively rendering, every required
@@ -142,26 +138,29 @@ void main() {
   });
 
   test('required-clip enumeration math is sane', () {
-    // Post-pivot math (2026-06-28):
-    //   ready-adult journeys contribute 2 static adult clipIds
-    //     (offer_narrative_adult + decline_adult), shared across
-    //     all adult journeys.
-    //   ready-kid journeys contribute 1 static kid clipId
+    // FINAL Slice 2 Phase 6 math (2026-06-28):
+    //   ready-adult journeys contribute 1 static clipId
+    //     (decline_adult), shared across all adult journeys.
+    //   ready-kid journeys contribute 1 static clipId
     //     (decline_kid), shared across all kid journeys.
-    //   ready-kid journeys contribute 1 per-journey clipId
-    //     (`<journeyId>_offer`) each.
+    //   Every ready journey (adult OR kid) contributes
+    //     (stories.length - 1) per-source-story offer clipIds
+    //     `<journeyId>_offer_<index>`.
     //
-    // A refactor adding more required clips per journey type would
-    // silently weaken this test if the enumeration wasn't pinned —
-    // hence the explicit `lessThanOrEqualTo` ceiling on the statics.
-    expect(requiredAdultClipIds.length, lessThanOrEqualTo(2));
+    // The `lessThanOrEqualTo(1)` ceiling on static clipIds catches
+    // a refactor that accidentally adds more required statics — a
+    // common silent-weakening failure mode.
+    expect(requiredAdultStaticClipIds.length, lessThanOrEqualTo(1));
     expect(requiredKidStaticClipIds.length, lessThanOrEqualTo(1));
-    // Per-journey offer count == number of ready kid journeys.
-    // Slice 2 first ship: kid David Arc → 1.
-    final readyKidJourneyCount =
-        readyJourneys.where((j) => j.lane == JourneyLane.kid).length;
-    expect(requiredKidPerJourneyOfferClipIds.length,
-        readyKidJourneyCount);
+
+    // Per-source-story offer count == sum over ready journeys of
+    // (stories.length - 1). Slice 2 first ship: Daniel Arc (4
+    // stories → 3 offers) + Kid David Arc (3 stories → 2 offers)
+    // = 5 per-source-story offer clips per voice.
+    final expectedPerSourceCount = readyJourneys.fold<int>(
+        0, (sum, j) => sum + (j.stories.length - 1));
+    expect(requiredPerSourceStoryOfferClipIds.length,
+        expectedPerSourceCount);
   });
 }
 

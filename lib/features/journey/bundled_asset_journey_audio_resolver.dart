@@ -47,70 +47,56 @@ class BundledAssetJourneyAudioResolver implements JourneyAudioResolver {
     required JourneyContinuationOffer offer,
     required String activeVoiceKey,
   }) async {
-    if (offer.journey.lane == JourneyLane.adult) {
-      return _resolveAdult(activeVoiceKey);
-    } else {
-      return _resolveKid(offer, activeVoiceKey);
-    }
+    // Both lanes resolve to the same monolithic shape (since the
+    // adult pivot 2026-06-28): one per-source-story offer clip +
+    // one lane-specific decline clip. The only lane difference is
+    // the decline-clip ID.
+    return _resolve(offer, activeVoiceKey);
   }
 
   // ------------------------------------------------------------
-  // ADULT — one generic offer clip + one generic decline clip.
-  // No per-journey customization (per Cascade Option C lock).
-  // ------------------------------------------------------------
-  JourneyAudioPlan? _resolveAdult(String voiceKey) {
-    const offerClipId = 'offer_narrative_adult';
-    const declineClipId = 'decline_adult';
-
-    final offerPath = PalJourneyAudioPaths.assetPathFor(
-        voiceKey: voiceKey, clipId: offerClipId);
-    final declinePath = PalJourneyAudioPaths.assetPathFor(
-        voiceKey: voiceKey, clipId: declineClipId);
-
-    if (!bundledPaths.contains(offerPath)) return null;
-    if (!bundledPaths.contains(declinePath)) return null;
-
-    return JourneyAudioPlan(
-      voiceKey: voiceKey,
-      offerClips: [
-        JourneyAudioClipRef(
-          clipId: offerClipId,
-          kind: JourneyClipKind.offer,
-          assetPath: offerPath,
-        ),
-      ],
-      offerGapsBetween: const [],
-      declineClip: JourneyAudioClipRef(
-        clipId: declineClipId,
-        kind: JourneyClipKind.decline,
-        assetPath: declinePath,
-      ),
-    );
-  }
-
-  // ------------------------------------------------------------
-  // KID — MONOLITHIC per-journey offer clip + generic decline.
+  // Per-source-story MONOLITHIC offer + lane-specific decline.
   //
-  // Pivot 2026-06-28 after Adam ear-checked the compositional
-  // (carrier+name+invitation) version: standalone 1-syllable name
-  // clips sound punched-out even with v3, because the model has no
-  // sentence-context for natural prosody (compare: "Hey, Adam!"
-  // sounds natural because the name is in a phrase). Kid offers
-  // now ship as one full-line clip per journey:
-  //   clipId convention: '<journeyId>_offer' (e.g.
-  //   'kid_david_arc_offer' for Kid David Arc)
-  // Each new kid journey adds one full-line render per voice
-  // (~30 credits / ~$0.30 per voice per kid journey).
+  // FINAL Slice 2 audio shape (2026-06-28). Convergence after a
+  // two-step pivot:
+  //   1. Compositional carrier+name+invitation stitch was retired
+  //      after Adam ear-checked: standalone 1-syllable name clips
+  //      sound punched-out even with v3 (no sentence context for
+  //      prosody). "Hey, Adam!" sounds natural; "David." doesn't.
+  //   2. Per-journey monolithic (`<journeyId>_offer`) was retired
+  //      same day after Adam's "magical memory" pivot: the offer
+  //      should reference the SPECIFIC source story they just
+  //      heard, not the journey as a whole. "Last time we walked
+  //      with Daniel into the lions' den…" is the move.
   //
-  // The generic kid clips left over from the compositional design
-  // (carrier_narrative_kid, invitation_narrative_kid,
-  // name_<x>_journey) remain bundled per [feedback_never_delete_audio]
-  // but the resolver no longer references them.
+  // Clip ID conventions:
+  //   - Offer:   `<journeyId>_offer_<sourceStoryIndex>`
+  //              e.g. daniel_arc_offer_2 = the offer that fires
+  //              AFTER hearing Daniel 6 (index 2), offering
+  //              Daniel 7 (index 3).
+  //   - Decline: `decline_adult` or `decline_kid` (lane-specific,
+  //              shared across all journeys in that lane).
+  //
+  // Vestigial clips (kept bundled per [feedback_never_delete_audio]
+  // but not referenced by this resolver):
+  //   - offer_narrative_adult (the abandoned generic adult offer)
+  //   - daniel_arc_offer (the abandoned per-journey adult)
+  //   - kid_david_arc_offer (the abandoned per-journey kid)
+  //   - carrier_narrative_kid + invitation_narrative_kid +
+  //     name_david_journey (the abandoned compositional kid)
+  //
+  // End-of-journey is silent: when source is the LAST story in the
+  // journey, the engine returns null (no offer), so the resolver
+  // is never called for that case. End-of-journey curation is
+  // Slice 5's job (the Guidance Graph) — explicitly deferred.
   // ------------------------------------------------------------
-  JourneyAudioPlan? _resolveKid(
+  JourneyAudioPlan? _resolve(
       JourneyContinuationOffer offer, String voiceKey) {
-    final offerClipId = '${offer.journey.journeyId}_offer';
-    const declineClipId = 'decline_kid';
+    final offerClipId =
+        '${offer.journey.journeyId}_offer_${offer.sourceStoryIndex}';
+    final declineClipId = offer.journey.lane == JourneyLane.adult
+        ? 'decline_adult'
+        : 'decline_kid';
 
     final offerPath = PalJourneyAudioPaths.assetPathFor(
         voiceKey: voiceKey, clipId: offerClipId);

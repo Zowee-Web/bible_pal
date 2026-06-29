@@ -121,6 +121,16 @@ ELEVENLABS_VOICE_SETTINGS = {
 # produces on very short input.
 CLIPS = [
     # ---- ADULT lane ----
+    # DEPRECATED 2026-06-28 by Adam after a doctrine review: the
+    # generic "we could spend a little more time together" offer is
+    # not memory-grounded. Adult lane pivoted to monolithic
+    # per-journey offers (`<journeyId>_offer`) mirroring the kid
+    # pivot earlier the same day. Per-journey offers name the
+    # remembered story in BOTH the recognition and the offer — the
+    # second mention isn't redundant, it's continuity (look-back +
+    # look-forward). This clip stays bundled per
+    # [feedback_never_delete_audio] but the resolver no longer
+    # references it.
     {
         "clip_id": "offer_narrative_adult",
         "text": "We could spend a little more time together… or tell me what's on your heart.",
@@ -128,6 +138,16 @@ CLIPS = [
     {
         "clip_id": "decline_adult",
         "text": "Of course. Let's find something for today.",
+    },
+    # ---- Per-adult-journey MONOLITHIC offer (Daniel Arc — first ship) ----
+    # Naming convention: `<journeyId>_offer`. Each new adult journey
+    # adds one full-line offer clip per voice (~25-40 credits per
+    # voice per journey). Memory-grounded design principle: the
+    # remembered story is named in both halves of the line.
+    {
+        "clip_id": "daniel_arc_offer",
+        "text": "Would you like to hear what happened next with Daniel… or tell me what's on your heart?",
+        "model": "eleven_v3",
     },
     # ---- KID lane ----
     {
@@ -165,6 +185,54 @@ CLIPS = [
     {
         "clip_id": "kid_david_arc_offer",
         "text": "Want to hear another story about David… or, what's on your mind?",
+        "model": "eleven_v3",
+    },
+    # ---- Per-source-story MONOLITHIC offers (Slice 2 Phase 6 FINAL) ----
+    # Clip ID convention: `<journeyId>_offer_<sourceStoryIndex>`.
+    # Plays AFTER the user heard story at sourceStoryIndex, offering
+    # the next-in-journey story. End-of-journey indices get no clip
+    # (engine returns null per the Slice 2 strict-newest rule).
+    #
+    # Register locked at 2026-06-28 audition: storyteller voice,
+    # "Last time, we [active-verb] [iconic scene from source story]…
+    # and there's more to [character]'s story if you'd like to hear it."
+    # - "Last time" beats "yesterday" — handles the engine's 1-7 day
+    #   recency band without per-band re-renders.
+    # - "we watched" / "we walked with" / "we stood with" — active
+    #   companionship; PAL was there with them.
+    # - Storybook scene phrasing ("shepherd boy face a giant" >
+    #   "David and Goliath") — captures the moment, not just the label.
+    # - "if you'd like to hear it" — gentle invitation, never forced.
+    #
+    # The earlier per-journey monolithic clips (daniel_arc_offer,
+    # kid_david_arc_offer) are now orphaned by this pivot; kept
+    # bundled per [feedback_never_delete_audio].
+    #
+    # ADULT — Daniel Arc (sourceStoryIndex 0/1/2; index 3 = end)
+    {
+        "clip_id": "daniel_arc_offer_0",
+        "text": "Last time, we sat with young Daniel as he chose what was true… and there's more to his story if you'd like to hear it.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "daniel_arc_offer_1",
+        "text": "Last time, we stood in the fire with Daniel's friends… and there's more to his story if you'd like to hear it.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "daniel_arc_offer_2",
+        "text": "Last time, we walked with Daniel into the lions' den… and there's more to his story if you'd like to hear it.",
+        "model": "eleven_v3",
+    },
+    # KID — Kid David Arc (sourceStoryIndex 0/1; index 2 = end)
+    {
+        "clip_id": "kid_david_arc_offer_0",
+        "text": "Last time, we watched a shepherd boy be chosen for something big… and there's more to David's story if you'd like to hear it.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "kid_david_arc_offer_1",
+        "text": "Last time, we watched a shepherd boy face a giant… and there's more to David's story if you'd like to hear it.",
         "model": "eleven_v3",
     },
 ]
