@@ -105,11 +105,14 @@ void main() {
       expect(plan.offerGapsBetween, isEmpty);
     });
 
-    test('kid plan: 3 offerClips, 2 gaps, decline present → valid', () {
+    test('kid plan (post-pivot): 1 offerClip, 0 gaps, decline present → valid',
+        () {
+      // Post-pivot kid plans are MONOLITHIC (one full-line per-journey
+      // offer clip). Structurally identical to adult plans now.
       final plan = _kidPlan();
       expect(() => plan.validateStructure(), returnsNormally);
-      expect(plan.offerClips, hasLength(3));
-      expect(plan.offerGapsBetween, hasLength(2));
+      expect(plan.offerClips, hasLength(1));
+      expect(plan.offerGapsBetween, isEmpty);
     });
 
     test('empty offerClips → throws', () {
@@ -155,9 +158,12 @@ void main() {
         () {
       final plan = _kidPlan();
       expect(plan.voiceKey, 'VOICE_STILLWATER');
-      expect(plan.offerClips[0].kind, JourneyClipKind.carrier);
-      expect(plan.offerClips[1].kind, JourneyClipKind.name);
-      expect(plan.offerClips[2].kind, JourneyClipKind.invitation);
+      // FINAL Slice 2 Phase 6 shape: single OFFER-kind clip with
+      // clipId convention `<journeyId>_offer_<sourceStoryIndex>`.
+      expect(plan.offerClips, hasLength(1));
+      expect(plan.offerClips[0].kind, JourneyClipKind.offer);
+      expect(plan.offerClips[0].clipId,
+          matches(RegExp(r'_offer_\d+$')));
       expect(plan.declineClip.kind, JourneyClipKind.decline);
     });
   });
@@ -172,9 +178,13 @@ JourneyAudioClipRef _clip(String id, JourneyClipKind kind) {
   );
 }
 
+// FINAL Slice 2 Phase 6 shape (2026-06-28): both lanes use
+// per-source-story monolithic offer clips
+// (`<journeyId>_offer_<sourceStoryIndex>`) + a lane-specific decline.
+// Fixtures use the canonical first-ship clip IDs.
 JourneyAudioPlan _adultPlan() => JourneyAudioPlan(
       voiceKey: 'VOICE_STILLWATER',
-      offerClips: [_clip('offer_narrative_adult', JourneyClipKind.offer)],
+      offerClips: [_clip('daniel_arc_offer_0', JourneyClipKind.offer)],
       offerGapsBetween: const [],
       declineClip:
           _clip('decline_adult', JourneyClipKind.decline),
@@ -183,13 +193,8 @@ JourneyAudioPlan _adultPlan() => JourneyAudioPlan(
 JourneyAudioPlan _kidPlan() => JourneyAudioPlan(
       voiceKey: 'VOICE_STILLWATER',
       offerClips: [
-        _clip('carrier_narrative_kid', JourneyClipKind.carrier),
-        _clip('name_david_journey', JourneyClipKind.name),
-        _clip('invitation_narrative_kid', JourneyClipKind.invitation),
+        _clip('kid_david_arc_offer_0', JourneyClipKind.offer),
       ],
-      offerGapsBetween: const [
-        Duration(milliseconds: 50),
-        Duration(milliseconds: 50),
-      ],
+      offerGapsBetween: const [],
       declineClip: _clip('decline_kid', JourneyClipKind.decline),
     );

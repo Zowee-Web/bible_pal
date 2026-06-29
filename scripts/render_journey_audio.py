@@ -99,11 +99,38 @@ VOICES = {
     },
 }
 
+# Locked production TTS settings (from scripts/generate_opus_audio.sh,
+# unchanged since 2026-06-14). Same shape Slice 2d uses.
+ELEVENLABS_DEFAULT_MODEL = "eleven_turbo_v2_5"
+ELEVENLABS_VOICE_SETTINGS = {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": True,
+}
+
 # Per the 2026-06-28 audition lock. Texts are FINAL — any change
 # requires a new audition pass + re-render. Punctuation matters for
 # prosody (commas → mid-sentence pause; "…" → softer trailing).
+#
+# Per-clip `model` override: defaults to ELEVENLABS_DEFAULT_MODEL
+# (eleven_turbo_v2_5). Short, expressive utterances render better
+# with eleven_v3 — same precedent as the kid lane reflection clips
+# per [project_kid_lane_manifest]. Single-name clips (e.g.
+# "David.") need v3 to avoid the punched-out quick delivery turbo
+# produces on very short input.
 CLIPS = [
     # ---- ADULT lane ----
+    # DEPRECATED 2026-06-28 by Adam after a doctrine review: the
+    # generic "we could spend a little more time together" offer is
+    # not memory-grounded. Adult lane pivoted to monolithic
+    # per-journey offers (`<journeyId>_offer`) mirroring the kid
+    # pivot earlier the same day. Per-journey offers name the
+    # remembered story in BOTH the recognition and the offer — the
+    # second mention isn't redundant, it's continuity (look-back +
+    # look-forward). This clip stays bundled per
+    # [feedback_never_delete_audio] but the resolver no longer
+    # references it.
     {
         "clip_id": "offer_narrative_adult",
         "text": "We could spend a little more time together… or tell me what's on your heart.",
@@ -111,6 +138,16 @@ CLIPS = [
     {
         "clip_id": "decline_adult",
         "text": "Of course. Let's find something for today.",
+    },
+    # ---- Per-adult-journey MONOLITHIC offer (Daniel Arc — first ship) ----
+    # Naming convention: `<journeyId>_offer`. Each new adult journey
+    # adds one full-line offer clip per voice (~25-40 credits per
+    # voice per journey). Memory-grounded design principle: the
+    # remembered story is named in both halves of the line.
+    {
+        "clip_id": "daniel_arc_offer",
+        "text": "Would you like to hear what happened next with Daniel… or tell me what's on your heart?",
+        "model": "eleven_v3",
     },
     # ---- KID lane ----
     {
@@ -126,21 +163,79 @@ CLIPS = [
         "text": "Okay! Let's find something else.",
     },
     # ---- Per-kid-journey character name (Kid David Arc — first ship) ----
+    # DEPRECATED 2026-06-28 by Adam after ear-check: stitching a 1-
+    # syllable name clip into a kid offer sounds punched-out and
+    # unnatural even with v3. The name needs to be embedded in a
+    # full conversational phrase (same reason "Hey, Adam!" sounds
+    # natural — phrase context, not isolated name). Kid lane pivots
+    # to a monolithic per-journey clip below. This clip stays
+    # bundled (per [feedback_never_delete_audio]) but the resolver
+    # no longer references it.
     {
         "clip_id": "name_david_journey",
         "text": "David.",
+        "model": "eleven_v3",
+    },
+    # ---- Per-kid-journey MONOLITHIC offer (the pivot) ----
+    # Naming convention: `kid_<journeyId>_offer`. Each new kid
+    # journey adds one full-line offer clip per voice. Cost: ~25-35
+    # credits per voice per kid journey. Replaces the 3-clip stitch
+    # (carrier_narrative_kid + name_<x>_journey + invitation_narrative_kid)
+    # that produced unnatural standalone-name delivery.
+    {
+        "clip_id": "kid_david_arc_offer",
+        "text": "Want to hear another story about David… or, what's on your mind?",
+        "model": "eleven_v3",
+    },
+    # ---- Per-source-story MONOLITHIC offers (Slice 2 Phase 6 FINAL) ----
+    # Clip ID convention: `<journeyId>_offer_<sourceStoryIndex>`.
+    # Plays AFTER the user heard story at sourceStoryIndex, offering
+    # the next-in-journey story. End-of-journey indices get no clip
+    # (engine returns null per the Slice 2 strict-newest rule).
+    #
+    # Register locked at 2026-06-28 audition: storyteller voice,
+    # "Last time, we [active-verb] [iconic scene from source story]…
+    # and there's more to [character]'s story if you'd like to hear it."
+    # - "Last time" beats "yesterday" — handles the engine's 1-7 day
+    #   recency band without per-band re-renders.
+    # - "we watched" / "we walked with" / "we stood with" — active
+    #   companionship; PAL was there with them.
+    # - Storybook scene phrasing ("shepherd boy face a giant" >
+    #   "David and Goliath") — captures the moment, not just the label.
+    # - "if you'd like to hear it" — gentle invitation, never forced.
+    #
+    # The earlier per-journey monolithic clips (daniel_arc_offer,
+    # kid_david_arc_offer) are now orphaned by this pivot; kept
+    # bundled per [feedback_never_delete_audio].
+    #
+    # ADULT — Daniel Arc (sourceStoryIndex 0/1/2; index 3 = end)
+    {
+        "clip_id": "daniel_arc_offer_0",
+        "text": "Last time, we sat with young Daniel as he chose what was true… and there's more to his story if you'd like to hear it.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "daniel_arc_offer_1",
+        "text": "Last time, we stood in the fire with Daniel's friends… and there's more to his story if you'd like to hear it.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "daniel_arc_offer_2",
+        "text": "Last time, we walked with Daniel into the lions' den… and there's more to his story if you'd like to hear it.",
+        "model": "eleven_v3",
+    },
+    # KID — Kid David Arc (sourceStoryIndex 0/1; index 2 = end)
+    {
+        "clip_id": "kid_david_arc_offer_0",
+        "text": "Last time, we watched a shepherd boy be chosen for something big… and there's more to David's story if you'd like to hear it.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "kid_david_arc_offer_1",
+        "text": "Last time, we watched a shepherd boy face a giant… and there's more to David's story if you'd like to hear it.",
+        "model": "eleven_v3",
     },
 ]
-
-# Locked production TTS settings (from scripts/generate_opus_audio.sh,
-# unchanged since 2026-06-14). Same shape Slice 2d uses.
-ELEVENLABS_MODEL = "eleven_turbo_v2_5"
-ELEVENLABS_VOICE_SETTINGS = {
-    "stability": 0.6,
-    "similarity_boost": 0.8,
-    "style": 0.0,
-    "use_speaker_boost": True,
-}
 
 CREDITS_PER_CHAR_LOW = 0.5
 CREDITS_PER_CHAR_HIGH = 0.7
@@ -166,12 +261,17 @@ def load_env_var(name: str) -> str | None:
 
 
 def render_elevenlabs(
-    *, text: str, elevenlabs_id: str, api_key: str, output_path: Path
+    *,
+    text: str,
+    elevenlabs_id: str,
+    api_key: str,
+    output_path: Path,
+    model: str = ELEVENLABS_DEFAULT_MODEL,
 ) -> None:
     url = f"https://api.elevenlabs.io/v1/text-to-speech/{elevenlabs_id}"
     body = {
         "text": text,
-        "model_id": ELEVENLABS_MODEL,
+        "model_id": model,
         "voice_settings": ELEVENLABS_VOICE_SETTINGS,
     }
     req = urllib.request.Request(
@@ -206,6 +306,7 @@ def build_plan(voice_key: str, force: bool) -> list[dict]:
         plan.append({
             "clip_id": c["clip_id"],
             "text": c["text"],
+            "model": c.get("model", ELEVENLABS_DEFAULT_MODEL),
             "out_path": out,
             "exists": out.exists(),
             "would_skip": out.exists() and not force,
@@ -222,13 +323,13 @@ def print_plan(voice_key: str, voice_meta: dict, plan: list[dict], *,
     print(f"Mode:                 {'RENDER (will spend credits)' if render_mode else 'DRY-RUN (no API calls)'}")
     print(f"Voice:                {voice_key} — {voice_meta['display_name']}")
     print(f"Voice ID:             {voice_meta['elevenlabs_id'][:8]}… (from pal_voice_registry.dart)")
-    print(f"TTS model:            {ELEVENLABS_MODEL}")
+    print(f"TTS model (default):  {ELEVENLABS_DEFAULT_MODEL} (per-clip overrides in table below)")
     print(f"TTS settings:         {ELEVENLABS_VOICE_SETTINGS}")
     print(f"Force overwrite:      {force}")
     print(f"Output root:          {ASSETS_ROOT.relative_to(PROJECT_ROOT)}/{voice_key}/journey/")
     print()
-    print(f"{'clip_id':<32} {'chars':>5} {'exists':>7} {'action':<14} text")
-    print("-" * 100)
+    print(f"{'clip_id':<32} {'chars':>5} {'model':<22} {'exists':>7} {'action':<14} text")
+    print("-" * 120)
     for entry in plan:
         if entry["would_skip"]:
             action = "skip (exists)"
@@ -237,7 +338,7 @@ def print_plan(voice_key: str, voice_meta: dict, plan: list[dict], *,
         else:
             action = "WOULD render" if not render_mode else "render"
         print(
-            f"{entry['clip_id']:<32} {entry['chars']:>5} "
+            f"{entry['clip_id']:<32} {entry['chars']:>5} {entry['model']:<22} "
             f"{'yes' if entry['exists'] else 'no':>7} {action:<14} {entry['text']!r}"
         )
 
@@ -285,6 +386,7 @@ def run(plan: list[dict], voice_meta: dict, *, api_key: str) -> tuple[list[str],
                 elevenlabs_id=voice_meta["elevenlabs_id"],
                 api_key=api_key,
                 output_path=partial,
+                model=entry["model"],
             )
             partial.replace(final)
             print(f"  ok      {clip_id}")
