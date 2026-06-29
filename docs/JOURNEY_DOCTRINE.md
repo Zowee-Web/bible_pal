@@ -86,9 +86,9 @@ When a completed story belongs to multiple journeys, decide whether and how to s
 
 The six-months-later vignette. *"It's been a little while since we spent time with Daniel."* Requires per-journey persistent state (`lastEngagedAt`), additional recency-band carrier audio, and a doctrine on what counts as dormancy.
 
-**Slice 5 — Graduation & Recommendation** *(FUTURE — NOT DESIGNED)*
+**Slice 5 — Graduation, Recommendation, & The Guidance Graph** *(FUTURE — NOT DESIGNED)*
 
-What happens when a journey completes. Hand-authored close-of-journey moments. "Next journey" suggestions only when editorial intent is strong. The doctrine will explicitly forbid any badge / streak / completion-ceremony framing that would turn journeys into accomplishments.
+What happens when a journey completes. Hand-authored close-of-journey moments. "Next journey" suggestions only when editorial intent is strong. The doctrine will explicitly forbid any badge / streak / completion-ceremony framing that would turn journeys into accomplishments. This slice will also absorb the long-term **scale horizon** (see *The Scale Horizon* below) — the shift from curated arcs to per-source-story continuation beats. Designed in a dedicated review once Slice 2 has produced real user experience.
 
 **Slice 0.5 — Authoring Flow Inversion** *(PREREQUISITE FOR ALL SLICES)*
 
@@ -289,6 +289,27 @@ Seven rules that govern every continuation offer PAL ever makes. **The adult lan
 5. **PAL accepts any non-affirmative response as gentle decline.** No interrogation. Mood phrases are decline by default.
 6. **PAL never names the journey type to the user.** "Daniel's story" is fine. "The Narrative path you're on" is forbidden.
 7. **When confidence is low, PAL says nothing about journeys and serves today's mood.** Silence is the default. Continuation is the affirmative-only branch.
+
+## The Scale Horizon
+
+The doctrine ships at v0 with **two journeys** (Daniel Arc, Kid David Arc — 7 rendered clips total). This is intentionally small so the cascade can be validated against real user experience before scaling.
+
+The long-term vision is fundamentally larger.
+
+**Every story in the Bible PAL library eventually gets its own PAL continuation beat.** At current corpus size (~535 registered anchors and growing) this scales to **~800–900+ unique PAL journey clips per voice**, with growth as the library grows.
+
+This is a different product shape than "a small set of curated arcs that PAL occasionally offers to continue." Slice 2's cascade engine, audio resolver, response classifier, and dispatch logic are general-shape and survive the transition. Several today-decisions become tomorrow-constraints if the scale shift is forgotten:
+
+- **Clip ID convention shifts.** `<journeyId>_offer_<sourceStoryIndex>` is correct for arc-positioned offers. At scale the natural key is `<sourceStoryId>_pal_continuation` — keyed off the source story, not its arc position. The "what comes next" becomes editorial metadata on each story, not a position lookup. Today's convention is a v0 simplification.
+- **"Always candidate, mostly silence" replaces "rarely candidate, usually fire."** When every recent completion has a registered continuation beat, the cascade fires on every session unless the cooldown gate holds. **Cooldown becomes load-bearing**, not optional. The continuation invariant's silence floor is the only thing keeping PAL from offering something every single time the app opens.
+- **R2, not bundle.** ~800 clips × 3 voices × ~100KB ≈ 240MB. Above the bundle ceiling. Journey clips at scale follow the PAL Memory R2 pattern, not the bundled-asset pattern Slice 2 first ship uses.
+- **Authoring discipline transfers.** At ~10 clips, hand-authoring is fine. At 800, the editorial workflow needs the same shape `REFLECTION_VOICE.md` already established — template + per-story scene-imagery + `PAL_VOICE.md` Voice Audit gate — so that voice consistency holds across thousands of utterances written across years.
+
+The current `Journey` data model is a stepping stone, not the destination. Slice 5 (above) absorbs the shape transition. The doctrine forbids baking the v0 implementation deeper into runtime code than necessary. When a refactor touches the journey system, the test is:
+
+> *Does this change keep the conversation possible across both shapes — 10 curated arcs and 800 per-story beats — or does it freeze the system into one of them?*
+
+If the answer is *freezes*, the doctrine forbids the refactor.
 
 ## Origin
 
