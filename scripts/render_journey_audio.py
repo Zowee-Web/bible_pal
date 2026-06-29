@@ -99,9 +99,26 @@ VOICES = {
     },
 }
 
+# Locked production TTS settings (from scripts/generate_opus_audio.sh,
+# unchanged since 2026-06-14). Same shape Slice 2d uses.
+ELEVENLABS_DEFAULT_MODEL = "eleven_turbo_v2_5"
+ELEVENLABS_VOICE_SETTINGS = {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": True,
+}
+
 # Per the 2026-06-28 audition lock. Texts are FINAL — any change
 # requires a new audition pass + re-render. Punctuation matters for
 # prosody (commas → mid-sentence pause; "…" → softer trailing).
+#
+# Per-clip `model` override: defaults to ELEVENLABS_DEFAULT_MODEL
+# (eleven_turbo_v2_5). Short, expressive utterances render better
+# with eleven_v3 — same precedent as the kid lane reflection clips
+# per [project_kid_lane_manifest]. Single-name clips (e.g.
+# "David.") need v3 to avoid the punched-out quick delivery turbo
+# produces on very short input.
 CLIPS = [
     # ---- ADULT lane ----
     {
@@ -126,21 +143,31 @@ CLIPS = [
         "text": "Okay! Let's find something else.",
     },
     # ---- Per-kid-journey character name (Kid David Arc — first ship) ----
+    # DEPRECATED 2026-06-28 by Adam after ear-check: stitching a 1-
+    # syllable name clip into a kid offer sounds punched-out and
+    # unnatural even with v3. The name needs to be embedded in a
+    # full conversational phrase (same reason "Hey, Adam!" sounds
+    # natural — phrase context, not isolated name). Kid lane pivots
+    # to a monolithic per-journey clip below. This clip stays
+    # bundled (per [feedback_never_delete_audio]) but the resolver
+    # no longer references it.
     {
         "clip_id": "name_david_journey",
         "text": "David.",
+        "model": "eleven_v3",
+    },
+    # ---- Per-kid-journey MONOLITHIC offer (the pivot) ----
+    # Naming convention: `kid_<journeyId>_offer`. Each new kid
+    # journey adds one full-line offer clip per voice. Cost: ~25-35
+    # credits per voice per kid journey. Replaces the 3-clip stitch
+    # (carrier_narrative_kid + name_<x>_journey + invitation_narrative_kid)
+    # that produced unnatural standalone-name delivery.
+    {
+        "clip_id": "kid_david_arc_offer",
+        "text": "Want to hear another story about David… or, what's on your mind?",
+        "model": "eleven_v3",
     },
 ]
-
-# Locked production TTS settings (from scripts/generate_opus_audio.sh,
-# unchanged since 2026-06-14). Same shape Slice 2d uses.
-ELEVENLABS_MODEL = "eleven_turbo_v2_5"
-ELEVENLABS_VOICE_SETTINGS = {
-    "stability": 0.6,
-    "similarity_boost": 0.8,
-    "style": 0.0,
-    "use_speaker_boost": True,
-}
 
 CREDITS_PER_CHAR_LOW = 0.5
 CREDITS_PER_CHAR_HIGH = 0.7
@@ -166,12 +193,17 @@ def load_env_var(name: str) -> str | None:
 
 
 def render_elevenlabs(
-    *, text: str, elevenlabs_id: str, api_key: str, output_path: Path
+    *,
+    text: str,
+    elevenlabs_id: str,
+    api_key: str,
+    output_path: Path,
+    model: str = ELEVENLABS_DEFAULT_MODEL,
 ) -> None:
     url = f"https://api.elevenlabs.io/v1/text-to-speech/{elevenlabs_id}"
     body = {
         "text": text,
-        "model_id": ELEVENLABS_MODEL,
+        "model_id": model,
         "voice_settings": ELEVENLABS_VOICE_SETTINGS,
     }
     req = urllib.request.Request(
@@ -206,6 +238,7 @@ def build_plan(voice_key: str, force: bool) -> list[dict]:
         plan.append({
             "clip_id": c["clip_id"],
             "text": c["text"],
+            "model": c.get("model", ELEVENLABS_DEFAULT_MODEL),
             "out_path": out,
             "exists": out.exists(),
             "would_skip": out.exists() and not force,
@@ -222,13 +255,13 @@ def print_plan(voice_key: str, voice_meta: dict, plan: list[dict], *,
     print(f"Mode:                 {'RENDER (will spend credits)' if render_mode else 'DRY-RUN (no API calls)'}")
     print(f"Voice:                {voice_key} — {voice_meta['display_name']}")
     print(f"Voice ID:             {voice_meta['elevenlabs_id'][:8]}… (from pal_voice_registry.dart)")
-    print(f"TTS model:            {ELEVENLABS_MODEL}")
+    print(f"TTS model (default):  {ELEVENLABS_DEFAULT_MODEL} (per-clip overrides in table below)")
     print(f"TTS settings:         {ELEVENLABS_VOICE_SETTINGS}")
     print(f"Force overwrite:      {force}")
     print(f"Output root:          {ASSETS_ROOT.relative_to(PROJECT_ROOT)}/{voice_key}/journey/")
     print()
-    print(f"{'clip_id':<32} {'chars':>5} {'exists':>7} {'action':<14} text")
-    print("-" * 100)
+    print(f"{'clip_id':<32} {'chars':>5} {'model':<22} {'exists':>7} {'action':<14} text")
+    print("-" * 120)
     for entry in plan:
         if entry["would_skip"]:
             action = "skip (exists)"
@@ -237,7 +270,7 @@ def print_plan(voice_key: str, voice_meta: dict, plan: list[dict], *,
         else:
             action = "WOULD render" if not render_mode else "render"
         print(
-            f"{entry['clip_id']:<32} {entry['chars']:>5} "
+            f"{entry['clip_id']:<32} {entry['chars']:>5} {entry['model']:<22} "
             f"{'yes' if entry['exists'] else 'no':>7} {action:<14} {entry['text']!r}"
         )
 
@@ -285,6 +318,7 @@ def run(plan: list[dict], voice_meta: dict, *, api_key: str) -> tuple[list[str],
                 elevenlabs_id=voice_meta["elevenlabs_id"],
                 api_key=api_key,
                 output_path=partial,
+                model=entry["model"],
             )
             partial.replace(final)
             print(f"  ok      {clip_id}")

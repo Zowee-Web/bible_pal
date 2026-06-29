@@ -32,7 +32,7 @@ void main() {
   late List<Journey> readyJourneys;
   late Set<String> requiredAdultClipIds;
   late Set<String> requiredKidStaticClipIds;
-  late Set<String> requiredKidCharacterClipIds;
+  late Set<String> requiredKidPerJourneyOfferClipIds;
 
   setUpAll(() {
     // Load every ready adult/kid journey from the live registry on
@@ -46,26 +46,28 @@ void main() {
     final hasReadyKid =
         readyJourneys.any((j) => j.lane == JourneyLane.kid);
 
+    // Adult lane: 2 generic clips (offer_narrative_adult + decline_adult),
+    // shared across all adult journeys per Cascade Option C.
     requiredAdultClipIds = hasReadyAdult
         ? const {'offer_narrative_adult', 'decline_adult'}
         : const {};
 
+    // Kid lane (post-pivot 2026-06-28): 1 generic clip (decline_kid).
+    // The carrier/invitation generic clips were retired when the
+    // compositional carrier+name+invitation pattern was replaced by
+    // per-journey monolithic offer clips (kid offers sound natural
+    // only when the model gets a full sentence context for prosody
+    // — single-syllable name slots punch through even with v3).
     requiredKidStaticClipIds = hasReadyKid
-        ? const {
-            'carrier_narrative_kid',
-            'invitation_narrative_kid',
-            'decline_kid',
-          }
+        ? const {'decline_kid'}
         : const {};
 
-    requiredKidCharacterClipIds = readyJourneys
+    // Kid lane per-journey: one full-line offer clip per ready kid
+    // journey, named `<journeyId>_offer`. Replaces the prior per-
+    // character `name_<x>_journey` clips.
+    requiredKidPerJourneyOfferClipIds = readyJourneys
         .where((j) => j.lane == JourneyLane.kid)
-        .map((j) {
-          final cn = j.characterName;
-          if (cn == null || cn.isEmpty) return null;
-          return PalJourneyAudioPaths.nameClipIdFor(cn);
-        })
-        .whereType<String>()
+        .map((j) => '${j.journeyId}_offer')
         .toSet();
   });
 
@@ -105,7 +107,7 @@ void main() {
     final allRequired = <String>{
       ...requiredAdultClipIds,
       ...requiredKidStaticClipIds,
-      ...requiredKidCharacterClipIds,
+      ...requiredKidPerJourneyOfferClipIds,
     };
 
     // For each voice that is actively rendering, every required
@@ -140,21 +142,26 @@ void main() {
   });
 
   test('required-clip enumeration math is sane', () {
-    // The validator's math: ready-adult journeys contribute 2 static
-    // adult clipIds (offer + decline); ready-kid journeys contribute
-    // 3 static kid clipIds (carrier + invitation + decline) + one
-    // per-journey character clip. Sanity-check that nothing has
-    // drifted (a refactor adding more required clips per journey
-    // type would silently weaken this test if the enumeration
-    // wasn't pinned).
+    // Post-pivot math (2026-06-28):
+    //   ready-adult journeys contribute 2 static adult clipIds
+    //     (offer_narrative_adult + decline_adult), shared across
+    //     all adult journeys.
+    //   ready-kid journeys contribute 1 static kid clipId
+    //     (decline_kid), shared across all kid journeys.
+    //   ready-kid journeys contribute 1 per-journey clipId
+    //     (`<journeyId>_offer`) each.
+    //
+    // A refactor adding more required clips per journey type would
+    // silently weaken this test if the enumeration wasn't pinned —
+    // hence the explicit `lessThanOrEqualTo` ceiling on the statics.
     expect(requiredAdultClipIds.length, lessThanOrEqualTo(2));
-    expect(requiredKidStaticClipIds.length, lessThanOrEqualTo(3));
-    // Character clipId count == number of ready kid journeys with
-    // a characterName. Slice 2 first ship: kid David Arc → 1.
-    final readyKidJourneysWithName = readyJourneys.where(
-        (j) => j.lane == JourneyLane.kid && (j.characterName ?? '').isNotEmpty);
-    expect(requiredKidCharacterClipIds.length,
-        readyKidJourneysWithName.length);
+    expect(requiredKidStaticClipIds.length, lessThanOrEqualTo(1));
+    // Per-journey offer count == number of ready kid journeys.
+    // Slice 2 first ship: kid David Arc → 1.
+    final readyKidJourneyCount =
+        readyJourneys.where((j) => j.lane == JourneyLane.kid).length;
+    expect(requiredKidPerJourneyOfferClipIds.length,
+        readyKidJourneyCount);
   });
 }
 

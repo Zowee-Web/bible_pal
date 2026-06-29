@@ -1,6 +1,5 @@
 import 'package:flutter/services.dart' show AssetManifest, rootBundle;
 
-import '../pal_memory/memory_audio_policy.dart';
 import 'journey.dart';
 import 'journey_audio_paths.dart';
 import 'journey_audio_plan.dart';
@@ -90,69 +89,48 @@ class BundledAssetJourneyAudioResolver implements JourneyAudioResolver {
   }
 
   // ------------------------------------------------------------
-  // KID — [carrier] + [name] + [invitation], stitched.
-  // Plus separate decline clip.
-  // Character clip ID derived from the journey's characterName via
-  // PalJourneyAudioPaths.nameClipIdFor (e.g. "David" →
-  // "name_david_journey").
+  // KID — MONOLITHIC per-journey offer clip + generic decline.
+  //
+  // Pivot 2026-06-28 after Adam ear-checked the compositional
+  // (carrier+name+invitation) version: standalone 1-syllable name
+  // clips sound punched-out even with v3, because the model has no
+  // sentence-context for natural prosody (compare: "Hey, Adam!"
+  // sounds natural because the name is in a phrase). Kid offers
+  // now ship as one full-line clip per journey:
+  //   clipId convention: '<journeyId>_offer' (e.g.
+  //   'kid_david_arc_offer' for Kid David Arc)
+  // Each new kid journey adds one full-line render per voice
+  // (~30 credits / ~$0.30 per voice per kid journey).
+  //
+  // The generic kid clips left over from the compositional design
+  // (carrier_narrative_kid, invitation_narrative_kid,
+  // name_<x>_journey) remain bundled per [feedback_never_delete_audio]
+  // but the resolver no longer references them.
   // ------------------------------------------------------------
   JourneyAudioPlan? _resolveKid(
       JourneyContinuationOffer offer, String voiceKey) {
-    final characterName = offer.journey.characterName;
-    if (characterName == null || characterName.isEmpty) {
-      // Kid journey without a characterName cannot compose an offer.
-      // Schema validator catches this upstream; defensive null here
-      // for runtime resilience.
-      return null;
-    }
-
-    const carrierClipId = 'carrier_narrative_kid';
-    final nameClipId = PalJourneyAudioPaths.nameClipIdFor(characterName);
-    const invitationClipId = 'invitation_narrative_kid';
+    final offerClipId = '${offer.journey.journeyId}_offer';
     const declineClipId = 'decline_kid';
 
-    final carrierPath = PalJourneyAudioPaths.assetPathFor(
-        voiceKey: voiceKey, clipId: carrierClipId);
-    final namePath = PalJourneyAudioPaths.assetPathFor(
-        voiceKey: voiceKey, clipId: nameClipId);
-    final invitationPath = PalJourneyAudioPaths.assetPathFor(
-        voiceKey: voiceKey, clipId: invitationClipId);
+    final offerPath = PalJourneyAudioPaths.assetPathFor(
+        voiceKey: voiceKey, clipId: offerClipId);
     final declinePath = PalJourneyAudioPaths.assetPathFor(
         voiceKey: voiceKey, clipId: declineClipId);
 
-    // Silence-floor: ANY missing clip → null. No partial plans.
-    if (!bundledPaths.contains(carrierPath)) return null;
-    if (!bundledPaths.contains(namePath)) return null;
-    if (!bundledPaths.contains(invitationPath)) return null;
+    // Silence-floor: either clip missing → null. No partial plans.
+    if (!bundledPaths.contains(offerPath)) return null;
     if (!bundledPaths.contains(declinePath)) return null;
 
     return JourneyAudioPlan(
       voiceKey: voiceKey,
       offerClips: [
         JourneyAudioClipRef(
-          clipId: carrierClipId,
-          kind: JourneyClipKind.carrier,
-          assetPath: carrierPath,
-        ),
-        JourneyAudioClipRef(
-          clipId: nameClipId,
-          kind: JourneyClipKind.name,
-          assetPath: namePath,
-        ),
-        JourneyAudioClipRef(
-          clipId: invitationClipId,
-          kind: JourneyClipKind.invitation,
-          assetPath: invitationPath,
+          clipId: offerClipId,
+          kind: JourneyClipKind.offer,
+          assetPath: offerPath,
         ),
       ],
-      offerGapsBetween: const [
-        // Reuse Slice 2d's audition-tested 50ms carrier→name gap for
-        // both stitch points. If a kid-offer audition exposes a
-        // different rhythm later, introduce a JourneyAudioPolicy
-        // with kid-specific gap durations.
-        PalMemoryAudioPolicy.carrierToNameGap,
-        PalMemoryAudioPolicy.carrierToNameGap,
-      ],
+      offerGapsBetween: const [],
       declineClip: JourneyAudioClipRef(
         clipId: declineClipId,
         kind: JourneyClipKind.decline,

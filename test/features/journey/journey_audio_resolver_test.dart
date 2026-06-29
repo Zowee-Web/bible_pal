@@ -84,110 +84,72 @@ void main() {
     });
   });
 
-  group('kid resolver — happy path', () {
-    test('returns a stitched plan when all 4 clips exist (carrier + name + invitation + decline)',
+  group('kid resolver — monolithic offer + decline (post-pivot)', () {
+    // Pivot 2026-06-28: kid offers are one full-line clip per
+    // journey (`<journeyId>_offer`) + a generic decline clip. The
+    // older compositional carrier+name+invitation pattern was
+    // retired after Adam ear-checked that standalone 1-syllable
+    // names sound punched-out even with v3.
+
+    test('happy path: returns monolithic plan when offer + decline exist',
         () async {
       final r = BundledAssetJourneyAudioResolver({
-        _kidCarrierPath('VOICE_STILLWATER'),
-        _kidNamePath('VOICE_STILLWATER', 'David'),
-        _kidInvitationPath('VOICE_STILLWATER'),
+        _kidOfferPath('VOICE_STILLWATER', 'test_kid'),
         _kidDeclinePath('VOICE_STILLWATER'),
       });
       final plan = await r.resolve(
-        offer: _kidOffer(characterName: 'David'),
+        offer: _kidOffer(),
         activeVoiceKey: 'VOICE_STILLWATER',
       );
       expect(plan, isNotNull);
       plan!.validateStructure();
-      expect(plan.offerClips, hasLength(3));
-      expect(plan.offerClips[0].kind, JourneyClipKind.carrier);
-      expect(plan.offerClips[0].clipId, 'carrier_narrative_kid');
-      expect(plan.offerClips[1].kind, JourneyClipKind.name);
-      expect(plan.offerClips[1].clipId, 'name_david_journey');
-      expect(plan.offerClips[2].kind, JourneyClipKind.invitation);
-      expect(plan.offerClips[2].clipId, 'invitation_narrative_kid');
-      expect(plan.offerGapsBetween, hasLength(2));
-      // Both stitch gaps reuse Slice 2d's 50ms carrier→name gap.
-      expect(plan.offerGapsBetween[0], const Duration(milliseconds: 50));
-      expect(plan.offerGapsBetween[1], const Duration(milliseconds: 50));
+      expect(plan.voiceKey, 'VOICE_STILLWATER');
+      expect(plan.offerClips, hasLength(1),
+          reason: 'kid offer is now MONOLITHIC — one full-line clip, '
+              'not carrier+name+invitation stitched');
+      expect(plan.offerClips.first.kind, JourneyClipKind.offer);
+      expect(plan.offerClips.first.clipId, 'test_kid_offer',
+          reason: 'clipId convention: <journeyId>_offer');
+      expect(plan.offerGapsBetween, isEmpty,
+          reason: 'no stitch gaps inside a monolithic offer');
+      expect(plan.declineClip.kind, JourneyClipKind.decline);
       expect(plan.declineClip.clipId, 'decline_kid');
     });
 
-    test('character clip ID is derived per-character (Moses → name_moses_journey)',
+    test('clipId derives from journeyId — kid_david_arc → kid_david_arc_offer',
         () async {
+      // Verifies the canonical first-ship Kid David Arc shape.
       final r = BundledAssetJourneyAudioResolver({
-        _kidCarrierPath('VOICE_STILLWATER'),
-        _kidNamePath('VOICE_STILLWATER', 'Moses'),
-        _kidInvitationPath('VOICE_STILLWATER'),
+        _kidOfferPath('VOICE_STILLWATER', 'kid_david_arc'),
         _kidDeclinePath('VOICE_STILLWATER'),
       });
       final plan = await r.resolve(
-        offer: _kidOffer(characterName: 'Moses'),
+        offer: _kidOffer(journeyId: 'kid_david_arc'),
         activeVoiceKey: 'VOICE_STILLWATER',
       );
-      expect(plan!.offerClips[1].clipId, 'name_moses_journey');
+      expect(plan!.offerClips.first.clipId, 'kid_david_arc_offer');
     });
-  });
 
-  group('kid resolver — silence-floor gates', () {
-    test('returns null when carrier missing', () async {
+    test('silence-floor: offer clip missing → null', () async {
       final r = BundledAssetJourneyAudioResolver({
-        // carrier NOT in bundle
-        _kidNamePath('VOICE_STILLWATER', 'David'),
-        _kidInvitationPath('VOICE_STILLWATER'),
         _kidDeclinePath('VOICE_STILLWATER'),
+        // per-journey offer NOT in bundle
       });
       expect(
         await r.resolve(
-            offer: _kidOffer(characterName: 'David'),
-            activeVoiceKey: 'VOICE_STILLWATER'),
+            offer: _kidOffer(), activeVoiceKey: 'VOICE_STILLWATER'),
         isNull,
       );
     });
 
-    test('returns null when name clip missing', () async {
+    test('silence-floor: decline clip missing → null', () async {
       final r = BundledAssetJourneyAudioResolver({
-        _kidCarrierPath('VOICE_STILLWATER'),
-        // name NOT in bundle
-        _kidInvitationPath('VOICE_STILLWATER'),
-        _kidDeclinePath('VOICE_STILLWATER'),
-      });
-      expect(
-        await r.resolve(
-            offer: _kidOffer(characterName: 'David'),
-            activeVoiceKey: 'VOICE_STILLWATER'),
-        isNull,
-        reason:
-            'A kid offer cannot compose without the character name clip',
-      );
-    });
-
-    test('returns null when invitation missing', () async {
-      final r = BundledAssetJourneyAudioResolver({
-        _kidCarrierPath('VOICE_STILLWATER'),
-        _kidNamePath('VOICE_STILLWATER', 'David'),
-        // invitation NOT in bundle
-        _kidDeclinePath('VOICE_STILLWATER'),
-      });
-      expect(
-        await r.resolve(
-            offer: _kidOffer(characterName: 'David'),
-            activeVoiceKey: 'VOICE_STILLWATER'),
-        isNull,
-      );
-    });
-
-    test('returns null when decline missing', () async {
-      final r = BundledAssetJourneyAudioResolver({
-        _kidCarrierPath('VOICE_STILLWATER'),
-        _kidNamePath('VOICE_STILLWATER', 'David'),
-        _kidInvitationPath('VOICE_STILLWATER'),
+        _kidOfferPath('VOICE_STILLWATER', 'test_kid'),
         // decline NOT in bundle
       });
       expect(
         await r.resolve(
-            offer: _kidOffer(characterName: 'David'),
-            activeVoiceKey: 'VOICE_STILLWATER'),
+            offer: _kidOffer(), activeVoiceKey: 'VOICE_STILLWATER'),
         isNull,
       );
     });
@@ -195,33 +157,15 @@ void main() {
     test('voice mismatch: STILLWATER kid clips exist, offer asks HOPE → null',
         () async {
       final r = BundledAssetJourneyAudioResolver({
-        _kidCarrierPath('VOICE_STILLWATER'),
-        _kidNamePath('VOICE_STILLWATER', 'David'),
-        _kidInvitationPath('VOICE_STILLWATER'),
+        _kidOfferPath('VOICE_STILLWATER', 'test_kid'),
         _kidDeclinePath('VOICE_STILLWATER'),
       });
       expect(
         await r.resolve(
-            offer: _kidOffer(characterName: 'David'),
-            activeVoiceKey: 'VOICE_HOPE'),
+            offer: _kidOffer(), activeVoiceKey: 'VOICE_HOPE'),
         isNull,
-      );
-    });
-
-    test('kid offer without characterName → null (cannot compose name slot)',
-        () async {
-      // Defensive: schema validator should catch this upstream, but
-      // the resolver must not crash if it reaches here.
-      final r = BundledAssetJourneyAudioResolver({
-        _kidCarrierPath('VOICE_STILLWATER'),
-        _kidInvitationPath('VOICE_STILLWATER'),
-        _kidDeclinePath('VOICE_STILLWATER'),
-      });
-      expect(
-        await r.resolve(
-            offer: _kidOffer(characterName: null),
-            activeVoiceKey: 'VOICE_STILLWATER'),
-        isNull,
+        reason:
+            'Slice 2 voice-multiplicity = 1: missing voice = silence, NEVER fall back to another voice',
       );
     });
   });
@@ -230,20 +174,20 @@ void main() {
     test('adult resolver path used for adult journey even when kid clips present',
         () async {
       // Bundle has BOTH lanes' clips. An adult offer should resolve
-      // via adult-path; should not accidentally pull kid clips.
+      // via adult-path; should not accidentally pull a kid-lane clip.
       final r = BundledAssetJourneyAudioResolver({
         _adultOfferPath('VOICE_STILLWATER'),
         _adultDeclinePath('VOICE_STILLWATER'),
-        _kidCarrierPath('VOICE_STILLWATER'),
-        _kidNamePath('VOICE_STILLWATER', 'David'),
-        _kidInvitationPath('VOICE_STILLWATER'),
+        _kidOfferPath('VOICE_STILLWATER', 'kid_david_arc'),
         _kidDeclinePath('VOICE_STILLWATER'),
       });
       final plan = await r.resolve(
           offer: _adultOffer(), activeVoiceKey: 'VOICE_STILLWATER');
       expect(plan, isNotNull);
-      expect(plan!.offerClips, hasLength(1)); // adult shape, not kid 3-clip
+      expect(plan!.offerClips, hasLength(1));
       expect(plan.offerClips.first.kind, JourneyClipKind.offer);
+      expect(plan.offerClips.first.clipId, 'offer_narrative_adult',
+          reason: 'must resolve the adult generic offer, NOT a kid-journey offer');
     });
   });
 }
@@ -257,12 +201,9 @@ String _adultOfferPath(String voice) =>
     'assets/pal/audio/$voice/journey/offer_narrative_adult.mp3';
 String _adultDeclinePath(String voice) =>
     'assets/pal/audio/$voice/journey/decline_adult.mp3';
-String _kidCarrierPath(String voice) =>
-    'assets/pal/audio/$voice/journey/carrier_narrative_kid.mp3';
-String _kidNamePath(String voice, String character) =>
-    'assets/pal/audio/$voice/journey/name_${character.toLowerCase()}_journey.mp3';
-String _kidInvitationPath(String voice) =>
-    'assets/pal/audio/$voice/journey/invitation_narrative_kid.mp3';
+// Kid: monolithic per-journey offer clip + generic decline.
+String _kidOfferPath(String voice, String journeyId) =>
+    'assets/pal/audio/$voice/journey/${journeyId}_offer.mp3';
 String _kidDeclinePath(String voice) =>
     'assets/pal/audio/$voice/journey/decline_kid.mp3';
 
@@ -296,17 +237,17 @@ JourneyContinuationOffer _adultOffer() {
   );
 }
 
-JourneyContinuationOffer _kidOffer({required String? characterName}) {
-  final cn = characterName == null
-      ? ''
-      : '"characterName": "$characterName",';
+JourneyContinuationOffer _kidOffer({String journeyId = 'test_kid'}) {
+  // Post-pivot: characterName is no longer used by the resolver.
+  // The per-journey clip ID derives from journeyId, not character
+  // name. Fixture omits characterName entirely to verify the
+  // resolver doesn't depend on it anymore.
   final journey = Journey.fromJsonString('''
 {
-  "journeyId": "test_kid",
+  "journeyId": "$journeyId",
   "journeyType": "narrative",
   "lane": "kid",
   "status": "ready",
-  $cn
   "stories": [
     {"productionId": 1, "anchorId": "a", "label": "x"},
     {"productionId": 2, "anchorId": "b", "label": "y"},

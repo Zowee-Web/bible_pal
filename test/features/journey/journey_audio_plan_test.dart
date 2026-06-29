@@ -105,11 +105,14 @@ void main() {
       expect(plan.offerGapsBetween, isEmpty);
     });
 
-    test('kid plan: 3 offerClips, 2 gaps, decline present → valid', () {
+    test('kid plan (post-pivot): 1 offerClip, 0 gaps, decline present → valid',
+        () {
+      // Post-pivot kid plans are MONOLITHIC (one full-line per-journey
+      // offer clip). Structurally identical to adult plans now.
       final plan = _kidPlan();
       expect(() => plan.validateStructure(), returnsNormally);
-      expect(plan.offerClips, hasLength(3));
-      expect(plan.offerGapsBetween, hasLength(2));
+      expect(plan.offerClips, hasLength(1));
+      expect(plan.offerGapsBetween, isEmpty);
     });
 
     test('empty offerClips → throws', () {
@@ -155,9 +158,12 @@ void main() {
         () {
       final plan = _kidPlan();
       expect(plan.voiceKey, 'VOICE_STILLWATER');
-      expect(plan.offerClips[0].kind, JourneyClipKind.carrier);
-      expect(plan.offerClips[1].kind, JourneyClipKind.name);
-      expect(plan.offerClips[2].kind, JourneyClipKind.invitation);
+      // Post-pivot kid plans carry a single OFFER-kind clip
+      // (monolithic per-journey clip), not the older carrier+name+
+      // invitation stitched sequence.
+      expect(plan.offerClips, hasLength(1));
+      expect(plan.offerClips[0].kind, JourneyClipKind.offer);
+      expect(plan.offerClips[0].clipId, endsWith('_offer'));
       expect(plan.declineClip.kind, JourneyClipKind.decline);
     });
   });
@@ -180,16 +186,15 @@ JourneyAudioPlan _adultPlan() => JourneyAudioPlan(
           _clip('decline_adult', JourneyClipKind.decline),
     );
 
+// Post-pivot 2026-06-28: kid plan is now MONOLITHIC (one full-line
+// per-journey offer clip + generic decline). The older stitched
+// carrier+name+invitation shape was retired; see
+// bundled_asset_journey_audio_resolver.dart for the pivot rationale.
 JourneyAudioPlan _kidPlan() => JourneyAudioPlan(
       voiceKey: 'VOICE_STILLWATER',
       offerClips: [
-        _clip('carrier_narrative_kid', JourneyClipKind.carrier),
-        _clip('name_david_journey', JourneyClipKind.name),
-        _clip('invitation_narrative_kid', JourneyClipKind.invitation),
+        _clip('kid_david_arc_offer', JourneyClipKind.offer),
       ],
-      offerGapsBetween: const [
-        Duration(milliseconds: 50),
-        Duration(milliseconds: 50),
-      ],
+      offerGapsBetween: const [],
       declineClip: _clip('decline_kid', JourneyClipKind.decline),
     );
