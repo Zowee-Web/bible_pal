@@ -101,7 +101,13 @@ VOICES = {
 
 # Locked production TTS settings (from scripts/generate_opus_audio.sh,
 # unchanged since 2026-06-14). Same shape Slice 2d uses.
-ELEVENLABS_DEFAULT_MODEL = "eleven_turbo_v2_5"
+ELEVENLABS_DEFAULT_MODEL = "eleven_v3"
+# All PAL voice audio uses eleven_v3, not turbo. Locked 2026-06-29 —
+# turbo over-clips consonants on short PAL utterances and treats
+# punctuation like "!" as performative excitement. v3 has the
+# prosodic breath room PAL clips need. Story/reflection audio
+# stays on turbo (separate recipe).
+# See: feedback_pal_voice_audio_uses_v3 in auto-memory.
 ELEVENLABS_VOICE_SETTINGS = {
     "stability": 0.6,
     "similarity_boost": 0.8,
@@ -137,7 +143,18 @@ CLIPS = [
     },
     {
         "clip_id": "decline_adult",
-        "text": "Of course. Let's find something for today.",
+        # 2026-06-29 voice audit (docs/PAL_VOICE.md): shortened from
+        # "Of course. Let's find something for today." — the offer's
+        # trailing "or, tell me what's on your heart today" already
+        # invites the mood-redirect, so the decline doesn't need to
+        # invite again. Brief acknowledgment, then STT opens.
+        #
+        # Model: eleven_v3 (not turbo). Single short utterances need
+        # the prosodic breath room v3 provides; turbo over-clips
+        # consonants on 2-word phrases. Matches the offer clips'
+        # model choice for tonal consistency across the cascade.
+        "text": "Of course.",
+        "model": "eleven_v3",
     },
     # ---- Per-adult-journey MONOLITHIC offer (Daniel Arc — first ship) ----
     # Naming convention: `<journeyId>_offer`. Each new adult journey
@@ -160,7 +177,15 @@ CLIPS = [
     },
     {
         "clip_id": "decline_kid",
-        "text": "Okay! Let's find something else.",
+        # 2026-06-29 voice audit (docs/PAL_VOICE.md): shortened from
+        # "Okay! Let's find something else." — same reason as
+        # decline_adult. First take used "Okay!" with exclamation;
+        # turbo treated the "!" as performative excitement on a
+        # 5-char utterance and the result was abrupt + loud. Dropped
+        # to "Okay." (period). Second take still abrupt on turbo —
+        # switched to eleven_v3 for prosodic breath room.
+        "text": "Okay.",
+        "model": "eleven_v3",
     },
     # ---- Per-kid-journey character name (Kid David Arc — first ship) ----
     # DEPRECATED 2026-06-28 by Adam after ear-check: stitching a 1-
@@ -193,9 +218,27 @@ CLIPS = [
     # the next-in-journey story. End-of-journey indices get no clip
     # (engine returns null per the Slice 2 strict-newest rule).
     #
-    # Register locked at 2026-06-28 audition: storyteller voice,
-    # "Last time, we [active-verb] [iconic scene from source story]…
-    # and there's more to [character]'s story if you'd like to hear it."
+    # Register locked at 2026-06-29 voice audit (docs/PAL_VOICE.md):
+    # three ellipsis-joined clauses, single continuous spoken thought.
+    #
+    #   ADULT:
+    #     "Last time, we [active-verb] [iconic scene]…
+    #      There's more to [character]'s story if you'd like to hear it…
+    #      or, tell me what's on your heart today."
+    #
+    #   KID:
+    #     "Last time, we [active-verb] [iconic scene]…
+    #      There's more to [character]'s story if you'd like to hear it…
+    #      or, what's on your mind?"
+    #
+    # The trailing "or, …" clause signals the third response path
+    # (mood-redirect) to first-time users who would otherwise only
+    # see yes/no. Without it, the cascade fails Q7 of the Voice Audit
+    # in flow context. Re-render history: V1 lacked the trailing
+    # clause and was re-rendered 2026-06-29 after the PAL Voice
+    # doctrine landed. V1 audio archived at
+    # assets/pal/audio_archive_journey_pre_voice_audit_2026-06-29/.
+    #
     # - "Last time" beats "yesterday" — handles the engine's 1-7 day
     #   recency band without per-band re-renders.
     # - "we watched" / "we walked with" / "we stood with" — active
@@ -203,6 +246,8 @@ CLIPS = [
     # - Storybook scene phrasing ("shepherd boy face a giant" >
     #   "David and Goliath") — captures the moment, not just the label.
     # - "if you'd like to hear it" — gentle invitation, never forced.
+    # - "or, tell me…" / "or, what's on your mind?" — explicit
+    #   third path. Maps to existing canonical mood prompts.
     #
     # The earlier per-journey monolithic clips (daniel_arc_offer,
     # kid_david_arc_offer) are now orphaned by this pivot; kept
@@ -211,28 +256,28 @@ CLIPS = [
     # ADULT — Daniel Arc (sourceStoryIndex 0/1/2; index 3 = end)
     {
         "clip_id": "daniel_arc_offer_0",
-        "text": "Last time, we sat with young Daniel as he chose what was true… and there's more to his story if you'd like to hear it.",
+        "text": "Last time, we sat with young Daniel as he chose what was true… There's more to his story if you'd like to hear it… or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     {
         "clip_id": "daniel_arc_offer_1",
-        "text": "Last time, we stood in the fire with Daniel's friends… and there's more to his story if you'd like to hear it.",
+        "text": "Last time, we stood in the fire with Daniel's friends… There's more to his story if you'd like to hear it… or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     {
         "clip_id": "daniel_arc_offer_2",
-        "text": "Last time, we walked with Daniel into the lions' den… and there's more to his story if you'd like to hear it.",
+        "text": "Last time, we walked with Daniel into the lions' den… There's more to his story if you'd like to hear it… or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     # KID — Kid David Arc (sourceStoryIndex 0/1; index 2 = end)
     {
         "clip_id": "kid_david_arc_offer_0",
-        "text": "Last time, we watched a shepherd boy be chosen for something big… and there's more to David's story if you'd like to hear it.",
+        "text": "Last time, we watched a shepherd boy be chosen for something big… There's more to David's story if you'd like to hear it… or, what's on your mind?",
         "model": "eleven_v3",
     },
     {
         "clip_id": "kid_david_arc_offer_1",
-        "text": "Last time, we watched a shepherd boy face a giant… and there's more to David's story if you'd like to hear it.",
+        "text": "Last time, we watched a shepherd boy face a giant… There's more to David's story if you'd like to hear it… or, what's on your mind?",
         "model": "eleven_v3",
     },
 ]

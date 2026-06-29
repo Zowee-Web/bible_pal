@@ -110,7 +110,9 @@ CLIPS = [
 STITCH_GAP_MS = 250
 
 # Locked production TTS settings (from generate_opus_audio.sh).
-ELEVENLABS_MODEL = "eleven_turbo_v2_5"
+# All PAL voice audio uses eleven_v3 (NOT turbo). Locked 2026-06-29.
+# See: feedback_pal_voice_audio_uses_v3 in auto-memory.
+ELEVENLABS_MODEL = "eleven_v3"
 ELEVENLABS_VOICE_SETTINGS = {
     "stability": 0.6,
     "similarity_boost": 0.8,

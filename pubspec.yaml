@@ -772,6 +772,13 @@ flutter:
     - assets/pal/audio/VOICE_HOPE/memory/
     - assets/pal/audio/VOICE_SHEPHERD/memory/
     - assets/pal/audio/VOICE_STILLWATER/memory/
+    # Journey Doctrine (Slice 2) — per-source-story offer + decline clips
+    # per voice. Declared for all three voices to keep symmetry with
+    # memory/ above; Flutter doesn't recurse into subdirectories of a
+    # declared asset dir, so each journey/ child needs its own entry.
+    - assets/pal/audio/VOICE_HOPE/journey/
+    - assets/pal/audio/VOICE_SHEPHERD/journey/
+    - assets/pal/audio/VOICE_STILLWATER/journey/
     # PAL Memory (Slice 2c.1) — editorial display-name registry
     - assets/pal/memory/display_name_registry.json
     # Journey Doctrine (Slice 2) — editorial journey registry
