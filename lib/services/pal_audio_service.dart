@@ -10,6 +10,7 @@ import 'package:just_audio/just_audio.dart';
 
 import '../core/app_logger.dart';
 import '../core/pal_voice_registry.dart';
+import '../features/journey/journey_audio_plan.dart';
 import '../features/pal_memory/memory_audio_plan.dart';
 
 // Simple data class for a PAL line (id + text).
@@ -745,6 +746,75 @@ class PalAudioService {
     } catch (e) {
       logEvent('pal_audio_error', {
         'context': 'memory_plan',
+        'voice_key': plan.voiceKey,
+        'error': e.toString(),
+      });
+      return false;
+    } finally {
+      _releaseLock();
+    }
+  }
+
+  /// Plays the OFFER portion of a [JourneyAudioPlan] (one or more
+  /// offer clips with optional gaps). Returns true on successful
+  /// playback. Mirrors [playMemoryPlan] exactly — same lock discipline,
+  /// same return semantics. The runtime (`fireJourneyOffer`) MUST only
+  /// proceed to STT capture when this returns true.
+  ///
+  /// Journey Doctrine Slice 2 Phase 9. Silence-floor honest: a failed
+  /// playback returns false and the cascade short-circuits to the
+  /// existing mood-flow (NOT a fallback to decline audio).
+  Future<bool> playJourneyOffer(JourneyAudioPlan plan) async {
+    plan.validateStructure();
+    await _acquireLock();
+    try {
+      final children = <AudioSource>[];
+      for (var i = 0; i < plan.offerClips.length; i++) {
+        children.add(AudioSource.asset(plan.offerClips[i].assetPath));
+        if (i < plan.offerGapsBetween.length) {
+          children
+              .add(SilenceAudioSource(duration: plan.offerGapsBetween[i]));
+        }
+      }
+      final playlist = ConcatenatingAudioSource(children: children);
+      await _player.setAudioSource(playlist);
+      await _waitForPlayerReady();
+      await _player.play();
+      await awaitPlaybackComplete();
+      return true;
+    } catch (e) {
+      logEvent('pal_audio_error', {
+        'context': 'journey_offer',
+        'voice_key': plan.voiceKey,
+        'error': e.toString(),
+      });
+      return false;
+    } finally {
+      _releaseLock();
+    }
+  }
+
+  /// Plays the DECLINE clip of a [JourneyAudioPlan] (the brief
+  /// acknowledgment PAL says after a user declines or stays silent).
+  /// Returns true on successful playback. Same lock discipline as
+  /// [playJourneyOffer] / [playMemoryPlan].
+  ///
+  /// Journey Doctrine Slice 2 Phase 9. The decline clip is shorter
+  /// than the offer (typically <1s) but uses the same playback path
+  /// for symmetry and the same iOS -11849 wedge prevention discipline.
+  Future<bool> playJourneyDecline(JourneyAudioPlan plan) async {
+    plan.validateStructure();
+    await _acquireLock();
+    try {
+      await _player
+          .setAudioSource(AudioSource.asset(plan.declineClip.assetPath));
+      await _waitForPlayerReady();
+      await _player.play();
+      await awaitPlaybackComplete();
+      return true;
+    } catch (e) {
+      logEvent('pal_audio_error', {
+        'context': 'journey_decline',
         'voice_key': plan.voiceKey,
         'error': e.toString(),
       });

@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
+import '../features/journey/journey.dart';
 import '../models/parable.dart';
 import '../models/user_preferences.dart';
 import '../core/app_logger.dart';
@@ -878,6 +879,56 @@ class ParableService {
     } catch (e) {
       return null;
     }
+  }
+
+  /// Resolves the parable that corresponds to a [JourneyStory] under
+  /// the user's current length-bucket + language-style preferences.
+  ///
+  /// Journey Doctrine Slice 2 Phase 9 — used by the accept-path of
+  /// the continuation cascade. Returns null when no manifest entry
+  /// matches the (lane, anchor/storyNumber, length, style) tuple; the
+  /// integration site treats null as silence-floor (falls through to
+  /// the normal mood-flow rather than synthesizing a wrong story).
+  ///
+  /// Adult lane matches on storyId prefix `story_<storyNumber>_` and
+  /// requires `languageStyle == userPrefs.preferredLanguageStyle`.
+  /// Kid lane matches on storyId prefix `kid_<anchorId>_` and the
+  /// `_<length>` suffix (kid manifest doesn't carry languageStyle).
+  Future<Parable?> getParableByJourneyStory(
+    JourneyStory story, {
+    required StoryLengthBucket lengthBucket,
+    required UserPreferences userPrefs,
+  }) async {
+    final all = await _loadManifest();
+    final lengthName = lengthBucket.name; // short / full / long
+
+    if (story.storyNumber != null) {
+      // Adult lane.
+      final numberPrefix = 'story_${story.storyNumber}_';
+      final style = userPrefs.languageStyle;
+      for (final p in all) {
+        if (p.storyId.startsWith(numberPrefix) &&
+            p.storyLength == lengthName &&
+            p.languageStyle == style) {
+          return p;
+        }
+      }
+      return null;
+    }
+
+    if (story.anchorId != null) {
+      // Kid lane.
+      final anchorPrefix = 'kid_${story.anchorId}_';
+      for (final p in all) {
+        if (p.storyId.startsWith(anchorPrefix) &&
+            p.storyLength == lengthName) {
+          return p;
+        }
+      }
+      return null;
+    }
+
+    return null;
   }
 
   /// Get audio file for a parable.
