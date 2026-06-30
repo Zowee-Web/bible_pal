@@ -21,6 +21,7 @@ import 'package:bible_pal/features/pal_memory/memory_audio_resolver.dart';
 import 'package:bible_pal/features/pal_memory/bundled_asset_memory_audio_resolver.dart';
 import 'package:bible_pal/features/journey/journey_registry.dart';
 import 'package:bible_pal/features/journey/journey_audio_resolver.dart';
+import 'package:bible_pal/features/journey/journey_response_classifier.dart';
 import 'package:bible_pal/features/journey/bundled_asset_journey_audio_resolver.dart';
 import 'package:bible_pal/services/path_service.dart';
 import 'package:bible_pal/services/search_service.dart';
@@ -210,6 +211,15 @@ final journeyAudioResolverProvider =
     FutureProvider<JourneyAudioResolver>((ref) async {
   ref.keepAlive();
   return BundledAssetJourneyAudioResolver.load();
+});
+
+/// Stateless rule-based classifier — Journey Doctrine Slice 2 Phase 7.
+/// Const-constructible, so the provider holds the canonical instance for
+/// the entire app lifetime. Phase 9's `fireJourneyOffer` consumes it via
+/// `ref.read(journeyResponseClassifierProvider)`.
+final journeyResponseClassifierProvider =
+    Provider<JourneyResponseClassifier>((ref) {
+  return const JourneyResponseClassifier();
 });
 
 /// Loads the curated Life of Jesus sequence from the bundled asset
