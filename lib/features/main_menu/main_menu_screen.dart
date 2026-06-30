@@ -10,6 +10,7 @@ import 'package:just_audio/just_audio.dart'
     show PlayerException, PlayerInterruptedException;
 import '../../core/pal_voice_registry.dart';
 import '../../services/pal_audio_service.dart' show PalAudioService;
+import '../journey/journey_continuation_offer.dart';
 import '../journey/journey_offer_runtime.dart';
 import '../pal_memory/pal_memory_runtime.dart';
 import '../../services/pal_prompt_service.dart';
@@ -43,122 +44,14 @@ import '../paths/paths_page.dart';
 /// can't double-tap themselves into two parallel selections.
 bool _moodFlowSelecting = false;
 
-/// Session-scope flag — Journey Doctrine Slice 2 Phase 9. Once the
-/// journey cascade SPEAKS (offer audio plays — regardless of how the
-/// user responds), subsequent selections in the same session skip the
-/// cascade. The engine's 3-day cooldown already handles the adult
+/// Session-scope flag — Journey Doctrine Slice 2. Once the journey
+/// cascade SPEAKS at cold-open (offer audio plays — regardless of how
+/// the user responds), subsequent cold-opens in the same session skip
+/// the cascade. The engine's 3-day cooldown already handles the adult
 /// lane long-term; this flag is what keeps the kid lane (no cooldown
-/// per the Kid-Lane Appendix) from re-offering every selection.
+/// per the Kid-Lane Appendix) from re-offering on every PAL tap.
 /// Resets on app launch.
 bool _journeyCascadeSpokenThisSession = false;
-
-/// Captures a single STT response window for the journey cascade.
-/// Wraps [SttService.startListening] in a Future that completes on
-/// the first final result or null on timeout/error. Used only by the
-/// journey cascade — independent from the main menu's own STT
-/// instance so the cascade doesn't disturb in-flight voice input.
-Future<String?> _captureJourneyResponseViaStt() async {
-  final stt = SttService();
-  try {
-    await stt.initialize();
-    final completer = Completer<String?>();
-    Timer? safetyTimeout;
-
-    await stt.startListening(
-      // Match the existing voice-input window; the locked endpoint
-      // delay (3500ms per feedback_voice_endpoint_delay) lives inside
-      // SttService.defaultEndpointDelay.
-      listenSeconds: SttService.defaultListenSeconds,
-      onResult: (result) {
-        if (result.isFinal && !completer.isCompleted) {
-          safetyTimeout?.cancel();
-          completer.complete(
-              result.text.trim().isEmpty ? null : result.text);
-        }
-      },
-      onError: (_) {
-        if (!completer.isCompleted) {
-          safetyTimeout?.cancel();
-          completer.complete(null);
-        }
-      },
-    );
-
-    // Belt-and-braces safety net — if the engine never fires a final
-    // result (e.g. dropped between listen-stop and partial dispatch),
-    // complete null rather than hang the cascade forever.
-    safetyTimeout = Timer(
-      Duration(seconds: SttService.defaultListenSeconds + 2),
-      () {
-        if (!completer.isCompleted) completer.complete(null);
-      },
-    );
-
-    return completer.future;
-  } catch (_) {
-    return null;
-  } finally {
-    try {
-      await stt.dispose();
-    } catch (_) {
-      // Safe-fail: dispose errors must not block the cascade.
-    }
-  }
-}
-
-/// Resolves every journey-cascade dependency from Riverpod and runs
-/// [fireJourneyOffer]. Returns the structured result so the caller
-/// can dispatch on the outcome (accept → load next-in-journey story,
-/// moodRedirect → mood-flow with the user's phrase, etc.). Errors
-/// inside the cascade are absorbed by [fireJourneyOffer]; this wrapper
-/// exists only to bridge Riverpod ↔ the pure-ish cascade.
-///
-/// Journey Doctrine Slice 2 Phase 9 (see docs/JOURNEY_DOCTRINE.md):
-/// silence-floor honest — if any provider can't be resolved or any
-/// gate closes, returns [JourneyOfferOutcome.exception] /
-/// [JourneyOfferOutcome.engineSilent] and the integration site
-/// proceeds to the normal mood-flow.
-Future<JourneyOfferResult> _maybeFireJourneyOffer(WidgetRef ref) async {
-  if (_journeyCascadeSpokenThisSession) {
-    return const JourneyOfferResult(
-      JourneyOfferOutcome.engineSilent,
-      skippedReason: 'session_already_spoken',
-    );
-  }
-
-  final appState = ref.read(appStateProvider).valueOrNull;
-  final preferences = appState?.userPreferences;
-  if (preferences == null) {
-    return const JourneyOfferResult(
-      JourneyOfferOutcome.consentBlocked,
-      skippedReason: 'no_preferences',
-    );
-  }
-
-  final sessionStore = await ref.read(palSessionStoreProvider.future);
-  final registry = await ref.read(journeyRegistryProvider.future);
-  final audioResolver = await ref.read(journeyAudioResolverProvider.future);
-  final classifier = ref.read(journeyResponseClassifierProvider);
-  final palAudio = ref.read(palAudioServiceProvider);
-
-  final result = await fireJourneyOffer(
-    preferences: preferences,
-    sessionStore: sessionStore,
-    journeyRegistry: registry,
-    audioResolver: audioResolver,
-    classifier: classifier,
-    playOfferPlan: palAudio.playJourneyOffer,
-    playDeclinePlan: palAudio.playJourneyDecline,
-    captureResponse: _captureJourneyResponseViaStt,
-    now: DateTime.now(),
-    logger: logEvent,
-  );
-
-  if (result.offerWasSpoken) {
-    _journeyCascadeSpokenThisSession = true;
-  }
-  return result;
-}
 
 /// PAL Memory Doctrine Slice 2d (see docs/PAL_MEMORY_DOCTRINE.md):
 /// resolve every cascade dependency from Riverpod and run
@@ -221,120 +114,22 @@ Future<void> selectStoryAndOpenPlayer({
       'has_bible_story_key': bibleStoryKey != null,
     });
 
-    // Journey Doctrine Slice 2 Phase 9 — try the journey continuation
-    // cascade FIRST. Three relevant outcomes for this integration:
+    // PAL Memory Doctrine Slice 2d — speak a memory line if the cascade
+    // allows. Awaited so the player screen does NOT open over the
+    // carrier. Errors are absorbed inside the helper.
     //
-    //   acceptedAndContinued: load the next-in-journey story directly,
-    //     skip Slice 2d recognition (the offer already named the
-    //     character — recognition would be redundant), navigate, and
-    //     advance cooldown after the player opens.
-    //
-    //   declinedMoodRedirect: PAL did NOT play the decline clip — the
-    //     user's mood-utterance IS the decline signal. Override
-    //     userText/mood with the captured phrase and proceed through
-    //     the normal mood-flow (Slice 2d may still fire on whatever
-    //     story is selected).
-    //
-    //   anything else (engineSilent / declinedExplicit / etc): proceed
-    //     normally; Slice 2d may fire and the requested mood-flow story
-    //     selection happens as before.
-    //
-    // The cascade is fire-and-forget for the integration site —
-    // exceptions are absorbed inside fireJourneyOffer; this site never
-    // crashes from journey work.
-    final journeyResult = await _maybeFireJourneyOffer(ref);
+    // The Journey Doctrine Slice 2 cascade (offer + STT + dispatch)
+    // does NOT fire from this entry point in V1 — the user has
+    // already expressed intent by tapping a mood, so an STT response
+    // window would be confusing. Journey lives at the cold-open
+    // (PAL button) path; see [_MainMenuScreenState._runConversation].
+    await _maybeSpeakMemoryLine(ref);
     if (!context.mounted) return;
 
-    if (journeyResult.outcome == JourneyOfferOutcome.acceptedAndContinued &&
-        journeyResult.offer != null) {
-      final parableService = await ref.read(parableServiceProvider.future);
-      if (!context.mounted) return;
-      final userPrefs = ref.read(appStateProvider).valueOrNull?.userPreferences;
-      final journeyParable = userPrefs == null
-          ? null
-          : await parableService.getParableByJourneyStory(
-              journeyResult.offer!.nextStory,
-              lengthBucket: bucket,
-              userPrefs: userPrefs,
-            );
-      if (!context.mounted) return;
-      if (journeyParable != null) {
-        await appStateNotifier.addToHistory(journeyParable);
-        if (!context.mounted) return;
-        final journeyPlayer = ref.read(parablePlayerProvider.notifier);
-        final journeyLoaded = await journeyPlayer.loadParable(journeyParable);
-        if (!context.mounted) return;
-        if (journeyLoaded) {
-          // Cooldown advances now — the user accepted AND the
-          // next-in-journey story successfully loaded. Doctrine:
-          // "advances ONLY when the user accepts continuation and the
-          // next-in-journey story plays successfully." v0 treats
-          // successful player load as "plays successfully."
-          final sessionStore =
-              await ref.read(palSessionStoreProvider.future);
-          await sessionStore.recordJourneyContinuationSpoken();
-          if (!context.mounted) return;
-          await Navigator.of(context).push(
-            PageRouteBuilder(
-              pageBuilder: (_, __, ___) =>
-                  const ParablePlayerScreen(showArrivalAnimation: true),
-              transitionsBuilder: (_, animation, __, child) {
-                final curved = CurvedAnimation(
-                    parent: animation, curve: Curves.easeInOut);
-                return FadeTransition(
-                  opacity: curved,
-                  child: ScaleTransition(
-                    scale: Tween<double>(begin: 0.98, end: 1.0)
-                        .animate(curved),
-                    child: child,
-                  ),
-                );
-              },
-              transitionDuration: const Duration(milliseconds: 260),
-            ),
-          );
-          return;
-        }
-        // If load failed, fall through to the normal mood-flow path
-        // below. Silence-floor honesty — the journey offer was heard;
-        // a load failure of the next story shouldn't block the user.
-      }
-      // No matching parable for the journey story under user's
-      // length/style prefs — fall through to mood-flow silently.
-    }
-
-    // moodRedirect: rewrite mood/userText from the captured phrase so
-    // the existing mood-flow path serves the user's just-expressed
-    // mood instead of whatever they tap-selected before the offer.
-    var effectiveMood = mood;
-    var effectiveUserText = userText;
-    if (journeyResult.outcome == JourneyOfferOutcome.declinedMoodRedirect &&
-        journeyResult.moodPhrase != null) {
-      effectiveUserText = journeyResult.moodPhrase!;
-      try {
-        final moodService = appStateNotifier.moodService;
-        final detected =
-            moodService.detectMood(journeyResult.moodPhrase!);
-        if (detected.mood.isNotEmpty) effectiveMood = detected.mood;
-      } catch (_) {
-        // Safe-fail — keep the original mood if detection throws.
-      }
-    }
-
-    // PAL Memory Doctrine Slice 2d — speak a memory line if the cascade
-    // allows AND the journey cascade didn't already speak in this
-    // selection (accept path returns above; decline branches DO let
-    // recognition fire on the resulting mood-flow story per the
-    // doctrine: different character, different memory thread).
-    if (!journeyResult.suppressSlice2dRecognition) {
-      await _maybeSpeakMemoryLine(ref);
-      if (!context.mounted) return;
-    }
-
     final parable = await appStateNotifier.selectParable(
-      mood: effectiveMood,
+      mood: mood,
       lengthBucket: bucket,
-      userText: effectiveUserText,
+      userText: userText,
       bibleStoryKey: bibleStoryKey,
     );
 
@@ -1960,6 +1755,80 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     // Pause breathing during voice flow
     _breathController.stop();
 
+    // Transition voice flow to playingOpeningLine IMMEDIATELY so the
+    // "PAL is speaking" UI affordance shows the moment the user taps.
+    // The cascade below is async (permissions check, provider reads)
+    // and would otherwise leave the user staring at a stale UI for a
+    // few hundred ms.
+    if (mounted) {
+      setState(() {
+        _voiceFlow = _VoiceFlowState.playingOpeningLine;
+      });
+    }
+
+    // Journey Doctrine Slice 2 — try the journey continuation cascade
+    // BEFORE the cold-open greeting. If the cascade fires (eligible
+    // recent journey-source session + audio + consent), it REPLACES
+    // the cold-open entirely: PAL plays the offer instead of the
+    // greeting, captures the user's response, and dispatches:
+    //
+    //   acceptedAndContinued: opens the next-in-journey story
+    //     directly; cold-open + mood STT + mood-flow are all skipped.
+    //
+    //   declinedMoodRedirect: routes the user's mood-utterance to
+    //     `_processMoodFromVoice` exactly as if they'd said it via
+    //     the normal cold-open + STT path. Slice 2d may still fire
+    //     on the resulting story (different memory thread).
+    //
+    //   declinedExplicit / declinedAmbiguous: the runtime already
+    //     played the decline clip; fall through to the normal
+    //     mood-flow's STT capture (existing _startListeningForMood
+    //     path below).
+    //
+    //   engineSilent / consentBlocked / missingClip / playbackFailed
+    //   / exception: fall through to the normal cold-open. No
+    //   user-visible journey behavior; silence-floor honest.
+    //
+    // STT response capture reuses the existing `_sttService`
+    // instance (not a fresh one) — fixes the iOS audio-session
+    // conflict that broke the first integration attempt.
+    final journeyOutcome = await _tryFireJourneyCascadeAtColdOpen();
+    if (!mounted) return;
+
+    switch (journeyOutcome.outcome) {
+      case JourneyOfferOutcome.acceptedAndContinued:
+        if (journeyOutcome.offer != null) {
+          await _openJourneyNextStory(journeyOutcome.offer!);
+        }
+        return;
+      case JourneyOfferOutcome.declinedMoodRedirect:
+        // User's response IS the mood signal — route to mood-flow
+        // exactly as the cold-open STT path would.
+        if (journeyOutcome.moodPhrase != null &&
+            journeyOutcome.moodPhrase!.trim().isNotEmpty) {
+          await _processMoodFromVoice(journeyOutcome.moodPhrase!);
+          return;
+        }
+        // Empty phrase shouldn't reach here but guard anyway.
+        break;
+      case JourneyOfferOutcome.declinedExplicit:
+      case JourneyOfferOutcome.declinedAmbiguous:
+        // Decline clip already played by runtime. Continue to mood
+        // STT (the user still needs to give PAL something to work
+        // with — the offer was declined, the next step is "what's
+        // on your heart").
+        await _startListeningForMood();
+        return;
+      case JourneyOfferOutcome.engineSilent:
+      case JourneyOfferOutcome.consentBlocked:
+      case JourneyOfferOutcome.missingClip:
+      case JourneyOfferOutcome.playbackFailed:
+      case JourneyOfferOutcome.exception:
+        // No journey today — fall through to the normal cold-open
+        // greeting + mood STT path.
+        break;
+    }
+
     // Feature 2.0 — 12-line time-bucketed mood-blind opening greeting
     // (SPEC §2.0). Selection driven solely by current local hour with
     // persistent recency rotation; tone signal retired with the 60-line
@@ -2415,6 +2284,220 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       bibleStoryKey: previewKey,
     );
     if (mounted) FocusScope.of(context).unfocus();
+  }
+
+  // -------------------------------------------------------------------
+  // Journey Doctrine Slice 2 — cold-open cascade integration
+  // -------------------------------------------------------------------
+
+  /// Captures the user's STT response after the journey offer plays.
+  /// Reuses the existing `_sttService` instance (NOT a fresh one) so
+  /// the iOS audio session that PalAudioService just used cleanly
+  /// hands off to STT. Mirrors `_startListeningForMood`'s mic-pulse
+  /// state shape but routes the transcript back via Future instead
+  /// of dispatching to mood detection.
+  Future<String?> _captureJourneyResponse() async {
+    if (!mounted) return null;
+    setState(() {
+      _voiceFlow = _VoiceFlowState.listening;
+      _partialTranscript = '';
+    });
+    _micPulseController.repeat(reverse: true);
+
+    final completer = Completer<String?>();
+    Timer? safetyTimeout;
+
+    void cleanup() {
+      _micPulseController.stop();
+      safetyTimeout?.cancel();
+    }
+
+    // Set the safety timer BEFORE startListening. If startListening
+    // calls onError synchronously (test environments where the engine
+    // isn't available, iOS permission edge-cases), the completer
+    // completes first and the timer must already be cancelable.
+    // Otherwise it would orphan and surface as "A Timer is still
+    // pending" at widget disposal.
+    safetyTimeout = Timer(
+      Duration(seconds: SttService.defaultListenSeconds + 2),
+      () {
+        if (!completer.isCompleted) {
+          cleanup();
+          completer.complete(null);
+        }
+      },
+    );
+
+    try {
+      await _sttService.startListening(
+        onResult: (result) {
+          if (!mounted) return;
+          if (!result.isFinal) {
+            setState(() => _partialTranscript = result.text);
+            return;
+          }
+          if (!completer.isCompleted) {
+            cleanup();
+            completer.complete(
+                result.text.trim().isEmpty ? null : result.text);
+          }
+        },
+        onError: (_) {
+          if (!completer.isCompleted) {
+            cleanup();
+            completer.complete(null);
+          }
+        },
+      );
+
+      return await completer.future;
+    } catch (_) {
+      cleanup();
+      return null;
+    }
+  }
+
+  /// Resolves every journey-cascade dependency from Riverpod and runs
+  /// [fireJourneyOffer]. Pre-flights STT permissions so the offer
+  /// doesn't play to a user who can't respond.
+  ///
+  /// Journey Doctrine Slice 2: silence-floor honest — if any gate
+  /// closes, returns an outcome the caller treats as "fall through
+  /// to normal cold-open."
+  Future<JourneyOfferResult> _tryFireJourneyCascadeAtColdOpen() async {
+    if (_journeyCascadeSpokenThisSession) {
+      return const JourneyOfferResult(
+        JourneyOfferOutcome.engineSilent,
+        skippedReason: 'session_already_spoken',
+      );
+    }
+
+    final appState = ref.read(appStateProvider).valueOrNull;
+    final preferences = appState?.userPreferences;
+    if (preferences == null) {
+      return const JourneyOfferResult(
+        JourneyOfferOutcome.consentBlocked,
+        skippedReason: 'no_preferences',
+      );
+    }
+
+    // STT permission is NOT pre-flighted here. checkPermissions()
+    // has an 8s internal timeout that orphans in test-environment
+    // teardown, and in production the STT capture step itself
+    // handles denial cleanly (onError → null transcript → ambiguous
+    // bucket → graceful decline). The cost is a ~10s offer audio
+    // play before the user discovers they can't respond verbally —
+    // acceptable for the mic-denied edge case.
+    final sessionStore = await ref.read(palSessionStoreProvider.future);
+    final registry = await ref.read(journeyRegistryProvider.future);
+    final audioResolver =
+        await ref.read(journeyAudioResolverProvider.future);
+    final classifier = ref.read(journeyResponseClassifierProvider);
+    final palAudio = ref.read(palAudioServiceProvider);
+
+    // While the offer plays, keep the voice flow in playingOpeningLine
+    // (PAL is speaking) so UI affordances match what the user hears.
+    if (mounted) {
+      setState(() => _voiceFlow = _VoiceFlowState.playingOpeningLine);
+    }
+
+    final result = await fireJourneyOffer(
+      preferences: preferences,
+      sessionStore: sessionStore,
+      journeyRegistry: registry,
+      audioResolver: audioResolver,
+      classifier: classifier,
+      playOfferPlan: palAudio.playJourneyOffer,
+      playDeclinePlan: palAudio.playJourneyDecline,
+      captureResponse: _captureJourneyResponse,
+      now: DateTime.now(),
+      logger: logEvent,
+    );
+
+    if (result.offerWasSpoken) {
+      _journeyCascadeSpokenThisSession = true;
+    }
+    return result;
+  }
+
+  /// Opens the next-in-journey story directly (the acceptance path).
+  /// Skips Slice 2d recognition (the offer already named the
+  /// character) and advances the journey-continuation cooldown after
+  /// the player loads.
+  ///
+  /// Doctrine: cooldown advances only when the user accepts AND the
+  /// next-in-journey story plays successfully. V0 treats "player
+  /// loadParable returns true" as "plays successfully."
+  Future<void> _openJourneyNextStory(JourneyContinuationOffer offer) async {
+    final appState = ref.read(appStateProvider).valueOrNull;
+    final userPrefs = appState?.userPreferences;
+    if (userPrefs == null) {
+      // Should never happen given the cascade already gated on
+      // preferences, but guard anyway.
+      await _startListeningForMood();
+      return;
+    }
+
+    final bucketName = userPrefs.preferredLengthBucket ?? 'short';
+    final bucket = StoryLengthBucket.fromJson(bucketName);
+
+    final parableService = await ref.read(parableServiceProvider.future);
+    if (!mounted) return;
+    final journeyParable = await parableService.getParableByJourneyStory(
+      offer.nextStory,
+      lengthBucket: bucket,
+      userPrefs: userPrefs,
+    );
+    if (!mounted) return;
+
+    if (journeyParable == null) {
+      // Silence-floor: no matching parable for the user's
+      // length/style prefs. The offer was heard but we can't honor
+      // the accept. Fall through to the normal mood STT flow.
+      await _startListeningForMood();
+      return;
+    }
+
+    final appStateNotifier = ref.read(appStateProvider.notifier);
+    await appStateNotifier.addToHistory(journeyParable);
+    if (!mounted) return;
+
+    final playerNotifier = ref.read(parablePlayerProvider.notifier);
+    final loaded = await playerNotifier.loadParable(journeyParable);
+    if (!mounted) return;
+
+    if (!loaded) {
+      // Load failed — silence-floor honest, fall through.
+      await _startListeningForMood();
+      return;
+    }
+
+    // Cooldown advances now. Doctrine: user accepted + next story
+    // loaded successfully.
+    final sessionStore = await ref.read(palSessionStoreProvider.future);
+    await sessionStore.recordJourneyContinuationSpoken();
+    if (!mounted) return;
+
+    _cancelConversation();
+    await Navigator.of(context).push(
+      PageRouteBuilder(
+        pageBuilder: (_, __, ___) =>
+            const ParablePlayerScreen(showArrivalAnimation: true),
+        transitionsBuilder: (_, animation, __, child) {
+          final curved =
+              CurvedAnimation(parent: animation, curve: Curves.easeInOut);
+          return FadeTransition(
+            opacity: curved,
+            child: ScaleTransition(
+              scale:
+                  Tween<double>(begin: 0.98, end: 1.0).animate(curved),
+              child: child,
+            ),
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 260),
+      ),
+    );
   }
 
   /// Pick a micro-response ID with non-repeat logic.
