@@ -2481,17 +2481,15 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     await sessionStore.recordJourneyContinuationSpoken();
     if (!mounted) return;
 
-    // Play the same transition + framing intro every non-journey
-    // story gets (from _processMoodFromVoice). Journey accept was
-    // previously jumping straight into narration; that felt abrupt.
-    // Reusing the existing intro-line library keeps every story's
-    // opening cadence identical: PAL recognizes → PAL introduces →
-    // Scripture begins. See journey scale horizon in
-    // JOURNEY_DOCTRINE.md — the intro pattern must survive the
-    // eventual expansion to per-source-story clips at scale.
-    await _playJourneyStoryIntro(journeyParable);
-    if (!mounted) return;
-
+    // NOTE (2026-06-30): the transition + framing intro that mood-
+    // flow stories get via _processMoodFromVoice is intentionally
+    // SKIPPED here for now. Adding it to the accept path hung the
+    // flow on device — the 8s awaitPlaybackComplete timeout didn't
+    // rescue it, meaning the wedge is upstream (playLine's setAudio
+    // Source, or the registry ensureLoaded calls). Restoring direct
+    // navigation matches PR #56's proven working behavior. The
+    // _playJourneyStoryIntro helper stays defined so the polish can
+    // be re-attempted once the wedge root cause is understood.
     _cancelConversation();
     await Navigator.of(context).push(
       PageRouteBuilder(
@@ -2525,6 +2523,11 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   /// NOT included here — reflection responds to the USER's mood
   /// utterance; on journey accept, the user only said "yes" (no
   /// mood expressed), so no reflection is warranted.
+  ///
+  /// Currently NOT wired — hung the accept path on device
+  /// 2026-06-30. Kept defined so the polish can be re-attempted
+  /// once the wedge root cause is understood.
+  // ignore: unused_element
   Future<void> _playJourneyStoryIntro(Parable parable) async {
     final bibleStoryKey = parable.bibleStoryKey;
     if (bibleStoryKey == null || bibleStoryKey.isEmpty) return;
