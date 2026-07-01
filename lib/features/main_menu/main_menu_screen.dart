@@ -2306,33 +2306,44 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
     final completer = Completer<String?>();
     Timer? safetyTimeout;
+    // Track the last non-empty partial transcript. Adam's iPhone
+    // 2026-07-01: the STT engine delivered partial "yes" but never
+    // isFinal=true after _speech.stop() was invoked by the endpoint
+    // timer. If we time out with a captured partial, complete with
+    // it — the classifier can still dispatch on "yes".
+    String lastPartial = '';
 
     void cleanup() {
       _micPulseController.stop();
       safetyTimeout?.cancel();
     }
 
-    // Set the safety timer BEFORE startListening. If startListening
-    // calls onError synchronously (test environments where the engine
-    // isn't available, iOS permission edge-cases), the completer
-    // completes first and the timer must already be cancelable.
-    // Otherwise it would orphan and surface as "A Timer is still
-    // pending" at widget disposal.
-    safetyTimeout = Timer(
-      Duration(seconds: SttService.defaultListenSeconds + 2),
-      () {
-        if (!completer.isCompleted) {
-          cleanup();
-          completer.complete(null);
-        }
-      },
-    );
+    void completeWithPartial() {
+      if (completer.isCompleted) return;
+      cleanup();
+      completer.complete(
+          lastPartial.trim().isEmpty ? null : lastPartial);
+    }
+
+    // Safety timer: 12s max wait for isFinal. The endpoint timer
+    // inside SttService fires at 3.5s of silence following a
+    // partial, so a normal capture completes in ~5-6s. 12s gives
+    // slack for isFinal delivery; if it still hasn't arrived, we
+    // trust the last partial (Adam's iPhone case: "yes" partial
+    // captured but engine never finalized post-stop()).
+    //
+    // Set BEFORE startListening so a synchronous onError path
+    // (test env, iOS permission edge-cases) has a cancelable timer.
+    safetyTimeout = Timer(const Duration(seconds: 12), completeWithPartial);
 
     try {
       await _sttService.startListening(
         onResult: (result) {
           if (!mounted) return;
           if (!result.isFinal) {
+            if (result.text.isNotEmpty) {
+              lastPartial = result.text;
+            }
             setState(() => _partialTranscript = result.text);
             return;
           }
@@ -2342,18 +2353,13 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
                 result.text.trim().isEmpty ? null : result.text);
           }
         },
-        onError: (_) {
-          if (!completer.isCompleted) {
-            cleanup();
-            completer.complete(null);
-          }
-        },
+        onError: (_) => completeWithPartial(),
       );
 
       return await completer.future;
     } catch (_) {
-      cleanup();
-      return null;
+      completeWithPartial();
+      return lastPartial.trim().isEmpty ? null : lastPartial;
     }
   }
 
