@@ -10,7 +10,6 @@ import 'package:just_audio/just_audio.dart'
     show PlayerException, PlayerInterruptedException;
 import '../../core/pal_voice_registry.dart';
 import '../../services/pal_audio_service.dart' show PalAudioService;
-import '../journey/journey_audio_resolver.dart';
 import '../journey/journey_continuation_offer.dart';
 import '../journey/journey_offer_runtime.dart';
 import '../pal_memory/pal_memory_runtime.dart';
@@ -1793,10 +1792,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     // STT response capture reuses the existing `_sttService`
     // instance (not a fresh one) — fixes the iOS audio-session
     // conflict that broke the first integration attempt.
-    final journeyOutcome = await _tryFireJourneyCascade(
-      variant: JourneyOfferVariant.full,
-      playDeclineClipOnDecline: true,
-    );
+    final journeyOutcome = await _tryFireJourneyCascade();
     if (!mounted) return;
 
     switch (journeyOutcome.outcome) {
@@ -2362,25 +2358,16 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   }
 
   /// Resolves every journey-cascade dependency from Riverpod and runs
-  /// [fireJourneyOffer]. Called from both entry points:
-  ///
-  ///   - Cold-open (PAL button): `variant: full`,
-  ///     `playDeclineClipOnDecline: true`. The offer REPLACES the
-  ///     cold-open greeting; decline gets an "Of course." beat.
-  ///
-  ///   - Mood button: `variant: short`,
-  ///     `playDeclineClipOnDecline: false`. The offer plays BEFORE
-  ///     the mood-flow's story; user already chose a mood, so no
-  ///     decline acknowledgment is needed — silence/decline just
-  ///     continues with the tapped mood.
+  /// [fireJourneyOffer]. Called ONLY from the PAL-button (cold-open)
+  /// entry point per the Entry-Point Split doctrine — the offer
+  /// REPLACES the cold-open greeting; decline gets an "Of course."
+  /// beat. Mood buttons bypass the cascade entirely (see
+  /// _handleMoodButtonTap + JOURNEY_DOCTRINE.md § Entry-Point Split).
   ///
   /// Journey Doctrine Slice 2: silence-floor honest — if any gate
   /// closes, returns an outcome the caller treats as "fall through
-  /// to the normal path for this entry point."
-  Future<JourneyOfferResult> _tryFireJourneyCascade({
-    required JourneyOfferVariant variant,
-    required bool playDeclineClipOnDecline,
-  }) async {
+  /// to the normal cold-open path."
+  Future<JourneyOfferResult> _tryFireJourneyCascade() async {
     if (_journeyCascadeSpokenThisSession) {
       return const JourneyOfferResult(
         JourneyOfferOutcome.engineSilent,
@@ -2428,8 +2415,6 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       captureResponse: _captureJourneyResponse,
       now: DateTime.now(),
       logger: logEvent,
-      variant: variant,
-      playDeclineClipOnDecline: playDeclineClipOnDecline,
     );
 
     if (result.offerWasSpoken) {
@@ -2550,6 +2535,15 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     if (userPrefs.palVoiceEnabled != true) return;
     if (userPrefs.palGreetingsEnabled == false) return;
 
+    // Reset voice flow to `responding` — matches _processMoodFromVoice
+    // pattern. Without this, the UI stays on `listening` (the state
+    // _captureJourneyResponse left it in) which renders as the fallback
+    // "Preparing your story..." text — confusing on the accept path
+    // where PAL is actively speaking, not preparing.
+    if (mounted) {
+      setState(() => _voiceFlow = _VoiceFlowState.responding);
+    }
+
     final voiceKey = userPrefs.palVoiceKey;
     final palAudio = ref.read(palAudioServiceProvider);
 
@@ -2564,7 +2558,21 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       try {
         final played = await palAudio.playLine(transitionRef.id, voiceKey);
         if (played) {
-          await palAudio.awaitPlaybackComplete();
+          // Timeout defense — after the offer + STT sequence, the iOS
+          // audio session can rarely leave awaitPlaybackComplete in a
+          // wedged state (observed on device 2026-06-30). Falling
+          // through to navigation beats stranding the user on
+          // "Preparing your story..." forever.
+          await palAudio.awaitPlaybackComplete().timeout(
+            const Duration(seconds: 8),
+            onTimeout: () {
+              logEvent('pal_audio_await_timeout', {
+                'line_id': transitionRef.id,
+                'type': 'transition_journey_accept',
+                'voice_key': voiceKey,
+              });
+            },
+          );
           logEvent('pal_audio_played', {
             'line_id': transitionRef.id,
             'type': 'transition_journey_accept',
@@ -2584,7 +2592,16 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       try {
         final played = await palAudio.playLine(framingRef.id, voiceKey);
         if (played) {
-          await palAudio.awaitPlaybackComplete();
+          await palAudio.awaitPlaybackComplete().timeout(
+            const Duration(seconds: 8),
+            onTimeout: () {
+              logEvent('pal_audio_await_timeout', {
+                'line_id': framingRef.id,
+                'type': 'framing_journey_accept',
+                'voice_key': voiceKey,
+              });
+            },
+          );
           logEvent('pal_audio_played', {
             'line_id': framingRef.id,
             'type': 'framing_journey_accept',
@@ -3159,24 +3176,17 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
     final appStateNotifier = ref.read(appStateProvider.notifier);
     appStateNotifier.updateLastDetectedMood(mood);
 
-    // Journey Doctrine Slice 2 (PR B) — mood-button journey
-    // recognition. Plays the SHORT offer variant (no trailing
-    // redirect clause — user already tapped a mood, so
-    // "or, tell me what's on your heart today" would be
-    // contradictory) as a memory acknowledgment before the
-    // tapped-mood story plays.
+    // Journey Doctrine — Entry-Point Split (locked 2026-06-30):
+    //   PAL button  = conversation. Memory, journey cascade, STT.
+    //   Mood button = shortcut. No memory, no beat, no STT.
     //
-    // V0 shape: NO STT capture, NO accept path. Silence-continues-
-    // with-mood is the doctrine default per Adam:
-    //   "if user doesn't respond, continue with that mood."
-    // The STT + accept path on mood-button requires lifting
-    // SttService to a Riverpod provider (mood buttons live in
-    // _ReservedPanelState; the shared _sttService instance lives
-    // in _PalButtonWithIntroState) — deferred to a follow-up PR.
-    // For V0, user accepts continuations via the PAL button path.
-    await _playMoodButtonJourneyRecognition();
-    if (!mounted) return;
-
+    // The tapped mood already communicates the user's intent;
+    // interrupting it with "Remember Daniel…?" contradicts what
+    // they asked for. Slice 2d recognition + Slice 2 continuation
+    // both fire ONLY from the PAL button (see _runConversation).
+    // The mood button goes straight to selectStoryAndOpenPlayer,
+    // which retains the existing transition + framing intro pattern.
+    // See JOURNEY_DOCTRINE.md § Entry-Point Split.
     await selectStoryAndOpenPlayer(
       ref: ref,
       context: context,
@@ -3184,56 +3194,6 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
       userText: '',
     );
     if (mounted) FocusScope.of(context).unfocus();
-  }
-
-  /// Fires the journey cascade in no-STT mode from the mood-button
-  /// entry point. Silence-floor honest: any gate closing (no
-  /// preferences, cooldown active, missing clip, playback failure,
-  /// exception) returns silently and the caller proceeds with the
-  /// tapped mood as normal.
-  Future<void> _playMoodButtonJourneyRecognition() async {
-    if (_journeyCascadeSpokenThisSession) return;
-
-    final appState = ref.read(appStateProvider).valueOrNull;
-    final preferences = appState?.userPreferences;
-    if (preferences == null) return;
-    if (preferences.palVoiceEnabled != true) return;
-    if (preferences.palGreetingsEnabled == false) return;
-
-    try {
-      final sessionStore = await ref.read(palSessionStoreProvider.future);
-      final registry = await ref.read(journeyRegistryProvider.future);
-      final audioResolver =
-          await ref.read(journeyAudioResolverProvider.future);
-      final classifier = ref.read(journeyResponseClassifierProvider);
-      final palAudio = ref.read(palAudioServiceProvider);
-
-      final result = await fireJourneyOffer(
-        preferences: preferences,
-        sessionStore: sessionStore,
-        journeyRegistry: registry,
-        audioResolver: audioResolver,
-        classifier: classifier,
-        playOfferPlan: palAudio.playJourneyOffer,
-        playDeclinePlan: palAudio.playJourneyDecline,
-        // V0 no-STT: return null immediately → classifier → ambiguous
-        // → dispatched with playDeclineClipOnDecline=false so nothing
-        // plays after the offer.
-        captureResponse: () async => null,
-        now: DateTime.now(),
-        logger: logEvent,
-        variant: JourneyOfferVariant.short,
-        playDeclineClipOnDecline: false,
-      );
-
-      if (result.offerWasSpoken) {
-        _journeyCascadeSpokenThisSession = true;
-      }
-    } catch (_) {
-      // Safe-fail: mood-button flow must never be blocked by a
-      // journey-cascade failure. Continue silently with the tapped
-      // mood as normal.
-    }
   }
 
   Widget _buildMoodButtons(ThemeData theme) {

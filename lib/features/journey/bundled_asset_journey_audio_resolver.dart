@@ -46,15 +46,12 @@ class BundledAssetJourneyAudioResolver implements JourneyAudioResolver {
   Future<JourneyAudioPlan?> resolve({
     required JourneyContinuationOffer offer,
     required String activeVoiceKey,
-    JourneyOfferVariant variant = JourneyOfferVariant.full,
   }) async {
     // Both lanes resolve to the same monolithic shape (since the
     // adult pivot 2026-06-28): one per-source-story offer clip +
     // one lane-specific decline clip. The only lane difference is
-    // the decline-clip ID. Variant selects between full-offer
-    // (cold-open) and short-offer (mood-button) — see
-    // [JourneyOfferVariant].
-    return _resolve(offer, activeVoiceKey, variant);
+    // the decline-clip ID.
+    return _resolve(offer, activeVoiceKey);
   }
 
   // ------------------------------------------------------------
@@ -73,27 +70,24 @@ class BundledAssetJourneyAudioResolver implements JourneyAudioResolver {
   //      with Daniel into the lions' den…" is the move.
   //
   // Clip ID conventions:
-  //   - Full offer:  `<journeyId>_offer_<sourceStoryIndex>`
-  //                  e.g. daniel_arc_offer_2 = the offer that fires
-  //                  AFTER hearing Daniel 6 (index 2), offering
-  //                  Daniel 7 (index 3). Used by the cold-open
-  //                  cascade — ends with the redirect clause.
-  //   - Short offer: `<journeyId>_offer_<sourceStoryIndex>_short`
-  //                  Same scene reference, but drops the trailing
-  //                  redirect clause. Used by the mood-button
-  //                  cascade (user already tapped a mood, so
-  //                  "or, tell me what's on your heart today"
-  //                  is contradictory).
-  //   - Decline:     `decline_adult` or `decline_kid` (lane-specific,
-  //                  shared across all journeys in that lane).
+  //   - Offer:   `<journeyId>_offer_<sourceStoryIndex>`
+  //              e.g. daniel_arc_offer_2 = the offer that fires
+  //              AFTER hearing Daniel 6 (index 2), offering
+  //              Daniel 7 (index 3).
+  //   - Decline: `decline_adult` or `decline_kid` (lane-specific,
+  //              shared across all journeys in that lane).
   //
   // Vestigial clips (kept bundled per [feedback_never_delete_audio]
   // but not referenced by this resolver):
-  //   - offer_narrative_adult (the abandoned generic adult offer)
-  //   - daniel_arc_offer (the abandoned per-journey adult)
-  //   - kid_david_arc_offer (the abandoned per-journey kid)
+  //   - offer_narrative_adult (abandoned generic adult offer)
+  //   - daniel_arc_offer (abandoned per-journey adult)
+  //   - kid_david_arc_offer (abandoned per-journey kid)
   //   - carrier_narrative_kid + invitation_narrative_kid +
-  //     name_david_journey (the abandoned compositional kid)
+  //     name_david_journey (abandoned compositional kid)
+  //   - <journeyId>_offer_<idx>_short × 5 (abandoned mood-button
+  //     variant — Entry-Point Split doctrine 2026-06-30 removed
+  //     the mood-button cascade entirely; short clips stay bundled
+  //     but the resolver no longer references them)
   //
   // End-of-journey is silent: when source is the LAST story in the
   // journey, the engine returns null (no offer), so the resolver
@@ -101,14 +95,9 @@ class BundledAssetJourneyAudioResolver implements JourneyAudioResolver {
   // Slice 5's job (the Guidance Graph) — explicitly deferred.
   // ------------------------------------------------------------
   JourneyAudioPlan? _resolve(
-      JourneyContinuationOffer offer,
-      String voiceKey,
-      JourneyOfferVariant variant) {
-    final baseOfferClipId =
+      JourneyContinuationOffer offer, String voiceKey) {
+    final offerClipId =
         '${offer.journey.journeyId}_offer_${offer.sourceStoryIndex}';
-    final offerClipId = variant == JourneyOfferVariant.short
-        ? '${baseOfferClipId}_short'
-        : baseOfferClipId;
     final declineClipId = offer.journey.lane == JourneyLane.adult
         ? 'decline_adult'
         : 'decline_kid';
