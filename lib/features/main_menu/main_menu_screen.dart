@@ -2550,6 +2550,15 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     if (userPrefs.palVoiceEnabled != true) return;
     if (userPrefs.palGreetingsEnabled == false) return;
 
+    // Reset voice flow to `responding` — matches _processMoodFromVoice
+    // pattern. Without this, the UI stays on `listening` (the state
+    // _captureJourneyResponse left it in) which renders as the fallback
+    // "Preparing your story..." text — confusing on the accept path
+    // where PAL is actively speaking, not preparing.
+    if (mounted) {
+      setState(() => _voiceFlow = _VoiceFlowState.responding);
+    }
+
     final voiceKey = userPrefs.palVoiceKey;
     final palAudio = ref.read(palAudioServiceProvider);
 
@@ -2564,7 +2573,21 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       try {
         final played = await palAudio.playLine(transitionRef.id, voiceKey);
         if (played) {
-          await palAudio.awaitPlaybackComplete();
+          // Timeout defense — after the offer + STT sequence, the iOS
+          // audio session can leave awaitPlaybackComplete in a wedged
+          // state on rare occasions (observed on device 2026-06-30).
+          // Falling through to navigation is better than stranding
+          // the user on "Preparing your story..." forever.
+          await palAudio.awaitPlaybackComplete().timeout(
+            const Duration(seconds: 8),
+            onTimeout: () {
+              logEvent('pal_audio_await_timeout', {
+                'line_id': transitionRef.id,
+                'type': 'transition_journey_accept',
+                'voice_key': voiceKey,
+              });
+            },
+          );
           logEvent('pal_audio_played', {
             'line_id': transitionRef.id,
             'type': 'transition_journey_accept',
@@ -2584,7 +2607,16 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       try {
         final played = await palAudio.playLine(framingRef.id, voiceKey);
         if (played) {
-          await palAudio.awaitPlaybackComplete();
+          await palAudio.awaitPlaybackComplete().timeout(
+            const Duration(seconds: 8),
+            onTimeout: () {
+              logEvent('pal_audio_await_timeout', {
+                'line_id': framingRef.id,
+                'type': 'framing_journey_accept',
+                'voice_key': voiceKey,
+              });
+            },
+          );
           logEvent('pal_audio_played', {
             'line_id': framingRef.id,
             'type': 'framing_journey_accept',
