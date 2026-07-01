@@ -2432,11 +2432,68 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   /// next-in-journey story plays successfully. V0 treats "player
   /// loadParable returns true" as "plays successfully."
   Future<void> _openJourneyNextStory(JourneyContinuationOffer offer) async {
+    logEvent('journey_accept_step', {'step': 'entered'});
+
+    // Global timeout defense: no matter WHERE the accept path wedges
+    // (loadParable audio-session state, register-cooldown SharedPrefs,
+    // _cancelConversation's palAudio.stop(), the Navigator push
+    // itself), the user gets navigated within 12s. Which step tripped
+    // the timeout is captured in telemetry via the per-step log
+    // events emitted along the way.
+    try {
+      await _openJourneyNextStoryUnsafe(offer)
+          .timeout(const Duration(seconds: 12));
+    } on TimeoutException {
+      logEvent('journey_accept_timeout', {
+        'journey_id': offer.journey.journeyId,
+        'next_story_anchor': offer.nextStory.scriptureAnchorId ??
+            offer.nextStory.anchorId,
+      });
+      if (!mounted) return;
+      // Best-effort fallback: cancel the conversation state so the
+      // main menu is at least usable, then navigate to the pals-
+      // parables browsing screen. Better than a stuck "Preparing
+      // your story..." forever.
+      try {
+        _cancelConversation();
+      } catch (e) {
+        logEvent('journey_accept_step', {
+          'step': 'timeout_cancel_conversation_failed',
+          'error': e.toString(),
+        });
+      }
+      if (!mounted) return;
+      try {
+        await Navigator.of(context).pushNamed('/pals_parables');
+      } catch (e) {
+        logEvent('journey_accept_step', {
+          'step': 'timeout_fallback_nav_failed',
+          'error': e.toString(),
+        });
+      }
+    } catch (e, st) {
+      logEvent('journey_accept_error', {
+        'error': e.toString(),
+        'stack_first_line': st.toString().split('\n').first,
+      });
+      if (mounted) {
+        try {
+          _cancelConversation();
+        } catch (_) {}
+      }
+    }
+  }
+
+  /// Inner accept-path work — wrapped in `_openJourneyNextStory`'s
+  /// timeout + error handler. Every await emits a telemetry
+  /// breadcrumb so a future support-bundle capture shows which step
+  /// the flow was in if it wedges.
+  Future<void> _openJourneyNextStoryUnsafe(
+      JourneyContinuationOffer offer) async {
     final appState = ref.read(appStateProvider).valueOrNull;
     final userPrefs = appState?.userPreferences;
     if (userPrefs == null) {
-      // Should never happen given the cascade already gated on
-      // preferences, but guard anyway.
+      logEvent('journey_accept_step', {'step': 'no_userprefs_fallback'});
       await _startListeningForMood();
       return;
     }
@@ -2444,8 +2501,11 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     final bucketName = userPrefs.preferredLengthBucket ?? 'short';
     final bucket = StoryLengthBucket.fromJson(bucketName);
 
+    logEvent('journey_accept_step', {'step': 'before_parable_service'});
     final parableService = await ref.read(parableServiceProvider.future);
     if (!mounted) return;
+
+    logEvent('journey_accept_step', {'step': 'before_get_parable'});
     final journeyParable = await parableService.getParableByJourneyStory(
       offer.nextStory,
       lengthBucket: bucket,
@@ -2454,43 +2514,38 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     if (!mounted) return;
 
     if (journeyParable == null) {
-      // Silence-floor: no matching parable for the user's
-      // length/style prefs. The offer was heard but we can't honor
-      // the accept. Fall through to the normal mood STT flow.
+      logEvent('journey_accept_step', {'step': 'parable_null_fallback'});
       await _startListeningForMood();
       return;
     }
 
+    logEvent('journey_accept_step', {
+      'step': 'before_add_to_history',
+      'story_id': journeyParable.storyId,
+    });
     final appStateNotifier = ref.read(appStateProvider.notifier);
     await appStateNotifier.addToHistory(journeyParable);
     if (!mounted) return;
 
+    logEvent('journey_accept_step', {'step': 'before_load_parable'});
     final playerNotifier = ref.read(parablePlayerProvider.notifier);
     final loaded = await playerNotifier.loadParable(journeyParable);
     if (!mounted) return;
 
     if (!loaded) {
-      // Load failed — silence-floor honest, fall through.
+      logEvent('journey_accept_step', {'step': 'load_failed_fallback'});
       await _startListeningForMood();
       return;
     }
 
-    // Cooldown advances now. Doctrine: user accepted + next story
-    // loaded successfully.
+    logEvent('journey_accept_step', {'step': 'before_record_cooldown'});
     final sessionStore = await ref.read(palSessionStoreProvider.future);
     await sessionStore.recordJourneyContinuationSpoken();
     if (!mounted) return;
 
-    // NOTE (2026-06-30): the transition + framing intro that mood-
-    // flow stories get via _processMoodFromVoice is intentionally
-    // SKIPPED here for now. Adding it to the accept path hung the
-    // flow on device — the 8s awaitPlaybackComplete timeout didn't
-    // rescue it, meaning the wedge is upstream (playLine's setAudio
-    // Source, or the registry ensureLoaded calls). Restoring direct
-    // navigation matches PR #56's proven working behavior. The
-    // _playJourneyStoryIntro helper stays defined so the polish can
-    // be re-attempted once the wedge root cause is understood.
+    logEvent('journey_accept_step', {'step': 'before_cancel_conversation'});
     _cancelConversation();
+    logEvent('journey_accept_step', {'step': 'before_navigate'});
     await Navigator.of(context).push(
       PageRouteBuilder(
         pageBuilder: (_, __, ___) =>
@@ -2510,6 +2565,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         transitionDuration: const Duration(milliseconds: 260),
       ),
     );
+    logEvent('journey_accept_step', {'step': 'navigate_completed'});
   }
 
   /// Plays the transition + framing intro lines for a journey-
