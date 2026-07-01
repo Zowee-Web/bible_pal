@@ -2488,8 +2488,29 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   /// timeout + error handler. Every await emits a telemetry
   /// breadcrumb so a future support-bundle capture shows which step
   /// the flow was in if it wedges.
+  /// Updates the on-screen subtitle text to show the current step.
+  /// Diagnostic aid — lets us see WHERE the accept path wedges by
+  /// looking at the phone screen instead of digging through logs.
+  /// Guarded by `mounted` because this can race with widget disposal.
+  void _showAcceptStep(String step) {
+    if (!mounted) return;
+    setState(() => _greetingText = 'accept: $step');
+  }
+
   Future<void> _openJourneyNextStoryUnsafe(
       JourneyContinuationOffer offer) async {
+    // Belt-and-braces #1: force the STT engine's higher-level stop
+    // call. The plugin-level _speech.stop() added to SttService.
+    // startListening's onResult isFinal branch didn't fully clear
+    // the audio session in Adam's 2026-07-01 retest — mirror the
+    // conservative path the mood-flow's cancel-conversation takes.
+    try {
+      _sttService.stopListening();
+    } catch (_) {
+      // Safe-fail; already-stopped throws are fine.
+    }
+    _showAcceptStep('stt_stopped');
+
     final appState = ref.read(appStateProvider).valueOrNull;
     final userPrefs = appState?.userPreferences;
     if (userPrefs == null) {
@@ -2502,10 +2523,12 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     final bucket = StoryLengthBucket.fromJson(bucketName);
 
     logEvent('journey_accept_step', {'step': 'before_parable_service'});
+    _showAcceptStep('parable_service');
     final parableService = await ref.read(parableServiceProvider.future);
     if (!mounted) return;
 
     logEvent('journey_accept_step', {'step': 'before_get_parable'});
+    _showAcceptStep('get_parable');
     final journeyParable = await parableService.getParableByJourneyStory(
       offer.nextStory,
       lengthBucket: bucket,
@@ -2523,11 +2546,28 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       'step': 'before_add_to_history',
       'story_id': journeyParable.storyId,
     });
+    _showAcceptStep('add_to_history');
     final appStateNotifier = ref.read(appStateProvider.notifier);
     await appStateNotifier.addToHistory(journeyParable);
     if (!mounted) return;
 
+    // Belt-and-braces #2: force iOS AVAudioSession back to .playback
+    // BEFORE the parable player's setFilePath runs. If STT left the
+    // session in .record, this is what unwedges just_audio.
+    logEvent('journey_accept_step', {'step': 'before_audio_session_reset'});
+    _showAcceptStep('audio_session');
+    try {
+      await ref.read(palAudioServiceProvider).ensureAudioSessionActive();
+    } catch (e) {
+      logEvent('journey_accept_step', {
+        'step': 'audio_session_reset_failed',
+        'error': e.toString(),
+      });
+    }
+    if (!mounted) return;
+
     logEvent('journey_accept_step', {'step': 'before_load_parable'});
+    _showAcceptStep('load_parable');
     final playerNotifier = ref.read(parablePlayerProvider.notifier);
     final loaded = await playerNotifier.loadParable(journeyParable);
     if (!mounted) return;
@@ -2539,13 +2579,16 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     }
 
     logEvent('journey_accept_step', {'step': 'before_record_cooldown'});
+    _showAcceptStep('record_cooldown');
     final sessionStore = await ref.read(palSessionStoreProvider.future);
     await sessionStore.recordJourneyContinuationSpoken();
     if (!mounted) return;
 
     logEvent('journey_accept_step', {'step': 'before_cancel_conversation'});
+    _showAcceptStep('cancel_conversation');
     _cancelConversation();
     logEvent('journey_accept_step', {'step': 'before_navigate'});
+    _showAcceptStep('navigate');
     await Navigator.of(context).push(
       PageRouteBuilder(
         pageBuilder: (_, __, ___) =>
