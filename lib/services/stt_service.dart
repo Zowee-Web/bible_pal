@@ -179,6 +179,17 @@ class SttService {
           if (result.finalResult) {
             endpointTimer?.cancel();
             endpointTimer = null;
+            // iOS: SFSpeechRecognitionTask does NOT reliably tear
+            // down AVAudioEngine + AVAudioSession on finalResult
+            // unless stop() is explicitly invoked. Without this the
+            // session stays in `.record` category and any subsequent
+            // just_audio setFilePath on a separate AudioPlayer (e.g.
+            // the parable player after journey-continuation accept)
+            // hangs indefinitely — the wedge that stranded the journey
+            // accept path 2026-06-30. The endpoint-timer branch below
+            // already calls _speech.stop(); mirror it here so the
+            // isFinal path releases the mic identically.
+            _speech.stop();
           } else if (text.isNotEmpty) {
             // Reset the endpoint timer on every partial — only fires
             // once the partial stream goes quiet, which is the fastest
