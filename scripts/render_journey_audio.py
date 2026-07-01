@@ -280,6 +280,43 @@ CLIPS = [
         "text": "Last time, we watched a shepherd boy face a giant… There's more to David's story if you'd like to hear it… or, what's on your mind?",
         "model": "eleven_v3",
     },
+    # ---- SHORT variants (Slice 2 PR B, 2026-06-30) ----
+    # Mood-button entry point: user already tapped a mood so the
+    # trailing "or, tell me what's on your heart today" clause is
+    # contradictory (PAL asking for a path the user already chose).
+    # Short variant ends after "…if you'd like to hear it." — same
+    # scene reference, no redirect. Clip ID convention:
+    # `<full-clip-id>_short`. Resolver selects variant via
+    # `JourneyOfferVariant.short` (see journey_audio_resolver.dart).
+    #
+    # On mood-button dispatch, the runtime is called with
+    # `playDeclineClipOnDecline: false` so silence / decline just
+    # continues with the user's tapped mood — no "Of course." beat.
+    {
+        "clip_id": "daniel_arc_offer_0_short",
+        "text": "Last time, we sat with young Daniel as he chose what was true… There's more to his story if you'd like to hear it.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "daniel_arc_offer_1_short",
+        "text": "Last time, we stood in the fire with Daniel's friends… There's more to his story if you'd like to hear it.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "daniel_arc_offer_2_short",
+        "text": "Last time, we walked with Daniel into the lions' den… There's more to his story if you'd like to hear it.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "kid_david_arc_offer_0_short",
+        "text": "Last time, we watched a shepherd boy be chosen for something big… There's more to David's story if you'd like to hear it.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "kid_david_arc_offer_1_short",
+        "text": "Last time, we watched a shepherd boy face a giant… There's more to David's story if you'd like to hear it.",
+        "model": "eleven_v3",
+    },
 ]
 
 CREDITS_PER_CHAR_LOW = 0.5
