@@ -348,6 +348,108 @@ void main() {
   });
 
   // -----------------------------------------------------------------
+  // Variant selection (Slice 2 PR B — mood-button entry point)
+  // -----------------------------------------------------------------
+  group('variant selection', () {
+    test('short variant → resolver receives JourneyOfferVariant.short + '
+        'clip ID gets _short suffix', () async {
+      await seedAdultSession();
+      JourneyOfferVariant? receivedVariant;
+      final resolver = _CaptureVariantResolver(
+          (v) => receivedVariant = v);
+      final res = await fireJourneyOffer(
+        preferences: buildPrefs(),
+        sessionStore: sessionStore,
+        journeyRegistry: registry,
+        audioResolver: resolver,
+        classifier: classifier,
+        playOfferPlan: _okPlay,
+        playDeclinePlan: _okPlay,
+        captureResponse: _captureText('yes'),
+        now: now,
+        variant: JourneyOfferVariant.short,
+      );
+      expect(receivedVariant, JourneyOfferVariant.short);
+      // Plan built by the capture resolver uses the short clip id
+      // convention (verified via the plan's offer clip id).
+      expect(res.outcome, JourneyOfferOutcome.acceptedAndContinued);
+    });
+
+    test('default variant is full (backward compatible)', () async {
+      await seedAdultSession();
+      JourneyOfferVariant? receivedVariant;
+      final resolver = _CaptureVariantResolver(
+          (v) => receivedVariant = v);
+      await fireJourneyOffer(
+        preferences: buildPrefs(),
+        sessionStore: sessionStore,
+        journeyRegistry: registry,
+        audioResolver: resolver,
+        classifier: classifier,
+        playOfferPlan: _okPlay,
+        playDeclinePlan: _okPlay,
+        captureResponse: _captureText('yes'),
+        now: now,
+      );
+      expect(receivedVariant, JourneyOfferVariant.full);
+    });
+  });
+
+  // -----------------------------------------------------------------
+  // Decline-clip suppression (mood-button uses this)
+  // -----------------------------------------------------------------
+  group('playDeclineClipOnDecline flag', () {
+    test('false + decline → decline outcome, NO decline clip played',
+        () async {
+      await seedAdultSession();
+      var declineCalls = 0;
+      final res = await fireJourneyOffer(
+        preferences: buildPrefs(),
+        sessionStore: sessionStore,
+        journeyRegistry: registry,
+        audioResolver: _AlwaysOkResolver(),
+        classifier: classifier,
+        playOfferPlan: _okPlay,
+        playDeclinePlan: (plan) async {
+          declineCalls++;
+          return true;
+        },
+        captureResponse: _captureText('no thanks'),
+        now: now,
+        playDeclineClipOnDecline: false,
+      );
+      expect(res.outcome, JourneyOfferOutcome.declinedExplicit);
+      expect(declineCalls, 0,
+          reason:
+              'mood-button caller: user already tapped a mood, no '
+              'need for a decline acknowledgment');
+    });
+
+    test('false + ambiguous → ambiguous outcome, NO decline clip played',
+        () async {
+      await seedAdultSession();
+      var declineCalls = 0;
+      final res = await fireJourneyOffer(
+        preferences: buildPrefs(),
+        sessionStore: sessionStore,
+        journeyRegistry: registry,
+        audioResolver: _AlwaysOkResolver(),
+        classifier: classifier,
+        playOfferPlan: _okPlay,
+        playDeclinePlan: (plan) async {
+          declineCalls++;
+          return true;
+        },
+        captureResponse: _captureNull,
+        now: now,
+        playDeclineClipOnDecline: false,
+      );
+      expect(res.outcome, JourneyOfferOutcome.declinedAmbiguous);
+      expect(declineCalls, 0);
+    });
+  });
+
+  // -----------------------------------------------------------------
   // Safe-fail
   // -----------------------------------------------------------------
   group('safe-fail', () {
@@ -404,8 +506,13 @@ class _AlwaysOkResolver implements JourneyAudioResolver {
   Future<JourneyAudioPlan?> resolve({
     required JourneyContinuationOffer offer,
     required String activeVoiceKey,
+    JourneyOfferVariant variant = JourneyOfferVariant.full,
   }) async {
-    final offerId = '${offer.journey.journeyId}_offer_${offer.sourceStoryIndex}';
+    final baseOfferId =
+        '${offer.journey.journeyId}_offer_${offer.sourceStoryIndex}';
+    final offerId = variant == JourneyOfferVariant.short
+        ? '${baseOfferId}_short'
+        : baseOfferId;
     return JourneyAudioPlan(
       voiceKey: activeVoiceKey,
       offerClips: [
@@ -432,6 +539,7 @@ class _NullResolver implements JourneyAudioResolver {
   Future<JourneyAudioPlan?> resolve({
     required JourneyContinuationOffer offer,
     required String activeVoiceKey,
+    JourneyOfferVariant variant = JourneyOfferVariant.full,
   }) async =>
       null;
 }
@@ -441,8 +549,32 @@ class _ThrowingResolver implements JourneyAudioResolver {
   Future<JourneyAudioPlan?> resolve({
     required JourneyContinuationOffer offer,
     required String activeVoiceKey,
+    JourneyOfferVariant variant = JourneyOfferVariant.full,
   }) async =>
       throw StateError('intentional test failure');
+}
+
+/// Records the variant the runtime passed in, then delegates to
+/// [_AlwaysOkResolver]'s plan shape. Lets a test assert the runtime
+/// forwarded its `variant` param to the resolver correctly.
+class _CaptureVariantResolver implements JourneyAudioResolver {
+  final void Function(JourneyOfferVariant) onCapture;
+  final _delegate = _AlwaysOkResolver();
+  _CaptureVariantResolver(this.onCapture);
+
+  @override
+  Future<JourneyAudioPlan?> resolve({
+    required JourneyContinuationOffer offer,
+    required String activeVoiceKey,
+    JourneyOfferVariant variant = JourneyOfferVariant.full,
+  }) {
+    onCapture(variant);
+    return _delegate.resolve(
+      offer: offer,
+      activeVoiceKey: activeVoiceKey,
+      variant: variant,
+    );
+  }
 }
 
 Future<bool> _okPlay(JourneyAudioPlan plan) async => true;

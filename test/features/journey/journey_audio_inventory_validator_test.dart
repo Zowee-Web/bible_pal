@@ -56,14 +56,18 @@ void main() {
     requiredKidStaticClipIds =
         hasReadyKid ? const {'decline_kid'} : const {};
 
-    // Per-source-story offers: one clip per (journey, sourceStoryIndex)
-    // where sourceStoryIndex ∈ [0, journey.stories.length - 1).
-    // The LAST index has no offer (end-of-journey is silent in
-    // Slice 2; Slice 5 Guidance Graph handles that surface).
+    // Per-source-story offers: TWO clips per (journey, sourceStoryIndex)
+    // where sourceStoryIndex ∈ [0, journey.stories.length - 1) —
+    // full variant (cold-open) + short variant (mood-button).
+    // See journey_audio_resolver.dart JourneyOfferVariant. The LAST
+    // index has no offer (end-of-journey is silent in Slice 2;
+    // Slice 5 Guidance Graph handles that surface).
     requiredPerSourceStoryOfferClipIds = <String>{
       for (final j in readyJourneys)
-        for (var i = 0; i < j.stories.length - 1; i++)
+        for (var i = 0; i < j.stories.length - 1; i++) ...[
           '${j.journeyId}_offer_$i',
+          '${j.journeyId}_offer_${i}_short',
+        ],
     };
   });
 
@@ -154,11 +158,13 @@ void main() {
     expect(requiredKidStaticClipIds.length, lessThanOrEqualTo(1));
 
     // Per-source-story offer count == sum over ready journeys of
-    // (stories.length - 1). Slice 2 first ship: Daniel Arc (4
-    // stories → 3 offers) + Kid David Arc (3 stories → 2 offers)
-    // = 5 per-source-story offer clips per voice.
+    // 2 × (stories.length - 1) — full variant + short variant
+    // per (journey, sourceStoryIndex) pair since PR B added the
+    // mood-button entry point. Daniel Arc (4 stories → 3 pairs
+    // → 6 clips) + Kid David Arc (3 stories → 2 pairs → 4 clips)
+    // = 10 per-source-story offer clips per voice.
     final expectedPerSourceCount = readyJourneys.fold<int>(
-        0, (sum, j) => sum + (j.stories.length - 1));
+        0, (sum, j) => sum + 2 * (j.stories.length - 1));
     expect(requiredPerSourceStoryOfferClipIds.length,
         expectedPerSourceCount);
   });

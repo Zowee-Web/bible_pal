@@ -10,6 +10,7 @@ import 'package:just_audio/just_audio.dart'
     show PlayerException, PlayerInterruptedException;
 import '../../core/pal_voice_registry.dart';
 import '../../services/pal_audio_service.dart' show PalAudioService;
+import '../journey/journey_audio_resolver.dart';
 import '../journey/journey_continuation_offer.dart';
 import '../journey/journey_offer_runtime.dart';
 import '../pal_memory/pal_memory_runtime.dart';
@@ -1792,7 +1793,10 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     // STT response capture reuses the existing `_sttService`
     // instance (not a fresh one) — fixes the iOS audio-session
     // conflict that broke the first integration attempt.
-    final journeyOutcome = await _tryFireJourneyCascadeAtColdOpen();
+    final journeyOutcome = await _tryFireJourneyCascade(
+      variant: JourneyOfferVariant.full,
+      playDeclineClipOnDecline: true,
+    );
     if (!mounted) return;
 
     switch (journeyOutcome.outcome) {
@@ -2358,13 +2362,25 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   }
 
   /// Resolves every journey-cascade dependency from Riverpod and runs
-  /// [fireJourneyOffer]. Pre-flights STT permissions so the offer
-  /// doesn't play to a user who can't respond.
+  /// [fireJourneyOffer]. Called from both entry points:
+  ///
+  ///   - Cold-open (PAL button): `variant: full`,
+  ///     `playDeclineClipOnDecline: true`. The offer REPLACES the
+  ///     cold-open greeting; decline gets an "Of course." beat.
+  ///
+  ///   - Mood button: `variant: short`,
+  ///     `playDeclineClipOnDecline: false`. The offer plays BEFORE
+  ///     the mood-flow's story; user already chose a mood, so no
+  ///     decline acknowledgment is needed — silence/decline just
+  ///     continues with the tapped mood.
   ///
   /// Journey Doctrine Slice 2: silence-floor honest — if any gate
   /// closes, returns an outcome the caller treats as "fall through
-  /// to normal cold-open."
-  Future<JourneyOfferResult> _tryFireJourneyCascadeAtColdOpen() async {
+  /// to the normal path for this entry point."
+  Future<JourneyOfferResult> _tryFireJourneyCascade({
+    required JourneyOfferVariant variant,
+    required bool playDeclineClipOnDecline,
+  }) async {
     if (_journeyCascadeSpokenThisSession) {
       return const JourneyOfferResult(
         JourneyOfferOutcome.engineSilent,
@@ -2412,6 +2428,8 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       captureResponse: _captureJourneyResponse,
       now: DateTime.now(),
       logger: logEvent,
+      variant: variant,
+      playDeclineClipOnDecline: playDeclineClipOnDecline,
     );
 
     if (result.offerWasSpoken) {
@@ -2478,6 +2496,17 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     await sessionStore.recordJourneyContinuationSpoken();
     if (!mounted) return;
 
+    // Play the same transition + framing intro every non-journey
+    // story gets (from _processMoodFromVoice). Journey accept was
+    // previously jumping straight into narration; that felt abrupt.
+    // Reusing the existing intro-line library keeps every story's
+    // opening cadence identical: PAL recognizes → PAL introduces →
+    // Scripture begins. See journey scale horizon in
+    // JOURNEY_DOCTRINE.md — the intro pattern must survive the
+    // eventual expansion to per-source-story clips at scale.
+    await _playJourneyStoryIntro(journeyParable);
+    if (!mounted) return;
+
     _cancelConversation();
     await Navigator.of(context).push(
       PageRouteBuilder(
@@ -2498,6 +2527,75 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         transitionDuration: const Duration(milliseconds: 260),
       ),
     );
+  }
+
+  /// Plays the transition + framing intro lines for a journey-
+  /// accepted parable. Mirrors the intro sequence in
+  /// [_processMoodFromVoice] so every story — mood-flow or
+  /// journey-continuation — opens with the same PAL rhythm:
+  /// recognition → introduction → Scripture. Silent skip on any
+  /// gate (consent, missing library, missing ref, audio failure).
+  ///
+  /// The reflection line from _processMoodFromVoice is deliberately
+  /// NOT included here — reflection responds to the USER's mood
+  /// utterance; on journey accept, the user only said "yes" (no
+  /// mood expressed), so no reflection is warranted.
+  Future<void> _playJourneyStoryIntro(Parable parable) async {
+    final bibleStoryKey = parable.bibleStoryKey;
+    if (bibleStoryKey == null || bibleStoryKey.isEmpty) return;
+
+    final appState = ref.read(appStateProvider).valueOrNull;
+    final userPrefs = appState?.userPreferences;
+    if (userPrefs == null) return;
+    if (userPrefs.palVoiceEnabled != true) return;
+    if (userPrefs.palGreetingsEnabled == false) return;
+
+    final voiceKey = userPrefs.palVoiceKey;
+    final palAudio = ref.read(palAudioServiceProvider);
+
+    await BiblicalFigureRegistry.ensureLoaded();
+    await PalTransitionLines.ensureLoaded();
+    final transitionRef = PalTransitionLines.getLineRef(bibleStoryKey);
+    final framingRef =
+        BiblicalFigureRegistry.getFramingLineRef(bibleStoryKey);
+
+    // Transition: "I have a story for you" bridge beat.
+    if (transitionRef != null && mounted) {
+      try {
+        final played = await palAudio.playLine(transitionRef.id, voiceKey);
+        if (played) {
+          await palAudio.awaitPlaybackComplete();
+          logEvent('pal_audio_played', {
+            'line_id': transitionRef.id,
+            'type': 'transition_journey_accept',
+            'voice_key': voiceKey,
+            'bible_story_key': bibleStoryKey,
+          });
+        }
+      } catch (e) {
+        debugPrint('[MainMenu] Journey-accept transition audio failed: $e');
+      }
+      if (!mounted) return;
+      await Future.delayed(const Duration(milliseconds: 300));
+    }
+
+    // Framing: story-specific intro ("The story of…").
+    if (framingRef != null && mounted) {
+      try {
+        final played = await palAudio.playLine(framingRef.id, voiceKey);
+        if (played) {
+          await palAudio.awaitPlaybackComplete();
+          logEvent('pal_audio_played', {
+            'line_id': framingRef.id,
+            'type': 'framing_journey_accept',
+            'voice_key': voiceKey,
+            'bible_story_key': bibleStoryKey,
+          });
+        }
+      } catch (e) {
+        debugPrint('[MainMenu] Journey-accept framing audio failed: $e');
+      }
+    }
   }
 
   /// Pick a micro-response ID with non-repeat logic.
@@ -3060,6 +3158,25 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
   Future<void> _handleMoodButtonTap(String mood) async {
     final appStateNotifier = ref.read(appStateProvider.notifier);
     appStateNotifier.updateLastDetectedMood(mood);
+
+    // Journey Doctrine Slice 2 (PR B) — mood-button journey
+    // recognition. Plays the SHORT offer variant (no trailing
+    // redirect clause — user already tapped a mood, so
+    // "or, tell me what's on your heart today" would be
+    // contradictory) as a memory acknowledgment before the
+    // tapped-mood story plays.
+    //
+    // V0 shape: NO STT capture, NO accept path. Silence-continues-
+    // with-mood is the doctrine default per Adam:
+    //   "if user doesn't respond, continue with that mood."
+    // The STT + accept path on mood-button requires lifting
+    // SttService to a Riverpod provider (mood buttons live in
+    // _ReservedPanelState; the shared _sttService instance lives
+    // in _PalButtonWithIntroState) — deferred to a follow-up PR.
+    // For V0, user accepts continuations via the PAL button path.
+    await _playMoodButtonJourneyRecognition();
+    if (!mounted) return;
+
     await selectStoryAndOpenPlayer(
       ref: ref,
       context: context,
@@ -3067,6 +3184,56 @@ class _ReservedPanelState extends ConsumerState<_ReservedPanel> {
       userText: '',
     );
     if (mounted) FocusScope.of(context).unfocus();
+  }
+
+  /// Fires the journey cascade in no-STT mode from the mood-button
+  /// entry point. Silence-floor honest: any gate closing (no
+  /// preferences, cooldown active, missing clip, playback failure,
+  /// exception) returns silently and the caller proceeds with the
+  /// tapped mood as normal.
+  Future<void> _playMoodButtonJourneyRecognition() async {
+    if (_journeyCascadeSpokenThisSession) return;
+
+    final appState = ref.read(appStateProvider).valueOrNull;
+    final preferences = appState?.userPreferences;
+    if (preferences == null) return;
+    if (preferences.palVoiceEnabled != true) return;
+    if (preferences.palGreetingsEnabled == false) return;
+
+    try {
+      final sessionStore = await ref.read(palSessionStoreProvider.future);
+      final registry = await ref.read(journeyRegistryProvider.future);
+      final audioResolver =
+          await ref.read(journeyAudioResolverProvider.future);
+      final classifier = ref.read(journeyResponseClassifierProvider);
+      final palAudio = ref.read(palAudioServiceProvider);
+
+      final result = await fireJourneyOffer(
+        preferences: preferences,
+        sessionStore: sessionStore,
+        journeyRegistry: registry,
+        audioResolver: audioResolver,
+        classifier: classifier,
+        playOfferPlan: palAudio.playJourneyOffer,
+        playDeclinePlan: palAudio.playJourneyDecline,
+        // V0 no-STT: return null immediately → classifier → ambiguous
+        // → dispatched with playDeclineClipOnDecline=false so nothing
+        // plays after the offer.
+        captureResponse: () async => null,
+        now: DateTime.now(),
+        logger: logEvent,
+        variant: JourneyOfferVariant.short,
+        playDeclineClipOnDecline: false,
+      );
+
+      if (result.offerWasSpoken) {
+        _journeyCascadeSpokenThisSession = true;
+      }
+    } catch (_) {
+      // Safe-fail: mood-button flow must never be blocked by a
+      // journey-cascade failure. Continue silently with the tapped
+      // mood as normal.
+    }
   }
 
   Widget _buildMoodButtons(ThemeData theme) {
