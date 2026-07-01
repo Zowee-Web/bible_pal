@@ -280,18 +280,17 @@ CLIPS = [
         "text": "Last time, we watched a shepherd boy face a giant… There's more to David's story if you'd like to hear it… or, what's on your mind?",
         "model": "eleven_v3",
     },
-    # ---- SHORT variants (Slice 2 PR B, 2026-06-30) ----
-    # Mood-button entry point: user already tapped a mood so the
-    # trailing "or, tell me what's on your heart today" clause is
-    # contradictory (PAL asking for a path the user already chose).
-    # Short variant ends after "…if you'd like to hear it." — same
-    # scene reference, no redirect. Clip ID convention:
-    # `<full-clip-id>_short`. Resolver selects variant via
-    # `JourneyOfferVariant.short` (see journey_audio_resolver.dart).
+    # ---- SHORT variants (VESTIGIAL — 2026-06-30) ----
+    # Rendered for the mood-button journey recognition path
+    # (Slice 2 PR B), then orphaned same day by the Entry-Point
+    # Split doctrine (JOURNEY_DOCTRINE.md § Entry-Point Split):
+    # the journey cascade fires ONLY from the PAL button; mood
+    # buttons are shortcuts with no memory, no beat, no STT.
     #
-    # On mood-button dispatch, the runtime is called with
-    # `playDeclineClipOnDecline: false` so silence / decline just
-    # continues with the user's tapped mood — no "Of course." beat.
+    # Clips stay bundled per [feedback_never_delete_audio]. The
+    # resolver no longer references them; the inventory validator
+    # no longer requires them. If a future doctrine reverses the
+    # split, these clips are ready to use as-is (no re-render).
     {
         "clip_id": "daniel_arc_offer_0_short",
         "text": "Last time, we sat with young Daniel as he chose what was true… There's more to his story if you'd like to hear it.",

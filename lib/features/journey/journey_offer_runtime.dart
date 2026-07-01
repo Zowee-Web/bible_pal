@@ -163,8 +163,6 @@ Future<JourneyOfferResult> fireJourneyOffer({
   required JourneyResponseCapture captureResponse,
   required DateTime now,
   EventLogger? logger,
-  JourneyOfferVariant variant = JourneyOfferVariant.full,
-  bool playDeclineClipOnDecline = true,
 }) async {
   void log(String event, Map<String, Object?> props) {
     final l = logger;
@@ -229,7 +227,6 @@ Future<JourneyOfferResult> fireJourneyOffer({
     final plan = await audioResolver.resolve(
       offer: offer,
       activeVoiceKey: voiceKey,
-      variant: variant,
     );
     if (plan == null) {
       log('pal_journey_offer_skipped', {
@@ -271,7 +268,6 @@ Future<JourneyOfferResult> fireJourneyOffer({
       'source_story_index': offer.sourceStoryIndex,
       'next_story_index': offer.nextStoryIndex,
       'lane': lane.name,
-      'variant': variant.name,
     });
 
     // Gate 4 — STT capture. Null/empty → ambiguous bucket.
@@ -310,18 +306,11 @@ Future<JourneyOfferResult> fireJourneyOffer({
         );
 
       case JourneyResponseBucket.decline:
-        // playDeclineClipOnDecline=false suppresses the "Of course."
-        // clip. Mood-button entry point uses this: the user already
-        // tapped a path, so a decline acknowledgment is redundant —
-        // the caller just proceeds with the tapped mood.
-        if (playDeclineClipOnDecline) {
-          await playDeclinePlan(plan);
-        }
+        await playDeclinePlan(plan);
         log('pal_journey_continuation_declined', {
           'voice_key': voiceKey,
           'journey_id': offer.journey.journeyId,
           'source_story_index': offer.sourceStoryIndex,
-          'decline_clip_played': playDeclineClipOnDecline,
         });
         return JourneyOfferResult(
           JourneyOfferOutcome.declinedExplicit,
@@ -329,16 +318,13 @@ Future<JourneyOfferResult> fireJourneyOffer({
         );
 
       case JourneyResponseBucket.ambiguous:
-        if (playDeclineClipOnDecline) {
-          await playDeclinePlan(plan);
-        }
+        await playDeclinePlan(plan);
         log('pal_journey_continuation_ambiguous_default', {
           'voice_key': voiceKey,
           'journey_id': offer.journey.journeyId,
           'source_story_index': offer.sourceStoryIndex,
           'transcript_was_empty':
               transcript == null || transcript.trim().isEmpty,
-          'decline_clip_played': playDeclineClipOnDecline,
         });
         return JourneyOfferResult(
           JourneyOfferOutcome.declinedAmbiguous,

@@ -66,6 +66,23 @@ Three coexisting systems with different jobs. The doctrine names them so they ne
 
 **Mood-Flow** is the always-available decline branch from any journey offer. The user telling PAL what's on their heart today is never wrong; it is one of two valid responses to every journey offer.
 
+## Entry-Point Split
+
+Locked 2026-06-30 after the first on-device smoke test of Slice 2.
+
+> **PAL button = conversation. Mood buttons = shortcuts.**
+
+The journey cascade — memory beat, offer audio, STT capture, dispatch — fires **only from the PAL button**. Mood-button taps go straight to the mood-flow story with no journey audio, no STT, no branching.
+
+The doctrine test that produced this: *if a user taps "Anxious," they have already communicated today's intent. Interrupting with "Remember Daniel…?" doesn't help them accomplish what they just asked for.* Two entry points, two roles:
+
+- **PAL button** — *"Talk with PAL."* The place where PAL remembers, offers continuation, listens, and guides.
+- **Mood buttons** — *"Take me straight to Scripture."* Instant. No memory beat. No STT. The existing transition + framing intro stays — those are storytelling rhythm, not conversation.
+
+This mirrors the librarian in [PAL_VOICE.md](PAL_VOICE.md): PAL is the librarian when you ask for help; the mood buttons are the shelves you've chosen to walk to yourself. The split is a UX guarantee, not a rule about what's possible — technically the cascade could fire on any entry, but doctrine forbids it because it dilutes what "tapping PAL" means.
+
+Kept the door open for future revision: if beta testers report they want journey recognition on mood buttons after all, the runtime is still capable — the mood-button path just calls into it with the appropriate params. Short-variant offer clips remain bundled per the never-delete-audio rule. The lock is in the code path (`_handleMoodButtonTap` goes straight to `selectStoryAndOpenPlayer`), not the primitives.
+
 ## The Slice Plan
 
 The doctrine deliberately designs only Slices 1 and 2 in detail. Slices 3–5 are named so the architecture knows where it can grow, but they are not designed until Slice 2 has shipped and produced real user experience.
