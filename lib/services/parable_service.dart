@@ -900,32 +900,56 @@ class ParableService {
     required UserPreferences userPrefs,
   }) async {
     final all = await _loadManifest();
-    final lengthName = lengthBucket.name; // short / full / long
 
     if (story.storyNumber != null) {
-      // Adult lane. Prefer exact style match; fall back to same-
-      // length any-style if the manifest happens to be missing the
-      // user's preferred variant. Both WEB and KJV are on the
-      // BibleTranslationRegistry allowlist, so a cross-style
-      // fallback stays compliance-safe. Without this, a legacy
-      // story with only one style shipped wedges the accept path
-      // (Adam 2026-07-01: parable lookup returned null → fallback
-      // trap left the user stuck).
+      // Adult lane. Compare buckets through Parable.lengthBucket
+      // (handles null / legacy minute-based entries via the getter
+      // in parable.dart, and normalizes casing via
+      // StoryLengthBucket.fromJson) instead of doing a raw string
+      // compare on p.storyLength — the raw compare silently drops
+      // otherwise-valid candidates when the on-device catalog
+      // cache has drifted, which was the root cause of Adam's
+      // 2026-07-01 wedge (PR #63's same-length-any-style fallback
+      // dropped for the same reason).
+      //
+      // Match cascade (most specific → most permissive):
+      //   1) exact bucket + preferred style
+      //   2) same bucket, any style (compliance-safe — both WEB and
+      //      KJV are on the BibleTranslationRegistry allowlist)
+      //   3) same style, any bucket (silence-floor last resort;
+      //      still honest because the journey member is the user's
+      //      only next-anchor for this journey)
+      //   4) any match on storyNumber (final desperation before
+      //      falling through to the journey-accept fallback nav)
+      //
+      // Kid-lane siblings filtered out so a kidFriendly variant
+      // can't hijack the adult candidate set.
       final numberPrefix = 'story_${story.storyNumber}_';
       final preferredStyle = userPrefs.languageStyle;
       Parable? preferred;
       Parable? sameLengthAnyStyle;
+      Parable? sameStyleAnyLength;
+      Parable? anyMatch;
       for (final p in all) {
         if (!p.storyId.startsWith(numberPrefix)) continue;
-        if (p.storyLength != lengthName) continue;
-        if (p.languageStyle == preferredStyle) {
+        if (p.kidFriendly) continue;
+        anyMatch ??= p;
+        final sameLength = p.lengthBucket == lengthBucket;
+        final sameStyle = p.languageStyle == preferredStyle;
+        if (sameLength && sameStyle) {
           preferred = p;
           break;
         }
-        sameLengthAnyStyle ??= p;
+        if (sameLength) sameLengthAnyStyle ??= p;
+        if (sameStyle) sameStyleAnyLength ??= p;
       }
-      return preferred ?? sameLengthAnyStyle;
+      return preferred ??
+          sameLengthAnyStyle ??
+          sameStyleAnyLength ??
+          anyMatch;
     }
+
+    final lengthName = lengthBucket.name; // short / full / long
 
     if (story.anchorId != null) {
       // Kid lane.
