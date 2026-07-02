@@ -989,6 +989,16 @@ class ParableService {
       // returns cache-OR-bundled, never merged — so bundled 1114
       // was never consulted. Compliance-safe: only resolves
       // storyNumbers already curated into the shipped app.
+      // ALWAYS emit an "attempted" breadcrumb so a support-bundle
+      // capture confirms this code even ran. Silent zero-match
+      // returns were opaque in Adam's 2026-07-01 retest.
+      logEvent('journey_bundled_rescue_attempted', {
+        'story_number': story.storyNumber,
+        'requested_style': preferredStyle,
+        'requested_bucket': lengthBucket.name,
+      });
+      int bundledPrefixMatches = 0;
+      int bundledAdultMatches = 0;
       try {
         final bundledJson =
             await rootBundle.loadString('assets/stories/manifest.json');
@@ -1004,6 +1014,7 @@ class ParableService {
           final map = raw as Map<String, dynamic>;
           final sid = map['storyId'] as String? ?? '';
           if (!sid.startsWith(numberPrefix)) continue;
+          bundledPrefixMatches++;
           final Parable p;
           try {
             p = Parable.fromJson(map);
@@ -1011,6 +1022,7 @@ class ParableService {
             continue;
           }
           if (p.kidFriendly) continue;
+          bundledAdultMatches++;
           bAny ??= p;
           final sameLength = p.lengthBucket == lengthBucket;
           final sameStyle = p.languageStyle == preferredStyle;
@@ -1029,15 +1041,26 @@ class ParableService {
             'resolved_story_id': resolved.storyId,
             'preferred_style': preferredStyle,
             'requested_bucket': lengthBucket.name,
+            'bundled_prefix_matches': bundledPrefixMatches,
+            'bundled_adult_matches': bundledAdultMatches,
           });
           return resolved;
         }
+        // Rescue ran but found no viable match. Log so we can see
+        // if it's zero-prefix (asset load or storyId mismatch) or
+        // zero-adult (all bundled entries were kidFriendly, unlikely).
+        logEvent('journey_bundled_rescue_empty', {
+          'story_number': story.storyNumber,
+          'bundled_prefix_matches': bundledPrefixMatches,
+          'bundled_adult_matches': bundledAdultMatches,
+        });
       } catch (e) {
         logEvent(
           'journey_bundled_rescue_failed',
           {
             'story_number': story.storyNumber,
             'error_type': e.runtimeType.toString(),
+            'error_message': e.toString(),
           },
           level: LogLevel.warn,
         );
