@@ -2503,6 +2503,47 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     setState(() => _greetingText = 'accept: $step');
   }
 
+  /// Bulletproof accept-path fallback — used whenever the flow
+  /// can't honor the user's "yes" (userPrefs missing, no matching
+  /// parable, load failed).
+  ///
+  /// Earlier versions dropped these branches into
+  /// `_startListeningForMood()`, which SILENTLY NO-OPS because it
+  /// gates on `_voiceFlow == playingGreeting`. Coming from the
+  /// journey cascade, `_voiceFlow` is `listening` (set by
+  /// `_captureJourneyResponse`). So the fallback did nothing —
+  /// leaving the user with a frozen "accept: <step>" subtitle,
+  /// `_voiceFlow` stuck on `listening`, mic dead, and the outer
+  /// 12s timeout satisfied (the future returned cleanly). Wedge.
+  ///
+  /// This helper reliably cancels the conversation (which clears
+  /// `_greetingText`, resets `_voiceFlow` to inactive, drops
+  /// transcripts, releases the mic) and navigates to the safe
+  /// browsing screen. User always ends up somewhere usable.
+  Future<void> _journeyAcceptFallback(String reason) async {
+    logEvent('journey_accept_step', {'step': 'fallback_$reason'});
+    if (!mounted) return;
+    try {
+      _cancelConversation();
+    } catch (e) {
+      logEvent('journey_accept_step', {
+        'step': 'fallback_cancel_conversation_failed',
+        'reason': reason,
+        'error': e.toString(),
+      });
+    }
+    if (!mounted) return;
+    try {
+      await Navigator.of(context).pushNamed('/pals_parables');
+    } catch (e) {
+      logEvent('journey_accept_step', {
+        'step': 'fallback_nav_failed',
+        'reason': reason,
+        'error': e.toString(),
+      });
+    }
+  }
+
   Future<void> _openJourneyNextStoryUnsafe(
       JourneyContinuationOffer offer) async {
     // Belt-and-braces #1: force the STT engine's higher-level stop
@@ -2520,8 +2561,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     final appState = ref.read(appStateProvider).valueOrNull;
     final userPrefs = appState?.userPreferences;
     if (userPrefs == null) {
-      logEvent('journey_accept_step', {'step': 'no_userprefs_fallback'});
-      await _startListeningForMood();
+      await _journeyAcceptFallback('no_userprefs');
       return;
     }
 
@@ -2543,8 +2583,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     if (!mounted) return;
 
     if (journeyParable == null) {
-      logEvent('journey_accept_step', {'step': 'parable_null_fallback'});
-      await _startListeningForMood();
+      await _journeyAcceptFallback('parable_null');
       return;
     }
 
@@ -2579,8 +2618,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     if (!mounted) return;
 
     if (!loaded) {
-      logEvent('journey_accept_step', {'step': 'load_failed_fallback'});
-      await _startListeningForMood();
+      await _journeyAcceptFallback('load_failed');
       return;
     }
 

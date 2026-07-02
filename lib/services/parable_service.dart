@@ -903,17 +903,28 @@ class ParableService {
     final lengthName = lengthBucket.name; // short / full / long
 
     if (story.storyNumber != null) {
-      // Adult lane.
+      // Adult lane. Prefer exact style match; fall back to same-
+      // length any-style if the manifest happens to be missing the
+      // user's preferred variant. Both WEB and KJV are on the
+      // BibleTranslationRegistry allowlist, so a cross-style
+      // fallback stays compliance-safe. Without this, a legacy
+      // story with only one style shipped wedges the accept path
+      // (Adam 2026-07-01: parable lookup returned null → fallback
+      // trap left the user stuck).
       final numberPrefix = 'story_${story.storyNumber}_';
-      final style = userPrefs.languageStyle;
+      final preferredStyle = userPrefs.languageStyle;
+      Parable? preferred;
+      Parable? sameLengthAnyStyle;
       for (final p in all) {
-        if (p.storyId.startsWith(numberPrefix) &&
-            p.storyLength == lengthName &&
-            p.languageStyle == style) {
-          return p;
+        if (!p.storyId.startsWith(numberPrefix)) continue;
+        if (p.storyLength != lengthName) continue;
+        if (p.languageStyle == preferredStyle) {
+          preferred = p;
+          break;
         }
+        sameLengthAnyStyle ??= p;
       }
-      return null;
+      return preferred ?? sameLengthAnyStyle;
     }
 
     if (story.anchorId != null) {
