@@ -943,10 +943,106 @@ class ParableService {
         if (sameLength) sameLengthAnyStyle ??= p;
         if (sameStyle) sameStyleAnyLength ??= p;
       }
-      return preferred ??
+      // Diagnostic breadcrumb — counts what the served (cache-tier)
+      // manifest actually had for this storyNumber. Lets us
+      // distinguish "manifest served zero 1114 rows" (stale cache
+      // theory) from "manifest served many but none matched"
+      // (a filter bug) on Adam's next tap.
+      int prefixMatches = 0;
+      int adultMatches = 0;
+      final styles = <String>{};
+      final buckets = <String>{};
+      for (final p in all) {
+        if (!p.storyId.startsWith(numberPrefix)) continue;
+        prefixMatches++;
+        if (p.kidFriendly) continue;
+        adultMatches++;
+        styles.add(p.languageStyle);
+        buckets.add(p.lengthBucket.name);
+      }
+      logEvent('journey_lookup_candidates', {
+        'story_number': story.storyNumber,
+        'manifest_size': all.length,
+        'prefix_matches': prefixMatches,
+        'adult_matches': adultMatches,
+        'styles_seen': styles.toList(),
+        'buckets_seen': buckets.toList(),
+        'requested_style': preferredStyle,
+        'requested_bucket': lengthBucket.name,
+        'exact_hit': preferred != null,
+        'same_len_hit': sameLengthAnyStyle != null,
+        'same_style_hit': sameStyleAnyLength != null,
+        'any_hit': anyMatch != null,
+      });
+
+      final cascaded = preferred ??
           sameLengthAnyStyle ??
           sameStyleAnyLength ??
           anyMatch;
+      if (cascaded != null) return cascaded;
+
+      // Stale-cache escape hatch (2026-07-01): if the served
+      // manifest has zero entries for this storyNumber, re-read
+      // the BUNDLED manifest directly and pick the best variant.
+      // Adam wedge: storyNumber 1114 (Daniel 6) was added AFTER
+      // his device cached an older R2 catalog. CatalogService
+      // returns cache-OR-bundled, never merged — so bundled 1114
+      // was never consulted. Compliance-safe: only resolves
+      // storyNumbers already curated into the shipped app.
+      try {
+        final bundledJson =
+            await rootBundle.loadString('assets/stories/manifest.json');
+        final bundledData =
+            jsonDecode(bundledJson) as Map<String, dynamic>;
+        final rawList =
+            bundledData['parables'] as List<dynamic>? ?? const [];
+        Parable? bPreferred;
+        Parable? bSameLen;
+        Parable? bSameStyle;
+        Parable? bAny;
+        for (final raw in rawList) {
+          final map = raw as Map<String, dynamic>;
+          final sid = map['storyId'] as String? ?? '';
+          if (!sid.startsWith(numberPrefix)) continue;
+          final Parable p;
+          try {
+            p = Parable.fromJson(map);
+          } catch (_) {
+            continue;
+          }
+          if (p.kidFriendly) continue;
+          bAny ??= p;
+          final sameLength = p.lengthBucket == lengthBucket;
+          final sameStyle = p.languageStyle == preferredStyle;
+          if (sameLength && sameStyle) {
+            bPreferred = p;
+            break;
+          }
+          if (sameLength) bSameLen ??= p;
+          if (sameStyle) bSameStyle ??= p;
+        }
+        final resolved =
+            bPreferred ?? bSameLen ?? bSameStyle ?? bAny;
+        if (resolved != null) {
+          logEvent('journey_bundled_rescue', {
+            'story_number': story.storyNumber,
+            'resolved_story_id': resolved.storyId,
+            'preferred_style': preferredStyle,
+            'requested_bucket': lengthBucket.name,
+          });
+          return resolved;
+        }
+      } catch (e) {
+        logEvent(
+          'journey_bundled_rescue_failed',
+          {
+            'story_number': story.storyNumber,
+            'error_type': e.runtimeType.toString(),
+          },
+          level: LogLevel.warn,
+        );
+      }
+      return null;
     }
 
     final lengthName = lengthBucket.name; // short / full / long

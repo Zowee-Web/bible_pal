@@ -2583,6 +2583,13 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     if (!mounted) return;
 
     if (journeyParable == null) {
+      // On-screen numeric detail — surface the tuple that failed so
+      // we can read it without pulling logs. Complements the
+      // journey_lookup_candidates + journey_bundled_rescue telemetry
+      // inside getParableByJourneyStory.
+      _showAcceptStep(
+          'null:sn=${offer.nextStory.storyNumber}/bk=${bucket.name}/'
+          'ls=${userPrefs.languageStyle}');
       await _journeyAcceptFallback('parable_null');
       return;
     }
