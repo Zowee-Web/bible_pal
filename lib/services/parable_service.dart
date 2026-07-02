@@ -891,9 +891,10 @@ class ParableService {
   /// the normal mood-flow rather than synthesizing a wrong story).
   ///
   /// Adult lane matches on storyId prefix `story_<storyNumber>_` and
-  /// requires `languageStyle == userPrefs.preferredLanguageStyle`.
-  /// Kid lane matches on storyId prefix `kid_<anchorId>_` and the
-  /// `_<length>` suffix (kid manifest doesn't carry languageStyle).
+  /// prefers the user's languageStyle (with same-length any-style
+  /// fallback).
+  /// Kid lane matches on storyId prefix `kidstory_kid_<anchorId>_`
+  /// (mirrors JourneyEngine._kidAnchorPattern) and filters kidFriendly.
   Future<Parable?> getParableByJourneyStory(
     JourneyStory story, {
     required StoryLengthBucket lengthBucket,
@@ -1068,16 +1069,113 @@ class ParableService {
       return null;
     }
 
-    final lengthName = lengthBucket.name; // short / full / long
-
     if (story.anchorId != null) {
-      // Kid lane.
-      final anchorPrefix = 'kid_${story.anchorId}_';
+      // Kid lane. Manifest storyIds are `kidstory_kid_<anchor>_<length>`
+      // (matches JourneyEngine._kidAnchorPattern). Previous code used
+      // `kid_<anchor>_` prefix which NEVER matched — kid-lane accept
+      // has been broken since Slice 2 Phase 9 first shipped. Adam
+      // 2026-07-01: cascade dispatches on kid_david_arc (kid mode),
+      // parable lookup returned null → sn=null on-screen diagnostic.
+      //
+      // Same tier cascade as adult lane: preferred bucket → same-length
+      // any-style (kid stories only ship WEB today, but keep the shape
+      // so it's ready if KJV kid ever ships) → any variant.
+      final anchorPrefix = 'kidstory_kid_${story.anchorId}_';
+      final preferredStyle = userPrefs.languageStyle;
+      Parable? preferred;
+      Parable? sameLengthAnyStyle;
+      Parable? sameStyleAnyLength;
+      Parable? anyMatch;
       for (final p in all) {
-        if (p.storyId.startsWith(anchorPrefix) &&
-            p.storyLength == lengthName) {
-          return p;
+        if (!p.storyId.startsWith(anchorPrefix)) continue;
+        if (!p.kidFriendly) continue; // kid-lane only
+        anyMatch ??= p;
+        final sameLength = p.lengthBucket == lengthBucket;
+        final sameStyle = p.languageStyle == preferredStyle;
+        if (sameLength && sameStyle) {
+          preferred = p;
+          break;
         }
+        if (sameLength) sameLengthAnyStyle ??= p;
+        if (sameStyle) sameStyleAnyLength ??= p;
+      }
+      final cascaded = preferred ??
+          sameLengthAnyStyle ??
+          sameStyleAnyLength ??
+          anyMatch;
+      if (cascaded != null) return cascaded;
+
+      // Kid bundled-manifest rescue — same shape as adult. If the
+      // served (cached) manifest doesn't contain the kid entries
+      // (they're newer than Adam's cached R2 catalog), fall back
+      // to the bundled asset directly.
+      logEvent('journey_kid_bundled_rescue_attempted', {
+        'anchor_id': story.anchorId,
+        'requested_style': preferredStyle,
+        'requested_bucket': lengthBucket.name,
+      });
+      int bundledPrefixMatches = 0;
+      int bundledKidMatches = 0;
+      try {
+        final bundledJson =
+            await rootBundle.loadString('assets/stories/manifest.json');
+        final bundledData =
+            jsonDecode(bundledJson) as Map<String, dynamic>;
+        final rawList =
+            bundledData['parables'] as List<dynamic>? ?? const [];
+        Parable? bPreferred;
+        Parable? bSameLen;
+        Parable? bSameStyle;
+        Parable? bAny;
+        for (final raw in rawList) {
+          final map = raw as Map<String, dynamic>;
+          final sid = map['storyId'] as String? ?? '';
+          if (!sid.startsWith(anchorPrefix)) continue;
+          bundledPrefixMatches++;
+          final Parable p;
+          try {
+            p = Parable.fromJson(map);
+          } catch (_) {
+            continue;
+          }
+          if (!p.kidFriendly) continue;
+          bundledKidMatches++;
+          bAny ??= p;
+          final sameLength = p.lengthBucket == lengthBucket;
+          final sameStyle = p.languageStyle == preferredStyle;
+          if (sameLength && sameStyle) {
+            bPreferred = p;
+            break;
+          }
+          if (sameLength) bSameLen ??= p;
+          if (sameStyle) bSameStyle ??= p;
+        }
+        final resolved =
+            bPreferred ?? bSameLen ?? bSameStyle ?? bAny;
+        if (resolved != null) {
+          logEvent('journey_kid_bundled_rescue', {
+            'anchor_id': story.anchorId,
+            'resolved_story_id': resolved.storyId,
+            'bundled_prefix_matches': bundledPrefixMatches,
+            'bundled_kid_matches': bundledKidMatches,
+          });
+          return resolved;
+        }
+        logEvent('journey_kid_bundled_rescue_empty', {
+          'anchor_id': story.anchorId,
+          'bundled_prefix_matches': bundledPrefixMatches,
+          'bundled_kid_matches': bundledKidMatches,
+        });
+      } catch (e) {
+        logEvent(
+          'journey_kid_bundled_rescue_failed',
+          {
+            'anchor_id': story.anchorId,
+            'error_type': e.runtimeType.toString(),
+            'error_message': e.toString(),
+          },
+          level: LogLevel.warn,
+        );
       }
       return null;
     }
