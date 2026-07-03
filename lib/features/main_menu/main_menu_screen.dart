@@ -2717,44 +2717,29 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     final palAudio = ref.read(palAudioServiceProvider);
 
     await BiblicalFigureRegistry.ensureLoaded();
-    await PalTransitionLines.ensureLoaded();
-    final transitionRef = PalTransitionLines.getLineRef(bibleStoryKey);
     final framingRef =
         BiblicalFigureRegistry.getFramingLineRef(bibleStoryKey);
 
-    // Transition: "I have a story for you" bridge beat.
-    if (transitionRef != null && mounted) {
-      try {
-        final played = await palAudio.playLine(transitionRef.id, voiceKey);
-        if (played) {
-          // Timeout defense — after the offer + STT sequence, the iOS
-          // audio session can rarely leave awaitPlaybackComplete in a
-          // wedged state (observed on device 2026-06-30). Falling
-          // through to navigation beats stranding the user on
-          // "Preparing your story..." forever.
-          await palAudio.awaitPlaybackComplete().timeout(
-            const Duration(seconds: 8),
-            onTimeout: () {
-              logEvent('pal_audio_await_timeout', {
-                'line_id': transitionRef.id,
-                'type': 'transition_journey_accept',
-                'voice_key': voiceKey,
-              });
-            },
-          );
-          logEvent('pal_audio_played', {
-            'line_id': transitionRef.id,
-            'type': 'transition_journey_accept',
-            'voice_key': voiceKey,
-            'bible_story_key': bibleStoryKey,
-          });
-        }
-      } catch (e) {
-        debugPrint('[MainMenu] Journey-accept transition audio failed: $e');
-      }
-      if (!mounted) return;
-      await Future.delayed(const Duration(milliseconds: 300));
-    }
+    // NOTE (2026-07-02): the transition line library is authored for
+    // MOOD-FLOW context — every one of TRANS_01..12 references
+    // "that" / "this" / "what you're carrying" / a matched feeling.
+    // On journey-accept the user just said "yes" to a specific
+    // continuation, not a mood — the story is already chosen, not
+    // being matched. Playing a transition line here made Adam's
+    // ear-check land wrong ("I think there's a story you would
+    // connect with" — discovery framing, doesn't fit continuation).
+    //
+    // Doctrine-aligned answer: skip transition on journey-accept.
+    // - PAL_VOICE.md Pillar 5: every question/line should help
+    //   choose or land the story. Story is already chosen here.
+    // - § PAL Knows When To Be Quiet: silence between "yes" and
+    //   framing has intentional weight.
+    // - Core Principle 4: no unnecessary questions/framings.
+    //
+    // Journey-specific transition audio (e.g. "Let's continue
+    // David's story…") is a future follow-up if the framing-only
+    // rhythm still feels bare after ear-check. See PR #57's
+    // original discussion re: journey-continuation intro variants.
 
     // Framing: story-specific intro ("The story of…").
     if (framingRef != null && mounted) {
