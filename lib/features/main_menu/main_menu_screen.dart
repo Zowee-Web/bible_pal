@@ -2637,6 +2637,19 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     await sessionStore.recordJourneyContinuationSpoken();
     if (!mounted) return;
 
+    // Play the same transition + framing intro every mood-flow story
+    // gets. Adam 2026-07-01: earlier attempt hung the accept path
+    // because the STT audio session wasn't released (root-cause fix
+    // shipped in PR #61's SttService._speech.stop() call). Now that
+    // the audio session is deterministically freed, the intro can
+    // play cleanly. Helper wraps every awaitPlaybackComplete in an
+    // 8s timeout so a future audio-stack anomaly can't strand the
+    // user.
+    logEvent('journey_accept_step', {'step': 'before_intro'});
+    _showAcceptStep('intro');
+    await _playJourneyStoryIntro(journeyParable);
+    if (!mounted) return;
+
     logEvent('journey_accept_step', {'step': 'before_cancel_conversation'});
     _showAcceptStep('cancel_conversation');
     _cancelConversation();
@@ -2676,10 +2689,11 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   /// utterance; on journey accept, the user only said "yes" (no
   /// mood expressed), so no reflection is warranted.
   ///
-  /// Currently NOT wired — hung the accept path on device
-  /// 2026-06-30. Kept defined so the polish can be re-attempted
-  /// once the wedge root cause is understood.
-  // ignore: unused_element
+  /// Re-enabled 2026-07-02 after PR #61's SttService._speech.stop()
+  /// fix eliminated the audio-session wedge that had hung this
+  /// helper on 2026-06-30. Each awaitPlaybackComplete is wrapped in
+  /// an 8s timeout as belt-and-braces so a future audio anomaly
+  /// can't strand the user.
   Future<void> _playJourneyStoryIntro(Parable parable) async {
     final bibleStoryKey = parable.bibleStoryKey;
     if (bibleStoryKey == null || bibleStoryKey.isEmpty) return;
