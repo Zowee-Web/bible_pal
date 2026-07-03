@@ -1,8 +1,28 @@
 # Journey Doctrine
 
 > Locked: 2026-06-28
+> Amended: 2026-07-03 — v1.0 (identity + relational memory + three layers)
 > Owner: Adam Lipps
-> Version: v0 — recognition shipped, single-journey continuation next
+> Version: v1.0 — recognition shipped; single-journey continuation in flight; long-horizon layers named
+
+## Identity
+
+> **Journeys are not the mechanism by which users get to the next story. They are the mechanism by which PAL's memory of shared reading becomes narrative continuity.**
+
+Every product decision this doctrine ever makes flows from that sentence. Contradict it and the doctrine forbids the decision.
+
+## The Relational Memory Principle
+
+> **PAL does not primarily remember stories. PAL remembers the people and places in Scripture that you have spent time with.**
+
+This is the memory-model principle, not a voice preference. Its consequences ripple through the rest of the doctrine:
+
+- **Continuation is relational, not indexical.** *"Let's return to David."* Not *"Continue Journey #14."*
+- **Discovered Journeys (Layer 2) surface through co-visitation of people, not story IDs.**
+- **Personal Journeys (Layer 3) are seasons with figures, not sequences of stories.**
+- **PAL's memory is of the person you were walking with last time**, not of a row in the manifest.
+
+The librarian metaphor in [PAL_VOICE.md](PAL_VOICE.md) already asks *"is this the right story for who this person seems to be right now?"* This principle sharpens it: PAL remembers who you walked with, and that is what continuation reaches back for.
 
 ## The Doctrine
 
@@ -34,21 +54,29 @@ A person opening Bible PAL after listening to Daniel yesterday should not think 
 
 The journey engine exists to make PAL feel human. Not the other way around. Every section that follows is in service of that sentence.
 
+## The Editorial Purpose of a Journey
+
+> **A Journey exists whenever remembering changes the experience of the next story.**
+
+That is the litmus test. When considering whether a set of stories should be a Journey, ask *"does remembering matter here?"* If yes, it's a Journey — regardless of length or ordering. If no, it's simply more stories. The point is not curation; the point is whether PAL's memory of what came before changes how the next story lands.
+
+## The Three Layers of Journey
+
+A Journey can exist at three layers. **Only Layer 1 is a v1.0 commitment.** Layers 2 and 3 are named to prevent architectural paint-into-corner, not promised as launch features. All three share one substrate: PAL's memory of who the user has walked with.
+
+- **Layer 1 — Editorial Journeys** *(what ships)*. Curator-created sequences: Joseph, David, Life of Jesus, Kid David Arc. Hypotheses that remembering will change how each subsequent story lands.
+- **Layer 2 — Discovered Journeys** *(architectural direction, not built)*. Someday PAL may notice patterns in aggregate user movement — Gideon → Deborah, Elijah → Elisha. Slice 5 territory.
+- **Layer 3 — Personal Journeys** *(the horizon, not built)*. The shape of one specific user's walk — Daniel, then Job, then Elijah — remembered as a season, never interpreted. Slice 5 territory.
+
+**Doctrinal implication.** Every Layer 1 decision must preserve the possibility of Layers 2 and 3. Rigid Editorial Journeys (forced order, curriculum voice, story-ID-indexed continuation) close off the later layers. Relational-memory framing keeps the door open.
+
 ## What a Journey Is (and Is Not)
 
-A **journey** is a hand-curated, editorially-shaped sequence of stories that PAL can offer to continue. Each journey carries a type (Narrative, Character, Theme, Teaching, Practice), an ordered list of stories, a per-voice offer line, and editorial intent.
+A **journey** is the memory of walking through Scripture together — held on the curator's side as a hand-shaped sequence with a type and editorial intent, felt on the user's side as remembered warmth.
 
-A journey is **NOT**:
+A journey is **NOT** a reading plan, a streak, a completion goal, an algorithmic playlist, a content classification surfaced to the user, a measure of spiritual progress, or a thing the user fails at by leaving.
 
-- a reading plan
-- a streak
-- a completion goal
-- an algorithmic playlist
-- a content classification surfaced to the user
-- a measure of spiritual progress
-- a thing the user fails at by leaving
-
-Journeys exist inside PAL's memory of the user, not inside the user's accounting of themselves. The user never sees "you are 5 of 14" inside a journey because journeys are not accomplishments.
+Journeys exist inside PAL's memory of the user, not inside the user's accounting of themselves. The user never sees *"you are 5 of 14"* because journeys are not accomplishments. What the user experiences is *"Last time we spent time with Daniel…"* — memory, not curriculum.
 
 ## Journey vs. Path vs. Mood-Flow
 
@@ -82,6 +110,33 @@ The doctrine test that produced this: *if a user taps "Anxious," they have alrea
 This mirrors the librarian in [PAL_VOICE.md](PAL_VOICE.md): PAL is the librarian when you ask for help; the mood buttons are the shelves you've chosen to walk to yourself. The split is a UX guarantee, not a rule about what's possible — technically the cascade could fire on any entry, but doctrine forbids it because it dilutes what "tapping PAL" means.
 
 Kept the door open for future revision: if beta testers report they want journey recognition on mood buttons after all, the runtime is still capable — the mood-button path just calls into it with the appropriate params. Short-variant offer clips remain bundled per the never-delete-audio rule. The lock is in the code path (`_handleMoodButtonTap` goes straight to `selectStoryAndOpenPlayer`), not the primitives.
+
+## Journey Types (architecture + behavioral principle)
+
+Six kinds. Type is a **behavioral lens**, not a locked table.
+
+- **Narrative** — sequential arcs where order carries meaning. *Joseph*, *Life of Jesus*.
+- **Character** — episodes with one figure, each largely self-contained. *Daniel*, *David*, *Peter*.
+- **Theme** — varied stories bound by shared feeling. *Waiting on God*, *Comfort*.
+- **Teaching** — parables, sayings, discourses. *Parables of the Kingdom*.
+- **Practice** *(kid-lane)* — patterns the child can enact. *Being Brave*, *Being Kind*.
+- **Collection** *(new)* — curated groupings that share a lens. *Women of the Bible*, *Miracles of Jesus*, *Psalms of Comfort*. Deliberate sets, neither narrative nor character.
+
+> **Journey type influences how PAL introduces, continues, and revisits stories. The exact behaviors of each type emerge through editorial testing rather than being frozen prematurely.**
+
+Curator override: individual Journeys may depart from their type's typical behavior when editorial judgment calls for it. Type is a lens, not a straitjacket.
+
+## Where a Journey Begins — Three Paths
+
+Journeys begin the way stories begin: the user encounters one. Three paths, chosen by the user's state.
+
+**(a) First use — onboarding.** A new user has no memory yet. The obvious temptation is to override the first tap and route into an onboarding Journey's story 1. **Doctrine rejects this.** The first tap — PAL button or mood button — is sacred. A first-time user who says *"I'm anxious"* deserves an anxious-story answer, not *"here's Story 1 of our onboarding Journey."* Empty-memory is a real problem; the solution is to **add** something (a self-introduction beat, a post-first-story invitation, or a mood-aware silent preference for onboarding-Journey stories that genuinely fit the tap), never to hijack the first request. Doctrine locks the constraint. The specific onboarding solution is editorial experiment.
+
+**(b) Mood-flow selection (steady state).** Entry-Point Split remains locked: mood buttons never fire the cascade. Beyond that, **mood-flow selection MAY take Journey structure into account when doing so improves the editorial experience, while always respecting the user's expressed intent.** Whether to silently prefer a Journey's next-unheard story is a hypothesis to test, not a lock.
+
+**(c) User-initiated selection (Paths, search, favorites).** PAL respects the pick — completely. If the user chose Daniel 6 from Paths, they get Daniel 6, not Daniel 1. PAL's memory tracks where they left off from THAT choice. Future territory (Slice 3) may allow a gentle *"this story begins earlier — would you like to start there?"* invitation on curator-flagged stories. Silence or "no" plays the selected story.
+
+All three preserve user agency. Even on first use — especially on first use — the user's expressed intent leads.
 
 ## The Slice Plan
 
@@ -143,6 +198,24 @@ The offer is two beats: recognition + invitation.
 
 Recognition uses the same Slice 2d display-name registry that already ships. Invitation is hand-authored per journey type and per voice. The line is intentionally not yes/no — it tells the user they have two paths and that either is valid, and it lets them respond conversationally instead of compliantly.
 
+### Journey Continuation Voice — after "yes"
+
+The mood-flow transition-line library was authored for **discovery**; playing a discovery transition after Journey accept is a category error. The Relational Memory Principle governs what the accept-path voice sounds like: continuation is about returning to a person, not resuming a Journey object.
+
+**Direction (Round 6):** ship a small library of accept-context transition lines in relational voice. Story-specific framing alone is too bare after "yes"; a short transition line before framing gives the accept path warmth without pretending to have matched a mood.
+
+Initial commissioned line set (curator may add/edit):
+
+- *"Let's return to David."* *(person-specific, character/narrative)*
+- *"Here's what happened next."* *(sequence-agnostic, narrative)*
+- *"Picking it back up with him."* *(pronoun form for repeat mentions of the same figure)*
+- *"Back to the story."* *(minimalist fallback)*
+- *"Let's spend more time with Joseph."* *(person-specific alternate form)*
+
+Person-specific lines are keyed on the Journey's central figure via the Memory display-name registry. Theme and Collection Journeys, which have no single figure, carry the sequence-agnostic lines. Framing-only remains the safety fallback if a line fails to load. **System voice is forbidden** — never *"Let's continue the Journey,"* never *"Story N of M."* Speak of people and places.
+
+Audio implementation (generation, wiring into the accept path) is a separate change, gated on a separate approval. Doctrine names the direction; doctrine does not ship the clips.
+
 ### Response handling
 
 PAL classifies the user's response into one of four buckets. v1 implementation is a rule-based heuristic. ML classification is reserved for future slices only if the heuristic proves limiting.
@@ -169,6 +242,25 @@ The continuation gate inherits the Memory silence floor. PAL stays silent (and f
 - Any audio resolver returns null at any step
 
 Silence is the default. Continuation is the affirmative-only branch.
+
+### The Final Story
+
+When the last story in a Journey ends, **PAL stays quiet.** No immediate offer of another Journey. No wrap-up beat. No reflection. Let the last story land ([PAL_VOICE.md](PAL_VOICE.md) Pillar 4).
+
+The next PAL-button session begins without ceremony. **PAL does not cross-reference** — no *"you finished Daniel; want to try Joseph?"* That is curriculum voice; doctrine forbids it.
+
+Slice 5 may design an optional graduation surface — hand-authored close-of-journey moments where a specific ending merits a specific line. Exception, not rule.
+
+## Journeys and Memory
+
+Journeys are Memory in narrative form — and per the Relational Memory Principle, that memory is of **people, not story IDs**. Each mechanic maps to a [PAL_MEMORY_DOCTRINE.md](PAL_MEMORY_DOCTRINE.md) tier:
+
+- **Silence** (Level 0) — no offer.
+- **Facts** (Level 1) — *"Hey Adam!"* on the story after accept. Suppressed on the accept path itself; the offer beat already named the character.
+- **Patterns** (Level 2, future) — *"It's been a while since we spent time with Daniel."* Framing is *time with Daniel*, not *story 1114*. Discovered Journeys (Layer 2) also live here.
+- **Meaning** (Level 3) — **never PAL's job.** PAL notes where the user has been; PAL never tells the user what those stories mean for them. Personal Journeys (Layer 3) surface here — as memory of shared walking, never as interpretation.
+
+Concretely: every completed Journey story is a `PalSession` record. The Memory display-name registry makes Journey beats speakable in relational terms (*"David,"* *"Joseph,"* *"the widow at Zarephath"*). Journey type influences expression; the Relational Memory Principle governs voice.
 
 ## Kid-Lane Appendix
 
@@ -337,3 +429,13 @@ The 2026-06-28 design conversation that this document records named the underlyi
 > **"Stories become PAL's response instead of PAL simply wrapping a story."**
 
 The doctrine deliberately ships at v0 in narrower scope than the PAL Memory Doctrine. The reason is Adam's instruction: *"Don't design Version 3 before we've designed Version 1."* Slices 3–5 are named as future but not designed. They grow when Slice 2 ships and produces user experience the doctrine can learn from.
+
+### v1.0 Amendment (2026-07-03)
+
+After PR #69 shipped a framing-only continuation intro, Adam and ChatGPT (Star) paused implementation to re-frame Journeys as a product design problem, not a code problem. Six rounds of pushback deepened the framing until it stabilized around three additions the doctrine did not have at v0:
+
+- The **Identity** section, giving the doctrine a single sentence to face outward with.
+- The **Relational Memory Principle**, making explicit that PAL remembers people and places, not story IDs. This reshapes continuation voice, and it opens the architectural door to Layers 2 and 3.
+- The **Three Layers** framing (Editorial / Discovered / Personal), where only Layer 1 is a v1.0 commitment; Layers 2 and 3 are named to prevent paint-into-corner decisions.
+
+Two decisions locked at the same time: the **first-tap override** on onboarding is rejected (the user's first tap answers the user's first tap; empty-memory is solved by adding, never by hijacking), and a small **relational-voice continuation transition audio** library is authorized for commission (implementation in a separate change).
