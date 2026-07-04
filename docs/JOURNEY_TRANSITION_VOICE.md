@@ -311,7 +311,7 @@ Rejected drafts, kept because near-misses teach the rule as sharply as the winne
 
 Benchmarks are *discovered*, not decreed. The method is part of the doctrine so it can be repeated every time the set grows.
 
-1. **Generate exploration drafts.** Roughly 20–30 beats, written to be discarded — not "seeds" expected to grow. They live in a working artifact, never in this doc.
+1. **Generate exploration drafts.** Roughly 20–30 beats, written to be discarded — not "seeds" expected to grow. They live in a working artifact, never in this doc. After a pass completes, the pool is archived under `docs/editorial/history/` as provenance — non-authoritative, and per the hygiene rule below, never used to seed a future round.
 2. **Span the coverage matrix** (below). The pool must reach the *edges*, not twenty-five easy narrative-hero beats. A biased pool curates to a biased set.
 3. **Curate fame-blind against the three questions.** Promote the strongest 8–12.
 4. **Write only the promoted set into this doc**, plus the near-misses, with a dated entry in History.
