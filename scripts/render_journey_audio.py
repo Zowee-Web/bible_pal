@@ -119,6 +119,11 @@ ELEVENLABS_VOICE_SETTINGS = {
 # requires a new audition pass + re-render. Punctuation matters for
 # prosody (commas → mid-sentence pause; "…" → softer trailing).
 #
+# Authoring source of truth for the wording of these beats:
+# docs/JOURNEY_TRANSITION_VOICE.md (relational-center rule, the
+# three signature tests, benchmark = coverage map). New/edited clip
+# text must pass its Transition Audit before it lands here.
+#
 # Per-clip `model` override: defaults to ELEVENLABS_DEFAULT_MODEL
 # (eleven_turbo_v2_5). Short, expressive utterances render better
 # with eleven_v3 — same precedent as the kid lane reflection clips

@@ -15,8 +15,9 @@ If CLAUDE.md conflicts with the official docs, **the official docs win**.
 3. [docs/BIBLE_TRANSLATION_COMPLIANCE.md](docs/BIBLE_TRANSLATION_COMPLIANCE.md) — Compliance details
 4. [docs/PAL_VOICE.md](docs/PAL_VOICE.md) — Locked conversational voice for PAL (four pillars, eight principles, eight-question audit)
 5. [docs/REFLECTION_VOICE.md](docs/REFLECTION_VOICE.md) — Locked editorial voice for reflections (paste-test, six-point audit, benchmarks)
-6. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — System architecture
-7. **CLAUDE.md** — This file (workflow guide only)
+6. [docs/JOURNEY_TRANSITION_VOICE.md](docs/JOURNEY_TRANSITION_VOICE.md) — Locked editorial voice for journey transition beats (relational-center rule, three signature tests, benchmark = coverage map)
+7. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — System architecture
+8. **CLAUDE.md** — This file (workflow guide only)
 
 ---
 
