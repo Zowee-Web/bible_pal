@@ -241,6 +241,49 @@ void main() {
       expect(eventNames, contains('pal_journey_continuation_accepted'));
     });
 
+    // JOURNEY_DOCTRINE.md "Implementation Enforcement" — the
+    // silence-on-naming-journey-type invariant: a journey's TYPE
+    // classification (narrative/character/theme/teaching/practice) must
+    // never leak into a telemetry payload. The journey under test is
+    // `narrative`; this guards the shared 'pal_journey_offer_fired' emit
+    // site (spoken on every dispatch path) plus the accept event.
+    test('no telemetry event name or prop leaks the journey type', () async {
+      await seedAdultSession();
+      final events = <_Event>[];
+      await fireJourneyOffer(
+        preferences: buildPrefs(),
+        sessionStore: sessionStore,
+        journeyRegistry: registry,
+        audioResolver: _AlwaysOkResolver(),
+        classifier: classifier,
+        playOfferPlan: _okPlay,
+        playDeclinePlan: (plan) async => true,
+        captureResponse: _captureText('yes please'),
+        now: now,
+        logger: events.record,
+      );
+      const journeyTypeNames = {
+        'narrative',
+        'character',
+        'theme',
+        'teaching',
+        'practice',
+      };
+      expect(events, isNotEmpty,
+          reason: 'offer must fire so there is telemetry to inspect');
+      for (final e in events) {
+        expect(journeyTypeNames.contains(e.event), isFalse,
+            reason: 'event name "${e.event}" is a journey type');
+        for (final entry in e.props.entries) {
+          final v = entry.value;
+          if (v is String) {
+            expect(journeyTypeNames.contains(v), isFalse,
+                reason: 'prop ${entry.key}="$v" leaks the journey type');
+          }
+        }
+      }
+    });
+
     test('decline → declinedExplicit, decline clip PLAYED, '
         'suppressSlice2dRecognition=false', () async {
       await seedAdultSession();

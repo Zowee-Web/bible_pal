@@ -351,15 +351,18 @@ Adam's instinct to "stop expanding the corpus" is right in intent and wrong in l
 
 The doctrine is enforced by tests that fail at CI time. The doctrine is not enforced by a hope that authors remember it.
 
-**Required tests:**
+**Required tests (each cites its enforcer; verified 2026-07-04):**
 
-- Every story listed in a journey has a registered anchor — fail otherwise
-- No kid journey contains more than 5 stories — fail otherwise
-- No kid journey has type `theme` or `teaching` — fail otherwise
-- Every story in a journey carries a `primaryJourney` field referencing a registered journey — fail otherwise
-- Voice clips for every offer line and every continuation next-story are bundled per active voice — fail otherwise (mirror the Slice 2c.3 `memory_audio_inventory_validator_test.dart`)
-- Journey-continuation cooldown advances only on accepted continuation — fail otherwise (cooldown-not-advanced assertions on every decline branch, mirroring `pal_memory_runtime_test.dart`)
-- No telemetry event payload contains the literal journey type as user-visible text — fail otherwise (silence-on-naming-journey-type invariant)
+- Every story listed in a journey has a registered anchor — fail otherwise (`journey_registry_validator_test.dart`)
+- No kid journey contains more than 5 stories — fail otherwise (`journey_registry_validator_test.dart`)
+- No kid journey has type `theme` or `teaching` — fail otherwise (`journey_registry_validator_test.dart`)
+- Voice clips for every offer line and every continuation next-story are bundled per active voice — fail otherwise (`journey_audio_inventory_validator_test.dart`, mirroring the Slice 2c.3 `memory_audio_inventory_validator_test.dart`)
+- Journey-continuation cooldown advances only on accepted continuation — fail otherwise (`journey_offer_runtime_test.dart`, cooldown-not-advanced assertions on every decline branch, mirroring `pal_memory_runtime_test.dart`)
+- No telemetry event payload contains the literal journey type — fail otherwise (`journey_offer_runtime_test.dart` → "no telemetry event name or prop leaks the journey type"; the silence-on-naming-journey-type invariant)
+
+**Deferred to Slice 3 (NOT yet enforced — do not claim a test):**
+
+- Every story in a journey carries a `primaryJourney` field referencing a registered journey. The field is reserved for Slice 3 multi-journey arbitration and is not yet populated on stories, so enforcing it now would fail on a field that does not exist. Tracked here so the requirement is not lost, but explicitly ungated until Slice 3 lands. *(Corrected 2026-07-04, Doctrine of Doctrines audit: this was previously listed as a required test that never existed.)*
 
 **Required runtime invariants:**
 

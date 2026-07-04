@@ -2117,56 +2117,52 @@ python3 -c "import json; r=json.load(open('server/model_router/model_registry.js
 
 ---
 
-## 🔒 Delilah Opening Layer Invariant (NON-NEGOTIABLE)
+## 🔒 PAL Opening Layer Invariant (NON-NEGOTIABLE)
 
-**Invariant**: The PAL opening layer must preserve audio sequencing, content integrity,
-and scope constraints at all times.
+**Invariant**: The PAL opening greeting layer must preserve library integrity and audio
+sequencing at all times.
 
 ### Why This Exists
 
 The opening layer creates emotional continuity between greeting and story. Violating
-sequencing produces audio overlap (broken UX). Scope violations — tone contaminating
-story selection or full-response rewriting — undermine the primary user-emotion driver.
+sequencing produces audio overlap (broken UX). A drifted opening library breaks the
+locked, SPEC-approved greeting rotation.
 
-### Rules
+> **Retired 2026-04-28 (Feature 2.0); doc corrected 2026-07-04 (Doctrine of Doctrines audit).**
+> The original "Delilah" layer was a 60-line, tone-bucketed library keyed by
+> `PalOpeningTone` (gentle/encouraging/calm/weary/warm), with tone bias shaping the first
+> reflective sentence (Feature 5.1). That design was replaced by the 12-line, time-bucketed,
+> **mood-blind** library described below: `PalOpeningTone` is `@Deprecated` and set nowhere
+> in the live flow, and tone-biased reflection (Feature 5.1) was retired. This section
+> previously carried a "60 entries / 12-per-tone / tone-bias" rule set annotated
+> "enforced by test" — those tests never existed and the model no longer ships. Those rules
+> are **void**; do not re-enforce them.
 
-**Opening Library Integrity:**
-- Library MUST contain exactly 60 entries — enforced by test
-- All 60 lines MUST be unique (no duplicate text) — enforced by test
-- Every line MUST carry a valid `PalOpeningTone` — enforced by test
-- Each tone bucket MUST contain exactly 12 lines — enforced by test
+### Rules (the shipped 12-line design)
+
+**Opening Library Integrity** (`lib/features/pal/opening/pal_opening_lines.dart`):
+- `palOpeningLines` MUST contain exactly 12 entries — enforced by test
+- Buckets MUST be the 4 `OpeningTimeBucket` values (morning/afternoon/evening/night),
+  each with exactly 3 lines — enforced by test
+- Every line MUST have a unique, non-empty ID following `OPENING_{BUCKET}_{NN}` — enforced by test
+- Selection is **mood-blind**: the time bucket is computed from the local hour, then a line
+  is chosen from that bucket by persistent recency rotation. `openingTone` is NOT read.
 - Wording is locked; any change requires an explicit SPEC update
-- The mood screen TextField passive placeholder MUST source exclusively
-  from `palOpeningLines`. No alternate hardcoded placeholder pools, no
-  time-of-day fallback hints for this rotation.
+- The mood-screen TextField passive placeholder MUST source exclusively from
+  `palOpeningLines` (no alternate hardcoded pools, no time-of-day fallback hints)
 
 **Audio Sequencing:**
-- Opening line TTS MUST complete before Feature 2.1 check-in prompt audio begins
-- Mic activation MUST NOT occur during opening line playback
-- No TTS or mic overlap across opening → check-in → listening sequence
+- Opening-line audio playback MUST complete before the Feature 2.1 check-in prompt begins,
+  with the text-only floor honored — enforced by test
+- Mic activation MUST NOT occur during opening-line playback; no TTS/mic overlap across
+  opening → check-in → listening (runtime contract; code-review enforced)
 
-**Opening Tone Scope:**
-- `openingTone` MUST NOT be written to SharedPreferences, SQLite, or any persistent store
-- `openingTone` is cleared at end of interaction session
-- `openingTone` is never exposed outside the active PAL interaction
-
-**Tone Bias Scope:**
-- Tone bias MUST affect ONLY the first reflective sentence (Feature 5.1)
-- Framing line and transition line MUST NOT be affected by `openingTone`
-- Story selection MUST NOT read or be influenced by `openingTone`
-- Tone-biased content MUST be pre-written (no runtime modification, no AI)
-- Tone MUST NOT contradict detected user mood
-
-### Enforcement Checklist (tests MUST cover all of these)
-- [ ] Exactly 60 entries in opening library
-- [ ] All text unique
-- [ ] All text non-empty
-- [ ] Valid `PalOpeningTone` on every line
-- [ ] Exactly 12 lines per tone bucket
-- [ ] `openingTone` not written to persistent storage
-- [ ] Framing and transition lines unaffected by tone
-- [ ] Story selection unaffected by tone
-- [ ] TTS completion before mic activation (sequencing contract)
+### Enforcement (verified 2026-07-04)
+- `test/core/pal_opening_line_ids_test.dart` — exactly 12 lines, 4 buckets × 3, unique
+  non-empty IDs, `OPENING_{BUCKET}_{NN}` convention.
+- `test/features/pal/opening/pal_opening_lines_test.dart` — library + selection behavior.
+- `test/spec/spec_pal_opening_audio_test.dart` — playback-before-check-in ordering, the
+  text-only floor, asset layout, and telemetry fields (Feature 2.0).
 
 ---
 
