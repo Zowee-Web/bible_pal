@@ -442,3 +442,11 @@ After PR #69 shipped a framing-only continuation intro, Adam and ChatGPT (Star) 
 - The **Three Layers** framing (Editorial / Discovered / Personal), where only Layer 1 is a v1.0 commitment; Layers 2 and 3 are named to prevent paint-into-corner decisions.
 
 Two decisions locked at the same time: the **first-tap override** on onboarding is rejected (the user's first tap answers the user's first tap; empty-memory is solved by adding, never by hijacking), and a small **relational-voice continuation transition audio** library is authorized for commission (implementation in a separate change).
+
+### Amendment (2026-07-04) — who may be the relational "who"
+
+Ratified by Adam at the first JOURNEY_TRANSITION_VOICE benchmark promotion pass, and recorded here because it specializes this doctrine's Relational Memory Principle:
+
+> *The relational center is the primary relational subject of the passage. Most often this is a person. When Scripture itself centers God, Christ, or the Shepherd, they are the legitimate relational center.*
+
+One consistent rule, not an exception list — *"The LORD is my shepherd"* walks with the Shepherd, not David; Creation centers the Maker. Forcing a human center into such passages would make them feel less biblical. Downstream implication, deferred until a God-centered journey actually ships: whether the display-name registry gains non-human-figure entries (e.g. for Theme journeys built on the Psalms). The Relational Memory Principle's locked wording ("people and places") stands unchanged; this amendment interprets it, it does not replace it.
