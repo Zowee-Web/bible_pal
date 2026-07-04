@@ -17,7 +17,8 @@ If CLAUDE.md conflicts with the official docs, **the official docs win**.
 5. [docs/REFLECTION_VOICE.md](docs/REFLECTION_VOICE.md) — Locked editorial voice for reflections (paste-test, six-point audit, benchmarks)
 6. [docs/JOURNEY_TRANSITION_VOICE.md](docs/JOURNEY_TRANSITION_VOICE.md) — Locked editorial voice for journey transition beats (relational-center rule, three signature tests, benchmark = coverage map)
 7. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — System architecture
-8. **CLAUDE.md** — This file (workflow guide only)
+8. [docs/DOCTRINE_OF_DOCTRINES.md](docs/DOCTRINE_OF_DOCTRINES.md) — Meta-standard: every locked standard needs an enforcement gate, a revision/demotion path, and a hierarchy rank (governs process, not content authority)
+9. **CLAUDE.md** — This file (workflow guide only)
 
 ---
 
