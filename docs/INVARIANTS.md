@@ -2166,6 +2166,44 @@ locked, SPEC-approved greeting rotation.
 
 ---
 
+## 🔒 PAL Memory Invariant (NON-NEGOTIABLE)
+
+**Invariant**: PAL's memory obeys the six lines below at all times.
+
+### Why This Exists
+
+PAL's product identity is a companion that *remembers* — and memory is where an AI product
+most easily betrays trust (inferred feelings, fabricated familiarity, therapy voice). The
+[PAL Memory Doctrine](PAL_MEMORY_DOCTRINE.md) governs the full design; these six lines are
+its legal core, promoted here per that doctrine's own requirement ("the 6-line invariant
+moves into INVARIANTS.md with the same legal weight as translation compliance"). Promoted
+2026-07-04 (Doctrine of Doctrines audit) — implementation shipped in Slices 1–2d.
+
+### The Six Lines
+
+1. PAL may remember facts.
+2. PAL may observe patterns only after deterministic thresholds are met.
+3. PAL may never infer personal meaning from user behavior at runtime.
+4. PAL may present hand-authored reflections when deterministic milestone conditions are met.
+5. When confidence is low, PAL remains silent.
+6. Trust is more important than visibility.
+
+### Enforcement (verified 2026-07-04)
+
+- Lines 2–3: `test/features/pal_memory/pal_memory_templates_test.dart` blocklists
+  interior-state language ("carrying", "struggling", "must be", …) across every production
+  carrier template; `pal_memory_engine_test.dart` pins the deterministic thresholds
+  (min-completions 3, 3-day cooldown, 7-day recency window).
+- Line 5: `pal_memory_runtime_test.dart` + `pal_memory_pipeline_test.dart` assert the
+  silence floor — every blocked/missing/failed branch yields silence and does NOT advance
+  the cooldown.
+- Line 4 is Level 4 (Meaning), not yet shipped: enforced architecturally today (no runtime
+  generation path exists); a dedicated test is required before Level 4 ships.
+- Registry integrity: `memory_audio_inventory_validator_test.dart`,
+  `pal_memory_display_name_registry_test.dart`.
+
+---
+
 ## Future Invariants
 
 As the project evolves, additional invariants may be added here. Each invariant must:
@@ -2176,5 +2214,5 @@ As the project evolves, additional invariants may be added here. Each invariant 
 
 ---
 
-**Last Updated**: 2026-03-29
+**Last Updated**: 2026-07-04
 **Maintained By**: Bible PAL Development Team

@@ -43,27 +43,27 @@ Ten locked standards, each verified against the real test suite (not assumed). G
 | INVARIANTS | `executable_test` (~29/30 CI-gated) | demotion procedures | #1 | "Delilah Opening Layer" invariant claims test-enforcement for a 60-entry model that doesn't exist (code ships 12); no test catches the drift |
 | SPEC | `executable_test` (broad, not total) | history (no ledger) | #2 | ~a dozen prose-only clauses; revision trail scattered, no maintained changelog |
 | BIBLE_TRANSLATION_COMPLIANCE | `executable_test` (strongest — repo-wide, CI hard-gated) | none | #3 | no demotion path (low risk — legal, only tightens); runs in CI, not local pre-commit |
-| PAL_VOICE | `checklist_in_doc` (human 8-Q audit; a thin 6-phrase lint on 2 datasets) | none | #4 | Voice Audit + Pillars enforced by human only; CLAUDE.md says "four pillars", doc says "Five" — untracked drift |
-| REFLECTION_VOICE | `checklist_in_doc` (six-point audit) | history (exemplary demotions) | #5 | zero machine enforcement of the voice; the nearest test would *pass* reflections the doc rejects |
-| JOURNEY_TRANSITION_VOICE | `checklist_in_doc` | demotion (built-in) | #6 | no automated enforcement; benchmark section still `PENDING` (no promoted exemplars yet) |
-| JOURNEY_DOCTRINE | `executable_test` (strong behavioral) | history | **ABSENT** | 2 of its 7 self-declared required tests don't exist; ranks *below its own child* (JTV #6) |
-| PAL_MEMORY_DOCTRINE | `executable_test` (gates its real rules) | none | **ABSENT** | absent from hierarchy; its 6-line invariant never landed in INVARIANTS despite governing shipped code |
-| AUDIO_LOUDNESS | `script_gate` (producer-only) | history | **ABSENT** | no post-hoc verifier — a hand-edited or un-swept compressed file passes every gate and ships silently |
-| STORY_NARRATION_STYLE_GUIDE | `checklist_in_doc` (unconfirmed) | none | **ABSENT** | governs story prose with no build-failing gate; sole editorial enforcer has zero test coverage |
+| PAL_VOICE | `checklist_in_doc` (human 8-Q audit; a thin 6-phrase lint on 2 datasets) | none | #4 | Voice Audit + Pillars enforced by human only; no in-doc History *(the "four pillars" CLAUDE.md drift was fixed 2026-07-04)* |
+| REFLECTION_VOICE | `checklist_in_doc` (six-point audit) | history (exemplary demotions) | #6 | zero machine enforcement of the voice; the nearest test would *pass* reflections the doc rejects |
+| JOURNEY_TRANSITION_VOICE | `checklist_in_doc` | demotion (built-in) | #9 | no automated enforcement; benchmark section still `PENDING` (no promoted exemplars yet) |
+| JOURNEY_DOCTRINE | `executable_test` (strong behavioral) | history | #8 | *resolved 2026-07-04*: missing telemetry-type test written; `primaryJourney` requirement honestly downgraded to Slice-3 deferral |
+| PAL_MEMORY_DOCTRINE | `executable_test` (gates its real rules) | none | #5 | 6-line invariant landed in INVARIANTS 2026-07-04; remaining: no in-doc History; Level 4 needs a test before it ships |
+| AUDIO_LOUDNESS | `script_gate` (producer-only) | history | #10 | no post-hoc verifier — a hand-edited or un-swept compressed file passes every gate and ships silently |
+| STORY_NARRATION_STYLE_GUIDE | `checklist_in_doc` (unconfirmed) | none | #7 | governs story prose with no build-failing gate; sole editorial enforcer has zero test coverage |
 
 ## Open gaps — the backlog this doc exists to close
 
-**P1 — docs that lie about enforcement (fix first; these are the ones that erode trust in the whole layer).**
-- **INVARIANTS "Delilah Opening Layer":** rewrite it to the shipped reality (12 lines × `OpeningTimeBucket`), or build the 60-entry model it describes. Today it says "enforced by test" and nothing enforces it.
-- **JOURNEY_DOCTRINE Implementation Enforcement:** it lists 7 required tests; the `primaryJourney`-required test and the "no journey-type in telemetry" test do not exist. Write them, or downgrade the claim to pending.
+**P1 — docs that lie about enforcement. ✅ DONE 2026-07-04.**
+- ~~**INVARIANTS "Delilah Opening Layer"**~~ — rewritten to the shipped reality (12 lines × `OpeningTimeBucket`, real test citations); the void tone rules formally retired.
+- ~~**JOURNEY_DOCTRINE Implementation Enforcement**~~ — the "no journey-type in telemetry" test now exists (`journey_offer_runtime_test.dart`); the `primaryJourney` requirement is honestly downgraded to an explicit Slice-3 deferral.
 
-**P2 — complete the hierarchy (rule 3).** Add the four ABSENT standards to CLAUDE.md and fix the parent-below-child inversion. Recommended ordering: INVARIANTS · SPEC · BIBLE_TRANSLATION_COMPLIANCE · PAL_VOICE · PAL_MEMORY_DOCTRINE · REFLECTION_VOICE · STORY_NARRATION_STYLE_GUIDE · JOURNEY_DOCTRINE · JOURNEY_TRANSITION_VOICE · AUDIO_LOUDNESS · ARCHITECTURE · DOCTRINE_OF_DOCTRINES · CLAUDE.md. Also land PAL_MEMORY's 6-line invariant in INVARIANTS, as that doc already promises.
+**P2 — complete the hierarchy (rule 3). ✅ DONE 2026-07-04** (ordering ratified by Adam). The four absent standards are ranked, the parent-below-child inversion is fixed, and PAL_MEMORY's 6-line invariant landed in INVARIANTS as that doctrine promised.
 
 **P3 — close the widest gateable gaps (rule 1).**
 - **AUDIO_LOUDNESS:** add a post-hoc LUFS verifier over the *published* mirror. It is the one gate that would catch silent drift, and it's cheaply scriptable.
 - **Voice docs:** these are checklist-tier by nature (reverence isn't executable) — but the *partial* lints that are gateable should exist: extend the banned-phrase lint beyond its two datasets to the corpus; add the soft-consonant-ending check REFLECTION_VOICE already specifies.
 
-**P4 — revision hygiene (rule 2).** Add a dated History + demotion note to the docs missing one (PAL_VOICE, PAL_MEMORY_DOCTRINE). Fix the "four pillars" → "Five Pillars" drift in CLAUDE.md. Populate JOURNEY_TRANSITION_VOICE's pending benchmarks.
+**P4 — revision hygiene (rule 2).** Add a dated History + demotion note to the docs missing one (PAL_VOICE, PAL_MEMORY_DOCTRINE). ~~Fix the "four pillars" → "Five Pillars" drift in CLAUDE.md~~ *(done 2026-07-04, rode with P2)*. Populate JOURNEY_TRANSITION_VOICE's pending benchmarks.
 
 ## How a new standard enters
 
@@ -76,3 +76,4 @@ This is a **meta-standard**: it governs *how* standards are formed, gated, revis
 ## History
 
 - **2026-07-04** — Created. Codifies the three-requirement rule after a verified audit of the ten locked standards (matrix above). Written the same session as JOURNEY_TRANSITION_VOICE, whose "living standard" section seeded requirement 2.
+- **2026-07-04** (same session) — P1 closed: both false enforcement claims corrected (Delilah invariant rewritten to shipped reality; journey telemetry-type test written; `primaryJourney` downgraded to explicit Slice-3 deferral). P2 closed: full hierarchy ratified by Adam and landed in CLAUDE.md; PAL Memory 6-line invariant promoted into INVARIANTS. Matrix updated to post-remediation state.

@@ -13,12 +13,16 @@ If CLAUDE.md conflicts with the official docs, **the official docs win**.
 1. [docs/INVARIANTS.md](docs/INVARIANTS.md) — Non-negotiable rules (highest authority)
 2. [docs/SPEC.md](docs/SPEC.md) — Product specification
 3. [docs/BIBLE_TRANSLATION_COMPLIANCE.md](docs/BIBLE_TRANSLATION_COMPLIANCE.md) — Compliance details
-4. [docs/PAL_VOICE.md](docs/PAL_VOICE.md) — Locked conversational voice for PAL (four pillars, eight principles, eight-question audit)
-5. [docs/REFLECTION_VOICE.md](docs/REFLECTION_VOICE.md) — Locked editorial voice for reflections (paste-test, six-point audit, benchmarks)
-6. [docs/JOURNEY_TRANSITION_VOICE.md](docs/JOURNEY_TRANSITION_VOICE.md) — Locked editorial voice for journey transition beats (relational-center rule, three signature tests, benchmark = coverage map)
-7. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — System architecture
-8. [docs/DOCTRINE_OF_DOCTRINES.md](docs/DOCTRINE_OF_DOCTRINES.md) — Meta-standard: every locked standard needs an enforcement gate, a revision/demotion path, and a hierarchy rank (governs process, not content authority)
-9. **CLAUDE.md** — This file (workflow guide only)
+4. [docs/PAL_VOICE.md](docs/PAL_VOICE.md) — Locked conversational voice for PAL (Five Pillars, eight principles, eight-question audit)
+5. [docs/PAL_MEMORY_DOCTRINE.md](docs/PAL_MEMORY_DOCTRINE.md) — What PAL may remember, observe, and say from memory (four levels: Silence/Facts/Patterns/Meaning; silence floor)
+6. [docs/REFLECTION_VOICE.md](docs/REFLECTION_VOICE.md) — Locked editorial voice for reflections (paste-test, six-point audit, benchmarks)
+7. [docs/STORY_NARRATION_STYLE_GUIDE.md](docs/STORY_NARRATION_STYLE_GUIDE.md) — Locked editorial voice for story narration prose
+8. [docs/JOURNEY_DOCTRINE.md](docs/JOURNEY_DOCTRINE.md) — Journeys: continuation cascade, silence floor, entry-point split, authoring discipline (parent of the transition voice)
+9. [docs/JOURNEY_TRANSITION_VOICE.md](docs/JOURNEY_TRANSITION_VOICE.md) — Locked editorial voice for journey transition beats (relational-center rule, three signature tests, benchmark = coverage map)
+10. [docs/AUDIO_LOUDNESS.md](docs/AUDIO_LOUDNESS.md) — Locked -18 LUFS loudness pipeline and per-lane audio treatment
+11. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — System architecture
+12. [docs/DOCTRINE_OF_DOCTRINES.md](docs/DOCTRINE_OF_DOCTRINES.md) — Meta-standard: every locked standard needs an enforcement gate, a revision/demotion path, and a hierarchy rank (governs process, not content authority)
+13. **CLAUDE.md** — This file (workflow guide only)
 
 ---
 
