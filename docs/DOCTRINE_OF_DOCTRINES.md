@@ -45,7 +45,7 @@ Ten locked standards, each verified against the real test suite (not assumed). G
 | BIBLE_TRANSLATION_COMPLIANCE | `executable_test` (strongest — repo-wide, CI hard-gated) | none | #3 | no demotion path (low risk — legal, only tightens); runs in CI, not local pre-commit |
 | PAL_VOICE | `checklist_in_doc` (human 8-Q audit; a thin 6-phrase lint on 2 datasets) | none | #4 | Voice Audit + Pillars enforced by human only; no in-doc History *(the "four pillars" CLAUDE.md drift was fixed 2026-07-04)* |
 | REFLECTION_VOICE | `checklist_in_doc` (six-point audit) | history (exemplary demotions) | #6 | zero machine enforcement of the voice; the nearest test would *pass* reflections the doc rejects |
-| JOURNEY_TRANSITION_VOICE | `checklist_in_doc` | demotion (built-in) | #9 | no automated enforcement; benchmark section still `PENDING` (no promoted exemplars yet) |
+| JOURNEY_TRANSITION_VOICE | `checklist_in_doc` | demotion (built-in) | #9 | no automated enforcement of the wording rules *(benchmark set promoted 2026-07-04: 12 exemplars + canonical ladder + near-misses; two new rules discovered and locked at that pass)* |
 | JOURNEY_DOCTRINE | `executable_test` (strong behavioral) | history | #8 | *resolved 2026-07-04*: missing telemetry-type test written; `primaryJourney` requirement honestly downgraded to Slice-3 deferral |
 | PAL_MEMORY_DOCTRINE | `executable_test` (gates its real rules) | none | #5 | 6-line invariant landed in INVARIANTS 2026-07-04; remaining: no in-doc History; Level 4 needs a test before it ships |
 | AUDIO_LOUDNESS | `script_gate` (producer-only) | history | #10 | no post-hoc verifier — a hand-edited or un-swept compressed file passes every gate and ships silently |
@@ -63,7 +63,7 @@ Ten locked standards, each verified against the real test suite (not assumed). G
 - **AUDIO_LOUDNESS:** add a post-hoc LUFS verifier over the *published* mirror. It is the one gate that would catch silent drift, and it's cheaply scriptable.
 - **Voice docs:** these are checklist-tier by nature (reverence isn't executable) — but the *partial* lints that are gateable should exist: extend the banned-phrase lint beyond its two datasets to the corpus; add the soft-consonant-ending check REFLECTION_VOICE already specifies.
 
-**P4 — revision hygiene (rule 2).** Add a dated History + demotion note to the docs missing one (PAL_VOICE, PAL_MEMORY_DOCTRINE). ~~Fix the "four pillars" → "Five Pillars" drift in CLAUDE.md~~ *(done 2026-07-04, rode with P2)*. Populate JOURNEY_TRANSITION_VOICE's pending benchmarks.
+**P4 — revision hygiene (rule 2).** Add a dated History + demotion note to the docs missing one (PAL_VOICE, PAL_MEMORY_DOCTRINE). ~~Fix the "four pillars" → "Five Pillars" drift in CLAUDE.md~~ *(done 2026-07-04, rode with P2)*. ~~Populate JOURNEY_TRANSITION_VOICE's pending benchmarks~~ *(done 2026-07-04 — first promotion pass: 12 promoted, Ruth ladder canonical, two new rules discovered)*.
 
 ## How a new standard enters
 
