@@ -115,9 +115,15 @@ ELEVENLABS_VOICE_SETTINGS = {
     "use_speaker_boost": True,
 }
 
-# Per the 2026-06-28 audition lock. Texts are FINAL — any change
-# requires a new audition pass + re-render. Punctuation matters for
-# prosody (commas → mid-sentence pause; "…" → softer trailing).
+# Per the 2026-06-28 audition lock. Punctuation matters for prosody
+# (commas → mid-sentence pause; "…" → softer trailing).
+#
+# 2026-07-05 on-device revision (Adam): every arc_offer trimmed to
+# ~160–210 chars (spoken length) and rewritten so the INVITATION
+# clause always poses a clear question — the "Let's stay with…" /
+# "Whenever you're ready…" declarative forms gave the listener
+# nothing to say "yes" to. Now enforced by JOURNEY_TRANSITION_VOICE
+# (one clear question, then the open-door tail).
 #
 # Authoring source of truth for the wording of these beats:
 # docs/JOURNEY_TRANSITION_VOICE.md (relational-center rule, the
@@ -148,17 +154,23 @@ CLIPS = [
     },
     {
         "clip_id": "decline_adult",
-        # 2026-06-29 voice audit (docs/PAL_VOICE.md): shortened from
-        # "Of course. Let's find something for today." — the offer's
-        # trailing "or, tell me what's on your heart today" already
-        # invites the mood-redirect, so the decline doesn't need to
-        # invite again. Brief acknowledgment, then STT opens.
+        # 2026-07-05 (on-device): the bare "Of course." was too thin
+        # for its real job. When the user declines, the flow REOPENS
+        # the mic (mood-flow re-listen) — a bare acknowledgment left a
+        # live mic with no cue, reading as a dead end. The decline line
+        # must now BRIDGE across that gap: acknowledge without guilt,
+        # then gently orient the reopened mic with a feeling-check.
+        # Adam-chosen (pivot-to-presence: declining the journey is not
+        # declining PAL — "how can I help you today?"). Deliberately
+        # avoids the offer's "…what's on your heart today" tail so the
+        # user doesn't hear it twice; "how are you feeling" also invites
+        # the life-statements the classifier now routes straight to a
+        # story. Supersedes the 2026-06-29 shortening (which assumed the
+        # flow ended at the decline; it doesn't).
         #
-        # Model: eleven_v3 (not turbo). Single short utterances need
-        # the prosodic breath room v3 provides; turbo over-clips
-        # consonants on 2-word phrases. Matches the offer clips'
-        # model choice for tonal consistency across the cascade.
-        "text": "Of course.",
+        # Model: eleven_v3 (not turbo) — prosodic breath room; matches
+        # the offer clips for tonal consistency across the cascade.
+        "text": "That's alright. How are you feeling today?",
         "model": "eleven_v3",
     },
     # ---- Per-adult-journey MONOLITHIC offer (Daniel Arc — first ship) ----
@@ -182,14 +194,12 @@ CLIPS = [
     },
     {
         "clip_id": "decline_kid",
-        # 2026-06-29 voice audit (docs/PAL_VOICE.md): shortened from
-        # "Okay! Let's find something else." — same reason as
-        # decline_adult. First take used "Okay!" with exclamation;
-        # turbo treated the "!" as performative excitement on a
-        # 5-char utterance and the result was abrupt + loud. Dropped
-        # to "Okay." (period). Second take still abrupt on turbo —
-        # switched to eleven_v3 for prosodic breath room.
-        "text": "Okay.",
+        # 2026-07-05 (on-device): bridges into the mic re-open, same as
+        # decline_adult — see that note. Kid parallel of the pivot line.
+        # No "!" — turbo/v3 read exclamation as performative excitement
+        # on short utterances; the period keeps it gentle. Avoids the
+        # kid offer's "…what's on your mind?" tail so it isn't repeated.
+        "text": "That's okay. How are you feeling today?",
         "model": "eleven_v3",
     },
     # ---- Per-kid-journey character name (Kid David Arc — first ship) ----
@@ -261,17 +271,17 @@ CLIPS = [
     # ADULT — Daniel Arc (sourceStoryIndex 0/1/2; index 3 = end)
     {
         "clip_id": "daniel_arc_offer_0",
-        "text": "Last time, we sat with young Daniel as he chose what was true… Would you like to hear what happened when his three friends would not bow to the king's golden image?… Or, tell me what's on your heart today.",
+        "text": "Last time, young Daniel chose what was true… Would you like to hear what happened when his three friends would not bow to the king's golden image? Or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     {
         "clip_id": "daniel_arc_offer_1",
-        "text": "Last time, we stood in the fire with Daniel's friends… Shall we return to Daniel? He has risen high under a new king, and the only fault his enemies can find in him is that he prays… Or, tell me what's on your heart today.",
+        "text": "Last time, we stood in the fire with Daniel's friends… Shall we return to Daniel — risen high, and hated by enemies who can fault him for nothing but his prayers? Or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     {
         "clip_id": "daniel_arc_offer_2",
-        "text": "Last time, we walked with Daniel into the lions' den… Let's stay with Daniel a little longer. In the night, a dream comes to him — four winds of heaven striving on a great sea… Or, tell me what's on your heart today.",
+        "text": "Last time, we walked with Daniel into the lions' den… Shall we stay with him for one more night, when a dream comes — four winds striving on a great sea? Or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     # ── ENRICHED slate v2 — Production Invitation Families (2026-07-05) ──
@@ -281,91 +291,91 @@ CLIPS = [
     # ADULT — Joseph Arc (0/1/2/3; index 4 = end)
     {
         "clip_id": "joseph_arc_offer_0",
-        "text": "Last time, we watched Joseph's brothers sell him for twenty pieces of silver… Would you like to hear what happened when Joseph, far from home in an Egyptian prison, met two men troubled by their dreams? Or, tell me what's on your heart today.",
+        "text": "Last time, Joseph's brothers sold him for twenty pieces of silver… Would you like to hear what happened when he met two troubled men in an Egyptian prison? Or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     {
         "clip_id": "joseph_arc_offer_1",
-        "text": "Last time, we waited with Joseph in prison, forgotten by the man he had helped… Would you like to see where God leads Joseph when Pharaoh wakes from dreams none of his wise men can explain? Or, tell me what's on your heart today.",
+        "text": "Last time, Joseph sat forgotten in prison… Would you like to see where God leads him when Pharaoh wakes from dreams no wise man can explain? Or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     {
         "clip_id": "joseph_arc_offer_2",
-        "text": "Last time, we walked with Joseph from the cold stone of prison into Pharaoh's court… Shall we stay with Joseph a little longer? He is about to send everyone out of the hall — everyone but his brothers. Or, tell me what's on your heart today.",
+        "text": "Last time, Joseph rose from prison to Pharaoh's court… Shall we stay with him to the moment he clears the hall of everyone but his brothers? Or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     {
         "clip_id": "joseph_arc_offer_3",
-        "text": "Last time, we stood in the emptied hall as Joseph wept and told his brothers who he was… Shall we keep walking with Joseph? Years later, when their father is gone, his brothers grow afraid of him all over again. Or, tell me what's on your heart today.",
+        "text": "Last time, Joseph wept and told his brothers who he was… Shall we keep walking with him to the day their father dies, and his brothers fear him all over again? Or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     # ADULT — Ruth Arc (0/1/2/3; index 4 = end)
     {
         "clip_id": "ruth_arc_offer_0",
-        "text": "Last time, we stood on the road with Ruth as she clung to Naomi, refusing to turn back… Let's stay with Ruth a little longer. She goes out to gather barley in a stranger's field, not knowing whose land it is… Or, tell me what's on your heart today.",
+        "text": "Last time, Ruth clung to Naomi and would not turn back… Would you like to follow her into a stranger's field, where she gleans without knowing whose land it is? Or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     {
         "clip_id": "ruth_arc_offer_1",
-        "text": "Last time, we watched Ruth gather barley behind the reapers, the day Boaz first noticed her… Would you like to hear what happened when Naomi sent Ruth by night to the threshing floor? Or, tell me what's on your heart today.",
+        "text": "Last time, Boaz first noticed Ruth among his reapers… Would you like to hear what happened when Naomi sent her by night to the threshing floor? Or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     {
         "clip_id": "ruth_arc_offer_2",
-        "text": "Last time, we waited at the threshing floor as Ruth came softly through the dark to Boaz's feet… Would you like to see where God leads Boaz next — to the gate of Bethlehem, where a nearer kinsman holds the first claim? Or, tell me what's on your heart today.",
+        "text": "Last time, Ruth came softly through the dark to Boaz's feet… Would you like to follow Boaz to the gate of Bethlehem, where a nearer kinsman holds first claim? Or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     {
         "clip_id": "ruth_arc_offer_3",
-        "text": "Last time, we sat at the gate of Bethlehem as Boaz stood before the elders and spoke for Ruth… Shall we keep walking with Ruth and Naomi? The neighbor women are coming up the road to Naomi's door, carrying a blessing… Or, tell me what's on your heart today.",
+        "text": "Last time, Boaz stood at the gate and spoke for Ruth before the elders… Shall we keep walking with Ruth and Naomi, to the day the women bring a blessing to Naomi's door? Or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     # ADULT — Elijah Arc (0/1/2/3; index 4 = end)
     {
         "clip_id": "elijah_arc_offer_0",
-        "text": "Last time, we stood with Elijah at the gate of Zarephath, where a widow's last handful of meal became enough… Would you like to see where God leads Elijah next — to Carmel, before all Israel and the prophets of Baal? Or, tell me what's on your heart today.",
+        "text": "Last time, a widow's last handful of meal became enough at Zarephath… Shall we follow Elijah to Carmel, where he stands alone against the prophets of Baal? Or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     {
         "clip_id": "elijah_arc_offer_1",
-        "text": "Last time, we watched fire fall on Elijah's drenched altar at Carmel… Would you like to hear what happened when Elijah fled from a queen's threat into the wilderness, alone? Or, tell me what's on your heart today.",
+        "text": "Last time, fire fell on Elijah's drenched altar at Carmel… Would you like to hear what happened when he fled a queen's threat into the wilderness, alone? Or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     {
         "clip_id": "elijah_arc_offer_2",
-        "text": "Last time, we sat with Elijah under the juniper tree, where an angel woke him to a cake baked on the coals… Whenever you're ready, there's another part of the story waiting. Or, tell me what's on your heart today.",
+        "text": "Last time, an angel woke Elijah under the juniper tree… Shall we follow him to the mountain cave, where God comes in a still, small voice? Or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     {
         "clip_id": "elijah_arc_offer_3",
-        "text": "Last time, we waited with Elijah in the cave on Horeb, where God came in a still small voice… Shall we keep walking with Elijah? He's setting out on one last road, and Elisha will not leave him. Or, tell me what's on your heart today.",
+        "text": "Last time, God met Elijah in the cave in a still, small voice… Shall we keep walking with him down one last road, where Elisha will not leave his side? Or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     # KID — Kid Moses Arc (0/1; index 2 = end)
     {
         "clip_id": "kid_moses_arc_offer_0",
-        "text": "Last time, we watched a baby float snug in his little basket among the reeds… Would you like to hear what happened when that baby grew up to be a shepherd, and saw a bush on fire that never burned away? Or, what's on your mind?",
+        "text": "Last time, baby Moses floated snug in his basket among the reeds… Shall we see the day he grew up and found a bush on fire that never burned up? Or, what's on your mind?",
         "model": "eleven_v3",
     },
     {
         "clip_id": "kid_moses_arc_offer_1",
-        "text": "Last time, we stood with Moses at the bush that burned and burned but never burned up… Shall we keep walking with Moses? He's leading God's people out of Egypt now, all the way to the edge of a great wide sea. Or, what's on your mind?",
+        "text": "Last time, Moses stood at the bush that burned but never burned up… Shall we walk with him as he leads God's people to the edge of a great wide sea? Or, what's on your mind?",
         "model": "eleven_v3",
     },
     # KID — Kid Joseph Arc (0/1/2; index 3 = end)
     {
         "clip_id": "kid_joseph_arc_offer_0",
-        "text": "Last time, we watched Joseph wear his beautiful coat, woven in every color you can imagine… Shall we keep walking with Joseph? He's far from home now, in a land where no one knows his name. Or, what's on your mind?",
+        "text": "Last time, Joseph wore his coat of every color… Shall we keep walking with him, far from home now in a land where no one knows his name? Or, what's on your mind?",
         "model": "eleven_v3",
     },
     {
         "clip_id": "kid_joseph_arc_offer_1",
-        "text": "Last time, we waited with Joseph in the dark, and God stayed right beside him… Would you like to hear what happened when the king of Egypt had two strange dreams that nobody could explain? Or, what's on your mind?",
+        "text": "Last time, Joseph waited in the dark, and God stayed right beside him… Would you like to hear what happened when the king of Egypt had two strange dreams no one could explain? Or, what's on your mind?",
         "model": "eleven_v3",
     },
     {
         "clip_id": "kid_joseph_arc_offer_2",
-        "text": "Last time, we stood with Joseph before the king, when God showed him what the dreams meant… Let's stay with Joseph a little longer. His very own brothers are about to come to Egypt looking for food — and they don't know who he is. Or, what's on your mind?",
+        "text": "Last time, God showed Joseph what the king's dreams meant… Shall we stay with him a little longer, to the day his own brothers come to Egypt for food, not knowing who he is? Or, what's on your mind?",
         "model": "eleven_v3",
     },
     # KID — Kid David Arc (sourceStoryIndex 0/1; index 2 = end)
