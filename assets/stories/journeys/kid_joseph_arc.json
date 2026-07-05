@@ -1,0 +1,50 @@
+{
+  "$schema": "journey_v1",
+  "version": 1,
+  "journeyId": "kid_joseph_arc",
+  "journeyType": "narrative",
+  "lane": "kid",
+  "status": "draft",
+
+  "_documentation": {
+    "_purpose": "Slate v2 KID Narrative journey (docs/editorial/history/slate_v2_beat_review.md, section 6 — PASS, no corrections, verifier problems: none). The kid lane's first journey above the 3-story sweet spot: 4 stories, within the doctrine's 3-5 cap.",
+    "_offerShape": "The three ratified offer beats (kid_joseph_arc_offer_0/1/2; families F6/F1/F3) are frozen verbatim in slate_v2_beat_review.md — full composed beats (look-back + doorway + kid tail), not registry-name composition. The characterName clip ('Joseph') is NEW — display_name_registry has no Joseph entry. Distinct from the ADULT joseph_arc in the same slate, which needs its own joseph_sold_by_brothers registry entry + name clip; the kid clip is just the name 'Joseph' and shares no render with it. nameRegistryKey stays null per the kid_david precedent (confirmed in the slate v2 Name-registry table). Render gate before ready: eleven_v3 per the PAL-voice-audio rule, and the kid tail vs. response-affordance reconciliation (JOURNEY_TRANSITION_VOICE.md) must land before any kid beat renders."
+  },
+
+  "characterName": "Joseph",
+  "nameRegistryKey": null,
+  "editorialNote": "Four stories. Beloved son → sold and far from home → prison to palace → the family forgiven. Four is above the kid sweet spot (3) but within the 3-5 cap — Adam explicitly ratified 4 because dropping the King's-Dreams beat (1860) leaves the prison-to-palace rise unexplained: without it, the forgiving Joseph of 1819 appears at the king's side with no path out of the dungeon. Kid register spine is feeling-first: God stays WITH Joseph in every room he never chose. Mood run encouraging → anxious → encouraging → encouraging; 1906 is the arc's one deliberate anxious beat, and the ratified offer_1 look-back resolves it in-line ('we waited with Joseph in the dark, and God stayed right beside him').",
+
+  "stories": [
+    {
+      "productionId": 1844,
+      "anchorId": "joseph_coat",
+      "label": "Genesis 37 — Joseph's Colorful Coat (the beloved son, sold)",
+      "editorialNote": "Core/launch=True per kid_anchor_registry; mood encouraging; short+full+long shipped. Opens with the coat — the arc's brightest image — before everything is taken away."
+    },
+    {
+      "productionId": 1906,
+      "anchorId": "joseph_egypt",
+      "label": "Genesis 39-40 — Joseph Far From Home (a strange land where no one knows his name)",
+      "editorialNote": "Secondary tier per kid_anchor_registry but ships short+full+long; mood anxious — the arc's one deliberate anxious beat. NOTE: registry displayName 'Joseph in Egypt' is stale; the shipped title (kids_manifest + meta_1906) is 'Joseph Far From Home', which the ratified beats already use."
+    },
+    {
+      "productionId": 1860,
+      "anchorId": "joseph_dreams",
+      "label": "Genesis 41 — Joseph and the King's Dreams (from prison to palace)",
+      "editorialNote": "Secondary tier; mood encouraging; short+full+long shipped. The ratified fourth-beat justification lives here: this IS the prison-to-palace rise — cut it and 1819's Joseph stands beside the king with no explanation."
+    },
+    {
+      "productionId": 1819,
+      "anchorId": "joseph_forgives",
+      "label": "Genesis 45 — Joseph Forgives His Brothers (the family made whole)",
+      "editorialNote": "Core/launch=True; mood encouraging; short+full+long shipped. Final beat — no offer follows. The ratified offer_2 doorway names only the brothers arriving for food and the irony that they don't know him; the forgiveness, the weeping embrace, and the reunion stay unspoken until the story itself."
+    }
+  ],
+
+  "_excludedFromArcWithRationale": [
+    "No Joseph kid story is excluded — the kid lane holds exactly four Joseph anchors (joseph_coat, joseph_egypt, joseph_dreams, joseph_forgives) and this arc uses all four; that completeness is part of why 4 beats was ratified over trimming to the sweet spot",
+    "1902 (genesis_33, The Brother Who Ran to Hug Him) — Jacob and Esau's reconciliation, not Joseph's arc; thematic cousin of 1819 (a wronged brother who forgives); candidate for a future kid forgiveness journey",
+    "1910 (genesis_32_22-32, The Night Jacob Held On) — Jacob's own story, one generation up; not part of Joseph's arc"
+  ]
+}
