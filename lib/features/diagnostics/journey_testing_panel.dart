@@ -91,9 +91,9 @@ class _JourneyTestingPanelState extends ConsumerState<JourneyTestingPanel> {
         : 'Seeded $label — tap the orb to hear its beat');
   }
 
-  void _snack(String msg) {
+  void _snack(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(msg), duration: const Duration(seconds: 2)),
+      SnackBar(content: Text(message), duration: const Duration(seconds: 2)),
     );
   }
 
