@@ -37,6 +37,18 @@ class _JourneyTestingPanelState extends ConsumerState<JourneyTestingPanel> {
     ('Off', Duration.zero),
   ];
 
+  // (label, story-0 sid, isKid). Seeding arms the arc so the next PAL tap
+  // offers its beat. Adult sids match story_<N>_...; kid sids match
+  // kidstory_kid_<anchor>_<length>. Kid arcs only fire in kid mode.
+  static const List<(String, String, bool)> _journeys = [
+    ('Daniel', 'story_1486_brave_courage_full_traditional', false),
+    ('Joseph', 'story_1037_brave_courage_full_traditional', false),
+    ('Ruth', 'story_828_brave_courage_full_traditional', false),
+    ('Elijah', 'story_1039_brave_courage_full_traditional', false),
+    ('Kid Moses', 'kidstory_kid_baby_moses_short', true),
+    ('Kid Joseph', 'kidstory_kid_joseph_coat_short', true),
+  ];
+
   int _selected = 0;
 
   @override
@@ -69,11 +81,14 @@ class _JourneyTestingPanelState extends ConsumerState<JourneyTestingPanel> {
     _snack('Cooldown cleared — next tap eligible');
   }
 
-  Future<void> _seedDaniel() async {
+  Future<void> _seedJourney(String label, String storyId, bool isKid) async {
     final store = await ref.read(palSessionStoreProvider.future);
-    await store.seedDanielArcSession();
+    await store.seedJourneySourceSession(storyId);
+    await store.clearJourneyCooldownOnly();
     if (!mounted) return;
-    _snack('Seeded Daniel 1 — orb will offer Daniel 3');
+    _snack(isKid
+        ? 'Seeded $label — switch to kid mode, then tap the orb'
+        : 'Seeded $label — tap the orb to hear its beat');
   }
 
   void _snack(String msg) {
@@ -117,34 +132,37 @@ class _JourneyTestingPanelState extends ConsumerState<JourneyTestingPanel> {
             ],
           ),
           const SizedBox(height: 8),
-          Row(
-            children: [
-              Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: _clearCooldown,
-                  icon: const Icon(Icons.timer_off, size: 16),
-                  label: const Text('Clear cooldown'),
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.purple,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: _seedDaniel,
-                  icon: const Icon(Icons.add, size: 16),
-                  label: const Text('Seed Daniel'),
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.purple,
-                  ),
-                ),
-              ),
-            ],
+          SizedBox(
+            width: double.infinity,
+            child: OutlinedButton.icon(
+              onPressed: _clearCooldown,
+              icon: const Icon(Icons.timer_off, size: 16),
+              label: const Text('Clear cooldown (keeps sessions)'),
+              style: OutlinedButton.styleFrom(foregroundColor: Colors.purple),
+            ),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'Seed a journey (arms the arc + clears cooldown)',
+            style: TextStyle(fontSize: 11, color: Colors.grey),
           ),
           const SizedBox(height: 4),
+          Wrap(
+            spacing: 6,
+            runSpacing: 4,
+            children: [
+              for (final j in _journeys)
+                ActionChip(
+                  label: Text(j.$1),
+                  avatar: const Icon(Icons.add, size: 14),
+                  onPressed: () => _seedJourney(j.$1, j.$2, j.$3),
+                ),
+            ],
+          ),
+          const SizedBox(height: 6),
           const Text(
-            'Journey events appear in the breadcrumbs below.',
+            'Then tap the PAL orb. Events show in the breadcrumbs below. '
+            'Kid arcs need kid mode.',
             style: TextStyle(fontSize: 10, color: Colors.grey),
           ),
         ],

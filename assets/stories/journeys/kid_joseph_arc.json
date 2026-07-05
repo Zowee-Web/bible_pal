@@ -4,7 +4,7 @@
   "journeyId": "kid_joseph_arc",
   "journeyType": "narrative",
   "lane": "kid",
-  "status": "draft",
+  "status": "ready",
 
   "_documentation": {
     "_purpose": "Slate v2 KID Narrative journey (docs/editorial/history/slate_v2_beat_review.md, section 6 — PASS, no corrections, verifier problems: none). The kid lane's first journey above the 3-story sweet spot: 4 stories, within the doctrine's 3-5 cap.",

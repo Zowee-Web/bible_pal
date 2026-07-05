@@ -152,16 +152,21 @@ class PalSessionStore {
   Future<void> clearJourneyCooldownOnly() =>
       _storage.clearLastJourneyContinuationSpokenAt();
 
-  /// Seed a completed Daniel-arc source session (story 1486, Daniel 1)
-  /// so the engine has an in-journey, not-end-of-journey session to offer
-  /// a continuation from. The storyId matches the engine's adult pattern
-  /// `story_<N>_<mood>_<length>_traditional`; only the leading number
-  /// (1486) is parsed. Beta testing only.
-  Future<void> seedDanielArcSession({DateTime? at}) async {
+  /// Seed a completed Daniel-arc source session (story 1486, Daniel 1).
+  /// Convenience wrapper kept for the cadence regression test.
+  Future<void> seedDanielArcSession({DateTime? at}) => seedJourneySourceSession(
+      'story_1486_brave_courage_full_traditional',
+      at: at);
+
+  /// Seed a completed source session for any journey so the engine has an
+  /// in-journey, not-end-of-journey session to offer a continuation from.
+  /// [storyId] must match the engine's lane pattern: adult
+  /// `story_<N>_<mood>_<length>_traditional` (only the leading number is
+  /// parsed), kid `kidstory_kid_<anchor>_<short|full|long>`. Beta only.
+  Future<void> seedJourneySourceSession(String storyId, {DateTime? at}) async {
     await _storage.addPalSession(PalSession(
-      storyId: 'story_1486_brave_courage_full_traditional',
+      storyId: storyId,
       completedAt: at ?? DateTime.now(),
-      bibleStoryKey: 'daniel_in_the_lions_den',
       languageStyle: 'WEB',
     ));
   }

@@ -4,7 +4,7 @@
   "journeyId": "ruth_arc",
   "journeyType": "narrative",
   "lane": "adult",
-  "status": "draft",
+  "status": "ready",
 
   "_documentation": {
     "_purpose": "Adult Narrative journey, slate v2 (docs/editorial/history/slate_v2_beat_review.md, ratified 2026-07-05). The whole book of Ruth in five beats — vow, field, threshing floor, gate, child.",
@@ -12,7 +12,7 @@
     "_releaseGate": "Loader MUST exclude journeys where status != 'ready'. This journey stays 'draft' until: (a) Daniel smoke test passes, (b) Adam's markup/sign-off on the slate_v2 beat texts, (c) beat clips render via eleven_v3, (d) the display_name_registry entry + name clip land. Status flips to 'ready' at render time."
   },
 
-  "nameRegistryKey": "ruth_and_naomi",
+  "nameRegistryKey": null,
   "editorialNote": "Five stories — vow → field → threshing floor → gate → child. The arc deliberately opens on Ruth's VOW (828, encouraging register), not Naomi's emptiness — Ruth is the relational center of every beat, even 1418 where Boaz is the manifest's primary character. Story order ratified in slate_v2_beat_review.md.",
 
   "stories": [

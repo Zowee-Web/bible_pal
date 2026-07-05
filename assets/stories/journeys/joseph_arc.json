@@ -4,7 +4,7 @@
   "journeyId": "joseph_arc",
   "journeyType": "narrative",
   "lane": "adult",
-  "status": "draft",
+  "status": "ready",
 
   "_documentation": {
     "_purpose": "Adult Narrative journey, slate v2 (docs/editorial/history/slate_v2_beat_review.md, ratified 2026-07-05). Joseph's life from the pit to 'God meant it for good' — five beats, all Joseph-POV.",
@@ -12,7 +12,7 @@
     "_releaseGate": "Loader MUST exclude journeys where status != 'ready'. This journey stays 'draft' until: (a) Daniel smoke test passes, (b) Adam's markup/sign-off on the slate_v2 beat texts, (c) beat clips render via eleven_v3, (d) the display_name_registry entry + name clip land, (e) the 831 full-length 800-series audit cross-check clears. Status flips to 'ready' at render time."
   },
 
-  "nameRegistryKey": "joseph_sold_by_brothers",
+  "nameRegistryKey": null,
   "editorialNote": "Five stories — sold → forgotten → raised → revealed → resolved. Joseph's personal arc, strictly his POV: the pit, the prison, Pharaoh's court, the emptied hall, and the years-later forgiveness. Jacob-POV material from the same chapters is excluded the way daniel_arc excludes the Nebuchadnezzar arc. Story order ratified in slate_v2_beat_review.md.",
 
   "stories": [
