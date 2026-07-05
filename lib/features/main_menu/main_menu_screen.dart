@@ -1818,7 +1818,19 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         // STT (the user still needs to give PAL something to work
         // with — the offer was declined, the next step is "what's
         // on your heart").
-        await _startListeningForMood();
+        //
+        // FREEZE FIX (2026-07-05): the journey cascade leaves
+        // `_voiceFlow == listening` (set by `_captureJourneyResponse`).
+        // `_startListeningForMood` normally gates on the greeting state
+        // and would SILENTLY NO-OP from here — the exact wedge
+        // documented on `_journeyAcceptFallback` below: the decline clip
+        // plays, then the orb freezes on a dead `listening` state, mic
+        // never reopens. Pass `fromDecline: true` to skip that gate. We
+        // deliberately do NOT fake the greeting state (no greeting is
+        // playing here, and setting it would also mis-anchor the Feature
+        // 2.0 opening-audio spec, which scans for the first greeting-
+        // state transition after `_startConversation`).
+        await _startListeningForMood(fromDecline: true);
         return;
       case JourneyOfferOutcome.engineSilent:
       case JourneyOfferOutcome.consentBlocked:
@@ -2004,10 +2016,15 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   }
 
   /// Auto-activate STT after PAL greeting finishes.
-  Future<void> _startListeningForMood() async {
+  ///
+  /// [fromDecline] skips the greeting-state gate for the journey decline
+  /// path, which reopens the mic from the `listening` state the cascade
+  /// leaves behind (see the declinedExplicit/declinedAmbiguous handler).
+  Future<void> _startListeningForMood({bool fromDecline = false}) async {
     // Check permissions first
     final permResult = await _sttService.checkPermissions();
-    if (!mounted || _voiceFlow != _VoiceFlowState.playingGreeting) return;
+    if (!mounted) return;
+    if (!fromDecline && _voiceFlow != _VoiceFlowState.playingGreeting) return;
 
     switch (permResult) {
       case SttPermissionResult.granted:

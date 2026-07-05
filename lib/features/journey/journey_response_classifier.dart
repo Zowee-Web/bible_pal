@@ -12,10 +12,11 @@
 ///                    The "user's response IS the decline signal"
 ///                    principle from the doctrine: do not ask them to
 ///                    decline twice.
-///   - ambiguous    — say the decline clip → fall through to mood-flow
-///                    with default mood (currently same audio as
-///                    decline; preserved as a distinct bucket for
-///                    telemetry and future copy splits).
+///   - ambiguous    — say the decline clip → re-listen for a mood.
+///                    Reserved for genuine uncertainty (empty input,
+///                    "I don't know", "maybe", "um") where PAL has
+///                    nothing to work with and a gentle re-prompt is
+///                    the honest response.
 ///
 /// Priority order (locked):
 ///   1. Empty / whitespace          → ambiguous
@@ -25,7 +26,14 @@
 ///      stays accept — user's first word answers the offer.)
 ///   4. Mood word anywhere          → moodRedirect
 ///   5. Negative at START           → decline
-///   6. Else                        → ambiguous
+///   6. Else                        → moodRedirect  (any substantive
+///      statement IS the user opening the door PAL offered — "tell me
+///      what's on your heart." Route it to a story rather than playing
+///      a decline clip and re-listening, which reads as dismissal. The
+///      mood service defaults unmatched phrases to "weary", so a story
+///      always follows. Fixes the 2026-07-05 freeze: "I had a long day
+///      at work" / "I got in trouble at school" matched no mood keyword
+///      and fell here → decline clip + re-listen → apparent freeze.)
 library;
 
 /// The bucket a user utterance falls into. The cascade (Phase 9)
@@ -107,8 +115,13 @@ class JourneyResponseClassifier {
       );
     }
 
+    // Any remaining substantive utterance is the user answering the
+    // open door ("tell me what's on your heart") — route it to the
+    // mood flow for a story rather than treating it as a decline.
+    // Only empty input and explicit-uncertainty markers (handled
+    // above) fall to `ambiguous`.
     return JourneyResponseClassification(
-      bucket: JourneyResponseBucket.ambiguous,
+      bucket: JourneyResponseBucket.moodRedirect,
       text: trimmed,
     );
   }
