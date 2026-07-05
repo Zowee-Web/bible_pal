@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../providers/app_state_notifier.dart';
 import 'package:just_audio/just_audio.dart'
     show PlayerException, PlayerInterruptedException;
+import '../../core/journey_testing_config.dart';
 import '../../core/pal_voice_registry.dart';
 import '../../services/pal_audio_service.dart' show PalAudioService;
 import '../journey/journey_continuation_offer.dart';
@@ -2410,6 +2411,19 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       setState(() => _voiceFlow = _VoiceFlowState.playingOpeningLine);
     }
 
+    // Beta testing (JOURNEY_TESTING_ENABLED): when a cadence override is
+    // driving repeat tests, tag every journey event `synthetic_session`
+    // so panel-driven runs are excluded from baseline continuation
+    // metrics. Compiled out in production (the flag is const false).
+    final synthetic = kJourneyTestingEnabled &&
+        (await sessionStore.getJourneyCadenceOverride()) != null;
+    void journeyLog(String event, Map<String, Object?> props) {
+      logEvent(
+        event,
+        synthetic ? {...props, 'synthetic_session': true} : props,
+      );
+    }
+
     final result = await fireJourneyOffer(
       preferences: preferences,
       sessionStore: sessionStore,
@@ -2420,7 +2434,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       playDeclinePlan: palAudio.playJourneyDecline,
       captureResponse: _captureJourneyResponse,
       now: DateTime.now(),
-      logger: logEvent,
+      logger: journeyLog,
     );
 
     if (result.offerWasSpoken) {
