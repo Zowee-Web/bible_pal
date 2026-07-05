@@ -1,0 +1,45 @@
+{
+  "$schema": "journey_v1",
+  "version": 1,
+  "journeyId": "kid_moses_arc",
+  "journeyType": "narrative",
+  "lane": "kid",
+  "status": "draft",
+
+  "_documentation": {
+    "_purpose": "Slate v2 KID Narrative journey (docs/editorial/history/slate_v2_beat_review.md, section 5 — PASS, no corrections, verifier problems: none). Second kid journey after kid_david_arc; holds the doctrine's 3-story kid sweet spot.",
+    "_offerShape": "The two ratified offer beats (kid_moses_arc_offer_0 after 1810, kid_moses_arc_offer_1 after 1811; families F1/F3) are frozen verbatim in slate_v2_beat_review.md — they are full composed beats (look-back + doorway + kid tail), not registry-name composition. The characterName clip ('Moses') is NEW — display_name_registry has no Moses entry — and nameRegistryKey stays null per the kid_david precedent (confirmed in the slate v2 Name-registry table). Render gate before ready: eleven_v3 per the PAL-voice-audio rule, and the kid tail vs. response-affordance reconciliation (JOURNEY_TRANSITION_VOICE.md) must land before any kid beat renders."
+  },
+
+  "characterName": "Moses",
+  "nameRegistryKey": null,
+  "editorialNote": "Three stories. Rescued baby → shepherd called by name → the rescuer at the sea. The kid register frame is rescued-baby-becomes-rescuer: the baby God kept safe in the basket grows into the man God sends to lead His people through the water. Mood escalates calm_peaceful → encouraging → brave_courage per the JOY/WONDER/PURPOSE steer (feedback_kid_emotional_color_balance) — the arc climbs instead of sitting in comfort. 1811 is the kid lane's deliberate Yahweh placement (feedback_kid_yahweh_rule: Burning Bush 1811 IS the Yahweh story); the JOURNEY beat itself never names Yahweh — the ratified offer_0 doorway names only the shepherd and the bush that never burned away, withholding God's voice, the commission, and the name.",
+
+  "stories": [
+    {
+      "productionId": 1810,
+      "anchorId": "baby_moses",
+      "label": "Exodus 2:1-10 — Baby Moses (the baby in the basket, rescued)",
+      "editorialNote": "Core/launch=True per kid_anchor_registry; mood calm_peaceful; short+full+long shipped. Opens the arc at the smallest Moses — kept safe before he can do anything himself, the feeling-first frame: God was watching over him before he ever knew it."
+    },
+    {
+      "productionId": 1811,
+      "anchorId": "burning_bush",
+      "label": "Exodus 3:1-15 — The Burning Bush (the shepherd called by name)",
+      "editorialNote": "Core/launch=True; mood encouraging; short+full+long shipped. The middle beat turns rescue into calling. This story is the kid lane's RARE+DELIBERATE Yahweh placement (feedback_kid_yahweh_rule) — the name belongs inside the story, never in the journey offer."
+    },
+    {
+      "productionId": 1813,
+      "anchorId": "red_sea",
+      "label": "Exodus 14 — Crossing the Red Sea (the rescued baby becomes the rescuer)",
+      "editorialNote": "Core/launch=True; mood brave_courage; short+full+long shipped. Final beat — no offer follows. Closes on the arc's one image: the man who was pulled out of the water as a baby now leading God's people through it."
+    }
+  ],
+
+  "_excludedFromArcWithRationale": [
+    "1907 (exodus_12, The Night God Set His People Free) — Passover night; sits between 1811 and 1813 chronologically but adds a fourth beat with a heavier register; the sea crossing carries the rescue payoff on its own",
+    "1922 (exodus_15_19-21, Miriam's Song) — the celebration AFTER the crossing; a natural epilogue, but the arc lands harder ending at the sea; candidate for a future kid joy/celebration journey",
+    "1909 (exodus_17_8-13, When Moses' Arms Grew Tired) — weary-mood story, post-arc; candidate for a future kid helping-each-other journey",
+    "1886 (exodus_16, Bread from Heaven), 1892 (exodus_17, Water from the Rock), 1849 (exodus_20, The Ten Commandments) — wilderness-journey stories; Israel's arc more than Moses' own rescued-becomes-rescuer arc; candidates for a future kid 'God provides' journey"
+  ]
+}
