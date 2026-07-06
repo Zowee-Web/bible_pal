@@ -146,6 +146,28 @@ All four load-bearing rules apply unchanged — the invitation carries the glimp
 
 ---
 
+## The Accept Acknowledgment (2026-07-05)
+
+When the user says **yes** to a continuation, PAL speaks a brief acknowledgment *before* the story's framing line, so the accept lands as a reply instead of a jump-cut into narration. (The 2026-07-02 rhythm played "yes" → framing with nothing between; on-device that read as bare — the beat this section fills is the "future follow-up" that `_playJourneyStoryIntro` anticipated.)
+
+**The governing rule — it never draws attention to itself.** The acknowledgment is a *gentle step onto the path*; the story is the destination. If a user remembers the acknowledgment instead of the framing line or the story, it is doing too much. This is why the set is **editorial, not emotional**: it acknowledges the choice and carries the rhythm forward, nothing more.
+
+**Rotation, not repetition.** PAL rotates through the set (never the same beat twice in a row) so a returning user never hears one phrase hundreds of times.
+
+**Softly flavor-matched.** The beat quietly fits the *kind* of story coming — walking beats for narrative journeys, *"Let's see where the story goes"* for wonder/vision stories, neutral beats for anything. The user won't consciously notice; it just makes Journey Mode feel handcrafted rather than random.
+
+**The set (Adam-approved):**
+- **Adult** *(editorial, not emotional)* — "Let's keep walking." (signature) · "Let's walk a little farther." · "Let's see where the story goes." · "Let's continue." · "Alright." · "Of course."
+- **Kid** *(a little more energy, never cartoonish)* — "Let's keep walking." · "Come on, let's go!" · "Let's see what happens next." · "Ready? Let's go!" · "Okay, let's keep going."
+
+**Two deliberate rejections (they define the register by contrast):**
+- **"Come with me."** — subtly makes PAL *lead* and the user *follow*. Bible PAL walks *beside* you, never ahead. *"I'll walk beside you"* ≠ *"Follow me."*
+- **"I'm with you."** — that reassurance belongs to the *emotional* register, reserved for someone hurting or afraid. On a curiosity-driven "yes" it overreaches and makes a light moment feel heavier than it is.
+
+**"Let's keep walking." is the signature** — humble, memorable, and it quietly reinforces what Journey Mode *is* every time (you are continuing a path, not just playing another story) without a hint of theatrics (PAL_VOICE Pillar 3).
+
+---
+
 ## Prohibited Patterns
 
 - **Free-floating plot cliffhanger** — a next-event teaser with no person or place at its center (the golden-statue failure).

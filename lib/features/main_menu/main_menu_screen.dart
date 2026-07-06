@@ -2725,6 +2725,69 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   /// helper on 2026-06-30. Each awaitPlaybackComplete is wrapped in
   /// an 8s timeout as belt-and-braces so a future audio anomaly
   /// can't strand the user.
+  // ── Journey accept-acknowledgment rotation ──────────────────────
+  // Played after "yes", before the story's framing line — a gentle step
+  // onto the path that bridges the accept into the story announcement.
+  // Governing rule (docs/JOURNEY_TRANSITION_VOICE.md): it must NEVER
+  // draw attention to itself; the story is the destination. Softly
+  // matched to the coming story's flavor so the set feels handcrafted,
+  // not random. Tag: 'walk' | 'wonder' | 'any'. Eligible pool for a
+  // story = its flavor's beats + all 'any' beats. Clips live in the
+  // journey/ subdir (rendered by scripts/render_journey_audio.py).
+  static const List<(String, String)> _acceptAcksAdult = [
+    ('accept_keep_walking', 'walk'),
+    ('accept_walk_farther', 'walk'),
+    ('accept_see_where', 'wonder'),
+    ('accept_continue', 'any'),
+    ('accept_alright', 'any'),
+    ('accept_of_course', 'any'),
+  ];
+  static const List<(String, String)> _acceptAcksKid = [
+    ('accept_kid_keep_walking', 'walk'),
+    ('accept_kid_what_happens', 'wonder'),
+    ('accept_kid_come_on', 'any'),
+    ('accept_kid_ready', 'any'),
+    ('accept_kid_keep_going', 'any'),
+  ];
+  // Session-only recency so the same ack never plays twice in a row.
+  String? _lastAcceptAckId;
+
+  /// Soft flavor for the accept-ack match. 'wonder' for vision/dream/
+  /// mystery stories, else 'walk' (the narrative default). Never
+  /// critical — a miss just plays a still-appropriate neutral or
+  /// walking beat.
+  String _storyAckFlavor(Parable parable) {
+    final key = (parable.bibleStoryKey ?? '').toLowerCase();
+    final tags = <String>[
+      ...parable.emotionalTags,
+      ...?parable.themeTags,
+    ].map((t) => t.toLowerCase());
+    final wonder =
+        RegExp(r'vision|dream|beast|revelation|ancient_of_days|mystery|wonder');
+    if (wonder.hasMatch(key) || tags.any(wonder.hasMatch)) return 'wonder';
+    return 'walk';
+  }
+
+  /// Pick the next accept-ack clip id, flavor-matched to [parable] and
+  /// avoiding an immediate repeat.
+  String _pickAcceptAck(Parable parable, bool isKid) {
+    final pool = isKid ? _acceptAcksKid : _acceptAcksAdult;
+    final flavor = _storyAckFlavor(parable);
+    var eligible = pool
+        .where((e) => e.$2 == flavor || e.$2 == 'any')
+        .map((e) => e.$1)
+        .where((id) => id != _lastAcceptAckId)
+        .toList();
+    if (eligible.isEmpty) {
+      eligible =
+          pool.map((e) => e.$1).where((id) => id != _lastAcceptAckId).toList();
+    }
+    if (eligible.isEmpty) eligible = pool.map((e) => e.$1).toList();
+    final pick = eligible[_random.nextInt(eligible.length)];
+    _lastAcceptAckId = pick;
+    return pick;
+  }
+
   Future<void> _playJourneyStoryIntro(Parable parable) async {
     final bibleStoryKey = parable.bibleStoryKey;
     if (bibleStoryKey == null || bibleStoryKey.isEmpty) return;
@@ -2746,6 +2809,32 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
     final voiceKey = userPrefs.palVoiceKey;
     final palAudio = ref.read(palAudioServiceProvider);
+
+    // Accept acknowledgment: a gentle step onto the path BEFORE the
+    // story is announced — bridges the "yes" so it doesn't jump-cut
+    // into narration. Flavor-matched + rotated; never draws attention
+    // to itself (docs/JOURNEY_TRANSITION_VOICE.md). Best-effort — a
+    // miss or failure just falls through to the framing line.
+    final ackId = _pickAcceptAck(parable, userPrefs.kidFriendlyOnly);
+    if (mounted) {
+      try {
+        final playedAck = await palAudio.playLine('journey/$ackId', voiceKey);
+        if (playedAck) {
+          await palAudio.awaitPlaybackComplete().timeout(
+                const Duration(seconds: 6),
+                onTimeout: () {},
+              );
+          logEvent('pal_audio_played', {
+            'line_id': ackId,
+            'type': 'accept_ack_journey',
+            'voice_key': voiceKey,
+          });
+        }
+      } catch (e) {
+        logEvent('pal_audio_error',
+            {'context': 'journey_accept_ack', 'error': e.toString()});
+      }
+    }
 
     await BiblicalFigureRegistry.ensureLoaded();
     final framingRef =

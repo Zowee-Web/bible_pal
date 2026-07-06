@@ -202,6 +202,36 @@ CLIPS = [
         "text": "That's okay. How are you feeling today?",
         "model": "eleven_v3",
     },
+    # ---- Journey ACCEPT acknowledgments (rotation, 2026-07-05) ----
+    # Played after "yes", BEFORE the story's framing line, so the accept
+    # lands as a reply rather than a jump-cut into narration. PAL rotates
+    # through the set (never the same one twice in a row) so a returning
+    # user never hears one phrase hundreds of times. SOFTLY matched to
+    # the coming story's flavor: walking beats for narrative journeys,
+    # "see where the story goes" for wonder/vision stories; neutral beats
+    # fit anything (flavor tags live in main_menu_screen.dart's pools).
+    #
+    # Editorially-approved set (Adam, 2026-07-05) — docs/
+    # JOURNEY_TRANSITION_VOICE.md. Governing rule: the acknowledgment
+    # NEVER draws attention to itself. It is a gentle step onto the path;
+    # the story is the destination. "Come with me." / "I'm with you."
+    # were deliberately rejected — the first leads (PAL walks BESIDE, not
+    # ahead), the second is emotional-register reassurance reserved for
+    # hurting/afraid moments, too heavy for a curiosity-driven "yes".
+    # ADULT set — editorial, not emotional:
+    {"clip_id": "accept_keep_walking", "text": "Let's keep walking.", "model": "eleven_v3"},
+    {"clip_id": "accept_walk_farther", "text": "Let's walk a little farther.", "model": "eleven_v3"},
+    {"clip_id": "accept_see_where", "text": "Let's see where the story goes.", "model": "eleven_v3"},
+    {"clip_id": "accept_continue", "text": "Let's continue.", "model": "eleven_v3"},
+    {"clip_id": "accept_alright", "text": "Alright.", "model": "eleven_v3"},
+    {"clip_id": "accept_of_course", "text": "Of course.", "model": "eleven_v3"},
+    # KID set — a little more energy (v3 handles the "!" without going
+    # cartoonish; ear-check on device, drop the "!" if it over-performs):
+    {"clip_id": "accept_kid_keep_walking", "text": "Let's keep walking.", "model": "eleven_v3"},
+    {"clip_id": "accept_kid_what_happens", "text": "Let's see what happens next.", "model": "eleven_v3"},
+    {"clip_id": "accept_kid_come_on", "text": "Come on, let's go!", "model": "eleven_v3"},
+    {"clip_id": "accept_kid_ready", "text": "Ready? Let's go!", "model": "eleven_v3"},
+    {"clip_id": "accept_kid_keep_going", "text": "Okay, let's keep going.", "model": "eleven_v3"},
     # ---- Per-kid-journey character name (Kid David Arc — first ship) ----
     # DEPRECATED 2026-06-28 by Adam after ear-check: stitching a 1-
     # syllable name clip into a kid offer sounds punched-out and
