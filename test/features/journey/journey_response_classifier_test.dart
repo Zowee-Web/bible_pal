@@ -7,7 +7,7 @@ import 'package:bible_pal/features/journey/journey_response_classifier.dart';
 /// The classifier maps free-form STT text into one of four buckets the
 /// cascade dispatches on. These tests pin the priority order:
 ///
-///   ambiguous-markers > accept-start > mood-anywhere > decline-start > ambiguous-fallback
+///   ambiguous-markers > accept-start > mood-anywhere > decline-start > moodRedirect-fallback
 ///
 /// If you ever loosen this order, mood-laced affirmatives ("yes I'm
 /// anxious") would mis-route to mood-flow and the user would be denied
@@ -213,12 +213,35 @@ void main() {
           JourneyResponseBucket.ambiguous);
     });
 
-    test('unrecognized utterance → ambiguous fallback', () {
-      // No pattern matches → fall through to ambiguous.
-      expect(c.classify('what is this').bucket,
-          JourneyResponseBucket.ambiguous);
-      expect(c.classify('purple monkey dishwasher').bucket,
-          JourneyResponseBucket.ambiguous);
+  });
+
+  group('substantive fallback → moodRedirect', () {
+    test('a substantive statement with no mood keyword → moodRedirect', () {
+      // 2026-07-05 fix: any substantive utterance that is not an
+      // explicit accept/decline and carries no uncertainty marker is
+      // the user answering the open door ("tell me what's on your
+      // heart") — route it to a story (mood service defaults to
+      // "weary"), never a decline clip + re-listen (apparent freeze).
+      for (final t in const [
+        'i had a long day at work today',
+        'i got in trouble at school today',
+        'work was really busy',
+        'my mom is in the hospital',
+        'what is this',
+        'purple monkey dishwasher',
+      ]) {
+        expect(c.classify(t).bucket, JourneyResponseBucket.moodRedirect,
+            reason: '"$t" should route to a story, not freeze');
+      }
+    });
+
+    test('genuine uncertainty still → ambiguous (not moodRedirect)', () {
+      // The fallback change must NOT swallow real uncertainty — those
+      // still get the gentle re-prompt.
+      for (final t in const ["i don't know", 'maybe', 'hmm', 'not sure']) {
+        expect(c.classify(t).bucket, JourneyResponseBucket.ambiguous,
+            reason: '"$t" is genuine uncertainty');
+      }
     });
   });
 

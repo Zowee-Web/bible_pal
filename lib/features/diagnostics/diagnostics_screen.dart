@@ -24,6 +24,8 @@ import '../../core/app_logger.dart';
 import '../../core/breadcrumb_store.dart';
 import '../../core/crash_log_store.dart';
 import '../../core/diagnostics_config.dart';
+import '../../core/journey_testing_config.dart';
+import 'journey_testing_panel.dart';
 import '../../providers/app_state_notifier.dart';
 import '../../providers/service_providers.dart';
 import '../../services/storage_service.dart';
@@ -423,6 +425,10 @@ class _DiagnosticsScreenState extends ConsumerState<DiagnosticsScreen> {
                       ],
                     ),
                   ),
+                // Beta-only Journey testing panel (JOURNEY_TESTING_ENABLED).
+                // A sibling of the kDebugMode block above — NOT nested in
+                // it — so it shows in release beta builds, not just debug.
+                if (kJourneyTestingEnabled) const JourneyTestingPanel(),
                 // Breadcrumbs list or empty state
                 Expanded(
                   child: _breadcrumbs.isEmpty

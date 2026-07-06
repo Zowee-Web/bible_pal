@@ -1,3 +1,4 @@
+import 'package:bible_pal/core/journey_testing_config.dart';
 import 'package:bible_pal/models/parable.dart';
 import 'package:bible_pal/services/storage_service.dart';
 import 'pal_session.dart';
@@ -113,7 +114,61 @@ class PalSessionStore {
   /// if PAL has never spoken one. Pass-through over
   /// [StorageService.getLastJourneyContinuationSpokenAt].
   Future<DateTime?> getLastJourneyContinuationSpokenAt() async {
-    return _storage.getLastJourneyContinuationSpokenAt();
+    final raw = await _storage.getLastJourneyContinuationSpokenAt();
+    // Beta testing override (JOURNEY_TESTING_ENABLED): collapse the
+    // engine's fixed 3-day cooldown to the panel-selected cadence WITHOUT
+    // touching the pure engine or fireJourneyOffer. If the real elapsed
+    // time already meets the selected cadence, report null so the engine
+    // treats it as "no prior offer" (eligible); otherwise report the real
+    // (recent) anchor so the engine still blocks. Correct for any cadence
+    // <= 3d — the only range the panel exposes. `Duration.zero` (Disabled)
+    // makes the difference always >= it, i.e. always eligible. Compiled
+    // out entirely in production (kJourneyTestingEnabled = const false).
+    if (kJourneyTestingEnabled && raw != null) {
+      final cadence = await _storage.getJourneyCadenceOverride();
+      if (cadence != null) {
+        return DateTime.now().difference(raw) >= cadence ? null : raw;
+      }
+    }
+    return raw;
+  }
+
+  // ── Beta journey testing (JOURNEY_TESTING_ENABLED) ────────────────
+  // Panel-facing helpers. All no-ops in production (the panel that calls
+  // them is compiled out), but kept flag-free here so they stay simple
+  // pass-throughs; the gate lives at the call sites + the getter above.
+
+  /// The current beta cadence override, or null for production 3-day.
+  Future<Duration?> getJourneyCadenceOverride() =>
+      _storage.getJourneyCadenceOverride();
+
+  /// Set the beta cadence override. null = production; zero = disabled.
+  Future<void> setJourneyCadenceOverride(Duration? cadence) =>
+      _storage.setJourneyCadenceOverride(cadence);
+
+  /// Reset ONLY the continuation cooldown so the next PAL tap is
+  /// eligible again — keeps the session log intact (unlike [clear], which
+  /// wipes sessions and would leave the engine with no in-journey source).
+  Future<void> clearJourneyCooldownOnly() =>
+      _storage.clearLastJourneyContinuationSpokenAt();
+
+  /// Seed a completed Daniel-arc source session (story 1486, Daniel 1).
+  /// Convenience wrapper kept for the cadence regression test.
+  Future<void> seedDanielArcSession({DateTime? at}) => seedJourneySourceSession(
+      'story_1486_brave_courage_full_traditional',
+      at: at);
+
+  /// Seed a completed source session for any journey so the engine has an
+  /// in-journey, not-end-of-journey session to offer a continuation from.
+  /// [storyId] must match the engine's lane pattern: adult
+  /// `story_<N>_<mood>_<length>_traditional` (only the leading number is
+  /// parsed), kid `kidstory_kid_<anchor>_<short|full|long>`. Beta only.
+  Future<void> seedJourneySourceSession(String storyId, {DateTime? at}) async {
+    await _storage.addPalSession(PalSession(
+      storyId: storyId,
+      completedAt: at ?? DateTime.now(),
+      languageStyle: 'WEB',
+    ));
   }
 
   /// Returns every persisted session in append order (oldest first).
@@ -137,5 +192,9 @@ class PalSessionStore {
     await _storage.clearPalSessions();
     await _storage.clearLastMemoryLineSpokenAt();
     await _storage.clearLastJourneyContinuationSpokenAt();
+    // Beta testing override, if any, is compiled out in production; the
+    // remove is a harmless no-op there. Included so a "clear memory" in a
+    // beta build also drops a lingering cadence override.
+    await _storage.clearJourneyCadenceOverride();
   }
 }

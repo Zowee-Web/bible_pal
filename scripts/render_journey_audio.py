@@ -115,9 +115,15 @@ ELEVENLABS_VOICE_SETTINGS = {
     "use_speaker_boost": True,
 }
 
-# Per the 2026-06-28 audition lock. Texts are FINAL — any change
-# requires a new audition pass + re-render. Punctuation matters for
-# prosody (commas → mid-sentence pause; "…" → softer trailing).
+# Per the 2026-06-28 audition lock. Punctuation matters for prosody
+# (commas → mid-sentence pause; "…" → softer trailing).
+#
+# 2026-07-05 on-device revision (Adam): every arc_offer trimmed to
+# ~160–210 chars (spoken length) and rewritten so the INVITATION
+# clause always poses a clear question — the "Let's stay with…" /
+# "Whenever you're ready…" declarative forms gave the listener
+# nothing to say "yes" to. Now enforced by JOURNEY_TRANSITION_VOICE
+# (one clear question, then the open-door tail).
 #
 # Authoring source of truth for the wording of these beats:
 # docs/JOURNEY_TRANSITION_VOICE.md (relational-center rule, the
@@ -148,17 +154,23 @@ CLIPS = [
     },
     {
         "clip_id": "decline_adult",
-        # 2026-06-29 voice audit (docs/PAL_VOICE.md): shortened from
-        # "Of course. Let's find something for today." — the offer's
-        # trailing "or, tell me what's on your heart today" already
-        # invites the mood-redirect, so the decline doesn't need to
-        # invite again. Brief acknowledgment, then STT opens.
+        # 2026-07-05 (on-device): the bare "Of course." was too thin
+        # for its real job. When the user declines, the flow REOPENS
+        # the mic (mood-flow re-listen) — a bare acknowledgment left a
+        # live mic with no cue, reading as a dead end. The decline line
+        # must now BRIDGE across that gap: acknowledge without guilt,
+        # then gently orient the reopened mic with a feeling-check.
+        # Adam-chosen (pivot-to-presence: declining the journey is not
+        # declining PAL — "how can I help you today?"). Deliberately
+        # avoids the offer's "…what's on your heart today" tail so the
+        # user doesn't hear it twice; "how are you feeling" also invites
+        # the life-statements the classifier now routes straight to a
+        # story. Supersedes the 2026-06-29 shortening (which assumed the
+        # flow ended at the decline; it doesn't).
         #
-        # Model: eleven_v3 (not turbo). Single short utterances need
-        # the prosodic breath room v3 provides; turbo over-clips
-        # consonants on 2-word phrases. Matches the offer clips'
-        # model choice for tonal consistency across the cascade.
-        "text": "Of course.",
+        # Model: eleven_v3 (not turbo) — prosodic breath room; matches
+        # the offer clips for tonal consistency across the cascade.
+        "text": "That's alright. How are you feeling today?",
         "model": "eleven_v3",
     },
     # ---- Per-adult-journey MONOLITHIC offer (Daniel Arc — first ship) ----
@@ -182,16 +194,44 @@ CLIPS = [
     },
     {
         "clip_id": "decline_kid",
-        # 2026-06-29 voice audit (docs/PAL_VOICE.md): shortened from
-        # "Okay! Let's find something else." — same reason as
-        # decline_adult. First take used "Okay!" with exclamation;
-        # turbo treated the "!" as performative excitement on a
-        # 5-char utterance and the result was abrupt + loud. Dropped
-        # to "Okay." (period). Second take still abrupt on turbo —
-        # switched to eleven_v3 for prosodic breath room.
-        "text": "Okay.",
+        # 2026-07-05 (on-device): bridges into the mic re-open, same as
+        # decline_adult — see that note. Kid parallel of the pivot line.
+        # No "!" — turbo/v3 read exclamation as performative excitement
+        # on short utterances; the period keeps it gentle. Avoids the
+        # kid offer's "…what's on your mind?" tail so it isn't repeated.
+        "text": "That's okay. How are you feeling today?",
         "model": "eleven_v3",
     },
+    # ---- Journey ACCEPT acknowledgments (rotation, 2026-07-05) ----
+    # Played after "yes", BEFORE the story's framing line, so the accept
+    # lands as a reply rather than a jump-cut into narration. PAL rotates
+    # through the set (never the same one twice in a row) so a returning
+    # user never hears one phrase hundreds of times. SOFTLY matched to
+    # the coming story's flavor: walking beats for narrative journeys,
+    # "see where the story goes" for wonder/vision stories; neutral beats
+    # fit anything (flavor tags live in main_menu_screen.dart's pools).
+    #
+    # Editorially-approved set (Adam, 2026-07-05) — docs/
+    # JOURNEY_TRANSITION_VOICE.md. Governing rule: the acknowledgment
+    # NEVER draws attention to itself. It is a gentle step onto the path;
+    # the story is the destination. "Come with me." / "I'm with you."
+    # were deliberately rejected — the first leads (PAL walks BESIDE, not
+    # ahead), the second is emotional-register reassurance reserved for
+    # hurting/afraid moments, too heavy for a curiosity-driven "yes".
+    # ADULT set — editorial, not emotional:
+    {"clip_id": "accept_keep_walking", "text": "Let's keep walking.", "model": "eleven_v3"},
+    {"clip_id": "accept_walk_farther", "text": "Let's walk a little farther.", "model": "eleven_v3"},
+    {"clip_id": "accept_see_where", "text": "Let's see where the story goes.", "model": "eleven_v3"},
+    {"clip_id": "accept_continue", "text": "Let's continue.", "model": "eleven_v3"},
+    {"clip_id": "accept_alright", "text": "Alright.", "model": "eleven_v3"},
+    {"clip_id": "accept_of_course", "text": "Of course.", "model": "eleven_v3"},
+    # KID set — a little more energy (v3 handles the "!" without going
+    # cartoonish; ear-check on device, drop the "!" if it over-performs):
+    {"clip_id": "accept_kid_keep_walking", "text": "Let's keep walking.", "model": "eleven_v3"},
+    {"clip_id": "accept_kid_what_happens", "text": "Let's see what happens next.", "model": "eleven_v3"},
+    {"clip_id": "accept_kid_come_on", "text": "Come on, let's go!", "model": "eleven_v3"},
+    {"clip_id": "accept_kid_ready", "text": "Ready? Let's go!", "model": "eleven_v3"},
+    {"clip_id": "accept_kid_keep_going", "text": "Okay, let's keep going.", "model": "eleven_v3"},
     # ---- Per-kid-journey character name (Kid David Arc — first ship) ----
     # DEPRECATED 2026-06-28 by Adam after ear-check: stitching a 1-
     # syllable name clip into a kid offer sounds punched-out and
@@ -261,17 +301,111 @@ CLIPS = [
     # ADULT — Daniel Arc (sourceStoryIndex 0/1/2; index 3 = end)
     {
         "clip_id": "daniel_arc_offer_0",
-        "text": "Last time, we sat with young Daniel as he chose what was true… There's more to his story if you'd like to hear it… or, tell me what's on your heart today.",
+        "text": "Last time, young Daniel chose what was true… Would you like to hear what happened when his three friends would not bow to the king's golden image? Or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     {
         "clip_id": "daniel_arc_offer_1",
-        "text": "Last time, we stood in the fire with Daniel's friends… There's more to his story if you'd like to hear it… or, tell me what's on your heart today.",
+        "text": "Last time, we stood in the fire with Daniel's friends… Shall we return to Daniel — risen high, and hated by enemies who can fault him for nothing but his prayers? Or, tell me what's on your heart today.",
         "model": "eleven_v3",
     },
     {
         "clip_id": "daniel_arc_offer_2",
-        "text": "Last time, we walked with Daniel into the lions' den… There's more to his story if you'd like to hear it… or, tell me what's on your heart today.",
+        "text": "Last time, we walked with Daniel into the lions' den… Shall we stay with him for one more night, when a dream comes — four winds striving on a great sea? Or, tell me what's on your heart today.",
+        "model": "eleven_v3",
+    },
+    # ── ENRICHED slate v2 — Production Invitation Families (2026-07-05) ──
+    # Adam-approved (docs/editorial/history/slate_v2_beat_review.md). The 3
+    # Daniel clips above were also moved floor→enriched; floor versions
+    # archived at assets/pal/audio/audio_archive_daniel_floor_pre_enriched_2026-07-05/.
+    # ADULT — Joseph Arc (0/1/2/3; index 4 = end)
+    {
+        "clip_id": "joseph_arc_offer_0",
+        "text": "Last time, Joseph's brothers sold him for twenty pieces of silver… Would you like to hear what happened when he met two troubled men in an Egyptian prison? Or, tell me what's on your heart today.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "joseph_arc_offer_1",
+        "text": "Last time, Joseph sat forgotten in prison… Would you like to see where God leads him when Pharaoh wakes from dreams no wise man can explain? Or, tell me what's on your heart today.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "joseph_arc_offer_2",
+        "text": "Last time, Joseph rose from prison to Pharaoh's court… Shall we stay with him to the moment he clears the hall of everyone but his brothers? Or, tell me what's on your heart today.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "joseph_arc_offer_3",
+        "text": "Last time, Joseph wept and told his brothers who he was… Shall we keep walking with him to the day their father dies, and his brothers fear him all over again? Or, tell me what's on your heart today.",
+        "model": "eleven_v3",
+    },
+    # ADULT — Ruth Arc (0/1/2/3; index 4 = end)
+    {
+        "clip_id": "ruth_arc_offer_0",
+        "text": "Last time, Ruth clung to Naomi and would not turn back… Would you like to follow her into a stranger's field, where she gleans without knowing whose land it is? Or, tell me what's on your heart today.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "ruth_arc_offer_1",
+        "text": "Last time, Boaz first noticed Ruth among his reapers… Would you like to hear what happened when Naomi sent her by night to the threshing floor? Or, tell me what's on your heart today.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "ruth_arc_offer_2",
+        "text": "Last time, Ruth came softly through the dark to Boaz's feet… Would you like to follow Boaz to the gate of Bethlehem, where a nearer kinsman holds first claim? Or, tell me what's on your heart today.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "ruth_arc_offer_3",
+        "text": "Last time, Boaz stood at the gate and spoke for Ruth before the elders… Shall we keep walking with Ruth and Naomi, to the day the women bring a blessing to Naomi's door? Or, tell me what's on your heart today.",
+        "model": "eleven_v3",
+    },
+    # ADULT — Elijah Arc (0/1/2/3; index 4 = end)
+    {
+        "clip_id": "elijah_arc_offer_0",
+        "text": "Last time, a widow's last handful of meal became enough at Zarephath… Shall we follow Elijah to Carmel, where he stands alone against the prophets of Baal? Or, tell me what's on your heart today.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "elijah_arc_offer_1",
+        "text": "Last time, fire fell on Elijah's drenched altar at Carmel… Would you like to hear what happened when he fled a queen's threat into the wilderness, alone? Or, tell me what's on your heart today.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "elijah_arc_offer_2",
+        "text": "Last time, an angel woke Elijah under the juniper tree… Shall we follow him to the mountain cave, where God comes in a still, small voice? Or, tell me what's on your heart today.",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "elijah_arc_offer_3",
+        "text": "Last time, God met Elijah in the cave in a still, small voice… Shall we keep walking with him down one last road, where Elisha will not leave his side? Or, tell me what's on your heart today.",
+        "model": "eleven_v3",
+    },
+    # KID — Kid Moses Arc (0/1; index 2 = end)
+    {
+        "clip_id": "kid_moses_arc_offer_0",
+        "text": "Last time, baby Moses floated snug in his basket among the reeds… Shall we see the day he grew up and found a bush on fire that never burned up? Or, what's on your mind?",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "kid_moses_arc_offer_1",
+        "text": "Last time, Moses stood at the bush that burned but never burned up… Shall we walk with him as he leads God's people to the edge of a great wide sea? Or, what's on your mind?",
+        "model": "eleven_v3",
+    },
+    # KID — Kid Joseph Arc (0/1/2; index 3 = end)
+    {
+        "clip_id": "kid_joseph_arc_offer_0",
+        "text": "Last time, Joseph wore his coat of every color… Shall we keep walking with him, far from home now in a land where no one knows his name? Or, what's on your mind?",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "kid_joseph_arc_offer_1",
+        "text": "Last time, Joseph waited in the dark, and God stayed right beside him… Would you like to hear what happened when the king of Egypt had two strange dreams no one could explain? Or, what's on your mind?",
+        "model": "eleven_v3",
+    },
+    {
+        "clip_id": "kid_joseph_arc_offer_2",
+        "text": "Last time, God showed Joseph what the king's dreams meant… Shall we stay with him a little longer, to the day his own brothers come to Egypt for food, not knowing who he is? Or, what's on your mind?",
         "model": "eleven_v3",
     },
     # KID — Kid David Arc (sourceStoryIndex 0/1; index 2 = end)

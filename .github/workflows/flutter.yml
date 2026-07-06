@@ -34,10 +34,13 @@ jobs:
       run: flutter analyze
 
     - name: Run all tests
-      run: flutter test --exclude-tags=requires_diagnostics_define
+      run: flutter test --exclude-tags="requires_diagnostics_define || requires_journey_testing_define"
 
     - name: Run diagnostics tests (requires DIAGNOSTICS_ENABLED)
       run: flutter test --run-skipped --tags=requires_diagnostics_define --dart-define=DIAGNOSTICS_ENABLED=true
+
+    - name: Run journey testing tests (requires JOURNEY_TESTING_ENABLED)
+      run: flutter test --run-skipped --tags=requires_journey_testing_define --dart-define=JOURNEY_TESTING_ENABLED=true
 
     - name: 🔒 CRITICAL - Run Bible Translation Compliance Tests
       run: |

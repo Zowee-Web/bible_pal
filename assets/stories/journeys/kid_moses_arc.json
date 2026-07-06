@@ -4,7 +4,7 @@
   "journeyId": "kid_moses_arc",
   "journeyType": "narrative",
   "lane": "kid",
-  "status": "draft",
+  "status": "ready",
 
   "_documentation": {
     "_purpose": "Slate v2 KID Narrative journey (docs/editorial/history/slate_v2_beat_review.md, section 5 — PASS, no corrections, verifier problems: none). Second kid journey after kid_david_arc; holds the doctrine's 3-story kid sweet spot.",

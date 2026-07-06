@@ -3,3 +3,5 @@ tags:
   kid-safety:
   requires_diagnostics_define:
     skip: "Requires --dart-define=DIAGNOSTICS_ENABLED=true (run via CI or manually)"
+  requires_journey_testing_define:
+    skip: "Requires --dart-define=JOURNEY_TESTING_ENABLED=true (run via CI or manually)"

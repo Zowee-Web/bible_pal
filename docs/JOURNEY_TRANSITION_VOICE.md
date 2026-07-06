@@ -131,16 +131,40 @@ Production beats use the **enriched register** — the floor register ("There's 
 
 1. **Curious (default):** *"Would you like to hear what happened when Joseph was called before Pharaoh?"* / *"…what happened next…"* / *"…where this story leads…"*
 2. **Simple:** *"Would you like to hear what happened next?"* (+ doorway sentence)
-3. **Walking (the most Bible PAL):** *"Shall we keep walking with Joseph?"* / *"Let's stay with Ruth a little longer."* — this is the relational-voice family the Journey Doctrine's v1.0 amendment already commissioned ("Let's return to David"); two independent design paths converged here.
+3. **Walking (the most Bible PAL):** *"Shall we keep walking with Joseph?"* / *"Shall we stay with Ruth a little longer?"* — this is the relational-voice family the Journey Doctrine's v1.0 amendment already commissioned ("Let's return to David"); two independent design paths converged here. **Question form only (2026-07-05):** the declarative *"Let's stay with Ruth a little longer."* was retired here — spoken aloud it reads as a statement, not an invitation (see the one-clear-question rule). Keep the *"Shall we…"* framing.
 4. **Gentle curiosity:** *"Would you like to see where God leads Elijah next?"*
-5. **Warm companion (sparing — at most once per slate):** *"Whenever you're ready, there's another part of the story waiting."* Used rarely because it draws attention to PAL rather than the story — Pillar 2 governs.
+5. **Warm companion (RETIRED 2026-07-05):** *"Whenever you're ready, there's another part of the story waiting."* Retired: it is purely declarative — no question to answer — and it draws attention to PAL rather than the story (Pillar 2). Where its gentleness is wanted, carry it *inside* a question: *"Shall we follow Elijah to the quiet of the mountain?"*
 6. **Compound (invite + doorway):** an invitation followed by ONE declarative picture — *"Shall we keep walking with Joseph? He's about to be called before Pharaoh."* Not the ending. Just the doorway.
 
 **The one-question rule (locked, Adam's wording):** every invitation answers only *"Why should I listen to the next story?"* — never *"Why is the next story amazing?"*
 - ✗ *"Would you like to hear how Joseph became the second most powerful man in Egypt?"* — destination given away.
 - ✓ *"Would you like to hear what happened when Pharaoh's dreams left everyone searching for answers?"* — a doorway.
 
-All four load-bearing rules apply unchanged — the invitation carries the glimpse, so the next-chapter rule, no-resolution rule (with its fulfillment clause), compressed-theology rule, and anti-sensational bans govern the invitation exactly as they governed the declarative glimpse. Question-form and declarative-form are both valid; the open-door tail remains **required** after either.
+All four load-bearing rules apply unchanged — the invitation carries the glimpse, so the next-chapter rule, no-resolution rule (with its fulfillment clause), compressed-theology rule, and anti-sensational bans govern the invitation exactly as they governed the declarative glimpse. The open-door tail remains **required**.
+
+**The one-clear-question rule (locked 2026-07-05, on-device finding).** The invitation clause must pose a single clear yes/no question — *"Shall we keep walking with Joseph?"*, *"Would you like to hear what happened when…?"* On-device beta testing exposed the failure the earlier "both forms are valid" allowance missed: a purely **declarative** invitation (*"Let's stay with Ruth a little longer."*, *"Whenever you're ready, there's another part of the story waiting."*) gives the listener nothing to say *yes* to — they hear a statement, then the mic opens for a response they never knew was wanted. The story-announcement that follows a *yes* is spoken by PAL; the invitation that precedes it must therefore **ask**, aloud, in question form. **Place the question last — immediately before the open-door tail** (*"…not knowing whose it is — shall we stay with her a little longer? Or, tell me…"*). A declarative "doorway" sentence sitting *between* the question and the tail buries the ask: on-device (2026-07-05), Ruth's *"Shall we stay with her a little longer? She's gleaning in a stranger's field… Or, tell me…"* did not register as a question at all — the beat trailed off into a statement. If you want a doorway picture, put it *before* the question (Family 6 compound becomes picture-then-invite), never after.
+
+---
+
+## The Accept Acknowledgment (2026-07-05)
+
+When the user says **yes** to a continuation, PAL speaks a brief acknowledgment *before* the story's framing line, so the accept lands as a reply instead of a jump-cut into narration. (The 2026-07-02 rhythm played "yes" → framing with nothing between; on-device that read as bare — the beat this section fills is the "future follow-up" that `_playJourneyStoryIntro` anticipated.)
+
+**The governing rule — it never draws attention to itself.** The acknowledgment is a *gentle step onto the path*; the story is the destination. If a user remembers the acknowledgment instead of the framing line or the story, it is doing too much. This is why the set is **editorial, not emotional**: it acknowledges the choice and carries the rhythm forward, nothing more.
+
+**Rotation, not repetition.** PAL rotates through the set (never the same beat twice in a row) so a returning user never hears one phrase hundreds of times.
+
+**Softly flavor-matched.** The beat quietly fits the *kind* of story coming — walking beats for narrative journeys, *"Let's see where the story goes"* for wonder/vision stories, neutral beats for anything. The user won't consciously notice; it just makes Journey Mode feel handcrafted rather than random.
+
+**The set (Adam-approved):**
+- **Adult** *(editorial, not emotional)* — "Let's keep walking." (signature) · "Let's walk a little farther." · "Let's see where the story goes." · "Let's continue." · "Alright." · "Of course."
+- **Kid** *(a little more energy, never cartoonish)* — "Let's keep walking." · "Come on, let's go!" · "Let's see what happens next." · "Ready? Let's go!" · "Okay, let's keep going."
+
+**Two deliberate rejections (they define the register by contrast):**
+- **"Come with me."** — subtly makes PAL *lead* and the user *follow*. Bible PAL walks *beside* you, never ahead. *"I'll walk beside you"* ≠ *"Follow me."*
+- **"I'm with you."** — that reassurance belongs to the *emotional* register, reserved for someone hurting or afraid. On a curiosity-driven "yes" it overreaches and makes a light moment feel heavier than it is.
+
+**"Let's keep walking." is the signature** — humble, memorable, and it quietly reinforces what Journey Mode *is* every time (you are continuing a path, not just playing another story) without a hint of theatrics (PAL_VOICE Pillar 3).
 
 ---
 
@@ -163,7 +187,7 @@ Transition beats render to TTS as short, expressive clips. They inherit the [Ref
 - **Soft-consonant ending** where practical — *n / m / ng / l / voiced-z / voiced-v*. Avoid hard plosives (*p / t / k*), which the v3 model clips. See [feedback_audio_end_clip].
 - **Ellipsis prosody** — the *"…"* between clauses is a real instruction to the model: a soft, trailing pause, not a full stop. Keep the beat one continuous thought.
 - **"Last time," not "yesterday."** "Last time" spans the engine's 1–7-day recency band, so one clip covers the whole window without per-band re-renders.
-- **Length** — one continuous spoken thought. **The gate is the breath, not the count:** if it needs a second breath to say aloud, it is too long. As calibration, the promoted set runs ~145–260 characters (the original 150–220 guidance was measured against the floor clip; the promoted exemplars corrected it).
+- **Length** — one continuous spoken thought. **The gate is the breath, not the count:** if it needs a second breath to say aloud, it is too long. Calibration tightened **2026-07-05** after on-device listening: the first shipped slate ran 205–258 characters and felt long spoken, so every beat was trimmed to **~150–210 characters** (one comfortable breath). Treat ~210 as the ceiling, not the target.
 
 ---
 
@@ -379,3 +403,4 @@ This document governs **wording** only.
 - **2026-07-04** (curator wording review, same session) — Adam's final pass on the two trim texts: Esther *"when speaking"* → *"though speaking"* (rhythm); Psalm 23 keeps the public-domain valley phrase but **restores the staff imagery** (*"not once let go of the staff"*) over the trimmed *"stay just as close"* — the glimpse should stay inside the passage's own symbols rather than abstracting them. That principle is now recorded in the beat's annotation as a craft lesson.
 - **2026-07-04** (production register, same session) — Adam ratified the **enriched register for ALL journeys** (including Daniel — the floor-vs-enriched controlled experiment deliberately traded away: at beta scale, qualitative feedback is the real instrument and the product matters more; floor clips archived, funnel telemetry still measures absolute behavior). Added the **Production Invitation Families** (six rotating patterns; "Shall we keep walking with…" the signature; Family 5 sparing per Pillar 2) and the **one-question rule** ("Why should I listen to the next story?" — never "Why is the next story amazing?"). Both question-form and declarative glimpses valid; open-door tail unchanged.
 - **2026-07-04** (verification pass, same session) — A three-lens adversarial verification of the promotion amendment caught and fixed, before commit: a **banned-translation fingerprint** in the Psalm 23 beat (*"the darkest valley"*, the NIV/NRSV signature — corrected to the public-domain phrase; the automated fingerprint scan covers verse text, not PAL prose, so this check now lives in the audit); the **fulfillment clause** ratified into the craft rule, prohibited patterns, and checklist (previously an ad-hoc note on the Simeon beat); the **audit checklist extended 8 → 10** (manifest-mapping check; compressed-theology check) plus the writer-side translation-compliance check; the **length guidance corrected to breath-first** (~145–260 observed across the promoted set); an **exemplar-status preamble** (benchmarks are tuning forks against assumed splits; audit rule 9 governs production reuse); the **kid-lane shape note** (the Kid-Lane Appendix governs the shipped v0 offer; this register describes the Scale-Horizon beat); and a **durability guard** (Pillar 2 outranks the smile test).
+- **2026-07-05** (first on-device listening pass, Adam) — The 20 shipped offer clips were heard on-device for the first time. Two corrections, both now locked above: (1) the **one-clear-question rule** — a purely declarative invitation (*"Let's stay with Ruth a little longer."*, Family 5's *"Whenever you're ready…"*) leaves the listener with nothing to say *yes* to; every invitation must now pose a clear yes/no question. This supersedes the 2026-07-04 "both question-form and declarative valid" allowance; Family 3's declarative variant and Family 5 were retired. (2) **Length tightened to ~150–210 characters** — the shipped slate (205–258) felt long spoken. All 20 offers were rewritten to satisfy both and re-rendered (STILLWATER/eleven_v3). Companion fix in the same pass: **12 journey-target framing "announce" lines** (the accept-path line PAL speaks before the story player) were authored + rendered — they had been empty registry stubs, so accepting Joseph/Ruth/Kid-Joseph continuations jumped straight into the story with no announcement.

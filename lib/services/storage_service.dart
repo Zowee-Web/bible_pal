@@ -57,6 +57,14 @@ class StorageService {
   static const String _keyLastJourneyContinuationSpokenAt =
       'last_journey_continuation_spoken_at';
 
+  // Beta-only journey testing (JOURNEY_TESTING_ENABLED). Stores the
+  // selected continuation-cadence override in milliseconds so the
+  // testing panel can collapse the 3-day cooldown to seconds. Absent =
+  // no override (production 3-day gate). 0 = disabled (always eligible).
+  // Read ONLY behind kJourneyTestingEnabled; never touched in production.
+  static const String _keyBetaJourneyCadenceMs =
+      'beta_journey_cadence_override_ms';
+
   final SharedPreferences _prefs;
 
   StorageService(this._prefs);
@@ -791,5 +799,28 @@ class StorageService {
   /// 3 more days after the user explicitly wiped memory.
   Future<void> clearLastJourneyContinuationSpokenAt() async {
     await _prefs.remove(_keyLastJourneyContinuationSpokenAt);
+  }
+
+  // ── Beta journey testing: cadence override ────────────────────────
+  // Behind JOURNEY_TESTING_ENABLED only. `null` removes the override
+  // (production 3-day gate); `Duration.zero` disables the cooldown
+  // (always eligible). Stored as milliseconds.
+
+  Future<void> setJourneyCadenceOverride(Duration? cadence) async {
+    if (cadence == null) {
+      await _prefs.remove(_keyBetaJourneyCadenceMs);
+    } else {
+      await _prefs.setInt(_keyBetaJourneyCadenceMs, cadence.inMilliseconds);
+    }
+  }
+
+  Future<Duration?> getJourneyCadenceOverride() async {
+    final ms = _prefs.getInt(_keyBetaJourneyCadenceMs);
+    if (ms == null) return null;
+    return Duration(milliseconds: ms);
+  }
+
+  Future<void> clearJourneyCadenceOverride() async {
+    await _prefs.remove(_keyBetaJourneyCadenceMs);
   }
 }
