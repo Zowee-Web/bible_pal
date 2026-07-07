@@ -54,9 +54,10 @@ final parableServiceProvider = FutureProvider<ParableService>((ref) async {
 // Bundled audio paths — set of asset-bundled audio file paths (relative to
 // `assets/stories/`) loaded once from the Flutter AssetManifest. Used by the
 // player screen to gate variant chip availability so we never enable a
-// Full/Long/KJV button whose audio is not in the bundle. R2-served variants
-// are deliberately excluded here; if R2 audio normalization lands later, a
-// separate availability source will be unioned in.
+// Full/Long/KJV button whose audio is not in the bundle. Since 2026-07-06,
+// R2-verified paths ([r2VerifiedAudioPathsProvider]) are unioned in at the
+// call site — the "separate availability source" this comment anticipated —
+// so streaming (slim) builds still offer every variant R2 can serve.
 final bundledAudioPathsProvider = FutureProvider<Set<String>>((ref) async {
   ref.keepAlive();
   const String prefix = 'assets/stories/';
@@ -66,6 +67,22 @@ final bundledAudioPathsProvider = FutureProvider<Set<String>>((ref) async {
       .where((p) => p.startsWith(prefix) && p.endsWith('.mp3'))
       .map((p) => p.substring(prefix.length))
       .toSet();
+});
+
+// R2-verified audio paths — the audio the app can stream. Loaded from
+// assets/stories/r2_verified_paths.json, which lists every audio path
+// (relative to `assets/stories/`, same shape as [bundledAudioPathsProvider])
+// that the release-time R2 drift audit confirmed is on R2 AND byte-identical
+// to the canonical repo audio (ETag == local md5). Unioned with bundled
+// paths wherever "playable audio" is decided (variant chips, story
+// eligibility) so streaming builds — which bundle no story audio — know R2
+// audio counts as playable. Regenerated at each release after R2 uploads.
+final r2VerifiedAudioPathsProvider = FutureProvider<Set<String>>((ref) async {
+  ref.keepAlive();
+  final raw =
+      await rootBundle.loadString('assets/stories/r2_verified_paths.json');
+  final decoded = jsonDecode(raw) as Map<String, dynamic>;
+  return (decoded['paths'] as List<dynamic>).cast<String>().toSet();
 });
 
 // AudioService provider - singleton, kept alive for the app lifetime so the

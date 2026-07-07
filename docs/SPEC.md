@@ -269,6 +269,7 @@ Each option has a subtitle hint:
 - Mood, text, and voice entry flows go straight to the player using the saved `UserPreferences.preferredLengthBucket` (default: `short` for first-time users) — no intermediate length picker is shown. The caller pre-loads via `loadParable` and then navigates.
 - PALs Paths story taps and "Next in Your Journey" taps also open the player directly — the calling screen pushes `ParablePlayerScreen(pendingParable, pendingLaunchContext)` and the player owns the load. The player resolves the user's preferred-length variant of the selected story and calls `loadParable` from a `WidgetsBinding.instance.addPostFrameCallback` inside its own `initState`. This is the safe shape: the load runs after the route push has settled and a frame has rendered, which avoids both the iOS audio-session activation hang and provider-cascade rebuilds of the source screen mid-await.
 - Length and Translation are adjusted on the player screen via the variant chips, which are the single canonical control surface for both. The mood screen no longer hosts a Translation toggle; player variant chips own that control. Kid Mode remains on the mood screen since it gates which pool a story is selected from. (The former Story Mode toggle was removed 2026-05-13 with Creative retirement.)
+- **Hybrid chip presentation (2026-07-06, owner-approved):** a chip renders only if the story has that variant REGISTERED (options the story never had are hidden, not greyed). A rendered chip is enabled only if the variant is PLAYABLE in this build (asset-bundled ∪ R2-verified audio). When any rendered chip is disabled — a registered variant this build can't play yet — a small caption appears under the chips: "Some versions aren't available yet." Permanent editorial gaps therefore never advertise themselves; temporary availability gaps stay visible and explained, and the caption self-retires once the audio is fully served.
 - `LengthPickerScreen` is no longer reached from any user flow. The screen and its `/length_picker` route remain in the codebase for now but are unwired; safe to remove in a follow-up cleanup.
 - A subtle one-time arrival animation plays on the Player's Play button when the user lands there from a normal mood/text/voice entry; the user must still tap Play manually to start playback (no auto-play). Path entries do not show the arrival animation.
 - Kid Mode + KJV is not a supported pairing — `AppStateNotifier.updateKidFriendlyOnly` auto-corrects `languageStyle` to `WEB` when Kid Mode is enabled while KJV is selected.
@@ -798,7 +799,17 @@ After a PAL's Story finishes playing, an optional reflection connects the story'
 - **User-toggleable**: Via Settings ("Relate stories to everyday life" toggle)
 - **Persisted**: Setting survives app restarts
 - **Optional**: User may skip/dismiss at any time with no consequence
-- **Opt-in audio**: Reflection audio is not auto-played by default. User must tap "Hear Reflection" button. Exception: when the user has explicitly enabled "Pause for Reflection" on the player screen (Feature 50.6d), reflection audio auto-plays after story body completion.
+- **Opt-in audio**: Reflection audio is not auto-played by default. User must tap the Reflection button. Exception: when the user has explicitly enabled "Pause for Reflection" on the player screen (Feature 50.6d), reflection audio auto-plays after story body completion.
+
+**Always-Visible Reflection Button (2026-07-06, owner-approved):**
+- A Reflection button is ALWAYS present on the story player screen, directly above the Scripture Sources panel.
+- Primary label: "Reflection". Subtitle: `For "<story title>"` — shown in full (wraps, never ellipsized), updates automatically whenever the current story changes (including variant switches).
+- The row (and its trailing ▶/⏸ icon) toggles play/pause for the currently displayed story's reflection (voice-consent-gated, same as all narration). Pause preserves position; play after completion restarts from the beginning.
+- While the reflection is active, a compact seek bar with position/duration appears inside the capsule for rewind/fast-forward. Any story or variant switch stops and resets the reflection player, so the transport can never show a stale position for a different story.
+- Starting/resuming while the story is playing pauses the story first — story and reflection audio never overlap; last-tapped wins (both directions).
+- NO completion badges, checkmarks, or "Reflection Complete" states. The reflection is always available to replay.
+- When the current story's reflection cannot be played by this build (no reflection registered, or its audio is neither bundled nor R2-verified — see the playable-audio availability gate), the button is shown DISABLED with subtitle "Not available for this story" — never hidden.
+- This button supersedes the previous behavior where reflection controls appeared only after story playback completed; the post-completion reflection moment (auto-scroll + reflection panel emphasis) is unchanged and remains the primary reflection experience.
 
 **Reflection System (LOCKED):**
 - **Every story has a reflection**: Every Traditional story has a story-specific reflection created alongside the story.
