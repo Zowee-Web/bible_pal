@@ -96,6 +96,123 @@
       "beatText": "Last time, David set his song down… rock, fortress, deliverer… his city at peace below. Now he is old, with one last prayer before all Israel. Will you stand with him? Or, tell me what's on your heart today.",
       "status": "approved",
       "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1340",
+      "nextStoryId": "1471",
+      "arcId": "david_arc_4",
+      "beatId": "david_arc4_beat_0",
+      "beatText": "Last time, David asked how long Yahweh would hide his face… There's another night where his bones are weary and no rest comes. Would you like to hear it? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1471",
+      "nextStoryId": "1227",
+      "arcId": "david_arc_4",
+      "beatId": "david_arc4_beat_1",
+      "beatText": "Last time, David flooded his bed with tears and asked how long… This next prayer opens harder still, in a cry that feels forsaken. Shall we stay beside him there? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1227",
+      "nextStoryId": "1154",
+      "arcId": "david_arc_4",
+      "beatId": "david_arc4_beat_2",
+      "beatText": "Last time, David cried out, asking why God felt so far away, so silent… Would you like to hear what David prays when the weight of his own sin sits before him? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1154",
+      "nextStoryId": "1283",
+      "arcId": "david_arc_4",
+      "beatId": "david_arc4_beat_3",
+      "beatText": "Last time, David asked God to create in him a clean heart… Shall we stay with him as he cries out from the edge of the pit? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1001",
+      "nextStoryId": "1220",
+      "arcId": "david_arc_5",
+      "beatId": "david_arc5_beat_0",
+      "beatText": "Last time, the shepherd walked David through the valley of shadow… Would you like to hear the one where David stands among his enemies and calls the Lord his light? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1220",
+      "nextStoryId": "1489",
+      "arcId": "david_arc_5",
+      "beatId": "david_arc5_beat_1",
+      "beatText": "Last time, David called the Lord his light and asked whom he should fear… Would you like to sit with him at evening, as he lifts a prayer and calls for an answer? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1489",
+      "nextStoryId": "1434",
+      "arcId": "david_arc_5",
+      "beatId": "david_arc5_beat_2",
+      "beatText": "Last time, David lay down and slept in peace while others still spoke against him… This next one finds him lowering his eyes from great matters. Shall we sit with him? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1434",
+      "nextStoryId": "1214",
+      "arcId": "david_arc_5",
+      "beatId": "david_arc5_beat_3",
+      "beatText": "Last time, David quieted his soul like a weaned child, reaching for nothing… Now his praise won't stay silent. Shall we keep listening with him? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1520",
+      "nextStoryId": "808",
+      "arcId": "david_arc_6",
+      "beatId": "david_arc6_beat_0",
+      "beatText": "Last time, David lifted his small hand to the stars, wondering that God should mind him at all… Would you like to see that same sky speak its glory without a word? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "808",
+      "nextStoryId": "1069",
+      "arcId": "david_arc_6",
+      "beatId": "david_arc6_beat_1",
+      "beatText": "Last time, the heavens told God's glory without a single word… Would you like to hear David sing to the God who has searched him and known him? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1069",
+      "nextStoryId": "1190",
+      "arcId": "david_arc_6",
+      "beatId": "david_arc6_beat_2",
+      "beatText": "Last time, David sang that wherever he went, God's hand was already there, holding him… Shall we sit with him as he turns to his own soul and calls it to bless the Lord? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1190",
+      "nextStoryId": "1329",
+      "arcId": "david_arc_6",
+      "beatId": "david_arc6_beat_3",
+      "beatText": "Last time, David woke his own soul to bless — don't forget all his benefits… Now he stands again under the open sky. Shall we hear him give thanks with his whole heart? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1329",
+      "nextStoryId": "1330",
+      "arcId": "david_arc_6",
+      "beatId": "david_arc6_beat_4",
+      "beatText": "Last time, David gave thanks with his whole heart, for God answered when he called… Old now, hand unsteady, his voice still rising — shall we hear him begin his praise? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
     }
   ]
 }
