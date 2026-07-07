@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  local_auth_windows
   permission_handler_windows
   share_plus
   speech_to_text_windows

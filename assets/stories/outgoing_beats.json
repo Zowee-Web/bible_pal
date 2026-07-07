@@ -1,0 +1,101 @@
+{
+  "_meta": {
+    "version": 1,
+    "purpose": "Outgoing-transition beat ledger. One entry per story that has an APPROVED outgoing journey beat to a specific next story. This is the authoritative record of Adam-approved beat wording.",
+    "invariant": "Once a story has an approved outgoing beat it is COMPLETE and its wording is LOCKED — never rewritten, polished, reordered, or substituted unless the underlying story itself changes. One approved outgoing transition per story; no duplicates. The final story of an arc has no outgoing next and is deliberately NOT listed here — absence means open, not overlooked.",
+    "idNote": "prevStoryId/nextStoryId are anchor-level story numbers (e.g. 1022), not per-variant storyIds — beats are per-EDGE, one per transition regardless of Short/Full/Long/KJV variant.",
+    "created": "2026-07-07"
+  },
+  "entries": [
+    {
+      "prevStoryId": "1022",
+      "nextStoryId": "1112",
+      "arcId": "david_arc_1",
+      "beatId": "david_arc1_beat_0",
+      "beatText": "Last time, Samuel poured the oil on the youngest son, fresh from the sheep… Would you like to hear what happened when David carried bread to an army too afraid to fight? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1112",
+      "nextStoryId": "1052",
+      "arcId": "david_arc_1",
+      "beatId": "david_arc1_beat_1",
+      "beatText": "Last time, David chose five smooth stones from the brook… and the giant fell. Would you like to see who was watching as David stood before the king, dust still on him? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1052",
+      "nextStoryId": "1448",
+      "arcId": "david_arc_1",
+      "beatId": "david_arc1_beat_2",
+      "beatText": "Last time, Jonathan laid his robe and sword in David's arms, and neither of them spoke… Now David sits alone in a cave, listening for footsteps. Shall we go find him? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1448",
+      "nextStoryId": "1336",
+      "arcId": "david_arc_1",
+      "beatId": "david_arc1_beat_3",
+      "beatText": "Last time, the cave filled with voices… four hundred came to David in twos and threes. Saul hunts him again, one mountain between them. Shall we keep walking with David? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1497",
+      "nextStoryId": "1357",
+      "arcId": "david_arc_2",
+      "beatId": "david_arc2_beat_0",
+      "beatText": "Last time, David sat in the ashes of Ziklag and encouraged himself in the LORD… Now word from Mount Gilboa is coming to him. Would you like to hear what happened next? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1357",
+      "nextStoryId": "1449",
+      "arcId": "david_arc_2",
+      "beatId": "david_arc2_beat_1",
+      "beatText": "Last time, David sang his lament for Saul and Jonathan — how the mighty have fallen… Would you like to see where God leads him next, to walls that say he cannot come in? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1449",
+      "nextStoryId": "1221",
+      "arcId": "david_arc_2",
+      "beatId": "david_arc2_beat_2",
+      "beatText": "Last time, David's men climbed the dark watercourse and opened the gate from inside… God's ark still waits in a house on a hill. Shall we go with David to bring it up? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1473",
+      "nextStoryId": "1062",
+      "arcId": "david_arc_3",
+      "beatId": "david_arc3_beat_0",
+      "beatText": "Last time, David took off his sandals and sat before Yahweh, wondering who he was… Would you like to hear him ask if anyone is left of Jonathan's family? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1062",
+      "nextStoryId": "1374",
+      "arcId": "david_arc_3",
+      "beatId": "david_arc3_beat_1",
+      "beatText": "Last time, Mephibosheth sat at the king's table, feet beneath the cloth… Now David's wars are behind him, and he sets down a song over his life. Would you like to hear it? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1374",
+      "nextStoryId": "1326",
+      "arcId": "david_arc_3",
+      "beatId": "david_arc3_beat_2",
+      "beatText": "Last time, David set his song down… rock, fortress, deliverer… his city at peace below. Now he is old, with one last prayer before all Israel. Will you stand with him? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-07"
+    }
+  ]
+}
