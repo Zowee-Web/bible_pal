@@ -75,6 +75,18 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
   bool _showReflection = false;
   final bool _reflectionDismissed = false;
   bool _isReflectionPlaying = false;
+
+  /// SPEC Feature 34 (always-visible Reflection button, 2026-07-06):
+  /// true when the current story's reflection audio is playable by THIS
+  /// build (declared in the manifest AND bundled-or-R2-verified). False →
+  /// the button renders disabled ("Not available for this story").
+  bool _reflectionPlayable = false;
+
+  /// While the user drags the reflection seek bar, the thumb follows the
+  /// finger (this value) instead of the position stream — otherwise every
+  /// stream tick snaps the thumb back and the drag fights the player. The
+  /// actual seek fires ONCE on release. Null = not dragging.
+  double? _reflectionDragValueMs;
   bool _reflectionAudioPlayed = false;
   bool _hasReflectionAudio = false;
   // Slice 4: surfaced when the reflection resolver returns null
@@ -97,6 +109,12 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
 
   // Variant switching: available sibling variants for length/translation chips
   Map<String, Set<String>> _availableVariants = {};
+
+  /// Sibling variants REGISTERED for the current story (manifest entries
+  /// with audio), regardless of playability. Hybrid chip rule (2026-07-06):
+  /// chips render for registered variants only — options the story never
+  /// had are hidden; registered-but-unplayable ones grey with a caption.
+  Map<String, Set<String>> _registeredVariants = {};
 
   // Bedtime mode sleep timer
   Timer? _sleepTimer;
@@ -303,11 +321,22 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
     if (parable == null || !parable.hasBibleStoryKey) return;
 
     final parableService = await ref.read(parableServiceProvider.future);
+    // Playable = bundled ∪ R2-verified. In the full bundled build the union
+    // is dominated by bundled paths (no behavior change); in the slim
+    // streaming build bundled is empty and the R2-verified set is what keeps
+    // the Full/Long/KJV chips alive (2026-07-06 streaming availability fix).
     final bundledPaths = await ref.read(bundledAudioPathsProvider.future);
-    final variants =
-        await parableService.getAvailableVariants(parable, bundledPaths);
+    final r2Paths = await ref.read(r2VerifiedAudioPathsProvider.future);
+    final variants = await parableService.getAvailableVariants(
+        parable, {...bundledPaths, ...r2Paths});
+    // Registered = every sibling the story HAS (hybrid chips: chips render
+    // for registered variants; options the story never had don't appear).
+    final registered = await parableService.getRegisteredVariants(parable);
     if (mounted) {
-      setState(() => _availableVariants = variants);
+      setState(() {
+        _availableVariants = variants;
+        _registeredVariants = registered;
+      });
     }
   }
 
@@ -332,6 +361,23 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
     if (current.storyLength == storyLength &&
         current.languageStyle == languageStyle) {
       return;
+    }
+
+    // Mutual exclusion (2026-07-06): a variant tap while the reflection is
+    // speaking silences the reflection first — the reflection runs on its
+    // own AudioPlayer, so without this the old reflection and the new story
+    // play over each other. Last-tapped wins. Also drop the completion
+    // subscription so a stale reflection-completed event can't fire a
+    // surprise auto-advance after the switch.
+    //
+    // Checked via the player's processing state, NOT `_isReflectionPlaying`:
+    // a PAUSED reflection (transport controls, same day) must also reset,
+    // or its position bar would survive into the new variant.
+    if (_reflectionPlayer != null &&
+        _reflectionPlayer!.processingState != ProcessingState.idle) {
+      await _reflectionCompletionSub?.cancel();
+      _reflectionCompletionSub = null;
+      await _stopReflectionAudio();
     }
 
     // Capture playback state BEFORE stopping audio.
@@ -404,20 +450,38 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
     if (current == null || !current.hasBibleStoryKey) {
       return const SizedBox.shrink();
     }
-    if (_availableVariants.isEmpty) return const SizedBox.shrink();
+    if (_registeredVariants.isEmpty) return const SizedBox.shrink();
 
     final palette = LivingSky.getPalette(LivingSky.getPhase());
     final fg = palette.foreground;
 
-    // Length chips — ordered short → full → long.
+    // Hybrid chip rule (2026-07-06, owner-approved): render a chip only if
+    // the story HAS that variant registered (never-existed options are
+    // hidden); enable it only if it's playable in this build. Any rendered-
+    // but-disabled chip means a temporary availability gap → caption below.
+    final registeredLanguages =
+        _registeredVariants.values.expand((s) => s).toSet();
+
+    // Length chips — ordered short → full → long; only registered buckets.
     final lengthBuckets = [
       StoryLengthBucket.short,
       StoryLengthBucket.full,
       StoryLengthBucket.long,
-    ];
+    ].where((b) => _registeredVariants.containsKey(b.name)).toList();
 
-    // Translation chips — ordered WEB → KJV.
-    const translations = ['WEB', 'KJV'];
+    // Translation chips — ordered WEB → KJV; only registered languages.
+    final translations =
+        ['WEB', 'KJV'].where(registeredLanguages.contains).toList();
+
+    // Caption when anything rendered is unplayable in the current combo.
+    final anyUnplayable = lengthBuckets.any((b) {
+          final avail = _availableVariants[b.name];
+          return avail == null || !avail.contains(current.languageStyle);
+        }) ||
+        translations.any((lang) {
+          final avail = _availableVariants[current.storyLength ?? 'short'];
+          return avail == null || !avail.contains(lang);
+        });
 
     Widget buildChip({
       required String label,
@@ -547,6 +611,29 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
               );
             }).toList(),
           ),
+          // Temporary-gap caption: a greyed chip here means the variant
+          // exists but isn't playable in this build yet (e.g. audio not on
+          // R2). Options the story never had are hidden, not greyed, so
+          // this only appears for genuine temporary gaps.
+          if (anyUnplayable) ...[
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Icon(Icons.info_outline, size: 12, color: fg.secondaryIcon),
+                const SizedBox(width: 6),
+                Expanded(
+                  child: Text(
+                    "Some versions aren't available yet",
+                    style: TextStyle(
+                      color: fg.secondaryText.withValues(alpha: 0.7),
+                      fontSize: 11,
+                      letterSpacing: 0.2,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ],
       ),
     );
@@ -584,23 +671,42 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
     super.dispose();
   }
 
-  /// Update reflection button visibility from the manifest's declaration.
+  /// Update reflection availability from the manifest's declaration AND
+  /// the playable-audio sets.
   ///
-  /// Trusts `parable.reflectionAudioPath` as the source of truth. Previously
-  /// this used `rootBundle.load()` which only checks bundled assets (Tier 2),
-  /// hiding the button for any story whose reflection audio is served from
-  /// R2 or local cache. The actual playback path is three-tier
-  /// (cache → bundled → R2) via `ParableService.getReflectionAudioFile`, and
-  /// surfaces `reflection_unavailable` if every tier misses — so the button
-  /// shows whenever the manifest declares a reflection, and the resolver
-  /// decides at play time.
+  /// `_hasReflectionAudio` trusts `parable.reflectionAudioPath` as the
+  /// source of truth (the resolver decides at play time — three-tier
+  /// cache → bundled → R2 via `ParableService.getReflectionAudioFile`).
+  ///
+  /// `_reflectionPlayable` (SPEC Feature 34, always-visible button,
+  /// 2026-07-06) additionally requires the path to be in the playable
+  /// union (asset-bundled ∪ R2-verified) — in a streaming build a
+  /// declared-but-not-on-R2 reflection would only dead-end, so the
+  /// always-visible button shows DISABLED for it instead.
   Future<void> _checkReflectionAudioExists() async {
     final playerState = ref.read(parablePlayerProvider);
     final parable = playerState.currentParable;
     if (parable == null) return;
     final reflectionPath = _getReflectionAudioPath(parable);
+
+    var playable = reflectionPath != null;
+    if (playable) {
+      try {
+        final bundled = await ref.read(bundledAudioPathsProvider.future);
+        final r2 = await ref.read(r2VerifiedAudioPathsProvider.future);
+        playable =
+            bundled.contains(reflectionPath) || r2.contains(reflectionPath);
+      } catch (_) {
+        // Fail open: if the availability sets can't load, keep the button
+        // enabled and let the play-time resolver surface unavailability.
+      }
+    }
+
     if (mounted) {
-      setState(() => _hasReflectionAudio = reflectionPath != null);
+      setState(() {
+        _hasReflectionAudio = reflectionPath != null;
+        _reflectionPlayable = playable;
+      });
     }
   }
 
@@ -897,6 +1003,14 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
         return;
       }
 
+      // Mutual exclusion (2026-07-06): starting the reflection while the
+      // story is playing pauses the story first — last-tapped wins, the
+      // two players never overlap.
+      final playerNotifier = ref.read(parablePlayerProvider.notifier);
+      if (playerNotifier.isPlaying) {
+        await playerNotifier.pause();
+      }
+
       _reflectionPlayer ??= AudioPlayer();
       await _reflectionPlayer!.setFilePath(file.path);
       // Second mounted guard: just_audio's setFilePath is awaitable
@@ -951,6 +1065,11 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
   /// Replay reflection audio
   Future<void> _replayReflectionAudio() async {
     if (_reflectionPlayer != null) {
+      // Mutual exclusion — same rule as _playReflectionAudio.
+      final playerNotifier = ref.read(parablePlayerProvider.notifier);
+      if (playerNotifier.isPlaying) {
+        await playerNotifier.pause();
+      }
       await _reflectionPlayer!.seek(Duration.zero);
       await _reflectionPlayer!.play();
       setState(() => _isReflectionPlaying = true);
@@ -992,6 +1111,201 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
         );
         break;
     }
+  }
+
+  /// Toggle the reflection between play and pause (SPEC Feature 34).
+  ///
+  /// - Never started (or reset by a story switch) → consent-gated fresh
+  ///   start via [_handlePlayReflection].
+  /// - Playing → pause in place (position preserved).
+  /// - Paused → resume (pausing the story first — last-tapped wins).
+  /// - Completed → restart from the beginning (always replayable).
+  Future<void> _toggleReflectionPlayPause() async {
+    final p = _reflectionPlayer;
+    if (p == null || p.processingState == ProcessingState.idle) {
+      await _handlePlayReflection();
+      return;
+    }
+    if (p.playing) {
+      await p.pause();
+      if (mounted) setState(() => _isReflectionPlaying = false);
+      return;
+    }
+    // Resuming: enforce mutual exclusion against the story player.
+    final playerNotifier = ref.read(parablePlayerProvider.notifier);
+    if (playerNotifier.isPlaying) {
+      await playerNotifier.pause();
+    }
+    if (p.processingState == ProcessingState.completed) {
+      await p.seek(Duration.zero);
+    }
+    await p.play();
+    if (mounted) setState(() => _isReflectionPlaying = true);
+  }
+
+  /// Always-visible Reflection button (SPEC Feature 34, 2026-07-06).
+  ///
+  /// Rendered directly above the Scripture Sources capsule. Primary label
+  /// "Reflection", subtitle `For "<story title>"` shown IN FULL (wraps,
+  /// never ellipsized) and auto-updating with the current story. The row
+  /// (and trailing icon) toggles play/pause; while the reflection is
+  /// active a compact seek bar with position/duration appears below so
+  /// the user can rewind/fast-forward. No completion badges — always
+  /// replayable. When the reflection can't be played by this build, the
+  /// row renders DISABLED with "Not available for this story" — never
+  /// hidden.
+  Widget _buildReflectionCapsule(
+      ThemeData theme, ParablePlayerState playerState) {
+    final parable = playerState.currentParable;
+    if (parable == null) return const SizedBox.shrink();
+
+    final enabled = _reflectionPlayable;
+    final subtitle =
+        enabled ? 'For "${parable.title}"' : 'Not available for this story';
+
+    return Opacity(
+      opacity: enabled ? 1.0 : 0.45,
+      child: StreamBuilder<PlayerState>(
+        stream: _reflectionPlayer?.playerStateStream,
+        builder: (context, stateSnap) {
+          final processing =
+              stateSnap.data?.processingState ?? ProcessingState.idle;
+          final playing = (stateSnap.data?.playing ?? false) &&
+              processing != ProcessingState.completed;
+          final transportActive = _reflectionPlayer != null &&
+              processing != ProcessingState.idle &&
+              processing != ProcessingState.loading;
+
+          return InkWell(
+            borderRadius: BorderRadius.circular(12),
+            onTap: enabled ? _toggleReflectionPlayPause : null,
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.self_improvement,
+                        size: 22,
+                        color: theme.colorScheme.onSurface,
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Reflection',
+                              style: theme.textTheme.titleSmall,
+                            ),
+                            const SizedBox(height: 2),
+                            // Full title — wraps, never truncated.
+                            Text(
+                              subtitle,
+                              softWrap: true,
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: theme.textTheme.bodySmall?.color
+                                    ?.withValues(alpha: 0.7),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Icon(
+                        playing
+                            ? Icons.pause_circle_outline
+                            : Icons.play_circle_outline,
+                        size: 28,
+                        color: theme.colorScheme.onSurface,
+                      ),
+                    ],
+                  ),
+                  // Compact transport: seek bar + times, only while the
+                  // reflection is loaded for THIS story (any story/variant
+                  // switch stops the player back to idle, hiding it).
+                  if (transportActive) ...[
+                    const SizedBox(height: 2),
+                    StreamBuilder<Duration?>(
+                      stream: _reflectionPlayer!.durationStream,
+                      builder: (context, durSnap) {
+                        final duration = durSnap.data ?? Duration.zero;
+                        return StreamBuilder<Duration>(
+                          stream: _reflectionPlayer!.positionStream,
+                          builder: (context, posSnap) {
+                            var position = posSnap.data ?? Duration.zero;
+                            if (position > duration) position = duration;
+                            final maxMs = duration.inMilliseconds
+                                .toDouble()
+                                .clamp(1.0, double.infinity);
+                            // While dragging, the thumb follows the finger
+                            // (drag value), not the stream — the single
+                            // seek fires on release. See
+                            // [_reflectionDragValueMs].
+                            final shownMs = (_reflectionDragValueMs ??
+                                    position.inMilliseconds.toDouble())
+                                .clamp(0.0, maxMs);
+                            return Row(
+                              children: [
+                                Text(
+                                  _formatDuration(Duration(
+                                      milliseconds: shownMs.round())),
+                                  style: theme.textTheme.labelSmall,
+                                ),
+                                Expanded(
+                                  child: SliderTheme(
+                                    data: SliderTheme.of(context).copyWith(
+                                      trackHeight: 2,
+                                      thumbShape: const RoundSliderThumbShape(
+                                          enabledThumbRadius: 6),
+                                      overlayShape:
+                                          const RoundSliderOverlayShape(
+                                              overlayRadius: 12),
+                                    ),
+                                    child: Slider(
+                                      value: shownMs,
+                                      max: maxMs,
+                                      onChangeStart: (v) {
+                                        setState(() =>
+                                            _reflectionDragValueMs = v);
+                                      },
+                                      onChanged: (v) {
+                                        setState(() =>
+                                            _reflectionDragValueMs = v);
+                                      },
+                                      onChangeEnd: (v) async {
+                                        await _reflectionPlayer?.seek(
+                                            Duration(
+                                                milliseconds: v.round()));
+                                        if (mounted) {
+                                          setState(() =>
+                                              _reflectionDragValueMs = null);
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  _formatDuration(duration),
+                                  style: theme.textTheme.labelSmall,
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ],
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
   }
 
   Future<void> _checkIfFavorited() async {
@@ -1102,6 +1416,13 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
   /// Handle play button press with voice consent check.
   /// Shows VoiceConsentDialog if user hasn't consented yet.
   Future<void> _handlePlay(ParablePlayerNotifier playerNotifier) async {
+    // Mutual exclusion (2026-07-06): pressing play on the story while the
+    // reflection is speaking silences the reflection first — last-tapped
+    // wins, the two players never overlap.
+    if (_isReflectionPlaying) {
+      await _stopReflectionAudio();
+    }
+
     final result = await playerNotifier.play();
 
     if (!mounted) return;
@@ -1479,6 +1800,20 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
                                   ),
 
                                 const SizedBox(height: 16),
+
+                                // Always-visible Reflection button (SPEC.md
+                                // Feature 34, 2026-07-06) — glass capsule
+                                // directly above Scripture Sources. Disabled
+                                // (never hidden) when this build can't play
+                                // the current story's reflection.
+                                GlassCapsule(
+                                  padding: const EdgeInsets.all(4),
+                                  borderRadius: 16,
+                                  child: _buildReflectionCapsule(
+                                      theme, playerState),
+                                ),
+
+                                const SizedBox(height: 12),
 
                                 // Scripture Sources panel (SPEC.md Feature 12) — glass capsule
                                 GlassCapsule(
