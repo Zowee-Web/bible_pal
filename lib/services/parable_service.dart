@@ -131,6 +131,74 @@ class ParableService {
       [this._externalStoragePath, this.testMode = false, CatalogService? catalog])
       : _catalog = catalog ?? CatalogService();
 
+  // ── Playable-audio availability (2026-07-06 streaming fix) ─────────
+  //
+  // "Playable" = the variant's audio is bundled in this build OR verified
+  // present-and-byte-identical on R2 (assets/stories/r2_verified_paths.json,
+  // regenerated at each release by the R2 drift audit). Selection pools
+  // filter to playable so a streaming (slim) build never offers a story it
+  // can only fail to play — the "This story isn't available right now"
+  // dead-ends Adam hit on-device 2026-07-05.
+  //
+  // Scope: mobile only (the platforms the three-tier resolver serves).
+  // Desktop/test keep the unfiltered pool — [testMode] tests can inject a
+  // set via [playablePathsForTesting] to exercise the filter itself.
+  Set<String>? _playablePathsCache;
+
+  /// Test-only seam: when set (in [testMode]), used as the playable set.
+  Set<String>? playablePathsForTesting;
+
+  /// The set of audio paths (relative to `assets/stories/`) this build can
+  /// actually play, or null when filtering does not apply (desktop, tests
+  /// without an injected set).
+  Future<Set<String>?> _playableAudioPaths() async {
+    if (testMode) return playablePathsForTesting;
+    if (!(Platform.isAndroid || Platform.isIOS)) return null;
+    if (_playablePathsCache != null) return _playablePathsCache;
+
+    const prefix = 'assets/stories/';
+    final bundled = <String>{};
+    try {
+      final assetManifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+      bundled.addAll(assetManifest
+          .listAssets()
+          .where((p) => p.startsWith(prefix) && p.endsWith('.mp3'))
+          .map((p) => p.substring(prefix.length)));
+    } catch (e) {
+      logEvent('playable_paths_bundled_scan_failed', {'error': e.toString()},
+          level: LogLevel.warn);
+    }
+
+    final r2Verified = <String>{};
+    try {
+      final raw =
+          await rootBundle.loadString('assets/stories/r2_verified_paths.json');
+      final decoded = jsonDecode(raw) as Map<String, dynamic>;
+      r2Verified
+          .addAll((decoded['paths'] as List<dynamic>).cast<String>());
+    } catch (e) {
+      logEvent('playable_paths_r2_load_failed', {'error': e.toString()},
+          level: LogLevel.warn);
+    }
+
+    // Fail open: if BOTH sources came back empty something is wrong with
+    // the build (a manifest scan or asset load failure) — filtering to an
+    // empty set would hide the entire library, which is worse than the
+    // pre-fix behavior. Return null = no filtering.
+    if (bundled.isEmpty && r2Verified.isEmpty) {
+      logEvent('playable_paths_empty_fail_open', {}, level: LogLevel.warn);
+      return null;
+    }
+
+    _playablePathsCache = {...bundled, ...r2Verified};
+    logEvent('playable_paths_loaded', {
+      'bundled': bundled.length,
+      'r2_verified': r2Verified.length,
+      'union': _playablePathsCache!.length,
+    });
+    return _playablePathsCache;
+  }
+
   /// Test-only seam: clear the memoized manifest load so a subsequent
   /// [_loadManifest] call re-runs the catalog cascade and re-emits the
   /// [manifest_source] log. Production code MUST NOT call this — the
@@ -377,14 +445,43 @@ class ParableService {
   ///
   /// A variant is considered available only when its manifest entry has a
   /// non-empty `audioFilePath` AND that path is present in
-  /// [bundledAudioPaths] (the set of asset-bundled audio paths). R2-served
-  /// variants are deliberately excluded here — chip availability reflects
-  /// only what is playable from the bundle.
+  /// [playableAudioPaths]. Since 2026-07-06 the caller passes the union of
+  /// asset-bundled paths and R2-verified paths (r2_verified_paths.json), so
+  /// chip availability reflects everything this build can actually play —
+  /// bundled or streamed. (Pre-streaming, this deliberately excluded R2;
+  /// that exclusion made the chips vanish entirely in slim builds.)
   ///
+  /// Returns the set of (storyLength, languageStyle) sibling variants
+  /// REGISTERED for [current] — manifest entries with non-empty
+  /// `audioFilePath`, regardless of whether this build can play them.
+  ///
+  /// Hybrid chip presentation (SPEC Feature 34 variant controls,
+  /// 2026-07-06): the player renders chips for REGISTERED variants
+  /// (hiding options the story never had) and enables only PLAYABLE ones
+  /// ([getAvailableVariants]), greying the registered-but-unplayable
+  /// remainder with an explanatory caption.
+  Future<Map<String, Set<String>>> getRegisteredVariants(
+      Parable current) async {
+    if (!current.hasBibleStoryKey) return {};
+    final all = await _loadManifest();
+    final result = <String, Set<String>>{};
+    for (final p in all) {
+      if (p.bibleStoryKey == current.bibleStoryKey &&
+          p.storytellingMode == current.storytellingMode &&
+          p.kidFriendly == current.kidFriendly &&
+          p.storyLength != null &&
+          p.audioFilePath != null &&
+          p.audioFilePath!.isNotEmpty) {
+        result.putIfAbsent(p.storyLength!, () => {}).add(p.languageStyle);
+      }
+    }
+    return result;
+  }
+
   /// Returns a map: { 'short': {'WEB', 'KJV'}, 'full': {'WEB'}, ... }
   Future<Map<String, Set<String>>> getAvailableVariants(
     Parable current,
-    Set<String> bundledAudioPaths,
+    Set<String> playableAudioPaths,
   ) async {
     if (!current.hasBibleStoryKey) return {};
     final all = await _loadManifest();
@@ -396,7 +493,7 @@ class ParableService {
           p.storyLength != null &&
           p.audioFilePath != null &&
           p.audioFilePath!.isNotEmpty &&
-          bundledAudioPaths.contains(p.audioFilePath!)) {
+          playableAudioPaths.contains(p.audioFilePath!)) {
         result.putIfAbsent(p.storyLength!, () => {}).add(p.languageStyle);
       }
     }
@@ -412,6 +509,12 @@ class ParableService {
     required UserPreferences userPrefs,
   }) async {
     final allParables = await _loadManifest();
+
+    // Playable-audio gate (2026-07-06): variants whose audio this build can
+    // neither play from the bundle nor stream from R2 are excluded up front,
+    // so mood buttons / kid feelings / Paths taps never resolve to a story
+    // that dead-ends with "This story isn't available right now."
+    final playable = await _playableAudioPaths();
 
     // Language style filter (WEB or KJV) - Contracts v2: presentation diction
     // Stories are filtered by languageStyle to match user's preference
@@ -435,6 +538,15 @@ class ParableService {
 
       // Match length bucket (uses compatibility mapping from minute-based metadata)
       if (p.lengthBucket != lengthBucket) return false;
+
+      // Playable-audio gate — see [_playableAudioPaths]. Null = filtering
+      // not applicable (desktop / tests without an injected set).
+      if (playable != null &&
+          (p.audioFilePath == null ||
+              p.audioFilePath!.isEmpty ||
+              !playable.contains(p.audioFilePath!))) {
+        return false;
+      }
 
       // Match language style (WEB or KJV) - Contracts v2
       // Use story's languageStyle field for filtering
@@ -553,11 +665,22 @@ class ParableService {
     final allParables = await _loadManifest();
     final languageStyle = userPrefs.languageStyle;
 
+    // Playable-audio gate (2026-07-06): mirror getEligibleParables so the
+    // framing preview never names a story the selector will then filter
+    // out — a preview/selection mismatch would frame story A and play B.
+    final playable = await _playableAudioPaths();
+
     final candidates = allParables.where((p) {
       if (p.mood != mood) return false;
       if (p.storytellingMode != userPrefs.storytellingMode) return false;
       if (p.languageStyle != languageStyle) return false;
       if (p.storytellingMode == 'traditional' && !p.hasBibleStoryKey) {
+        return false;
+      }
+      if (playable != null &&
+          (p.audioFilePath == null ||
+              p.audioFilePath!.isEmpty ||
+              !playable.contains(p.audioFilePath!))) {
         return false;
       }
       if (userPrefs.kidFriendlyOnly) {
