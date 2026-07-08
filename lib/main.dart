@@ -30,11 +30,13 @@ Future<void> main() async {
   // Only active when DIAGNOSTICS_ENABLED=true
   initializeDiagnosticsLifecycle();
 
-  // Load environment variables (graceful — app still starts if .env is missing)
+  // Load the bundled client config (graceful — app still starts if missing).
+  // This is a secret-reduced file generated from .env by scripts/gen_app_env.sh:
+  // it carries only the keys the app reads at runtime, never pipeline secrets.
   try {
-    await dotenv.load(fileName: '.env');
+    await dotenv.load(fileName: 'assets/config/app.env');
   } catch (e) {
-    debugPrint('dotenv: .env not loaded ($e) — continuing without it.');
+    debugPrint('dotenv: app.env not loaded ($e) — continuing without it.');
   }
 
   runApp(

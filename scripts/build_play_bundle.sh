@@ -446,6 +446,9 @@ fi
 # ── Build AAB ────────────────────────────────────────────────────────
 echo ""
 echo "=== Building release AAB ==="
+# Regenerate the secret-reduced client config so the build bundles app.env
+# (allowlisted client keys only) — never the full .env with pipeline secrets.
+"$PROJECT_ROOT/scripts/gen_app_env.sh"
 flutter build appbundle --release
 
 # ── Report ───────────────────────────────────────────────────────────
