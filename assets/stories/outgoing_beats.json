@@ -213,6 +213,78 @@
       "beatText": "Last time, David gave thanks with his whole heart, for God answered when he called… Old now, hand unsteady, his voice still rising — shall we hear him begin his praise? Or, tell me what's on your heart today.",
       "status": "approved",
       "approvedOn": "2026-07-07"
+    },
+    {
+      "prevStoryId": "1553",
+      "nextStoryId": "1342",
+      "arcId": "david_arc_7",
+      "beatId": "david_arc7_beat_0",
+      "beatText": "Last time, David could have silenced the prophet, and said only, I have sinned… Would you like to stay with him through seven days on the ground, pleading for his child? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-08"
+    },
+    {
+      "prevStoryId": "1033",
+      "nextStoryId": "1019",
+      "arcId": "moses_arc_1",
+      "beatId": "moses_arc1_beat_0",
+      "beatText": "Last time, a mother hid her baby in a basket and left him among the river reeds… Would you like to meet that child grown old, at a bush that burns and will not go out? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-08"
+    },
+    {
+      "prevStoryId": "1019",
+      "nextStoryId": "1527",
+      "arcId": "moses_arc_1",
+      "beatId": "moses_arc1_beat_1",
+      "beatText": "Last time, a voice in the fire said, I have come down to bring my people out… Shall we stand with them at the sea's edge, Pharaoh's chariots closing behind? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-08"
+    },
+    {
+      "prevStoryId": "1023",
+      "nextStoryId": "1480",
+      "arcId": "moses_arc_2",
+      "beatId": "moses_arc2_beat_0",
+      "beatText": "Last time, Israel woke to bread from heaven on the ground and asked, What is it?… Would you like to climb the hill where the battle below hangs on Moses' tiring arms? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-08"
+    },
+    {
+      "prevStoryId": "1480",
+      "nextStoryId": "832",
+      "arcId": "moses_arc_2",
+      "beatId": "moses_arc2_beat_1",
+      "beatText": "Last time, Aaron and Hur held up Moses' failing arms till the sun went down… Shall we sit in the camp while his father-in-law watches him carry the people alone? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-08"
+    },
+    {
+      "prevStoryId": "1135",
+      "nextStoryId": "1561",
+      "arcId": "moses_arc_3",
+      "beatId": "moses_arc3_beat_0",
+      "beatText": "Last time, Moses stepped alone into the thick darkness where God was… Would you like to come down the mountain with him, to the calf of gold his people have made below? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-08"
+    },
+    {
+      "prevStoryId": "1561",
+      "nextStoryId": "1246",
+      "arcId": "moses_arc_3",
+      "beatId": "moses_arc3_beat_1",
+      "beatText": "Last time, Moses would not leave God alone; he pleaded till God turned from his wrath… Shall we stay on the mountain as Moses asks to see the glory of the God he begged? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-08"
+    },
+    {
+      "prevStoryId": "1246",
+      "nextStoryId": "1468",
+      "arcId": "moses_arc_3",
+      "beatId": "moses_arc3_beat_2",
+      "beatText": "Last time, Moses hid in the cleft of the rock and saw God's glory pass by… Would you like to watch him come down, his face shining, not knowing why the people fear him? Or, tell me what's on your heart today.",
+      "status": "approved",
+      "approvedOn": "2026-07-08"
     }
   ]
 }

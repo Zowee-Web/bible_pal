@@ -80,6 +80,12 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 ENV_FILE = PROJECT_ROOT / ".env"
 ASSETS_ROOT = PROJECT_ROOT / "assets" / "pal" / "audio"
+# Approved outgoing-transition beat ledger (per-EDGE, Adam-approved
+# wording; see project_beat_ledger_system). The single source of truth
+# for the library-wide continuation beats — rendering reads it directly
+# so audio never drifts from the approved text and future beats are
+# picked up automatically on the next idempotent run.
+LEDGER_FILE = PROJECT_ROOT / "assets" / "stories" / "outgoing_beats.json"
 
 # Voice IDs mirrored from lib/core/pal_voice_registry.dart. Slice 2
 # first ship: STILLWATER only (kept locked as the memory voice via
@@ -456,6 +462,38 @@ CLIPS = [
         "model": "eleven_v3",
     },
 ]
+
+def load_ledger_clips() -> list[dict]:
+    """Per-source-story continuation beats from the approved ledger.
+
+    Clip-id convention: ``<prevStoryId>_pal_continuation`` — the
+    Journey Doctrine Scale-Horizon key (off the source story, not an
+    arc position). Model eleven_v3 per JOURNEY_TRANSITION_VOICE audio
+    craft (short, prosodically delicate — turbo over-clips consonants).
+
+    Only ``status == "approved"`` entries render. prevStoryId is unique
+    per ledger invariant, so clip-ids never collide (within the ledger
+    or with the hand-authored CLIPS above, which are all name-prefixed).
+    """
+    if not LEDGER_FILE.exists():
+        return []
+    data = json.loads(LEDGER_FILE.read_text())
+    clips: list[dict] = []
+    for e in data.get("entries", []):
+        if e.get("status") != "approved":
+            continue
+        clips.append({
+            "clip_id": f'{e["prevStoryId"]}_pal_continuation',
+            "text": e["beatText"],
+            "model": "eleven_v3",
+        })
+    return clips
+
+
+# Append the ledger continuation beats to the render set. Idempotency
+# (skip-if-exists) means re-running fills only the clips a voice is
+# missing — including every new ledger beat added after this refactor.
+CLIPS.extend(load_ledger_clips())
 
 CREDITS_PER_CHAR_LOW = 0.5
 CREDITS_PER_CHAR_HIGH = 0.7
