@@ -45,6 +45,14 @@ class _JourneyTestingPanelState extends ConsumerState<JourneyTestingPanel> {
     ('Joseph', 'story_1037_brave_courage_full_traditional', false),
     ('Ruth', 'story_828_brave_courage_full_traditional', false),
     ('Elijah', 'story_1039_brave_courage_full_traditional', false),
+    // Scale-Horizon per-story continuation arcs (outgoing_beats.json).
+    // Seeding story-0 arms the offer to the next-in-arc story:
+    //   David 1022 → 1112 · Moses 1033 → 1019 · Moses 1135 → 1561.
+    ('David (1022→1112)', 'story_1022_joyful_short_traditional', false),
+    ('Moses·Deliverance (1033→1019)',
+        'story_1033_brave_courage_short_traditional', false),
+    ('Moses·Mountain (1135→1561)',
+        'story_1135_encouraging_short_traditional', false),
     ('Kid Moses', 'kidstory_kid_baby_moses_short', true),
     ('Kid Joseph', 'kidstory_kid_joseph_coat_short', true),
   ];
