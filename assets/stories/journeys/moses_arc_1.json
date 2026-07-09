@@ -1,0 +1,26 @@
+{
+  "$schema": "journey_v1",
+  "version": 1,
+  "journeyId": "moses_arc_1",
+  "journeyType": "narrative",
+  "lane": "adult",
+  "status": "ready",
+  "editorialNote": "Deliverance — the basket, the burning bush, the sea. Outgoing continuation beats approved+ledgered in assets/stories/outgoing_beats.json; STILLWATER audio at <prevStoryId>_pal_continuation.mp3 (Scale-Horizon per-story clip). Some anchors are not yet in scripture_anchor_registry — registration is a separate editorial follow-up and is not required by the journey validator.",
+  "stories": [
+    {
+      "storyNumber": 1033,
+      "scriptureAnchorId": "exodus_2_1_10",
+      "label": "Baby Moses in the Basket"
+    },
+    {
+      "storyNumber": 1019,
+      "scriptureAnchorId": "exodus_3_1_15",
+      "label": "Moses and the Burning Bush"
+    },
+    {
+      "storyNumber": 1527,
+      "scriptureAnchorId": "exodus_14_21-31",
+      "label": "The Sea Divided"
+    }
+  ]
+}

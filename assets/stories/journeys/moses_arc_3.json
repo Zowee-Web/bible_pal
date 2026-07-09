@@ -1,0 +1,31 @@
+{
+  "$schema": "journey_v1",
+  "version": 1,
+  "journeyId": "moses_arc_3",
+  "journeyType": "narrative",
+  "lane": "adult",
+  "status": "ready",
+  "editorialNote": "The mountain — Sinai, the golden calf, the glory, the veil. Outgoing continuation beats approved+ledgered in assets/stories/outgoing_beats.json; STILLWATER audio at <prevStoryId>_pal_continuation.mp3 (Scale-Horizon per-story clip). Some anchors are not yet in scripture_anchor_registry — registration is a separate editorial follow-up and is not required by the journey validator.",
+  "stories": [
+    {
+      "storyNumber": 1135,
+      "scriptureAnchorId": "exodus_20_1-21",
+      "label": "The Thick Darkness"
+    },
+    {
+      "storyNumber": 1561,
+      "scriptureAnchorId": "exodus_32_1-14",
+      "label": "The Golden Calf and the Intercession"
+    },
+    {
+      "storyNumber": 1246,
+      "scriptureAnchorId": "exodus_33_12_23",
+      "label": "Please Show Me Your Glory"
+    },
+    {
+      "storyNumber": 1468,
+      "scriptureAnchorId": "exodus_34_29-35",
+      "label": "The Veil on Moses' Face"
+    }
+  ]
+}

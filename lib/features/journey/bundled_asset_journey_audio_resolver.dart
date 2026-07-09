@@ -96,36 +96,55 @@ class BundledAssetJourneyAudioResolver implements JourneyAudioResolver {
   // ------------------------------------------------------------
   JourneyAudioPlan? _resolve(
       JourneyContinuationOffer offer, String voiceKey) {
-    final offerClipId =
-        '${offer.journey.journeyId}_offer_${offer.sourceStoryIndex}';
     final declineClipId = offer.journey.lane == JourneyLane.adult
         ? 'decline_adult'
         : 'decline_kid';
-
-    final offerPath = PalJourneyAudioPaths.assetPathFor(
-        voiceKey: voiceKey, clipId: offerClipId);
     final declinePath = PalJourneyAudioPaths.assetPathFor(
         voiceKey: voiceKey, clipId: declineClipId);
-
-    // Silence-floor: either clip missing → null. No partial plans.
-    if (!bundledPaths.contains(offerPath)) return null;
+    // Silence-floor: decline clip missing → null. No partial plans.
     if (!bundledPaths.contains(declinePath)) return null;
 
-    return JourneyAudioPlan(
-      voiceKey: voiceKey,
-      offerClips: [
-        JourneyAudioClipRef(
-          clipId: offerClipId,
-          kind: JourneyClipKind.offer,
-          assetPath: offerPath,
+    // Offer-clip resolution, in priority order:
+    //   1. Scale-Horizon per-source-story clip
+    //      `<sourceStoryNumber>_pal_continuation` — the library-wide
+    //      ledger convention (assets/stories/outgoing_beats.json,
+    //      rendered by render_journey_audio.py). Keyed off the source
+    //      story, not its arc position, so it survives the shift from
+    //      curated arcs to per-story beats (Journey Doctrine Scale
+    //      Horizon). Adult only — kid slots carry no storyNumber.
+    //   2. Legacy per-arc-index clip
+    //      `<journeyId>_offer_<sourceStoryIndex>` — the Slice 2
+    //      first-ship convention still used by Daniel/Joseph/Ruth/
+    //      Elijah and the kid arcs.
+    // First bundled candidate wins; silence-floor if neither exists.
+    final sourceStory = offer.journey.stories[offer.sourceStoryIndex];
+    final candidateClipIds = <String>[
+      if (sourceStory.storyNumber != null)
+        '${sourceStory.storyNumber}_pal_continuation',
+      '${offer.journey.journeyId}_offer_${offer.sourceStoryIndex}',
+    ];
+
+    for (final offerClipId in candidateClipIds) {
+      final offerPath = PalJourneyAudioPaths.assetPathFor(
+          voiceKey: voiceKey, clipId: offerClipId);
+      if (!bundledPaths.contains(offerPath)) continue;
+      return JourneyAudioPlan(
+        voiceKey: voiceKey,
+        offerClips: [
+          JourneyAudioClipRef(
+            clipId: offerClipId,
+            kind: JourneyClipKind.offer,
+            assetPath: offerPath,
+          ),
+        ],
+        offerGapsBetween: const [],
+        declineClip: JourneyAudioClipRef(
+          clipId: declineClipId,
+          kind: JourneyClipKind.decline,
+          assetPath: declinePath,
         ),
-      ],
-      offerGapsBetween: const [],
-      declineClip: JourneyAudioClipRef(
-        clipId: declineClipId,
-        kind: JourneyClipKind.decline,
-        assetPath: declinePath,
-      ),
-    );
+      );
+    }
+    return null;
   }
 }
