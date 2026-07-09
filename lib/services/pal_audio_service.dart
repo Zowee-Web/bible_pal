@@ -708,6 +708,23 @@ class PalAudioService {
         );
   }
 
+  /// Like [awaitPlaybackComplete], but resolves as soon as playback is
+  /// within [remaining] of the end — whichever comes first between the
+  /// near-end position and a terminal state (so a stop/cancel or a
+  /// clip shorter than [remaining] can never strand the caller).
+  ///
+  /// Used by [playJourneyOffer]'s `completeEarlyBy` so the journey
+  /// cascade can open the STT mic while the offer's open-door tail is
+  /// still speaking (2026-07-09).
+  Future<void> _awaitPlaybackNearlyComplete(Duration remaining) async {
+    final terminal = awaitPlaybackComplete();
+    final nearEnd = _player.positionStream.firstWhere((pos) {
+      final d = _player.duration;
+      return d != null && d - pos <= remaining;
+    }).then((_) {}).catchError((_) {});
+    await Future.any([terminal, nearEnd]);
+  }
+
   /// Play a [MemoryAudioPlan] (PAL Memory Doctrine, Slice 2d): stitches
   /// the plan's carrier + name clips with the policy gap into a single
   /// [ConcatenatingAudioSource] and plays it through the existing
@@ -764,7 +781,20 @@ class PalAudioService {
   /// Journey Doctrine Slice 2 Phase 9. Silence-floor honest: a failed
   /// playback returns false and the cascade short-circuits to the
   /// existing mood-flow (NOT a fallback to decline audio).
-  Future<bool> playJourneyOffer(JourneyAudioPlan plan) async {
+  /// When [completeEarlyBy] is non-zero, the returned future resolves
+  /// once playback is within that duration of the end (or on terminal
+  /// state) instead of waiting for full completion. Used by the journey
+  /// cascade (2026-07-09, Adam's call) to open the STT mic DURING the
+  /// offer beat's open-door tail, so a user answering "yes" at the
+  /// question mark is heard instead of lost. NOTE: the playback lock is
+  /// released on return, so callers must not start other PAL audio
+  /// until the tail has actually finished (~[completeEarlyBy] later) —
+  /// the cascade's next audio (decline/ack) always follows STT capture,
+  /// which is far longer than the tail.
+  Future<bool> playJourneyOffer(
+    JourneyAudioPlan plan, {
+    Duration completeEarlyBy = Duration.zero,
+  }) async {
     plan.validateStructure();
     await _acquireLock();
     try {
@@ -780,7 +810,11 @@ class PalAudioService {
       await _player.setAudioSource(playlist);
       await _waitForPlayerReady();
       await _player.play();
-      await awaitPlaybackComplete();
+      if (completeEarlyBy == Duration.zero) {
+        await awaitPlaybackComplete();
+      } else {
+        await _awaitPlaybackNearlyComplete(completeEarlyBy);
+      }
       return true;
     } catch (e) {
       logEvent('pal_audio_error', {
