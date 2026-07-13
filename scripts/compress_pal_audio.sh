@@ -86,11 +86,20 @@ while IFS= read -r src_file; do
 
   mkdir -p "$dst_subdir"
 
+  # 44100, not 22050 (2026-07-09, journey first-"yes" regression): PAL
+  # clips play immediately before the STT mic opens. A 22.05kHz source
+  # negotiates the iOS audio session at a low sample rate, and spinning
+  # up the speech engine afterward forces a slow audio-graph
+  # renegotiation — the user's "yes" lands in dead air. Keeping the
+  # session at 44.1kHz (the raw clips' rate, and the hardware family)
+  # keeps the mic handoff fast. 64kbps mono speech at 44.1k is nearly
+  # the same size. Story audio (compress_audio.sh) stays 22050 — it
+  # never hands off to the mic.
   if ! ffmpeg -nostdin -loglevel error -y -i "$src_file" \
     -codec:a libmp3lame \
     -b:a 64k \
     -ac 1 \
-    -ar 22050 \
+    -ar 44100 \
     -compression_level 2 \
     "$dst_file" 2>&1; then
     echo "  ERROR: failed to compress $rel_path" >&2

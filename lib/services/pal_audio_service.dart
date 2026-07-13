@@ -466,11 +466,27 @@ class PalAudioService {
     try {
       final session = await AudioSession.instance;
       if (!wasActive) {
-        await session.configure(const AudioSessionConfiguration(
-          avAudioSessionCategory: AVAudioSessionCategory.playback,
+        // playAndRecord, not playback (2026-07-09, STT cold-start
+        // investigation). The recognizer's ~2.3s "first yes" drop is an
+        // AVAudioSession ROUTE renegotiation: under .playback the mic
+        // input route is unpowered, so speech_to_text's listen() must
+        // flip .playback→.playAndRecord + setActive and power up the mic
+        // — the measured 2.3s. Configuring .playAndRecord here (matching
+        // the option set the plugin itself uses) makes that flip a
+        // no-op. The load-bearing companion is that the journey cascade
+        // calls ensureAudioSessionActive() BEFORE the offer plays, so the
+        // one-time mic power-up happens under cover of PAL's speech.
+        // defaultToSpeaker is mandatory (playAndRecord otherwise routes
+        // to the earpiece); defaultMode avoids voice-processing that
+        // would color story audio; mixWithOthers preserved.
+        await session.configure(AudioSessionConfiguration(
+          avAudioSessionCategory: AVAudioSessionCategory.playAndRecord,
           avAudioSessionMode: AVAudioSessionMode.defaultMode,
           avAudioSessionCategoryOptions:
-              AVAudioSessionCategoryOptions.mixWithOthers,
+              AVAudioSessionCategoryOptions.defaultToSpeaker |
+                  AVAudioSessionCategoryOptions.mixWithOthers |
+                  AVAudioSessionCategoryOptions.allowBluetooth |
+                  AVAudioSessionCategoryOptions.allowBluetoothA2dp,
         ));
       }
       await session.setActive(true);
