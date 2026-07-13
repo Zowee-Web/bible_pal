@@ -1443,7 +1443,12 @@
       "bibleStoryKey": "bless_the_lord_at_all_times",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_BLESS_THE_LORD_AT_ALL_TIMES_01",
+          "text": "David wrote this song for anyone poor enough to need it — I sought the Lord, and he answered me, and delivered me from all my fears."
+        }
+      ],
       "bibleSourceRef": "Psalm 34:1-22",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05 stub. primaryFigure verified by clear person-centric bibleStoryKey mapping. secondaryFigures and framingLines pending manual curation. Replace with full entry before any user-facing PALs Paths integration relies on this story."
@@ -1452,7 +1457,12 @@
       "bibleStoryKey": "bless_the_lord_my_soul",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_BLESS_THE_LORD_MY_SOUL_01",
+          "text": "Alone with his harp, David spoke not to God first, but to his own soul — telling it to remember."
+        }
+      ],
       "bibleSourceRef": "Psalm 103:1-22",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05 stub. primaryFigure verified by clear person-centric bibleStoryKey mapping. secondaryFigures and framingLines pending manual curation. Replace with full entry before any user-facing PALs Paths integration relies on this story."
@@ -1551,7 +1561,12 @@
       "bibleStoryKey": "david_brings_the_ark",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_DAVID_BRINGS_THE_ARK_01",
+          "text": "David gathered thirty thousand of Israel to bring the ark of God up to Jerusalem — with joy ahead of him, and a hard lesson on the way."
+        }
+      ],
       "bibleSourceRef": "2 Samuel 6:1-19",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05 stub. primaryFigure verified by clear person-centric bibleStoryKey mapping. secondaryFigures and framingLines pending manual curation. Replace with full entry before any user-facing PALs Paths integration relies on this story."
@@ -1560,7 +1575,12 @@
       "bibleStoryKey": "david_repentance",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_DAVID_REPENTANCE_01",
+          "text": "After Nathan left, David sat alone with what he had done — and wrote the prayer of a man who wants to be clean."
+        }
+      ],
       "bibleSourceRef": "Psalm 51:1-12",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05 stub. primaryFigure verified by clear person-centric bibleStoryKey mapping. secondaryFigures and framingLines pending manual curation. Replace with full entry before any user-facing PALs Paths integration relies on this story."
@@ -2142,7 +2162,12 @@
       "bibleStoryKey": "show_me_your_glory",
       "primaryFigure": "Moses",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_SHOW_ME_YOUR_GLORY_01",
+          "text": "Moses had spoken with God as a man speaks with his friend — and still he wanted more: please, show me your glory."
+        }
+      ],
       "bibleSourceRef": "Exodus 33:12-23",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05 stub. primaryFigure verified by clear person-centric bibleStoryKey mapping. secondaryFigures and framingLines pending manual curation. Replace with full entry before any user-facing PALs Paths integration relies on this story."
@@ -2688,7 +2713,12 @@
       "bibleStoryKey": "david_cave_of_adullam_four_hundred",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_DAVID_CAVE_OF_ADULLAM_FOUR_HUNDRED_01",
+          "text": "David came to the cave of Adullam alone — and the men who found him there were the broken, the indebted, and the bitter of soul."
+        }
+      ],
       "bibleSourceRef": "1 Samuel 22:1-2",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05-30 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
@@ -2697,7 +2727,12 @@
       "bibleStoryKey": "david_fasts_for_the_child",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_DAVID_FASTS_FOR_THE_CHILD_01",
+          "text": "The child fell sick, and David went to the ground pleading — for seven days, no one could raise him."
+        }
+      ],
       "bibleSourceRef": "2 Samuel 12:15-23",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05-30 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
@@ -2724,7 +2759,12 @@
       "bibleStoryKey": "david_takes_stronghold_zion",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_DAVID_TAKES_STRONGHOLD_ZION_01",
+          "text": "The Jebusites said even the blind and the lame could turn David away from Zion — but there was a way into the city that no one was watching."
+        }
+      ],
       "bibleSourceRef": "2 Samuel 5:6-10",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05-30 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
@@ -2733,7 +2773,12 @@
       "bibleStoryKey": "davids_blessing_at_temple_offering",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_DAVIDS_BLESSING_AT_TEMPLE_OFFERING_01",
+          "text": "Old now, with the gold for the temple gathered at his feet, David stood before all Israel to bless the God who had carried him."
+        }
+      ],
       "bibleSourceRef": "1 Chronicles 29:10-13",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05-30 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
@@ -2742,7 +2787,12 @@
       "bibleStoryKey": "davids_deliverance_song",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_DAVIDS_DELIVERANCE_SONG_01",
+          "text": "With every war behind him and Jerusalem at peace, David counted the names of what God had been to him — rock, fortress, deliverer."
+        }
+      ],
       "bibleSourceRef": "2 Samuel 22:1-7",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05-30 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
@@ -2751,7 +2801,12 @@
       "bibleStoryKey": "davids_lament_for_saul_and_jonathan",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_DAVIDS_LAMENT_FOR_SAUL_AND_JONATHAN_01",
+          "text": "The news from Mount Gilboa had reached Ziklag — Saul and Jonathan were gone, and David answered the only way he could: with a song."
+        }
+      ],
       "bibleSourceRef": "2 Samuel 1:17-27",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05-30 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
@@ -2787,7 +2842,12 @@
       "bibleStoryKey": "davids_psalm_of_weariness",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_DAVIDS_PSALM_OF_WEARINESS_01",
+          "text": "David wrote this in the nights when his bed was flooded with tears — and gave it to the singers, for everyone whose nights are like his."
+        }
+      ],
       "bibleSourceRef": "Psalm 6:1-7",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05-30 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
@@ -3399,7 +3459,12 @@
       "bibleStoryKey": "i_will_extol_you_my_god_and_king",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_I_WILL_EXTOL_YOU_MY_GOD_AND_KING_01",
+          "text": "Of everything David wrote, only this one he named praise — built line by line through the alphabet, so nothing would be missing."
+        }
+      ],
       "bibleSourceRef": "Psalm 145:1-7",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05-30 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
@@ -3408,7 +3473,12 @@
       "bibleStoryKey": "i_will_give_thanks_with_my_whole_heart",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_I_WILL_GIVE_THANKS_WITH_MY_WHOLE_HEART_01",
+          "text": "David wrote this psalm on the far side of an answered prayer — thanks with his whole heart, bowed toward the holy temple."
+        }
+      ],
       "bibleSourceRef": "Psalm 138:1-3",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05-30 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
@@ -3966,7 +4036,12 @@
       "bibleStoryKey": "moses_hands_held_up_by_aaron_hur",
       "primaryFigure": "Moses",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_MOSES_HANDS_HELD_UP_BY_AARON_HUR_01",
+          "text": "While Joshua fought Amalek in the valley, the battle was being decided on the hilltop — in Moses' two lifted hands."
+        }
+      ],
       "bibleSourceRef": "Exodus 17:8-13",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05-30 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
@@ -3975,7 +4050,12 @@
       "bibleStoryKey": "moses_shining_face_and_veil",
       "primaryFigure": "Moses",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_MOSES_SHINING_FACE_AND_VEIL_01",
+          "text": "When Moses came down with the tablets, everyone could see where he had been — everyone but Moses."
+        }
+      ],
       "bibleSourceRef": "Exodus 34:29-35",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05-30 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
@@ -3984,7 +4064,12 @@
       "bibleStoryKey": "mourning_into_dancing",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_MOURNING_INTO_DANCING_01",
+          "text": "David remembered the night he thought would never end — and the morning when God turned his mourning into dancing."
+        }
+      ],
       "bibleSourceRef": "Psalm 30:1-12",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05-30 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
@@ -4302,7 +4387,12 @@
       "bibleStoryKey": "psalm_22_forsaken",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_PSALM_22_FORSAKEN_01",
+          "text": "David prayed this prayer in the hour when God felt farthest away — and he did not stop praying."
+        }
+      ],
       "bibleSourceRef": "Psalm 22:1-31",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05-30 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
@@ -4320,7 +4410,12 @@
       "bibleStoryKey": "psalm_of_evening_rest_amid_dishonor",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_PSALM_OF_EVENING_REST_AMID_DISHONOR_01",
+          "text": "Men of his own people had turned David's glory into dishonor — and he answered them with an evening prayer instead of anger."
+        }
+      ],
       "bibleSourceRef": "Psalm 4:1-8",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05-30 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
@@ -4491,7 +4586,12 @@
       "bibleStoryKey": "saul_pursues_david_at_maon",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_SAUL_PURSUES_DAVID_AT_MAON_01",
+          "text": "David had run out of wilderness to hide in — Saul's men were on the other side of the mountain, and closing."
+        }
+      ],
       "bibleSourceRef": "1 Samuel 23:24-29",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05-30 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
@@ -4689,7 +4789,12 @@
       "bibleStoryKey": "the_lord_is_my_light",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_THE_LORD_IS_MY_LIGHT_01",
+          "text": "With enemies encamped around him, David asked for only one thing — to dwell in the house of the Lord all the days of his life."
+        }
+      ],
       "bibleSourceRef": "Psalm 27:1-14",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05-30 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
@@ -4842,7 +4947,12 @@
       "bibleStoryKey": "weaned_child_with_mother",
       "primaryFigure": "David",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_WEANED_CHILD_WITH_MOTHER_01",
+          "text": "Three short verses, written by a man who had known both palaces and caves — about a soul stilled like a weaned child with its mother."
+        }
+      ],
       "bibleSourceRef": "Psalm 131:1-3",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-05-30 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
@@ -5094,7 +5204,12 @@
       "bibleStoryKey": "moses_intercedes_after_the_golden_calf",
       "primaryFigure": "Moses",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_MOSES_INTERCEDES_AFTER_THE_GOLDEN_CALF_01",
+          "text": "The people had made themselves a god of gold while Moses was still on the mountain — and Moses stood between them and the fire."
+        }
+      ],
       "bibleSourceRef": "Exodus 32:1-14",
       "_stub": true,
       "_stubReason": "Test-health backfill 2026-06. primaryFigure taken from manifest primaryCharacterDisplayName. secondaryFigures/framingLines pending manual curation."
@@ -5184,7 +5299,12 @@
       "bibleStoryKey": "red_sea_crossing_courage",
       "primaryFigure": "Moses",
       "secondaryFigures": [],
-      "framingLines": [],
+      "framingLines": [
+        {
+          "id": "FRAME_RED_SEA_CROSSING_COURAGE_01",
+          "text": "Israel stood trapped between the army and the water — and Moses stretched out his hand over the sea."
+        }
+      ],
       "bibleSourceRef": "Exodus 14:21-31",
       "_stub": true,
       "_stubReason": "Test-health backfill 2026-06. primaryFigure taken from manifest primaryCharacterDisplayName. secondaryFigures/framingLines pending manual curation."
@@ -5377,6 +5497,18 @@
         }
       ],
       "bibleSourceRef": "Genesis 41"
+    },
+    {
+      "bibleStoryKey": "heavens_declare_gods_glory",
+      "primaryFigure": "David",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_HEAVENS_DECLARE_GODS_GLORY_01",
+          "text": "At the end of a quiet day, a shepherd family watched the sky change — and heard what it was saying without any words at all."
+        }
+      ],
+      "bibleSourceRef": "Psalm 19:1-6"
     }
   ],
   "_stubsNote": "2026-05-30: Manifest-sync backfill — appended 298 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-09: Added 96 auto-generated stub entries (marked with _stub: true) to satisfy biblical_figure_registry_test.dart cross-validation. 68 thematic/devotional bibleStoryKeys remain unregistered (need manual curation with appropriate schema): armor_of_god, as_a_deer_pants, beatitudes, calling_and_election_sure, cast_all_your_worries, ..."

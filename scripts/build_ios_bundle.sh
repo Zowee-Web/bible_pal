@@ -323,10 +323,19 @@ for sid in audio_set:
 for fn in ["scripture_anchor_registry.json",
           "biblical_figure_registry.json",
           "character_registry.json",
-          "paths_index.json"]:
+          "paths_index.json",
+          "r2_verified_paths.json"]:
     src = os.path.join(SRC_TEXT, fn)
     if os.path.exists(src):
         shutil.copy2(src, os.path.join(DST, fn))
+
+# Copy the journey registry dir (assets/stories/journeys/*.json). The
+# journey engine loads every ready arc from here; the slim pubspec keeps
+# the `assets/stories/journeys/` glob, so without staging these files the
+# bundle ships ZERO journeys and PAL never offers a continuation.
+src_journeys = os.path.join(SRC_TEXT, "journeys")
+if os.path.isdir(src_journeys):
+    shutil.copytree(src_journeys, os.path.join(DST, "journeys"))
 
 # Write the FULL manifest verbatim (Step 3). final_entries is kept for the
 # diagnostics print below but no longer mutates the bundled manifest.
@@ -464,6 +473,14 @@ mv "$STORIES_DIR" "$STORIES_BACKUP"
 mv "$STAGE_DIR" "$STORIES_DIR"
 mv "$PAL_AUDIO_DIR" "$PAL_AUDIO_BACKUP"
 cp -R "$PAL_AUDIO_COMPRESSED" "$PAL_AUDIO_DIR"
+# The compressed mirror only carries .mp3s, so voice dirs that exist in
+# the dev tree without clips (e.g. VOICE_HOPE/journey pre-render) vanish
+# in the copy — and Flutter errors on pubspec-declared dirs that are
+# MISSING (empty is fine). Recreate every voice subdir pubspec declares.
+for voice_dir in "$PAL_AUDIO_BACKUP"/VOICE_*/; do
+  voice="$(basename "$voice_dir")"
+  mkdir -p "$PAL_AUDIO_DIR/$voice/journey" "$PAL_AUDIO_DIR/$voice/memory"
+done
 mv "$PUBSPEC" "$PUBSPEC_BACKUP"
 mv "$PUBSPEC.ios_generated" "$PUBSPEC"
 
@@ -498,7 +515,12 @@ echo "=== Building release Runner.app ==="
 # Build the .app, not the .ipa. IPA generation requires explicit distribution
 # method + signing identity selection and is out of scope for this slice,
 # which targets local-device install via xcrun devicectl.
-flutter build ios --release
+#
+# EXTRA_DART_DEFINES: optional hook for dev/smoke builds to enable
+# compile-time flags (e.g. --dart-define=DIAGNOSTICS_ENABLED=true
+# --dart-define=JOURNEY_TESTING_ENABLED=true for the journey seed panel).
+# Empty by default, so real release builds are unaffected.
+flutter build ios --release ${EXTRA_DART_DEFINES:-}
 
 # ── Report ───────────────────────────────────────────────────────────
 RUNNER_APP="$PROJECT_ROOT/build/ios/iphoneos/Runner.app"

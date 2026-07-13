@@ -1419,7 +1419,12 @@ class _ParablePlayerScreenState extends ConsumerState<ParablePlayerScreen>
     // Mutual exclusion (2026-07-06): pressing play on the story while the
     // reflection is speaking silences the reflection first — last-tapped
     // wins, the two players never overlap.
-    if (_isReflectionPlaying) {
+    //
+    // Gate on the PLAYER's actual state, not `_isReflectionPlaying`
+    // (2026-07-09, Adam on-device: story + reflection played over each
+    // other). The flag can go stale — the same trap the variant-switch
+    // exclusion already documents — while `.playing` is ground truth.
+    if (_reflectionPlayer?.playing ?? false) {
       await _stopReflectionAudio();
     }
 

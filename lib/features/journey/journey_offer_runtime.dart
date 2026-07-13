@@ -69,6 +69,16 @@ enum JourneyOfferOutcome {
   /// `MoodService.detectMood(...)` and the normal mood-flow story
   /// selection path.
   declinedMoodRedirect,
+
+  /// User tapped Cancel during the offer or the STT capture. The
+  /// runtime did NOT play the decline clip and did NOT classify a
+  /// (possibly stop()-induced empty) transcript. The integration site
+  /// must ABORT the whole flow — no mic restart, no mood fallback, no
+  /// cold-open greeting. This exists because a bare stop() forces an
+  /// empty result that would otherwise classify as ambiguous, play the
+  /// decline clip, and reopen the mic — which reads to the user as
+  /// "Cancel did nothing."
+  cancelled,
 }
 
 @immutable
@@ -163,11 +173,17 @@ Future<JourneyOfferResult> fireJourneyOffer({
   required JourneyResponseCapture captureResponse,
   required DateTime now,
   EventLogger? logger,
+  // Returns true if the user aborted (tapped Cancel) since the offer
+  // began. Checked after the offer plays and after capture so an abort
+  // short-circuits BEFORE the decline clip plays or a story opens.
+  bool Function()? isCancelled,
 }) async {
   void log(String event, Map<String, Object?> props) {
     final l = logger;
     if (l != null) l(event, props);
   }
+
+  bool cancelled() => isCancelled?.call() ?? false;
 
   try {
     // Gate 0 — voice consent. Mirrors fireMemoryLine exactly so the
@@ -259,6 +275,17 @@ Future<JourneyOfferResult> fireJourneyOffer({
       );
     }
 
+    // Cancel checkpoint — user aborted while the offer played. Abort
+    // before capturing (and before the decline clip could ever play).
+    if (cancelled()) {
+      log('pal_journey_offer_cancelled', {
+        'stage': 'after_offer',
+        'journey_id': offer.journey.journeyId,
+        'source_story_index': offer.sourceStoryIndex,
+      });
+      return JourneyOfferResult(JourneyOfferOutcome.cancelled, offer: offer);
+    }
+
     // Telemetry — offer audio fired (heard by user). Logged BEFORE
     // STT capture so a crash during STT still leaves a 'fired'
     // breadcrumb for diagnostics.
@@ -272,6 +299,20 @@ Future<JourneyOfferResult> fireJourneyOffer({
 
     // Gate 4 — STT capture. Null/empty → ambiguous bucket.
     final transcript = await captureResponse();
+
+    // Cancel checkpoint — user tapped Cancel during capture. The
+    // stop() that Cancel triggers forces an empty transcript here;
+    // without this guard it would classify as ambiguous, play the
+    // decline clip, and the integration site would reopen the mic.
+    if (cancelled()) {
+      log('pal_journey_offer_cancelled', {
+        'stage': 'after_capture',
+        'journey_id': offer.journey.journeyId,
+        'source_story_index': offer.sourceStoryIndex,
+      });
+      return JourneyOfferResult(JourneyOfferOutcome.cancelled, offer: offer);
+    }
+
     final classification = classifier.classify(transcript ?? '');
 
     // Gate 5 — dispatch on bucket.

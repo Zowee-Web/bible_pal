@@ -32,7 +32,11 @@ void main() {
   late List<Journey> readyJourneys;
   late Set<String> requiredAdultStaticClipIds;
   late Set<String> requiredKidStaticClipIds;
-  late Set<String> requiredPerSourceStoryOfferClipIds;
+  // One entry per offer slot; each inner list is that slot's ACCEPTABLE
+  // clip ids in resolver-priority order. The offer is satisfied when at
+  // least one is rendered — mirrors BundledAssetJourneyAudioResolver's
+  // per-source-story-then-legacy fallback.
+  late List<List<String>> requiredPerSourceStoryOffers;
 
   setUpAll(() {
     // Load every ready adult/kid journey from the live registry on
@@ -65,11 +69,21 @@ void main() {
     // the bundle from the abandoned mood-button variant but are not
     // required — the Entry-Point Split doctrine (2026-06-30) locked
     // the journey cascade to the PAL button only.
-    requiredPerSourceStoryOfferClipIds = <String>{
+    //
+    // Each offer slot accepts either convention the resolver tries:
+    //   1. `<sourceStoryNumber>_pal_continuation` — Scale-Horizon
+    //      per-source-story clip (the outgoing_beats.json ledger).
+    //   2. `<journeyId>_offer_<idx>` — legacy per-arc-index clip.
+    // At least one must be rendered per voice, or the offer is silent.
+    requiredPerSourceStoryOffers = <List<String>>[
       for (final j in readyJourneys)
         for (var i = 0; i < j.stories.length - 1; i++)
-          '${j.journeyId}_offer_$i',
-    };
+          <String>[
+            if (j.stories[i].storyNumber != null)
+              '${j.stories[i].storyNumber}_pal_continuation',
+            '${j.journeyId}_offer_$i',
+          ],
+    ];
   });
 
   test('every rendered voice has clips for every ready-journey offer', () {
@@ -105,24 +119,29 @@ void main() {
       return;
     }
 
-    final allRequired = <String>{
+    final staticRequired = <String>{
       ...requiredAdultStaticClipIds,
       ...requiredKidStaticClipIds,
-      ...requiredPerSourceStoryOfferClipIds,
     };
 
-    // For each voice that is actively rendering, every required
-    // clipId must exist as a file under that voice's journey dir.
+    // For each voice that is actively rendering: every static clip must
+    // exist, and every per-source-story offer slot must have at least
+    // one of its acceptable clips rendered (resolver fallback shape).
     final missing = <String>[];
-    final present = <String>[];
     for (final voice in voicesWithJourney) {
-      for (final clipId in allRequired) {
+      for (final clipId in staticRequired) {
         final path = PalJourneyAudioPaths.assetPathFor(
             voiceKey: voice, clipId: clipId);
-        if (File(path).existsSync()) {
-          present.add(path);
-        } else {
-          missing.add(path);
+        if (!File(path).existsSync()) missing.add(path);
+      }
+      for (final alternatives in requiredPerSourceStoryOffers) {
+        final anyPresent = alternatives.any((clipId) => File(
+                PalJourneyAudioPaths.assetPathFor(
+                    voiceKey: voice, clipId: clipId))
+            .existsSync());
+        if (!anyPresent) {
+          missing.add(
+              '$voice: none of {${alternatives.map((c) => "$c.mp3").join(", ")}}');
         }
       }
     }
@@ -137,8 +156,9 @@ void main() {
           'clips, or change the journey\'s status from "ready" to '
           '"held" until the audio ships.\n\n'
           'Voices present: ${voicesWithJourney.join(", ")}\n'
-          'Required clipIds (${allRequired.length}): ${allRequired.toList()..sort()}\n'
-          'Missing files (${missing.length}):\n${missing.join("\n")}',
+          'Offer slots required: ${requiredPerSourceStoryOffers.length} '
+          '(+ statics ${staticRequired.toList()..sort()})\n'
+          'Missing (${missing.length}):\n${missing.join("\n")}',
     );
   });
 
@@ -164,8 +184,7 @@ void main() {
     // = 5 per-source-story offer clips per voice.
     final expectedPerSourceCount = readyJourneys.fold<int>(
         0, (sum, j) => sum + (j.stories.length - 1));
-    expect(requiredPerSourceStoryOfferClipIds.length,
-        expectedPerSourceCount);
+    expect(requiredPerSourceStoryOffers.length, expectedPerSourceCount);
   });
 }
 

@@ -125,6 +125,12 @@ class SttService {
     try {
       _available = await _speech.initialize(
         debugLogging: false,
+        // Timing instrumentation (2026-07-09, journey first-"yes"
+        // investigation): 'listening' is the moment the recognizer is
+        // ACTUALLY capturing — everything before it is session-switch/
+        // warmup dead air. Status strings only; never transcript data
+        // (Invariant 17).
+        onStatus: (status) => logEvent('stt_status', {'status': status}),
       );
       _initialized = true;
     } catch (e) {
@@ -162,6 +168,7 @@ class SttService {
     });
 
     Timer? endpointTimer;
+    var firstPartialLogged = false;
 
     try {
       await _speech.listen(
@@ -171,7 +178,12 @@ class SttService {
         listenOptions: SpeechListenOptions(partialResults: true),
         onResult: (SpeechRecognitionResult result) {
           final text = result.recognizedWords.trim();
-          // Transcript is passed ONLY via callback — never logged.
+          // Timing instrumentation only — the transcript itself is
+          // passed ONLY via callback and never logged (Invariant 17).
+          if (!firstPartialLogged && text.isNotEmpty) {
+            firstPartialLogged = true;
+            logEvent('stt_first_partial', {});
+          }
           onResult(SttResult(
             text: text,
             isFinal: result.finalResult,

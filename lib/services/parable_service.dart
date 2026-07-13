@@ -1050,6 +1050,23 @@ class ParableService {
       // can't hijack the adult candidate set.
       final numberPrefix = 'story_${story.storyNumber}_';
       final preferredStyle = userPrefs.languageStyle;
+      // Audio-aware filter (2026-07-09, slim-build on-device finding):
+      // the cascade previously matched on METADATA alone, so a
+      // full-length preference selected a variant whose audioFilePath
+      // was empty in the manifest (1112 full) or absent from R2 —
+      // loadParable failed instantly and the accept path dead-ended on
+      // the fallback even though a playable sibling variant existed.
+      // Reuse the mood-flow playable filter: a candidate must have an
+      // audio path this build can actually play (bundled or
+      // R2-verified). Fail-open — a null playable set means no
+      // filtering, matching the mood-flow contract.
+      final playable = await _playableAudioPaths();
+      bool isPlayable(Parable p) {
+        final path = p.audioFilePath;
+        if (path == null || path.isEmpty) return false;
+        return playable == null || playable.contains(path);
+      }
+
       Parable? preferred;
       Parable? sameLengthAnyStyle;
       Parable? sameStyleAnyLength;
@@ -1057,6 +1074,7 @@ class ParableService {
       for (final p in all) {
         if (!p.storyId.startsWith(numberPrefix)) continue;
         if (p.kidFriendly) continue;
+        if (!isPlayable(p)) continue;
         anyMatch ??= p;
         final sameLength = p.lengthBucket == lengthBucket;
         final sameStyle = p.languageStyle == preferredStyle;

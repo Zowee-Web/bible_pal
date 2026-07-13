@@ -1521,6 +1521,13 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   }
 
   Future<void> _initStt() async {
+    // A launch prewarm was tried and removed (2026-07-09 STT
+    // investigation): the ~2.3s "first yes" cost is an AVAudioSession
+    // mic-route power-up, and the plugin's stop() tears that route back
+    // down, so a prewarm at launch didn't persist to the journey
+    // capture. The real fix is ensureAudioSessionActive() (now
+    // .playAndRecord) called before the offer plays — see
+    // _tryFireJourneyCascade. Just initialize here.
     await _sttService.initialize();
   }
 
@@ -1663,6 +1670,15 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     _autoStoryTimer?.cancel();
     _sttService.stopListening();
     _micPulseController.stop();
+    // Unblock an in-flight journey capture immediately (don't wait out
+    // the 12s safety timer). Completing with null, combined with the
+    // isCancelled checkpoint in fireJourneyOffer, makes the cascade
+    // return `cancelled` — no decline clip, no mic restart.
+    final capture = _journeyCaptureCompleter;
+    if (capture != null && !capture.isCompleted) {
+      _journeyCaptureCompleter = null;
+      capture.complete(null);
+    }
     final palAudio = ref.read(palAudioServiceProvider);
     palAudio.stop();
 
@@ -1831,6 +1847,11 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         // 2.0 opening-audio spec, which scans for the first greeting-
         // state transition after `_startConversation`).
         await _startListeningForMood(fromDecline: true);
+        return;
+      case JourneyOfferOutcome.cancelled:
+        // User tapped Cancel. _cancelConversation already reset the orb,
+        // mic, and voice flow. Do NOT restart listening or fall through
+        // to the cold-open greeting — a cancel is a full stop.
         return;
       case JourneyOfferOutcome.engineSilent:
       case JourneyOfferOutcome.consentBlocked:
@@ -2314,7 +2335,55 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   /// hands off to STT. Mirrors `_startListeningForMood`'s mic-pulse
   /// state shape but routes the transcript back via Future instead
   /// of dispatching to mood detection.
+  /// Strip PAL's own open-door tail from a transcript captured while
+  /// the offer beat was still speaking (tail-overlap listening,
+  /// 2026-07-09). Without this, the mic hearing "…tell me what's on
+  /// your heart today" could misclassify as a mood redirect. Matching
+  /// is normalized (lowercase, apostrophes/punctuation dropped) and
+  /// longest-phrase-first so partial echoes strip cleanly; the user's
+  /// own words ("yes", "I'm anxious") survive untouched.
+  static String _stripOfferEcho(String transcript) {
+    var t = transcript
+        .toLowerCase()
+        .replaceAll(RegExp(r"[^a-z0-9\s]"), '')
+        .replaceAll(RegExp(r'\s+'), ' ')
+        .trim();
+    const echoes = [
+      'or tell me whats on your heart today',
+      'tell me whats on your heart today',
+      'whats on your heart today',
+      'on your heart today',
+      'your heart today',
+      'or whats on your mind',
+      'whats on your mind',
+    ];
+    for (final e in echoes) {
+      t = t.replaceAll(e, ' ');
+    }
+    return t.replaceAll(RegExp(r'\s+'), ' ').trim();
+  }
+
   Future<String?> _captureJourneyResponse() async {
+    // Single capture (2026-07-09): the earlier echo-only RETRY here
+    // started a second startListening() immediately after the first
+    // stopped — which is exactly what _cancelConversation() does to
+    // abort, so the retry defeated the Cancel button (it re-listened
+    // the instant cancel stopped it). With playAndRecord the mic is
+    // live during the tail, so the strip-then-classify single pass is
+    // enough; a pure-echo capture just classifies as ambiguous/decline,
+    // which is the honest silence-floor outcome.
+    final raw = await _captureJourneyResponseOnce();
+    if (raw == null) return null;
+    final cleaned = _stripOfferEcho(raw);
+    return cleaned.isEmpty ? null : cleaned;
+  }
+
+  // Completer of the in-flight journey STT capture, exposed so
+  // _cancelConversation can complete it with null immediately on Cancel
+  // (rather than leaving the cascade awaiting the 12s safety timer).
+  Completer<String?>? _journeyCaptureCompleter;
+
+  Future<String?> _captureJourneyResponseOnce() async {
     if (!mounted) return null;
     setState(() {
       _voiceFlow = _VoiceFlowState.listening;
@@ -2323,6 +2392,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     _micPulseController.repeat(reverse: true);
 
     final completer = Completer<String?>();
+    _journeyCaptureCompleter = completer;
     Timer? safetyTimeout;
     // Track the last non-empty partial transcript. Adam's iPhone
     // 2026-07-01: the STT engine delivered partial "yes" but never
@@ -2334,6 +2404,9 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     void cleanup() {
       _micPulseController.stop();
       safetyTimeout?.cancel();
+      if (identical(_journeyCaptureCompleter, completer)) {
+        _journeyCaptureCompleter = null;
+      }
     }
 
     void completeWithPartial() {
@@ -2354,13 +2427,34 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     // (test env, iOS permission edge-cases) has a cancelable timer.
     safetyTimeout = Timer(const Duration(seconds: 12), completeWithPartial);
 
+    // Instant-accept watch (2026-07-09, tail-overlap listening): a
+    // bare accept token in ANY partial dispatches immediately — no
+    // 3.5s endpoint wait, no finalization. Safe against PAL's own
+    // tail echo because "yes"/"yeah"/"yep" appear in ZERO of the 77
+    // beat/offer texts (verified against outgoing_beats.json + the
+    // render script's CLIPS) — those words can only be the user.
+    final instantAccept = RegExp(r'\b(yes|yeah|yep)\b', caseSensitive: false);
+
     try {
       await _sttService.startListening(
         onResult: (result) {
           if (!mounted) return;
+          // Cancel-aware: once _cancelConversation has flipped the flow
+          // off `listening`, ignore any late/ stop()-induced result so
+          // it can't complete the completer with an empty transcript
+          // that would classify as ambiguous and reopen the mic. Mirrors
+          // the mood-flow capture's `_voiceFlow != listening` guard.
+          if (_voiceFlow != _VoiceFlowState.listening) return;
           if (!result.isFinal) {
             if (result.text.isNotEmpty) {
               lastPartial = result.text;
+              if (instantAccept.hasMatch(result.text) &&
+                  !completer.isCompleted) {
+                cleanup();
+                _sttService.stopListening();
+                completer.complete('yes');
+                return;
+              }
             }
             setState(() => _partialTranscript = result.text);
             return;
@@ -2441,17 +2535,42 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       );
     }
 
+    // Activate the record-capable audio session BEFORE the ~13s offer
+    // plays (2026-07-09 cold-start fix, from the STT investigation).
+    // ensureAudioSessionActive now configures .playAndRecord, so this
+    // call powers up the microphone input route up-front — hidden under
+    // the offer's speech — instead of at listen() time. Without it the
+    // route stays output-only (.playback) through the offer and the
+    // plugin's listen() must renegotiate playback→record, the measured
+    // ~2.3s that dropped the user's first "yes". The journey path skips
+    // the cold-open greeting that would otherwise make this call.
+    await palAudio.ensureAudioSessionActive();
+    if (!mounted) {
+      return const JourneyOfferResult(JourneyOfferOutcome.exception);
+    }
+
     final result = await fireJourneyOffer(
       preferences: preferences,
       sessionStore: sessionStore,
       journeyRegistry: registry,
       audioResolver: audioResolver,
       classifier: classifier,
+      // Offer plays fully, then the mic opens in real silence. Opening
+      // it during playback interrupts the offer (mic and just_audio
+      // fight for the route); the cold start is instead absorbed by the
+      // ensureAudioSessionActive() call above, which warms the mic route
+      // under cover of the offer.
       playOfferPlan: palAudio.playJourneyOffer,
       playDeclinePlan: palAudio.playJourneyDecline,
       captureResponse: _captureJourneyResponse,
       now: DateTime.now(),
       logger: journeyLog,
+      // Cancel checkpoint: _cancelConversation drops _voiceConversationActive
+      // and flips _voiceFlow to inactive. The runtime polls this after the
+      // offer and after capture to abort without a decline clip or restart.
+      isCancelled: () =>
+          !_voiceConversationActive ||
+          _voiceFlow == _VoiceFlowState.inactive,
     );
 
     if (result.offerWasSpoken) {
@@ -2474,12 +2593,23 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     // Global timeout defense: no matter WHERE the accept path wedges
     // (loadParable audio-session state, register-cooldown SharedPrefs,
     // _cancelConversation's palAudio.stop(), the Navigator push
-    // itself), the user gets navigated within 12s. Which step tripped
+    // itself), the user eventually gets navigated. Which step tripped
     // the timeout is captured in telemetry via the per-step log
     // events emitted along the way.
+    //
+    // 75s, not 12s (2026-07-09, slim-build on-device finding): the
+    // original 12s budget was sized for BUNDLED story audio, where
+    // loadParable is near-instant. Slim/R2 builds legitimately stream
+    // multi-MB story audio inside loadParable — Adam's accept downloaded
+    // 4.4MB from R2, crossed 12s, and the timeout dumped him on the
+    // browsing screen while the download quietly completed behind it.
+    // loadParable now carries its own 45s timeout (feeding the existing
+    // load_failed fallback), so this outer ceiling is a pure last-resort
+    // wedge backstop sized above the worst-case legitimate flow
+    // (~2s prep + 45s load cap + ~14s intro caps + nav).
     try {
       await _openJourneyNextStoryUnsafe(offer)
-          .timeout(const Duration(seconds: 12));
+          .timeout(const Duration(seconds: 75));
     } on TimeoutException {
       logEvent('journey_accept_timeout', {
         'journey_id': offer.journey.journeyId,
@@ -2488,23 +2618,14 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       });
       if (!mounted) return;
       // Best-effort fallback: cancel the conversation state so the
-      // main menu is at least usable, then navigate to the pals-
-      // parables browsing screen. Better than a stuck "Preparing
-      // your story..." forever.
+      // main menu is usable again. No navigation — staying on the
+      // main menu is the safe surface (2026-07-09, Adam's on-device
+      // call; see _journeyAcceptFallback).
       try {
         _cancelConversation();
       } catch (e) {
         logEvent('journey_accept_step', {
           'step': 'timeout_cancel_conversation_failed',
-          'error': e.toString(),
-        });
-      }
-      if (!mounted) return;
-      try {
-        await Navigator.of(context).pushNamed('/pals_parables');
-      } catch (e) {
-        logEvent('journey_accept_step', {
-          'step': 'timeout_fallback_nav_failed',
           'error': e.toString(),
         });
       }
@@ -2563,16 +2684,12 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         'error': e.toString(),
       });
     }
-    if (!mounted) return;
-    try {
-      await Navigator.of(context).pushNamed('/pals_parables');
-    } catch (e) {
-      logEvent('journey_accept_step', {
-        'step': 'fallback_nav_failed',
-        'reason': reason,
-        'error': e.toString(),
-      });
-    }
+    // Stay on the main menu (2026-07-09, Adam's on-device call): the
+    // earlier pushNamed('/pals_parables') dumped a failed accept onto
+    // the legacy PAL's-Stories browsing screen, which reads as a
+    // "strange mood screen" mid-conversation. _cancelConversation()
+    // already resets the orb, mic, and greeting — the main menu IS the
+    // safe usable surface, so no navigation is needed or wanted.
   }
 
   Future<void> _openJourneyNextStoryUnsafe(
@@ -2654,7 +2771,17 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     logEvent('journey_accept_step', {'step': 'before_load_parable'});
     _showAcceptStep('load_parable');
     final playerNotifier = ref.read(parablePlayerProvider.notifier);
-    final loaded = await playerNotifier.loadParable(journeyParable);
+    // Own 45s budget: on slim/R2 builds this call streams the story
+    // audio from R2 (multi-MB), which must not share the outer wedge
+    // backstop. Timeout resolves to false → the existing load_failed
+    // fallback. The underlying download continues and caches, so a
+    // retry accept typically succeeds instantly.
+    final loaded = await playerNotifier
+        .loadParable(journeyParable)
+        .timeout(const Duration(seconds: 45), onTimeout: () {
+      logEvent('journey_accept_step', {'step': 'load_parable_timeout'});
+      return false;
+    });
     if (!mounted) return;
 
     if (!loaded) {
@@ -2686,7 +2813,15 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     _cancelConversation();
     logEvent('journey_accept_step', {'step': 'before_navigate'});
     _showAcceptStep('navigate');
-    await Navigator.of(context).push(
+    // Fire-and-forget push (2026-07-09 breadcrumb finding): a Navigator
+    // push future resolves when the pushed route is POPPED, not when it
+    // appears. Awaiting it here kept this method (and therefore the
+    // outer accept-path timeout) alive for the entire time the user
+    // listened to the story — the timeout then fired mid-story and ran
+    // its fallback cleanup underneath the player. The old 12s window
+    // plus the old pushNamed('/pals_parables') fallback is what ripped
+    // the user off the player onto the legacy browsing screen.
+    unawaited(Navigator.of(context).push(
       PageRouteBuilder(
         pageBuilder: (_, __, ___) =>
             const ParablePlayerScreen(showArrivalAnimation: true),
@@ -2704,8 +2839,8 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         },
         transitionDuration: const Duration(milliseconds: 260),
       ),
-    );
-    logEvent('journey_accept_step', {'step': 'navigate_completed'});
+    ));
+    logEvent('journey_accept_step', {'step': 'navigate_pushed'});
   }
 
   /// Plays the transition + framing intro lines for a journey-

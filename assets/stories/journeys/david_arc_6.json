@@ -1,0 +1,41 @@
+{
+  "$schema": "journey_v1",
+  "version": 1,
+  "journeyId": "david_arc_6",
+  "journeyType": "character",
+  "lane": "adult",
+  "status": "ready",
+  "editorialNote": "David's psalms of creation and praise. Outgoing continuation beats approved+ledgered in assets/stories/outgoing_beats.json; STILLWATER audio at <prevStoryId>_pal_continuation.mp3 (Scale-Horizon per-story clip). Some anchors are not yet in scripture_anchor_registry — registration is a separate editorial follow-up and is not required by the journey validator.",
+  "stories": [
+    {
+      "storyNumber": 1520,
+      "scriptureAnchorId": "psalm_8_1-9",
+      "label": "What Is Man That Thou Art Mindful of Him"
+    },
+    {
+      "storyNumber": 808,
+      "scriptureAnchorId": "ps_19_1_6",
+      "label": "The Heavens Declare God's Glory"
+    },
+    {
+      "storyNumber": 1069,
+      "scriptureAnchorId": "ps_139_1-18",
+      "label": "You Have Searched Me and Known Me"
+    },
+    {
+      "storyNumber": 1190,
+      "scriptureAnchorId": "psalm_103_1-22",
+      "label": "Bless the Lord, My Soul"
+    },
+    {
+      "storyNumber": 1329,
+      "scriptureAnchorId": "psalm_138_1-3",
+      "label": "With My Whole Heart"
+    },
+    {
+      "storyNumber": 1330,
+      "scriptureAnchorId": "psalm_145_1-7",
+      "label": "Every Day I Will Praise You"
+    }
+  ]
+}
