@@ -512,6 +512,9 @@ echo "=== pod install ==="
 
 echo ""
 echo "=== Building release Runner.app ==="
+# Regenerate the secret-reduced client config so the build bundles app.env
+# (allowlisted client keys only) — never the full .env with pipeline secrets.
+"$PROJECT_ROOT/scripts/gen_app_env.sh"
 # Build the .app, not the .ipa. IPA generation requires explicit distribution
 # method + signing identity selection and is out of scope for this slice,
 # which targets local-device install via xcrun devicectl.

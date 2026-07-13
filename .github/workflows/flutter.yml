@@ -24,6 +24,11 @@ jobs:
     - name: Create .env placeholder (not committed, needed for asset bundle)
       run: touch .env
 
+    - name: Create app config placeholder (generated + gitignored; needed for asset bundle)
+      run: |
+        mkdir -p assets/config
+        cp assets/config/app.env.example assets/config/app.env
+
     - name: Get dependencies
       run: flutter pub get
 
