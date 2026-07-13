@@ -1521,6 +1521,13 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   }
 
   Future<void> _initStt() async {
+    // A launch prewarm was tried and removed (2026-07-09 STT
+    // investigation): the ~2.3s "first yes" cost is an AVAudioSession
+    // mic-route power-up, and the plugin's stop() tears that route back
+    // down, so a prewarm at launch didn't persist to the journey
+    // capture. The real fix is ensureAudioSessionActive() (now
+    // .playAndRecord) called before the offer plays — see
+    // _tryFireJourneyCascade. Just initialize here.
     await _sttService.initialize();
   }
 
@@ -1663,6 +1670,15 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     _autoStoryTimer?.cancel();
     _sttService.stopListening();
     _micPulseController.stop();
+    // Unblock an in-flight journey capture immediately (don't wait out
+    // the 12s safety timer). Completing with null, combined with the
+    // isCancelled checkpoint in fireJourneyOffer, makes the cascade
+    // return `cancelled` — no decline clip, no mic restart.
+    final capture = _journeyCaptureCompleter;
+    if (capture != null && !capture.isCompleted) {
+      _journeyCaptureCompleter = null;
+      capture.complete(null);
+    }
     final palAudio = ref.read(palAudioServiceProvider);
     palAudio.stop();
 
@@ -1831,6 +1847,11 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         // 2.0 opening-audio spec, which scans for the first greeting-
         // state transition after `_startConversation`).
         await _startListeningForMood(fromDecline: true);
+        return;
+      case JourneyOfferOutcome.cancelled:
+        // User tapped Cancel. _cancelConversation already reset the orb,
+        // mic, and voice flow. Do NOT restart listening or fall through
+        // to the cold-open greeting — a cancel is a full stop.
         return;
       case JourneyOfferOutcome.engineSilent:
       case JourneyOfferOutcome.consentBlocked:
@@ -2343,21 +2364,24 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   }
 
   Future<String?> _captureJourneyResponse() async {
-    // One transparent retry: if the capture finalized on PURE echo of
-    // PAL's own tail (user hadn't spoken yet, the echo burned the
-    // 3.5s endpoint), listen again instead of treating it as silence —
-    // otherwise a user who waits politely and then answers would be
-    // classified ambiguous while mid-sentence.
-    final first = await _captureJourneyResponseOnce();
-    if (first == null) return null;
-    final cleaned = _stripOfferEcho(first);
-    if (cleaned.isNotEmpty) return cleaned;
-    logEvent('pal_journey_echo_only_retry', {});
-    final second = await _captureJourneyResponseOnce();
-    if (second == null) return null;
-    final cleanedSecond = _stripOfferEcho(second);
-    return cleanedSecond.isEmpty ? null : cleanedSecond;
+    // Single capture (2026-07-09): the earlier echo-only RETRY here
+    // started a second startListening() immediately after the first
+    // stopped — which is exactly what _cancelConversation() does to
+    // abort, so the retry defeated the Cancel button (it re-listened
+    // the instant cancel stopped it). With playAndRecord the mic is
+    // live during the tail, so the strip-then-classify single pass is
+    // enough; a pure-echo capture just classifies as ambiguous/decline,
+    // which is the honest silence-floor outcome.
+    final raw = await _captureJourneyResponseOnce();
+    if (raw == null) return null;
+    final cleaned = _stripOfferEcho(raw);
+    return cleaned.isEmpty ? null : cleaned;
   }
+
+  // Completer of the in-flight journey STT capture, exposed so
+  // _cancelConversation can complete it with null immediately on Cancel
+  // (rather than leaving the cascade awaiting the 12s safety timer).
+  Completer<String?>? _journeyCaptureCompleter;
 
   Future<String?> _captureJourneyResponseOnce() async {
     if (!mounted) return null;
@@ -2368,6 +2392,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     _micPulseController.repeat(reverse: true);
 
     final completer = Completer<String?>();
+    _journeyCaptureCompleter = completer;
     Timer? safetyTimeout;
     // Track the last non-empty partial transcript. Adam's iPhone
     // 2026-07-01: the STT engine delivered partial "yes" but never
@@ -2379,6 +2404,9 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     void cleanup() {
       _micPulseController.stop();
       safetyTimeout?.cancel();
+      if (identical(_journeyCaptureCompleter, completer)) {
+        _journeyCaptureCompleter = null;
+      }
     }
 
     void completeWithPartial() {
@@ -2411,6 +2439,12 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       await _sttService.startListening(
         onResult: (result) {
           if (!mounted) return;
+          // Cancel-aware: once _cancelConversation has flipped the flow
+          // off `listening`, ignore any late/ stop()-induced result so
+          // it can't complete the completer with an empty transcript
+          // that would classify as ambiguous and reopen the mic. Mirrors
+          // the mood-flow capture's `_voiceFlow != listening` guard.
+          if (_voiceFlow != _VoiceFlowState.listening) return;
           if (!result.isFinal) {
             if (result.text.isNotEmpty) {
               lastPartial = result.text;
@@ -2501,32 +2535,42 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       );
     }
 
+    // Activate the record-capable audio session BEFORE the ~13s offer
+    // plays (2026-07-09 cold-start fix, from the STT investigation).
+    // ensureAudioSessionActive now configures .playAndRecord, so this
+    // call powers up the microphone input route up-front — hidden under
+    // the offer's speech — instead of at listen() time. Without it the
+    // route stays output-only (.playback) through the offer and the
+    // plugin's listen() must renegotiate playback→record, the measured
+    // ~2.3s that dropped the user's first "yes". The journey path skips
+    // the cold-open greeting that would otherwise make this call.
+    await palAudio.ensureAudioSessionActive();
+    if (!mounted) {
+      return const JourneyOfferResult(JourneyOfferOutcome.exception);
+    }
+
     final result = await fireJourneyOffer(
       preferences: preferences,
       sessionStore: sessionStore,
       journeyRegistry: registry,
       audioResolver: audioResolver,
       classifier: classifier,
-      // Open the mic DURING the open-door tail (2026-07-09, Adam's
-      // call after the double-"yes" finding): the beat's question comes
-      // BEFORE the tail, so users naturally answer while PAL is still
-      // saying "Or, tell me what's on your heart today" — and the mic
-      // didn't exist yet. Completing the offer await ~3s early starts
-      // STT at tail-start; PAL's own tail words are stripped from the
-      // transcript by _stripOfferEcho before classification.
-      // 5s, not 3s (2026-07-09 second on-device round): iOS needs
-      // ~1-1.5s of session-switch + recognizer warmup after listen()
-      // before it actually captures. 3s opened the mic at tail-start,
-      // so a "yes" spoken at the question mark still died in the
-      // warmup gap. 5s has the mic warm BEFORE the question ends.
-      playOfferPlan: (plan) => palAudio.playJourneyOffer(
-        plan,
-        completeEarlyBy: const Duration(milliseconds: 5000),
-      ),
+      // Offer plays fully, then the mic opens in real silence. Opening
+      // it during playback interrupts the offer (mic and just_audio
+      // fight for the route); the cold start is instead absorbed by the
+      // ensureAudioSessionActive() call above, which warms the mic route
+      // under cover of the offer.
+      playOfferPlan: palAudio.playJourneyOffer,
       playDeclinePlan: palAudio.playJourneyDecline,
       captureResponse: _captureJourneyResponse,
       now: DateTime.now(),
       logger: journeyLog,
+      // Cancel checkpoint: _cancelConversation drops _voiceConversationActive
+      // and flips _voiceFlow to inactive. The runtime polls this after the
+      // offer and after capture to abort without a decline clip or restart.
+      isCancelled: () =>
+          !_voiceConversationActive ||
+          _voiceFlow == _VoiceFlowState.inactive,
     );
 
     if (result.offerWasSpoken) {
