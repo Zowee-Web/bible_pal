@@ -103,6 +103,13 @@ VOICES = {
         "display_name": "Stillwater",
         "elevenlabs_id": "uju3wxzG5OhpWcoi3SMy",
     },
+    # Staged voice (ADR-029). Present so the figure-framing renderer can
+    # resolve her ID; journey/memory audio stays Stillwater-first and is
+    # unaffected by this entry (those renderers default to --voice STILLWATER).
+    "VOICE_MIRIAM": {
+        "display_name": "Miriam",
+        "elevenlabs_id": "XrExE9yKIg1WjnnlVkGX",
+    },
 }
 
 # Locked production TTS settings (from scripts/generate_opus_audio.sh,
