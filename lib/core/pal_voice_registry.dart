@@ -83,6 +83,21 @@ class PalVoiceRegistry {
       gender: 'male',
       elevenLabsId: 'uju3wxzG5OhpWcoi3SMy',
     ),
+    // Activated 2026-07-14 (ADR-029): balances the roster to 2 male /
+    // 2 female. Full live audio surface rendered (eleven_v3) and tone-
+    // approved by owner. Shares an ElevenLabs source voice with story
+    // narrator VOICE_MIRIAM_JOYFUL — owner-approved exception to the
+    // PAL/narrator separation; the two systems keep distinct keys.
+    // Journey/memory audio is Stillwater-first, so Miriam (like Hope
+    // and Shepherd) resolves those surfaces to silence until rendered.
+    PalVoice(
+      voiceKey: 'VOICE_MIRIAM',
+      displayName: 'Miriam',
+      emoji: '\u{1F33B}', // 🌻
+      description: 'Joyful spirit',
+      gender: 'female',
+      elevenLabsId: 'XrExE9yKIg1WjnnlVkGX',
+    ),
   ];
 
   /// Voices registered but not yet selectable. A staged voice has an
@@ -93,20 +108,10 @@ class PalVoiceRegistry {
   /// full live audio surface is rendered and passes the PAL_VOICE.md
   /// audit, the entry moves to [voices] (see SPEC 17b, ADR-029).
   ///
-  /// - VOICE_MIRIAM (added 2026-07-14): balances the roster to
-  ///   2 male / 2 female. Shares an ElevenLabs source voice with story
-  ///   narrator VOICE_MIRIAM_JOYFUL — owner-approved exception to the
-  ///   PAL/narrator separation; the two systems keep distinct keys.
-  static const List<PalVoice> stagedVoices = [
-    PalVoice(
-      voiceKey: 'VOICE_MIRIAM',
-      displayName: 'Miriam',
-      emoji: '\u{1F33B}', // 🌻
-      description: 'Joyful spirit',
-      gender: 'female',
-      elevenLabsId: 'XrExE9yKIg1WjnnlVkGX',
-    ),
-  ];
+  /// Currently empty — VOICE_MIRIAM was staged 2026-07-14 and activated
+  /// the same day once her audio rendered. The mechanism remains for the
+  /// next voice.
+  static const List<PalVoice> stagedVoices = [];
 
   /// Look up a voice by key. Returns the default voice when [key] is
   /// null or not found — explicitly resolved via [defaultVoiceKey]

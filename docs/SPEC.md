@@ -639,29 +639,23 @@ This rule exists so Bible PAL can make a small story library feel much larger wi
 
 **17b. PAL Voices**
 
-Three selectable PAL conversation voices for check-in prompts, micro-responses, and previews:
+Four selectable PAL conversation voices for check-in prompts, micro-responses, and previews:
 
 | Voice Key | Display Name | Emoji | Description | ElevenLabs Voice |
 |-----------|-------------|-------|-------------|-----------------|
 | `VOICE_SHEPHERD` | Shepherd | 📖 | Wise storyteller | Mark |
 | `VOICE_HOPE` | Hope | ☀️ | Bright encouragement | Hope |
 | `VOICE_STILLWATER` | Stillwater | 🌙 | Calm companion | James |
+| `VOICE_MIRIAM` | Miriam | 🌻 | Joyful spirit | Miriam (Joyful Spirit) |
 
 - Default voice: `VOICE_STILLWATER`
 - Audio asset path: `assets/pal/audio/{VOICE_KEY}/{line_id}.mp3`
 - Fallback chain: selected voice → default voice (Stillwater) → text-only display
 - PAL voices are separate from the narrator voice pool used for story narration
+- Miriam (activated 2026-07-14, ADR-029) balances the roster to 2 male / 2 female. Persona: a joyful friend who quietly lifts people's spirits — warm, hopeful, cheerful without being bubbly; never loud, preachy, or theatrical. She shares an ElevenLabs source voice with story narrator `VOICE_MIRIAM_JOYFUL` (owner-approved exception; the two systems keep distinct keys).
 - Retired: `VOICE_GRACE` (2026-04-23), `VOICE_RUTH_COMFORT` (2026-04-25). Persisted selections migrate to the default on next launch. (Note: retired `VOICE_GRACE` mapped to ElevenLabs "Juniper" — it is distinct from the permanently forbidden ElevenLabs voice named "Grace" covered by ADR-002.)
 
-**Staged voice (registered, not yet selectable):**
-
-| Voice Key | Display Name | Emoji | Description | ElevenLabs Voice |
-|-----------|-------------|-------|-------------|-----------------|
-| `VOICE_MIRIAM` | Miriam | 🌻 | Joyful spirit | Miriam (Joyful Spirit) |
-
-- Miriam balances the roster to 2 male / 2 female voices. Persona: a joyful friend who quietly lifts people's spirits — warm, hopeful, cheerful without being bubbly; never loud, preachy, or theatrical.
-- She shares an ElevenLabs source voice with story narrator `VOICE_MIRIAM_JOYFUL` (owner-approved exception; the two systems keep distinct keys — see ADR-029).
-- A staged voice does not appear in the Settings voice picker and never resolves at runtime (unknown-key handling applies). It becomes selectable only when its full live audio surface is rendered and passes the PAL_VOICE.md audit, at which point it moves to the table above.
+**Staged voices (registered, not yet selectable):** none currently. The staging mechanism (`PalVoiceRegistry.stagedVoices`) registers a voice with an approved persona and ElevenLabs source but keeps it out of the picker and runtime until its full audio surface is rendered and its tone is owner-approved, at which point it moves into the table above. See ADR-029 for the process (used to introduce Miriam).
 
 **Voice Quality Guardrails:**
 

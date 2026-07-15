@@ -44,12 +44,14 @@ void main() {
   // --- Active voice directory presence ---
 
   group('Active PAL audio directories present', () {
-    // 3 canonical PAL voices per `feedback_pal_canonical_system.md`.
+    // 4 canonical PAL voices per `feedback_pal_canonical_system.md`.
     // Grace + Ruth retired; their audio is archived under audio_archive_*.
+    // Miriam activated 2026-07-14 (ADR-029).
     const activeVoiceKeys = [
       'VOICE_HOPE',
       'VOICE_SHEPHERD',
       'VOICE_STILLWATER',
+      'VOICE_MIRIAM',
     ];
 
     for (final key in activeVoiceKeys) {
@@ -143,12 +145,14 @@ void main() {
       palLines = jsonDecode(palLinesFile.readAsStringSync()) as Map<String, dynamic>;
     });
 
-    // Only the 3 active voices need full asset coverage. Retired voices'
+    // Only the 4 active voices need full asset coverage. Retired voices'
     // audio is preserved under audio_archive_* and not referenced at runtime.
+    // Miriam activated 2026-07-14 (ADR-029).
     const voiceKeys = [
       'VOICE_HOPE',
       'VOICE_SHEPHERD',
       'VOICE_STILLWATER',
+      'VOICE_MIRIAM',
     ];
 
     for (final voiceKey in voiceKeys) {

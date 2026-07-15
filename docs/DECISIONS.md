@@ -1540,6 +1540,8 @@ LLM reflections are generated after story text, validated strictly, and the fina
 - Journey and memory audio remain Stillwater-first; Miriam follows Hope/Shepherd there.
 - Users who pick Miriam as PAL may also hear her narrating one of the 24 stories she voices — accepted by owner.
 
+**Activation (2026-07-14, same day):** Miriam's full live audio surface was rendered on `eleven_v3` — 515 clips, ~30.9K credits, 0 failures (127 core conversational + 176 openings/reflections/tone-biased/transitions + 212 figure-framing), acoustically verified. Owner listened to a representative spread and approved her tone (the PAL_VOICE.md audit's substance). She was then activated: moved from `stagedVoices` into `voices`, added to `pubspec.yaml` for bundling, and the roster tests updated to 4 active / 2 male / 2 female. The `stagedVoices` mechanism is retained (now empty) for the next voice. Journey/memory audio remains Stillwater-first, so Miriam — like Hope and Shepherd — resolves those surfaces to silence until rendered. Deferred: recompressing the distribution mirror is handled by the release bundle scripts at build time (the compressed mirror is not version-controlled).
+
 ---
 
 ## ADR-XXX: [Title]

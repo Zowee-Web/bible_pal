@@ -91,7 +91,7 @@ Stories and audio are pre-generated offline via a Node.js/bash server pipeline, 
 | File | Purpose |
 |------|---------|
 | `bible_translation_registry.dart` | **Translation allowlist — the #1 invariant** |
-| `pal_voice_registry.dart` | PAL voice definitions (Hope, Shepherd, Stillwater; Miriam staged) |
+| `pal_voice_registry.dart` | PAL voice definitions (Hope, Shepherd, Stillwater, Miriam) |
 | `scripture_anchor_registry.json` (in assets/stories/) | Scripture anchor registry for Traditional mode (ADR-022) |
 | `story_length_bucket.dart` | Short/Full/Long bucket system (strict word-count ranges, see SPEC.md) |
 | `app_logger.dart` | Structured JSON logging with breadcrumb ring buffer |
