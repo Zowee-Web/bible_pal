@@ -1,245 +1,53 @@
 {
-  "description": "Opening line IDs + text for audio generation. Extracted from lib/features/pal/opening/pal_opening_lines.dart.",
+  "description": "Canonical 12-line time-bucketed PAL opening greeting contract (Feature 2.0, SPEC \u00a72.0). Generated from the locked runtime source lib/features/pal/opening/pal_opening_lines.dart: 3 lines per time bucket (morning/afternoon/evening/night). This is the LIVE opening contract consumed by generate_pal_framing_audio_batch.sh 'opening' category. Supersedes the retired 60-line tone-bucketed manifest (OPENING_GENTLE/CALM/WARM/ENCOURAGING/WEARY), which had no runtime producers after Feature 2.0 \u2014 see git history for the prior version.",
   "lines": [
     {
-      "id": "OPENING_GENTLE_01",
-      "text": "I\\u2019m here. What\\u2019s today been like for you?"
+      "id": "OPENING_MORN_01",
+      "text": "Good morning\u2026 how's your day going so far?"
     },
     {
-      "id": "OPENING_GENTLE_02",
-      "text": "You don't have to filter anything… how's your day been?"
+      "id": "OPENING_MORN_02",
+      "text": "Hi\u2026 how's your morning been?"
     },
     {
-      "id": "OPENING_GENTLE_03",
-      "text": "What\\u2019s been sitting with you today?"
+      "id": "OPENING_MORN_03",
+      "text": "How are you doing today?"
     },
     {
-      "id": "OPENING_GENTLE_04",
-      "text": "I've got time—what's been going on for you?"
+      "id": "OPENING_AFTN_01",
+      "text": "How's your day going?"
     },
     {
-      "id": "OPENING_GENTLE_05",
-      "text": "What's been on your heart lately… even a little?"
+      "id": "OPENING_AFTN_02",
+      "text": "How's everything been today?"
     },
     {
-      "id": "OPENING_GENTLE_06",
-      "text": "How are you really doing right now?"
+      "id": "OPENING_AFTN_03",
+      "text": "What kind of day has it been?"
     },
     {
-      "id": "OPENING_GENTLE_07",
-      "text": "What's been quietly on your mind today?"
+      "id": "OPENING_EVEN_01",
+      "text": "How was your day?"
     },
     {
-      "id": "OPENING_GENTLE_08",
-      "text": "You can just say it as it is… how's today been?"
+      "id": "OPENING_EVEN_02",
+      "text": "What's today been like for you?"
     },
     {
-      "id": "OPENING_GENTLE_09",
-      "text": "What's been lingering with you today?"
+      "id": "OPENING_EVEN_03",
+      "text": "How's your day been?"
     },
     {
-      "id": "OPENING_GENTLE_10",
-      "text": "What kind of day has it been for you?"
+      "id": "OPENING_NIGHT_01",
+      "text": "How's your night going?"
     },
     {
-      "id": "OPENING_GENTLE_11",
-      "text": "What's been with you today… start wherever you want."
+      "id": "OPENING_NIGHT_02",
+      "text": "How are you tonight?"
     },
     {
-      "id": "OPENING_GENTLE_12",
-      "text": "How have things been feeling on your side today?"
-    },
-    {
-      "id": "OPENING_ENCOURAGING_01",
-      "text": "You don't have to carry it alone… what's been going on?"
-    },
-    {
-      "id": "OPENING_ENCOURAGING_02",
-      "text": "What\\u2019s been a little heavy for you today?"
-    },
-    {
-      "id": "OPENING_ENCOURAGING_03",
-      "text": "If something's been weighing on you, you can say it here."
-    },
-    {
-      "id": "OPENING_ENCOURAGING_04",
-      "text": "What's been taking more out of you than you expected?"
-    },
-    {
-      "id": "OPENING_ENCOURAGING_05",
-      "text": "What\\u2019s been hard to shake today?"
-    },
-    {
-      "id": "OPENING_ENCOURAGING_06",
-      "text": "If today's been a lot, I'm here—what's going on?"
-    },
-    {
-      "id": "OPENING_ENCOURAGING_07",
-      "text": "What's been asking a lot from you lately?"
-    },
-    {
-      "id": "OPENING_ENCOURAGING_08",
-      "text": "What\\u2019s been sitting a little heavier than usual?"
-    },
-    {
-      "id": "OPENING_ENCOURAGING_09",
-      "text": "What's been pressing on you, even if it's small?"
-    },
-    {
-      "id": "OPENING_ENCOURAGING_10",
-      "text": "You can let it out here… what's been going on?"
-    },
-    {
-      "id": "OPENING_ENCOURAGING_11",
-      "text": "What's been harder than you thought it would be today?"
-    },
-    {
-      "id": "OPENING_ENCOURAGING_12",
-      "text": "What\\u2019s been pulling at you today?"
-    },
-    {
-      "id": "OPENING_CALM_01",
-      "text": "Take a breath with me. What's been going on?"
-    },
-    {
-      "id": "OPENING_CALM_02",
-      "text": "No rush at all… what's been on your heart?"
-    },
-    {
-      "id": "OPENING_CALM_03",
-      "text": "We can just slow this down… how are you feeling?"
-    },
-    {
-      "id": "OPENING_CALM_04",
-      "text": "You can take your time here. What's been today?"
-    },
-    {
-      "id": "OPENING_CALM_05",
-      "text": "Let's just pause for a second… what's been going on?"
-    },
-    {
-      "id": "OPENING_CALM_06",
-      "text": "You don't have to hurry through it… what's been on your mind?"
-    },
-    {
-      "id": "OPENING_CALM_07",
-      "text": "We can sit here a moment. What's been with you?"
-    },
-    {
-      "id": "OPENING_CALM_08",
-      "text": "Whenever you're ready… what's been on your heart?"
-    },
-    {
-      "id": "OPENING_CALM_09",
-      "text": "Let's just take this one piece at a time… what's going on?"
-    },
-    {
-      "id": "OPENING_CALM_10",
-      "text": "Just ease into it. What's been today for you?"
-    },
-    {
-      "id": "OPENING_CALM_11",
-      "text": "We can keep this simple… how are you feeling right now?"
-    },
-    {
-      "id": "OPENING_CALM_12",
-      "text": "Take your time… what's been staying with you today?"
-    },
-    {
-      "id": "OPENING_WEARY_01",
-      "text": "You sound like you might be tired. What's been going on?"
-    },
-    {
-      "id": "OPENING_WEARY_02",
-      "text": "Has today been a long one for you?"
-    },
-    {
-      "id": "OPENING_WEARY_03",
-      "text": "What's been wearing on you today?"
-    },
-    {
-      "id": "OPENING_WEARY_04",
-      "text": "You don\\u2019t have to push through it here\\u2026 what\\u2019s been hard?"
-    },
-    {
-      "id": "OPENING_WEARY_05",
-      "text": "What's been taking more energy than you had today?"
-    },
-    {
-      "id": "OPENING_WEARY_06",
-      "text": "What's been a little too much lately?"
-    },
-    {
-      "id": "OPENING_WEARY_07",
-      "text": "What's been draining you today?"
-    },
-    {
-      "id": "OPENING_WEARY_08",
-      "text": "Has anything just felt… heavy today?"
-    },
-    {
-      "id": "OPENING_WEARY_09",
-      "text": "What's been a lot for you today?"
-    },
-    {
-      "id": "OPENING_WEARY_10",
-      "text": "What's been hard to carry today?"
-    },
-    {
-      "id": "OPENING_WEARY_11",
-      "text": "How are you holding up through all of it?"
-    },
-    {
-      "id": "OPENING_WEARY_12",
-      "text": "What's been quietly exhausting for you today?"
-    },
-    {
-      "id": "OPENING_WARM_01",
-      "text": "Did anything feel a little good today?"
-    },
-    {
-      "id": "OPENING_WARM_02",
-      "text": "What's been a small bright spot for you?"
-    },
-    {
-      "id": "OPENING_WARM_03",
-      "text": "Anything that made you pause in a good way today?"
-    },
-    {
-      "id": "OPENING_WARM_04",
-      "text": "What's something that felt even a little lighter today?"
-    },
-    {
-      "id": "OPENING_WARM_05",
-      "text": "Did anything bring you a bit of peace today?"
-    },
-    {
-      "id": "OPENING_WARM_06",
-      "text": "What's something you're glad happened today?"
-    },
-    {
-      "id": "OPENING_WARM_07",
-      "text": "What's been a moment worth holding onto today?"
-    },
-    {
-      "id": "OPENING_WARM_08",
-      "text": "Anything that made you smile, even briefly?"
-    },
-    {
-      "id": "OPENING_WARM_09",
-      "text": "What felt steady or good today?"
-    },
-    {
-      "id": "OPENING_WARM_10",
-      "text": "Was there a moment today that just felt… right?"
-    },
-    {
-      "id": "OPENING_WARM_11",
-      "text": "What's something that didn't feel so heavy today?"
-    },
-    {
-      "id": "OPENING_WARM_12",
-      "text": "What's been a quiet good in your day?"
+      "id": "OPENING_NIGHT_03",
+      "text": "What's your night been like?"
     }
   ]
 }

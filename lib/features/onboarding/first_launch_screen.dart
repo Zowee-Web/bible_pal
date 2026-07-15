@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../core/pal_voice_registry.dart';
 import '../../models/user_preferences.dart' show currentVoiceConsentVersion;
 import '../../providers/app_state_notifier.dart';
 import '../../providers/service_providers.dart' show nameAudioServiceProvider;
@@ -148,7 +149,8 @@ class _FirstLaunchScreenState extends ConsumerState<FirstLaunchScreen>
       await sp.setBool(kFirstLaunchCompleteKey, true);
 
       // Fire-and-forget: generate name audio clips for personalized greetings
-      final palVoiceKey = currentState?.userPreferences.palVoiceKey ?? 'VOICE_GRACE';
+      final palVoiceKey = currentState?.userPreferences.palVoiceKey ??
+          PalVoiceRegistry.defaultVoiceKey;
       ref.read(nameAudioServiceProvider).generateNamePhrases(
             name: name,
             voiceKey: palVoiceKey,

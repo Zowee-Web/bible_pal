@@ -1,5 +1,5 @@
 // PAL Voice Registry
-// Defines the 4 selectable voices for PAL's conversational audio.
+// Defines the selectable voices for PAL's conversational audio.
 // Keys match the canonical voice pool in server/voices.json.
 
 class PalVoice {
@@ -83,7 +83,35 @@ class PalVoiceRegistry {
       gender: 'male',
       elevenLabsId: 'uju3wxzG5OhpWcoi3SMy',
     ),
+    // Activated 2026-07-14 (ADR-029): balances the roster to 2 male /
+    // 2 female. Full live audio surface rendered (eleven_v3) and tone-
+    // approved by owner. Shares an ElevenLabs source voice with story
+    // narrator VOICE_MIRIAM_JOYFUL — owner-approved exception to the
+    // PAL/narrator separation; the two systems keep distinct keys.
+    // Journey/memory audio is Stillwater-first, so Miriam (like Hope
+    // and Shepherd) resolves those surfaces to silence until rendered.
+    PalVoice(
+      voiceKey: 'VOICE_MIRIAM',
+      displayName: 'Miriam',
+      emoji: '\u{1F33B}', // 🌻
+      description: 'Joyful spirit',
+      gender: 'female',
+      elevenLabsId: 'XrExE9yKIg1WjnnlVkGX',
+    ),
   ];
+
+  /// Voices registered but not yet selectable. A staged voice has an
+  /// approved persona and ElevenLabs source but no rendered PAL audio
+  /// library; it is excluded from [voices], so it never appears in the
+  /// Settings picker, never validates via [isValid], and a persisted
+  /// key would migrate to the default like any unknown key. When its
+  /// full live audio surface is rendered and passes the PAL_VOICE.md
+  /// audit, the entry moves to [voices] (see SPEC 17b, ADR-029).
+  ///
+  /// Currently empty — VOICE_MIRIAM was staged 2026-07-14 and activated
+  /// the same day once her audio rendered. The mechanism remains for the
+  /// next voice.
+  static const List<PalVoice> stagedVoices = [];
 
   /// Look up a voice by key. Returns the default voice when [key] is
   /// null or not found — explicitly resolved via [defaultVoiceKey]

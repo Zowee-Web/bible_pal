@@ -101,16 +101,18 @@ void main() {
       expect(prefs.palVoiceKey, 'VOICE_STILLWATER');
     });
 
-    test('all 3 active PAL voices are registered', () {
+    test('all 4 active PAL voices are registered', () {
       // Grace retired 2026-04-23; Ruth v1 retired 2026-04-25.
       // Audio for both is preserved under archive directories.
-      expect(PalVoiceRegistry.voices.length, 3);
+      // Miriam activated 2026-07-14 (ADR-029).
+      expect(PalVoiceRegistry.voices.length, 4);
       expect(
           PalVoiceRegistry.voices.map((v) => v.voiceKey).toSet(),
           containsAll([
             'VOICE_HOPE',
             'VOICE_SHEPHERD',
             'VOICE_STILLWATER',
+            'VOICE_MIRIAM',
           ]));
     });
 

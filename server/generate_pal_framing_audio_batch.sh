@@ -1,22 +1,28 @@
 #!/bin/bash
 # generate_pal_framing_audio_batch.sh
-# Pre-renders all PAL framing overlay + opening line audio for all 4 PAL voices.
+# Pre-renders PAL framing overlay + opening/reflection/transition audio for
+# the PAL voice roster (see PAL_VOICES below).
 #
 # CRITICAL: This is a SERVER-SIDE script. The generated MP3s ship as bundled assets.
 # The mobile app NEVER calls ElevenLabs at runtime.
 #
 # Usage: AUDIO_ENABLED=1 ./server/generate_pal_framing_audio_batch.sh
 #        AUDIO_ENABLED=1 FORCE_REGEN=1 ./server/generate_pal_framing_audio_batch.sh
+#        AUDIO_ENABLED=1 PAL_CATEGORIES="opening reflection tone_biased transition" \
+#            ./server/generate_pal_framing_audio_batch.sh   # live surface only
 #
-# Line pools and expected totals (per voice):
-#   Opening lines:              60  (from pal_opening_lines.dart)
+# Live line pools (per voice):
+#   Opening lines (canonical):  12  (server/pal_opening_lines_manifest.json,
+#                                    regenerated from pal_opening_lines.dart)
 #   Reflection lines:           32  (from pal_reflection_lines.json)
 #   Tone-biased reflection:    120  (from pal_tone_biased_reflection_lines.json)
-#   Framing lines:              92  (from biblical_figure_registry.json)
 #   Transition lines:           12  (from pal_transition_lines.json)
-#   ─────────────────────────────────
-#   Per voice:                 316
-#   Total (4 voices):        1,264 MP3 files
+#
+# Retired categories (rendered only when explicitly in PAL_CATEGORIES):
+#   creative — Creative mode retired 2026-05-13 (dead, no runtime refs).
+#   framing  — figure-framing clips are owned by
+#              scripts/render_figure_framing_audio.py (biblical_figure_registry.json).
+# Existing files are skipped unless FORCE_REGEN=1.
 #
 # Asset output: assets/pal/audio/{voiceKey}/{lineId}.mp3
 # Same directory structure as existing PAL prompt/micro-response audio.
@@ -71,8 +77,28 @@ if [[ -z "${ELEVENLABS_API_KEY:-}" ]]; then
     exit 1
 fi
 
-# Validate input files
-for f in "$VOICES_FILE" "$REFLECTION_FILE" "$TONE_BIASED_FILE" "$TRANSITION_FILE" "$FRAMING_FILE" "$CREATIVE_FILE"; do
+# Categories to render. Defaults to the full historical set so the default
+# invocation is unchanged. Override with PAL_CATEGORIES to render a subset,
+# e.g. PAL_CATEGORIES="opening reflection tone_biased transition" to render
+# only the live surface and skip retired categories (legacy 'creative', and
+# 'framing' which is owned by scripts/render_figure_framing_audio.py).
+PAL_CATEGORIES="${PAL_CATEGORIES:-opening reflection tone_biased transition framing creative}"
+
+# Validate only the source files needed by the selected categories. voices.json
+# is always required (voice-id resolution); each category's line pool is checked
+# only when that category is in PAL_CATEGORIES. (opening is validated separately
+# below via OPENING_MANIFEST / SKIP_OPENING.)
+required_files=("$VOICES_FILE")
+for category in $PAL_CATEGORIES; do
+    case "$category" in
+        reflection)  required_files+=("$REFLECTION_FILE") ;;
+        tone_biased) required_files+=("$TONE_BIASED_FILE") ;;
+        transition)  required_files+=("$TRANSITION_FILE") ;;
+        framing)     required_files+=("$FRAMING_FILE") ;;
+        creative)    required_files+=("$CREATIVE_FILE") ;;
+    esac
+done
+for f in "${required_files[@]}"; do
     if [[ ! -f "$f" ]]; then
         echo -e "${RED}Error: Required file not found: $f${NC}" >&2
         exit 1
@@ -88,13 +114,15 @@ else
     SKIP_OPENING=0
 fi
 
-# PAL voice keys
-# VOICE_GRACE was retired 2026-04-23 per ADR-002 (replaced by VOICE_RUTH_COMFORT
-# as the default PAL voice). See lib/core/pal_voice_registry.dart legacy list.
+# PAL voice keys (active roster + staged voices being brought to coverage).
+# VOICE_GRACE (retired 2026-04-23) and VOICE_RUTH_COMFORT (retired 2026-04-25)
+# are intentionally absent — never render them. See pal_voice_registry.dart.
+# VOICE_MIRIAM is staged (ADR-029); rendered here ahead of activation.
 PAL_VOICES=(
     "VOICE_SHEPHERD"
     "VOICE_HOPE"
     "VOICE_STILLWATER"
+    "VOICE_MIRIAM"
 )
 
 # ElevenLabs model for PAL audio (v3 engine, same as existing PAL audio)
@@ -233,7 +261,7 @@ for voice_key in "${PAL_VOICES[@]}"; do
     el_id=$(resolve_voice_id "$voice_key")
     echo -e "\n${CYAN}Voice: $voice_key${NC} (${el_id:0:8}...)"
 
-    for category in opening reflection tone_biased transition framing creative; do
+    for category in $PAL_CATEGORIES; do
         echo -e "  ${BLUE}[$category]${NC}"
 
         lines=""

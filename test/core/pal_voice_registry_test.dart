@@ -1,24 +1,26 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bible_pal/core/pal_voice_registry.dart';
 
 void main() {
   group('PalVoiceRegistry', () {
-    test('contains exactly 3 active voices', () {
-      // Ruth v1 retired 2026-04-25 (audio archived to
-      // assets/pal/audio_archive_ruth_v1_2026_04_25/). Grace was
-      // retired 2026-04-23.
-      expect(PalVoiceRegistry.voices.length, 3);
+    test('contains exactly 4 active voices', () {
+      // Hope, Shepherd, Stillwater, Miriam (activated 2026-07-14,
+      // ADR-029). Grace retired 2026-04-23; Ruth v1 retired 2026-04-25.
+      expect(PalVoiceRegistry.voices.length, 4);
     });
 
-    test('has 2 male and 1 female voices', () {
-      // Until Ruth v2 ships: Hope (female), Shepherd (male),
-      // Stillwater (male).
+    test('has 2 male and 2 female voices', () {
+      // Hope (female), Shepherd (male), Stillwater (male),
+      // Miriam (female) — a balanced 2/2 roster.
       final males =
           PalVoiceRegistry.voices.where((v) => v.gender == 'male').toList();
       final females =
           PalVoiceRegistry.voices.where((v) => v.gender == 'female').toList();
       expect(males.length, 2);
-      expect(females.length, 1);
+      expect(females.length, 2);
     });
 
     test('default voice key is VOICE_STILLWATER', () {
@@ -65,6 +67,7 @@ void main() {
         'VOICE_HOPE',
         'VOICE_SHEPHERD',
         'VOICE_STILLWATER',
+        'VOICE_MIRIAM',
       };
       final actual = PalVoiceRegistry.voices.map((v) => v.voiceKey).toSet();
       expect(actual, expected);
@@ -95,6 +98,88 @@ void main() {
 
     test('isValid returns false for unknown key', () {
       expect(PalVoiceRegistry.isValid('VOICE_UNKNOWN'), false);
+    });
+  });
+
+  group('PalVoiceRegistry Miriam (activated)', () {
+    // Miriam was activated 2026-07-14 (ADR-029): moved from stagedVoices
+    // into voices once her full audio surface rendered and tone was
+    // owner-approved. She must now resolve as a normal active voice.
+    test('Miriam is active with pinned key, ID, and gender', () {
+      final miriam = PalVoiceRegistry.voices
+          .firstWhere((v) => v.voiceKey == 'VOICE_MIRIAM');
+      expect(miriam.displayName, 'Miriam');
+      expect(miriam.gender, 'female');
+      expect(miriam.elevenLabsId, 'XrExE9yKIg1WjnnlVkGX');
+    });
+
+    test('Miriam validates and resolves via getVoice', () {
+      expect(PalVoiceRegistry.isValid('VOICE_MIRIAM'), true);
+      expect(PalVoiceRegistry.migrateVoiceKey('VOICE_MIRIAM'), 'VOICE_MIRIAM');
+      expect(PalVoiceRegistry.getVoice('VOICE_MIRIAM').voiceKey,
+          'VOICE_MIRIAM');
+    });
+
+    test('no voices are currently staged', () {
+      // The staging mechanism is retained for the next voice, but the
+      // list is empty after Miriam's activation.
+      expect(PalVoiceRegistry.stagedVoices, isEmpty);
+    });
+  });
+
+  group('PalVoiceRegistry staging mechanism (guards future staged voices)',
+      () {
+    // Generic invariants that must hold for ANY staged voice: it stays
+    // invisible to the picker and runtime until activation (SPEC 17b,
+    // ADR-029). These pass trivially while stagedVoices is empty and
+    // become live guards the moment a new voice is staged.
+    test('staged voices are not in the active list', () {
+      final activeKeys =
+          PalVoiceRegistry.voices.map((v) => v.voiceKey).toSet();
+      for (final staged in PalVoiceRegistry.stagedVoices) {
+        expect(activeKeys.contains(staged.voiceKey), false,
+            reason: '${staged.voiceKey} must not be active while staged');
+      }
+    });
+
+    test('staged keys are not valid and migrate to the default', () {
+      for (final staged in PalVoiceRegistry.stagedVoices) {
+        expect(PalVoiceRegistry.isValid(staged.voiceKey), false,
+            reason: '${staged.voiceKey} must not validate while staged');
+        expect(PalVoiceRegistry.migrateVoiceKey(staged.voiceKey),
+            PalVoiceRegistry.defaultVoiceKey,
+            reason: '${staged.voiceKey} must migrate to default '
+                'while staged');
+      }
+    });
+
+    test('staged voices never resolve via getVoice', () {
+      for (final staged in PalVoiceRegistry.stagedVoices) {
+        expect(PalVoiceRegistry.getVoice(staged.voiceKey).voiceKey,
+            PalVoiceRegistry.defaultVoiceKey);
+      }
+    });
+
+    test('PAL keys (active + staged) are disjoint from the narrator pool',
+        () {
+      // PAL voices and story narrator voices are two separate systems
+      // that must never share keys (story_voice_registry.py, permanent
+      // rule). Miriam's ElevenLabs SOURCE is shared with narrator
+      // VOICE_MIRIAM_JOYFUL (owner-approved exception, ADR-029), but
+      // the keys stay distinct — this guards the key namespace, not
+      // the source voice.
+      final voicesJson = jsonDecode(
+              File('server/voices.json').readAsStringSync())
+          as Map<String, dynamic>;
+      final narratorKeys = (voicesJson['voices'] as List<dynamic>)
+          .map((v) => (v as Map<String, dynamic>)['voiceKey'] as String)
+          .toSet();
+      final palKeys = [
+        ...PalVoiceRegistry.voices,
+        ...PalVoiceRegistry.stagedVoices,
+      ].map((v) => v.voiceKey).toSet();
+      expect(palKeys.intersection(narratorKeys), isEmpty,
+          reason: 'PAL voice keys must never appear in the narrator pool');
     });
   });
 

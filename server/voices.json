@@ -546,6 +546,22 @@
         "adult",
         "kid"
       ]
+    },
+    {
+      "voiceKey": "VOICE_MIRIAM",
+      "elevenLabsId": "XrExE9yKIg1WjnnlVkGX",
+      "displayName": "Miriam (Joyful Spirit)",
+      "description": "Warm, joyful female voice. Quietly lifts spirits. Activated 2026-07-14 (ADR-029); balances the roster to 2M/2F. Shares its ElevenLabs source with narrator VOICE_MIRIAM_JOYFUL.",
+      "tags": [
+        "joyful",
+        "warm",
+        "female",
+        "hopeful"
+      ],
+      "audience": [
+        "adult",
+        "kid"
+      ]
     }
   ],
   "moodVoiceWeights": {

@@ -1,7 +1,7 @@
 #!/bin/bash
 # generate_pal_audio_batch.sh
 # Pre-renders ALL PAL conversation audio (prompts + micro-responses + preview + onboarding)
-# for all 4 PAL voices using ElevenLabs API with Eleven v3 engine.
+# for the PAL voice roster using ElevenLabs API with Eleven v3 engine.
 #
 # CRITICAL: This is a SERVER-SIDE script. The generated MP3s ship as bundled assets.
 # The mobile app NEVER calls ElevenLabs at runtime.
@@ -9,8 +9,8 @@
 # Usage: AUDIO_ENABLED=1 ./server/generate_pal_audio_batch.sh
 #        AUDIO_ENABLED=1 FORCE_REGEN=1 ./server/generate_pal_audio_batch.sh
 #
-# Onboarding audio (onboard_01) is rendered ONLY for the default voice (VOICE_GRACE).
-# All other lines are rendered for all 4 voices.
+# Onboarding audio (onboard_01) is rendered ONLY for the default voice (VOICE_STILLWATER).
+# All other lines are rendered for every voice in PAL_VOICES.
 #
 # pal_lines.json v2 structure:
 #   prompts:        16 buckets (4 time windows × 4 categories) × 6 lines = 96
@@ -18,7 +18,9 @@
 #   preview:        1 line
 #   onboarding:     1 line (default voice only)
 #
-# Expected total: (96 + 30 + 1) × 4 voices + 1 onboarding = 509 files
+# Expected total per voice: 96 + 30 + 1 = 127 files (+1 onboarding for the default).
+# Existing files are skipped unless FORCE_REGEN=1, so a run only fills gaps
+# (e.g. staged VOICE_MIRIAM per ADR-029; active voices are already complete).
 
 set -euo pipefail
 
@@ -80,14 +82,16 @@ if [[ "$PAL_VERSION" != "2" ]]; then
     exit 1
 fi
 
-# PAL voice keys (must match pal_voice_registry.dart)
+# PAL voice keys (must match pal_voice_registry.dart: active voices +
+# staged voices being brought to coverage). VOICE_GRACE was retired
+# 2026-04-23 — never render it (audio archived, dir must stay absent).
 PAL_VOICES=(
-    "VOICE_GRACE"
-    "VOICE_SHEPHERD"
     "VOICE_HOPE"
+    "VOICE_SHEPHERD"
     "VOICE_STILLWATER"
+    "VOICE_MIRIAM"
 )
-DEFAULT_VOICE="VOICE_GRACE"
+DEFAULT_VOICE="VOICE_STILLWATER"
 
 # PAL audio standard: eleven_v3 (premium voice experience).
 # Story audio uses eleven_turbo_v2_5 separately. Do not mix.

@@ -766,6 +766,7 @@ flutter:
     - assets/pal/audio/VOICE_SHEPHERD/
     - assets/pal/audio/VOICE_HOPE/
     - assets/pal/audio/VOICE_STILLWATER/
+    - assets/pal/audio/VOICE_MIRIAM/
     # PAL Memory (Slice 2d) — memory clips per voice. Declared for all
     # three voices (not just STILLWATER) to keep symmetry with the voice
     # directories above; Flutter doesn't recurse into subdirectories of a
