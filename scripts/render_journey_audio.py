@@ -314,17 +314,17 @@ CLIPS = [
     # ADULT — Daniel Arc (sourceStoryIndex 0/1/2; index 3 = end)
     {
         "clip_id": "daniel_arc_offer_0",
-        "text": "Last time, young Daniel chose what was true… Would you like to hear what happened when his three friends would not bow to the king's golden image? Or, tell me what's on your heart today.",
+        "text": "Last time, young Daniel chose what was true… Would you like to hear what happened when his three friends would not bow to the king's golden image?",
         "model": "eleven_v3",
     },
     {
         "clip_id": "daniel_arc_offer_1",
-        "text": "Last time, we stood in the fire with Daniel's friends… Shall we return to Daniel — risen high, and hated by enemies who can fault him for nothing but his prayers? Or, tell me what's on your heart today.",
+        "text": "Last time, we stood in the fire with Daniel's friends… Shall we return to Daniel — risen high, and hated by enemies who can fault him for nothing but his prayers?",
         "model": "eleven_v3",
     },
     {
         "clip_id": "daniel_arc_offer_2",
-        "text": "Last time, we walked with Daniel into the lions' den… Shall we stay with him for one more night, when a dream comes — four winds striving on a great sea? Or, tell me what's on your heart today.",
+        "text": "Last time, we walked with Daniel into the lions' den… Shall we stay with him for one more night, when a dream comes — four winds striving on a great sea?",
         "model": "eleven_v3",
     },
     # ── ENRICHED slate v2 — Production Invitation Families (2026-07-05) ──
@@ -334,64 +334,64 @@ CLIPS = [
     # ADULT — Joseph Arc (0/1/2/3; index 4 = end)
     {
         "clip_id": "joseph_arc_offer_0",
-        "text": "Last time, Joseph's brothers sold him for twenty pieces of silver… Would you like to hear what happened when he met two troubled men in an Egyptian prison? Or, tell me what's on your heart today.",
+        "text": "Last time, Joseph's brothers sold him for twenty pieces of silver… Would you like to hear what happened when he met two troubled men in an Egyptian prison?",
         "model": "eleven_v3",
     },
     {
         "clip_id": "joseph_arc_offer_1",
-        "text": "Last time, Joseph sat forgotten in prison… Would you like to see where God leads him when Pharaoh wakes from dreams no wise man can explain? Or, tell me what's on your heart today.",
+        "text": "Last time, Joseph sat forgotten in prison… Would you like to see where God leads him when Pharaoh wakes from dreams no wise man can explain?",
         "model": "eleven_v3",
     },
     {
         "clip_id": "joseph_arc_offer_2",
-        "text": "Last time, Joseph rose from prison to Pharaoh's court… Shall we stay with him to the moment he clears the hall of everyone but his brothers? Or, tell me what's on your heart today.",
+        "text": "Last time, Joseph rose from prison to Pharaoh's court… Shall we stay with him to the moment he clears the hall of everyone but his brothers?",
         "model": "eleven_v3",
     },
     {
         "clip_id": "joseph_arc_offer_3",
-        "text": "Last time, Joseph wept and told his brothers who he was… Shall we keep walking with him to the day their father dies, and his brothers fear him all over again? Or, tell me what's on your heart today.",
+        "text": "Last time, Joseph wept and told his brothers who he was… Shall we keep walking with him to the day their father dies, and his brothers fear him all over again?",
         "model": "eleven_v3",
     },
     # ADULT — Ruth Arc (0/1/2/3; index 4 = end)
     {
         "clip_id": "ruth_arc_offer_0",
-        "text": "Last time, Ruth clung to Naomi and would not turn back… Would you like to follow her into a stranger's field, where she gleans without knowing whose land it is? Or, tell me what's on your heart today.",
+        "text": "Last time, Ruth clung to Naomi and would not turn back… Would you like to follow her into a stranger's field, where she gleans without knowing whose land it is?",
         "model": "eleven_v3",
     },
     {
         "clip_id": "ruth_arc_offer_1",
-        "text": "Last time, Boaz first noticed Ruth among his reapers… Would you like to hear what happened when Naomi sent her by night to the threshing floor? Or, tell me what's on your heart today.",
+        "text": "Last time, Boaz first noticed Ruth among his reapers… Would you like to hear what happened when Naomi sent her by night to the threshing floor?",
         "model": "eleven_v3",
     },
     {
         "clip_id": "ruth_arc_offer_2",
-        "text": "Last time, Ruth came softly through the dark to Boaz's feet… Would you like to follow Boaz to the gate of Bethlehem, where a nearer kinsman holds first claim? Or, tell me what's on your heart today.",
+        "text": "Last time, Ruth came softly through the dark to Boaz's feet… Would you like to follow Boaz to the gate of Bethlehem, where a nearer kinsman holds first claim?",
         "model": "eleven_v3",
     },
     {
         "clip_id": "ruth_arc_offer_3",
-        "text": "Last time, Boaz stood at the gate and spoke for Ruth before the elders… Shall we keep walking with Ruth and Naomi, to the day the women bring a blessing to Naomi's door? Or, tell me what's on your heart today.",
+        "text": "Last time, Boaz stood at the gate and spoke for Ruth before the elders… Shall we keep walking with Ruth and Naomi, to the day the women bring a blessing to Naomi's door?",
         "model": "eleven_v3",
     },
     # ADULT — Elijah Arc (0/1/2/3; index 4 = end)
     {
         "clip_id": "elijah_arc_offer_0",
-        "text": "Last time, a widow's last handful of meal became enough at Zarephath… Shall we follow Elijah to Carmel, where he stands alone against the prophets of Baal? Or, tell me what's on your heart today.",
+        "text": "Last time, a widow's last handful of meal became enough at Zarephath… Shall we follow Elijah to Carmel, where he stands alone against the prophets of Baal?",
         "model": "eleven_v3",
     },
     {
         "clip_id": "elijah_arc_offer_1",
-        "text": "Last time, fire fell on Elijah's drenched altar at Carmel… Would you like to hear what happened when he fled a queen's threat into the wilderness, alone? Or, tell me what's on your heart today.",
+        "text": "Last time, fire fell on Elijah's drenched altar at Carmel… Would you like to hear what happened when he fled a queen's threat into the wilderness, alone?",
         "model": "eleven_v3",
     },
     {
         "clip_id": "elijah_arc_offer_2",
-        "text": "Last time, an angel woke Elijah under the juniper tree… Shall we follow him to the mountain cave, where God comes in a still, small voice? Or, tell me what's on your heart today.",
+        "text": "Last time, an angel woke Elijah under the juniper tree… Shall we follow him to the mountain cave, where God comes in a still, small voice?",
         "model": "eleven_v3",
     },
     {
         "clip_id": "elijah_arc_offer_3",
-        "text": "Last time, God met Elijah in the cave in a still, small voice… Shall we keep walking with him down one last road, where Elisha will not leave his side? Or, tell me what's on your heart today.",
+        "text": "Last time, God met Elijah in the cave in a still, small voice… Shall we keep walking with him down one last road, where Elisha will not leave his side?",
         "model": "eleven_v3",
     },
     # KID — Kid Moses Arc (0/1; index 2 = end)
@@ -469,6 +469,35 @@ CLIPS = [
         "model": "eleven_v3",
     },
 ]
+
+# ── Open-Door Tail Family (2026-07-15, Adam-ratified) ──────────────────
+# The adult offer tail is a rotated, flavor-matched clip stitched AFTER
+# the beat body at runtime (docs/JOURNEY_TRANSITION_VOICE.md § Open-Door
+# Tail Family). Beat bodies (ledger + the 15 old adult offers above) end
+# at the invitation's question mark; these shared clips carry the third-
+# path redirect. Kid offers keep their fixed baked-in tail.
+# eleven_v3, soft endings, no instant-accept tokens (yes/yeah/yep).
+TAIL_CLIPS = [
+    # hopeful
+    ("tail_heart_today", "Or, tell me what's on your heart today."),
+    ("tail_on_your_mind", "Or, tell me what's on your mind."),
+    # heavier
+    ("tail_weighing_on_you", "Or, tell me what's been weighing on you."),
+    ("tail_today_been_like", "Or, tell me what today has been like for you."),
+    # gentle
+    ("tail_how_youre_doing", "Or, tell me how you're doing today."),
+    ("tail_whatever_on_mind", "Or, tell me whatever's on your mind."),
+    # neutral (in every rotation)
+    ("tail_mind_lately", "Or, tell me what's been on your mind lately."),
+    ("tail_thinking_about", "Or, tell me what you've been thinking about."),
+    ("tail_day_going", "Or, tell me how your day is going."),
+    ("tail_brought_you_here", "Or, tell me what brought you here today."),
+]
+CLIPS.extend(
+    {"clip_id": cid, "text": text, "model": "eleven_v3"}
+    for cid, text in TAIL_CLIPS
+)
+
 
 def load_ledger_clips() -> list[dict]:
     """Per-source-story continuation beats from the approved ledger.

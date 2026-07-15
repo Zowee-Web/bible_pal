@@ -5,16 +5,13 @@
   "journeyType": "narrative",
   "lane": "adult",
   "status": "ready",
-
   "_documentation": {
     "_purpose": "Adult Narrative journey, slate v2 (docs/editorial/history/slate_v2_beat_review.md, ratified 2026-07-05). The whole book of Ruth in five beats — vow, field, threshing floor, gate, child.",
     "_compositionalAudio": "Per doctrine + design call 2026-06-28, journeys use B-pattern: generic per-journey-type carrier clips, then the name clip from display_name_registry. BEFORE-READY GATE: the registry entry 'ruth_and_naomi' and its name clip do NOT yet exist (confirmed absent from assets/pal/memory/display_name_registry.json; slate_v2 Name registry table says 'Add adult entry + render name clip before ready'). The four transition beats (ruth_arc_offer_0..3) are ratified in slate_v2 but not yet rendered or wired into scripts/render_journey_audio.py.",
     "_releaseGate": "Loader MUST exclude journeys where status != 'ready'. This journey stays 'draft' until: (a) Daniel smoke test passes, (b) Adam's markup/sign-off on the slate_v2 beat texts, (c) beat clips render via eleven_v3, (d) the display_name_registry entry + name clip land. Status flips to 'ready' at render time."
   },
-
   "nameRegistryKey": null,
   "editorialNote": "Five stories — vow → field → threshing floor → gate → child. The arc deliberately opens on Ruth's VOW (828, encouraging register), not Naomi's emptiness — Ruth is the relational center of every beat, even 1418 where Boaz is the manifest's primary character. Story order ratified in slate_v2_beat_review.md.",
-
   "stories": [
     {
       "storyNumber": 828,
@@ -47,7 +44,6 @@
       "editorialNote": "The rest beat — the arc closes on the child and the blessing, not the genealogy. Coverage: WEB Short + KJV Short (KJV Short registered 2026-07-04). 1458 (Ruth 4:13-22, the-line-of-David extension) excluded to end on Naomi's lap, not the list."
     }
   ],
-
   "_excludedFromArcWithRationale": [
     "1265 (Ruth 1:1-22, 'Where You Go, I Will Go', hurting register) — same pericope as 828 and ALSO fully covered (six variants). Excluded on register, not coverage: the arc opens on Ruth's vow, not Naomi's emptiness. Strong Slice 3 alternate for a user arriving in the hurting register.",
     "1036 (Ruth 2:1-23, 'Ruth Gleans in Boaz's Field') — ALSO fully covered (six variants). Excluded on quality grounds: 1529 is B29 locked-quality; 1036 is the older telling of the same beat. Slice 3 alternate, and the fuller-chapter scope if a future arc wants the whole gleaning season.",
@@ -56,5 +52,6 @@
     "1397 (Ruth 3:1-9, 'Who Are You') — scene slice of the threshing floor; redundant with 1150. Could be a Slice 3 alternate.",
     "1458 (Ruth 4:13-22, 'The Line of David Born') — genealogical extension past the arc's emotional endpoint; 1424 closes on the child, not the list. Candidate for a future lineage-of-David thread.",
     "1044 (kid-friendly legacy telling of the gleaning anchor) — kid-friendly variant, not an adult-lane candidate."
-  ]
+  ],
+  "offerTailFlavor": "gentle"
 }

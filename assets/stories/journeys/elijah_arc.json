@@ -5,16 +5,13 @@
   "journeyType": "narrative",
   "lane": "adult",
   "status": "ready",
-
   "_documentation": {
     "_purpose": "Adult Narrative journey, slate v2 (docs/editorial/history/slate_v2_beat_review.md, ratified 2026-07-05). Elijah's ministry in five beats — hidden provision, public fire, collapse, the still small voice, taken up.",
     "_offerShape": "nameRegistryKey is null per the monolithic-offer precedent (slate_v2 Name registry table: 'null — monolithic-offer precedent', action 'None') — this journey's offer audio is rendered monolithically rather than composed from a display_name_registry name clip, mirroring how kid_david_arc and learning_to_wait express registry-key absence. No registry entry is required before ready. The four transition beats (elijah_arc_offer_0..3, including the slate's single F5 at beat 2) are ratified in slate_v2 but not yet rendered or wired into scripts/render_journey_audio.py.",
     "_releaseGate": "Loader MUST exclude journeys where status != 'ready'. This journey stays 'draft' until: (a) Daniel smoke test passes, (b) Adam's markup/sign-off on the slate_v2 beat texts, (c) beat clips render via eleven_v3, (d) the 825 full-length 800-series audit cross-check clears. Status flips to 'ready' at render time."
   },
-
   "nameRegistryKey": null,
   "editorialNote": "Five stories — Zarephath → Carmel → juniper tree → Horeb → the chariot of fire. Elijah's personal arc from hidden provision to being taken up, including the collapse between the public victory and the still small voice — the honest middle most tellings skip. Story order ratified in slate_v2_beat_review.md.",
-
   "stories": [
     {
       "storyNumber": 1039,
@@ -47,7 +44,6 @@
       "editorialNote": "The arc's close — Elijah taken up, told from Elijah's side of the road. Coverage: WEB Short + KJV Short (KJV Short registered 2026-07-04). 1442 (2 Kings 2:11-14, Elisha at the Jordan — Elisha-POV succession) excluded; the journey ends where Elijah's story does."
     }
   ],
-
   "_excludedFromArcWithRationale": [
     "1534 (1 Kings 17:8-16, 'The Widow at Zarephath') — fully covered (six variants) alternate of the opening beat; the ratified slate order keeps 1039 for its wider 17:1-16 scope (Cherith + Zarephath). Strong Slice 3 alternate, and the coverage-stronger telling if the opener's missing Long ever matters.",
     "1358 (1 Kings 17:17-24, Elijah raises the widow's son) — widow-of-Zarephath POV and a second Zarephath locale beat; candidate for a Slice 3 alternate or a future resurrection thread.",
@@ -55,5 +51,6 @@
     "1516 (1 Kings 19:9-13, 'A Still Small Voice') — scene slice of 825's pericope; redundant with beat 4. Could be a Slice 3 alternate.",
     "1442 (2 Kings 2:11-14, 'Chariot of Fire' — Elisha at the Jordan) — Elisha-POV. The journey is Elijah's life; the mantle-and-succession beat belongs to a future Elisha journey. Same POV rule as daniel_arc's Nebuchadnezzar exclusions.",
     "1047 (kid-friendly legacy telling of the Zarephath anchor), 1073 (kid-friendly legacy telling of the Carmel anchor) — kid-friendly variants, not adult-lane candidates."
-  ]
+  ],
+  "offerTailFlavor": "gentle"
 }

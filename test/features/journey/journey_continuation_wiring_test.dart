@@ -83,13 +83,20 @@ void main() {
           await resolver.resolve(offer: offer, activeVoiceKey: 'VOICE_STILLWATER');
       expect(plan, isNotNull,
           reason: 'STILLWATER has the rendered clip — must resolve, not silence');
-      expect(plan!.offerClips.single.clipId, expectedClipId,
+      // Adult plan = [body, rotated open-door tail] (2026-07-15).
+      expect(plan!.offerClips, hasLength(2));
+      expect(plan.offerClips.first.clipId, expectedClipId,
           reason: 'must resolve the per-source-story clip, not a legacy id');
       final expectedPath = PalJourneyAudioPaths.assetPathFor(
           voiceKey: 'VOICE_STILLWATER', clipId: expectedClipId);
-      expect(plan.offerClips.single.assetPath, expectedPath);
+      expect(plan.offerClips.first.assetPath, expectedPath);
       expect(File(expectedPath).existsSync(), isTrue,
           reason: 'the resolved clip is a real file on disk');
+      expect(plan.offerClips[1].clipId, startsWith('tail_'),
+          reason: 'adult offers stitch a rotated Open-Door tail');
+      expect(File(plan.offerClips[1].assetPath).existsSync(), isTrue,
+          reason: 'the tail clip is a real file on disk');
+      expect(plan.offerGapsBetween, hasLength(1));
     });
 
     test('$sid → SILENCE on HOPE (no journey audio rendered)', () async {
