@@ -1670,6 +1670,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     _autoStoryTimer?.cancel();
     _sttService.stopListening();
     _micPulseController.stop();
+    _micWarming = false;
     // Unblock an in-flight journey capture immediately (don't wait out
     // the 12s safety timer). Completing with null, combined with the
     // isCancelled checkpoint in fireJourneyOffer, makes the cascade
@@ -2401,13 +2402,23 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
   // (rather than leaving the cascade awaiting the 12s safety timer).
   Completer<String?>? _journeyCaptureCompleter;
 
+  /// True during a journey capture's recognizer warmup window (offer
+  /// finished, mic not yet actually capturing). Drives the honest
+  /// "One moment…" cue instead of a live "Listening…" mic. Journey-only
+  /// — mood-flow never sets it, so its listening UI is unchanged.
+  bool _micWarming = false;
+
   Future<String?> _captureJourneyResponseOnce() async {
     if (!mounted) return null;
     setState(() {
       _voiceFlow = _VoiceFlowState.listening;
       _partialTranscript = '';
+      // Warmup window: the offer finished but the mic isn't capturing
+      // yet (~2.9s cold start). Show "One moment…", not a live mic, and
+      // hold the pulse until the recognizer actually reaches 'listening'
+      // (onListening below). Prevents a "yes" spoken into a dead mic.
+      _micWarming = true;
     });
-    _micPulseController.repeat(reverse: true);
 
     final completer = Completer<String?>();
     _journeyCaptureCompleter = completer;
@@ -2422,6 +2433,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     void cleanup() {
       _micPulseController.stop();
       safetyTimeout?.cancel();
+      if (mounted && _micWarming) setState(() => _micWarming = false);
       if (identical(_journeyCaptureCompleter, completer)) {
         _journeyCaptureCompleter = null;
       }
@@ -2484,6 +2496,13 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
           }
         },
         onError: (_) => completeWithPartial(),
+        onListening: () {
+          // The mic is ACTUALLY capturing now — flip from "One moment…"
+          // to the live pulsing mic so the user knows to speak.
+          if (!mounted) return;
+          setState(() => _micWarming = false);
+          _micPulseController.repeat(reverse: true);
+        },
       );
 
       return await completer.future;
@@ -2573,11 +2592,14 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       journeyRegistry: registry,
       audioResolver: audioResolver,
       classifier: classifier,
-      // Offer plays fully, then the mic opens in real silence. Opening
-      // it during playback interrupts the offer (mic and just_audio
-      // fight for the route); the cold start is instead absorbed by the
-      // ensureAudioSessionActive() call above, which warms the mic route
-      // under cover of the offer.
+      // Offer (body + tail) plays FULLY, then the mic opens. Opening it
+      // during playback interrupts the offer (starting the STT
+      // AVAudioEngine input mid-clip cuts just_audio even under one
+      // .playAndRecord session — confirmed on-device 2026-07-15). The
+      // recognizer's ~2.9s cold start is inherent (fresh engine per
+      // listen); the honest listening cue below (gated on the real
+      // stt_status='listening') keeps that gap from feeling like a
+      // dropped "yes".
       playOfferPlan: palAudio.playJourneyOffer,
       playDeclinePlan: palAudio.playJourneyDecline,
       captureResponse: _captureJourneyResponse,
@@ -3079,6 +3101,36 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
   /// Large pulsing mic icon shown while STT is listening.
   Widget _buildMicContent(ThemeData theme) {
+    // Honest cue (2026-07-15): after a journey offer the iOS recognizer
+    // takes ~2.9s to actually start capturing (fresh AVAudioEngine per
+    // listen — an inherent cold start no session config removes). While
+    // it warms, show a calm "One moment…" — NOT a live mic — so the
+    // user doesn't say "yes" into a mic that isn't recording yet. Flips
+    // to the pulsing mic the instant stt reaches 'listening' (see
+    // _captureJourneyResponseOnce's onListening).
+    if (_micWarming) {
+      return const Center(
+        key: ValueKey('mic_warming'),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 22,
+              height: 22,
+              child: CircularProgressIndicator(
+                strokeWidth: 2, color: Colors.white70),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'One moment…',
+              style: TextStyle(
+                  color: Colors.white70, fontSize: 11, letterSpacing: 0.5),
+            ),
+          ],
+        ),
+      );
+    }
     return Center(
       key: const ValueKey('mic'),
       child: AnimatedBuilder(
