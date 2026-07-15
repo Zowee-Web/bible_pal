@@ -51,12 +51,26 @@ void main() {
     final hasReadyKid =
         readyJourneys.any((j) => j.lane == JourneyLane.kid);
 
-    // Lane statics — just the decline clip per lane (shared across
-    // all journeys in that lane). Post-pivot 2026-06-28: the
-    // generic `offer_narrative_adult` clip is no longer required —
-    // adult offers became per-source-story like kid.
-    requiredAdultStaticClipIds =
-        hasReadyAdult ? const {'decline_adult'} : const {};
+    // Lane statics — the decline clip per lane, and (adult, 2026-07-15)
+    // the ten Open-Door Tail Family clips: the resolver stitches a
+    // rotated tail after every adult offer body and silence-floors the
+    // whole offer if no tail is bundled, so a rendered voice missing
+    // tails would silently kill every adult journey offer.
+    requiredAdultStaticClipIds = hasReadyAdult
+        ? const {
+            'decline_adult',
+            'tail_heart_today',
+            'tail_on_your_mind',
+            'tail_weighing_on_you',
+            'tail_today_been_like',
+            'tail_how_youre_doing',
+            'tail_whatever_on_mind',
+            'tail_mind_lately',
+            'tail_thinking_about',
+            'tail_day_going',
+            'tail_brought_you_here',
+          }
+        : const {};
     requiredKidStaticClipIds =
         hasReadyKid ? const {'decline_kid'} : const {};
 
@@ -172,10 +186,11 @@ void main() {
     //     (stories.length - 1) per-source-story offer clipIds
     //     `<journeyId>_offer_<index>`.
     //
-    // The `lessThanOrEqualTo(1)` ceiling on static clipIds catches
-    // a refactor that accidentally adds more required statics — a
-    // common silent-weakening failure mode.
-    expect(requiredAdultStaticClipIds.length, lessThanOrEqualTo(1));
+    // Ceilings on static clipIds catch a refactor that accidentally
+    // adds more required statics — a common silent-weakening failure
+    // mode. Adult = decline + the 10 Open-Door Tail Family clips
+    // (2026-07-15); kid = decline only.
+    expect(requiredAdultStaticClipIds.length, lessThanOrEqualTo(11));
     expect(requiredKidStaticClipIds.length, lessThanOrEqualTo(1));
 
     // Per-source-story offer count == sum over ready journeys of

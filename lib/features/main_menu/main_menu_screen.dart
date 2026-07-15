@@ -2348,10 +2348,28 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
         .replaceAll(RegExp(r"[^a-z0-9\s]"), '')
         .replaceAll(RegExp(r'\s+'), ' ')
         .trim();
+    // Covers every Open-Door Tail Family line (2026-07-15) — longer
+    // phrases before their substrings, since replaceAll runs in order.
     const echoes = [
+      'or tell me whats been on your mind lately',
+      'or tell me what today has been like for you',
+      'or tell me what youve been thinking about',
+      'or tell me what brought you here today',
+      'or tell me whats been weighing on you',
       'or tell me whats on your heart today',
-      'tell me whats on your heart today',
+      'or tell me how youre doing today',
+      'or tell me whatevers on your mind',
+      'or tell me how your day is going',
+      'or tell me whats on your mind',
+      'whats been on your mind lately',
+      'what today has been like for you',
+      'what youve been thinking about',
+      'what brought you here today',
+      'whats been weighing on you',
       'whats on your heart today',
+      'how youre doing today',
+      'whatevers on your mind',
+      'how your day is going',
       'on your heart today',
       'your heart today',
       'or whats on your mind',

@@ -19,10 +19,11 @@ import 'package:bible_pal/features/pal_memory/pal_session.dart';
 ///   - Decline: `decline_adult` (adult), `decline_kid` (kid)
 void main() {
   group('adult resolver — happy path', () {
-    test('returns a per-source-story plan when both clips exist',
+    test('returns a per-source-story plan when body, tail and decline exist',
         () async {
       final r = BundledAssetJourneyAudioResolver({
         _offerPath('VOICE_STILLWATER', 'test_adult', 0),
+        _tailPath('VOICE_STILLWATER', 'tail_brought_you_here'),
         _declinePath('VOICE_STILLWATER', JourneyLane.adult),
       });
       final plan = await r.resolve(
@@ -32,13 +33,31 @@ void main() {
       expect(plan, isNotNull);
       plan!.validateStructure();
       expect(plan.voiceKey, 'VOICE_STILLWATER');
-      expect(plan.offerClips, hasLength(1));
+      // Adult plan = [body, rotated Open-Door tail] (2026-07-15).
+      expect(plan.offerClips, hasLength(2));
       expect(plan.offerClips.first.kind, JourneyClipKind.offer);
       expect(plan.offerClips.first.clipId, 'test_adult_offer_0',
           reason: 'clipId convention: <journeyId>_offer_<sourceStoryIndex>');
-      expect(plan.offerGapsBetween, isEmpty);
+      expect(plan.offerClips[1].clipId, 'tail_brought_you_here',
+          reason: 'flavorless journey draws from the NEUTRAL tail pool');
+      expect(plan.offerGapsBetween, hasLength(1));
       expect(plan.declineClip.kind, JourneyClipKind.decline);
       expect(plan.declineClip.clipId, 'decline_adult');
+    });
+
+    test('returns null when NO Open-Door tail clip is bundled (adult)',
+        () async {
+      // Silence floor (2026-07-15): an adult offer without its
+      // third-path tail fails Voice Audit Q7 — no tail, no offer.
+      final r = BundledAssetJourneyAudioResolver({
+        _offerPath('VOICE_STILLWATER', 'test_adult', 0),
+        _declinePath('VOICE_STILLWATER', JourneyLane.adult),
+      });
+      expect(
+          await r.resolve(
+              offer: _adultOffer(sourceStoryIndex: 0),
+              activeVoiceKey: 'VOICE_STILLWATER'),
+          isNull);
     });
 
     test('clip ID encodes the sourceStoryIndex (0 vs 1 vs 2)',
@@ -49,6 +68,7 @@ void main() {
         _offerPath('VOICE_STILLWATER', 'daniel_arc', 0),
         _offerPath('VOICE_STILLWATER', 'daniel_arc', 1),
         _offerPath('VOICE_STILLWATER', 'daniel_arc', 2),
+        _tailPath('VOICE_STILLWATER', 'tail_brought_you_here'),
         _declinePath('VOICE_STILLWATER', JourneyLane.adult),
       });
       for (final sourceIdx in [0, 1, 2]) {
@@ -231,6 +251,7 @@ void main() {
       final r = BundledAssetJourneyAudioResolver({
         _offerPath('VOICE_STILLWATER', 'test_adult', 0),
         _offerPath('VOICE_STILLWATER', 'test_kid', 0),
+        _tailPath('VOICE_STILLWATER', 'tail_brought_you_here'),
         _declinePath('VOICE_STILLWATER', JourneyLane.adult),
         _declinePath('VOICE_STILLWATER', JourneyLane.kid),
       });
@@ -254,6 +275,9 @@ void main() {
 
 String _offerPath(String voice, String journeyId, int sourceStoryIndex) =>
     'assets/pal/audio/$voice/journey/${journeyId}_offer_$sourceStoryIndex.mp3';
+
+String _tailPath(String voice, String tailClipId) =>
+    'assets/pal/audio/$voice/journey/$tailClipId.mp3';
 
 String _declinePath(String voice, JourneyLane lane) {
   final clip = lane == JourneyLane.adult ? 'decline_adult' : 'decline_kid';

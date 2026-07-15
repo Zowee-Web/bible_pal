@@ -5,16 +5,13 @@
   "journeyType": "narrative",
   "lane": "adult",
   "status": "ready",
-
   "_documentation": {
     "_purpose": "Adult Narrative journey, slate v2 (docs/editorial/history/slate_v2_beat_review.md, ratified 2026-07-05). Joseph's life from the pit to 'God meant it for good' — five beats, all Joseph-POV.",
     "_compositionalAudio": "Per doctrine + design call 2026-06-28, journeys use B-pattern: generic per-journey-type carrier clips, then the name clip from display_name_registry. BEFORE-READY GATE: the registry entry 'joseph_sold_by_brothers' and its name clip do NOT yet exist (confirmed absent from assets/pal/memory/display_name_registry.json; slate_v2 Name registry table says 'Add adult entry + render name clip before ready'). The four transition beats (joseph_arc_offer_0..3) are ratified in slate_v2 but not yet rendered or wired into scripts/render_journey_audio.py.",
     "_releaseGate": "Loader MUST exclude journeys where status != 'ready'. This journey stays 'draft' until: (a) Daniel smoke test passes, (b) Adam's markup/sign-off on the slate_v2 beat texts, (c) beat clips render via eleven_v3, (d) the display_name_registry entry + name clip land, (e) the 831 full-length 800-series audit cross-check clears. Status flips to 'ready' at render time."
   },
-
   "nameRegistryKey": null,
   "editorialNote": "Five stories — sold → forgotten → raised → revealed → resolved. Joseph's personal arc, strictly his POV: the pit, the prison, Pharaoh's court, the emptied hall, and the years-later forgiveness. Jacob-POV material from the same chapters is excluded the way daniel_arc excludes the Nebuchadnezzar arc. Story order ratified in slate_v2_beat_review.md.",
-
   "stories": [
     {
       "storyNumber": 1037,
@@ -47,7 +44,6 @@
       "editorialNote": "The arc's resolution — the brothers' fear returning after Jacob's death, and Joseph's answer. COVERAGE-THIN: WEB Short only as of 2026-07-05 (NOT part of the 2026-07-04 KJV registration batch). A user on KJV or Full/Long gets the thin-fallback experience the learning_to_wait hold note describes; journey-driven-gap authoring candidate under the doctrine's exception."
     }
   ],
-
   "_excludedFromArcWithRationale": [
     "1325 (Genesis 47:7-10, 'Few and Evil Have Been My Years' — Jacob blesses Pharaoh) — Jacob-POV. Strong story but breaks Joseph's POV; the journey is Joseph's life, not his father's. Same rule as daniel_arc's Nebuchadnezzar exclusions.",
     "1209 (Genesis 49:1-33, 'Listen to Israel Your Father' — Jacob blesses his sons) — Jacob-POV, same rule. Deathbed-blessing material belongs to a future Jacob or fathers-and-sons journey.",
@@ -55,5 +51,6 @@
     "1389 (Genesis 40:14-23, 'Remember Me') — scene slice of 1178's chapter; redundant with beat 2. Could be a Slice 3 alternate.",
     "1466 (Genesis 50:22-26, 'Joseph's Bones' — the deathbed oath) — epilogue past the arc's emotional endpoint; 1146 is the close. Candidate for a future promise-carried-through-Exodus thread.",
     "1045 (kid-friendly legacy telling of joseph_sold_by_brothers) — kid-friendly variant, not an adult-lane candidate."
-  ]
+  ],
+  "offerTailFlavor": "hopeful"
 }

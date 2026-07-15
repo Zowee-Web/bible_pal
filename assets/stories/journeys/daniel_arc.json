@@ -5,7 +5,6 @@
   "journeyType": "narrative",
   "lane": "adult",
   "status": "ready",
-
   "_documentation": {
     "_purpose": "First-ship adult Narrative journey for Slice 2 of the Journey Doctrine (docs/JOURNEY_DOCTRINE.md). Daniel's life chronologically — young faithfulness to closing prophetic vision.",
     "_fields": {
@@ -18,10 +17,8 @@
     },
     "_compositionalAudio": "Per doctrine + design call 2026-06-28, journeys use B-pattern: generic per-journey-type carrier clips ('We could continue X\\'s story'), then the name clip from display_name_registry. So this journey's offer audio is: [carrier_narrative_continue_X_story] + [silence] + [name_daniel from display_name_registry] + [silence] + [invitation_or_tell_me_today]. The name clip is already shipped in Slice 2d for VOICE_STILLWATER."
   },
-
   "nameRegistryKey": "daniel_in_the_lions_den",
   "editorialNote": "Four stories — faithfulness → fire → lions → vision. Daniel's personal arc, not a survey of his book. Daniel 5 is excluded because it's about a king facing judgment, not Daniel facing trial; reserved for a future Kings & Kingdoms / Pride & Judgment journey.",
-
   "stories": [
     {
       "storyNumber": 1486,
@@ -48,7 +45,6 @@
       "editorialNote": "Only telling of Daniel 7 in the corpus. Closes the arc with Daniel as seer rather than actor — the natural endpoint of his life. Daniel 9 (prayer) and Daniel 10 (strengthened by angel) exist as adult stories but felt like over-extension; can add to a future deeper Daniel journey."
     }
   ],
-
   "_excludedFromArcWithRationale": [
     "1091 (Daniel 3:1-30, fuller furnace) — redundant with 1002 which is the canonical telling",
     "1338 (Daniel 3:13-18, 'but if not') — scene-focused, could be a Slice 3 alternate",
@@ -59,5 +55,6 @@
     "1492 (Daniel 6:10-23), 1461 (Daniel 6:16-23), 1378 (Daniel 6:19-23) — alternate Daniel 6 tellings, deferred to Slice 3 cross-journey alternates",
     "816, 817 (800-series legacy Daniel 6) — older tellings; defer to Slice 3 or retire per future 800-series audit",
     "1188 (Daniel 9:1-23, prayer), 1264 (Daniel 10:1-19, strengthened by angel), 1493 (Daniel 9:20-23, Gabriel answers) — late-life prayer/vision sequence. Strong but felt like a separate journey ('Daniel's Inner Life') rather than the headline life-arc."
-  ]
+  ],
+  "offerTailFlavor": "hopeful"
 }

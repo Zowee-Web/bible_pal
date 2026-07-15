@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:flutter/foundation.dart' show visibleForTesting;
 import 'package:flutter/services.dart' show AssetManifest, rootBundle;
 
 import 'journey.dart';
@@ -24,6 +27,58 @@ class BundledAssetJourneyAudioResolver implements JourneyAudioResolver {
   final Set<String> bundledPaths;
 
   const BundledAssetJourneyAudioResolver(this.bundledPaths);
+
+  // ── Open-Door Tail Family (2026-07-15, Adam-ratified) ─────────────
+  // docs/JOURNEY_TRANSITION_VOICE.md § Open-Door Tail Family. Adult
+  // offer BODIES end at the invitation's question mark; the third-path
+  // tail is a separate clip stitched after a short breath. Each play
+  // rotates within the journey's flavor bucket + the neutral pool,
+  // never repeating the immediately-previous tail. Kid offers keep
+  // their fixed baked-in tail (no stitching).
+  static const Map<String, List<String>> _tailBuckets = {
+    'hopeful': ['tail_heart_today', 'tail_on_your_mind'],
+    'heavier': ['tail_weighing_on_you', 'tail_today_been_like'],
+    'gentle': ['tail_how_youre_doing', 'tail_whatever_on_mind'],
+  };
+  static const List<String> _tailNeutral = [
+    'tail_mind_lately',
+    'tail_thinking_about',
+    'tail_day_going',
+    'tail_brought_you_here',
+  ];
+
+  /// Breath between body and tail — mirrors the ellipsis pause the
+  /// single-clip renders carried before "Or, tell me…".
+  static const Duration _tailGap = Duration(milliseconds: 420);
+
+  // Session-scoped rotation memory (static so const instances share
+  // it — same never-twice-in-a-row contract as the accept-ack set).
+  static String? _lastTailClipId;
+  static final Random _tailRandom = Random();
+
+  /// Test-only seam: reset the rotation memory.
+  @visibleForTesting
+  static void resetTailRotationForTesting() => _lastTailClipId = null;
+
+  /// Pick the next tail clip id for [journey], filtered to tails whose
+  /// clips are actually bundled for [voiceKey]. Returns null when no
+  /// tail is available (silence floor — an adult offer may not play
+  /// without its third-path signal).
+  String? _pickTailClipId(Journey journey, String voiceKey) {
+    final bucket = _tailBuckets[journey.offerTailFlavor] ?? const <String>[];
+    final pool = <String>[...bucket, ..._tailNeutral].where((id) {
+      final path =
+          PalJourneyAudioPaths.assetPathFor(voiceKey: voiceKey, clipId: id);
+      return bundledPaths.contains(path);
+    }).toList();
+    if (pool.isEmpty) return null;
+    var eligible =
+        pool.where((id) => id != _lastTailClipId).toList();
+    if (eligible.isEmpty) eligible = pool;
+    final pick = eligible[_tailRandom.nextInt(eligible.length)];
+    _lastTailClipId = pick;
+    return pick;
+  }
 
   /// Production factory — loads [AssetManifest] from [rootBundle]
   /// and filters to PAL journey audio paths
@@ -128,16 +183,35 @@ class BundledAssetJourneyAudioResolver implements JourneyAudioResolver {
       final offerPath = PalJourneyAudioPaths.assetPathFor(
           voiceKey: voiceKey, clipId: offerClipId);
       if (!bundledPaths.contains(offerPath)) continue;
+
+      final bodyClip = JourneyAudioClipRef(
+        clipId: offerClipId,
+        kind: JourneyClipKind.offer,
+        assetPath: offerPath,
+      );
+
+      // Adult offers: stitch the rotated Open-Door tail after the body
+      // (2026-07-15). Silence-floor: an adult offer without its
+      // third-path tail fails Voice Audit Q7 — no tail bundled means
+      // no offer. Kid offers carry their tail baked in.
+      final clips = <JourneyAudioClipRef>[bodyClip];
+      final gaps = <Duration>[];
+      if (offer.journey.lane == JourneyLane.adult) {
+        final tailClipId = _pickTailClipId(offer.journey, voiceKey);
+        if (tailClipId == null) return null;
+        clips.add(JourneyAudioClipRef(
+          clipId: tailClipId,
+          kind: JourneyClipKind.offer,
+          assetPath: PalJourneyAudioPaths.assetPathFor(
+              voiceKey: voiceKey, clipId: tailClipId),
+        ));
+        gaps.add(_tailGap);
+      }
+
       return JourneyAudioPlan(
         voiceKey: voiceKey,
-        offerClips: [
-          JourneyAudioClipRef(
-            clipId: offerClipId,
-            kind: JourneyClipKind.offer,
-            assetPath: offerPath,
-          ),
-        ],
-        offerGapsBetween: const [],
+        offerClips: clips,
+        offerGapsBetween: gaps,
         declineClip: JourneyAudioClipRef(
           clipId: declineClipId,
           kind: JourneyClipKind.decline,

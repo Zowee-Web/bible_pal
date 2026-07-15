@@ -2,9 +2,10 @@
   "_meta": {
     "version": 1,
     "purpose": "Outgoing-transition beat ledger. One entry per story that has an APPROVED outgoing journey beat to a specific next story. This is the authoritative record of Adam-approved beat wording.",
-    "invariant": "Once a story has an approved outgoing beat it is COMPLETE and its wording is LOCKED — never rewritten, polished, reordered, or substituted unless the underlying story itself changes. One approved outgoing transition per story; no duplicates. The final story of an arc has no outgoing next and is deliberately NOT listed here — absence means open, not overlooked.",
+    "invariant": "Once a story has an approved outgoing beat it is COMPLETE and its BODY wording is LOCKED (beatText ends at the invitation's question mark; the open-door tail is a shared rotated clip per docs/JOURNEY_TRANSITION_VOICE.md § Open-Door Tail Family, 2026-07-15) — never rewritten, polished, reordered, or substituted unless the underlying story itself changes. One approved outgoing transition per story; no duplicates. The final story of an arc has no outgoing next and is deliberately NOT listed here — absence means open, not overlooked.",
     "idNote": "prevStoryId/nextStoryId are anchor-level story numbers (e.g. 1022), not per-variant storyIds — beats are per-EDGE, one per transition regardless of Short/Full/Long/KJV variant.",
-    "created": "2026-07-07"
+    "created": "2026-07-07",
+    "tailNote": "2026-07-15: beatText migrated from full-beat (with fixed adult tail) to body-only. Tails render as shared clips tail_<slug>; per-play rotation is flavor-matched via the journey manifest's offerTailFlavor."
   },
   "entries": [
     {
@@ -12,7 +13,7 @@
       "nextStoryId": "1112",
       "arcId": "david_arc_1",
       "beatId": "david_arc1_beat_0",
-      "beatText": "Last time, Samuel poured the oil on the youngest son, fresh from the sheep… Would you like to hear what happened when David carried bread to an army too afraid to fight? Or, tell me what's on your heart today.",
+      "beatText": "Last time, Samuel poured the oil on the youngest son, fresh from the sheep… Would you like to hear what happened when David carried bread to an army too afraid to fight?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -21,7 +22,7 @@
       "nextStoryId": "1052",
       "arcId": "david_arc_1",
       "beatId": "david_arc1_beat_1",
-      "beatText": "Last time, David chose five smooth stones from the brook… and the giant fell. Would you like to see who was watching as David stood before the king, dust still on him? Or, tell me what's on your heart today.",
+      "beatText": "Last time, David chose five smooth stones from the brook… and the giant fell. Would you like to see who was watching as David stood before the king, dust still on him?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -30,7 +31,7 @@
       "nextStoryId": "1448",
       "arcId": "david_arc_1",
       "beatId": "david_arc1_beat_2",
-      "beatText": "Last time, Jonathan laid his robe and sword in David's arms, and neither of them spoke… Now David sits alone in a cave, listening for footsteps. Shall we go find him? Or, tell me what's on your heart today.",
+      "beatText": "Last time, Jonathan laid his robe and sword in David's arms, and neither of them spoke… Now David sits alone in a cave, listening for footsteps. Shall we go find him?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -39,7 +40,7 @@
       "nextStoryId": "1336",
       "arcId": "david_arc_1",
       "beatId": "david_arc1_beat_3",
-      "beatText": "Last time, the cave filled with voices… four hundred came to David in twos and threes. Saul hunts him again, one mountain between them. Shall we keep walking with David? Or, tell me what's on your heart today.",
+      "beatText": "Last time, the cave filled with voices… four hundred came to David in twos and threes. Saul hunts him again, one mountain between them. Shall we keep walking with David?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -48,7 +49,7 @@
       "nextStoryId": "1357",
       "arcId": "david_arc_2",
       "beatId": "david_arc2_beat_0",
-      "beatText": "Last time, David sat in the ashes of Ziklag and encouraged himself in the LORD… Now word from Mount Gilboa is coming to him. Would you like to hear what happened next? Or, tell me what's on your heart today.",
+      "beatText": "Last time, David sat in the ashes of Ziklag and encouraged himself in the LORD… Now word from Mount Gilboa is coming to him. Would you like to hear what happened next?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -57,7 +58,7 @@
       "nextStoryId": "1449",
       "arcId": "david_arc_2",
       "beatId": "david_arc2_beat_1",
-      "beatText": "Last time, David sang his lament for Saul and Jonathan — how the mighty have fallen… Would you like to see where God leads him next, to walls that say he cannot come in? Or, tell me what's on your heart today.",
+      "beatText": "Last time, David sang his lament for Saul and Jonathan — how the mighty have fallen… Would you like to see where God leads him next, to walls that say he cannot come in?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -66,7 +67,7 @@
       "nextStoryId": "1221",
       "arcId": "david_arc_2",
       "beatId": "david_arc2_beat_2",
-      "beatText": "Last time, David's men climbed the dark watercourse and opened the gate from inside… God's ark still waits in a house on a hill. Shall we go with David to bring it up? Or, tell me what's on your heart today.",
+      "beatText": "Last time, David's men climbed the dark watercourse and opened the gate from inside… God's ark still waits in a house on a hill. Shall we go with David to bring it up?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -75,7 +76,7 @@
       "nextStoryId": "1062",
       "arcId": "david_arc_3",
       "beatId": "david_arc3_beat_0",
-      "beatText": "Last time, David took off his sandals and sat before Yahweh, wondering who he was… Would you like to hear him ask if anyone is left of Jonathan's family? Or, tell me what's on your heart today.",
+      "beatText": "Last time, David took off his sandals and sat before Yahweh, wondering who he was… Would you like to hear him ask if anyone is left of Jonathan's family?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -84,7 +85,7 @@
       "nextStoryId": "1374",
       "arcId": "david_arc_3",
       "beatId": "david_arc3_beat_1",
-      "beatText": "Last time, Mephibosheth sat at the king's table, feet beneath the cloth… Now David's wars are behind him, and he sets down a song over his life. Would you like to hear it? Or, tell me what's on your heart today.",
+      "beatText": "Last time, Mephibosheth sat at the king's table, feet beneath the cloth… Now David's wars are behind him, and he sets down a song over his life. Would you like to hear it?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -93,7 +94,7 @@
       "nextStoryId": "1326",
       "arcId": "david_arc_3",
       "beatId": "david_arc3_beat_2",
-      "beatText": "Last time, David set his song down… rock, fortress, deliverer… his city at peace below. Now he is old, with one last prayer before all Israel. Will you stand with him? Or, tell me what's on your heart today.",
+      "beatText": "Last time, David set his song down… rock, fortress, deliverer… his city at peace below. Now he is old, with one last prayer before all Israel. Will you stand with him?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -102,7 +103,7 @@
       "nextStoryId": "1471",
       "arcId": "david_arc_4",
       "beatId": "david_arc4_beat_0",
-      "beatText": "Last time, David asked how long Yahweh would hide his face… There's another night where his bones are weary and no rest comes. Would you like to hear it? Or, tell me what's on your heart today.",
+      "beatText": "Last time, David asked how long Yahweh would hide his face… There's another night where his bones are weary and no rest comes. Would you like to hear it?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -111,7 +112,7 @@
       "nextStoryId": "1227",
       "arcId": "david_arc_4",
       "beatId": "david_arc4_beat_1",
-      "beatText": "Last time, David flooded his bed with tears and asked how long… This next prayer opens harder still, in a cry that feels forsaken. Shall we stay beside him there? Or, tell me what's on your heart today.",
+      "beatText": "Last time, David flooded his bed with tears and asked how long… This next prayer opens harder still, in a cry that feels forsaken. Shall we stay beside him there?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -120,7 +121,7 @@
       "nextStoryId": "1154",
       "arcId": "david_arc_4",
       "beatId": "david_arc4_beat_2",
-      "beatText": "Last time, David cried out, asking why God felt so far away, so silent… Would you like to hear what David prays when the weight of his own sin sits before him? Or, tell me what's on your heart today.",
+      "beatText": "Last time, David cried out, asking why God felt so far away, so silent… Would you like to hear what David prays when the weight of his own sin sits before him?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -129,7 +130,7 @@
       "nextStoryId": "1283",
       "arcId": "david_arc_4",
       "beatId": "david_arc4_beat_3",
-      "beatText": "Last time, David asked God to create in him a clean heart… Shall we stay with him as he cries out from the edge of the pit? Or, tell me what's on your heart today.",
+      "beatText": "Last time, David asked God to create in him a clean heart… Shall we stay with him as he cries out from the edge of the pit?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -138,7 +139,7 @@
       "nextStoryId": "1220",
       "arcId": "david_arc_5",
       "beatId": "david_arc5_beat_0",
-      "beatText": "Last time, the shepherd walked David through the valley of shadow… Would you like to hear the one where David stands among his enemies and calls the Lord his light? Or, tell me what's on your heart today.",
+      "beatText": "Last time, the shepherd walked David through the valley of shadow… Would you like to hear the one where David stands among his enemies and calls the Lord his light?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -147,7 +148,7 @@
       "nextStoryId": "1489",
       "arcId": "david_arc_5",
       "beatId": "david_arc5_beat_1",
-      "beatText": "Last time, David called the Lord his light and asked whom he should fear… Would you like to sit with him at evening, as he lifts a prayer and calls for an answer? Or, tell me what's on your heart today.",
+      "beatText": "Last time, David called the Lord his light and asked whom he should fear… Would you like to sit with him at evening, as he lifts a prayer and calls for an answer?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -156,7 +157,7 @@
       "nextStoryId": "1434",
       "arcId": "david_arc_5",
       "beatId": "david_arc5_beat_2",
-      "beatText": "Last time, David lay down and slept in peace while others still spoke against him… This next one finds him lowering his eyes from great matters. Shall we sit with him? Or, tell me what's on your heart today.",
+      "beatText": "Last time, David lay down and slept in peace while others still spoke against him… This next one finds him lowering his eyes from great matters. Shall we sit with him?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -165,7 +166,7 @@
       "nextStoryId": "1214",
       "arcId": "david_arc_5",
       "beatId": "david_arc5_beat_3",
-      "beatText": "Last time, David quieted his soul like a weaned child, reaching for nothing… Now his praise won't stay silent. Shall we keep listening with him? Or, tell me what's on your heart today.",
+      "beatText": "Last time, David quieted his soul like a weaned child, reaching for nothing… Now his praise won't stay silent. Shall we keep listening with him?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -174,7 +175,7 @@
       "nextStoryId": "808",
       "arcId": "david_arc_6",
       "beatId": "david_arc6_beat_0",
-      "beatText": "Last time, David lifted his small hand to the stars, wondering that God should mind him at all… Would you like to see that same sky speak its glory without a word? Or, tell me what's on your heart today.",
+      "beatText": "Last time, David lifted his small hand to the stars, wondering that God should mind him at all… Would you like to see that same sky speak its glory without a word?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -183,7 +184,7 @@
       "nextStoryId": "1069",
       "arcId": "david_arc_6",
       "beatId": "david_arc6_beat_1",
-      "beatText": "Last time, the heavens told God's glory without a single word… Would you like to hear David sing to the God who has searched him and known him? Or, tell me what's on your heart today.",
+      "beatText": "Last time, the heavens told God's glory without a single word… Would you like to hear David sing to the God who has searched him and known him?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -192,7 +193,7 @@
       "nextStoryId": "1190",
       "arcId": "david_arc_6",
       "beatId": "david_arc6_beat_2",
-      "beatText": "Last time, David sang that wherever he went, God's hand was already there, holding him… Shall we sit with him as he turns to his own soul and calls it to bless the Lord? Or, tell me what's on your heart today.",
+      "beatText": "Last time, David sang that wherever he went, God's hand was already there, holding him… Shall we sit with him as he turns to his own soul and calls it to bless the Lord?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -201,7 +202,7 @@
       "nextStoryId": "1329",
       "arcId": "david_arc_6",
       "beatId": "david_arc6_beat_3",
-      "beatText": "Last time, David woke his own soul to bless — don't forget all his benefits… Now he stands again under the open sky. Shall we hear him give thanks with his whole heart? Or, tell me what's on your heart today.",
+      "beatText": "Last time, David woke his own soul to bless — don't forget all his benefits… Now he stands again under the open sky. Shall we hear him give thanks with his whole heart?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -210,7 +211,7 @@
       "nextStoryId": "1330",
       "arcId": "david_arc_6",
       "beatId": "david_arc6_beat_4",
-      "beatText": "Last time, David gave thanks with his whole heart, for God answered when he called… Old now, hand unsteady, his voice still rising — shall we hear him begin his praise? Or, tell me what's on your heart today.",
+      "beatText": "Last time, David gave thanks with his whole heart, for God answered when he called… Old now, hand unsteady, his voice still rising — shall we hear him begin his praise?",
       "status": "approved",
       "approvedOn": "2026-07-07"
     },
@@ -219,7 +220,7 @@
       "nextStoryId": "1342",
       "arcId": "david_arc_7",
       "beatId": "david_arc7_beat_0",
-      "beatText": "Last time, David could have silenced the prophet, and said only, I have sinned… Would you like to stay with him through seven days on the ground, pleading for his child? Or, tell me what's on your heart today.",
+      "beatText": "Last time, David could have silenced the prophet, and said only, I have sinned… Would you like to stay with him through seven days on the ground, pleading for his child?",
       "status": "approved",
       "approvedOn": "2026-07-08"
     },
@@ -228,7 +229,7 @@
       "nextStoryId": "1019",
       "arcId": "moses_arc_1",
       "beatId": "moses_arc1_beat_0",
-      "beatText": "Last time, a mother hid her baby in a basket and left him among the river reeds… Would you like to meet that child grown old, at a bush that burns and will not go out? Or, tell me what's on your heart today.",
+      "beatText": "Last time, a mother hid her baby in a basket and left him among the river reeds… Would you like to meet that child grown old, at a bush that burns and will not go out?",
       "status": "approved",
       "approvedOn": "2026-07-08"
     },
@@ -237,7 +238,7 @@
       "nextStoryId": "1527",
       "arcId": "moses_arc_1",
       "beatId": "moses_arc1_beat_1",
-      "beatText": "Last time, a voice in the fire said, I have come down to bring my people out… Shall we stand with them at the sea's edge, Pharaoh's chariots closing behind? Or, tell me what's on your heart today.",
+      "beatText": "Last time, a voice in the fire said, I have come down to bring my people out… Shall we stand with them at the sea's edge, Pharaoh's chariots closing behind?",
       "status": "approved",
       "approvedOn": "2026-07-08"
     },
@@ -246,7 +247,7 @@
       "nextStoryId": "1480",
       "arcId": "moses_arc_2",
       "beatId": "moses_arc2_beat_0",
-      "beatText": "Last time, Israel woke to bread from heaven on the ground and asked, What is it?… Would you like to climb the hill where the battle below hangs on Moses' tiring arms? Or, tell me what's on your heart today.",
+      "beatText": "Last time, Israel woke to bread from heaven on the ground and asked, What is it?… Would you like to climb the hill where the battle below hangs on Moses' tiring arms?",
       "status": "approved",
       "approvedOn": "2026-07-08"
     },
@@ -255,7 +256,7 @@
       "nextStoryId": "832",
       "arcId": "moses_arc_2",
       "beatId": "moses_arc2_beat_1",
-      "beatText": "Last time, Aaron and Hur held up Moses' failing arms till the sun went down… Shall we sit in the camp while his father-in-law watches him carry the people alone? Or, tell me what's on your heart today.",
+      "beatText": "Last time, Aaron and Hur held up Moses' failing arms till the sun went down… Shall we sit in the camp while his father-in-law watches him carry the people alone?",
       "status": "approved",
       "approvedOn": "2026-07-08"
     },
@@ -264,7 +265,7 @@
       "nextStoryId": "1561",
       "arcId": "moses_arc_3",
       "beatId": "moses_arc3_beat_0",
-      "beatText": "Last time, Moses stepped alone into the thick darkness where God was… Would you like to come down the mountain with him, to the calf of gold his people have made below? Or, tell me what's on your heart today.",
+      "beatText": "Last time, Moses stepped alone into the thick darkness where God was… Would you like to come down the mountain with him, to the calf of gold his people have made below?",
       "status": "approved",
       "approvedOn": "2026-07-08"
     },
@@ -273,7 +274,7 @@
       "nextStoryId": "1246",
       "arcId": "moses_arc_3",
       "beatId": "moses_arc3_beat_1",
-      "beatText": "Last time, Moses would not leave God alone; he pleaded till God turned from his wrath… Shall we stay on the mountain as Moses asks to see the glory of the God he begged? Or, tell me what's on your heart today.",
+      "beatText": "Last time, Moses would not leave God alone; he pleaded till God turned from his wrath… Shall we stay on the mountain as Moses asks to see the glory of the God he begged?",
       "status": "approved",
       "approvedOn": "2026-07-08"
     },
@@ -282,7 +283,7 @@
       "nextStoryId": "1468",
       "arcId": "moses_arc_3",
       "beatId": "moses_arc3_beat_2",
-      "beatText": "Last time, Moses hid in the cleft of the rock and saw God's glory pass by… Would you like to watch him come down, his face shining, not knowing why the people fear him? Or, tell me what's on your heart today.",
+      "beatText": "Last time, Moses hid in the cleft of the rock and saw God's glory pass by… Would you like to watch him come down, his face shining, not knowing why the people fear him?",
       "status": "approved",
       "approvedOn": "2026-07-08"
     }

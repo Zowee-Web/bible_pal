@@ -114,6 +114,13 @@ class Journey {
   /// name-clip render in the kid-offer flavor.
   final String? characterName;
 
+  /// Open-Door Tail Family flavor (docs/JOURNEY_TRANSITION_VOICE.md,
+  /// 2026-07-15): 'hopeful' | 'heavier' | 'gentle'. Selects which tail
+  /// bucket rotates after this journey's offer bodies (each bucket also
+  /// draws from the neutral pool). Null/unknown → neutral pool only.
+  /// Adult lane only; kid offers keep their fixed baked-in tail.
+  final String? offerTailFlavor;
+
   /// Curator-only note. NEVER surfaced to the user.
   final String? editorialNote;
 
@@ -126,6 +133,7 @@ class Journey {
     this.nameRegistryKey,
     this.themeWord,
     this.characterName,
+    this.offerTailFlavor,
     this.editorialNote,
   });
 
@@ -210,6 +218,7 @@ class Journey {
       nameRegistryKey: json['nameRegistryKey'] as String?,
       themeWord: json['themeWord'] as String?,
       characterName: json['characterName'] as String?,
+      offerTailFlavor: json['offerTailFlavor'] as String?,
       editorialNote: json['editorialNote'] as String?,
     );
   }
