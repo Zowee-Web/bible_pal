@@ -759,22 +759,49 @@ class PalAudioService {
   /// only record `lastMemoryLineSpokenAt` when this returns true —
   /// silence-floor honesty: a failed playback must not burn the user's
   /// next 3-day cooldown window.
+  /// Play [assetPaths] one after another with [gaps] of real wall-clock
+  /// silence between them (gaps[i] follows assetPaths[i]).
+  ///
+  /// Sequential setAudioSource+play per clip, NOT a
+  /// ConcatenatingAudioSource with SilenceAudioSource gaps —
+  /// SilenceAudioSource is Android-only (its own doc comment) and
+  /// throws just_audio's (9999999) platform error on iOS, which is how
+  /// the Open-Door tail stitch silenced every journey offer on-device
+  /// (2026-07-15) and how the memory carrier+name 50ms gap was latently
+  /// broken on iOS too.
+  ///
+  /// [completeEarlyBy] (optional) applies to the LAST clip only —
+  /// resolves the future when playback is within that duration of the
+  /// end, preserving playJourneyOffer's tail-overlap contract.
+  Future<void> _playClipsSequentially(
+    List<String> assetPaths,
+    List<Duration> gaps, {
+    Duration completeEarlyBy = Duration.zero,
+  }) async {
+    for (var i = 0; i < assetPaths.length; i++) {
+      await _player.setAudioSource(AudioSource.asset(assetPaths[i]));
+      await _waitForPlayerReady();
+      await _player.play();
+      final isLast = i == assetPaths.length - 1;
+      if (isLast && completeEarlyBy > Duration.zero) {
+        await _awaitPlaybackNearlyComplete(completeEarlyBy);
+      } else {
+        await awaitPlaybackComplete();
+      }
+      if (!isLast && i < gaps.length && gaps[i] > Duration.zero) {
+        await Future.delayed(gaps[i]);
+      }
+    }
+  }
+
   Future<bool> playMemoryPlan(MemoryAudioPlan plan) async {
     plan.validateStructure();
     await _acquireLock();
     try {
-      final children = <AudioSource>[];
-      for (var i = 0; i < plan.clips.length; i++) {
-        children.add(AudioSource.asset(plan.clips[i].assetPath));
-        if (i < plan.gapsBetween.length) {
-          children.add(SilenceAudioSource(duration: plan.gapsBetween[i]));
-        }
-      }
-      final playlist = ConcatenatingAudioSource(children: children);
-      await _player.setAudioSource(playlist);
-      await _waitForPlayerReady();
-      await _player.play();
-      await awaitPlaybackComplete();
+      await _playClipsSequentially(
+        [for (final c in plan.clips) c.assetPath],
+        plan.gapsBetween,
+      );
       return true;
     } catch (e) {
       logEvent('pal_audio_error', {
@@ -814,23 +841,11 @@ class PalAudioService {
     plan.validateStructure();
     await _acquireLock();
     try {
-      final children = <AudioSource>[];
-      for (var i = 0; i < plan.offerClips.length; i++) {
-        children.add(AudioSource.asset(plan.offerClips[i].assetPath));
-        if (i < plan.offerGapsBetween.length) {
-          children
-              .add(SilenceAudioSource(duration: plan.offerGapsBetween[i]));
-        }
-      }
-      final playlist = ConcatenatingAudioSource(children: children);
-      await _player.setAudioSource(playlist);
-      await _waitForPlayerReady();
-      await _player.play();
-      if (completeEarlyBy == Duration.zero) {
-        await awaitPlaybackComplete();
-      } else {
-        await _awaitPlaybackNearlyComplete(completeEarlyBy);
-      }
+      await _playClipsSequentially(
+        [for (final c in plan.offerClips) c.assetPath],
+        plan.offerGapsBetween,
+        completeEarlyBy: completeEarlyBy,
+      );
       return true;
     } catch (e) {
       logEvent('pal_audio_error', {
