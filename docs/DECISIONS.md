@@ -1515,6 +1515,33 @@ LLM reflections are generated after story text, validated strictly, and the fina
 
 ---
 
+## ADR-029: Fourth PAL Voice — Miriam (Staged)
+
+**Date:** 2026-07-14
+**Status:** Accepted
+**Context:** The active PAL roster (Hope, Shepherd, Stillwater) is 2 male / 1 female. The owner wants a fourth voice to balance the roster to 2/2, using the ElevenLabs source voice behind story narrator `VOICE_MIRIAM_JOYFUL` (in use by 24 stories), whose sound he specifically approved. SPEC 17b had also drifted from shipped code (it still listed retired VOICE_GRACE as a four-voice default).
+
+**Decision:**
+- Registered `VOICE_MIRIAM` (display "Miriam", 🌻, "Joyful spirit", female, ElevenLabs `XrExE9yKIg1WjnnlVkGX`) as a **staged** PAL voice: present in `PalVoiceRegistry.stagedVoices` and `server/voices.json` `palVoices`, but excluded from the active `voices` list — never shown in the Settings picker, never validates, and would migrate to the default like any unknown key.
+- Minted a **distinct PAL key** rather than reusing the narrator key `VOICE_MIRIAM_JOYFUL`. The PAL/narrator systems stay key-disjoint (per the permanent separation rule in `story_voice_registry.py`); sharing the underlying ElevenLabs source voice across both systems is an owner-approved exception, a first.
+- Corrected SPEC 17b to shipped reality (3 active voices, default `VOICE_STILLWATER`) and documented the staged voice and its activation criteria there.
+- Replaced two lingering `?? 'VOICE_GRACE'` fallbacks (first_launch_screen, name_prompt_overlay) with `PalVoiceRegistry.defaultVoiceKey` — Grace was retired 2026-04-23, so those fallbacks generated name audio under a dead voice key.
+- Fixed the stale roster in `server/generate_pal_audio_batch.sh`: it still listed retired VOICE_GRACE (as DEFAULT_VOICE, first in roster) — a re-run would have re-rendered ~127 Grace clips, recreated the forbidden `assets/pal/audio/VOICE_GRACE/` dir (failing `pal_v2_asset_verification_test.dart`), and produced zero Miriam audio. Roster is now HOPE/SHEPHERD/STILLWATER/MIRIAM with DEFAULT_VOICE=VOICE_STILLWATER; with skip-if-exists, a guarded run now fills exactly Miriam's gaps.
+- Hardened `pal_voice_registry_test.dart` with a PAL/narrator key-disjointness test that reads the actual narrator pool from `server/voices.json` (active + staged PAL keys must never appear there).
+
+**Rationale:**
+- Staging lets all registry/SPEC/test plumbing land with zero runtime behavior change, before any audio spend. Activation is a one-entry move from `stagedVoices` to `voices` plus roster-test updates.
+- Adding the voice before the journey expansion slate renders means its new framing lines can be rendered ×4 in one pass instead of ×3 plus a later backfill.
+- Distinct keys prevent allowlist/banlist cross-contamination between the narrator validation system and PAL asset paths.
+
+**Consequences:**
+- Activation gate: render Miriam's full live audio surface (~515 clips ≈ 32–35K chars via eleven_v3: 12 canonical openings, 96 prompts, 30 micro-responses, 32 reflections, 120 tone-biased reflections, 12 transitions, preview, 212 figure framing lines), pass the PAL_VOICE.md eight-question audit, then move the entry to `voices` and update `pal_voice_registry_test.dart` (4 active, 2M/2F) and `pal_v2_asset_verification_test.dart`.
+- The dead categories Hope/Shepherd still carry (60 legacy register openings, 24 Creative clips) are intentionally NOT part of Miriam's surface — no runtime references exist.
+- Journey and memory audio remain Stillwater-first; Miriam follows Hope/Shepherd there.
+- Users who pick Miriam as PAL may also hear her narrating one of the 24 stories she voices — accepted by owner.
+
+---
+
 ## ADR-XXX: [Title]
 
 **Date:** YYYY-MM-DD

@@ -1,5 +1,5 @@
 // PAL Voice Registry
-// Defines the 4 selectable voices for PAL's conversational audio.
+// Defines the selectable voices for PAL's conversational audio.
 // Keys match the canonical voice pool in server/voices.json.
 
 class PalVoice {
@@ -82,6 +82,29 @@ class PalVoiceRegistry {
       description: 'Calm companion',
       gender: 'male',
       elevenLabsId: 'uju3wxzG5OhpWcoi3SMy',
+    ),
+  ];
+
+  /// Voices registered but not yet selectable. A staged voice has an
+  /// approved persona and ElevenLabs source but no rendered PAL audio
+  /// library; it is excluded from [voices], so it never appears in the
+  /// Settings picker, never validates via [isValid], and a persisted
+  /// key would migrate to the default like any unknown key. When its
+  /// full live audio surface is rendered and passes the PAL_VOICE.md
+  /// audit, the entry moves to [voices] (see SPEC 17b, ADR-029).
+  ///
+  /// - VOICE_MIRIAM (added 2026-07-14): balances the roster to
+  ///   2 male / 2 female. Shares an ElevenLabs source voice with story
+  ///   narrator VOICE_MIRIAM_JOYFUL — owner-approved exception to the
+  ///   PAL/narrator separation; the two systems keep distinct keys.
+  static const List<PalVoice> stagedVoices = [
+    PalVoice(
+      voiceKey: 'VOICE_MIRIAM',
+      displayName: 'Miriam',
+      emoji: '\u{1F33B}', // 🌻
+      description: 'Joyful spirit',
+      gender: 'female',
+      elevenLabsId: 'XrExE9yKIg1WjnnlVkGX',
     ),
   ];
 

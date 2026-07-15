@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../core/pal_voice_registry.dart';
 import '../providers/app_state_notifier.dart';
 import '../providers/service_providers.dart' show nameAudioServiceProvider;
 import '../theme/living_sky.dart';
@@ -97,8 +98,8 @@ class _NamePromptOverlayState extends ConsumerState<NamePromptOverlay>
     await _markSeen();
 
     // Fire-and-forget name audio generation
-    final palVoiceKey =
-        currentState?.userPreferences.palVoiceKey ?? 'VOICE_GRACE';
+    final palVoiceKey = currentState?.userPreferences.palVoiceKey ??
+        PalVoiceRegistry.defaultVoiceKey;
     ref.read(nameAudioServiceProvider).generateNamePhrases(
           name: name,
           voiceKey: palVoiceKey,
