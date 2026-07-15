@@ -71,7 +71,13 @@ while IFS= read -r src_file; do
 
   count=$((count + 1))
 
-  if [ -f "$dst_file" ]; then
+  # mtime-aware refresh (2026-07-15, mirrors compress_audio.sh Step 5A):
+  # skip only when the mirror copy is NEWER than the raw clip. A bare
+  # existence check shipped STALE audio after a re-render under the
+  # same filename — the Open-Door tail re-render left old full-tail
+  # offers in the mirror, and on-device the app played the baked-in
+  # tail PLUS the new rotated tail (double tail).
+  if [ -f "$dst_file" ] && [ "$dst_file" -nt "$src_file" ]; then
     skipped=$((skipped + 1))
     continue
   fi
