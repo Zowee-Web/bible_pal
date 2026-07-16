@@ -2403,6 +2403,12 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
 
   Future<String?> _captureJourneyResponseOnce() async {
     if (!mounted) return null;
+    // Show the live "Listening…" mic immediately. The recognizer now
+    // reaches real capture in ~0.64s on a clean offer flow (2026-07-15,
+    // breadcrumb-measured; the earlier ~2.9s was an artifact of the
+    // broken SilenceAudioSource offer path, now fixed) — fast enough
+    // that a "getting ready" cue is needless flash. The onListening
+    // hook remains wired for instrumentation.
     setState(() {
       _voiceFlow = _VoiceFlowState.listening;
       _partialTranscript = '';
@@ -2573,11 +2579,14 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
       journeyRegistry: registry,
       audioResolver: audioResolver,
       classifier: classifier,
-      // Offer plays fully, then the mic opens in real silence. Opening
-      // it during playback interrupts the offer (mic and just_audio
-      // fight for the route); the cold start is instead absorbed by the
-      // ensureAudioSessionActive() call above, which warms the mic route
-      // under cover of the offer.
+      // Offer (body + tail) plays FULLY, then the mic opens. Opening it
+      // during playback interrupts the offer (starting the STT
+      // AVAudioEngine input mid-clip cuts just_audio even under one
+      // .playAndRecord session — confirmed on-device 2026-07-15). The
+      // recognizer's ~2.9s cold start is inherent (fresh engine per
+      // listen); the honest listening cue below (gated on the real
+      // stt_status='listening') keeps that gap from feeling like a
+      // dropped "yes".
       playOfferPlan: palAudio.playJourneyOffer,
       playDeclinePlan: palAudio.playJourneyDecline,
       captureResponse: _captureJourneyResponse,

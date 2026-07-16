@@ -32,6 +32,11 @@ class SttService {
   bool _initialized = false;
   bool _available = false;
 
+  /// Invoked once per [startListening] call the moment the recognizer
+  /// reaches the 'listening' status (the mic is ACTUALLY capturing).
+  /// Set by [startListening]; fired from the engine's onStatus hook.
+  void Function()? _onListeningStarted;
+
   /// Default listen duration (seconds). Long enough for the user to
   /// share how their day is going without being cut off mid-sentence.
   static const int defaultListenSeconds = 90;
@@ -130,7 +135,14 @@ class SttService {
         // ACTUALLY capturing — everything before it is session-switch/
         // warmup dead air. Status strings only; never transcript data
         // (Invariant 17).
-        onStatus: (status) => logEvent('stt_status', {'status': status}),
+        onStatus: (status) {
+          logEvent('stt_status', {'status': status});
+          // 'listening' is the moment the mic is ACTUALLY capturing —
+          // fire the per-listen callback so the UI can flip its cue
+          // from "getting ready" to a live listening indicator only
+          // when it's real (not the optimistic pre-warmup state).
+          if (status == 'listening') _onListeningStarted?.call();
+        },
       );
       _initialized = true;
     } catch (e) {
@@ -154,10 +166,12 @@ class SttService {
   Future<void> startListening({
     required void Function(SttResult result) onResult,
     void Function(String error)? onError,
+    void Function()? onListening,
     int listenSeconds = defaultListenSeconds,
     Duration pauseDuration = defaultPauseDuration,
     Duration endpointDelay = defaultEndpointDelay,
   }) async {
+    _onListeningStarted = onListening;
     if (!_available) {
       onError?.call('Speech recognition not available');
       return;
