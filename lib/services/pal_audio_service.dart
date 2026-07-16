@@ -778,9 +778,17 @@ class PalAudioService {
     List<Duration> gaps, {
     Duration completeEarlyBy = Duration.zero,
   }) async {
+    _abortSequential = false;
     for (var i = 0; i < assetPaths.length; i++) {
+      // Bail before starting the next clip if stop() was called mid-
+      // sequence (2026-07-15: Cancel during a two-clip offer stopped the
+      // body but the loop still played the tail — the "Cancel plays the
+      // tail" bug). stop() sets _abortSequential; check it after each
+      // await too, since stop() races the in-flight clip.
+      if (_abortSequential) return;
       await _player.setAudioSource(AudioSource.asset(assetPaths[i]));
       await _waitForPlayerReady();
+      if (_abortSequential) return;
       await _player.play();
       final isLast = i == assetPaths.length - 1;
       if (isLast && completeEarlyBy > Duration.zero) {
@@ -788,6 +796,7 @@ class PalAudioService {
       } else {
         await awaitPlaybackComplete();
       }
+      if (_abortSequential) return;
       if (!isLast && i < gaps.length && gaps[i] > Duration.zero) {
         await Future.delayed(gaps[i]);
       }
@@ -890,7 +899,13 @@ class PalAudioService {
   }
 
   /// Stop any currently playing audio.
+  /// Set by [stop] so an in-flight [_playClipsSequentially] bails
+  /// before playing its next clip (e.g. Cancel during a body+tail
+  /// offer must not go on to play the tail).
+  bool _abortSequential = false;
+
   Future<void> stop() async {
+    _abortSequential = true;
     await _player.stop();
   }
 
