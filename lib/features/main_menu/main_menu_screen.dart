@@ -2418,6 +2418,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     final completer = Completer<String?>();
     _journeyCaptureCompleter = completer;
     Timer? safetyTimeout;
+    Timer? acceptSettle;
     // Track the last non-empty partial transcript. Adam's iPhone
     // 2026-07-01: the STT engine delivered partial "yes" but never
     // isFinal=true after _speech.stop() was invoked by the endpoint
@@ -2428,6 +2429,7 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     void cleanup() {
       _micPulseController.stop();
       safetyTimeout?.cancel();
+      acceptSettle?.cancel();
       if (identical(_journeyCaptureCompleter, completer)) {
         _journeyCaptureCompleter = null;
       }
@@ -2451,13 +2453,31 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     // (test env, iOS permission edge-cases) has a cancelable timer.
     safetyTimeout = Timer(const Duration(seconds: 12), completeWithPartial);
 
-    // Instant-accept watch (2026-07-09, tail-overlap listening): a
-    // bare accept token in ANY partial dispatches immediately — no
-    // 3.5s endpoint wait, no finalization. Safe against PAL's own
-    // tail echo because "yes"/"yeah"/"yep" appear in ZERO of the 77
-    // beat/offer texts (verified against outgoing_beats.json + the
-    // render script's CLIPS) — those words can only be the user.
+    // Fast-accept settle (2026-07-15, revised): when a partial contains
+    // a bare accept token, arm a short settle timer instead of
+    // dispatching immediately. Every new partial RESETS it, so a
+    // continued sentence ("yes, I'd love to hear that next story") is
+    // never cut off — the timer only fires once the user actually
+    // PAUSES after speaking, ~1.2s. A bare "yes" then dispatches ~1.2s
+    // later (snappy, no 3.5s endpoint wait). The FULL utterance is
+    // dispatched to the classifier (which accepts anything starting
+    // with yes/yeah), so the user's whole phrase is honored — more
+    // correct than the old force-"yes". Non-accept utterances (mood
+    // redirects like "I'm anxious") get no settle timer and keep the
+    // patient 3.5s endpoint so they're never clipped. Safe against
+    // PAL's own tail echo: "yes"/"yeah"/"yep" appear in none of the
+    // beat/offer/tail texts.
     final instantAccept = RegExp(r'\b(yes|yeah|yep)\b', caseSensitive: false);
+    const acceptSettleDelay = Duration(milliseconds: 1200);
+
+    void dispatchAcceptOnPause() {
+      if (completer.isCompleted || !mounted) return;
+      if (_voiceFlow != _VoiceFlowState.listening) return;
+      cleanup();
+      _sttService.stopListening();
+      completer.complete(
+          lastPartial.trim().isEmpty ? 'yes' : lastPartial);
+    }
 
     try {
       await _sttService.startListening(
@@ -2472,12 +2492,11 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
           if (!result.isFinal) {
             if (result.text.isNotEmpty) {
               lastPartial = result.text;
-              if (instantAccept.hasMatch(result.text) &&
-                  !completer.isCompleted) {
-                cleanup();
-                _sttService.stopListening();
-                completer.complete('yes');
-                return;
+              if (instantAccept.hasMatch(result.text)) {
+                // (Re)arm the settle timer — resets on every partial, so
+                // it only fires after the user stops talking.
+                acceptSettle?.cancel();
+                acceptSettle = Timer(acceptSettleDelay, dispatchAcceptOnPause);
               }
             }
             setState(() => _partialTranscript = result.text);
