@@ -2453,22 +2453,23 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
     // (test env, iOS permission edge-cases) has a cancelable timer.
     safetyTimeout = Timer(const Duration(seconds: 12), completeWithPartial);
 
-    // Fast-accept settle (2026-07-15, revised): when a partial contains
-    // a bare accept token, arm a short settle timer instead of
-    // dispatching immediately. Every new partial RESETS it, so a
-    // continued sentence ("yes, I'd love to hear that next story") is
-    // never cut off — the timer only fires once the user actually
-    // PAUSES after speaking, ~1.2s. A bare "yes" then dispatches ~1.2s
-    // later (snappy, no 3.5s endpoint wait). The FULL utterance is
-    // dispatched to the classifier (which accepts anything starting
-    // with yes/yeah), so the user's whole phrase is honored — more
-    // correct than the old force-"yes". Non-accept utterances (mood
-    // redirects like "I'm anxious") get no settle timer and keep the
-    // patient 3.5s endpoint so they're never clipped. Safe against
-    // PAL's own tail echo: "yes"/"yeah"/"yep" appear in none of the
+    // Bare-accept fast-path (2026-07-15, revised twice): only a
+    // STANDALONE accept ("yes"/"yeah"/"sure" said alone) arms a settle
+    // timer; the moment the utterance grows into a sentence ("yes, I'd
+    // love to hear that next story") the settle is cancelled and the
+    // patient 3.5s endpoint (calibrated to Adam's cadence) takes over —
+    // so slow, deliberate speech is never clipped (Adam: 1.2s cut him
+    // off when talking slowly). A bare "yes" then dispatches ~2s after
+    // he stops (snappy without the full 3.5s wait). The FULL utterance
+    // goes to the classifier (which accepts anything starting with
+    // yes/yeah), so the user's whole phrase is honored — more correct
+    // than the old force-"yes". Mood redirects ("I'm anxious") never
+    // match bareAccept, so they always get the patient endpoint. Safe
+    // against PAL's own tail echo: these tokens are in none of the
     // beat/offer/tail texts.
-    final instantAccept = RegExp(r'\b(yes|yeah|yep)\b', caseSensitive: false);
-    const acceptSettleDelay = Duration(milliseconds: 1200);
+    final bareAccept =
+        RegExp(r'^(yes|yeah|yep|yup|sure)\b[\s.!,]*$', caseSensitive: false);
+    const bareAcceptSettle = Duration(milliseconds: 2000);
 
     void dispatchAcceptOnPause() {
       if (completer.isCompleted || !mounted) return;
@@ -2492,11 +2493,16 @@ class _PalButtonWithIntroState extends ConsumerState<_PalButtonWithIntro>
           if (!result.isFinal) {
             if (result.text.isNotEmpty) {
               lastPartial = result.text;
-              if (instantAccept.hasMatch(result.text)) {
-                // (Re)arm the settle timer — resets on every partial, so
-                // it only fires after the user stops talking.
+              if (bareAccept.hasMatch(result.text.trim())) {
+                // Utterance is a bare accept so far — arm the fast
+                // settle. If the user stops, it dispatches ~2s later.
                 acceptSettle?.cancel();
-                acceptSettle = Timer(acceptSettleDelay, dispatchAcceptOnPause);
+                acceptSettle = Timer(bareAcceptSettle, dispatchAcceptOnPause);
+              } else {
+                // Grew into a sentence (or isn't an accept) — cancel the
+                // fast path and let the patient 3.5s endpoint govern, so
+                // slow, deliberate speech is never clipped.
+                acceptSettle?.cancel();
               }
             }
             setState(() => _partialTranscript = result.text);
