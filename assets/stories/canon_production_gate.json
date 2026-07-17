@@ -546,9 +546,9 @@
       "scriptureReference": "Luke 10:38-42",
       "priorClassification": "adult-parity gap (Full-Canon Gap Audit)",
       "finding": "already_covered",
-      "evidence": "Adult story 827 (bibleStoryKey mary_and_martha) AND kid story 1863 both exist.",
-      "status": "closed_conditional",
-      "condition": "Remains closed ONLY IF story 827 is not scheduled for retirement in the 800-series re-voice backlog. 827 is an 800-series legacy story; if retired, this gap re-opens."
+      "evidence": "Adult story 827 (bibleStoryKey mary_and_martha) and kid story 1863 both exist. Story 827 is present, correctly anchored, passed the 800-series anchor audit (2026-06-19, rated OK), was promoted (not retired) in that audit's executed promotion (commit 0b4bc4cb, which retired 811/813/819 only), uses an approved narrator (VOICE_ARABELLA), and remains the canonical adult implementation of mary_and_martha.",
+      "status": "closed",
+      "condition": null
     },
     {
       "title": "The Widow's Mite",

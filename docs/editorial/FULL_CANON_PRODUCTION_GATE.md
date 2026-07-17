@@ -15,7 +15,7 @@ This gate is the smallest near-term set of stories that fills the most conspicuo
 **The shortlist is ready.** 22 stories passed the gate; 8 candidate groups were rejected or deferred; **three prior Full-Canon Gap Audit findings were overturned** during verification.
 
 **Overturned findings** (exactly the false positives the manual-salvage caveat warned about):
-- **Mary & Martha** — already in the adult lane (story **827**) plus kid **1863**. Not a parity gap. *Closed conditionally: re-opens if 827 is scheduled for retirement in the 800-series re-voice backlog.*
+- **Mary & Martha** — already in the adult lane (story **827**) plus kid **1863**. Not a parity gap. **Closed.** Story 827 is present, correctly anchored, passed the 800-series audit, and remains the canonical adult implementation.
 - **Widow's Mite** — already in the adult lane (story **1444**) plus kid **1872**. Not a parity gap. Closed.
 - **Appearance to the Ten** — downgraded from Essential to partial/sufficient: Emmaus (1115) and the Thomas appearance (adult **1122** + kid **1871**) already bracket that room. Deferred.
 
@@ -69,7 +69,7 @@ Recommended arc: **Call → Water → Confession → Denial → Restoration.** T
 
 | Candidate | Reference | Reason |
 |-----------|-----------|--------|
-| Mary and Martha | Luke 10:38-42 | **ALREADY COVERED** — Adult story 827 (key mary_and_martha) AND kid 1863 both exist. My full-canon audit wrongly listed this as an adult-parity gap — overturned. (Caveat: 827 is an 800-series legacy story; confirm it isn't slated for retirement before fully closing this.) |
+| Mary and Martha | Luke 10:38-42 | **ALREADY COVERED** — Adult story 827 (key mary_and_martha) AND kid 1863 both exist. My full-canon audit wrongly listed this as an adult-parity gap — overturned. Closed: 827 passed the 800-series audit (rated OK), is correctly anchored, uses an approved narrator, and remains the canonical adult implementation. |
 | The Widow's Mite | Mark 12:41-44 / Luke 21:1-4 | **ALREADY COVERED** — Adult story 1444 (Two Small Coins, Luke 21 parallel) AND kid 1872 both exist. Wrongly listed as a parity gap — overturned. |
 | Appearance to the Ten — 'Peace Be With You' | John 20:19-23 / Luke 24:36-49 | **PARTIAL, SUFFICIENT FOR NOW** — Bracketed by Emmaus (1115) and the Thomas appearance (adult 1122 + kid 1871), which covers the same room a week later. Downgraded from Essential to important/partial. The genuine remainder is the commissioning / 'receive the Holy Spirit' content — worth a later story, not a near-term hole. |
 | Unto Us a Child Is Born | Isaiah 9:2-7 | **ENRICHMENT, NOT NARRATIVE** — A prophetic oracle, not a story. Strong Advent contemplative piece — route to an enrichment batch, don't gate it as a narrative omission. |
@@ -197,4 +197,4 @@ What changes when each new story lands. No beats are written; this records the a
 - **Full-corpus automated verification** (workflow verify stage): net-new essentials from non-salvaged divisions — Fall, Cain, John 1, Pilate, Barabbas, Rehoboam, Rich Fool, Rich Man & Lazarus, Ten Virgins, Sheep & Goats, Workers, Weeds, Pearl, Flight, Joseph's Dream.
 - **This targeted Opus verification** (meta-grep across both lanes and all fields + directory ground-truth): the salvaged-division items (Bronze Serpent, Peter's Confession, En-gedi), all parity items (Sower, Persistent Widow, Joseph-in-Egypt), the three overturned findings, and the Peter arc mapping. Every "absent" claim was confirmed at 0 meta hits.
 - **Approved G1-G16 baseline:** relied upon as adversarially verified on 2026-07-16; not re-verified, except kid 1907 was confirmed to exist (so G1's fill is adult-lane).
-- **Unresolved uncertainty:** (1) Kingdom-parable scoping — Weeds may merge with its explanation; the Fall may need splitting into temptation vs. consequence for kid-safety. (2) The Mary & Martha rejection rests on story **827**, an 800-series legacy story — confirm it isn't slated for retirement before fully closing that gap. (3) Exact adult/kid split and hard-anchor handling for the Fall, Cain, Bathsheba (G3), and Samson's capture (G4) is an authoring-time editorial call, not settled here.
+- **Unresolved uncertainty:** (1) Kingdom-parable scoping — Weeds may merge with its explanation; the Fall may need splitting into temptation vs. consequence for kid-safety. (2) Exact adult/kid split and hard-anchor handling for the Fall, Cain, Bathsheba (G3), and Samson's capture (G4) is an authoring-time editorial call, not settled here.

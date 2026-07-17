@@ -610,7 +610,7 @@
 | Nicodemus: 'For God So Loved the World' | John 3:9-21 | Important supporting | high | adult | partial · 1426 covers 3:1-8 only |
 | Take Up Your Cross | Matthew 16:21-28 | Important supporting | high | adult |  |
 | The Greatest Commandment | Mark 12:28-34 | Important supporting | high | both |  |
-| Mary and Martha | Luke 10:38-42 | Important supporting | medium | adult | ⚠ OVERTURNED — adult 827 + kid 1863 exist; NOT a gap. · kid 1863 exists; trad lane empty |
+| Mary and Martha | Luke 10:38-42 | Important supporting | medium | adult | ⚠ OVERTURNED — NOT a gap; adult 827 and kid 1863 already exist. |
 | The Sending of the Twelve | Matthew 10:1-15 | Important supporting | medium | adult |  |
 | The Sending of the Seventy-Two | Luke 10:1-20 | Important supporting | medium | adult | partial · 1327 covers the return-joy (10:21-24) |
 | Living Water at the Feast | John 7:37-44 | Important supporting | medium | adult |  |
