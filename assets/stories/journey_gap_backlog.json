@@ -1,0 +1,449 @@
+{
+  "_meta": {
+    "purpose": "Machine-readable backlog of verified narrative-continuity gaps for the Bible PAL Journey Beat system. Each entry is a canonical Bible story whose absence from the corpus would force an invented-context transition beat or a future beat rewrite. Human source of truth + full rationale: docs/editorial/JOURNEY_GAP_AUDIT.md.",
+    "auditDate": "2026-07-16",
+    "approvedBy": "Adam",
+    "posture": "Editor of a published chronological Bible, not a completionist. Only force-invention / arc-blocking gaps are listed. Duplicate renders, cross-character-owned stories, thin pools, and thematic material are NOT gaps and are excluded (see the Markdown doc §8-9).",
+    "statusVocabulary": {
+      "missing": "canonical story absent from the corpus; no decision yet",
+      "planned": "approved for authoring in an upcoming batch",
+      "authored": "story written but not yet integrated into a journey/arc",
+      "integrated": "story authored AND wired into its arc/journey; gap closed",
+      "intentionally_deferred": "real absence, but deferred until its specific arc is approached"
+    },
+    "fillPriority": {
+      "note": "Adam-approved fill order (2026-07-16). Do NOT fill all before resuming beats; a short focused batch first.",
+      "fillNow": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7"
+      ],
+      "stronglyConsider": [
+        "G8",
+        "G9",
+        "G10"
+      ],
+      "deferUntilArcApproached": [
+        "G11",
+        "G12",
+        "G13",
+        "G14",
+        "G15",
+        "G16"
+      ]
+    },
+    "verificationStatusVocabulary": {
+      "confirmed_absent": "verified absent from the entire corpus under any character/anchor",
+      "event_covered_cross_character": "the event exists under a different character and is usable as a guest beat; a dedicated render is optional enrichment"
+    },
+    "gapTypeVocabulary": {
+      "continuity_blocker": "force-invention seam; the arc cannot be built (or made continuous) without it",
+      "paired_resolution": "needed alongside a continuity_blocker to make the same arc continuous",
+      "thin_pool_fill": "character has too few distinct stories; this clears the ~3-story arc floor",
+      "guest_beat_available": "the event exists under another character and is usable as a guest beat; a dedicated render is optional",
+      "standalone_hold": "an unresolved story is held outside the arc; author only to place it in sequence",
+      "capstone": "a missing end/coda; does not block earlier safe beats"
+    }
+  },
+  "backlog": [
+    {
+      "id": "G1",
+      "title": "The Passover and the Plagues",
+      "scriptureReference": "Exodus 7-12",
+      "severity": "high",
+      "gapType": "continuity_blocker",
+      "blocksJourneyBuild": true,
+      "estimatedStoriesRequired": 1,
+      "affectedCharacters": [
+        "Moses"
+      ],
+      "affectedArcs": [
+        "moses_arc_1"
+      ],
+      "status": "planned",
+      "requiredBeforeJourneyBuild": [
+        "moses_arc_1"
+      ],
+      "existingLeftStoryId": "1019",
+      "existingRightStoryId": "1117",
+      "rationale": "The central Exodus drama. The Moses spine leaps from the burning bush (1019, Ex 3) straight to the Red Sea (1117, Ex 14); a beat across this seam would have to compress the plagues and Passover into a summary sentence. Highest-priority continuity blocker for the Moses Deliverance arc.",
+      "verificationStatus": "confirmed_absent",
+      "notes": "Already flagged as a seam gap inside the moses_arc_1 ledger note (1019->1527/1117). Fill priority: fillNow."
+    },
+    {
+      "id": "G2",
+      "title": "Jacob and Esau Reconcile",
+      "scriptureReference": "Genesis 33",
+      "severity": "high",
+      "gapType": "continuity_blocker",
+      "blocksJourneyBuild": true,
+      "estimatedStoriesRequired": 1,
+      "affectedCharacters": [
+        "Jacob",
+        "Esau"
+      ],
+      "affectedArcs": [
+        "jacob_full_arc"
+      ],
+      "status": "planned",
+      "requiredBeforeJourneyBuild": [
+        "jacob_full_arc"
+      ],
+      "existingLeftStoryId": "1021",
+      "existingRightStoryId": "1382",
+      "rationale": "Two existing stories (Jabbok prayer 1345, wrestling 1021) build sustained dread of Esau and his four hundred men; the payoff (the run, the embrace, the weeping) exists nowhere, and 1382 (Gen 35) opens already past the meeting. Highest-impact single gap for a full Jacob arc.",
+      "verificationStatus": "confirmed_absent",
+      "notes": "Unlocks the full Jacob life-arc; today only the shorter 'Encounter' sub-arc (1018->1345->1021) is buildable. Fill priority: fillNow. Pairs with G9."
+    },
+    {
+      "id": "G3",
+      "title": "Bathsheba and Uriah",
+      "scriptureReference": "2 Samuel 11",
+      "severity": "high",
+      "gapType": "continuity_blocker",
+      "blocksJourneyBuild": true,
+      "estimatedStoriesRequired": 1,
+      "affectedCharacters": [
+        "David",
+        "Bathsheba",
+        "Uriah",
+        "Nathan"
+      ],
+      "affectedArcs": [
+        "david_arc_7"
+      ],
+      "status": "planned",
+      "requiredBeforeJourneyBuild": [
+        "david_arc_7"
+      ],
+      "existingLeftStoryId": "1062",
+      "existingRightStoryId": "1553",
+      "rationale": "David's sin itself. Nathan's parable (1553) and the child's death (1342) both structurally depend on an act the corpus never depicts, so a fall->grief arc must otherwise open on a rebuke for a deed the listener never saw.",
+      "verificationStatus": "confirmed_absent",
+      "notes": "Left seam is the settled-reign block (1062 = 2 Sam 9 Mephibosheth is the nearest anchored prior scene). Fill priority: fillNow. Pairs with G7 to complete the David fall material."
+    },
+    {
+      "id": "G4",
+      "title": "Delilah and Samson's Capture",
+      "scriptureReference": "Judges 16:4-22",
+      "severity": "high",
+      "gapType": "continuity_blocker",
+      "blocksJourneyBuild": true,
+      "estimatedStoriesRequired": 1,
+      "affectedCharacters": [
+        "Samson",
+        "Delilah"
+      ],
+      "affectedArcs": [
+        "samson_arc"
+      ],
+      "status": "planned",
+      "requiredBeforeJourneyBuild": [
+        "samson_arc"
+      ],
+      "existingLeftStoryId": "1142",
+      "existingRightStoryId": "1193",
+      "rationale": "Samson has only two stories: birth (1142, Judges 13) and death (1193, Judges 16:23-31), whose opening already assumes a blind, shorn prisoner. Who Delilah is, why he cannot see, why he is in chains: untold. No beat can bridge a birth announcement to a blinding.",
+      "verificationStatus": "confirmed_absent",
+      "notes": "The character is unbuildable without it. Fill priority: fillNow. A mid-career beat (Judges 14-15) would be optional enrichment."
+    },
+    {
+      "id": "G5",
+      "title": "The Gibeonite Covenant",
+      "scriptureReference": "Joshua 9",
+      "severity": "high",
+      "gapType": "continuity_blocker",
+      "blocksJourneyBuild": true,
+      "estimatedStoriesRequired": 1,
+      "affectedCharacters": [
+        "Joshua",
+        "The Gibeonites"
+      ],
+      "affectedArcs": [
+        "joshua_conquest_arc"
+      ],
+      "status": "planned",
+      "requiredBeforeJourneyBuild": [
+        "joshua_conquest_arc"
+      ],
+      "existingLeftStoryId": "1294",
+      "existingRightStoryId": "1151",
+      "rationale": "'Sun, Stand Still' (1151, Josh 10) opens '...heard that Gibeon had made peace with Israel' - and Gibeon is introduced nowhere. The battle (and the sun miracle) happens because of a treaty the listener never witnessed.",
+      "verificationStatus": "confirmed_absent",
+      "notes": "Joshua's two flanking sub-arcs (Entering-the-Land, Rest/Farewell) are already safe. Fill priority: fillNow. Pairs with G6."
+    },
+    {
+      "id": "G6",
+      "title": "Achan's Judgment and the Capture of Ai",
+      "scriptureReference": "Joshua 7:16-8:29",
+      "severity": "medium",
+      "gapType": "paired_resolution",
+      "blocksJourneyBuild": true,
+      "estimatedStoriesRequired": 1,
+      "affectedCharacters": [
+        "Joshua",
+        "Achan"
+      ],
+      "affectedArcs": [
+        "joshua_conquest_arc"
+      ],
+      "status": "planned",
+      "requiredBeforeJourneyBuild": [
+        "joshua_conquest_arc"
+      ],
+      "existingLeftStoryId": "1294",
+      "existingRightStoryId": "1151",
+      "rationale": "1294 (Josh 7:6-12) dead-ends on God's rebuke ('I will not be with you... unless you destroy the devoted things') with no payoff clip; 1151 then assumes 'Joshua had taken Ai.' Authoring this resolves 1294 and, with G5, makes the Conquest middle continuous.",
+      "verificationStatus": "confirmed_absent",
+      "notes": "Paired resolution for the Joshua Conquest arc. Fill priority: fillNow (with G5)."
+    },
+    {
+      "id": "G7",
+      "title": "Absalom's Death - 'O Absalom, my son'",
+      "scriptureReference": "2 Samuel 18",
+      "severity": "medium",
+      "gapType": "paired_resolution",
+      "blocksJourneyBuild": true,
+      "estimatedStoriesRequired": 1,
+      "affectedCharacters": [
+        "David",
+        "Absalom"
+      ],
+      "affectedArcs": [
+        "david_rebellion_arc"
+      ],
+      "status": "planned",
+      "requiredBeforeJourneyBuild": [
+        "david_rebellion_arc"
+      ],
+      "existingLeftStoryId": "1323",
+      "existingRightStoryId": null,
+      "rationale": "Only the flight in the wilderness (1323, 2 Sam 17) touches the rebellion; the death and the lament at the gate are absent, so a rebellion->grief arc has no climax to reach.",
+      "verificationStatus": "confirmed_absent",
+      "notes": "Terminal grief beat (no right story). Fill priority: fillNow. Pairs with G3 to complete the David fall/rebellion material. A 2 Sam 15 Absalom-revolt story would also help open the rebellion arc."
+    },
+    {
+      "id": "G8",
+      "title": "Moses Flees to Midian",
+      "scriptureReference": "Exodus 2:11-25",
+      "severity": "medium",
+      "gapType": "continuity_blocker",
+      "blocksJourneyBuild": true,
+      "estimatedStoriesRequired": 1,
+      "affectedCharacters": [
+        "Moses"
+      ],
+      "affectedArcs": [
+        "moses_arc_1"
+      ],
+      "status": "planned",
+      "requiredBeforeJourneyBuild": [
+        "moses_arc_1"
+      ],
+      "existingLeftStoryId": "1033",
+      "existingRightStoryId": "1019",
+      "rationale": "New finding this audit. The Deliverance arc's opening seam - Baby Moses (1033, Ex 2:1-10) to the grown Midianite shepherd (1019, Ex 3) - skips the killing of the Egyptian and the flight, the hinge that turns the prince into a fugitive. Survives only inside Stephen's Acts 7 sermon (1164).",
+      "verificationStatus": "confirmed_absent",
+      "notes": "Fill priority: stronglyConsider. Optional front-enrichment (Shiphrah & Puah 1348, Ex 1) could bind the opening further."
+    },
+    {
+      "id": "G9",
+      "title": "The Stolen Blessing",
+      "scriptureReference": "Genesis 27",
+      "severity": "medium",
+      "gapType": "paired_resolution",
+      "blocksJourneyBuild": true,
+      "estimatedStoriesRequired": 1,
+      "affectedCharacters": [
+        "Jacob",
+        "Esau",
+        "Isaac",
+        "Rebekah"
+      ],
+      "affectedArcs": [
+        "jacob_full_arc"
+      ],
+      "status": "planned",
+      "requiredBeforeJourneyBuild": [
+        "jacob_full_arc"
+      ],
+      "existingLeftStoryId": "1428",
+      "existingRightStoryId": "1018",
+      "rationale": "The origin of the Jacob-Esau conflict. Without it the fear driving the Jabbok prayer and the 'deceiver renamed Israel' weight has no cause. Sits between Isaac in the field (1428, Gen 24) and Jacob's flight (1018, Gen 28).",
+      "verificationStatus": "confirmed_absent",
+      "notes": "Fill priority: stronglyConsider. Pairs with G2 for a full Jacob arc. Gen 25:29-34 birthright is a related optional beat."
+    },
+    {
+      "id": "G10",
+      "title": "The Flood",
+      "scriptureReference": "Genesis 7-8",
+      "severity": "medium",
+      "gapType": "continuity_blocker",
+      "blocksJourneyBuild": true,
+      "estimatedStoriesRequired": 1,
+      "affectedCharacters": [
+        "Noah"
+      ],
+      "affectedArcs": [
+        "noah_arc"
+      ],
+      "status": "planned",
+      "requiredBeforeJourneyBuild": [
+        "noah_arc"
+      ],
+      "existingLeftStoryId": "1017",
+      "existingRightStoryId": "1213",
+      "rationale": "Noah has only two stories - building the ark (1017, Gen 6) and the rainbow covenant (1213, Gen 9) - and the arc's entire turning point (the judgment, the year afloat, the dove, Ararat) happens between them with no story of its own.",
+      "verificationStatus": "confirmed_absent",
+      "notes": "Fill priority: stronglyConsider. Unlocks a real Noah arc instead of a two-beat ark->rainbow jump."
+    },
+    {
+      "id": "G11",
+      "title": "Korah's Rebellion",
+      "scriptureReference": "Numbers 16",
+      "severity": "medium",
+      "gapType": "continuity_blocker",
+      "blocksJourneyBuild": true,
+      "estimatedStoriesRequired": 1,
+      "affectedCharacters": [
+        "Moses",
+        "Aaron",
+        "Korah"
+      ],
+      "affectedArcs": [
+        "moses_wilderness_backhalf"
+      ],
+      "status": "intentionally_deferred",
+      "requiredBeforeJourneyBuild": [
+        "moses_wilderness_backhalf"
+      ],
+      "existingLeftStoryId": "1316",
+      "existingRightStoryId": "1364",
+      "rationale": "Genuinely absent. Needed (with the spies) before a Moses journey can honestly travel from Sinai toward his death. Seam: Too Heavy (1316, Num 11) -> Meribah (1364, Num 20).",
+      "verificationStatus": "confirmed_absent",
+      "notes": "Fill priority: deferUntilArcApproached (Moses back-half). Aaron 1200 references Korah's aftermath but is not a Korah story."
+    },
+    {
+      "id": "G12",
+      "title": "The Spies (from Moses' POV)",
+      "scriptureReference": "Numbers 13-14",
+      "severity": "low",
+      "gapType": "guest_beat_available",
+      "blocksJourneyBuild": false,
+      "estimatedStoriesRequired": 0,
+      "affectedCharacters": [
+        "Moses",
+        "Caleb",
+        "Joshua"
+      ],
+      "affectedArcs": [
+        "moses_wilderness_backhalf"
+      ],
+      "status": "intentionally_deferred",
+      "requiredBeforeJourneyBuild": [],
+      "existingLeftStoryId": "1316",
+      "existingRightStoryId": "1364",
+      "rationale": "The spies event EXISTS as Caleb's story 1049 (Num 13:25-33) and can serve as a guest beat in a Moses arc. A dedicated Moses-POV render is optional enrichment, not a blocker.",
+      "verificationStatus": "event_covered_cross_character",
+      "notes": "Not required before build - use 1049 as a guest beat per Audit Decision 3. Fill priority: deferUntilArcApproached."
+    },
+    {
+      "id": "G13",
+      "title": "Hezekiah's Illness and the Shadow Turned Back",
+      "scriptureReference": "2 Kings 20",
+      "severity": "medium",
+      "gapType": "thin_pool_fill",
+      "blocksJourneyBuild": true,
+      "estimatedStoriesRequired": 1,
+      "affectedCharacters": [
+        "Hezekiah",
+        "Isaiah"
+      ],
+      "affectedArcs": [
+        "hezekiah_arc"
+      ],
+      "status": "intentionally_deferred",
+      "requiredBeforeJourneyBuild": [
+        "hezekiah_arc"
+      ],
+      "existingLeftStoryId": "1511",
+      "existingRightStoryId": null,
+      "rationale": "Needed only to lift thin Hezekiah (2 distinct episodes) to a buildable three. Continuity between the two existing episodes is sound; this is a thin-pool fill, not a continuity break.",
+      "verificationStatus": "confirmed_absent",
+      "notes": "Fill priority: deferUntilArcApproached. The great Passover (2 Chr 30) is a further optional Hezekiah beat."
+    },
+    {
+      "id": "G14",
+      "title": "Josiah's Great Passover",
+      "scriptureReference": "2 Chronicles 35",
+      "severity": "medium",
+      "gapType": "thin_pool_fill",
+      "blocksJourneyBuild": true,
+      "estimatedStoriesRequired": 1,
+      "affectedCharacters": [
+        "Josiah"
+      ],
+      "affectedArcs": [
+        "josiah_arc"
+      ],
+      "status": "intentionally_deferred",
+      "requiredBeforeJourneyBuild": [
+        "josiah_arc"
+      ],
+      "existingLeftStoryId": "1512",
+      "existingRightStoryId": null,
+      "rationale": "Needed only to lift thin Josiah (2 distinct episodes) to three; a joyful apex for the reform arc. Continuity between the two existing episodes is clean.",
+      "verificationStatus": "confirmed_absent",
+      "notes": "Huldah's prophecy (1475) already offers a possible third beat. Josiah's death at Megiddo (2 Kings 23:29) is an alternative capstone. Fill priority: deferUntilArcApproached."
+    },
+    {
+      "id": "G15",
+      "title": "Sodom's Destruction and Lot's Rescue",
+      "scriptureReference": "Genesis 19",
+      "severity": "low",
+      "gapType": "standalone_hold",
+      "blocksJourneyBuild": false,
+      "estimatedStoriesRequired": 1,
+      "affectedCharacters": [
+        "Abraham",
+        "Lot"
+      ],
+      "affectedArcs": [
+        "abraham_arc"
+      ],
+      "status": "intentionally_deferred",
+      "requiredBeforeJourneyBuild": [],
+      "existingLeftStoryId": "1487",
+      "existingRightStoryId": null,
+      "rationale": "Abraham's Sodom intercession (1487, Gen 18:16-33) deliberately ends unresolved. No workaround needed: hold 1487 as a standalone (never mid-arc) and the Abraham Call->Binding arc is fully safe today. Author Gen 19 only to place 1487 in sequence.",
+      "verificationStatus": "confirmed_absent",
+      "notes": "Per Audit Decision 7 (unresolved story held outside the arc). Not required before an Abraham arc. Fill priority: deferUntilArcApproached."
+    },
+    {
+      "id": "G16",
+      "title": "Jonah and the Plant (the coda)",
+      "scriptureReference": "Jonah 4",
+      "severity": "low",
+      "gapType": "capstone",
+      "blocksJourneyBuild": false,
+      "estimatedStoriesRequired": 1,
+      "affectedCharacters": [
+        "Jonah"
+      ],
+      "affectedArcs": [
+        "jonah_arc"
+      ],
+      "status": "intentionally_deferred",
+      "requiredBeforeJourneyBuild": [],
+      "existingLeftStoryId": "1100",
+      "existingRightStoryId": null,
+      "rationale": "A missing capstone, not a middle gap. 1100 (Nineveh repents) settles cleanly; omitting Jonah 4 ends the arc on resolution without its ironic coda. Does not block the safe 1094->1167->1100 arc.",
+      "verificationStatus": "confirmed_absent",
+      "notes": "Per Audit Decision 6 (missing capstone does not block earlier safe beats). Fill priority: deferUntilArcApproached."
+    }
+  ]
+}
