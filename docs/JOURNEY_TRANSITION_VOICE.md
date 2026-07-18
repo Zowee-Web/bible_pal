@@ -10,6 +10,8 @@ This document locks the editorial voice for **journey transition beats** — the
 
 The register was first locked at the 2026-06-29 voice audit as three ellipsis-joined clauses. This document keeps that skeleton and adds what it was missing: a rule for making the *forward* glimpse as alive as the callback without breaking the relational, reverent voice PAL is built on — plus a repeatable process for discovering the best examples rather than freezing today's favorites into doctrine.
 
+> **Dual Faithfulness** ([STORY_NARRATION_STYLE_GUIDE.md](STORY_NARRATION_STYLE_GUIDE.md) §0, Law 2) governs transition beats too: the callback and the forward glimpse must stay faithful both to the stories they name and to the felt experience of moving between them — recalled and opened, never invented.
+
 Once a handful of these beats exist, writers calibrate every future beat against them. So the rule and the method are fixed here **before** the corpus scales to hundreds of transitions.
 
 **North-star image:** a trusted friend walking beside you — remembering where you have been, and gently pointing toward where the story goes next. *Never* a narrator selling the next episode. This is deliberately **not** a movie trailer: trailers exist to maximize anticipation; PAL does not. The event is part of the magic — it just must never outrank the person God is working through.

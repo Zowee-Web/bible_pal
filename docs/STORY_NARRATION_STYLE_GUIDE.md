@@ -8,6 +8,53 @@ When this guide conflicts with `_TRADITIONAL_HARD_RULES`, `_NARRATION_STYLE_GUAR
 
 ---
 
+## 0. Two Governing Laws
+
+These sit above every mechanical rule below. When a craft rule and a law conflict, the law wins. They map to how authoring actually goes: first find the register the passage is already in (Law 1), then hold faithfulness in both directions as you write it (Law 2 — the guardrail that keeps Law 1 from drifting into invention).
+
+### Law 1 — Find the human register already inside the text
+
+Before writing, ask: **what kind of human speech is this Scripture?** — testimony, prayer, lament, praise, warning, wonder, confession, exhortation, remembrance. Write in *that* register.
+
+- Do **not** flatten it into a summary; do **not** invent a scene to dramatize it.
+- The register comes from **selection, emphasis, spacing, and the text's own voice** (John 1's "we saw his glory" — first-person, past, astonished), never an added frame. **Register, not invention.**
+- Wrong question: "How do I turn this into a story?" Right question: "What experience is this Scripture already producing, and how do I let the listener have it?"
+- Hardest for idea-heavy passages (John's prologue, the epistles, contemplative psalms, the "I AM" sayings), where the writing must carry far more emotional weight than an action narrative.
+
+### Law 2 — Dual Faithfulness
+
+A Bible PAL story must be faithful **both** to what the Scripture says **and** to the human experience through which the Scripture reaches the listener. Neither may be bought by sacrificing the other. This is the guardrail on Law 1: the register must be the passage's *own*, surfaced — never one imported to make it land.
+
+- Faithful-to-text but not faithful-to-experience → **complete but emotionally distant**: an accurate summary the listener learns from but wouldn't choose to finish.
+- Faithful-to-experience but not faithful-to-text → **invention**: a scene, emotion, or framing the passage does not contain, added to make it land.
+
+*Cross-cutting:* Dual Faithfulness also governs [REFLECTION_VOICE.md](REFLECTION_VOICE.md), the journey voices, and the kid lane (each cross-references it here). If it comes to be cited across many systems, promote it to its own rank in the CLAUDE.md Document Hierarchy; until then this guide is its home.
+
+### Worked example — John 1:1-18 (story 1562)
+
+The prologue is already *testimony shaped by wonder*: an eyewitness looking back. Written primarily as a doctrinal summary, it came out complete but emotionally distant. Written in the testimony already present in the passage — the incarnation set as a standalone hinge, the cosmic opening establishing the height it falls from, the residue aimed at the realization *"the God who made everything came here"* — it became an eyewitness sharing what he had seen, and a story someone keeps listening to. Nothing was invented; the change was entirely register. The issue was never that the passage makes doctrinal claims (it does) — it was that John 1 is *already* testimony, and the adaptation worked when it reflected the passage's own voice.
+
+### Acceptance audit (the human-run gate)
+
+Neither law is machine-checkable. Run this before approving a story:
+
+1. **Register named** — one word for the passage's human speech-act. If you can't, you're about to write a summary.
+2. **No invention** — every image, emotion, and frame traces to the passage.
+3. **Residue test** — an hour later, what does a first-time listener remember? A realization ("God came and lived with us") beats a line beats "there was something about the Word."
+4. **Keep-listening test** — would someone who once found the Bible inaccessible want to press play on the next story?
+
+### Enforcement · Revision · Rank
+
+- **Gate:** `checklist_in_doc` — the four-point audit above (not test-enforceable; per [DOCTRINE_OF_DOCTRINES.md](DOCTRINE_OF_DOCTRINES.md), reverence is not a checklist property).
+- **Rank:** foundational within this guide (#7); Law 2 is cross-referenced from the reflection and journey-transition voice docs.
+- **Revision:** see History below.
+
+### History
+
+- **2026-07-18** — Both laws discovered and locked while rewriting story 1562 (John 1 prologue) from a doctrinal summary into the passage's own testimony register — the passage that forced the text-versus-experience distinction into the open.
+
+---
+
 ## 1. Sentence Rhythm
 
 Vary sentence length deliberately. Three same-length sentences in a row reads as anthological flatness — the TTS will deliver three identically-shaped beats.
