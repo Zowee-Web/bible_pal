@@ -6,6 +6,8 @@ This document locks the editorial voice for every reflection in the Bible PAL co
 
 The rule applies to **every active Traditional story**. The earlier V3_PILOT and `shortScripture: true` exemptions were retired 2026-05-31 after the dual-lane KJV backfill brought the corpus to 100% coverage; `reflection_consistency_test.dart` now enforces the contract without exception.
 
+> **Dual Faithfulness** ([STORY_NARRATION_STYLE_GUIDE.md](STORY_NARRATION_STYLE_GUIDE.md) §0, Law 2) governs reflections too: faithful both to what the Scripture says and to the experience through which it reaches the listener. Every rule below is that principle applied to the closing beat — story-specific, never generic, never invented.
+
 ## Reflection Voice Rules
 
 1. Reflections begin from a concrete image, action, tension, or moment in the story.
