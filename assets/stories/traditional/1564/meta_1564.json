@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1564,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_WAVE1A_CANON_2026-07",
+  "title": "The Hem of the Robe",
+  "scriptureAnchor": "1 Samuel 24",
+  "scriptureAnchorId": "1_samuel_24",
+  "bibleStoryKey": "david_spares_saul",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "mercy",
+    "trust",
+    "deliverance",
+    "righteousness",
+    "humility"
+  ],
+  "emotionalTags": [
+    "humbled",
+    "convicted",
+    "trusting",
+    "grieved"
+  ],
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "timelineEra": "kingdom",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1564_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1564_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1564_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1564_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "The man who had hunted him for years sat within reach in the dark of the cave, and David cut only the hem of his robe \u2014 and even that struck his heart. What is it to hold the power to end the one who is hunting you, and to let the hand that could have closed stay open?",
+  "editorialNotes": "Wave 1a (Full-Canon Production Gate CG06). Picks up exactly where 1336 ends (David 'went up to the strongholds of En Gedi'). Cave-at-En-gedi scene only (1 Sam 24); the parallel 1 Sam 26 sparing at Hachilah is NOT imported. Distinct from 1448 (Cave of Adullam, 1 Sam 22). WEB 389w / KJV 397w in-bucket. Shared narrator with 1336 (VOICE_DAVID_SHEPHERD) is a deliberate arc-continuity choice, owner-approved.",
+  "bibleOrderIndex": 44256,
+  "renderedAt": "2026-07-18T02:02:27Z",
+  "generatorVersion": "generate_opus_audio.sh"
+}
