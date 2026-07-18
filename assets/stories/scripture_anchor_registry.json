@@ -4379,6 +4379,30 @@
       "moodTags": [
         "calm_peaceful"
       ]
+    },
+    {
+      "scriptureAnchorId": "john_1_1-18",
+      "bibleStoryKey": "the_word_became_flesh",
+      "bibleSourceRef": "John 1:1-18",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matthew_16_13-20",
+      "bibleStoryKey": "peters_confession",
+      "bibleSourceRef": "Matthew 16:13-20",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_samuel_24",
+      "bibleStoryKey": "david_spares_saul",
+      "bibleSourceRef": "1 Samuel 24",
+      "moodTags": [
+        "calm_peaceful"
+      ]
     }
   ]
 }

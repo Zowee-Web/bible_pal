@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1563,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_WAVE1A_CANON_2026-07",
+  "title": "You Are the Christ",
+  "scriptureAnchor": "Matthew 16:13-20",
+  "scriptureAnchorId": "matthew_16_13-20",
+  "bibleStoryKey": "peters_confession",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "confession",
+    "faith",
+    "identity",
+    "revelation",
+    "discipleship"
+  ],
+  "emotionalTags": [
+    "assured",
+    "seen",
+    "steadfast",
+    "blessed"
+  ],
+  "primaryCharacterId": "peter",
+  "primaryCharacterDisplayName": "Peter",
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1563_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1563_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1563_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1563_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "The others answered with the names of prophets \u2014 John, Elijah, Jeremiah. Then the question turned and came near: not who do men say, but who do you say that I am? What is it to be asked that to your face, and to find the answer already on your lips, given and not earned?",
+  "editorialNotes": "Wave 1a (Full-Canon Production Gate CG04). Per Option A (owner-approved), faithfully expanded to clear the 300-word short floor with observable narrative grounding drawn only from Matthew 16:13-20 (the walk into the region, the disciples' gathered/reported answers, the pause created by the personal question, the company continuing after the command of silence) \u2014 no invented weather, private thoughts, expressions, scenery, or theology: WEB short 311w / KJV short 315w. Boundary hard-stopped at v20 (no 16:21-23 'Get behind me, Satan'). Peter Gospel-arc hinge: sits after 1124 (water) and before a future Denial and the existing Restoration 1130 \u2014 framing only, no arc/journey JSON created.",
+  "bibleOrderIndex": 36975,
+  "renderedAt": "2026-07-18T02:02:15Z",
+  "generatorVersion": "generate_opus_audio.sh"
+}

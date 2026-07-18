@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1562,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_WAVE1A_CANON_2026-07",
+  "title": "The Word Became Flesh",
+  "scriptureAnchor": "John 1:1-18",
+  "scriptureAnchorId": "john_1_1-18",
+  "bibleStoryKey": "the_word_became_flesh",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "themeTags": [
+    "incarnation",
+    "light",
+    "grace",
+    "revelation",
+    "witness"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "reverent",
+    "awed",
+    "comforted"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "timelineEra": "jesus_ministry",
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1562_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1562_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1562_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1562_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "The light shines in the darkness, and the darkness has not overcome it. And the Word did not stay far off, but became flesh and lived among us. What is it to find that the God no one has ever seen has come near enough to be looked upon?",
+  "editorialNotes": "Wave 1a (Full-Canon Production Gate CG05). John 1:1-18 prologue, rewritten in the TESTIMONY register (witness shaped by wonder, not a creed) in BOTH lanes: an eyewitness looking back \u2014 'we saw his glory.' Register achieved by selection, spacing, and the text's own first-person 'we' (testimony as register, never invention: no added scene, framing, or emotion the text does not state). Incarnation set as the standalone hinge ('And the Word became flesh. / He lived among us.'); the opening establishes the height (Maker of everything) from which it falls, so the residue is the realization 'the God who made everything came here,' not a summary. WEB 302w / KJV 302w (floor cleared by restoring v13, not padding). Boundary held to 1:1-18 (no 'Lamb of God' v29); distinct from 1417 (John 1:40-42). Narrator VOICE_JAMES_HUSKY (wise-elder witness register): JOHN_BELOVED was trialed on the testimony script but read flat (~0.9s max pause, no held beats); JAMES_HUSKY gives the deeper, spacious read the register asks for (owner-approved). Superseded takes archived under rejected/2026-07-18_1562_creed-to-testimony/ and rejected/2026-07-18_1562_voice-trial/.",
+  "bibleOrderIndex": 8035,
+  "renderedAt": "2026-07-18T17:31:59Z",
+  "generatorVersion": "generate_opus_audio.sh"
+}
