@@ -23,10 +23,15 @@ All affected manifest entries for a sid get the same index. The
 meta_<sid>.json field is updated (or added) to match.
 
 Idempotent and reversible (git revert / re-run).
+
+Dry-run by default: computes and prints what it would change and writes
+NOTHING. Pass --write to apply. (`--help` prints usage and exits without
+touching any files.)
 """
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from collections import Counter, defaultdict
@@ -80,7 +85,22 @@ def compute_new_index(ref: str, book_max: dict[str, int]) -> int | None:
 
 
 def main() -> int:
-    print("Step 4A Commit 2 — bibleOrderIndex backfill")
+    parser = argparse.ArgumentParser(
+        description=(
+            "Backfill bibleOrderIndex for manifest entries and their meta files. "
+            "Dry-run by default; pass --write to apply."
+        )
+    )
+    parser.add_argument(
+        "--write",
+        action="store_true",
+        help="apply changes (default: dry-run — compute and report, write nothing)",
+    )
+    args = parser.parse_args()
+    write = args.write
+
+    mode = "APPLY" if write else "DRY-RUN"
+    print(f"Step 4A Commit 2 — bibleOrderIndex backfill  [{mode}]")
     print(f"  repo: {REPO_ROOT}")
     print()
 
@@ -190,7 +210,7 @@ def main() -> int:
         slug = book_slug(ref) or "unknown"
         per_book_deltas[slug] += 1
 
-    if manifest_updates > 0:
+    if manifest_updates > 0 and write:
         with MANIFEST_PATH.open("w") as f:
             json.dump(manifest, f, indent=2)
             f.write("\n")
@@ -205,19 +225,24 @@ def main() -> int:
             meta = json.load(f)
         if meta.get("bibleOrderIndex") == target:
             continue
-        meta["bibleOrderIndex"] = target
-        with meta_path.open("w") as f:
-            json.dump(meta, f, indent=2)
-            f.write("\n")
         meta_updates += 1
+        if write:
+            meta["bibleOrderIndex"] = target
+            with meta_path.open("w") as f:
+                json.dump(meta, f, indent=2)
+                f.write("\n")
 
     print("Per-book deltas (manifest entries gaining bibleOrderIndex):")
     for slug, n in per_book_deltas.most_common():
         print(f"  {slug}: +{n}")
     print()
-    print(f"Manifest entries updated: {manifest_updates}")
-    print(f"Meta files updated:       {meta_updates}")
+    verb = "updated" if write else "to update"
+    print(f"Manifest entries {verb}: {manifest_updates}")
+    print(f"Meta files {verb}:       {meta_updates}")
     print(f"Sids backfilled:          {len(sid_target)}")
+    if not write:
+        print()
+        print("DRY-RUN — no files written. Re-run with --write to apply.")
     return 0
 
 
