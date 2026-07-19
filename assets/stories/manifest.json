@@ -58723,6 +58723,86 @@
       "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
       "scriptureTextFilePath": "traditional/1565/scripture_1565_kjv.txt",
       "scriptureKeyVerse": null
+    },
+    {
+      "storyId": "story_1564_calm_peaceful_full_traditional",
+      "title": "The Hem of the Robe",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "humbled",
+        "convicted",
+        "trusting",
+        "grieved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1564/story_1564_traditional_web_full.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "full",
+      "bibleSourceRef": "1 Samuel 24",
+      "bibleStoryKey": "david_spares_saul",
+      "audioFilePath": "traditional/1564/audio_1564_story_full.mp3",
+      "reflectionAudioPath": "traditional/1564/audio_1564_reflection.mp3",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "bibleOrderIndex": 44256,
+      "timelineEra": "kingdom",
+      "themeTags": [
+        "mercy",
+        "trust",
+        "deliverance",
+        "righteousness",
+        "humility"
+      ],
+      "reflectionQuestion": "The man who had hunted him for years sat within reach in the dark of the cave, and David cut only the hem of his robe \u2014 and even that struck his heart. What is it to hold the power to end the one who is hunting you, and to let the hand that could have closed stay open?",
+      "shortScripture": false,
+      "mode": "traditional",
+      "scriptureAnchor": "1 Samuel 24",
+      "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "scriptureTextFilePath": "traditional/1564/scripture_1564_web.txt",
+      "scriptureKeyVerse": null
+    },
+    {
+      "storyId": "story_1564_calm_peaceful_full_traditional_kjv",
+      "title": "The Hem of the Robe",
+      "mood": "calm_peaceful",
+      "emotionalTags": [
+        "humbled",
+        "convicted",
+        "trusting",
+        "grieved"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1564/story_1564_traditional_kjv_full.txt",
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "storyLength": "full",
+      "bibleSourceRef": "1 Samuel 24",
+      "bibleStoryKey": "david_spares_saul",
+      "audioFilePath": "traditional/1564/audio_1564_story_kjv_full.mp3",
+      "reflectionAudioPath": "traditional/1564/audio_1564_reflection_kjv.mp3",
+      "primaryCharacterId": "david",
+      "primaryCharacterDisplayName": "David",
+      "bibleOrderIndex": 44256,
+      "timelineEra": "kingdom",
+      "themeTags": [
+        "mercy",
+        "trust",
+        "deliverance",
+        "righteousness",
+        "humility"
+      ],
+      "reflectionQuestion": "The man who had hunted him for years sat within reach in the dark of the cave, and David cut off but the skirt of his robe \u2014 and even that smote his heart. What is it to hold the power to end him that hunteth thee, and to let the hand that might have closed stay open?",
+      "shortScripture": false,
+      "mode": "traditional",
+      "scriptureAnchor": "1 Samuel 24",
+      "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+      "scriptureTextFilePath": "traditional/1564/scripture_1564_kjv.txt",
+      "scriptureKeyVerse": null
     }
   ]
 }
