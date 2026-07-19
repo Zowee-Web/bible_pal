@@ -27,6 +27,23 @@ Idempotent and reversible (git revert / re-run).
 Dry-run by default: computes and prints what it would change and writes
 NOTHING. Pass --write to apply. (`--help` prints usage and exits without
 touching any files.)
+
+Scoping with --ids
+------------------
+`--ids` takes a comma-separated list of numeric story ids and limits WHICH
+STORY IDS MAY BE MODIFIED. It does not narrow the data the calculation reads:
+per-book maximum indexes are still derived from the COMPLETE manifest, so a
+scoped run assigns exactly the same index the equivalent unscoped run would.
+
+    # Scoped dry-run
+    python3 scripts/step4a_bible_order_backfill.py --ids 1565
+
+    # Scoped write
+    python3 scripts/step4a_bible_order_backfill.py --ids 1565 --write
+
+Without --ids the behaviour is unchanged: every sid needing backfill is in
+scope. Empty, malformed, or unknown ids exit 2 without writing. A requested
+id that already carries an index is reported as a no-op and exits 0.
 """
 
 from __future__ import annotations
@@ -96,8 +113,27 @@ def main() -> int:
         action="store_true",
         help="apply changes (default: dry-run — compute and report, write nothing)",
     )
+    parser.add_argument(
+        "--ids",
+        help="comma-separated story ids to backfill "
+             "(default: every sid needing backfill)",
+    )
     args = parser.parse_args()
     write = args.write
+
+    # Optional scoping. When --ids is absent `requested` stays None and every
+    # guard below is skipped, leaving the unscoped code path unchanged.
+    requested: set[str] | None = None
+    if args.ids is not None:
+        toks = [t.strip() for t in args.ids.split(",") if t.strip()]
+        if not toks:
+            print("ERROR: --ids given but no ids parsed", file=sys.stderr)
+            return 2
+        bad = [t for t in toks if not t.isdigit()]
+        if bad:
+            print(f"ERROR: malformed story id(s): {', '.join(bad)}", file=sys.stderr)
+            return 2
+        requested = set(toks)
 
     mode = "APPLY" if write else "DRY-RUN"
     print(f"Step 4A Commit 2 — bibleOrderIndex backfill  [{mode}]")
@@ -114,7 +150,18 @@ def main() -> int:
         if sid:
             by_sid[sid].append(p)
 
-    # Per-book max existing index (across the whole manifest)
+    if requested is not None:
+        unknown = sorted(requested - set(by_sid), key=int)
+        if unknown:
+            print(
+                f"ERROR: unknown story id(s) not in manifest: {', '.join(unknown)}",
+                file=sys.stderr,
+            )
+            return 2
+
+    # Per-book max existing index (across the whole manifest — deliberately
+    # computed before any --ids scoping, so scoped runs place new indexes
+    # consistently with the full corpus)
     book_max: dict[str, int] = {}
     for p in manifest["parables"]:
         idx = p.get("bibleOrderIndex")
@@ -144,6 +191,19 @@ def main() -> int:
             break  # found at least one missing variant; sid in scope
 
     needs_backfill_sids = sorted(set(needs_backfill_sids))
+
+    if requested is not None:
+        noop = sorted(requested - set(needs_backfill_sids), key=int)
+        if noop:
+            print(
+                "No-op — already indexed or no eligible entries: "
+                f"{', '.join(noop)}"
+            )
+        needs_backfill_sids = sorted(
+            requested & set(needs_backfill_sids), key=int
+        )
+        print(f"Scoped to --ids: {len(needs_backfill_sids)} sid(s) in scope")
+
     print(f"Sids needing backfill:    {len(needs_backfill_sids)}")
     print(f"Placeholder-anchored entries skipped (4B): {skipped_placeholder}")
     print()
