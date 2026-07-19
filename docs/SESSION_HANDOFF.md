@@ -107,7 +107,11 @@ Only public-domain translations: **WEB** (default), **KJV**, **ASV**, **YLT**, *
 - **reflectionText**: must match the reflection file for `languageStyle` (`reflection_consistency_test.dart`).
 
 ### Word-count buckets (blocking)
-Traditional short 300–500, full 501–900, long 901–1500 (`test/core/story_word_count_compliance_test.dart`, checks WEB). Carve-outs (`shortScripture:true`, `editorialBucketException`) are **legacy only — new content is strictly enforced**. Fix a short story by faithful expansion/spare selection, not by adding a carve-out flag.
+Adult Traditional authoring bands: short 300–500, full 501–900, long 901–1500 (`test/core/story_word_count_compliance_test.dart`, checks WEB). These are **authoring bands** — distinct from the runtime bucket ranges in `lib/core/story_length_bucket.dart` (Short ≤600, Full 601–1200, Long >1200), which only label and serve what exists. Authoritative policy: [STORY_FACTORY.md §5](STORY_FACTORY.md#5-story-length-system-revised-2026-07-19--adr-030).
+
+**Short is the default expected version. Full and Long are conditional** on what the approved anchor honestly supports — neither is universally required (ADR-030). Omit an unsupported length and document why in `editorialNotes`.
+
+Carve-outs: `editorialBucketException` is **legacy only**. `shortScripture:true` is **available to new content as an explicit, owner-approved exception** when the complete approved passage is faithfully rendered but cannot honestly reach 300 words (first new-content use: story 1565, Luke 22:54-62, owner-approved 2026-07-19). Default remains faithful expansion or spare selection — never padding, invention, or commentary to reach a floor.
 
 ### Scripture boundary (ADR-025)
 Stay inside the declared anchor; don't drift into adjacent pericopes. `test/critical/traditional_boundary_enforcement_test.dart` scans for post-boundary drift phrases.

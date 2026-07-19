@@ -255,10 +255,25 @@ When a mood button is tapped, a brief thinking delay (800–1500ms randomized) i
 
 **6. Story Length Buckets**
 
-Three user-facing length options with clear bucket labels:
-- **Short Story**: 250–600 words (LOCKED SPEC)
-- **Full Story**: 601–1200 words (LOCKED SPEC)
-- **Long Story**: 1201–2000 words (LOCKED SPEC)
+Three user-facing length options with clear bucket labels. These are the **runtime
+classification / UI bounds** implemented in `lib/core/story_length_bucket.dart` — they
+describe how the app labels and serves whatever content exists. They are **not** the
+authoring-validation bands (see below):
+
+- **Short Story**: 250–600 words (LOCKED SPEC — runtime/UI)
+- **Full Story**: 601–1200 words (LOCKED SPEC — runtime/UI)
+- **Long Story**: 1201–2000 words (LOCKED SPEC — runtime/UI)
+
+Runtime classification is inclusive at the low end: `wordCountToBucket()` returns Short for
+**any** word count at or below 600 (including a story below 250), Full for 601–1200, and
+Long for anything above 1200.
+
+**Authoring bands are different and tighter.** Adult Traditional production validation is
+Short 300–500, Full 501–900, Long 901–1500, enforced by
+`test/core/story_word_count_compliance_test.dart`. The authoritative authoring policy —
+bands, drafting targets, supported-length decisions, and the `shortScripture` exception —
+is [STORY_FACTORY.md §5](STORY_FACTORY.md#5-story-length-system-revised-2026-07-19--adr-030).
+See also the Two Length Systems Invariant in [INVARIANTS.md](INVARIANTS.md).
 
 Each option has a subtitle hint:
 - Short Story — "A quick moment to pause"
@@ -499,7 +514,14 @@ Each parable includes:
 
 ### Golden Prompt Mode: Adult Traditional SHORT Bucket Generation
 
-Golden Prompt mode is a specialized generation strategy for adult traditional SHORT bucket parables (250-600 words, LOCKED SPEC) that uses structure-based length control instead of continuation prompts.
+Golden Prompt mode is a specialized generation strategy for adult traditional SHORT bucket parables that uses structure-based length control instead of continuation prompts.
+
+> **Legacy generation path (Gemma-7B).** The active story engine is Claude Opus — see
+> STORY_FACTORY.md §0. The word counts in this section reflect the runtime bucket bound
+> (≤600 = Short) this mode was originally written against. Adult Traditional **authoring
+> compliance** is Short 300–500 per
+> [STORY_FACTORY.md §5.1](STORY_FACTORY.md#51-production-validation-bands-hard-bounds);
+> any story produced by this path must still satisfy that band.
 
 **Goals:**
 - Reliable single-shot generation that meets word count requirements
@@ -543,7 +565,7 @@ Golden Prompt mode is a specialized generation strategy for adult traditional SH
 
 2. **Quarantine case**: If attempt 2 still produces only 180 words, the story MUST be quarantined to `assets/stories_failed/` with `kidSafe: false` equivalent marking.
 
-3. **Success case**: If attempt 1 produces 450 words (within 250-600 range), no retry is needed — story is saved immediately.
+3. **Success case**: If attempt 1 produces 450 words (inside the adult Traditional Short authoring band, 300–500), no retry is needed — story is saved immediately.
 
 **Script:**
 - `server/generate_adult_traditional_stories.sh --golden-prompt`

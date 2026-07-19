@@ -143,29 +143,74 @@ Tier 2 guidance for prompts:
 
 ---
 
-## 5. Story Length System (Revised 2026-03-29)
+## 5. Story Length System (Revised 2026-07-19 — ADR-030)
 
-Story lengths are bucket-based. Short and Full are REQUIRED. Long is OPTIONAL.
+**This section is the authoritative source for adult Traditional authoring lengths.**
+Other documents may summarize this policy for their own operational context, but this
+section remains authoritative; every summary must cross-reference it and must not
+establish competing boundaries.
 
-### 5.1 Traditional Word Count Targets
+Scope: **adult Traditional** content. Traditional Kid bands are separate and unchanged.
 
-| Bucket | Word Count | Aim For |
-|--------|------------|---------|
-| Short  | 350–450    | 400     |
-| Full   | 700–850    | 780     |
-| Long   | 1201–1400  | 1300    |
+> Not to be confused with runtime bucket classification (Short 250–600, Full 601–1200,
+> Long 1201–2000) implemented in `lib/core/story_length_bucket.dart`. That system labels
+> and serves whatever exists; it is not an authoring standard. See the Two Length Systems
+> Invariant in [INVARIANTS.md](INVARIANTS.md).
 
-### 5.2 Long Story Policy (ADR-027)
+### 5.1 Production-validation bands (hard bounds)
 
-Long stories are optional. If a passage or theme cannot support a strong
-long version without padding, repetition, or quality loss, the long file
-is not created. Quality is always prioritized over length uniformity.
+Enforced by `test/core/story_word_count_compliance_test.dart`:
 
-Each story declares its available lengths via `lengths` in meta and
-`availableLengths` in manifest entries.
+| Bucket | Validation band (hard) |
+|--------|------------------------|
+| Short  | 300–500                |
+| Full   | 501–900                |
+| Long   | 901–1500               |
 
-Invariants:
-- Word counts must fall strictly within ranges.
+### 5.2 Preferred drafting targets (guidance, not boundaries)
+
+Aim here when the anchor allows. These are **drafting guidance only** — a story is
+compliant anywhere inside its §5.1 band, and falling outside a target is not a violation:
+
+| Bucket | Drafting target | Aim For |
+|--------|-----------------|---------|
+| Short  | 350–450         | 400     |
+| Full   | 700–850         | 780     |
+| Long   | ~1200–1400      | 1300    |
+
+### 5.3 Supported-length policy (ADR-030)
+
+- Every new adult Traditional anchor is **evaluated for Short, Full, and Long**.
+- **Short is the default expected production version.**
+- **Full and Long are conditional** on what the approved anchor honestly supports.
+  **Neither is universally required.**
+- Never pad, repeat propositions, invent physical detail, add unstated thoughts or
+  motives, or insert theological explanation merely to reach a bucket floor.
+- When a length is unsupported, **omit it and document the reason** in the story's
+  `editorialNotes`.
+- **Anchor widening** requires a coherent continuous passage and **owner approval before
+  drafting**.
+
+Raw scripture word count may be used as an editorial warning signal, never as an
+automatic eligibility formula. Feasibility is an editorial judgement about how much
+explicit narrative, dialogue, imagery, and action the anchor actually contains.
+
+Each story declares its available lengths via `lengths` in meta and `availableLengths`
+in manifest entries.
+
+### 5.4 `shortScripture` exception
+
+`shortScripture: true` is an **explicit, owner-approved authoring exception**. It may
+allow an adult Traditional Short below 300 words when the complete approved passage has
+been rendered faithfully and additional words would require padding, invention, or
+commentary. It is **not** legacy-only, and it is **not** self-service — each use requires
+owner approval and a documented reason.
+
+Runtime still classifies such a story as Short (any value ≤600 is Short).
+
+### 5.5 Invariants
+
+- Word counts must fall strictly within the §5.1 bands, except under §5.4.
 - No padding or repetition to reach minimum word counts.
 - Violations trigger correction (regeneration, not patching).
 

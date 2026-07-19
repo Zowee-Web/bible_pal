@@ -149,12 +149,16 @@ Creative mode was retired on 2026-05-13. See [archive/CREATIVE_RETIREMENT_2026_0
 
 ## Story Length Buckets
 
-Story lengths use a strict Short / Full / Long bucket system enforced by `lib/core/story_length_bucket.dart`:
+Story lengths use a strict Short / Full / Long bucket system enforced by `lib/core/story_length_bucket.dart`. These are the **runtime classification / UI ranges** — they describe how the app labels and serves content that already exists:
 - **Short**: 250–600 words
 - **Full**: 601–1200 words
 - **Long**: 1201–2000 words
 
-Word ranges are locked in SPEC.md. The UI shows descriptive labels only (no minute estimates).
+`wordCountToBucket()` classifies any word count at or below 600 as Short (including values below 250), 601–1200 as Full, and anything above 1200 as Long.
+
+Runtime ranges are locked in SPEC.md. The UI shows descriptive labels only (no minute estimates).
+
+**These are not authoring bands.** Adult Traditional production validation is Short 300–500, Full 501–900, Long 901–1500 — a separate, tighter system enforced by `test/core/story_word_count_compliance_test.dart` and specified in [STORY_FACTORY.md §5](STORY_FACTORY.md#5-story-length-system-revised-2026-07-19--adr-030). See the Two Length Systems Invariant in [INVARIANTS.md](INVARIANTS.md).
 
 ---
 

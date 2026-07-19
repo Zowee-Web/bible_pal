@@ -118,7 +118,25 @@ Each batch covers all 8 moods exactly once per category:
 
 ### Word Count Targets
 
-**Traditional (adult and kid):**
+**Traditional (adult):**
+
+Governed by
+[STORY_FACTORY.md §5](STORY_FACTORY.md#5-story-length-system-revised-2026-07-19--adr-030),
+which is authoritative. The figures below are a **non-authoritative summary of preferred
+drafting targets, not validation boundaries** — the hard bands are Short 300–500, Full
+501–900, Long 901–1500. Short is the default expected version; Full and Long are conditional
+on what the approved anchor honestly supports (ADR-030).
+
+| Bucket | Drafting Target | Aim For |
+|--------|-----------------|---------|
+| Short  | 350–450         | 400     |
+| Full   | 700–850         | 780     |
+| Long   | ~1200–1400      | 1300    |
+
+**Traditional (kid):**
+
+Pre-existing Kid drafting guidance, unchanged. **ADR-030 does not change Kid policy** — its
+supported-length rules and authoring bands are scoped to adult Traditional content only.
 
 | Bucket | Target Range | Aim For |
 |--------|-------------|---------|
