@@ -6,7 +6,7 @@ A Flutter application for faith-based storytelling and Bible engagement.
 
 ### Prerequisites
 
-- Flutter 3.24.5 or later
+- Flutter 3.41.4 (pinned; matches CI)
 - Dart SDK
 - Node.js (for server scripts)
 
