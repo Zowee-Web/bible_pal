@@ -4403,6 +4403,14 @@
       "moodTags": [
         "calm_peaceful"
       ]
+    },
+    {
+      "scriptureAnchorId": "luke_22_54-62",
+      "bibleStoryKey": "peters_denial",
+      "bibleSourceRef": "Luke 22:54-62",
+      "moodTags": [
+        "hurting"
+      ]
     }
   ]
 }

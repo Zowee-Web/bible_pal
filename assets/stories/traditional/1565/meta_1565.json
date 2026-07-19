@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1565,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_WAVE1C_CANON_2026-07",
+  "title": "The Rooster and the Fire",
+  "scriptureAnchor": "Luke 22:54-62",
+  "scriptureAnchorId": "luke_22_54-62",
+  "bibleStoryKey": "peters_denial",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "repentance",
+    "grief",
+    "fear",
+    "shame"
+  ],
+  "emotionalTags": [
+    "convicted",
+    "grieved",
+    "broken",
+    "humbled"
+  ],
+  "primaryCharacterId": "peter",
+  "primaryCharacterDisplayName": "Peter",
+  "timelineEra": "jesus_ministry",
+  "shortScripture": true,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "files": {
+    "short": {
+      "storyText": "story_1565_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1565_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1565_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1565_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Three times he said he did not know him. Then a rooster crowed, and the Lord turned and looked at Peter. What is it to be looked at like that\u2014not accused, not spoken to, only seen\u2014in the moment you most wish to be hidden?",
+  "editorialNotes": "Wave 1c (Full-Canon Production Gate CG03). Single anchor Luke 22:54-62, owner-approved: the gate lists 'Luke 22:54-62 / John 18:15-27', but no multi-passage anchor exists anywhere in the corpus, and Luke holds the complete scene unbroken (courtyard fire, three denials, rooster, the Lord's look, weeping) whereas John interleaves the Annas interrogation between denials. shortScripture: true is INTENTIONAL: the full nine-verse scene is rendered and every beat in the anchor is present, so further expansion to clear the 300-word SHORT floor would require unanchored detail (cold, night, torches, faces, motives) \u2014 padding the text was rejected in favour of textual honesty. WEB short 173w / KJV short 175w. Peter remembers only the prediction as restated inside v61; no material imported from Luke 22:31-34. 'the Lord' retained in both lanes at v61 per owner direction (no 'Yahweh' substitution in WEB). Excluded by direction: John-specific accusers, the Annas interrogation, garden/Malchus material, post-v62 mocking, and the John 21 Restoration (existing story 1130). Peter Gospel-arc: sits after Confession 1563 and before the existing Restoration 1130 \u2014 framing only, no arc/journey JSON created. Adult Traditional short-only; kid lane deferred to a later wave. bibleOrderIndex intentionally omitted \u2014 assigned by scripts/step4a_bible_order_backfill.py at manifest-wiring time.",
+  "bibleOrderIndex": 48099,
+  "renderedAt": "2026-07-19T05:30:32Z",
+  "generatorVersion": "generate_opus_audio.sh"
+}
