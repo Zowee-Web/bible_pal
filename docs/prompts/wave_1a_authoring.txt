@@ -1,0 +1,89 @@
+Bible PAL — Wave 1a Authoring (Traditional lane)
+Source: Full-Canon Production Gate (PR #86, merged to master 2026-07-17).
+Use this prompt to open the authoring phase. Phase 1 (research/audit/gating) is closed.
+
+STEP ZERO
+Run `git pull` before anything else. The corpus grows between sessions, and story-ID
+assignment must be computed against current master, not a stale tree.
+
+OBJECTIVE
+Author the highest-quality Traditional Bible PAL stories possible. Do not optimize for
+speed. Optimize for faithfulness, literary quality, speakability, and replay value.
+
+EDITORIAL PHILOSOPHY
+Facts are surprisingly emotional when they're remembered faithfully. Prefer faithful
+narrative over dramatic embellishment. Earn emotion from the biblical events themselves
+rather than from invented dialogue, internal thoughts, or cinematic additions. When forced
+to choose, choose faithfulness.
+
+CONTEXT
+Phase 1 is complete and merged to master: the full-canon research, gap audit, adversarial
+verification, and production gating are done. The production gate is authoritative and
+already approved. Do NOT reopen canon research, gap analysis, journey gating, or the gate
+decision itself — treat candidates CG04, CG05, and CG06 as settled and approved. Your job
+is craft: author the prose.
+
+READ FIRST
+- docs/editorial/FULL_CANON_PRODUCTION_GATE.md   (the decision; context only, don't re-litigate)
+- assets/stories/canon_production_gate.json      (records CG04, CG05, CG06 — scope, cautions, rationale)
+- docs/STORY_NARRATION_STYLE_GUIDE.md            (primary craft reference — narration prose voice)
+- docs/REFLECTION_VOICE.md                       (reflection voice — each story ships a reflection)
+- docs/SPEC.md and docs/INVARIANTS.md            (product law + non-negotiables)
+- docs/BIBLE_TRANSLATION_COMPLIANCE.md           (WEB default; public-domain translations only)
+The style guide and narration guide are your authoritative references. If you want
+calibration examples, select recent stories from the current corpus yourself; do not
+imitate any single named batch.
+
+SCOPE
+Wave 1a is the TRADITIONAL lane only: WEB short + KJV short + a reflection for each of the
+three stories. The gate marks these "both" lanes, but the kid-lane versions are a later
+wave — do not author them now.
+
+CG04/CG05/CG06 are planning labels, not corpus IDs. Determine the next-available
+Traditional story IDs from the repository, propose them, and pause if there is any
+ambiguity or conflict. Do not renumber existing stories.
+
+SCRIPTURE BOUNDARY
+Do not import events, dialogue, theology, or later narrative from outside the specified
+passage unless already contained within the project's established Traditional narration
+doctrine. Stay inside the declared Scripture anchor. (E.g. Peter's Confession must not
+drift into "Get behind me, Satan"; John 1's prologue must not bleed into Andrew bringing
+Peter.)
+
+THE THREE STORIES
+1. John 1 Prologue — The Word Became Flesh (John 1:1-18)
+   - WEB short + KJV short + reflection
+   - Do NOT confuse with existing story 1417 (John 1:40-42, Andrew brings Peter) —
+     a different pericope.
+
+2. Peter's Confession at Caesarea Philippi (Matthew 16:13-20)
+   - WEB short + KJV short + reflection
+   - Peter Gospel-arc hinge: sits after the water story (1124), before the future Denial
+     and the existing Restoration (1130). Preserve that positioning in the story's framing,
+     but do NOT create Journey Beats or arc JSON — that's a later phase.
+
+3. David Spares Saul at En-gedi (1 Samuel 24)
+   - WEB short + KJV short + reflection
+   - Keep distinct from existing story 1448 (Cave of Adullam, 1 Samuel 22) — a different
+     cave and a different scene.
+
+RULES
+- Follow all existing editorial doctrine, Scripture-boundary enforcement, narration style,
+  reflection voice, and quality gates.
+- WEB is the default translation; KJV is the second variant. Public-domain only.
+- Set createdByModel to the actual authoring model. Traditional stories are gated by an
+  allowlist in test/core/story_engine_compliance_test.dart — currently gpt-4.1,
+  claude-opus-4-6, claude-opus-4-7, claude-opus-4-8, openai_chatgpt. Models outside that
+  set (e.g. claude-fable-5, claude-sonnet-5) will FAIL CI unless the allowlist is amended
+  first. Recommended authoring model: Claude Opus 4.8 at high effort.
+- PAUSE after drafting for review and approval. Do NOT generate audio, create or modify
+  Journey Beats or arc JSON, update manifests, or commit anything until approved.
+
+DELIVERABLE
+For each story: the WEB short + KJV short text files, the reflection, a short
+proposed-metadata block (mood, theme tags, suggested narrator voice, proposed story ID),
+and an Editorial Notes section covering:
+- any difficult wording decisions,
+- any Scripture-boundary risks considered,
+- any places where multiple faithful renderings were possible.
+Then pause for review.
