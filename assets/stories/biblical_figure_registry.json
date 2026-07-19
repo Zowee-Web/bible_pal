@@ -5545,7 +5545,16 @@
       "bibleSourceRef": "Psalm 127:1-2",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-07-18 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
+    },
+    {
+      "bibleStoryKey": "peters_denial",
+      "primaryFigure": "Peter",
+      "secondaryFigures": [],
+      "framingLines": [],
+      "bibleSourceRef": "Luke 22:54-62",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-07-19 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
     }
   ],
-  "_stubsNote": "2026-07-18: Manifest-sync backfill — appended 4 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-30: Manifest-sync backfill — appended 298 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-09: Added 96 auto-generated stub entries (marked with _stub: true) to satisfy biblical_figure_registry_test.dart cross-validation. 68 thematic/devotional bibleStoryKeys remain unregistered (need manual curation with appropriate schema): armor_of_god, as_a_deer_pants, beatitudes, calling_and_election_sure, cast_all_your_worries, ..."
+  "_stubsNote": "2026-07-19: Manifest-sync backfill — appended 1 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-07-18: Manifest-sync backfill — appended 4 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-30: Manifest-sync backfill — appended 298 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-09: Added 96 auto-generated stub entries (marked with _stub: true) to satisfy biblical_figure_registry_test.dart cross-validation. 68 thematic/devotional bibleStoryKeys remain unregistered (need manual curation with appropriate schema): armor_of_god, as_a_deer_pants, beatitudes, calling_and_election_sure, cast_all_your_worries, ..."
 }

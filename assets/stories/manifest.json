@@ -58645,6 +58645,84 @@
       "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
       "scriptureTextFilePath": "traditional/1564/scripture_1564_kjv.txt",
       "scriptureKeyVerse": null
+    },
+    {
+      "storyId": "story_1565_hurting_short_traditional",
+      "title": "The Rooster and the Fire",
+      "mood": "hurting",
+      "emotionalTags": [
+        "convicted",
+        "grieved",
+        "broken",
+        "humbled"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1565/story_1565_traditional_web_short.txt",
+      "translationId": "WEB",
+      "languageStyle": "WEB",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "storyLength": "short",
+      "bibleSourceRef": "Luke 22:54-62",
+      "bibleStoryKey": "peters_denial",
+      "audioFilePath": "traditional/1565/audio_1565_story_short.mp3",
+      "reflectionAudioPath": "traditional/1565/audio_1565_reflection.mp3",
+      "primaryCharacterId": "peter",
+      "primaryCharacterDisplayName": "Peter",
+      "bibleOrderIndex": 48099,
+      "timelineEra": "jesus_ministry",
+      "themeTags": [
+        "repentance",
+        "grief",
+        "fear",
+        "shame"
+      ],
+      "reflectionQuestion": "Three times he said he did not know him. Then a rooster crowed, and the Lord turned and looked at Peter. What is it to be looked at like that\u2014not accused, not spoken to, only seen\u2014in the moment you most wish to be hidden?",
+      "shortScripture": true,
+      "mode": "traditional",
+      "scriptureAnchor": "Luke 22:54-62",
+      "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "scriptureTextFilePath": "traditional/1565/scripture_1565_web.txt",
+      "scriptureKeyVerse": null
+    },
+    {
+      "storyId": "story_1565_hurting_short_traditional_kjv",
+      "title": "The Rooster and the Fire",
+      "mood": "hurting",
+      "emotionalTags": [
+        "convicted",
+        "grieved",
+        "broken",
+        "humbled"
+      ],
+      "storytellingMode": "traditional",
+      "kidFriendly": false,
+      "textFilePath": "traditional/1565/story_1565_traditional_kjv_short.txt",
+      "translationId": "KJV",
+      "languageStyle": "KJV",
+      "narratorVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "storyLength": "short",
+      "bibleSourceRef": "Luke 22:54-62",
+      "bibleStoryKey": "peters_denial",
+      "audioFilePath": "traditional/1565/audio_1565_story_kjv_short.mp3",
+      "reflectionAudioPath": "traditional/1565/audio_1565_reflection_kjv.mp3",
+      "primaryCharacterId": "peter",
+      "primaryCharacterDisplayName": "Peter",
+      "bibleOrderIndex": 48099,
+      "timelineEra": "jesus_ministry",
+      "themeTags": [
+        "repentance",
+        "grief",
+        "fear",
+        "shame"
+      ],
+      "reflectionQuestion": "Thrice he said he knew him not. Then the cock crew, and the Lord turned, and looked upon Peter. What is it to be looked upon so\u2014not accused, not spoken to, but seen\u2014in the very hour thou wouldst most wish to be hidden?",
+      "shortScripture": true,
+      "mode": "traditional",
+      "scriptureAnchor": "Luke 22:54-62",
+      "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+      "scriptureTextFilePath": "traditional/1565/scripture_1565_kjv.txt",
+      "scriptureKeyVerse": null
     }
   ]
 }
