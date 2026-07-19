@@ -38,6 +38,9 @@ jobs:
     - name: Run static analysis
       run: flutter analyze
 
+    - name: Test scoped Bible-order backfill
+      run: python3 -m unittest scripts.tests.test_step4a_bible_order_backfill -v
+
     - name: Run all tests
       run: flutter test --exclude-tags="requires_diagnostics_define || requires_journey_testing_define"
 
