@@ -11,7 +11,7 @@ This directory contains GitHub Actions workflows that run automatically on every
 - On every pull request targeting these branches
 
 **What it does**:
-1. **Setup**: Installs Flutter 3.24.5 and dependencies
+1. **Setup**: Installs Flutter 3.41.4 and dependencies
 2. **Static Analysis**: Runs `flutter analyze` to catch code issues
 3. **All Tests**: Runs `flutter test` to verify functionality
 4. **🔒 CRITICAL - Bible Translation Compliance**: Runs dedicated compliance tests that enforce the Bible Translation Licensing Invariant
