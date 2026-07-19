@@ -10,7 +10,8 @@
   ],
   "mood": "calm_peaceful",
   "lengths": [
-    "short"
+    "short",
+    "full"
   ],
   "createdByModel": "claude-opus-4-8",
   "generationBatch": "PAL_WAVE1A_CANON_2026-07",
@@ -49,6 +50,12 @@
     "short_kjv": {
       "storyText": "story_1564_traditional_kjv_short.txt"
     },
+    "full": {
+      "storyText": "story_1564_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1564_traditional_kjv_full.txt"
+    },
     "reflection": {
       "reflectionText": "reflection_1564_traditional_web.txt"
     },
@@ -57,8 +64,8 @@
     }
   },
   "reflectionText": "The man who had hunted him for years sat within reach in the dark of the cave, and David cut only the hem of his robe \u2014 and even that struck his heart. What is it to hold the power to end the one who is hunting you, and to let the hand that could have closed stay open?",
-  "editorialNotes": "Wave 1a (Full-Canon Production Gate CG06). Picks up exactly where 1336 ends (David 'went up to the strongholds of En Gedi'). Cave-at-En-gedi scene only (1 Sam 24); the parallel 1 Sam 26 sparing at Hachilah is NOT imported. Distinct from 1448 (Cave of Adullam, 1 Sam 22). WEB 389w / KJV 397w in-bucket. Shared narrator with 1336 (VOICE_DAVID_SHEPHERD) is a deliberate arc-continuity choice, owner-approved.",
+  "editorialNotes": "Wave 1a (Full-Canon Production Gate CG06). Picks up exactly where 1336 ends (David 'went up to the strongholds of En Gedi'). Cave-at-En-gedi scene only (1 Sam 24); the parallel 1 Sam 26 sparing at Hachilah is NOT imported. Distinct from 1448 (Cave of Adullam, 1 Sam 22). WEB 389w / KJV 397w in-bucket. Shared narrator with 1336 (VOICE_DAVID_SHEPHERD) is a deliberate arc-continuity choice, owner-approved. FULL added 2026-07-19 (ADR-030 supported-length evaluation): WEB 620w / KJV 661w, restoring material the Short compressed or omitted (vv9-15 David's rebuttal, evidence, appeal, the proverb of the ancients, the dead-dog/flea language; v19 Saul's enemy question; v21 his request concerning his seed and his father's house). LONG was evaluated and OMITTED: 1 Samuel 24 contains ~617 words of scripture, and the strongest faithful draft reached only ~629w against the 901-word LONG floor \u2014 closing that gap would have required padding, restatement, or invented detail, which ADR-030 forbids. Boundary hard-stopped at v22; no material from 1 Sam 23 or 25.",
   "bibleOrderIndex": 44256,
-  "renderedAt": "2026-07-18T02:02:27Z",
+  "renderedAt": "2026-07-19T21:01:30Z",
   "generatorVersion": "generate_opus_audio.sh"
 }
