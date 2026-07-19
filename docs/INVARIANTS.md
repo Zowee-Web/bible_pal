@@ -1195,8 +1195,9 @@ Reactivation requires:
    - These are independent fields with different purposes
 
 3. **Mode Rules Apply Regardless of languageStyle**
-   - Traditional + WEB: Faithful retelling, modern diction, `bibleSourceRef` required
-   - Traditional + KJV: Faithful retelling, classical diction, `bibleSourceRef` required
+   - Traditional + WEB: Faithful retelling in clear modern spoken English, `bibleSourceRef` required
+   - Traditional + KJV: Faithful retelling in classical / KJV-compatible diction, `bibleSourceRef` required
+   - **The KJV lane is not permission to reproduce the KJV passage word-for-word.** Classical register may preserve recognizable phrases, dialogue, titles, and cadence while still restructuring narration for listening (ADR-031).
 
 ### Enforcement Mechanisms
 
@@ -2041,6 +2042,94 @@ python3 -c "import json; r=json.load(open('server/model_router/model_registry.js
 ### Enforcement
 - Prayer text is hardcoded (not generated) — each mood has exactly one reviewed prayer
 - No prayer contains commands, advice, or doctrinal claims
+
+---
+
+## 🔒 Retelling Craft Invariant (NON-NEGOTIABLE)
+
+**Invariant**: A Traditional story MUST be a faithful, listening-oriented **retelling** of its
+scripture anchor. It MUST NOT be a reproduction of the anchor's wording and verse structure.
+
+Faithfulness means the retelling may not **contradict, replace, or escape** the anchor. It does
+**not** mean the story should reproduce the anchor's wording. **Both directions are failures** —
+departing from scripture, and merely copying it.
+
+### A Traditional story is NOT
+- a scripture audiobook
+- a chapter copied with new punctuation or paragraph breaks
+- a verse-by-verse transcription
+- a lightly modified scripture paraphrase that preserves the source's structure without
+  meaningful listening craft
+
+### Two-level review — both levels must pass
+
+**Level 1 — The Reconstruction Test (hard failure for direct reproduction)**
+
+> Could the story be reconstructed from the scripture source by changing only punctuation,
+> capitalization, whitespace, paragraphing, and quotation marks?
+
+If yes, the file is a scripture reproduction and **fails** the Traditional retelling contract.
+This is a qualitative pass/fail judgement, **not** an overlap percentage.
+
+**Level 2 — Retelling Craft Review (required qualitative evidence)**
+
+**Passing the Reconstruction Test does not by itself establish that a story is an adequate
+retelling.** The test detects direct reproduction, but a lightly modified or mostly copied
+passage may technically pass while still lacking meaningful listening-oriented transformation.
+It must also pass the qualitative Retelling Craft review below.
+
+Merely adding one or two connective sentences, swapping synonyms, or breaking verses into
+paragraphs **does not** convert a transcription into a retelling.
+
+### Required craft — evidence, as applicable to the anchor
+
+A story must show meaningful evidence of transformation for listening. Not every technique is
+required in every story; the applicable ones are:
+
+- establishes clearly who is present, where the action occurs, and what is happening
+- turns verse structure into natural narrative movement
+- divides long biblical sentences into spoken beats
+- uses neutral connective narration where the passage jumps
+- re-anchors speakers, characters, titles, and pronouns when audio listeners could lose the referent
+- allows important actions, contrasts, and explicitly stated emotional turns to land
+- narrates surrounding action rather than copying it merely because the wording is available
+- remains strictly inside the approved anchor — no invented events, settings, motives, thoughts,
+  doctrine, or sermon commentary
+
+### Essential dialogue exception
+
+Essential biblical dialogue MAY remain exact or near-exact when the words themselves are the
+central action, when changing them would weaken meaning or recognition, and when the quotation
+stays clear and natural when spoken.
+
+**Preserving important dialogue does not permit copying all surrounding narration.**
+
+### Diagnostic warnings (review triggers, not scores)
+
+Tooling MAY warn on: an entire story reconstructible from the source; unusually long
+uninterrupted source matches; exceptionally high source overlap with little original connective
+narration.
+
+These trigger **human review only**. No universal acceptable-overlap percentage is defined or
+implied. Essential dialogue, poetry, epistles, wisdom, and liturgical passages may naturally
+produce high overlap and require qualitative review.
+
+### Non-narrative anchors
+
+Poetry, epistles, doctrinal discourse, blessings, and other non-narrative anchors present a
+**separate eligibility question**. High verbatim overlap in those anchors cannot automatically be
+judged by the same standard as narrative copying, and requires its own editorial review. ADR-031
+does not decide their final product treatment.
+
+### Why This Exists
+- All prior doctrine forbade only *departure* from scripture; nothing forbade *reproducing* it
+- Under the older reading, copying a chapter verbatim scored as maximally faithful
+- Story 1564's KJV Full passed every existing gate while being a single contiguous copy of
+  1 Samuel 24 (662 words, zero connective narration)
+
+### Enforcement
+- Editorial: the Reconstruction Test at text review, before rendering
+- Diagnostic: overlap tooling raises warnings for human adjudication
 
 ---
 

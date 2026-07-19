@@ -425,7 +425,31 @@ Controls **diction and presentation style** only. It NEVER changes authority.
 Traditional is the **only active mode**. Stories in Traditional mode are **faithful retellings of actual Bible stories**.
 
 **Core Definition (LOCKED):**
-Traditional stories MUST be **real Bible stories retold faithfully**. They are not devotional content, not original stories with biblical themes, not paraphrased scripture. They are specific, identifiable Bible narratives rendered in narrative form.
+Traditional stories MUST be **real Bible stories retold faithfully**. They are not devotional content and not original stories with biblical themes. They are **not a generic scripture paraphrase or transcription** — each is a specific, identifiable passage transformed into faithful narrative for listening.
+
+**What Traditional content is (ADR-031):** a faithful, listening-oriented **retelling** of an identifiable scripture anchor.
+
+**What it is NOT:**
+- a scripture audiobook
+- a chapter copied with new punctuation or paragraph breaks
+- a verse-by-verse transcription
+- a lightly modified scripture paraphrase that preserves the source's structure without meaningful listening craft
+
+**Faithfulness means the retelling may not contradict, replace, or escape the anchor. It does not mean the story should reproduce the anchor's wording and verse structure.** Both failures are real: departing from scripture, and merely reproducing it. See the Retelling Craft Invariant in [INVARIANTS.md](INVARIANTS.md) and [STORY_FACTORY.md §4.2](STORY_FACTORY.md#42-required-retelling-craft-adr-031).
+
+**Review is two-level. Both must pass.**
+
+**Level 1 — The Reconstruction Test (hard failure for direct reproduction):**
+
+> Could the story be reconstructed from the scripture source by changing only punctuation, capitalization, whitespace, paragraphing, and quotation marks?
+
+If yes, it is a scripture reproduction and **fails** the Traditional retelling contract. This is a qualitative pass/fail judgement, **not** an overlap percentage.
+
+**Level 2 — Retelling Craft Review (required qualitative evidence):**
+
+**Passing the Reconstruction Test does not by itself establish that a story is an adequate retelling.** The test detects direct reproduction; a lightly modified or mostly copied passage may technically pass while still lacking meaningful listening-oriented transformation. It must also pass the qualitative Retelling Craft review.
+
+Merely adding one or two connective sentences, swapping synonyms, or breaking verses into paragraphs **does not** convert a transcription into a retelling.
 
 **Requirements:**
 - Must map directly to specific Bible passages
@@ -439,7 +463,10 @@ Traditional stories MUST be **real Bible stories retold faithfully**. They are n
 Scripture-faithful narrative enrichment is allowed:
 - Pacing adjustments and transitions
 - Scene detail, sensory description, emotional texture implied by the text
-- languageStyle may be WEB (modern) or KJV (classical)
+- languageStyle may be WEB (modern) or KJV (classical):
+  - **WEB** = faithful retelling in clear modern spoken English
+  - **KJV** = faithful retelling in classical / KJV-compatible diction
+  - **The KJV lane is not permission to reproduce the KJV passage word-for-word.** Classical register may preserve recognizable phrases, dialogue, titles, and cadence while still restructuring narration for listening.
 
 **Pizzazz Constraints:**
 "Pizzazz" means narrative style, NOT narrative license:

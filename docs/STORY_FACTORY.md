@@ -123,6 +123,66 @@ Allowed:
 - Scene pacing and sensory detail
 - Poetic elevation without semantic drift
 
+### 4.2 Required Retelling Craft (ADR-031)
+
+The guardrails above forbid **departing** from scripture. This section forbids the opposite
+failure: **reproducing** it.
+
+A Traditional story is a faithful, listening-oriented **retelling** of its anchor. It is not a
+scripture audiobook, a chapter with new punctuation, a verse-by-verse transcription, or a lightly
+modified paraphrase that keeps the source's structure without listening craft.
+
+Review is **two-level**, applied at text review before rendering. **Both levels must pass.**
+
+**Level 1 — Reconstruction Test (hard failure for direct reproduction):**
+
+> Could the story be reconstructed from the scripture source by changing only punctuation,
+> capitalization, whitespace, paragraphing, and quotation marks?
+
+If yes, it fails. This is a qualitative pass/fail judgement, **not** an overlap percentage.
+
+**Level 2 — Retelling Craft Review (required qualitative evidence):**
+
+**Passing the Reconstruction Test does not by itself establish that a story is an adequate
+retelling.** The test detects direct reproduction; a lightly modified or mostly copied passage
+may technically pass while still lacking meaningful listening-oriented transformation. It must
+also pass the qualitative Retelling Craft review — the evidence list below.
+
+Merely adding one or two connective sentences, swapping synonyms, or breaking verses into
+paragraphs **does not** convert a transcription into a retelling.
+
+**Required evidence of transformation** — as applicable to the anchor; no story must contain
+every technique:
+
+- establish clearly who is present, where the action occurs, and what is happening
+- turn verse structure into natural narrative movement
+- divide long biblical sentences into spoken beats
+- use neutral connective narration where the passage jumps
+- re-anchor speakers, characters, titles, and pronouns when audio listeners could lose the referent
+- allow important actions, contrasts, and explicitly stated emotional turns to land
+- narrate surrounding action rather than copying it merely because the wording is available
+- remain strictly inside the approved anchor — no invented events, settings, motives, thoughts,
+  doctrine, or sermon commentary
+
+**Essential dialogue exception.** Biblical dialogue may remain exact or near-exact when the words
+themselves are the central action, when altering them would weaken meaning or recognition, and
+when the quotation is clear and natural spoken aloud. Preserving important dialogue **does not**
+permit copying all surrounding narration.
+
+**Lane distinction.** WEB = faithful retelling in clear modern spoken English. KJV = faithful
+retelling in classical / KJV-compatible diction. **The KJV lane is not permission to reproduce
+the KJV passage word-for-word**; classical register may preserve recognizable phrases, dialogue,
+titles, and cadence while still restructuring narration for listening.
+
+**Diagnostic warnings.** Tooling may flag a fully reconstructible file, unusually long
+uninterrupted source runs, or very high overlap with little original connective narration. These
+are **review triggers, not quality scores**, and no acceptable-overlap percentage is defined.
+Essential dialogue, poetry, epistles, wisdom, and liturgical anchors may naturally produce high
+overlap and require qualitative review.
+
+**Non-narrative anchors** (poetry, epistles, doctrinal discourse, blessings) raise a separate
+eligibility question that ADR-031 does not settle; they need their own editorial review.
+
 ### 4.1 Poetic Style Tiers
 
 Stories use a tiered poetic style system to control prose ornamentation:
