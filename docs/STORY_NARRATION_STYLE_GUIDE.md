@@ -133,6 +133,15 @@ Between beats, use action or movement, not summary connectives. `After that,` / 
 
 ## 10. Length Discipline
 
+The **Traditional (adult)** row below is a **non-authoritative summary**. Adult Traditional
+bands are specified in
+[STORY_FACTORY.md §5](STORY_FACTORY.md#5-story-length-system-revised-2026-07-19--adr-030),
+which is authoritative — if this row ever disagrees with it, STORY_FACTORY.md wins. Short is
+the default expected version; Full and Long are created only when the approved anchor
+honestly supports them (ADR-030).
+
+The **Traditional (kid)** row is unchanged and is not affected by ADR-030.
+
 | Mode | Short | Full | Long |
 |---|---|---|---|
 | Traditional (adult) | 300–500 | 501–900 | 901–1500 |

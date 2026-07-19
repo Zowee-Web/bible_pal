@@ -1227,7 +1227,9 @@ Reactivation requires:
 **Consistent user experience and clear contracts.**
 
 - Users see "Short Story", "Full Story", "Long Story" — not minutes
-- Word count ranges are locked spec (250-600, 601-1200, 1201-2000)
+- Runtime bucket ranges are locked spec (250-600, 601-1200, 1201-2000) — these are
+  **runtime classification / UI bounds**, not authoring-validation bands. See the
+  Two Length Systems Invariant below.
 - Minute estimates are inaccurate (reading speed varies)
 - Single source of truth prevents confusion
 
@@ -2042,6 +2044,56 @@ python3 -c "import json; r=json.load(open('server/model_router/model_registry.js
 
 ---
 
+## 🔒 Two Length Systems Invariant (NON-NEGOTIABLE)
+
+**Invariant**: Runtime bucket classification and adult Traditional authoring compliance are
+**two distinct systems with different numbers**. They MUST never be conflated, and neither
+may be cited as the other's authority.
+
+### System 1 — Runtime classification / UI (describes shipped code)
+
+Implemented in [`lib/core/story_length_bucket.dart`](../lib/core/story_length_bucket.dart),
+which is authoritative for runtime behavior:
+
+| Bucket | Nominal runtime/UI range |
+|--------|--------------------------|
+| Short  | 250–600 words            |
+| Full   | 601–1200 words           |
+| Long   | 1201–2000 words          |
+
+`wordCountToBucket()` classifies **any** value at or below 600 as Short, 601–1200 as Full,
+and anything above 1200 as Long. These classifications determine labeling and serving
+behavior only. They are **not** authoring-quality validation bands, and a story below 250
+words still classifies (and serves) as Short.
+
+### System 2 — Adult Traditional authoring compliance (what authors must write)
+
+Authoritative bands, enforced by
+[`test/core/story_word_count_compliance_test.dart`](../test/core/story_word_count_compliance_test.dart):
+
+| Bucket | Production-validation band |
+|--------|----------------------------|
+| Short  | 300–500 words              |
+| Full   | 501–900 words              |
+| Long   | 901–1500 words             |
+
+Full policy — drafting targets, supported-length decision process, and exceptions — lives in
+[STORY_FACTORY.md §5](STORY_FACTORY.md#5-story-length-system-revised-2026-07-19--adr-030),
+which is authoritative. Other documents may summarize it for their own operational context,
+but must cross-reference it and must not establish competing boundaries.
+
+**Scope**: System 2 governs **adult Traditional** content. Traditional Kid bands are separate
+and unchanged.
+
+### Why This Exists
+- The two systems were previously described as one, which made SPEC, ARCHITECTURE, INVARIANTS,
+  STORY_FACTORY and the style guide mutually contradictory
+- Rewriting the runtime numbers to match authoring numbers would make the documentation
+  describe an app that does not exist
+- Authors need tighter bands than the runtime classifier tolerates
+
+---
+
 ## Story Length Availability Invariant (NON-NEGOTIABLE)
 
 **Invariant**: Each story MUST explicitly declare its available lengths, and declarations MUST match what exists on disk.
@@ -2050,12 +2102,16 @@ python3 -c "import json; r=json.load(open('server/model_router/model_registry.js
 - If a length file is not present on disk, it MUST NOT appear in `availableLengths` or `lengths`
 - If a length file exists on disk, it MUST be listed in `availableLengths` and `lengths`
 - The serving system MUST only select stories that support the requested length
-- Short and Full are REQUIRED for every story; Long is OPTIONAL (ADR-027)
+- **Short is the default expected version for adult Traditional stories. Full and Long are
+  conditional on what the approved anchor honestly supports — neither is universally required**
+  (ADR-030, superseding the "Short and Full are REQUIRED" rule of ADR-027)
 
 ### Why This Exists
 - Prevents the app from requesting a story length that doesn't exist
 - Ensures manifest and meta files are always in sync with actual content
 - Long stories were made optional (2026-03-29) because forcing length caused quality degradation
+- Full was made conditional (2026-07-19, ADR-030) for the same reason: some anchors cannot
+  reach 501 words without padding, invention, or commentary
 
 ### Enforcement
 - Manifest build script scans on-disk files to determine available lengths

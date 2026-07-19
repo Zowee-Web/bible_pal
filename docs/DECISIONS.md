@@ -433,6 +433,14 @@ The question was: How do we present story lengths in a user-friendly way while m
 
 **Note:** Word count ranges updated to LOCKED SPEC values (2026-01-11). Previous ranges (300-700, 900-1400, 1700-2600) are superseded.
 
+> **⚠️ PARTIALLY SUPERSEDED by ADR-030 (2026-07-19).**
+> **Still valid:** the three-bucket UI, the enum values, the legacy-minute mapping, and the
+> 250–600 / 601–1200 / 1201–2000 figures **as runtime classification and UI bounds** — these
+> match `lib/core/story_length_bucket.dart` and remain authoritative for runtime behavior.
+> **Superseded:** any reading of these ranges as *authoring* or production-validation bands.
+> Adult Traditional authoring bands are Short 300–500, Full 501–900, Long 901–1500, specified
+> in STORY_FACTORY.md §5. The two systems are distinct; see ADR-030.
+
 Implementation:
 1. **New enum**: `StoryLengthBucket` in `lib/core/story_length_bucket.dart`
 2. **Primary field**: `storyLength` in manifest ("short", "full", "long")
@@ -1337,6 +1345,15 @@ The core question: How do we identify, track, and prevent reuse of Bible narrati
 
 **Decision:** Traditional stories should be generated toward their target word-count ranges, but final acceptance must prioritize story quality and bucket identity over strict count compliance. Stories must never be manually trimmed solely to satisfy target counts. If a generated story modestly exceeds its target yet still clearly fits its intended bucket experience, it should be accepted as-is and allowed through audio generation. Only stories that drift so far that they no longer match the intended bucket should be regenerated or flagged.
 
+> **⚠️ PARTIALLY SUPERSEDED by ADR-030 (2026-07-19).**
+> **Still valid:** quality and bucket identity over strict count compliance; never trim solely
+> to satisfy a count; the separation between prompt targets and acceptance ranges.
+> **Superseded:** this ADR's Rationale cites the canonical SPEC bucket boundaries
+> (250-600, 601-1200, 1201-2000) as acceptance ranges for authoring. Those figures are
+> **runtime classification / UI bounds**, not authoring-validation bands. Adult Traditional
+> authoring bands are Short 300–500, Full 501–900, Long 901–1500, specified in
+> STORY_FACTORY.md §5. The two systems are distinct; see ADR-030.
+
 **Implementation:**
 - **Prompt targets** (what the LLM is told to aim for): tighter sweet-spot ranges (short ≤500, full ≤950, long ≤1500)
 - **Acceptance ranges** (audio gate + validation): full canonical bucket boundaries (short ≤600, full ≤1200, long ≤1800)
@@ -1479,6 +1496,15 @@ LLM reflections are generated after story text, validated strictly, and the fina
 
 **Decision:** Long stories are now OPTIONAL. Short and Full remain required. If a story cannot support a strong long version without padding or quality loss, the long file is not created. Each story declares `availableLengths` in meta and manifest.
 
+> **⚠️ PARTIALLY SUPERSEDED by ADR-030 (2026-07-19).**
+> **Still valid:** the core principle — quality over length uniformity; never pad, repeat, or
+> invent to satisfy a bucket; unsupported lengths are omitted; `availableLengths`/`lengths`
+> declare what exists.
+> **Superseded:** "Short and Full remain required." For adult Traditional content, **Full is
+> now conditional** on what the approved anchor honestly supports, exactly as Long has been
+> since this ADR. ADR-030 generalizes this ADR's no-padding rule from Long to **both Full and
+> Long**. Short remains the default expected version.
+
 **Rationale:**
 - Quality is the top priority — padded stories sound worse in TTS
 - Some passages (e.g., Genesis 32:22-32 for kids) can't sustain 1200+ words
@@ -1541,6 +1567,57 @@ LLM reflections are generated after story text, validated strictly, and the fina
 - Users who pick Miriam as PAL may also hear her narrating one of the 24 stories she voices — accepted by owner.
 
 **Activation (2026-07-14, same day):** Miriam's full live audio surface was rendered on `eleven_v3` — 515 clips, ~30.9K credits, 0 failures (127 core conversational + 176 openings/reflections/tone-biased/transitions + 212 figure-framing), acoustically verified. Owner listened to a representative spread and approved her tone (the PAL_VOICE.md audit's substance). She was then activated: moved from `stagedVoices` into `voices`, added to `pubspec.yaml` for bundling, and the roster tests updated to 4 active / 2 male / 2 female. The `stagedVoices` mechanism is retained (now empty) for the next voice. Journey/memory audio remains Stillwater-first, so Miriam — like Hope and Shepherd — resolves those surfaces to silence until rendered. Deferred: recompressing the distribution mirror is handled by the release bundle scripts at build time (the compressed mirror is not version-controlled).
+
+---
+
+## ADR-030: Two Length Systems + Supported-Length Policy (Adult Traditional)
+
+**Date:** 2026-07-19
+**Status:** Accepted
+**Context:** Multiple active documentation surfaces conflated runtime classification, authoring-validation bands, and drafting targets. SPEC.md, ARCHITECTURE.md, INVARIANTS.md and DECISIONS.md carried 250–600 / 601–1200 / 1201–2000 (marked "LOCKED SPEC"); STORY_FACTORY.md and OPUS_BATCH_SYSTEM.md carried 350–450 / 700–850 / 1201–1400; STORY_NARRATION_STYLE_GUIDE.md carried 300–500 / 501–900 / 901–1500 — which is what `story_word_count_compliance_test.dart` actually enforces. Investigation showed the first set is not a stale duplicate: it is hard-coded in `lib/core/story_length_bucket.dart` and governs runtime classification and UI labelling. The documents were describing **two different systems** as if they were one.
+
+Separately, story 1565 (Peter's Denial, Luke 22:54-62) rendered the complete nine-verse anchor at 173 words. Reaching the 300-word Short floor would have required inventing cold, night, torches, faces, and motive. The owner chose textual honesty and approved `shortScripture: true` — which SESSION_HANDOFF.md described as legacy-only, contradicting the decision actually made. The same evaluation showed 1563 and 1565 cannot honestly support a Full, making ADR-027's "Short and Full remain required" unsatisfiable without padding.
+
+**Decision:**
+
+1. **Two distinct systems, documented as such.**
+   - *Runtime classification / UI* — `lib/core/story_length_bucket.dart`, unchanged and authoritative for runtime behavior. Nominal ranges Short 250–600, Full 601–1200, Long 1201–2000. `wordCountToBucket()` returns Short for any count ≤600 (including below 250), Full for 601–1200, Long for >1200. Determines labelling and serving only.
+   - *Adult Traditional authoring compliance* — hard bands Short 300–500, Full 501–900, Long 901–1500, enforced by `story_word_count_compliance_test.dart`.
+
+2. **Authority hierarchy for length ranges.**
+   - INVARIANTS.md — states that the two systems are distinct (Two Length Systems Invariant).
+   - SPEC.md + ARCHITECTURE.md — runtime/UI behavior, matching the shipped Dart exactly.
+   - **STORY_FACTORY.md §5 — authoritative for adult Traditional authoring**: bands, drafting targets, supported-length process, exceptions.
+   - STORY_NARRATION_STYLE_GUIDE.md + OPUS_BATCH_SYSTEM.md — cross-reference §5; no competing rules.
+   - SESSION_HANDOFF.md — operational summary only.
+
+3. **Drafting targets are guidance, not boundaries.** Short 350–450, Full 700–850, Long ~1200–1400 are preferred aims inside the hard bands. Falling outside a target is not a violation; falling outside a band is.
+
+4. **Supported-length policy.** Every new adult Traditional anchor is evaluated for Short, Full, and Long. Short is the default expected version. Full and Long are conditional on what the approved anchor honestly supports; **neither is universally required**. Never pad, repeat propositions, invent physical detail, add unstated thoughts or motives, or insert theological explanation to reach a floor. Unsupported lengths are omitted with the reason documented in `editorialNotes`. Anchor widening requires a coherent continuous passage and owner approval **before** drafting. Raw scripture word count is an editorial warning signal, never an automatic eligibility formula.
+
+5. **`shortScripture: true` is not legacy-only.** It is an explicit, owner-approved authoring exception permitting an adult Traditional Short below 300 words when the complete approved passage is faithfully rendered and further words would require padding, invention, or commentary. Each use requires owner approval. Runtime still classifies such a story as Short.
+
+6. **Approved current story decisions.**
+   - **1562** (John 1:1-18) — Short currently. Full requires a separate approved feasibility or anchor-width review; the prologue is theological poetry with little narrative, so expansion risks commentary.
+   - **1563** (Matthew 16:13-20) — Short only.
+   - **1564** (1 Samuel 24) — Short + Full + Long. The anchor holds substantial unused explicit material (vv9-15, 19, 21).
+   - **1565** (Luke 22:54-62) — Short only; `shortScripture: true` owner-approved. WEB 173w / KJV 175w.
+
+**Scope:** adult Traditional content only. Traditional Kid bands are separate and unchanged.
+
+**Supersedes:** ADR-027's "Short and Full remain required" (Full is now conditional; ADR-027's no-padding principle is generalized from Long to both Full and Long). Also supersedes any reading of the 250–600 / 601–1200 / 1201–2000 figures as authoring bands — they remain valid as runtime/UI bounds.
+
+**Rationale:**
+- Rewriting the runtime numbers to match authoring numbers would make the docs describe an app that does not exist; the honest fix is to name the two systems.
+- Requiring a Full for every anchor guarantees padding on concise passages — the exact failure ADR-027 identified for Long.
+- A single authoritative section prevents the five-way drift that made every prior statement unreliable.
+
+**Consequences:**
+- No Dart, test, schema, story, manifest, audio, or metadata change — documentation only.
+- `story_word_count_compliance_test.dart` remains the enforcement gate; its numbers are now the documented ones.
+- Stories omitting Full or Long must say why in `editorialNotes`.
+- Historical ADRs are annotated as partially superseded, not rewritten.
+- Open follow-up: 1562 Full feasibility / anchor-width review (John 1:1-18 vs 1:1-34 vs other coherent candidate).
 
 ---
 
