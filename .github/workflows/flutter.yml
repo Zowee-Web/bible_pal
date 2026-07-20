@@ -41,6 +41,15 @@ jobs:
     - name: Test scoped Bible-order backfill
       run: python3 -m unittest scripts.tests.test_step4a_bible_order_backfill -v
 
+    - name: Test ADR-031 reconstruction diagnostics
+      run: |
+        # jsonschema is already required by scripts/validate_corpus.py; ensure
+        # it is importable before running the suites (no new project dependency
+        # is introduced — this only provisions the CI runner).
+        python3 -c "import jsonschema" 2>/dev/null || python3 -m pip install --quiet jsonschema
+        python3 -m unittest scripts.tests.test_reconstruction_check -v
+        python3 -m unittest scripts.tests.test_reconstruction_hook_integration -v
+
     - name: Run all tests
       run: flutter test --exclude-tags="requires_diagnostics_define || requires_journey_testing_define"
 
