@@ -46,7 +46,7 @@ jobs:
         # jsonschema is already required by scripts/validate_corpus.py; ensure
         # it is importable before running the suites (no new project dependency
         # is introduced — this only provisions the CI runner).
-        python3 -c "import jsonschema" 2>/dev/null || python3 -m pip install --quiet jsonschema
+        python3 -c "import jsonschema" 2>/dev/null || python3 -m pip install --quiet --break-system-packages jsonschema
         python3 -m unittest scripts.tests.test_reconstruction_check -v
         python3 -m unittest scripts.tests.test_reconstruction_hook_integration -v
 
