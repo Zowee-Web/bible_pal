@@ -495,6 +495,15 @@ The question was: What EXACTLY is Traditional mode, and how do we enforce it?
    - NOT devotional content, NOT original stories with biblical themes
    - Examples: The Lost Sheep (Luke 15:3-7), David and Goliath (1 Samuel 17)
 
+> **⚠️ CLARIFIED by ADR-031 (2026-07-19).**
+> **Still valid:** everything in this ADR — Traditional means faithful retellings of specific,
+> identifiable Bible narratives; the required fields; the exclusion of devotional content and
+> original compositions.
+> **Clarified:** this ADR defines "faithful" only against *departure* from scripture (invention,
+> devotional drift, generic themes). It is silent on the opposite failure — **reproducing** the
+> passage. ADR-031 establishes that reproducing the anchor's wording and verse structure also
+> fails the Traditional contract, and adds the Reconstruction Test as a hard editorial gate.
+
 2. **New Required Fields**
    - `bibleStoryKey`: Stable canonical identifier (e.g., "lost_sheep", "jesus_calms_storm")
    - `bibleSourceRef`: Scripture reference (e.g., "Mark 4:35-41") — already existed but now strictly enforced
@@ -1618,6 +1627,60 @@ Separately, story 1565 (Peter's Denial, Luke 22:54-62) rendered the complete nin
 - Stories omitting Full or Long must say why in `editorialNotes`.
 - Historical ADRs are annotated as partially superseded, not rewritten.
 - Open follow-up: 1562 Full feasibility / anchor-width review (John 1:1-18 vs 1:1-34 vs other coherent candidate).
+
+---
+
+## ADR-031: Faithful Retelling Is Not Scripture Reproduction
+
+**Date:** 2026-07-19
+**Status:** Accepted
+**Context:** Every existing rule governing Traditional content was one-directional: it forbade *departing* from scripture. SPEC, INVARIANTS and STORY_FACTORY exhaustively prohibited invention, altered outcomes, added events, inner monologue, doctrinal additions, and devotional drift. Nothing prohibited the opposite — **reproducing** the anchor. Under that reading, copying a passage verbatim scored as maximally faithful.
+
+The gap surfaced concretely. Story 1564's KJV Full (1 Samuel 24), authored and merged 2026-07-19, is — after punctuation normalization — a **single contiguous 662-word verbatim copy of the chapter**: 19 of 19 paragraphs direct copy, zero connective narration. Its WEB counterpart is 95% overlap with a 137-word uninterrupted run, and 8 of its 19 paragraphs are pure copy. Every gate in place at the time passed it: verse traceability, verbatim-quotation checks, boundary enforcement, word-count bands, schema, corpus validation, the full Flutter suite, and audio QA. The fidelity checks did not merely miss the defect — they **rewarded** it, reporting 100% traceability as a success.
+
+On 2026-07-19, a read-only diagnostic scan of 1,810 adult Traditional files flagged 45 files whose normalized complete text was reconstructible as a contiguous span of their scripture source. The same scan flagged 288 files with uninterrupted source runs ≥100 words and 389 with runs of 50–99 words.
+
+**This is an audit snapshot, not a permanent invariant.** The count may change as the corpus changes and as parser coverage improves. The flagged files are queued for **qualitative review, not automatically adjudicated defective** — none of these counts implies that 45 files must be rewritten or regenerated. Story 1564 KJV Full is a **confirmed** narrative-reproduction failure. Narrative files are the immediate priority. Poetry, epistles, wisdom, blessings, and other non-narrative anchors remain a **separate unresolved editorial question** (see decision 8).
+
+Two ambiguities contributed. SPEC's phrase "not paraphrased scripture" reads plainly as discouraging rewording — pushing authors *toward* verbatim. And the KJV lane's "classical diction" was read as licence to reproduce the KJV text rather than as a register.
+
+**Decision:**
+
+1. **Product distinction, locked.** Bible PAL Traditional content is **a faithful, listening-oriented retelling of an identifiable scripture anchor**. It is NOT a scripture audiobook, a chapter copied with new punctuation or paragraph breaks, a verse-by-verse transcription, or a lightly modified scripture paraphrase that preserves the source's structure without meaningful listening craft.
+
+2. **Faithfulness defined in both directions.** Faithfulness means the retelling may not **contradict, replace, or escape** the anchor. It does **not** mean the story should reproduce the anchor's wording and verse structure. Departure and reproduction are both failures.
+
+3. **Required retelling craft** — evidence as applicable to the anchor, not a checklist every story must satisfy in full: establish who is present, where the action occurs, and what is happening; turn verse structure into natural narrative movement; divide long biblical sentences into spoken beats; use neutral connective narration where the passage jumps; re-anchor speakers, characters, titles and pronouns when audio listeners could lose the referent; let important actions, contrasts and explicitly stated emotional turns land; narrate surrounding action rather than copying it merely because the wording is available; remain strictly inside the approved anchor with no invented events, settings, motives, thoughts, doctrine, or sermon commentary.
+
+4. **Essential dialogue exception.** Biblical dialogue may remain exact or near-exact when the words themselves are the central action, when changing them would weaken meaning or recognition, and when the quotation is clear and natural spoken aloud. **Preserving important dialogue does not permit copying all surrounding narration.**
+
+5. **Lane distinction.** WEB = faithful retelling in clear modern spoken English. KJV = faithful retelling in classical / KJV-compatible diction. **The KJV lane is not permission to reproduce the KJV passage word-for-word.** Classical register may preserve recognizable phrases, dialogue, titles, and cadence while still restructuring narration for listening.
+
+6. **Two-level review; both levels must pass.**
+   - **Level 1 — The Reconstruction Test** (hard failure for direct reproduction), applied at text review before rendering: *Could the story be reconstructed from the scripture source by changing only punctuation, capitalization, whitespace, paragraphing, and quotation marks?* If yes, it is a scripture reproduction and fails the Traditional retelling contract. Qualitative pass/fail, **not** an overlap percentage.
+   - **Level 2 — Retelling Craft Review** (required qualitative evidence). **Passing the Reconstruction Test does not by itself establish that a story is an adequate retelling.** The test detects direct reproduction; a lightly modified or mostly copied passage may technically pass while still lacking meaningful listening-oriented transformation. Merely adding one or two connective sentences, swapping synonyms, or breaking verses into paragraphs does **not** convert a transcription into a retelling.
+
+7. **Diagnostic warnings, not scores.** Tooling may warn on: an entire story reconstructible from the source; unusually long uninterrupted source matches; exceptionally high source overlap with little original connective narration. These trigger **human review only**. **No universal acceptable-overlap percentage is defined or implied** — an earlier proposal of a "45–60% acceptable band" was explicitly rejected as invented doctrine. Essential dialogue, poetry, epistles, wisdom, and liturgical passages may naturally produce high overlap and require qualitative review.
+
+8. **Non-narrative anchors deferred.** Poetry, epistles, doctrinal discourse, blessings, and similar anchors present a **separate eligibility question**. High verbatim overlap in those anchors cannot automatically be judged by the same standard as narrative copying. ADR-031 does **not** decide their final product treatment; that requires its own editorial review.
+
+9. **Ambiguous wording corrected.** SPEC's "not paraphrased scripture" is replaced with wording that cannot be read as encouraging verbatim reproduction: *not a generic scripture paraphrase or transcription; each is a specific, identifiable passage transformed into faithful narrative for listening.* No safeguard against invention, commentary, altered events, changed meaning, or doctrinal addition is weakened.
+
+**Scope:** adult Traditional content. Traditional Kid content follows the same product distinction; its length bands and register rules are unchanged.
+
+**Clarifies:** ADR-010 (Traditional Mode = Real Bible Story System), which defined "faithful" only against departure. ADR-010's substance stands; it is annotated, not rewritten.
+
+**Rationale:**
+- A rule set that only forbids departure makes transcription the safest possible output — the incentive pointed at the defect.
+- A numeric overlap threshold would repeat the original error in a new form: it would convert an editorial judgement into a formula authors optimize against. The Reconstruction Test is binary and qualitative.
+- Non-narrative anchors genuinely cannot be held to the same standard, so folding them into this decision would have produced a rule that is wrong for a large slice of the corpus.
+
+**Consequences:**
+- No Dart, test, schema, story, manifest, audio, metadata, or script change — documentation only.
+- Story 1564's WEB Full and KJV Full require corrective re-authoring as genuine retellings; the approved Shorts, reflections, scripture extracts, and their audio are unaffected.
+- **1564's Long rejection must be reopened.** That decision measured how many words remained after copying the chapter, not how much faithful listening-oriented storytelling the chapter can support. It is not evidence either way and is void as reasoning.
+- The prioritized corpus-risk list — the 2026-07-19 diagnostic snapshot of 45 flagged files, led by narrative passages — needs qualitative review story by story. The snapshot is dated and provisional, not a permanent invariant; it does not imply those files must be rewritten or regenerated. High-overlap non-narrative anchors are explicitly not presumed defective.
+- Story 1562's supported-length review is likewise void as reasoned, since it rested on word-count parity with scripture rather than on retelling craft.
 
 ---
 

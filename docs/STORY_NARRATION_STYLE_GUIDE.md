@@ -55,6 +55,45 @@ Neither law is machine-checkable. Run this before approving a story:
 
 ---
 
+## 0.5 Retelling, Not Reproduction (ADR-031)
+
+Every rule below assumes you are **retelling** the passage for a listener. Copying the anchor's
+wording and verse structure is not a safe default — it is a distinct failure mode, and the
+Reconstruction Test in [STORY_FACTORY.md §4.2](STORY_FACTORY.md#42-required-retelling-craft-adr-031)
+rejects it:
+
+> Could the story be reconstructed from the scripture source by changing only punctuation,
+> capitalization, whitespace, paragraphing, and quotation marks?
+
+**Passing that test is necessary, not sufficient.** A lightly modified or mostly copied passage
+can technically pass while still lacking meaningful listening-oriented transformation; it must
+also pass the qualitative Retelling Craft review. Adding one or two connective sentences,
+swapping synonyms, or breaking verses into paragraphs does **not** convert a transcription into
+a retelling.
+
+The craft techniques in §§1–11 are how transformation actually happens. Applied to a passage,
+that means:
+
+- **Re-anchor referents.** Scripture can carry "he… him… his" across several actors because a
+  reader can scan back. A listener cannot. Re-name the actor when the referent could be lost.
+- **Divide biblical periods.** A single verse may hold five clauses joined by `and`. Split it
+  into spoken beats (§1, §2).
+- **Narrate action rather than quoting it.** When the passage *states* an action, tell it as
+  narration. Quoting narration merely because the wording exists is the reproduction failure.
+- **Connect where the passage jumps.** Neutral connective narration is craft, not invention.
+- **Let stated turns land.** Give explicitly stated actions, contrasts, and emotional turns room
+  (§3, §4, §5).
+
+**Essential dialogue is the exception.** Where the words themselves are the action — an oath, a
+declaration, a question that turns the scene — keep them exact or near-exact. Preserving that
+dialogue does **not** license copying the narration around it.
+
+**KJV lane:** classical diction is a register, not permission to reproduce the passage
+word-for-word. Recognizable phrases, dialogue, titles, and cadence may be preserved while the
+narration around them is still restructured for the ear.
+
+---
+
 ## 1. Sentence Rhythm
 
 Vary sentence length deliberately. Three same-length sentences in a row reads as anthological flatness — the TTS will deliver three identically-shaped beats.
