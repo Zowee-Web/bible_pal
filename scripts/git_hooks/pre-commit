@@ -1,14 +1,40 @@
 #!/usr/bin/env bash
 #
-# Bible PAL pre-commit hook — runs scripts/validate_corpus.py on staged
-# meta.json and prose .txt files under assets/stories/traditional/.
+# Bible PAL pre-commit hook — validates the prospective commit.
 #
-# Behavior:
-#   - Schema failures block the commit (exit non-zero).
-#   - Bucket-gate warnings and missing-file warnings print but do NOT block
-#     (Phase-1 policy; bucket goes blocking later via --strict-bucket once
-#     legacy drift is reconciled).
-#   - If no relevant files are staged, exits 0 immediately.
+# ONE AUTHORITATIVE SNAPSHOT
+#   A single, separately checked enumeration:
+#       git diff --cached --name-status -z --diff-filter=ACMRDT
+#   is written to a temp file outside the repository and handed to
+#   validate_corpus.py via --index-change-snapshot. Deletions (D), rename
+#   sources and TYPE CHANGES (T) are included. Nothing re-queries Git per path,
+#   and there is no second enumeration for the kid gate.
+#
+#   T matters: a regular file replaced by a symlink or gitlink is a content
+#   change that A/M/R/C/D alone would not report, so omitting T would let a
+#   story or a required input silently leave the snapshot.
+#
+# CONTENT AUTHORITY (prospective-commit inputs)
+#   Story metadata, story prose, meta.schema.json, and the kid manifest/registry
+#   are all read from the GIT INDEX. A dirty working-tree copy cannot change the
+#   result. NOT from the index: the validator code itself and the canonical
+#   Bible JSON, which are trusted repository reference data.
+#
+# BLOCKING vs ADVISORY
+#   BLOCKING (non-zero): staged metadata schema failure; kid-gate failure under
+#     existing validate_kids doctrine; Git enumeration/index/object failure;
+#     missing Python dependency; unexpected internal exception.
+#   ADVISORY (exit 0): ADR-031 reconstruction findings; [UNRESOLVED] inputs;
+#     bucket/missing-file warnings; [METADATA-PATH-REVIEW]; [DELETION-REVIEW].
+#   Deletions are OBSERVED and classified but do NOT block: whether any class
+#   should block is deferred to ADR-032 and requires owner approval.
+#
+# PATH SAFETY
+#   NUL-delimited throughout; paths are never stored newline-delimited, never
+#   word-split, and pathname expansion is disabled — so spaces, tabs, newlines,
+#   backslashes and glob characters survive exactly. The relevance decision is
+#   made by a NUL-aware parser, never by `tr '\0' '\n' | grep`, which a literal
+#   newline inside an irrelevant filename can forge a relevant line through.
 #
 # Installation (one-time, from repo root):
 #   ln -sf ../../scripts/git_hooks/pre-commit .git/hooks/pre-commit
@@ -17,57 +43,52 @@
 #   git commit --no-verify
 
 set -e
+set -f   # no pathname expansion anywhere in this hook
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 cd "$REPO_ROOT"
 
-# --- Kid-lane registry/manifest consistency gate ---
-# If either kid-lane map file is staged, run validate_kids.py. FAILs block the
-# commit; WARNs (legacy length-bucket drift) print but do not block. Runs before
-# the traditional check so it fires even when no traditional files are staged.
-KID_STAGED=$(git diff --cached --name-only --diff-filter=ACM \
-    | grep -E '^assets/stories/(kids_manifest|kid_anchor_registry)\.json$' \
-    || true)
-if [ -n "$KID_STAGED" ]; then
-    echo "Running validate_kids.py (kid registry consistency)..."
-    python3 scripts/validate_kids.py || exit 1
+SNAPSHOT="$(mktemp "${TMPDIR:-/tmp}/biblepal_staged_snapshot.XXXXXX")"
+cleanup() { rm -f "$SNAPSHOT"; }
+trap cleanup EXIT INT TERM
+
+# THE one enumeration. Its status is checked explicitly; `|| true` is
+# deliberately NOT used, so a Git failure blocks instead of looking empty.
+if ! git diff --cached --name-status -z --diff-filter=ACMRDT > "$SNAPSHOT"; then
+    echo "FATAL: git enumeration failed (git diff --cached); refusing to validate." >&2
+    exit 1
 fi
 
-# Collect staged additions/modifications under traditional/, restricted to
-# meta_*.json and prose .txt files. For each, resolve to its meta path so
-# the validator runs schema check on the meta files themselves
-# (the validator's bucket check reads prose .txt files indirectly via
-# meta.files.*.storyText paths).
-#
-# Portable: works on macOS's bash 3.2 (no mapfile, no associative arrays).
-STAGED=$(git diff --cached --name-only --diff-filter=ACM \
-    | grep -E '^assets/stories/traditional/[0-9]+/(meta_[0-9]+\.json|.*\.txt)$' \
-    || true)
+if [ ! -s "$SNAPSHOT" ]; then
+    exit 0   # nothing staged
+fi
 
-if [ -z "$STAGED" ]; then
+# Relevance pre-check over that SAME snapshot — no second Git call. Parsed with
+# true NUL-record semantics by a module that does not import jsonschema, so this
+# decision never depends on a validation-only dependency being installed.
+#   0 = relevant, 1 = irrelevant, anything else = snapshot unusable (block).
+set +e
+PYTHONPATH="$REPO_ROOT/scripts" python3 -m lib.reconstruction_check \
+    --relevance-check "$SNAPSHOT"
+relevance=$?
+set -e
+if [ "$relevance" -eq 1 ]; then
     exit 0
+elif [ "$relevance" -ne 0 ]; then
+    echo "FATAL: staged-change snapshot could not be parsed; refusing to validate." >&2
+    exit 1
 fi
 
-META_PATHS=$(printf "%s\n" "$STAGED" \
-    | awk -F/ '{print "assets/stories/traditional/" $4 "/meta_" $4 ".json"}' \
-    | sort -u)
+echo "Running validate_corpus.py over the staged-change snapshot..."
 
-# Filter out any computed meta paths that don't exist on disk (defensive —
-# could happen if a story dir is being added without a meta file in the
-# same commit, though that itself is a content bug).
-EXISTING=""
-for m in $META_PATHS; do
-    if [ -f "$m" ]; then
-        EXISTING="$EXISTING $m"
-    fi
-done
-
-if [ -z "$EXISTING" ]; then
-    exit 0
-fi
-
-# shellcheck disable=SC2086
-N=$(printf "%s\n" $EXISTING | wc -l | tr -d ' ')
-echo "Running validate_corpus.py on $N staged meta file(s)..."
-# shellcheck disable=SC2086
-exec python3 scripts/validate_corpus.py --paths $EXISTING
+# Hook mode: validate_corpus.py classifies the snapshot itself and can never
+# fall back to full-corpus discovery. `set +e` so the validator's own exit code
+# is propagated deliberately rather than by `set -e` unwinding.
+set +e
+python3 scripts/validate_corpus.py \
+    --reconstruction \
+    --reconstruction-from-index \
+    --index-change-snapshot "$SNAPSHOT"
+status=$?
+set -e
+exit "$status"
