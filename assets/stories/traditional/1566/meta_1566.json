@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1566,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_WAVE1D_CANON_2026-07",
+  "title": "The Fall",
+  "scriptureAnchor": "Genesis 3:1-24",
+  "scriptureAnchorId": "genesis_3_1-24",
+  "bibleStoryKey": "the_fall",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "themeTags": [
+    "mercy",
+    "promise",
+    "obedience"
+  ],
+  "emotionalTags": [
+    "humbled",
+    "grieved",
+    "longing"
+  ],
+  "primaryCharacterId": "adam",
+  "primaryCharacterDisplayName": "Adam",
+  "timelineEra": "patriarchs",
+  "files": {
+    "short": {
+      "storyText": "story_1566_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1566_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_1566_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1566_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1566_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1566_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "They reached for the one thing that was kept back, and the first thing their opened eyes could see was their own shame. Yet before he sent them out, Yahweh God made them garments and clothed them with his own hands. What does it mean that even in the hour of exile, love stooped to cover what fear had tried to hide?",
+  "editorialNotes": "Wave 1d (Full-Canon Production Gate CG01). Genesis 3:1-24, absent both lanes (verified 0 exact-anchor hits). Primeval-arc beat after Creation (kid 1834). SHORT + FULL: a faithful complete retelling of the 24-verse chapter supports both buckets honestly (WEB short 413w / full 626w; KJV short 444w / full 673w). LONG omitted: the source is ~655 words and the fullest faithful retelling reaches ~675w; the 901-word LONG floor is unreachable without padding, restatement, or invented detail (ADR-030/031). Mercy beat preserved: God clothes them before the exile (v21). The v15 enmity and the striking of the serpent's head and heel are stated plainly, with no interpretive 'promise'/'hope'/fulfillment framing added. No invented motive, gesture, or aftermath; boundary hard-stopped at v24.",
+  "bibleOrderIndex": 50062,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-21T14:46:17Z",
+  "generatorVersion": "generate_opus_audio.sh"
+}

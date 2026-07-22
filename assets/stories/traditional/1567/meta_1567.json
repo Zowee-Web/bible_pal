@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1567,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_WAVE1D_CANON_2026-07",
+  "title": "Cain and Abel",
+  "scriptureAnchor": "Genesis 4:1-16",
+  "scriptureAnchorId": "genesis_4_1-16",
+  "bibleStoryKey": "cain_and_abel",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "themeTags": [
+    "mercy",
+    "lament",
+    "suffering"
+  ],
+  "emotionalTags": [
+    "grieved",
+    "humbled",
+    "convicted"
+  ],
+  "primaryCharacterId": "cain",
+  "primaryCharacterDisplayName": "Cain",
+  "timelineEra": "patriarchs",
+  "files": {
+    "short": {
+      "storyText": "story_1567_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1567_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1567_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1567_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Before the blow ever fell, Yahweh warned him: sin is crouching at your door, but you must rule over it. And after the blow, even the one who would not listen was given a mark to keep him alive. What does it mean that mercy meets us both before the sin we are about to commit, and after the one we can never undo?",
+  "editorialNotes": "Wave 1d (Full-Canon Production Gate CG02). Genesis 4:1-16, absent both lanes (verified). Primeval-arc beat 3. Adult-only (the murder is irreducible; no kid lane). SHORT ONLY: the gate proposed Short+Full, but a faithful complete retelling of the 16-verse passage (~351 source words) naturally lands at ~400-415 words, which sits inside the SHORT bucket (300-500); a 501+ FULL is not honestly supported without padding, so FULL was dropped (ADR-030/031, mirroring the 1564 Long decision) \u2014 flagged for owner approval. WEB short 402w / KJV short 403w. Mercy preserved: the warning before ('sin crouches at the door') and the protective mark after. No invented motive or aftermath; boundary v16.",
+  "bibleOrderIndex": 51062,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-21T14:46:17Z",
+  "generatorVersion": "generate_opus_audio.sh"
+}

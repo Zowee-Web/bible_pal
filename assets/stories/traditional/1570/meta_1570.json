@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1570,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_WAVE1D_CANON_2026-07",
+  "title": "The Sower",
+  "scriptureAnchor": "Matthew 13:1-23",
+  "scriptureAnchorId": "matthew_13_1-23",
+  "bibleStoryKey": "parable_of_the_sower",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "themeTags": [
+    "faith",
+    "perseverance",
+    "guidance"
+  ],
+  "emotionalTags": [
+    "hopeful",
+    "encouraged",
+    "resolute"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "timelineEra": "jesus_ministry",
+  "files": {
+    "short": {
+      "storyText": "story_1570_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1570_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_1570_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1570_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1570_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1570_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "The same seed fell on every kind of ground, and the difference was never in the seed \u2014 it was in what the ground was ready to do with it. The word came the same to the hardened path and to the good soil. What is it that turns a life into ground where something can finally take root and grow?",
+  "editorialNotes": "Wave 1d (Full-Canon Production Gate CG17). Matthew 13:1-23, adult lane absent (kid 'The Farmer and the Seeds' exists); owner-chosen anchor is the full 1-23 (parable + interpretation) over Mark 4:1-9. SHORT + FULL: the SHORT centers on the parable plus the 'why parables / blessed are your eyes' frame (WEB 317w / KJV 301w); the FULL adds Jesus's interpretation of the four soils, the explanatory dialogue compressed into spoken retelling rather than reproduced verse by verse (WEB 528w / KJV 502w). No Long. No invented detail; boundary v23.",
+  "bibleOrderIndex": 50976,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-21T14:46:17Z",
+  "generatorVersion": "generate_opus_audio.sh"
+}
