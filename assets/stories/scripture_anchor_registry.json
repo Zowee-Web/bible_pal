@@ -4411,6 +4411,46 @@
       "moodTags": [
         "hurting"
       ]
+    },
+    {
+      "scriptureAnchorId": "genesis_3_1-24",
+      "bibleStoryKey": "the_fall",
+      "bibleSourceRef": "Genesis 3:1-24",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_4_1-16",
+      "bibleStoryKey": "cain_and_abel",
+      "bibleSourceRef": "Genesis 4:1-16",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "numbers_21_4-9",
+      "bibleStoryKey": "bronze_serpent",
+      "bibleSourceRef": "Numbers 21:4-9",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matthew_1_18-25",
+      "bibleStoryKey": "angel_appears_to_joseph",
+      "bibleSourceRef": "Matthew 1:18-25",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matthew_13_1-23",
+      "bibleStoryKey": "parable_of_the_sower",
+      "bibleSourceRef": "Matthew 13:1-23",
+      "moodTags": [
+        "encouraging"
+      ]
     }
   ]
 }

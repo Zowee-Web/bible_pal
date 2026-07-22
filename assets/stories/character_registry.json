@@ -766,6 +766,10 @@
     "babel_builders": {
       "displayName": "The Builders of Babel",
       "descriptor": "The people who built the Tower of Babel"
+    },
+    "cain": {
+      "displayName": "Cain",
+      "descriptor": "First son of Adam and Eve, Genesis"
     }
   }
 }

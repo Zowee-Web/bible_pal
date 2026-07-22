@@ -5554,6 +5554,91 @@
       "bibleSourceRef": "Luke 22:54-62",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-07-19 manifest backfill. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
+    },
+    {
+      "bibleStoryKey": "the_fall",
+      "primaryFigure": "Adam",
+      "secondaryFigures": [
+        "Eve"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_THE_FALL_01",
+          "text": "In a garden where nothing was withheld but one tree, a single question was enough to change everything."
+        },
+        {
+          "id": "FRAME_THE_FALL_02",
+          "text": "They reached for wisdom and found their own nakedness — and God met them with garments before the gate closed."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "cain_and_abel",
+      "primaryFigure": "Cain",
+      "secondaryFigures": [
+        "Abel"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_CAIN_AND_ABEL_01",
+          "text": "Two brothers brought their offerings, and the ground that received a life would soon cry out because of it."
+        },
+        {
+          "id": "FRAME_CAIN_AND_ABEL_02",
+          "text": "Warned that sin crouched at his door, Cain went to the field anyway — and carried a mark of mercy into exile."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "bronze_serpent",
+      "primaryFigure": "Moses",
+      "secondaryFigures": [
+        "the people of Israel"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_BRONZE_SERPENT_01",
+          "text": "In a wilderness of complaint and venom, rescue came not by removing the danger but by giving something to look to."
+        },
+        {
+          "id": "FRAME_BRONZE_SERPENT_02",
+          "text": "A serpent of bronze was lifted on a pole, and everyone bitten who simply looked upon it lived."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "angel_appears_to_joseph",
+      "primaryFigure": "Joseph",
+      "secondaryFigures": [
+        "Mary"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_ANGEL_APPEARS_TO_JOSEPH_01",
+          "text": "A righteous man meant to end things quietly, until a dream asked him for something harder than mercy."
+        },
+        {
+          "id": "FRAME_ANGEL_APPEARS_TO_JOSEPH_02",
+          "text": "Told not to be afraid, Joseph took Mary home and named the child Jesus — Immanuel, God with us."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "parable_of_the_sower",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [
+        "the disciples"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_PARABLE_OF_THE_SOWER_01",
+          "text": "The same seed fell on every kind of ground, and the difference was never in the seed."
+        },
+        {
+          "id": "FRAME_PARABLE_OF_THE_SOWER_02",
+          "text": "Path, rock, thorns, good soil — a story about what a heart is ready to do with a word."
+        }
+      ]
     }
   ],
   "_stubsNote": "2026-07-19: Manifest-sync backfill — appended 1 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-07-18: Manifest-sync backfill — appended 4 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-30: Manifest-sync backfill — appended 298 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-09: Added 96 auto-generated stub entries (marked with _stub: true) to satisfy biblical_figure_registry_test.dart cross-validation. 68 thematic/devotional bibleStoryKeys remain unregistered (need manual curation with appropriate schema): armor_of_god, as_a_deer_pants, beatitudes, calling_and_election_sure, cast_all_your_worries, ..."

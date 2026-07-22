@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1569,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_WAVE1D_CANON_2026-07",
+  "title": "The Angel in Joseph's Dream",
+  "scriptureAnchor": "Matthew 1:18-25",
+  "scriptureAnchorId": "matthew_1_18-25",
+  "bibleStoryKey": "angel_appears_to_joseph",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "themeTags": [
+    "obedience",
+    "faith",
+    "presence"
+  ],
+  "emotionalTags": [
+    "trusting",
+    "reverent",
+    "comforted"
+  ],
+  "primaryCharacterId": "joseph",
+  "primaryCharacterDisplayName": "Joseph",
+  "timelineEra": "jesus_ministry",
+  "shortScripture": true,
+  "files": {
+    "short": {
+      "storyText": "story_1569_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1569_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1569_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1569_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "He had already resolved to be merciful \u2014 to let her go quietly rather than expose her. Then the angel asked something harder than mercy: to stay, to name the child, and not to be afraid. What does it ask of you, when God's will arrives not as the answer you were looking for, but as a harder thing you are simply told to do?",
+  "editorialNotes": "Wave 1d (Full-Canon Production Gate CG10). Matthew 1:18-25, absent both lanes (the OT-Joseph name-collision, Gen 37/40/41, is cleared). Nativity-arc male-POV beat ('Immanuel'). SHORT ONLY. shortScripture: true is INTENTIONAL: the eight-verse passage (~208 source words) is rendered complete; the 300-word floor would require unanchored detail, rejected for honesty (WEB short 247w / KJV short 213w). Both names retained (Jesus 'he will save'; Immanuel 'God with us'). No invented motive beyond what v19 states (a just man, unwilling to shame her); boundary v25.",
+  "bibleOrderIndex": 38993,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-21T14:46:17Z",
+  "generatorVersion": "generate_opus_audio.sh"
+}

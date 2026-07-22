@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1568,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_WAVE1D_CANON_2026-07",
+  "title": "The Bronze Serpent",
+  "scriptureAnchor": "Numbers 21:4-9",
+  "scriptureAnchorId": "numbers_21_4-9",
+  "bibleStoryKey": "bronze_serpent",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "themeTags": [
+    "mercy",
+    "deliverance",
+    "faith"
+  ],
+  "emotionalTags": [
+    "humbled",
+    "hopeful",
+    "comforted"
+  ],
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "timelineEra": "exodus",
+  "shortScripture": true,
+  "files": {
+    "short": {
+      "storyText": "story_1568_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1568_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1568_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1568_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "They begged for the snakes to be taken away, and instead God gave them something to look at \u2014 and to look was enough to live. What does it change, to learn that rescue was never about the strength of your reaching, but only about where you were willing to turn your eyes?",
+  "editorialNotes": "Wave 1d (Full-Canon Production Gate CG07). Numbers 21:4-9, absent both lanes (1383 covers 21:16-18, a different part). John 3:14 dependency ('lifted up'). SHORT ONLY. shortScripture: true is INTENTIONAL: the six-verse passage (~178 source words) is rendered complete; reaching the 300-word SHORT floor would require padding the spare narrative, which is rejected in favour of textual honesty (WEB short 238w / KJV short 216w). The narrative hinge is kept plainly: the people ask for the snakes to be taken away, and the Lord instead gives the bronze-serpent remedy to look to \u2014 stated without an added editorial theological label. No invented detail; boundary v9.",
+  "bibleOrderIndex": 36183,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-21T14:46:17Z",
+  "generatorVersion": "generate_opus_audio.sh"
+}
