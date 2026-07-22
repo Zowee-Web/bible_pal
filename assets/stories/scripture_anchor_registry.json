@@ -4451,6 +4451,46 @@
       "moodTags": [
         "encouraging"
       ]
+    },
+    {
+      "scriptureAnchorId": "genesis_7-8",
+      "bibleStoryKey": "the_flood",
+      "bibleSourceRef": "Genesis 7-8",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_27",
+      "bibleStoryKey": "the_stolen_blessing",
+      "bibleSourceRef": "Genesis 27",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_33",
+      "bibleStoryKey": "jacob_and_esau_reconcile",
+      "bibleSourceRef": "Genesis 33",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "judges_16_4-22",
+      "bibleStoryKey": "delilah_and_samsons_capture",
+      "bibleSourceRef": "Judges 16:4-22",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matthew_25_1-13",
+      "bibleStoryKey": "parable_of_the_ten_virgins",
+      "bibleSourceRef": "Matthew 25:1-13",
+      "moodTags": [
+        "encouraging"
+      ]
     }
   ]
 }

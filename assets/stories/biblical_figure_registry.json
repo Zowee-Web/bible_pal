@@ -5639,6 +5639,91 @@
           "text": "Path, rock, thorns, good soil — a story about what a heart is ready to do with a word."
         }
       ]
+    },
+    {
+      "bibleStoryKey": "the_flood",
+      "primaryFigure": "Noah",
+      "secondaryFigures": [
+        "Noah's household"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_THE_FLOOD_01",
+          "text": "The door was shut by God's own hand, and for months the whole world was water — one vessel, one family, and every kind of living thing."
+        },
+        {
+          "id": "FRAME_THE_FLOOD_02",
+          "text": "Then God remembered Noah, and a dove came back at evening carrying a freshly plucked olive leaf."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "the_stolen_blessing",
+      "primaryFigure": "Jacob",
+      "secondaryFigures": [
+        "Esau",
+        "Isaac",
+        "Rebekah"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_THE_STOLEN_BLESSING_01",
+          "text": "A blind father, a borrowed robe, and goatskin on smooth hands — the blessing meant for one brother went to the other."
+        },
+        {
+          "id": "FRAME_THE_STOLEN_BLESSING_02",
+          "text": "Esau came in from the field too late, and his cry was great and bitter: Bless me, even me also, my father."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "jacob_and_esau_reconcile",
+      "primaryFigure": "Jacob",
+      "secondaryFigures": [
+        "Esau"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_JACOB_AND_ESAU_RECONCILE_01",
+          "text": "Esau came with four hundred men, and Jacob came bowing to the ground — and the meeting became an embrace, and they wept."
+        },
+        {
+          "id": "FRAME_JACOB_AND_ESAU_RECONCILE_02",
+          "text": "I have seen your face, Jacob said, as one sees the face of God — and you were pleased with me."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "delilah_and_samsons_capture",
+      "primaryFigure": "Samson",
+      "secondaryFigures": [
+        "Delilah"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_DELILAH_AND_SAMSONS_CAPTURE_01",
+          "text": "Three times he gave a false answer, and three times the ambush waited. Then she pressed him daily, until he told her all his heart."
+        },
+        {
+          "id": "FRAME_DELILAH_AND_SAMSONS_CAPTURE_02",
+          "text": "He woke meaning to shake himself free as before, not knowing Yahweh had departed — yet even in the prison, his hair began to grow again."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "parable_of_the_ten_virgins",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_PARABLE_OF_THE_TEN_VIRGINS_01",
+          "text": "Ten lamps went out to meet the bridegroom, and only five carried oil for the waiting."
+        },
+        {
+          "id": "FRAME_PARABLE_OF_THE_TEN_VIRGINS_02",
+          "text": "At midnight the cry came, the ready went in to the feast, and the door was shut."
+        }
+      ]
     }
   ],
   "_stubsNote": "2026-07-19: Manifest-sync backfill — appended 1 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-07-18: Manifest-sync backfill — appended 4 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-30: Manifest-sync backfill — appended 298 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-09: Added 96 auto-generated stub entries (marked with _stub: true) to satisfy biblical_figure_registry_test.dart cross-validation. 68 thematic/devotional bibleStoryKeys remain unregistered (need manual curation with appropriate schema): armor_of_god, as_a_deer_pants, beatitudes, calling_and_election_sure, cast_all_your_worries, ..."

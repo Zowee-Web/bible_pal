@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1574,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_TFSF2_BATCH_A_2026-07",
+  "title": "He Told Her All His Heart",
+  "scriptureAnchor": "Judges 16:4-22",
+  "scriptureAnchorId": "judges_16_4-22",
+  "bibleStoryKey": "delilah_and_samsons_capture",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "themeTags": [
+    "menace",
+    "consequence",
+    "loss"
+  ],
+  "emotionalTags": [
+    "weary",
+    "broken",
+    "weighed"
+  ],
+  "primaryCharacterId": "samson",
+  "primaryCharacterDisplayName": "Samson",
+  "timelineEra": "judges",
+  "files": {
+    "short": {
+      "storyText": "story_1574_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1574_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_1574_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1574_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1574_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1574_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "It was not the cords or the ropes that overcame him. It was words, pressed on him day after day, until his soul was troubled to death. Then he woke believing he would shake himself free as at other times, not knowing that Yahweh had departed. What is it that wears a strength down \u2014 not all at once, but a little every day, until it is gone?",
+  "editorialNotes": "Text-First Story Factory 2.0 Batch A (journey backlog G4, approved 2026-07-22). Judges 16:4-22, absent both lanes. Fills the Samson-arc middle between existing 1142 (Judges 13, birth) and 1193 (Judges 16:23-31, death); VOICE_ARCHER shared with 1193 is a deliberate arc-continuity choice mirroring the 1564/1336 precedent. Boundary: ends at v22 (the hair beginning to grow again \u2014 the source's own seam into 1193) with no temple or death material and no forward-looking narration. SHORT + FULL (WEB 398w / 598w; KJV 440w / 627w). LONG omitted: the 19-verse source (~619 WEB words) has its honest ceiling inside the FULL band (same honest-ceiling finding as 1564 / 1 Samuel 24, ADR-030/031). Delilah's motive stated as the lords' silver only; Samson's torment carried by the source's own words ('his soul was troubled to death'); the repeated cry 'The Philistines are on you, Samson!' kept as the source's own four-round structure. SHORT compresses the three false answers into one movement; FULL renders each round.",
+  "bibleOrderIndex": 24235
+}

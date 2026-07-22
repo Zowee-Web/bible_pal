@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1575,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_TFSF2_BATCH_A_2026-07",
+  "title": "The Ten Virgins",
+  "scriptureAnchor": "Matthew 25:1-13",
+  "scriptureAnchorId": "matthew_25_1-13",
+  "bibleStoryKey": "parable_of_the_ten_virgins",
+  "storyVoiceKey": "VOICE_CHARLOTTE_V3",
+  "themeTags": [
+    "kingdom",
+    "waiting",
+    "wedding"
+  ],
+  "emotionalTags": [
+    "watchful",
+    "waiting",
+    "hopeful"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "timelineEra": "jesus_ministry",
+  "files": {
+    "short": {
+      "storyText": "story_1575_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1575_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1575_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1575_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "All ten had lamps, and all ten slept while the bridegroom delayed. The difference was only what each had carried before the waiting began. At midnight the cry came, and the ready went in, and the door was shut. What does it mean to be ready for an hour no one can name?",
+  "editorialNotes": "Text-First Story Factory 2.0 Batch A (Full-Canon Production Gate CG15, approved 2026-07-22; Wave 5 item pulled forward for batch period balance). Matthew 25:1-13, absent both lanes; adjacent 1290 covers Matthew 25:14-30 (the Talents). Gate lane is 'both' \u2014 the kid version is deferred to a later wave per the Wave 1a precedent. SHORT only (WEB 304w / KJV 301w): the ~204-word parable reaches the 300 floor honestly through spoken-beat retelling and referent re-anchoring \u2014 no scenery invented, no shortScripture flag needed; the floor risk flagged at planning resolved clean. The speaker is re-anchored as Jesus (the anchor is continuing discourse), with no Olivet setting imported from chapter 24. Boundary: ends at v13 ('Watch therefore') with no drift into the Talents. FULL omitted: expansion past ~350 words would require invented scene detail (ADR-030/031).",
+  "bibleOrderIndex": 76977
+}

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1573,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_TFSF2_BATCH_A_2026-07",
+  "title": "Esau Ran to Meet Him",
+  "scriptureAnchor": "Genesis 33",
+  "scriptureAnchorId": "genesis_33",
+  "bibleStoryKey": "jacob_and_esau_reconcile",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "themeTags": [
+    "forgiveness",
+    "homecoming",
+    "restoration"
+  ],
+  "emotionalTags": [
+    "moved",
+    "relieved",
+    "reassured"
+  ],
+  "primaryCharacterId": "jacob",
+  "primaryCharacterDisplayName": "Jacob",
+  "timelineEra": "patriarchs",
+  "files": {
+    "short": {
+      "storyText": "story_1573_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1573_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1573_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1573_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Jacob came bowing himself seven times to the ground. Esau simply ran. And when the weeping was over, Jacob said it plainly: I have seen your face, as one sees the face of God, and you were pleased with me. What is it to be met with an embrace where you had made ready for something else?",
+  "editorialNotes": "Text-First Story Factory 2.0 Batch A (journey backlog G2, approved 2026-07-22). Genesis 33, adult lane absent; kid_jacob_esau covers Genesis 33:1-11 in the separate kid lane (adult-parity fill). Pairs with 1572 (Genesis 27) as the approved Jacob-arc resolution. Boundary: chapter 33 only \u2014 no Genesis 32 wrestling or fear-prayer retold; Jacob's dividing and ordering of the family is narrated as observable action with no imported fear-motive, and the twenty-year chronology from earlier chapters is not referenced. SHORT only (WEB 461w / KJV 481w): the complete faithful retelling of the 20-verse source (~477 WEB source words) sits inside the SHORT band; a FULL would require inflation beyond the source's honest ceiling (ADR-030/031). El Elohe Israel is rendered with its meaning for the listening ear. Ends on the chapter's own closure (the altar at Shechem).",
+  "bibleOrderIndex": 85063
+}
