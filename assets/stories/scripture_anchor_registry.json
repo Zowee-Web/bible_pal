@@ -4491,6 +4491,46 @@
       "moodTags": [
         "encouraging"
       ]
+    },
+    {
+      "scriptureAnchorId": "exodus_7-12",
+      "bibleStoryKey": "passover_and_the_plagues",
+      "bibleSourceRef": "Exodus 7-12",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "joshua_7_13_8_29",
+      "bibleStoryKey": "achan_judgment_and_capture_of_ai",
+      "bibleSourceRef": "Joshua 7:13-8:29",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "joshua_9",
+      "bibleStoryKey": "gibeonite_covenant",
+      "bibleSourceRef": "Joshua 9",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_39",
+      "bibleStoryKey": "potiphars_house",
+      "bibleSourceRef": "Genesis 39",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_12_13-21",
+      "bibleStoryKey": "parable_of_the_rich_fool",
+      "bibleSourceRef": "Luke 12:13-21",
+      "moodTags": [
+        "weary"
+      ]
     }
   ]
 }

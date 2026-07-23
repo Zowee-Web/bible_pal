@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1579,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_TFSF2_BATCH_B_2026-07",
+  "title": "Potiphar's House",
+  "scriptureAnchor": "Genesis 39",
+  "scriptureAnchorId": "genesis_39",
+  "bibleStoryKey": "potiphars_house",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "themeTags": [
+    "presence",
+    "testing",
+    "providence"
+  ],
+  "emotionalTags": [
+    "accompanied",
+    "steadfast",
+    "reassured"
+  ],
+  "primaryCharacterId": "joseph",
+  "primaryCharacterDisplayName": "Joseph",
+  "timelineEra": "patriarchs",
+  "files": {
+    "short": {
+      "storyText": "story_1579_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1579_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_1579_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1579_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1579_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1579_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Four times the story stops to say the same thing: Yahweh was with Joseph. He was with him when Joseph rose to run the house, and he was with him just as much when a lie sent him down to the prison. The favor did not keep him from the false accusation; it followed him into the cell. What is it to be accompanied like that \u2014 not spared the fall, but never left in it?",
+  "editorialNotes": "Text-First Story Factory 2.0 Batch B (Full-Canon Production Gate CG19, rescoped and owner-approved). Genesis 39 ONLY \u2014 Genesis 40 is deliberately excluded (already covered by 1178 and 1389, so any inclusion would duplicate), and Joseph's later prison interpretation work is not shown. Fills the Joseph adult-arc middle between the coat (1037) and the reveal (1003). SHORT+FULL (WEB 335w/501w; KJV 351w/520w). The repeated source refrain 'Yahweh was with Joseph' (39:2, 39:3, 39:21, 39:23) is preserved as the story's spine in every variant. Potiphar's wife's false accusation handled exactly and NOT softened: her claim that the Hebrew came in to mock/lie with her and fled leaving his garment when she cried out is kept faithful (39:14-15, 39:17-18). No invented attraction, motive, private thought, gesture, or emotional state \u2014 the text states only that she 'set her eyes on Joseph' and said 'Lie with me'; Joseph's stated reason (his master's trust, sinning against God, 39:8-9) is kept; 'well-built and handsome' is source-stated (39:6). Ends within Genesis 39 on the complete shape (prosperity in the prison, 39:21-23). KJV lane uses KJV diction (the Lord, goodly person and well favoured, grace); WEB uses Yahweh.",
+  "bibleOrderIndex": 125064
+}

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1580,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_TFSF2_BATCH_B_2026-07",
+  "title": "The Rich Fool",
+  "scriptureAnchor": "Luke 12:13-21",
+  "scriptureAnchorId": "luke_12_13-21",
+  "bibleStoryKey": "parable_of_the_rich_fool",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "shortScripture": true,
+  "themeTags": [
+    "wisdom",
+    "stewardship",
+    "vanity"
+  ],
+  "emotionalTags": [
+    "weary",
+    "humbled",
+    "convicted"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "timelineEra": "jesus_ministry",
+  "files": {
+    "short": {
+      "storyText": "story_1580_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1580_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1580_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1580_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "The harvest was good, and every plan the man made was for himself \u2014 bigger barns, years of goods laid up, his own soul told to take its ease and eat and drink. Every word of his reasoning was about a future he assumed was his. He was told that night that the future was not. What is it to store so carefully for years you were never promised?",
+  "editorialNotes": "Text-First Story Factory 2.0 Batch B (Full-Canon Production Gate CG14, approved 2026-07-23). Luke 12:13-21, absent both lanes; adjacent 1011 covers Luke 12:22-31 (the ravens/lilies worry teaching), which this story stays distinct from. SHORT only, shortScripture (WEB 186w / KJV 185w): the ~181-word parable, retold faithfully with the man's soliloquy given as reported speech and only God's climactic address kept direct, honestly falls below the 300-word SHORT floor; shortScripture:true is set (owner-approved) rather than padding. The inheritance dispute (12:13-14) is the opening frame; the warning about covetousness ('a man's life doesn't consist in the abundance of the things he possesses', 12:15) is preserved; God's address ('You foolish one, tonight your soul is required of you') and the closing 'is not rich toward God' (12:20-21) are kept. No motive or emotion given to the rich man beyond his own stated reasoning; no added explanatory moral paragraph beyond the source; no propositions repeated to reach a floor. Boundary held to vv13-21. KJV lane uses KJV diction (Master, divider, Thou fool); WEB uses the modern register.",
+  "bibleOrderIndex": 61112
+}

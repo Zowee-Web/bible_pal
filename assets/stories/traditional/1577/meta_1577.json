@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1577,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_TFSF2_BATCH_B_2026-07",
+  "title": "Achan's Judgment and the Capture of Ai",
+  "scriptureAnchor": "Joshua 7:13-8:29",
+  "scriptureAnchorId": "joshua_7_13_8_29",
+  "bibleStoryKey": "achan_judgment_and_capture_of_ai",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "themeTags": [
+    "judgment",
+    "consequence",
+    "obedience"
+  ],
+  "emotionalTags": [
+    "grieved",
+    "humbled",
+    "convicted"
+  ],
+  "primaryCharacterId": "joshua",
+  "primaryCharacterDisplayName": "Joshua",
+  "timelineEra": "conquest",
+  "files": {
+    "short": {
+      "storyText": "story_1577_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1577_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_1577_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1577_traditional_kjv_full.txt"
+    },
+    "long": {
+      "storyText": "story_1577_traditional_web_long.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1577_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1577_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1577_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "One man's plunder, buried in the ground of his tent, and a whole army could not stand before its enemies. The lot narrowed from tribe to family to household to a single name, and what was hidden was carried up into the open. What is it to belong to a people so bound together that a thing buried in secret was never only your own?",
+  "editorialNotes": "Text-First Story Factory 2.0 Batch B (journey backlog G6, approved 2026-07-23). Joshua 7:13-8:29, absent both lanes. LOCKED ID/order: Achan is 1577, before the Gibeonite Covenant (1578). Opens at 7:13 (Yahweh's instruction to sanctify) so vv13-15 are not orphaned; seams from existing 1294 (Joshua 7:6-12, Joshua's grief after Ai) WITHOUT repeating its material. One coherent narrative covering both the judgment of Achan (7:13-26) and the capture of Ai (8:1-29), not two unrelated stories. SHORT+FULL+LONG (WEB 329w/518w/911w; KJV 348w/545w/929w): the 43-verse, ~1379-word two-part source honestly supports LONG (comparable-density precedent: 1572/Genesis 27). Corporate judgment stated plainly and NOT softened: Achan, his sons and daughters, his oxen, asses, sheep, tent, and all he had, stoned and burned in the valley of Achor (7:24-25). No moral commentary defending or condemning the judgment; no invented motives or emotions (Achan's coveting is his own stated confession, 7:21). Ai covered coherently: the ambush plan, the feigned flight, the burning, the twelve thousand fallen, the king hanged and buried under stones (8:29). 'Valley of Achor / valley of Trouble' rendered with the passage's own wordplay (7:25-26). Boundary held to 8:29. KJV lane uses KJV diction (accursed thing, Babylonish garment, spoil, cattle); WEB uses Yahweh.",
+  "bibleOrderIndex": 37235
+}

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1576,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_TFSF2_BATCH_B_2026-07",
+  "title": "The Passover and the Plagues",
+  "scriptureAnchor": "Exodus 7-12",
+  "scriptureAnchorId": "exodus_7-12",
+  "bibleStoryKey": "passover_and_the_plagues",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "themeTags": [
+    "deliverance",
+    "judgment",
+    "sacrifice"
+  ],
+  "emotionalTags": [
+    "afraid",
+    "brave",
+    "free"
+  ],
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "timelineEra": "exodus",
+  "files": {
+    "short": {
+      "storyText": "story_1576_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1576_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_1576_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1576_traditional_kjv_full.txt"
+    },
+    "long": {
+      "storyText": "story_1576_traditional_web_long.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_1576_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1576_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1576_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Plague after plague fell, and each time the heart hardened again \u2014 first Pharaoh's own doing, and then Yahweh's. But the people who were spared were not spared by their strength. They were spared by a lamb's blood struck on the door, and a command to stay inside until morning. What is it to be kept safe not by the walls you trust, but by a mark you were told to make and then wait behind?",
+  "editorialNotes": "Text-First Story Factory 2.0 Batch B (journey backlog G1, approved 2026-07-23). Exodus 7-12, adult lane absent (kid 1907 covers the Passover). One coherent deliverance narrative across the six chapters, NOT a plague catalogue: the mounting confrontation, the Passover, the death of the firstborn, and the exodus. SHORT+FULL+LONG (WEB 398w/727w/1190w; KJV 431w/730w/1236w) \u2014 the ~4983-word source honestly sustains all three via scene selection and compression, not verse listing. HEART-HARDENING FIDELITY (owner requirement): each occurrence preserves exactly who hardens Pharaoh's heart \u2014 passive/self early (7:13, 7:22, 8:15, 8:19, 8:32 and the stubborn heart of 9:7) and Yahweh from the boils onward (9:12, 10:20, 10:27), with the self-hardening after the hail (9:34) kept as Pharaoh's own; the progression is not flattened to all-God or all-Pharaoh (verified across all lanes/lengths). Passover instructions (lamb, blood on the posts and lintel, unleavened bread, eaten in haste) and the death of the firstborn preserved with fidelity. No invented emotions inside Moses, Aaron, Pharaoh, the Israelites, or Egyptian families (Moses' 'hot anger' 11:8, Pharaoh's 'I have sinned' 9:27/10:16, the people's worship 12:27 are all source-stated). Boundary held inside Exodus 7-12; ends on the exodus from Rameses (12:37-42). KJV lane uses KJV diction (the Lord, lice, cattle, blains); WEB uses Yahweh.",
+  "bibleOrderIndex": 42117
+}
