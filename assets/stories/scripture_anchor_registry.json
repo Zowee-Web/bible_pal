@@ -4571,6 +4571,38 @@
       "moodTags": [
         "anxious"
       ]
+    },
+    {
+      "scriptureAnchorId": "john_18_28-38",
+      "bibleStoryKey": "jesus_before_pilate",
+      "bibleSourceRef": "John 18:28-38",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matthew_27_15-26",
+      "bibleStoryKey": "barabbas_and_the_crowd",
+      "bibleSourceRef": "Matthew 27:15-26",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matthew_25_31-46",
+      "bibleStoryKey": "sheep_and_the_goats",
+      "bibleSourceRef": "Matthew 25:31-46",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_kings_12",
+      "bibleStoryKey": "kingdom_splits",
+      "bibleSourceRef": "1 Kings 12",
+      "moodTags": [
+        "anxious"
+      ]
     }
   ]
 }

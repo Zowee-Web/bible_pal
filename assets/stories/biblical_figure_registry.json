@@ -5893,6 +5893,73 @@
           "text": "The rich man begged that his brothers be warned; but they have Moses and the prophets to hear."
         }
       ]
+    },
+    {
+      "bibleStoryKey": "jesus_before_pilate",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [
+        "Pilate"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_JESUS_BEFORE_PILATE_01",
+          "text": "At dawn they brought Jesus to Pilate, who asked, Are you the King of the Jews, and heard, My kingdom is not of this world."
+        },
+        {
+          "id": "FRAME_JESUS_BEFORE_PILATE_02",
+          "text": "Jesus said he had come to testify to the truth; Pilate asked, What is truth, and went out saying he found no case against him."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "barabbas_and_the_crowd",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [
+        "Barabbas",
+        "Pilate"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_BARABBAS_AND_THE_CROWD_01",
+          "text": "Pilate offered the crowd a choice, Barabbas or Jesus who is called Christ; and stirred by the priests, they asked for Barabbas."
+        },
+        {
+          "id": "FRAME_BARABBAS_AND_THE_CROWD_02",
+          "text": "Pilate washed his hands, and released Barabbas, and handed Jesus over to be crucified."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "sheep_and_the_goats",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_SHEEP_AND_THE_GOATS_01",
+          "text": "The King separates the nations as a shepherd divides sheep from goats, and welcomes those who fed and clothed and visited the least."
+        },
+        {
+          "id": "FRAME_SHEEP_AND_THE_GOATS_02",
+          "text": "As you did to the least of these, he says, you did to me; these go into eternal punishment, but the righteous into eternal life."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "kingdom_splits",
+      "primaryFigure": "Rehoboam",
+      "secondaryFigures": [
+        "Jeroboam"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_KINGDOM_SPLITS_01",
+          "text": "Israel asked Rehoboam to lighten his father's heavy yoke, but he answered them harshly, with whips and scorpions."
+        },
+        {
+          "id": "FRAME_KINGDOM_SPLITS_02",
+          "text": "So Israel turned away, To your tents O Israel, and made Jeroboam king, and only Judah followed the house of David."
+        }
+      ]
     }
   ],
   "_stubsNote": "2026-07-19: Manifest-sync backfill \u2014 appended 1 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-07-18: Manifest-sync backfill \u2014 appended 4 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-30: Manifest-sync backfill \u2014 appended 298 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-09: Added 96 auto-generated stub entries (marked with _stub: true) to satisfy biblical_figure_registry_test.dart cross-validation. 68 thematic/devotional bibleStoryKeys remain unregistered (need manual curation with appropriate schema): armor_of_god, as_a_deer_pants, beatitudes, calling_and_election_sure, cast_all_your_worries, ..."

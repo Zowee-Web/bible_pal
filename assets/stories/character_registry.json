@@ -770,6 +770,10 @@
     "cain": {
       "displayName": "Cain",
       "descriptor": "First son of Adam and Eve, Genesis"
+    },
+    "rehoboam": {
+      "displayName": "Rehoboam",
+      "descriptor": "Son of Solomon; king of Judah when the kingdom divided, 1 Kings 12"
     }
   }
 }
