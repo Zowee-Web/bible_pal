@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1585,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_DAILY_2026-07-24_BATCH_C",
+  "title": "The Rich Man and Lazarus",
+  "scriptureAnchor": "Luke 16:19-31",
+  "scriptureAnchorId": "luke_16_19-31",
+  "bibleStoryKey": "rich_man_and_lazarus",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "shortScripture": false,
+  "themeTags": [
+    "judgment",
+    "compassion",
+    "repentance"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "sobered",
+    "warned"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "timelineEra": "jesus_ministry",
+  "files": {
+    "short": {
+      "storyText": "story_1585_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1585_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1585_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1585_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Lazarus lay at his gate every day, close enough to touch, and the rich man stepped past him every day. Now a chasm no one can cross is fixed between them. The distance that cannot be crossed was once only a gate \u2014 what distance is still only a gate for you?",
+  "editorialNotes": "PAL Daily supervised production 2026-07-24, Batch C (gap CG13). Luke 16:19-31, the Rich Man and Lazarus, absent both lanes. SHORT only, WEB 300w / KJV 290w. Per owner direction the parable is rendered exactly with NO afterlife commentary in either direction: 'Hades'/'hell' (WEB/KJV lane words), 'Abraham's side'/'Abraham's bosom', the 'great chasm/gulf fixed', and 'this flame' are given as the text gives them, without explaining or systematizing them into doctrine. The reversal (16:25), the fixed gulf (16:26), the five brothers (16:27-28), and the closing 'neither will they be persuaded if one rises from the dead' (16:31) are all kept; the story ends on 16:31. KJV narration lightly restructured to avoid verbatim reproduction while preserving the essential dialogue and KJV register. TEXT DRAFT \u2014 AWAITING ADAM AND CHATGPT REVIEW.",
+  "bibleOrderIndex": 78131
+}

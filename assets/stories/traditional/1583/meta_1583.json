@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1583,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_DAILY_2026-07-24_BATCH_C",
+  "title": "Moses Flees to Midian",
+  "scriptureAnchor": "Exodus 2:11-22",
+  "scriptureAnchorId": "exodus_2_11-22",
+  "bibleStoryKey": "moses_flees_to_midian",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "shortScripture": false,
+  "themeTags": [
+    "exile",
+    "loneliness",
+    "refuge"
+  ],
+  "emotionalTags": [
+    "weary",
+    "displaced",
+    "uncertain"
+  ],
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "timelineEra": "exodus",
+  "files": {
+    "short": {
+      "storyText": "story_1583_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1583_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1583_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1583_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "He went out to free his own people, and lost his home for it. Now he drew water for a stranger's flock, far from Egypt, and gave his newborn son a name that meant exile. What does a man carry when even his child's name says he does not belong?",
+  "editorialNotes": "PAL Daily supervised production 2026-07-24, Batch C (gap G8). Exodus 2:11-22 ONLY, Moses's killing of the Egyptian, his flight, and his settling in Midian; SHORT only. Owner-approved hard scope boundary: Exodus 2:23-25 (Israel's cry, God hearing, the covenant remembrance) is EXCLUDED and does not enter this story; it ends on 2:22 (Gershom, 'a foreigner in a foreign land'). WEB 309w / KJV 303w (honest short floor met without shortScripture; not owner-authorized here). The rejection ('Who made you a prince and a judge?') and Moses's fear are kept; the well rescue and Zipporah/Gershom close it. No invented motive or interior beyond the text; weary register carried by selection, not added sentiment. TEXT DRAFT — AWAITING ADAM AND CHATGPT REVIEW.",
+  "bibleOrderIndex": 45128
+}

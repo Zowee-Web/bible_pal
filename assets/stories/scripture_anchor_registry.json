@@ -4531,6 +4531,46 @@
       "moodTags": [
         "weary"
       ]
+    },
+    {
+      "scriptureAnchorId": "2_samuel_11",
+      "bibleStoryKey": "bathsheba_and_uriah",
+      "bibleSourceRef": "2 Samuel 11",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_samuel_18",
+      "bibleStoryKey": "death_of_absalom",
+      "bibleSourceRef": "2 Samuel 18",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "exodus_2_11-22",
+      "bibleStoryKey": "moses_flees_to_midian",
+      "bibleSourceRef": "Exodus 2:11-22",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_18_1-8",
+      "bibleStoryKey": "persistent_widow",
+      "bibleSourceRef": "Luke 18:1-8",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_16_19-31",
+      "bibleStoryKey": "rich_man_and_lazarus",
+      "bibleSourceRef": "Luke 16:19-31",
+      "moodTags": [
+        "anxious"
+      ]
     }
   ]
 }

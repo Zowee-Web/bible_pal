@@ -5809,6 +5809,90 @@
           "text": "But God said, You fool \u2014 tonight your soul is required of you; and whose will these things be?"
         }
       ]
+    },
+    {
+      "bibleStoryKey": "bathsheba_and_uriah",
+      "primaryFigure": "David",
+      "secondaryFigures": [
+        "Bathsheba",
+        "Uriah"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_BATHSHEBA_AND_URIAH_01",
+          "text": "From his roof David saw Uriah's wife, and sent and took her; and when she was with child, he sent her husband to the front to die."
+        },
+        {
+          "id": "FRAME_BATHSHEBA_AND_URIAH_02",
+          "text": "Uriah carried his own death to Joab and fell at the wall; and the thing that David had done displeased the Lord."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "death_of_absalom",
+      "primaryFigure": "David",
+      "secondaryFigures": [
+        "Absalom",
+        "Joab"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_DEATH_OF_ABSALOM_01",
+          "text": "David sent his army out with one charge, to deal gently with Absalom, and stood at the gate to wait for word of the battle."
+        },
+        {
+          "id": "FRAME_DEATH_OF_ABSALOM_02",
+          "text": "Absalom hung caught in the oak, and Joab killed him; and the king wept, My son Absalom, would I had died instead of you."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "moses_flees_to_midian",
+      "primaryFigure": "Moses",
+      "secondaryFigures": [
+        "Zipporah",
+        "Reuel"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_MOSES_FLEES_TO_MIDIAN_01",
+          "text": "Moses struck down an Egyptian to defend a Hebrew, and when it became known, he fled from Pharaoh into the land of Midian."
+        },
+        {
+          "id": "FRAME_MOSES_FLEES_TO_MIDIAN_02",
+          "text": "By a well he helped seven daughters water their flock, and stayed, and named his son Gershom, a stranger in a strange land."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "persistent_widow",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_PERSISTENT_WIDOW_01",
+          "text": "A widow came again and again to a judge who feared neither God nor man, pleading, Give me justice against my adversary."
+        },
+        {
+          "id": "FRAME_PERSISTENT_WIDOW_02",
+          "text": "At last he gave in for her persistence; and Jesus asked whether God will not bring justice to those who cry day and night."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "rich_man_and_lazarus",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_RICH_MAN_AND_LAZARUS_01",
+          "text": "A rich man feasted while Lazarus lay hungry at his gate; both died, and their places were reversed across a great fixed gulf."
+        },
+        {
+          "id": "FRAME_RICH_MAN_AND_LAZARUS_02",
+          "text": "The rich man begged that his brothers be warned; but they have Moses and the prophets to hear."
+        }
+      ]
     }
   ],
   "_stubsNote": "2026-07-19: Manifest-sync backfill \u2014 appended 1 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-07-18: Manifest-sync backfill \u2014 appended 4 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-30: Manifest-sync backfill \u2014 appended 298 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-09: Added 96 auto-generated stub entries (marked with _stub: true) to satisfy biblical_figure_registry_test.dart cross-validation. 68 thematic/devotional bibleStoryKeys remain unregistered (need manual curation with appropriate schema): armor_of_god, as_a_deer_pants, beatitudes, calling_and_election_sure, cast_all_your_worries, ..."
