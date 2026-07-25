@@ -5960,6 +5960,24 @@
           "text": "So Israel turned away, To your tents O Israel, and made Jeroboam king, and only Judah followed the house of David."
         }
       ]
+    },
+    {
+      "bibleStoryKey": "flight_to_egypt",
+      "primaryFigure": "Joseph",
+      "secondaryFigures": [
+        "Herod",
+        "Rachel"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_FLIGHT_TO_EGYPT_01",
+          "text": "An angel warned Joseph in a dream to take the child and his mother and flee to Egypt, for Herod meant to destroy him."
+        },
+        {
+          "id": "FRAME_FLIGHT_TO_EGYPT_02",
+          "text": "Herod killed the children of Bethlehem two years old and under; and Rachel wept for her children, and would not be comforted."
+        }
+      ]
     }
   ],
   "_stubsNote": "2026-07-19: Manifest-sync backfill \u2014 appended 1 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-07-18: Manifest-sync backfill \u2014 appended 4 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-30: Manifest-sync backfill \u2014 appended 298 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-09: Added 96 auto-generated stub entries (marked with _stub: true) to satisfy biblical_figure_registry_test.dart cross-validation. 68 thematic/devotional bibleStoryKeys remain unregistered (need manual curation with appropriate schema): armor_of_god, as_a_deer_pants, beatitudes, calling_and_election_sure, cast_all_your_worries, ..."

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1588,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_DAILY_2026-07-24_BATCH_D",
+  "title": "The Flight to Egypt: Herod's Massacre and Rachel's Weeping",
+  "scriptureAnchor": "Matthew 2:13-18",
+  "scriptureAnchorId": "matthew_2_13-18",
+  "bibleStoryKey": "flight_to_egypt",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "shortScripture": true,
+  "themeTags": [
+    "refuge",
+    "grief",
+    "deliverance"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "grieving",
+    "sorrowful"
+  ],
+  "primaryCharacterId": "joseph_of_nazareth",
+  "primaryCharacterDisplayName": "Joseph",
+  "timelineEra": "jesus_ministry",
+  "files": {
+    "short": {
+      "storyText": "story_1588_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1588_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1588_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1588_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "One child was carried to safety in the night, and in Bethlehem the other children were not. Matthew sets both truths side by side \u2014 the son called out of Egypt, and Rachel weeping for the children who are no more, refusing every comfort. Some grief the passage does not hurry to console.",
+  "editorialNotes": "PAL Daily supervised production 2026-07-24, Batch D (gap CG12). Matthew 2:13-18 ONLY. Owner-ratified title 'The Flight to Egypt: Herod's Massacre and Rachel's Weeping' (2026-07-24), chosen to represent all three movements, not just the flight. SHORT only; shortScripture:true (owner-approved conditionally: the complete faithful telling is naturally 177w WEB / 192w KJV, well under 300, from a 185-word source; not padded). Required content all present: the flight to Egypt (2:13-15, 'Out of Egypt I called my son'), Herod's killing of the male children of Bethlehem two years old and under (2:16), and Matthew's Rachel quotation (2:17-18, Jer 31:15). Owner prohibition observed: NO invented details about the families, the soldiers, the children, or Herod's private thoughts \u2014 Herod's 'exceedingly angry' is the text's own (2:16); the killing is stated plainly, not softened and not dramatized. Ends on 2:18 ('because they are no more'), the passage's own unconsoled close. New character joseph_of_nazareth (Joseph, husband of Mary) added to character_registry, distinct from the patriarch 'joseph'. Narrator Mary Ponder, mood hurting (owner-approved). TEXT DRAFT \u2014 AWAITING ADAM AND CHATGPT REVIEW.",
+  "bibleOrderIndex": 108005
+}
