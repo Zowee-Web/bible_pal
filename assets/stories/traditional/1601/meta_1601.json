@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1601,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_DAILY_2026-07-26_BATCH_G",
+  "title": "The Call of Elisha",
+  "scriptureAnchor": "1 Kings 19:19-21",
+  "scriptureAnchorId": "1_kings_19_19-21",
+  "bibleStoryKey": "call_of_elisha",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "shortScripture": true,
+  "themeTags": [
+    "calling",
+    "discipleship",
+    "sacrifice"
+  ],
+  "emotionalTags": [
+    "called",
+    "committed",
+    "resolute"
+  ],
+  "primaryCharacterId": "elisha",
+  "primaryCharacterDisplayName": "Elisha",
+  "timelineEra": "kingdom",
+  "files": {
+    "short": {
+      "storyText": "story_1601_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1601_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1601_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1601_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Elijah said almost nothing — he only threw his mantle over Elisha's shoulders and kept walking. Elisha's answer was not in words but in what he did next. He slaughtered the very oxen he had been plowing with and burned the gear for the fire, then fed the people and followed. He left himself no way back to the field. What would it look like to answer a call without keeping one foot in the life you are leaving?",
+  "editorialNotes": "PAL Daily supervised production 2026-07-26, Batch G. 1 Kings 19:19-21 ONLY. Owner-approved shortScripture:true — the complete faithful telling is naturally 120w WEB / 126w KJV from a 116-word source; NOT padded (no added scenery, travel, dialogue, emotions, or farming details, per owner directive). Keeps the mantle, the request to kiss his parents, and the decisive break (slaughtering the oxen, burning the gear, feeding the people) before following. WEB uses 'Yahweh' where the divine name appears; this passage names only Elijah and Elisha. Narrator/mood were authoring selections (title/anchor/length owner-given) — flagged for owner review. TEXT DRAFT — AWAITING ADAM AND CHATGPT REVIEW.",
+  "bibleOrderIndex": 82347
+}

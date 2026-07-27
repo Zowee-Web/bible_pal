@@ -6114,6 +6114,73 @@
           "text": "Because Solomon did not keep the covenant, the Lord said the kingdom would be torn away, though not all of it, for David's sake."
         }
       ]
+    },
+    {
+      "bibleStoryKey": "call_of_elisha",
+      "primaryFigure": "Elisha",
+      "secondaryFigures": [
+        "Elijah"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_CALL_OF_ELISHA_01",
+          "text": "Elijah threw his mantle over Elisha as he plowed, and Elisha left the oxen to run after him."
+        },
+        {
+          "id": "FRAME_CALL_OF_ELISHA_02",
+          "text": "Elisha slaughtered his oxen and burned his plowing gear to feed the people, leaving no way back before he followed."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "ezra_the_scribe",
+      "primaryFigure": "Ezra",
+      "secondaryFigures": [
+        "Artaxerxes"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_EZRA_THE_SCRIBE_01",
+          "text": "Ezra, a scribe skilled in the law of Moses, went up from Babylon to Jerusalem, for the good hand of his God was on him."
+        },
+        {
+          "id": "FRAME_EZRA_THE_SCRIBE_02",
+          "text": "He had set his heart to study the law, to do it, and to teach it, and blessed God for putting the work in the king's heart."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "jobs_second_test",
+      "primaryFigure": "Job",
+      "secondaryFigures": [
+        "Satan",
+        "Job's wife"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_JOBS_SECOND_TEST_01",
+          "text": "Struck with painful sores from head to foot, Job sat among the ashes, and his wife told him to renounce God and die."
+        },
+        {
+          "id": "FRAME_JOBS_SECOND_TEST_02",
+          "text": "Job would not sin with his lips, and his three friends sat with him seven days in silence, for his grief was very great."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "workers_in_the_vineyard",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_WORKERS_IN_THE_VINEYARD_01",
+          "text": "A landowner hired workers all through the day, then paid every one the same wage, from the last hour to the first."
+        },
+        {
+          "id": "FRAME_WORKERS_IN_THE_VINEYARD_02",
+          "text": "When the all-day workers grumbled, he asked whether their eye was envious because he was generous."
+        }
+      ]
     }
   ],
   "_stubsNote": "2026-07-19: Manifest-sync backfill \u2014 appended 1 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-07-18: Manifest-sync backfill \u2014 appended 4 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-30: Manifest-sync backfill \u2014 appended 298 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-09: Added 96 auto-generated stub entries (marked with _stub: true) to satisfy biblical_figure_registry_test.dart cross-validation. 68 thematic/devotional bibleStoryKeys remain unregistered (need manual curation with appropriate schema): armor_of_god, as_a_deer_pants, beatitudes, calling_and_election_sure, cast_all_your_worries, ..."

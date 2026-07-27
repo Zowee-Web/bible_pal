@@ -4675,6 +4675,38 @@
       "moodTags": [
         "hurting"
       ]
+    },
+    {
+      "scriptureAnchorId": "1_kings_19_19-21",
+      "bibleStoryKey": "call_of_elisha",
+      "bibleSourceRef": "1 Kings 19:19-21",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "ezra_7_1-28",
+      "bibleStoryKey": "ezra_the_scribe",
+      "bibleSourceRef": "Ezra 7:1-28",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "job_2_1-13",
+      "bibleStoryKey": "jobs_second_test",
+      "bibleSourceRef": "Job 2:1-13",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matthew_20_1-16",
+      "bibleStoryKey": "workers_in_the_vineyard",
+      "bibleSourceRef": "Matthew 20:1-16",
+      "moodTags": [
+        "grateful"
+      ]
     }
   ]
 }
