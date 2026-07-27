@@ -4451,6 +4451,326 @@
       "moodTags": [
         "encouraging"
       ]
+    },
+    {
+      "scriptureAnchorId": "genesis_7-8",
+      "bibleStoryKey": "the_flood",
+      "bibleSourceRef": "Genesis 7-8",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_27",
+      "bibleStoryKey": "the_stolen_blessing",
+      "bibleSourceRef": "Genesis 27",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_33",
+      "bibleStoryKey": "jacob_and_esau_reconcile",
+      "bibleSourceRef": "Genesis 33",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "judges_16_4-22",
+      "bibleStoryKey": "delilah_and_samsons_capture",
+      "bibleSourceRef": "Judges 16:4-22",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matthew_25_1-13",
+      "bibleStoryKey": "parable_of_the_ten_virgins",
+      "bibleSourceRef": "Matthew 25:1-13",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "exodus_7-12",
+      "bibleStoryKey": "passover_and_the_plagues",
+      "bibleSourceRef": "Exodus 7-12",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "joshua_7_13_8_29",
+      "bibleStoryKey": "achan_judgment_and_capture_of_ai",
+      "bibleSourceRef": "Joshua 7:13-8:29",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "joshua_9",
+      "bibleStoryKey": "gibeonite_covenant",
+      "bibleSourceRef": "Joshua 9",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_39",
+      "bibleStoryKey": "potiphars_house",
+      "bibleSourceRef": "Genesis 39",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_12_13-21",
+      "bibleStoryKey": "parable_of_the_rich_fool",
+      "bibleSourceRef": "Luke 12:13-21",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_samuel_11",
+      "bibleStoryKey": "bathsheba_and_uriah",
+      "bibleSourceRef": "2 Samuel 11",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_samuel_18",
+      "bibleStoryKey": "death_of_absalom",
+      "bibleSourceRef": "2 Samuel 18",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "exodus_2_11-22",
+      "bibleStoryKey": "moses_flees_to_midian",
+      "bibleSourceRef": "Exodus 2:11-22",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_18_1-8",
+      "bibleStoryKey": "persistent_widow",
+      "bibleSourceRef": "Luke 18:1-8",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_16_19-31",
+      "bibleStoryKey": "rich_man_and_lazarus",
+      "bibleSourceRef": "Luke 16:19-31",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "john_18_28-38",
+      "bibleStoryKey": "jesus_before_pilate",
+      "bibleSourceRef": "John 18:28-38",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matthew_27_15-26",
+      "bibleStoryKey": "barabbas_and_the_crowd",
+      "bibleSourceRef": "Matthew 27:15-26",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matthew_25_31-46",
+      "bibleStoryKey": "sheep_and_the_goats",
+      "bibleSourceRef": "Matthew 25:31-46",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_kings_12",
+      "bibleStoryKey": "kingdom_splits",
+      "bibleSourceRef": "1 Kings 12",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matthew_2_13-18",
+      "bibleStoryKey": "flight_to_egypt",
+      "bibleSourceRef": "Matthew 2:13-18",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_44_1-34",
+      "bibleStoryKey": "judah_pleads_for_benjamin",
+      "bibleSourceRef": "Genesis 44:1-34",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "exodus_34_1-10",
+      "bibleStoryKey": "the_name_proclaimed",
+      "bibleSourceRef": "Exodus 34:1-10",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "leviticus_16_1-22",
+      "bibleStoryKey": "day_of_atonement",
+      "bibleSourceRef": "Leviticus 16:1-22",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "numbers_16_1-35",
+      "bibleStoryKey": "korahs_rebellion",
+      "bibleSourceRef": "Numbers 16:1-35",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "numbers_22_21-35",
+      "bibleStoryKey": "balaam_and_the_donkey",
+      "bibleSourceRef": "Numbers 22:21-35",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "judges_3_12-30",
+      "bibleStoryKey": "ehud_and_eglon",
+      "bibleSourceRef": "Judges 3:12-30",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_samuel_8_1-22",
+      "bibleStoryKey": "israel_demands_a_king",
+      "bibleSourceRef": "1 Samuel 8:1-22",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_kings_11_1-13",
+      "bibleStoryKey": "solomons_divided_heart",
+      "bibleSourceRef": "1 Kings 11:1-13",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_kings_19_19-21",
+      "bibleStoryKey": "call_of_elisha",
+      "bibleSourceRef": "1 Kings 19:19-21",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "ezra_7_1-28",
+      "bibleStoryKey": "ezra_the_scribe",
+      "bibleSourceRef": "Ezra 7:1-28",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "job_2_1-13",
+      "bibleStoryKey": "jobs_second_test",
+      "bibleSourceRef": "Job 2:1-13",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matthew_20_1-16",
+      "bibleStoryKey": "workers_in_the_vineyard",
+      "bibleSourceRef": "Matthew 20:1-16",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matthew_13_weeds_selected",
+      "bibleStoryKey": "weeds_among_the_wheat",
+      "bibleSourceRef": "Matthew 13:24-30, 36-43",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "mark_4_26-29",
+      "bibleStoryKey": "the_growing_seed",
+      "bibleSourceRef": "Mark 4:26-29",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matthew_13_44-46",
+      "bibleStoryKey": "hidden_treasure_and_pearl",
+      "bibleSourceRef": "Matthew 13:44-46",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_25_27-34",
+      "bibleStoryKey": "esau_sells_birthright",
+      "bibleSourceRef": "Genesis 25:27-34",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "leviticus_19_9-18",
+      "bibleStoryKey": "love_your_neighbor",
+      "bibleSourceRef": "Leviticus 19:9-18",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_11_5-13",
+      "bibleStoryKey": "friend_at_midnight",
+      "bibleSourceRef": "Luke 11:5-13",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_14_15-24",
+      "bibleStoryKey": "the_great_banquet",
+      "bibleSourceRef": "Luke 14:15-24",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "acts_5_1-11",
+      "bibleStoryKey": "ananias_and_sapphira",
+      "bibleSourceRef": "Acts 5:1-11",
+      "moodTags": [
+        "anxious"
+      ]
     }
   ]
 }

@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1582,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_DAILY_2026-07-24_BATCH_C",
+  "title": "O My Son Absalom",
+  "scriptureAnchor": "2 Samuel 18",
+  "scriptureAnchorId": "2_samuel_18",
+  "bibleStoryKey": "death_of_absalom",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "shortScripture": false,
+  "themeTags": [
+    "grief",
+    "fatherhood",
+    "consequence"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "grieved",
+    "grieving"
+  ],
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "timelineEra": "kingdom",
+  "files": {
+    "short": {
+      "storyText": "story_1582_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1582_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_1582_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1582_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1582_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1582_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Every runner brought news of victory, but David asked only whether Absalom was safe. When the answer finally came, the triumph of the battle meant nothing beside the death of his son. What becomes of victory when the one you hoped to spare is gone?",
+  "editorialNotes": "PAL Daily supervised production 2026-07-24, Batch C (gap G7). 2 Samuel 18, the death of Absalom and David's grief, absent both lanes. SHORT + FULL only (owner-locked; no long variant). WEB 333/651w, KJV 346/710w. David's grief carried by the passage's own words (18:33) with no added sentiment or melodrama; the king's threefold 'deal gently' charge (18:5), the repeated single question 'Is it well with the young man Absalom?' (18:29, 18:32), and Joab's disobedience are kept. Ends on the terminal grief of 18:33 ('would God I had died for thee'); no material after the cry. No motive or commentary added beyond the source. TEXT DRAFT — AWAITING ADAM AND CHATGPT REVIEW. REV 2026-07-24 (owner review): reflection replaced (prior overstated that the victory was 'bought' by Absalom's death, which Joab caused against David's command); prose 'finished it' -> 'surrounded him and killed him'.",
+  "bibleOrderIndex": 37300
+}

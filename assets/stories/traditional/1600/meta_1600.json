@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1600,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_DAILY_2026-07-26_BATCH_F",
+  "title": "Solomon's Divided Heart",
+  "scriptureAnchor": "1 Kings 11:1-13",
+  "scriptureAnchorId": "1_kings_11_1-13",
+  "bibleStoryKey": "solomons_divided_heart",
+  "storyVoiceKey": "VOICE_JANE_PROFESSIONAL",
+  "shortScripture": false,
+  "themeTags": [
+    "idolatry",
+    "consequence",
+    "faithfulness"
+  ],
+  "emotionalTags": [
+    "grieved",
+    "solemn",
+    "convicted"
+  ],
+  "primaryCharacterId": "solomon",
+  "primaryCharacterDisplayName": "Solomon",
+  "timelineEra": "kingdom",
+  "files": {
+    "short": {
+      "storyText": "story_1600_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1600_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1600_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1600_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "When Solomon was old, his wives turned his heart after other gods, and his heart was no longer wholly true to Yahweh. Yahweh had appeared to him twice and had commanded him not to go after other gods, but Solomon did not keep that command. The kingdom would be torn from his house—though not all of it, and not in his lifetime, for David's sake. What competes for a loyalty that should be whole?",
+  "editorialNotes": "PAL Daily supervised production 2026-07-26, Batch F. 1 Kings 11:1-13 ONLY. Adult lane (idolatry; high places for Chemosh and Molech) — kidFriendly false. Keeps the passage's own language ('abomination'), the turning of Solomon's heart, and the judgment tempered for David's and Jerusalem's sake (11:11-13); the divine anger is not editorialized. Does not import Solomon's wisdom from outside the boundary. WEB 'Yahweh'; KJV 'the Lord'/'strange women'. Narrator/mood/length were authoring selections (title/anchor owner-given) — flagged for owner review. TEXT APPROVED — AUDIO BLOCKED.",
+  "bibleOrderIndex": 74329
+}

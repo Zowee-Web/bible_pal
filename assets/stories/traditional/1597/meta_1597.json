@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1597,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_DAILY_2026-07-26_BATCH_F",
+  "title": "Balaam and the Donkey",
+  "scriptureAnchor": "Numbers 22:21-35",
+  "scriptureAnchorId": "numbers_22_21-35",
+  "bibleStoryKey": "balaam_and_the_donkey",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "shortScripture": false,
+  "themeTags": [
+    "obedience",
+    "revelation",
+    "guidance"
+  ],
+  "emotionalTags": [
+    "humbled",
+    "reverent",
+    "stunned"
+  ],
+  "primaryCharacterId": "balaam",
+  "primaryCharacterDisplayName": "Balaam",
+  "timelineEra": "exodus",
+  "files": {
+    "short": {
+      "storyText": "story_1597_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1597_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1597_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1597_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "The seer could not see. Three times the donkey turned from a drawn sword that Balaam never noticed, and three times he beat her for saving his life. Only when Yahweh opened his eyes did he fall on his face. The animal beneath him had been the one paying attention. Where might you be striking at the very thing that is trying to stop you?",
+  "editorialNotes": "PAL Daily supervised production 2026-07-26, Batch F. Numbers 22:21-35 ONLY (the road, the donkey, the angel). The donkey's speech is kept as the text gives it (22:28-30); the angel's rebuke 'your way is perverse before me' (22:32) is kept, not softened. No motive is supplied beyond the text. WEB uses 'Yahweh'/'donkey'; KJV 'the Lord'/'ass'. Narrator/mood/length were authoring selections (title/anchor owner-given) — flagged for owner review. TEXT APPROVED — AUDIO BLOCKED.",
+  "bibleOrderIndex": 59204
+}

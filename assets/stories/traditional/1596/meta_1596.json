@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1596,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_DAILY_2026-07-26_BATCH_F",
+  "title": "Korah's Rebellion: The Earth Opens",
+  "scriptureAnchor": "Numbers 16:1-35",
+  "scriptureAnchorId": "numbers_16_1-35",
+  "bibleStoryKey": "korahs_rebellion",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "shortScripture": false,
+  "themeTags": [
+    "pride",
+    "authority",
+    "judgment"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "trembling",
+    "solemn"
+  ],
+  "primaryCharacterId": "korah",
+  "primaryCharacterDisplayName": "Korah",
+  "timelineEra": "exodus",
+  "files": {
+    "short": {
+      "storyText": "story_1596_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1596_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1596_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1596_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Korah's charge sounded almost pious: everyone is holy, so why set yourselves above us? Moses fell on his face, then placed the matter before Yahweh and rebuked the Levites for seeking the priesthood as well. When judgment threatened the whole congregation, Moses and Aaron fell down again and pleaded for them. The passage holds both their appointed service and their intercession for the people. What is the difference between being called to serve and grasping for a place that was not given?",
+  "editorialNotes": "PAL Daily supervised production 2026-07-26, Batch F. Numbers 16:1-35 ONLY. Adult lane (divine judgment: the ground swallows Korah, Dathan, Abiram and their households alive; fire consumes the 250) — kidFriendly false. The judgment is stated plainly, not dramatized beyond the text and not defended or editorialized; Moses and Aaron's intercession (16:22) is kept. WEB uses 'Yahweh'/'Sheol'; KJV 'the Lord'/'the pit'. New character 'korah' added to character_registry. Narrator/mood/length were authoring selections (title/anchor owner-given) — flagged for owner review. TEXT APPROVED — AUDIO BLOCKED.",
+  "bibleOrderIndex": 53184
+}

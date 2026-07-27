@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1595,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_DAILY_2026-07-26_BATCH_E",
+  "title": "The Day of Atonement and the Scapegoat",
+  "scriptureAnchor": "Leviticus 16:1-22",
+  "scriptureAnchorId": "leviticus_16_1-22",
+  "bibleStoryKey": "day_of_atonement",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "shortScripture": false,
+  "themeTags": [
+    "sacrifice",
+    "confession",
+    "rest"
+  ],
+  "emotionalTags": [
+    "reverent",
+    "humbled",
+    "peaceful"
+  ],
+  "primaryCharacterId": "aaron",
+  "primaryCharacterDisplayName": "Aaron",
+  "timelineEra": "exodus",
+  "files": {
+    "short": {
+      "storyText": "story_1595_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1595_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1595_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1595_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Two goats stood at the door of the tent. One was killed, and its blood was brought inside before the mercy seat. On the other, Aaron laid both his hands and confessed all the sins of the people, and it carried them away into a solitary land. Nothing here is quick or careless — the sins are named, laid on, and sent far off. What weight might you be carrying that you have never named?",
+  "editorialNotes": "PAL Daily supervised production 2026-07-26, Batch E. Leviticus 16:1-22 ONLY (the atonement ritual and the two goats). First Leviticus story in the corpus. Adult lane (ritual blood; the death of Aaron's two sons named as context in 16:1 and not editorialized) — kidFriendly false. The two goats, the confession over the live goat, and its release into a solitary land (16:21-22) are kept; no New Testament typology is imported. WEB uses 'Yahweh'. Narrator/mood/length were authoring selections (title/anchor owner-given) — flagged for owner review. TEXT APPROVED — AUDIO BLOCKED.",
+  "bibleOrderIndex": 16002
+}

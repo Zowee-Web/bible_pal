@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1593,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_DAILY_2026-07-26_BATCH_E",
+  "title": "The Name Proclaimed: Merciful and Gracious",
+  "scriptureAnchor": "Exodus 34:1-10",
+  "scriptureAnchorId": "exodus_34_1-10",
+  "bibleStoryKey": "the_name_proclaimed",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "shortScripture": false,
+  "themeTags": [
+    "mercy",
+    "covenant",
+    "revelation"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "reverent",
+    "awed"
+  ],
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "timelineEra": "exodus",
+  "files": {
+    "short": {
+      "storyText": "story_1593_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1593_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1593_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1593_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Yahweh proclaimed his own name to Moses, and it held two things at once: mercy and truth. Slow to anger, abounding in loving kindness, forgiving iniquity — and by no means clearing the guilty. Moses did not explain it or choose between them. He bowed to the ground and worshiped, and asked this God to go with a stiff-necked people anyway. What do you do with a God who is both merciful and just?",
+  "editorialNotes": "PAL Daily supervised production 2026-07-26, Batch E. Exodus 34:1-10 ONLY. The proclaimed Name is rendered in full, keeping both halves the text holds together: 'merciful and gracious, slow to anger... forgiving iniquity' AND 'by no means clearing the guilty, visiting the iniquity... to the third and fourth generation' (34:6-7) — the difficult clause is not softened. Ends on the covenant promise of marvels (34:10). WEB uses 'Yahweh'. Narrator/mood/length were authoring selections (title/anchor owner-given) — flagged for owner review. TEXT APPROVED — AUDIO BLOCKED.",
+  "bibleOrderIndex": 80129
+}

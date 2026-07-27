@@ -770,6 +770,38 @@
     "cain": {
       "displayName": "Cain",
       "descriptor": "First son of Adam and Eve, Genesis"
+    },
+    "rehoboam": {
+      "displayName": "Rehoboam",
+      "descriptor": "Son of Solomon; king of Judah when the kingdom divided, 1 Kings 12"
+    },
+    "joseph_of_nazareth": {
+      "displayName": "Joseph",
+      "descriptor": "Husband of Mary; took the child Jesus to Egypt to escape Herod, Matthew 2"
+    },
+    "judah": {
+      "displayName": "Judah",
+      "descriptor": "Son of Jacob who offered himself for Benjamin; ancestor of David, Genesis"
+    },
+    "korah": {
+      "displayName": "Korah",
+      "descriptor": "Levite who led a rebellion against Moses and Aaron in the wilderness, Numbers 16"
+    },
+    "balaam": {
+      "displayName": "Balaam",
+      "descriptor": "Prophet-for-hire whose donkey saw the angel of the Lord, Numbers 22"
+    },
+    "ehud": {
+      "displayName": "Ehud",
+      "descriptor": "Left-handed judge who delivered Israel from Moab, Judges 3"
+    },
+    "esau": {
+      "displayName": "Esau",
+      "descriptor": "Elder twin son of Isaac; sold his birthright to Jacob, Genesis 25"
+    },
+    "ananias_and_sapphira": {
+      "displayName": "Ananias and Sapphira",
+      "descriptor": "A married couple who lied about the proceeds of sold property, Acts 5"
     }
   }
 }

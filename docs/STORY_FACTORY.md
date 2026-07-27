@@ -12,13 +12,14 @@ before implementation.
 
 ## 0. Engine Architecture (Locked — Revised 2026-05-13)
 
-### Active Engine: Claude Opus (4.6 → 4.7 → 4.8)
+### Active Engine: Claude (Opus 4.6 → 4.7 → 4.8 → Fable 5)
 
-All new story generation uses **Claude Opus** via the Anthropic API. The active
+All new story generation uses **Claude** via the Anthropic API. The active
 model has advanced over time and each story's metadata records the model that
 authored it: `claude-opus-4-6` (initial Opus batches), `claude-opus-4-7` (added
-2026-05, 1M context), and **`claude-opus-4-8`** (added 2026-06, current active
-model; e.g. 1543, 1552-1561). Traditional is the only active mode (Creative was
+2026-05, 1M context), `claude-opus-4-8` (added 2026-06; e.g. 1543, 1552-1570),
+and **`claude-fable-5`** (added 2026-07, current active model; TEXT-FIRST STORY
+FACTORY 2.0 pilot, stories 1571+). Traditional is the only active mode (Creative was
 retired 2026-05-13; see
 [archive/CREATIVE_RETIREMENT_2026_05_13.md](archive/CREATIVE_RETIREMENT_2026_05_13.md)).
 
@@ -27,8 +28,8 @@ retired 2026-05-13; see
 | Traditional | Claude Opus (Cloud)     | `generate_story_claude.py`     | 1000–1999+  |
 
 **Active Engine Rules:**
-- MUST use the current sanctioned Claude Opus model (now `claude-opus-4-8`) via the Anthropic Python SDK.
-- Metadata records `"createdByModel"` = the model that authored the story (4-6 / 4-7 / 4-8).
+- MUST use the current sanctioned Claude model (now `claude-fable-5`) via the Anthropic Python SDK.
+- Metadata records `"createdByModel"` = the model that authored the story (4-6 / 4-7 / 4-8 / fable-5).
 - Registry: `used_scripture_anchors.json`.
 - Output directory: `assets/stories/traditional/`.
 

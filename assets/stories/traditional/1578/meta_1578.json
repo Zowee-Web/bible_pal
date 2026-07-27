@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1578,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "claude-opus-4-8",
+  "generationBatch": "PAL_TFSF2_BATCH_B_2026-07",
+  "title": "The Gibeonite Covenant",
+  "scriptureAnchor": "Joshua 9",
+  "scriptureAnchorId": "joshua_9",
+  "bibleStoryKey": "gibeonite_covenant",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "themeTags": [
+    "covenant",
+    "consequence",
+    "mercy"
+  ],
+  "emotionalTags": [
+    "uncertain",
+    "humbled",
+    "watchful"
+  ],
+  "primaryCharacterId": "joshua",
+  "primaryCharacterDisplayName": "Joshua",
+  "timelineEra": "conquest",
+  "files": {
+    "short": {
+      "storyText": "story_1578_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1578_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_1578_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_1578_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1578_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1578_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "The evidence was all laid out \u2014 the dry bread, the worn sandals, the split skins. The men of Israel tasted the provisions. They put their questions to the Gibeonites. The one thing they did not do was ask Yahweh. Three days later the lie was plain, and the oath, once sworn in his name, held all the same. When do you stop to ask, and when do you decide you have already seen enough?",
+  "editorialNotes": "Text-First Story Factory 2.0 Batch B (journey backlog G5, approved 2026-07-23). Joshua 9, absent both lanes. LOCKED ID/order: the Gibeonite Covenant is 1578, after Achan (1577). SHORT+FULL (WEB 332w/569w; KJV 341w/599w). CENTRAL FACT preserved (owner requirement): the men of Israel sampled the provisions but did NOT ask counsel from the mouth of Yahweh (9:14) \u2014 kept as its own beat in every variant. Narrator-fact vs Gibeonite-claim distinguished: the narrator establishes the ruse (worn sacks, cracked skins, moldy bread, 9:4-5) and that they were neighbors living among Israel (9:16), while the far-country origin, the fame-of-Yahweh motive, and the moldy-bread 'proof' are presented as the Gibeonites' own claim/tale. No invented Joshua thoughts or emotional reaction. Discovery, confrontation, oath, and the woodcutter/water-carrier service arrangement all preserved (9:16-27). Reflection grounded in the un-asked counsel and the binding oath, not a generic lesson about trusting instincts. Boundary held to chapter 9. KJV lane uses KJV diction (wrought wilily, clouted shoes, rent bottles, hewers of wood and drawers of water, princes); WEB uses Yahweh. CODEX-AUDIT CORRECTION 2026-07-23: (F8) removed the invented internal state 'Israel was wary'/'were wary'; the men's observable question (9:7) now stands alone. (F9) reflection and figure-registry framing corrected to limit Israel's action to tasting their provisions (9:14) rather than 'sampling/handling every proof'. (F10) removed the unsupported counterfactual 'a promise you would never have made, had you only asked first'; the reflection now asks about stopping to ask, without claiming an unknowable alternative outcome. Reflection recast to a 'When do you...' question (batch reflection-variety fix). The 9:14 un-asked-counsel beat and claim-vs-fact distinction (audit-confirmed clean) are unchanged.",
+  "bibleOrderIndex": 39223
+}

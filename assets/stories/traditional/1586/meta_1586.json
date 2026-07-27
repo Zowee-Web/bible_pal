@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1586,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_DAILY_2026-07-24_BATCH_D",
+  "title": "Jesus Before Pilate: What Is Truth?",
+  "scriptureAnchor": "John 18:28-38",
+  "scriptureAnchorId": "john_18_28-38",
+  "bibleStoryKey": "jesus_before_pilate",
+  "storyVoiceKey": "VOICE_JANE_PROFESSIONAL",
+  "shortScripture": true,
+  "themeTags": [
+    "kingship",
+    "witness",
+    "judgment"
+  ],
+  "emotionalTags": [
+    "anxious",
+    "uncertain",
+    "wondering"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "timelineEra": "jesus_ministry",
+  "files": {
+    "short": {
+      "storyText": "story_1586_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1586_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1586_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1586_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Pilate asked, \"What is truth?\" Then he went outside and declared that he found no basis for a charge against Jesus. He recognized innocence, but the decision before him remained. What happens when the truth you recognize becomes costly?",
+  "editorialNotes": "PAL Daily supervised production 2026-07-24, Batch D (gap CG08). Owner-approved narrow scope: John 18:28-38 ONLY (the 'What is truth?' interrogation), deliberately NOT extending into the Barabbas selection / crowd choice / condemnation of John 18:39-19:16, which is story 1587's material. SHORT only, WEB 300w / KJV 302w. Sensitive handling: John's 'the Jews' at the Praetorium is rendered as the specific accusers the text names in 18:35 (the chief priests and Jesus' own nation's leaders), not generalized to Jewish people. The kingship exchange (18:36-37) and 'What is truth?' (18:38) are kept as essential dialogue; ends on Pilate's 'I find no case against him' (18:38). Narrator/mood/length were authoring selections (no committed owner lock beyond the title/anchor) — flagged for owner review. TEXT DRAFT — AWAITING ADAM AND CHATGPT REVIEW. REV 2026-07-24 (owner review): removed the unstated inference that Pilate did not wait for an answer (18:38 does not say). The faithful telling now sits at WEB 287w / KJV 296w; per the corrected production rule (never pad to a floor), shortScripture:true is applied and FLAGGED for owner confirmation. Reflection replaced (prior imported 'Truth himself' = John 14:6, outside the locked anchor).",
+  "bibleOrderIndex": 27063
+}

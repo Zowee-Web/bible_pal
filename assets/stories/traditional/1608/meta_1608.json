@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1608,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_DAILY_2026-07-26_BATCH_H",
+  "title": "The Growing Seed",
+  "scriptureAnchor": "Mark 4:26-29",
+  "scriptureAnchorId": "mark_4_26-29",
+  "bibleStoryKey": "the_growing_seed",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "shortScripture": true,
+  "themeTags": [
+    "kingdom",
+    "sowing",
+    "mystery"
+  ],
+  "emotionalTags": [
+    "peaceful",
+    "patient",
+    "trusting"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "timelineEra": "jesus_ministry",
+  "files": {
+    "short": {
+      "storyText": "story_1608_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1608_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1608_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1608_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "The man scatters the seed and then goes on with his life — sleeping, waking, sleeping again — while underground something he cannot see or explain is happening. The earth does the work by itself: blade, then head, then full grain. He does not make it grow; he only knows when it is time to reap. What are you trying to force that might be growing quietly without you?",
+  "editorialNotes": "PAL Daily supervised production 2026-07-26, Batch H. Mark 4:26-29 ONLY. Owner-approved shortScripture:true — the complete faithful telling is naturally 78w WEB / 78w KJV from a 73-word source; NOT padded (no invented farming scenes, no dialogue, per owner directive). Preserves the seed growing while the man does not know how (4:27) and the sequence blade, head, full grain, harvest (4:28-29); the stages are not decoded into a symbol-by-symbol allegory. primaryCharacterId 'jesus' per the parable pattern. WEB 'full grain'; KJV 'full corn'. Narrator/mood owner-locked; length owner-given. TEXT APPROVED — AUDIO BLOCKED.",
+  "bibleOrderIndex": 16002
+}

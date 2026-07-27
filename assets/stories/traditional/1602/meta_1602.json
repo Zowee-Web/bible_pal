@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1602,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_DAILY_2026-07-26_BATCH_G",
+  "title": "Ezra the Scribe Comes to Jerusalem",
+  "scriptureAnchor": "Ezra 7:1-28",
+  "scriptureAnchorId": "ezra_7_1-28",
+  "bibleStoryKey": "ezra_the_scribe",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "shortScripture": false,
+  "themeTags": [
+    "scripture",
+    "devotion",
+    "providence"
+  ],
+  "emotionalTags": [
+    "grateful",
+    "earnest",
+    "blessed"
+  ],
+  "primaryCharacterId": "ezra",
+  "primaryCharacterDisplayName": "Ezra",
+  "timelineEra": "return",
+  "files": {
+    "short": {
+      "storyText": "story_1602_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1602_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1602_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1602_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Three times the account says the same thing: the good hand of his God was on Ezra. A foreign king funded the journey, opened his treasury, and sent Ezra home with authority — and Ezra saw whose hand was behind it. He had set his heart to study the law, to do it, and to teach it; and when it was done, he blessed the God who had put it all in the king's heart. Where do you see a hand behind the doors that have opened for you?",
+  "editorialNotes": "PAL Daily supervised production 2026-07-26, Batch G. Ezra 7:1-28. The long genealogy (7:1-5) is compressed to 'a descendant of Aaron the chief priest' and the king's decree (7:12-26) is summarized faithfully without altering its terms. Keeps the threefold refrain 'the good hand of his God on him' (7:6,9,28), Ezra's heart set to seek/do/teach the law (7:10), and his closing blessing of God (7:27-28). WEB 'Yahweh'; KJV 'the Lord'. Narrator/mood/length were authoring selections (title/anchor owner-given) — flagged for owner review. TEXT APPROVED — AUDIO BLOCKED.",
+  "bibleOrderIndex": 8541
+}

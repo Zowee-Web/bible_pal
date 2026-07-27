@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1587,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_DAILY_2026-07-24_BATCH_D",
+  "title": "Barabbas and the Crowd's Choice",
+  "scriptureAnchor": "Matthew 27:15-26",
+  "scriptureAnchorId": "matthew_27_15-26",
+  "bibleStoryKey": "barabbas_and_the_crowd",
+  "storyVoiceKey": "VOICE_MARTHA_CARING",
+  "shortScripture": true,
+  "themeTags": [
+    "injustice",
+    "sacrifice",
+    "deliverance"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "grieved",
+    "convicted"
+  ],
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "timelineEra": "jesus_ministry",
+  "files": {
+    "short": {
+      "storyText": "story_1587_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1587_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1587_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1587_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Pilate offered the crowd a choice. They asked for Barabbas to be released, while Jesus — whom Pilate called innocent — was flogged and handed over to be crucified. The passage leaves the two men moving in opposite directions: one released, one condemned. What do you notice about that exchange?",
+  "editorialNotes": "PAL Daily supervised production 2026-07-24, Batch D (gap CG09). Matthew 27:15-26, the Barabbas choice, absent both lanes. SHORT only, WEB 302w / KJV 301w. Owner directive observed: Matthew 27:25 ('His blood be on us and on our children') is included exactly and faithfully AS THE CROWD'S CRY, with NO added commentary assigning the action to Jewish people generally, to later generations, or to anyone beyond the participants the passage names. The text's own attribution is kept intact: 'the chief priests and the elders persuaded the multitudes' (27:20). The reflection deliberately centers Barabbas and the substitution (the guilty freed, the innocent led away in his place), not collective guilt. Ends on 27:26 (Barabbas released, Jesus scourged and delivered to be crucified). Narrator/mood/length were authoring selections (title/anchor owner-given) — flagged for owner review. TEXT DRAFT — AWAITING ADAM AND CHATGPT REVIEW. REV 2026-07-24 (owner review): shortScripture:true APPROVED by owner; floor-padding removed ('whatever he had done', 'from one group to the next', 'again and again', 'in the jail') -> WEB 237w / KJV 255w. Reflection replaced (prior asserted Barabbas was 'guilty' / 'most deserved that cross' / 'never spoke a word' -- not stated in Matthew 27:15-26; those derive from parallel accounts or interpretation).",
+  "bibleOrderIndex": 104992
+}
