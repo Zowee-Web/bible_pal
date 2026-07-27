@@ -778,6 +778,10 @@
     "joseph_of_nazareth": {
       "displayName": "Joseph",
       "descriptor": "Husband of Mary; took the child Jesus to Egypt to escape Herod, Matthew 2"
+    },
+    "judah": {
+      "displayName": "Judah",
+      "descriptor": "Son of Jacob who offered himself for Benjamin; ancestor of David, Genesis"
     }
   }
 }

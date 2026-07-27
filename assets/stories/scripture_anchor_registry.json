@@ -4611,6 +4611,30 @@
       "moodTags": [
         "hurting"
       ]
+    },
+    {
+      "scriptureAnchorId": "genesis_44_1-34",
+      "bibleStoryKey": "judah_pleads_for_benjamin",
+      "bibleSourceRef": "Genesis 44:1-34",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "exodus_34_1-10",
+      "bibleStoryKey": "the_name_proclaimed",
+      "bibleSourceRef": "Exodus 34:1-10",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "leviticus_16_1-22",
+      "bibleStoryKey": "day_of_atonement",
+      "bibleSourceRef": "Leviticus 16:1-22",
+      "moodTags": [
+        "calm_peaceful"
+      ]
     }
   ]
 }

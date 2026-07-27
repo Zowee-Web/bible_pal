@@ -5978,6 +5978,56 @@
           "text": "Herod killed the children of Bethlehem two years old and under; and Rachel wept for her children, and would not be comforted."
         }
       ]
+    },
+    {
+      "bibleStoryKey": "judah_pleads_for_benjamin",
+      "primaryFigure": "Judah",
+      "secondaryFigures": [
+        "Joseph",
+        "Benjamin"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_JUDAH_PLEADS_FOR_BENJAMIN_01",
+          "text": "Joseph's silver cup was found in Benjamin's sack, and the brothers tore their clothes and returned to the city."
+        },
+        {
+          "id": "FRAME_JUDAH_PLEADS_FOR_BENJAMIN_02",
+          "text": "Judah offered to stay as a slave in Benjamin's place, so the boy could go home and their father would not die of grief."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "the_name_proclaimed",
+      "primaryFigure": "Moses",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_THE_NAME_PROCLAIMED_01",
+          "text": "Moses cut two stone tablets and went up Mount Sinai alone, carrying them as the Lord had commanded him."
+        },
+        {
+          "id": "FRAME_THE_NAME_PROCLAIMED_02",
+          "text": "The Lord passed before Moses and proclaimed his name: merciful and gracious, slow to anger, and yet not clearing the guilty."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "day_of_atonement",
+      "primaryFigure": "Aaron",
+      "secondaryFigures": [
+        "Moses"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_DAY_OF_ATONEMENT_01",
+          "text": "Aaron entered the Most Holy Place with blood and incense to make atonement for himself and for all the people of Israel."
+        },
+        {
+          "id": "FRAME_DAY_OF_ATONEMENT_02",
+          "text": "He laid both hands on a live goat, confessed the people's sins over it, and sent it away to carry them into the wilderness."
+        }
+      ]
     }
   ],
   "_stubsNote": "2026-07-19: Manifest-sync backfill \u2014 appended 1 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-07-18: Manifest-sync backfill \u2014 appended 4 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-30: Manifest-sync backfill \u2014 appended 298 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-09: Added 96 auto-generated stub entries (marked with _stub: true) to satisfy biblical_figure_registry_test.dart cross-validation. 68 thematic/devotional bibleStoryKeys remain unregistered (need manual curation with appropriate schema): armor_of_god, as_a_deer_pants, beatitudes, calling_and_election_sure, cast_all_your_worries, ..."
