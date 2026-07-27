@@ -6181,6 +6181,51 @@
           "text": "When the all-day workers grumbled, he asked whether their eye was envious because he was generous."
         }
       ]
+    },
+    {
+      "bibleStoryKey": "weeds_among_the_wheat",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_WEEDS_AMONG_THE_WHEAT_01",
+          "text": "A man sowed good seed, but an enemy sowed weeds among the wheat while everyone slept; the owner let both grow until the harvest."
+        },
+        {
+          "id": "FRAME_WEEDS_AMONG_THE_WHEAT_02",
+          "text": "Jesus explained that the harvest is the end of the age, when the weeds are burned and the righteous shine like the sun."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "the_growing_seed",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_THE_GROWING_SEED_01",
+          "text": "A man scatters seed and sleeps and rises, and the seed grows though he does not know how."
+        },
+        {
+          "id": "FRAME_THE_GROWING_SEED_02",
+          "text": "The earth bears fruit by itself, first the blade, then the head, then the full grain, and then the harvest comes."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "hidden_treasure_and_pearl",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_HIDDEN_TREASURE_AND_PEARL_01",
+          "text": "A man found treasure hidden in a field and, in his joy, sold all he had to buy that field."
+        },
+        {
+          "id": "FRAME_HIDDEN_TREASURE_AND_PEARL_02",
+          "text": "A merchant searching for fine pearls found one of great price and sold everything he had to buy it."
+        }
+      ]
     }
   ],
   "_stubsNote": "2026-07-19: Manifest-sync backfill \u2014 appended 1 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-07-18: Manifest-sync backfill \u2014 appended 4 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-30: Manifest-sync backfill \u2014 appended 298 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-09: Added 96 auto-generated stub entries (marked with _stub: true) to satisfy biblical_figure_registry_test.dart cross-validation. 68 thematic/devotional bibleStoryKeys remain unregistered (need manual curation with appropriate schema): armor_of_god, as_a_deer_pants, beatitudes, calling_and_election_sure, cast_all_your_worries, ..."

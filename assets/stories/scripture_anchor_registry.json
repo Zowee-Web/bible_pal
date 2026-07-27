@@ -4707,6 +4707,30 @@
       "moodTags": [
         "grateful"
       ]
+    },
+    {
+      "scriptureAnchorId": "matthew_13_weeds_selected",
+      "bibleStoryKey": "weeds_among_the_wheat",
+      "bibleSourceRef": "Matthew 13:24-30, 36-43",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "mark_4_26-29",
+      "bibleStoryKey": "the_growing_seed",
+      "bibleSourceRef": "Mark 4:26-29",
+      "moodTags": [
+        "calm_peaceful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "matthew_13_44-46",
+      "bibleStoryKey": "hidden_treasure_and_pearl",
+      "bibleSourceRef": "Matthew 13:44-46",
+      "moodTags": [
+        "joyful"
+      ]
     }
   ]
 }
