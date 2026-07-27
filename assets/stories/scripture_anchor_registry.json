@@ -4731,6 +4731,46 @@
       "moodTags": [
         "joyful"
       ]
+    },
+    {
+      "scriptureAnchorId": "genesis_25_27-34",
+      "bibleStoryKey": "esau_sells_birthright",
+      "bibleSourceRef": "Genesis 25:27-34",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "leviticus_19_9-18",
+      "bibleStoryKey": "love_your_neighbor",
+      "bibleSourceRef": "Leviticus 19:9-18",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_11_5-13",
+      "bibleStoryKey": "friend_at_midnight",
+      "bibleSourceRef": "Luke 11:5-13",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "luke_14_15-24",
+      "bibleStoryKey": "the_great_banquet",
+      "bibleSourceRef": "Luke 14:15-24",
+      "moodTags": [
+        "encouraging"
+      ]
+    },
+    {
+      "scriptureAnchorId": "acts_5_1-11",
+      "bibleStoryKey": "ananias_and_sapphira",
+      "bibleSourceRef": "Acts 5:1-11",
+      "moodTags": [
+        "anxious"
+      ]
     }
   ]
 }

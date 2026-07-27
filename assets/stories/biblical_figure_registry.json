@@ -6226,6 +6226,86 @@
           "text": "A merchant searching for fine pearls found one of great price and sold everything he had to buy it."
         }
       ]
+    },
+    {
+      "bibleStoryKey": "esau_sells_birthright",
+      "primaryFigure": "Esau",
+      "secondaryFigures": [
+        "Jacob",
+        "Isaac"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_ESAU_SELLS_BIRTHRIGHT_01",
+          "text": "Esau came in from the field famished and traded his birthright to Jacob for bread and a bowl of lentil stew."
+        },
+        {
+          "id": "FRAME_ESAU_SELLS_BIRTHRIGHT_02",
+          "text": "He swore the oath, ate, and went on his way; so Esau despised his birthright."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "love_your_neighbor",
+      "primaryFigure": "Moses",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_LOVE_YOUR_NEIGHBOR_01",
+          "text": "The law told Israel to leave the edges of the harvest for the poor and the foreigner, and to deal honestly with every neighbor."
+        },
+        {
+          "id": "FRAME_LOVE_YOUR_NEIGHBOR_02",
+          "text": "It forbade hatred and vengeance and commanded, Love your neighbor as yourself. I am Yahweh."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "friend_at_midnight",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_FRIEND_AT_MIDNIGHT_01",
+          "text": "A man knocks at midnight for bread, and his friend rises not out of friendship but because of his persistence."
+        },
+        {
+          "id": "FRAME_FRIEND_AT_MIDNIGHT_02",
+          "text": "Ask, seek, knock, said Jesus; how much more will the Father give the Holy Spirit to those who ask him?"
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "the_great_banquet",
+      "primaryFigure": "Jesus",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_THE_GREAT_BANQUET_01",
+          "text": "Those invited to the great banquet made excuses, so the master filled his house with the poor, the crippled, the blind, and the lame."
+        },
+        {
+          "id": "FRAME_THE_GREAT_BANQUET_02",
+          "text": "He sent his servant to the roads and hedges to bring others in, for none first invited would taste his banquet."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "ananias_and_sapphira",
+      "primaryFigure": "Ananias and Sapphira",
+      "secondaryFigures": [
+        "Peter"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_ANANIAS_AND_SAPPHIRA_01",
+          "text": "Ananias and Sapphira sold property and agreed to keep back part of the price while pretending to give it all."
+        },
+        {
+          "id": "FRAME_ANANIAS_AND_SAPPHIRA_02",
+          "text": "Peter said they had lied not to men but to God; both fell down and died, and great fear came on the church."
+        }
+      ]
     }
   ],
   "_stubsNote": "2026-07-19: Manifest-sync backfill \u2014 appended 1 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-07-18: Manifest-sync backfill \u2014 appended 4 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-30: Manifest-sync backfill \u2014 appended 298 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-09: Added 96 auto-generated stub entries (marked with _stub: true) to satisfy biblical_figure_registry_test.dart cross-validation. 68 thematic/devotional bibleStoryKeys remain unregistered (need manual curation with appropriate schema): armor_of_god, as_a_deer_pants, beatitudes, calling_and_election_sure, cast_all_your_worries, ..."

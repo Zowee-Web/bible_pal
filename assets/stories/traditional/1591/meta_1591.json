@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1591,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_DAILY_2026-07-26_BATCH_E",
+  "title": "Esau Sells His Birthright",
+  "scriptureAnchor": "Genesis 25:27-34",
+  "scriptureAnchorId": "genesis_25_27-34",
+  "bibleStoryKey": "esau_sells_birthright",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "shortScripture": true,
+  "themeTags": [
+    "choice",
+    "consequence",
+    "legacy"
+  ],
+  "emotionalTags": [
+    "weary",
+    "tired",
+    "convicted"
+  ],
+  "primaryCharacterId": "esau",
+  "primaryCharacterDisplayName": "Esau",
+  "timelineEra": "patriarchs",
+  "files": {
+    "short": {
+      "storyText": "story_1591_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1591_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1591_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1591_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Esau came in from the field famished, and he swore away his birthright for a bowl of red stew. The passage does not soften it or explain it away; it says he ate, rose, and went on his way — and despised his birthright. The lasting thing was spent on the pressing thing. What have you been tempted to trade for something that will not last the day?",
+  "editorialNotes": "PAL Daily supervised production, Batch E completion pass. Genesis 25:27-34 ONLY. Owner-approved shortScripture:true — the strongest complete source-faithful telling is naturally 227w WEB / 156w KJV from a 129-word source; not padded. Preserves Esau returning famished/faint (25:29-30), Jacob requiring the birthright first (25:31), the oath (25:33), the bread and lentil stew (25:34), and ends on the passage's own verdict 'Esau despised his birthright' (25:34). No reason invented for Jacob's stew; Esau not psychologically diagnosed; not turned into dietary/financial/negotiation advice. New character 'esau' added. WEB uses no divine name here. Narrator VOICE_DEBORAH_WISE, mood weary (owner-approved). TEXT DRAFT — AWAITING ADAM AND CHATGPT REVIEW.",
+  "bibleOrderIndex": 196092
+}

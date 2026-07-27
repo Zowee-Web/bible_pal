@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1594,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_DAILY_2026-07-26_BATCH_E",
+  "title": "Love Your Neighbor as Yourself",
+  "scriptureAnchor": "Leviticus 19:9-18",
+  "scriptureAnchorId": "leviticus_19_9-18",
+  "bibleStoryKey": "love_your_neighbor",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "shortScripture": true,
+  "themeTags": [
+    "love",
+    "justice",
+    "obedience"
+  ],
+  "emotionalTags": [
+    "encouraged",
+    "convicted",
+    "committed"
+  ],
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "timelineEra": "exodus",
+  "files": {
+    "short": {
+      "storyText": "story_1594_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1594_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1594_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1594_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "This is not a vague call to be nice. Loving your neighbor here looks like leaving grain in the field for the poor, paying a worker before nightfall, judging fairly, refusing to slander, and reproving a brother honestly instead of hating him. Five times the same refrain lands: I am Yahweh. The command is grounded not in sentiment but in who God is. Which of these very specific loves is the one you would rather keep vague?",
+  "editorialNotes": "PAL Daily supervised production, Batch E completion pass. Leviticus 19:9-18 ONLY (boundary not widened). Owner-approved shortScripture:true — naturally 243w WEB / 234w KJV from a 239-word command list; not padded. Retains gleaning-for-poor-and-foreigner, and the prohibitions on stealing/lying/false swearing/oppression/withheld wages/cursing the deaf/stumbling block before the blind, impartial judgment, and against hatred and vengeance; ends on 'love your neighbor as yourself. I am Yahweh' (19:18). Reproof is kept as a command (19:17), so correction is not framed as hatred; the commands are not softened into vague niceness and not made into a political platform. WEB 'Yahweh'; KJV 'the Lord'. Narrator VOICE_PRISCILLA_TEACHER, mood encouraging (owner-approved). TEXT DRAFT — AWAITING ADAM AND CHATGPT REVIEW.",
+  "bibleOrderIndex": 36011
+}
