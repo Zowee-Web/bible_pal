@@ -782,6 +782,18 @@
     "judah": {
       "displayName": "Judah",
       "descriptor": "Son of Jacob who offered himself for Benjamin; ancestor of David, Genesis"
+    },
+    "korah": {
+      "displayName": "Korah",
+      "descriptor": "Levite who led a rebellion against Moses and Aaron in the wilderness, Numbers 16"
+    },
+    "balaam": {
+      "displayName": "Balaam",
+      "descriptor": "Prophet-for-hire whose donkey saw the angel of the Lord, Numbers 22"
+    },
+    "ehud": {
+      "displayName": "Ehud",
+      "descriptor": "Left-handed judge who delivered Israel from Moab, Judges 3"
     }
   }
 }

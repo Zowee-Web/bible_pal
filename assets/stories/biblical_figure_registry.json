@@ -6028,6 +6028,92 @@
           "text": "He laid both hands on a live goat, confessed the people's sins over it, and sent it away to carry them into the wilderness."
         }
       ]
+    },
+    {
+      "bibleStoryKey": "korahs_rebellion",
+      "primaryFigure": "Korah",
+      "secondaryFigures": [
+        "Moses",
+        "Aaron",
+        "Dathan",
+        "Abiram"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_KORAHS_REBELLION_01",
+          "text": "Korah and two hundred fifty leaders rose against Moses and Aaron, claiming the whole congregation was holy and needed no mediator."
+        },
+        {
+          "id": "FRAME_KORAHS_REBELLION_02",
+          "text": "Moses left the matter to the Lord; the ground opened and swallowed the rebels, and fire consumed the men who offered incense."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "balaam_and_the_donkey",
+      "primaryFigure": "Balaam",
+      "secondaryFigures": [
+        "the angel of the Lord"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_BALAAM_AND_THE_DONKEY_01",
+          "text": "An angel with a drawn sword blocked Balaam's road, but only his donkey could see it, turning aside three times as he beat her."
+        },
+        {
+          "id": "FRAME_BALAAM_AND_THE_DONKEY_02",
+          "text": "The Lord opened the donkey's mouth to speak, then opened Balaam's eyes to see the angel he had been riding straight toward."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "ehud_and_eglon",
+      "primaryFigure": "Ehud",
+      "secondaryFigures": [
+        "Eglon"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_EHUD_AND_EGLON_01",
+          "text": "After eighteen years under Moab, Israel cried out, and the Lord raised up Ehud, a left-handed man, to deliver them."
+        },
+        {
+          "id": "FRAME_EHUD_AND_EGLON_02",
+          "text": "Ehud carried a hidden sword and a secret message to King Eglon, then rallied Israel, and the land had rest eighty years."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "israel_demands_a_king",
+      "primaryFigure": "Samuel",
+      "secondaryFigures": [
+        "the elders of Israel"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_ISRAEL_DEMANDS_A_KING_01",
+          "text": "Israel's elders asked Samuel for a king like the other nations, and the Lord said it was he, not Samuel, whom they had rejected."
+        },
+        {
+          "id": "FRAME_ISRAEL_DEMANDS_A_KING_02",
+          "text": "Samuel warned them all that a king would take, yet the people still wanted one, and the Lord told him to give them their king."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "solomons_divided_heart",
+      "primaryFigure": "Solomon",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_SOLOMONS_DIVIDED_HEART_01",
+          "text": "Solomon's many foreign wives turned his heart to other gods, and he built high places for Chemosh and Molech."
+        },
+        {
+          "id": "FRAME_SOLOMONS_DIVIDED_HEART_02",
+          "text": "Because Solomon did not keep the covenant, the Lord said the kingdom would be torn away, though not all of it, for David's sake."
+        }
+      ]
     }
   ],
   "_stubsNote": "2026-07-19: Manifest-sync backfill \u2014 appended 1 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-07-18: Manifest-sync backfill \u2014 appended 4 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-30: Manifest-sync backfill \u2014 appended 298 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-09: Added 96 auto-generated stub entries (marked with _stub: true) to satisfy biblical_figure_registry_test.dart cross-validation. 68 thematic/devotional bibleStoryKeys remain unregistered (need manual curation with appropriate schema): armor_of_god, as_a_deer_pants, beatitudes, calling_and_election_sure, cast_all_your_worries, ..."

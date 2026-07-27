@@ -4635,6 +4635,46 @@
       "moodTags": [
         "calm_peaceful"
       ]
+    },
+    {
+      "scriptureAnchorId": "numbers_16_1-35",
+      "bibleStoryKey": "korahs_rebellion",
+      "bibleSourceRef": "Numbers 16:1-35",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "numbers_22_21-35",
+      "bibleStoryKey": "balaam_and_the_donkey",
+      "bibleSourceRef": "Numbers 22:21-35",
+      "moodTags": [
+        "grateful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "judges_3_12-30",
+      "bibleStoryKey": "ehud_and_eglon",
+      "bibleSourceRef": "Judges 3:12-30",
+      "moodTags": [
+        "brave_courage"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_samuel_8_1-22",
+      "bibleStoryKey": "israel_demands_a_king",
+      "bibleSourceRef": "1 Samuel 8:1-22",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "1_kings_11_1-13",
+      "bibleStoryKey": "solomons_divided_heart",
+      "bibleSourceRef": "1 Kings 11:1-13",
+      "moodTags": [
+        "hurting"
+      ]
     }
   ]
 }

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1599,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "PAL_DAILY_2026-07-26_BATCH_F",
+  "title": "Israel Demands a King",
+  "scriptureAnchor": "1 Samuel 8:1-22",
+  "scriptureAnchorId": "1_samuel_8_1-22",
+  "bibleStoryKey": "israel_demands_a_king",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
+  "shortScripture": false,
+  "themeTags": [
+    "kingship",
+    "sovereignty",
+    "leadership"
+  ],
+  "emotionalTags": [
+    "solemn",
+    "uncertain",
+    "weary"
+  ],
+  "primaryCharacterId": "samuel",
+  "primaryCharacterDisplayName": "Samuel",
+  "timelineEra": "kingdom",
+  "files": {
+    "short": {
+      "storyText": "story_1599_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1599_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1599_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1599_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "The elders had a fair complaint — Samuel was old, and his sons took bribes. But what they asked for was to be like all the other nations. Yahweh told Samuel the deeper thing: it was not Samuel they were rejecting, but God as their king. He warned them plainly what a king would cost, and still they wanted one, and he let them have it. When has \"like everyone else\" been the thing you most wanted?",
+  "editorialNotes": "PAL Daily supervised production 2026-07-26, Batch F. 1 Samuel 8:1-22 ONLY. Keeps the heart of the passage: 'they have not rejected you, but they have rejected me' (8:7), the solemn warning of the king's ways (8:11-18), and the people's insistence granted (8:19-22). The king-ways list is compressed but not altered. WEB 'Yahweh'; KJV 'the Lord'. Narrator/mood/length were authoring selections (title/anchor owner-given) — flagged for owner review. TEXT DRAFT — AWAITING ADAM AND CHATGPT REVIEW.",
+  "bibleOrderIndex": 53257
+}
