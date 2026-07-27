@@ -142,3 +142,18 @@ Each Traditional story carries its own `scripture_{id}_{lang}.txt` file containi
 - Never commit `.env` to git
 - Main branch: `master`
 - CI: GitHub Actions ([.github/workflows/flutter.yml](.github/workflows/flutter.yml))
+
+---
+
+## Opus 5 Execution Style
+
+- Complete only the requested scope.
+- Do not narrate routine tool calls or provide running commentary unless a material problem is discovered.
+- Perform one consolidated final integrity check rather than repeatedly rechecking unchanged invariants.
+- Report immediately when an unexpected finding materially affects correctness, safety, scope, or repository state.
+- Do not widen the task, create subagents, add extra review cycles, or begin adjacent work unless explicitly authorized.
+- Do not reinterpret a narrow correction as permission to improve unrelated files.
+- Do not make speculative "while I am here" changes.
+- Preserve all explicit safety gates, protected-file rules, Git restrictions, review gates, and audio restrictions.
+- Task-specific instructions in the current prompt take precedence when they are more restrictive.
+- When the requested operation is complete, provide one concise final report and stop.
