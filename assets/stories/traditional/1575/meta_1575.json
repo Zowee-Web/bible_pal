@@ -49,5 +49,14 @@
   },
   "reflectionText": "All ten had lamps, and all ten slept while the bridegroom delayed. The difference was only what each had carried before the waiting began. At midnight the cry came, and the ready went in, and the door was shut. What does it mean to be ready for an hour no one can name?",
   "editorialNotes": "Text-First Story Factory 2.0 Batch A (Full-Canon Production Gate CG15, approved 2026-07-22; Wave 5 item pulled forward for batch period balance). Matthew 25:1-13, absent both lanes; adjacent 1290 covers Matthew 25:14-30 (the Talents). Gate lane is 'both' \u2014 the kid version is deferred to a later wave per the Wave 1a precedent. SHORT only, shortScripture (WEB 261w / KJV 255w): the ~204-word parable, retold faithfully with spoken-beat pacing and referent re-anchoring, honestly falls below the 300-word SHORT floor. CODEX-AUDIT CORRECTION 2026-07-23 (Finding 4, accepted as padding via duplicated propositions): the first draft reached 304/301 words by restating the oil proposition ('enough to fill them again when they burned low' immediately followed by 'only five carried oil to keep them burning') and the shut-door proposition three ways ('the door was shut behind them' / 'the shut door' / 'the door did not open'). Those duplications were removed and NOT replaced with new filler; per ADR-030 and the owner directive, fidelity is preferred over reaching 300, so shortScripture:true is set (owner-approved 2026-07-23). Retained expansions Codex adjudicated as honest entailments are kept ('the evening stretched on', 'a cry rang out in the dark', trimming the lamp, 'the five with oil steadied'). The speaker is re-anchored as Jesus (continuing discourse), with no Olivet setting imported from chapter 24. Boundary: ends at v13 ('Watch therefore') on the anchor's own audible closure, no drift into the Talents. FULL omitted.",
-  "bibleOrderIndex": 76977
+  "bibleOrderIndex": 76977,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-28T02:52:12Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }
