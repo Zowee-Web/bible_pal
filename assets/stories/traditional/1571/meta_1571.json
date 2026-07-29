@@ -55,5 +55,14 @@
   },
   "reflectionText": "Yahweh shut the door, and for one hundred fifty days the world was only water. Then God remembered Noah \u2014 and the sign of it was a wind passing over the deep, and later a dove, carrying one green leaf. What is it to be held through a long ending, watching for the small signs that the water is going down?",
   "editorialNotes": "Text-First Story Factory 2.0 Batch A (journey backlog G10, approved 2026-07-22). Genesis 7-8, adult lane absent (verified 0 exact-anchor hits). Slots exactly between existing adult neighbors: 1017/1025 (Genesis 6:9-22, ark-building) and 1213 (Genesis 9:8-17, rainbow covenant); kid_noah_flood covers Genesis 6-7 in the separate kid lane. Opens at 7:1 with no ark-building retold; ends at 8:22 with no covenant or rainbow material. SHORT + FULL (WEB 438w / 715w; KJV 479w / 776w). LONG omitted: the 46-verse source (~1024 WEB words) is dense with repeated census lists and date formulas that a listening retelling naturally compresses; the fullest faithful retelling sits inside the FULL band and the 901-word LONG floor is unreachable without padding or restatement (ADR-030/031). 'God remembered Noah' (8:1) kept as the hinge; the dove sequence rendered in full; ends on the 8:21-22 promise with no interpretive framing. Narration uses 'ark' in both lanes per STORY_NARRATION_STYLE_GUIDE \u00a711 (traditional figure over WEB's 'ship'; the scripture extract preserves WEB wording verbatim). No invented motive, emotion, or aftermath. CODEX-AUDIT CORRECTION 2026-07-23 (Observation 9): reflection + figure-registry framing changed from 'Yahweh's own hand shut the door' / 'shut by God's own hand' to 'Yahweh shut the door' / 'The door was shut behind them' \u2014 the invented hand gesture removed; Genesis 7:16 states only that Yahweh shut him in. timelineEra 'patriarchs' retained per owner directive (primeval-history taxonomy is a separate future issue).",
-  "bibleOrderIndex": 59063
+  "bibleOrderIndex": 59063,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-28T02:50:36Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }
