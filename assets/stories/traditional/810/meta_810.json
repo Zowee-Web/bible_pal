@@ -18,9 +18,9 @@
   "voiceKey": "VOICE_ARABELLA",
   "storyVoiceKey": "VOICE_ARABELLA",
   "voiceKeys": {
-    "short": "VOICE_DEBORAH_WISE",
-    "full": "VOICE_DEBORAH_WISE",
-    "long": "VOICE_DEBORAH_WISE",
+    "short": "VOICE_ARABELLA",
+    "full": "VOICE_ARABELLA",
+    "long": "VOICE_ARABELLA",
     "reflection": "VOICE_DEBORAH_WISE"
   },
   "createdByModel": "gpt-4.1",
@@ -73,7 +73,11 @@
   ],
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.5,
-    "similarity_boost": 0.75
-  }
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-29T19:36:42Z",
+  "generatorVersion": "generate_opus_audio.sh (parameters replicated; 800-series is outside the script's >=1000 id loop)"
 }
