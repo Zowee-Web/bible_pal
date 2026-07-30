@@ -47,7 +47,16 @@
       "reflectionText": "reflection_1589_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Both groups asked when they had seen the King hungry, thirsty, a stranger, sick, or in prison. His answer joined their response to him with what they had done — or failed to do — for the least of these. Where is mercy asking something concrete of you today?",
-  "editorialNotes": "PAL Daily supervised production 2026-07-24, Batch D (gap CG16). Matthew 25:31-46, the Sheep and the Goats, absent both lanes. SHORT only (a full variant would require owner review per the gate note; not proposed here). WEB 324w / KJV 319w. Rendered as the King's discourse (introduce speaker once, let the quoted paragraphs stand); 'eternal fire' / 'eternal punishment' / 'eternal life' (WEB) and 'everlasting fire' / 'everlasting punishment' / 'life eternal' (KJV) are given exactly as the lane text has them, with NO afterlife commentary in either direction. The two-fold surprise ('Lord, when did we see you...?') and 'as you did to the least of these, you did to me' (25:40,45) are kept; ends on 25:46. Narrator/mood/length were authoring selections (title/anchor owner-given) — flagged for owner review. TEXT DRAFT — AWAITING ADAM AND CHATGPT REVIEW. REV 2026-07-24 (owner review): reflection replaced (prior oversimplified the judgment to a single behavioral contrast and added a 'passing by' scene not in the passage).",
-  "bibleOrderIndex": 103008
+  "reflectionText": "Both groups asked when they had seen the King hungry, thirsty, a stranger, sick, or in prison. His answer joined their response to him with what they had done \u2014 or failed to do \u2014 for the least of these. Where is mercy asking something concrete of you today?",
+  "editorialNotes": "PAL Daily supervised production 2026-07-24, Batch D (gap CG16). Matthew 25:31-46, the Sheep and the Goats, absent both lanes. SHORT only (a full variant would require owner review per the gate note; not proposed here). WEB 324w / KJV 319w. Rendered as the King's discourse (introduce speaker once, let the quoted paragraphs stand); 'eternal fire' / 'eternal punishment' / 'eternal life' (WEB) and 'everlasting fire' / 'everlasting punishment' / 'life eternal' (KJV) are given exactly as the lane text has them, with NO afterlife commentary in either direction. The two-fold surprise ('Lord, when did we see you...?') and 'as you did to the least of these, you did to me' (25:40,45) are kept; ends on 25:46. Narrator/mood/length were authoring selections (title/anchor owner-given) \u2014 flagged for owner review. TEXT DRAFT \u2014 AWAITING ADAM AND CHATGPT REVIEW. REV 2026-07-24 (owner review): reflection replaced (prior oversimplified the judgment to a single behavioral contrast and added a 'passing by' scene not in the passage).",
+  "bibleOrderIndex": 103008,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-30T02:47:29Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }
