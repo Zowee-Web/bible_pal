@@ -48,6 +48,15 @@
     }
   },
   "reflectionText": "Moses went out among his own people, but by the next day his deed was known. He fled Egypt, began again in Midian, and named his son Gershom because he was living as a foreigner. What does it mean to build a new life while still feeling like a stranger?",
-  "editorialNotes": "PAL Daily supervised production 2026-07-24, Batch C (gap G8). Exodus 2:11-22 ONLY, Moses's killing of the Egyptian, his flight, and his settling in Midian; SHORT only. Owner-approved hard scope boundary: Exodus 2:23-25 (Israel's cry, God hearing, the covenant remembrance) is EXCLUDED and does not enter this story; it ends on 2:22 (Gershom, 'a foreigner in a foreign land'). WEB 309w / KJV 303w (honest short floor met without shortScripture; not owner-authorized here). The rejection ('Who made you a prince and a judge?') and Moses's fear are kept; the well rescue and Zipporah/Gershom close it. No invented motive or interior beyond the text; weary register carried by selection, not added sentiment. TEXT DRAFT — AWAITING ADAM AND CHATGPT REVIEW. REV 2026-07-24 (owner review): reflection replaced (prior assigned Moses an unstated intent to free Israel; Exodus 2 states no motive).",
-  "bibleOrderIndex": 45128
+  "editorialNotes": "PAL Daily supervised production 2026-07-24, Batch C (gap G8). Exodus 2:11-22 ONLY, Moses's killing of the Egyptian, his flight, and his settling in Midian; SHORT only. Owner-approved hard scope boundary: Exodus 2:23-25 (Israel's cry, God hearing, the covenant remembrance) is EXCLUDED and does not enter this story; it ends on 2:22 (Gershom, 'a foreigner in a foreign land'). WEB 309w / KJV 303w (honest short floor met without shortScripture; not owner-authorized here). The rejection ('Who made you a prince and a judge?') and Moses's fear are kept; the well rescue and Zipporah/Gershom close it. No invented motive or interior beyond the text; weary register carried by selection, not added sentiment. TEXT DRAFT \u2014 AWAITING ADAM AND CHATGPT REVIEW. REV 2026-07-24 (owner review): reflection replaced (prior assigned Moses an unstated intent to free Israel; Exodus 2 states no motive).",
+  "bibleOrderIndex": 45128,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-30T01:39:51Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

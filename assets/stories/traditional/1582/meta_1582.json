@@ -55,6 +55,15 @@
     }
   },
   "reflectionText": "Every runner brought news of victory, but David asked only whether Absalom was safe. When the answer finally came, the triumph of the battle meant nothing beside the death of his son. What becomes of victory when the one you hoped to spare is gone?",
-  "editorialNotes": "PAL Daily supervised production 2026-07-24, Batch C (gap G7). 2 Samuel 18, the death of Absalom and David's grief, absent both lanes. SHORT + FULL only (owner-locked; no long variant). WEB 333/651w, KJV 346/710w. David's grief carried by the passage's own words (18:33) with no added sentiment or melodrama; the king's threefold 'deal gently' charge (18:5), the repeated single question 'Is it well with the young man Absalom?' (18:29, 18:32), and Joab's disobedience are kept. Ends on the terminal grief of 18:33 ('would God I had died for thee'); no material after the cry. No motive or commentary added beyond the source. TEXT DRAFT — AWAITING ADAM AND CHATGPT REVIEW. REV 2026-07-24 (owner review): reflection replaced (prior overstated that the victory was 'bought' by Absalom's death, which Joab caused against David's command); prose 'finished it' -> 'surrounded him and killed him'.",
-  "bibleOrderIndex": 37300
+  "editorialNotes": "PAL Daily supervised production 2026-07-24, Batch C (gap G7). 2 Samuel 18, the death of Absalom and David's grief, absent both lanes. SHORT + FULL only (owner-locked; no long variant). WEB 333/651w, KJV 346/710w. David's grief carried by the passage's own words (18:33) with no added sentiment or melodrama; the king's threefold 'deal gently' charge (18:5), the repeated single question 'Is it well with the young man Absalom?' (18:29, 18:32), and Joab's disobedience are kept. Ends on the terminal grief of 18:33 ('would God I had died for thee'); no material after the cry. No motive or commentary added beyond the source. TEXT DRAFT \u2014 AWAITING ADAM AND CHATGPT REVIEW. REV 2026-07-24 (owner review): reflection replaced (prior overstated that the victory was 'bought' by Absalom's death, which Joab caused against David's command); prose 'finished it' -> 'surrounded him and killed him'.",
+  "bibleOrderIndex": 37300,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-30T01:39:39Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }
