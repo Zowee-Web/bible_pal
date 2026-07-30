@@ -15,13 +15,13 @@
     "full",
     "long"
   ],
-  "voiceKey": "VOICE_LILY_WOLFF",
-  "storyVoiceKey": "VOICE_LILY_WOLFF",
+  "voiceKey": "VOICE_ESTHER_BRAVE",
+  "storyVoiceKey": "VOICE_ESTHER_BRAVE",
   "voiceKeys": {
-    "short": "VOICE_JANE_PROFESSIONAL",
-    "full": "VOICE_JANE_PROFESSIONAL",
-    "long": "VOICE_JANE_PROFESSIONAL",
-    "reflection": "VOICE_JANE_PROFESSIONAL"
+    "short": "VOICE_ESTHER_BRAVE",
+    "full": "VOICE_ESTHER_BRAVE",
+    "long": "VOICE_ESTHER_BRAVE",
+    "reflection": "VOICE_ESTHER_BRAVE"
   },
   "createdByModel": "gpt-4.1",
   "generationBatch": "PAL_V2_BATCH_3",
@@ -73,7 +73,11 @@
   ],
   "ttsModel": "eleven_turbo_v2_5",
   "ttsVoiceSettings": {
-    "stability": 0.5,
-    "similarity_boost": 0.75
-  }
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-30T15:39:26Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }
