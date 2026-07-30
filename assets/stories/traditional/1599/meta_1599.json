@@ -49,5 +49,14 @@
   },
   "reflectionText": "The elders had a fair complaint \u2014 Samuel was old, and his sons took bribes. But what they asked for was to be like all the other nations. Yahweh told Samuel the deeper thing: it was not Samuel they were rejecting, but God as their king. He warned them plainly what a king would cost, and still they wanted one, and he let them have it. When has \"like everyone else\" been the thing you most wanted?",
   "editorialNotes": "PAL Daily supervised production 2026-07-26, Batch F. 1 Samuel 8:1-22 ONLY. Keeps the heart of the passage: 'they have not rejected you, but they have rejected me' (8:7), the solemn warning of the king's ways (8:11-18), and the people's insistence granted (8:19-22). The king-ways list is compressed but not altered. WEB 'Yahweh'; KJV 'the Lord'. Narrator/mood/length were authoring selections (title/anchor owner-given) \u2014 flagged for owner review. TEXT APPROVED \u2014 AUDIO AUTHORIZED BY OWNER ON 2026-07-29.",
-  "bibleOrderIndex": 53257
+  "bibleOrderIndex": 53257,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-30T14:02:24Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

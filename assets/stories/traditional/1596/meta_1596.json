@@ -49,5 +49,14 @@
   },
   "reflectionText": "Korah's charge sounded almost pious: everyone is holy, so why set yourselves above us? Moses fell on his face, then placed the matter before Yahweh and rebuked the Levites for seeking the priesthood as well. When judgment threatened the whole congregation, Moses and Aaron fell down again and pleaded for them. The passage holds both their appointed service and their intercession for the people. What is the difference between being called to serve and grasping for a place that was not given?",
   "editorialNotes": "PAL Daily supervised production 2026-07-26, Batch F. Numbers 16:1-35 ONLY. Adult lane (divine judgment: the ground swallows Korah, Dathan, Abiram and their households alive; fire consumes the 250) \u2014 kidFriendly false. The judgment is stated plainly, not dramatized beyond the text and not defended or editorialized; Moses and Aaron's intercession (16:22) is kept. WEB uses 'Yahweh'/'Sheol'; KJV 'the Lord'/'the pit'. New character 'korah' added to character_registry. Narrator/mood/length were authoring selections (title/anchor owner-given) \u2014 flagged for owner review. TEXT APPROVED \u2014 AUDIO AUTHORIZED BY OWNER ON 2026-07-29.",
-  "bibleOrderIndex": 53184
+  "bibleOrderIndex": 53184,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-30T14:01:45Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

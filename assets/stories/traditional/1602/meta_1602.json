@@ -49,5 +49,14 @@
   },
   "reflectionText": "Three times the account says the same thing: the good hand of his God was on Ezra. A foreign king funded the journey, opened his treasury, and sent Ezra home with authority \u2014 and Ezra saw whose hand was behind it. He had set his heart to study the law, to do it, and to teach it; and when it was done, he blessed the God who had put it all in the king's heart. Where do you see a hand behind the doors that have opened for you?",
   "editorialNotes": "PAL Daily supervised production 2026-07-26, Batch G. Ezra 7:1-28. The long genealogy (7:1-5) is compressed to 'a descendant of Aaron the chief priest' and the king's decree (7:12-26) is summarized faithfully without altering its terms. Keeps the threefold refrain 'the good hand of his God on him' (7:6,9,28), Ezra's heart set to seek/do/teach the law (7:10), and his closing blessing of God (7:27-28). WEB 'Yahweh'; KJV 'the Lord'. Narrator/mood/length were authoring selections (title/anchor owner-given) \u2014 flagged for owner review. TEXT APPROVED \u2014 AUDIO AUTHORIZED BY OWNER ON 2026-07-29.",
-  "bibleOrderIndex": 8541
+  "bibleOrderIndex": 8541,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-30T14:02:59Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

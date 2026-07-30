@@ -49,5 +49,14 @@
   },
   "reflectionText": "This is not a vague call to be nice. Loving your neighbor here looks like leaving grain in the field for the poor, paying a worker before nightfall, judging fairly, refusing to slander, and reproving a brother honestly instead of hating him. Five times the same refrain lands: I am Yahweh. The command is grounded not in sentiment but in who God is. Which of these very specific loves is the one you would rather keep vague?",
   "editorialNotes": "PAL Daily supervised production, Batch E completion pass. Leviticus 19:9-18 ONLY (boundary not widened). Owner-approved shortScripture:true \u2014 naturally 240w WEB / 243w KJV from a 239-word command list; not padded. Retains gleaning-for-poor-and-foreigner, and the prohibitions on stealing/lying/false swearing/oppression/withheld wages/cursing the deaf/stumbling block before the blind, impartial judgment, and against hatred and vengeance; ends on 'love your neighbor as yourself. I am Yahweh' (19:18). Reproof is kept as a command (19:17), so correction is not framed as hatred; the commands are not softened into vague niceness and not made into a political platform. WEB 'Yahweh'; KJV 'the Lord'. Narrator VOICE_PRISCILLA_TEACHER, mood encouraging (owner-approved). CORRECTION 2026-07-27 (owner/ChatGPT review): the 19:16b clause now reads 'Do not endanger the life of your neighbor' (closer to the source than the prior 'do not stand by while your neighbor's life is in danger', which implied a bystander duty the verse does not state). TEXT APPROVED \u2014 AUDIO AUTHORIZED BY OWNER ON 2026-07-29.",
-  "bibleOrderIndex": 36011
+  "bibleOrderIndex": 36011,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-30T14:01:17Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

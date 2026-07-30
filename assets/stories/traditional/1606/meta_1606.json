@@ -49,5 +49,14 @@
   },
   "reflectionText": "The servants wanted to pull the weeds out at once, but the owner said no \u2014 not yet, or the wheat would come up with them. Both would grow together until the harvest. Jesus did not soften what the harvest means: a furnace, and weeping, and then the righteous shining like the sun. The sorting is real, but it is not ours to do early, and it is not yet. What do you do with a field where good and evil are still growing side by side?",
   "editorialNotes": "PAL Daily supervised production 2026-07-26, Batch H. Matthew 13:24-30 AND 13:36-43 (the parable and Jesus' own explanation), the owner-approved anchor; the intervening 13:31-35 is not included. The hard judgment language is kept as the text gives it: the furnace of fire, weeping and gnashing of teeth (13:42), alongside the righteous shining like the sun (13:43). primaryCharacterId 'jesus' per the established parable pattern. WEB 'weeds'; KJV 'tares'. Narrator/mood/length were authoring selections (title/anchor owner-given) \u2014 flagged for owner review. TEXT APPROVED \u2014 AUDIO AUTHORIZED BY OWNER ON 2026-07-29.",
-  "bibleOrderIndex": 143030
+  "bibleOrderIndex": 143030,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-30T14:03:47Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

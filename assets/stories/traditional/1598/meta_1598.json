@@ -49,5 +49,14 @@
   },
   "reflectionText": "Israel had served Moab for eighteen years before they cried out to Yahweh. Yahweh raised up Ehud, a left-handed man who carried his sword on his right thigh. The account tells the killing plainly, then follows Ehud's escape, Israel's victory, and the land's eighty years of rest. Eighteen years under Moab, then eighty years of rest. What does it take to cry out after a long season of bondage?",
   "editorialNotes": "PAL Daily supervised production 2026-07-26, Batch F. Judges 3:12-30 ONLY. Adult lane (Ehud's assassination of Eglon) \u2014 kidFriendly false. The killing is told plainly and briefly, keeping the difficult detail (the fat closing over the blade, 3:22) without added gore and without glorifying it; the account's own quick move to deliverance and rest is preserved. WEB 'Yahweh'; KJV 'the Lord'/'fourscore years'. New character 'ehud' added to character_registry. Narrator/mood/length were authoring selections (title/anchor owner-given) \u2014 flagged for owner review. Word counts 345w WEB / 402w KJV. CORRECTION 2026-07-27 (owner/ChatGPT review): the opening now reads only 'Ehud was a left-handed man' ('Ehud was a lefthanded man' KJV); the prior clause tying his left-handedness to concealing the weapon stated an inference the passage does not make (3:15-16 reports both facts without linking them). Reflections replaced in both lanes. TEXT APPROVED \u2014 AUDIO AUTHORIZED BY OWNER ON 2026-07-29.",
-  "bibleOrderIndex": 28247
+  "bibleOrderIndex": 28247,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-30T14:02:11Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }

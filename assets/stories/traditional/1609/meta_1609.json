@@ -49,5 +49,14 @@
   },
   "reflectionText": "Peter's own words make the sin plain, and it was not that they kept part of the money. \"While it remained, was it not your own?\" The land was theirs to keep, the price theirs to give in part or in whole. What they died for was the lie \u2014 pretending to give all while holding part back \u2014 and it was, Peter said, a lie to God, not merely to men. Sapphira was given a chance to tell the truth and repeated the false amount. What is the difference between giving little and pretending to give much?",
   "editorialNotes": "PAL Daily supervised production, Batch H completion pass. Acts 5:1-11 ONLY. Adult lane (two sudden deaths) \u2014 kidFriendly false. Owner-approved shortScripture:true \u2014 naturally 262w WEB / 251w KJV from a 251-word source; not padded. Makes clear (via Peter's own words, 5:4) that the sin was DECEPTION, not failure to donate everything \u2014 the property and its price remained under Ananias's authority. Retains the agreed withholding (5:2), 'you have not lied to men, but to God' (5:4), both deaths without added suffering or sensational detail (5:5,10), Sapphira's chance to answer and her agreement with the false amount (5:8), the young men carrying and burying both, and 'great fear' on the whole church and all who heard (5:11). Not turned into a command to surrender all property; amount/motives/private conversation/expressions/manner of death not invented; Peter is NOT said to kill either. New combined character 'ananias_and_sapphira' added (per grouped-character convention); Peter is a SECONDARY figure in the biblical-figure registry, not the primary. Narrator VOICE_JAMES_BRITISH_PROFESSIONAL, mood anxious (owner-approved). TEXT APPROVED \u2014 AUDIO AUTHORIZED BY OWNER ON 2026-07-29.",
-  "bibleOrderIndex": 39081
+  "bibleOrderIndex": 39081,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-30T14:04:18Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }
