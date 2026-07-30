@@ -47,7 +47,16 @@
       "reflectionText": "reflection_1605_traditional_kjv.txt"
     }
   },
-  "reflectionText": "Everyone who worked received a full day's wage, even those who came at the last hour. The ones who had worked since dawn were not cheated — they got exactly what they had agreed to. What unsettled them was watching the latecomers receive the same. \"Is your eye envious because I am generous?\" the landowner asked. The gift was never earned by the hour. Whose blessing has been hard for you to be glad about?",
-  "editorialNotes": "PAL Daily supervised production 2026-07-26, Batch G. Matthew 20:1-16 ONLY. Kept the whole parable: the hourly hirings, the equal denarius, the grumbling of the all-day workers, the landowner's reply ('Is your eye envious because I am generous?', 20:15), and the close 'the last will be first, and the first last; for many are called, but few are chosen' (20:16). Not turned into economic or labor commentary. WEB 'denarius'; KJV 'penny'. primaryCharacterId 'jesus' follows the established Batch C/D parable pattern. Narrator/mood/length were authoring selections (title/anchor owner-given) — flagged for owner review. TEXT APPROVED — AUDIO BLOCKED.",
-  "bibleOrderIndex": 129006
+  "reflectionText": "Everyone who worked received a full day's wage, even those who came at the last hour. The ones who had worked since dawn were not cheated \u2014 they got exactly what they had agreed to. What unsettled them was watching the latecomers receive the same. \"Is your eye envious because I am generous?\" the landowner asked. The gift was never earned by the hour. Whose blessing has been hard for you to be glad about?",
+  "editorialNotes": "PAL Daily supervised production 2026-07-26, Batch G. Matthew 20:1-16 ONLY. Kept the whole parable: the hourly hirings, the equal denarius, the grumbling of the all-day workers, the landowner's reply ('Is your eye envious because I am generous?', 20:15), and the close 'the last will be first, and the first last; for many are called, but few are chosen' (20:16). Not turned into economic or labor commentary. WEB 'denarius'; KJV 'penny'. primaryCharacterId 'jesus' follows the established Batch C/D parable pattern. Narrator/mood/length were authoring selections (title/anchor owner-given) \u2014 flagged for owner review. TEXT APPROVED \u2014 AUDIO AUTHORIZED BY OWNER ON 2026-07-29.",
+  "bibleOrderIndex": 129006,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-30T14:03:34Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }
