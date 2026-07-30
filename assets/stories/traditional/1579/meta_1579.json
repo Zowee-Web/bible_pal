@@ -55,5 +55,14 @@
   },
   "reflectionText": "Yahweh was with Joseph in the house, and Yahweh was with Joseph in the prison. The favor that lifted him to run the one went down with him into the other, and never once left his side. It did not spare him the false accusation. It followed him into the cell.",
   "editorialNotes": "Text-First Story Factory 2.0 Batch B (Full-Canon Production Gate CG19, rescoped and owner-approved). Genesis 39 ONLY \u2014 Genesis 40 is deliberately excluded (already covered by 1178 and 1389, so any inclusion would duplicate), and Joseph's later prison interpretation work is not shown. Fills the Joseph adult-arc middle between the coat (1037) and the reveal (1003). SHORT+FULL (WEB 339w/505w; KJV 355w/504w). The repeated source refrain 'Yahweh was with Joseph' (39:2, 39:3, 39:21, 39:23) is preserved as the story's spine in every variant. Potiphar's wife's false accusation handled exactly and NOT softened: her claim that the Hebrew came in to mock/lie with her and fled leaving his garment when she cried out is kept faithful (39:14-15, 39:17-18). No invented attraction, motive, private thought, gesture, or emotional state \u2014 the text states only that she 'set her eyes on Joseph' and said 'Lie with me'; Joseph's stated reason (his master's trust, sinning against God, 39:8-9) is kept; 'well-built and handsome' is source-stated (39:6). Ends within Genesis 39 on the complete shape (prosperity in the prison, 39:21-23). KJV lane uses KJV diction (the Lord, goodly person and well favoured, grace); WEB uses Yahweh. CODEX-AUDIT CORRECTION 2026-07-23: (F11) both FULL variants were re-authored from a fresh function-based scene outline (rise / pressure and refusal / garment and accusation / prison) rather than the verse-block paragraph mapping the audit flagged (WEB was run 21 / 77.2% cov / 7 blocks -> run 10 / 38.7% / 2 blocks, 505w; KJV was run 20 / 83.2% / 15 blocks -> run 12 / 49.7% / 1 block, 504w). The four 'Yahweh was with Joseph' refrains (39:2/3/21/23) and the exact accusation are preserved; no Genesis 40; boundary at 39:23. (F12) both SHORTS restored the explicit 'to lie with her' the audit found omitted, so the required-exact accusation now holds in every variant. (F13) KJV full count corrected to 504w; the 'handled exactly and NOT softened' claim is now true of all four variants after F12. Reflection recast to observation form (batch reflection-variety fix).",
-  "bibleOrderIndex": 125064
+  "bibleOrderIndex": 125064,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-07-29T22:43:13Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }
