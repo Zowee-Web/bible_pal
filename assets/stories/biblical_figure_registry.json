@@ -6306,6 +6306,69 @@
           "text": "Peter said they had lied not to men but to God; both fell down and died, and great fear came on the church."
         }
       ]
+    },
+    {
+      "bibleStoryKey": "nebuchadnezzars_praise",
+      "primaryFigure": "Nebuchadnezzar",
+      "secondaryFigures": [],
+      "framingLines": [],
+      "bibleSourceRef": "Daniel 4:34-37",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-07-31 registration stub for story 1299. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
+    },
+    {
+      "bibleStoryKey": "daniel_three_weeks_mourning",
+      "primaryFigure": "Daniel",
+      "secondaryFigures": [],
+      "framingLines": [],
+      "bibleSourceRef": "Daniel 10:1-3",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-07-31 registration stub for story 1300. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
+    },
+    {
+      "bibleStoryKey": "fight_for_your_brothers",
+      "primaryFigure": "Nehemiah",
+      "secondaryFigures": [],
+      "framingLines": [],
+      "bibleSourceRef": "Nehemiah 4:7-15",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-07-31 registration stub for story 1301. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
+    },
+    {
+      "bibleStoryKey": "israel_in_the_days_of_midian",
+      "primaryFigure": "Israel",
+      "secondaryFigures": [],
+      "framingLines": [],
+      "bibleSourceRef": "Judges 6:1-10",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-07-31 registration stub for story 1302. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
+    },
+    {
+      "bibleStoryKey": "israel_groans_in_bondage",
+      "primaryFigure": "Israel",
+      "secondaryFigures": [],
+      "framingLines": [],
+      "bibleSourceRef": "Exodus 2:23-25",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-07-31 registration stub for story 1303. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
+    },
+    {
+      "bibleStoryKey": "nehemiah_refuses_to_come_down",
+      "primaryFigure": "Nehemiah",
+      "secondaryFigures": [],
+      "framingLines": [],
+      "bibleSourceRef": "Nehemiah 6:1-9",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-07-31 registration stub for story 1304. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
+    },
+    {
+      "bibleStoryKey": "bless_the_lord_for_the_good_land",
+      "primaryFigure": "Moses",
+      "secondaryFigures": [],
+      "framingLines": [],
+      "bibleSourceRef": "Deuteronomy 8:7-10",
+      "_stub": true,
+      "_stubReason": "Auto-generated 2026-07-31 registration stub for story 1305. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
     }
   ],
   "_stubsNote": "2026-07-19: Manifest-sync backfill \u2014 appended 1 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-07-18: Manifest-sync backfill \u2014 appended 4 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-30: Manifest-sync backfill \u2014 appended 298 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-09: Added 96 auto-generated stub entries (marked with _stub: true) to satisfy biblical_figure_registry_test.dart cross-validation. 68 thematic/devotional bibleStoryKeys remain unregistered (need manual curation with appropriate schema): armor_of_god, as_a_deer_pants, beatitudes, calling_and_election_sure, cast_all_your_worries, ..."

@@ -12,7 +12,7 @@
   "lengths": [
     "short"
   ],
-  "shortScripture": false,
+  "shortScripture": true,
   "createdByModel": "claude-opus-4-7",
   "generationBatch": "PAL_OPUS_BATCH_06_V3_PILOT",
   "title": "I, Daniel, Was Mourning",
