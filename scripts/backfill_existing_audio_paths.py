@@ -50,9 +50,22 @@ Exit codes
 
 Usage
 -----
-    python3 scripts/backfill_existing_audio_paths.py              # dry run
+    python3 scripts/backfill_existing_audio_paths.py                      # dry run
     python3 scripts/backfill_existing_audio_paths.py --write
     python3 scripts/backfill_existing_audio_paths.py --ids 1019,1032
+    python3 scripts/backfill_existing_audio_paths.py --reflection-only
+    python3 scripts/backfill_existing_audio_paths.py --reflection-only --write
+
+Modes
+-----
+default            Repairs entries whose audioFilePath is blank, populating both
+                   audioFilePath and reflectionAudioPath.
+--reflection-only  Repairs entries whose story audio is ALREADY linked but whose
+                   reflectionAudioPath is blank, populating only that field.
+                   Restricted to numeric traditional entries; the legacy
+                   parable_* corpus uses a different convention and is excluded.
+
+Both modes share the same safety gates and the same unconditional kid-text guard.
 """
 
 from __future__ import annotations
@@ -139,19 +152,28 @@ def check_target(assets: pathlib.Path, tracked: set[str], rel: str) -> str | Non
 # core
 # --------------------------------------------------------------------------
 def plan(manifest: dict, assets: pathlib.Path, tracked: set[str],
-         ids: set[str] | None = None) -> dict:
+         ids: set[str] | None = None, reflection_only: bool = False) -> dict:
     """Decide, without mutating anything, what should change and why."""
     updates, skipped_kid, errors, considered = [], [], [], 0
 
     for index, entry in enumerate(manifest.get("parables", [])):
-        # Eligibility is defined by a blank audioFilePath: this tool repairs
-        # variants whose story audio was unlinked. An entry that already has
-        # story audio is left alone even if its reflection path is blank —
-        # that is a different (and larger) gap, out of scope here.
-        if entry.get("audioFilePath"):
-            continue
-        want_story = True
-        want_reflection = not entry.get("reflectionAudioPath")
+        if reflection_only:
+            # Companion mode: story audio is already linked, only the
+            # reflection path is missing. Populate that field alone.
+            if not entry.get("audioFilePath"):
+                continue
+            if entry.get("reflectionAudioPath"):
+                continue
+            want_story = False
+            want_reflection = True
+        else:
+            # Default: repair variants whose story audio was unlinked. An entry
+            # that already has story audio is left alone even if its reflection
+            # path is blank — that is what --reflection-only covers.
+            if entry.get("audioFilePath"):
+                continue
+            want_story = True
+            want_reflection = not entry.get("reflectionAudioPath")
 
         sid = story_id_of(entry)
         if sid is None:
@@ -159,8 +181,11 @@ def plan(manifest: dict, assets: pathlib.Path, tracked: set[str],
         if ids is not None and sid not in ids:
             continue
 
-        considered += 1
         mode = entry.get("storytellingMode") or "traditional"
+        if reflection_only and mode != "traditional":
+            continue                      # other modes use different conventions
+
+        considered += 1
         lane = lane_of(entry)
         length = entry.get("storyLength")
 
@@ -183,6 +208,16 @@ def plan(manifest: dict, assets: pathlib.Path, tracked: set[str],
             continue
 
         story_rel, reflection_rel = canonical_paths(mode, sid, lane, length)
+
+        if reflection_only:
+            existing = entry.get("audioFilePath")
+            if not (assets / existing).exists():
+                errors.append({
+                    "storyId": entry.get("storyId"),
+                    "reason": f"existing audioFilePath does not resolve: {existing}",
+                })
+                continue
+
         fields = {}
         for field, rel, wanted in (
             ("audioFilePath", story_rel, want_story),
@@ -218,13 +253,14 @@ def apply(manifest: dict, updates: list[dict]) -> int:
     return written
 
 
-def report(result: dict, write: bool) -> None:
+def report(result: dict, write: bool, mode_label: str = "default") -> None:
     updates, skipped, errors = result["updates"], result["skipped_kid"], result["errors"]
     fields = sum(len(u["fields"]) for u in updates)
     stories = sorted({u["sid"] for u in updates})
 
     print("=" * 66)
-    print("  Manifest audio-path backfill — " + ("WRITE" if write else "DRY RUN"))
+    print("  Manifest audio-path backfill — " + mode_label + " — "
+          + ("WRITE" if write else "DRY RUN"))
     print("=" * 66)
     print(f"  blank entries considered : {result['considered']}")
     print(f"  entries to relink        : {len(updates)}")
@@ -254,6 +290,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--write", action="store_true",
                         help="apply changes (default is a dry run)")
     parser.add_argument("--ids", help="comma-separated story ids to limit the run to")
+    parser.add_argument("--reflection-only", action="store_true",
+                        help="repair only blank reflectionAudioPath on entries whose "
+                             "story audio is already linked")
     args = parser.parse_args(argv)
 
     ids = {i.strip() for i in args.ids.split(",") if i.strip()} if args.ids else None
@@ -262,8 +301,8 @@ def main(argv: list[str] | None = None) -> int:
     manifest = json.loads(raw)
     tracked = tracked_files(REPO_ROOT)
 
-    result = plan(manifest, ASSETS_DIR, tracked, ids)
-    report(result, args.write)
+    result = plan(manifest, ASSETS_DIR, tracked, ids, args.reflection_only)
+    report(result, args.write, "reflection-only" if args.reflection_only else "default")
 
     if result["errors"]:
         print("\nAborted: blocking errors above. Nothing was written.")

@@ -25,15 +25,17 @@ sys.path.insert(0, str(REPO_ROOT / "scripts"))
 import backfill_existing_audio_paths as backfill  # noqa: E402
 
 
-def entry(sid, length, style="WEB", kid_text=False, audio="", reflection=""):
+def entry(sid, length, style="WEB", kid_text=False, audio="", reflection="",
+          mode="traditional", story_id=None):
     """One synthetic manifest entry."""
     lane = "kjv" if style == "KJV" else "web"
     suffix = "_kid" if kid_text else ""
     return {
-        "storyId": f"story_{sid}_joyful_{length}{'_kid' if kid_text else ''}_traditional"
-                   + ("_kjv" if style == "KJV" else ""),
+        "storyId": story_id or (
+            f"story_{sid}_joyful_{length}{'_kid' if kid_text else ''}_traditional"
+            + ("_kjv" if style == "KJV" else "")),
         "title": f"Story {sid}",
-        "storytellingMode": "traditional",
+        "storytellingMode": mode,
         "languageStyle": style,
         "storyLength": length,
         "textFilePath": f"traditional/{sid}/story_{sid}_traditional_{lane}_{length}{suffix}.txt",
@@ -301,6 +303,171 @@ class BackfillTestCase(unittest.TestCase):
         code, out = self.run_tool(["--write"])
         self.assertEqual(code, 1)
         self.assertIn("ambiguous variant", out)
+
+    # -- reflection-only mode ------------------------------------------
+    def linked(self, sid, length, style="WEB", **kw):
+        """An entry whose story audio is already linked, reflection blank."""
+        lane = "kjv" if style == "KJV" else "web"
+        a = f"traditional/{sid}/audio_{sid}_story{'_kjv' if lane == 'kjv' else ''}_{length}.mp3"
+        return entry(sid, length, style, audio=a, **kw)
+
+    def test_reflection_only_links_web(self):
+        self.write_manifest([self.linked("1019", "short")])
+        self.make_audio("1019", "audio_1019_story_short.mp3")
+        self.make_audio("1019", "audio_1019_reflection.mp3")
+
+        code, out = self.run_tool(["--reflection-only", "--write"])
+        self.assertEqual(code, 0)
+        got = self.manifest()["parables"][0]
+        self.assertEqual(got["reflectionAudioPath"], "traditional/1019/audio_1019_reflection.mp3")
+        self.assertIn("reflection-only", out)
+        self.assertIn("audioFilePath         : 0", out)
+
+    def test_reflection_only_links_kjv(self):
+        self.write_manifest([self.linked("1019", "full", "KJV")])
+        self.make_audio("1019", "audio_1019_story_kjv_full.mp3")
+        self.make_audio("1019", "audio_1019_reflection_kjv.mp3")
+
+        code, _ = self.run_tool(["--reflection-only", "--write"])
+        self.assertEqual(code, 0)
+        self.assertEqual(self.manifest()["parables"][0]["reflectionAudioPath"],
+                         "traditional/1019/audio_1019_reflection_kjv.mp3")
+
+    def test_reflection_only_several_lengths_share_one_file(self):
+        self.write_manifest([self.linked("1019", ln) for ln in ("short", "full", "long")])
+        for ln in ("short", "full", "long"):
+            self.make_audio("1019", f"audio_1019_story_{ln}.mp3")
+        self.make_audio("1019", "audio_1019_reflection.mp3")
+
+        code, out = self.run_tool(["--reflection-only", "--write"])
+        self.assertEqual(code, 0)
+        paths = {p["reflectionAudioPath"] for p in self.manifest()["parables"]}
+        self.assertEqual(paths, {"traditional/1019/audio_1019_reflection.mp3"})
+        self.assertIn("fields to populate       : 3", out)
+
+    def test_reflection_only_requires_story_audio(self):
+        """An entry with no story audio is not eligible in this mode."""
+        self.write_manifest([entry("1019", "short")])           # audioFilePath blank
+        self.make_audio("1019", "audio_1019_story_short.mp3")
+        self.make_audio("1019", "audio_1019_reflection.mp3")
+        before = self.manifest()["parables"][0]
+
+        code, out = self.run_tool(["--reflection-only", "--write"])
+        self.assertEqual(code, 0)
+        self.assertIn("entries to relink        : 0", out)
+        self.assertEqual(self.manifest()["parables"][0], before)
+
+    def test_reflection_only_never_overwrites_populated_reflection(self):
+        existing = "traditional/1019/SOMETHING_ELSE.mp3"
+        self.write_manifest([self.linked("1019", "short", reflection=existing)])
+        self.make_audio("1019", "audio_1019_story_short.mp3")
+        self.make_audio("1019", "audio_1019_reflection.mp3")
+        before = self.manifest()["parables"][0]
+
+        code, out = self.run_tool(["--reflection-only", "--write"])
+        self.assertEqual(code, 0)
+        self.assertIn("entries to relink        : 0", out)
+        self.assertEqual(self.manifest()["parables"][0], before)
+
+    def test_reflection_only_skips_kid_text(self):
+        self.write_manifest([self.linked("1091", "short", kid_text=True)])
+        self.make_audio("1091", "audio_1091_story_short.mp3")
+        self.make_audio("1091", "audio_1091_reflection.mp3")
+        before = self.manifest()["parables"][0]
+
+        code, out = self.run_tool(["--reflection-only", "--write"])
+        self.assertEqual(code, 0)
+        self.assertIn(backfill.SKIP_KID, out)
+        self.assertEqual(self.manifest()["parables"][0], before)
+
+    def test_reflection_only_excludes_non_numeric_and_non_traditional(self):
+        """Kids-mode entries use non-numeric ids and a separate audio tree."""
+        legacy = entry("0", "short", audio="kids/1806/audio_1806_short.mp3",
+                       story_id="kidstory_kid_jairus_daughter_short")
+        creative = self.linked("2001", "short", mode="creative")
+        self.write_manifest([legacy, creative])
+        self.make_audio("2001", "audio_2001_story_short.mp3")
+        self.make_audio("2001", "audio_2001_reflection.mp3")
+        before = self.manifest()["parables"]
+
+        code, out = self.run_tool(["--reflection-only", "--write"])
+        self.assertEqual(code, 0)
+        self.assertIn("entries to relink        : 0", out)
+        self.assertEqual(self.manifest()["parables"], before)
+
+    def test_reflection_only_missing_file_is_blocking(self):
+        self.write_manifest([self.linked("1019", "short")])
+        self.make_audio("1019", "audio_1019_story_short.mp3")   # no reflection MP3
+        before = self.manifest_path.read_text(encoding="utf-8")
+
+        code, out = self.run_tool(["--reflection-only", "--write"])
+        self.assertEqual(code, 1)
+        self.assertIn("missing:", out)
+        self.assertEqual(self.manifest_path.read_text(encoding="utf-8"), before)
+
+    def test_reflection_only_untracked_empty_and_undecodable_are_blocking(self):
+        self.write_manifest([self.linked(s, "short") for s in ("1019", "1032", "1045")])
+        for sid in ("1019", "1032", "1045"):
+            self.make_audio(sid, f"audio_{sid}_story_short.mp3")
+        self.make_audio("1019", "audio_1019_reflection.mp3", tracked=False)
+        self.make_audio("1032", "audio_1032_reflection.mp3", size=0)
+        self.make_audio("1045", "audio_1045_reflection.mp3")
+        self._undecodable.add("audio_1045_reflection.mp3")
+
+        code, out = self.run_tool(["--reflection-only", "--write"])
+        self.assertEqual(code, 1)
+        for reason in ("untracked:", "empty:", "undecodable:"):
+            self.assertIn(reason, out)
+
+    def test_reflection_only_dry_run_and_idempotence(self):
+        self.write_manifest([self.linked("1019", "short")])
+        self.make_audio("1019", "audio_1019_story_short.mp3")
+        self.make_audio("1019", "audio_1019_reflection.mp3")
+
+        before = self.manifest_path.read_text(encoding="utf-8")
+        code, out = self.run_tool(["--reflection-only"])
+        self.assertEqual(code, 0)
+        self.assertIn("DRY RUN", out)
+        self.assertEqual(self.manifest_path.read_text(encoding="utf-8"), before)
+
+        self.run_tool(["--reflection-only", "--write"])
+        after_first = self.manifest_path.read_text(encoding="utf-8")
+        code, out = self.run_tool(["--reflection-only", "--write"])
+        self.assertEqual(code, 0)
+        self.assertIn("No-op", out)
+        self.assertEqual(self.manifest_path.read_text(encoding="utf-8"), after_first)
+
+    def test_reflection_only_ids_filter_and_order_preserved(self):
+        parables = [self.linked("1019", "short"), self.linked("1032", "short")]
+        self.write_manifest(parables)
+        for sid in ("1019", "1032"):
+            self.make_audio(sid, f"audio_{sid}_story_short.mp3")
+            self.make_audio(sid, f"audio_{sid}_reflection.mp3")
+
+        code, _ = self.run_tool(["--reflection-only", "--write", "--ids", "1019"])
+        self.assertEqual(code, 0)
+        got = self.manifest()["parables"]
+        self.assertNotEqual(got[0]["reflectionAudioPath"], "")
+        self.assertEqual(got[1]["reflectionAudioPath"], "")
+        self.assertEqual([p["storyId"] for p in got], [p["storyId"] for p in parables])
+        for b, a in zip(parables, got):
+            self.assertEqual(list(a.keys()), list(b.keys()))
+            self.assertEqual(a["audioFilePath"], b["audioFilePath"])   # never touched
+
+    def test_default_mode_unaffected_by_the_new_flag(self):
+        """Default mode still fills both fields and ignores already-linked entries."""
+        self.write_manifest([entry("1019", "short"), self.linked("1032", "short")])
+        for sid in ("1019", "1032"):
+            self.make_audio(sid, f"audio_{sid}_story_short.mp3")
+            self.make_audio(sid, f"audio_{sid}_reflection.mp3")
+
+        code, out = self.run_tool(["--write"])
+        self.assertEqual(code, 0)
+        got = self.manifest()["parables"]
+        self.assertEqual(got[0]["audioFilePath"], "traditional/1019/audio_1019_story_short.mp3")
+        self.assertEqual(got[0]["reflectionAudioPath"], "traditional/1019/audio_1019_reflection.mp3")
+        self.assertEqual(got[1]["reflectionAudioPath"], "")        # untouched by default mode
+        self.assertIn("default", out)
 
 
 if __name__ == "__main__":
