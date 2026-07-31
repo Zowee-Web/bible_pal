@@ -41,6 +41,9 @@ jobs:
     - name: Test scoped Bible-order backfill
       run: python3 -m unittest scripts.tests.test_step4a_bible_order_backfill -v
 
+    - name: Test manifest audio-path backfill
+      run: python3 -m unittest scripts.tests.test_backfill_existing_audio_paths -v
+
     - name: Test ADR-031 reconstruction diagnostics
       run: |
         # jsonschema is already required by scripts/validate_corpus.py; ensure
