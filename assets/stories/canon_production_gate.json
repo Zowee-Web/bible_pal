@@ -11,7 +11,8 @@
     "counts": {
       "approvedCandidates": 22,
       "overturnedFindings": 3,
-      "deferredNotable": 5
+      "deferredNotable": 5,
+      "integratedCandidates": 22
     },
     "productionStatusVocabulary": [
       "not_started",
@@ -27,30 +28,19 @@
     },
     "journeyBacklogReference": {
       "file": "assets/stories/journey_gap_backlog.json",
-      "note": "G1-G16 are NOT duplicated here. Their authoritative records live in journey_gap_backlog.json. Fill order below mirrors that file's _meta.fillPriority.",
-      "fillNow": [
-        "G1",
-        "G2",
-        "G3",
-        "G4",
-        "G5",
-        "G6",
-        "G7"
-      ],
-      "stronglyConsider": [
-        "G8",
-        "G9",
-        "G10"
-      ],
+      "note": "G1-G16 are NOT duplicated here. Their authoritative records live in journey_gap_backlog.json. Fill order below mirrors that file's _meta.fillPriority. 2026-07-31 refresh: G1-G10 (fillNow + stronglyConsider) and G11 have all been authored, so those lists are now empty; only G12-G16 remain open, and G12 is guest-beat-solvable via story 1049. Do not re-issue G1-G11 for production.",
+      "fillNow": [],
+      "stronglyConsider": [],
       "deferUntilArcApproached": [
-        "G11",
         "G12",
         "G13",
         "G14",
         "G15",
         "G16"
       ]
-    }
+    },
+    "statusRefreshedOn": "2026-07-31",
+    "statusRefreshNote": "2026-07-31 status refresh (no editorial re-gating). All 22 approved candidates had been produced but every record still read productionStatus=not_started, so consuming this file as-is would have instructed ~22 duplicate stories. Each candidate now carries productionStatus=integrated plus productionId/productionAnchor/productionBibleStoryKey, derived and verified against the corpus at master fe09b63808c0ab4a798cae9a3087955b9a1320cb (meta_<id>.json AND manifest.json agree on title, anchor and bibleStoryKey for every mapping). gateDate and every coverageStatus value are PRESERVED as the 2026-07-16 gate-time findings - present-day coverage is given by productionStatus + productionId, not by coverageStatus. Rationale, cautions, priorities, waves and the overturned findings are unchanged. The CG08 and CG19 scope decisions are preserved verbatim in their notes. deferredNotable DEF3 ('Give Us a King', 1 Samuel 8) was refreshed because its 'verified absent' wording became factually stale - it was produced as story 1599. Isaiah 9:2-7, Psalm 1 and 1 Samuel 20 were re-verified still absent and remain deferred."
   },
   "approvedCandidates": [
     {
@@ -64,7 +54,10 @@
       "editorialDifficulty": "very_heavy",
       "gateStatus": "passed",
       "productionWave": "Wave 1",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1566,
+      "productionAnchor": "Genesis 3:1-24",
+      "productionBibleStoryKey": "the_fall",
       "mustPrecedeJourneyBeats": false,
       "affectedArcs": [
         "primeval_arc (proposed)"
@@ -74,7 +67,7 @@
       "rationale": "The root of the redemption story; its absence is the single most conspicuous hole for any churchgoer. Kid version is a separate, harder story from Creation (1834).",
       "verificationMethod": "full_corpus_automated; re-confirmed targeted_opus_gate (0 meta hits both lanes)",
       "cautions": "VERY HEAVY. Kid version is a separate, harder story from Creation (1834); keep a 'God stays WITH' framing on the exile/consequence.",
-      "notes": "Native lane note: Seeds a primeval origins arc (Creation \u2192 Fall \u2192 Cain \u2192 Flood)"
+      "notes": "Produced as story 1566 \"The Fall\" [Genesis 3:1-24] (batch PAL_WAVE1D_CANON_2026-07); registered in manifest.json. Native lane note: Seeds a primeval origins arc (Creation \u2192 Fall \u2192 Cain \u2192 Flood)"
     },
     {
       "id": "CG02",
@@ -87,7 +80,10 @@
       "editorialDifficulty": "heavy",
       "gateStatus": "passed",
       "productionWave": "Wave 1",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1567,
+      "productionAnchor": "Genesis 4:1-16",
+      "productionBibleStoryKey": "cain_and_abel",
       "mustPrecedeJourneyBeats": false,
       "affectedArcs": [
         "primeval_arc (proposed)"
@@ -97,7 +93,7 @@
       "rationale": "Universally known; the murder is irreducible, so adult-only or excluded from the kid lane.",
       "verificationMethod": "full_corpus_automated; re-confirmed targeted_opus_gate (cain=0 hits)",
       "cautions": "HEAVY. The murder is irreducible; adult-only or excluded from the kid lane \u2014 kid subtraction cannot remove the central act.",
-      "notes": "Native lane note: Primeval arc beat 2"
+      "notes": "Produced as story 1567 \"Cain and Abel\" [Genesis 4:1-16] (batch PAL_WAVE1D_CANON_2026-07); registered in manifest.json. Native lane note: Primeval arc beat 2"
     },
     {
       "id": "CG03",
@@ -110,7 +106,10 @@
       "editorialDifficulty": "heavy",
       "gateStatus": "passed",
       "productionWave": "Wave 1",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1565,
+      "productionAnchor": "Luke 22:54-62",
+      "productionBibleStoryKey": "peters_denial",
       "mustPrecedeJourneyBeats": true,
       "affectedArcs": [
         "peter_gospel_arc (proposed)"
@@ -120,7 +119,7 @@
       "rationale": "The restoration (John 21, story 1130) already exists \u2014 the corpus has the healing without the wound. The denial's charcoal fire (John 18:18) answers the restoration's (John 21:9).",
       "verificationMethod": "full_corpus_automated (gospel-passion); arc-mapped this gate",
       "cautions": "HEAVY (emotional). Restoration (1130, John 21) already exists; the denial completes the charcoal-fire seam it depends on.",
-      "notes": "Native lane note: Completes the Peter Gospel arc; retroactively charges the existing restoration (1130)"
+      "notes": "Produced as story 1565 \"The Rooster and the Fire\" [Luke 22:54-62] (batch PAL_WAVE1C_CANON_2026-07); registered in manifest.json. Native lane note: Completes the Peter Gospel arc; retroactively charges the existing restoration (1130)"
     },
     {
       "id": "CG04",
@@ -133,7 +132,10 @@
       "editorialDifficulty": "standard",
       "gateStatus": "passed",
       "productionWave": "Wave 1",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1563,
+      "productionAnchor": "Matthew 16:13-20",
+      "productionBibleStoryKey": "peters_confession",
       "mustPrecedeJourneyBeats": true,
       "affectedArcs": [
         "peter_gospel_arc (proposed)"
@@ -143,7 +145,7 @@
       "rationale": "'You are the Christ' \u2014 the theological center of the Gospels. Verified genuinely absent (0 meta hits both lanes).",
       "verificationMethod": "targeted_opus_gate (0 meta hits both lanes)",
       "cautions": "STANDARD. Salvaged-division item, re-verified genuinely absent.",
-      "notes": "Native lane note: Peter Gospel arc hinge (before the denial)"
+      "notes": "Produced as story 1563 \"You Are the Christ\" [Matthew 16:13-20] (batch PAL_WAVE1A_CANON_2026-07); registered in manifest.json. Native lane note: Peter Gospel arc hinge (before the denial)"
     },
     {
       "id": "CG05",
@@ -156,7 +158,10 @@
       "editorialDifficulty": "standard",
       "gateStatus": "passed",
       "productionWave": "Wave 1",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1562,
+      "productionAnchor": "John 1:1-18",
+      "productionBibleStoryKey": "the_word_became_flesh",
       "mustPrecedeJourneyBeats": false,
       "affectedArcs": [],
       "existingLeftStoryId": null,
@@ -164,7 +169,7 @@
       "rationale": "Foundational Christology and a strong Advent piece. 1417 covers John 1:40-42 (calling Peter), not the prologue.",
       "verificationMethod": "full_corpus_automated; re-confirmed targeted_opus_gate (John 1 prologue = 0)",
       "cautions": "STANDARD. 1417 covers John 1:40-42 (calling Peter), not the 1:1-18 prologue.",
-      "notes": "Native lane note: None (foundational)"
+      "notes": "Produced as story 1562 \"The Word Became Flesh\" [John 1:1-18] (batch PAL_WAVE1A_CANON_2026-07); registered in manifest.json. Native lane note: None (foundational)"
     },
     {
       "id": "CG06",
@@ -177,7 +182,10 @@
       "editorialDifficulty": "standard",
       "gateStatus": "passed",
       "productionWave": "Wave 1",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1564,
+      "productionAnchor": "1 Samuel 24",
+      "productionBibleStoryKey": "david_spares_saul",
       "mustPrecedeJourneyBeats": false,
       "affectedArcs": [
         "david_saul_arc (proposed)"
@@ -187,7 +195,7 @@
       "rationale": "A beloved mercy story, verified absent. The near-match 1448 is the Cave of Adullam (1 Sam 22) \u2014 a different cave \u2014 exactly the cross-reference trap.",
       "verificationMethod": "targeted_opus_gate (0 meta hits both lanes)",
       "cautions": "STANDARD. Salvaged-division item; the near-match 1448 is the Cave of Adullam (1 Sam 22), a different cave.",
-      "notes": "Native lane note: Strengthens the David-and-Saul pre-kingship pool"
+      "notes": "Produced as story 1564 \"The Hem of the Robe\" [1 Samuel 24] (batch PAL_WAVE1A_CANON_2026-07); registered in manifest.json. Native lane note: Strengthens the David-and-Saul pre-kingship pool"
     },
     {
       "id": "CG07",
@@ -200,7 +208,10 @@
       "editorialDifficulty": "heavy",
       "gateStatus": "passed",
       "productionWave": "Wave 1",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1568,
+      "productionAnchor": "Numbers 21:4-9",
+      "productionBibleStoryKey": "bronze_serpent",
       "mustPrecedeJourneyBeats": false,
       "affectedArcs": [
         "moses_wilderness (loose)"
@@ -210,7 +221,7 @@
       "rationale": "Jesus' own self-reference in John 3:14 ('lifted up'). Verified absent \u2014 1383 covers a different part of Numbers 21 (the well song).",
       "verificationMethod": "targeted_opus_gate (0 meta hits both lanes)",
       "cautions": "HEAVY (divine judgment). Salvaged-division item; 1383 covers a different part of Numbers 21. John 3:14 dependency ('lifted up').",
-      "notes": "Native lane note: Foreshadow beat for a John 3 / Nicodemus thread"
+      "notes": "Produced as story 1568 \"The Bronze Serpent\" [Numbers 21:4-9] (batch PAL_WAVE1D_CANON_2026-07); registered in manifest.json. Native lane note: Foreshadow beat for a John 3 / Nicodemus thread"
     },
     {
       "id": "CG08",
@@ -223,7 +234,10 @@
       "editorialDifficulty": "heavy",
       "gateStatus": "passed",
       "productionWave": "Wave 4",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1586,
+      "productionAnchor": "John 18:28-38",
+      "productionBibleStoryKey": "jesus_before_pilate",
       "mustPrecedeJourneyBeats": true,
       "affectedArcs": [
         "passion_arc (proposed)"
@@ -233,7 +247,7 @@
       "rationale": "The corpus jumps from the arrest straight to the crucifixion (1109). The whole Roman trial is off-screen.",
       "verificationMethod": "full_corpus_automated; re-confirmed targeted_opus_gate (0 hits)",
       "cautions": "HEAVY. Fills the arrest->cross seam; the corpus jumps arrest straight to crucifixion (1109). Adult-only.",
-      "notes": "Native lane note: Fills the Passion arc's arrest\u2192cross seam"
+      "notes": "Produced as story 1586 \"Jesus Before Pilate: What Is Truth?\" [John 18:28-38] (batch PAL_DAILY_2026-07-24_BATCH_D); registered in manifest.json. DELIBERATE SCOPE DECISION (owner, preserved): the gate's original John 18:28-19:16 / Luke 23:1-25 span was re-scoped at authoring time. 1586 covers John 18:28-38 only; the Barabbas choice was split out to CG09 (story 1587, Matthew 27:15-26) to avoid duplicating it; the Luke 23 crucifixion side is already covered by 1109/1550/1558. John 19:1-16 (the sentencing/flogging scene) remains uncovered BY DESIGN - do not re-open it as a production item. Native lane note: Fills the Passion arc's arrest\u2192cross seam"
     },
     {
       "id": "CG09",
@@ -246,7 +260,10 @@
       "editorialDifficulty": "heavy",
       "gateStatus": "passed",
       "productionWave": "Wave 4",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1587,
+      "productionAnchor": "Matthew 27:15-26",
+      "productionBibleStoryKey": "barabbas_and_the_crowd",
       "mustPrecedeJourneyBeats": true,
       "affectedArcs": [
         "passion_arc (proposed)"
@@ -256,7 +273,7 @@
       "rationale": "Verified absent (1354 is the burial, not Barabbas). Can be one story with Pilate or a tight pair.",
       "verificationMethod": "full_corpus_automated; re-confirmed targeted_opus_gate (0 hits)",
       "cautions": "HEAVY. Pairs with Pilate; 1354 is the burial, not Barabbas. Adult-only.",
-      "notes": "Native lane note: Passion arc (pairs with Pilate)"
+      "notes": "Produced as story 1587 \"Barabbas and the Crowd's Choice\" [Matthew 27:15-26] (batch PAL_DAILY_2026-07-24_BATCH_D); registered in manifest.json. Native lane note: Passion arc (pairs with Pilate)"
     },
     {
       "id": "CG10",
@@ -269,7 +286,10 @@
       "editorialDifficulty": "standard",
       "gateStatus": "passed",
       "productionWave": "Wave 1",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1569,
+      "productionAnchor": "Matthew 1:18-25",
+      "productionBibleStoryKey": "angel_appears_to_joseph",
       "mustPrecedeJourneyBeats": false,
       "affectedArcs": [
         "nativity_arc (proposed)"
@@ -279,7 +299,7 @@
       "rationale": "'Immanuel.' Verified absent \u2014 the OT-Joseph name-collision (Gen 37/41/45) is cleared.",
       "verificationMethod": "full_corpus_automated; re-confirmed targeted_opus_gate (0 hits)",
       "cautions": "STANDARD. OT-Joseph name-collision (Gen 37/41/45) cleared. Strong Advent piece.",
-      "notes": "Native lane note: Nativity arc (the male-POV beat)"
+      "notes": "Produced as story 1569 \"The Angel in Joseph's Dream\" [Matthew 1:18-25] (batch PAL_WAVE1D_CANON_2026-07); registered in manifest.json. Native lane note: Nativity arc (the male-POV beat)"
     },
     {
       "id": "CG11",
@@ -292,7 +312,10 @@
       "editorialDifficulty": "standard",
       "gateStatus": "passed",
       "productionWave": "Wave 4",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1590,
+      "productionAnchor": "1 Kings 12",
+      "productionBibleStoryKey": "kingdom_splits",
       "mustPrecedeJourneyBeats": false,
       "affectedArcs": [
         "divided_monarchy (proposed)"
@@ -302,7 +325,7 @@
       "rationale": "The structural hinge that explains Israel vs. Judah for the rest of the OT. Verified absent.",
       "verificationMethod": "full_corpus_automated; re-confirmed targeted_opus_gate (rehoboam=0 hits)",
       "cautions": "STANDARD. Opens the divided-monarchy era. Adult lane.",
-      "notes": "Native lane note: Opens the divided-monarchy era (new arc seed)"
+      "notes": "Produced as story 1590 \"The Kingdom Splits\" [1 Kings 12] (batch PAL_DAILY_2026-07-24_BATCH_D); registered in manifest.json. Native lane note: Opens the divided-monarchy era (new arc seed)"
     },
     {
       "id": "CG12",
@@ -315,7 +338,10 @@
       "editorialDifficulty": "heavy",
       "gateStatus": "passed",
       "productionWave": "Wave 4",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1588,
+      "productionAnchor": "Matthew 2:13-18",
+      "productionBibleStoryKey": "flight_to_egypt",
       "mustPrecedeJourneyBeats": false,
       "affectedArcs": [
         "nativity_arc (proposed)"
@@ -325,7 +351,7 @@
       "rationale": "The magi (2:1-12) are covered; the flight and the massacre are absent. The massacre makes it adult; a kid cut can keep the flight and drop Herod.",
       "verificationMethod": "full_corpus_automated; re-confirmed targeted_opus_gate (0 hits)",
       "cautions": "HEAVY (Herod's massacre). Magi (2:1-12) covered by 1070/1078; kid cut can keep the flight and drop the massacre. Adult for the full story.",
-      "notes": "Native lane note: Nativity arc tail (magi 1070 \u2192 flight \u2192 Nazareth)"
+      "notes": "Produced as story 1588 \"The Flight to Egypt: Herod's Massacre and Rachel's Weeping\" [Matthew 2:13-18] (batch PAL_DAILY_2026-07-24_BATCH_D); registered in manifest.json. Native lane note: Nativity arc tail (magi 1070 \u2192 flight \u2192 Nazareth)"
     },
     {
       "id": "CG13",
@@ -338,7 +364,10 @@
       "editorialDifficulty": "heavy",
       "gateStatus": "passed",
       "productionWave": "Wave 4",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1585,
+      "productionAnchor": "Luke 16:19-31",
+      "productionBibleStoryKey": "rich_man_and_lazarus",
       "mustPrecedeJourneyBeats": false,
       "affectedArcs": [],
       "existingLeftStoryId": null,
@@ -346,7 +375,7 @@
       "rationale": "Major parable, verified absent. The false match is Lazarus of Bethany (John 11) \u2014 a different Lazarus, the classic trap.",
       "verificationMethod": "full_corpus_automated; re-confirmed targeted_opus_gate (0 hits)",
       "cautions": "HEAVY. Name-collision with Lazarus of Bethany (John 11) cleared. Adult-only.",
-      "notes": ""
+      "notes": "Produced as story 1585 \"The Rich Man and Lazarus\" [Luke 16:19-31] (batch PAL_DAILY_2026-07-24_BATCH_C); registered in manifest.json."
     },
     {
       "id": "CG14",
@@ -359,7 +388,10 @@
       "editorialDifficulty": "standard",
       "gateStatus": "passed",
       "productionWave": "Wave 5",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1580,
+      "productionAnchor": "Luke 12:13-21",
+      "productionBibleStoryKey": "parable_of_the_rich_fool",
       "mustPrecedeJourneyBeats": false,
       "affectedArcs": [],
       "existingLeftStoryId": null,
@@ -367,7 +399,7 @@
       "rationale": "Verified absent \u2014 1011 covers the adjacent 'do not worry' teaching (12:22-31), not the parable.",
       "verificationMethod": "full_corpus_automated; re-confirmed targeted_opus_gate (richfool=0 hits)",
       "cautions": "STANDARD. 1011 covers the adjacent 'do not worry' teaching (12:22-31), not the parable.",
-      "notes": ""
+      "notes": "Produced as story 1580 \"The Rich Fool\" [Luke 12:13-21] (batch PAL_TFSF2_BATCH_B_2026-07); registered in manifest.json."
     },
     {
       "id": "CG15",
@@ -380,7 +412,10 @@
       "editorialDifficulty": "standard",
       "gateStatus": "passed",
       "productionWave": "Wave 5",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1575,
+      "productionAnchor": "Matthew 25:1-13",
+      "productionBibleStoryKey": "parable_of_the_ten_virgins",
       "mustPrecedeJourneyBeats": false,
       "affectedArcs": [],
       "existingLeftStoryId": null,
@@ -388,7 +423,7 @@
       "rationale": "Catechetically essential. Verified absent \u2014 1290 is the talents (same chapter, different parable).",
       "verificationMethod": "full_corpus_automated; re-confirmed targeted_opus_gate (0 hits)",
       "cautions": "STANDARD. 1290 is the talents (same chapter, different parable).",
-      "notes": ""
+      "notes": "Produced as story 1575 \"The Ten Virgins\" [Matthew 25:1-13] (batch PAL_TFSF2_BATCH_A_2026-07); registered in manifest.json."
     },
     {
       "id": "CG16",
@@ -401,7 +436,10 @@
       "editorialDifficulty": "standard",
       "gateStatus": "passed",
       "productionWave": "Wave 5",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1589,
+      "productionAnchor": "Matthew 25:31-46",
+      "productionBibleStoryKey": "sheep_and_the_goats",
       "mustPrecedeJourneyBeats": false,
       "affectedArcs": [],
       "existingLeftStoryId": null,
@@ -409,7 +447,7 @@
       "rationale": "'The least of these.' Verified absent.",
       "verificationMethod": "full_corpus_automated; re-confirmed targeted_opus_gate (0 hits)",
       "cautions": "STANDARD. 'The least of these.'",
-      "notes": ""
+      "notes": "Produced as story 1589 \"The Sheep and the Goats\" [Matthew 25:31-46] (batch PAL_DAILY_2026-07-24_BATCH_D); registered in manifest.json."
     },
     {
       "id": "CG17",
@@ -422,7 +460,10 @@
       "editorialDifficulty": "standard",
       "gateStatus": "passed",
       "productionWave": "Wave 3",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1570,
+      "productionAnchor": "Matthew 13:1-23",
+      "productionBibleStoryKey": "parable_of_the_sower",
       "mustPrecedeJourneyBeats": false,
       "affectedArcs": [],
       "existingLeftStoryId": null,
@@ -430,7 +471,7 @@
       "rationale": "The flagship parable \u2014 kid 1912 exists, adult lane empty. Cheap: anchor + kid editorial already done.",
       "verificationMethod": "targeted_opus_gate (adult absent; kid 1912 exists)",
       "cautions": "STANDARD. Adult-parity: kid 1912 exists, adult lane empty. Cheap \u2014 anchor + kid editorial already done.",
-      "notes": ""
+      "notes": "Produced as story 1570 \"The Sower\" [Matthew 13:1-23] (batch PAL_WAVE1D_CANON_2026-07); registered in manifest.json."
     },
     {
       "id": "CG18",
@@ -443,7 +484,10 @@
       "editorialDifficulty": "standard",
       "gateStatus": "passed",
       "productionWave": "Wave 3",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1584,
+      "productionAnchor": "Luke 18:1-8",
+      "productionBibleStoryKey": "persistent_widow",
       "mustPrecedeJourneyBeats": false,
       "affectedArcs": [],
       "existingLeftStoryId": null,
@@ -451,7 +495,7 @@
       "rationale": "Kid 1905 exists; adult 1539 is the adjacent Pharisee-and-tax-collector parable (18:9-14), not this one.",
       "verificationMethod": "targeted_opus_gate (adult absent; kid 1905 exists)",
       "cautions": "STANDARD. Adult-parity: kid 1905 exists; adult 1539 is the adjacent Pharisee/tax-collector parable (18:9-14).",
-      "notes": ""
+      "notes": "Produced as story 1584 \"The Persistent Widow\" [Luke 18:1-8] (batch PAL_DAILY_2026-07-24_BATCH_C); registered in manifest.json."
     },
     {
       "id": "CG19",
@@ -464,7 +508,10 @@
       "editorialDifficulty": "heavy",
       "gateStatus": "passed",
       "productionWave": "Wave 3",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1579,
+      "productionAnchor": "Genesis 39",
+      "productionBibleStoryKey": "potiphars_house",
       "mustPrecedeJourneyBeats": true,
       "affectedArcs": [
         "joseph_arc"
@@ -474,7 +521,7 @@
       "rationale": "Kid 1906 bundles it; the adult lane currently jumps from the coat to the reveal.",
       "verificationMethod": "targeted_opus_gate (adult absent; kid 1906 exists)",
       "cautions": "HEAVY (false accusation). Adult-parity: kid 1906 bundles it; the adult arc jumps from the coat (1037) to the reveal (1003).",
-      "notes": "Native lane note: Fills the Joseph adult-arc middle (coat 1037 \u2192 ? \u2192 reveal 1003)"
+      "notes": "Produced as story 1579 \"Potiphar's House\" [Genesis 39] (batch PAL_TFSF2_BATCH_B_2026-07); registered in manifest.json. DELIBERATE SCOPE DECISION (owner, preserved): the Genesis 39-40 span was split. 1579 covers Genesis 39 (Potiphar's house); Genesis 40 was already covered by existing stories 1178 \"But the Cupbearer Forgot Him\" [Genesis 40:1-23] and 1389 \"Remember Me\" [Genesis 40:14-23], verified an intentional retelling pair. No further production required for this item. Native lane note: Fills the Joseph adult-arc middle (coat 1037 \u2192 ? \u2192 reveal 1003)"
     },
     {
       "id": "CG20",
@@ -487,7 +534,10 @@
       "editorialDifficulty": "standard",
       "gateStatus": "passed",
       "productionWave": "Wave 5",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1605,
+      "productionAnchor": "Matthew 20:1-16",
+      "productionBibleStoryKey": "workers_in_the_vineyard",
       "mustPrecedeJourneyBeats": false,
       "affectedArcs": [],
       "existingLeftStoryId": null,
@@ -495,7 +545,7 @@
       "rationale": "Verified absent. Grace-not-merit; part of the Kingdom-parable completion set.",
       "verificationMethod": "full_corpus_automated; re-confirmed targeted_opus_gate (0 hits)",
       "cautions": "STANDARD. Grace-not-merit; part of the Kingdom-parable completion set.",
-      "notes": ""
+      "notes": "Produced as story 1605 \"The Workers in the Vineyard\" [Matthew 20:1-16] (batch PAL_DAILY_2026-07-26_BATCH_G); registered in manifest.json."
     },
     {
       "id": "CG21",
@@ -508,7 +558,10 @@
       "editorialDifficulty": "standard",
       "gateStatus": "passed",
       "productionWave": "Wave 5",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1606,
+      "productionAnchor": "Matthew 13:24-30, 36-43",
+      "productionBibleStoryKey": "weeds_among_the_wheat",
       "mustPrecedeJourneyBeats": false,
       "affectedArcs": [],
       "existingLeftStoryId": null,
@@ -516,7 +569,7 @@
       "rationale": "Verified absent. Pairs naturally with the Sower in Matthew 13.",
       "verificationMethod": "full_corpus_automated; re-confirmed targeted_opus_gate (0 hits)",
       "cautions": "STANDARD. Pairs with the Sower in Matthew 13.",
-      "notes": ""
+      "notes": "Produced as story 1606 \"The Weeds Among the Wheat\" [Matthew 13:24-30, 36-43] (batch PAL_DAILY_2026-07-26_BATCH_H); registered in manifest.json."
     },
     {
       "id": "CG22",
@@ -529,7 +582,10 @@
       "editorialDifficulty": "standard",
       "gateStatus": "passed",
       "productionWave": "Wave 5",
-      "productionStatus": "not_started",
+      "productionStatus": "integrated",
+      "productionId": 1610,
+      "productionAnchor": "Matthew 13:44-46",
+      "productionBibleStoryKey": "hidden_treasure_and_pearl",
       "mustPrecedeJourneyBeats": false,
       "affectedArcs": [],
       "existingLeftStoryId": null,
@@ -537,7 +593,7 @@
       "rationale": "Verified absent. A very short story; bundle with the other Matthew 13 parables.",
       "verificationMethod": "full_corpus_automated; re-confirmed targeted_opus_gate (0 hits)",
       "cautions": "STANDARD. Very short; bundle with the other Matthew 13 parables.",
-      "notes": ""
+      "notes": "Produced as story 1610 \"The Hidden Treasure and the Pearl\" [Matthew 13:44-46] (batch PAL_DAILY_2026-07-26_BATCH_H); registered in manifest.json."
     }
   ],
   "overturnedFindings": [
@@ -586,7 +642,7 @@
       "title": "'Give Us a King'",
       "scriptureReference": "1 Samuel 8",
       "reason": "LOW IMMEDIATE VALUE",
-      "detail": "Verified absent, important-supporting, but not conspicuous to an ordinary user and no journey pressure. Near-term-eligible, not gating."
+      "detail": "SUPERSEDED 2026-07-31: subsequently produced as story 1599 \"Israel Demands a King\" [1 Samuel 8:1-22], registered in manifest.json. Original deferral record: verified absent at gate time, important-supporting, but not conspicuous to an ordinary user and no journey pressure; near-term-eligible, not gating."
     },
     {
       "title": "Jonathan's Arrows / Farewell",
@@ -604,6 +660,7 @@
   "productionWaves": [
     {
       "wave": "Wave 1",
+      "status": "complete",
       "focus": "Foundational omissions",
       "batchSize": "2\u20133 per sub-batch (heavy content)",
       "items": [
@@ -619,6 +676,7 @@
     },
     {
       "wave": "Wave 2",
+      "status": "complete",
       "focus": "Journey blockers",
       "batchSize": "1\u20132 per arc",
       "items": [
@@ -632,6 +690,7 @@
     },
     {
       "wave": "Wave 3",
+      "status": "complete",
       "focus": "Adult parity",
       "batchSize": "3 (cheap \u2014 anchors + kid editorial exist)",
       "items": [
@@ -643,6 +702,7 @@
     },
     {
       "wave": "Wave 4",
+      "status": "complete",
       "focus": "Heavy adult-only & Passion",
       "batchSize": "2\u20133 per batch",
       "items": [
@@ -656,6 +716,7 @@
     },
     {
       "wave": "Wave 5 (optional)",
+      "status": "complete",
       "focus": "Teaching & parable completion",
       "batchSize": "5 (standard)",
       "items": [
@@ -670,13 +731,14 @@
     },
     {
       "wave": "Enrichment adjunct",
+      "status": "open",
       "focus": "Contemplative, low-risk",
       "batchSize": "anytime",
       "items": [
         "Isaiah 9 (Advent)",
         "Psalm 1"
       ],
-      "guidance": "Non-narrative; route separately from the story batches."
+      "guidance": "Non-narrative; route separately from the story batches. STILL OPEN as of 2026-07-31: Isaiah 9:2-7 and Psalm 1 are both re-verified absent from the corpus."
     }
   ]
 }
