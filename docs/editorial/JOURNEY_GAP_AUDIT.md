@@ -1,12 +1,44 @@
 # Bible PAL — Journey Gap Audit
 
-> **Status:** Approved planning baseline (Adam, 2026-07-16)
+> **Status:** Approved planning baseline (Adam, 2026-07-16) — **G1–G11 authored; status-refreshed 2026-07-31**
 > **Audit date:** 2026-07-16
 > **Scope:** Full traditional story corpus (591 stories, 137 primary-character labels)
 > **Task type:** AUDIT + PLANNING ONLY — no beats authored, no ledger/arc-JSON/audio/app-code changed.
 > **Companion machine-readable file:** [`assets/stories/journey_gap_backlog.json`](../../assets/stories/journey_gap_backlog.json)
 
 This document is the durable source of truth for where Bible PAL's Journey Beat system can build safely against today's corpus, and the short, verified list of missing stories whose absence would otherwise force a future beat rewrite. It supersedes the rendered HTML artifact produced during the audit session.
+
+---
+
+## 0. Status refresh — 2026-07-31
+
+> **G1–G11 HAVE BEEN AUTHORED. DO NOT RE-ISSUE THEM FOR PRODUCTION.**
+
+Until this refresh G1–G10 still read `status: planned` and G11 still read `status: intentionally_deferred`, although all eleven stories had been written and registered. Consuming the backlog as-is would have instructed duplicate production.
+
+| G | Authored as | Anchor | Was |
+|---|---|---|---|
+| G1 · The Passover and the Plagues | **1576** | Exodus 7-12 | planned |
+| G2 · Jacob and Esau Reconcile | **1573** "Esau Ran to Meet Him" | Genesis 33 | planned |
+| G3 · Bathsheba and Uriah | **1581** | 2 Samuel 11 | planned |
+| G4 · Delilah and Samson's Capture | **1574** "He Told Her All His Heart" | Judges 16:4-22 | planned |
+| G5 · The Gibeonite Covenant | **1578** | Joshua 9 | planned |
+| G6 · Achan's Judgment and the Capture of Ai | **1577** | Joshua 7:13-8:29 | planned |
+| G7 · Absalom's Death | **1582** "O My Son Absalom" | 2 Samuel 18 | planned |
+| G8 · Moses Flees to Midian | **1583** | Exodus 2:11-22 | planned |
+| G9 · The Stolen Blessing | **1572** | Genesis 27 | planned |
+| G10 · The Flood | **1571** | Genesis 7-8 | planned |
+| G11 · Korah's Rebellion | **1596** "Korah's Rebellion: The Earth Opens" | Numbers 16:1-35 | intentionally_deferred |
+
+Every mapping was derived from — not assumed against — the corpus at master `fe09b63808c0ab4a798cae9a3087955b9a1320cb`: `meta_<id>.json` **and** `manifest.json` agree on title, anchor and `bibleStoryKey` for all eleven.
+
+**They are `authored`, NOT `integrated`.** Per this document's own status vocabulary, `integrated` means *authored AND wired into its arc/journey; gap closed*. None of the eleven appears in `outgoing_beats.json` (31 entries) or in any of the 18 `assets/stories/journeys/*.json` arc files. **The stories exist; the journey wiring does not.** That wiring is the outstanding work — §4's tiers below now describe an authoring state that has passed, not the beats.
+
+**Still open — G12–G16, re-verified 2026-07-31 and unchanged:**
+- **G12** — partially covered. Story 1049 (Numbers 13:25-33, Caleb POV) still the only coverage; the Moses-POV unit including the Numbers 14 rebellion/intercession is still absent. Remains `intentionally_deferred`; guest-beat-solvable per Audit Decision 3.
+- **G13** (2 Kings 20) · **G14** (2 Chronicles 35) · **G15** (Genesis 19) · **G16** (Jonah 4) — all four re-confirmed absent from the entire corpus. **True, deliberately parked gaps.** Still `intentionally_deferred`.
+
+`fillPriority.fillNow` and `fillPriority.stronglyConsider` are now empty; `deferUntilArcApproached` is G12–G16. `auditDate`, rationale, seams, ordering, severities, gapTypes and `verificationStatus` are preserved — `verificationStatus: confirmed_absent` records the **2026-07-16** corpus, not today's.
 
 ---
 
@@ -34,7 +66,7 @@ The library is in **strong editorial health**. Two findings dominate:
 
 Genuine **force-invention** gaps — where a beat could only bridge a seam by inventing an untold central event — are **few**: five hard blockers and a handful of paired/secondary gaps.
 
-**Headline counts:** 591 stories · 137 character labels · 46 arc-capable (≥3) · ~30 arcs buildable now · **5 hard blockers**.
+**Headline counts (2026-07-16):** 591 stories · 137 character labels · 46 arc-capable (≥3) · ~30 arcs buildable now · **5 hard blockers**. _As of 2026-07-31 all five hard blockers (G1–G5) have been authored; see §0._
 
 ---
 
@@ -46,31 +78,33 @@ Severity key: **HIGH** = blocks an arc; no honest beat can bridge it. **MED** = 
 
 ### Hard blockers (author before the affected arc)
 
-**G1 · The Passover & the Plagues — Exodus 7–12 — HIGH**
+> _2026-07-31: G1-G5 are all authored. The prose below is the preserved 2026-07-16 rationale for why each was needed._
+
+**AUTHORED as 1576 (not yet arc-wired)** · **G1 · The Passover & the Plagues — Exodus 7–12 — HIGH**
 - Affected: Moses / `moses_arc_1` (Deliverance).
 - Seam: `1019` (Burning Bush, Ex 3) → `1117` (Red Sea, Ex 14).
 - Ignore? **NO.** The central Exodus drama — "let my people go," the ten plagues, the blood on the doorposts — is entirely off-screen. A beat across this seam would have to compress the whole turning point into a summary sentence.
 - Unlocks: the core seam of the Moses Deliverance arc (already flagged inside the `moses_arc_1` ledger note). Highest-priority continuity blocker for the Moses Deliverance arc.
 
-**G2 · Jacob & Esau Reconcile — Genesis 33 — HIGH**
+**AUTHORED as 1573 (not yet arc-wired)** · **G2 · Jacob & Esau Reconcile — Genesis 33 — HIGH**
 - Affected: Jacob / full Jacob life-arc.
 - Seam: `1021` (Wrestles at the Jabbok, Gen 32) → `1382` (El Beth El, Gen 35).
 - Ignore? **NO.** Two existing stories (the Jabbok prayer `1345` and the wrestling `1021`) build sustained dread of Esau and his four hundred men; the payoff — the run, the embrace, the weeping — exists nowhere, and `1382` opens already past the meeting. Highest-impact single gap for a full Jacob arc.
 - Unlocks: the full Jacob life-arc (today buildable only as the shorter "Encounter" sub-arc `1018→1345→1021`).
 
-**G3 · Bathsheba & Uriah — 2 Samuel 11 — HIGH**
+**AUTHORED as 1581 (not yet arc-wired)** · **G3 · Bathsheba & Uriah — 2 Samuel 11 — HIGH**
 - Affected: David / David fall arc (`david_arc_7`).
 - Seam: settled reign (`1062`, 2 Sam 9) → `1553` (Nathan and the Lamb, 2 Sam 12).
 - Ignore? **NO.** Nathan's parable (`1553`) and the child's death (`1342`) both structurally depend on an act the corpus never depicts; a fall→grief arc must otherwise open on a rebuke for a deed the listener never saw.
 - Unlocks: the David fall arc as a true arc (currently a single edge `1553→1342`).
 
-**G4 · Delilah & the Capture — Judges 16:4–22 — HIGH**
+**AUTHORED as 1574 (not yet arc-wired)** · **G4 · Delilah & the Capture — Judges 16:4–22 — HIGH**
 - Affected: Samson / any Samson arc.
 - Seam: `1142` (An Angel at Zorah — birth, Judges 13) → `1193` (Let Me Die with the Philistines — death, Judges 16:23–31).
 - Ignore? **NO.** Samson has only two stories; `1193`'s opening already assumes a blind, shorn prisoner. Who Delilah is, why he cannot see, why he is in chains: untold. No beat can bridge a birth announcement to a blinding.
 - Unlocks: any Samson arc at all (the character is otherwise unbuildable).
 
-**G5 · The Gibeonite Covenant — Joshua 9 — HIGH**
+**AUTHORED as 1578 (not yet arc-wired)** · **G5 · The Gibeonite Covenant — Joshua 9 — HIGH**
 - Affected: Joshua / continuous Conquest arc.
 - Seam: `1294` (Ai defeat & Joshua's prayer, Josh 7) → `1151` (Sun, Stand Still, Josh 10).
 - Ignore? **NO.** `1151` opens *"…heard that Gibeon had made peace with Israel"* — and Gibeon is introduced nowhere. The battle (and the sun miracle) happens *because* of a treaty the listener never witnessed.
@@ -78,31 +112,33 @@ Severity key: **HIGH** = blocks an arc; no honest beat can bridge it. **MED** = 
 
 ### Paired resolution / secondary (author with the blockers for the same arcs)
 
-**G6 · Achan's Judgment & the Capture of Ai — Joshua 7:16–8:29 — MED**
+> _2026-07-31: G6-G10 are all authored. The prose below is the preserved 2026-07-16 rationale._
+
+**AUTHORED as 1577 (not yet arc-wired)** · **G6 · Achan's Judgment & the Capture of Ai — Joshua 7:16–8:29 — MED**
 - Affected: Joshua / Conquest arc (pairs with G5).
 - Seam: `1294` (Josh 7 defeat, dead-ends on God's rebuke *"I will not be with you… unless you destroy the devoted things"*) → `1151` (Josh 10).
 - Ignore? **NO for a continuous arc.** `1294` currently dead-ends on a divine cliffhanger with no payoff clip; `1151` then assumes *"Joshua had taken Ai."* Authoring this resolves `1294` and, with G5, makes the Conquest middle continuous.
 - Unlocks (with G5): the whole Joshua Conquest middle.
 
-**G7 · Absalom's Death — "O Absalom, my son" — 2 Samuel 18 — MED**
+**AUTHORED as 1582 (not yet arc-wired)** · **G7 · Absalom's Death — "O Absalom, my son" — 2 Samuel 18 — MED**
 - Affected: David / rebellion→grief arc (pairs with G3).
 - Seam: `1323` (The People Are Weary in the Wilderness, 2 Sam 17) → *(no right story — terminal grief)*.
 - Ignore? **NO for a rebellion arc.** Only the flight (`1323`) touches the rebellion; the death and the lament at the gate are absent, so a rebellion→grief arc has no climax to reach.
 - Unlocks (with G3): the complete David fall/rebellion material.
 
-**G8 · Moses Flees to Midian — Exodus 2:11–25 — MED** *(new finding this audit)*
+**AUTHORED as 1583 (not yet arc-wired)** · **G8 · Moses Flees to Midian — Exodus 2:11–25 — MED** *(new finding this audit)*
 - Affected: Moses / `moses_arc_1` opening seam.
 - Seam: `1033` (Baby Moses, Ex 2:1–10) → `1019` (Burning Bush, Ex 3 — already a grown Midianite shepherd).
 - Ignore? **NO.** The killing of the Egyptian and the flight — the hinge that turns the prince into a fugitive — is untold (it survives only inside Stephen's Acts 7 sermon, `1164`).
 - Unlocks: an honest opening seam for the Moses Deliverance arc.
 
-**G9 · The Stolen Blessing — Genesis 27 — MED**
+**AUTHORED as 1572 (not yet arc-wired)** · **G9 · The Stolen Blessing — Genesis 27 — MED**
 - Affected: Jacob / full Jacob arc origin (pairs with G2).
 - Seam: `1428` (Isaac in the field, Gen 24) → `1018` (Jacob's Ladder / the flight, Gen 28).
 - Ignore? **NO for a full arc.** The *origin* of the Jacob–Esau conflict; without it the fear driving the Jabbok prayer and the "deceiver renamed Israel" weight has no cause.
 - Unlocks (with G2): an honest opening for the full Jacob arc.
 
-**G10 · The Flood — Genesis 7–8 — MED**
+**AUTHORED as 1571 (not yet arc-wired)** · **G10 · The Flood — Genesis 7–8 — MED**
 - Affected: Noah / any Noah arc.
 - Seam: `1017` (Noah Builds the Ark, Gen 6) → `1213` (I Set My Rainbow, Gen 9).
 - Ignore? **NO.** Noah has only two stories, and the arc's entire turning point (the judgment, the year afloat, the dove, Ararat) happens between them with no story of its own.
@@ -110,7 +146,9 @@ Severity key: **HIGH** = blocks an arc; no honest beat can bridge it. **MED** = 
 
 ### Deferred until their specific arc is approached
 
-**G11 · Korah's Rebellion — Numbers 16 — MED (deferred)** — Moses back-half; genuinely absent. Seam `1316` (Too Heavy, Num 11) → `1364` (Meribah, Num 20).
+> _2026-07-31: G11 has since been authored as **1596** (ahead of its arc). G12-G16 re-verified and still open._
+
+**G11 · Korah's Rebellion — Numbers 16 — MED (AUTHORED 2026-07 as 1596, not yet arc-wired)** — Moses back-half; genuinely absent. Seam `1316` (Too Heavy, Num 11) → `1364` (Meribah, Num 20).
 **G12 · The Spies from Moses' POV — Numbers 13–14 — LOW (deferred)** — the **event exists** as Caleb's `1049` (Num 13:25–33) and can serve as a **guest beat** in a Moses arc; a dedicated Moses-POV render is optional enrichment, not a blocker.
 **G13 · Hezekiah's Illness & the Shadow Turned Back — 2 Kings 20 — MED (deferred)** — needed only to lift thin Hezekiah (2 episodes) to a buildable three. Seam `1511` (Sennacherib) → *(3rd beat)*.
 **G14 · Josiah's Great Passover — 2 Chronicles 35 — MED (deferred)** — needed only to lift thin Josiah (2 episodes) to three. (Huldah's prophecy `1475` already offers a possible third.) Seam `1512` (Book Found) → *(3rd beat)*.
@@ -123,6 +161,8 @@ Severity key: **HIGH** = blocks an arc; no honest beat can bridge it. **MED** = 
 
 ## 4. Production tiers
 
+> **2026-07-31:** the tiers below were written against the 2026-07-16 corpus. G1-G11 have since been authored, so the "Build after targeted gap completion" and "Wait" tiers have largely cleared — but **no beats have been written for any of the new stories**. Arcs that are now *buildable* are not yet *built*.
+
 > **Tier renamed per Adam (2026-07-16):** the "one seam away / build after 1–2 stories" tier is now **"Build after targeted gap completion,"** because several of these arcs need **two or more** stories, not one. Accurate naming matters — this doc guides future sessions.
 
 ### Build now — no authoring needed
@@ -133,18 +173,18 @@ Continuity-complete narrative spines. Beats can be written against today's corpu
 - **Paul** — as **two split sub-arcs** (*Missionary Journeys* / *Prisoner to Rome*), not one chain (see §10).
 - Already shipped & verified: **Daniel · Joseph · Ruth · David (arcs 1–7)**.
 
-### Build after targeted gap completion
-High-value arcs blocked by specific missing stories (often **more than one**).
-- **Moses (full)** ← Passover (Ex 7–12, G1) **and** flight to Midian (Ex 2:11–25, G8); later spies-guest/Korah for the back-half.
-- **David fall/rebellion** ← Bathsheba (2 Sam 11, G3) **and** Absalom (2 Sam 18, G7).
-- **Jacob (full life)** ← reconciliation (Gen 33, G2) **and** stolen blessing (Gen 27, G9).
-- **Joshua Conquest** ← the Gibeonite covenant (Josh 9, G5), preferably with the Achan/Ai resolution (Josh 7:16–8:29, G6).
-- **Abraham** — buildable *now* if the Sodom-intercession story (`1487`) is held aside; Gen 19 only needed to place it in sequence.
+### Build after targeted gap completion → **GAPS NOW FILLED (2026-07-31)**
+High-value arcs blocked by specific missing stories (often **more than one**). _Every blocking story listed here has since been authored — these arcs are now buildable, and building them (writing the beats) is the outstanding work._
+- **Moses (full)** ← Passover (Ex 7–12, G1 → **1576**) **and** flight to Midian (Ex 2:11–25, G8 → **1583**); later spies-guest/Korah (G11 → **1596**) for the back-half. **Buildable.**
+- **David fall/rebellion** ← Bathsheba (2 Sam 11, G3 → **1581**) **and** Absalom (2 Sam 18, G7 → **1582**). **Buildable.**
+- **Jacob (full life)** ← reconciliation (Gen 33, G2 → **1573**) **and** stolen blessing (Gen 27, G9 → **1572**). **Buildable.**
+- **Joshua Conquest** ← the Gibeonite covenant (Josh 9, G5 → **1578**), with the Achan/Ai resolution (Josh 7:16–8:29, G6 → **1577**). **Buildable.**
+- **Abraham** — buildable *now* if the Sodom-intercession story (`1487`) is held aside; Gen 19 (G15) is still absent, so continue to hold `1487` standalone.
 
-### Wait — not viable yet
-- **Samson** — needs Delilah/capture (G4); unbuildable without it.
-- **Noah** — needs the Flood itself (G10).
-- **Hezekiah · Josiah** — each need one more beat to clear the arc floor (G13/G14).
+### Wait — not viable yet → **PARTLY CLEARED (2026-07-31)**
+- **Samson** — needed Delilah/capture (G4); **authored as 1574**. Now buildable.
+- **Noah** — needed the Flood itself (G10); **authored as 1571**. Now buildable.
+- **Hezekiah · Josiah** — **still waiting.** Each still needs one more beat to clear the arc floor (G13 = 2 Kings 20, G14 = 2 Chronicles 35), and both remain absent from the corpus.
 
 ### Thematic track — different voice, not narrative beats
 No chronological spine. Theme/Teaching journeys; wisdom literature remains an unsolved transition-voice open cell.
@@ -157,38 +197,40 @@ No chronological spine. Theme/Teaching journeys; wisdom literature remains an un
 
 Stories column = total → distinct after dedupe. Verdict reflects the **corrected** full-corpus conclusion.
 
+> **2026-07-31:** struck-through gaps have been authored; the produced story ID follows. Rows still reading "still absent" are the surviving G13-G16 true gaps. "Buildable" means the blocking story now exists — the beats themselves are still unwritten.
+
 | Character | Stories | Dominant duplicate clusters | True gap (verified) | Sev. | Verdict |
 |---|---|---|---|---|---|
 | **Patriarchs — Genesis** ||||||
 | Joseph | 9 → 6 | Gen 37 ×3, Gen 40 ×2 | none — every chapter self-recaps | — | Build now |
-| Abraham/Abram | 12 → 7 | Gen 12 ×2, Gen 18 ×2, Gen 22 ×3 | Sodom (Gen 19); hold `1487` standalone | LOW | Build now* |
-| Jacob | 9 → 6 | Gen 28 ×2, Gen 32 ×3 | Esau reconcile (Gen 33) + blessing (Gen 27) | HIGH | Split / Wait |
+| Abraham/Abram | 12 → 7 | Gen 12 ×2, Gen 18 ×2, Gen 22 ×3 | Sodom (Gen 19, G15) — **still absent**; hold `1487` standalone | LOW | Build now* |
+| Jacob | 9 → 6 | Gen 28 ×2, Gen 32 ×3 | ~~Esau reconcile (Gen 33) + blessing (Gen 27)~~ → **1573 + 1572** | — | Buildable (2026-07-31) |
 | Hagar | 4 → 2 | Gen 16 ×2, Gen 21 ×2 | none (thin 2-beat pair) | — | Build now (thin) |
-| Noah | 3 → 2 | Gen 6 ×2 | the Flood itself (Gen 7–8) | MED | Wait |
+| Noah | 3 → 2 | Gen 6 ×2 | ~~the Flood itself (Gen 7–8)~~ → **1571** | — | Buildable (2026-07-31) |
 | Isaac | 2 | none (birth filed under Sarah `1312`) | thin pair (`1312` birth + `1428` Rebekah) | LOW | Thin |
 | **Exodus — Conquest** ||||||
-| Moses | 24 → 18 | Red Sea ×4, Bush ×2, Manna ×2 | Passover (Ex 7–12) · flight (Ex 2) · Korah/spies | HIGH | Wait (front+back) |
-| Joshua | 18 → 11 | Jericho ×4, Josh 24 ×3, Josh 1/3 ×2 | Gibeonites (Josh 9) + Achan/Ai (Josh 7:16–8:29) | HIGH | 2 arcs safe · mid waits |
+| Moses | 24 → 18 | Red Sea ×4, Bush ×2, Manna ×2 | ~~Passover (Ex 7–12) · flight (Ex 2) · Korah~~ → **1576 · 1583 · 1596**; spies = guest beat `1049` | — | Buildable (2026-07-31) |
+| Joshua | 18 → 11 | Jericho ×4, Josh 24 ×3, Josh 1/3 ×2 | ~~Gibeonites (Josh 9) + Achan/Ai (Josh 7:16–8:29)~~ → **1578 + 1577** | — | Buildable (2026-07-31) |
 | Caleb | 3 → 2 | Num 13 ×2 | none — `1173` self-recaps Num 14 | — | Build now |
 | Aaron · Phinehas | 2 · 2 | none | none — thematic pairs, self-contained | — | Build now (thin) |
 | Rahab | 2 → 1 | Josh 2 ×2 | collapses to a single node | — | Single node |
 | **Judges — Rise of the Monarchy** ||||||
 | Gideon | 6 → 3 | Call ×2, Battle ×2 | none — call→fleece→battle clean | — | Build now |
 | Deborah | 2 | none (Judges 4 + 5) | none — thin; combine with Gideon | — | Build now (thin) |
-| Samson | 2 | none | Delilah & capture (Judges 16:4–22) | HIGH | Wait |
+| Samson | 2 → 3 | none | ~~Delilah & capture (Judges 16:4–22)~~ → **1574** | — | Buildable (2026-07-31) |
 | Ruth | 9 → 4 | each chapter ×2–3 | none — gate scene exists (Boaz `1418`) | — | Build now (shipped) |
 | Samuel | 7 → 4 | Call ×4, Ebenezer ×2 | none — Ebenezer recaps the ark | — | Build now |
 | Saul | 4 | none | none — death carried by David's lament | — | Build now |
 | Hannah | 4 → 3 | Song ×2 | none — clean within 1 Sam 1–2 | — | Build now |
-| David | 42 → arcs | many (per-arc) | Bathsheba (2 Sam 11) · Absalom (2 Sam 18) | HIGH | Arcs 1–7 shipped · fall waits |
+| David | 42 → arcs | many (per-arc) | ~~Bathsheba (2 Sam 11) · Absalom (2 Sam 18)~~ → **1581 · 1582** | — | Arcs 1–7 shipped · fall now buildable |
 | Solomon | 10 → 9 | Wisdom ×2, Dedication parallels | none — ends on temple glory | — | Build now |
 | **Divided Kingdom — Prophets** ||||||
 | Elijah | 10 → 5 | Zarephath ×3, Carmel ×3, Horeb ×2 | none — call of Elisha bridgeable | — | Build now (shipped) |
 | Elisha | 8 → 5 | Army of Fire ×3 | none — spine self-bridges both jumps | — | Build now |
 | Naaman · Micaiah | 4→1 · 2→1 | ×4 · parallel ×2 | single-scene satellite beats | — | Guest beat |
 | Jeremiah | 16 → 11 | Potter ×2, Letter ×2 | scroll (Jer 36) — enrichment only | LOW | Build now |
-| Hezekiah | 3 → 2 | Letter ×2 | illness (2 Kings 20) — to clear floor | MED | Wait (thin) |
-| Josiah | 3 → 2 | Book found ×2 | Passover (2 Chr 35) — to clear floor | MED | Wait (thin) |
+| Hezekiah | 3 → 2 | Letter ×2 | illness (2 Kings 20, G13) — **still absent** | MED | Wait (thin) |
+| Josiah | 3 → 2 | Book found ×2 | Passover (2 Chr 35, G14) — **still absent** | MED | Wait (thin) |
 | Isaiah | 17 → 9 | "Wings" ×3, +4 pairs | 1 narrative (the call); rest oracle | — | Thematic |
 | Jehoshaphat | 4 → 1 | 2 Chr 20 ×4 | one event, four renders | — | Single event |
 | Hosea · Amos · Habakkuk | 3 · 2→1 · 3→2 | oracle overlaps | pure oracle — no spine | — | Thematic |
@@ -196,11 +238,11 @@ Stories column = total → distinct after dedupe. Verdict reflects the **correct
 | Daniel | 16 → 9 | Lions' den ×6, Wall ×2 | none — spine complete end to end | — | Build now (shipped) |
 | Esther + Mordecai | 10 → 8 | "If I Perish" ×3 | none — decree self-supplied in prose | — | Build now |
 | Ezra + Nehemiah | 19 → 13 | Foundation ×3, Neh 8 cross-file | none — Ezra→Nehemiah intact | — | Build now |
-| Jonah | 4 → 3 | Jonah 1 ×2 | Jonah 4 — missing capstone, not middle | LOW | Build now |
+| Jonah | 4 → 3 | Jonah 1 ×2 | Jonah 4 (G16) — **still absent**; missing capstone, not middle | LOW | Build now |
 | Shadrach+ · Nebuchadnezzar | 4→3 · 3→2 | Dan 3 · Dan 4 | single-chapter guest clusters | — | Guest beat |
 | Ezekiel · Haggai · Zechariah | 5 · 2 · 2 | Zech = 2 people! | oracle/vision — no spine | — | Thematic |
 | **Gospels — Acts — Epistles** ||||||
-| Peter | 16 → 10 | Acts 12 ×4, Cornelius ×2 | no denial story (gospel-arc caveat) | LOW | Build now (2 Acts arcs) |
+| Peter | 16 → 10 | Acts 12 ×4, Cornelius ×2 | ~~no denial story~~ → **1565** (+ confession **1563**) | — | Build now (2 Acts arcs + gospel arc) |
 | Jesus | 74 → ~30 | massive (×4/×3 across) | none material — a curation problem | — | Flagship / curate |
 | Mary | 5 → 3 | Annunciation ×2 | none — Nativity borrowable (`1004`) | — | Build now |
 | John the Baptist | 3 | none | none — complete rise-to-death arc | — | Build now |

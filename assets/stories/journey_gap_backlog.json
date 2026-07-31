@@ -12,23 +12,10 @@
       "intentionally_deferred": "real absence, but deferred until its specific arc is approached"
     },
     "fillPriority": {
-      "note": "Adam-approved fill order (2026-07-16). Do NOT fill all before resuming beats; a short focused batch first.",
-      "fillNow": [
-        "G1",
-        "G2",
-        "G3",
-        "G4",
-        "G5",
-        "G6",
-        "G7"
-      ],
-      "stronglyConsider": [
-        "G8",
-        "G9",
-        "G10"
-      ],
+      "note": "Adam-approved fill order (2026-07-16). Do NOT fill all before resuming beats; a short focused batch first. 2026-07-31 refresh: every item in fillNow and stronglyConsider has been authored (G1-G10), as has G11, so those lists are now empty and G11 has left deferUntilArcApproached. Only G12-G16 remain open. Do not re-issue G1-G11 for production.",
+      "fillNow": [],
+      "stronglyConsider": [],
       "deferUntilArcApproached": [
-        "G11",
         "G12",
         "G13",
         "G14",
@@ -47,7 +34,9 @@
       "guest_beat_available": "the event exists under another character and is usable as a guest beat; a dedicated render is optional",
       "standalone_hold": "an unresolved story is held outside the arc; author only to place it in sequence",
       "capstone": "a missing end/coda; does not block earlier safe beats"
-    }
+    },
+    "statusRefreshedOn": "2026-07-31",
+    "statusRefreshNote": "2026-07-31 status refresh (no editorial re-gating, no re-scoping). G1-G10 still read status=planned and G11 still read status=intentionally_deferred although all eleven had been authored, so consuming this file as-is would have instructed duplicate production. Each now carries status=authored plus productionId/productionAnchor/productionBibleStoryKey, derived and verified against the corpus at master fe09b63808c0ab4a798cae9a3087955b9a1320cb (meta_<id>.json AND manifest.json agree on title, anchor and bibleStoryKey for every mapping). They are deliberately NOT marked integrated: none of the eleven appears in outgoing_beats.json or in any assets/stories/journeys/*.json arc file, so per this file's own statusVocabulary they are authored but not yet wired into an arc, and the journey-build work these gaps existed for is still outstanding. G12-G16 were re-verified on 2026-07-31 and are UNCHANGED: G12 remains partially covered by story 1049 (Numbers 13:25-33) with the Moses-POV / Numbers 14 unit still absent and intentionally deferred; G13 (2 Kings 20), G14 (2 Chronicles 35), G15 (Genesis 19) and G16 (Jonah 4) remain confirmed-absent, intentionally deferred true gaps. auditDate, rationale, seams, ordering, severities and gapTypes are preserved. verificationStatus is likewise PRESERVED as the 2026-07-16 audit-time finding (confirmed_absent describes the corpus at that date, not today); present-day coverage is given by status + productionId."
   },
   "backlog": [
     {
@@ -64,7 +53,10 @@
       "affectedArcs": [
         "moses_arc_1"
       ],
-      "status": "planned",
+      "status": "authored",
+      "productionId": 1576,
+      "productionAnchor": "Exodus 7-12",
+      "productionBibleStoryKey": "passover_and_the_plagues",
       "requiredBeforeJourneyBuild": [
         "moses_arc_1"
       ],
@@ -72,7 +64,7 @@
       "existingRightStoryId": "1117",
       "rationale": "The central Exodus drama. The Moses spine leaps from the burning bush (1019, Ex 3) straight to the Red Sea (1117, Ex 14); a beat across this seam would have to compress the plagues and Passover into a summary sentence. Highest-priority continuity blocker for the Moses Deliverance arc.",
       "verificationStatus": "confirmed_absent",
-      "notes": "Already flagged as a seam gap inside the moses_arc_1 ledger note (1019->1527/1117). Fill priority: fillNow."
+      "notes": "Authored as story 1576 \"The Passover and the Plagues\" [Exodus 7-12] (batch PAL_TFSF2_BATCH_B_2026-07); registered in manifest.json. Status was planned until the 2026-07-31 refresh. Not yet wired into moses_arc_1 - no outgoing_beats.json entry and no arc file references it, so the journey wiring remains to do. Already flagged as a seam gap inside the moses_arc_1 ledger note (1019->1527/1117). Fill priority at audit time (2026-07-16): fillNow - satisfied by the 2026-07-31 refresh; the list is now empty."
     },
     {
       "id": "G2",
@@ -89,7 +81,10 @@
       "affectedArcs": [
         "jacob_full_arc"
       ],
-      "status": "planned",
+      "status": "authored",
+      "productionId": 1573,
+      "productionAnchor": "Genesis 33",
+      "productionBibleStoryKey": "jacob_and_esau_reconcile",
       "requiredBeforeJourneyBuild": [
         "jacob_full_arc"
       ],
@@ -97,7 +92,7 @@
       "existingRightStoryId": "1382",
       "rationale": "Two existing stories (Jabbok prayer 1345, wrestling 1021) build sustained dread of Esau and his four hundred men; the payoff (the run, the embrace, the weeping) exists nowhere, and 1382 (Gen 35) opens already past the meeting. Highest-impact single gap for a full Jacob arc.",
       "verificationStatus": "confirmed_absent",
-      "notes": "Unlocks the full Jacob life-arc; today only the shorter 'Encounter' sub-arc (1018->1345->1021) is buildable. Fill priority: fillNow. Pairs with G9."
+      "notes": "Authored as story 1573 \"Esau Ran to Meet Him\" [Genesis 33] (batch PAL_TFSF2_BATCH_A_2026-07); registered in manifest.json. Status was planned until the 2026-07-31 refresh. Not yet wired into jacob_full_arc - no outgoing_beats.json entry and no arc file references it, so the journey wiring remains to do. Unlocks the full Jacob life-arc; today only the shorter 'Encounter' sub-arc (1018->1345->1021) is buildable. Fill priority at audit time (2026-07-16): fillNow - satisfied by the 2026-07-31 refresh; the list is now empty. Pairs with G9."
     },
     {
       "id": "G3",
@@ -116,7 +111,10 @@
       "affectedArcs": [
         "david_arc_7"
       ],
-      "status": "planned",
+      "status": "authored",
+      "productionId": 1581,
+      "productionAnchor": "2 Samuel 11",
+      "productionBibleStoryKey": "bathsheba_and_uriah",
       "requiredBeforeJourneyBuild": [
         "david_arc_7"
       ],
@@ -124,7 +122,7 @@
       "existingRightStoryId": "1553",
       "rationale": "David's sin itself. Nathan's parable (1553) and the child's death (1342) both structurally depend on an act the corpus never depicts, so a fall->grief arc must otherwise open on a rebuke for a deed the listener never saw.",
       "verificationStatus": "confirmed_absent",
-      "notes": "Left seam is the settled-reign block (1062 = 2 Sam 9 Mephibosheth is the nearest anchored prior scene). Fill priority: fillNow. Pairs with G7 to complete the David fall material."
+      "notes": "Authored as story 1581 \"Bathsheba and Uriah\" [2 Samuel 11] (batch PAL_DAILY_2026-07-24_BATCH_C); registered in manifest.json. Status was planned until the 2026-07-31 refresh. Not yet wired into david_arc_7 - no outgoing_beats.json entry and no arc file references it, so the journey wiring remains to do. Left seam is the settled-reign block (1062 = 2 Sam 9 Mephibosheth is the nearest anchored prior scene). Fill priority at audit time (2026-07-16): fillNow - satisfied by the 2026-07-31 refresh; the list is now empty. Pairs with G7 to complete the David fall material."
     },
     {
       "id": "G4",
@@ -141,7 +139,10 @@
       "affectedArcs": [
         "samson_arc"
       ],
-      "status": "planned",
+      "status": "authored",
+      "productionId": 1574,
+      "productionAnchor": "Judges 16:4-22",
+      "productionBibleStoryKey": "delilah_and_samsons_capture",
       "requiredBeforeJourneyBuild": [
         "samson_arc"
       ],
@@ -149,7 +150,7 @@
       "existingRightStoryId": "1193",
       "rationale": "Samson has only two stories: birth (1142, Judges 13) and death (1193, Judges 16:23-31), whose opening already assumes a blind, shorn prisoner. Who Delilah is, why he cannot see, why he is in chains: untold. No beat can bridge a birth announcement to a blinding.",
       "verificationStatus": "confirmed_absent",
-      "notes": "The character is unbuildable without it. Fill priority: fillNow. A mid-career beat (Judges 14-15) would be optional enrichment."
+      "notes": "Authored as story 1574 \"He Told Her All His Heart\" [Judges 16:4-22] (batch PAL_TFSF2_BATCH_A_2026-07); registered in manifest.json. Status was planned until the 2026-07-31 refresh. Not yet wired into samson_arc - no outgoing_beats.json entry and no arc file references it, so the journey wiring remains to do. The character is unbuildable without it. Fill priority at audit time (2026-07-16): fillNow - satisfied by the 2026-07-31 refresh; the list is now empty. A mid-career beat (Judges 14-15) would be optional enrichment."
     },
     {
       "id": "G5",
@@ -166,7 +167,10 @@
       "affectedArcs": [
         "joshua_conquest_arc"
       ],
-      "status": "planned",
+      "status": "authored",
+      "productionId": 1578,
+      "productionAnchor": "Joshua 9",
+      "productionBibleStoryKey": "gibeonite_covenant",
       "requiredBeforeJourneyBuild": [
         "joshua_conquest_arc"
       ],
@@ -174,7 +178,7 @@
       "existingRightStoryId": "1151",
       "rationale": "'Sun, Stand Still' (1151, Josh 10) opens '...heard that Gibeon had made peace with Israel' - and Gibeon is introduced nowhere. The battle (and the sun miracle) happens because of a treaty the listener never witnessed.",
       "verificationStatus": "confirmed_absent",
-      "notes": "Joshua's two flanking sub-arcs (Entering-the-Land, Rest/Farewell) are already safe. Fill priority: fillNow. Pairs with G6."
+      "notes": "Authored as story 1578 \"The Gibeonite Covenant\" [Joshua 9] (batch PAL_TFSF2_BATCH_B_2026-07); registered in manifest.json. Status was planned until the 2026-07-31 refresh. Not yet wired into joshua_conquest_arc - no outgoing_beats.json entry and no arc file references it, so the journey wiring remains to do. Joshua's two flanking sub-arcs (Entering-the-Land, Rest/Farewell) are already safe. Fill priority at audit time (2026-07-16): fillNow - satisfied by the 2026-07-31 refresh; the list is now empty. Pairs with G6."
     },
     {
       "id": "G6",
@@ -191,7 +195,10 @@
       "affectedArcs": [
         "joshua_conquest_arc"
       ],
-      "status": "planned",
+      "status": "authored",
+      "productionId": 1577,
+      "productionAnchor": "Joshua 7:13-8:29",
+      "productionBibleStoryKey": "achan_judgment_and_capture_of_ai",
       "requiredBeforeJourneyBuild": [
         "joshua_conquest_arc"
       ],
@@ -199,7 +206,7 @@
       "existingRightStoryId": "1151",
       "rationale": "1294 (Josh 7:6-12) dead-ends on God's rebuke ('I will not be with you... unless you destroy the devoted things') with no payoff clip; 1151 then assumes 'Joshua had taken Ai.' Authoring this resolves 1294 and, with G5, makes the Conquest middle continuous.",
       "verificationStatus": "confirmed_absent",
-      "notes": "Paired resolution for the Joshua Conquest arc. Fill priority: fillNow (with G5)."
+      "notes": "Authored as story 1577 \"Achan's Judgment and the Capture of Ai\" [Joshua 7:13-8:29] (batch PAL_TFSF2_BATCH_B_2026-07); registered in manifest.json. Status was planned until the 2026-07-31 refresh. Not yet wired into joshua_conquest_arc - no outgoing_beats.json entry and no arc file references it, so the journey wiring remains to do. Paired resolution for the Joshua Conquest arc. Fill priority at audit time (2026-07-16): fillNow (with G5) - satisfied by the 2026-07-31 refresh; the list is now empty."
     },
     {
       "id": "G7",
@@ -216,7 +223,10 @@
       "affectedArcs": [
         "david_rebellion_arc"
       ],
-      "status": "planned",
+      "status": "authored",
+      "productionId": 1582,
+      "productionAnchor": "2 Samuel 18",
+      "productionBibleStoryKey": "death_of_absalom",
       "requiredBeforeJourneyBuild": [
         "david_rebellion_arc"
       ],
@@ -224,7 +234,7 @@
       "existingRightStoryId": null,
       "rationale": "Only the flight in the wilderness (1323, 2 Sam 17) touches the rebellion; the death and the lament at the gate are absent, so a rebellion->grief arc has no climax to reach.",
       "verificationStatus": "confirmed_absent",
-      "notes": "Terminal grief beat (no right story). Fill priority: fillNow. Pairs with G3 to complete the David fall/rebellion material. A 2 Sam 15 Absalom-revolt story would also help open the rebellion arc."
+      "notes": "Authored as story 1582 \"O My Son Absalom\" [2 Samuel 18] (batch PAL_DAILY_2026-07-24_BATCH_C); registered in manifest.json. Status was planned until the 2026-07-31 refresh. Not yet wired into david_rebellion_arc - no outgoing_beats.json entry and no arc file references it, so the journey wiring remains to do. Terminal grief beat (no right story). Fill priority at audit time (2026-07-16): fillNow - satisfied by the 2026-07-31 refresh; the list is now empty. Pairs with G3 to complete the David fall/rebellion material. A 2 Sam 15 Absalom-revolt story would also help open the rebellion arc."
     },
     {
       "id": "G8",
@@ -240,7 +250,10 @@
       "affectedArcs": [
         "moses_arc_1"
       ],
-      "status": "planned",
+      "status": "authored",
+      "productionId": 1583,
+      "productionAnchor": "Exodus 2:11-22",
+      "productionBibleStoryKey": "moses_flees_to_midian",
       "requiredBeforeJourneyBuild": [
         "moses_arc_1"
       ],
@@ -248,7 +261,7 @@
       "existingRightStoryId": "1019",
       "rationale": "New finding this audit. The Deliverance arc's opening seam - Baby Moses (1033, Ex 2:1-10) to the grown Midianite shepherd (1019, Ex 3) - skips the killing of the Egyptian and the flight, the hinge that turns the prince into a fugitive. Survives only inside Stephen's Acts 7 sermon (1164).",
       "verificationStatus": "confirmed_absent",
-      "notes": "Fill priority: stronglyConsider. Optional front-enrichment (Shiphrah & Puah 1348, Ex 1) could bind the opening further."
+      "notes": "Authored as story 1583 \"Moses Flees to Midian\" [Exodus 2:11-22] (batch PAL_DAILY_2026-07-24_BATCH_C); registered in manifest.json. Status was planned until the 2026-07-31 refresh. Not yet wired into moses_arc_1 - no outgoing_beats.json entry and no arc file references it, so the journey wiring remains to do. Fill priority at audit time (2026-07-16): stronglyConsider - satisfied by the 2026-07-31 refresh; the list is now empty. Optional front-enrichment (Shiphrah & Puah 1348, Ex 1) could bind the opening further."
     },
     {
       "id": "G9",
@@ -267,7 +280,10 @@
       "affectedArcs": [
         "jacob_full_arc"
       ],
-      "status": "planned",
+      "status": "authored",
+      "productionId": 1572,
+      "productionAnchor": "Genesis 27",
+      "productionBibleStoryKey": "the_stolen_blessing",
       "requiredBeforeJourneyBuild": [
         "jacob_full_arc"
       ],
@@ -275,7 +291,7 @@
       "existingRightStoryId": "1018",
       "rationale": "The origin of the Jacob-Esau conflict. Without it the fear driving the Jabbok prayer and the 'deceiver renamed Israel' weight has no cause. Sits between Isaac in the field (1428, Gen 24) and Jacob's flight (1018, Gen 28).",
       "verificationStatus": "confirmed_absent",
-      "notes": "Fill priority: stronglyConsider. Pairs with G2 for a full Jacob arc. Gen 25:29-34 birthright is a related optional beat."
+      "notes": "Authored as story 1572 \"The Stolen Blessing\" [Genesis 27] (batch PAL_TFSF2_BATCH_A_2026-07); registered in manifest.json. Status was planned until the 2026-07-31 refresh. Not yet wired into jacob_full_arc - no outgoing_beats.json entry and no arc file references it, so the journey wiring remains to do. Fill priority at audit time (2026-07-16): stronglyConsider - satisfied by the 2026-07-31 refresh; the list is now empty. Pairs with G2 for a full Jacob arc. Gen 25:29-34 birthright is a related optional beat."
     },
     {
       "id": "G10",
@@ -291,7 +307,10 @@
       "affectedArcs": [
         "noah_arc"
       ],
-      "status": "planned",
+      "status": "authored",
+      "productionId": 1571,
+      "productionAnchor": "Genesis 7-8",
+      "productionBibleStoryKey": "the_flood",
       "requiredBeforeJourneyBuild": [
         "noah_arc"
       ],
@@ -299,7 +318,7 @@
       "existingRightStoryId": "1213",
       "rationale": "Noah has only two stories - building the ark (1017, Gen 6) and the rainbow covenant (1213, Gen 9) - and the arc's entire turning point (the judgment, the year afloat, the dove, Ararat) happens between them with no story of its own.",
       "verificationStatus": "confirmed_absent",
-      "notes": "Fill priority: stronglyConsider. Unlocks a real Noah arc instead of a two-beat ark->rainbow jump."
+      "notes": "Authored as story 1571 \"The Flood\" [Genesis 7-8] (batch PAL_TFSF2_BATCH_A_2026-07); registered in manifest.json. Status was planned until the 2026-07-31 refresh. Not yet wired into noah_arc - no outgoing_beats.json entry and no arc file references it, so the journey wiring remains to do. Fill priority at audit time (2026-07-16): stronglyConsider - satisfied by the 2026-07-31 refresh; the list is now empty. Unlocks a real Noah arc instead of a two-beat ark->rainbow jump."
     },
     {
       "id": "G11",
@@ -317,7 +336,10 @@
       "affectedArcs": [
         "moses_wilderness_backhalf"
       ],
-      "status": "intentionally_deferred",
+      "status": "authored",
+      "productionId": 1596,
+      "productionAnchor": "Numbers 16:1-35",
+      "productionBibleStoryKey": "korahs_rebellion",
       "requiredBeforeJourneyBuild": [
         "moses_wilderness_backhalf"
       ],
@@ -325,7 +347,7 @@
       "existingRightStoryId": "1364",
       "rationale": "Genuinely absent. Needed (with the spies) before a Moses journey can honestly travel from Sinai toward his death. Seam: Too Heavy (1316, Num 11) -> Meribah (1364, Num 20).",
       "verificationStatus": "confirmed_absent",
-      "notes": "Fill priority: deferUntilArcApproached (Moses back-half). Aaron 1200 references Korah's aftermath but is not a Korah story."
+      "notes": "Authored as story 1596 \"Korah's Rebellion: The Earth Opens\" [Numbers 16:1-35] (batch PAL_DAILY_2026-07-26_BATCH_F); registered in manifest.json. Status was intentionally_deferred until the 2026-07-31 refresh. Not yet wired into moses_wilderness_backhalf - no outgoing_beats.json entry and no arc file references it, so the journey wiring remains to do. Fill priority at audit time (2026-07-16): deferUntilArcApproached (Moses back-half) - authored ahead of that arc, so G11 was removed from the deferUntilArcApproached list in the 2026-07-31 refresh. Aaron 1200 references Korah's aftermath but is not a Korah story."
     },
     {
       "id": "G12",
