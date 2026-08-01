@@ -48,6 +48,15 @@
     }
   },
   "reflectionText": "A vine came up in a night and perished in a night, and Jonah cared more for its shade than for a city of a hundred twenty thousand. Twice God asked whether his anger was right. The book ends before Jonah answers. What is it to be left holding a question like that one?",
-  "editorialNotes": "PAL Daily supervised production 2026-08-01, Batch I. Owner-approved anchor Jonah 4, whole chapter, no verses excluded. Written as the CODA to 1100 (Jonah 3, Nineveh repents), not as a middle beat: the single opening clause 'The city was spared' is neutral connective narration re-anchoring the referent of verse 1's 'it' for a listener, and the repentance of Nineveh is not re-told. Ends on God's question, unanswered, as the chapter does. WEB 'vine' and 'Yahweh'; KJV 'gourd' and 'the Lord'. Journey backlog item G16. TEXT APPROVED — AUDIO AUTHORIZED BY OWNER ON 2026-08-01. Text approved by Adam and ChatGPT on 2026-08-01. No audio has been rendered and no ElevenLabs call has been made; audioFilePath and reflectionAudioPath remain blank. Journey integration is not complete.",
-  "bibleOrderIndex": 464
+  "editorialNotes": "PAL Daily supervised production 2026-08-01, Batch I. Owner-approved anchor Jonah 4, whole chapter, no verses excluded. Written as the CODA to 1100 (Jonah 3, Nineveh repents), not as a middle beat: the single opening clause 'The city was spared' is neutral connective narration re-anchoring the referent of verse 1's 'it' for a listener, and the repentance of Nineveh is not re-told. Ends on God's question, unanswered, as the chapter does. WEB 'vine' and 'Yahweh'; KJV 'gourd' and 'the Lord'. Journey backlog item G16. TEXT APPROVED \u2014 AUDIO AUTHORIZED BY OWNER ON 2026-08-01. Text approved by Adam and ChatGPT on 2026-08-01. No audio has been rendered and no ElevenLabs call has been made; audioFilePath and reflectionAudioPath remain blank. Journey integration is not complete.",
+  "bibleOrderIndex": 464,
+  "ttsModel": "eleven_turbo_v2_5",
+  "ttsVoiceSettings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "renderedAt": "2026-08-01T23:08:55Z",
+  "generatorVersion": "generate_opus_audio.sh"
 }
