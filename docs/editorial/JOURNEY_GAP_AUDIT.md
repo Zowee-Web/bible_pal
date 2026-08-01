@@ -1,6 +1,6 @@
 # Bible PAL — Journey Gap Audit
 
-> **Status:** Approved planning baseline (Adam, 2026-07-16) — **G1–G11 authored; status-refreshed 2026-07-31**
+> **Status:** Approved planning baseline (Adam, 2026-07-16) — **G1–G11 authored (2026-07-31); G13–G16 authored as 1611–1614 and text-approved (2026-08-01); only G12 remains open**
 > **Audit date:** 2026-07-16
 > **Scope:** Full traditional story corpus (591 stories, 137 primary-character labels)
 > **Task type:** AUDIT + PLANNING ONLY — no beats authored, no ledger/arc-JSON/audio/app-code changed.
@@ -34,11 +34,53 @@ Every mapping was derived from — not assumed against — the corpus at master 
 
 **They are `authored`, NOT `integrated`.** Per this document's own status vocabulary, `integrated` means *authored AND wired into its arc/journey; gap closed*. None of the eleven appears in `outgoing_beats.json` (31 entries) or in any of the 18 `assets/stories/journeys/*.json` arc files. **The stories exist; the journey wiring does not.** That wiring is the outstanding work — §4's tiers below now describe an authoring state that has passed, not the beats.
 
-**Still open — G12–G16, re-verified 2026-07-31 and unchanged:**
-- **G12** — partially covered. Story 1049 (Numbers 13:25-33, Caleb POV) still the only coverage; the Moses-POV unit including the Numbers 14 rebellion/intercession is still absent. Remains `intentionally_deferred`; guest-beat-solvable per Audit Decision 3.
-- **G13** (2 Kings 20) · **G14** (2 Chronicles 35) · **G15** (Genesis 19) · **G16** (Jonah 4) — all four re-confirmed absent from the entire corpus. **True, deliberately parked gaps.** Still `intentionally_deferred`.
+**Still open as of 2026-07-31 — G12–G16** *(G13–G16 SUPERSEDED by §0.1: authored 2026-08-01 as 1611–1614. This paragraph records the 2026-07-31 state, not today's.)*
+- **G12** — partially covered. Story 1049 (Numbers 13:25-33, Caleb POV) still the only coverage; the Moses-POV unit including the Numbers 14 rebellion/intercession is still absent. Remains `intentionally_deferred`; guest-beat-solvable per Audit Decision 3. **Still true today.**
+- **G13** (2 Kings 20) · **G14** (2 Chronicles 35) · **G15** (Genesis 19) · **G16** (Jonah 4) — all four re-confirmed absent from the entire corpus at that date. **True, deliberately parked gaps.** Then `intentionally_deferred`; **now authored — see §0.1.**
 
-`fillPriority.fillNow` and `fillPriority.stronglyConsider` are now empty; `deferUntilArcApproached` is G12–G16. `auditDate`, rationale, seams, ordering, severities, gapTypes and `verificationStatus` are preserved — `verificationStatus: confirmed_absent` records the **2026-07-16** corpus, not today's.
+As of the 2026-07-31 refresh, `fillPriority.fillNow` and `fillPriority.stronglyConsider` were empty and `deferUntilArcApproached` was G12–G16; **§0.1 supersedes this — the lists are now empty except for G12.** `auditDate`, rationale, seams, ordering, severities, gapTypes and `verificationStatus` are preserved — `verificationStatus: confirmed_absent` records the **2026-07-16** corpus, not today's.
+
+---
+
+## 0.1 Production queue and outcome — 2026-08-01
+
+Adam approved the four remaining true gaps for production on 2026-08-01, **the decision recorded before any prose existed** (`status: planned`, `fillPriority.fillNow = [G13, G14, G15, G16]`, no `productionId`). Later the same day all four were authored.
+
+> **G13–G16 ARE NOW AUTHORED as stories 1611–1614. DO NOT RE-ISSUE THEM FOR PRODUCTION.**
+
+**Each approval was a NARROWED anchor, not the whole gap reference.** The excluded verses stay uncovered by design and must not be silently claimed as covered by a later refresh:
+
+| G | Gap reference | **Owner-approved anchor** | Authored as | Deliberately excluded — still uncovered |
+|---|---|---|---|---|
+| G13 | 2 Kings 20 | **2 Kings 20:1-11** — illness, healing, the shadow sign | **1611** "Hezekiah's Illness and the Shadow Turned Back" | **20:12-21** — the Babylonian envoys and Isaiah's prophecy |
+| G14 | 2 Chronicles 35 | **2 Chronicles 35:1-19** — the Passover itself | **1612** "Josiah's Great Passover" | **35:20-27** — Josiah's battle at Megiddo and his death |
+| G15 | Genesis 19 | **Genesis 19:1-29** — the visitors at the gate, the rescue, the destruction (adult lane only) | **1613** "Sodom's Destruction and Lot's Rescue" | **19:30-38** — Lot and his daughters in the cave; the origins of Moab and Ammon |
+| G16 | Jonah 4 | **Jonah 4** — whole chapter | **1614** "Jonah and the Plant" | *(none)* |
+
+Every mapping was derived from — not assumed against — the corpus: `meta_<id>.json` **and** `manifest.json` agree on title, anchor and `bibleStoryKey` for all four.
+
+**They are `authored`, NOT `integrated`.** They are also **text-first**: registered WEB + KJV with `audioFilePath` and `reflectionAudioPath` blank. *(Text review has since completed — see §0.2.)* None of 1611–1614 appears in `outgoing_beats.json` or in any `assets/stories/journeys/*.json` arc file — the stories exist; the journey wiring does not.
+
+`fillPriority` is now **fillNow `[]` · stronglyConsider `[]` · deferUntilArcApproached `[G12]`** — no item carrying a `productionId` remains queued. `auditDate`, rationale, seams, severities, `gapType`, `verificationStatus` and ordering are all preserved unchanged. **G12 is untouched** and remains `intentionally_deferred` — the Moses-POV spies unit is still guest-beat-solvable via story `1049`, and is now the *only* open item in this backlog.
+
+---
+
+## 0.2 Text lock — 2026-08-01
+
+> **Adam and ChatGPT approved the texts of stories 1611–1614 on 2026-08-01. G13–G16 stay `status: authored`.**
+
+They are **not** promoted to `integrated`, and no new status was invented. This file's `statusVocabulary` is exactly `missing` / `planned` / `authored` / `integrated` / `intentionally_deferred` — there is **no `approved_for_audio` value here**, and none was added. Text approval is recorded in each item's `notes`, which is where the vocabulary allows it to live.
+
+| G | Story | Text approved | Audio | Journey wiring |
+|---|---|---|---|---|
+| G13 | 1611 | ✅ 2026-08-01 | ❌ none rendered | ❌ not written |
+| G14 | 1612 | ✅ 2026-08-01 | ❌ none rendered | ❌ not written |
+| G15 | 1613 | ✅ 2026-08-01 | ❌ none rendered | ❌ not written |
+| G16 | 1614 | ✅ 2026-08-01 | ❌ none rendered | ❌ not written |
+
+**Two things remain outstanding for all four.** Audio: none was rendered, **no ElevenLabs call was made**, and `audioFilePath` / `reflectionAudioPath` are still `""`. Journey wiring: no beat has been written, and none of 1611–1614 appears in `outgoing_beats.json` or in any `assets/stories/journeys/*.json` arc file — which is precisely why `authored`, not `integrated`, is the truthful status.
+
+The companion gate records the same lock for CG23 / story 1615, where the gate's own vocabulary *does* have an `approved_for_audio` value — see [`FULL_CANON_PRODUCTION_GATE.md`](FULL_CANON_PRODUCTION_GATE.md) §0.2.
 
 ---
 
@@ -147,13 +189,14 @@ Severity key: **HIGH** = blocks an arc; no honest beat can bridge it. **MED** = 
 ### Deferred until their specific arc is approached
 
 > _2026-07-31: G11 has since been authored as **1596** (ahead of its arc). G12-G16 re-verified and still open._
+> _2026-08-01: G13-G16 have been **authored** as stories **1611-1614** (text-first, not yet arc-wired) with narrowed anchors — see §0.1. **G12 is now the only open item in this backlog**, and the tier name below describes G12 alone._
 
 **G11 · Korah's Rebellion — Numbers 16 — MED (AUTHORED 2026-07 as 1596, not yet arc-wired)** — Moses back-half; genuinely absent. Seam `1316` (Too Heavy, Num 11) → `1364` (Meribah, Num 20).
 **G12 · The Spies from Moses' POV — Numbers 13–14 — LOW (deferred)** — the **event exists** as Caleb's `1049` (Num 13:25–33) and can serve as a **guest beat** in a Moses arc; a dedicated Moses-POV render is optional enrichment, not a blocker.
-**G13 · Hezekiah's Illness & the Shadow Turned Back — 2 Kings 20 — MED (deferred)** — needed only to lift thin Hezekiah (2 episodes) to a buildable three. Seam `1511` (Sennacherib) → *(3rd beat)*.
-**G14 · Josiah's Great Passover — 2 Chronicles 35 — MED (deferred)** — needed only to lift thin Josiah (2 episodes) to three. (Huldah's prophecy `1475` already offers a possible third.) Seam `1512` (Book Found) → *(3rd beat)*.
-**G15 · Sodom's Destruction & Lot's Rescue — Genesis 19 — LOW (deferred)** — no workaround needed: **hold `1487` (Abraham's intercession) as a standalone**, never mid-arc, and the Abraham Call→Binding arc is fully safe today. Author only to place `1487` in sequence.
-**G16 · Jonah 4 — Jonah 4 — LOW (deferred)** — a missing **capstone**, not a middle gap; `1100` (Nineveh repents) settles cleanly. Omitting it ends the arc on resolution without its ironic coda. Does **not** block the safe `1094→1167→1100` arc.
+**G13 · Hezekiah's Illness & the Shadow Turned Back — 2 Kings 20 — MED (AUTHORED 2026-08-01 as 1611, not yet arc-wired · anchor narrowed to 2 Kings 20:1-11; 20:12-21 stays uncovered)** — needed only to lift thin Hezekiah (2 episodes) to a buildable three. Seam `1511` (Sennacherib) → `1611`.
+**G14 · Josiah's Great Passover — 2 Chronicles 35 — MED (AUTHORED 2026-08-01 as 1612, not yet arc-wired · anchor narrowed to 2 Chronicles 35:1-19; 35:20-27 stays uncovered)** — needed only to lift thin Josiah (2 episodes) to three. (Huldah's prophecy `1475` already offers a possible third.) Seam `1512` (Book Found) → `1612`.
+**G15 · Sodom's Destruction & Lot's Rescue — Genesis 19 — LOW (AUTHORED 2026-08-01 as 1613, not yet arc-wired · anchor narrowed to Genesis 19:1-29; 19:30-38 stays uncovered; adult lane only)** — `1487` (Abraham's intercession) no longer has to be held standalone: `1613` is the resolution it was waiting for, so it can now be placed in sequence. **That placement is beat work and has not been done.**
+**G16 · Jonah 4 — Jonah 4 — LOW (AUTHORED 2026-08-01 as 1614, not yet arc-wired · whole chapter, nothing excluded)** — the missing **capstone** now exists; the `1094→1167→1100` arc can close on `1614` instead of ending at resolution without its ironic coda.
 
 *(Also enrichment-only, not scheduled: Numbers 21 bronze serpent; Jeremiah 36 the burned scroll — the siege stories re-ground themselves.)*
 
@@ -179,12 +222,12 @@ High-value arcs blocked by specific missing stories (often **more than one**). _
 - **David fall/rebellion** ← Bathsheba (2 Sam 11, G3 → **1581**) **and** Absalom (2 Sam 18, G7 → **1582**). **Buildable.**
 - **Jacob (full life)** ← reconciliation (Gen 33, G2 → **1573**) **and** stolen blessing (Gen 27, G9 → **1572**). **Buildable.**
 - **Joshua Conquest** ← the Gibeonite covenant (Josh 9, G5 → **1578**), with the Achan/Ai resolution (Josh 7:16–8:29, G6 → **1577**). **Buildable.**
-- **Abraham** — buildable *now* if the Sodom-intercession story (`1487`) is held aside; Gen 19 (G15) is still absent, so continue to hold `1487` standalone.
+- **Abraham** — Gen 19 (G15) has been **authored as 1613** (2026-08-01), so `1487` no longer has to be held standalone and can be placed in sequence. **Buildable.**
 
-### Wait — not viable yet → **PARTLY CLEARED (2026-07-31)**
+### Wait — not viable yet → **CLEARED (2026-08-01)**
 - **Samson** — needed Delilah/capture (G4); **authored as 1574**. Now buildable.
 - **Noah** — needed the Flood itself (G10); **authored as 1571**. Now buildable.
-- **Hezekiah · Josiah** — **still waiting.** Each still needs one more beat to clear the arc floor (G13 = 2 Kings 20, G14 = 2 Chronicles 35), and both remain absent from the corpus.
+- **Hezekiah · Josiah** — **no longer waiting (2026-08-01).** Each has its third beat: Hezekiah's illness (G13 → **1611**, 2 Kings 20:1-11) and Josiah's great Passover (G14 → **1612**, 2 Chronicles 35:1-19). Both arcs clear the 3-story floor and are **buildable**; the beats themselves are still unwritten. Note the narrowed anchors: 2 Kings 20:12-21 and 2 Chronicles 35:20-27 remain absent from the corpus.
 
 ### Thematic track — different voice, not narrative beats
 No chronological spine. Theme/Teaching journeys; wisdom literature remains an unsolved transition-voice open cell.
@@ -197,13 +240,15 @@ No chronological spine. Theme/Teaching journeys; wisdom literature remains an un
 
 Stories column = total → distinct after dedupe. Verdict reflects the **corrected** full-corpus conclusion.
 
-> **2026-07-31:** struck-through gaps have been authored; the produced story ID follows. Rows still reading "still absent" are the surviving G13-G16 true gaps. "Buildable" means the blocking story now exists — the beats themselves are still unwritten.
+> **2026-07-31:** struck-through gaps have been authored; the produced story ID follows. "Buildable" means the blocking story now exists — the beats themselves are still unwritten.
+>
+> **2026-08-01:** G13-G16 have since been authored as **1611-1614**, so no row reads "still absent" any more. The narrowed-anchor remainders (2 Kings 20:12-21, 2 Chronicles 35:20-27, Genesis 19:30-38) ARE still absent and are noted in the affected rows.
 
 | Character | Stories | Dominant duplicate clusters | True gap (verified) | Sev. | Verdict |
 |---|---|---|---|---|---|
 | **Patriarchs — Genesis** ||||||
 | Joseph | 9 → 6 | Gen 37 ×3, Gen 40 ×2 | none — every chapter self-recaps | — | Build now |
-| Abraham/Abram | 12 → 7 | Gen 12 ×2, Gen 18 ×2, Gen 22 ×3 | Sodom (Gen 19, G15) — **still absent**; hold `1487` standalone | LOW | Build now* |
+| Abraham/Abram | 12 → 7 | Gen 12 ×2, Gen 18 ×2, Gen 22 ×3 | ~~Sodom (Gen 19, G15)~~ → **1613** (Gen 19:1-29; **19:30-38 still absent**). Covenant chapter → **1615** (Gen 17). `1487` can now be placed in sequence | — | Buildable (2026-08-01) |
 | Jacob | 9 → 6 | Gen 28 ×2, Gen 32 ×3 | ~~Esau reconcile (Gen 33) + blessing (Gen 27)~~ → **1573 + 1572** | — | Buildable (2026-07-31) |
 | Hagar | 4 → 2 | Gen 16 ×2, Gen 21 ×2 | none (thin 2-beat pair) | — | Build now (thin) |
 | Noah | 3 → 2 | Gen 6 ×2 | ~~the Flood itself (Gen 7–8)~~ → **1571** | — | Buildable (2026-07-31) |
@@ -229,8 +274,8 @@ Stories column = total → distinct after dedupe. Verdict reflects the **correct
 | Elisha | 8 → 5 | Army of Fire ×3 | none — spine self-bridges both jumps | — | Build now |
 | Naaman · Micaiah | 4→1 · 2→1 | ×4 · parallel ×2 | single-scene satellite beats | — | Guest beat |
 | Jeremiah | 16 → 11 | Potter ×2, Letter ×2 | scroll (Jer 36) — enrichment only | LOW | Build now |
-| Hezekiah | 3 → 2 | Letter ×2 | illness (2 Kings 20, G13) — **still absent** | MED | Wait (thin) |
-| Josiah | 3 → 2 | Book found ×2 | Passover (2 Chr 35, G14) — **still absent** | MED | Wait (thin) |
+| Hezekiah | 3 → 2 | Letter ×2 | ~~illness (2 Kings 20, G13)~~ → **1611** (2 Kgs 20:1-11; **20:12-21 still absent**) | — | Buildable (2026-08-01) |
+| Josiah | 3 → 2 | Book found ×2 | ~~Passover (2 Chr 35, G14)~~ → **1612** (2 Chr 35:1-19; **35:20-27 still absent**) | — | Buildable (2026-08-01) |
 | Isaiah | 17 → 9 | "Wings" ×3, +4 pairs | 1 narrative (the call); rest oracle | — | Thematic |
 | Jehoshaphat | 4 → 1 | 2 Chr 20 ×4 | one event, four renders | — | Single event |
 | Hosea · Amos · Habakkuk | 3 · 2→1 · 3→2 | oracle overlaps | pure oracle — no spine | — | Thematic |
@@ -238,7 +283,7 @@ Stories column = total → distinct after dedupe. Verdict reflects the **correct
 | Daniel | 16 → 9 | Lions' den ×6, Wall ×2 | none — spine complete end to end | — | Build now (shipped) |
 | Esther + Mordecai | 10 → 8 | "If I Perish" ×3 | none — decree self-supplied in prose | — | Build now |
 | Ezra + Nehemiah | 19 → 13 | Foundation ×3, Neh 8 cross-file | none — Ezra→Nehemiah intact | — | Build now |
-| Jonah | 4 → 3 | Jonah 1 ×2 | Jonah 4 (G16) — **still absent**; missing capstone, not middle | LOW | Build now |
+| Jonah | 4 → 3 | Jonah 1 ×2 | ~~Jonah 4 (G16)~~ → **1614** (whole chapter); the capstone now exists | — | Build now |
 | Shadrach+ · Nebuchadnezzar | 4→3 · 3→2 | Dan 3 · Dan 4 | single-chapter guest clusters | — | Guest beat |
 | Ezekiel · Haggai · Zechariah | 5 · 2 · 2 | Zech = 2 people! | oracle/vision — no spine | — | Thematic |
 | **Gospels — Acts — Epistles** ||||||

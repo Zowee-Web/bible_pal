@@ -802,6 +802,10 @@
     "ananias_and_sapphira": {
       "displayName": "Ananias and Sapphira",
       "descriptor": "A married couple who lied about the proceeds of sold property, Acts 5"
+    },
+    "lot": {
+      "displayName": "Lot",
+      "descriptor": "Abraham's nephew, rescued from Sodom, Genesis 19"
     }
   }
 }

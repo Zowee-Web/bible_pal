@@ -136,11 +136,21 @@ void main() {
       expect(violations, isEmpty, reason: violations.join('\n'));
     });
 
-    test('gate: every integrated candidate resolves to its real story', () {
+    test('gate: every candidate carrying a productionId resolves to its real story',
+        () {
       final violations = <String>[];
       for (final raw in gate['approvedCandidates'] as List) {
         final candidate = raw as Map<String, dynamic>;
-        if (candidate['productionStatus'] != 'integrated') continue;
+        // Skip only the statuses that mean "not written yet" — those are
+        // covered by the unstarted-candidate test below. Every other status
+        // (awaiting_approval, approved_for_audio, rendered, integrated) means
+        // a story exists, so its recorded ID/anchor/key must agree with
+        // manifest.json. Checking only `integrated` let a mid-pipeline
+        // candidate drift unverified — the exact failure this guard exists
+        // to prevent.
+        if (notYetProducedGateStatuses.contains(candidate['productionStatus'])) {
+          continue;
+        }
         violations.addAll(verifyProducedStory(
           label: 'gate ${candidate['id']}',
           productionId: candidate['productionId'],

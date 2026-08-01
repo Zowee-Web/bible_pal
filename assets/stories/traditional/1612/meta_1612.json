@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1612,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5",
+  "generationBatch": "PAL_DAILY_2026-08-01_BATCH_I",
+  "title": "Josiah's Great Passover",
+  "scriptureAnchor": "2 Chronicles 35:1-19",
+  "scriptureAnchorId": "2_chronicles_35_1-19",
+  "bibleStoryKey": "josiahs_great_passover",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "shortScripture": false,
+  "themeTags": [
+    "obedience",
+    "celebration",
+    "devotion"
+  ],
+  "emotionalTags": [
+    "joyful",
+    "celebration",
+    "reverent"
+  ],
+  "primaryCharacterId": "josiah",
+  "primaryCharacterDisplayName": "Josiah",
+  "timelineEra": "kingdom",
+  "files": {
+    "short": {
+      "storyText": "story_1612_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1612_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1612_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1612_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "The gatekeepers stood at every gate through the whole day and never left them. Their brothers the Levites prepared their portion and carried it out to them. What is it to be remembered by the people working beside you, when you cannot leave the gate you were given?",
+  "editorialNotes": "PAL Daily supervised production 2026-08-01, Batch I. Owner-approved anchor 2 Chronicles 35:1-19 ONLY (the Passover itself). 2 Chronicles 35:20-27 - Josiah's battle at Megiddo and his death - is DELIBERATELY EXCLUDED and remains uncovered by the corpus; the story stops at verse 19 and must not be read as covering the whole of 2 Chronicles 35. Does not duplicate 1429 (2 Chr 34:1-7 reforms), 1452 or 1512 (2 Kgs 22, the book found), or 1475 (Huldah): none of that material appears here. The donor lists (vv7-9) are compressed but their numbers and names are preserved unaltered. WEB 'Yahweh'; KJV 'the Lord'. Journey backlog item G14. TEXT APPROVED — AUDIO AUTHORIZED BY OWNER ON 2026-08-01. Text approved by Adam and ChatGPT on 2026-08-01. No audio has been rendered and no ElevenLabs call has been made; audioFilePath and reflectionAudioPath remain blank. Journey integration is not complete.",
+  "bibleOrderIndex": 412
+}

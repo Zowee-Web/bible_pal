@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1611,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5",
+  "generationBatch": "PAL_DAILY_2026-08-01_BATCH_I",
+  "title": "Hezekiah's Illness and the Shadow Turned Back",
+  "scriptureAnchor": "2 Kings 20:1-11",
+  "scriptureAnchorId": "2_kings_20_1-11",
+  "bibleStoryKey": "hezekiah_illness_and_the_shadow",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "shortScripture": false,
+  "themeTags": [
+    "prayer",
+    "healing",
+    "mercy"
+  ],
+  "emotionalTags": [
+    "hurting",
+    "seen",
+    "reassured"
+  ],
+  "primaryCharacterId": "hezekiah",
+  "primaryCharacterDisplayName": "Hezekiah",
+  "timelineEra": "kingdom",
+  "files": {
+    "short": {
+      "storyText": "story_1611_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1611_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1611_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1611_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "Isaiah had not crossed the middle of the city before the word turned him around. The tears were still on the king's face when the answer came back. What is it to be heard before you have finished asking?",
+  "editorialNotes": "PAL Daily supervised production 2026-08-01, Batch I. Owner-approved anchor 2 Kings 20:1-11 ONLY (illness, healing, the shadow sign). 2 Kings 20:12-21 - the Babylonian envoys and Isaiah's prophecy - is DELIBERATELY EXCLUDED and remains uncovered by the corpus; this story must not be read as covering the whole of 2 Kings 20. Sennacherib's letter is NOT re-told (that material is stories 1341 and 1511); the promise about the king of Assyria is kept only as the quoted words of verse 6, which are inside the anchor. Isaiah's turning back before he cleared the middle of the city (v4) is the structural hinge. WEB 'Yahweh'; KJV 'the Lord'. Journey backlog item G13. TEXT APPROVED — AUDIO AUTHORIZED BY OWNER ON 2026-08-01. Text approved by Adam and ChatGPT on 2026-08-01. No audio has been rendered and no ElevenLabs call has been made; audioFilePath and reflectionAudioPath remain blank. Journey integration is not complete.",
+  "bibleOrderIndex": 365
+}

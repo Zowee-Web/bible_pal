@@ -6369,6 +6369,90 @@
       "bibleSourceRef": "Deuteronomy 8:7-10",
       "_stub": true,
       "_stubReason": "Auto-generated 2026-07-31 registration stub for story 1305. primaryFigure copied from manifest.primaryCharacterDisplayName. secondaryFigures and framingLines pending manual curation. App should treat _stub:true entries as placeholders (no Paths UI surface)."
+    },
+    {
+      "bibleStoryKey": "hezekiah_illness_and_the_shadow",
+      "primaryFigure": "Hezekiah",
+      "secondaryFigures": [
+        "Isaiah"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_HEZEKIAH_ILLNESS_AND_THE_SHADOW_01",
+          "text": "Hezekiah was sick and dying when Isaiah brought word to set his house in order. He turned his face to the wall and wept."
+        },
+        {
+          "id": "FRAME_HEZEKIAH_ILLNESS_AND_THE_SHADOW_02",
+          "text": "Before Isaiah had crossed the middle of the city the word turned him back: I have heard your prayer, I have seen your tears."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "josiahs_great_passover",
+      "primaryFigure": "Josiah",
+      "secondaryFigures": [
+        "Hilkiah"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_JOSIAHS_GREAT_PASSOVER_01",
+          "text": "Josiah kept the Passover in Jerusalem and gave thirty thousand lambs and goats out of his own herds for the people to offer."
+        },
+        {
+          "id": "FRAME_JOSIAHS_GREAT_PASSOVER_02",
+          "text": "The gatekeepers never left their gates; their brothers the Levites prepared their portion and carried it out to them."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "sodoms_destruction_and_lots_rescue",
+      "primaryFigure": "Lot",
+      "secondaryFigures": [
+        "Abraham"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_SODOMS_DESTRUCTION_AND_LOTS_RESCUE_01",
+          "text": "Lot lingered, and the two angels took his hand, his wife's hand and his daughters' hands, and set them outside the city."
+        },
+        {
+          "id": "FRAME_SODOMS_DESTRUCTION_AND_LOTS_RESCUE_02",
+          "text": "Abraham went up early to the place where he had stood, and saw the smoke of the plain going up as the smoke of a furnace."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "jonah_and_the_plant",
+      "primaryFigure": "Jonah",
+      "secondaryFigures": [],
+      "framingLines": [
+        {
+          "id": "FRAME_JONAH_AND_THE_PLANT_01",
+          "text": "Jonah sat east of Nineveh under a booth to see what would become of the city, and a vine came up over his head for shade."
+        },
+        {
+          "id": "FRAME_JONAH_AND_THE_PLANT_02",
+          "text": "A worm withered the vine at dawn, and God asked Jonah whether he was right to be angry about a plant he had not grown."
+        }
+      ]
+    },
+    {
+      "bibleStoryKey": "covenant_of_circumcision_abram_becomes_abraham",
+      "primaryFigure": "Abraham",
+      "secondaryFigures": [
+        "Sarah",
+        "Ishmael"
+      ],
+      "framingLines": [
+        {
+          "id": "FRAME_COVENANT_OF_CIRCUMCISION_ABRAM_BECOMES_ABRAHAM_01",
+          "text": "At ninety-nine Abram heard God name him Abraham, father of a multitude, and call Sarai by a new name: Sarah."
+        },
+        {
+          "id": "FRAME_COVENANT_OF_CIRCUMCISION_ABRAM_BECOMES_ABRAHAM_02",
+          "text": "Abraham fell on his face and laughed at the thought of a son at a hundred years old, and God named that son Isaac."
+        }
+      ]
     }
   ],
   "_stubsNote": "2026-07-19: Manifest-sync backfill \u2014 appended 1 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-07-18: Manifest-sync backfill \u2014 appended 4 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-30: Manifest-sync backfill \u2014 appended 298 stub entries (each marked _stub:true) so every traditional bibleStoryKey in manifest.json has a registry entry. Previous note: 2026-05-09: Added 96 auto-generated stub entries (marked with _stub: true) to satisfy biblical_figure_registry_test.dart cross-validation. 68 thematic/devotional bibleStoryKeys remain unregistered (need manual curation with appropriate schema): armor_of_god, as_a_deer_pants, beatitudes, calling_and_election_sure, cast_all_your_worries, ..."
