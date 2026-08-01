@@ -4771,6 +4771,46 @@
       "moodTags": [
         "anxious"
       ]
+    },
+    {
+      "scriptureAnchorId": "2_kings_20_1-11",
+      "bibleStoryKey": "hezekiah_illness_and_the_shadow",
+      "bibleSourceRef": "2 Kings 20:1-11",
+      "moodTags": [
+        "hurting"
+      ]
+    },
+    {
+      "scriptureAnchorId": "2_chronicles_35_1-19",
+      "bibleStoryKey": "josiahs_great_passover",
+      "bibleSourceRef": "2 Chronicles 35:1-19",
+      "moodTags": [
+        "joyful"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_19_1-29",
+      "bibleStoryKey": "sodoms_destruction_and_lots_rescue",
+      "bibleSourceRef": "Genesis 19:1-29",
+      "moodTags": [
+        "anxious"
+      ]
+    },
+    {
+      "scriptureAnchorId": "jonah_4",
+      "bibleStoryKey": "jonah_and_the_plant",
+      "bibleSourceRef": "Jonah 4",
+      "moodTags": [
+        "weary"
+      ]
+    },
+    {
+      "scriptureAnchorId": "genesis_17",
+      "bibleStoryKey": "covenant_of_circumcision_abram_becomes_abraham",
+      "bibleSourceRef": "Genesis 17",
+      "moodTags": [
+        "encouraging"
+      ]
     }
   ]
 }

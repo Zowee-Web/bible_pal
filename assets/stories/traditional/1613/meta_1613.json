@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1613,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5",
+  "generationBatch": "PAL_DAILY_2026-08-01_BATCH_I",
+  "title": "Sodom's Destruction and Lot's Rescue",
+  "scriptureAnchor": "Genesis 19:1-29",
+  "scriptureAnchorId": "genesis_19_1-29",
+  "bibleStoryKey": "sodoms_destruction_and_lots_rescue",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "shortScripture": false,
+  "themeTags": [
+    "deliverance",
+    "mercy",
+    "protection"
+  ],
+  "emotionalTags": [
+    "afraid",
+    "trembling",
+    "helped"
+  ],
+  "primaryCharacterId": "lot",
+  "primaryCharacterDisplayName": "Lot",
+  "timelineEra": "patriarchs",
+  "files": {
+    "short": {
+      "storyText": "story_1613_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1613_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1613_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1613_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "He lingered. So they took his hand, and his wife's hand, and both his daughters' hands, and walked them out of the city while he was still deciding. What is it to be carried out of a place you could not make yourself leave?",
+  "editorialNotes": "PAL Daily supervised production 2026-08-01, Batch I. ADULT LANE ONLY. Owner-approved anchor Genesis 19:1-29 ONLY. Genesis 19:30-38 - Lot and his daughters in the cave, and the origins of Moab and Ammon - is DELIBERATELY EXCLUDED, is not narrated in any form, and remains uncovered by the corpus. The threatened violence (v5) is stated in restrained narration rather than reproduced; Lot's offer of his daughters (v8) is stated plainly and not dwelt on; no interiority is invented for any figure. This story is the resolution 1487 (Gen 18:16-33) has been waiting for: Abraham's intercession is NOT re-narrated - verse 27 refers back to 'the place where he had stood before Yahweh' exactly as the anchor does. WEB 'Yahweh'; KJV 'the Lord'. Journey backlog item G15. TEXT DRAFT - AWAITING ADAM AND CHATGPT REVIEW. No audio.",
+  "bibleOrderIndex": 34
+}

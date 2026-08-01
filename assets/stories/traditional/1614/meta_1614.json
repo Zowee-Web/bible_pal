@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1614,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5",
+  "generationBatch": "PAL_DAILY_2026-08-01_BATCH_I",
+  "title": "Jonah and the Plant",
+  "scriptureAnchor": "Jonah 4",
+  "scriptureAnchorId": "jonah_4",
+  "bibleStoryKey": "jonah_and_the_plant",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "shortScripture": false,
+  "themeTags": [
+    "mercy",
+    "wrestling",
+    "lament"
+  ],
+  "emotionalTags": [
+    "angry",
+    "weary",
+    "exposed"
+  ],
+  "primaryCharacterId": "jonah",
+  "primaryCharacterDisplayName": "Jonah",
+  "timelineEra": "prophets",
+  "files": {
+    "short": {
+      "storyText": "story_1614_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1614_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1614_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1614_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "A vine came up in a night and perished in a night, and Jonah cared more for its shade than for a city of a hundred twenty thousand. Twice God asked whether his anger was right. The book ends before Jonah answers. What is it to be left holding a question like that one?",
+  "editorialNotes": "PAL Daily supervised production 2026-08-01, Batch I. Owner-approved anchor Jonah 4, whole chapter, no verses excluded. Written as the CODA to 1100 (Jonah 3, Nineveh repents), not as a middle beat: the single opening clause 'The city was spared' is neutral connective narration re-anchoring the referent of verse 1's 'it' for a listener, and the repentance of Nineveh is not re-told. Ends on God's question, unanswered, as the chapter does. WEB 'vine' and 'Yahweh'; KJV 'gourd' and 'the Lord'. Journey backlog item G16. TEXT DRAFT - AWAITING ADAM AND CHATGPT REVIEW. No audio.",
+  "bibleOrderIndex": 464
+}

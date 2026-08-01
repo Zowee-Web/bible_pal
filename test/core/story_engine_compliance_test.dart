@@ -64,13 +64,16 @@ void main() {
           //   Opus 4.6 batch (1000-1120): claude-opus-4-6
           //   Opus 4.7 batch (1121+): claude-opus-4-7 (added 2026-05; 1M-context model now in active use)
           //   Opus 4.8 batch (1543, 1552-1561): claude-opus-4-8 (added 2026-06)
-          //   Fable 5 batch (1571+): claude-fable-5 (added 2026-07; TEXT-FIRST STORY FACTORY 2.0 pilot, current active model)
+          //   Fable 5 batch (1571-1610): claude-fable-5 (added 2026-07; TEXT-FIRST STORY FACTORY 2.0 pilot)
+          //   Opus 5 batch (1611+): claude-opus-5 (added 2026-08-01; current active model)
           const traditionalAllowedModels = {
             'gpt-4.1',           // legacy traditional engine
             'claude-opus-4-6',   // Opus 4.6 batch system
             'claude-opus-4-7',   // Opus 4.7 batch system (1M context)
             'claude-opus-4-8',   // Opus 4.8 batch system (2026-06)
-            'claude-fable-5',    // Fable 5 batch system (current active model, 2026-07; TFSF 2.0 pilot, stories 1571+)
+            'claude-fable-5',    // Fable 5 batch system (2026-07; TFSF 2.0 pilot, stories 1571-1610)
+            'claude-opus-5',     // Opus 5 (1M context) — current active model, sanctioned by
+                                 // Adam 2026-08-01 for the text-first batch beginning at 1611
             'openai_chatgpt',    // cross-author experiment (Batch 17, story 1470 only;
                                  // commit 7c64b38 — first cross-author batch in corpus)
           };

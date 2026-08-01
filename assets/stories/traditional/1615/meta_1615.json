@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "storyId": 1615,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5",
+  "generationBatch": "PAL_DAILY_2026-08-01_BATCH_I",
+  "title": "God's Covenant with Abraham",
+  "scriptureAnchor": "Genesis 17",
+  "scriptureAnchorId": "genesis_17",
+  "bibleStoryKey": "covenant_of_circumcision_abram_becomes_abraham",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "shortScripture": false,
+  "themeTags": [
+    "covenant",
+    "promise",
+    "faithfulness"
+  ],
+  "emotionalTags": [
+    "blessed",
+    "reverent",
+    "amazed"
+  ],
+  "primaryCharacterId": "abraham",
+  "primaryCharacterDisplayName": "Abraham",
+  "timelineEra": "patriarchs",
+  "files": {
+    "short": {
+      "storyText": "story_1615_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_1615_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_1615_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_1615_traditional_kjv.txt"
+    }
+  },
+  "reflectionText": "He was ninety-nine when the promise came, and he fell on his face and laughed — a hundred years old, and Sarah ninety. Then he asked for Ishmael instead. God blessed Ishmael and kept Isaac in the covenant anyway. What is it to be given what your own arithmetic says cannot happen?",
+  "editorialNotes": "PAL Daily supervised production 2026-08-01, Batch I. Owner-approved anchor Genesis 17, whole chapter, no verses excluded. Gate candidate CG23. Chronological placement is load-bearing: it follows the Genesis 16 stories 1269 and 1405 and precedes the Genesis 18 material (1020, 1028, 1487), because this chapter IS the Abram->Abraham and Sarai->Sarah rename seam named in JOURNEY_GAP_AUDIT.md section 7 data-hygiene finding #4. bibleOrderIndex 28 places it after both Genesis 16 stories (16, 25) and before 1487 (33); note that the pre-existing Genesis 18 story 1020 carries 18, so the corpus's own index cannot satisfy both constraints - flagged for review, no existing story renumbered. Circumcision is narrated exactly as the passage states it, with no elaboration and no commentary. WEB 'Yahweh' and 'offspring'; KJV 'the Lord' and 'seed'. TEXT DRAFT - AWAITING ADAM AND CHATGPT REVIEW. No audio.",
+  "bibleOrderIndex": 28
+}
