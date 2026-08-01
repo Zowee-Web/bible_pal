@@ -1,6 +1,6 @@
 # Bible PAL — Full-Canon Production Gate
 
-> **Status:** Approved planning gate (pending Adam's sign-off), 2026-07-16 — **all 22 candidates produced (status-refreshed 2026-07-31); CG23 added and authored as 1615 on 2026-08-01, awaiting owner text approval**
+> **Status:** Approved planning gate (pending Adam's sign-off), 2026-07-16 — **all 22 candidates produced (status-refreshed 2026-07-31); CG23 added and authored as 1615 on 2026-08-01, text-approved and `approved_for_audio` — audio not yet rendered**
 > **Model:** Claude Opus 4.8, high effort
 > **Companion machine-readable file:** [`assets/stories/canon_production_gate.json`](../../assets/stories/canon_production_gate.json)
 >
@@ -28,7 +28,7 @@ Every mapping below was derived from — not assumed against — the corpus at m
 
 ## 0.1 Gate addition and outcome — 2026-08-01
 
-> **CG23 · Genesis 17 — approved by Adam and added as a 23rd candidate.** Added at `productionStatus: drafting` with no `productionId`, recorded **before any prose existed**; later the same day authored as story **1615**, and now at `productionStatus: awaiting_approval`.
+> **CG23 · Genesis 17 — approved by Adam and added as a 23rd candidate.** Added at `productionStatus: drafting` with no `productionId`, recorded **before any prose existed**; later the same day authored as story **1615** and set to `awaiting_approval`. *(Superseded by §0.2: text-approved the same day and now `approved_for_audio`.)*
 
 Genesis 17 was **not** gate-approved before today. Its only prior provenance was [`FULL_CANON_GAP_AUDIT_REFERENCE.md`](FULL_CANON_GAP_AUDIT_REFERENCE.md), which is reference-only and **authorizes nothing**. Adam approved it on 2026-08-01 on two grounds:
 
@@ -37,11 +37,27 @@ Genesis 17 was **not** gate-approved before today. Its only prior provenance was
 
 `_meta.counts.approvedCandidates` moves **22 → 23**; `integratedCandidates` **stays 22** because CG23 is not integrated. Nothing about the original 22 changed. `productionWave` is `null` — CG23 belongs to none of the six recorded waves and no new wave was invented for it.
 
-**Outcome (same day):** authored as **1615 "God's Covenant with Abraham"** [Genesis 17, whole chapter, no verses excluded], batch `PAL_DAILY_2026-08-01_BATCH_I`, registered in `manifest.json` **text-first** — WEB + KJV, `audioFilePath` and `reflectionAudioPath` blank. `productionStatus` `drafting → awaiting_approval`, with `productionId: 1615`, `productionAnchor: "Genesis 17"` and `productionBibleStoryKey: "covenant_of_circumcision_abram_becomes_abraham"`, all verified against `meta_1615.json` **and** `manifest.json`. It is deliberately **NOT** `integrated` and **NOT** `approved_for_audio`: the text awaits owner review and no audio exists.
+**Outcome (same day):** authored as **1615 "God's Covenant with Abraham"** [Genesis 17, whole chapter, no verses excluded], batch `PAL_DAILY_2026-08-01_BATCH_I`, registered in `manifest.json` **text-first** — WEB + KJV, `audioFilePath` and `reflectionAudioPath` blank. `productionStatus` `drafting → awaiting_approval`, with `productionId: 1615`, `productionAnchor: "Genesis 17"` and `productionBibleStoryKey: "covenant_of_circumcision_abram_becomes_abraham"`, all verified against `meta_1615.json` **and** `manifest.json`.
 
 Chronological placement is load-bearing and was preserved: 1615 sits after the Genesis 16 stories (`1269`, `1405`) and before the Genesis 18 material (`1487`), because the chapter *is* the rename seam of §7 finding #4.
 
-**Journey items (§4) — 2026-08-01:** G13–G16 were queued as `planned` in `fillNow` with owner-approved **narrowed** anchors, then authored the same day as stories **1611–1614**. They now read `authored`, carry their `productionId`, and appear in **none** of the three fill lists. `fillNow []` · `stronglyConsider []` · `deferUntilArcApproached [G12]`; `_meta.journeyBacklogReference` mirrors that exactly. **G12 is the only open backlog item left.**
+**Journey items (§4) — 2026-08-01:** G13–G16 were queued as `planned` in `fillNow` with owner-approved **narrowed** anchors, then authored the same day as stories **1611–1614**. They now read `authored`, carry their `productionId`, and appear in **none** of the three fill lists. `fillNow []` · `stronglyConsider []` · `deferUntilArcApproached [G12]`; `_meta.journeyBacklogReference` mirrors that exactly. **G12 is the only open backlog item left.** Their texts were owner-approved on 2026-08-01; they stay `authored`, not `integrated`, because no journey beat has been written.
+
+---
+
+## 0.2 Text lock — 2026-08-01
+
+> **CG23 · `awaiting_approval` → `approved_for_audio`.** Adam and ChatGPT approved the text of story **1615** on 2026-08-01.
+
+This is **eligibility bookkeeping only.** `approved_for_audio` records that 1615 may enter a *later* audio operation. It does **not** mean audio exists:
+
+- no audio was rendered and **no ElevenLabs call was made**;
+- `audioFilePath` and `reflectionAudioPath` are still `""` on both manifest entries;
+- CG23 is deliberately **NOT** `integrated`, so `_meta.counts.integratedCandidates` **stays 22**;
+- `productionId: 1615`, `productionAnchor: "Genesis 17"`, `productionBibleStoryKey: "covenant_of_circumcision_abram_becomes_abraham"` and `productionWave: null` are all unchanged;
+- `_meta.counts.approvedCandidates` stays **23**.
+
+The same lock applies to the four journey items — see [`JOURNEY_GAP_AUDIT.md`](JOURNEY_GAP_AUDIT.md) §0.2. Their texts are approved, but they remain `authored`: the backlog's `statusVocabulary` has no `approved_for_audio` value and none was invented for it.
 
 ---
 
@@ -86,7 +102,7 @@ Ranked by conspicuousness of the hole, then journey/arc leverage, then productio
 | 20 | The Workers in the Vineyard | Matthew 20:1-16 | net new essential | absent both lanes | both | low | standard | Wave 5 | — | **1605** |
 | 21 | The Weeds (Tares) Among the Wheat | Matthew 13:24-30, 36-43 | net new essential | absent both lanes | both | low | standard | Wave 5 | — | **1606** |
 | 22 | The Pearl of Great Price | Matthew 13:45-46 | net new essential | absent both lanes | both | low | standard | Wave 5 | — | **1610** |
-| 23 | God's Covenant with Abraham — Abram Becomes Abraham | Genesis 17 | net new essential | absent both lanes | adult | high | heavy | — | — | **1615** _(awaiting_approval — text-first, no audio)_ |
+| 23 | God's Covenant with Abraham — Abram Becomes Abraham | Genesis 17 | net new essential | absent both lanes | adult | high | heavy | — | — | **1615** _(approved_for_audio — text-first, no audio rendered)_ |
 
 _Rationale and cautions for each item are in `canon_production_gate.json`._
 

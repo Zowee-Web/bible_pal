@@ -1,6 +1,6 @@
 # Bible PAL — Journey Gap Audit
 
-> **Status:** Approved planning baseline (Adam, 2026-07-16) — **G1–G11 authored (2026-07-31); G13–G16 authored as 1611–1614 (2026-08-01); only G12 remains open**
+> **Status:** Approved planning baseline (Adam, 2026-07-16) — **G1–G11 authored (2026-07-31); G13–G16 authored as 1611–1614 and text-approved (2026-08-01); only G12 remains open**
 > **Audit date:** 2026-07-16
 > **Scope:** Full traditional story corpus (591 stories, 137 primary-character labels)
 > **Task type:** AUDIT + PLANNING ONLY — no beats authored, no ledger/arc-JSON/audio/app-code changed.
@@ -59,9 +59,28 @@ Adam approved the four remaining true gaps for production on 2026-08-01, **the d
 
 Every mapping was derived from — not assumed against — the corpus: `meta_<id>.json` **and** `manifest.json` agree on title, anchor and `bibleStoryKey` for all four.
 
-**They are `authored`, NOT `integrated`.** They are also **text-first**: registered WEB + KJV with `audioFilePath` and `reflectionAudioPath` blank, awaiting owner text review before any audio. None of 1611–1614 appears in `outgoing_beats.json` or in any `assets/stories/journeys/*.json` arc file — the stories exist; the journey wiring does not.
+**They are `authored`, NOT `integrated`.** They are also **text-first**: registered WEB + KJV with `audioFilePath` and `reflectionAudioPath` blank. *(Text review has since completed — see §0.2.)* None of 1611–1614 appears in `outgoing_beats.json` or in any `assets/stories/journeys/*.json` arc file — the stories exist; the journey wiring does not.
 
 `fillPriority` is now **fillNow `[]` · stronglyConsider `[]` · deferUntilArcApproached `[G12]`** — no item carrying a `productionId` remains queued. `auditDate`, rationale, seams, severities, `gapType`, `verificationStatus` and ordering are all preserved unchanged. **G12 is untouched** and remains `intentionally_deferred` — the Moses-POV spies unit is still guest-beat-solvable via story `1049`, and is now the *only* open item in this backlog.
+
+---
+
+## 0.2 Text lock — 2026-08-01
+
+> **Adam and ChatGPT approved the texts of stories 1611–1614 on 2026-08-01. G13–G16 stay `status: authored`.**
+
+They are **not** promoted to `integrated`, and no new status was invented. This file's `statusVocabulary` is exactly `missing` / `planned` / `authored` / `integrated` / `intentionally_deferred` — there is **no `approved_for_audio` value here**, and none was added. Text approval is recorded in each item's `notes`, which is where the vocabulary allows it to live.
+
+| G | Story | Text approved | Audio | Journey wiring |
+|---|---|---|---|---|
+| G13 | 1611 | ✅ 2026-08-01 | ❌ none rendered | ❌ not written |
+| G14 | 1612 | ✅ 2026-08-01 | ❌ none rendered | ❌ not written |
+| G15 | 1613 | ✅ 2026-08-01 | ❌ none rendered | ❌ not written |
+| G16 | 1614 | ✅ 2026-08-01 | ❌ none rendered | ❌ not written |
+
+**Two things remain outstanding for all four.** Audio: none was rendered, **no ElevenLabs call was made**, and `audioFilePath` / `reflectionAudioPath` are still `""`. Journey wiring: no beat has been written, and none of 1611–1614 appears in `outgoing_beats.json` or in any `assets/stories/journeys/*.json` arc file — which is precisely why `authored`, not `integrated`, is the truthful status.
+
+The companion gate records the same lock for CG23 / story 1615, where the gate's own vocabulary *does* have an `approved_for_audio` value — see [`FULL_CANON_PRODUCTION_GATE.md`](FULL_CANON_PRODUCTION_GATE.md) §0.2.
 
 ---
 
