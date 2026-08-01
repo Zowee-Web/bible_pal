@@ -1,6 +1,6 @@
 # Bible PAL — Full-Canon Production Gate
 
-> **Status:** Approved planning gate (pending Adam's sign-off), 2026-07-16 — **all 22 candidates produced; status-refreshed 2026-07-31**
+> **Status:** Approved planning gate (pending Adam's sign-off), 2026-07-16 — **all 22 candidates produced (status-refreshed 2026-07-31); CG23 added and authored as 1615 on 2026-08-01, awaiting owner text approval**
 > **Model:** Claude Opus 4.8, high effort
 > **Companion machine-readable file:** [`assets/stories/canon_production_gate.json`](../../assets/stories/canon_production_gate.json)
 >
@@ -22,22 +22,26 @@ Every mapping below was derived from — not assumed against — the corpus at m
 
 **What still remains open from this document:** only the **Enrichment adjunct** — Isaiah 9:2-7 and Psalm 1, both re-verified absent on 2026-07-31.
 
-**Journey items (§4):** G1–G10 and G11 have all been authored — see [`JOURNEY_GAP_AUDIT.md`](JOURNEY_GAP_AUDIT.md) §0. `fillNow` and `stronglyConsider` are now empty; only G12–G16 remain open. They are **authored, not integrated**: none is wired into an arc yet.
+**Journey items (§4):** G1–G10 and G11 have all been authored — see [`JOURNEY_GAP_AUDIT.md`](JOURNEY_GAP_AUDIT.md) §0. As of this refresh `fillNow` and `stronglyConsider` were empty and only G12–G16 remained open; the eleven authored items are **authored, not integrated** — none is wired into an arc yet. *(SUPERSEDED by §0.1: G13–G16 were authored on 2026-08-01 as 1611–1614, leaving G12 alone open.)*
 
 ---
 
-## 0.1 Gate addition — 2026-08-01
+## 0.1 Gate addition and outcome — 2026-08-01
 
-> **CG23 · Genesis 17 — approved by Adam and added as a 23rd candidate, `productionStatus: drafting`, no `productionId`.** Recorded **before any prose existed**.
+> **CG23 · Genesis 17 — approved by Adam and added as a 23rd candidate.** Added at `productionStatus: drafting` with no `productionId`, recorded **before any prose existed**; later the same day authored as story **1615**, and now at `productionStatus: awaiting_approval`.
 
 Genesis 17 was **not** gate-approved before today. Its only prior provenance was [`FULL_CANON_GAP_AUDIT_REFERENCE.md`](FULL_CANON_GAP_AUDIT_REFERENCE.md), which is reference-only and **authorizes nothing**. Adam approved it on 2026-08-01 on two grounds:
 
 1. **Coverage.** Verified absent — 0 meta hits for Genesis 17 across `scriptureAnchor`, `bibleStoryKey`, `title`, `bibleSourceRef` and `scriptureAnchorId` in either lane, and absent from `scripture_anchor_registry.json`, `anchor_coverage.json` and `kid_anchor_registry.json`. The corpus holds Genesis 16 (`1269`, `1405`) and Genesis 18 (`1487` + the Genesis 18 pair) but not the covenant chapter between them.
 2. **Data hygiene.** [`JOURNEY_GAP_AUDIT.md`](JOURNEY_GAP_AUDIT.md) §7 finding **#4** records that `Abram` / `Abraham` are the same man split at the **Genesis 17 rename seam**, to be audited and curated as one arc. The corpus holds both sides of that seam and no story of the seam itself.
 
-`_meta.counts.approvedCandidates` moves **22 → 23**; `integratedCandidates` **stays 22** because CG23 is not produced. Nothing about the original 22 changed. `productionWave` is `null` — CG23 belongs to none of the six recorded waves and no new wave was invented for it.
+`_meta.counts.approvedCandidates` moves **22 → 23**; `integratedCandidates` **stays 22** because CG23 is not integrated. Nothing about the original 22 changed. `productionWave` is `null` — CG23 belongs to none of the six recorded waves and no new wave was invented for it.
 
-**Journey items (§4) — 2026-08-01:** G13–G16 are now `planned` and in `fillNow`, each with an owner-approved **narrowed** anchor; G12 alone remains in `deferUntilArcApproached`. `_meta.journeyBacklogReference` mirrors that exactly.
+**Outcome (same day):** authored as **1615 "God's Covenant with Abraham"** [Genesis 17, whole chapter, no verses excluded], batch `PAL_DAILY_2026-08-01_BATCH_I`, registered in `manifest.json` **text-first** — WEB + KJV, `audioFilePath` and `reflectionAudioPath` blank. `productionStatus` `drafting → awaiting_approval`, with `productionId: 1615`, `productionAnchor: "Genesis 17"` and `productionBibleStoryKey: "covenant_of_circumcision_abram_becomes_abraham"`, all verified against `meta_1615.json` **and** `manifest.json`. It is deliberately **NOT** `integrated` and **NOT** `approved_for_audio`: the text awaits owner review and no audio exists.
+
+Chronological placement is load-bearing and was preserved: 1615 sits after the Genesis 16 stories (`1269`, `1405`) and before the Genesis 18 material (`1487`), because the chapter *is* the rename seam of §7 finding #4.
+
+**Journey items (§4) — 2026-08-01:** G13–G16 were queued as `planned` in `fillNow` with owner-approved **narrowed** anchors, then authored the same day as stories **1611–1614**. They now read `authored`, carry their `productionId`, and appear in **none** of the three fill lists. `fillNow []` · `stronglyConsider []` · `deferUntilArcApproached [G12]`; `_meta.journeyBacklogReference` mirrors that exactly. **G12 is the only open backlog item left.**
 
 ---
 
@@ -82,7 +86,7 @@ Ranked by conspicuousness of the hole, then journey/arc leverage, then productio
 | 20 | The Workers in the Vineyard | Matthew 20:1-16 | net new essential | absent both lanes | both | low | standard | Wave 5 | — | **1605** |
 | 21 | The Weeds (Tares) Among the Wheat | Matthew 13:24-30, 36-43 | net new essential | absent both lanes | both | low | standard | Wave 5 | — | **1606** |
 | 22 | The Pearl of Great Price | Matthew 13:45-46 | net new essential | absent both lanes | both | low | standard | Wave 5 | — | **1610** |
-| 23 | God's Covenant with Abraham — Abram Becomes Abraham | Genesis 17 | net new essential | absent both lanes | adult | high | heavy | — | — | _drafting (2026-08-01)_ |
+| 23 | God's Covenant with Abraham — Abram Becomes Abraham | Genesis 17 | net new essential | absent both lanes | adult | high | heavy | — | — | **1615** _(awaiting_approval — text-first, no audio)_ |
 
 _Rationale and cautions for each item are in `canon_production_gate.json`._
 
@@ -140,16 +144,16 @@ The approved G1-G16 backlog enters production on its existing verification. **Au
 | G9 | The Stolen Blessing | Genesis 27 | Jacob (jacob_full_arc) | Origin of the Jacob-Esau conflict. Pairs with G2. **AUTHORED as 1572** "The Stolen Blessing" (not yet arc-wired). |
 | G10 | The Flood | Genesis 7-8 | Noah (noah_arc) | Also the primeval-arc turning point (connects to Fall/Cain above). **AUTHORED as 1571** "The Flood" (not yet arc-wired). |
 
-**Defer until arc approached — G11-G16** — _G11 authored (2026-07-31); **G13-G16 approved and moved to `fillNow` 2026-08-01**; G12 alone still deferred_
+**Defer until arc approached — G11-G16** — _G11 authored (2026-07-31); **G13-G16 authored 2026-08-01 as 1611-1614**; G12 alone still deferred_
 
 | G | Story | Reference | Character / arc | Note |
 |---|-------|-----------|-----------------|------|
 | G11 | Korah's Rebellion | Numbers 16 | Moses back-half | Until the Moses wilderness back-half arc is approached. **AUTHORED as 1596** "Korah's Rebellion: The Earth Opens" (not yet arc-wired). |
 | G12 | The Spies (Moses POV) | Numbers 13-14 | Moses | Event covered cross-character — use Caleb's 1049 as a guest beat. **Still deferred** — the only item left in `deferUntilArcApproached`. |
-| G13 | Hezekiah's Illness | 2 Kings 20 | Hezekiah | Thin-pool fill; lifts Hezekiah to a buildable three. **PLANNED 2026-08-01** · anchor narrowed to **2 Kings 20:1-11**; **20:12-21 (Babylonian envoys, Isaiah's prophecy) stays uncovered by design**. |
-| G14 | Josiah's Great Passover | 2 Chronicles 35 | Josiah | Thin-pool fill. **PLANNED 2026-08-01** · anchor narrowed to **2 Chronicles 35:1-19**; **35:20-27 (Josiah's battle and death) stays uncovered by design**. |
-| G15 | Sodom & Lot's Rescue | Genesis 19 | Abraham/Lot | Hold 1487 standalone; author only to place it in sequence. **PLANNED 2026-08-01** · anchor narrowed to **Genesis 19:1-29**, adult lane only; **19:30-38 (the cave; Moab and Ammon) stays uncovered by design**. |
-| G16 | Jonah and the Plant | Jonah 4 | Jonah | Missing capstone; doesn't block the safe Jonah arc. **PLANNED 2026-08-01** · **Jonah 4 whole chapter**, nothing excluded. |
+| G13 | Hezekiah's Illness | 2 Kings 20 | Hezekiah | Thin-pool fill; lifts Hezekiah to a buildable three. **AUTHORED as 1611** "Hezekiah's Illness and the Shadow Turned Back" (2026-08-01, text-first, not yet arc-wired) · anchor narrowed to **2 Kings 20:1-11**; **20:12-21 (Babylonian envoys, Isaiah's prophecy) stays uncovered by design**. |
+| G14 | Josiah's Great Passover | 2 Chronicles 35 | Josiah | Thin-pool fill. **AUTHORED as 1612** "Josiah's Great Passover" (2026-08-01, text-first, not yet arc-wired) · anchor narrowed to **2 Chronicles 35:1-19**; **35:20-27 (Josiah's battle and death) stays uncovered by design**. |
+| G15 | Sodom & Lot's Rescue | Genesis 19 | Abraham/Lot | **AUTHORED as 1613** "Sodom's Destruction and Lot's Rescue" (2026-08-01, text-first, not yet arc-wired) · anchor narrowed to **Genesis 19:1-29**, adult lane only; **19:30-38 (the cave; Moab and Ammon) stays uncovered by design**. 1487 can now be placed in sequence rather than held standalone — that placement is beat work, still undone. |
+| G16 | Jonah and the Plant | Jonah 4 | Jonah | Missing capstone; doesn't block the safe Jonah arc. **AUTHORED as 1614** "Jonah and the Plant" (2026-08-01, text-first, not yet arc-wired) · **Jonah 4 whole chapter**, nothing excluded. |
 
 ---
 
