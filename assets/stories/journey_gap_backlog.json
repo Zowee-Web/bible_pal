@@ -12,15 +12,16 @@
       "intentionally_deferred": "real absence, but deferred until its specific arc is approached"
     },
     "fillPriority": {
-      "note": "Adam-approved fill order (2026-07-16). Do NOT fill all before resuming beats; a short focused batch first. 2026-07-31 refresh: every item in fillNow and stronglyConsider has been authored (G1-G10), as has G11, so those lists are now empty and G11 has left deferUntilArcApproached. Only G12-G16 remain open. Do not re-issue G1-G11 for production.",
-      "fillNow": [],
-      "stronglyConsider": [],
-      "deferUntilArcApproached": [
-        "G12",
+      "note": "Adam-approved fill order (2026-07-16). Do NOT fill all before resuming beats; a short focused batch first. 2026-07-31 refresh: every item in fillNow and stronglyConsider has been authored (G1-G10), as has G11, so those lists are now empty and G11 has left deferUntilArcApproached. Only G12-G16 remain open. Do not re-issue G1-G11 for production. 2026-08-01 production queue (Adam, owner-approved): G13, G14, G15 and G16 move intentionally_deferred -> planned and enter fillNow ahead of any prose, so the decision to produce them is recorded BEFORE the stories exist. Each carries an owner-approved NARROWED anchor, not its whole gap reference: G13 = 2 Kings 20:1-11 (verses 12-21, the Babylonian envoys and Isaiah's prophecy, remain uncovered by design); G14 = 2 Chronicles 35:1-19 (verses 20-27, Josiah's battle and death, remain uncovered by design); G15 = Genesis 19:1-29 (verses 30-38, Lot and his daughters in the cave and the origins of Moab and Ammon, remain uncovered by design); G16 = Jonah 4 (whole chapter). No productionId is recorded at this stage: planned means approved for authoring, not authored. G12 is untouched and remains intentionally deferred.",
+      "fillNow": [
         "G13",
         "G14",
         "G15",
         "G16"
+      ],
+      "stronglyConsider": [],
+      "deferUntilArcApproached": [
+        "G12"
       ]
     },
     "verificationStatusVocabulary": {
@@ -35,8 +36,8 @@
       "standalone_hold": "an unresolved story is held outside the arc; author only to place it in sequence",
       "capstone": "a missing end/coda; does not block earlier safe beats"
     },
-    "statusRefreshedOn": "2026-07-31",
-    "statusRefreshNote": "2026-07-31 status refresh (no editorial re-gating, no re-scoping). G1-G10 still read status=planned and G11 still read status=intentionally_deferred although all eleven had been authored, so consuming this file as-is would have instructed duplicate production. Each now carries status=authored plus productionId/productionAnchor/productionBibleStoryKey, derived and verified against the corpus at master fe09b63808c0ab4a798cae9a3087955b9a1320cb (meta_<id>.json AND manifest.json agree on title, anchor and bibleStoryKey for every mapping). They are deliberately NOT marked integrated: none of the eleven appears in outgoing_beats.json or in any assets/stories/journeys/*.json arc file, so per this file's own statusVocabulary they are authored but not yet wired into an arc, and the journey-build work these gaps existed for is still outstanding. G12-G16 were re-verified on 2026-07-31 and are UNCHANGED: G12 remains partially covered by story 1049 (Numbers 13:25-33) with the Moses-POV / Numbers 14 unit still absent and intentionally deferred; G13 (2 Kings 20), G14 (2 Chronicles 35), G15 (Genesis 19) and G16 (Jonah 4) remain confirmed-absent, intentionally deferred true gaps. auditDate, rationale, seams, ordering, severities and gapTypes are preserved. verificationStatus is likewise PRESERVED as the 2026-07-16 audit-time finding (confirmed_absent describes the corpus at that date, not today); present-day coverage is given by status + productionId."
+    "statusRefreshedOn": "2026-08-01",
+    "statusRefreshNote": "2026-07-31 status refresh (no editorial re-gating, no re-scoping). G1-G10 still read status=planned and G11 still read status=intentionally_deferred although all eleven had been authored, so consuming this file as-is would have instructed duplicate production. Each now carries status=authored plus productionId/productionAnchor/productionBibleStoryKey, derived and verified against the corpus at master fe09b63808c0ab4a798cae9a3087955b9a1320cb (meta_<id>.json AND manifest.json agree on title, anchor and bibleStoryKey for every mapping). They are deliberately NOT marked integrated: none of the eleven appears in outgoing_beats.json or in any assets/stories/journeys/*.json arc file, so per this file's own statusVocabulary they are authored but not yet wired into an arc, and the journey-build work these gaps existed for is still outstanding. G12-G16 were re-verified on 2026-07-31 and are UNCHANGED: G12 remains partially covered by story 1049 (Numbers 13:25-33) with the Moses-POV / Numbers 14 unit still absent and intentionally deferred; G13 (2 Kings 20), G14 (2 Chronicles 35), G15 (Genesis 19) and G16 (Jonah 4) remain confirmed-absent, intentionally deferred true gaps. auditDate, rationale, seams, ordering, severities and gapTypes are preserved. verificationStatus is likewise PRESERVED as the 2026-07-16 audit-time finding (confirmed_absent describes the corpus at that date, not today); present-day coverage is given by status + productionId. 2026-08-01 production-queue update (Adam, owner-approved; no editorial re-gating and no re-verification): G13-G16 move intentionally_deferred -> planned and into fillPriority.fillNow, recorded BEFORE any prose is written so the plan cannot drift behind the corpus a second time. auditDate, rationale, seams, severity, gapType, verificationStatus, ordering and the 2026-07-31 text above are all preserved. Each of the four carries an owner-approved NARROWED anchor whose deliberately-excluded verses are recorded in its own notes field. No productionId is added at this stage - the guard asserts a planned item carries no story ID. G12 is unchanged and remains intentionally_deferred in deferUntilArcApproached."
   },
   "backlog": [
     {
@@ -388,7 +389,7 @@
       "affectedArcs": [
         "hezekiah_arc"
       ],
-      "status": "intentionally_deferred",
+      "status": "planned",
       "requiredBeforeJourneyBuild": [
         "hezekiah_arc"
       ],
@@ -396,7 +397,7 @@
       "existingRightStoryId": null,
       "rationale": "Needed only to lift thin Hezekiah (2 distinct episodes) to a buildable three. Continuity between the two existing episodes is sound; this is a thin-pool fill, not a continuity break.",
       "verificationStatus": "confirmed_absent",
-      "notes": "Fill priority: deferUntilArcApproached. The great Passover (2 Chr 30) is a further optional Hezekiah beat."
+      "notes": "Fill priority: deferUntilArcApproached. The great Passover (2 Chr 30) is a further optional Hezekiah beat. 2026-08-01: owner-approved for production with the NARROWED anchor 2 Kings 20:1-11 (illness, healing, the shadow sign). 2 Kings 20:12-21 - the Babylonian envoys and Isaiah's prophecy - is deliberately OUT of scope and remains uncovered; do not read this item as covering the whole of 2 Kings 20. Status planned; not yet authored."
     },
     {
       "id": "G14",
@@ -412,7 +413,7 @@
       "affectedArcs": [
         "josiah_arc"
       ],
-      "status": "intentionally_deferred",
+      "status": "planned",
       "requiredBeforeJourneyBuild": [
         "josiah_arc"
       ],
@@ -420,7 +421,7 @@
       "existingRightStoryId": null,
       "rationale": "Needed only to lift thin Josiah (2 distinct episodes) to three; a joyful apex for the reform arc. Continuity between the two existing episodes is clean.",
       "verificationStatus": "confirmed_absent",
-      "notes": "Huldah's prophecy (1475) already offers a possible third beat. Josiah's death at Megiddo (2 Kings 23:29) is an alternative capstone. Fill priority: deferUntilArcApproached."
+      "notes": "Huldah's prophecy (1475) already offers a possible third beat. Josiah's death at Megiddo (2 Kings 23:29) is an alternative capstone. Fill priority: deferUntilArcApproached. 2026-08-01: owner-approved for production with the NARROWED anchor 2 Chronicles 35:1-19 (the Passover itself). 2 Chronicles 35:20-27 - Josiah's battle at Megiddo and his death - is deliberately OUT of scope and remains uncovered; do not read this item as covering the whole of 2 Chronicles 35. Status planned; not yet authored."
     },
     {
       "id": "G15",
@@ -437,13 +438,13 @@
       "affectedArcs": [
         "abraham_arc"
       ],
-      "status": "intentionally_deferred",
+      "status": "planned",
       "requiredBeforeJourneyBuild": [],
       "existingLeftStoryId": "1487",
       "existingRightStoryId": null,
       "rationale": "Abraham's Sodom intercession (1487, Gen 18:16-33) deliberately ends unresolved. No workaround needed: hold 1487 as a standalone (never mid-arc) and the Abraham Call->Binding arc is fully safe today. Author Gen 19 only to place 1487 in sequence.",
       "verificationStatus": "confirmed_absent",
-      "notes": "Per Audit Decision 7 (unresolved story held outside the arc). Not required before an Abraham arc. Fill priority: deferUntilArcApproached."
+      "notes": "Per Audit Decision 7 (unresolved story held outside the arc). Not required before an Abraham arc. Fill priority: deferUntilArcApproached. 2026-08-01: owner-approved for production with the NARROWED anchor Genesis 19:1-29 (the visitors at the gate, the rescue, the destruction). Genesis 19:30-38 - Lot and his daughters in the cave and the origins of Moab and Ammon - is deliberately OUT of scope and remains uncovered; do not read this item as covering the whole of Genesis 19. Adult lane only. Status planned; not yet authored."
     },
     {
       "id": "G16",
@@ -459,13 +460,13 @@
       "affectedArcs": [
         "jonah_arc"
       ],
-      "status": "intentionally_deferred",
+      "status": "planned",
       "requiredBeforeJourneyBuild": [],
       "existingLeftStoryId": "1100",
       "existingRightStoryId": null,
       "rationale": "A missing capstone, not a middle gap. 1100 (Nineveh repents) settles cleanly; omitting Jonah 4 ends the arc on resolution without its ironic coda. Does not block the safe 1094->1167->1100 arc.",
       "verificationStatus": "confirmed_absent",
-      "notes": "Per Audit Decision 6 (missing capstone does not block earlier safe beats). Fill priority: deferUntilArcApproached."
+      "notes": "Per Audit Decision 6 (missing capstone does not block earlier safe beats). Fill priority: deferUntilArcApproached. 2026-08-01: owner-approved for production with the anchor Jonah 4 (whole chapter; no verses excluded). Status planned; not yet authored."
     }
   ]
 }

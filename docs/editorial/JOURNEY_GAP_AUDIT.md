@@ -42,6 +42,25 @@ Every mapping was derived from — not assumed against — the corpus at master 
 
 ---
 
+## 0.1 Production queue — 2026-08-01
+
+> **G13–G16 are APPROVED FOR AUTHORING and now read `status: planned`.** This entry was written **before any prose existed**, so the decision to produce them is on the record ahead of the stories.
+
+Adam approved the four remaining true gaps for production on 2026-08-01. `fillPriority` becomes **fillNow `[G13, G14, G15, G16]` · stronglyConsider `[]` · deferUntilArcApproached `[G12]`**. No `productionId` is recorded at this stage — `planned` means *approved for authoring*, not *authored*, and the integrity guard asserts that a planned item carries no story ID.
+
+**Each approval is a NARROWED anchor, not the whole gap reference.** The excluded verses stay uncovered by design and must not be silently claimed as covered by a later refresh:
+
+| G | Gap reference | **Owner-approved anchor** | Deliberately excluded — still uncovered |
+|---|---|---|---|
+| G13 | 2 Kings 20 | **2 Kings 20:1-11** — illness, healing, the shadow sign | **20:12-21** — the Babylonian envoys and Isaiah's prophecy |
+| G14 | 2 Chronicles 35 | **2 Chronicles 35:1-19** — the Passover itself | **35:20-27** — Josiah's battle at Megiddo and his death |
+| G15 | Genesis 19 | **Genesis 19:1-29** — the visitors at the gate, the rescue, the destruction (adult lane only) | **19:30-38** — Lot and his daughters in the cave; the origins of Moab and Ammon |
+| G16 | Jonah 4 | **Jonah 4** — whole chapter | *(none)* |
+
+`auditDate`, rationale, seams, severities, `gapType`, `verificationStatus` and ordering are all preserved unchanged. **G12 is untouched** and remains `intentionally_deferred` — the Moses-POV spies unit is still guest-beat-solvable via story `1049`.
+
+---
+
 ## 1. Scope, methodology, and date
 
 - **Date:** 2026-07-16.
@@ -147,13 +166,14 @@ Severity key: **HIGH** = blocks an arc; no honest beat can bridge it. **MED** = 
 ### Deferred until their specific arc is approached
 
 > _2026-07-31: G11 has since been authored as **1596** (ahead of its arc). G12-G16 re-verified and still open._
+> _2026-08-01: G13-G16 have been **approved for authoring** (`status: planned`, fillNow) with narrowed anchors — see §0.1. G12 alone is still deferred. The tier name below now describes G12 only._
 
 **G11 · Korah's Rebellion — Numbers 16 — MED (AUTHORED 2026-07 as 1596, not yet arc-wired)** — Moses back-half; genuinely absent. Seam `1316` (Too Heavy, Num 11) → `1364` (Meribah, Num 20).
 **G12 · The Spies from Moses' POV — Numbers 13–14 — LOW (deferred)** — the **event exists** as Caleb's `1049` (Num 13:25–33) and can serve as a **guest beat** in a Moses arc; a dedicated Moses-POV render is optional enrichment, not a blocker.
-**G13 · Hezekiah's Illness & the Shadow Turned Back — 2 Kings 20 — MED (deferred)** — needed only to lift thin Hezekiah (2 episodes) to a buildable three. Seam `1511` (Sennacherib) → *(3rd beat)*.
-**G14 · Josiah's Great Passover — 2 Chronicles 35 — MED (deferred)** — needed only to lift thin Josiah (2 episodes) to three. (Huldah's prophecy `1475` already offers a possible third.) Seam `1512` (Book Found) → *(3rd beat)*.
-**G15 · Sodom's Destruction & Lot's Rescue — Genesis 19 — LOW (deferred)** — no workaround needed: **hold `1487` (Abraham's intercession) as a standalone**, never mid-arc, and the Abraham Call→Binding arc is fully safe today. Author only to place `1487` in sequence.
-**G16 · Jonah 4 — Jonah 4 — LOW (deferred)** — a missing **capstone**, not a middle gap; `1100` (Nineveh repents) settles cleanly. Omitting it ends the arc on resolution without its ironic coda. Does **not** block the safe `1094→1167→1100` arc.
+**G13 · Hezekiah's Illness & the Shadow Turned Back — 2 Kings 20 — MED (PLANNED 2026-08-01 · anchor narrowed to 2 Kings 20:1-11; 20:12-21 stays uncovered)** — needed only to lift thin Hezekiah (2 episodes) to a buildable three. Seam `1511` (Sennacherib) → *(3rd beat)*.
+**G14 · Josiah's Great Passover — 2 Chronicles 35 — MED (PLANNED 2026-08-01 · anchor narrowed to 2 Chronicles 35:1-19; 35:20-27 stays uncovered)** — needed only to lift thin Josiah (2 episodes) to three. (Huldah's prophecy `1475` already offers a possible third.) Seam `1512` (Book Found) → *(3rd beat)*.
+**G15 · Sodom's Destruction & Lot's Rescue — Genesis 19 — LOW (PLANNED 2026-08-01 · anchor narrowed to Genesis 19:1-29; 19:30-38 stays uncovered; adult lane only)** — no workaround needed: **hold `1487` (Abraham's intercession) as a standalone**, never mid-arc, and the Abraham Call→Binding arc is fully safe today. Author only to place `1487` in sequence.
+**G16 · Jonah 4 — Jonah 4 — LOW (PLANNED 2026-08-01 · whole chapter, nothing excluded)** — a missing **capstone**, not a middle gap; `1100` (Nineveh repents) settles cleanly. Omitting it ends the arc on resolution without its ironic coda. Does **not** block the safe `1094→1167→1100` arc.
 
 *(Also enrichment-only, not scheduled: Numbers 21 bronze serpent; Jeremiah 36 the burned scroll — the siege stories re-ground themselves.)*
 
