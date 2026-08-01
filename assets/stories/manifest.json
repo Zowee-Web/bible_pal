@@ -2495,7 +2495,7 @@
       "scriptureTextFilePath": "traditional/1020/scripture_1020_web.txt",
       "primaryCharacterId": "abraham",
       "primaryCharacterDisplayName": "Abraham",
-      "bibleOrderIndex": 18,
+      "bibleOrderIndex": 29,
       "timelineEra": "patriarchs",
       "themeTags": [
         "hope",
@@ -2527,7 +2527,7 @@
       "primaryCharacterId": "abraham",
       "primaryCharacterDisplayName": "Abraham",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 18
+      "bibleOrderIndex": 29
     },
     {
       "storyId": "story_1020_grateful_long_traditional",
@@ -2553,7 +2553,7 @@
       "primaryCharacterId": "abraham",
       "primaryCharacterDisplayName": "Abraham",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 18
+      "bibleOrderIndex": 29
     },
     {
       "storyId": "story_1020_grateful_short_traditional_kjv",
@@ -2579,7 +2579,7 @@
       "primaryCharacterId": "abraham",
       "primaryCharacterDisplayName": "Abraham",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 18
+      "bibleOrderIndex": 29
     },
     {
       "storyId": "story_1020_grateful_full_traditional_kjv",
@@ -2605,7 +2605,7 @@
       "primaryCharacterId": "abraham",
       "primaryCharacterDisplayName": "Abraham",
       "timelineEra": "patriarchs",
-      "bibleOrderIndex": 18
+      "bibleOrderIndex": 29
     },
     {
       "storyId": "story_1021_hurting_short_traditional",
@@ -18047,7 +18047,7 @@
       "reflectionAudioPath": "traditional/1241/audio_1241_reflection.mp3",
       "primaryCharacterId": "abraham",
       "primaryCharacterDisplayName": "Abram",
-      "bibleOrderIndex": 30,
+      "bibleOrderIndex": 15,
       "timelineEra": "patriarchs",
       "themeTags": [
         "presence",
@@ -18909,7 +18909,7 @@
       "reflectionAudioPath": "traditional/1269/audio_1269_reflection.mp3",
       "primaryCharacterId": "hagar",
       "primaryCharacterDisplayName": "Hagar",
-      "bibleOrderIndex": 25,
+      "bibleOrderIndex": 16,
       "timelineEra": "patriarchs",
       "themeTags": [
         "presence",
@@ -23136,7 +23136,7 @@
       "reflectionAudioPath": "traditional/1405/audio_1405_reflection.mp3",
       "primaryCharacterId": "hagar",
       "primaryCharacterDisplayName": "Hagar",
-      "bibleOrderIndex": 16,
+      "bibleOrderIndex": 17,
       "timelineEra": "patriarchs",
       "reflectionQuestion": "",
       "shortScripture": false,
