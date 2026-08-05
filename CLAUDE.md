@@ -138,10 +138,54 @@ Each Traditional story carries its own `scripture_{id}_{lang}.txt` file containi
 
 ## Environment
 
-- `.env` file in project root with `ELEVEN_LABS_API_KEY=your_key_here`
+- `.env` file in project root with `ELEVENLABS_API_KEY=your_key_here`
 - Never commit `.env` to git
+- Never print, echo, log or otherwise expose the key value
 - Main branch: `master`
 - CI: GitHub Actions ([.github/workflows/flutter.yml](.github/workflows/flutter.yml))
+
+### ElevenLabs operational notes
+
+**API key scope (observed 2026-08-05).** The project key supports TTS generation
+but lacks the `user_read` scope, so requests to `/v1/user` and
+`/v1/user/subscription` return HTTP 401 with a `missing_permissions` detail.
+**Do not diagnose the TTS key as invalid from those 401s** — generation works
+fine. Credit balance cannot be read with this key; ask the owner rather than
+inferring it.
+
+**Pronunciation rules (documented and verified 2026-08-05).** ElevenLabs
+documentation at that date stated that pronunciation-dictionary *phoneme* rules
+(IPA/CMU) are supported for `eleven_flash_v2` and `eleven_v3` only, and that
+other models silently skip phoneme tags and fall back to default pronunciation.
+Phoneme support for `eleven_flash_v2_5` was **not** verified and must not be
+assumed. The project's active model (`eleven_turbo_v2_5`) therefore requires
+**alias**-based pronunciation handling. This is time-sensitive vendor behaviour
+— re-check the official documentation before any architectural work that depends
+on it.
+
+**Rendering configuration is settled.** See
+[docs/AUDIO_PIPELINE_FINDINGS_2026-08-05.md](docs/AUDIO_PIPELINE_FINDINGS_2026-08-05.md).
+A controlled blind test selected the existing `eleven_turbo_v2_5` whole-story
+pipeline over chunked/stitched and alternative-model arms. Do not reopen model
+migration, paragraph chunking or Request Stitching without new listening
+evidence.
+
+### Audio preservation (NON-NEGOTIABLE)
+
+Bible PAL follows a strict **never-delete-audio** rule.
+
+- **Never delete audio** — production or experimental, including rejected takes,
+  rerolls, narrator comparisons, model/pipeline tests, blind-test samples,
+  pronunciation tests and superseded versions.
+- **Never overwrite an audio file** unless the prior version has first been
+  preserved under a unique archival filename or location **and** the owner has
+  explicitly authorized the replacement.
+- **Storage management means moving or archiving**, never erasing. Archive audio
+  together with its supporting records: reports, answer keys, request
+  information, timestamps, checksums, source-text references and listening
+  decisions.
+- Audio produced with paid credits remains part of the project's evidence and
+  production history even when it is not the version shipped in the app.
 
 ---
 
