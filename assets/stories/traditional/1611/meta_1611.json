@@ -18,7 +18,7 @@
   "scriptureAnchor": "2 Kings 20:1-11",
   "scriptureAnchorId": "2_kings_20_1-11",
   "bibleStoryKey": "hezekiah_illness_and_the_shadow",
-  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
   "shortScripture": false,
   "themeTags": [
     "prayer",
@@ -57,6 +57,6 @@
     "style": 0.0,
     "use_speaker_boost": true
   },
-  "renderedAt": "2026-08-01T23:07:53Z",
+  "renderedAt": "2026-08-05T01:56:49Z",
   "generatorVersion": "generate_opus_audio.sh"
 }
