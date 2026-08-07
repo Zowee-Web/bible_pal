@@ -1,0 +1,150 @@
+{
+  "archive": "2026-08-07_stale_text_rerender_batch1_1593_1594_1604_1614",
+  "authorizedBy": "Adam, 2026-08-07 (Batch 1 only: 12 stale MP3s for 1593/1594/1604/1614)",
+  "inventoryHead": "1ef7deab93f5876b433fcc093d6fd6fa77f93548",
+  "files": [
+    {
+      "archivedFile": "audio_1593_story_kjv_short.mp3",
+      "originalPath": "assets/stories/traditional/1593/audio_1593_story_kjv_short.mp3",
+      "sha256": "5bc87cfaa63ba5d3b65afc5086317308b166880353cd46181c761a8e2a8acf52",
+      "bytes": 1873337,
+      "audioRenderCommit": "7f801ad6d63a",
+      "renderedAt": "2026-07-30T14:01:05Z",
+      "reason": "STALE \u2014 TEXT CHANGED AFTER RENDER (2026-08-06 stale-audio inventory; PRs #117-#124 text repairs landed after render)",
+      "archivedAt": "2026-08-07",
+      "supersededBy": "Batch 1 re-render, generate_opus_audio.sh, same voice/settings"
+    },
+    {
+      "archivedFile": "audio_1593_reflection.mp3",
+      "originalPath": "assets/stories/traditional/1593/audio_1593_reflection.mp3",
+      "sha256": "99f49faf866f24a526d66832cfc33db472d17101cb8c1944f448dc26e5e000e1",
+      "bytes": 468994,
+      "audioRenderCommit": "7f801ad6d63a",
+      "renderedAt": "2026-07-30T14:01:05Z",
+      "reason": "STALE \u2014 TEXT CHANGED AFTER RENDER (2026-08-06 stale-audio inventory; PRs #117-#124 text repairs landed after render)",
+      "archivedAt": "2026-08-07",
+      "supersededBy": "Batch 1 re-render, generate_opus_audio.sh, same voice/settings"
+    },
+    {
+      "archivedFile": "audio_1593_reflection_kjv.mp3",
+      "originalPath": "assets/stories/traditional/1593/audio_1593_reflection_kjv.mp3",
+      "sha256": "f76ddb43c8334c279019814a34730dab96df8b11c62d2b97e140c58680e3ca1b",
+      "bytes": 455201,
+      "audioRenderCommit": "7f801ad6d63a",
+      "renderedAt": "2026-07-30T14:01:05Z",
+      "reason": "STALE \u2014 TEXT CHANGED AFTER RENDER (2026-08-06 stale-audio inventory; PRs #117-#124 text repairs landed after render)",
+      "archivedAt": "2026-08-07",
+      "supersededBy": "Batch 1 re-render, generate_opus_audio.sh, same voice/settings"
+    },
+    {
+      "archivedFile": "audio_1594_story_kjv_short.mp3",
+      "originalPath": "assets/stories/traditional/1594/audio_1594_story_kjv_short.mp3",
+      "sha256": "0255fd1ced3dea30dfbe662e190aeb35cb5909181264f86582ab400b42d7465f",
+      "bytes": 1263534,
+      "audioRenderCommit": "7f801ad6d63a",
+      "renderedAt": "2026-07-30T14:01:17Z",
+      "reason": "STALE \u2014 TEXT CHANGED AFTER RENDER (2026-08-06 stale-audio inventory; PRs #117-#124 text repairs landed after render)",
+      "archivedAt": "2026-08-07",
+      "supersededBy": "Batch 1 re-render, generate_opus_audio.sh, same voice/settings"
+    },
+    {
+      "archivedFile": "audio_1594_reflection.mp3",
+      "originalPath": "assets/stories/traditional/1594/audio_1594_reflection.mp3",
+      "sha256": "f881d36222f264f4022635f004b04464e89dffb3bc184b2ba0586ba3f0c1db9c",
+      "bytes": 445588,
+      "audioRenderCommit": "7f801ad6d63a",
+      "renderedAt": "2026-07-30T14:01:17Z",
+      "reason": "STALE \u2014 TEXT CHANGED AFTER RENDER (2026-08-06 stale-audio inventory; PRs #117-#124 text repairs landed after render)",
+      "archivedAt": "2026-08-07",
+      "supersededBy": "Batch 1 re-render, generate_opus_audio.sh, same voice/settings"
+    },
+    {
+      "archivedFile": "audio_1594_reflection_kjv.mp3",
+      "originalPath": "assets/stories/traditional/1594/audio_1594_reflection_kjv.mp3",
+      "sha256": "e0ad148beff0c18b67467828526cce253af8ea222ae3a872a661f4cf3908a5ab",
+      "bytes": 455619,
+      "audioRenderCommit": "7f801ad6d63a",
+      "renderedAt": "2026-07-30T14:01:17Z",
+      "reason": "STALE \u2014 TEXT CHANGED AFTER RENDER (2026-08-06 stale-audio inventory; PRs #117-#124 text repairs landed after render)",
+      "archivedAt": "2026-08-07",
+      "supersededBy": "Batch 1 re-render, generate_opus_audio.sh, same voice/settings"
+    },
+    {
+      "archivedFile": "audio_1604_story_short.mp3",
+      "originalPath": "assets/stories/traditional/1604/audio_1604_story_short.mp3",
+      "sha256": "555f1bc63cefec77908ca0f153c38ff0139aa6ee3f00a37621e23c6e37a7fc6a",
+      "bytes": 1077542,
+      "audioRenderCommit": "7f801ad6d63a",
+      "renderedAt": "2026-07-30T14:03:22Z",
+      "reason": "STALE \u2014 TEXT CHANGED AFTER RENDER (2026-08-06 stale-audio inventory; PRs #117-#124 text repairs landed after render)",
+      "archivedAt": "2026-08-07",
+      "supersededBy": "Batch 1 re-render, generate_opus_audio.sh, same voice/settings"
+    },
+    {
+      "archivedFile": "audio_1604_story_kjv_short.mp3",
+      "originalPath": "assets/stories/traditional/1604/audio_1604_story_kjv_short.mp3",
+      "sha256": "112aff00ac5bec4a3618928712f8f931b6ba83804348c57bc15584f4567d8d88",
+      "bytes": 1028641,
+      "audioRenderCommit": "7f801ad6d63a",
+      "renderedAt": "2026-07-30T14:03:22Z",
+      "reason": "STALE \u2014 TEXT CHANGED AFTER RENDER (2026-08-06 stale-audio inventory; PRs #117-#124 text repairs landed after render)",
+      "archivedAt": "2026-08-07",
+      "supersededBy": "Batch 1 re-render, generate_opus_audio.sh, same voice/settings"
+    },
+    {
+      "archivedFile": "audio_1614_story_short.mp3",
+      "originalPath": "assets/stories/traditional/1614/audio_1614_story_short.mp3",
+      "sha256": "5f23d1185fde89970085aec87cf6f794e6b0598ec78c5db160bae992ab3f1993",
+      "bytes": 1608351,
+      "audioRenderCommit": "94a5f88c3d0e",
+      "renderedAt": "2026-08-01T23:08:55Z",
+      "reason": "STALE \u2014 TEXT CHANGED AFTER RENDER (2026-08-06 stale-audio inventory; PRs #117-#124 text repairs landed after render)",
+      "archivedAt": "2026-08-07",
+      "supersededBy": "Batch 1 re-render, generate_opus_audio.sh, same voice/settings"
+    },
+    {
+      "archivedFile": "audio_1614_story_kjv_short.mp3",
+      "originalPath": "assets/stories/traditional/1614/audio_1614_story_kjv_short.mp3",
+      "sha256": "24aacd4fa13187cd112292175221cf22371bc0441a6ef70d550c7dea9bc9c2c1",
+      "bytes": 1700302,
+      "audioRenderCommit": "94a5f88c3d0e",
+      "renderedAt": "2026-08-01T23:08:55Z",
+      "reason": "STALE \u2014 TEXT CHANGED AFTER RENDER (2026-08-06 stale-audio inventory; PRs #117-#124 text repairs landed after render)",
+      "archivedAt": "2026-08-07",
+      "supersededBy": "Batch 1 re-render, generate_opus_audio.sh, same voice/settings"
+    },
+    {
+      "archivedFile": "audio_1614_reflection.mp3",
+      "originalPath": "assets/stories/traditional/1614/audio_1614_reflection.mp3",
+      "sha256": "b918d949514fc11e0691ccd3d708d50fc67621cef47f182d5d3e5b7b1794453e",
+      "bytes": 269209,
+      "audioRenderCommit": "94a5f88c3d0e",
+      "renderedAt": "2026-08-01T23:08:55Z",
+      "reason": "STALE \u2014 TEXT CHANGED AFTER RENDER (2026-08-06 stale-audio inventory; PRs #117-#124 text repairs landed after render)",
+      "archivedAt": "2026-08-07",
+      "supersededBy": "Batch 1 re-render, generate_opus_audio.sh, same voice/settings"
+    },
+    {
+      "archivedFile": "audio_1614_reflection_kjv.mp3",
+      "originalPath": "assets/stories/traditional/1614/audio_1614_reflection_kjv.mp3",
+      "sha256": "5fba413f815a71f724dc2a72d1efd6231e0179b62e2a18a7aaadf6257ed1e44f",
+      "bytes": 285510,
+      "audioRenderCommit": "94a5f88c3d0e",
+      "renderedAt": "2026-08-01T23:08:55Z",
+      "reason": "STALE \u2014 TEXT CHANGED AFTER RENDER (2026-08-06 stale-audio inventory; PRs #117-#124 text repairs landed after render)",
+      "archivedAt": "2026-08-07",
+      "supersededBy": "Batch 1 re-render, generate_opus_audio.sh, same voice/settings"
+    },
+    {
+      "archivedFile": "audio_1614_story_kjv_short_take1_rejected_ending.mp3",
+      "originalPath": "assets/stories/traditional/1614/audio_1614_story_kjv_short.mp3",
+      "sha256": "591573625cd4e6a6ccc7c8249801874649e91aeec2541445ed0f15e55500153d",
+      "bytes": 1706989,
+      "audioRenderCommit": "uncommitted (Batch 1 re-render take 1, 2026-08-07)",
+      "renderedAt": "2026-08-07",
+      "reason": "REJECTED IN LISTENING REVIEW \u2014 ending (final question, Jonah 4:10-11) hard to understand; ffmpeg tail analysis shows final speech runs to literal end-of-file with no trailing room (end-clip signature)",
+      "archivedAt": "2026-08-07",
+      "supersededBy": "take 2 reroll, same text/voice/settings"
+    }
+  ]
+}
