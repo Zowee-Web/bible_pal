@@ -154,11 +154,13 @@ void main() {
       // Should not look like email
       expect(sessionId.contains('@'), isFalse);
 
-      // Should not look like phone
-      expect(RegExp(r'\d{10}').hasMatch(sessionId), isFalse);
-
-      // Should be hex only
-      expect(RegExp(r'^[0-9a-f]+$').hasMatch(sessionId), isTrue);
+      // Session IDs are generated solely from Random.secure() bytes, not
+      // user input. These assertions verify their deterministic
+      // 16-character lowercase-hex format. Do not reject PII-like
+      // substrings: random hex can coincidentally contain ten decimal
+      // digits (~2.96% of generated IDs).
+      expect(sessionId, hasLength(16));
+      expect(sessionId, matches(RegExp(r'^[0-9a-f]{16}$')));
     });
   });
 
