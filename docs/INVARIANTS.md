@@ -2349,6 +2349,295 @@ moves into INVARIANTS.md with the same legal weight as translation compliance").
 
 ---
 
+## 🔒 Catalog Currency Invariant (NON-NEGOTIABLE)
+
+**Invariant**: *Within the app*, the story catalog can only ever move
+forward — no cached or remote catalog may replace a newer bundled one.
+
+### What guarantees what (read this before quoting the invariant)
+
+The one-line statement above is enforced by DIFFERENT layers with very
+different strengths. Do not quote it without the scope:
+
+| Property | Enforced by | Strength |
+|---|---|---|
+| A cache/remote catalog never downgrades the served pool | `CatalogService` (rules 1–5, 9) | **Technical.** In-app, at every read. |
+| Cache reads/writes/deletes are serialized | Path-keyed coordinator in `CatalogService`, single-resolution rule (4c) | **Technical, but scoped to ONE Dart isolate.** Not cross-isolate, not cross-process. No OS file lock. |
+| A rejected catalog never reaches the user by another route | `ParableService` fail-closed (rule 10) | **Technical**, for every production path known today. |
+| The manifest generation bumps on every semantic change | CI (rule 6) | **PR path = prevention** (a required check blocks the merge). **Push path = DETECTION ONLY** — it runs after the commit already landed on the protected branch. |
+| The remote catalog only moves forward | Publisher prechecks (rule 7) | **NOT a guarantee.** Read→check→write with no atomicity. Narrows the window; cannot close it. |
+| Only one publisher runs at a time | Operational policy (rule 8) | **Policy, not a mechanism.** Nothing technical enforces it. |
+
+**R2 publication remains BLOCKED** until genuine writer exclusivity or a
+server-side conditional write exists. The safety work described here is
+about making the code correct and reviewable; it does not unblock
+publishing. See "Open decisions" at the end of this section.
+
+### Why This Exists
+
+On 2026-08-10 the live R2 catalog (v5, 1675 entries) was older than the
+bundled manifest (2006 entries). Because bundled currency was not part of the
+selection floor, a refreshed cache could silently shrink the story pool by
+331 stories after an app update. This invariant makes that downgrade
+impossible.
+
+### The Rules
+
+1. **One generation number.** A single monotonic **positive integer**
+   catalog generation (top-level `"version"` in
+   `assets/stories/manifest.json`) is shared by the bundled manifest, the
+   on-device cache, the remote R2 catalog, and the publisher. Entry count is
+   NEVER a version signal.
+2. **Bundled catalog is the trusted baseline.** `loadCatalog` materializes
+   and validates the bundled catalog FIRST. Only then is cache currency
+   compared.
+3. **Strict `>` semantics everywhere.** Cache is served only when
+   `Vc > B`; a remote catalog is accepted only when `Vr > max(B, Vc)`; the
+   publisher pushes only when `localVersion > remoteVersion`. Equality is
+   never an update — same version with different payload is a version
+   collision and is never accepted.
+4. **Only fully validated catalogs contribute versions.** A cache or remote
+   catalog contributes its version to any comparison only after passing the
+   complete **active catalog contract** (rule 9). A malformed cache claiming
+   `version: 999` contributes nothing.
+4b. **Cache state is four-valued, and UNKNOWN is not INVALID.** The
+   on-device cache is classified ABSENT / INVALID / VALID / UNKNOWN.
+   INVALID means the bytes were read and are positively unusable, and only
+   an INVALID (or positively stale `Vc <= B`) cache may be deleted. UNKNOWN
+   means an I/O failure prevented classification: such a cache may still
+   hold a HIGHER valid generation, so it is never deleted and it BLOCKS
+   remote acceptance — a floor that cannot be established is never treated
+   as no floor. The floor check and the cache replacement execute inside a
+   single serialized critical section, so the floor is re-established
+   immediately before the write and a stale snapshot can never delete or
+   overwrite newer cache state.
+4c. **Cache serialization is per cache PATH, per ISOLATE, on a
+   single-resolution rule.** The cache `File` is resolved EXACTLY ONCE per
+   operation; the lock key is derived from that same resolved file, and
+   that same file is threaded through every read/write/delete in the
+   critical section. Nothing inside re-resolves the path. If resolution
+   fails the operation does not run at all — it returns fail-closed
+   UNKNOWN. There is deliberately **no fallback lock key**: resolving the
+   key separately from the file the work used allowed a first failed
+   resolution to take a fallback lock while a later, successful
+   resolution inside the section operated on the REAL path, so two
+   instances could mutate the same cache under different locks and a v8
+   write could land on top of a v9 one.
+
+   Critical sections are shared by every `CatalogService` instance in the
+   isolate, so two instances pointed at the same documents directory
+   (public construction, multiple ProviderContainers/scopes, DI, tests)
+   contend correctly. It is NOT an OS-level lock: it does not coordinate
+   across Dart isolates or OS processes. That is sound only because the
+   catalog cache lives in the app's own sandbox and is touched solely by
+   the main isolate. **If catalog cache access ever moves to a background
+   isolate or a second process, this must become an OS-level file lock** —
+   the current mechanism would silently provide no protection there.
+5. **Fail closed on an invalid bundled version.** If bundled content is
+   valid but its version is missing / wrong-typed / non-positive, the
+   bundled catalog is served, external catalog replacement (cache selection
+   and remote refresh) is latched OFF for the session, the cache is
+   preserved, and `catalog_bundled_version_invalid` is emitted. If the
+   bundled asset itself is unusable, a fully validated cache may serve as an
+   emergency fallback with remote advancement disabled.
+6. **Bump enforcement on BOTH paths.** Any semantic change to
+   `assets/stories/manifest.json` (everything except the top-level
+   `version` field; array order is semantic) MUST bump the generation.
+   Formatting-only changes need no bump; the generation may never decrease.
+   Enforced on pull requests AND on every protected-branch push/merge.
+   **These are not equally strong.** The pull_request run can *prevent* a
+   bad merge, but only if it is configured as a REQUIRED check (see
+   "Platform controls still needed"). The push run executes AFTER the
+   commit has already landed on the protected branch, so it is
+   **detection, not prevention** — it turns a silent regression into a red
+   build and a revert, nothing more. Neither run can stop a force-push or
+   an admin bypass; only branch protection can.
+7. **Publisher monotonicity, and its limit.** `scripts/upload_r2_catalog.sh`
+   publishes the bundled manifest VERBATIM — it never computes a version.
+   It refuses to push over an unknown, unreadable, or corrupt remote state,
+   re-checks the remote immediately before the PUT, and uploads an
+   immutable private per-run snapshot whose exact bytes are re-validated
+   and re-hashed immediately before and after the PUT.
+   **This is NOT an atomic compare-and-swap.** The read → check → write
+   sequence can still interleave between concurrent publishers, so
+   `v7` followed by `v6` remains possible in principle. Remote
+   monotonicity is guaranteed by rule 8, not by the script.
+8. **Owner-controlled R2 publication.** ONE owner-controlled catalog
+   publisher at a time. Catalog publication is a deliberate, owner-run
+   action; nothing else writes `catalog/v1/manifest.json`. This
+   operational rule is currently the ONLY thing serializing publication;
+   replacing it with server-side conditional writes or a
+   platform-enforced exclusive publisher workflow is an open decision
+   (see "Open decision" below).
+9. **Active catalog contract.** One contract, enforced with equivalent
+   semantics in `lib/services/catalog_service.dart` and
+   `scripts/validate_catalog_manifest.py`, decides whether a candidate
+   catalog is trusted. In addition to the JSON/version/size/entry-count
+   protections it requires: `storytellingMode` in the active set
+   (`traditional`); non-blank `storyId` / `title` / `mood` /
+   `storytellingMode`; **unique story ids**; `translationId` an EXACT
+   member of the compliance allowlist and `languageStyle` exactly `WEB`
+   or `KJV`; `storyLength` in `{short, full, long}` when present; and a
+   required `textFilePath` plus optional media paths that are safe,
+   normalized, relative asset paths which cannot escape the asset root.
+   **Nothing is silently normalized.** A lowercase `"kjv"` is REJECTED,
+   never up-cased — `Parable.fromJson` maps any `languageStyle` that is
+   not literally `KJV` to `WEB`, so accepting it would serve a KJV story
+   with WEB diction.
+9b. **Blank identity is an explicit code-point set, not a language
+   default.** Dart's `String.trim()` strips U+FEFF but not U+001C;
+   Python's `str.strip()` does the opposite. Either default would let a
+   catalog pass one validator and fail the other, so both sides implement
+   the same explicit UNION set (`CatalogService.identityBlankCodePoints`
+   and `IDENTITY_BLANK_CODE_POINTS`). Asset-path validation likewise uses
+   a character class rather than a trim comparison, so no
+   runtime-dependent whitespace semantics enter the contract anywhere.
+9d. **A leading UTF-8 BOM is REJECTED, identically on both sides.** Left
+   to the runtimes' defaults the two validators disagree: Dart's
+   `utf8.decode` and `File.readAsString` silently DISCARD a BOM, while
+   Python keeps U+FEFF and `json.loads` then fails — so the same bytes
+   would be accepted by the app and rejected by the publisher. JSON needs
+   no BOM (RFC 8259) and the publisher owns the bytes it uploads, so both
+   sides reject it explicitly and the wire format stays canonical. The
+   check is at the BYTE level on the remote and cache lanes (after
+   decoding, Dart has already dropped it); the bundled asset is covered by
+   the Python validator in CI plus a repo test, because
+   `rootBundle.loadString` discards a BOM before `CatalogService` can see
+   it. Only a LEADING BOM is rejected — U+FEFF inside legitimate story
+   text is untouched.
+9c. **Catalog bytes are decoded as UTF-8, never per the response header.**
+   JSON is UTF-8 by RFC 8259. `package:http` derives its decoding charset
+   from `Content-Type` and falls back to LATIN-1 when none is present, so
+   reading `response.body` would mojibake the 361 corpus entries carrying
+   non-ASCII text and persist the damage to the cache. `CatalogService`
+   decodes `bodyBytes` explicitly; the publisher additionally serves
+   `application/json; charset=utf-8`.
+10. **Fail closed at the app boundary — EVERY route, not just the main
+   one.** When `CatalogService` rejects every candidate catalog,
+   `ParableService` serves an EMPTY pool, and the adult and Kid journey
+   rescue paths return no story. No production path may reach
+   `rootBundle` + `jsonDecode` + bare `Parable.fromJson`: that route
+   bypasses the whole contract, the translation allowlist included, and a
+   rescue path doing so would resurrect exactly the catalog that was
+   rejected one layer up. Rescue is a *selection* concern and consumes
+   `CatalogService.validatedBundledCatalog()`; it never gets its own
+   weaker validation. (The only remaining raw read is the `testMode`
+   branch of `_resolveManifest`, which never runs in production.)
+11. **Absence is never inferred.** The remote catalog key is established
+   production state; the publisher recognizes only confirmed / corrupt /
+   unknown. A nonzero or indeterminate GET is UNKNOWN and blocks
+   publication. Absence must NEVER be derived from stderr text such as
+   "not found", "no such", "404" or "does not exist" — transport
+   failures, missing helper executables and auth errors all produce those
+   strings, and treating them as absence lets a failed read authorize a
+   blind overwrite of a live, possibly newer, catalog.
+
+### Enforcement (verified 2026-08-11)
+
+- Runtime: `lib/services/catalog_service.dart` (bundled-first selection,
+  strict floors, fail-closed latch, full-validation watermarks).
+- `test/services/catalog_service_test.dart` — selection, floors, latch,
+  emergency fallback, persistence failure, refresh dedup, timeout.
+- `test/services/parable_service_catalog_test.dart` +
+  `test/services/parable_service_r2_integration_test.dart` — end-to-end
+  downgrade-proofing against the real bundled asset.
+- `test/core/manifest_contracts_test.dart` — bundled manifest carries a
+  positive integer generation (≥ 6).
+- CI (`.github/workflows/flutter.yml`): semantic bump check via
+  `scripts/ci/enforce_manifest_version_bump.sh` →
+  `scripts/check_manifest_version_bump.py`, run on BOTH the pull_request
+  path (base = `pull_request.base.sha`) and the protected-branch push path
+  (base = `event.before`) + validator unit tests + writer-preservation
+  test for `server/tools/backfill_story_length.sh`.
+- Publisher: `scripts/upload_r2_catalog.sh` fail-closed remote
+  classification, version gates, pre-PUT recheck, immutable-snapshot byte
+  integrity gate, post-PUT read-only verification.
+- `scripts/tests/test_upload_r2_catalog_publisher.py` — the active catalog
+  contract matrix, Dart/Python parity (value sets, identity-blank code
+  points, safe-path rule), plus stub-wrangler proofs that transport
+  failures, missing helpers, auth failures, malformed output, network
+  failures and ambiguous stderr can never reach a PUT, and the full
+  stateful push path.
+- `scripts/tests/hermetic_env.py` — publisher tests run with PATH set to
+  exactly one scenario-owned directory of named symlinks, so a genuinely
+  installed and AUTHENTICATED wrangler cannot be resolved by construction,
+  and no cloud credentials or HOME-based wrangler config are inherited. A
+  regression test installs a decoy "global" wrangler on the ambient PATH
+  and proves it is never invoked.
+- `server/tools/backfill_story_length.sh` runs the full catalog validator
+  against the exact staged bytes before any backup or rename, so a
+  semantically invalid manifest can never replace a valid one.
+
+### Publication status
+
+**BLOCKED.** The code changes described here can be reviewed and committed
+on their own merits, but they do NOT unblock publishing to R2. Publication
+stays blocked until either genuine writer exclusivity or a server-side
+conditional write exists (below). A best-effort local shell lock is
+explicitly NOT an acceptable substitute and must not be added: it cannot
+serialize publishers on different machines, which is the case that
+matters, and adding one would convert an honest "unprotected" into a
+false "protected".
+
+### Platform controls still needed (GitHub — configure manually)
+
+CI cannot protect a branch; only branch protection can. None of the
+following is configured by this repository's code, and no attempt is made
+here to configure them externally. They must be set by an owner in the
+GitHub UI/API:
+
+1. **PR-only updates to `master`** — block direct pushes, so the
+   pull_request gate cannot be skipped.
+2. **No force push, no branch deletion** on `master`.
+3. **Required status checks** — the Flutter CI job must be REQUIRED, not
+   merely present. An unrequired check is advisory and a PR can merge red.
+4. **No admin bypass** ("Do not allow bypassing the above settings"),
+   if the workflow permits it.
+5. **Require branches to be up to date before merging**, or a merge
+   queue — otherwise a PR whose base advanced after its check ran can
+   still land an unbumped manifest.
+6. **Protect the enforcement code itself** — changes to
+   `.github/workflows/flutter.yml`, `scripts/ci/`,
+   `scripts/check_manifest_version_bump.py` and
+   `scripts/validate_catalog_manifest.py` should require review (CODEOWNERS),
+   so the gate cannot be weakened in the same PR that needs weakening.
+
+Until 1–5 exist, the push-event check is **detection after the fact**:
+it reports a regression that has already landed.
+
+### Open decisions (unresolved)
+
+Rule 7 narrows but does not eliminate the publish race. Closing it needs
+one of:
+
+1. **Server-side conditional write (CAS)** — an `If-Match` / `If-None-Match`
+   precondition on the catalog PUT, so a concurrent publisher's write is
+   rejected by the storage layer rather than by a local re-read. R2's S3
+   API is the plausible route; `wrangler r2 object put` was NOT verified to
+   expose preconditions (wrangler is not installed in the dev environment
+   and verifying it would require authenticating, which is out of scope for
+   an offline audit).
+2. **Platform-enforced exclusive publisher** — publication moves into a
+   single serialized workflow (e.g. a GitHub Actions job with a
+   `concurrency` group and a protected environment) so two publishes cannot
+   run at once by construction.
+
+A best-effort local shell lock is explicitly NOT sufficient and must not be
+added: it cannot serialize publishers on different machines, which is the
+case that matters. Until one of the above lands, rule 8 — an operational
+policy with no technical enforcement — is the only control, and
+publication stays blocked.
+
+Wrangler was NOT installed or authenticated to investigate option 1; doing
+so is out of scope for an offline audit and would put real credentials in
+reach of a test environment.
+
+A third, smaller decision is open too: whether catalog cache access will
+ever occur outside the main isolate. If yes, rule 4c's coordinator must
+become an OS-level file lock before that happens.
+
+---
+
 ## Future Invariants
 
 As the project evolves, additional invariants may be added here. Each invariant must:
@@ -2359,5 +2648,5 @@ As the project evolves, additional invariants may be added here. Each invariant 
 
 ---
 
-**Last Updated**: 2026-07-04
+**Last Updated**: 2026-08-11
 **Maintained By**: Bible PAL Development Team

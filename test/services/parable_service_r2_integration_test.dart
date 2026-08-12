@@ -48,6 +48,7 @@ Map<String, dynamic> _parableMap({
     'languageStyle': 'WEB',
     'storyLength': 'short',
     'audioFilePath': audioFilePath,
+    'textFilePath': 'traditional/9999/story_9999_traditional_web_short.txt',
     if (reflectionAudioPath != null) 'reflectionAudioPath': reflectionAudioPath,
     'bibleSourceRef': 'Matthew 1:1',
     'bibleStoryKey': 'integration_test_$storyId',
@@ -123,8 +124,10 @@ void main() {
       const reflectionPath =
           'traditional/9999/audio_9999_reflection.mp3';
 
+      // Cache generation must exceed the bundled generation (6) to be
+      // served under the catalog currency policy.
       final cacheBody = _catalogJson(
-        version: 2,
+        version: 7,
         parables: [
           _parableMap(
             storyId: storyId,
@@ -156,7 +159,7 @@ void main() {
       final manifestEvents = _breadcrumbsByEvent('manifest_source');
       expect(manifestEvents, hasLength(1));
       expect(manifestEvents.first.data['source'], 'cache');
-      expect(manifestEvents.first.data['version'], 2);
+      expect(manifestEvents.first.data['version'], 7);
 
       // 1b — story audio plays from the Tier 1 cache hit.
       final storyFile =
@@ -176,19 +179,21 @@ void main() {
     });
 
     test(
-        '2. Stale cache + fresh remote: launch 1 uses cached v1, '
-        'background refresh writes v2, launch 2 uses cached v2', () async {
-      const storyA = 'story_stale_v1';
-      const storyB = 'story_fresh_v2';
+        '2. Stale cache + fresh remote: launch 1 uses cached v7, '
+        'background refresh writes v8, launch 2 uses cached v8', () async {
+      const storyA = 'story_stale_v7';
+      const storyB = 'story_fresh_v8';
       const audioA = 'traditional/9001/audio_9001_story_short.mp3';
       const audioB = 'traditional/9002/audio_9002_story_short.mp3';
 
-      final cachedV1 = _catalogJson(
-        version: 1,
+      // Both generations sit above the bundled generation (6) so the
+      // cache is served and the remote clears the currency floor.
+      final cachedV7 = _catalogJson(
+        version: 7,
         parables: [_parableMap(storyId: storyA, audioFilePath: audioA)],
       );
-      final remoteV2 = _catalogJson(
-        version: 2,
+      final remoteV8 = _catalogJson(
+        version: 8,
         parables: [
           _parableMap(storyId: storyA, audioFilePath: audioA),
           _parableMap(storyId: storyB, audioFilePath: audioB),
@@ -196,13 +201,13 @@ void main() {
       );
 
       final ctx = await _buildEnv(
-        catalogHandler: (req) async => http.Response(remoteV2, 200),
+        catalogHandler: (req) async => http.Response(remoteV8, 200),
         audioBaseUrl: 'https://example.test', // unused; catalog is MockClient
-        primedCatalogBody: cachedV1,
+        primedCatalogBody: cachedV7,
       );
       addTearDown(() => ctx.docs.deleteSync(recursive: true));
 
-      // Launch 1: cache served, v1.
+      // Launch 1: cache served, v7.
       final launch1 = await ctx.service.getAllTraditionalParables();
       expect(launch1, hasLength(1));
       expect(launch1.first.storyId, storyA);
@@ -210,25 +215,25 @@ void main() {
       var manifestEvents = _breadcrumbsByEvent('manifest_source');
       expect(manifestEvents, hasLength(1));
       expect(manifestEvents.first.data['source'], 'cache');
-      expect(manifestEvents.first.data['version'], 1);
+      expect(manifestEvents.first.data['version'], 7);
 
-      // Poll for the background refresh to update the cache file to v2.
+      // Poll for the background refresh to update the cache file to v8.
       final cacheFile =
           File('${ctx.docs.path}/catalog_cache/manifest.json');
       for (var i = 0; i < 50; i++) {
         final content = await cacheFile.readAsString();
         final decoded = jsonDecode(content) as Map<String, dynamic>;
-        if (decoded['version'] == 2) break;
+        if (decoded['version'] == 8) break;
         await Future<void>.delayed(const Duration(milliseconds: 5));
       }
       final afterRefresh =
           jsonDecode(await cacheFile.readAsString()) as Map<String, dynamic>;
-      expect(afterRefresh['version'], 2,
-          reason: 'background refresh must have written v2 to cache');
+      expect(afterRefresh['version'], 8,
+          reason: 'background refresh must have written v8 to cache');
 
       final refreshEvents = _breadcrumbsByEvent('catalog_refresh_accepted');
       expect(refreshEvents, hasLength(1));
-      expect(refreshEvents.first.data['new_version'], 2);
+      expect(refreshEvents.first.data['new_version'], 8);
 
       // Simulate next launch.
       ctx.service.resetManifestCacheForTesting();
@@ -241,7 +246,7 @@ void main() {
       manifestEvents = _breadcrumbsByEvent('manifest_source');
       expect(manifestEvents, hasLength(1));
       expect(manifestEvents.first.data['source'], 'cache');
-      expect(manifestEvents.first.data['version'], 2);
+      expect(manifestEvents.first.data['version'], 8);
     });
 
     test(
@@ -319,8 +324,9 @@ void main() {
       const storyId = 'story_new_remote_only';
       const audioPath = 'traditional/9020/audio_9020_story_short.mp3';
 
+      // Above the bundled generation (6) so the cached catalog is served.
       final cacheBody = _catalogJson(
-        version: 2,
+        version: 7,
         parables: [
           _parableMap(storyId: storyId, audioFilePath: audioPath),
         ],
@@ -330,7 +336,7 @@ void main() {
       addTearDown(() => fake.server.close(force: true));
 
       final ctx = await _buildEnv(
-        // Refresh returns the same v2 body → CatalogService rejects on
+        // Refresh returns the same v7 body → CatalogService rejects on
         // version-not-higher so the cache is unchanged for the assertion.
         catalogHandler: (req) async => http.Response(cacheBody, 200),
         audioBaseUrl: fake.baseUrl,
@@ -347,7 +353,7 @@ void main() {
       final manifestEvents = _breadcrumbsByEvent('manifest_source');
       expect(manifestEvents, hasLength(1));
       expect(manifestEvents.first.data['source'], 'cache');
-      expect(manifestEvents.first.data['version'], 2);
+      expect(manifestEvents.first.data['version'], 7);
 
       // 4b — its audio plays via R2 (Tier 3 download, then cached).
       final audioFile =

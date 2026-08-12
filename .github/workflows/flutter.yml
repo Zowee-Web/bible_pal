@@ -44,6 +44,52 @@ jobs:
     - name: Test manifest audio-path backfill
       run: python3 -m unittest scripts.tests.test_backfill_existing_audio_paths -v
 
+    - name: Test manifest catalog version-bump validator
+      run: python3 -m unittest scripts.tests.test_manifest_version_bump -v
+
+    - name: Test story-length writer preserves manifest root metadata
+      run: python3 -m unittest scripts.tests.test_backfill_story_length_writer -v
+
+    - name: Test catalog publisher validation + corrupt-remote gates
+      run: python3 -m unittest scripts.tests.test_upload_r2_catalog_publisher -v
+
+    - name: 🔒 Manifest catalog version bump enforcement (PR)
+      if: github.event_name == 'pull_request'
+      env:
+        BASE_SHA: ${{ github.event.pull_request.base.sha }}
+      run: |
+        # Catalog Currency invariant (docs/INVARIANTS.md): any semantic
+        # change to assets/stories/manifest.json must bump the top-level
+        # catalog generation. The base revision comes from the
+        # pull_request event context — never guessed from HEAD^.
+        ./scripts/ci/enforce_manifest_version_bump.sh "$BASE_SHA"
+
+    - name: 🔒 Manifest catalog version bump enforcement (protected-branch push/merge)
+      if: github.event_name == 'push'
+      env:
+        BEFORE_SHA: ${{ github.event.before }}
+      run: |
+        # POST-LAND DETECTION ONLY — this does NOT prevent a bad push.
+        #
+        # By the time this job runs the commit is already on the protected
+        # branch. Re-running the identical contract against the branch's
+        # PREVIOUS tip (github.event.before) turns an otherwise silent
+        # regression into a red build that someone must revert; it cannot
+        # stop a direct push, an admin merge, or a force-push from
+        # changing the ref in the first place.
+        #
+        # Prevention requires GitHub branch protection (PR-only updates,
+        # required checks, no force push, no admin bypass, up-to-date
+        # merges). Those are platform settings, not code — see
+        # "Platform controls still needed" in docs/INVARIANTS.md.
+        if [ -z "$BEFORE_SHA" ] || [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
+          echo "No previous tip for this ref (branch creation) — validating the current manifest only."
+          python3 scripts/check_manifest_version_bump.py \
+            --no-base --current assets/stories/manifest.json
+        else
+          ./scripts/ci/enforce_manifest_version_bump.sh "$BEFORE_SHA"
+        fi
+
     - name: Test ADR-031 reconstruction diagnostics
       run: |
         # jsonschema is already required by scripts/validate_corpus.py; ensure

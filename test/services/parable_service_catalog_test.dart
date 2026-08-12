@@ -7,6 +7,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:bible_pal/core/app_logger.dart';
+import 'package:bible_pal/core/bible_translation_registry.dart';
+import 'package:bible_pal/core/story_length_bucket.dart';
+import 'package:bible_pal/features/journey/journey.dart';
+import 'package:bible_pal/models/parable.dart';
+import 'package:bible_pal/models/user_preferences.dart';
 import 'package:bible_pal/services/catalog_service.dart';
 import 'package:bible_pal/services/parable_service.dart';
 import 'package:bible_pal/services/storage_service.dart';
@@ -31,6 +36,7 @@ Map<String, dynamic> _parableMap({
     'languageStyle': 'WEB',
     'storyLength': 'short',
     'audioFilePath': 'traditional/9999/audio_9999_story_short.mp3',
+    'textFilePath': 'traditional/9999/story_9999_traditional_web_short.txt',
     'bibleSourceRef': 'Matthew 1:1',
     'bibleStoryKey': 'catalog_test',
   };
@@ -50,6 +56,7 @@ Future<({ParableService service, Directory docs})> _buildService({
   String? baseUrl = 'https://example.test',
   bool primeCache = false,
   String? cacheBody,
+  Future<String> Function()? bundledLoader,
 }) async {
   TestWidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = null;
@@ -89,6 +96,7 @@ Future<({ParableService service, Directory docs})> _buildService({
     client: MockClient(handler),
     docsDirProvider: () async => docs,
     baseUrlProvider: () => baseUrl,
+    bundledLoader: bundledLoader,
   );
 
   final storage = await StorageService.create();
@@ -252,6 +260,245 @@ void main() {
           'cache');
       expect(_breadcrumbsByEvent('manifest_source').first.data['version'],
           12);
+    });
+
+    test(
+        'downgrade-proofing: stale cached v5 catalog is superseded by the '
+        'bundled v6 manifest and deleted', () async {
+      // Regression test for the private-beta blocker: a cached older R2
+      // catalog (v5, tiny pool) must never shrink the story pool below the
+      // newer bundled manifest (v6, full pool).
+      final staleCache = _catalogJson(
+        version: 5,
+        parables: [_parableMap(storyId: 'story_stale_pool_001')],
+      );
+      final ctx = await _buildService(
+        handler: (req) async => http.Response('ignored', 500),
+        primeCache: true,
+        cacheBody: staleCache,
+      );
+      addTearDown(() => ctx.docs.deleteSync(recursive: true));
+
+      final parables = await ctx.service.getAllTraditionalParables();
+      await Future<void>.delayed(const Duration(milliseconds: 50));
+
+      expect(parables.any((p) => p.storyId == 'story_stale_pool_001'),
+          isFalse,
+          reason: 'the stale cached pool must not be served over the bundle');
+      final manifestEvents = _breadcrumbsByEvent('manifest_source');
+      expect(manifestEvents, hasLength(1));
+      expect(manifestEvents.first.data['source'], 'bundled');
+      expect(manifestEvents.first.data['version'], 6,
+          reason: 'bundled manifest must carry catalog generation 6');
+
+      final cacheFile =
+          File('${ctx.docs.path}/catalog_cache/manifest.json');
+      expect(await cacheFile.exists(), isFalse,
+          reason: 'stale cache must be deleted after the bundle is served');
+    });
+
+    test(
+        'downgrade-proofing: first launch with remote v5 older than bundled '
+        'v6 → remote rejected, no cache written', () async {
+      final staleRemote = _catalogJson(
+        version: 5,
+        parables: [_parableMap(storyId: 'story_stale_remote_001')],
+      );
+      final ctx = await _buildService(
+        handler: (req) async => http.Response(staleRemote, 200),
+      );
+      addTearDown(() => ctx.docs.deleteSync(recursive: true));
+
+      final parables = await ctx.service.getAllTraditionalParables();
+      // Drain the fire-and-forget refresh.
+      await Future<void>.delayed(const Duration(milliseconds: 50));
+
+      expect(parables, isNotEmpty);
+      expect(_breadcrumbsByEvent('manifest_source').first.data['source'],
+          'bundled');
+
+      final rejections = _breadcrumbsByEvent('catalog_refresh_rejected');
+      expect(rejections, hasLength(1),
+          reason: 'the v5 remote must be version-rejected against bundled v6');
+      expect(rejections.first.data['reason'], 'version_not_higher');
+      expect(_breadcrumbsByEvent('catalog_refresh_accepted'), isEmpty);
+
+      final cacheFile =
+          File('${ctx.docs.path}/catalog_cache/manifest.json');
+      expect(await cacheFile.exists(), isFalse,
+          reason: 'a rejected remote must never be persisted');
+    });
+  });
+
+  group('ParableService fails closed when CatalogService rejects', () {
+    // The legacy fallback re-read assets/stories/manifest.json with a bare
+    // Parable.fromJson and NONE of the catalog gates — so a bundled
+    // catalog that CatalogService refused (banned translation, unsafe
+    // path, duplicate ids …) was served anyway, one layer down. An empty
+    // pool is the correct outcome; the rejection is authoritative.
+
+    test('a bundled catalog carrying a banned translation yields NO stories',
+        () async {
+      // Pull a banned id from the registry rather than hard-coding a
+      // literal so this file does not trip the repo-wide compliance scan.
+      final bannedId = BibleTranslationRegistry.bannedTranslations.first.id;
+      final poisoned = _catalogJson(
+        version: 6,
+        parables: [
+          {
+            ..._parableMap(storyId: 'story_poisoned_001'),
+            'translationId': bannedId,
+          },
+        ],
+      );
+      final ctx = await _buildService(
+        handler: (req) async =>
+            throw StateError('network must not be touched'),
+        bundledLoader: () async => poisoned,
+      );
+      addTearDown(() => ctx.docs.deleteSync(recursive: true));
+
+      final parables = await ctx.service.getAllTraditionalParables();
+
+      expect(parables, isEmpty,
+          reason: 'a rejected catalog must never be served by a lower '
+              'layer that skips the compliance allowlist');
+      final loaded = _breadcrumbsByEvent('story_pool_loaded');
+      expect(loaded, isNotEmpty);
+      expect(loaded.last.data['source'], 'catalog_rejected_fail_closed');
+      expect(loaded.last.data['valid_count'], 0);
+    });
+
+    // Journey rescue re-reads BUNDLED entries because the served catalog
+    // may be a cache that predates them. It used to do that with
+    // rootBundle + jsonDecode + bare Parable.fromJson — every
+    // CatalogService gate skipped, including the translation allowlist —
+    // so a catalog rejected one layer up could be resurrected here.
+    Future<Parable?> rescueAdult(ParableService service) =>
+        service.getParableByJourneyStory(
+          const JourneyStory(storyNumber: 1000, label: 'Rescue Probe'),
+          lengthBucket: StoryLengthBucket.short,
+          userPrefs: const UserPreferences(bibleTranslation: 'WEB'),
+        );
+
+    Future<Parable?> rescueKid(ParableService service) =>
+        service.getParableByJourneyStory(
+          const JourneyStory(anchorId: 'jairus_daughter', label: 'Kid Probe'),
+          lengthBucket: StoryLengthBucket.short,
+          userPrefs: const UserPreferences(bibleTranslation: 'WEB'),
+        );
+
+    test('ADULT journey rescue does not resurrect a poisoned bundle',
+        () async {
+      final bannedId = BibleTranslationRegistry.bannedTranslations.first.id;
+      final poisoned = _catalogJson(
+        version: 6,
+        parables: [
+          {
+            ..._parableMap(storyId: 'story_1000_weary_short_traditional'),
+            'translationId': bannedId,
+          },
+        ],
+      );
+      final ctx = await _buildService(
+        handler: (req) async =>
+            throw StateError('network must not be touched'),
+        bundledLoader: () async => poisoned,
+      );
+      addTearDown(() => ctx.docs.deleteSync(recursive: true));
+
+      expect(await rescueAdult(ctx.service), isNull,
+          reason: 'the rescue path must not serve an entry from a catalog '
+              'CatalogService rejected');
+      final failures =
+          _breadcrumbsByEvent('journey_bundled_rescue_failed');
+      expect(failures, isNotEmpty);
+      expect(failures.last.data['reason'], 'bundled_catalog_rejected');
+      expect(_breadcrumbsByEvent('journey_bundled_rescue'), isEmpty);
+    });
+
+    test('KID journey rescue does not resurrect a poisoned bundle', () async {
+      final bannedId = BibleTranslationRegistry.bannedTranslations.first.id;
+      final poisoned = _catalogJson(
+        version: 6,
+        parables: [
+          {
+            ..._parableMap(storyId: 'kidstory_kid_jairus_daughter_short'),
+            'kidFriendly': true,
+            'translationId': bannedId,
+          },
+        ],
+      );
+      final ctx = await _buildService(
+        handler: (req) async =>
+            throw StateError('network must not be touched'),
+        bundledLoader: () async => poisoned,
+      );
+      addTearDown(() => ctx.docs.deleteSync(recursive: true));
+
+      expect(await rescueKid(ctx.service), isNull,
+          reason: 'the kid rescue must not be the one door an unvalidated '
+              "catalog uses to reach children's content");
+      final failures =
+          _breadcrumbsByEvent('journey_kid_bundled_rescue_failed');
+      expect(failures, isNotEmpty);
+      expect(failures.last.data['reason'], 'bundled_catalog_rejected');
+      expect(_breadcrumbsByEvent('journey_kid_bundled_rescue'), isEmpty);
+    });
+
+    test('journey rescue still works from a VALID bundle', () async {
+      // Fail-closed must not become fail-dark: a clean bundled catalog
+      // still rescues a story the served (cached) catalog lacks.
+      final bundled = _catalogJson(
+        version: 6,
+        parables: [
+          _parableMap(storyId: 'story_1000_weary_short_traditional'),
+        ],
+      );
+      // Cache is VALID but newer and lacks story 9999, so the served
+      // catalog cannot satisfy the journey and rescue must run.
+      final cacheBody = _catalogJson(
+        version: 9,
+        parables: [_parableMap(storyId: 'story_2000_other_short_traditional')],
+      );
+      final ctx = await _buildService(
+        handler: (req) async =>
+            throw StateError('network must not be touched'),
+        bundledLoader: () async => bundled,
+        primeCache: true,
+        cacheBody: cacheBody,
+      );
+      addTearDown(() => ctx.docs.deleteSync(recursive: true));
+
+      final resolved = await rescueAdult(ctx.service);
+
+      expect(resolved, isNotNull,
+          reason: 'a valid bundled catalog must still rescue');
+      expect(resolved!.storyId, 'story_1000_weary_short_traditional');
+      expect(_breadcrumbsByEvent('journey_bundled_rescue'), isNotEmpty);
+    });
+
+    test('an unusable bundled catalog with a VALID cache still serves the cache',
+        () async {
+      // Fail-closed must not become fail-dark: the emergency cache path
+      // is unaffected.
+      final cacheBody = _catalogJson(
+        version: 9,
+        parables: [_parableMap(storyId: 'story_emergency_cache')],
+      );
+      final ctx = await _buildService(
+        handler: (req) async =>
+            throw StateError('network must not be touched'),
+        bundledLoader: () async => 'not json at all',
+        primeCache: true,
+        cacheBody: cacheBody,
+      );
+      addTearDown(() => ctx.docs.deleteSync(recursive: true));
+
+      final parables = await ctx.service.getAllTraditionalParables();
+
+      expect(parables, hasLength(1));
+      expect(parables.first.storyId, 'story_emergency_cache');
     });
   });
 }
