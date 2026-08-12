@@ -250,8 +250,17 @@ class ParableService {
 
       // Slice 2: production cascade — CatalogService.loadCatalog()
       // returns cache when a valid cached copy exists, otherwise reads
-      // bundled assets via rootBundle. On exception (e.g., bundled
-      // manifest missing), fall through to the legacy docs-dir path.
+      // bundled assets via rootBundle.
+      //
+      // FAIL CLOSED (Catalog Currency invariant): loadCatalog only throws
+      // when it has REJECTED every candidate — bundled content that fails
+      // the active catalog contract (translation allowlist, identity,
+      // safe asset paths, …) with no valid cache to fall back on. The
+      // legacy paths below re-read that same manifest with a bare
+      // Parable.fromJson and none of those gates, so falling through
+      // would serve exactly the catalog CatalogService just refused,
+      // including one carrying a banned translation. An empty pool is the
+      // correct outcome; the rejection is authoritative.
       if (!testMode) {
         try {
           final result = await _catalog.loadCatalog();
@@ -279,7 +288,19 @@ class ParableService {
           return result.parables;
         } catch (e) {
           debugPrint(
-              'Catalog cascade failed, falling back to legacy manifest load: $e');
+              'Catalog cascade REJECTED every candidate catalog: $e');
+          logEvent(
+            'story_pool_loaded',
+            {
+              'total_count': 0,
+              'valid_count': 0,
+              'skipped_count': 0,
+              'source': 'catalog_rejected_fail_closed',
+              'error_type': e.runtimeType.toString(),
+            },
+            level: LogLevel.error,
+          );
+          return const [];
         }
       }
 
@@ -1142,27 +1163,29 @@ class ParableService {
       int bundledPrefixMatches = 0;
       int bundledAdultMatches = 0;
       try {
-        final bundledJson =
-            await rootBundle.loadString('assets/stories/manifest.json');
-        final bundledData =
-            jsonDecode(bundledJson) as Map<String, dynamic>;
-        final rawList =
-            bundledData['parables'] as List<dynamic>? ?? const [];
+        // VALIDATED bundled catalog only. A raw rootBundle + jsonDecode +
+        // Parable.fromJson reread would skip every CatalogService gate —
+        // including the translation allowlist — and could resurrect a
+        // catalog that was rejected one layer up.
+        final bundledParables = await _catalog.validatedBundledCatalog();
+        if (bundledParables == null) {
+          logEvent(
+            'journey_bundled_rescue_failed',
+            {
+              'story_number': story.storyNumber,
+              'reason': 'bundled_catalog_rejected',
+            },
+            level: LogLevel.warn,
+          );
+          return null;
+        }
         Parable? bPreferred;
         Parable? bSameLen;
         Parable? bSameStyle;
         Parable? bAny;
-        for (final raw in rawList) {
-          final map = raw as Map<String, dynamic>;
-          final sid = map['storyId'] as String? ?? '';
-          if (!sid.startsWith(numberPrefix)) continue;
+        for (final p in bundledParables) {
+          if (!p.storyId.startsWith(numberPrefix)) continue;
           bundledPrefixMatches++;
-          final Parable p;
-          try {
-            p = Parable.fromJson(map);
-          } catch (_) {
-            continue;
-          }
           if (p.kidFriendly) continue;
           bundledAdultMatches++;
           bAny ??= p;
@@ -1258,27 +1281,28 @@ class ParableService {
       int bundledPrefixMatches = 0;
       int bundledKidMatches = 0;
       try {
-        final bundledJson =
-            await rootBundle.loadString('assets/stories/manifest.json');
-        final bundledData =
-            jsonDecode(bundledJson) as Map<String, dynamic>;
-        final rawList =
-            bundledData['parables'] as List<dynamic>? ?? const [];
+        // VALIDATED bundled catalog only — same rule as the adult lane
+        // above. The kid rescue must not become the one door through
+        // which an unvalidated catalog reaches children's content.
+        final bundledParables = await _catalog.validatedBundledCatalog();
+        if (bundledParables == null) {
+          logEvent(
+            'journey_kid_bundled_rescue_failed',
+            {
+              'anchor_id': story.anchorId,
+              'reason': 'bundled_catalog_rejected',
+            },
+            level: LogLevel.warn,
+          );
+          return null;
+        }
         Parable? bPreferred;
         Parable? bSameLen;
         Parable? bSameStyle;
         Parable? bAny;
-        for (final raw in rawList) {
-          final map = raw as Map<String, dynamic>;
-          final sid = map['storyId'] as String? ?? '';
-          if (!sid.startsWith(anchorPrefix)) continue;
+        for (final p in bundledParables) {
+          if (!p.storyId.startsWith(anchorPrefix)) continue;
           bundledPrefixMatches++;
-          final Parable p;
-          try {
-            p = Parable.fromJson(map);
-          } catch (_) {
-            continue;
-          }
           if (!p.kidFriendly) continue;
           bundledKidMatches++;
           bAny ??= p;

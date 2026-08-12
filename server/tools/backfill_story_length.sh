@@ -13,8 +13,9 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
-MANIFEST_FILE="$PROJECT_ROOT/assets/stories/manifest.json"
-STORIES_DIR="$PROJECT_ROOT/assets/stories"
+# Overridable so tests can run against a fixture tree instead of the corpus.
+MANIFEST_FILE="${MANIFEST_FILE_OVERRIDE:-$PROJECT_ROOT/assets/stories/manifest.json}"
+STORIES_DIR="${STORIES_DIR_OVERRIDE:-$PROJECT_ROOT/assets/stories}"
 
 # Colors
 RED='\033[0;31m'
@@ -76,8 +77,10 @@ MISSING_TEXT=0
 TEMP_MANIFEST=$(mktemp)
 trap "rm -f $TEMP_MANIFEST" EXIT
 
-# Start with the opening brace
-echo '{"parables":[' > "$TEMP_MANIFEST"
+# Build the updated entries as a bare JSON array. The final merge replaces
+# ONLY .parables in the original manifest, so top-level root metadata (the
+# catalog "version" field etc.) is preserved — never reconstructed.
+echo '[' > "$TEMP_MANIFEST"
 
 # Process each story
 for i in $(seq 0 $((TOTAL_STORIES - 1))); do
@@ -89,7 +92,7 @@ for i in $(seq 0 $((TOTAL_STORIES - 1))); do
     # Check if storyLength already exists
     if [[ -n "$EXISTING_LENGTH" ]]; then
         echo -e "[$((i + 1))/$TOTAL_STORIES] ${YELLOW}SKIP${NC} $STORY_ID (already has storyLength: $EXISTING_LENGTH)"
-        ((SKIPPED++))
+        SKIPPED=$((SKIPPED + 1))
 
         # Add comma for all but first entry
         if [[ $i -gt 0 ]]; then
@@ -103,8 +106,8 @@ for i in $(seq 0 $((TOTAL_STORIES - 1))); do
     FULL_TEXT_PATH="$STORIES_DIR/$TEXT_FILE"
     if [[ ! -f "$FULL_TEXT_PATH" ]]; then
         echo -e "[$((i + 1))/$TOTAL_STORIES] ${RED}ERROR${NC} $STORY_ID - text file missing: $TEXT_FILE"
-        ((MISSING_TEXT++))
-        ((ERRORS++))
+        MISSING_TEXT=$((MISSING_TEXT + 1))
+        ERRORS=$((ERRORS + 1))
 
         # Keep story as-is (will fail validation later)
         if [[ $i -gt 0 ]]; then
@@ -119,7 +122,7 @@ for i in $(seq 0 $((TOTAL_STORIES - 1))); do
     STORY_LENGTH=$(compute_story_length "$WORD_COUNT")
 
     echo -e "[$((i + 1))/$TOTAL_STORIES] ${GREEN}UPDATE${NC} $STORY_ID: $WORD_COUNT words -> $STORY_LENGTH"
-    ((UPDATED++))
+    UPDATED=$((UPDATED + 1))
 
     # Add storyLength field to story JSON
     UPDATED_STORY=$(echo "$STORY" | jq --arg sl "$STORY_LENGTH" '. + {storyLength: $sl}')
@@ -131,11 +134,12 @@ for i in $(seq 0 $((TOTAL_STORIES - 1))); do
     echo "$UPDATED_STORY" >> "$TEMP_MANIFEST"
 done
 
-# Close the JSON
-echo ']}'  >> "$TEMP_MANIFEST"
+# Close the JSON array
+echo ']'  >> "$TEMP_MANIFEST"
 
-# Format the JSON properly
-FORMATTED_MANIFEST=$(jq '.' "$TEMP_MANIFEST")
+# Merge the rebuilt parables into the ORIGINAL manifest object so every
+# other top-level key (catalog "version" etc.) survives the rewrite.
+FORMATTED_MANIFEST=$(jq --slurpfile newp "$TEMP_MANIFEST" '.parables = $newp[0]' "$MANIFEST_FILE")
 
 echo ""
 echo -e "${BLUE}================================================${NC}"
@@ -151,13 +155,79 @@ echo ""
 if [[ $DRY_RUN == true ]]; then
     echo -e "${YELLOW}DRY RUN - no changes made${NC}"
     echo -e "Run without --dry-run to apply changes"
+elif [[ $ERRORS -gt 0 ]]; then
+    # NEVER mutate the manifest after a processing error. A partially
+    # understood corpus produces a partially correct manifest, and the
+    # previous behaviour wrote it anyway before exiting nonzero — leaving
+    # the catalog silently mutated by a run the operator was told failed.
+    echo -e "${RED}ERRORS DETECTED ($ERRORS) - manifest left UNCHANGED${NC}" >&2
+    echo -e "Fix the reported problems and re-run." >&2
 else
-    # Backup original
+    # Atomic, validated replacement. The temp file lives in the manifest's
+    # OWN directory so the final rename is a same-filesystem atomic swap:
+    # a reader either sees the whole old manifest or the whole new one,
+    # never a truncated file.
+    MANIFEST_DIR="$(cd "$(dirname "$MANIFEST_FILE")" && pwd)"
+    STAGED_MANIFEST=$(mktemp "$MANIFEST_DIR/.$(basename "$MANIFEST_FILE").staged.XXXXXX")
+    # shellcheck disable=SC2064 — expand STAGED_MANIFEST now, not at exit.
+    trap "rm -f '$TEMP_MANIFEST' '$STAGED_MANIFEST'" EXIT
+
+    printf '%s\n' "$FORMATTED_MANIFEST" > "$STAGED_MANIFEST"
+
+    # Validate the staged bytes BEFORE they can replace anything.
+    if ! jq empty "$STAGED_MANIFEST" 2>/dev/null; then
+        echo -e "${RED}ERROR: staged manifest is not valid JSON - aborting${NC}" >&2
+        exit 1
+    fi
+    STAGED_COUNT=$(jq '.parables | length' "$STAGED_MANIFEST")
+    if [[ "$STAGED_COUNT" != "$TOTAL_STORIES" ]]; then
+        echo -e "${RED}ERROR: staged manifest has $STAGED_COUNT entries, expected $TOTAL_STORIES - aborting${NC}" >&2
+        exit 1
+    fi
+    # Every top-level key of the original must survive (catalog "version"
+    # and any future root metadata).
+    ORIGINAL_KEYS=$(jq -S 'keys' "$MANIFEST_FILE")
+    STAGED_KEYS=$(jq -S 'keys' "$STAGED_MANIFEST")
+    if [[ "$ORIGINAL_KEYS" != "$STAGED_KEYS" ]]; then
+        echo -e "${RED}ERROR: staged manifest root keys differ from the original - aborting${NC}" >&2
+        exit 1
+    fi
+
+    # FULL semantic validation, not just structure. The structural checks
+    # above cannot see a duplicate storyId, an unsafe asset path, a
+    # non-canonical languageStyle or an invalid catalog generation — all
+    # of which the app and the publisher would reject. Validating the
+    # EXACT staged bytes before any backup or rename means a manifest that
+    # would poison the catalog never reaches disk.
+    VALIDATOR="$PROJECT_ROOT/scripts/validate_catalog_manifest.py"
+    if [[ ! -f "$VALIDATOR" ]]; then
+        echo -e "${RED}ERROR: catalog validator not found at $VALIDATOR - aborting${NC}" >&2
+        exit 1
+    fi
+    echo -e "Validating staged manifest against the active catalog contract..."
+    if ! python3 "$VALIDATOR" "$STAGED_MANIFEST" >/dev/null; then
+        echo -e "${RED}ERROR: staged manifest FAILS catalog validation - aborting${NC}" >&2
+        echo -e "The original manifest is unchanged and no backup was written." >&2
+        exit 1
+    fi
+
+    # mktemp creates 0600; carry the manifest's own mode across the swap.
+    # BSD stat uses -f for the format string, GNU stat uses -c and treats
+    # -f as --file-system (which exits 0 with unrelated output), so the
+    # BSD result is validated as octal before it is trusted.
+    ORIGINAL_MODE=$(stat -f "%OLp" "$MANIFEST_FILE" 2>/dev/null || true)
+    case "$ORIGINAL_MODE" in
+        [0-7][0-7][0-7]|[0-7][0-7][0-7][0-7]) ;;
+        *) ORIGINAL_MODE=$(stat -c "%a" "$MANIFEST_FILE" 2>/dev/null \
+               || echo 644) ;;
+    esac
+    chmod "$ORIGINAL_MODE" "$STAGED_MANIFEST"
+
+    # Backup original only once the replacement is known-good.
     cp "$MANIFEST_FILE" "${MANIFEST_FILE}.bak"
     echo -e "Backup saved to: ${BLUE}manifest.json.bak${NC}"
 
-    # Write new manifest
-    echo "$FORMATTED_MANIFEST" > "$MANIFEST_FILE"
+    mv "$STAGED_MANIFEST" "$MANIFEST_FILE"
     echo -e "${GREEN}Manifest updated successfully!${NC}"
 fi
 

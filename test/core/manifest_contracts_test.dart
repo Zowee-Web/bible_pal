@@ -18,6 +18,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:bible_pal/core/story_length_bucket.dart';
 
 void main() {
+  late Map<String, dynamic> manifestRoot;
   late List<Map<String, dynamic>> parables;
 
   setUpAll(() async {
@@ -30,7 +31,36 @@ void main() {
     expect(decoded.containsKey('parables'), isTrue,
         reason: 'manifest.json must contain a "parables" array');
 
+    manifestRoot = decoded;
     parables = (decoded['parables'] as List).cast<Map<String, dynamic>>();
+  });
+
+  group('CRITICAL: catalog generation (Catalog Currency invariant)', () {
+    test('CRITICAL: top-level version must be a positive integer', () {
+      // docs/INVARIANTS.md — Catalog Currency: the bundled manifest is the
+      // trusted baseline generation. A missing/wrong-type/non-positive
+      // version makes the runtime fail closed (external catalog
+      // replacement latched off), so this state must be unmergeable.
+      final version = manifestRoot['version'];
+      expect(version, isA<int>(),
+          reason: '🚨 CATALOG CURRENCY VIOLATION 🚨\n'
+              'manifest.json must carry a top-level integer "version" '
+              '(catalog generation). Got: ${version.runtimeType}');
+      expect(version as int, greaterThan(0),
+          reason: '🚨 CATALOG CURRENCY VIOLATION 🚨\n'
+              'Catalog generation must be a positive integer, got $version');
+    });
+
+    test('initial migration state (generation 6) passes the contract', () {
+      // The first versioned manifest shipped as generation 6 (above the
+      // live remote catalog v5 at migration time). Generations only move
+      // forward from there — PR CI enforces the bump semantically via
+      // scripts/check_manifest_version_bump.py.
+      final version = manifestRoot['version'] as int;
+      expect(version, greaterThanOrEqualTo(6),
+          reason: 'catalog generation can never go below the initial '
+              'migration generation');
+    });
   });
 
   group('CRITICAL: storyLength vs legacy length consistency', () {
