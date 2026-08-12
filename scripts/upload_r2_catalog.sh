@@ -388,7 +388,17 @@ mkdir -p "$STAGING_DIR"
 #   $UPLOAD_FILE  — the private per-run byte source for the PUT, inside
 #                   this run's 0700 temp dir.
 UPLOAD_FILE="$PUB_TMP/catalog-upload.json"
+# `cp` gives a NEW destination the SOURCE's permission bits, and the
+# snapshot is deliberately 0400. Copying it straight onto the shared
+# staging path would leave a read-only artifact behind and every LATER
+# run of this script would die with "Permission denied" — the operator
+# copy is inspectable output, not an immutability guard. Remove any
+# previous (possibly read-only) artifact first, then restore a normal
+# mode. $UPLOAD_FILE needs no such care: it lives in this run's own
+# 0700 temp dir and 0400 is exactly the guard we want there.
+rm -f "$STAGED_FILE"
 cp "$SOURCE_SNAPSHOT" "$STAGED_FILE"
+chmod 644 "$STAGED_FILE"
 cp "$SOURCE_SNAPSHOT" "$UPLOAD_FILE"
 chmod 400 "$UPLOAD_FILE"
 

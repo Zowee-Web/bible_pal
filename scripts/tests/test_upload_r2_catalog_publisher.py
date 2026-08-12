@@ -1196,6 +1196,46 @@ class FailClosedRemoteStateTests(_ScenarioMixin, unittest.TestCase):
                 scenario,
                 "a failed recheck must not inherit the first read's body")
 
+    def test_publisher_is_repeatable_from_a_clean_build_tree(self):
+        # Regression: the staged operator copy is created with `cp` from a
+        # 0400 snapshot, and `cp` gives a NEW destination the SOURCE's
+        # mode. That left build/r2-staging/catalog-pending.json read-only,
+        # so the SECOND run of the publisher died with
+        # "cp: ...: Permission denied" — on a clean machine the real
+        # publisher was single-use.
+        #
+        # Every other test here re-used whatever build/r2-staging already
+        # contained, so a stale writable artifact masked it locally; CI's
+        # fresh checkout did not. This test removes the directory first so
+        # it reproduces regardless of local state.
+        staging = REPO_ROOT / "build" / "r2-staging"
+        if staging.exists():
+            shutil.rmtree(staging)
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            scenario = self._scenario(pathlib.Path(tmpdir))
+            (scenario / "state.json").write_text(
+                json.dumps({"version": 5,
+                            "parables": [_entry(storyId="story_remote_v5")]}))
+
+            first = self._run(scenario)
+            self.assertEqual(first.returncode, 0,
+                             f"first run:\n{first.stdout}\n{first.stderr}")
+
+            staged = staging / "catalog-pending.json"
+            self.assertTrue(staged.exists())
+            self.assertTrue(
+                os.access(staged, os.W_OK),
+                "the staged operator copy must stay writable — it is "
+                "inspectable output, not an immutability guard")
+
+            second = self._run(scenario)
+            self.assertEqual(
+                second.returncode, 0,
+                f"the publisher must be repeatable:\n{second.stdout}\n"
+                f"{second.stderr}")
+            self.assertNotIn("Permission denied", second.stderr + second.stdout)
+
     def test_missing_wrangler_executable_cannot_reach_put(self):
         with tempfile.TemporaryDirectory() as tmpdir:
             scenario = self._scenario(pathlib.Path(tmpdir))
