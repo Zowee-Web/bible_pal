@@ -53,6 +53,12 @@ jobs:
     - name: Test catalog publisher validation + corrupt-remote gates
       run: python3 -m unittest scripts.tests.test_upload_r2_catalog_publisher -v
 
+    - name: Test offline R2 CAS probe
+      run: python3 -m unittest scripts.tests.test_probe_r2_cas -v
+
+    - name: Test offline R2 CAS probe under network kill switch
+      run: python3 scripts/tests/run_probe_killswitch.py
+
     - name: 🔒 Manifest catalog version bump enforcement (PR)
       if: github.event_name == 'pull_request'
       env:
