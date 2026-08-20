@@ -67,6 +67,16 @@ NONCE = f"{RUN_ID}:000001"
 CRED_NOW = probe._amz_date_to_epoch(AMZ_DATE)
 
 
+def attempt_ns_for(sequence):
+    """The PHYSICAL conn.request instant a fixture pretends to have used.
+
+    K3's throttle window is measured in real transport-attempt nanoseconds,
+    so evidence fixtures must carry one. 100 ms per sequence step keeps
+    consecutive same-key writes inside R2's documented one-second window.
+    """
+    return sequence * 100_000_000
+
+
 def amz_date_at(epoch):
     """Format an epoch as the SigV4 timestamp the probe expects."""
     import datetime
@@ -119,7 +129,12 @@ def no_sockets():
 
 class RecordingFactory:
     """Records every call. The factory-call count must remain exactly zero
-    whenever a barrier should have fired first."""
+    whenever a barrier should have fired first.
+
+    Marked as an offline double so `OfflineSignerHarness` accepts it; the
+    real connection factory can never carry this mark."""
+
+    probe_offline_connection_double = True
 
     def __init__(self, connection=None):
         self.calls = []
@@ -171,7 +186,7 @@ class FakeConnection:
 def make_transport(connection=None, factory=None, wall_clock=None, **kw):
     # Default the wall clock to the AMZ_DATE epoch so sign_and_send's
     # freshness/skew checks pass for a credential minted at that time.
-    return probe.R2Transport(
+    return probe.OfflineSignerHarness(
         endpoint_host=ENDPOINT_HOST,
         connection_factory=factory or RecordingFactory(connection),
         monotonic=lambda: 0,
@@ -333,7 +348,8 @@ def write_correlated_evidence(w, spec, rep, *, sequence=1, facts=None):
     w.write_request_record(probe.build_request_record(
         phase=w._phase, run_id=w.run_id, group=spec.group, test_id=spec.id,
         repetition=rep, sequence=sequence, endpoint_host=ENDPOINT_HOST,
-        signed=signed, credential=credential))
+        signed=signed, credential=credential,
+        t_request_attempt_mono_ns=attempt_ns_for(sequence)))
     headers = () if facts.etag is None else (("ETag", facts.etag),)
     body = (b"" if facts.error_code is None else
             f"<Error><Code>{facts.error_code}</Code></Error>".encode())
@@ -682,7 +698,7 @@ class PolicyImmutabilityTests(unittest.TestCase):
     def test_rebinding_cannot_redirect_the_wire_target(self):
         self._subvert_everything()
         factory = RecordingFactory(FakeConnection(response=FakeResponse(200)))
-        transport = probe.R2Transport(
+        transport = probe.OfflineSignerHarness(
             endpoint_host=ENDPOINT_HOST, connection_factory=factory,
             monotonic=lambda: 0, wall_clock=lambda: float(AMZ_EPOCH))
         signed = probe.sign_request(
@@ -1211,7 +1227,7 @@ class SignToSendBindingTests(unittest.TestCase):
     def test_tampered_header_tuple_is_refused_by_the_offline_path(self):
         """Even the offline helper refuses a poisoned header set."""
         factory = RecordingFactory(FakeConnection(response=FakeResponse(200)))
-        transport = probe.R2Transport(
+        transport = probe.OfflineSignerHarness(
             endpoint_host=ENDPOINT_HOST, connection_factory=factory,
             monotonic=lambda: 0, wall_clock=lambda: float(AMZ_EPOCH))
         signed = sign(probe_target(), body=b"x")
@@ -1386,7 +1402,7 @@ class WireBindingTests(unittest.TestCase):
 
     def test_evil_bucket_never_reaches_the_factory(self):
         factory = RecordingFactory(FakeConnection(response=FakeResponse(200)))
-        transport = probe.R2Transport(
+        transport = probe.OfflineSignerHarness(
             endpoint_host=ENDPOINT_HOST, connection_factory=factory,
             monotonic=lambda: 0, wall_clock=lambda: float(AMZ_EPOCH))
         signed = sign(probe_target(), body=b"x")
@@ -1432,7 +1448,7 @@ class WireBindingTests(unittest.TestCase):
 
     def test_production_bucket_rejected_before_connection(self):
         factory = RecordingFactory(FakeConnection(response=FakeResponse(200)))
-        transport = probe.R2Transport(
+        transport = probe.OfflineSignerHarness(
             endpoint_host=ENDPOINT_HOST, connection_factory=factory,
             monotonic=lambda: 0, wall_clock=lambda: float(AMZ_EPOCH))
         signed = probe.sign_request(
@@ -1456,7 +1472,7 @@ class WireBindingTests(unittest.TestCase):
     def test_no_injectable_allowlist_parameter(self):
         import inspect
         for fn in (probe.R2Transport.__init__, probe.R2Transport.sign_and_send,
-                   probe.R2Transport.send_signed_offline,
+                   probe.OfflineSignerHarness.send_signed_offline,
                    probe.assert_target_allowed):
             self.assertNotIn("allowed_buckets",
                              inspect.signature(fn).parameters)
@@ -2776,15 +2792,16 @@ class PerTestDerivationTableTests(unittest.TestCase):
         return 2 if spec.id == "K3" else 1
 
     def _siblings(self, spec, rep=1):
-        """K3 needs an earlier same-key PUT to have really happened."""
+        """K3 needs an earlier same-key PUT that was SERVER-OBSERVED (a
+        definite 2xx). Returns (sibling_requests, sibling_responses)."""
         if spec.id != "K3":
-            return ()
-        first, _ = self._pair(
+            return (), ()
+        first_req, first_resp = self._pair(
             spec,
             SUPPORT_EVIDENCE["K3"]._replace(status=200, etag='"e"',
                                             error_code=None),
             rep=rep, sequence=1)
-        return (first,)
+        return (first_req,), (first_resp,)
 
     def _pair(self, spec, facts, rep=1, sequence=1):
         """Build the request/response pair a derivation sees, without any
@@ -2795,7 +2812,8 @@ class PerTestDerivationTableTests(unittest.TestCase):
         request = probe.build_request_record(
             phase="T", run_id=RUN_ID, group=spec.group, test_id=spec.id,
             repetition=rep, sequence=sequence, endpoint_host=ENDPOINT_HOST,
-            signed=signed, credential=credential)
+            signed=signed, credential=credential,
+            t_request_attempt_mono_ns=attempt_ns_for(sequence))
         headers = () if facts.etag is None else (("ETag", facts.etag),)
         body = (b"" if facts.error_code is None else
                 f"<Error><Code>{facts.error_code}</Code></Error>".encode())
@@ -2856,9 +2874,10 @@ class PerTestDerivationTableTests(unittest.TestCase):
                 request, response = self._pair(spec,
                                                SUPPORT_EVIDENCE[test_id],
                                                sequence=self._sequence(spec))
+                sib_reqs, sib_resps = self._siblings(spec)
                 result = probe.derive_test_result(
                     spec, request, response,
-                    sibling_requests=self._siblings(spec))
+                    sibling_requests=sib_reqs, sibling_responses=sib_resps)
                 self.assertEqual(result.outcome, outcome)
                 self.assertTrue(result.valid)
                 self.assertEqual(result.production_size, test_id == "J")
@@ -3450,7 +3469,8 @@ class WeakDerivationRegressionTests(unittest.TestCase):
         request = probe.build_request_record(
             phase="T", run_id=RUN_ID, group=spec.group, test_id=spec.id,
             repetition=rep, sequence=sequence, endpoint_host=ENDPOINT_HOST,
-            signed=signed, credential=credential)
+            signed=signed, credential=credential,
+            t_request_attempt_mono_ns=attempt_ns_for(sequence))
         headers = () if facts.etag is None else (("ETag", facts.etag),)
         body = (b"" if facts.error_code is None else
                 f"<Error><Code>{facts.error_code}</Code></Error>".encode())
@@ -3472,11 +3492,13 @@ class WeakDerivationRegressionTests(unittest.TestCase):
             response["final_etag"] = facts.final_etag
         return request, response
 
-    def _derived_outcome(self, test_id, facts, siblings=(), sequence=1):
+    def _derived_outcome(self, test_id, facts, siblings=(), sequence=1,
+                         sibling_responses=()):
         spec = probe.test_spec(test_id)
         request, response = self._pair(spec, facts, sequence=sequence)
-        return probe.derive_test_result(spec, request, response,
-                                        sibling_requests=siblings).outcome
+        return probe.derive_test_result(
+            spec, request, response, sibling_requests=siblings,
+            sibling_responses=sibling_responses).outcome
 
     # ── H4: DELETE + 403 with NO child token ────────────────────────────
     def test_h4_without_a_child_token_is_inconclusive(self):
@@ -3598,22 +3620,37 @@ class WeakDerivationRegressionTests(unittest.TestCase):
 
     def test_k3_requires_a_prior_same_key_put(self):
         spec = probe.test_spec("K3")
-        first, _ = self._pair(
+        # HIGH 2: the earlier same-key PUT must have a SERVER-OBSERVED 2xx
+        # response, so both its request AND response are supplied.
+        first_req, first_resp = self._pair(
             spec, SUPPORT_EVIDENCE["K3"]._replace(status=200, etag='"e"',
                                                   error_code=None),
             sequence=1)
         self.assertEqual(
-            self._derived_outcome("K3", SUPPORT_EVIDENCE["K3"], siblings=(first,),
+            self._derived_outcome("K3", SUPPORT_EVIDENCE["K3"],
+                          siblings=(first_req,), sibling_responses=(first_resp,),
                           sequence=2),
             "THROTTLE_OBSERVED")
+        # A prior same-key PUT whose response was NOT a definite 2xx proves
+        # nothing about a rate limit (Codex HIGH 2).
+        _fr, first_fail = self._pair(
+            spec, SUPPORT_EVIDENCE["K3"]._replace(status=None, etag=None,
+                                                  error_code=None),
+            sequence=1)
+        self.assertEqual(
+            self._derived_outcome("K3", SUPPORT_EVIDENCE["K3"],
+                          siblings=(first_req,), sibling_responses=(first_fail,),
+                          sequence=2),
+            "INCONCLUSIVE")
         # A prior GET, or a prior PUT to a different key, does not count.
-        other_key, _ = self._pair(
+        other_key, other_resp = self._pair(
             spec, SUPPORT_EVIDENCE["K3"]._replace(
                 status=200, etag='"e"', error_code=None,
                 key=probe._policy().sacrificial_key), sequence=1)
         self.assertEqual(
             self._derived_outcome("K3", SUPPORT_EVIDENCE["K3"],
-                          siblings=(other_key,), sequence=2),
+                          siblings=(other_key,), sibling_responses=(other_resp,),
+                          sequence=2),
             "INCONCLUSIVE")
 
     # ── X1 / X2: unconditional writes cannot satisfy create-only ───────
@@ -5299,9 +5336,11 @@ class TransportAndFaultTests(unittest.TestCase):
 
     def test_factory_failure_is_before_request(self):
         class Dying:
+            probe_offline_connection_double = True
+
             def __call__(self, host, timeout):
                 raise ConnectionRefusedError("connect failed")
-        transport = probe.R2Transport(
+        transport = probe.OfflineSignerHarness(
             endpoint_host=ENDPOINT_HOST, connection_factory=Dying(),
             monotonic=lambda: 0)
         with self.assertRaises(probe.TransportFailure) as ctx:
@@ -5963,7 +6002,7 @@ class EvidenceWriterTests(unittest.TestCase):
 class CliAndNoNetworkTests(unittest.TestCase):
 
     def test_default_factory_refuses(self):
-        transport = probe.R2Transport(endpoint_host=ENDPOINT_HOST)
+        transport = probe.OfflineSignerHarness(endpoint_host=ENDPOINT_HOST)
         with no_sockets():
             with self.assertRaises(probe.SafetyBarrierTripped):
                 transport.send_signed_offline(sign(probe_target(), body=b"x"))
@@ -5974,7 +6013,7 @@ class CliAndNoNetworkTests(unittest.TestCase):
             with no_sockets(), mock.patch("sys.stdout", buf):
                 self.assertEqual(probe.main(argv), probe.EXIT_OK)
             self.assertIn("NO SOCKETS", buf.getvalue())
-            self.assertIn("LIVE EXECUTION IS DISABLED", buf.getvalue())
+            self.assertIn("LIVE EXECUTION NOT PERFORMED", buf.getvalue())
 
     def test_cli_refuses_production_bucket(self):
         with no_sockets(), mock.patch("sys.stderr", io.StringIO()):
@@ -5982,23 +6021,28 @@ class CliAndNoNetworkTests(unittest.TestCase):
                 probe.main(["--plan", "--bucket", PRODUCTION_BUCKET]),
                 probe.EXIT_PRODUCTION_NAME_DETECTED)
 
-    def test_execute_refuses_even_with_a_real_credentials_file(self):
-        """Codex: even if all authorization args and a real-looking
-        credential file exist, the CLI must still refuse."""
+    def test_execute_refuses_a_credentials_file_with_wrong_keys(self):
+        """A credential file that does not carry EXACTLY the two expected
+        R2 keys is refused fail-closed, with no socket and no scrub. (The
+        live runner is reachable only with a well-formed disposable file;
+        that path is exercised with a fake transport elsewhere.)"""
         with tempfile.NamedTemporaryFile("w", suffix=".env",
                                          delete=False) as handle:
             handle.write("AWS_ACCESS_KEY_ID=x\nAWS_SECRET_ACCESS_KEY=y\n")
             cred_path = handle.name
+        os.chmod(cred_path, 0o600)
         self.addCleanup(os.unlink, cred_path)
         argv = ["--execute", "--bucket", PROBE_BUCKET,
                 "--account-id", ACCOUNT_ID,
                 "--confirm", probe.EXECUTE_CONFIRMATION,
                 "--authorized-by-adam", "--credentials-file", cred_path]
         err = io.StringIO()
-        with no_sockets(), mock.patch("sys.stderr", err):
+        # real_connection_factory must never be reached for a bad file.
+        with no_sockets(), mock.patch("sys.stderr", err), \
+                mock.patch.object(probe, "real_connection_factory",
+                                  side_effect=AssertionError("socket!")):
             code = probe.main(argv)
         self.assertEqual(code, probe.EXIT_MISSING_AUTHORIZATION)
-        self.assertIn("not enabled in this build", err.getvalue())
 
     def test_execute_gate_removal_refuses(self):
         base = ["--execute", "--bucket", PROBE_BUCKET,
@@ -6133,6 +6177,1285 @@ class RepositoryContractTests(unittest.TestCase):
         self.assertIn("OUT OF SCOPE", source)
         self.assertIn("monkeypatch", source)
         self.assertIn("clean, dedicated process", source)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# LIVE RUNNER — offline orchestration tests
+#
+# A stateful in-memory FakeR2 stands in for the S3 endpoint. It implements
+# just enough conditional-write, rate-limit, scope-denial and expiry
+# behaviour for every matrix row to DERIVE its result exactly as R2 would,
+# WITHOUT any socket. The runner is driven through its injected transport
+# factory; the default (refusing) factory and real_connection_factory are
+# never reached in any test here.
+# ═══════════════════════════════════════════════════════════════════════════
+
+RUNNER_BASE_EPOCH = 1_786_000_000
+
+
+class FakeClock:
+    """One coupled timeline: wall seconds AND monotonic ns advance only when
+    the injected sleep is called, so same-key gaps and credential TTLs are
+    deterministic and no test ever sleeps in real time."""
+
+    def __init__(self, epoch=RUNNER_BASE_EPOCH):
+        self.t = float(epoch)
+
+    def wall(self):
+        return self.t
+
+    def mono_ns(self):
+        return int(self.t * 1e9)
+
+    def sleep(self, seconds):
+        self.t += float(seconds)
+
+
+def _md5_etag(body):
+    return '"' + hashlib.md5(body).hexdigest() + '"'
+
+
+class _FakeResp:
+    def __init__(self, status, headers, body):
+        self.status = status
+        self._headers = list(headers)
+        self._body = body
+
+    def getheaders(self):
+        return list(self._headers)
+
+    def read(self, amt=None):
+        return self._body if amt is None else self._body[:amt]
+
+
+class _FakeConn:
+    def __init__(self, store):
+        self._store = store
+        self._req = None
+
+    def request(self, method, path, body=None, headers=None):
+        key = self._store.key_of(path)
+        # Fault injection: fail AT conn.request (DURING_REQUEST → ambiguous),
+        # with NO server-side effect — the server never saw the write.
+        if self._store._fail_request and self._store._fail_request(method, key):
+            raise ConnectionError("injected request-phase failure")
+        self._req = (method, path, body, dict(headers or {}))
+
+    def getresponse(self):
+        resp = self._store.respond(*self._req)   # applies any commit first
+        method, path, _body, headers = self._req
+        key = self._store.key_of(path)
+        # Fault injection: the write COMMITTED but the response was lost
+        # (AWAITING_RESPONSE → ambiguous, commit-unknown).
+        if self._store._lose_response \
+                and self._store._lose_response(method, key, headers, resp):
+            raise ConnectionResetError("injected lost response")
+        return resp
+
+    def close(self):
+        pass
+
+
+class FakeR2:
+    """A minimal, thread-safe R2 stand-in. Records every request so the
+    tests can prove the runner never addressed production, never emitted a
+    multipart marker, and only used the four expected methods."""
+
+    def __init__(self, *, force=None, fail_request=None, lose_response=None):
+        self.objects = {}
+        self.last_write = {}
+        self.requests = []            # (method, key, query, headers)
+        self._lock = threading.Lock()
+        self.calls = 0
+        # force: optional {(method, "denied-row"): status} override to model
+        # an over-privileged credential, used by the ABANDON tests.
+        self._force = force or {}
+        # fault-injection predicates (fixtures for the Codex regressions):
+        #   fail_request(method, key) -> bool     raise AT conn.request
+        #   lose_response(method, key, resp) -> bool  commit, then lose resp
+        self._fail_request = fail_request
+        self._lose_response = lose_response
+
+    def key_of(self, path):
+        raw = path.split("?", 1)[0]
+        bucket = probe._policy().bucket
+        return raw[len("/" + bucket):].lstrip("/") if raw.startswith(
+            "/" + bucket) else raw
+
+    def factory(self, host, timeout):
+        if host != ENDPOINT_HOST:
+            raise AssertionError(f"unexpected host {host!r}")
+        return _FakeConn(self)
+
+    def respond(self, method, path, body, headers):
+        with self._lock:
+            self.calls += 1
+            return self._respond(method, path, body, headers)
+
+    def _respond(self, method, path, body, headers):
+        raw, query = path, {}
+        if "?" in raw:
+            raw, qs = raw.split("?", 1)
+            for pair in qs.split("&"):
+                name, _, value = pair.partition("=")
+                query[name] = value
+        bucket = probe._policy().bucket
+        assert raw.startswith("/" + bucket), raw
+        key = raw[len("/" + bucket):].lstrip("/")
+        self.requests.append((method, key, dict(query), dict(headers)))
+
+        def err(status, code):
+            body = f"<Error><Code>{code}</Code></Error>".encode()
+            return _FakeResp(status, [], body)
+
+        token = headers.get("x-amz-security-token")
+        req_epoch = probe._amz_date_to_epoch(headers.get("x-amz-date"))
+
+        # Over-privileged-credential simulation for the ABANDON tests.
+        if method == "DELETE" and self._force.get("delete_ok"):
+            self.objects.pop(key, None)
+            return _FakeResp(200, [], b"")
+
+        # Scope denials the child credential must NOT be able to perform.
+        if method == "DELETE":
+            return err(403, "AccessDenied")
+        if query.get("list-type") == "2":
+            return err(403, "AccessDenied")
+        if key.startswith("outside/"):
+            return err(403, "AccessDenied")
+        if token is None:                         # I3: no session token
+            return err(403, "AccessDenied")
+        try:
+            _hdr, claims, _jwt = probe._decode_probe_session_token(token)
+            exp = claims.get("exp")
+        except Exception:                         # noqa: BLE001
+            exp = None
+        if exp is not None and req_epoch >= exp:  # I4: expired credential
+            return err(403, "ExpiredToken")
+
+        if method == "PUT":
+            inm = headers.get("if-none-match")
+            im = headers.get("if-match")
+            exists = key in self.objects
+            if inm == "*" and exists:
+                return err(412, "PreconditionFailed")
+            if im is not None and (not exists
+                                   or _md5_etag(self.objects[key]) != im):
+                # ABANDON model: a broken store that MUTATES despite a
+                # precondition that should have blocked the write. Otherwise
+                # a failed If-Match is a 412.
+                if not self._force.get("mutate_on_conditional"):
+                    return err(412, "PreconditionFailed")
+            prior = self.last_write.get(key)
+            if prior is not None and 0 <= req_epoch - prior <= 1:
+                return err(429, "SlowDown")       # K3: 1-write/s/key limit
+            self.objects[key] = body or b""
+            self.last_write[key] = req_epoch
+            return _FakeResp(200, [("ETag", _md5_etag(self.objects[key]))], b"")
+
+        if method in ("GET", "HEAD"):
+            if key not in self.objects:
+                return err(404, "NoSuchKey")
+            payload = self.objects[key] if method == "GET" else b""
+            return _FakeResp(
+                200, [("ETag", _md5_etag(self.objects[key]))], payload)
+        return err(400, "BadRequest")
+
+
+def _parent_credentials():
+    return probe.ParentCredentials(access_key_id=AKID, secret_access_key=SECRET)
+
+
+def _make_runner(case, fake, *, clock=None, run_id="run-live", phase="T"):
+    clock = clock or FakeClock()
+    tmp = tempfile.TemporaryDirectory()
+    case.addCleanup(tmp.cleanup)
+    parent = _parent_credentials()
+    writer = probe.EvidenceWriter(os.path.join(tmp.name, "state"), run_id,
+                                  secrets=parent.secret_values(), phase=phase)
+    runner = probe.LiveProbeRunner(
+        account_id=ACCOUNT_ID, parent=parent, writer=writer,
+        connection_factory=fake.factory, wall_clock=clock.wall,
+        monotonic=clock.mono_ns, sleep=clock.sleep, semantic_delay_seconds=1.0)
+    return runner, writer, parent
+
+
+def _load_request_records(run_dir):
+    records = []
+    req_dir = os.path.join(run_dir, "request")
+    for base, _dirs, files in os.walk(req_dir):
+        for name in files:
+            if name.endswith(".json"):
+                with open(os.path.join(base, name), encoding="utf-8") as fh:
+                    records.append(json.load(fh))
+    return records
+
+
+class CredentialFileTests(unittest.TestCase):
+
+    def _write(self, text, *, mode=0o600, suffix=".env"):
+        tmp = tempfile.mkdtemp()
+        self.addCleanup(lambda: __import__("shutil").rmtree(
+            tmp, ignore_errors=True))
+        path = os.path.join(tmp, "probe" + suffix)
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(text)
+        os.chmod(path, mode)
+        return path
+
+    def test_valid_file_parses(self):
+        path = self._write(
+            f"R2_ACCESS_KEY_ID={AKID}\nR2_SECRET_ACCESS_KEY={SECRET}\n")
+        creds = probe.load_probe_credentials_file(path)
+        self.assertEqual(creds.access_key_id, AKID)
+        self.assertEqual(creds.secret_access_key, SECRET)
+        self.assertEqual(creds.secret_values(), (AKID, SECRET))
+
+    def test_missing_file(self):
+        with self.assertRaises(probe.MissingAuthorization):
+            probe.load_probe_credentials_file("/no/such/probe.env")
+
+    def test_symlink_refused(self):
+        real = self._write(
+            f"R2_ACCESS_KEY_ID={AKID}\nR2_SECRET_ACCESS_KEY={SECRET}\n")
+        link = real + ".link"
+        os.symlink(real, link)
+        self.addCleanup(os.unlink, link)
+        with self.assertRaises(probe.MissingAuthorization):
+            probe.load_probe_credentials_file(link)
+
+    def test_group_or_other_readable_refused(self):
+        for mode in (0o644, 0o640, 0o604, 0o660):
+            path = self._write(
+                f"R2_ACCESS_KEY_ID={AKID}\nR2_SECRET_ACCESS_KEY={SECRET}\n",
+                mode=mode)
+            with self.subTest(mode=oct(mode)):
+                with self.assertRaises(probe.MissingAuthorization):
+                    probe.load_probe_credentials_file(path)
+
+    def test_inside_repo_refused(self):
+        inside = os.path.join(probe._probe_repo_root(), "scratch-probe.env")
+        self.assertTrue(probe._path_is_inside_repo(inside))
+        # The inside-repo check fires before any filesystem read, so no file
+        # need exist (and none is created inside the repository).
+        with self.assertRaises(probe.MissingAuthorization):
+            probe.load_probe_credentials_file(inside)
+
+    def test_duplicate_key_refused(self):
+        path = self._write(f"R2_ACCESS_KEY_ID={AKID}\n"
+                           f"R2_ACCESS_KEY_ID={AKID}\n"
+                           f"R2_SECRET_ACCESS_KEY={SECRET}\n")
+        with self.assertRaises(probe.MissingAuthorization):
+            probe.load_probe_credentials_file(path)
+
+    def test_unknown_key_refused(self):
+        path = self._write(
+            f"R2_ACCESS_KEY_ID={AKID}\nR2_SECRET_ACCESS_KEY={SECRET}\n"
+            "AWS_ACCESS_KEY_ID=extra\n")
+        with self.assertRaises(probe.MissingAuthorization):
+            probe.load_probe_credentials_file(path)
+
+    def test_blank_value_refused(self):
+        path = self._write("R2_ACCESS_KEY_ID=\n"
+                           f"R2_SECRET_ACCESS_KEY={SECRET}\n")
+        with self.assertRaises(probe.MissingAuthorization):
+            probe.load_probe_credentials_file(path)
+
+    def test_malformed_line_refused(self):
+        path = self._write(f"R2_ACCESS_KEY_ID={AKID}\n"
+                           f"R2_SECRET_ACCESS_KEY={SECRET}\n"
+                           "this is not key=value shaped either\n")
+        with self.assertRaises(probe.MissingAuthorization):
+            probe.load_probe_credentials_file(path)
+
+    def test_comment_and_export_refused(self):
+        for extra in ("# a comment\n", "export R2_ACCESS_KEY_ID=x\n"):
+            path = self._write(
+                f"R2_ACCESS_KEY_ID={AKID}\n"
+                f"R2_SECRET_ACCESS_KEY={SECRET}\n" + extra)
+            with self.subTest(extra=extra):
+                with self.assertRaises(probe.MissingAuthorization):
+                    probe.load_probe_credentials_file(path)
+
+    def test_missing_required_key_refused(self):
+        path = self._write(f"R2_ACCESS_KEY_ID={AKID}\n")
+        with self.assertRaises(probe.MissingAuthorization):
+            probe.load_probe_credentials_file(path)
+
+    def test_oversized_file_refused(self):
+        path = self._write(
+            f"R2_ACCESS_KEY_ID={AKID}\nR2_SECRET_ACCESS_KEY={SECRET}\n"
+            + "\n" * (probe.CREDENTIAL_FILE_MAX_BYTES + 10))
+        with self.assertRaises(probe.MissingAuthorization):
+            probe.load_probe_credentials_file(path)
+
+    def test_parser_ignores_environment(self):
+        """No env fallback: the values come from the FILE, whatever the
+        AWS/CF/R2 environment says."""
+        path = self._write(
+            f"R2_ACCESS_KEY_ID={AKID}\nR2_SECRET_ACCESS_KEY={SECRET}\n")
+        with mock.patch.dict(os.environ,
+                             {"R2_ACCESS_KEY_ID": "ENVKEY-should-be-ignored",
+                              "AWS_SECRET_ACCESS_KEY": "ENVSECRET"},
+                             clear=False):
+            creds = probe.load_probe_credentials_file(path)
+        self.assertEqual(creds.access_key_id, AKID)
+
+
+class LiveRunnerOrchestrationTests(unittest.TestCase):
+    """One full-matrix run is executed ONCE (it writes hundreds of fsync'd
+    evidence files) and every assertion inspects that one shared bundle."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls._tmp = tempfile.TemporaryDirectory()
+        cls.addClassCleanup(cls._tmp.cleanup)
+        cls.fake = FakeR2()
+        cls.parent = _parent_credentials()
+        cls.writer = probe.EvidenceWriter(
+            os.path.join(cls._tmp.name, "state"), "run-matrix",
+            secrets=cls.parent.secret_values(), phase="T")
+        clock = FakeClock()
+        runner = probe.LiveProbeRunner(
+            account_id=ACCOUNT_ID, parent=cls.parent, writer=cls.writer,
+            connection_factory=cls.fake.factory, wall_clock=clock.wall,
+            monotonic=clock.mono_ns, sleep=clock.sleep,
+            semantic_delay_seconds=1.0)
+        with no_sockets():
+            cls.result = runner.run()
+        cls.requests = _load_request_records(cls.writer.run_dir)
+
+    def test_full_matrix_derives_pass(self):
+        self.assertEqual(self.result["verdict"], "PASS")
+        self.assertFalse(self.result["ledger"]["poisoned"])
+        rebuilt = probe.reconstruct_run_from_disk(
+            self.writer.run_dir, phase="T", run_id=self.writer.run_id,
+            secrets=self.parent.secret_values(),
+            issued_registry=self.writer._allocator.issued_registry())
+        for spec in probe.TEST_MATRIX:
+            with self.subTest(test=spec.id):
+                if spec.category == "semantic":
+                    self.assertIs(rebuilt.semantic.verdict(spec.id)[0],
+                                  probe.Verdict.PASS)
+                elif spec.category == "race":
+                    self.assertIs(rebuilt.race.verdict(spec.id)[0],
+                                  probe.Verdict.PASS)
+                else:
+                    self.assertTrue(rebuilt.completion.is_complete(spec.id))
+
+    def test_no_production_target_no_multipart_only_four_methods(self):
+        multipart = probe._policy().multipart_query_markers
+        for method, key, query, _headers in self.fake.requests:
+            self.assertIn(method, {"GET", "HEAD", "PUT", "DELETE"})
+            self.assertNotIn("bible-pal-audio", key)
+            self.assertNotEqual(key, "catalog/v1/manifest.json")
+            if key not in (probe._policy().sacrificial_key,
+                           probe._policy().denied_out_of_prefix_key, ""):
+                self.assertTrue(key.startswith(probe._policy().key_prefix),
+                                key)
+            for marker in multipart:
+                self.assertNotIn(marker, query)
+
+    def test_group_credential_mapping_is_correct(self):
+        for record in self.requests:
+            group = record.get("credential_group")
+            if group is not None:
+                self.assertEqual(
+                    group, probe.test_spec(record["test_id"]).group)
+
+    def test_i4_request_is_signed_after_expiry(self):
+        i4 = [r for r in self.requests if r["test_id"] == "I4"]
+        self.assertTrue(i4)
+        for record in i4:
+            self.assertIsNotNone(record["credential_expires_at"])
+            self.assertGreaterEqual(record["request_time_epoch"],
+                                    record["credential_expires_at"])
+
+    def test_race_has_exactly_one_winner_with_barrier_evidence(self):
+        race_dir = os.path.join(self.writer.run_dir, "race_record")
+        seen = 0
+        for base, _dirs, files in os.walk(race_dir):
+            for name in files:
+                with open(os.path.join(base, name), encoding="utf-8") as fh:
+                    rec = json.load(fh)
+                seen += 1
+                winners = sum(
+                    1 for p in ("w1", "w2")
+                    if rec[f"{p}_http_status"] is not None
+                    and 200 <= rec[f"{p}_http_status"] < 300)
+                self.assertEqual(winners, 1)
+                self.assertEqual(rec["race_repetition_status"], "VALID_CAS")
+                self.assertIsNotNone(rec["barrier_generation_id"])
+        self.assertEqual(seen, 60)      # E2 (30) + F (30)
+
+    def test_evidence_bundle_is_finalized(self):
+        self.assertTrue(os.path.isfile(self.result["manifest_path"]))
+        self.assertTrue(os.path.isfile(self.result["anchor_path"]))
+        self.assertEqual(len(self.result["manifest_sha256"]), 64)
+
+
+class LiveRunnerCapAndAbortTests(unittest.TestCase):
+
+    def test_cap_breach_poisons_and_abandons(self):
+        fake = FakeR2()
+        runner, writer, _parent = _make_runner(self, fake)
+        # Shrink a hard cap so the run trips it mid-flight.
+        caps = writer.ledger._caps
+        writer.ledger._caps = caps._replace(max_put_attempts=5)
+        with no_sockets():
+            result = runner.run()
+        self.assertTrue(result["ledger"]["poisoned"])
+        self.assertEqual(result["verdict"], "ABANDON")
+
+    def test_mutation_on_blocked_precondition_is_abandon(self):
+        # The canonical terminal failure: a conditional PUT that should have
+        # been rejected instead MUTATES the object. It is caught in the very
+        # first semantic group, so the run must stop and report ABANDON.
+        fake = FakeR2(force={"mutate_on_conditional": True})
+        runner, _writer, _parent = _make_runner(self, fake)
+        with no_sockets():
+            result = runner.run()
+        self.assertEqual(result["verdict"], "ABANDON")
+        self.assertIsNotNone(result["abandon_reason"])
+
+
+class LiveRunnerNetworkSafetyTests(unittest.TestCase):
+
+    def test_default_runner_opens_no_socket(self):
+        """With no injected factory the transport REFUSES to connect, so the
+        first dispatched request raises before any socket is constructed."""
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        parent = _parent_credentials()
+        writer = probe.EvidenceWriter(os.path.join(tmp.name, "s"), "run-refuse",
+                                      secrets=parent.secret_values(), phase="T")
+        runner = probe.LiveProbeRunner(
+            account_id=ACCOUNT_ID, parent=parent, writer=writer)
+        with no_sockets():
+            with self.assertRaises(probe.SafetyBarrierTripped):
+                runner.run()
+
+    def test_gate_failures_never_reach_the_real_factory(self):
+        base = ["--execute", "--bucket", PROBE_BUCKET,
+                "--account-id", ACCOUNT_ID,
+                "--confirm", probe.EXECUTE_CONFIRMATION,
+                "--authorized-by-adam",
+                "--credentials-file", "/nonexistent/probe.env"]
+        variants = [
+            [a for a in base if a != "--authorized-by-adam"],
+            base[:],                                   # missing file
+            ["--execute", "--bucket", PRODUCTION_BUCKET, "--account-id",
+             ACCOUNT_ID, "--confirm", probe.EXECUTE_CONFIRMATION,
+             "--authorized-by-adam", "--credentials-file", "/no/x.env"],
+            ["--execute", "--bucket", PROBE_BUCKET, "--account-id", "nothex",
+             "--confirm", probe.EXECUTE_CONFIRMATION, "--authorized-by-adam",
+             "--credentials-file", "/no/x.env"],
+        ]
+        for argv in variants:
+            with self.subTest(argv=argv):
+                with no_sockets(), mock.patch("sys.stderr", io.StringIO()), \
+                        mock.patch.object(
+                            probe, "real_connection_factory",
+                            side_effect=AssertionError("socket constructed")):
+                    code = probe.main(argv)
+                self.assertNotEqual(code, probe.EXIT_OK)
+
+
+class LiveRunnerMainSeamTests(unittest.TestCase):
+
+    def _valid_cred_file(self):
+        tmp = tempfile.mkdtemp()
+        self.addCleanup(lambda: __import__("shutil").rmtree(
+            tmp, ignore_errors=True))
+        path = os.path.join(tmp, "probe.env")
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(f"R2_ACCESS_KEY_ID={AKID}\n"
+                     f"R2_SECRET_ACCESS_KEY={SECRET}\n")
+        os.chmod(path, 0o600)
+        return path, tmp
+
+    def test_main_live_passes_and_summary_is_redacted(self):
+        """One end-to-end main() run through a fake transport: it reaches
+        PASS/GO AND the printed summary carries no secret material. The real
+        connection factory is patched to blow up, proving it is never used."""
+        path, tmp = self._valid_cred_file()
+        fake = FakeR2()
+        argv = ["--execute", "--bucket", PROBE_BUCKET,
+                "--account-id", ACCOUNT_ID,
+                "--confirm", probe.EXECUTE_CONFIRMATION,
+                "--authorized-by-adam", "--credentials-file", path,
+                "--evidence-root", os.path.join(tmp, "state")]
+        buf = io.StringIO()
+        with no_sockets(), mock.patch("sys.stdout", buf), \
+                mock.patch.object(probe, "real_connection_factory",
+                                  side_effect=AssertionError("socket!")):
+            code = probe.main(argv, connection_factory=fake.factory)
+        out = buf.getvalue()
+        self.assertEqual(code, probe.EXIT_OK)
+        self.assertIn("VERDICT", out)
+        self.assertIn("GO", out)
+        for secret in (AKID, SECRET, ACCOUNT_ID, ENDPOINT_HOST):
+            self.assertNotIn(secret, out)
+
+
+class _IncMono:
+    """A monotonic that advances by a fixed step on EVERY read, so any two
+    distinct reads differ by more than the race skew policy — used to prove
+    the transport-attempt skew check rejects a spread between the two
+    writers' actual conn.request instants."""
+
+    def __init__(self, step_ns=120_000_000):
+        self.t = 0
+        self.step = step_ns
+
+    def __call__(self):
+        self.t += self.step
+        return self.t
+
+
+class LiveRunnerCodexRegressionTests(unittest.TestCase):
+    """One offline regression per Codex round-2 reproduction (A–J)."""
+
+    # ── A: every semantic setup PUT fails during conn.request ────────────
+    def test_A_all_b_seed_puts_fail_no_pass(self):
+        fake = FakeR2(fail_request=lambda m, k: m == "PUT" and "/b/" in k)
+        runner, _w, _p = _make_runner(self, fake)
+        with no_sockets():
+            result = runner.run()
+        # Setup can never be confirmed → ABANDON, never PASS, and no open
+        # reservation is silently ignored.
+        self.assertEqual(result["verdict"], "ABANDON")
+        self.assertNotEqual(result["verdict"], "PASS")
+
+    # ── B: setup commits but every verification GET is unavailable ───────
+    def test_B_verification_gets_unavailable_no_pass(self):
+        fake = FakeR2(fail_request=lambda m, k: m == "GET" and "/b/" in k)
+        runner, _w, _p = _make_runner(self, fake)
+        with no_sockets():
+            result = runner.run()
+        self.assertNotEqual(result["verdict"], "PASS")
+        self.assertEqual(result["verdict"], "ABANDON")
+
+    # ── C: race skew measured at the transport-attempt boundary ──────────
+    def test_C_transport_attempt_skew_abandons(self):
+        clock = FakeClock()
+        fake = FakeR2()
+        runner, _w, _p = _make_runner(self, fake, clock=clock)
+        # Replace monotonic with one whose every read differs by > policy,
+        # so the two writers' transport-attempt times cannot be within skew.
+        inc = _IncMono()
+        runner._monotonic = inc
+        runner._same_key_guard = probe.SameKeyWriteGuard(
+            monotonic=(lambda: inc() / 1e9), sleep=clock.sleep)
+        runner._transport = probe.R2Transport(
+            endpoint_host=ENDPOINT_HOST, connection_factory=fake.factory,
+            wall_clock=clock.wall, monotonic=inc)
+        cred = runner._mint_child("T-RACE")
+        with no_sockets():
+            with self.assertRaises(probe.ProbeAbandon):
+                runner._run_race_repetition(probe.test_spec("E2"), cred, 1)
+
+    # ── D/E/F: unsafe wire is refused BEFORE any socket ──────────────────
+    def _poisoned_send(self, poisoned_target=None, extra_wire=None):
+        target = poisoned_target or probe_target(method="PUT")
+        signed = probe.sign_request(
+            target=target, host=ENDPOINT_HOST, access_key_id=AKID,
+            secret_access_key=SECRET, session_token=None, body=b"x",
+            amz_date=AMZ_DATE)
+        if extra_wire is not None:
+            signed = signed._replace(
+                headers=tuple(list(signed.headers) + [extra_wire]))
+        factory = RecordingFactory(FakeConnection(response=FakeResponse(200)))
+        transport = probe.OfflineSignerHarness(
+            endpoint_host=ENDPOINT_HOST, connection_factory=factory,
+            monotonic=lambda: 0, wall_clock=lambda: float(AMZ_EPOCH))
+        with no_sockets():
+            with self.assertRaises(probe.ProbeError):
+                transport.send_signed_offline(signed)
+        self.assertEqual(factory.calls, [],
+                         "an unsafe request reached the connection factory")
+
+    def test_D_bucket_level_delete_refused(self):
+        evil = probe.RequestTarget(method="DELETE", bucket=PROBE_BUCKET,
+                                   key="")
+        self._poisoned_send(poisoned_target=evil)
+
+    def test_E_copy_source_header_refused(self):
+        self._poisoned_send(extra_wire=(
+            "x-amz-copy-source", "/bible" "-pal-audio/catalog/v1/manifest.json"))
+
+    def test_F_acl_header_refused(self):
+        self._poisoned_send(extra_wire=("x-amz-acl", "public-read"))
+
+    def test_bucket_level_put_and_arbitrary_query_refused(self):
+        for evil in (
+                probe.RequestTarget(method="PUT", bucket=PROBE_BUCKET, key=""),
+                probe.RequestTarget(method="HEAD", bucket=PROBE_BUCKET, key=""),
+                probe.RequestTarget(method="GET", bucket=PROBE_BUCKET, key="",
+                                    query=(("delimiter", "/"),))):
+            with self.subTest(target=evil):
+                with self.assertRaises(probe.ProbeError):
+                    probe.assert_target_allowed(evil)
+        # The one legitimate bucket-level shape is accepted.
+        ok = probe.RequestTarget(method="GET", bucket=PROBE_BUCKET, key="",
+                                 query=(("list-type", "2"),))
+        probe.assert_target_allowed(ok)
+
+    def test_website_redirect_and_unknown_amz_header_refused(self):
+        for name in ("x-amz-website-redirect-location", "x-amz-meta-evil",
+                     "x-amz-server-side-encryption"):
+            with self.subTest(header=name):
+                self._poisoned_send(extra_wire=(name, "value"))
+
+    # ── G: ambiguous race writer reconciled against the final GET ────────
+    def test_G_reconcile_never_undercounts(self):
+        body1 = probe.synthetic_payload("w1", 256)
+        body2 = probe.synthetic_payload("w2", 288)
+        s2 = hashlib.sha256(body2).hexdigest()
+        s1 = hashlib.sha256(body1).hexdigest()
+        prior = hashlib.sha256(probe.synthetic_payload("seed", 256)).hexdigest()
+        runner, _w, _p = _make_runner(self, FakeR2())
+        # Final GET shows writer 2's bytes → writer 2 is the committed winner
+        # (never NONE with the stale prior size).
+        self.assertIs(
+            runner._reconcile_race_ledger(
+                body1, body2, probe.RemoteState.CONFIRMED, s2, len(body2),
+                prior, 256),
+            probe.RacePairWinner.WRITER_2)
+        self.assertIs(
+            runner._reconcile_race_ledger(
+                body1, body2, probe.RemoteState.CONFIRMED, s1, len(body1),
+                prior, 256),
+            probe.RacePairWinner.WRITER_1)
+        # Unexpected final bytes / unknown final state → no settlement.
+        self.assertIsNone(
+            runner._reconcile_race_ledger(
+                body1, body2, probe.RemoteState.CONFIRMED, "f" * 64, 99,
+                prior, 256))
+        self.assertIsNone(
+            runner._reconcile_race_ledger(
+                body1, body2, probe.RemoteState.UNKNOWN, None, None,
+                prior, 256))
+
+    def test_G_lost_winner_response_settles_correctly(self):
+        # Lose the RACE winner's response (an If-Match PUT that got 200) on
+        # E2 rep 1 only; the seed (If-None-Match) is untouched.
+        fake = FakeR2(lose_response=lambda m, k, h, r: (
+            "/e2/0001/" in k and r.status == 200
+            and h.get("if-match") is not None))
+        runner, _w, _p = _make_runner(self, fake)
+        with no_sockets():
+            result = runner.run()
+        self.assertFalse(result["ledger"]["poisoned"])
+        self.assertNotEqual(result["verdict"], "PASS")
+        # The rep-1 race record must be INCONCLUSIVE with a final state that
+        # equals a WRITER's payload (reconciled to the committed winner),
+        # never the prior seed bytes.
+        rec = self._read_race_record(_w.run_dir, "e2", 1)
+        self.assertEqual(rec["race_repetition_status"], "INCONCLUSIVE")
+        payloads = {rec["w1_payload_sha256"], rec["w2_payload_sha256"]}
+        self.assertIn(rec["final_sha256"], payloads)
+
+    def _read_race_record(self, run_dir, test_dir, rep):
+        path = os.path.join(run_dir, "race_record", test_dir,
+                            f"{rep:04d}.json")
+        with open(path, encoding="utf-8") as fh:
+            return json.load(fh)
+
+    # ── H: K3 rejects a 429 with no server-observed first write ──────────
+    def test_H_k3_first_failure_never_valid(self):
+        spec = probe.test_spec("K3")
+        key = probe_key("K3", 1)
+        second_req = {"record_kind": "REQUEST_RECORD", "http_method": "PUT",
+                      "key": key, "request_time_epoch": 1000, "sequence": 2,
+                      "correlation_id": "c2"}
+        second_resp = {"record_kind": "RESPONSE_RECORD", "status": 429}
+        first_req = {"record_kind": "REQUEST_RECORD", "http_method": "PUT",
+                     "key": key, "request_time_epoch": 1000, "sequence": 1,
+                     "correlation_id": "c1"}
+        # First write FAILED (no server-observed 2xx) → INCONCLUSIVE.
+        first_resp_fail = {"correlation_id": "c1", "status": None}
+        self.assertEqual(
+            probe._derive_k3(spec, second_req, second_resp, (first_req,),
+                             (first_resp_fail,)),
+            probe.INCONCLUSIVE)
+        # End-to-end: failing the first K3 PUT ABANDONs before the second.
+        fake = FakeR2(fail_request=lambda m, k: m == "PUT" and "/k3/" in k)
+        runner, _w, _p = _make_runner(self, fake)
+        with no_sockets():
+            result = runner.run()
+        self.assertNotEqual(result["verdict"], "PASS")
+
+    def test_I_k3_first_2xx_then_429_is_valid(self):
+        spec = probe.test_spec("K3")
+        key = probe_key("K3", 1)
+        # Physical conn.request instants 0.4s apart — the ONLY time source
+        # K3 accepts (Codex round-3 BLOCKER 3).
+        second_req = {"record_kind": "REQUEST_RECORD", "http_method": "PUT",
+                      "key": key, "request_time_epoch": 1000, "sequence": 2,
+                      "correlation_id": "c2",
+                      "t_request_attempt_mono_ns": 400_000_000}
+        second_resp = {"record_kind": "RESPONSE_RECORD", "status": 429}
+        first_req = {"record_kind": "REQUEST_RECORD", "http_method": "PUT",
+                     "key": key, "request_time_epoch": 1000, "sequence": 1,
+                     "correlation_id": "c1",
+                     "t_request_attempt_mono_ns": 0}
+        first_resp_ok = {"correlation_id": "c1", "status": 200}
+        result = probe._derive_k3(spec, second_req, second_resp, (first_req,),
+                                  (first_resp_ok,))
+        self.assertEqual(result.outcome, "THROTTLE_OBSERVED")
+        self.assertTrue(result.valid)
+
+    # ── J: any unresolved reservation forbids PASS ───────────────────────
+    def test_J_open_reservation_forbids_pass(self):
+        """End-to-end: a PUT whose response is lost AND whose verification
+        read also fails leaves the commit state UNKNOWN, so its reservation
+        stays open — and an open reservation can never be PASS."""
+        fake = FakeR2(
+            lose_response=lambda m, k, h, r: (
+                "/a/" in k and r.status == 200
+                and h.get("if-none-match") == "*"),
+            fail_request=lambda m, k: m == "GET" and "/a/" in k)
+        runner, _w, _p = _make_runner(self, fake)
+        with no_sockets():
+            result = runner.run()
+        # NON-VACUOUS: at least one reservation really is open, and the
+        # verdict is ABANDON because of it.
+        self.assertGreater(result["ledger"]["open_put_reservations"]
+                           + result["ledger"]["open_race_pairs"], 0)
+        self.assertEqual(result["verdict"], "ABANDON")
+
+
+class AuthoritativeOpenReservationTests(unittest.TestCase):
+    """Codex round-3 BLOCKER 1 — proven at the AUTHORITATIVE summary layer,
+    by calling derive_run_summary() directly rather than runner.run()."""
+
+    def _complete_state(self):
+        """A semantic/race/completion state in which every matrix row is
+        complete, so PASS is blocked ONLY by the open reservation."""
+        completion = completion_from_support_evidence(self)
+        semantic = probe.SemanticAggregator()
+        for test_id in probe.semantic_test_ids():
+            spec = probe.test_spec(test_id)
+            for rep in range(1, spec.required_repetitions + 1):
+                semantic.record(probe.SemanticEvidence(
+                    identity=probe.RepetitionIdentity(
+                        phase="t", run_id=RUN_ID, test_id=test_id,
+                        repetition=rep,
+                        key=probe_key(test_id, rep, phase="t")),
+                    http_status=412,
+                    outcome=probe.PutOutcome.DEFINITE_CONDITIONAL_REJECTION,
+                    mutation_observed=False))
+        race = probe.RaceAggregator()
+        for test_id in probe.race_test_ids():
+            spec = probe.test_spec(test_id)
+            for rep in range(1, spec.required_repetitions + 1):
+                race.record(_valid_race_repetition(test_id, rep))
+        return semantic, race, completion
+
+    def test_A_open_normal_put_reservation_forbids_pass(self):
+        semantic, race, completion = self._complete_state()
+        ledger = probe.ResourceLedger()
+        # Sanity: with nothing open the same state derives PASS, so this
+        # test cannot pass vacuously.
+        clean = probe.derive_run_summary(
+            phase="T", semantic=semantic, race=race, ledger=ledger,
+            completion=completion)
+        self.assertEqual(clean["verdict"], "PASS")
+        self.assertEqual(clean["open_put_reservations"], 0)
+        # Now leave exactly one normal PUT reservation unresolved.
+        ledger.reserve_put(probe_key("A", 1, phase="t"), 128)
+        summary = probe.derive_run_summary(
+            phase="T", semantic=semantic, race=race, ledger=ledger,
+            completion=completion)
+        self.assertNotEqual(summary["verdict"], "PASS")
+        self.assertEqual(summary["verdict"], "ABANDON")
+        self.assertEqual(summary["open_put_reservations"], 1)
+        self.assertTrue(summary["abandon_triggered"])
+
+    def test_B_open_race_pair_forbids_pass(self):
+        semantic, race, completion = self._complete_state()
+        ledger = probe.ResourceLedger()
+        ledger.reserve_race_pair_same_key(probe_key("E2", 1, phase="t"),
+                                          128, 160)
+        summary = probe.derive_run_summary(
+            phase="T", semantic=semantic, race=race, ledger=ledger,
+            completion=completion)
+        self.assertNotEqual(summary["verdict"], "PASS")
+        self.assertEqual(summary["verdict"], "ABANDON")
+        self.assertEqual(summary["open_race_pairs"], 1)
+
+    def test_C_persisted_summary_cannot_claim_pass_with_open_counts(self):
+        summary = {
+            "verdict": "PASS", "phase": "T", "tests_total": 26,
+            "tests_passed": 26, "tests_failed": 0, "valid_repetitions": 1,
+            "abandon_triggered": False, "ledger_poisoned": False,
+            "put_operation_count": 1, "production_size_puts": 0,
+            "get_head_count": 0, "object_count": 1, "uploaded_bytes": 1,
+            "peak_storage_bytes": 1,
+            "open_put_reservations": 1, "open_race_pairs": 0,
+        }
+        with self.assertRaises(probe.EvidenceValidationError):
+            probe.validate_summary(summary, ())
+        summary["open_put_reservations"] = 0
+        summary["open_race_pairs"] = 2
+        with self.assertRaises(probe.EvidenceValidationError):
+            probe.validate_summary(summary, ())
+        # Both zero: the same summary is accepted, so the rejection above is
+        # attributable to the open counts alone.
+        summary["open_race_pairs"] = 0
+        probe.validate_summary(summary, ())
+
+    def test_C_missing_or_malformed_counts_refused(self):
+        base = {
+            "verdict": "INCOMPLETE", "phase": "T", "tests_total": 26,
+            "tests_passed": 0, "tests_failed": 26, "valid_repetitions": 0,
+            "abandon_triggered": False, "ledger_poisoned": False,
+            "put_operation_count": 0, "production_size_puts": 0,
+            "get_head_count": 0, "object_count": 0, "uploaded_bytes": 0,
+            "peak_storage_bytes": 0,
+            "open_put_reservations": 0, "open_race_pairs": 0,
+        }
+        missing = dict(base)
+        del missing["open_put_reservations"]
+        with self.assertRaises(probe.EvidenceValidationError):
+            probe.validate_summary(missing, ())
+        for bad in (-1, "0", 1.0, True, None):
+            malformed = dict(base, open_race_pairs=bad)
+            with self.subTest(value=repr(bad)):
+                with self.assertRaises(probe.EvidenceValidationError):
+                    probe.validate_summary(malformed, ())
+
+    def test_D_tampered_count_fails_finalization(self):
+        """A summary whose open counts were zeroed while the ledger really
+        has one open reservation must fail closed at finalize."""
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        writer = probe.EvidenceWriter.for_testing(
+            os.path.join(tmp.name, "st"), "run-tamper")
+        writer.ledger.reserve_put(probe_key("A", 1, phase="t"), 64)
+        real = probe.derive_run_summary
+
+        def zeroed(**kwargs):
+            summary = dict(real(**kwargs))
+            summary["open_put_reservations"] = 0
+            summary["open_race_pairs"] = 0
+            summary["verdict"] = "PASS"
+            return summary
+
+        with mock.patch.object(probe, "derive_run_summary", zeroed):
+            with self.assertRaises(probe.SafetyBarrierTripped) as ctx:
+                writer.finalize()
+        self.assertIn("open-reservation", str(ctx.exception))
+
+
+def _valid_race_repetition(test_id, rep):
+    """A VALID_CAS race repetition for aggregator seeding."""
+    body1, body2 = b"w1" * 40, b"w2" * 48
+    etag = '"seed-etag"'
+    winner_etag = '"winner"'
+    writers = (
+        probe.RaceWriter(
+            writer_id="w1", http_status=200,
+            payload_sha256=hashlib.sha256(body1).hexdigest(),
+            payload_length=len(body1), returned_etag=winner_etag,
+            if_match=(etag if test_id == "E2" else None),
+            if_none_match=("*" if test_id == "F" else None),
+            barrier_generation="gen-1", barrier_join_mono_ns=1,
+            send_mono_ns=10),
+        probe.RaceWriter(
+            writer_id="w2", http_status=412,
+            payload_sha256=hashlib.sha256(body2).hexdigest(),
+            payload_length=len(body2), returned_etag=None,
+            if_match=(etag if test_id == "E2" else None),
+            if_none_match=("*" if test_id == "F" else None),
+            barrier_generation="gen-1", barrier_join_mono_ns=1,
+            send_mono_ns=11))
+    return probe.RaceRepetition(
+        identity=probe.RaceIdentity(
+            phase="t", run_id=RUN_ID, test_id=test_id, repetition=rep,
+            key=probe_key(test_id, rep, phase="t"),
+            setup_state=probe.race_setup_state_for(test_id)),
+        shared_original_etag=(etag if test_id == "E2" else None),
+        absence_confirmed=(True if test_id == "F" else None),
+        barrier=probe.RaceBarrierEvidence(generation_id="gen-1",
+                                          release_mono_ns=5),
+        writers=writers, final_state=probe.RemoteState.CONFIRMED,
+        final_sha256=hashlib.sha256(body1).hexdigest(),
+        final_length=len(body1), final_etag=winner_etag)
+
+
+class NoGeneralLiveTransportTests(unittest.TestCase):
+    """Codex round-3 BLOCKER 2 — no caller-shaped request may reach a
+    live-capable connection factory."""
+
+    def test_live_transport_exposes_no_caller_owned_send(self):
+        self.assertFalse(hasattr(probe.R2Transport, "send_signed_offline"))
+        self.assertFalse(hasattr(probe.R2Transport, "attempt_diagnostic"))
+        # The exact diagnostics take ONLY an identity and a credential —
+        # no method/target/key/query/body/token-mode parameters.
+        import inspect
+        for name in ("attempt_i2", "attempt_i3", "attempt_i4"):
+            params = set(inspect.signature(
+                getattr(probe.R2Transport, name)).parameters) - {"self"}
+            with self.subTest(method=name):
+                self.assertEqual(params, {"identity", "credential"})
+
+    def test_offline_harness_refuses_the_real_factory(self):
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            probe.OfflineSignerHarness(
+                endpoint_host=ENDPOINT_HOST,
+                connection_factory=probe.real_connection_factory)
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            probe.offline_connection_double(probe.real_connection_factory)
+
+    def test_offline_harness_refuses_an_unmarked_factory(self):
+        def networking_factory(host, timeout):   # pragma: no cover - never run
+            raise AssertionError("must never be constructed")
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            probe.OfflineSignerHarness(
+                endpoint_host=ENDPOINT_HOST,
+                connection_factory=networking_factory)
+
+    def _identity(self, test_id, rep=1):
+        return probe.RepetitionIdentity(
+            phase="t", run_id=RUN_ID, test_id=test_id, repetition=rep,
+            key=probe_key(test_id, rep, phase="t"))
+
+    def _live_transport(self):
+        factory = RecordingFactory(FakeConnection(response=FakeResponse(200)))
+        transport = probe.R2Transport(
+            endpoint_host=ENDPOINT_HOST, connection_factory=factory,
+            monotonic=lambda: 0, wall_clock=lambda: float(AMZ_EPOCH))
+        return transport, factory
+
+    def test_A_arbitrary_delete_has_no_live_path(self):
+        """There is simply no method that accepts a caller-built DELETE."""
+        transport, factory = self._live_transport()
+        evil = probe.RequestTarget(method="DELETE", bucket=PROBE_BUCKET,
+                                   key=probe_key("I2", 1, phase="t"))
+        # sign_and_attempt is the only general path and it refuses DELETE on
+        # an allocated key via the credential's action set / target barrier.
+        signed = probe.sign_request(
+            target=evil, host=ENDPOINT_HOST, access_key_id=AKID,
+            secret_access_key=SECRET, session_token=None, body=b"",
+            amz_date=AMZ_DATE)
+        self.assertFalse(hasattr(transport, "send_signed_offline"))
+        del signed
+        self.assertEqual(factory.calls, [])
+
+    def test_B_delete_with_version_id_query_refused(self):
+        transport, factory = self._live_transport()
+        cred = make_transport_credential(group=probe.test_spec("I2").group)
+        evil = probe.RequestTarget(
+            method="DELETE", bucket=PROBE_BUCKET,
+            key=probe_key("I2", 1, phase="t"),
+            query=(("versionId", "caller-controlled"),))
+        with no_sockets():
+            with self.assertRaises(probe.ProbeError):
+                transport.sign_and_attempt(
+                    target=evil, body=b"", credential=cred,
+                    amz_date=AMZ_DATE)
+        self.assertEqual(factory.calls, [])
+
+    def test_C_caller_owned_signed_request_cannot_reach_live_factory(self):
+        """No PUBLIC method of the live transport accepts a caller-owned
+        SignedRequest. (`_attempt` is the single private funnel every path
+        signs into; it is unreachable as a supported call and is what
+        enforces the wire allowlist.)"""
+        import inspect
+        transport, factory = self._live_transport()
+        public = [n for n in dir(transport)
+                  if not n.startswith("_") and callable(
+                      getattr(transport, n, None))]
+        self.assertIn("sign_and_attempt", public)     # non-vacuous
+        for name in public:
+            try:
+                params = inspect.signature(
+                    getattr(transport, name)).parameters
+            except (TypeError, ValueError):       # pragma: no cover
+                continue
+            with self.subTest(method=name):
+                self.assertNotIn(
+                    "signed", params,
+                    f"{name} accepts a caller-owned signed request")
+        self.assertEqual(factory.calls, [])
+
+    def test_D_i2_builder_refuses_another_rows_identity(self):
+        transport, factory = self._live_transport()
+        cred = make_transport_credential(group=probe.test_spec("I2").group)
+        with no_sockets():
+            with self.assertRaises(probe.SafetyBarrierTripped):
+                transport.attempt_i2(identity=self._identity("I3"),
+                                     credential=cred)
+        self.assertEqual(factory.calls, [])
+
+    def test_E_i4_refused_before_credential_expiry(self):
+        factory = RecordingFactory(FakeConnection(response=FakeResponse(403)))
+        expiry_group = probe.test_spec("I4").group
+        cred = probe.mint_probe_credential(
+            group=expiry_group, account_id=ACCOUNT_ID,
+            parent_access_key_id=AKID, parent_secret_access_key=SECRET,
+            now=AMZ_EPOCH)
+        # Wall clock still inside the credential's validity window.
+        transport = probe.R2Transport(
+            endpoint_host=ENDPOINT_HOST, connection_factory=factory,
+            monotonic=lambda: 0, wall_clock=lambda: float(AMZ_EPOCH))
+        with no_sockets():
+            with self.assertRaises(probe.SafetyBarrierTripped):
+                transport.attempt_i4(identity=self._identity("I4"),
+                                     credential=cred)
+        self.assertEqual(factory.calls, [])
+        # Past expiry the same call proceeds to the wire.
+        after = float(cred.expires_at + 1)
+        live = probe.R2Transport(
+            endpoint_host=ENDPOINT_HOST, connection_factory=factory,
+            monotonic=lambda: 0, wall_clock=lambda: after)
+        attempt = live.attempt_i4(identity=self._identity("I4"),
+                                  credential=cred)
+        self.assertEqual(attempt.response.status, 403)
+
+    def test_F_wrong_group_credential_refused(self):
+        transport, factory = self._live_transport()
+        wrong = make_transport_credential(group="T-CAS-1")
+        with no_sockets():
+            for name in ("attempt_i2", "attempt_i3"):
+                with self.subTest(method=name):
+                    with self.assertRaises(probe.SafetyBarrierTripped):
+                        getattr(transport, name)(
+                            identity=self._identity(name[-2:].upper()),
+                            credential=wrong)
+        self.assertEqual(factory.calls, [])
+
+    def test_G_diagnostic_shape_is_fixed(self):
+        """The transmitted diagnostic request is exactly PUT / probe bucket /
+        allocator key / empty query / canonical body — none of it caller
+        chosen."""
+        conn = FakeConnection(response=FakeResponse(403))
+        factory = RecordingFactory(conn)
+        transport = probe.R2Transport(
+            endpoint_host=ENDPOINT_HOST, connection_factory=factory,
+            monotonic=lambda: 0, wall_clock=lambda: float(AMZ_EPOCH))
+        identity = self._identity("I3")
+        cred = make_transport_credential(group=probe.test_spec("I3").group)
+        attempt = transport.attempt_i3(identity=identity, credential=cred)
+        signed = attempt.signed_request
+        self.assertEqual(signed.target.method, "PUT")
+        self.assertEqual(signed.target.bucket, PROBE_BUCKET)
+        self.assertEqual(signed.target.key, identity.key)
+        self.assertEqual(signed.target.query, ())
+        self.assertEqual(signed.body, probe.diagnostic_body("I3"))
+        self.assertNotIn("x-amz-security-token", signed.header_map())
+
+    def test_H_arbitrary_extra_headers_have_no_diagnostic_path(self):
+        import inspect
+        for name in ("attempt_i2", "attempt_i3", "attempt_i4"):
+            params = inspect.signature(
+                getattr(probe.R2Transport, name)).parameters
+            with self.subTest(method=name):
+                self.assertNotIn("extra_headers", params)
+                self.assertNotIn("body", params)
+                self.assertNotIn("target", params)
+
+
+class K3PhysicalTimestampTests(unittest.TestCase):
+    """Codex round-3 BLOCKER 3 — only the physical conn.request instants may
+    satisfy K3's one-second window."""
+
+    def _pair(self, *, first_ns, second_ns, first_status=200,
+              second_status=429, same_signed_epoch=True):
+        spec = probe.test_spec("K3")
+        key = probe_key("K3", 1)
+        epoch = 1000
+        first_req = {"record_kind": "REQUEST_RECORD", "http_method": "PUT",
+                     "key": key, "sequence": 1, "correlation_id": "c1",
+                     "request_time_epoch": epoch,
+                     "t_request_attempt_mono_ns": first_ns}
+        first_resp = {"correlation_id": "c1", "status": first_status}
+        second_req = {"record_kind": "REQUEST_RECORD", "http_method": "PUT",
+                      "key": key, "sequence": 2, "correlation_id": "c2",
+                      "request_time_epoch": (epoch if same_signed_epoch
+                                             else epoch + 5),
+                      "t_request_attempt_mono_ns": second_ns}
+        second_resp = {"record_kind": "RESPONSE_RECORD",
+                       "status": second_status}
+        return probe._derive_k3(spec, second_req, second_resp, (first_req,),
+                                (first_resp,))
+
+    def test_A_actual_gap_of_1_2_seconds_is_not_a_throttle(self):
+        result = self._pair(first_ns=0, second_ns=1_200_000_000)
+        self.assertEqual(result.outcome, "INCONCLUSIVE")
+        self.assertFalse(result.valid)
+
+    def test_B_actual_gap_of_500ms_is_valid(self):
+        result = self._pair(first_ns=0, second_ns=500_000_000)
+        self.assertEqual(result.outcome, "THROTTLE_OBSERVED")
+        self.assertTrue(result.valid)
+
+    def test_C_missing_first_timestamp_is_inconclusive(self):
+        self.assertEqual(
+            self._pair(first_ns=None, second_ns=500_000_000).outcome,
+            "INCONCLUSIVE")
+
+    def test_D_missing_second_timestamp_is_inconclusive(self):
+        self.assertEqual(
+            self._pair(first_ns=0, second_ns=None).outcome, "INCONCLUSIVE")
+
+    def test_E_identical_signed_dates_cannot_fool_k3(self):
+        """Both requests carry the SAME signed x-amz-date epoch, so an
+        epoch-based window would read 0 seconds; the physical attempts are
+        1.2s apart and must be rejected."""
+        result = self._pair(first_ns=0, second_ns=1_200_000_000,
+                            same_signed_epoch=True)
+        self.assertEqual(result.outcome, "INCONCLUSIVE")
+        # Control: identical signed epochs with a real 0.4s gap ARE valid,
+        # proving the rejection came from the physical timestamps.
+        ok = self._pair(first_ns=0, second_ns=400_000_000,
+                        same_signed_epoch=True)
+        self.assertEqual(ok.outcome, "THROTTLE_OBSERVED")
+
+    def test_negative_delta_is_invalid(self):
+        self.assertEqual(
+            self._pair(first_ns=900_000_000, second_ns=0).outcome,
+            "INCONCLUSIVE")
+
+    def test_runner_records_physical_attempt_timestamps(self):
+        fake = FakeR2()
+        runner, writer, _p = _make_runner(self, fake)
+        cred = runner._mint_child(probe.test_spec("K3").group)
+        issued = writer.allocate_semantic("K3", 1)
+        with no_sockets():
+            runner._support_throttle(probe.test_spec("K3"), cred, 1,
+                                     issued.identity.key)
+        stamps = [r["t_request_attempt_mono_ns"]
+                  for r in _load_request_records(writer.run_dir)
+                  if r["test_id"] == "K3"]
+        self.assertEqual(len(stamps), 2)
+        for value in stamps:
+            self.assertIsInstance(value, int)
+
+
+class RowASetupReconciliationTests(unittest.TestCase):
+    """Codex round-3 HIGH 1 — row A never issues its dependent same-key PUT
+    while the seed's commit state is unresolved, and never unconditionally."""
+
+    def _run_row_a(self, fake):
+        runner, writer, _p = _make_runner(self, fake)
+        spec = probe.test_spec("A")
+        cred = runner._mint_child(spec.group)
+        issued = writer.allocate_semantic("A", 1)
+        abandoned = False
+        with no_sockets():
+            try:
+                runner._support_correct_etag(spec, cred, 1,
+                                             issued.identity.key)
+            except probe.ProbeAbandon:
+                abandoned = True
+        puts = [(m, h.get("if-match")) for m, k, _q, h in fake.requests
+                if m == "PUT"]
+        return abandoned, puts, writer
+
+    def test_A_lost_seed_response_reconciles_then_proceeds(self):
+        # Seed commits, its response is lost; the authenticated GET returns
+        # the exact seed bytes and a usable ETag.
+        state = {"lost": False}
+
+        def lose(m, k, h, r):
+            if m == "PUT" and h.get("if-none-match") == "*" \
+                    and not state["lost"]:
+                state["lost"] = True
+                return True
+            return False
+
+        fake = FakeR2(lose_response=lose)
+        abandoned, puts, _w = self._run_row_a(fake)
+        self.assertFalse(abandoned)
+        self.assertEqual(len(puts), 2)          # seed + dependent
+        # The dependent PUT carries a real If-Match, never None.
+        self.assertIsNotNone(puts[1][1])
+
+    def test_B_unknown_verification_abandons_without_second_put(self):
+        # Seed's response lost AND every subsequent GET fails at transport,
+        # so the remote state is UNKNOWN.
+        state = {"lost": False}
+
+        def lose(m, k, h, r):
+            if m == "PUT" and h.get("if-none-match") == "*" \
+                    and not state["lost"]:
+                state["lost"] = True
+                return True
+            return False
+
+        fake = FakeR2(lose_response=lose,
+                      fail_request=lambda m, k: m == "GET")
+        abandoned, puts, _w = self._run_row_a(fake)
+        self.assertTrue(abandoned)
+        self.assertEqual(len(puts), 1, "a dependent PUT was issued anyway")
+
+    def test_C_unexpected_bytes_abandon_without_second_put(self):
+        fake = FakeR2()
+        # Pre-plant different bytes under A's key and make the seed's
+        # create-conditional response get lost; the GET then shows bytes
+        # that are not the intended seed.
+        key = probe.expected_key_for(phase="t", run_id="run-live",
+                                     test_id="A", repetition=1)
+        fake.objects[key] = b"not-the-seed-bytes"
+        state = {"lost": False}
+
+        def lose(m, k, h, r):
+            if m == "PUT" and not state["lost"]:
+                state["lost"] = True
+                return True
+            return False
+
+        fake._lose_response = lose
+        abandoned, puts, _w = self._run_row_a(fake)
+        self.assertTrue(abandoned)
+        self.assertEqual(len(puts), 1)
+
+    def test_D_definite_2xx_without_usable_etag_abandons(self):
+        class NoEtagR2(FakeR2):
+            def _respond(self, method, path, body, headers):
+                resp = super()._respond(method, path, body, headers)
+                # Strip every ETag so no usable current ETag can be proven.
+                return _FakeResp(resp.status, [], resp.read())
+
+        fake = NoEtagR2()
+        abandoned, puts, _w = self._run_row_a(fake)
+        self.assertTrue(abandoned)
+        self.assertEqual(len(puts), 1)
+
+    def test_E_seed_failing_before_request_abandons(self):
+        fake = FakeR2(fail_request=lambda m, k: m == "PUT")
+        abandoned, puts, _w = self._run_row_a(fake)
+        self.assertTrue(abandoned)
+        self.assertEqual(len(puts), 0)
+
+    def test_F_dependent_put_if_match_is_never_none(self):
+        fake = FakeR2()
+        abandoned, puts, _w = self._run_row_a(fake)
+        self.assertFalse(abandoned)
+        dependent = [p for p in puts if p[1] is not None]
+        unconditional = [p for p in puts[1:] if p[1] is None]
+        self.assertTrue(dependent)
+        self.assertEqual(unconditional, [],
+                         "a dependent same-key PUT was unconditional")
+
+    def test_sibling_h1_h2_do_not_read_after_an_unresolved_seed(self):
+        """The narrow sibling pattern: H1/H2 seed a key then read it. With
+        the seed unresolved the row stops instead of continuing."""
+        fake = FakeR2(lose_response=lambda m, k, h, r: (
+            m == "PUT" and h.get("if-none-match") == "*"))
+        runner, writer, _p = _make_runner(self, fake)
+        spec = probe.test_spec("H2")
+        cred = runner._mint_child(spec.group)
+        issued = writer.allocate_semantic("H2", 1)
+        with no_sockets():
+            with self.assertRaises(probe.ProbeAbandon):
+                runner._support_allowed_scope(spec, cred, 1,
+                                              issued.identity.key)
+        self.assertEqual([m for m, _k, _q, _h in fake.requests
+                          if m == "GET"], [])
 
 
 if __name__ == "__main__":  # pragma: no cover
