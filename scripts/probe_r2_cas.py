@@ -240,6 +240,12 @@ class _Policy(NamedTuple):
     execute_confirmation: str
     allowed_extra_headers: frozenset
     transport_owned_headers: frozenset
+    # The COMPLETE set of header names permitted on the wire at the live
+    # transmit boundary. Anything outside it — x-amz-copy-source, x-amz-acl,
+    # x-amz-website-redirect-location, multipart headers, any unknown
+    # x-amz-* mutation header — is refused BEFORE a socket, so a caller
+    # cannot smuggle a dangerous header through even a hand-built request.
+    wire_header_allowlist: frozenset
     caps: _Caps
     matrix: tuple            # tuple[TestSpec, ...]
     # Load-bearing transport/parse constants live here too (BLOCKER 2), so
@@ -350,6 +356,13 @@ def _capture_policy():
         allowed_extra_headers=frozenset({
             "content-type", "content-md5", "if-match", "if-none-match"}),
         transport_owned_headers=frozenset({"host", "content-length"}),
+        # SigV4-owned + the four allowlisted conditional/content extras. This
+        # is the exhaustive wire allowlist enforced by _attempt(); host and
+        # content-length remain transport-owned and are refused if supplied.
+        wire_header_allowlist=frozenset({
+            "authorization", "x-amz-date", "x-amz-content-sha256",
+            "x-amz-security-token", "content-type", "content-md5",
+            "if-match", "if-none-match"}),
         caps=_Caps(
             max_production_size_puts=60,
             max_put_attempts=650,
@@ -876,6 +889,24 @@ def assert_target_allowed(target, allow_denied_prefix_probe=False) -> tuple:
         if name in policy.multipart_query_markers:
             raise SafetyBarrierTripped(
                 f"multipart query marker {name!r} must never be emitted")
+    # EXACT OPERATION RULE (Codex round-3 BLOCKER 2). The probe performs a
+    # closed set of operations, so anything outside it is refused before a
+    # socket rather than being left to credential scope:
+    #   - DELETE exists ONLY as the H4 denial probe against the sacrificial
+    #     key. A DELETE on an allocated object key — with or without a
+    #     caller-chosen `versionId` — has no legitimate purpose here.
+    #   - The ONLY query the probe ever emits is `list-type=2` on the
+    #     bucket-level H5 listing (validated below). Every other request
+    #     carries an EMPTY query, so `versionId`, `uploads`, `acl`,
+    #     `tagging` and friends cannot ride along.
+    if method == "DELETE" and key != policy.sacrificial_key:
+        raise SafetyBarrierTripped(
+            "DELETE is permitted ONLY against the sacrificial denial-probe "
+            f"key, never {key!r}")
+    if query and not (key == "" and method == "GET"):
+        raise SafetyBarrierTripped(
+            "only the bucket-level ListObjectsV2 diagnostic may carry a "
+            f"query; {[name for name, _ in query]} refused")
     if key:
         if not _grammar().live_key.fullmatch(key):
             raise SafetyBarrierTripped(
@@ -885,6 +916,16 @@ def assert_target_allowed(target, allow_denied_prefix_probe=False) -> tuple:
                     and key == policy.denied_out_of_prefix_key):
                 raise SafetyBarrierTripped(
                     f"key {key!r} is outside {policy.key_prefix!r}")
+    else:
+        # BUCKET-LEVEL OPERATION RULE (Codex round 2). An empty key
+        # addresses the bucket itself; the ONLY legitimate bucket-level
+        # request in this probe is the H5 ListObjectsV2 diagnostic — a GET
+        # carrying exactly `list-type=2`. A bucket-level DELETE/PUT/HEAD, a
+        # copy, or any other bucket-level query is refused outright.
+        if method != "GET" or tuple(query) != (("list-type", "2"),):
+            raise SafetyBarrierTripped(
+                "a bucket-level (empty-key) request is permitted ONLY as "
+                "GET ?list-type=2 (the H5 ListObjectsV2 diagnostic)")
     return method, bucket, key, query
 
 
@@ -2060,8 +2101,22 @@ class ResourceLedger:
             self._check("get_head", self.get_head_count,
                         self._caps.max_get_head)
 
+    def open_reservation_counts(self) -> tuple:
+        """(open single-PUT reservations, open same-key race pairs).
+
+        The final PASS gate requires BOTH to be zero: an unresolved PUT
+        reservation means the runner never proved whether that body
+        committed, and a probe that cannot account for every write it may
+        have made must never report PASS."""
+        with self._lock:
+            open_puts = sum(1 for token in self._open_reservations
+                            if token not in self._race_pair_tokens)
+            return open_puts, len(self._race_pairs)
+
     def snapshot(self) -> dict:
         with self._lock:
+            open_puts = sum(1 for token in self._open_reservations
+                            if token not in self._race_pair_tokens)
             return {
                 "object_count": self.object_count,
                 "put_operation_count": self.put_operation_count,
@@ -2070,6 +2125,8 @@ class ResourceLedger:
                 "uploaded_bytes": self.uploaded_bytes,
                 "peak_storage_bytes": self.peak_storage_bytes,
                 "poisoned": self.poisoned,
+                "open_put_reservations": open_puts,
+                "open_race_pairs": len(self._race_pairs),
             }
 
 
@@ -2109,6 +2166,20 @@ def synthetic_payload(seed, size) -> bytes:
 
 def production_size_payload(seed) -> bytes:
     return synthetic_payload(seed, _policy().production_body_bytes)
+
+
+def diagnostic_body(test_id) -> bytes:
+    """The EXACT body each signing/expiry diagnostic transmits.
+
+    Derived from the row id alone, so the transport builds the body itself
+    and no caller can choose what a diagnostic writes (Codex round-3
+    BLOCKER 2).
+    """
+    _exact_str(test_id, "test_id", max_len=16)
+    if test_id not in ("I2", "I3", "I4"):
+        raise SafetyBarrierTripped(
+            f"{test_id!r} is not a signing/expiry diagnostic row")
+    return synthetic_payload(test_id.lower(), 256)
 
 
 # ─────────────────────────────────────────────────────────────────────────
@@ -2195,6 +2266,36 @@ class RawResponse(NamedTuple):
         return None
 
 
+class TransportAttempt(NamedTuple):
+    """The ONE physical authority for a single transmit (Codex round 2).
+
+    It carries exactly what was signed, what (if anything) came back, and —
+    critically — the monotonic instant captured AT the `conn.request(...)`
+    boundary (`t_request_attempt_mono_ns`), never before connection creation.
+    Race skew, K3 throttle windows and every timestamp in evidence derive
+    from THIS object, so a timestamp taken before the real transmission can
+    never be mistaken for the transmission time.
+
+    `t_request_attempt_mono_ns` is None ONLY when the failure preceded
+    `conn.request` (SendPhase.BEFORE_REQUEST) — i.e. no request was ever
+    attempted. It is populated even when `conn.request` itself raises.
+    """
+
+    signed_request: object          # SignedRequest actually transmitted
+    response: object                # RawResponse | None
+    failure: object                 # TransportFailure | None
+    send_phase: object              # SendPhase
+    t_request_attempt_mono_ns: object   # int | None (None iff BEFORE_REQUEST)
+    t_response_end_mono_ns: object      # int | None
+
+    @property
+    def status(self):
+        return self.response.status if self.response is not None else None
+
+    def header(self, name):
+        return self.response.header(name) if self.response is not None else None
+
+
 class RefusingConnectionFactory:
     """The default. Constructing a connection raises, so `--plan` cannot
     reach the network even if a caller forgets to check the mode."""
@@ -2255,26 +2356,17 @@ class R2Transport:
 
     # ── The live primitive ───────────────────────────────────────────────
 
-    def sign_and_send(self, *, target, body, credential, amz_date,
-                      extra_headers=None, include_content_md5=False,
-                      allow_denied_prefix_probe=False,
-                      max_response_bytes=None) -> RawResponse:
-        """Validate → sign → transmit, atomically. THE future live path.
+    def _assert_amz_date_fresh(self, credential, amz_date):
+        """Shared credential/date pre-send validation for ORDINARY traffic.
 
-        The credential is validated COMPLETELY — internally consistent, and
-        bound to this endpoint, policy, group and validity window — against
-        the ACTUAL WALL CLOCK (MEDIUM 1), before anything is signed or a
-        socket is considered. The `amz_date` is separately required to be
-        within `max_amz_date_skew_seconds` of that wall clock, so a stale
-        or future request date cannot masquerade as "now".
+        Returns the wall-clock `now` used, so callers need not read it twice.
         """
         if type(credential) is not TemporaryCredential:
             raise SafetyBarrierTripped(
-                "sign_and_send requires exactly a TemporaryCredential")
+                "a live send requires exactly a TemporaryCredential")
         _exact_str(amz_date, "amz_date", max_len=17)
         if not _grammar().amz_date.fullmatch(amz_date):
             raise SafetyBarrierTripped(f"malformed x-amz-date {amz_date!r}")
-
         actual_now = self._wall_clock()
         if type(actual_now) not in (int, float) or not math.isfinite(actual_now):
             raise SafetyBarrierTripped("wall clock returned a non-finite value")
@@ -2284,9 +2376,21 @@ class R2Transport:
             raise SafetyBarrierTripped(
                 f"amz_date is {abs(request_epoch - actual_now):.0f}s from the "
                 f"wall clock (max {skew}s) — refusing")
-        # Freshness is judged by the wall clock, NOT by the caller's date.
         validate_probe_credential_for_transport(
             credential, endpoint_host=self.endpoint_host, now=actual_now)
+        return actual_now
+
+    def sign_and_attempt(self, *, target, body, credential, amz_date,
+                         extra_headers=None, include_content_md5=False,
+                         allow_denied_prefix_probe=False,
+                         max_response_bytes=None) -> TransportAttempt:
+        """THE ordinary live path. Validate → sign → transmit as ONE step,
+        returning the single authoritative TransportAttempt (the exact
+        signed request, the response-or-failure, and the request-attempt
+        timestamp). The credential and amz_date are validated against the
+        ACTUAL wall clock before anything is signed or a socket considered.
+        """
+        self._assert_amz_date_fresh(credential, amz_date)
         signed = sign_request(
             target=target, host=self.endpoint_host,
             access_key_id=credential.access_key_id,
@@ -2294,25 +2398,146 @@ class R2Transport:
             session_token=credential.session_token,
             body=body, amz_date=amz_date, extra_headers=extra_headers,
             include_content_md5=include_content_md5)
-        return self._transmit(
+        return self._attempt(
             signed, allow_denied_prefix_probe=allow_denied_prefix_probe,
             max_response_bytes=max_response_bytes)
 
-    # ── Offline-only helper ──────────────────────────────────────────────
-
-    def send_signed_offline(self, signed, *, allow_denied_prefix_probe=False,
-                            max_response_bytes=None) -> RawResponse:
-        """OFFLINE TESTS ONLY. Accepts a caller-owned SignedRequest so the
-        lower-level signer can be exercised against fakes. The live runner
-        must use `sign_and_send`; this method is never that path."""
-        return self._transmit(
-            signed, allow_denied_prefix_probe=allow_denied_prefix_probe,
+    def sign_and_send(self, *, target, body, credential, amz_date,
+                      extra_headers=None, include_content_md5=False,
+                      allow_denied_prefix_probe=False,
+                      max_response_bytes=None) -> RawResponse:
+        """Back-compatible wrapper over `sign_and_attempt`: returns the
+        RawResponse or re-raises the captured TransportFailure. New code
+        should prefer `sign_and_attempt` so it also gets the signed request
+        and the request-attempt timestamp."""
+        attempt = self.sign_and_attempt(
+            target=target, body=body, credential=credential, amz_date=amz_date,
+            extra_headers=extra_headers, include_content_md5=include_content_md5,
+            allow_denied_prefix_probe=allow_denied_prefix_probe,
             max_response_bytes=max_response_bytes)
+        if attempt.failure is not None:
+            raise attempt.failure
+        return attempt.response
+
+    # ── The three EXACT signing/expiry diagnostics ───────────────────────
+    #
+    # There is deliberately NO general diagnostic primitive (Codex round-3
+    # BLOCKER 2). Each row is its own method: the caller supplies ONLY the
+    # allocator-issued identity and that group's child credential, and the
+    # method derives method/bucket/key/query/body/date ITSELF from captured
+    # policy. A caller cannot choose the shape of a diagnostic request, so
+    # an arbitrary DELETE (with or without a `versionId` query) has no path
+    # to a live-configured connection factory.
+
+    def _diagnostic_target(self, test_id, identity):
+        """Validate the identity for `test_id` and build its EXACT target."""
+        spec = test_spec(test_id)
+        if type(identity) is not RepetitionIdentity:
+            raise SafetyBarrierTripped(
+                "a diagnostic requires exactly an allocator RepetitionIdentity")
+        validate_repetition_identity(identity)
+        if identity.test_id != test_id:
+            raise SafetyBarrierTripped(
+                f"identity is for {identity.test_id!r}, not {test_id!r}")
+        # method/bucket/key/query are FIXED: PUT, the probe bucket, this
+        # repetition's own canonical key, and an empty query.
+        return spec, new_request_target(
+            method="PUT", bucket=_policy().bucket, key=identity.key, query=())
+
+    def _assert_diagnostic_credential(self, spec, credential):
+        if type(credential) is not TemporaryCredential:
+            raise SafetyBarrierTripped(
+                "a diagnostic requires exactly a TemporaryCredential")
+        if credential.group != spec.group:
+            raise SafetyBarrierTripped(
+                f"{spec.id} requires the {spec.group!r} child credential, "
+                f"got {credential.group!r}")
+
+    def _diagnostic_amz_date(self):
+        """The request date is derived from the transport's OWN wall clock —
+        never supplied by a caller."""
+        now = self._wall_clock()
+        if type(now) not in (int, float) or not math.isfinite(now):
+            raise SafetyBarrierTripped("wall clock returned a non-finite value")
+        return format_amz_date(int(now)), int(now)
+
+    def attempt_i2(self, *, identity, credential) -> TransportAttempt:
+        """I2 — token PHYSICALLY on the wire, excluded from SignedHeaders."""
+        spec, target = self._diagnostic_target("I2", identity)
+        self._assert_diagnostic_credential(spec, credential)
+        amz_date, _now = self._diagnostic_amz_date()
+        signed = sign_request(
+            target=target, host=self.endpoint_host,
+            access_key_id=credential.access_key_id,
+            secret_access_key=credential.secret_access_key,
+            session_token=None,
+            unsigned_session_token=credential.session_token,
+            body=diagnostic_body("I2"), amz_date=amz_date, extra_headers=None)
+        return self._attempt(signed, allow_denied_prefix_probe=False,
+                             max_response_bytes=None)
+
+    def attempt_i3(self, *, identity, credential) -> TransportAttempt:
+        """I3 — signed with the child key, NO session token on the wire."""
+        spec, target = self._diagnostic_target("I3", identity)
+        self._assert_diagnostic_credential(spec, credential)
+        amz_date, _now = self._diagnostic_amz_date()
+        signed = sign_request(
+            target=target, host=self.endpoint_host,
+            access_key_id=credential.access_key_id,
+            secret_access_key=credential.secret_access_key,
+            session_token=None, unsigned_session_token=None,
+            body=diagnostic_body("I3"), amz_date=amz_date, extra_headers=None)
+        return self._attempt(signed, allow_denied_prefix_probe=False,
+                             max_response_bytes=None)
+
+    def attempt_i4(self, *, identity, credential) -> TransportAttempt:
+        """I4 — a normally-bound token whose credential has ALREADY expired.
+
+        The expiry is PROVEN locally before anything is signed: the request
+        time must be at or past `credential.expires_at`, and the transmitted
+        token's own `exp` claim must agree with that value. Freshness is not
+        skipped merely because a caller asked for "expired" mode — this
+        method refuses to run while the credential is still valid.
+        """
+        spec, target = self._diagnostic_target("I4", identity)
+        self._assert_diagnostic_credential(spec, credential)
+        amz_date, now = self._diagnostic_amz_date()
+        if now < credential.expires_at:
+            raise SafetyBarrierTripped(
+                "the I4 diagnostic requires an ALREADY-EXPIRED credential "
+                f"(now {now} < expires_at {credential.expires_at})")
+        # The token's own signed claims must carry that same expiry, so the
+        # row cannot be satisfied by a credential object whose metadata was
+        # edited to look expired.
+        _header, claims, _jwt = _decode_probe_session_token(
+            credential.session_token)
+        if claims.get("exp") != credential.expires_at \
+                or claims.get("group") != spec.group:
+            raise SafetyBarrierTripped(
+                "the I4 token claims disagree with the credential's expiry "
+                "or group")
+        signed = sign_request(
+            target=target, host=self.endpoint_host,
+            access_key_id=credential.access_key_id,
+            secret_access_key=credential.secret_access_key,
+            session_token=credential.session_token,
+            unsigned_session_token=None,
+            body=diagnostic_body("I4"), amz_date=amz_date, extra_headers=None)
+        return self._attempt(signed, allow_denied_prefix_probe=False,
+                             max_response_bytes=None)
 
     # ── Shared wire validation + transmission ────────────────────────────
 
-    def _transmit(self, signed, *, allow_denied_prefix_probe,
-                  max_response_bytes) -> RawResponse:
+    def _attempt(self, signed, *, allow_denied_prefix_probe,
+                 max_response_bytes) -> TransportAttempt:
+        """THE single transmit. Fully validates the wire (allowlist,
+        bucket/key barriers, host), then transmits, capturing the
+        request-attempt timestamp AT the `conn.request(...)` boundary and
+        returning a TransportAttempt. A transport error is CAPTURED in the
+        result (never raised), so the caller always learns the send phase
+        and the attempt timestamp; only a genuine safety/validation error
+        (a ProbeError, including a refused redirect) still raises.
+        """
         policy = _policy()
         if type(signed) is not SignedRequest:
             raise SafetyBarrierTripped(
@@ -2335,6 +2560,7 @@ class R2Transport:
 
         if type(signed.headers) is not tuple:
             raise SafetyBarrierTripped("headers must be exactly tuple")
+        allowlist = policy.wire_header_allowlist
         wire = {}
         for item in signed.headers:
             if type(item) is not tuple or len(item) != 2:
@@ -2352,6 +2578,15 @@ class R2Transport:
                     f"header {name!r} is transport-owned and may never be "
                     "supplied: Host is bound to the validated connection "
                     "host and Content-Length to the exact body bytes")
+            # COMPLETE wire allowlist (Codex BLOCKER 3). A header outside it
+            # — x-amz-copy-source, x-amz-acl, x-amz-website-redirect-location,
+            # any multipart or unknown x-amz-* mutation header — is refused
+            # HERE, before a socket, even on a hand-built request. Credential
+            # scope is never trusted to save an unsafe local request.
+            if name not in allowlist:
+                raise SafetyBarrierTripped(
+                    f"header {name!r} is not on the wire allowlist "
+                    f"({sorted(allowlist)}) — refusing before any socket")
             if name in wire:
                 raise SafetyBarrierTripped(f"duplicate header {name!r}")
             wire[name] = value
@@ -2363,15 +2598,17 @@ class R2Transport:
 
         # Rebuild the request path from validated primitives — never from
         # an instance method or a caller-formatted string.
-        path = _canonical_uri(bucket, key)
+        path_only = _canonical_uri(bucket, key)
         query_text = _canonical_query(query)
-        if query_text:
-            path = f"{path}?{query_text}"
+        path = f"{path_only}?{query_text}" if query_text else path_only
         if not path.isascii() or " " in path \
                 or any(ch in path for ch in "\x00\r\n\t"):
             raise SafetyBarrierTripped("request path refused")
-        if path != f"/{policy.bucket}" \
-                and not path.startswith(f"/{policy.bucket}/"):
+        # The bucket-address check is on the PATH portion only: a bucket-
+        # level ListObjectsV2 (empty key) legitimately carries `?list-type=2`,
+        # and a query string can never change which bucket is addressed.
+        if path_only != f"/{policy.bucket}" \
+                and not path_only.startswith(f"/{policy.bucket}/"):
             raise ProductionNameDetected(
                 "resolved request path does not address the probe bucket")
 
@@ -2386,29 +2623,43 @@ class R2Transport:
             "query": [name for name, _ in query], "body_len": len(body)})
         # ── END OF WIRE VALIDATION — locals only from here down ──────────
 
-        started = self._monotonic()
         conn = None
         phase = SendPhase.BEFORE_REQUEST
+        t_attempt = None
+        t_end = None
+        response = None
+        failure = None
         try:
             conn = self._factory(host, self._timeout)
-            # The instant BEFORE conn.request(): from here on, any
-            # exception means bytes MAY have been sent and the server MAY
-            # have committed. request() is the operation that connects and
-            # writes — its failures are never "before send".
+            # Capture the attempt time AT the actual conn.request boundary —
+            # after the connection exists, immediately before bytes go out
+            # (Codex BLOCKER 2). From here on any exception means bytes MAY
+            # have been sent and the server MAY have committed.
             phase = SendPhase.DURING_REQUEST
+            t_attempt = self._monotonic()
             conn.request(method, path, body=body or None, headers=wire)
             phase = SendPhase.AWAITING_RESPONSE
-            response = conn.getresponse()
-            status = response.status
-            headers_out = tuple((k, v) for k, v in response.getheaders())
-            raw = response.read(max_response + 1)
+            raw_response = conn.getresponse()
+            status = raw_response.status
+            headers_out = tuple((k, v) for k, v in raw_response.getheaders())
+            raw = raw_response.read(max_response + 1)
             truncated = len(raw) > max_response
             body_out = raw[:max_response]
+            t_end = self._monotonic()
+            if 300 <= status < 400:
+                raise SafetyBarrierTripped(
+                    f"redirect status {status} received; redirects are never "
+                    "followed")
+            response = RawResponse(
+                status=status, headers=headers_out, body=body_out,
+                body_truncated=truncated, t_request_start_mono_ns=t_attempt,
+                t_response_end_mono_ns=t_end)
         except ProbeError:
             raise
         except BaseException as exc:  # noqa: BLE001 — mapped to safe category
-            raise TransportFailure(classify_exception(exc, phase), phase,
-                                   type(exc).__name__) from None
+            failure = TransportFailure(classify_exception(exc, phase), phase,
+                                       type(exc).__name__)
+            t_end = self._monotonic()
         finally:
             if conn is not None:
                 try:
@@ -2416,14 +2667,87 @@ class R2Transport:
                 except Exception:  # noqa: BLE001 — close must never leak
                     pass
 
-        if 300 <= status < 400:
-            raise SafetyBarrierTripped(
-                f"redirect status {status} received; redirects are never "
-                "followed")
-        return RawResponse(
-            status=status, headers=headers_out, body=body_out,
-            body_truncated=truncated, t_request_start_mono_ns=started,
-            t_response_end_mono_ns=self._monotonic())
+        return TransportAttempt(
+            signed_request=signed, response=response, failure=failure,
+            send_phase=phase, t_request_attempt_mono_ns=t_attempt,
+            t_response_end_mono_ns=t_end)
+
+
+class OfflineSignerHarness(R2Transport):
+    """TEST-ONLY transport for exercising the pure signer against fakes.
+
+    WHY IT IS SEPARATE (Codex round-3 BLOCKER 2). The live `R2Transport`
+    exposes NO method that transmits a caller-owned `SignedRequest`: its
+    only send paths sign internally (`sign_and_attempt`) or are the three
+    exact diagnostics (`attempt_i2/3/4`). That closes the route by which a
+    caller-shaped request — an arbitrary DELETE, a `versionId` query —
+    could reach a live-configured connection factory.
+
+    The offline tests still need to push a hand-built SignedRequest through
+    the wire validator, so that capability lives HERE, on a class the
+    runner and the CLI never construct, and which is STRUCTURALLY unable to
+    be live: its constructor refuses `real_connection_factory` outright and
+    accepts only a factory explicitly marked as an offline double via
+    `offline_connection_double`. It is not enough for a method to be named
+    "offline" while its safety depends on what the caller installed.
+    """
+
+    def __init__(self, *, endpoint_host, connection_factory=None, **kwargs):
+        if connection_factory is not None:
+            if connection_factory is real_connection_factory:
+                raise SafetyBarrierTripped(
+                    "the offline harness must never be given the real "
+                    "connection factory")
+            target = connection_factory
+            if not is_offline_connection_double(target):
+                raise SafetyBarrierTripped(
+                    "the offline harness accepts only a connection factory "
+                    "explicitly marked with offline_connection_double()")
+        super().__init__(endpoint_host=endpoint_host,
+                         connection_factory=connection_factory, **kwargs)
+
+    def send_signed_offline(self, signed, *, allow_denied_prefix_probe=False,
+                            max_response_bytes=None) -> RawResponse:
+        """OFFLINE TESTS ONLY. Transmits a caller-owned SignedRequest through
+        the identical `_attempt` wire validation (allowlist, bucket/key
+        barriers, host binding), against a marked offline double."""
+        attempt = self._attempt(
+            signed, allow_denied_prefix_probe=allow_denied_prefix_probe,
+            max_response_bytes=max_response_bytes)
+        if attempt.failure is not None:
+            raise attempt.failure
+        return attempt.response
+
+
+#: Attribute an object must carry to be accepted by OfflineSignerHarness.
+OFFLINE_DOUBLE_ATTRIBUTE = "probe_offline_connection_double"
+
+
+def offline_connection_double(factory):
+    """Mark a connection factory as a TEST DOUBLE.
+
+    `real_connection_factory` is never marked, and marking it would require
+    editing this module, so the offline harness cannot be handed the live
+    factory by any caller.
+    """
+    if factory is real_connection_factory:
+        raise SafetyBarrierTripped(
+            "the real connection factory can never be an offline double")
+    try:
+        setattr(factory, OFFLINE_DOUBLE_ATTRIBUTE, True)
+    except (AttributeError, TypeError):
+        raise SafetyBarrierTripped(
+            "this object cannot be marked as an offline double")
+    return factory
+
+
+def is_offline_connection_double(factory) -> bool:
+    """True when `factory` (or its class) carries the offline-double mark."""
+    if factory is real_connection_factory:
+        return False
+    if type(factory) is RefusingConnectionFactory:
+        return True          # the refusing default can never network
+    return getattr(factory, OFFLINE_DOUBLE_ATTRIBUTE, False) is True
 
 
 def assert_single_part(ledger: Sequence[Mapping]) -> None:
@@ -3591,7 +3915,7 @@ def _remote_state_of(response) -> RemoteState:
     return RemoteState.UNKNOWN
 
 
-def _derive_a(spec, request, response, siblings):
+def _derive_a(spec, request, response, siblings, sibling_responses=()):
     """A: correct ETag + If-Match must actually mutate and verify."""
     if request.get("http_method") != "PUT":
         return _inconclusive()
@@ -3606,7 +3930,7 @@ def _derive_a(spec, request, response, siblings):
     return TestResultDerivation("CORRECT_ETAG_ACCEPTED", True, False)
 
 
-def _derive_c(spec, request, response, siblings):
+def _derive_c(spec, request, response, siblings, sibling_responses=()):
     """C: If-None-Match:* create on an absent key must actually create."""
     if request.get("http_method") != "PUT":
         return _inconclusive()
@@ -3621,7 +3945,7 @@ def _derive_c(spec, request, response, siblings):
     return TestResultDerivation("CREATE_IF_ABSENT_OK", True, False)
 
 
-def _derive_g(spec, request, response, siblings):
+def _derive_g(spec, request, response, siblings, sibling_responses=()):
     """G: the quoted ETag returned by the PUT must round trip byte-exactly
     through an authenticated read-back."""
     if request.get("http_method") != "PUT":
@@ -3642,7 +3966,7 @@ def _derive_g(spec, request, response, siblings):
 def _allowed_scope(method):
     """H1/H2/H3: an ALLOWED operation, under the intended child credential,
     on this repetition's own key, must actually succeed."""
-    def derive(spec, request, response, siblings):
+    def derive(spec, request, response, siblings, sibling_responses=()):
         if request.get("http_method") != method:
             return _inconclusive()
         if not _key_matches_target(request.get("key"), "allocated"):
@@ -3666,7 +3990,7 @@ def _denied_scope(method, *, target, require_list_query=False):
     `require_list_query` additionally requires a real ListObjectsV2 query
     (Codex BLOCKER 2-B).
     """
-    def derive(spec, request, response, siblings):
+    def derive(spec, request, response, siblings, sibling_responses=()):
         if request.get("http_method") != method:
             return _inconclusive()
         if not _key_matches_target(request.get("key"), target):
@@ -3697,7 +4021,7 @@ def _key_matches_target(key, target) -> bool:
                             policy.denied_out_of_prefix_key))
 
 
-def _derive_i1(spec, request, response, siblings):
+def _derive_i1(spec, request, response, siblings, sibling_responses=()):
     """I1: the security token must actually appear in SignedHeaders, on a
     request that really carried this group's child credential."""
     if not _child_credential_bound(spec, request):
@@ -3707,7 +4031,7 @@ def _derive_i1(spec, request, response, siblings):
     return TestResultDerivation("SIGNING_CONTRACT_OK", True, False)
 
 
-def _derive_i2(spec, request, response, siblings):
+def _derive_i2(spec, request, response, siblings, sibling_responses=()):
     """I2 is DIAGNOSTIC ONLY: the token was PHYSICALLY TRANSMITTED but
     deliberately excluded from SignedHeaders (Codex BLOCKER 2-C).
 
@@ -3731,7 +4055,7 @@ def _derive_i2(spec, request, response, siblings):
     return TestResultDerivation("SIGNING_DIAGNOSTIC_RECORDED", True, False)
 
 
-def _derive_i3(spec, request, response, siblings):
+def _derive_i3(spec, request, response, siblings, sibling_responses=()):
     """I3: with the token omitted entirely, the request must be REJECTED.
 
     Success here would mean the token was not really required. The row
@@ -3757,7 +4081,7 @@ def _derive_i3(spec, request, response, siblings):
     return TestResultDerivation("SIGNING_CONTRACT_OK", True, False)
 
 
-def _derive_i4(spec, request, response, siblings):
+def _derive_i4(spec, request, response, siblings, sibling_responses=()):
     """I4: the TTL must be PROVEN to have elapsed (Codex BLOCKER 2-D).
 
     The persisted evidence carries the credential's issued/expires window
@@ -3782,7 +4106,7 @@ def _derive_i4(spec, request, response, siblings):
     return TestResultDerivation("CREDENTIAL_EXPIRY_ENFORCED", True, False)
 
 
-def _derive_k1(spec, request, response, siblings):
+def _derive_k1(spec, request, response, siblings, sibling_responses=()):
     """K1: ABSENT via the existing absence classifier — an AUTHENTICATED
     GET returning 404 NoSuchKey, nothing weaker."""
     if not _child_credential_bound(spec, request):
@@ -3796,7 +4120,7 @@ def _derive_k1(spec, request, response, siblings):
     return TestResultDerivation("ABSENT_CONFIRMED", True, False)
 
 
-def _derive_k2(spec, request, response, siblings):
+def _derive_k2(spec, request, response, siblings, sibling_responses=()):
     """K2: the denial contrast — an out-of-prefix access under the same
     child credential must come back as a denial, proving 404 and 403 are
     distinguishable."""
@@ -3811,43 +4135,67 @@ def _derive_k2(spec, request, response, siblings):
     return TestResultDerivation("DENIAL_CONTRAST_OK", True, False)
 
 
-def _derive_k3(spec, request, response, siblings):
-    """K3: a throttle provoked by REPEATED SAME-KEY WRITES (BLOCKER 2-E).
+#: R2 documents one write per second per object key. The throttle window is
+#: measured in PHYSICAL nanoseconds between the two conn.request boundaries.
+K3_THROTTLE_WINDOW_NS = 1_000_000_000
 
-    One arbitrary 429 proves nothing. The throttled attempt must be a PUT,
-    and the persisted evidence must contain at least one EARLIER PUT from
-    the same repetition to the SAME key, signed within the documented
-    one-write-per-second window. A HEAD 429, or a 429 on a key nothing
-    else wrote, is INCONCLUSIVE.
+
+def _derive_k3(spec, request, response, siblings, sibling_responses=()):
+    """K3: a throttle provoked by REPEATED SAME-KEY WRITES.
+
+    THROTTLE_OBSERVED requires ALL of:
+      - the throttled attempt is a PUT that returned a DEFINITE 429, with a
+        PHYSICAL transport-attempt timestamp;
+      - an EARLIER same-key PUT from this repetition whose RESPONSE was a
+        DEFINITE 2xx — the server actually OBSERVED and accepted a first
+        write (Codex HIGH 2) — and which also carries a physical
+        transport-attempt timestamp;
+      - `0 <= second_attempt_ns - first_attempt_ns <= 1s`.
+
+    TIME SOURCE (Codex round-3 BLOCKER 3). Only
+    `t_request_attempt_mono_ns` — captured at the actual `conn.request()`
+    boundary — may satisfy the window. The signed `x-amz-date` /
+    `request_time_epoch` is DELIBERATELY not consulted: two requests can
+    carry the same signed date while their real transmissions are seconds
+    apart, and that must never read as a throttle. A missing timestamp on
+    either attempt is INCONCLUSIVE.
     """
     if request.get("http_method") != "PUT":
         return _inconclusive()
     if response.get("status") != 429:
         return _inconclusive()
     key = request.get("key")
-    at = request.get("request_time_epoch")
-    if not _key_matches_target(key, "allocated") or type(at) is not int:
+    if not _key_matches_target(key, "allocated"):
         return _inconclusive()
     sequence = request.get("sequence")
-    if type(sequence) is not int:
+    second_ns = request.get("t_request_attempt_mono_ns")
+    if type(sequence) is not int or type(second_ns) is not int:
         return _inconclusive()
+    responses_by_corr = {
+        r.get("correlation_id"): r for r in sibling_responses
+        if type(r) is dict}
     for prior in siblings:
         if prior.get("http_method") != "PUT" or prior.get("key") != key:
             continue
         prior_sequence = prior.get("sequence")
-        prior_at = prior.get("request_time_epoch")
-        if type(prior_sequence) is not int or type(prior_at) is not int:
+        first_ns = prior.get("t_request_attempt_mono_ns")
+        if type(prior_sequence) is not int or type(first_ns) is not int:
             continue
         if prior_sequence >= sequence:
             continue
-        # R2 documents one write per second per key; a throttle is only
-        # meaningful when the writes really were inside that window.
-        if 0 <= at - prior_at <= 1:
+        # The earlier same-key write must have been SERVER-OBSERVED (a
+        # definite 2xx). Without its response, or with a non-2xx one, this
+        # sibling proves nothing.
+        prior_response = responses_by_corr.get(prior.get("correlation_id"))
+        if prior_response is None or not _is_2xx(prior_response.get("status")):
+            continue
+        delta = second_ns - first_ns
+        if 0 <= delta <= K3_THROTTLE_WINDOW_NS:
             return TestResultDerivation("THROTTLE_OBSERVED", True, False)
     return _inconclusive()
 
 
-def _derive_j(spec, request, response, siblings):
+def _derive_j(spec, request, response, siblings, sibling_responses=()):
     """J: a production-size SINGLE-PART PUT.
 
     Production size is DERIVED here from the persisted request (BLOCKER 2):
@@ -3868,7 +4216,7 @@ def _derive_j(spec, request, response, siblings):
     return TestResultDerivation("SINGLE_PART_PROVEN", True, True)
 
 
-def _derive_l(spec, request, response, siblings):
+def _derive_l(spec, request, response, siblings, sibling_responses=()):
     """L: raw byte integrity — the read-back hash AND length must equal
     what was sent."""
     if request.get("http_method") != "PUT":
@@ -3893,7 +4241,7 @@ def _create_only_conditional(created, idempotent):
     idempotency only, and the matrix descriptions say exactly that. No
     placeholder stands in for a fact the live row does not establish.
     """
-    def derive(spec, request, response, siblings):
+    def derive(spec, request, response, siblings, sibling_responses=()):
         if request.get("http_method") != "PUT":
             return _inconclusive()
         if request.get("if_none_match_raw") != "*":
@@ -3952,7 +4300,8 @@ _derivations = _capture_derivations()
 
 
 def derive_test_result(spec, request_record, response_record, *,
-                       sibling_requests=()) -> TestResultDerivation:
+                       sibling_requests=(),
+                       sibling_responses=()) -> TestResultDerivation:
     """DERIVE one support-row repetition's result from its own evidence.
 
     `spec` selects the row-specific derivation; there is no shared success
@@ -3961,8 +4310,9 @@ def derive_test_result(spec, request_record, response_record, *,
     must belong to this exact test and repetition.
 
     `sibling_requests` are the OTHER persisted REQUEST_RECORDs of the same
-    test and repetition. Only K3 uses them, to prove a throttle followed a
-    repeated same-key write rather than appearing out of nowhere.
+    test and repetition; `sibling_responses` are their RESPONSE_RECORDs.
+    Only K3 uses them — to prove the earlier same-key write was actually
+    server-observed (a definite 2xx), not merely attempted (Codex HIGH 2).
     """
     # Anchored on a row of the CAPTURED matrix rather than the rebindable
     # `TestSpec` name, so rebinding that name cannot disable derivation.
@@ -4006,7 +4356,22 @@ def derive_test_result(spec, request_record, response_record, *,
                 "sibling_requests must belong to this test and repetition")
         if sibling.get("correlation_id") != request_record["correlation_id"]:
             siblings.append(sibling)
-    result = derive(spec, request_record, response_record, tuple(siblings))
+    if type(sibling_responses) not in (tuple, list):
+        raise SafetyBarrierTripped("sibling_responses must be tuple/list")
+    sibling_resps = []
+    for sibling in sibling_responses:
+        if type(sibling) is not dict \
+                or sibling.get("record_kind") != "RESPONSE_RECORD":
+            raise SafetyBarrierTripped(
+                "sibling_responses must all be RESPONSE_RECORDs")
+        if sibling.get("test_id") != spec.id \
+                or sibling.get("repetition") != request_record["repetition"]:
+            raise SafetyBarrierTripped(
+                "sibling_responses must belong to this test and repetition")
+        if sibling.get("correlation_id") != request_record["correlation_id"]:
+            sibling_resps.append(sibling)
+    result = derive(spec, request_record, response_record, tuple(siblings),
+                    tuple(sibling_resps))
     if type(result) is not TestResultDerivation:
         raise SafetyBarrierTripped("a derivation returned a foreign type")
     if result.outcome not in _test_result_outcomes():
@@ -4422,6 +4787,11 @@ def _make_evidence_field_validators():
         "final_etag": _v_etag(allow_none=True),
         "t_request_start_mono_ns": _v_int(minimum=0, allow_none=True),
         "t_response_end_mono_ns": _v_int(minimum=0, allow_none=True),
+        # The PHYSICAL instant captured at the conn.request() boundary
+        # (Codex round-3 BLOCKER 3). None only when no request was ever
+        # attempted. K3's throttle window is measured from THIS and from
+        # nothing else — never from a signed date or a response time.
+        "t_request_attempt_mono_ns": _v_int(minimum=0, allow_none=True),
         "race_attribution": _v_str(
             max_len=16, choices=frozenset(a.value for a in RaceAttribution),
             allow_none=True),
@@ -4563,6 +4933,8 @@ _REQUEST_ALLOWED = _REQUEST_REQUIRED | frozenset({
     "if_match_raw", "if_match_raw_hex", "if_none_match_raw",
     "if_none_match_raw_hex", "session_token_sha256", "access_key_id_sha256",
     "multipart_markers_present",
+    # The physical conn.request() instant for this request (BLOCKER 3).
+    "t_request_attempt_mono_ns",
     # Non-secret identity + validity window of the credential that signed.
     "credential_group", "credential_scope", "credential_actions",
     "credential_prefixes", "credential_issued_at", "credential_expires_at"})
@@ -5065,9 +5437,19 @@ def derive_run_summary(*, phase, semantic, race, ledger,
                        completion=None) -> dict:
     """Build the RUN_SUMMARY dict with a DERIVED verdict.
 
-    PASS requires: no ABANDON anywhere; the ledger not poisoned; every
-    semantic and race test PASS via its aggregator; and every remaining
-    required matrix row complete from record-derived counters.
+    PASS requires ALL of: no ABANDON anywhere; the ledger not poisoned;
+    EVERY ledger reservation resolved (no open normal PUT reservation and no
+    open same-key race pair); every semantic and race test PASS via its
+    aggregator; and every remaining required matrix row complete from
+    record-derived counters.
+
+    OPEN RESERVATIONS ARE AUTHORITATIVE HERE (Codex round-3 BLOCKER 1). An
+    unresolved reservation means the probe never established whether a body
+    it may have written committed, so it cannot account for its own writes
+    and must never report PASS. This is enforced in THIS function — the
+    authoritative, disk-derived summary layer — not by a caller patching the
+    returned dict afterwards. The counts are read from the ledger itself and
+    persisted in the summary, so a later reader can re-check them.
 
     NOTE: `EvidenceWriter.finalize` calls this with state RECONSTRUCTED FROM
     DISK (BLOCKER 2). The in-memory run state never authorizes PASS.
@@ -5116,6 +5498,14 @@ def derive_run_summary(*, phase, semantic, race, ledger,
         abandon = True
 
     snap = ledger.snapshot()
+    # AUTHORITATIVE: any unresolved reservation is terminal, exactly like a
+    # poisoned ledger. Read straight from the ledger — never from a caller.
+    open_puts, open_pairs = ledger.open_reservation_counts()
+    _exact_int(open_puts, "open_put_reservations", minimum=0)
+    _exact_int(open_pairs, "open_race_pairs", minimum=0)
+    if open_puts or open_pairs:
+        abandon = True
+
     if abandon:
         verdict = "ABANDON"
     elif all_complete:
@@ -5138,6 +5528,9 @@ def derive_run_summary(*, phase, semantic, race, ledger,
         "object_count": snap["object_count"],
         "uploaded_bytes": snap["uploaded_bytes"],
         "peak_storage_bytes": snap["peak_storage_bytes"],
+        # Persisted so the authoritative summary carries its own proof.
+        "open_put_reservations": open_puts,
+        "open_race_pairs": open_pairs,
     }
 
 
@@ -5156,12 +5549,22 @@ _SUMMARY_FIELD_VALIDATORS = {
     "object_count": _v_int(),
     "uploaded_bytes": _v_int(),
     "peak_storage_bytes": _v_int(),
+    # Exact nonnegative integers; REQUIRED (a missing count is a malformed
+    # summary, not an implicit zero).
+    "open_put_reservations": _v_int(minimum=0),
+    "open_race_pairs": _v_int(minimum=0),
 }
 SUMMARY_FIELDS = frozenset(_SUMMARY_FIELD_VALIDATORS)
 
 
 def validate_summary(summary, secrets: Iterable[str]) -> None:
-    """Shape-validate a DERIVED summary. `secrets` is explicit (HIGH 3)."""
+    """Shape-validate a DERIVED summary. `secrets` is explicit (HIGH 3).
+
+    Also enforces the internal consistency a PASS claims: a PASS summary may
+    not be poisoned, may not be flagged abandon, and may not carry a nonzero
+    open-reservation count (Codex round-3 BLOCKER 1). A hand-edited summary
+    asserting PASS beside an open reservation is refused here.
+    """
     if type(summary) is not dict:
         raise EvidenceValidationError("summary must be exactly dict")
     missing = SUMMARY_FIELDS - set(summary)
@@ -5173,6 +5576,15 @@ def validate_summary(summary, secrets: Iterable[str]) -> None:
             raise EvidenceValidationError(
                 f"summary field {key!r} is not in the fixed schema")
         _SUMMARY_FIELD_VALIDATORS[key](value, key)
+    if summary["verdict"] == "PASS":
+        if summary["open_put_reservations"] or summary["open_race_pairs"]:
+            raise EvidenceValidationError(
+                "a PASS summary cannot carry unresolved reservations "
+                f"({summary['open_put_reservations']} puts, "
+                f"{summary['open_race_pairs']} race pairs)")
+        if summary["ledger_poisoned"] or summary["abandon_triggered"]:
+            raise EvidenceValidationError(
+                "a PASS summary cannot be poisoned or abandon-triggered")
     serialized = json.dumps(summary, sort_keys=True)
     for secret in secrets:
         if secret and secret in serialized:
@@ -5599,9 +6011,15 @@ def reconstruct_run_from_disk(run_dir, *, phase, run_id, secrets,
                     if correlation != ref
                     and other["test_id"] == record["test_id"]
                     and other["repetition"] == record["repetition"]]
+        sibling_resps = [other for correlation, other
+                         in sorted(responses.items())
+                         if correlation != ref
+                         and other["test_id"] == record["test_id"]
+                         and other["repetition"] == record["repetition"]]
         derived = derive_test_result(test_spec(record["test_id"]),
                                      request, response,
-                                     sibling_requests=siblings)
+                                     sibling_requests=siblings,
+                                     sibling_responses=sibling_resps)
         if (record["outcome_classification"] != derived.outcome
                 or record["derived_valid"] is not derived.valid
                 or record["derived_production_size"]
@@ -6097,6 +6515,7 @@ class EvidenceWriter:
                 {"record_kind": "RESPONSE_RECORD",
                  "correlation_id": evidence_ref}))
             siblings = []
+            sibling_resps = []
             for correlation in sorted(self._requests):
                 if correlation == evidence_ref:
                     continue
@@ -6108,8 +6527,16 @@ class EvidenceWriter:
                     expected_relative_for_record(
                         {"record_kind": "REQUEST_RECORD",
                          "correlation_id": correlation})))
+                # The sibling's RESPONSE is required so K3 can prove the
+                # earlier same-key write was server-observed (Codex HIGH 2).
+                if correlation in self._responses:
+                    sibling_resps.append(self._load_persisted(
+                        expected_relative_for_record(
+                            {"record_kind": "RESPONSE_RECORD",
+                             "correlation_id": correlation})))
             derived = derive_test_result(spec, request, response,
-                                         sibling_requests=siblings)
+                                         sibling_requests=siblings,
+                                         sibling_responses=sibling_resps)
             record = {
                 "record_kind": "TEST_RESULT_RECORD", "phase": self._phase,
                 "run_id": self.run_id,
@@ -6193,6 +6620,18 @@ class EvidenceWriter:
             if summary["verdict"] == "PASS" and not rebuilt.files:
                 summary = dict(summary)
                 summary["verdict"] = "INCOMPLETE"
+            # The persisted open-reservation counts must equal the ledger's
+            # OWN authoritative counts (Codex round-3 BLOCKER 1). A summary
+            # whose counts were altered — e.g. zeroed while a reservation is
+            # genuinely open — fails closed here rather than being written.
+            authoritative_open = self.ledger.open_reservation_counts()
+            if (summary["open_put_reservations"],
+                    summary["open_race_pairs"]) != authoritative_open:
+                raise SafetyBarrierTripped(
+                    "summary open-reservation counts disagree with the "
+                    f"ledger: summary=({summary['open_put_reservations']}, "
+                    f"{summary['open_race_pairs']}) "
+                    f"ledger={authoritative_open}")
             validate_summary(summary, self._secrets)
             manifest = {
                 "run_id": self.run_id,
@@ -6260,8 +6699,14 @@ def _fingerprint(text) -> str | None:
 
 def build_request_record(*, phase, run_id, group, test_id, repetition,
                          sequence, endpoint_host, signed,
-                         credential=None) -> dict:
+                         credential=None,
+                         t_request_attempt_mono_ns=None) -> dict:
     """Evidence for one outgoing request.
+
+    `t_request_attempt_mono_ns` is the PHYSICAL instant captured at the
+    `conn.request()` boundary by the transport (Codex round-3 BLOCKER 3) —
+    the only time source K3's throttle window may use. It is None when no
+    request was ever attempted.
 
     EVERY credential fact is DERIVED from the SignedRequest that actually
     went on the wire (Codex BLOCKER 2). There is no `session_token_present`
@@ -6391,6 +6836,9 @@ def build_request_record(*, phase, run_id, group, test_id, repetition,
         "multipart_markers_present": any(
             name in _policy().multipart_query_markers
             for name, _ in signed.target.query),
+        # The physical conn.request() instant, straight from the transport.
+        "t_request_attempt_mono_ns": _exact_opt_int(
+            t_request_attempt_mono_ns, "t_request_attempt_mono_ns", minimum=0),
     }
     record.update(credential_facts)
     return record
@@ -6440,6 +6888,1098 @@ def build_response_record(*, phase, run_id, group, test_id, repetition,
         "error_category": error_category.value if error_category else None,
         "exception_type_name": exception_type_name,
     }
+
+
+# ─────────────────────────────────────────────────────────────────────────
+# Disposable parent credential file  (Gate D input)
+#
+# The ONLY credential source the live runner may read is the explicit
+# --credentials-file. There is deliberately no environment fallback, no AWS
+# credential chain, no ~/.aws, no wrangler and no default path. The file is
+# parsed with a strict, non-executing KEY=VALUE reader: no `source`, no
+# shell, no interpolation, no comments, exactly the two expected keys.
+# ─────────────────────────────────────────────────────────────────────────
+
+class ParentCredentials(NamedTuple):
+    """The disposable, bucket-scoped parent R2 API token, in memory only.
+
+    Never serialised, never logged. Its two values are handed to the
+    EvidenceWriter as `secrets` so the evidence secret-scan refuses any
+    record that would contain them, and they are used only to mint the
+    per-group child credentials.
+    """
+
+    access_key_id: str
+    secret_access_key: str
+
+    def secret_values(self) -> tuple:
+        return (self.access_key_id, self.secret_access_key)
+
+
+CREDENTIAL_FILE_MAX_BYTES = 4096
+_CREDENTIAL_ACCESS_KEY = "R2_ACCESS_KEY_ID"
+_CREDENTIAL_SECRET_KEY = "R2_SECRET_ACCESS_KEY"
+_CREDENTIAL_KEYS = (_CREDENTIAL_ACCESS_KEY, _CREDENTIAL_SECRET_KEY)
+
+
+def _probe_repo_root() -> str:
+    """The Bible PAL checkout root (scripts/ is one level below it)."""
+    return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def _path_is_inside_repo(path: str) -> bool:
+    real = os.path.realpath(path)
+    root = os.path.realpath(_probe_repo_root())
+    try:
+        return os.path.commonpath([real, root]) == root
+    except ValueError:
+        # Different drives / unrelated roots — cannot be inside the repo.
+        return False
+
+
+def load_probe_credentials_file(path) -> ParentCredentials:
+    """Parse the disposable parent credential file, or refuse fail-closed.
+
+    Enforced, in order (every failure raises WITHOUT echoing any value):
+      - path is exactly str and free of any denied production name;
+      - the path is NOT inside the Bible PAL repository;
+      - the entry is a regular file, not a symlink (lstat, then O_NOFOLLOW);
+      - it is owned by the current user (where the platform reports uids);
+      - its mode grants NO group or other permission (`& 0o077 == 0`);
+      - it is at most CREDENTIAL_FILE_MAX_BYTES and decodes as UTF-8;
+      - it contains EXACTLY the two expected KEY=VALUE lines, each once,
+        no unknown keys, no duplicates, no blank/comment/continuation
+        lines, and each value matches the credential grammar.
+    """
+    _exact_str(path, "credentials-file path", max_len=4096)
+    assert_no_denied_names(path)
+    if _path_is_inside_repo(path):
+        raise MissingAuthorization(
+            "the credentials file must live OUTSIDE the Bible PAL repository")
+
+    try:
+        pre = os.lstat(path)
+    except FileNotFoundError:
+        raise MissingAuthorization(
+            "the disposable credential file does not exist")
+    except OSError:
+        raise MissingAuthorization("the credential path cannot be examined")
+    if stat.S_ISLNK(pre.st_mode):
+        raise MissingAuthorization("the credential file must not be a symlink")
+
+    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0)
+    try:
+        fd = os.open(path, flags)
+    except OSError:
+        raise MissingAuthorization(
+            "the credential file could not be opened (symlink or missing)")
+    try:
+        st = os.fstat(fd)
+        if not stat.S_ISREG(st.st_mode):
+            raise MissingAuthorization(
+                "the credential path is not a regular file")
+        if hasattr(os, "getuid") and st.st_uid != os.getuid():
+            raise MissingAuthorization(
+                "the credential file is not owned by the current user")
+        if stat.S_IMODE(st.st_mode) & 0o077:
+            raise MissingAuthorization(
+                "the credential file is group/other accessible "
+                "(required mode: owner-only, e.g. 0600)")
+        if st.st_size > CREDENTIAL_FILE_MAX_BYTES:
+            raise MissingAuthorization("the credential file is too large")
+        raw = b""
+        while True:
+            chunk = os.read(fd, 65536)
+            if not chunk:
+                break
+            raw += chunk
+            if len(raw) > CREDENTIAL_FILE_MAX_BYTES:
+                raise MissingAuthorization("the credential file is too large")
+    finally:
+        os.close(fd)
+
+    try:
+        text = raw.decode("utf-8")
+    except UnicodeDecodeError:
+        raise MissingAuthorization("the credential file is not valid UTF-8")
+
+    lines = text.split("\n")
+    if lines and lines[-1] == "":
+        lines.pop()                      # tolerate exactly one trailing NL
+    found = {}
+    for line in lines:
+        if line == "" or any(ch in line for ch in "\x00\r\t"):
+            raise MissingAuthorization(
+                "the credential file has a blank or malformed line")
+        if line.startswith("#") or line.startswith("export ") \
+                or "=" not in line:
+            raise MissingAuthorization(
+                "the credential file must contain only KEY=VALUE lines "
+                "(no comments, no `export`, no shell)")
+        key, value = line.split("=", 1)
+        if key not in _CREDENTIAL_KEYS:
+            raise MissingAuthorization(
+                "the credential file contains an unexpected key")
+        if key in found:
+            raise MissingAuthorization(
+                "the credential file has a duplicate key")
+        if not _grammar().cred.fullmatch(value):
+            raise MissingAuthorization(
+                "a credential value is empty or malformed")
+        found[key] = value
+
+    missing = [k for k in _CREDENTIAL_KEYS if k not in found]
+    if missing:
+        raise MissingAuthorization(
+            "the credential file is missing a required key")
+    return ParentCredentials(
+        access_key_id=found[_CREDENTIAL_ACCESS_KEY],
+        secret_access_key=found[_CREDENTIAL_SECRET_KEY])
+
+
+# ─────────────────────────────────────────────────────────────────────────
+# Live orchestration runner
+#
+# Composes the already-reviewed primitives — no new CAS/race/evidence
+# SEMANTICS live here, only the scheduling that drives them. Every request
+# is signed and transmitted through R2Transport; every acceptance decision
+# is DERIVED by the existing aggregators/derivations from persisted
+# evidence; caps, the same-key guard and production-name isolation are the
+# existing objects. The runner is fully injectable (transport factory, wall
+# clock, monotonic clock, sleep) so the offline tests drive it with fakes
+# and never open a socket.
+# ─────────────────────────────────────────────────────────────────────────
+
+def format_amz_date(epoch) -> str:
+    """`YYYYMMDDThhmmssZ` for a UTC epoch — the inverse of _amz_date_to_epoch.
+
+    Fixed-offset UTC only; no local timezone is ever consulted.
+    """
+    from datetime import datetime, timezone
+    _exact_int(epoch, "epoch", minimum=1)
+    return datetime.fromtimestamp(epoch, timezone.utc).strftime(
+        "%Y%m%dT%H%M%SZ")
+
+
+class ProbeAbandon(ProbeError):
+    """A terminal safety property was violated (a mutation where rejection
+    was required, an over-privileged child credential, an impossible
+    response). The run stops immediately; it never keeps sampling."""
+
+    exit_code = EXIT_ABANDON
+
+
+#: A well-formed ETag that is deliberately NOT the seeded object's ETag.
+#: R2's If-Match compares ETags: any non-match — stale or simply wrong —
+#: is a 412, which is exactly the precondition the semantic rows exercise.
+_STALE_IF_MATCH = '"stale-precondition-never-matches"'
+
+
+class _Sent(NamedTuple):
+    """The single authoritative facts of one dispatched request.
+
+    The REQUEST_RECORD is built from `signed` — the exact SignedRequest the
+    transport transmitted — and `t_request_attempt_mono_ns` is the instant
+    captured AT the conn.request boundary (None iff the send failed before
+    a request was ever attempted). There is no second, separately-signed
+    request anywhere (Codex round-2 section 6)."""
+
+    spec: object
+    repetition: int
+    sequence: int
+    correlation: str
+    signed: object                # SignedRequest actually transmitted
+    response: object              # RawResponse | None
+    transport_failure: object     # TransportFailure | None
+    parsed: object                # ParsedError | None
+    is_put: bool
+    key: str
+    reservation: object           # PutReservation | None
+    method: str
+    t_request_attempt_mono_ns: object   # int | None
+    send_phase: object            # SendPhase
+
+
+class LiveProbeRunner:
+    """Drives the full test matrix against a DISPOSABLE bucket.
+
+    Nothing here can address production: the transport, the credential
+    claims, the key allocator and the ledger all read the same immutable
+    probe policy, whose bucket is `bible-pal-cas-probe` and whose denied
+    token is the production bucket. `run()` returns the finalize() summary,
+    DERIVED from the persisted evidence on disk, downgraded to ABANDON on
+    any terminal safety violation or unresolved reservation.
+    """
+
+    def __init__(self, *, account_id, parent, writer,
+                 connection_factory=None, wall_clock=time.time,
+                 monotonic=time.monotonic_ns, sleep=time.sleep,
+                 semantic_delay_seconds=1.0):
+        if type(parent) is not ParentCredentials:
+            raise SafetyBarrierTripped("parent must be ParentCredentials")
+        if type(writer) is not EvidenceWriter:
+            raise SafetyBarrierTripped("writer must be an EvidenceWriter")
+        self._endpoint_host = build_endpoint_host(account_id)
+        self._account_id = account_id
+        self._parent = parent
+        self._writer = writer
+        self._phase = writer._phase
+        self._wall_clock = wall_clock
+        self._monotonic = monotonic
+        self._sleep = sleep
+        self._semantic_delay = float(semantic_delay_seconds)
+        # The guard measures a same-key gap in SECONDS, derived from the same
+        # monotonic (ns) source the runner and races use, so its clock and
+        # the injected sleep can never desync.
+        self._same_key_guard = SameKeyWriteGuard(
+            monotonic=(lambda: self._monotonic() / 1e9), sleep=sleep)
+        self._planner = CredentialGroupPlanner()
+        # The transport owns the ONLY path to a real socket. In plan mode and
+        # every test it is a refusing or fake factory; live, it is
+        # real_connection_factory — installed by main() only after gates.
+        self._transport = R2Transport(
+            endpoint_host=self._endpoint_host,
+            connection_factory=connection_factory,
+            wall_clock=wall_clock, monotonic=monotonic)
+        self._display = {}
+        self._abandon_reason = None
+
+    # ── credential per group ─────────────────────────────────────────────
+
+    def _mint_child(self, group):
+        now = int(self._wall_clock())
+        cred = mint_probe_credential(
+            group=group, account_id=self._account_id,
+            parent_access_key_id=self._parent.access_key_id,
+            parent_secret_access_key=self._parent.secret_access_key, now=now)
+        ok, reason = self._planner.can_start(credential=cred, now=now)
+        if not ok:
+            raise ProbeAbandon(f"group {group} cannot start: {reason}")
+        return cred
+
+    # ── one request: reserve → sign+transmit (ONE authority) → persist ───
+
+    def _dispatch(self, *, spec, credential, repetition, sequence, method,
+                  key, body=b"", query=(), if_match=None, if_none_match=None,
+                  diagnostic=None, identity=None, respect_guard=True,
+                  charge_ledger=True,
+                  allow_denied_prefix_probe=False) -> _Sent:
+        is_put = method == "PUT"
+        reservation = None
+        if charge_ledger:
+            if is_put:
+                if respect_guard:
+                    self._same_key_guard.wait_until_writable(key)
+                reservation = self._writer.ledger.reserve_put(key, len(body))
+            else:
+                self._writer.ledger.charge_get_head()
+
+        extra = {}
+        if if_match is not None:
+            extra["if-match"] = if_match
+        if if_none_match is not None:
+            extra["if-none-match"] = if_none_match
+
+        # ONE transmit authority. Ordinary traffic goes through
+        # sign_and_attempt; the three diagnostics go through their OWN exact
+        # transport methods, which derive method/bucket/key/query/body/date
+        # themselves from the allocator identity (Codex round-3 BLOCKER 2).
+        # Both return the exact signed request AND the request-attempt
+        # timestamp, so evidence and timing derive from the transmitted
+        # object itself.
+        if diagnostic is None:
+            target = new_request_target(method=method, bucket=_policy().bucket,
+                                        key=key, query=tuple(query))
+            amz_date = format_amz_date(int(self._wall_clock()))
+            attempt = self._transport.sign_and_attempt(
+                target=target, body=body, credential=credential,
+                amz_date=amz_date, extra_headers=(extra or None),
+                allow_denied_prefix_probe=allow_denied_prefix_probe)
+        else:
+            if extra or query or method != "PUT":
+                raise SafetyBarrierTripped(
+                    "a diagnostic row has a fixed PUT shape and no "
+                    "conditional/content headers")
+            exact = {"I2": self._transport.attempt_i2,
+                     "I3": self._transport.attempt_i3,
+                     "I4": self._transport.attempt_i4}.get(diagnostic)
+            if exact is None or spec.id != diagnostic:
+                raise SafetyBarrierTripped(
+                    f"{diagnostic!r} is not an exact diagnostic row for "
+                    f"{spec.id!r}")
+            attempt = exact(identity=identity, credential=credential)
+
+        self._writer.write_request_record(build_request_record(
+            phase=self._phase, run_id=self._writer.run_id, group=spec.group,
+            test_id=spec.id, repetition=repetition, sequence=sequence,
+            endpoint_host=self._endpoint_host,
+            signed=attempt.signed_request, credential=credential,
+            t_request_attempt_mono_ns=attempt.t_request_attempt_mono_ns))
+        correlation = Correlation(
+            phase=self._phase, run_id=self._writer.run_id, test_id=spec.id,
+            repetition=repetition, sequence=sequence).serialize()
+
+        response = attempt.response
+        transport_failure = attempt.failure
+        if is_put:
+            self._same_key_guard.note_write_response_end(key)
+        parsed = (parse_s3_error(response.body)
+                  if response is not None and response.body else None)
+        return _Sent(
+            spec=spec, repetition=repetition, sequence=sequence,
+            correlation=correlation, signed=attempt.signed_request,
+            response=response, transport_failure=transport_failure,
+            parsed=parsed, is_put=is_put, key=key, reservation=reservation,
+            method=method,
+            t_request_attempt_mono_ns=attempt.t_request_attempt_mono_ns,
+            send_phase=attempt.send_phase)
+
+    def _finish(self, sent, *, final_get_sha256=None, final_get_len=None,
+                final_etag=None, remote_state=None, repetition_status=None,
+                ambiguous_state=None, reconciliation=None,
+                resolve_committed=None):
+        """Persist the RESPONSE record and (for a PUT) resolve the ledger."""
+        tf = sent.transport_failure
+        record = build_response_record(
+            phase=self._phase, run_id=self._writer.run_id, group=sent.spec.group,
+            test_id=sent.spec.id, repetition=sent.repetition,
+            sequence=sent.sequence, response=sent.response, parsed=sent.parsed,
+            repetition_status=repetition_status,
+            error_category=(tf.category if tf is not None else None),
+            exception_type_name=(tf.exception_type_name if tf is not None
+                                 else None),
+            ambiguous_state=ambiguous_state, remote_state=remote_state,
+            reconciliation=reconciliation, final_get_len=final_get_len,
+            final_get_sha256=final_get_sha256)
+        if final_etag is not None:
+            record["final_etag"] = final_etag
+        self._writer.write_response_record(record)
+        if sent.is_put and sent.reservation is not None \
+                and resolve_committed is not None:
+            self._writer.ledger.resolve_put(sent.reservation,
+                                            committed=resolve_committed)
+
+    # ── outcome + reconciliation helpers ─────────────────────────────────
+
+    def _put_outcome(self, sent):
+        status = sent.response.status if sent.response is not None else None
+        return classify_put_outcome(
+            transport_failure=sent.transport_failure, status=status)
+
+    def _committed(self, sent):
+        """Definite commit decision, or None when the outcome is ambiguous
+        (in which case the caller must NOT resolve — an unresolved
+        reservation forces ABANDON at finalize)."""
+        outcome = self._put_outcome(sent)
+        if outcome in DEFINITE_NO_MUTATION_OUTCOMES:
+            return False
+        if outcome in (PutOutcome.PUT_CONFIRMED,
+                       PutOutcome.PUT_SUCCEEDED_VERIFY_UNKNOWN):
+            return True
+        return None
+
+    def _authoritative_get(self, spec, credential, repetition, sequence, key):
+        """A child-credential GET whose body/sha/etag are captured, with its
+        own request/response evidence persisted."""
+        sent = self._dispatch(spec=spec, credential=credential,
+                              repetition=repetition, sequence=sequence,
+                              method="GET", key=key)
+        resp = sent.response
+        sha = length = etag = None
+        if resp is None:
+            # The verification read itself failed in transport: we learned
+            # NOTHING about the remote object. UNKNOWN (never None) so every
+            # caller feeds a real RemoteState into the reconciliation
+            # machinery and fails closed.
+            state = RemoteState.UNKNOWN
+        elif 200 <= resp.status < 300:
+            state = RemoteState.CONFIRMED
+            sha = _sha256_hex(resp.body)
+            length = len(resp.body)
+            etag = resp.header("ETag")
+        else:
+            state = classify_remote_state(
+                method="GET", status=resp.status,
+                error_code=(sent.parsed.code if sent.parsed else None),
+                body_truncated=resp.body_truncated)
+        self._finish(sent, remote_state=state)
+        return sha, length, etag, state
+
+    def _mark(self, test_id, verdict):
+        self._display[test_id] = verdict
+        if verdict == "ABANDON":
+            raise ProbeAbandon(f"{test_id}: terminal safety failure")
+
+    def per_test_display(self) -> dict:
+        return dict(self._display)
+
+    # ── semantic rows: B, D, E1 (412-on-every-valid-repetition) ──────────
+
+    def _run_semantic(self, spec, credential):
+        for rep in range(1, spec.required_repetitions + 1):
+            issued = self._writer.allocate_semantic(spec.id, rep)
+            key = issued.identity.key
+            seq = [0]
+
+            def nxt():
+                seq[0] += 1
+                return seq[0]
+
+            # SETUP: positively establish a known object state before the
+            # CAS test. Returns the confirmed (sha, length); ABANDONs if it
+            # cannot be proven.
+            prior_sha, prior_len = self._establish_semantic_setup(
+                spec, credential, rep, nxt, key)
+
+            if spec.id == "D":
+                if_match, if_none_match = None, "*"
+            else:               # B, E1: a non-current If-Match must be 412
+                if_match, if_none_match = _STALE_IF_MATCH, None
+
+            other = synthetic_payload("other", 256)
+            cas = self._dispatch(spec=spec, credential=credential,
+                                 repetition=rep, sequence=nxt(), method="PUT",
+                                 key=key, body=other, if_match=if_match,
+                                 if_none_match=if_none_match)
+            status = cas.response.status if cas.response is not None else None
+            outcome = self._put_outcome(cas)
+
+            mutation = None
+            resolve = None
+            if status == 412:
+                # Blocked: the write was rejected server-side. VALID requires
+                # a positive proof the object is UNCHANGED.
+                obs_sha, obs_len, _e, gstate = self._authoritative_get(
+                    spec, credential, rep, nxt(), key)
+                if gstate is RemoteState.CONFIRMED \
+                        and obs_sha == prior_sha and obs_len == prior_len:
+                    mutation = False            # proven unchanged → VALID
+                elif gstate is RemoteState.CONFIRMED:
+                    mutation = True             # bytes changed → ABANDON
+                else:
+                    mutation = None             # UNKNOWN/ABSENT → not unchanged
+                resolve = False
+            elif status is not None and 200 <= status < 300:
+                # A blocked precondition was ACCEPTED — the write mutated.
+                mutation = True
+                resolve = True
+            elif next_action(outcome) \
+                    is NextAction.RECONCILE_WITH_AUTHORITATIVE_GET:
+                obs_sha, obs_len, _e, gstate = self._authoritative_get(
+                    spec, credential, rep, nxt(), key)
+                recon = reconcile_after_ambiguous_put(
+                    get_state=gstate, observed_sha256=obs_sha,
+                    observed_length=obs_len,
+                    intended_sha256=hashlib.sha256(other).hexdigest(),
+                    intended_length=len(other), prior_sha256=prior_sha,
+                    prior_length=prior_len)
+                if recon is Reconciliation.RECONCILED_SUCCESS:
+                    mutation, resolve = True, True     # committed despite block
+                elif recon is Reconciliation.NO_MUTATION_RESTART_FROM_FRESH_PLAN:
+                    mutation, resolve = None, False    # ambiguous, no mutation
+                else:
+                    # SUPERSEDED / UNKNOWN — cannot prove no mutation. Leave
+                    # the reservation unresolved and ABANDON.
+                    self._finish(cas, ambiguous_state=outcome,
+                                resolve_committed=None)
+                    self._mark(spec.id, "ABANDON")
+                    return
+            else:
+                # A definite non-2xx, non-412 status (429/403/4xx) or a
+                # before-request failure. No 412 evidence; no mutation.
+                mutation = None
+                resolve = self._committed(cas)
+
+            self._finish(cas, ambiguous_state=outcome,
+                        resolve_committed=resolve)
+            self._writer.write_semantic_record(
+                issued, http_status=status, outcome=outcome,
+                mutation_observed=mutation)
+            self._absorb_semantic_verdict(spec.id)
+
+    def _establish_semantic_setup(self, spec, credential, rep, nxt, key):
+        """Positively confirm the pre-CAS object state, or ABANDON.
+
+        Returns the confirmed (sha256, length) of the object the CAS test
+        will be run against."""
+        seed = synthetic_payload("seed", 256)
+        sent = self._dispatch(spec=spec, credential=credential,
+                             repetition=rep, sequence=nxt(), method="PUT",
+                             key=key, body=seed, if_none_match="*")
+        self._confirm_committed_or_abandon(spec, credential, rep, nxt, key,
+                                           sent, seed)
+        prior = (hashlib.sha256(seed).hexdigest(), len(seed))
+        if spec.id == "E1":
+            # Overwrite so the seeded ETag becomes genuinely stale, then wait
+            # out the same-key window and delay the stale writer.
+            v2 = synthetic_payload("v2", 256)
+            over = self._dispatch(spec=spec, credential=credential,
+                                 repetition=rep, sequence=nxt(), method="PUT",
+                                 key=key, body=v2)
+            self._confirm_committed_or_abandon(spec, credential, rep, nxt, key,
+                                               over, v2)
+            prior = (hashlib.sha256(v2).hexdigest(), len(v2))
+            self._sleep(self._semantic_delay)
+        return prior
+
+    def _confirm_committed_or_abandon(self, spec, credential, rep, nxt, key,
+                                      sent, expected_body):
+        """A setup PUT must be PROVEN to have committed exactly
+        `expected_body`. Anything short of that stops the run."""
+        want_sha = hashlib.sha256(expected_body).hexdigest()
+        want_len = len(expected_body)
+        status = sent.response.status if sent.response is not None else None
+        outcome = self._put_outcome(sent)
+        if status is not None and 200 <= status < 300:
+            obs_sha, obs_len, _e, gstate = self._authoritative_get(
+                spec, credential, rep, nxt(), key)
+            if gstate is RemoteState.CONFIRMED \
+                    and obs_sha == want_sha and obs_len == want_len:
+                self._finish(sent, resolve_committed=True)
+                return
+            self._finish(sent, resolve_committed=True)
+            self._mark(spec.id, "ABANDON")   # committed wrong/unverifiable
+            return
+        if next_action(outcome) \
+                is NextAction.RECONCILE_WITH_AUTHORITATIVE_GET:
+            obs_sha, obs_len, _e, gstate = self._authoritative_get(
+                spec, credential, rep, nxt(), key)
+            recon = reconcile_after_ambiguous_put(
+                get_state=gstate, observed_sha256=obs_sha,
+                observed_length=obs_len, intended_sha256=want_sha,
+                intended_length=want_len, prior_sha256=None, prior_length=None)
+            if recon is Reconciliation.RECONCILED_SUCCESS:
+                self._finish(sent, resolve_committed=True)
+                return
+            if recon is Reconciliation.NO_MUTATION_RESTART_FROM_FRESH_PLAN:
+                self._finish(sent, resolve_committed=False)  # proven absent
+                self._mark(spec.id, "ABANDON")               # setup failed
+                return
+            self._finish(sent, resolve_committed=None)       # unknown → open
+            self._mark(spec.id, "ABANDON")
+            return
+        # Definite rejection / before-request failure → setup failed.
+        self._finish(sent, resolve_committed=self._committed(sent))
+        self._mark(spec.id, "ABANDON")
+
+    def _absorb_semantic_verdict(self, test_id):
+        verdict, _ = self._writer._semantic.verdict(test_id)
+        if verdict is Verdict.ABANDON:
+            self._mark(test_id, "ABANDON")
+
+    # ── support rows via the derived TEST_RESULT path ────────────────────
+
+    def _run_support(self, spec, credential):
+        for rep in range(1, spec.required_repetitions + 1):
+            issued = self._writer.allocate_semantic(spec.id, rep)
+            corr = self._support_repetition(spec, credential, rep, issued)
+            self._writer.write_test_result_record(issued, evidence_ref=corr)
+        self._display[spec.id] = "DONE"
+
+    def _support_repetition(self, spec, credential, rep, issued) -> str:
+        tid = spec.id
+        key = issued.identity.key
+        if tid == "A":
+            return self._support_correct_etag(spec, credential, rep, key)
+        if tid in ("C", "X1", "X2"):
+            return self._support_create_if_absent(spec, credential, rep, key)
+        if tid in ("G", "L"):
+            return self._support_put_readback(spec, credential, rep, key)
+        if tid == "J":
+            return self._support_production_put(spec, credential, rep, key)
+        if tid in ("H1", "H2", "H3"):
+            return self._support_allowed_scope(spec, credential, rep, key)
+        if tid in ("H4", "H5", "H6", "H7"):
+            return self._support_denied_scope(spec, credential, rep, key)
+        if tid == "I1":
+            return self._support_signing_ok(spec, credential, rep, key)
+        if tid == "I2":
+            return self._send_i2_unsigned_token(spec, credential, rep, issued)
+        if tid == "I3":
+            return self._send_i3_no_token(spec, credential, rep, issued)
+        if tid == "I4":
+            return self._send_i4_expired_token(spec, credential, rep, issued)
+        if tid == "K1":
+            return self._support_absent(spec, credential, rep, key)
+        if tid == "K2":
+            return self._support_denied_contrast(spec, credential, rep, key)
+        if tid == "K3":
+            return self._support_throttle(spec, credential, rep, key)
+        raise SafetyBarrierTripped(f"no support orchestration for {tid!r}")
+
+    def _support_correct_etag(self, spec, credential, rep, key) -> str:
+        """A: correct ETag + If-Match must mutate and verify.
+
+        The dependent conditional PUT is issued ONLY after the seed is fully
+        reconciled and a usable CURRENT ETag has been proven (Codex round-3
+        HIGH 1). While the seed's commit state is unresolved, no second
+        same-key write is sent, and the dependent PUT is never issued
+        unconditionally — it always carries the proven seed ETag.
+        """
+        seed_body = synthetic_payload("seed", 256)
+        seed = self._dispatch(spec=spec, credential=credential, repetition=rep,
+                             sequence=1, method="PUT", key=key,
+                             body=seed_body, if_none_match="*")
+        # Sequences: 1 seed, 2 seed-verification GET, 3 dependent PUT,
+        # 4 final verification GET.
+        etag = self._reconcile_seed_and_prove_etag(
+            spec, credential, rep, key, seed, seed_body, next_sequence=2)
+        # `_reconcile_seed_and_prove_etag` ABANDONs unless it returns a
+        # usable current ETag, so from here the seed is proven.
+        body = synthetic_payload("a", 256)
+        test = self._dispatch(spec=spec, credential=credential, repetition=rep,
+                             sequence=3, method="PUT", key=key, body=body,
+                             if_match=etag)
+        sha, length, _e, _s = self._authoritative_get(
+            spec, credential, rep, 4, key)
+        self._finish(test, final_get_sha256=sha, final_get_len=length,
+                    remote_state=RemoteState.CONFIRMED,
+                    resolve_committed=self._committed(test))
+        return test.correlation
+
+    def _reconcile_seed_and_prove_etag(self, spec, credential, rep, key, seed,
+                                       seed_body, *, next_sequence):
+        """Fully settle a setup PUT and return a PROVEN current ETag.
+
+        Routes every outcome through the reviewed state machine
+        (`next_action` / `reconcile_after_ambiguous_put`) and then an
+        authenticated GET. Returns only when the remote object is positively
+        confirmed to be exactly `seed_body` AND carries a usable ETag;
+        otherwise it settles the ledger as far as the evidence allows and
+        ABANDONs — so a dependent same-key mutation is never sent on an
+        unresolved or mismatched setup.
+        """
+        want_sha = hashlib.sha256(seed_body).hexdigest()
+        want_len = len(seed_body)
+        outcome = self._put_outcome(seed)
+        status = seed.response.status if seed.response is not None else None
+
+        if status is not None and 200 <= status < 300:
+            obs_sha, obs_len, etag, gstate = self._authoritative_get(
+                spec, credential, rep, next_sequence, key)
+            self._finish(seed, resolve_committed=True)
+            if gstate is RemoteState.CONFIRMED and obs_sha == want_sha \
+                    and obs_len == want_len and etag:
+                return etag
+            self._mark(spec.id, "ABANDON")     # wrong bytes / no usable ETag
+            raise ProbeAbandon(f"{spec.id}: seed not usable")
+
+        if next_action(outcome) \
+                is NextAction.RECONCILE_WITH_AUTHORITATIVE_GET:
+            obs_sha, obs_len, etag, gstate = self._authoritative_get(
+                spec, credential, rep, next_sequence, key)
+            recon = reconcile_after_ambiguous_put(
+                get_state=gstate, observed_sha256=obs_sha,
+                observed_length=obs_len, intended_sha256=want_sha,
+                intended_length=want_len, prior_sha256=None, prior_length=None)
+            if recon is Reconciliation.RECONCILED_SUCCESS and etag:
+                self._finish(seed, resolve_committed=True,
+                            reconciliation=recon)
+                return etag
+            if recon is Reconciliation.NO_MUTATION_RESTART_FROM_FRESH_PLAN:
+                self._finish(seed, resolve_committed=False,
+                            reconciliation=recon)   # proven absent
+            elif recon is Reconciliation.RECONCILED_SUCCESS:
+                self._finish(seed, resolve_committed=True,
+                            reconciliation=recon)   # committed, no ETag
+            else:
+                self._finish(seed, resolve_committed=None,
+                            reconciliation=recon)   # unknown → stays open
+            self._mark(spec.id, "ABANDON")
+            raise ProbeAbandon(f"{spec.id}: seed could not be reconciled")
+
+        # Definite rejection or a before-request failure: nothing committed.
+        self._finish(seed, resolve_committed=self._committed(seed))
+        self._mark(spec.id, "ABANDON")
+        raise ProbeAbandon(f"{spec.id}: seed was rejected")
+
+    def _support_create_if_absent(self, spec, credential, rep, key) -> str:
+        body = synthetic_payload("create", 256)
+        create = self._dispatch(spec=spec, credential=credential,
+                              repetition=rep, sequence=1, method="PUT",
+                              key=key, body=body, if_none_match="*")
+        sha, length, _e, _s = self._authoritative_get(
+            spec, credential, rep, 2, key)
+        self._finish(create, final_get_sha256=sha, final_get_len=length,
+                    remote_state=RemoteState.CONFIRMED,
+                    resolve_committed=self._committed(create))
+        return create.correlation
+
+    def _support_put_readback(self, spec, credential, rep, key) -> str:
+        body = synthetic_payload("bytes", 256)
+        put = self._dispatch(spec=spec, credential=credential, repetition=rep,
+                            sequence=1, method="PUT", key=key, body=body)
+        etag = put.response.header("ETag") if put.response is not None else None
+        sha, length, _ge, _s = self._authoritative_get(
+            spec, credential, rep, 2, key)
+        self._finish(put, final_get_sha256=sha, final_get_len=length,
+                    final_etag=(etag if spec.id == "G" else None),
+                    remote_state=RemoteState.CONFIRMED,
+                    resolve_committed=self._committed(put))
+        return put.correlation
+
+    def _support_production_put(self, spec, credential, rep, key) -> str:
+        body = production_size_payload(f"j{rep:04d}")
+        put = self._dispatch(spec=spec, credential=credential, repetition=rep,
+                            sequence=1, method="PUT", key=key, body=body)
+        self._finish(put, resolve_committed=self._committed(put))
+        return put.correlation
+
+    def _support_allowed_scope(self, spec, credential, rep, key) -> str:
+        method = {"H1": "HEAD", "H2": "GET", "H3": "PUT"}[spec.id]
+        if method in ("HEAD", "GET"):
+            seed = self._dispatch(spec=spec, credential=credential,
+                                repetition=rep, sequence=1, method="PUT",
+                                key=key, body=synthetic_payload("s", 256),
+                                if_none_match="*")
+            self._finish(seed, resolve_committed=self._committed(seed))
+            # Same rule as row A (Codex round-3 HIGH 1), applied uniformly:
+            # no dependent same-key operation while the setup PUT's commit
+            # state is unresolved. The dependent op here is a READ, so an
+            # unresolved seed could not cause an unsafe mutation, but the
+            # row would still be reading a key whose state is unknown.
+            if self._put_outcome(seed) not in (
+                    PutOutcome.PUT_CONFIRMED,
+                    PutOutcome.PUT_SUCCEEDED_VERIFY_UNKNOWN):
+                self._mark(spec.id, "ABANDON")
+                return seed.correlation
+            sent = self._dispatch(spec=spec, credential=credential,
+                                repetition=rep, sequence=2, method=method,
+                                key=key)
+            self._finish(sent)
+            return sent.correlation
+        sent = self._dispatch(spec=spec, credential=credential, repetition=rep,
+                            sequence=1, method="PUT", key=key,
+                            body=synthetic_payload("scope", 256))
+        self._finish(sent, resolve_committed=self._committed(sent))
+        return sent.correlation
+
+    def _support_denied_scope(self, spec, credential, rep, key) -> str:
+        policy = _policy()
+        cfg = {
+            "H4": ("DELETE", policy.sacrificial_key, ()),
+            "H5": ("GET", "", (("list-type", "2"),)),
+            "H6": ("GET", policy.denied_out_of_prefix_key, ()),
+            "H7": ("PUT", policy.denied_out_of_prefix_key, ()),
+        }[spec.id]
+        method, target_key, query = cfg
+        body = synthetic_payload("denied", 256) if method == "PUT" else b""
+        sent = self._dispatch(spec=spec, credential=credential, repetition=rep,
+                            sequence=1, method=method, key=target_key,
+                            query=query, body=body,
+                            allow_denied_prefix_probe=(
+                                target_key == policy.denied_out_of_prefix_key))
+        self._assert_denied(sent)
+        self._finish(sent, resolve_committed=(False if sent.is_put else None))
+        return sent.correlation
+
+    def _support_signing_ok(self, spec, credential, rep, key) -> str:
+        sent = self._dispatch(spec=spec, credential=credential, repetition=rep,
+                            sequence=1, method="PUT", key=key,
+                            body=synthetic_payload("sign", 256))
+        self._finish(sent, resolve_committed=self._committed(sent))
+        return sent.correlation
+
+    # ── the three signing/expiry diagnostics — internal builders only ────
+
+    def _send_i2_unsigned_token(self, spec, credential, rep, issued) -> str:
+        sent = self._dispatch(spec=spec, credential=credential, repetition=rep,
+                            sequence=1, method="PUT",
+                            key=issued.identity.key,
+                            body=diagnostic_body("I2"), diagnostic="I2",
+                            identity=issued.identity)
+        self._finish(sent, resolve_committed=(
+            self._committed(sent) if sent.response is not None else None))
+        return sent.correlation
+
+    def _send_i3_no_token(self, spec, credential, rep, issued) -> str:
+        sent = self._dispatch(spec=spec, credential=credential, repetition=rep,
+                            sequence=1, method="PUT",
+                            key=issued.identity.key,
+                            body=diagnostic_body("I3"), diagnostic="I3",
+                            identity=issued.identity)
+        self._assert_denied(sent)
+        self._finish(sent, resolve_committed=False)
+        return sent.correlation
+
+    def _send_i4_expired_token(self, spec, credential, rep, issued) -> str:
+        # Wait until the short-TTL credential has PROVABLY expired. The
+        # transport ALSO refuses to run this row while the credential is
+        # still valid, so the wait is not the only guard.
+        remaining = credential.expires_at - int(self._wall_clock())
+        if remaining >= 0:
+            self._sleep(remaining + 2)
+        sent = self._dispatch(spec=spec, credential=credential, repetition=rep,
+                            sequence=1, method="PUT",
+                            key=issued.identity.key,
+                            body=diagnostic_body("I4"), diagnostic="I4",
+                            identity=issued.identity)
+        self._assert_denied(sent)
+        self._finish(sent, resolve_committed=False)
+        return sent.correlation
+
+    def _support_absent(self, spec, credential, rep, key) -> str:
+        sent = self._dispatch(spec=spec, credential=credential, repetition=rep,
+                            sequence=1, method="GET", key=key)
+        self._finish(sent, remote_state=classify_remote_state(
+            method="GET",
+            status=(sent.response.status if sent.response else None),
+            error_code=(sent.parsed.code if sent.parsed else None),
+            body_truncated=(sent.response.body_truncated
+                            if sent.response else False)))
+        return sent.correlation
+
+    def _support_denied_contrast(self, spec, credential, rep, key) -> str:
+        policy = _policy()
+        sent = self._dispatch(spec=spec, credential=credential, repetition=rep,
+                            sequence=1, method="GET",
+                            key=policy.denied_out_of_prefix_key,
+                            allow_denied_prefix_probe=True)
+        self._assert_denied(sent)
+        self._finish(sent)
+        return sent.correlation
+
+    def _support_throttle(self, spec, credential, rep, key) -> str:
+        # HIGH 2: the first same-key write must be SERVER-OBSERVED (a
+        # definite 2xx) before the second is even issued; the second must be
+        # a definite 429. Anything else stops the run.
+        first = self._dispatch(spec=spec, credential=credential, repetition=rep,
+                             sequence=1, method="PUT", key=key,
+                             body=synthetic_payload("k3a", 256))
+        if self._put_outcome(first) not in (
+                PutOutcome.PUT_CONFIRMED,
+                PutOutcome.PUT_SUCCEEDED_VERIFY_UNKNOWN):
+            self._finish(first, resolve_committed=self._committed(first))
+            self._mark(spec.id, "ABANDON")   # first write not server-observed
+            return first.correlation
+        self._finish(first, resolve_committed=True)
+        second = self._dispatch(spec=spec, credential=credential,
+                              repetition=rep, sequence=2, method="PUT",
+                              key=key, body=synthetic_payload("k3b", 256),
+                              respect_guard=False)
+        status = second.response.status if second.response is not None else None
+        if status != 429:
+            self._finish(second, resolve_committed=self._committed(second))
+            self._mark(spec.id, "ABANDON")   # no definite throttle observed
+            return second.correlation
+        self._finish(second, resolve_committed=False)
+        # The two PHYSICAL transmissions must fall inside R2's documented
+        # one-write-per-second window (BLOCKER 3). If the real gap is wider,
+        # the 429 is not attributable to same-key throttling and the row is
+        # not evidence — stop rather than record a misleading observation.
+        first_ns = first.t_request_attempt_mono_ns
+        second_ns = second.t_request_attempt_mono_ns
+        if type(first_ns) is not int or type(second_ns) is not int \
+                or not (0 <= second_ns - first_ns <= K3_THROTTLE_WINDOW_NS):
+            self._mark(spec.id, "ABANDON")
+        return second.correlation
+
+    def _assert_denied(self, sent):
+        status = sent.response.status if sent.response is not None else None
+        if status is not None and 200 <= status < 300:
+            self._mark(sent.spec.id, "ABANDON")   # scope escape
+
+    # ── race rows: E2, F ─────────────────────────────────────────────────
+
+    def _run_race(self, spec, credential):
+        for rep in range(1, spec.required_repetitions + 1):
+            self._run_race_repetition(spec, credential, rep)
+            verdict, _ = self._writer._race.verdict(spec.id)
+            if verdict is Verdict.ABANDON:
+                self._mark(spec.id, "ABANDON")
+
+    def _run_race_repetition(self, spec, credential, rep):
+        issued = self._writer.allocate_race(spec.id, rep)
+        key = issued.identity.key
+        seq = [0]
+
+        def nxt():
+            seq[0] += 1
+            return seq[0]
+
+        shared_etag = None
+        absence_confirmed = None
+        prior_sha = prior_len = None
+        if spec.id == "E2":
+            seed_body = synthetic_payload("seed", 256)
+            seed = self._dispatch(spec=spec, credential=credential,
+                                repetition=rep, sequence=nxt(), method="PUT",
+                                key=key, body=seed_body, if_none_match="*")
+            shared_etag = (seed.response.header("ETag")
+                           if seed.response is not None else None)
+            if self._put_outcome(seed) not in (
+                    PutOutcome.PUT_CONFIRMED,
+                    PutOutcome.PUT_SUCCEEDED_VERIFY_UNKNOWN) \
+                    or shared_etag is None:
+                self._finish(seed, resolve_committed=self._committed(seed))
+                raise ProbeAbandon(f"E2 rep {rep}: seed not established")
+            self._finish(seed, resolve_committed=True)
+            prior_sha = hashlib.sha256(seed_body).hexdigest()
+            prior_len = len(seed_body)
+            # Separate the race writers from the seed by more than the
+            # 1-write/s window, so a loser is rejected by CAS (412), never by
+            # the throttle (429).
+            self._same_key_guard.wait_until_writable(key)
+        else:                       # F: prove the key is absent first
+            _s, _l, _e, state = self._authoritative_get(
+                spec, credential, rep, nxt(), key)
+            if state is not RemoteState.ABSENT:
+                raise ProbeAbandon(f"F rep {rep}: key was not proven absent")
+            absence_confirmed = True
+
+        body1 = synthetic_payload("w1", 256)
+        body2 = synthetic_payload("w2", 288)
+        pair_id = self._writer.ledger.reserve_race_pair_same_key(
+            key, len(body1), len(body2))
+
+        generation = f"gen-{rep:04d}"
+        release = {}
+        barrier = threading.Barrier(
+            2, action=lambda: release.__setitem__("t", self._monotonic()))
+        results = {}
+        seqs = {"w1": nxt(), "w2": nxt()}
+
+        def writer_thread(name, body):
+            join_ns = self._monotonic()
+            barrier.wait()
+            if_match = shared_etag if spec.id == "E2" else None
+            if_none_match = "*" if spec.id == "F" else None
+            sent = self._dispatch(
+                spec=spec, credential=credential, repetition=rep,
+                sequence=seqs[name], method="PUT", key=key, body=body,
+                if_match=if_match, if_none_match=if_none_match,
+                respect_guard=False, charge_ledger=False)
+            results[name] = (sent, join_ns, body)
+
+        threads = [threading.Thread(target=writer_thread, args=(n, b))
+                   for n, b in (("w1", body1), ("w2", body2))]
+        for thread in threads:
+            thread.start()
+        for thread in threads:
+            thread.join()
+
+        release_ns = release["t"]
+        final_sha, final_len, final_etag, final_state = \
+            self._authoritative_get(spec, credential, rep, nxt(), key)
+
+        # LEDGER SETTLEMENT reconciles against the authenticated final GET
+        # (HIGH 1): a lost-response writer that actually committed is settled
+        # correctly, and an unreconcilable state leaves the pair open and
+        # ABANDONs — the ledger never undercounts a possibly-committed body.
+        ledger_winner = self._reconcile_race_ledger(
+            body1, body2, final_state, final_sha, final_len,
+            prior_sha, prior_len)
+        writers = []
+        for name in ("w1", "w2"):
+            sent, join_ns, body = results[name]
+            status = sent.response.status if sent.response is not None else None
+            etag = (sent.response.header("ETag")
+                    if sent.response is not None else None)
+            writers.append(RaceWriter(
+                writer_id=name, http_status=status,
+                payload_sha256=hashlib.sha256(body).hexdigest(),
+                payload_length=len(body), returned_etag=etag,
+                if_match=(shared_etag if spec.id == "E2" else None),
+                if_none_match=("*" if spec.id == "F" else None),
+                barrier_generation=generation, barrier_join_mono_ns=join_ns,
+                send_mono_ns=sent.t_request_attempt_mono_ns))
+
+        for name in ("w1", "w2"):
+            self._finish(results[name][0])
+
+        # A writer that never reached conn.request, or a send skew beyond
+        # policy (Codex BLOCKER 2: a writer delayed after the barrier), makes
+        # this no valid race. Settle the ledger if we can, then ABANDON.
+        send1 = writers[0].send_mono_ns
+        send2 = writers[1].send_mono_ns
+        skew_ok = (type(send1) is int and type(send2) is int
+                   and abs(send1 - send2) <= _policy().max_race_send_skew_ns
+                   and send1 >= release_ns and send2 >= release_ns)
+        if ledger_winner is not None:
+            self._writer.ledger.resolve_race_pair(pair_id, winner=ledger_winner)
+        if not skew_ok:
+            self._mark(spec.id, "ABANDON")
+            return
+        if ledger_winner is None:
+            # Could not reconcile a settlement; the pair stays open and the
+            # finalize invariant will ABANDON. Stop now.
+            self._mark(spec.id, "ABANDON")
+            return
+
+        repetition = RaceRepetition(
+            identity=issued.identity, shared_original_etag=shared_etag,
+            absence_confirmed=absence_confirmed,
+            barrier=RaceBarrierEvidence(generation_id=generation,
+                                        release_mono_ns=release_ns),
+            writers=tuple(writers), final_state=final_state,
+            final_sha256=final_sha, final_length=final_len,
+            final_etag=final_etag)
+        self._writer.write_race_record(issued, repetition)
+
+    def _reconcile_race_ledger(self, body1, body2, final_state, final_sha,
+                               final_len, prior_sha, prior_len):
+        """Return the RacePairWinner the authenticated final GET proves, or
+        None when no single committed state can be established (→ ABANDON).
+        Never guesses: an unexpected final state yields None, keeping both
+        writers' bytes conservatively charged."""
+        b1s, b1l = hashlib.sha256(body1).hexdigest(), len(body1)
+        b2s, b2l = hashlib.sha256(body2).hexdigest(), len(body2)
+        if final_state is RemoteState.CONFIRMED and final_sha is not None:
+            if final_sha == b1s and final_len == b1l:
+                return RacePairWinner.WRITER_1
+            if final_sha == b2s and final_len == b2l:
+                return RacePairWinner.WRITER_2
+            if prior_sha is not None and final_sha == prior_sha \
+                    and final_len == prior_len:
+                return RacePairWinner.NONE
+            return None
+        if final_state is RemoteState.ABSENT and prior_sha is None:
+            return RacePairWinner.NONE
+        return None
+
+    # ── the run ──────────────────────────────────────────────────────────
+
+    def run(self) -> dict:
+        try:
+            for group, test_ids in sorted(credential_groups().items()):
+                credential = self._mint_child(group)
+                for test_id in test_ids:
+                    spec = test_spec(test_id)
+                    self._planner.assert_credential_matches_test(
+                        credential, test_id)
+                    if spec.category == "semantic":
+                        self._run_semantic(spec, credential)
+                    elif spec.category == "race":
+                        self._run_race(spec, credential)
+                    else:
+                        self._run_support(spec, credential)
+        except ProbeAbandon as exc:
+            self._abandon_reason = str(exc)
+        except (CapExceeded, LedgerPoisoned) as exc:
+            self._abandon_reason = str(exc)
+
+        # DEFENCE IN DEPTH ONLY (Codex round-3 BLOCKER 1). The AUTHORITATIVE
+        # rejection of an unresolved reservation now lives in
+        # derive_run_summary(), which reads the ledger itself and cannot be
+        # bypassed by any caller. This merely surfaces a human-readable
+        # reason alongside that already-ABANDON verdict.
+        open_puts, open_pairs = self._writer.ledger.open_reservation_counts()
+        if (open_puts or open_pairs) and not self._abandon_reason:
+            self._abandon_reason = (
+                f"unresolved reservations at finalize: {open_puts} puts, "
+                f"{open_pairs} race pairs")
+
+        result = self._writer.finalize()
+        # A terminal safety violation or an open reservation only ever makes
+        # the reported verdict WORSE — it can never turn a non-PASS to PASS.
+        if self._abandon_reason and result.get("verdict") != "ABANDON":
+            result["verdict"] = "ABANDON"
+        result["run_id"] = self._writer.run_id
+        result["evidence_dir"] = self._writer.run_dir
+        result["ledger"] = self._writer.ledger.snapshot()
+        result["per_test"] = self.per_test_display()
+        result["abandon_reason"] = self._abandon_reason
+        return result
 
 
 # ─────────────────────────────────────────────────────────────────────────
@@ -6495,7 +8035,7 @@ def render_plan(*, bucket, account_id) -> str:
         "Bible PAL — DISPOSABLE R2 CAS PROBE (PLAN MODE)",
         "=" * 62,
         "NO SOCKETS ARE OPENED IN THIS MODE.",
-        "LIVE EXECUTION IS DISABLED IN THIS BUILD.",
+        "LIVE EXECUTION NOT PERFORMED IN PLAN MODE.",
         "",
         f"  probe bucket     : {policy.bucket} (immutable policy constant)",
         f"  denied names     : {list(policy.denied_tokens)}",
@@ -6523,11 +8063,14 @@ def render_plan(*, bucket, account_id) -> str:
         "evidence and cannot be classified away as an INVALID_THROTTLED "
         "repetition.",
         "",
-        "Execution requires: --execute --authorized-by-adam "
+        "Execution requires ALL of: --execute --authorized-by-adam "
         "--confirm <exact string> --bucket " + policy.bucket + " "
         "--account-id <id> --credentials-file <path>",
-        "Even with all of those, this build REFUSES: no live runner exists.",
-        "Production R2 publication remains BLOCKED.",
+        "With every gate satisfied, live execution runs ONLY against the "
+        "disposable bucket " + policy.bucket + " using bucket-scoped child "
+        "credentials minted from the supplied disposable parent token.",
+        "It NEVER touches production; production R2 publication remains "
+        "BLOCKED.",
     ]
     return "\n".join(lines)
 
@@ -6540,7 +8083,8 @@ def build_arg_parser() -> argparse.ArgumentParser:
     mode.add_argument("--plan", action="store_true", default=True,
                       help="default: describe the probe, open zero sockets")
     mode.add_argument("--execute", action="store_true",
-                      help="reserved; disabled in this build")
+                      help="run the live probe against the DISPOSABLE bucket "
+                           "(requires every authorization gate)")
     parser.add_argument("--bucket", default=None)
     parser.add_argument("--account-id", default=None)
     parser.add_argument("--confirm", default=None)
@@ -6551,7 +8095,78 @@ def build_arg_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main(argv=None) -> int:
+def _new_run_id() -> str:
+    """A unique, grammar-valid run id. No randomness is required: the
+    process id plus a monotonic-derived suffix is unique per invocation,
+    and EvidenceWriter hard-errors if the run directory already exists."""
+    suffix = int(time.time()) & 0xffffffff
+    run_id = f"run-{os.getpid()}-{suffix:x}"
+    if not _grammar().run_id.fullmatch(run_id):        # pragma: no cover
+        raise SafetyBarrierTripped("generated run id is not grammar-valid")
+    return run_id
+
+
+def _print_safe_summary(result) -> None:
+    """Print ONLY non-secret run facts: no account id, no endpoint host,
+    no credential material — those never enter the result dict."""
+    ledger = result.get("ledger", {})
+    print("Bible PAL — DISPOSABLE R2 CAS PROBE (LIVE RESULT)")
+    print("=" * 62)
+    print(f"  run id          : {result.get('run_id')}")
+    print(f"  evidence dir    : {result.get('evidence_dir')}")
+    print(f"  manifest sha256 : {result.get('manifest_sha256')}")
+    print(f"  put attempts    : {ledger.get('put_operation_count')}")
+    print(f"  production puts : {ledger.get('production_size_puts')}")
+    print(f"  get/head        : {ledger.get('get_head_count')}")
+    print(f"  object keys     : {ledger.get('object_count')}")
+    print(f"  uploaded bytes  : {ledger.get('uploaded_bytes')}")
+    print(f"  ledger poisoned : {ledger.get('poisoned')}")
+    verdict = result.get("verdict")
+    print("")
+    print(f"  VERDICT         : {verdict}")
+    print(f"  GO/NO-GO        : {'GO' if verdict == 'PASS' else 'NO-GO'}")
+    print("  Production R2 publication remains BLOCKED.")
+
+
+def _verdict_exit_code(verdict) -> int:
+    if verdict == "PASS":
+        return EXIT_OK
+    if verdict == "ABANDON":
+        return EXIT_ABANDON
+    return EXIT_TEST_FAILURE
+
+
+def run_live_probe(*, account_id, credentials_file, evidence_root=None,
+                   connection_factory=None, run_id=None) -> dict:
+    """Build the writer + runner and execute the matrix. `connection_factory`
+    is a TEST SEAM: when None (the CLI default) the ONLY real socket path,
+    `real_connection_factory`, is installed and the ambient environment is
+    scrubbed first; offline tests pass a fake factory and no scrub occurs."""
+    parent = load_probe_credentials_file(credentials_file)
+    root = evidence_root if evidence_root is not None else default_evidence_root()
+    assert_no_denied_names(root)
+    run_id = run_id if run_id is not None else _new_run_id()
+
+    live = connection_factory is None
+    if live:
+        home = os.environ.get("HOME") or os.path.expanduser("~")
+        # Resolve the evidence root against the real HOME before scrubbing.
+        if evidence_root is None:
+            root = os.path.join(home, ".local", "state", "bible-pal")
+        # A clean, dedicated process: drop proxy/AWS/CF/R2/wrangler vars so
+        # no ambient credential or proxy can influence the live requests.
+        scrub_process_environment(home)
+        connection_factory = real_connection_factory
+
+    writer = EvidenceWriter(root, run_id, secrets=parent.secret_values(),
+                            phase="T")
+    runner = LiveProbeRunner(
+        account_id=account_id, parent=parent, writer=writer,
+        connection_factory=connection_factory)
+    return runner.run()
+
+
+def main(argv=None, *, connection_factory=None) -> int:
     parser = build_arg_parser()
     args = parser.parse_args(argv)
 
@@ -6568,14 +8183,17 @@ def main(argv=None) -> int:
             authorized_by_adam=args.authorized_by_adam,
             account_id=args.account_id,
             credentials_file=args.credentials_file)
+        # Validates every authorization gate AND that the credential file
+        # exists. Only after this can a socket ever be constructed.
         gates.assert_may_execute()
 
-        # UNCONDITIONAL REFUSAL. Even with every authorization argument and
-        # a real credential file present, this build has no live runner and
-        # must not invent one.
-        print("ERROR: live probe execution is not enabled in this build.",
-              file=sys.stderr)
-        return EXIT_MISSING_AUTHORIZATION
+        result = run_live_probe(
+            account_id=args.account_id,
+            credentials_file=args.credentials_file,
+            evidence_root=args.evidence_root,
+            connection_factory=connection_factory)
+        _print_safe_summary(result)
+        return _verdict_exit_code(result.get("verdict"))
 
     except ProbeError as exc:
         print(f"REFUSED [{type(exc).__name__}]: {exc}", file=sys.stderr)
