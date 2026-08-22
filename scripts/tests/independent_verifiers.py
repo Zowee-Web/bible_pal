@@ -289,11 +289,12 @@ SIGV4_ALGORITHM_DOC_CHECKED = "2026-08-16"
 # string; session token = standard base64 of "jwt/" + JWT) is documented
 # at:
 #
-# The probe additionally signs a `group` claim so that two matrix groups
-# sharing a TTL cannot mint byte-identical tokens; that is a probe-side
-# scoping decision, not a Cloudflare-published claim, and the fixture
-# below was RECOMPUTED out of band for the new claim set rather than
-# copied from the probe.
+# The probe transmits EXACTLY the documented claim set and nothing else.
+# It used to add a probe-local `group` claim so two matrix groups sharing a
+# TTL could not mint byte-identical tokens; that undocumented claim was
+# removed at Gate E, and group ownership now lives entirely in local
+# issuance state. The fixture below is computed by this file's own
+# implementation of the recipe rather than copied from the probe.
 CLOUDFLARE_TEMP_CREDENTIAL_DOC_URLS = (
     "https://developers.cloudflare.com/r2/api/s3/temporary-credentials/",
     "https://developers.cloudflare.com/r2/examples/"
@@ -304,7 +305,14 @@ CLOUDFLARE_TEMP_CREDENTIAL_DOC_SECTIONS = (
     "Scope of a credential",
 )
 CLOUDFLARE_TEMP_CREDENTIAL_DOC_CHECKED = "2026-08-14"
-GOLDEN_CREDENTIAL_PROVENANCE = "derived fixture from official recipe"
+#: Gate E: the goldens are no longer transcribed constants. They are
+#: COMPUTED by this file's own implementation of the published recipe
+#: (below), so the golden test is a genuine cross-implementation check
+#: rather than a value copied from the code under test. The pinned
+#: constants had to change anyway when the undocumented `group` claim was
+#: removed from the transmitted payload.
+GOLDEN_CREDENTIAL_PROVENANCE = (
+    "computed by this file's own implementation of the official recipe")
 
 GOLDEN_CREDENTIAL_INPUTS = {
     "account_id": "0" * 32,
@@ -313,10 +321,79 @@ GOLDEN_CREDENTIAL_INPUTS = {
     "now": 1_786_000_000,
     "group": "T-CAS-1",   # 900s TTL
 }
-GOLDEN_DERIVED_SECRET = (
-    "ed3e3acb4d6f1691fb5ae4bd9aae0ba53cc94b2b3940b7cc296e279dd4547370")
-GOLDEN_SESSION_TOKEN_SHA256 = (
-    "a43a1dbd500f7e41ebb8e835f39eaedf7fa09851f34ccea0eb55991020e0a5f3")
+
+#: The claim names Cloudflare's local-signing example produces. The probe
+#: must transmit EXACTLY these — no probe-local extras (Gate E).
+DOCUMENTED_CREDENTIAL_CLAIMS = frozenset({
+    "bucket", "scope", "actions", "paths", "sub", "iss", "aud", "iat", "exp"})
+
+
+def independent_expected_credential(*, account_id, parent_access_key_id,
+                                    parent_secret_access_key, now, ttl_seconds,
+                                    bucket, scope, actions, prefix_paths,
+                                    object_paths=()) -> dict:
+    """Build the documented temporary credential from scratch, HERE.
+
+    Written from Cloudflare's published recipe without consulting
+    scripts/probe_r2_cas.py: the claims are assembled as an explicit ordered
+    list of pairs and encoded field by field, where the probe builds a dict
+    literal. The JSON serialisation convention (sorted keys, compact
+    separators) is necessarily shared — it is part of the recipe, since two
+    implementations could not otherwise produce the same signed bytes.
+    """
+    pairs = [
+        ("actions", list(actions)),
+        ("aud", "%s.r2.cloudflarestorage.com" % account_id),
+        ("bucket", bucket),
+        ("exp", now + ttl_seconds),
+        ("iat", now),
+        ("iss", parent_access_key_id),
+        ("paths", {"objectPaths": list(object_paths),
+                   "prefixPaths": list(prefix_paths)}),
+        ("scope", scope),
+        ("sub", account_id),
+    ]
+    claims = {name: value for name, value in sorted(pairs)}
+
+    def segment(obj):
+        text = json.dumps(obj, sort_keys=True, separators=(",", ":"),
+                          ensure_ascii=False, allow_nan=False)
+        return base64.urlsafe_b64encode(
+            text.encode("utf-8")).decode("ascii").rstrip("=")
+
+    signing_input = "%s.%s" % (segment({"alg": "HS256", "typ": "JWT"}),
+                               segment(claims))
+    signature = base64.urlsafe_b64encode(hmac.new(
+        parent_secret_access_key.encode("utf-8"),
+        signing_input.encode("utf-8"),
+        hashlib.sha256).digest()).decode("ascii").rstrip("=")
+    jwt = "%s.%s" % (signing_input, signature)
+    return {
+        "claims": claims,
+        "jwt": jwt,
+        "access_key_id": parent_access_key_id,
+        "derived_secret": hashlib.sha256(jwt.encode("utf-8")).hexdigest(),
+        "session_token": base64.b64encode(
+            b"jwt/" + jwt.encode("utf-8")).decode("ascii"),
+    }
+
+
+def _golden() -> dict:
+    """The golden fixture, computed by the implementation directly above."""
+    inputs = GOLDEN_CREDENTIAL_INPUTS
+    return independent_expected_credential(
+        account_id=inputs["account_id"],
+        parent_access_key_id=inputs["parent_access_key_id"],
+        parent_secret_access_key=inputs["parent_secret_access_key"],
+        now=inputs["now"], ttl_seconds=900, bucket="bible-pal-cas-probe",
+        scope="object-read-write",
+        actions=("HeadObject", "GetObject", "PutObject"),
+        prefix_paths=("catalog/",))
+
+
+GOLDEN_DERIVED_SECRET = _golden()["derived_secret"]
+GOLDEN_SESSION_TOKEN_SHA256 = hashlib.sha256(
+    _golden()["session_token"].encode("utf-8")).hexdigest()
 
 
 #: SOURCE B fixture 1 — locally reproduced signing-key derivation.
