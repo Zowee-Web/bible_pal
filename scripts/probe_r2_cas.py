@@ -550,6 +550,7 @@ def _capture_evidence_layout():
     layout = (
         "evidence-manifest.json",
         (("ISSUANCE_RECORD", "issuance_record"),
+         ("CREDENTIAL_ISSUANCE_RECORD", "credential_issuance_record"),
          ("SEMANTIC_RECORD", "semantic_record"),
          ("RACE_RECORD", "race_record"),
          ("TEST_RESULT_RECORD", "test_result_record"),
@@ -1112,6 +1113,16 @@ def sign_request(*, target, host, access_key_id, secret_access_key,
 # ─────────────────────────────────────────────────────────────────────────
 
 class TemporaryCredential(NamedTuple):
+    """A minted child credential.
+
+    `group` here is a CONVENIENCE/DISPLAY field. It is NOT the authority:
+    a NamedTuple `_replace` can rewrite it, and Codex demonstrated exactly
+    that attack. The authority is the LOCAL issuance binding recorded at
+    mint time and resolved via `instance_id` — see
+    `resolve_credential_binding`. Every consumer that cares about group
+    must go through that resolver, which rejects any mismatch.
+    """
+
     group: str
     access_key_id: str
     secret_access_key: str
@@ -1122,6 +1133,8 @@ class TemporaryCredential(NamedTuple):
     scope: str
     actions: tuple
     prefix_paths: tuple
+    #: LOCAL-ONLY handle into the issuance registry. Never transmitted.
+    instance_id: str = ""
 
     def seconds_remaining(self, now: float) -> float:
         return self.expires_at - now
@@ -1135,6 +1148,111 @@ class TemporaryCredential(NamedTuple):
             "session_token_sha256": hashlib.sha256(
                 self.session_token.encode("utf-8")).hexdigest(),
         }
+
+
+class CredentialBinding(NamedTuple):
+    """The AUTHORITATIVE local record of one minted credential.
+
+    Created inside `mint_probe_credential` and stored in a registry the
+    caller cannot reach. Because it is keyed by an instance id that the
+    minting code alone allocates, relabelling a credential
+    (`_replace(group=...)`) cannot move it to another group's binding: the
+    original binding still says which group it was minted for, and the
+    resolver refuses the disagreement.
+
+    `instance_id` is LOCAL ONLY and is never transmitted to R2.
+    """
+
+    instance_id: str
+    group: str
+    access_key_sha256: str
+    session_token_sha256: str
+    issued_at: int
+    expires_at: int
+    bucket: str
+    scope: str
+    actions: tuple
+    prefix_paths: tuple
+
+
+def _capture_credential_registry():
+    """The process-local issuance registry, captured once at import.
+
+    OBJECT IDENTITY IS THE AUTHORITY (Codex round-5 HIGH 1). The registry
+    keys on `id(credential)` and retains a STRONG reference to the exact
+    minted object, so:
+
+      * `id()` cannot be recycled while the entry lives, and lookup
+        additionally requires `stored is candidate`, so a coincidental id
+        match can never authenticate a different object;
+      * a copy — `cred._replace(...)`, even with every field byte-identical
+        — is a NEW object that was never issued, so it resolves to nothing.
+
+    Authenticating field VALUES was the previous mistake: two same-TTL
+    credentials mint byte-identical tokens, so copying one object's group
+    and instance id onto another passed every field check. Identity cannot
+    be copied.
+
+    There is no public mutator: only `mint_probe_credential` registers.
+    """
+    registry: dict = {}
+    lock = threading.Lock()
+    counter = [0]
+
+    def next_instance_id() -> str:
+        with lock:
+            counter[0] += 1
+            return f"cred-{counter[0]:06d}"
+
+    def register(credential, binding) -> None:
+        with lock:
+            registry[id(credential)] = (credential, binding)
+
+    def lookup(candidate):
+        with lock:
+            entry = registry.get(id(candidate))
+        if entry is None:
+            return None
+        issued, binding = entry
+        # THE identity check. `is`, never `==`.
+        return binding if issued is candidate else None
+
+    return next_instance_id, register, lookup
+
+
+_next_credential_instance_id, _register_credential, _lookup_credential = \
+    _capture_credential_registry()
+
+
+def resolve_credential_binding(credential) -> CredentialBinding:
+    """Return the AUTHORITATIVE binding for THIS EXACT credential object.
+
+    The only sanctioned way to learn a credential's group. Authority comes
+    from the object having been issued by `mint_probe_credential` — not
+    from any field it carries — so a relabelled or wholesale-copied
+    credential resolves to nothing and is refused.
+    """
+    if type(credential) is not TemporaryCredential:
+        raise SafetyBarrierTripped(
+            "credential must be exactly TemporaryCredential")
+    binding = _lookup_credential(credential)
+    if binding is None:
+        raise SafetyBarrierTripped(
+            "this exact credential object was never issued by "
+            "mint_probe_credential — copies and relabelled credentials "
+            "carry no issuance authority")
+    # Defence in depth: the issued object's own fields must still agree
+    # with what was recorded for it at mint time.
+    if binding.instance_id != credential.instance_id \
+            or binding.group != credential.group:
+        raise SafetyBarrierTripped(     # pragma: no cover - unreachable
+            "issued credential disagrees with its own binding")
+    return binding
+
+
+def authoritative_group(credential) -> str:
+    """The group a credential was ACTUALLY minted for."""
+    return resolve_credential_binding(credential).group
 
 
 def _amz_date_to_epoch(amz_date: str) -> int:
@@ -1188,16 +1306,18 @@ def mint_probe_credential(*, group, account_id, parent_access_key_id,
            else policy.group_ttl_seconds)
 
     header = {"alg": "HS256", "typ": "JWT"}
+    # EXACTLY the claims Cloudflare's local-signing recipe documents, and
+    # nothing else (Gate E remediation). The probe's own `group` concept is
+    # deliberately NOT transmitted: R2 has no use for it, and it was the one
+    # shape difference between this token and the official example. Group
+    # ownership lives entirely in trusted LOCAL state — the `group` field of
+    # this TemporaryCredential, CredentialGroupPlanner, the issuance
+    # registry, and the matrix-derived `group` on every evidence record.
     claims = {
         "actions": list(policy.credential_actions),
         "aud": endpoint_host,
         "bucket": policy.bucket,
         "exp": now + ttl,
-        # The credential GROUP is part of the signed claims (Codex
-        # BLOCKER 2-A). Without it, two groups sharing a TTL mint
-        # byte-identical tokens, and "the child credential minted for this
-        # group" would not be a fact any fingerprint could identify.
-        "group": group,
         "iat": now,
         "iss": parent_access_key_id,
         "paths": {"objectPaths": list(policy.credential_object_paths),
@@ -1217,16 +1337,34 @@ def mint_probe_credential(*, group, account_id, parent_access_key_id,
                          hashlib.sha256).digest()
     jwt = f"{signing_input}.{_b64url_nopad(signature)}"
 
-    return TemporaryCredential(
+    session_token = base64.b64encode(
+        b"jwt/" + jwt.encode("utf-8")).decode("ascii")
+    # Build the credential, then register THAT EXACT OBJECT as the issued
+    # capability (Codex round-5 HIGH 1). Authority is object identity, so a
+    # later copy — however faithfully it reproduces these fields — is not
+    # issued and cannot act as this credential.
+    instance_id = _next_credential_instance_id()
+    credential = TemporaryCredential(
         group=group,
         access_key_id=parent_access_key_id,
         secret_access_key=hashlib.sha256(jwt.encode("utf-8")).hexdigest(),
-        session_token=base64.b64encode(
-            b"jwt/" + jwt.encode("utf-8")).decode("ascii"),
+        session_token=session_token,
         issued_at=now, expires_at=now + ttl,
         bucket=policy.bucket, scope=policy.credential_scope,
         actions=policy.credential_actions,
-        prefix_paths=policy.credential_prefixes)
+        prefix_paths=policy.credential_prefixes,
+        instance_id=instance_id)
+    _register_credential(credential, CredentialBinding(
+        instance_id=instance_id, group=group,
+        access_key_sha256=hashlib.sha256(
+            parent_access_key_id.encode("utf-8")).hexdigest(),
+        session_token_sha256=hashlib.sha256(
+            session_token.encode("utf-8")).hexdigest(),
+        issued_at=now, expires_at=now + ttl,
+        bucket=policy.bucket, scope=policy.credential_scope,
+        actions=policy.credential_actions,
+        prefix_paths=policy.credential_prefixes))
+    return credential
 
 
 def _decode_probe_session_token(session_token) -> tuple:
@@ -1263,9 +1401,13 @@ def _decode_probe_session_token(session_token) -> tuple:
 
 
 class TransmittedCredentialClaims(NamedTuple):
-    """The credential facts carried by the token that was ACTUALLY sent."""
+    """The credential facts carried by the token that was ACTUALLY sent.
 
-    group: str
+    There is deliberately NO `group` here: group is a probe-local concept
+    that is no longer transmitted (Gate E remediation), so it cannot be —
+    and must not appear to be — a fact decoded from the wire.
+    """
+
     scope: str
     actions: tuple
     prefix_paths: tuple
@@ -1288,9 +1430,9 @@ def validate_transmitted_token_claims(wire_token, *, endpoint_host,
     token does not carry.
 
     It proves shape and policy conformance — header, bucket, scope,
-    actions, prefixes, objectPaths, group membership, TTL matching the
-    group, `iss` equal to the signing access key, `aud`/`sub` equal to this
-    endpoint — but DELIBERATELY does NOT check the wall clock. I4 records
+    actions, prefixes, objectPaths, a TTL that is one of the two the policy
+    permits, `iss` equal to the signing access key, `aud`/`sub` equal to
+    this endpoint — but DELIBERATELY does NOT check the wall clock. I4 records
     retrospective evidence about an ALREADY-EXPIRED credential, so a
     validity-window check here would make the honest expired case
     unrecordable. Pre-transmission enforcement is unchanged and still lives
@@ -1309,11 +1451,16 @@ def validate_transmitted_token_claims(wire_token, *, endpoint_host,
     if header != {"alg": "HS256", "typ": "JWT"}:
         raise SafetyBarrierTripped("JWT protected header is not HS256/JWT")
 
-    group = claims.get("group")
-    groups = _matrix_groups(policy)
-    if type(group) is not str or group not in groups:
+    # The transmitted payload must be EXACTLY Cloudflare's documented claim
+    # set — no probe-local extras (Gate E remediation). An unexpected claim
+    # is refused here rather than silently ignored, so this validator also
+    # proves, from the wire, that nothing undocumented was sent.
+    documented = {"bucket", "scope", "actions", "paths",
+                  "sub", "iss", "aud", "iat", "exp"}
+    extra = set(claims) - documented
+    if extra:
         raise SafetyBarrierTripped(
-            f"JWT group claim {group!r} is not a matrix group")
+            f"transmitted JWT carries undocumented claims: {sorted(extra)}")
     if claims.get("bucket") != policy.bucket:
         raise ProductionNameDetected("JWT bucket claim is not the probe bucket")
     if claims.get("scope") != policy.credential_scope:
@@ -1344,32 +1491,45 @@ def validate_transmitted_token_claims(wire_token, *, endpoint_host,
     expires_at = claims.get("exp")
     if type(issued_at) is not int or type(expires_at) is not int:
         raise SafetyBarrierTripped("JWT iat/exp must be int")
-    expected_ttl = (policy.expiry_group_ttl_seconds
-                    if group == policy.expiry_group
-                    else policy.group_ttl_seconds)
-    if expires_at - issued_at != expected_ttl:
+    # Group is no longer on the wire, so the TTL is checked against the two
+    # values the policy permits. The TIGHT binding is unbroken and lives in
+    # local state: validate_probe_credential_for_transport requires
+    # `expires_at - issued_at == ttl_for(credential.group)`, and
+    # build_request_record requires the transmitted iat/exp to equal that
+    # same credential's window — so a wrong-TTL-for-group credential still
+    # cannot be sent or recorded.
+    permitted_ttls = {policy.group_ttl_seconds,
+                      policy.expiry_group_ttl_seconds}
+    if expires_at - issued_at not in permitted_ttls:
         raise SafetyBarrierTripped(
-            f"JWT TTL does not match group {group!r}")
+            "JWT TTL is not one of the permitted probe credential TTLs")
     del jwt
     return TransmittedCredentialClaims(
-        group=group, scope=policy.credential_scope, actions=actions,
+        scope=policy.credential_scope, actions=actions,
         prefix_paths=prefixes, issued_at=issued_at, expires_at=expires_at,
         access_key_id=access_key_id, account_id=account_id,
         bucket=policy.bucket)
 
 
-def validate_probe_credential_for_transport(credential, *, endpoint_host,
-                                            now) -> TemporaryCredential:
-    """Prove a credential is internally consistent and bound to THIS
-    endpoint, THIS policy, THIS group and THIS validity window (HIGH 2).
+def validate_probe_credential_structure(credential, *,
+                                       endpoint_host) -> TemporaryCredential:
+    """EVERY structural property of a credential, EXCEPT freshness.
 
-    Every field is validated: exact type, group membership, bucket/scope/
-    actions/prefix equal to the captured policy, TTL matching the group,
-    validity window containing `now`, access-key shape, and — decoding the
-    session token — the protected header, every claim, aud==endpoint host,
-    iss==access key id, and derived_secret==sha256(jwt). The parent-secret
-    HS256 signature is verified at mint time, by the independent offline
-    tests, and finally by R2 itself during the eventual probe.
+    Split out from the transport validator (Codex HIGH 2) so the I4
+    diagnostic — whose whole purpose is to send AFTER expiry — can still be
+    held to the complete retrospective contract instead of skipping it. The
+    ONLY check that lives outside this function is the validity window.
+
+    Validates: exact type; the AUTHORITATIVE issuance binding (which is what
+    makes `group` trustworthy at all); bucket/scope/actions/prefixes equal to
+    captured policy; TTL matching the issued group; access-key and derived-
+    secret shapes; and — decoding the session token — the protected header,
+    the exact documented claim set, aud==endpoint host, iss==access key id,
+    sub==the endpoint's account, iat/exp==the credential's own window, and
+    derived_secret==sha256(jwt). The parent-secret HS256 signature is
+    verified at mint time and by the independent offline verifiers; the
+    transport-side equivalent is the derived-secret binding, since the
+    parent secret is deliberately not available here.
     """
     policy = _policy()
     if type(credential) is not TemporaryCredential:
@@ -1378,13 +1538,14 @@ def validate_probe_credential_for_transport(credential, *, endpoint_host,
     if type(endpoint_host) is not str \
             or not _grammar().endpoint_host.fullmatch(endpoint_host):
         raise EndpointRefused("endpoint_host refused")
-    if type(now) not in (int, float) or not math.isfinite(now):
-        raise SafetyBarrierTripped("now must be a finite number")
 
+    # AUTHORITY: resolve the local issuance binding first. This rejects a
+    # relabelled credential before any other field is trusted.
+    binding = resolve_credential_binding(credential)
     groups = _matrix_groups(policy)
-    if type(credential.group) is not str or credential.group not in groups:
+    if binding.group not in groups:
         raise SafetyBarrierTripped(
-            f"credential group {credential.group!r} is not permitted")
+            f"credential group {binding.group!r} is not permitted")
     if credential.bucket != policy.bucket:
         raise ProductionNameDetected(
             "credential bucket is not the probe bucket")
@@ -1403,17 +1564,14 @@ def validate_probe_credential_for_transport(credential, *, endpoint_host,
             "credential secret must be a sha256 hex digest")
 
     expected_ttl = (policy.expiry_group_ttl_seconds
-                    if credential.group == policy.expiry_group
+                    if binding.group == policy.expiry_group
                     else policy.group_ttl_seconds)
     if type(credential.issued_at) is not int \
             or type(credential.expires_at) is not int:
         raise SafetyBarrierTripped("credential timestamps must be int")
     if credential.expires_at - credential.issued_at != expected_ttl:
         raise SafetyBarrierTripped(
-            f"credential TTL does not match group {credential.group!r}")
-    if not (credential.issued_at <= now < credential.expires_at):
-        raise SafetyBarrierTripped(
-            "current time is outside the credential validity window")
+            f"credential TTL does not match group {binding.group!r}")
 
     header, claims, jwt = _decode_probe_session_token(
         credential.session_token)
@@ -1434,10 +1592,14 @@ def validate_probe_credential_for_transport(credential, *, endpoint_host,
         raise ProductionNameDetected("JWT bucket claim is not the probe bucket")
     if claims.get("scope") != policy.credential_scope:
         raise SafetyBarrierTripped("JWT scope claim is not the probe scope")
-    if claims.get("group") != credential.group \
-            or credential.group not in _matrix_groups(policy):
+    # The transmitted payload must be EXACTLY the documented claim set — no
+    # probe-local extras, and in particular no `group`.
+    documented = {"bucket", "scope", "actions", "paths",
+                  "sub", "iss", "aud", "iat", "exp"}
+    if set(claims) != documented:
         raise SafetyBarrierTripped(
-            "JWT group claim is not this credential's matrix group")
+            "transmitted JWT claim set is not exactly the documented set: "
+            f"{sorted(set(claims) ^ documented)}")
     if tuple(claims.get("actions") or ()) != policy.credential_actions:
         raise SafetyBarrierTripped("JWT actions claim is not the probe set")
     paths = claims.get("paths")
@@ -1455,6 +1617,24 @@ def validate_probe_credential_for_transport(credential, *, endpoint_host,
     if endpoint_host != f"{claims['sub']}.r2.cloudflarestorage.com":
         raise SafetyBarrierTripped(
             "JWT sub account id does not match the endpoint host")
+    return credential
+
+
+def validate_probe_credential_freshness(credential, *, now) -> None:
+    """The ONE check I4 deliberately waives: `now` inside the window."""
+    if type(now) not in (int, float) or not math.isfinite(now):
+        raise SafetyBarrierTripped("now must be a finite number")
+    if not (credential.issued_at <= now < credential.expires_at):
+        raise SafetyBarrierTripped(
+            "current time is outside the credential validity window")
+
+
+def validate_probe_credential_for_transport(credential, *, endpoint_host,
+                                            now) -> TemporaryCredential:
+    """Ordinary live traffic: the FULL structural contract AND freshness."""
+    validate_probe_credential_structure(credential,
+                                        endpoint_host=endpoint_host)
+    validate_probe_credential_freshness(credential, now=now)
     return credential
 
 
@@ -1492,7 +1672,8 @@ class CredentialGroupPlanner:
         if type(now) not in (int, float) or not math.isfinite(now):
             raise SafetyBarrierTripped("now must be a finite number")
         policy = _policy()
-        group = credential.group
+        # AUTHORITY, not the caller-replaceable label (Codex HIGH 1).
+        group = authoritative_group(credential)
         if group not in _matrix_groups(policy):
             raise SafetyBarrierTripped(f"unknown credential group {group!r}")
 
@@ -1526,14 +1707,17 @@ class CredentialGroupPlanner:
         _exact_str(test_id, "test_id", max_len=16)
         policy = _policy()
         groups = _matrix_groups(policy)
-        allowed = groups.get(credential.group, ())
+        # AUTHORITY: the group this credential was ISSUED for, so a
+        # `_replace(group=...)` relabel cannot buy access to another
+        # group's rows (Codex HIGH 1).
+        group = authoritative_group(credential)
+        allowed = groups.get(group, ())
         if test_id not in allowed:
             raise SafetyBarrierTripped(
                 f"test {test_id!r} may not run under credential group "
-                f"{credential.group!r}")
+                f"{group!r}")
         expiry_tests = groups.get(policy.expiry_group, ())
-        if (credential.group == policy.expiry_group) != (
-                test_id in expiry_tests):
+        if (group == policy.expiry_group) != (test_id in expiry_tests):
             raise SafetyBarrierTripped(
                 "the expiry credential is reserved for expiry testing only")
 
@@ -2448,10 +2632,11 @@ class R2Transport:
         if type(credential) is not TemporaryCredential:
             raise SafetyBarrierTripped(
                 "a diagnostic requires exactly a TemporaryCredential")
-        if credential.group != spec.group:
+        issued_group = authoritative_group(credential)
+        if issued_group != spec.group:
             raise SafetyBarrierTripped(
                 f"{spec.id} requires the {spec.group!r} child credential, "
-                f"got {credential.group!r}")
+                f"got {issued_group!r}")
 
     def _diagnostic_amz_date(self):
         """The request date is derived from the transport's OWN wall clock —
@@ -2500,22 +2685,23 @@ class R2Transport:
         method refuses to run while the credential is still valid.
         """
         spec, target = self._diagnostic_target("I4", identity)
+        # Local issuance group must be T-EXPIRY (authoritative, not the
+        # caller-settable label).
         self._assert_diagnostic_credential(spec, credential)
+        # FULL RETROSPECTIVE STRUCTURAL CONTRACT (Codex HIGH 2). Everything
+        # ordinary traffic must satisfy — issuance binding, bucket, scope,
+        # actions, paths, sub/iss/aud, iat/exp, derived secret, session-token
+        # encoding, exact documented claim set — is enforced here. The ONLY
+        # waived check is freshness, because sending after expiry is the
+        # entire point of this row. A malformed "expired" credential
+        # therefore can no longer reach the connection factory.
+        validate_probe_credential_structure(
+            credential, endpoint_host=self.endpoint_host)
         amz_date, now = self._diagnostic_amz_date()
         if now < credential.expires_at:
             raise SafetyBarrierTripped(
                 "the I4 diagnostic requires an ALREADY-EXPIRED credential "
                 f"(now {now} < expires_at {credential.expires_at})")
-        # The token's own signed claims must carry that same expiry, so the
-        # row cannot be satisfied by a credential object whose metadata was
-        # edited to look expired.
-        _header, claims, _jwt = _decode_probe_session_token(
-            credential.session_token)
-        if claims.get("exp") != credential.expires_at \
-                or claims.get("group") != spec.group:
-            raise SafetyBarrierTripped(
-                "the I4 token claims disagree with the credential's expiry "
-                "or group")
         signed = sign_request(
             target=target, host=self.endpoint_host,
             access_key_id=credential.access_key_id,
@@ -2781,13 +2967,14 @@ class ParsedError(NamedTuple):
     message_omitted: bool
     request_id: str | None
     host_id_sha256: str | None
+    argument: str | None = None
 
 
 def _capture_blank_parsed_error():
     """The all-empty parse result, captured (Codex BLOCKER 3): rebinding a
     module name to a ParsedError carrying, say, a NoSuchKey code would let
     an unparseable body masquerade as a specific S3 error."""
-    blank = ParsedError(None, None, False, None, None)
+    blank = ParsedError(None, None, False, None, None, None)
     return lambda blank=blank: blank
 
 
@@ -2796,21 +2983,194 @@ _blank_parsed_error = _capture_blank_parsed_error()
 #: DISPLAY ONLY — enforcement reads the closure above.
 _BLANK_PARSED_ERROR = _blank_parsed_error()
 
+#: The placeholder every redacted token becomes. Never a partial reveal.
+REDACTED = "<redacted>"
 
-def safe_error_message(raw) -> tuple:
+#: Hard bound on a sanitized message, inside the evidence grammar's 200.
+MAX_SANITIZED_MESSAGE_CHARS = 180
+
+
+def _capture_sanitizer_vocabulary():
+    """The FINITE allowlist the sanitizer may ever emit (Codex BLOCKER 1).
+
+    The previous rule — "pieces that look like short words are safe" — was
+    open-ended, and Codex defeated it: a secret written as
+    `AlphaBeta GammaDelta ThetaValue` survived intact and re-concatenated
+    to the original. Shape heuristics cannot bound what an unknown string
+    carries, so acceptance is now a CLOSED SET. Anything not literally in
+    these two collections becomes `<redacted>`; unknown means redact.
+    """
+    # Ordinary diagnostic words, matched case-insensitively and emitted in
+    # the message's own case. The set is deliberately small: only words
+    # that make an R2 error sentence readable.
+    words = frozenset({
+        "invalid", "argument", "unsupported", "header", "claim", "scope",
+        "value", "missing", "malformed", "expired", "credential", "token",
+        "request", "signature", "bucket", "object", "path", "permission",
+        "denied", "required", "unexpected", "condition", "precondition",
+        "match", "none", "read", "write", "action", "audience", "issuer",
+        "subject", "the", "is", "not", "a", "an", "for", "in", "of", "or",
+        "must", "be", "was", "with", "and",
+        "rejected", "supported", "allowed", "specified", "provided",
+        "field", "parameter", "name", "format", "type", "key", "empty",
+        # Connectives and verbs that appear in real S3 messages, e.g.
+        # "At least one of the preconditions failed".
+        "at", "least", "one", "failed", "cannot", "does",
+        "this", "that", "on", "to", "from", "than", "only",
+        "found", "exists", "already",
+    })
+    # Exact protocol identifiers, matched CASE-SENSITIVELY because these
+    # are literal wire/claim names. Both spellings of the conditional
+    # headers appear in real S3 messages.
+    identifiers = (
+        "x-amz-security-token", "x-amz-date", "x-amz-content-sha256",
+        "authorization", "Authorization",
+        "if-match", "If-Match", "if-none-match", "If-None-Match",
+        "content-type", "Content-Type", "content-md5", "Content-MD5",
+        "object-read-write", "object-read-only",
+        "admin-read-write", "admin-read-only",
+        "HeadObject", "GetObject", "PutObject", "DeleteObject",
+        "ListObjectsV2", "list-type",
+        "bucket", "scope", "actions", "paths", "prefixPaths", "objectPaths",
+        "sub", "iss", "aud", "iat", "exp", "group",
+    )
+    # Leading/trailing punctuation is stripped before classification and
+    # re-attached afterwards, so `token.` and `"scope"` still read well.
+    punctuation = re.compile(r"^([\"'(\[<]*)(.*?)([\"')\]>.,;:!?]*)$", re.S)
+    captured = (words, frozenset(identifiers), punctuation)
+    return lambda captured=captured: captured
+
+
+_sanitizer_vocabulary = _capture_sanitizer_vocabulary()
+
+#: DISPLAY ONLY — enforcement reads the closure above.
+SANITIZER_SAFE_WORDS = _sanitizer_vocabulary()[0]
+SANITIZER_SAFE_IDENTIFIERS = _sanitizer_vocabulary()[1]
+
+
+def _token_is_safe(inner: str) -> bool:
+    """True ONLY for a member of the finite vocabulary or identifier set."""
+    if not inner:
+        return False
+    words, identifiers, _punct = _sanitizer_vocabulary()
+    if inner in identifiers:
+        return True
+    folded = inner.casefold()
+    # A simple English plural of a vocabulary word is also safe. The
+    # admitted set therefore remains FINITE: vocabulary x {"", "s"}.
+    return folded in words or (folded.endswith("s")
+                               and folded[:-1] in words)
+
+
+def _squash(text: str) -> str:
+    """Lowercase alphanumerics only — the form a reconstruction attack
+    would produce by concatenating surviving fragments."""
+    return "".join(ch for ch in text.lower() if ch.isalnum())
+
+
+def safe_error_message(raw, secrets: Iterable[str] = ()) -> tuple:
+    """Sanitize an S3 <Message> by REDACTING, not by dropping (Gate E).
+
+    The previous behaviour discarded the whole message whenever it contained
+    any 20+ run of [A-Za-z0-9_-]. That is satisfied by harmless argument
+    names — `x-amz-security-token` is exactly 20 such characters — so the
+    one sentence that identifies a malformed request was reliably destroyed.
+
+    The rule is now a FINITE ALLOWLIST (Codex BLOCKER 1): a token survives
+    ONLY if it is literally a member of the small diagnostic vocabulary or
+    the exact protocol-identifier set. Shape heuristics are gone, because a
+    secret can always be written as short word-shaped pieces. Everything
+    unknown becomes `<redacted>`.
+
+    Two further defences: known secrets are redacted by exact match before
+    tokenisation, and afterwards the retained text is SQUASHED (lowercase
+    alphanumerics only) and refused outright if any known secret's squashed
+    form appears in it — which catches a secret split across separators,
+    punctuation, quotes or entities without resorting to fuzzy matching.
+
+    Returns `(message, omitted)`. On ANY doubt the message is omitted
+    entirely, and the raw text is never logged, echoed, or attached to an
+    exception.
+    """
     if raw is None:
         return None, False
     if type(raw) is not str:
         return None, True
-    collapsed = " ".join(raw.split())
-    if not _grammar().safe_message.fullmatch(collapsed):
+    try:
+        # `split()` folds tabs/newlines/runs of spaces into single spaces.
+        # ANY control character surviving that is malformed input, and the
+        # whole message is refused rather than partially rescued.
+        collapsed = " ".join(raw.split())
+        if not collapsed:
+            return None, True
+        if any(ch < " " or ch == "\x7f" for ch in collapsed):
+            return None, True
+        # Exact-match redaction of known secrets first, before any token
+        # classification, so a secret can never survive tokenisation.
+        for secret in secrets:
+            if type(secret) is str and secret and secret in collapsed:
+                collapsed = collapsed.replace(secret, REDACTED)
+        out = []
+        _words, _identifiers, punctuation = _sanitizer_vocabulary()
+        for token in collapsed.split(" ")[:40]:
+            match = punctuation.fullmatch(token)
+            if match is None:                       # pragma: no cover
+                out.append(REDACTED)
+                continue
+            lead, inner, trail = match.groups()
+            if inner == REDACTED or _token_is_safe(inner):
+                out.append(f"{lead}{inner}{trail}")
+            else:
+                out.append(f"{lead}{REDACTED}{trail}")
+        message = " ".join(out)[:MAX_SANITIZED_MESSAGE_CHARS].strip()
+        if not message:
+            return None, True
+        # RECONSTRUCTION BACKSTOP: if the surviving text, stripped of every
+        # separator, still contains a known secret, refuse the whole message.
+        squashed = _squash(message)
+        for secret in secrets:
+            if type(secret) is str and secret:
+                needle = _squash(secret)
+                if needle and needle in squashed:
+                    return None, True
+        # Final gates: the evidence grammar's printable-ASCII shape, and the
+        # existing credential-shape rejector as an independent backstop.
+        if not _grammar().safe_message.fullmatch(message):
+            return None, True
+        try:
+            _reject_credential_shapes(message, "error_message")
+        except EvidenceValidationError:
+            return None, True
+        return message, False
+    except Exception:  # noqa: BLE001 — never leak raw text via an exception
         return None, True
-    if _grammar().opaque_token.search(collapsed):
-        return None, True
-    return collapsed, False
 
 
-def parse_s3_error(body, *, truncated=False) -> ParsedError:
+def safe_error_argument(message) -> str | None:
+    """The identifier an ALREADY-SANITIZED message names, or None.
+
+    Drawn ONLY from the fixed protocol-identifier set (Codex BLOCKER 1) —
+    never an arbitrary hyphenated/underscored/dotted string and never an
+    unknown word — so this field cannot become a second leak channel. The
+    LAST identifier is returned, which is the offending argument in the
+    S3 message shapes this probe expects.
+    """
+    if type(message) is not str:
+        return None
+    _words, identifiers, punctuation = _sanitizer_vocabulary()
+    found = None
+    for token in message.split(" "):
+        match = punctuation.fullmatch(token)
+        if match is None:                           # pragma: no cover
+            continue
+        inner = match.group(2)
+        if inner in identifiers:
+            found = inner
+    return found
+
+
+def parse_s3_error(body, *, truncated=False,
+                   secrets: Iterable[str] = ()) -> ParsedError:
     """Parse ONLY allowlisted fields from a BOUNDED S3 error body.
 
     Structural rules (no regex over arbitrary nested content): bounded and
@@ -2819,6 +3179,11 @@ def parse_s3_error(body, *, truncated=False) -> ParsedError:
     duplicates, nested/spoofed <Code> and element-bearing <Code> are all
     rejected. Anything rejected yields code=None, which classifiers treat
     as UNKNOWN. HostId is reduced to a digest, never recorded raw.
+
+    The RAW body is never returned or persisted: only the code, a sanitized
+    message, the identifier that message names, a shape-checked RequestId,
+    and a HostId digest. `secrets` are redacted by exact match before the
+    message is tokenised.
     """
     _exact(body, bytes, "body")
     _exact_bool(truncated, "truncated")
@@ -2846,7 +3211,8 @@ def parse_s3_error(body, *, truncated=False) -> ParsedError:
     code = direct_text_child("Code")
     if code is not None and not _grammar().error_code.fullmatch(code):
         code = None
-    message, omitted = safe_error_message(direct_text_child("Message"))
+    message, omitted = safe_error_message(direct_text_child("Message"),
+                                          secrets)
     request_id = direct_text_child("RequestId")
     if request_id is not None and not _grammar().request_id.fullmatch(request_id):
         request_id = None
@@ -2855,7 +3221,8 @@ def parse_s3_error(body, *, truncated=False) -> ParsedError:
         code=code, message=message, message_omitted=omitted,
         request_id=request_id,
         host_id_sha256=(hashlib.sha256(host_id.encode("utf-8")).hexdigest()
-                        if host_id else None))
+                        if host_id else None),
+        argument=safe_error_argument(message))
 
 
 # ─────────────────────────────────────────────────────────────────────────
@@ -4413,7 +4780,8 @@ def _capture_record_taxonomy():
     taxonomy = _RecordTaxonomy(
         kinds=frozenset({
             "REQUEST_RECORD", "RESPONSE_RECORD", "SEMANTIC_RECORD",
-            "RACE_RECORD", "TEST_RESULT_RECORD", "ISSUANCE_RECORD"}),
+            "RACE_RECORD", "TEST_RESULT_RECORD", "ISSUANCE_RECORD",
+            "CREDENTIAL_ISSUANCE_RECORD"}),
         acceptance_kinds=frozenset({
             "SEMANTIC_RECORD", "RACE_RECORD", "TEST_RESULT_RECORD"}),
         issuance_kind_for_record=(("SEMANTIC_RECORD", "semantic"),
@@ -4733,7 +5101,7 @@ def _make_evidence_field_validators():
     groups = tuple(_matrix_groups(_policy()))
     tests = tuple(sorted(known_test_ids()))
     return {
-        "record_kind": _v_str(max_len=24, choices=_taxonomy().kinds),
+        "record_kind": _v_str(max_len=32, choices=_taxonomy().kinds),
         "run_id": _v_str(max_len=40, pattern=_grammar().run_id, allow_none=True),
         "outcome_classification": _v_str(
             max_len=48, choices=_test_result_outcomes(), allow_none=True),
@@ -4762,6 +5130,12 @@ def _make_evidence_field_validators():
                              allow_none=True),
         "error_message": _v_str(max_len=200, pattern=_grammar().safe_message,
                                 allow_none=True, free_text=True),
+        # The identifier the sanitized message names. Constrained to the
+        # SANITIZER'S OWN identifier set (Codex round-5): a caller-built
+        # ParsedError cannot smuggle free text through this field, and
+        # there is deliberately no second list to drift.
+        "error_argument": _v_str(
+            max_len=64, choices=_sanitizer_vocabulary()[1], allow_none=True),
         "message_omitted": _v_bool(),
         "request_id": _v_str(max_len=128, pattern=_grammar().request_id,
                              allow_none=True, free_text=True),
@@ -4836,6 +5210,11 @@ def _make_evidence_field_validators():
         "credential_group": _v_str(
             max_len=16, choices=frozenset(_matrix_groups(_policy())),
             allow_none=True),
+        # LOCAL-ONLY issuance handle. Never transmitted to R2; persisted so
+        # reconstruction can prove one instance served exactly one group.
+        "credential_instance_id": _v_str(
+            max_len=32, pattern=re.compile(r"^cred-[0-9]{6}$"),
+            allow_none=True),
         "credential_scope": _v_str(
             max_len=32, choices=frozenset({_policy().credential_scope}),
             allow_none=True),
@@ -4847,6 +5226,8 @@ def _make_evidence_field_validators():
             max_items=8, max_len=128),
         "credential_issued_at": _v_int(minimum=0, allow_none=True),
         "credential_expires_at": _v_int(minimum=0, allow_none=True),
+        "credential_access_key_sha256": _v_sha256(allow_none=True),
+        "credential_session_token_sha256": _v_sha256(allow_none=True),
         "identity_kind": _v_str(
             max_len=16,
             choices=frozenset(k for _, k
@@ -4884,6 +5265,116 @@ def _race_writer_field_validators(prefix):
     }
 
 
+#: Separator-ish encodings treated as NOISE by the canonical projection.
+#: Bounded regexes only — deliberately NOT a decoder stack: a numeric entity
+#: or percent escape is removed as a separator rather than decoded, so no
+#: parsing can expand.
+def _capture_secret_projection():
+    noise = re.compile(r"&#[0-9]{1,6};|&#x[0-9a-fA-F]{1,6};|%[0-9a-fA-F]{2}")
+    return lambda noise=noise: noise
+
+
+_secret_projection_noise = _capture_secret_projection()
+
+#: Below this projected length a secret is too short to compare safely, so
+#: the boundary falls back to exact matching rather than inventing fuzzy
+#: comparison.
+MIN_PROJECTED_SECRET_CHARS = 12
+
+
+def canonical_secret_projection(text) -> str:
+    """The separator-insensitive form used to detect a SPLIT known secret.
+
+    Deterministic and documented (Codex round-5 BLOCKER 1):
+      1. drop bounded numeric-entity / percent-escape sequences as noise;
+      2. drop every remaining non-alphanumeric character;
+      3. casefold.
+
+    Case is folded deliberately: preserving it would let a purely
+    case-changed secret evade the backstop, and a high-entropy secret's
+    projection is not made meaningfully collision-prone by folding.
+
+    `AlphaBeta-GammaDelta-ThetaValue`, `AlphaBeta GammaDelta ThetaValue`,
+    `AlphaBeta_GammaDelta.ThetaValue`, `"AlphaBeta","GammaDelta","ThetaValue"`
+    and `AlphaBeta&#45;GammaDelta%2DThetaValue` all project onto the same
+    string as the contiguous secret.
+    """
+    if type(text) is not str:
+        return ""
+    stripped = _secret_projection_noise().sub("", text)
+    return "".join(ch for ch in stripped if ch.isalnum()).casefold()
+
+
+def _iter_persisted_strings(value, *, include_keys=True):
+    """Every string reachable inside a persisted structure.
+
+    Dict items are walked in sorted-key order so the concatenation used for
+    the cross-field check is deterministic. `include_keys=False` yields only
+    VALUES — field names are a fixed allowlist and cannot carry secrets, and
+    interleaving them would break the contiguity a split secret is detected
+    by.
+    """
+    if type(value) is str:
+        yield value
+    elif type(value) in (list, tuple):
+        for item in value:
+            yield from _iter_persisted_strings(item, include_keys=include_keys)
+    elif type(value) is dict:
+        for key in sorted(value, key=str):
+            if include_keys:
+                yield from _iter_persisted_strings(
+                    key, include_keys=include_keys)
+            yield from _iter_persisted_strings(
+                value[key], include_keys=include_keys)
+
+
+def assert_no_known_secret(payload, secrets: Iterable[str], where: str) -> None:
+    """THE evidence-boundary secret gate (Codex round-5 BLOCKER 1).
+
+    Applies to EVERY persisted string — not only sanitized error text —
+    and catches a secret that was split by separators, quotes, punctuation,
+    entities or percent escapes as well as a contiguous one. Two checks:
+
+      1. exact substring, on each string;
+      2. canonical projection, PER STRING — this is the guaranteed
+         property: no single persisted string may contain the secret in
+         any separator-transformed form;
+      3. canonical projection across the concatenation of all value
+         strings in sorted-key order — BEST EFFORT ONLY. It catches a
+         secret smeared across fields that happen to be adjacent in that
+         order, but a split whose pieces land in a different order is not
+         detected. Making that guaranteed would require testing orderings
+         combinatorially, which is exactly the fuzzy matching this design
+         refuses; the finite sanitizer vocabulary is the primary control
+         that keeps unknown fragments out of evidence in the first place.
+
+    A secret whose projection is shorter than MIN_PROJECTED_SECRET_CHARS
+    falls back to exact-only.
+    """
+    strings = list(_iter_persisted_strings(payload))
+    # VALUES only, in deterministic order: a secret smeared across two
+    # fields is still contiguous once field names are excluded.
+    joined_projection = canonical_secret_projection(
+        "".join(_iter_persisted_strings(payload, include_keys=False)))
+    for secret in secrets:
+        if type(secret) is not str or not secret:
+            continue
+        for text in strings:
+            if secret in text:
+                raise EvidenceValidationError(
+                    f"{where} contains secret material")
+        projected = canonical_secret_projection(secret)
+        if len(projected) < MIN_PROJECTED_SECRET_CHARS:
+            continue                     # too short to compare safely
+        for text in strings:
+            if projected in canonical_secret_projection(text):
+                raise EvidenceValidationError(
+                    f"{where} contains transformed secret material")
+        if projected in joined_projection:
+            raise EvidenceValidationError(
+                f"{where} contains secret material split across fields")
+
+
 def _make_evidence_validator():
     validators = _make_evidence_field_validators()
     allowed = frozenset(validators)
@@ -4904,10 +5395,9 @@ def _make_evidence_validator():
         # No default=str anywhere: every value is already a flat exact
         # primitive, so a plain dumps cannot stringify a rogue object.
         serialized = json.dumps(record, sort_keys=True)
-        for secret in secrets:
-            if secret and secret in serialized:
-                raise EvidenceValidationError(
-                    "evidence record contains secret material")
+        # Universal boundary gate: exact AND separator-insensitive, over
+        # every persisted string in the record.
+        assert_no_known_secret(record, secrets, "evidence record")
         assert_no_denied_names(serialized)
 
     return validate, allowed
@@ -4936,7 +5426,8 @@ _REQUEST_ALLOWED = _REQUEST_REQUIRED | frozenset({
     # The physical conn.request() instant for this request (BLOCKER 3).
     "t_request_attempt_mono_ns",
     # Non-secret identity + validity window of the credential that signed.
-    "credential_group", "credential_scope", "credential_actions",
+    "credential_group", "credential_instance_id", "credential_scope",
+    "credential_actions",
     "credential_prefixes", "credential_issued_at", "credential_expires_at"})
 
 _RESPONSE_REQUIRED = frozenset({
@@ -4944,6 +5435,7 @@ _RESPONSE_REQUIRED = frozenset({
     "sequence", "correlation_id", "status"})
 _RESPONSE_ALLOWED = _RESPONSE_REQUIRED | frozenset({
     "etag_raw", "etag_raw_hex", "error_code", "error_message",
+    "error_argument",
     "message_omitted", "request_id", "cf_ray", "host_id_sha256",
     "response_body_len", "response_body_sha256", "body_truncated",
     "final_get_len", "final_get_sha256", "final_etag",
@@ -4988,6 +5480,44 @@ _ISSUANCE_REQUIRED = frozenset({
     "record_kind", "phase", "run_id", "test_id", "repetition", "key",
     "issuance_nonce", "identity_kind"})
 _ISSUANCE_ALLOWED = _ISSUANCE_REQUIRED
+
+#: CREDENTIAL_ISSUANCE_RECORD — the persisted proof that a child
+#: credential was minted locally for exactly one group (Codex round-5).
+#: Reconstruction resolves each request's credential_instance_id to exactly
+#: one of these; nothing self-asserted by a request is trusted.
+_CREDENTIAL_ISSUANCE_REQUIRED = frozenset({
+    "record_kind", "phase", "run_id", "credential_instance_id",
+    "credential_group", "credential_access_key_sha256",
+    "credential_session_token_sha256", "credential_issued_at",
+    "credential_expires_at", "credential_scope", "credential_actions",
+    "credential_prefixes", "bucket"})
+_CREDENTIAL_ISSUANCE_ALLOWED = _CREDENTIAL_ISSUANCE_REQUIRED
+
+
+def _credential_issuance_record(binding, *, phase, run_id) -> dict:
+    """The ONE canonical CREDENTIAL_ISSUANCE_RECORD for a binding.
+
+    A pure function of the authoritative binding, so the writer's
+    dedicated issuance path has nothing caller-supplied to persist, and so
+    the same derivation can be re-run as a cross-check (round-6 HIGH 2).
+    """
+    if type(binding) is not CredentialBinding:
+        raise SafetyBarrierTripped(
+            "credential issuance requires a resolved CredentialBinding")
+    return {
+        "record_kind": "CREDENTIAL_ISSUANCE_RECORD",
+        "phase": phase, "run_id": run_id,
+        "credential_instance_id": binding.instance_id,
+        "credential_group": binding.group,
+        "credential_access_key_sha256": binding.access_key_sha256,
+        "credential_session_token_sha256": binding.session_token_sha256,
+        "credential_issued_at": binding.issued_at,
+        "credential_expires_at": binding.expires_at,
+        "credential_scope": binding.scope,
+        "credential_actions": list(binding.actions),
+        "credential_prefixes": list(binding.prefix_paths),
+        "bucket": binding.bucket,
+    }
 
 _TEST_RESULT_REQUIRED = frozenset({
     "record_kind", "phase", "run_id", "group", "test_id", "repetition",
@@ -5215,6 +5745,18 @@ def _fixed_probe_keys() -> frozenset:
 def _validate_request_record(record):
     _cross_check_group_matches_test(record)
     _cross_check_correlation(record)
+    # GROUP OWNERSHIP, now that group is not transmitted (Gate E). When a
+    # credential group is recorded it MUST equal the group TEST_MATRIX
+    # derives for this row, so a credential minted for one group can never
+    # be recorded as having served another group's test. Cross-group misuse
+    # therefore remains fail-closed in the persisted evidence itself.
+    recorded_group = record.get("credential_group")
+    if recorded_group is not None:
+        expected = test_spec(record["test_id"]).group
+        if recorded_group != expected:
+            raise EvidenceValidationError(
+                f"credential_group {recorded_group!r} is not the matrix group "
+                f"{expected!r} for test {record['test_id']!r}")
     # A request either targets this repetition's allocator key, or one of
     # the fixed policy keys the denial rows are defined against. The empty
     # key is accepted ONLY for a request that really is a ListObjectsV2.
@@ -5328,6 +5870,26 @@ def _validate_race_record(record):
             f"attribution ({expected_attr!r})")
 
 
+def _validate_credential_issuance_record(record):
+    """A credential issuance must name a real matrix group and a TTL that
+    matches it, and carry the fingerprints the binding recorded."""
+    policy = _policy()
+    group = record["credential_group"]
+    if group not in _matrix_groups(policy):
+        raise EvidenceValidationError(
+            f"credential issuance group {group!r} is not a matrix group")
+    expected_ttl = (policy.expiry_group_ttl_seconds
+                    if group == policy.expiry_group
+                    else policy.group_ttl_seconds)
+    if record["credential_expires_at"] - record["credential_issued_at"] \
+            != expected_ttl:
+        raise EvidenceValidationError(
+            f"credential issuance TTL does not match group {group!r}")
+    if record["bucket"] != policy.bucket:
+        raise EvidenceValidationError(
+            "credential issuance bucket is not the probe bucket")
+
+
 def validate_record(record, secrets: Iterable[str]) -> str:
     """Validate one persisted evidence record by its declared kind.
 
@@ -5353,6 +5915,9 @@ def validate_record(record, secrets: Iterable[str]) -> str:
                                _validate_test_result_record),
         "ISSUANCE_RECORD": (_ISSUANCE_REQUIRED, _ISSUANCE_ALLOWED,
                             _validate_issuance_record),
+        "CREDENTIAL_ISSUANCE_RECORD": (_CREDENTIAL_ISSUANCE_REQUIRED,
+                                       _CREDENTIAL_ISSUANCE_ALLOWED,
+                                       _validate_credential_issuance_record),
     }[kind]
     _require_and_restrict(record, required, allowed, kind)
     # Per-field validation (types, shapes, secret scan, denylist).
@@ -5586,9 +6151,7 @@ def validate_summary(summary, secrets: Iterable[str]) -> None:
             raise EvidenceValidationError(
                 "a PASS summary cannot be poisoned or abandon-triggered")
     serialized = json.dumps(summary, sort_keys=True)
-    for secret in secrets:
-        if secret and secret in serialized:
-            raise EvidenceValidationError("summary contains secret material")
+    assert_no_known_secret(summary, secrets, "summary")
     assert_no_denied_names(serialized)
 
 
@@ -5710,6 +6273,8 @@ def expected_relative_for_record(record) -> str:
     """
     kind = record["record_kind"]
     directory = _record_kind_dir(kind)
+    if kind == "CREDENTIAL_ISSUANCE_RECORD":
+        return f"{directory}/{record['credential_instance_id']}.json"
     if kind in ("REQUEST_RECORD", "RESPONSE_RECORD"):
         corr = parse_correlation(record["correlation_id"])
         leaf = (f"{corr.phase}_{corr.run_id}_{corr.test_id}_"
@@ -5778,6 +6343,143 @@ def _iter_evidence_files(run_dir):
                         f"evidence file {name!r} exceeds the size bound")
                 found.append(os.path.relpath(full, run_dir))
     return found
+
+
+class ReconstructedIssuance(NamedTuple):
+    """The COMPLETE authoritative fact set for one minted credential,
+    rebuilt from its persisted CREDENTIAL_ISSUANCE_RECORD.
+
+    Reconstruction used to carry only `instance_id -> group`, which left
+    every other credential fact a request asserted about itself unchecked
+    (Codex round-6 HIGH 1). Holding the whole set is what lets a false
+    `credential_issued_at` — or scope, actions, prefixes, window or
+    fingerprint — be contradicted by the issuance rather than believed.
+    """
+
+    instance_id: str
+    group: str
+    access_key_sha256: str
+    session_token_sha256: str
+    issued_at: int
+    expires_at: int
+    scope: str
+    actions: tuple
+    prefixes: tuple
+    bucket: str
+
+
+#: REQUEST_RECORD field -> ReconstructedIssuance field, plus an optional
+#: normaliser so a JSON list compares equal to the issuance's tuple.
+#:
+#: The two fingerprints are named for the WIRE they were read off
+#: (`access_key_id_sha256` / `session_token_sha256`, both derived in
+#: `build_request_record` from the Authorization header and the transmitted
+#: token) while the issuance names them for the credential. They are the
+#: same two facts, so they are compared as such rather than duplicated into
+#: new evidence fields. `bucket` is the credential's authorized bucket and
+#: the request's target bucket — one fact for a single-bucket probe.
+_REQUEST_CREDENTIAL_AUTHORITY_FIELDS = (
+    ("credential_instance_id", "instance_id", None),
+    ("credential_group", "group", None),
+    ("access_key_id_sha256", "access_key_sha256", None),
+    ("session_token_sha256", "session_token_sha256", None),
+    ("credential_issued_at", "issued_at", None),
+    ("credential_expires_at", "expires_at", None),
+    ("credential_scope", "scope", None),
+    ("credential_actions", "actions", tuple),
+    ("credential_prefixes", "prefixes", tuple),
+    ("bucket", "bucket", None),
+)
+
+
+def assert_credential_bindings_consistent(request_records,
+                                          credential_issuances) -> dict:
+    """Resolve every request's credential attribution against the PERSISTED
+    credential issuance records (Codex round-5 HIGH 1, round-6 HIGH 1).
+
+    Self-consistency is explicitly NOT sufficient: a request is not
+    legitimate merely because its `credential_group` happens to equal the
+    matrix group, or because it carries an instance id at all. The
+    authority is the CREDENTIAL_ISSUANCE_RECORD set, which is written only
+    from an object-identity-verified binding.
+
+    Every credential-attribution fact the request carries is compared
+    against that issuance — not just instance id and group. A request that
+    transmitted a token must say which credential instance signed it, so a
+    false fact cannot escape comparison by dropping its attribution.
+
+    Fails closed on a half-present attribution, an unattributed
+    token-bearing request, an unknown or fabricated instance id, a
+    duplicate issuance for one instance, any fact that contradicts the
+    issuance, and a group that is not the matrix group for the row.
+    Returns `instance_id -> group`.
+    """
+    issued: dict = {}
+    for relative, record in sorted(credential_issuances.items()):
+        instance_id = record["credential_instance_id"]
+        if instance_id in issued:
+            raise SafetyBarrierTripped(
+                f"{relative}: duplicate credential issuance for "
+                f"{instance_id!r}")
+        issued[instance_id] = ReconstructedIssuance(
+            instance_id=instance_id,
+            group=record["credential_group"],
+            access_key_sha256=record["credential_access_key_sha256"],
+            session_token_sha256=record["credential_session_token_sha256"],
+            issued_at=record["credential_issued_at"],
+            expires_at=record["credential_expires_at"],
+            scope=record["credential_scope"],
+            actions=tuple(record["credential_actions"]),
+            prefixes=tuple(record["credential_prefixes"]),
+            bucket=record["bucket"])
+
+    instance_groups: dict = {}
+    for relative, record in sorted(request_records.items()):
+        instance_id = record.get("credential_instance_id")
+        recorded_group = record.get("credential_group")
+        if instance_id is None and recorded_group is None:
+            # No credential attribution. Legitimate only when no temporary
+            # credential went on the wire (e.g. I3): otherwise a request
+            # could carry credential facts nothing is answerable for.
+            if record.get("session_token_present"):
+                raise SafetyBarrierTripped(
+                    f"{relative}: a request that transmitted a temporary "
+                    "credential must record which credential instance "
+                    "signed it")
+            continue
+        if instance_id is None or recorded_group is None:
+            raise SafetyBarrierTripped(
+                f"{relative}: credential group and instance id must be "
+                "recorded together")
+        # AUTHORITY: the persisted issuance, not the request's own claim.
+        if instance_id not in issued:
+            raise SafetyBarrierTripped(
+                f"{relative}: credential instance {instance_id!r} has no "
+                "persisted credential issuance record")
+        authority = issued[instance_id]
+        for field, attribute, normalise in _REQUEST_CREDENTIAL_AUTHORITY_FIELDS:
+            claimed = record.get(field)
+            authoritative = getattr(authority, attribute)
+            if normalise is not None:
+                authoritative = normalise(authoritative)
+                if claimed is not None:
+                    claimed = normalise(claimed)
+            if claimed != authoritative:
+                raise SafetyBarrierTripped(
+                    f"{relative}: request {field} {claimed!r} contradicts the "
+                    f"credential issuance record for {instance_id!r}, which "
+                    f"says {authoritative!r}")
+        expected = test_spec(record["test_id"]).group
+        if authority.group != expected:
+            raise SafetyBarrierTripped(
+                f"{relative}: credential group {authority.group!r} is not the "
+                f"matrix group {expected!r} for {record['test_id']!r}")
+        seen = instance_groups.setdefault(instance_id, authority.group)
+        if seen != authority.group:
+            raise SafetyBarrierTripped(
+                f"{relative}: credential instance {instance_id!r} was "
+                f"attributed to both {seen!r} and {authority.group!r}")
+    return instance_groups
 
 
 def reconstruct_run_from_disk(run_dir, *, phase, run_id, secrets,
@@ -5959,9 +6661,21 @@ def reconstruct_run_from_disk(run_dir, *, phase, run_id, secrets,
                 f"{relative}: response test does not match its request")
         responses[corr] = record
 
+    # CREDENTIAL ISSUANCE BINDING, rebuilt from persisted evidence alone
+    # (Codex HIGH 1). Every recorded credential instance must resolve to
+    # exactly ONE local group across the whole run: an instance attributed
+    # to two groups means a credential was relabelled, and a recorded group
+    # that is not the matrix group for its row is cross-group attribution.
+    # Both fail closed here, independently of any in-memory registry.
+    assert_credential_bindings_consistent(
+        by_kind["REQUEST_RECORD"], by_kind["CREDENTIAL_ISSUANCE_RECORD"])
+
     consumed_nonces = set()
     identities = {("ISSUANCE_RECORD", r["test_id"], r["repetition"])
                   for r in by_kind["ISSUANCE_RECORD"].values()}
+    identities |= {("CREDENTIAL_ISSUANCE_RECORD",
+                    r["credential_instance_id"], 0)
+                   for r in by_kind["CREDENTIAL_ISSUANCE_RECORD"].values()}
     for kind in sorted(_taxonomy().acceptance_kinds):
         for relative, record in by_kind[kind].items():
             nonce = record["issuance_nonce"]
@@ -6130,6 +6844,12 @@ class EvidenceWriter:
         self._persisted = {}
         self._requests = {}          # correlation_id -> test_id
         self._responses = {}         # correlation_id -> observed status
+        # instance_id -> the registry-resolved CredentialBinding this writer
+        # actually persisted an issuance for. Written in exactly ONE place,
+        # `write_credential_issuance`, and only with the binding that
+        # `resolve_credential_binding` returned for an issued credential
+        # object (Codex round-6 HIGH 2, round-7 static HIGH).
+        self._issued_bindings = {}
 
         previous_umask = os.umask(0o077)
         try:
@@ -6291,8 +7011,39 @@ class EvidenceWriter:
         return self._write_typed_record(kind, test_id, repetition, record)
 
     def _write_typed_record(self, kind, test_id, repetition, record):
+        """The GENERIC typed-record path, for caller-built records.
+
+        CREDENTIAL_ISSUANCE_RECORD is refused here unconditionally (Codex
+        round-6 HIGH 2). A caller-built issuance record persisted through
+        this path would become authoritative during reconstruction, which
+        is exactly how a fabricated `cred-999999` was made to back a whole
+        run. Credential issuance has exactly one door,
+        `write_credential_issuance`, whose input is an issued credential
+        OBJECT — not a value of any caller-constructible shape.
+        """
+        if kind == "CREDENTIAL_ISSUANCE_RECORD":
+            raise SafetyBarrierTripped(
+                "credential issuance must use write_credential_issuance")
+        return self.__emit_record(kind, test_id, repetition, record)
+
+    def __emit_record(self, kind, test_id, repetition, record):
         """Byte-level serialisation of one validated typed record at its
-        canonical path. Private to the two callers above."""
+        canonical path. Name-mangled, and reachable only through the two
+        authority-checked callers above.
+
+        Defence in depth for issuance (Codex round-6 HIGH 2): even here, a
+        CREDENTIAL_ISSUANCE_RECORD must be byte-identical to the record
+        this writer would derive from a binding it has actually resolved,
+        so reaching the mangled name cannot fabricate an issuance either.
+        """
+        if kind == "CREDENTIAL_ISSUANCE_RECORD":
+            binding = self._issued_bindings.get(
+                record.get("credential_instance_id"))
+            if binding is None or record != _credential_issuance_record(
+                    binding, phase=self._phase, run_id=self.run_id):
+                raise SafetyBarrierTripped(
+                    "a credential issuance record must be derived from a "
+                    "resolved CredentialBinding")
         pair = (kind, test_id, repetition)
         if pair in self._persisted:
             raise SafetyBarrierTripped(
@@ -6417,6 +7168,34 @@ class EvidenceWriter:
             self._race.record(repetition)
             self._used_nonces.add(issued.nonce)
             return relative
+
+    def write_credential_issuance(self, credential) -> str:
+        """The ONE AND ONLY path that may persist a
+        CREDENTIAL_ISSUANCE_RECORD.
+
+        Takes the EXACT credential object: the binding is resolved HERE,
+        through the object-identity registry, so a copied or relabelled
+        credential cannot produce an issuance record (Codex round-5
+        HIGH 1). Writing the same credential twice is refused, which is
+        what makes "exactly one issuance per instance" provable from disk.
+
+        There is deliberately NO binding-taking persistence helper (Codex
+        round-7 static HIGH). `CredentialBinding` is a plain NamedTuple
+        that any in-process caller can construct, so a helper accepting one
+        as authority let a fabricated binding be installed into
+        `_issued_bindings` — and the emitter's cross-check then validated
+        the record against the very binding the caller had supplied.
+        Authority must come from resolving an issued object, never from
+        the shape of a value handed in.
+        """
+        with self._lock:
+            binding = resolve_credential_binding(credential)
+            record = _credential_issuance_record(
+                binding, phase=self._phase, run_id=self.run_id)
+            # Only a registry-resolved binding may ever enter this map.
+            self._issued_bindings[binding.instance_id] = binding
+            return self.__emit_record(
+                "CREDENTIAL_ISSUANCE_RECORD", binding.instance_id, 0, record)
 
     def write_request_record(self, record) -> str:
         """Persist a REQUEST_RECORD, THEN register its correlation id so a
@@ -6752,6 +7531,27 @@ def build_request_record(*, phase, run_id, group, test_id, repetition,
     if credential is not None and type(credential) is not TemporaryCredential:
         raise SafetyBarrierTripped(
             "credential must be exactly TemporaryCredential")
+    binding = None
+    if credential is not None:
+        # THE AUTHORITATIVE BINDING, resolved by object identity. Every
+        # credential-attribution fact persisted below is read from THIS,
+        # never from the caller's NamedTuple (Codex round-6 HIGH 1):
+        # `credential_instance_id` used to be copied straight off
+        # `credential`, so a `_replace` could point a request at an
+        # issuance record it does not own.
+        binding = resolve_credential_binding(credential)
+        # GROUP OWNERSHIP AT THE EVIDENCE BOUNDARY (Gate E). Group is no
+        # longer a wire claim, so it is enforced here against the group
+        # TEST_MATRIX derives for this row. A credential minted for one
+        # group can therefore never be recorded against another group's
+        # test — even when the two groups' tokens are byte-identical
+        # because their Cloudflare-authorized claims coincide.
+        expected_group = test_spec(test_id).group
+        if binding.group != expected_group:
+            raise SafetyBarrierTripped(
+                f"the recorded credential belongs to group "
+                f"{binding.group!r}, not {expected_group!r} for test "
+                f"{test_id!r}")
     if token_present:
         # THE TRANSMITTED TOKEN IS THE AUTHORITY (Codex BLOCKER 2). Every
         # credential fact below is decoded from the JWT that actually went
@@ -6776,26 +7576,56 @@ def build_request_record(*, phase, run_id, group, test_id, repetition,
                     ).hexdigest() != credential.secret_access_key:
                 raise SafetyBarrierTripped(
                     "derived secret is not sha256(transmitted jwt)")
-            for name, claimed, supplied in (
-                    ("group", claims.group, credential.group),
-                    ("scope", claims.scope, credential.scope),
-                    ("actions", claims.actions, tuple(credential.actions)),
+            # THE ISSUANCE FINGERPRINTS MUST MATCH THE WIRE. These are the
+            # exact two values the request record persists, and the exact
+            # two the CREDENTIAL_ISSUANCE_RECORD carries, so proving them
+            # equal here is what makes request and issuance provably about
+            # one credential once both are back on disk (round-6 HIGH 1).
+            if binding.session_token_sha256 != token_fingerprint:
+                raise SafetyBarrierTripped(
+                    "the wire session token is not the issued credential's")
+            if binding.access_key_sha256 != akid_fingerprint:
+                raise SafetyBarrierTripped(
+                    "the issued credential's key did not sign this request")
+            # The transmitted claims must equal the AUTHORITATIVE binding,
+            # not merely the caller's object. Persisting the binding's
+            # values below is therefore also persisting the wire's.
+            for name, claimed, authoritative in (
+                    ("scope", claims.scope, binding.scope),
+                    ("actions", claims.actions, tuple(binding.actions)),
                     ("prefixes", claims.prefix_paths,
-                     tuple(credential.prefix_paths)),
-                    ("issued_at", claims.issued_at, credential.issued_at),
-                    ("expires_at", claims.expires_at, credential.expires_at),
-                    ("bucket", claims.bucket, credential.bucket)):
-                if claimed != supplied:
+                     tuple(binding.prefix_paths)),
+                    ("issued_at", claims.issued_at, binding.issued_at),
+                    ("expires_at", claims.expires_at, binding.expires_at),
+                    ("bucket", claims.bucket, binding.bucket)):
+                if claimed != authoritative:
                     raise SafetyBarrierTripped(
-                        f"credential {name} {supplied!r} disagrees with the "
-                        f"transmitted token claim {claimed!r}")
+                        f"credential {name} {authoritative!r} disagrees with "
+                        f"the transmitted token claim {claimed!r}")
         credential_facts = {
-            "credential_group": claims.group,
-            "credential_scope": claims.scope,
-            "credential_actions": list(claims.actions),
-            "credential_prefixes": list(claims.prefix_paths),
-            "credential_issued_at": claims.issued_at,
-            "credential_expires_at": claims.expires_at,
+            # AUTHORITY: the resolved binding (round-6 HIGH 1). Group and
+            # instance id are LOCAL facts — group is no longer transmitted
+            # — and the remaining facts were just proven equal to the
+            # claims on the transmitted token, so reading them off the
+            # binding persists the wire's values without giving the caller
+            # a field it could have replaced. With no credential to
+            # resolve, the wire claims remain the only available source.
+            "credential_group": (binding.group
+                                 if binding is not None else None),
+            "credential_instance_id": (binding.instance_id
+                                       if binding is not None else None),
+            "credential_scope": (binding.scope if binding is not None
+                                 else claims.scope),
+            "credential_actions": list(binding.actions if binding is not None
+                                       else claims.actions),
+            "credential_prefixes": list(binding.prefix_paths
+                                        if binding is not None
+                                        else claims.prefix_paths),
+            "credential_issued_at": (binding.issued_at if binding is not None
+                                     else claims.issued_at),
+            "credential_expires_at": (binding.expires_at
+                                      if binding is not None
+                                      else claims.expires_at),
         }
     elif credential is not None:
         # No token on the wire (I3). Identity may still be cross-checked
@@ -6803,7 +7633,7 @@ def build_request_record(*, phase, run_id, group, test_id, repetition,
         # recorded: with no transmitted token there is nothing to decode
         # them from, and copying them off the caller's object is exactly
         # the bypass this boundary exists to prevent.
-        if _fingerprint(credential.access_key_id) != akid_fingerprint:
+        if binding.access_key_sha256 != akid_fingerprint:
             raise SafetyBarrierTripped(
                 "the recorded credential did not sign this request")
 
@@ -6863,6 +7693,7 @@ def build_response_record(*, phase, run_id, group, test_id, repetition,
         "etag_raw": etag, "etag_raw_hex": hex_of(etag),
         "error_code": parsed.code if parsed else None,
         "error_message": parsed.message if parsed else None,
+        "error_argument": parsed.argument if parsed else None,
         "message_omitted": parsed.message_omitted if parsed else False,
         "request_id": parsed.request_id if parsed else None,
         "host_id_sha256": parsed.host_id_sha256 if parsed else None,
@@ -7155,6 +7986,9 @@ class LiveProbeRunner:
         ok, reason = self._planner.can_start(credential=cred, now=now)
         if not ok:
             raise ProbeAbandon(f"group {group} cannot start: {reason}")
+        # Persist the authoritative credential issuance so reconstruction
+        # can resolve every request's attribution from disk alone.
+        self._writer.write_credential_issuance(cred)
         return cred
 
     # ── one request: reserve → sign+transmit (ONE authority) → persist ───
@@ -7223,7 +8057,11 @@ class LiveProbeRunner:
         transport_failure = attempt.failure
         if is_put:
             self._same_key_guard.note_write_response_end(key)
-        parsed = (parse_s3_error(response.body)
+        # The writer's known secrets are passed so they are redacted by
+        # exact match before the message is tokenised — the sanitizer's
+        # allowlist would already refuse them, this is defence in depth.
+        parsed = (parse_s3_error(response.body,
+                                 secrets=self._writer._secrets)
                   if response is not None and response.body else None)
         return _Sent(
             spec=spec, repetition=repetition, sequence=sequence,

@@ -30,6 +30,7 @@ import base64
 import binascii
 import builtins
 import hashlib
+import hmac
 import io
 import json
 import os
@@ -300,11 +301,35 @@ SUPPORT_EVIDENCE = {
 }
 
 
+#: One credential per (group, mint time), mirroring the live runner which
+#: mints exactly once per group. Memoised so a test bundle references the
+#: SAME issued object throughout — issuance authority is object identity,
+#: so a fresh mint per call would need a fresh issuance record per call.
+_GROUP_CREDENTIALS: dict = {}
+
+
 def group_credential(group, now=CRED_NOW):
     """The validated child credential a group's requests must carry."""
-    return probe.mint_probe_credential(
-        group=group, account_id=ACCOUNT_ID, parent_access_key_id=AKID,
-        parent_secret_access_key=SECRET, now=now)
+    key = (group, now)
+    if key not in _GROUP_CREDENTIALS:
+        _GROUP_CREDENTIALS[key] = probe.mint_probe_credential(
+            group=group, account_id=ACCOUNT_ID, parent_access_key_id=AKID,
+            parent_secret_access_key=SECRET, now=now)
+    return _GROUP_CREDENTIALS[key]
+
+
+def ensure_credential_issuance(writer, credential):
+    """Persist the credential issuance once per writer.
+
+    Reconstruction resolves every request's credential attribution through
+    a persisted CREDENTIAL_ISSUANCE_RECORD, so any bundle that references a
+    credential must carry its issuance — exactly as the live runner does.
+    """
+    if credential is None:
+        return
+    pair = ("CREDENTIAL_ISSUANCE_RECORD", credential.instance_id, 0)
+    if pair not in writer._persisted:
+        writer.write_credential_issuance(credential)
 
 
 def sign_support_request(spec, key, facts):
@@ -338,18 +363,28 @@ def sign_support_request(spec, key, facts):
     return signed, credential
 
 
-def write_correlated_evidence(w, spec, rep, *, sequence=1, facts=None):
+def write_correlated_evidence(w, spec, rep, *, sequence=1, facts=None,
+                              mutate_request=None):
     """Persist the REQUEST_RECORD + RESPONSE_RECORD pair for one repetition
-    and return their shared correlation id."""
+    and return their shared correlation id.
+
+    `mutate_request` lets a test falsify the record BEFORE the supported
+    `write_request_record` path persists it, so the bundle's own digests
+    cover the falsehood and only a semantic check can catch it.
+    """
     facts = SUPPORT_EVIDENCE[spec.id] if facts is None else facts
     key = facts.key if facts.key is not None else probe_key(
         spec.id, rep, phase=w._phase.lower(), run_id=w.run_id)
     signed, credential = sign_support_request(spec, key, facts)
-    w.write_request_record(probe.build_request_record(
+    ensure_credential_issuance(w, credential)
+    request = probe.build_request_record(
         phase=w._phase, run_id=w.run_id, group=spec.group, test_id=spec.id,
         repetition=rep, sequence=sequence, endpoint_host=ENDPOINT_HOST,
         signed=signed, credential=credential,
-        t_request_attempt_mono_ns=attempt_ns_for(sequence)))
+        t_request_attempt_mono_ns=attempt_ns_for(sequence))
+    if mutate_request is not None:
+        request = mutate_request(spec, rep, request)
+    w.write_request_record(request)
     headers = () if facts.etag is None else (("ETag", facts.etag),)
     body = (b"" if facts.error_code is None else
             f"<Error><Code>{facts.error_code}</Code></Error>".encode())
@@ -374,6 +409,68 @@ def write_correlated_evidence(w, spec, rep, *, sequence=1, facts=None):
         sequence=sequence).serialize()
 
 
+def passing_bundle_writer(root, run_id="run-disk", *, mutate_request=None):
+    """A COMPLETE bundle that finalizes PASS: every semantic, race and
+    support row, each credential's issuance, and every request attributed
+    to it. Shared so a test can start from a genuinely passing run and
+    falsify exactly one thing.
+
+    `mutate_request(spec, rep, record)` is applied to each support-row
+    request before it is persisted, so a falsehood can be introduced
+    through the supported writer path rather than by editing disk.
+    """
+    w = probe.EvidenceWriter.for_testing(root, run_id)
+    for test_id in probe.semantic_test_ids():
+        for rep in range(1, 11):
+            w.write_semantic_record(
+                w.allocate_semantic(test_id, rep), http_status=412,
+                outcome=probe.PutOutcome.DEFINITE_CONDITIONAL_REJECTION,
+                mutation_observed=False)
+    for test_id in probe.race_test_ids():
+        for rep in range(1, probe.test_spec(
+                test_id).required_repetitions + 1):
+            iss = w.allocate_race(test_id, rep)
+            final = b"aaa" + bytes([rep % 251])
+            kwargs = dict(
+                identity=iss.identity, barrier=BARRIER,
+                writers=(race_writer("W1", 200, final, '"e-%d"' % rep,
+                                     test=test_id),
+                         race_writer("W2", 412,
+                                     b"bbb" + bytes([rep % 251]), None,
+                                     test=test_id)),
+                final_state=probe.RemoteState.CONFIRMED,
+                final_sha256=hashlib.sha256(final).hexdigest(),
+                final_length=len(final), final_etag='"e-%d"' % rep)
+            if test_id == "E2":
+                kwargs.update(shared_original_etag=SHARED_ETAG,
+                              absence_confirmed=None)
+            else:
+                kwargs.update(shared_original_etag=None,
+                              absence_confirmed=True)
+            w.write_race_record(iss, probe.RaceRepetition(**kwargs))
+    for spec in support_specs():
+        for rep in range(1, spec.required_repetitions + 1):
+            write_support_repetition(w, spec, rep,
+                                     mutate_request=mutate_request)
+    return w
+
+
+def attributed_request_on_disk(w):
+    """One persisted REQUEST_RECORD that actually carries a credential,
+    with its relative path. Never the arbitrary "first" file: several rows
+    transmit no token, and a test that silently landed on one of those
+    would prove nothing."""
+    for relative in sorted(w._files):
+        if not relative.startswith("request/"):
+            continue
+        with open(os.path.join(w.run_dir, relative),
+                  encoding="utf-8") as handle:
+            record = json.load(handle)
+        if record.get("credential_instance_id") is not None:
+            return relative, record
+    raise AssertionError("no attributed request record in this bundle")
+
+
 def completion_from_support_evidence(case, specs=None, facts_for=None):
     """Drive real support-row evidence through a real EvidenceWriter and
     count the DERIVED results. Used wherever a test needs a fully complete
@@ -393,7 +490,7 @@ def completion_from_support_evidence(case, specs=None, facts_for=None):
 
 
 def write_support_repetition(w, spec, rep, *, sequence=None, facts=None,
-                             prior_same_key_put=None):
+                             prior_same_key_put=None, mutate_request=None):
     """Persist one support-row repetition end to end through the writer:
     REQUEST_RECORD, RESPONSE_RECORD, then the DERIVED TEST_RESULT_RECORD.
 
@@ -410,7 +507,8 @@ def write_support_repetition(w, spec, rep, *, sequence=None, facts=None,
         sequence = 2 if sequence is None else sequence
     sequence = 1 if sequence is None else sequence
     corr = write_correlated_evidence(w, spec, rep, sequence=sequence,
-                                     facts=facts)
+                                     facts=facts,
+                                     mutate_request=mutate_request)
     return w.write_test_result_record(w.allocate_semantic(spec.id, rep),
                                       evidence_ref=corr)
 
@@ -2320,39 +2418,7 @@ class DiskAuthoritativeFinalizationTests(unittest.TestCase):
         self.addCleanup(self._tmp.cleanup)
 
     def _passing_writer(self, run_id="run-disk"):
-        w = probe.EvidenceWriter.for_testing(self.root, run_id)
-        for test_id in probe.semantic_test_ids():
-            for rep in range(1, 11):
-                w.write_semantic_record(
-                    w.allocate_semantic(test_id, rep), http_status=412,
-                    outcome=probe.PutOutcome.DEFINITE_CONDITIONAL_REJECTION,
-                    mutation_observed=False)
-        for test_id in probe.race_test_ids():
-            for rep in range(1, probe.test_spec(
-                    test_id).required_repetitions + 1):
-                iss = w.allocate_race(test_id, rep)
-                final = b"aaa" + bytes([rep % 251])
-                kwargs = dict(
-                    identity=iss.identity, barrier=BARRIER,
-                    writers=(race_writer("W1", 200, final, '"e-%d"' % rep,
-                                         test=test_id),
-                             race_writer("W2", 412,
-                                         b"bbb" + bytes([rep % 251]), None,
-                                         test=test_id)),
-                    final_state=probe.RemoteState.CONFIRMED,
-                    final_sha256=hashlib.sha256(final).hexdigest(),
-                    final_length=len(final), final_etag='"e-%d"' % rep)
-                if test_id == "E2":
-                    kwargs.update(shared_original_etag=SHARED_ETAG,
-                                  absence_confirmed=None)
-                else:
-                    kwargs.update(shared_original_etag=None,
-                                  absence_confirmed=True)
-                w.write_race_record(iss, probe.RaceRepetition(**kwargs))
-        for spec in support_specs():
-            for rep in range(1, spec.required_repetitions + 1):
-                write_support_repetition(w, spec, rep)
-        return w
+        return passing_bundle_writer(self.root, run_id)
 
     def _path(self, w, relative):
         return os.path.join(w.run_dir, relative)
@@ -3247,19 +3313,40 @@ class TransmittedTokenAuthorityTests(unittest.TestCase):
 
     # ── ATTACK A: fake group ────────────────────────────────────────────
     def test_group_tampering_is_refused(self):
-        """CODEX ATTACK A: a real T-CAS-1 token, presented as T-SCOPE."""
+        """CODEX ATTACK A, restated for Gate E.
+
+        Group is no longer a signed claim, so "a real T-CAS-1 token
+        presented as T-SCOPE" is no longer a meaningful attack between two
+        900-second groups: their tokens are byte-identical and carry
+        identical authority, so the label is pure local bookkeeping. The
+        attacks that DO matter are still refused:
+          1. using a credential against a test in another group;
+          2. relabelling ACROSS the TTL boundary (T-EXPIRY vs the rest).
+        """
         real = group_credential("T-CAS-1")
         signed = self._signed(real)
-        tampered = real._replace(group="T-SCOPE")
+        # 1. H4 belongs to T-SCOPE; a T-CAS-1 credential cannot serve it.
         with self.assertRaises(probe.SafetyBarrierTripped):
-            self._build(tampered, signed)
-        # And the honest record never claims T-SCOPE.
-        honest = self._build(real, signed, group="T-CAS-1")
+            self._build(real, signed, spec_id="H4")
+        # 2. A T-EXPIRY credential relabelled as an ordinary group no longer
+        #    matches that group's required TTL.
+        expiry = group_credential("T-EXPIRY")
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            probe.validate_probe_credential_for_transport(
+                expiry._replace(group="T-CAS-1"),
+                endpoint_host=ENDPOINT_HOST, now=expiry.issued_at)
+        # The honest record records its own group, which equals the matrix
+        # group for the row.
+        honest = self._build(real, signed, spec_id="A")
         self.assertEqual(honest["credential_group"], "T-CAS-1")
+        self.assertEqual(honest["credential_group"],
+                         probe.test_spec("A").group)
 
     def test_h4_cannot_be_satisfied_by_a_foreign_group_token(self):
-        """The tampered evidence cannot even be constructed, so H4 never
-        sees a record claiming its own group."""
+        """Gate E restatement: a credential belonging to another group can
+        never be RECORDED against H4, and a credential with widened
+        authority can never be recorded at all — the authority claims are
+        still cross-checked against the transmitted token."""
         real = group_credential("T-CAS-1")
         signed = probe.sign_request(
             target=probe.RequestTarget(
@@ -3268,33 +3355,26 @@ class TransmittedTokenAuthorityTests(unittest.TestCase):
             host=ENDPOINT_HOST, access_key_id=real.access_key_id,
             secret_access_key=real.secret_access_key,
             session_token=real.session_token, body=b"", amz_date=AMZ_DATE)
+        # A genuine T-CAS-1 credential cannot serve the T-SCOPE row H4.
         with self.assertRaises(probe.SafetyBarrierTripped):
             probe.build_request_record(
                 phase="T", run_id=RUN_ID, group="T-SCOPE", test_id="H4",
                 repetition=1, sequence=1, endpoint_host=ENDPOINT_HOST,
-                signed=signed, credential=real._replace(group="T-SCOPE"))
-        # Recorded honestly, the token's real group is T-CAS-1, so the
-        # T-SCOPE row H4 derives INCONCLUSIVE.
-        record = probe.build_request_record(
-            phase="T", run_id=RUN_ID, group="T-SCOPE", test_id="H4",
-            repetition=1, sequence=1, endpoint_host=ENDPOINT_HOST,
-            signed=signed, credential=real)
-        self.assertEqual(record["credential_group"], "T-CAS-1")
-        response = probe.build_response_record(
-            phase="T", run_id=RUN_ID, group="T-SCOPE", test_id="H4",
-            repetition=1, sequence=1,
-            response=probe.RawResponse(
-                status=403, headers=(),
-                body=b"<Error><Code>AccessDenied</Code></Error>",
-                body_truncated=False, t_request_start_mono_ns=1,
-                t_response_end_mono_ns=2),
-            parsed=probe.parse_s3_error(
-                b"<Error><Code>AccessDenied</Code></Error>"),
-            repetition_status=None)
-        self.assertEqual(
-            probe.derive_test_result(probe.test_spec("H4"), record,
-                                     response).outcome,
-            "INCONCLUSIVE")
+                signed=signed, credential=real)
+        # And AUTHORITY is still bound to the wire: a credential claiming
+        # wider scope/actions than the transmitted token is refused even
+        # when its group label is correct for the row.
+        scope_cred = group_credential("T-SCOPE")
+        for widened in (scope_cred._replace(scope="admin-read-write"),
+                        scope_cred._replace(actions=("DeleteObject",)),
+                        scope_cred._replace(prefix_paths=("",))):
+            with self.subTest(widened=widened.scope):
+                with self.assertRaises(probe.SafetyBarrierTripped):
+                    probe.build_request_record(
+                        phase="T", run_id=RUN_ID, group="T-SCOPE",
+                        test_id="H4", repetition=1, sequence=1,
+                        endpoint_host=ENDPOINT_HOST, signed=signed,
+                        credential=widened)
 
     # ── ATTACK B: fake expiry ───────────────────────────────────────────
     def test_expiry_tampering_is_refused(self):
@@ -3360,16 +3440,27 @@ class TransmittedTokenAuthorityTests(unittest.TestCase):
 
     # ── C: every fact equals the decoded claim ─────────────────────────
     def test_every_credential_fact_equals_the_decoded_claim(self):
-        for group in probe.credential_groups():
+        for group, test_ids in probe.credential_groups().items():
             with self.subTest(group=group):
                 credential = group_credential(group)
-                signed = self._signed(credential)
+                # Build against a row that really BELONGS to this group —
+                # a credential may no longer be recorded against a foreign
+                # group's test (Gate E).
+                spec_id = test_ids[0]
+                signed = self._signed(
+                    credential, key=probe_key(spec_id, 1))
                 record = self._build(credential, signed, group=group,
-                                     spec_id="H4")
+                                     spec_id=spec_id)
                 claims = probe.validate_transmitted_token_claims(
                     credential.session_token, endpoint_host=ENDPOINT_HOST,
                     access_key_id=credential.access_key_id)
-                self.assertEqual(record["credential_group"], claims.group)
+                # Gate E: group is no longer a wire claim, so it is a LOCAL
+                # fact — recorded from the credential and cross-checked
+                # against the matrix group for the row.
+                self.assertFalse(hasattr(claims, "group"))
+                self.assertEqual(record["credential_group"], credential.group)
+                self.assertEqual(record["credential_group"],
+                                 probe.test_spec(spec_id).group)
                 self.assertEqual(record["credential_scope"], claims.scope)
                 self.assertEqual(tuple(record["credential_actions"]),
                                  claims.actions)
@@ -3383,8 +3474,11 @@ class TransmittedTokenAuthorityTests(unittest.TestCase):
     def test_every_replaceable_field_is_cross_checked(self):
         real = group_credential("T-CAS-1")
         signed = self._signed(real)
-        for field, value in (("group", "T-SCOPE"),
-                             ("scope", "admin-read-write"),
+        # `group` is deliberately absent: it is no longer a transmitted
+        # claim, so it cannot be cross-checked against one. Its enforcement
+        # is proven by test_group_tampering_is_refused and the dedicated
+        # LocalGroupBindingTests class instead.
+        for field, value in (("scope", "admin-read-write"),
                              ("actions", ("DeleteObject",)),
                              ("prefix_paths", ("",)),
                              ("issued_at", real.issued_at - 1),
@@ -3409,8 +3503,11 @@ class TransmittedTokenAuthorityTests(unittest.TestCase):
         claims = probe.validate_transmitted_token_claims(
             credential.session_token, endpoint_host=ENDPOINT_HOST,
             access_key_id=credential.access_key_id)
-        self.assertEqual(claims.group, "T-EXPIRY")
+        # Group is no longer transmitted; the expiry group is still visible
+        # on the wire through its distinct (short) TTL.
         self.assertEqual(claims.expires_at, credential.expires_at)
+        self.assertEqual(claims.expires_at - claims.issued_at,
+                         probe.EXPIRY_GROUP_TTL_SECONDS)
 
     def test_transport_validator_still_rejects_an_expired_credential(self):
         credential = group_credential("T-EXPIRY")
@@ -3517,14 +3614,35 @@ class WeakDerivationRegressionTests(unittest.TestCase):
                 self.assertEqual(self._derived_outcome(test_id, facts),
                                  "INCONCLUSIVE")
 
-    def test_group_is_part_of_the_signed_credential(self):
-        """Two groups must not mint byte-identical child credentials, or
-        "the credential for this group" would not be a provable fact."""
-        tokens = {g: group_credential(g).session_token
-                  for g in probe.credential_groups()}
-        self.assertEqual(len(set(tokens.values())), len(tokens))
+    def test_group_ownership_is_local_not_a_wire_claim(self):
+        """Gate E replaced the old "every group mints distinct token bytes"
+        rule. Group is no longer transmitted, so groups whose Cloudflare-
+        authorized claims and issuance time coincide DO mint identical
+        tokens — which is safe, because those tokens carry identical
+        authority. What must remain provable is LOCAL ownership.
+        """
+        creds = {g: group_credential(g) for g in probe.credential_groups()}
+        for group, cred in creds.items():
+            with self.subTest(group=group):
+                claims = probe._decode_probe_session_token(
+                    cred.session_token)[1]
+                self.assertNotIn("group", claims)
+                self.assertEqual(cred.group, group)      # local fact intact
+        # A differing TTL still yields differing bytes (T-EXPIRY vs others).
+        expiry = creds[probe.EXPIRY_GROUP].session_token
+        others = {c.session_token for g, c in creds.items()
+                  if g != probe.EXPIRY_GROUP}
+        self.assertNotIn(expiry, others)
+        # And cross-group misuse is refused at the evidence boundary.
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            probe.build_request_record(
+                phase="T", run_id=RUN_ID, group="T-SCOPE", test_id="H1",
+                repetition=1, sequence=1, endpoint_host=ENDPOINT_HOST,
+                signed=sign(probe_target(key=probe_key("H1", 1)), body=b"x"),
+                credential=creds["T-CAS-1"])
 
     def test_a_credential_from_another_group_is_refused(self):
+        """Two independent layers reject a foreign-group credential."""
         spec = probe.test_spec("H1")
         key = probe_key("H1", 1, run_id=RUN_ID)
         facts = SUPPORT_EVIDENCE["H1"]
@@ -3536,13 +3654,18 @@ class WeakDerivationRegressionTests(unittest.TestCase):
             secret_access_key=foreign.secret_access_key,
             session_token=foreign.session_token, body=facts.body,
             amz_date=AMZ_DATE)
-        request = probe.build_request_record(
-            phase="T", run_id=RUN_ID, group=spec.group, test_id="H1",
-            repetition=1, sequence=1, endpoint_host=ENDPOINT_HOST,
-            signed=signed, credential=foreign)
-        _, response = self._pair(spec, facts)
+        # LAYER 1 (Gate E): the evidence boundary refuses it outright.
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            probe.build_request_record(
+                phase="T", run_id=RUN_ID, group=spec.group, test_id="H1",
+                repetition=1, sequence=1, endpoint_host=ENDPOINT_HOST,
+                signed=signed, credential=foreign)
+        # LAYER 2: even a hand-written record claiming the foreign group
+        # cannot satisfy the row — the derivation still says INCONCLUSIVE.
+        legit, response = self._pair(spec, facts)
+        forged = dict(legit, credential_group="T-CAS-1")
         self.assertEqual(
-            probe.derive_test_result(spec, request, response).outcome,
+            probe.derive_test_result(spec, forged, response).outcome,
             "INCONCLUSIVE")
 
     def test_recorded_credential_must_have_signed_the_request(self):
@@ -5144,8 +5267,17 @@ class ProvenanceTests(unittest.TestCase):
         self.assertEqual(iv.SIGV4_ALGORITHM_DOC_CHECKED, "2026-08-16")
 
     def test_cloudflare_fixture_is_labelled_derived_not_published(self):
-        self.assertEqual(iv.GOLDEN_CREDENTIAL_PROVENANCE,
-                         "derived fixture from official recipe")
+        provenance = iv.GOLDEN_CREDENTIAL_PROVENANCE
+        self.assertEqual(
+            provenance,
+            "computed by this file's own implementation of the official recipe")
+        # The honesty property this test exists for: the fixture must never
+        # claim to be a PUBLISHED Cloudflare vector, only something derived
+        # locally from the documented recipe.
+        for forbidden in ("published", "official vector", "golden vector",
+                          "from Cloudflare", "retrieved"):
+            self.assertNotIn(forbidden, provenance.lower())
+        self.assertIn("recipe", provenance)
         for url in iv.CLOUDFLARE_TEMP_CREDENTIAL_DOC_URLS:
             self.assertTrue(url.startswith(
                 "https://developers.cloudflare.com/"))
@@ -5507,14 +5639,18 @@ class ErrorParsingTests(unittest.TestCase):
         self.assertIsNone(probe.parse_s3_error(
             b"<Error><Code>NoSuchKey</Code></Error>", truncated=True).code)
 
-    def test_opaque_message_omitted(self):
+    def test_opaque_message_is_redacted_not_dropped(self):
+        """Gate E: an opaque token is REDACTED in place; the surrounding
+        diagnostic words survive instead of the whole message being lost."""
         parsed = probe.parse_s3_error(
             b"<Error><Code>AccessDenied</Code>"
-            b"<Message>tok_ABCDEFGHIJKLMNOPQRSTUV leaked</Message>"
+            b"<Message>tok_ABCDEFGHIJKLMNOPQRSTUV rejected</Message>"
             b"<HostId>host-abc</HostId></Error>")
         self.assertEqual(parsed.code, "AccessDenied")
-        self.assertIsNone(parsed.message)
-        self.assertTrue(parsed.message_omitted)
+        self.assertFalse(parsed.message_omitted)
+        self.assertNotIn("tok_ABCDEFGHIJKLMNOPQRSTUV", parsed.message)
+        self.assertIn(probe.REDACTED, parsed.message)
+        self.assertIn("rejected", parsed.message)
         self.assertEqual(parsed.host_id_sha256,
                          hashlib.sha256(b"host-abc").hexdigest())
 
@@ -5587,19 +5723,35 @@ class TemporaryCredentialTests(unittest.TestCase):
         self.assertEqual(claims["paths"]["prefixPaths"], ["catalog/"])
         self.assertEqual(claims["paths"]["objectPaths"], [])
 
-    def test_golden_fixture_pinned_out_of_band(self):
+    def test_derived_fixture_matches_independent_recipe(self):
+        """The probe's mint must agree BYTE-FOR-BYTE with the independent
+        implementation of the published recipe in independent_verifiers."""
+        inputs = iv.GOLDEN_CREDENTIAL_INPUTS
         cred = probe.mint_probe_credential(
-            group=iv.GOLDEN_CREDENTIAL_INPUTS["group"],
-            account_id=iv.GOLDEN_CREDENTIAL_INPUTS["account_id"],
-            parent_access_key_id=iv.GOLDEN_CREDENTIAL_INPUTS[
-                "parent_access_key_id"],
-            parent_secret_access_key=iv.GOLDEN_CREDENTIAL_INPUTS[
-                "parent_secret_access_key"],
-            now=iv.GOLDEN_CREDENTIAL_INPUTS["now"])
+            group=inputs["group"], account_id=inputs["account_id"],
+            parent_access_key_id=inputs["parent_access_key_id"],
+            parent_secret_access_key=inputs["parent_secret_access_key"],
+            now=inputs["now"])
         self.assertEqual(cred.secret_access_key, iv.GOLDEN_DERIVED_SECRET)
         self.assertEqual(
             hashlib.sha256(cred.session_token.encode()).hexdigest(),
             iv.GOLDEN_SESSION_TOKEN_SHA256)
+        # Direct cross-implementation comparison, not just the pinned hash.
+        expected = iv.independent_expected_credential(
+            account_id=inputs["account_id"],
+            parent_access_key_id=inputs["parent_access_key_id"],
+            parent_secret_access_key=inputs["parent_secret_access_key"],
+            now=inputs["now"], ttl_seconds=probe.GROUP_TTL_SECONDS,
+            bucket=PROBE_BUCKET, scope="object-read-write",
+            actions=("HeadObject", "GetObject", "PutObject"),
+            prefix_paths=("catalog/",))
+        self.assertEqual(cred.session_token, expected["session_token"])
+        self.assertEqual(cred.secret_access_key, expected["derived_secret"])
+        self.assertEqual(cred.access_key_id, expected["access_key_id"])
+        # And the claim set both sides produce is the documented one.
+        _h, claims, _j = probe._decode_probe_session_token(cred.session_token)
+        self.assertEqual(set(claims), set(iv.DOCUMENTED_CREDENTIAL_CLAIMS))
+        self.assertEqual(claims, expected["claims"])
 
     def test_no_widening_parameters(self):
         import inspect
@@ -5636,11 +5788,19 @@ class TemporaryCredentialTests(unittest.TestCase):
 class GroupPlannerTests(unittest.TestCase):
 
     def cred(self, group="T-CAS-1", ttl=900, issued=1_000_000):
-        return probe.TemporaryCredential(
-            group=group, access_key_id="A" * 8, secret_access_key="B" * 8,
-            session_token="C" * 8, issued_at=issued, expires_at=issued + ttl,
-            bucket=PROBE_BUCKET, scope="object-read-write",
-            actions=("HeadObject",), prefix_paths=("catalog/",))
+        """A genuinely MINTED credential.
+
+        Gate E made the local issuance binding authoritative, so a
+        hand-constructed TemporaryCredential has no issuance record and is
+        refused by design — see
+        CredentialIssuanceBindingTests.test_D_foreign_instance_or_fingerprint_rejected.
+        The planner's admission arithmetic is what this class tests, so it
+        uses real credentials and derives `issued` from the requested TTL.
+        """
+        del ttl          # TTL is fixed by the group, not by the caller
+        return probe.mint_probe_credential(
+            group=group, account_id=ACCOUNT_ID, parent_access_key_id=AKID,
+            parent_secret_access_key=SECRET, now=issued)
 
     def test_no_caller_cost(self):
         import inspect
@@ -7456,6 +7616,1495 @@ class RowASetupReconciliationTests(unittest.TestCase):
                                               issued.identity.key)
         self.assertEqual([m for m, _k, _q, _h in fake.requests
                           if m == "GET"], [])
+
+
+#: A synthetic JWT-shaped blob. Obviously fake; never a real token.
+FAKE_JWT = ("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+            ".eyJidWNrZXQiOiJmYWtlLWJ1Y2tldCJ9"
+            ".c2lnbmF0dXJlX3RoYXRfaXNfbm90X3JlYWw")
+
+
+class CloudflareCredentialConformanceTests(unittest.TestCase):
+    """Gate E: the TRANSMITTED JWT must carry exactly Cloudflare's
+    documented claim set — no probe-local extras."""
+
+    DOCUMENTED = {"bucket", "scope", "actions", "paths",
+                  "sub", "iss", "aud", "iat", "exp"}
+
+    def _mint(self, group="T-CAS-1", now=CRED_NOW):
+        return probe.mint_probe_credential(
+            group=group, account_id=ACCOUNT_ID, parent_access_key_id=AKID,
+            parent_secret_access_key=SECRET, now=now)
+
+    def _claims(self, cred):
+        return probe._decode_probe_session_token(cred.session_token)[1]
+
+    def test_transmitted_claim_set_is_exactly_documented(self):
+        for group in probe.credential_groups():
+            with self.subTest(group=group):
+                claims = self._claims(self._mint(group))
+                self.assertEqual(set(claims), self.DOCUMENTED)
+
+    def test_group_is_never_on_the_wire(self):
+        for group in probe.credential_groups():
+            with self.subTest(group=group):
+                cred = self._mint(group)
+                claims = self._claims(cred)
+                self.assertNotIn("group", claims)
+                # ...and no replacement custom claim smuggles it either.
+                blob = json.dumps(claims, sort_keys=True)
+                self.assertNotIn(group, blob)
+                # The group is still known LOCALLY.
+                self.assertEqual(cred.group, group)
+
+    def test_no_undocumented_claim_of_any_name(self):
+        claims = self._claims(self._mint())
+        self.assertEqual(sorted(set(claims) - self.DOCUMENTED), [])
+        self.assertEqual(sorted(self.DOCUMENTED - set(claims)), [])
+
+    def test_documented_claim_values(self):
+        claims = self._claims(self._mint())
+        self.assertEqual(claims["bucket"], PROBE_BUCKET)
+        self.assertEqual(claims["scope"], "object-read-write")
+        self.assertEqual(claims["actions"],
+                         ["HeadObject", "GetObject", "PutObject"])
+        self.assertEqual(claims["paths"],
+                         {"objectPaths": [], "prefixPaths": ["catalog/"]})
+        self.assertEqual(claims["sub"], ACCOUNT_ID)
+        self.assertEqual(claims["iss"], AKID)
+        self.assertEqual(claims["aud"], ENDPOINT_HOST)
+        self.assertEqual(claims["iat"], CRED_NOW)
+        self.assertEqual(claims["exp"], CRED_NOW + probe.GROUP_TTL_SECONDS)
+
+    def test_header_signing_and_derivation_remain_byte_correct(self):
+        cred = self._mint()
+        header, _claims, jwt = probe._decode_probe_session_token(
+            cred.session_token)
+        self.assertEqual(header, {"alg": "HS256", "typ": "JWT"})
+        seg_h, seg_p, seg_s = jwt.split(".")
+        expect = base64.urlsafe_b64encode(hmac.new(
+            SECRET.encode(), f"{seg_h}.{seg_p}".encode(),
+            hashlib.sha256).digest()).decode().rstrip("=")
+        self.assertEqual(seg_s, expect)
+        self.assertEqual(cred.access_key_id, AKID)
+        self.assertEqual(cred.secret_access_key,
+                         hashlib.sha256(jwt.encode()).hexdigest())
+        self.assertEqual(cred.session_token,
+                         base64.b64encode(b"jwt/" + jwt.encode()).decode())
+
+    def test_transmitted_validator_rejects_an_undocumented_claim(self):
+        """A hand-forged token carrying an extra claim is refused."""
+        cred = self._mint()
+        _h, claims, _j = probe._decode_probe_session_token(cred.session_token)
+        claims["group"] = "T-CAS-1"          # re-introduce the old extra
+        def enc(o):
+            return base64.urlsafe_b64encode(json.dumps(
+                o, sort_keys=True, separators=(",", ":")).encode()
+            ).decode().rstrip("=")
+        head = enc({"alg": "HS256", "typ": "JWT"})
+        payload = enc(claims)
+        sig = base64.urlsafe_b64encode(hmac.new(
+            SECRET.encode(), f"{head}.{payload}".encode(),
+            hashlib.sha256).digest()).decode().rstrip("=")
+        forged = base64.b64encode(
+            b"jwt/" + f"{head}.{payload}.{sig}".encode()).decode()
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            probe.validate_transmitted_token_claims(
+                forged, endpoint_host=ENDPOINT_HOST, access_key_id=AKID)
+
+
+class LocalGroupBindingTests(unittest.TestCase):
+    """Gate E: removing `group` from the wire must NOT weaken local
+    group enforcement anywhere."""
+
+    def _mint(self, group, now=CRED_NOW):
+        return probe.mint_probe_credential(
+            group=group, account_id=ACCOUNT_ID, parent_access_key_id=AKID,
+            parent_secret_access_key=SECRET, now=now)
+
+    def test_correct_group_accepted(self):
+        planner = probe.CredentialGroupPlanner()
+        cred = self._mint("T-CAS-1")
+        planner.assert_credential_matches_test(cred, "A")   # no raise
+
+    def test_wrong_group_credential_rejected_for_another_groups_test(self):
+        planner = probe.CredentialGroupPlanner()
+        cred = self._mint("T-CAS-1")
+        for foreign in ("D", "E2", "H1", "J", "I4"):
+            with self.subTest(test_id=foreign):
+                with self.assertRaises(probe.SafetyBarrierTripped):
+                    planner.assert_credential_matches_test(cred, foreign)
+
+    def test_expiry_credential_reserved_for_expiry_testing(self):
+        planner = probe.CredentialGroupPlanner()
+        expiry = self._mint("T-EXPIRY")
+        planner.assert_credential_matches_test(expiry, "I4")
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            planner.assert_credential_matches_test(expiry, "A")
+        ordinary = self._mint("T-CAS-1")
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            planner.assert_credential_matches_test(ordinary, "I4")
+
+    def test_i4_diagnostic_requires_the_expiry_group_credential(self):
+        factory = RecordingFactory(FakeConnection(response=FakeResponse(403)))
+        wrong = probe.mint_probe_credential(
+            group="T-CAS-1", account_id=ACCOUNT_ID, parent_access_key_id=AKID,
+            parent_secret_access_key=SECRET, now=AMZ_EPOCH)
+        transport = probe.R2Transport(
+            endpoint_host=ENDPOINT_HOST, connection_factory=factory,
+            monotonic=lambda: 0, wall_clock=lambda: float(wrong.expires_at + 1))
+        identity = probe.RepetitionIdentity(
+            phase="t", run_id=RUN_ID, test_id="I4", repetition=1,
+            key=probe_key("I4", 1, phase="t"))
+        with no_sockets():
+            with self.assertRaises(probe.SafetyBarrierTripped):
+                transport.attempt_i4(identity=identity, credential=wrong)
+        self.assertEqual(factory.calls, [])
+
+    def test_transport_validator_still_binds_ttl_to_local_group(self):
+        good = self._mint("T-EXPIRY")
+        self.assertEqual(good.expires_at - good.issued_at,
+                         probe.EXPIRY_GROUP_TTL_SECONDS)
+        # A credential relabelled to another group no longer matches that
+        # group's required TTL, so transport validation refuses it.
+        mislabelled = good._replace(group="T-CAS-1")
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            probe.validate_probe_credential_for_transport(
+                mislabelled, endpoint_host=ENDPOINT_HOST,
+                now=good.issued_at + 1)
+
+    def test_evidence_rejects_a_credential_group_foreign_to_the_test(self):
+        """Group ownership survives into persisted evidence: a record whose
+        credential_group is not the matrix group for its test is refused."""
+        spec = probe.test_spec("A")
+        facts = SUPPORT_EVIDENCE["A"]._replace(token_mode="signed")
+        key = probe_key("A", 1, run_id=RUN_ID)
+        signed, credential = sign_support_request(spec, key, facts)
+        record = probe.build_request_record(
+            phase="T", run_id=RUN_ID, group=spec.group, test_id="A",
+            repetition=1, sequence=1, endpoint_host=ENDPOINT_HOST,
+            signed=signed, credential=credential,
+            t_request_attempt_mono_ns=1)
+        self.assertEqual(probe.validate_record(record, ()), "REQUEST_RECORD")
+        self.assertEqual(record["credential_group"], spec.group)
+        forged = dict(record, credential_group="T-SHAPE")
+        with self.assertRaises(probe.EvidenceValidationError):
+            probe.validate_record(forged, ())
+
+    def test_identical_wire_tokens_are_security_equivalent(self):
+        """Two 900s groups minted at the same instant now produce identical
+        wire bytes. Prove that is SAFE: the tokens grant identical authority,
+        and local misuse is still rejected."""
+        a = self._mint("T-CAS-1")
+        b = self._mint("T-CAS-2")
+        self.assertEqual(a.session_token, b.session_token)
+        # Identical authority: same bucket/scope/actions/prefixes/window.
+        for field in ("bucket", "scope", "actions", "prefix_paths",
+                      "issued_at", "expires_at"):
+            self.assertEqual(getattr(a, field), getattr(b, field))
+        # ...but the LOCAL group differs and is still enforced.
+        self.assertNotEqual(a.group, b.group)
+        planner = probe.CredentialGroupPlanner()
+        planner.assert_credential_matches_test(a, "A")      # T-CAS-1 row
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            planner.assert_credential_matches_test(a, "D")  # T-CAS-2 row
+
+
+class SanitizedErrorDiagnosticsTests(unittest.TestCase):
+    """Gate E: retain useful diagnostic structure, redact credential shapes."""
+
+    SAFE = [
+        "Invalid argument",
+        "Unsupported header x-amz-security-token",
+        "Unsupported claim group",
+        "Invalid scope object-read-write",
+        "Invalid If-None-Match value",
+    ]
+
+    SECRET_SHAPED = {
+        "synthetic JWT": FAKE_JWT,
+        "synthetic jwt/ token": "jwt/" + FAKE_JWT,
+        "synthetic session token": "and0LzAxMjM0NTY3ODlhYmNkZWZnaGlqaw==",
+        "synthetic authorization": (
+            "AWS4-HMAC-SHA256 Credential=" + AKID
+            + "/20260821/auto/s3/aws4_request"),
+        "synthetic temporary secret": "a" * 64,
+        "synthetic access key": AKID,
+        "synthetic bearer token": "abcdefghijklmnopqrstuvwxyz012345",
+    }
+
+    def test_safe_messages_retain_useful_detail(self):
+        for text in self.SAFE:
+            with self.subTest(text=text):
+                msg, omitted = probe.safe_error_message(text)
+                self.assertFalse(omitted)
+                self.assertEqual(msg, text)
+                self.assertNotIn(probe.REDACTED, msg)
+
+    def test_argument_name_is_extracted(self):
+        cases = {
+            "Unsupported header x-amz-security-token": "x-amz-security-token",
+            "Invalid scope object-read-write": "object-read-write",
+            "Invalid If-None-Match value": "If-None-Match",
+            "Invalid argument": None,
+        }
+        for text, expect in cases.items():
+            with self.subTest(text=text):
+                msg, _ = probe.safe_error_message(text)
+                self.assertEqual(probe.safe_error_argument(msg), expect)
+
+    def test_secret_shaped_values_are_redacted_never_retained(self):
+        for label, secret in self.SECRET_SHAPED.items():
+            with self.subTest(shape=label):
+                msg, omitted = probe.safe_error_message(f"rejected {secret}")
+                self.assertFalse(omitted, "detail should survive redaction")
+                self.assertNotIn(secret, msg)
+                self.assertIn(probe.REDACTED, msg)
+                self.assertIn("rejected", msg)
+
+    def test_no_fragment_of_a_secret_survives(self):
+        for secret in self.SECRET_SHAPED.values():
+            with self.subTest(secret=secret[:12]):
+                msg, _ = probe.safe_error_message(f"bad {secret} here")
+                for size in (16, 24, 32):
+                    for start in range(0, max(1, len(secret) - size), 7):
+                        chunk = secret[start:start + size]
+                        if len(chunk) == size:
+                            self.assertNotIn(chunk, msg)
+
+    def test_known_secrets_are_redacted_by_exact_match(self):
+        msg, omitted = probe.safe_error_message(
+            "value hunter2ParentSecretValue rejected",
+            ("hunter2ParentSecretValue",))
+        self.assertFalse(omitted)
+        self.assertNotIn("hunter2ParentSecretValue", msg)
+        self.assertIn(probe.REDACTED, msg)
+
+    def test_control_characters_and_oversize_are_refused(self):
+        self.assertEqual(probe.safe_error_message("bad\x00value")[1], True)
+        long_msg, omitted = probe.safe_error_message("word " * 200)
+        self.assertTrue(omitted or
+                        len(long_msg) <= probe.MAX_SANITIZED_MESSAGE_CHARS)
+        self.assertEqual(probe.safe_error_message(b"bytes")[1], True)
+        self.assertEqual(probe.safe_error_message(None), (None, False))
+
+    def test_raw_body_is_never_persisted(self):
+        body = (b"<Error><Code>InvalidArgument</Code><Message>"
+                b"Unsupported header x-amz-security-token"
+                b"</Message></Error>")
+        parsed = probe.parse_s3_error(body)
+        self.assertEqual(parsed.code, "InvalidArgument")
+        self.assertEqual(parsed.argument, "x-amz-security-token")
+        record = probe.build_response_record(
+            phase="T", run_id=RUN_ID, group="T-CAS-1", test_id="A",
+            repetition=1, sequence=1,
+            response=probe.RawResponse(
+                status=400, headers=(), body=body, body_truncated=False,
+                t_request_start_mono_ns=1, t_response_end_mono_ns=2),
+            parsed=parsed, repetition_status=None)
+        self.assertEqual(probe.validate_record(record, ()), "RESPONSE_RECORD")
+        self.assertEqual(record["error_argument"], "x-amz-security-token")
+        self.assertNotIn("<Error>", json.dumps(record))
+        self.assertNotIn("Message>", json.dumps(record))
+
+    def test_a_secret_bearing_message_cannot_enter_evidence(self):
+        """Even if a secret reached the sanitizer, the writer's secret scan
+        is an independent backstop."""
+        body = ("<Error><Code>InvalidArgument</Code><Message>"
+                "rejected " + FAKE_JWT + "</Message></Error>").encode()
+        parsed = probe.parse_s3_error(body, secrets=(FAKE_JWT,))
+        self.assertNotIn(FAKE_JWT, parsed.message or "")
+        record = probe.build_response_record(
+            phase="T", run_id=RUN_ID, group="T-CAS-1", test_id="A",
+            repetition=1, sequence=1,
+            response=probe.RawResponse(
+                status=400, headers=(), body=body, body_truncated=False,
+                t_request_start_mono_ns=1, t_response_end_mono_ns=2),
+            parsed=parsed, repetition_status=None)
+        probe.validate_record(record, (FAKE_JWT,))   # no raise: already gone
+
+
+def _squash(text):
+    """Lowercase alphanumerics only — the form a reconstruction attack
+    would produce by concatenating whatever survived sanitisation."""
+    return "".join(c for c in (text or "").lower() if c.isalnum())
+
+
+class SanitizerFiniteVocabularyTests(unittest.TestCase):
+    """Codex BLOCKER 1: shape heuristics are gone; only a finite vocabulary
+    and a fixed identifier set may survive."""
+
+    #: A synthetic secret made entirely of short word-shaped pieces — the
+    #: exact shape that defeated the previous heuristic.
+    SPLIT_SECRET = "AlphaBetaGammaDeltaThetaValue"
+
+    def test_A_split_secret_cannot_be_reconstructed(self):
+        message, omitted = probe.safe_error_message(
+            "AlphaBeta GammaDelta ThetaValue", (self.SPLIT_SECRET,))
+        self.assertNotIn(_squash(self.SPLIT_SECRET), _squash(message))
+        for piece in ("AlphaBeta", "GammaDelta", "ThetaValue",
+                      "Alpha", "Beta", "Gamma", "Delta", "Theta"):
+            self.assertNotIn(piece, message or "")
+        del omitted
+
+    def test_B_C_D_E_F_shape_bypasses_are_redacted(self):
+        bypasses = [
+            "correct-horse-battery-staple",
+            "correct_horse_battery_staple",
+            "correct.horse.battery.staple",
+            "Alpha-1234-Beta_9999",
+            "A" * 20,
+            "Supercalifragilisticexpialidocious",
+            "B" * 80,
+        ]
+        for token in bypasses:
+            with self.subTest(token=token[:24]):
+                message, omitted = probe.safe_error_message(
+                    f"rejected {token}")
+                self.assertFalse(omitted)
+                self.assertNotIn(token, message)
+                self.assertIn(probe.REDACTED, message)
+                # No fragment of it survives either.
+                for size in (8, 12, 16):
+                    for start in range(0, max(1, len(token) - size), 3):
+                        chunk = token[start:start + size]
+                        if len(chunk) == size:
+                            self.assertNotIn(_squash(chunk), _squash(message))
+
+    def test_G_secret_split_by_separators_and_entities(self):
+        variants = [
+            'Alpha"Beta"Gamma"Delta"Theta"Value',
+            "Alpha&#45;Beta Gamma.Delta Theta,Value",
+            "Alpha Beta Gamma Delta Theta Value",
+            "Alpha-Beta_Gamma.Delta:Theta;Value",
+            "(AlphaBeta) [GammaDelta] <ThetaValue>",
+        ]
+        for variant in variants:
+            with self.subTest(variant=variant[:26]):
+                message, _ = probe.safe_error_message(
+                    variant, (self.SPLIT_SECRET,))
+                self.assertNotIn(_squash(self.SPLIT_SECRET), _squash(message))
+
+    def test_squash_backstop_refuses_a_vocabulary_only_secret(self):
+        """A secret spelled entirely from allowlisted words would otherwise
+        survive; the squash backstop refuses the whole message."""
+        secret = "invalidargumenttoken"
+        message, omitted = probe.safe_error_message(
+            "invalid argument token", (secret,))
+        self.assertTrue(omitted)
+        self.assertIsNone(message)
+
+    def test_H_safe_diagnostics_retain_useful_structure(self):
+        expected = {
+            "Invalid argument": None,
+            "Unsupported header x-amz-security-token": "x-amz-security-token",
+            "Unsupported claim group": "group",
+            "Invalid scope object-read-write": "object-read-write",
+            "Invalid If-None-Match value": "If-None-Match",
+        }
+        for text, argument in expected.items():
+            with self.subTest(text=text):
+                message, omitted = probe.safe_error_message(text)
+                self.assertFalse(omitted)
+                self.assertEqual(message, text)
+                self.assertNotIn(probe.REDACTED, message)
+                self.assertEqual(probe.safe_error_argument(message), argument)
+
+    def test_error_argument_only_from_the_fixed_identifier_set(self):
+        for text in ("Unsupported header correct-horse-battery-staple",
+                     "Invalid value some_unknown_thing",
+                     "Invalid value alpha.beta.gamma",
+                     "Invalid value UnknownWord"):
+            with self.subTest(text=text):
+                message, _ = probe.safe_error_message(text)
+                argument = probe.safe_error_argument(message)
+                if argument is not None:
+                    self.assertIn(argument, probe.SANITIZER_SAFE_IDENTIFIERS)
+                self.assertNotIn("correct-horse", str(argument))
+                self.assertNotIn("some_unknown_thing", str(argument))
+
+    def test_credential_shapes_still_redacted(self):
+        for secret in (FAKE_JWT, "jwt/" + FAKE_JWT, "a" * 64, AKID,
+                       "AWS4-HMAC-SHA256", "and0LzAxMjM0NTY3ODlhYg=="):
+            with self.subTest(secret=secret[:18]):
+                message, _ = probe.safe_error_message(f"rejected {secret}")
+                self.assertNotIn(secret, message or "")
+
+    def test_vocabulary_is_finite_and_small(self):
+        self.assertLess(len(probe.SANITIZER_SAFE_WORDS), 80)
+        self.assertLess(len(probe.SANITIZER_SAFE_IDENTIFIERS), 60)
+        for word in probe.SANITIZER_SAFE_WORDS:
+            self.assertTrue(word.islower(), word)
+
+
+def issuance_record_for(credential, *, phase="T", run_id=RUN_ID):
+    """The canonical CREDENTIAL_ISSUANCE_RECORD for an exact minted
+    credential.
+
+    DERIVED, never hand-written: a test must not be able to assert an
+    issuance the writer would not itself produce, and now that
+    reconstruction compares the whole fact set (round-6 HIGH 1) a partial
+    stub would silently under-test the comparison.
+    """
+    return probe._credential_issuance_record(
+        probe.resolve_credential_binding(credential),
+        phase=phase, run_id=run_id)
+
+
+def request_credential_facts(credential):
+    """The credential-attribution facts a REQUEST_RECORD carries, read off
+    the authoritative binding exactly as `build_request_record` does."""
+    binding = probe.resolve_credential_binding(credential)
+    return {
+        "credential_instance_id": binding.instance_id,
+        "credential_group": binding.group,
+        "access_key_id_sha256": binding.access_key_sha256,
+        "session_token_sha256": binding.session_token_sha256,
+        "credential_issued_at": binding.issued_at,
+        "credential_expires_at": binding.expires_at,
+        "credential_scope": binding.scope,
+        "credential_actions": list(binding.actions),
+        "credential_prefixes": list(binding.prefix_paths),
+        "bucket": binding.bucket,
+    }
+
+
+def attributed_request_record(test_id, credential, **override):
+    """A minimal REQUEST_RECORD honestly attributed to `credential`, for
+    driving `assert_credential_bindings_consistent` directly. `override`
+    is how a test states the ONE fact it is falsifying."""
+    record = {"record_kind": "REQUEST_RECORD", "test_id": test_id,
+              "group": probe.test_spec(test_id).group,
+              "session_token_present": True}
+    record.update(request_credential_facts(credential))
+    record.update(override)
+    return record
+
+
+class CredentialIssuanceBindingTests(unittest.TestCase):
+    """Codex HIGH 1: `_replace(group=...)` must never buy another group."""
+
+    OTHER_SAME_TTL = ("T-SCOPE", "T-CAS-2", "T-RACE", "T-SHAPE")
+
+    def _mint(self, group, now=CRED_NOW):
+        return probe.mint_probe_credential(
+            group=group, account_id=ACCOUNT_ID, parent_access_key_id=AKID,
+            parent_secret_access_key=SECRET, now=now)
+
+    def test_A_correct_original_group_accepted(self):
+        cred = self._mint("T-CAS-1")
+        self.assertEqual(probe.authoritative_group(cred), "T-CAS-1")
+        probe.CredentialGroupPlanner().assert_credential_matches_test(
+            cred, "A")
+
+    def test_B_same_ttl_relabel_is_rejected(self):
+        cred = self._mint("T-CAS-1")
+        for target in self.OTHER_SAME_TTL:
+            with self.subTest(target=target):
+                tampered = cred._replace(group=target)
+                with self.assertRaises(probe.SafetyBarrierTripped):
+                    probe.authoritative_group(tampered)
+                with self.assertRaises(probe.SafetyBarrierTripped):
+                    probe.CredentialGroupPlanner(
+                    ).assert_credential_matches_test(tampered, "H1")
+                with self.assertRaises(probe.SafetyBarrierTripped):
+                    probe.validate_probe_credential_structure(
+                        tampered, endpoint_host=ENDPOINT_HOST)
+
+    def test_C_different_ttl_relabel_is_rejected(self):
+        expiry = self._mint("T-EXPIRY")
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            probe.authoritative_group(expiry._replace(group="T-CAS-1"))
+        ordinary = self._mint("T-CAS-1")
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            probe.authoritative_group(ordinary._replace(group="T-EXPIRY"))
+
+    def test_D_foreign_instance_or_fingerprint_rejected(self):
+        cred = self._mint("T-CAS-1")
+        for bad in (cred._replace(instance_id="cred-999999"),
+                    cred._replace(instance_id=""),
+                    cred._replace(session_token="dGFtcGVyZWQ="),
+                    cred._replace(access_key_id="f" * 32),
+                    cred._replace(expires_at=cred.expires_at + 1),
+                    cred._replace(scope="admin-read-write")):
+            with self.subTest(field=bad.instance_id or "empty"):
+                with self.assertRaises(probe.SafetyBarrierTripped):
+                    probe.authoritative_group(bad)
+
+    def test_E_forged_credential_group_in_evidence_rejected(self):
+        spec = probe.test_spec("A")
+        facts = SUPPORT_EVIDENCE["A"]._replace(token_mode="signed")
+        key = probe_key("A", 1, run_id=RUN_ID)
+        signed, credential = sign_support_request(spec, key, facts)
+        record = probe.build_request_record(
+            phase="T", run_id=RUN_ID, group=spec.group, test_id="A",
+            repetition=1, sequence=1, endpoint_host=ENDPOINT_HOST,
+            signed=signed, credential=credential,
+            t_request_attempt_mono_ns=1)
+        self.assertEqual(record["credential_group"], "T-CAS-1")
+        self.assertTrue(record["credential_instance_id"].startswith("cred-"))
+        forged = dict(record, credential_group="T-SHAPE")
+        with self.assertRaises(probe.EvidenceValidationError):
+            probe.validate_record(forged, ())
+
+    def test_F_reconstruction_rejects_a_half_present_binding(self):
+        """A group without its instance id (or vice versa) is incoherent."""
+        cred = self._mint("T-CAS-1")
+        issuances = {"ci/c1.json": issuance_record_for(cred)}
+        for missing, broken in (
+                ("instance id", attributed_request_record(
+                    "A", cred, credential_instance_id=None)),
+                ("group", attributed_request_record(
+                    "A", cred, credential_group=None))):
+            with self.subTest(missing=missing):
+                with self.assertRaises(probe.SafetyBarrierTripped):
+                    probe.assert_credential_bindings_consistent(
+                        {"request/a.json": broken}, issuances)
+
+    def test_G_reconstruction_rejects_a_conflicting_binding(self):
+        """One credential instance attributed to two groups = relabelling."""
+        cred = self._mint("T-CAS-1")
+        records = {
+            "request/a.json": attributed_request_record("A", cred),
+            "request/h1.json": attributed_request_record(
+                "H1", cred, credential_group="T-SCOPE"),
+        }
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            probe.assert_credential_bindings_consistent(
+                records, {"ci/c1.json": issuance_record_for(cred)})
+
+    def test_I_reconstruction_rejects_cross_group_attribution(self):
+        """A credential group that is not the row's matrix group.
+
+        Every fact agrees with its own issuance here — the row is refused
+        purely because a T-SHAPE credential cannot serve test A.
+        """
+        shape = self._mint("T-SHAPE")
+        with self.assertRaises(probe.SafetyBarrierTripped) as ctx:
+            probe.assert_credential_bindings_consistent(
+                {"request/a.json": attributed_request_record("A", shape)},
+                {"ci/c1.json": issuance_record_for(shape)})
+        self.assertIn("matrix group", str(ctx.exception))
+
+    def test_reconstruction_accepts_honest_bindings(self):
+        """Non-vacuous control: distinct instances per group are accepted,
+        and a token-less row (I3) contributes no binding."""
+        cas1 = self._mint("T-CAS-1")
+        scope = self._mint("T-SCOPE")
+        records = {
+            "request/a.json": attributed_request_record("A", cas1),
+            "request/a2.json": attributed_request_record("A", cas1),
+            "request/h1.json": attributed_request_record("H1", scope),
+            # I3 transmits no token, so it carries — and needs — no
+            # credential attribution at all.
+            "request/i3.json": {
+                "record_kind": "REQUEST_RECORD", "test_id": "I3",
+                "group": probe.test_spec("I3").group,
+                "session_token_present": False,
+                "credential_group": None, "credential_instance_id": None},
+        }
+        issuances = {"ci/c1.json": issuance_record_for(cas1),
+                     "ci/c2.json": issuance_record_for(scope)}
+        self.assertEqual(
+            probe.assert_credential_bindings_consistent(records, issuances),
+            {cas1.instance_id: "T-CAS-1", scope.instance_id: "T-SCOPE"})
+
+    def test_H_identical_wire_tokens_remain_locally_distinguishable(self):
+        a = self._mint("T-CAS-1")
+        b = self._mint("T-SCOPE")
+        self.assertEqual(a.session_token, b.session_token)   # same authority
+        self.assertNotEqual(a.instance_id, b.instance_id)    # distinct locally
+        self.assertEqual(probe.authoritative_group(a), "T-CAS-1")
+        self.assertEqual(probe.authoritative_group(b), "T-SCOPE")
+        planner = probe.CredentialGroupPlanner()
+        planner.assert_credential_matches_test(a, "A")
+        planner.assert_credential_matches_test(b, "H1")
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            planner.assert_credential_matches_test(a, "H1")
+
+    def test_instance_id_is_never_transmitted(self):
+        cred = self._mint("T-CAS-1")
+        _h, claims, jwt = probe._decode_probe_session_token(
+            cred.session_token)
+        self.assertNotIn(cred.instance_id, jwt)
+        self.assertNotIn(cred.instance_id, json.dumps(claims))
+        self.assertNotIn("instance", json.dumps(claims))
+
+
+class I4RetrospectiveValidationTests(unittest.TestCase):
+    """Codex HIGH 2: I4 waives ONLY freshness — every other structural
+    property is still enforced before a socket."""
+
+    def _identity(self):
+        return probe.RepetitionIdentity(
+            phase="t", run_id=RUN_ID, test_id="I4", repetition=1,
+            key=probe_key("I4", 1, phase="t"))
+
+    def _expired(self, group="T-EXPIRY"):
+        return probe.mint_probe_credential(
+            group=group, account_id=ACCOUNT_ID, parent_access_key_id=AKID,
+            parent_secret_access_key=SECRET, now=AMZ_EPOCH)
+
+    def _transport(self, factory, credential):
+        return probe.R2Transport(
+            endpoint_host=ENDPOINT_HOST, connection_factory=factory,
+            monotonic=lambda: 0,
+            wall_clock=lambda: float(credential.expires_at + 5))
+
+    def test_mutation_matrix_refused_before_the_factory(self):
+        good = self._expired()
+        foreign = self._expired(group="T-CAS-1")
+        wrong_account = probe.mint_probe_credential(
+            group="T-EXPIRY", account_id=OTHER_ACCOUNT_ID,
+            parent_access_key_id=AKID, parent_secret_access_key=SECRET,
+            now=AMZ_EPOCH)
+        mutations = {
+            "wrong scope": good._replace(scope="wrong-scope"),
+            "wrong actions": good._replace(actions=("DeleteObject",)),
+            "wrong paths": good._replace(prefix_paths=("",)),
+            "wrong bucket": good._replace(bucket="some-other-bucket"),
+            "wrong iat": good._replace(issued_at=good.issued_at - 1),
+            "wrong exp": good._replace(expires_at=good.expires_at + 1),
+            "wrong derived secret": good._replace(
+                secret_access_key="a" * 64),
+            "wrong access key": good._replace(access_key_id="b" * 32),
+            "malformed session token": good._replace(
+                session_token="not-base64!!"),
+            "wrong local group": foreign,
+            "relabelled to expiry": foreign._replace(group="T-EXPIRY"),
+            "wrong aud/sub": wrong_account,
+            "no issuance binding": good._replace(instance_id="cred-999999"),
+        }
+        for name, credential in mutations.items():
+            with self.subTest(mutation=name):
+                factory = RecordingFactory(
+                    FakeConnection(response=FakeResponse(403)))
+                transport = self._transport(factory, good)
+                with no_sockets():
+                    with self.assertRaises(probe.ProbeError):
+                        transport.attempt_i4(identity=self._identity(),
+                                             credential=credential)
+                self.assertEqual(factory.calls, [],
+                                 f"{name} reached the connection factory")
+
+    def test_control_correct_expired_credential_reaches_the_factory(self):
+        good = self._expired()
+        conn = FakeConnection(response=FakeResponse(403))
+        factory = RecordingFactory(conn)
+        transport = self._transport(factory, good)
+        attempt = transport.attempt_i4(identity=self._identity(),
+                                       credential=good)
+        self.assertEqual(len(factory.calls), 1)
+        self.assertEqual(attempt.response.status, 403)
+        self.assertEqual(attempt.signed_request.target.method, "PUT")
+
+    def test_freshness_is_the_only_waived_check(self):
+        good = self._expired()
+        # Structure passes even though the credential is expired...
+        probe.validate_probe_credential_structure(
+            good, endpoint_host=ENDPOINT_HOST)
+        # ...while freshness alone rejects it.
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            probe.validate_probe_credential_freshness(
+                good, now=good.expires_at)
+        # And ordinary transport still requires BOTH.
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            probe.validate_probe_credential_for_transport(
+                good, endpoint_host=ENDPOINT_HOST, now=good.expires_at)
+
+    def test_i4_still_refuses_an_unexpired_credential(self):
+        good = self._expired()
+        factory = RecordingFactory(FakeConnection(response=FakeResponse(403)))
+        transport = probe.R2Transport(
+            endpoint_host=ENDPOINT_HOST, connection_factory=factory,
+            monotonic=lambda: 0, wall_clock=lambda: float(good.issued_at))
+        with no_sockets():
+            with self.assertRaises(probe.SafetyBarrierTripped):
+                transport.attempt_i4(identity=self._identity(),
+                                     credential=good)
+        self.assertEqual(factory.calls, [])
+
+
+#: A synthetic secret made entirely of short word-shaped pieces.
+SPLIT_SECRET = "AlphaBetaGammaDeltaThetaValue"
+
+
+class EvidenceSecretBoundaryTests(unittest.TestCase):
+    """Codex round-5 BLOCKER 1: the evidence boundary must catch a known
+    secret however it was split, in EVERY persisted string field."""
+
+    TRANSFORMS = {
+        "hyphen": "AlphaBeta-GammaDelta-ThetaValue",
+        "space": "AlphaBeta GammaDelta ThetaValue",
+        "underscore": "AlphaBeta_GammaDelta_ThetaValue",
+        "dot": "AlphaBeta.GammaDelta.ThetaValue",
+        "quotes": '"AlphaBeta","GammaDelta","ThetaValue"',
+        "entities": "AlphaBeta&#45;GammaDelta&#x2D;ThetaValue",
+        "percent": "AlphaBeta%2DGammaDelta%20ThetaValue",
+        "mixed": "AlphaBeta) [GammaDelta] <ThetaValue",
+        "exact": SPLIT_SECRET,
+    }
+
+    def test_projection_equivalence(self):
+        target = probe.canonical_secret_projection(SPLIT_SECRET)
+        self.assertGreaterEqual(len(target),
+                                probe.MIN_PROJECTED_SECRET_CHARS)
+        for label, variant in self.TRANSFORMS.items():
+            with self.subTest(transform=label):
+                self.assertIn(
+                    target, probe.canonical_secret_projection(variant))
+
+    def test_A_to_H_every_string_field_rejects_transformed_secret(self):
+        fields = ("error_argument", "request_id", "cf_ray", "error_message",
+                  "key", "correlation_id", "group", "test_id")
+        for label, variant in self.TRANSFORMS.items():
+            for field in fields:
+                with self.subTest(transform=label, field=field):
+                    with self.assertRaises(probe.EvidenceValidationError):
+                        probe.assert_no_known_secret(
+                            {field: variant}, (SPLIT_SECRET,), "evidence")
+
+    def test_secret_split_across_fields_is_best_effort(self):
+        """Cross-field detection is documented BEST EFFORT: the joined
+        projection walks values in sorted-key order, so pieces that land
+        adjacent in that order are caught. A different ordering is not
+        guaranteed, which is why the per-string check above is the
+        contract and the finite sanitizer vocabulary is the primary
+        control."""
+        # sorted keys a < b < c reproduce the secret contiguously.
+        with self.assertRaises(probe.EvidenceValidationError):
+            probe.assert_no_known_secret(
+                {"a": "AlphaBeta", "b": "GammaDelta", "c": "ThetaValue"},
+                (SPLIT_SECRET,), "evidence")
+        # Honest limitation, asserted so it cannot silently change: an
+        # out-of-order split is NOT caught by the joined check.
+        probe.assert_no_known_secret(
+            {"a": "ThetaValue", "b": "AlphaBeta", "c": "GammaDelta"},
+            (SPLIT_SECRET,), "evidence")
+
+    def test_nested_structures_are_walked(self):
+        for payload in ({"signed_headers": ["ok", SPLIT_SECRET]},
+                        {"query_params": [["name", SPLIT_SECRET]]},
+                        {"files": {"a.json": SPLIT_SECRET}}):
+            with self.subTest(payload=list(payload)[0]):
+                with self.assertRaises(probe.EvidenceValidationError):
+                    probe.assert_no_known_secret(
+                        payload, (SPLIT_SECRET,), "evidence")
+
+    def test_I_normal_opaque_identifiers_still_persist(self):
+        """Non-vacuous: real Cloudflare-shaped ids must NOT be rejected."""
+        probe.assert_no_known_secret(
+            {"request_id": "a2e5c7d89d7f53a7-DTW",
+             "cf_ray": "8f1c2b3a4d5e6f70-ORD",
+             "error_message": "At least one of the preconditions failed"},
+            (SPLIT_SECRET, AKID, SECRET), "evidence")
+
+    def test_short_secret_falls_back_to_exact_only(self):
+        probe.assert_no_known_secret({"cf_ray": "a-b-c"}, ("abc",), "ev")
+        with self.assertRaises(probe.EvidenceValidationError):
+            probe.assert_no_known_secret({"cf_ray": "abc"}, ("abc",), "ev")
+
+    def test_boundary_applies_through_validate_record(self):
+        """The gate is reached by real record validation, not only directly."""
+        spec = probe.test_spec("A")
+        facts = SUPPORT_EVIDENCE["A"]
+        signed, credential = sign_support_request(
+            spec, probe_key("A", 1, run_id=RUN_ID), facts)
+        record = probe.build_request_record(
+            phase="T", run_id=RUN_ID, group=spec.group, test_id="A",
+            repetition=1, sequence=1, endpoint_host=ENDPOINT_HOST,
+            signed=signed, credential=credential,
+            t_request_attempt_mono_ns=1)
+        probe.validate_record(record, (SPLIT_SECRET,))       # clean: passes
+        response = probe.build_response_record(
+            phase="T", run_id=RUN_ID, group=spec.group, test_id="A",
+            repetition=1, sequence=1,
+            response=probe.RawResponse(
+                status=400, headers=(), body=b"", body_truncated=False,
+                t_request_start_mono_ns=1, t_response_end_mono_ns=2),
+            parsed=None, repetition_status=None)
+        tainted = dict(response, request_id="AlphaBeta-GammaDelta-ThetaValue")
+        with self.assertRaises(probe.EvidenceValidationError):
+            probe.validate_record(tainted, (SPLIT_SECRET,))
+
+    def test_J_K_error_argument_is_a_finite_set(self):
+        base = {"record_kind": "RESPONSE_RECORD", "phase": "T",
+                "run_id": RUN_ID, "group": "T-CAS-1", "test_id": "A",
+                "repetition": 1, "sequence": 1,
+                "correlation_id": "T/%s/A/1/1" % RUN_ID, "status": 400}
+        for identifier in sorted(probe.SANITIZER_SAFE_IDENTIFIERS):
+            with self.subTest(allowed=identifier):
+                probe.validate_record(
+                    dict(base, error_argument=identifier), ())
+        for arbitrary in ("correct-horse-battery-staple", "unknown_thing",
+                          "AlphaBeta-GammaDelta-ThetaValue", "x-amz-evil"):
+            with self.subTest(rejected=arbitrary):
+                with self.assertRaises(probe.EvidenceValidationError):
+                    probe.validate_record(
+                        dict(base, error_argument=arbitrary), ())
+
+
+class ExactCredentialIssuanceTests(unittest.TestCase):
+    """Codex round-5 HIGH 1: issuance authority is OBJECT IDENTITY."""
+
+    def _mint(self, group, now=CRED_NOW):
+        return probe.mint_probe_credential(
+            group=group, account_id=ACCOUNT_ID, parent_access_key_id=AKID,
+            parent_secret_access_key=SECRET, now=now)
+
+    def test_A_issued_object_accepted(self):
+        cred = self._mint("T-CAS-1")
+        self.assertEqual(probe.authoritative_group(cred), "T-CAS-1")
+
+    def test_B_no_op_replace_is_unissued(self):
+        cred = self._mint("T-CAS-1")
+        copy = cred._replace()
+        self.assertEqual(copy, cred)          # equal...
+        self.assertIsNot(copy, cred)          # ...but not identical
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            probe.authoritative_group(copy)
+
+    def test_C_D_E_group_and_instance_substitution_rejected(self):
+        cas1 = self._mint("T-CAS-1")
+        scope = self._mint("T-SCOPE")
+        # The premise Codex used: identical wire credentials.
+        self.assertEqual(cas1.session_token, scope.session_token)
+        attacks = {
+            "C group only": cas1._replace(group="T-SCOPE"),
+            "D instance only": cas1._replace(
+                instance_id=scope.instance_id),
+            "E group + instance": cas1._replace(
+                group="T-SCOPE", instance_id=scope.instance_id),
+        }
+        for label, tampered in attacks.items():
+            with self.subTest(attack=label):
+                with self.assertRaises(probe.SafetyBarrierTripped):
+                    probe.authoritative_group(tampered)
+                with self.assertRaises(probe.SafetyBarrierTripped):
+                    probe.CredentialGroupPlanner(
+                    ).assert_credential_matches_test(tampered, "H1")
+                with self.assertRaises(probe.SafetyBarrierTripped):
+                    probe.validate_probe_credential_structure(
+                        tampered, endpoint_host=ENDPOINT_HOST)
+                with self.assertRaises(probe.SafetyBarrierTripped):
+                    probe.build_request_record(
+                        phase="T", run_id=RUN_ID, group="T-SCOPE",
+                        test_id="H1", repetition=1, sequence=1,
+                        endpoint_host=ENDPOINT_HOST,
+                        signed=sign(probe_target(key=probe_key("H1", 1)),
+                                    body=b"x"),
+                        credential=tampered)
+
+    def test_F_full_field_copy_is_unissued(self):
+        scope = self._mint("T-SCOPE")
+        clone = probe.TemporaryCredential(*scope)
+        self.assertEqual(clone, scope)
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            probe.authoritative_group(clone)
+
+    def test_identical_wire_credentials_keep_distinct_provenance(self):
+        a = self._mint("T-CAS-1")
+        b = self._mint("T-SCOPE")
+        self.assertEqual(a.session_token, b.session_token)
+        self.assertNotEqual(a.instance_id, b.instance_id)
+        self.assertEqual(probe.authoritative_group(a), "T-CAS-1")
+        self.assertEqual(probe.authoritative_group(b), "T-SCOPE")
+
+    def test_all_three_runtime_layers_resolve_through_the_registry(self):
+        """No layer may still trust caller-owned group/instance fields."""
+        cred = self._mint("T-CAS-1")
+        tampered = cred._replace(group="T-SCOPE",
+                                 instance_id="cred-000001")
+        planner = probe.CredentialGroupPlanner()
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            planner.can_start(credential=tampered, now=CRED_NOW)
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            planner.assert_credential_matches_test(tampered, "A")
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            probe.validate_probe_credential_for_transport(
+                tampered, endpoint_host=ENDPOINT_HOST, now=CRED_NOW)
+
+    def test_credential_issuance_record_written_from_the_exact_object(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        writer = probe.EvidenceWriter.for_testing(
+            os.path.join(tmp.name, "st"), "run-credissue")
+        cred = self._mint("T-CAS-1")
+        relative = writer.write_credential_issuance(cred)
+        self.assertIn(cred.instance_id, relative)
+        # A copy cannot produce one, and the same object cannot twice.
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            writer.write_credential_issuance(cred._replace())
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            writer.write_credential_issuance(cred)
+
+
+class CredentialIssuanceReconstructionTests(unittest.TestCase):
+    """Codex round-5: reconstruction must not accept self-consistency."""
+
+    def _mint(self, group, now=CRED_NOW):
+        return probe.mint_probe_credential(
+            group=group, account_id=ACCOUNT_ID, parent_access_key_id=AKID,
+            parent_secret_access_key=SECRET, now=now)
+
+    def test_fabricated_instance_without_issuance_record_fails(self):
+        """cred-999999 with a CORRECT matrix group and no issuance record."""
+        cred = self._mint("T-CAS-1")
+        request = attributed_request_record(
+            "A", cred, credential_instance_id="cred-999999")
+        with self.assertRaises(probe.SafetyBarrierTripped) as ctx:
+            probe.assert_credential_bindings_consistent(
+                {"request/a.json": request}, {})
+        self.assertIn("no persisted credential issuance", str(ctx.exception))
+
+    def test_issuance_with_a_different_group_fails(self):
+        """Same instance id, but the issuance attributes it elsewhere.
+
+        The two credentials share a TTL, so their wire material — and
+        therefore every fingerprint — is identical: group is genuinely the
+        only fact that differs.
+        """
+        cred = self._mint("T-CAS-1")
+        scope = self._mint("T-SCOPE")
+        self.assertEqual(cred.session_token, scope.session_token)
+        issuance = dict(issuance_record_for(scope),
+                        credential_instance_id=cred.instance_id)
+        with self.assertRaises(probe.SafetyBarrierTripped) as ctx:
+            probe.assert_credential_bindings_consistent(
+                {"request/a.json": attributed_request_record("A", cred)},
+                {"ci/c1.json": issuance})
+        self.assertIn("contradicts the credential issuance record",
+                      str(ctx.exception))
+
+    def test_matching_unique_issuance_is_accepted(self):
+        cred = self._mint("T-CAS-1")
+        self.assertEqual(
+            probe.assert_credential_bindings_consistent(
+                {"request/a.json": attributed_request_record("A", cred)},
+                {"ci/c1.json": issuance_record_for(cred)}),
+            {cred.instance_id: "T-CAS-1"})
+
+    def test_duplicate_issuance_records_fail(self):
+        cred = self._mint("T-CAS-1")
+        record = issuance_record_for(cred)
+        with self.assertRaises(probe.SafetyBarrierTripped) as ctx:
+            probe.assert_credential_bindings_consistent(
+                {}, {"ci/a.json": record, "ci/b.json": dict(record)})
+        self.assertIn("duplicate credential issuance", str(ctx.exception))
+
+    def test_full_run_persists_one_issuance_per_group(self):
+        """End to end: a real run writes exactly one issuance per credential
+        and reconstruction resolves every request through them."""
+        fake = FakeR2()
+        runner, writer, parent = _make_runner(self, fake)
+        with no_sockets():
+            result = runner.run()
+        self.assertEqual(result["verdict"], "PASS")
+        issuance_dir = os.path.join(writer.run_dir,
+                                    "credential_issuance_record")
+        files = sorted(os.listdir(issuance_dir))
+        self.assertEqual(len(files), len(probe.credential_groups()))
+        groups = set()
+        for name in files:
+            with open(os.path.join(issuance_dir, name),
+                      encoding="utf-8") as handle:
+                groups.add(json.load(handle)["credential_group"])
+        self.assertEqual(groups, set(probe.credential_groups()))
+        # And the disk-authoritative rebuild accepted them.
+        probe.reconstruct_run_from_disk(
+            writer.run_dir, phase="T", run_id=writer.run_id,
+            secrets=parent.secret_values(),
+            issued_registry=writer._allocator.issued_registry())
+
+
+class RequestIssuanceFactConsistencyTests(unittest.TestCase):
+    """Codex round-6 HIGH 1: the CREDENTIAL_ISSUANCE_RECORD is the authority
+    for EVERY credential fact a request carries, not just instance id and
+    group.
+
+    Codex's reproduction finalized PASS with a false `credential_issued_at`,
+    because reconstruction compared only `instance_id -> group` and believed
+    the request about everything else.
+    """
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.root = os.path.join(self._tmp.name, "bible-pal")
+        self.addCleanup(self._tmp.cleanup)
+
+    def _falsehoods(self, authority):
+        """One wrong value per credential-authority field, each the same
+        SHAPE as the honest one so only the comparison can reject it.
+
+        The group falsehood is chosen RELATIVE to the authority: a fixed
+        literal silently becomes a no-op on whichever row happens to own
+        that group, which would make the whole matrix vacuous.
+        """
+        return {
+            "credential_instance_id": "cred-999999",
+            "credential_group": ("T-CAS-1"
+                                 if authority["credential_group"] != "T-CAS-1"
+                                 else "T-SCOPE"),
+            "access_key_id_sha256": "b" * 64,
+            "session_token_sha256": "c" * 64,
+            "credential_issued_at": authority["credential_issued_at"] + 1,
+            "credential_expires_at": authority["credential_expires_at"] + 1,
+            "credential_scope": "admin-read-write",
+            "credential_actions": ["PutObject"],
+            "credential_prefixes": ["somewhere-else/"],
+            "bucket": "not-the-probe-bucket",
+        }
+
+    # ── the comparison itself ────────────────────────────────────────────
+
+    def test_control_an_unmutated_request_is_accepted(self):
+        """Non-vacuous: the honest pair must pass, or nothing below means
+        anything."""
+        cred = group_credential("T-CAS-1")
+        self.assertEqual(
+            probe.assert_credential_bindings_consistent(
+                {"request/a.json": attributed_request_record("A", cred)},
+                {"ci/c1.json": issuance_record_for(cred)}),
+            {cred.instance_id: "T-CAS-1"})
+
+    def test_every_authority_field_mutation_is_rejected(self):
+        """§5's matrix: one falsified fact at a time, all rejected."""
+        cred = group_credential("T-CAS-1")
+        issuance = issuance_record_for(cred)
+        issuances = {"ci/c1.json": issuance}
+        falsehoods = self._falsehoods(issuance)
+        # Every field the authority table declares is covered here, so a
+        # field added later cannot quietly go untested.
+        self.assertEqual(
+            set(falsehoods),
+            {field for field, _, _
+             in probe._REQUEST_CREDENTIAL_AUTHORITY_FIELDS})
+        for field, wrong in sorted(falsehoods.items()):
+            with self.subTest(field=field):
+                tampered = attributed_request_record(
+                    "A", cred, **{field: wrong})
+                self.assertNotEqual(tampered[field],
+                                    attributed_request_record("A", cred)[field])
+                with self.assertRaises(probe.SafetyBarrierTripped):
+                    probe.assert_credential_bindings_consistent(
+                        {"request/a.json": tampered}, issuances)
+
+    def test_a_token_bearing_request_must_name_its_credential(self):
+        """The obvious escape: drop the attribution, keep the false fact."""
+        cred = group_credential("T-CAS-1")
+        issuance = issuance_record_for(cred)
+        stripped = attributed_request_record(
+            "A", cred, credential_group=None, credential_instance_id=None,
+            credential_issued_at=issuance["credential_issued_at"] + 1)
+        with self.assertRaises(probe.SafetyBarrierTripped) as ctx:
+            probe.assert_credential_bindings_consistent(
+                {"request/a.json": stripped}, {"ci/c1.json": issuance})
+        self.assertIn("must record which credential instance",
+                      str(ctx.exception))
+
+    # ── build_request_record reads the binding, not the caller ───────────
+
+    def test_request_facts_come_from_the_authoritative_binding(self):
+        spec = probe.test_spec("A")
+        facts = SUPPORT_EVIDENCE["A"]._replace(token_mode="signed")
+        signed, credential = sign_support_request(
+            spec, probe_key("A", 1, run_id=RUN_ID), facts)
+        record = probe.build_request_record(
+            phase="T", run_id=RUN_ID, group=spec.group, test_id="A",
+            repetition=1, sequence=1, endpoint_host=ENDPOINT_HOST,
+            signed=signed, credential=credential,
+            t_request_attempt_mono_ns=1)
+        binding = probe.resolve_credential_binding(credential)
+        self.assertEqual(record["credential_instance_id"],
+                         binding.instance_id)
+        self.assertEqual(record["credential_group"], binding.group)
+        self.assertEqual(record["access_key_id_sha256"],
+                         binding.access_key_sha256)
+        self.assertEqual(record["session_token_sha256"],
+                         binding.session_token_sha256)
+        self.assertEqual(record["credential_issued_at"], binding.issued_at)
+        self.assertEqual(record["credential_expires_at"], binding.expires_at)
+        self.assertEqual(record["credential_scope"], binding.scope)
+        self.assertEqual(tuple(record["credential_actions"]),
+                         tuple(binding.actions))
+        self.assertEqual(tuple(record["credential_prefixes"]),
+                         tuple(binding.prefix_paths))
+        self.assertEqual(record["bucket"], binding.bucket)
+
+    def test_an_unissued_copy_cannot_produce_a_request_record(self):
+        """`credential_instance_id` used to be copied off the caller."""
+        spec = probe.test_spec("A")
+        facts = SUPPORT_EVIDENCE["A"]._replace(token_mode="signed")
+        signed, credential = sign_support_request(
+            spec, probe_key("A", 1, run_id=RUN_ID), facts)
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            probe.build_request_record(
+                phase="T", run_id=RUN_ID, group=spec.group, test_id="A",
+                repetition=1, sequence=1, endpoint_host=ENDPOINT_HOST,
+                signed=signed,
+                credential=credential._replace(instance_id="cred-999999"),
+                t_request_attempt_mono_ns=1)
+
+    # ── Codex's exact HIGH 1 reproduction, at the supported writer ───────
+
+    def _issuance_on_disk(self, w, instance_id):
+        path = os.path.join(w.run_dir, "credential_issuance_record",
+                            f"{instance_id}.json")
+        with open(path, encoding="utf-8") as handle:
+            return json.load(handle)
+
+    def _rewrite(self, path, record):
+        with open(path, "w", encoding="utf-8") as handle:
+            json.dump(record, handle, sort_keys=True, indent=2,
+                      ensure_ascii=False)
+
+    def _rebuild(self, w):
+        return probe.reconstruct_run_from_disk(
+            w.run_dir, phase=w._phase, run_id=w.run_id, secrets=w._secrets,
+            issued_registry=w._allocator.issued_registry())
+
+    def test_no_false_request_fact_survives_the_disk_rebuild(self):
+        """§14 A–G. A COMPLETE otherwise-valid bundle; one persisted request
+        carries one false credential fact; the run cannot be rebuilt.
+
+        Deliberately rebuilt WITHOUT the manifest digests, so the rejection
+        must come from the request/issuance comparison rather than from the
+        file hash having changed.
+        """
+        w = passing_bundle_writer(self.root, "run-factcheck")
+        relative, honest = attributed_request_on_disk(w)
+        authority = self._issuance_on_disk(
+            w, honest["credential_instance_id"])
+        path = os.path.join(w.run_dir, relative)
+        self._rebuild(w)                       # the honest bundle rebuilds
+        for field, wrong in sorted(self._falsehoods(authority).items()):
+            with self.subTest(field=field):
+                # A falsehood that happens to equal the truth would make
+                # this row vacuous.
+                self.assertNotEqual(honest[field], wrong)
+                self._rewrite(path, dict(honest, **{field: wrong}))
+                with self.assertRaises((probe.SafetyBarrierTripped,
+                                        probe.EvidenceValidationError)):
+                    self._rebuild(w)
+                self._rewrite(path, honest)
+                self._rebuild(w)               # ...and restoring it heals
+
+    def test_codex_reproduction_a_false_issued_at_cannot_pass(self):
+        """The exact reproduction: a request persisted through the supported
+        `write_request_record` path carrying `credential_issued_at + 1`,
+        inside an otherwise complete and valid run.
+
+        The falsehood goes in BEFORE persistence, so the bundle's own
+        digests cover it and the manifest hash check cannot be what catches
+        it — only the request/issuance comparison can. PASS is forbidden.
+        """
+        falsified = []
+
+        def falsify(spec, rep, record):
+            if falsified or record.get("credential_instance_id") is None:
+                return record
+            falsified.append(record["credential_instance_id"])
+            return dict(record,
+                        credential_issued_at=record["credential_issued_at"] + 1)
+
+        w = passing_bundle_writer(self.root, "run-issuedat",
+                                  mutate_request=falsify)
+        self.assertTrue(falsified)             # non-vacuous
+        try:
+            verdict = w.finalize()["verdict"]
+        except (probe.SafetyBarrierTripped,
+                probe.EvidenceValidationError) as exc:
+            verdict = "REFUSED"
+            self.assertIn("credential_issued_at", str(exc))
+        self.assertNotEqual(verdict, "PASS")
+
+    def test_codex_reproduction_repeats_for_every_authority_field(self):
+        """§14 A–G, at the FINAL VERDICT: one complete run per falsified
+        field, each persisted through `write_request_record`.
+
+        A field the record validator can already contradict (group, bucket)
+        is refused at the write; the rest reach disk with matching digests
+        and are refused by the rebuild. Neither may PASS.
+        """
+        probed = probe.EvidenceWriter.for_testing(self.root, "run-probe0")
+        cred = group_credential("T-CAS-1")
+        falsehoods = self._falsehoods(
+            issuance_record_for(cred, phase=probed._phase,
+                                run_id=probed.run_id))
+        for index, (field, wrong) in enumerate(sorted(falsehoods.items())):
+            with self.subTest(field=field):
+                falsified = []
+
+                def falsify(spec, rep, record, _f=field, _w=wrong,
+                            _seen=falsified):
+                    if _seen or record.get("credential_instance_id") is None:
+                        return record
+                    if record[_f] == _w:      # never a no-op falsehood
+                        return record
+                    _seen.append(record[_f])
+                    return dict(record, **{_f: _w})
+
+                verdict = "REFUSED"
+                try:
+                    w = passing_bundle_writer(
+                        self.root, f"run-repro{index}", mutate_request=falsify)
+                    verdict = w.finalize()["verdict"]
+                except (probe.SafetyBarrierTripped,
+                        probe.EvidenceValidationError):
+                    pass
+                self.assertTrue(falsified, f"{field} falsehood never applied")
+                self.assertNotEqual(verdict, "PASS")
+
+    def test_control_the_same_bundle_unfalsified_passes(self):
+        """§7. Without the falsehood the identical construction PASSES, so
+        the test above is not merely rejecting a broken bundle."""
+        w = passing_bundle_writer(self.root, "run-control")
+        self.assertEqual(w.finalize()["verdict"], "PASS")
+
+    def test_the_supported_write_path_cannot_launder_a_false_fact(self):
+        """Persisted through `write_request_record` exactly as Codex did:
+        either the write is refused, or the rebuild refuses the bytes."""
+        w = probe.EvidenceWriter.for_testing(self.root, "run-writepath")
+        spec = probe.test_spec("A")
+        facts = SUPPORT_EVIDENCE["A"]._replace(token_mode="signed")
+        signed, credential = sign_support_request(
+            spec, probe_key("A", 1, phase="t", run_id=w.run_id), facts)
+        ensure_credential_issuance(w, credential)
+        honest = probe.build_request_record(
+            phase=w._phase, run_id=w.run_id, group=spec.group, test_id="A",
+            repetition=1, sequence=1, endpoint_host=ENDPOINT_HOST,
+            signed=signed, credential=credential,
+            t_request_attempt_mono_ns=1)
+        tampered = dict(honest,
+                        credential_issued_at=honest["credential_issued_at"] + 1)
+        refused_at_write = False
+        try:
+            w.write_request_record(tampered)
+        except (probe.SafetyBarrierTripped, probe.EvidenceValidationError):
+            refused_at_write = True
+        if not refused_at_write:
+            # It reached disk; the authority comparison must still refuse.
+            with self.assertRaises(probe.SafetyBarrierTripped) as ctx:
+                probe.assert_credential_bindings_consistent(
+                    {"request/a.json": tampered},
+                    {"ci/c1.json": issuance_record_for(
+                        credential, phase=w._phase, run_id=w.run_id)})
+            self.assertIn("credential_issued_at", str(ctx.exception))
+
+
+class CredentialIssuanceWriterAuthorityTests(unittest.TestCase):
+    """Codex round-6 HIGH 2: only `write_credential_issuance` may create a
+    CREDENTIAL_ISSUANCE_RECORD.
+
+    Codex persisted a fabricated `cred-999999` issuance straight through
+    `EvidenceWriter._write_typed_record` and it became authoritative.
+    """
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.root = os.path.join(self._tmp.name, "bible-pal")
+        self.addCleanup(self._tmp.cleanup)
+
+    def _writer(self, run_id="run-issauth"):
+        return probe.EvidenceWriter.for_testing(self.root, run_id)
+
+    def _fabricated(self, w, instance_id="cred-999999"):
+        """A WELL-FORMED issuance record for a credential that was never
+        minted: only the identity and fingerprints are invented, so nothing
+        but issuance authority can reject it."""
+        real = probe.resolve_credential_binding(group_credential("T-CAS-1"))
+        return {
+            "record_kind": "CREDENTIAL_ISSUANCE_RECORD",
+            "phase": w._phase, "run_id": w.run_id,
+            "credential_instance_id": instance_id,
+            "credential_group": "T-CAS-1",
+            "credential_access_key_sha256": "a" * 64,
+            "credential_session_token_sha256": "b" * 64,
+            "credential_issued_at": real.issued_at,
+            "credential_expires_at": real.expires_at,
+            "credential_scope": real.scope,
+            "credential_actions": list(real.actions),
+            "credential_prefixes": list(real.prefix_paths),
+            "bucket": real.bucket,
+        }
+
+    def _issuance_files(self, w):
+        return [rel for rel in w._files
+                if rel.startswith("credential_issuance_record/")]
+
+    def test_H_generic_typed_writer_refuses_a_fabricated_issuance(self):
+        """§14 H — Codex's exact call, rejected BEFORE disk."""
+        w = self._writer()
+        with self.assertRaises(probe.SafetyBarrierTripped) as ctx:
+            w._write_typed_record("CREDENTIAL_ISSUANCE_RECORD",
+                                  "cred-999999", 0, self._fabricated(w))
+        self.assertIn("write_credential_issuance", str(ctx.exception))
+        self.assertEqual(self._issuance_files(w), [])
+        self.assertFalse(os.path.exists(os.path.join(
+            w.run_dir, "credential_issuance_record")))
+
+    def test_no_generic_writer_path_can_persist_an_issuance(self):
+        """Every supported generic record path, not just the flagged one."""
+        w = self._writer("run-allpaths")
+        fabricated = self._fabricated(w)
+        mangled = getattr(w, "_EvidenceWriter__emit_record")
+        paths = {
+            "_write_typed_record": lambda: w._write_typed_record(
+                "CREDENTIAL_ISSUANCE_RECORD", "cred-999999", 0, fabricated),
+            "_persist_typed": lambda: w._persist_typed(
+                "CREDENTIAL_ISSUANCE_RECORD", "cred-999999", 0, fabricated),
+            "write_request_record": lambda: w.write_request_record(
+                fabricated),
+            "write_response_record": lambda: w.write_response_record(
+                fabricated),
+            "write_test_result_record": lambda: w.write_test_result_record(
+                fabricated),
+            "write_credential_issuance(dict)":
+                lambda: w.write_credential_issuance(fabricated),
+            "mangled __emit_record": lambda: mangled(
+                "CREDENTIAL_ISSUANCE_RECORD", "cred-999999", 0, fabricated),
+        }
+        for label, call in sorted(paths.items()):
+            with self.subTest(path=label):
+                with self.assertRaises((probe.SafetyBarrierTripped,
+                                        probe.EvidenceValidationError,
+                                        TypeError)):
+                    call()
+        self.assertEqual(self._issuance_files(w), [])
+
+    # ── round-7: a CALLER-CONSTRUCTIBLE binding is not authority ─────────
+
+    def _fabricated_binding(self, instance_id="cred-999999"):
+        """A CredentialBinding built by ordinary in-process code. Every
+        field is well-formed and copied from a genuine binding; only the
+        identity is invented, so nothing but issuance authority can
+        reject it."""
+        real = probe.resolve_credential_binding(group_credential("T-CAS-1"))
+        return probe.CredentialBinding(
+            instance_id=instance_id, group="T-CAS-1",
+            access_key_sha256="a" * 64, session_token_sha256="b" * 64,
+            issued_at=real.issued_at, expires_at=real.expires_at,
+            bucket=real.bucket, scope=real.scope,
+            actions=real.actions, prefix_paths=real.prefix_paths)
+
+    def test_A_no_binding_taking_persistence_helper_exists(self):
+        """§7 A. The helper Codex flagged is GONE, not merely guarded: a
+        method that takes a caller-constructible value cannot be the thing
+        that confers authority."""
+        w = self._writer("run-nohelper")
+        self.assertFalse(hasattr(w, "_persist_credential_issuance"))
+        # And the surviving door refuses a binding outright — it wants an
+        # issued credential OBJECT, which no caller can manufacture.
+        with self.assertRaises(probe.SafetyBarrierTripped) as ctx:
+            w.write_credential_issuance(self._fabricated_binding())
+        self.assertIn("must be exactly TemporaryCredential",
+                      str(ctx.exception))
+
+    def test_B_C_a_fabricated_binding_reaches_neither_map_nor_disk(self):
+        """§7 B and C. The trusted map is what the low-level emitter
+        consults, so poisoning it was the whole attack."""
+        w = self._writer("run-fabbinding")
+        fake = self._fabricated_binding()
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            w.write_credential_issuance(fake)
+        self.assertNotIn("cred-999999", w._issued_bindings)
+        self.assertEqual(w._issued_bindings, {})
+        self.assertEqual(self._issuance_files(w), [])
+        self.assertFalse(os.path.exists(os.path.join(
+            w.run_dir, "credential_issuance_record")))
+
+    def test_D_the_emitter_cannot_be_prepared_by_a_prior_call(self):
+        """§7 D. The exact reproduction: install a binding first, then use
+        the low-level emitter against the map it just poisoned."""
+        w = self._writer("run-prepare")
+        fake = self._fabricated_binding()
+        record = probe._credential_issuance_record(
+            fake, phase=w._phase, run_id=w.run_id)
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            w.write_credential_issuance(fake)      # the preparation step
+        mangled = getattr(w, "_EvidenceWriter__emit_record")
+        with self.assertRaises(probe.SafetyBarrierTripped) as ctx:
+            mangled("CREDENTIAL_ISSUANCE_RECORD", "cred-999999", 0, record)
+        self.assertIn("resolved CredentialBinding", str(ctx.exception))
+        self.assertEqual(self._issuance_files(w), [])
+
+    def test_H_a_hand_built_temporary_credential_is_refused(self):
+        """§7 H. Reconstructing the NamedTuple field for field does not
+        reconstruct issuance: authority is object identity."""
+        w = self._writer("run-handbuilt")
+        real = probe.mint_probe_credential(
+            group="T-CAS-1", account_id=ACCOUNT_ID, parent_access_key_id=AKID,
+            parent_secret_access_key=SECRET, now=CRED_NOW)
+        for label, candidate in (
+                ("full field copy", probe.TemporaryCredential(*real)),
+                ("no-op _replace", real._replace()),
+                ("hand-built", probe.TemporaryCredential(
+                    group="T-CAS-1", access_key_id=AKID,
+                    secret_access_key="0" * 64, session_token="x",
+                    issued_at=real.issued_at, expires_at=real.expires_at,
+                    bucket=real.bucket, scope=real.scope,
+                    actions=real.actions, prefix_paths=real.prefix_paths,
+                    instance_id="cred-999999"))):
+            with self.subTest(candidate=label):
+                with self.assertRaises(probe.SafetyBarrierTripped):
+                    w.write_credential_issuance(candidate)
+        self.assertEqual(w._issued_bindings, {})
+        self.assertEqual(self._issuance_files(w), [])
+
+    def test_the_trusted_map_only_ever_holds_resolved_bindings(self):
+        """Non-vacuous control: a REAL write populates the map with the
+        registry's own binding object."""
+        w = self._writer("run-trustedmap")
+        cred = probe.mint_probe_credential(
+            group="T-CAS-1", account_id=ACCOUNT_ID, parent_access_key_id=AKID,
+            parent_secret_access_key=SECRET, now=CRED_NOW)
+        w.write_credential_issuance(cred)
+        self.assertEqual(list(w._issued_bindings), [cred.instance_id])
+        self.assertIs(w._issued_bindings[cred.instance_id],
+                      probe.resolve_credential_binding(cred))
+
+    def test_I_the_dedicated_path_accepts_the_real_credential_once(self):
+        """§14 I plus its two refusals: second write, and a copy."""
+        w = self._writer("run-dedicated")
+        cred = probe.mint_probe_credential(
+            group="T-CAS-1", account_id=ACCOUNT_ID, parent_access_key_id=AKID,
+            parent_secret_access_key=SECRET, now=CRED_NOW)
+        relative = w.write_credential_issuance(cred)
+        self.assertIn(cred.instance_id, relative)
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            w.write_credential_issuance(cred)
+        with self.assertRaises(probe.SafetyBarrierTripped):
+            w.write_credential_issuance(cred._replace())
+        # The bytes on disk are exactly what the binding derives — nothing
+        # about them came from a caller.
+        with open(os.path.join(w.run_dir, relative), encoding="utf-8") as fh:
+            self.assertEqual(
+                json.load(fh),
+                issuance_record_for(cred, phase=w._phase, run_id=w.run_id))
+        self.assertEqual(len(self._issuance_files(w)), 1)
+
+    def test_a_fabricated_issuance_cannot_back_a_complete_run(self):
+        """§6. Even placed on disk beside a matching request, a fabricated
+        issuance cannot carry a run: its fingerprints are not the ones the
+        signed request actually produced."""
+        w = passing_bundle_writer(self.root, "run-fabissue")
+        relative, honest = attributed_request_on_disk(w)
+        path = os.path.join(w.run_dir, relative)
+        with open(path, "w", encoding="utf-8") as handle:
+            json.dump(dict(honest, credential_instance_id="cred-999999"),
+                      handle, sort_keys=True, indent=2, ensure_ascii=False)
+        forged = self._fabricated(w)
+        forged_path = os.path.join(w.run_dir, "credential_issuance_record",
+                                   "cred-999999.json")
+        with open(forged_path, "w", encoding="utf-8") as handle:
+            json.dump(forged, handle, sort_keys=True, indent=2,
+                      ensure_ascii=False)
+        with self.assertRaises((probe.SafetyBarrierTripped,
+                                probe.EvidenceValidationError)):
+            probe.reconstruct_run_from_disk(
+                w.run_dir, phase=w._phase, run_id=w.run_id,
+                secrets=w._secrets,
+                issued_registry=w._allocator.issued_registry())
 
 
 if __name__ == "__main__":  # pragma: no cover
