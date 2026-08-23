@@ -59,6 +59,16 @@ jobs:
     - name: Test offline R2 CAS probe under network kill switch
       run: python3 scripts/tests/run_probe_killswitch.py
 
+    - name: Test R2 parent credential control harness
+      run: |
+        PYTHONDONTWRITEBYTECODE=1 python3 -B -W error::ResourceWarning \
+          -m unittest scripts.tests.test_probe_r2_parent_control -v
+
+    - name: Test R2 parent credential control harness under network kill switch
+      run: |
+        PYTHONDONTWRITEBYTECODE=1 python3 -B \
+          scripts/tests/run_parent_control_killswitch.py
+
     - name: 🔒 Manifest catalog version bump enforcement (PR)
       if: github.event_name == 'pull_request'
       env:
