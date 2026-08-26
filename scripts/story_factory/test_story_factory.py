@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Tests for story factory helpers — no API calls required."""
 
+import json
 import unittest
 
 # Import from the generator module
@@ -24,6 +25,12 @@ from generate_traditional_story import (
     check_forbidden_words,
     load_forbidden_words,
     validate_anchor_format,
+)
+from story_voice_registry import (
+    APPROVED_NARRATOR_VOICES,
+    BANNED_VOICES,
+    VoiceValidationError,
+    validate_story_voice,
 )
 
 
@@ -452,6 +459,78 @@ class TestAntiRepetitionRules(unittest.TestCase):
     def test_rules_mention_sentence_openers(self):
         # Core rule: vary sentence openers
         self.assertIn("sentence openers", SYSTEM_PROMPTS_STORY["web"])
+
+
+class TestNarratorNewAuthoringContract(unittest.TestCase):
+    """Keep validator-eligible narrators aligned with checked-in contracts."""
+
+    def test_validator_eligible_narrators_have_schema_and_unique_mapping(self):
+        root = pathlib.Path(__file__).resolve().parents[2]
+        schema = json.loads(
+            (root / "assets/stories/meta.schema.json").read_text()
+        )
+        voice_config = json.loads((root / "server/voices.json").read_text())
+
+        schema_voices = set(schema["properties"]["storyVoiceKey"]["enum"])
+        active_records = voice_config["voices"]
+        eligible = []
+        for voice_key in sorted(APPROVED_NARRATOR_VOICES):
+            try:
+                validate_story_voice(voice_key)
+            except VoiceValidationError:
+                continue
+            eligible.append(voice_key)
+
+        self.assertTrue(
+            eligible,
+            "Canonical validator produced no new-authoring-eligible narrators",
+        )
+
+        violations = []
+        elevenlabs_id_to_keys = {}
+        for voice_key in eligible:
+            if voice_key in BANNED_VOICES:
+                violations.append(
+                    f"banned narrator passed canonical validation: {voice_key}"
+                )
+            if voice_key not in schema_voices:
+                violations.append(f"missing schema narrator: {voice_key}")
+
+            records = [
+                record for record in active_records
+                if record.get("voiceKey") == voice_key
+            ]
+            if not records:
+                violations.append(
+                    f"missing voices.json record: {voice_key}"
+                )
+                continue
+            if len(records) > 1:
+                violations.append(
+                    f"duplicate voice key in voices.json: {voice_key} "
+                    f"({len(records)} records)"
+                )
+                continue
+
+            elevenlabs_id = records[0].get("elevenLabsId")
+            if not isinstance(elevenlabs_id, str) or not elevenlabs_id.strip():
+                violations.append(f"empty ElevenLabs mapping: {voice_key}")
+                continue
+            elevenlabs_id_to_keys.setdefault(elevenlabs_id, []).append(voice_key)
+
+        for elevenlabs_id, voice_keys in sorted(elevenlabs_id_to_keys.items()):
+            if len(voice_keys) > 1:
+                violations.append(
+                    f"duplicate ElevenLabs ID {elevenlabs_id}: "
+                    f"{', '.join(sorted(voice_keys))}"
+                )
+
+        self.assertEqual(
+            violations,
+            [],
+            "New-authoring narrator contract violations:\n- "
+            + "\n- ".join(violations),
+        )
 
 
 class TestBatchDryRun(unittest.TestCase):
