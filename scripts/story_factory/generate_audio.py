@@ -134,6 +134,33 @@ def _apply_tail_pad(mp3_path: pathlib.Path, duration_seconds: float) -> None:
         print(f"    Warning: ffmpeg pad failed on {mp3_path.name}: {exc}")
 
 
+# Autonomous campaign safety boundary: story IDs 3000-3258 belong to the
+# guarded new-authoring route (generate_opus_audio.sh --new-authoring), whose
+# tts_voice_gate enforces storyVoiceKey authority. This script can accept an
+# explicit --voice_key, falls back between narrator fields, and rewrites
+# metadata storyVoiceKey — all of which the campaign forbids. Refusal happens
+# before metadata is read or mutated and before any TTS call. IDs outside the
+# range are unaffected.
+CAMPAIGN_GUARD_MIN_ID = 3000
+CAMPAIGN_GUARD_MAX_ID = 3258
+
+
+class CampaignRouteError(Exception):
+    """Story ID is reserved for the guarded new-authoring TTS route."""
+
+
+def check_campaign_route(story_id: int) -> None:
+    """Raise CampaignRouteError for IDs 3000-3258 inclusive."""
+    if CAMPAIGN_GUARD_MIN_ID <= story_id <= CAMPAIGN_GUARD_MAX_ID:
+        raise CampaignRouteError(
+            f"story {story_id} is in the autonomous campaign range "
+            f"{CAMPAIGN_GUARD_MIN_ID}-{CAMPAIGN_GUARD_MAX_ID}; audio for these "
+            "stories must go through scripts/generate_opus_audio.sh "
+            "--new-authoring --expected-voice <KEY> --story <ID>, which "
+            "enforces the fail-closed narrator gate. This script is refused "
+            "for campaign IDs.")
+
+
 def main() -> int:
     t0 = time.time()
 
@@ -161,6 +188,11 @@ def main() -> int:
     args = parser.parse_args()
 
     sid = args.story_id
+    try:
+        check_campaign_route(sid)
+    except CampaignRouteError as exc:
+        print(f"ABORT: {exc}")
+        return 1
     mode = args.mode
     root = pathlib.Path(__file__).resolve().parents[2]
     outdir = root / "assets" / "stories" / mode / str(sid)

@@ -16,6 +16,11 @@
 # OPTIONS:
 #   --dry-run       Show what would be generated without calling the API
 #   --story ID      Generate audio for a single story ID only
+#   --new-authoring Resolve narrator ONLY via the fail-closed tts_voice_gate
+#                   (storyVoiceKey authority; refuses on any conflict). The
+#                   designated route for autonomous new-story production.
+#   --expected-voice KEY  With --new-authoring: controller-assigned narrator;
+#                   refuses if it differs from metadata storyVoiceKey.
 #   --retry-file F  Retry only the files listed in F (one path per line)
 #
 # REQUIRES:
@@ -56,16 +61,45 @@ FAILED=0
 DRY_RUN=false
 SINGLE_STORY=""
 RETRY_FILE=""
+# New-authoring mode: narrator resolution is delegated to the fail-closed
+# Python gate (scripts/story_factory/tts_voice_gate.py). storyVoiceKey is the
+# sole authority; a conflicting legacy voiceKey, a banned/legacy-only/unknown
+# narrator, or a broken voices.json mapping refuses TTS for that story.
+# The legacy `.voiceKey // .storyVoiceKey` branch below is UNCHANGED and
+# remains the compatibility path for historical content.
+NEW_AUTHORING=false
+EXPECTED_VOICE=""
+# Per-story validated voice ID from the gate. Deliberately initialized empty:
+# the retry-mode lockdown below must be an explicit refusal, never an accident
+# of `set -u` tripping over an unbound variable.
+NEW_AUTH_VOICE_ID=""
 
 # Parse arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --dry-run)    DRY_RUN=true; shift ;;
-        --story)      SINGLE_STORY="$2"; shift 2 ;;
-        --retry-file) RETRY_FILE="$2"; shift 2 ;;
+        --dry-run)        DRY_RUN=true; shift ;;
+        --story)          SINGLE_STORY="$2"; shift 2 ;;
+        --retry-file)     RETRY_FILE="$2"; shift 2 ;;
+        --new-authoring)  NEW_AUTHORING=true; shift ;;
+        --expected-voice) EXPECTED_VOICE="$2"; shift 2 ;;
         *) echo "Unknown option: $1"; exit 1 ;;
     esac
 done
+
+if [[ -n "$EXPECTED_VOICE" && "$NEW_AUTHORING" != "true" ]]; then
+    echo "--expected-voice requires --new-authoring" >&2
+    exit 1
+fi
+
+# ROUTE LOCKDOWN: retry-file mode replays raw (file|file|voice_key) tuples and
+# never consults the narrator gate — an ungated legacy fallback. For new
+# authoring the controller retries by re-invoking the guarded story route
+# (--new-authoring --expected-voice <KEY> --story <ID>), never a retry file.
+if [[ "$NEW_AUTHORING" == "true" && -n "$RETRY_FILE" ]]; then
+    echo "ERROR: --new-authoring and --retry-file are mutually exclusive." >&2
+    echo "Retry a new story via: $0 --new-authoring --expected-voice <ASSIGNED_STORY_VOICE_KEY> --story <ID>" >&2
+    exit 2
+fi
 
 # Load environment
 if [[ -f "$ENV_FILE" ]]; then
@@ -92,6 +126,12 @@ fi
 get_voice_id() {
     local voice_key="$1"
     local id
+    # In new-authoring mode the ID was already resolved and validated by the
+    # Python gate for the current story; never re-derive it here.
+    if [[ "$NEW_AUTHORING" == "true" && -n "$NEW_AUTH_VOICE_ID" ]]; then
+        echo "$NEW_AUTH_VOICE_ID"
+        return 0
+    fi
     id=$(jq -r --arg key "$voice_key" \
         '.voices[] | select(.voiceKey == $key) | .elevenLabsId' \
         "$VOICES_FILE")
@@ -256,9 +296,25 @@ process_story() {
 
     local mode voice_key kid_friendly
     mode=$(jq -r '.mode' "$meta_file")
-    # Some older metas (e.g. B28 1522–1526) only have storyVoiceKey, not voiceKey.
-    # Fall back gracefully so audio gen works on the full corpus.
-    voice_key=$(jq -r '.voiceKey // .storyVoiceKey // empty' "$meta_file")
+    NEW_AUTH_VOICE_ID=""
+    if [[ "$NEW_AUTHORING" == "true" ]]; then
+        # Fail-closed narrator gate: storyVoiceKey is the sole authority.
+        # A non-zero exit means NO TTS for this story — no fallback resolution.
+        local gate_json gate_args=(--meta "$meta_file")
+        [[ -n "$EXPECTED_VOICE" ]] && gate_args+=(--expected "$EXPECTED_VOICE")
+        if ! gate_json=$(python3 "$PROJECT_ROOT/scripts/story_factory/tts_voice_gate.py" "${gate_args[@]}"); then
+            echo -e "${RED}  Story $story_id REFUSED by TTS voice gate — no TTS request made${NC}"
+            FAILED=$((FAILED + 1))
+            return 1
+        fi
+        voice_key=$(printf '%s' "$gate_json" | jq -r '.storyVoiceKey')
+        NEW_AUTH_VOICE_ID=$(printf '%s' "$gate_json" | jq -r '.elevenLabsId')
+    else
+        # LEGACY COMPATIBILITY PATH (historical content only) — unchanged.
+        # Some older metas (e.g. B28 1522–1526) only have storyVoiceKey, not voiceKey.
+        # Fall back gracefully so audio gen works on the full corpus.
+        voice_key=$(jq -r '.voiceKey // .storyVoiceKey // empty' "$meta_file")
+    fi
     kid_friendly=$(jq -r '.kidFriendly' "$meta_file")
 
     echo -e "\n${GREEN}Story $story_id${NC} ($mode, kid=$kid_friendly, voice=$voice_key)"
@@ -376,7 +432,13 @@ echo ""
 
 if [[ $FAILED -gt 0 ]]; then
     echo -e "${RED}Failures logged to: $FAILURES_FILE${NC}"
-    echo "Retry with: $0 --retry-file $FAILURES_FILE"
+    if [[ "$NEW_AUTHORING" == "true" ]]; then
+        # Never recommend the ungated retry-file path for new authoring.
+        echo "Retry each failed story through the guarded route:"
+        echo "  $0 --new-authoring --expected-voice <ASSIGNED_STORY_VOICE_KEY> --story <ID>"
+    else
+        echo "Retry with: $0 --retry-file $FAILURES_FILE"
+    fi
 fi
 
 exit $FAILED
