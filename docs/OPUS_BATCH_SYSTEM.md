@@ -1,8 +1,9 @@
 # Bible PAL — Opus 4.6 Batch Generation System
 
 **Status:** LOCKED
-**Version:** 1.0
+**Version:** 1.1
 **Created:** 2026-03-29
+**Updated:** 2026-08-26 — manifest authority reconciled by ADR-032
 **Author:** Claude Opus 4.6
 
 This document is the canonical source of truth for all story generation in the
@@ -31,14 +32,16 @@ If this document conflicts with STORY_FACTORY.md on Opus-specific topics
 
 ## 1. System Architecture
 
-Two completely separate systems exist. They must never be mixed.
+The former split-manifest model is superseded by ADR-032. Legacy and Opus
+generation history remain distinct, but approved production entries share one
+authoritative app catalog.
 
 ### Legacy System (FROZEN)
 
 | Property     | Value                          |
 |-------------|-------------------------------|
 | ID ranges   | 500s (creative), 800s (traditional) |
-| Manifest    | `assets/stories/manifest.json` |
+| Production catalog | `assets/stories/manifest.json` |
 | Status      | Frozen — never modify or extend |
 | Engines     | gpt-4.1 (traditional), Ollama (creative) |
 
@@ -47,15 +50,18 @@ Two completely separate systems exist. They must never be mixed.
 | Property     | Value                          |
 |-------------|-------------------------------|
 | ID ranges   | 1000–1999 (traditional), 2000–2999 (creative) |
-| Manifest    | `assets/stories/manifest_opus.json` |
-| Status      | Active — all new content goes here |
+| Production catalog | `assets/stories/manifest.json` after approved promotion |
+| Status      | Active generation system       |
 | Engine      | Claude Opus 4.6 only           |
 
 **Rules:**
 - Never place new stories into legacy ID ranges.
-- Never modify `manifest.json`.
 - Never route generation through `generate_v2_batch.sh` or legacy pipelines.
-- All new stories use `manifest_opus.json` exclusively.
+- Drafting and review workers MUST NOT write either manifest.
+- Only the promotion step may register approved production entries, and it writes
+  `assets/stories/manifest.json` after all required gates pass.
+- `assets/stories/manifest_opus.json` is historical and non-authoritative. Runtime,
+  production tooling, autonomous workers, and publication logic MUST NOT use it.
 
 ---
 
@@ -313,13 +319,16 @@ Traditional adult (dual-lane):
 
 ## 7. Manifest Rules
 
-### manifest_opus.json
+### Authoritative production manifest
 
-- Standalone file at `assets/stories/manifest_opus.json`.
-- Contains ONLY Opus stories (IDs 1000–2999).
-- Never modify `manifest.json` (legacy system).
-- Built from on-disk scan — only stories that exist are included.
-- Top-level key: `"parables"` (array of entries).
+- `assets/stories/manifest.json` is the sole current production/runtime catalog.
+- `assets/stories/manifest_opus.json` is a historical, non-authoritative artifact.
+- Drafting and review workers MUST NOT write either manifest.
+- Only the promotion step may add approved entries to `manifest.json`, after all
+  production gates pass.
+- Registration is derived from verified on-disk files; only files that exist may
+  be referenced.
+- The authoritative catalog uses top-level `"version"` and `"parables"` keys.
 
 ### Manifest Entry Schema
 
@@ -351,7 +360,7 @@ Traditional adult (dual-lane):
 
 ## 8. Review + Correction Pipeline
 
-Every batch must complete this pipeline before the manifest is built.
+Every batch must complete this pipeline before any manifest entry is promoted.
 
 ### Phase 1: Generation
 - Generate all 32 stories using parallel agents.
@@ -372,9 +381,9 @@ Every batch must complete this pipeline before the manifest is built.
 - Verify all corrections hit targets.
 - If corrections overcorrected, run another pass.
 
-### Phase 5: Manifest Generation Gate
+### Phase 5: Production Promotion Gate
 
-The manifest MUST NOT be built until ALL of the following are true:
+Production entries MUST NOT be promoted until ALL of the following are true:
 
 - [ ] All stories pass word count validation
 - [ ] All stories meet Daniel Standard quality (spot-checked)
@@ -383,7 +392,9 @@ The manifest MUST NOT be built until ALL of the following are true:
 - [ ] No story references a dropped long in meta or manifest
 - [ ] All meta JSON files have correct `lengths` arrays
 
-Only after all gates pass: build `manifest_opus.json` by scanning on-disk files.
+Only after all gates pass may the promotion step register approved entries in
+`assets/stories/manifest.json`. Drafting and review workers never perform this
+mutation.
 
 ---
 

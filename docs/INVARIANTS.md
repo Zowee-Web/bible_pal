@@ -2211,7 +2211,8 @@ and unchanged.
 
 ## File Integrity Invariant (NON-NEGOTIABLE)
 
-**Invariant**: All files referenced in `manifest_opus.json` MUST be resolvable.
+**Invariant**: All files referenced by the authoritative production manifest,
+`assets/stories/manifest.json`, MUST be resolvable.
 
 ### Rules
 - **iOS**: All manifest-referenced audio MUST exist in bundled assets (text, reflection, audio)
@@ -2225,7 +2226,7 @@ and unchanged.
 ### Why This Exists
 - Broken file references cause runtime crashes in the app
 - During the review pipeline, long files may be dropped — the manifest must stay in sync
-- The legacy system had known issues with broken file references — the Opus system must not repeat this
+- The legacy system had known issues with broken file references — the production system must not repeat this
 - The Android hybrid delivery (R2 + cache) trades absolute on-disk presence for the ability to ship under Play Store size limits, while preserving graceful failure on network issues
 
 ### Enforcement

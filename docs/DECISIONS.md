@@ -1532,6 +1532,11 @@ LLM reflections are generated after story text, validated strictly, and the fina
 
 **Date:** 2026-03-29
 **Status:** Accepted
+
+> **Manifest-authority amendment:** ADR-032 supersedes this ADR only where it
+> requires a separate Opus manifest. The batch-generation and quality contract
+> remains accepted.
+
 **Context:** Bible PAL story generation was ad-hoc across sessions, leading to inconsistency in quality, word counts, file structure, and manifest management. The Opus 4.6 system needed a locked, repeatable contract.
 
 **Decision:** Created `docs/OPUS_BATCH_SYSTEM.md` as the permanent source of truth for all Opus story generation. Created reusable prompt files (`docs/prompts/opus_batch_*.txt`) for session initialization, execution, and review. All future batches must follow this system exactly.
@@ -1681,6 +1686,35 @@ Two ambiguities contributed. SPEC's phrase "not paraphrased scripture" reads pla
 - **1564's Long rejection must be reopened.** That decision measured how many words remained after copying the chapter, not how much faithful listening-oriented storytelling the chapter can support. It is not evidence either way and is void as reasoning.
 - The prioritized corpus-risk list — the 2026-07-19 diagnostic snapshot of 45 flagged files, led by narrative passages — needs qualitative review story by story. The snapshot is dated and provisional, not a permanent invariant; it does not imply those files must be rewritten or regenerated. High-overlap non-narrative anchors are explicitly not presumed defective.
 - Story 1562's supported-length review is likewise void as reasoned, since it rested on word-count parity with scripture rather than on retelling craft.
+
+---
+
+## ADR-032: Single Production Manifest Authority
+
+**Date:** 2026-08-26
+**Status:** Accepted
+**Context:** The original Opus batch contract assigned new stories to
+`assets/stories/manifest_opus.json`, while the shipped app, production tooling,
+catalog versioning, CI, and publication pipeline consolidated on
+`assets/stories/manifest.json`.
+
+**Decision:** `assets/stories/manifest.json` is the sole current production/app
+catalog. ADR-028 and `OPUS_BATCH_SYSTEM.md` remain authoritative for Opus batch
+quality and generation gates, but their split-manifest rules are superseded.
+`assets/stories/manifest_opus.json` remains a historical, non-authoritative
+artifact and MUST NOT be used by runtime, production tooling, autonomous
+workers, or publication logic. Drafting workers write neither manifest;
+approved entries reach `manifest.json` only through the production promotion
+gate.
+
+**Rationale:** This records the architecture already enforced by the app and its
+delivery pipeline without inventing a second migration or duplicating catalog
+state.
+
+**Consequences:** No runtime or manifest-content migration occurs. Active
+catalog validation, versioning, tests, and publication continue to govern
+`manifest.json`; the historical Opus artifact may remain on disk without
+authority.
 
 ---
 
