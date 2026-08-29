@@ -260,7 +260,12 @@ def _fsync_dir(path: Path) -> None:
 
 
 def _atomic_write(path: Path, data: bytes, mode: int = 0o600) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        parent_info = path.parent.lstat()
+    except OSError as exc:
+        raise SafetyViolation(f"atomic-write parent is unavailable: {path.parent}: {exc}") from exc
+    if stat.S_ISLNK(parent_info.st_mode) or not stat.S_ISDIR(parent_info.st_mode):
+        raise SafetyViolation(f"atomic-write parent is not an ordinary directory: {path.parent}")
     fd, raw_tmp = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
     tmp = Path(raw_tmp)
     try:
@@ -614,8 +619,17 @@ class AutonomousStoryController:
         self.repo_root = Path(repo_root).expanduser().resolve(strict=True)
         self.worktree = Path(worktree).expanduser().resolve(strict=True)
         raw_home = factory_home or os.environ.get("BIBLE_PAL_FACTORY_HOME") or (Path.home() / ".bible_pal_factory")
-        self.factory_home = Path(raw_home).expanduser().resolve(strict=False)
-        if _is_within(self.factory_home, self.repo_root) or _is_within(self.factory_home, self.worktree):
+        self.factory_home = Path(os.path.abspath(os.fspath(Path(raw_home).expanduser())))
+        try:
+            home_info = self.factory_home.lstat()
+        except FileNotFoundError:
+            home_info = None
+        except OSError as exc:
+            raise ControllerConfigError(f"cannot inspect factory home {self.factory_home}: {exc}") from exc
+        if home_info is not None and stat.S_ISLNK(home_info.st_mode):
+            raise ControllerConfigError("factory home may not be a symlink")
+        resolved_home = self.factory_home.resolve(strict=False)
+        if _is_within(resolved_home, self.repo_root) or _is_within(resolved_home, self.worktree):
             raise ControllerConfigError("factory home must remain outside every repository worktree")
         self.worktrees = tuple(Path(p).expanduser().resolve(strict=True) for p in worktrees) if worktrees is not None else None
         self.policy_root = Path(policy_root).expanduser().resolve(strict=True)
@@ -636,6 +650,53 @@ class AutonomousStoryController:
     def load(self, run_id: str, packet_id: str) -> dict:
         return replay_packet(self.factory_home, run_id, packet_id)
 
+    def _verify_private_runtime_directory(self, path: Path) -> None:
+        try:
+            info = path.lstat()
+        except OSError as exc:
+            raise SafetyViolation(f"private runtime directory is unavailable: {path}: {exc}") from exc
+        if stat.S_ISLNK(info.st_mode) or not stat.S_ISDIR(info.st_mode):
+            raise SafetyViolation(f"private runtime path is not an ordinary directory: {path}")
+        if info.st_uid != os.geteuid():
+            raise SafetyViolation(f"private runtime directory is not owned by this user: {path}")
+        actual_mode = stat.S_IMODE(info.st_mode)
+        if actual_mode != 0o700:
+            raise SafetyViolation(
+                f"private runtime directory must have mode 0700, found {actual_mode:04o}: {path}"
+            )
+
+    def _verify_private_runtime_file(self, path: Path) -> None:
+        try:
+            info = path.lstat()
+        except OSError as exc:
+            raise SafetyViolation(f"private runtime evidence file is unavailable: {path}: {exc}") from exc
+        if stat.S_ISLNK(info.st_mode) or not stat.S_ISREG(info.st_mode):
+            raise SafetyViolation(f"private runtime evidence is not an ordinary file: {path}")
+        if info.st_uid != os.geteuid() or stat.S_IMODE(info.st_mode) != 0o600:
+            raise SafetyViolation(f"private runtime evidence file must be owner-owned mode 0600: {path}")
+
+    def _ensure_runtime_directory(self, path: Path) -> Path:
+        path = Path(os.path.abspath(os.fspath(path)))
+        try:
+            relative = path.relative_to(self.factory_home)
+        except ValueError as exc:
+            raise SafetyViolation(f"runtime directory escapes factory home: {path}") from exc
+        cursor = self.factory_home
+        for part in (None, *relative.parts):
+            if part is not None:
+                cursor = cursor / part
+            try:
+                os.mkdir(cursor, 0o700)
+            except FileExistsError:
+                pass
+            except OSError as exc:
+                raise SafetyViolation(f"cannot create private runtime directory {cursor}: {exc}") from exc
+            self._verify_private_runtime_directory(cursor)
+        return path
+
+    def _prepare_packet_runtime(self, run_id: str, packet_id: str) -> Path:
+        return self._ensure_runtime_directory(self.packet_dir(run_id, packet_id))
+
     def _record(
         self,
         prior: dict | None,
@@ -647,13 +708,19 @@ class AutonomousStoryController:
         story_id: int | None = None,
     ) -> dict:
         validate_packet_model(packet)
-        pdir = self.packet_dir(packet["runId"], packet["packetId"])
-        pdir.mkdir(parents=True, exist_ok=True)
+        pdir = self._prepare_packet_runtime(packet["runId"], packet["packetId"])
         journal = pdir / "events.jsonl"
         flags = os.O_RDWR | os.O_CREAT | getattr(os, "O_NOFOLLOW", 0)
         fd = os.open(journal, flags, 0o600)
         try:
             fcntl.flock(fd, fcntl.LOCK_EX)
+            journal_info = os.fstat(fd)
+            if (
+                not stat.S_ISREG(journal_info.st_mode)
+                or journal_info.st_uid != os.geteuid()
+                or stat.S_IMODE(journal_info.st_mode) != 0o600
+            ):
+                raise SafetyViolation("controller journal must be an owner-owned regular file with mode 0600")
             os.lseek(fd, 0, os.SEEK_SET)
             chunks = []
             while True:
@@ -841,20 +908,110 @@ class AutonomousStoryController:
         self._record(None, packet, event_type="PACKET_PLANNED", actor=actor,
                      reason="validated five-story planning input")
 
-        existing = [
-            value for value in self.reservations.replay_ledger(self.factory_home).values()
-            if value.run_id == run_id and value.packet_id == packet_id
-            and value.state in {"RESERVED", "MATERIALIZED"}
+        return self._continue_planned_reservation(
+            packet, actor=actor, lease_seconds=lease_seconds,
+        )
+
+    def _assert_planning_snapshot(self, packet: dict, planning: dict) -> None:
+        plans = self._validate_plan(planning)
+        expected = [
+            {
+                "proposedAnchor": plan["anchor"],
+                "mood": plan["mood"],
+                "narrator": plan["narrator"],
+                "mode": "traditional",
+                "kidFriendly": False,
+                "lanes": ["web", "kjv"],
+                "targetLengths": plan["lengths"],
+            }
+            for plan in plans
         ]
-        if existing and len(existing) != PACKET_SIZE:
-            raise IntegrationError("partial authoritative packet reservation requires owner review")
+        actual = [
+            {
+                "proposedAnchor": slot["proposedAnchor"],
+                "mood": slot["mood"],
+                "narrator": slot["narrator"],
+                "mode": slot["mode"],
+                "kidFriendly": slot["kidFriendly"],
+                "lanes": slot["lanes"],
+                "targetLengths": slot["targetLengths"],
+            }
+            for slot in packet["slots"]
+        ]
+        if actual != expected:
+            raise ControllerConfigError("resume planning input differs from the persisted PLANNED snapshot")
+
+    def _validate_reservations_for_adoption(self, packet: dict, reservations: Iterable[object]) -> tuple:
+        ordered = tuple(sorted(reservations, key=lambda item: item.story_id))
+        if len(ordered) != PACKET_SIZE:
+            raise IntegrationError("PLANNED recovery requires exactly five authoritative reservations")
+        seen = set()
+        now = self.clock().astimezone(dt.timezone.utc)
+        for reservation in ordered:
+            story_id = reservation.story_id
+            if type(story_id) is not int or not 3000 <= story_id <= 3258 or story_id in seen:
+                raise IntegrationError("recovery reservation IDs are duplicate or outside 3000-3258")
+            seen.add(story_id)
+            if reservation.state != "RESERVED":
+                raise IntegrationError(
+                    f"story {story_id} is {reservation.state}; PLANNED recovery adopts RESERVED only"
+                )
+            if reservation.run_id != packet["runId"] or reservation.packet_id != packet["packetId"]:
+                raise IntegrationError(f"story {story_id} reservation identity does not match packet")
+            if reservation.actor != packet["actor"] or reservation.worktree != packet["worktree"]:
+                raise IntegrationError(f"story {story_id} reservation ownership does not match packet")
+            ref = _reservation_to_dict(reservation)
+            _validate_reservation_ref(ref, story_id)
+            try:
+                expiry = dt.datetime.fromisoformat(
+                    reservation.lease_expires_at.replace("Z", "+00:00")
+                ).astimezone(dt.timezone.utc)
+            except (AttributeError, TypeError, ValueError) as exc:
+                raise IntegrationError(f"story {story_id} lease expiry is invalid") from exc
+            if expiry <= now:
+                raise IntegrationError(f"story {story_id} reservation lease is expired")
+            production = self.repo_root / "assets" / "stories" / "traditional" / str(story_id)
+            try:
+                production.lstat()
+            except FileNotFoundError:
+                pass
+            except OSError as exc:
+                raise IntegrationError(f"cannot inspect production path for story {story_id}: {exc}") from exc
+            else:
+                raise IntegrationError(f"story {story_id} already has a production path")
+        return ordered
+
+    def _continue_planned_reservation(
+        self,
+        packet: dict,
+        *,
+        actor: str,
+        lease_seconds: int | float,
+    ) -> dict:
+        if packet["state"] != PLANNED:
+            raise IllegalControllerTransition("reservation continuation requires PLANNED")
+        states = self.reservations.replay_ledger(self.factory_home)
+        active = [value for value in states.values() if value.state in {"RESERVED", "MATERIALIZED"}]
+        ambiguous = [
+            value for value in active
+            if (value.run_id == packet["runId"]) != (value.packet_id == packet["packetId"])
+        ]
+        if ambiguous:
+            raise IntegrationError("reservation ledger has conflicting run/packet ownership")
+        existing = [
+            value for value in active
+            if value.run_id == packet["runId"] and value.packet_id == packet["packetId"]
+        ]
         if existing:
-            reserved = tuple(sorted(existing, key=lambda item: item.story_id))
+            if len(existing) != PACKET_SIZE:
+                raise IntegrationError("partial or extra authoritative packet reservations require owner review")
+            reserved = self._validate_reservations_for_adoption(packet, existing)
+            reason = "reconciled five authoritative reservations after missing controller transition"
         else:
             reserved = self.reservations.reserve_packet(
                 count=PACKET_SIZE,
-                run_id=run_id,
-                packet_id=packet_id,
+                run_id=packet["runId"],
+                packet_id=packet["packetId"],
                 actor=actor,
                 worktree=self.worktree,
                 repo_root=self.repo_root,
@@ -862,20 +1019,149 @@ class AutonomousStoryController:
                 lease_seconds=lease_seconds,
                 worktrees=self.worktrees,
             )
-        if len(reserved) != PACKET_SIZE:
-            raise IntegrationError("reservation authority did not return exactly five claims")
+            reserved = self._validate_reservations_for_adoption(packet, reserved)
+            reason = "reservation service returned five authoritative claims"
+        self._assert_manifest_unchanged(packet)
         updated = self._transition(packet, ID_RESERVED)
         for slot, reservation in zip(updated["slots"], reserved):
-            if reservation.run_id != run_id or reservation.packet_id != packet_id:
-                raise IntegrationError("reservation identity does not match packet")
             slot["storyId"] = reservation.story_id
             slot["reservation"] = _reservation_to_dict(reservation)
             slot["authoringBrief"] = self._authoring_brief(slot)
         updated["evidenceHashes"]["reservations"] = _hash_value(
             [slot["reservation"] for slot in updated["slots"]]
         )
-        return self._record(packet, updated, event_type="IDS_RESERVED", actor=actor,
-                            reason="reservation service returned five authoritative claims")
+        return self._record(packet, updated, event_type="IDS_RESERVED", actor=actor, reason=reason)
+
+    def resume_planned_packet(
+        self,
+        *,
+        run_id: str,
+        packet_id: str,
+        actor: str,
+        planning: dict,
+        lease_seconds: int | float = reservation_service.DEFAULT_LEASE_SECONDS,
+    ) -> dict:
+        run_id = _safe_identifier(run_id, "runId")
+        packet_id = _safe_identifier(packet_id, "packetId")
+        actor = _safe_identifier(actor, "actor")
+        packet = self.load(run_id, packet_id)
+        if packet["state"] != PLANNED:
+            raise IllegalControllerTransition("resume-planned requires PLANNED")
+        if packet["actor"] != actor:
+            raise ControllerConfigError("resume actor differs from the persisted packet owner")
+        if packet["repoRoot"] != str(self.repo_root) or packet["worktree"] != str(self.worktree):
+            raise ControllerConfigError("resume repository identity differs from persisted packet")
+        if any(slot["storyId"] is not None or slot["reservation"] is not None for slot in packet["slots"]):
+            raise JournalCorrupt("PLANNED packet contains reservation references")
+        self._assert_planning_snapshot(packet, planning)
+        self._assert_manifest_unchanged(packet)
+        pdir = self._prepare_packet_runtime(run_id, packet_id)
+        self._verify_private_runtime_file(pdir / "events.jsonl")
+        self._verify_private_runtime_file(pdir / "packet.json")
+        return self._continue_planned_reservation(
+            packet, actor=actor, lease_seconds=lease_seconds,
+        )
+
+    def privatize_planned_runtime(
+        self,
+        *,
+        run_id: str,
+        packet_id: str,
+        actor: str,
+        planning: dict,
+    ) -> dict:
+        """Privatize only the exact, controller-created stranded M1 tree.
+
+        This is deliberately narrower than a general chmod utility: any extra
+        directory, file, reservation state, symlink, owner mismatch, or mode
+        other than the known old 0755/new 0700 directory modes fails closed.
+        """
+
+        run_id = _safe_identifier(run_id, "runId")
+        packet_id = _safe_identifier(packet_id, "packetId")
+        actor = _safe_identifier(actor, "actor")
+        packet = self.load(run_id, packet_id)
+        if packet["state"] != PLANNED:
+            raise IllegalControllerTransition("runtime privatization requires PLANNED")
+        if packet["actor"] != actor:
+            raise ControllerConfigError("privatization actor differs from persisted packet owner")
+        if packet["repoRoot"] != str(self.repo_root) or packet["worktree"] != str(self.worktree):
+            raise ControllerConfigError("privatization repository identity differs from persisted packet")
+        if any(slot["storyId"] is not None or slot["reservation"] is not None for slot in packet["slots"]):
+            raise JournalCorrupt("PLANNED packet contains reservation references")
+        self._assert_planning_snapshot(packet, planning)
+        self._assert_manifest_unchanged(packet)
+        if self.reservations.replay_ledger(self.factory_home):
+            raise IntegrationError("stranded-runtime privatization requires an empty reservation ledger")
+
+        pdir = self.packet_dir(run_id, packet_id)
+        expected_dirs = {
+            self.factory_home,
+            self.factory_home / "runs",
+            self.factory_home / "runs" / run_id,
+            self.factory_home / "runs" / run_id / "packets",
+            pdir,
+        }
+        expected_files = {pdir / "events.jsonl", pdir / "packet.json"}
+        actual_dirs = set()
+        actual_files = set()
+        for raw_root, dir_names, file_names in os.walk(self.factory_home, followlinks=False):
+            root = Path(raw_root)
+            actual_dirs.add(root)
+            for name in dir_names:
+                path = root / name
+                info = path.lstat()
+                if stat.S_ISLNK(info.st_mode) or not stat.S_ISDIR(info.st_mode):
+                    raise SafetyViolation(f"stranded runtime contains an unsafe directory entry: {path}")
+                actual_dirs.add(path)
+            for name in file_names:
+                path = root / name
+                info = path.lstat()
+                if stat.S_ISLNK(info.st_mode) or not stat.S_ISREG(info.st_mode):
+                    raise SafetyViolation(f"stranded runtime contains an unsafe file entry: {path}")
+                actual_files.add(path)
+        if actual_dirs != expected_dirs or actual_files != expected_files:
+            raise SafetyViolation("stranded runtime tree differs from the exact controller-created layout")
+
+        prior_modes = {}
+        for path in expected_dirs:
+            info = path.lstat()
+            mode = stat.S_IMODE(info.st_mode)
+            if info.st_uid != os.geteuid() or mode not in {0o700, 0o755}:
+                raise SafetyViolation(f"stranded runtime directory is not safely attributable: {path}")
+            prior_modes[str(path)] = f"{mode:04o}"
+        for path in expected_files:
+            info = path.lstat()
+            if info.st_uid != os.geteuid() or stat.S_IMODE(info.st_mode) != 0o600:
+                raise SafetyViolation(f"stranded runtime evidence file is not owner-private: {path}")
+        snapshot = _load_json(pdir / "packet.json", error_type=SafetyViolation)
+        if snapshot != packet:
+            raise SafetyViolation("packet snapshot differs from authoritative journal replay")
+
+        flags = os.O_RDONLY | getattr(os, "O_DIRECTORY", 0) | getattr(os, "O_NOFOLLOW", 0)
+        for path in sorted(expected_dirs, key=lambda item: len(item.parts), reverse=True):
+            try:
+                fd = os.open(path, flags)
+            except OSError as exc:
+                raise SafetyViolation(f"cannot securely open stranded runtime directory {path}: {exc}") from exc
+            try:
+                info = os.fstat(fd)
+                if not stat.S_ISDIR(info.st_mode) or info.st_uid != os.geteuid():
+                    raise SafetyViolation(f"stranded runtime ownership changed during repair: {path}")
+                os.fchmod(fd, 0o700)
+                os.fsync(fd)
+            finally:
+                os.close(fd)
+        for path in expected_dirs:
+            self._verify_private_runtime_directory(path)
+        return {
+            "status": "PRIVATE_RUNTIME_READY",
+            "runId": run_id,
+            "packetId": packet_id,
+            "priorModes": prior_modes,
+            "effectiveMode": "0700",
+            "directoryCount": len(expected_dirs),
+        }
 
     def _authoritative_reservations(self, packet: dict) -> dict[int, object]:
         states = self.reservations.replay_ledger(self.factory_home)
@@ -931,6 +1217,7 @@ class AutonomousStoryController:
         updated = copy.deepcopy(packet)
         refusals = []
         evidence_dir = self.packet_dir(run_id, packet_id) / "overlap" / "initial"
+        self._ensure_runtime_directory(evidence_dir)
         for slot in updated["slots"]:
             try:
                 result = self._evaluate_overlap(packet, slot, queue_path)
@@ -995,6 +1282,7 @@ class AutonomousStoryController:
             raise IllegalControllerTransition("writer assignments require ANCHOR_PREFLIGHT_PASSED")
         pdir = self.packet_dir(run_id, packet_id)
         updated = self._transition(packet, ASSIGNMENT_READY)
+        self._ensure_runtime_directory(pdir / "assignments")
         hashes = {}
         for slot in updated["slots"]:
             payload = self._assignment_payload(packet, slot)
@@ -1047,7 +1335,7 @@ class AutonomousStoryController:
             payloads[name] = data
         if destination.exists():
             raise WorkspaceRejected(f"writer attempt destination already exists: {destination}")
-        destination.mkdir(parents=True, mode=0o700)
+        self._ensure_runtime_directory(destination)
         for name, data in payloads.items():
             _atomic_write(destination / name, data)
 
@@ -1364,6 +1652,7 @@ class AutonomousStoryController:
         updated = copy.deepcopy(packet)
         all_errors = []
         validation_dir = self.packet_dir(run_id, packet_id) / "validation"
+        self._ensure_runtime_directory(validation_dir)
         for slot in updated["slots"]:
             evidence, errors = self._validate_story_workspace(packet, slot)
             try:
@@ -1551,6 +1840,7 @@ class AutonomousStoryController:
         updated = self._transition(packet, REVIEW_READY)
         updated["reviewRound"] = round_number
         review_dir = self.packet_dir(run_id, packet_id) / "reviews" / f"round-{round_number}"
+        self._ensure_runtime_directory(review_dir)
         review_hashes = {}
         for slot in updated["slots"]:
             source = self._workspace_dir(packet, slot)
@@ -1671,6 +1961,7 @@ class AutonomousStoryController:
         updated = self._transition(packet, CORRECTION_READY)
         updated["correctionRound"] = round_number
         correction_dir = self.packet_dir(run_id, packet_id) / "corrections" / f"round-{round_number}"
+        self._ensure_runtime_directory(correction_dir)
         hashes = {}
         for slot in updated["slots"]:
             if not slot["unresolvedFindings"]:
@@ -1772,6 +2063,7 @@ class AutonomousStoryController:
         )
         report = self._human_report(updated)
         report_path = self.packet_dir(run_id, packet_id) / "reports" / "ready_for_human_review.md"
+        self._ensure_runtime_directory(report_path.parent)
         _atomic_write(report_path, report.encode("utf-8"), mode=0o600)
         updated["evidenceHashes"]["humanReport"] = _sha256_bytes(report.encode("utf-8"))
         return self._record(packet, updated, event_type="READY_FOR_HUMAN_REVIEW",
@@ -1805,6 +2097,13 @@ def build_parser() -> argparse.ArgumentParser:
 
     plan = subs.add_parser("plan-packet", parents=[common])
     plan.add_argument("--planning", required=True)
+    resume = subs.add_parser("resume-planned", parents=[common])
+    resume.add_argument("--planning", required=True)
+    resume.add_argument(
+        "--privatize-runtime",
+        action="store_true",
+        help="explicitly validate and privatize the exact stranded controller tree before resume",
+    )
     subs.add_parser("status", parents=[common])
     subs.add_parser("emit-writer-assignments", parents=[common])
     ingest = subs.add_parser("ingest-writer-output", parents=[common])
@@ -1829,6 +2128,24 @@ def main(argv=None) -> int:
                 packet_id=args.packet_id,
                 actor=args.actor,
                 planning=_load_json(Path(args.planning)),
+            )
+            result = controller.preflight_anchors(
+                args.run_id, args.packet_id, actor=args.actor,
+            )
+        elif args.command == "resume-planned":
+            planning = _load_json(Path(args.planning))
+            if args.privatize_runtime:
+                controller.privatize_planned_runtime(
+                    run_id=args.run_id,
+                    packet_id=args.packet_id,
+                    actor=args.actor,
+                    planning=planning,
+                )
+            controller.resume_planned_packet(
+                run_id=args.run_id,
+                packet_id=args.packet_id,
+                actor=args.actor,
+                planning=planning,
             )
             result = controller.preflight_anchors(
                 args.run_id, args.packet_id, actor=args.actor,

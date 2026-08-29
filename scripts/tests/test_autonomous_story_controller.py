@@ -49,6 +49,8 @@ class FakeReservations:
         self.confirm_calls = 0
         self.fail_confirm_before_once = False
         self.fail_confirm_after_once = False
+        self.fail_reserve_before_once = False
+        self.fail_reserve_partial_once = False
 
     def replay_ledger(self, _factory_home):
         return dict(self.states)
@@ -57,6 +59,24 @@ class FakeReservations:
                        repo_root, factory_home, lease_seconds, worktrees):
         del repo_root, factory_home, lease_seconds, worktrees
         self.reserve_packet_calls += 1
+        if self.fail_reserve_before_once:
+            self.fail_reserve_before_once = False
+            raise RuntimeError("simulated reservation failure before any claim")
+        if self.fail_reserve_partial_once:
+            self.fail_reserve_partial_once = False
+            released = self.Reservation(
+                story_id=3000,
+                run_id=run_id,
+                packet_id=packet_id,
+                actor=actor,
+                lease_token="lease-3000",
+                worktree=str(pathlib.Path(worktree).resolve()),
+                reserved_at="2026-01-01T00:00:00Z",
+                lease_expires_at="2026-01-01T01:00:00Z",
+                state="RELEASED",
+            )
+            self.states[released.story_id] = released
+            raise RuntimeError("simulated partial packet failure after API rollback")
         reservations = []
         for story_id in range(3000, 3000 + count):
             item = self.Reservation(
@@ -335,6 +355,304 @@ class PacketModelTests(ControllerTestCase):
         packet["slots"][0]["reservation"]["storyId"] = 2999
         with self.assertRaises(controller.JournalCorrupt):
             controller.validate_packet_model(packet)
+
+
+class FactoryHomeAndPlannedResumeTests(ControllerTestCase):
+    def _strand(self):
+        self.reservations.fail_reserve_before_once = True
+        with self.assertRaisesRegex(RuntimeError, "before any claim"):
+            self.plan()
+        packet = self.controller.load(self.run_id, self.packet_id)
+        self.assertEqual(packet["state"], controller.PLANNED)
+        return packet
+
+    def _resume(self, planning=None):
+        return self.controller.resume_planned_packet(
+            run_id=self.run_id,
+            packet_id=self.packet_id,
+            actor=self.actor,
+            planning=planning or self.planning(),
+            lease_seconds=60,
+        )
+
+    def _events(self):
+        journal = self.controller.packet_dir(self.run_id, self.packet_id) / "events.jsonl"
+        return [json.loads(line) for line in journal.read_text(encoding="utf-8").splitlines()]
+
+    def _seed_claims(self, count=5, *, state="RESERVED"):
+        self.reservations.states = {}
+        for story_id in range(3000, 3000 + count):
+            item = self.reservations.Reservation(
+                story_id=story_id,
+                run_id=self.run_id,
+                packet_id=self.packet_id,
+                actor=self.actor,
+                lease_token=f"lease-{story_id}",
+                worktree=str(self.repo.resolve()),
+                reserved_at="2026-01-01T00:00:00Z",
+                lease_expires_at="2026-01-01T01:00:00Z",
+                state=state,
+            )
+            self.reservations.states[story_id] = item
+
+    def _assert_mode(self, path, expected):
+        self.assertEqual(pathlib.Path(path).stat().st_mode & 0o7777, expected, path)
+
+    def test_fresh_runtime_directories_are_0700_and_evidence_is_0600(self):
+        self.plan()
+        pdir = self.controller.packet_dir(self.run_id, self.packet_id)
+        expected_dirs = [
+            self.factory,
+            self.factory / "runs",
+            self.factory / "runs" / self.run_id,
+            self.factory / "runs" / self.run_id / "packets",
+            pdir,
+        ]
+        for path in expected_dirs:
+            self._assert_mode(path, 0o700)
+        self._assert_mode(pdir / "events.jsonl", 0o600)
+        self._assert_mode(pdir / "packet.json", 0o600)
+
+    def test_all_created_runtime_subdirectories_are_0700(self):
+        self.review_ready()
+        self.controller.ingest_review(
+            self.run_id, self.packet_id,
+            review=self.review("CHANGES_REQUESTED"), actor=self.actor,
+        )
+        packet = self.controller.emit_corrections(self.run_id, self.packet_id, actor=self.actor)
+        changed = {slot["storyId"] for slot in packet["slots"] if slot["unresolvedFindings"]}
+        source = self.write_outputs(packet, root=self.base / "private-correction", only_ids=changed)
+        self.controller.ingest_writer_output(
+            self.run_id, self.packet_id, source_root=source, actor=self.actor,
+        )
+        self.controller.validate_outputs(self.run_id, self.packet_id, actor=self.actor)
+        self.controller.materialize_for_review(self.run_id, self.packet_id, actor=self.actor)
+        self.controller.emit_review_packet(self.run_id, self.packet_id, actor=self.actor)
+        self.controller.ingest_review(
+            self.run_id, self.packet_id, review=self.review("APPROVED"), actor=self.actor,
+        )
+        self.controller.mark_ready_for_human_review(self.run_id, self.packet_id, actor=self.actor)
+        for root, dirs, _files in os.walk(self.factory):
+            self._assert_mode(root, 0o700)
+            for name in dirs:
+                self._assert_mode(pathlib.Path(root) / name, 0o700)
+
+    def test_preexisting_unsafe_factory_home_is_refused_without_chmod(self):
+        self.factory.mkdir(mode=0o755)
+        os.chmod(self.factory, 0o755)
+        with self.assertRaises(controller.SafetyViolation):
+            self.plan()
+        self._assert_mode(self.factory, 0o755)
+        self.assertFalse((self.factory / "runs").exists())
+        self.assertEqual(self.reservations.reserve_packet_calls, 0)
+
+    def test_safe_preexisting_private_factory_home_is_allowed(self):
+        self.factory.mkdir(mode=0o700)
+        os.chmod(self.factory, 0o700)
+        packet = self.plan()
+        self.assertEqual(packet["state"], controller.ID_RESERVED)
+
+    def test_symlink_factory_home_is_refused(self):
+        target = self.base / "factory-target"
+        target.mkdir(mode=0o700)
+        link = self.base / "factory-link"
+        link.symlink_to(target, target_is_directory=True)
+        with self.assertRaises(controller.ControllerConfigError):
+            controller.AutonomousStoryController(
+                repo_root=self.repo, worktree=self.repo, factory_home=link,
+                worktrees=[self.repo], policy_root=REPO_ROOT,
+                reservations=self.reservations, overlap_evaluator=self.overlap,
+            )
+
+    def test_factory_home_inside_repository_is_refused(self):
+        with self.assertRaises(controller.ControllerConfigError):
+            controller.AutonomousStoryController(
+                repo_root=self.repo, worktree=self.repo,
+                factory_home=self.repo / ".factory",
+                worktrees=[self.repo], policy_root=REPO_ROOT,
+                reservations=self.reservations, overlap_evaluator=self.overlap,
+            )
+
+    def test_planned_zero_claim_resume_reserves_five(self):
+        self._strand()
+        packet = self._resume()
+        self.assertEqual(packet["state"], controller.ID_RESERVED)
+        self.assertEqual([slot["storyId"] for slot in packet["slots"]], list(range(3000, 3005)))
+
+    def test_resume_appends_no_second_packet_planned_event(self):
+        self._strand()
+        self._resume()
+        event_types = [event["eventType"] for event in self._events()]
+        self.assertEqual(event_types.count("PACKET_PLANNED"), 1)
+        self.assertEqual(event_types.count("IDS_RESERVED"), 1)
+
+    def test_resume_changed_planning_input_is_refused(self):
+        self._strand()
+        changed = self.planning()
+        changed["stories"][0]["mood"] = "joyful"
+        with self.assertRaises(controller.ControllerConfigError):
+            self._resume(changed)
+        self.assertEqual(self.controller.load(self.run_id, self.packet_id)["state"], controller.PLANNED)
+
+    def test_resume_state_other_than_planned_is_refused(self):
+        self.plan()
+        with self.assertRaises(controller.IllegalControllerTransition):
+            self._resume()
+
+    def test_resume_malformed_journal_is_refused(self):
+        self._strand()
+        journal = self.controller.packet_dir(self.run_id, self.packet_id) / "events.jsonl"
+        with journal.open("ab") as handle:
+            handle.write(b"{malformed}\n")
+        with self.assertRaises(controller.JournalCorrupt):
+            self._resume()
+
+    def test_resume_manifest_baseline_change_is_refused(self):
+        self._strand()
+        (self.repo / "assets" / "stories" / "manifest.json").write_text(
+            json.dumps({"version": 2, "parables": []}), encoding="utf-8",
+        )
+        with self.assertRaises(controller.SafetyViolation):
+            self._resume()
+
+    def test_resume_refuses_broadened_journal_before_reserving(self):
+        self._strand()
+        journal = self.controller.packet_dir(self.run_id, self.packet_id) / "events.jsonl"
+        os.chmod(journal, 0o644)
+        calls = self.reservations.reserve_packet_calls
+        with self.assertRaises(controller.SafetyViolation):
+            self._resume()
+        self.assertEqual(self.reservations.reserve_packet_calls, calls)
+
+    def test_resume_rejects_production_path_for_reconciled_id(self):
+        self._strand()
+        self._seed_claims()
+        (self.repo / "assets" / "stories" / "traditional" / "3000").mkdir()
+        with self.assertRaises(controller.IntegrationError):
+            self._resume()
+
+    def test_five_existing_claims_reconcile_without_new_reservation_call(self):
+        self._strand()
+        self._seed_claims()
+        calls = self.reservations.reserve_packet_calls
+        packet = self._resume()
+        self.assertEqual(packet["state"], controller.ID_RESERVED)
+        self.assertEqual(self.reservations.reserve_packet_calls, calls)
+
+    def test_four_existing_claims_are_refused(self):
+        self._strand()
+        self._seed_claims(4)
+        with self.assertRaises(controller.IntegrationError):
+            self._resume()
+
+    def test_six_existing_claims_are_refused(self):
+        self._strand()
+        self._seed_claims(6)
+        with self.assertRaises(controller.IntegrationError):
+            self._resume()
+
+    def test_claim_with_conflicting_packet_is_refused(self):
+        self._strand()
+        self._seed_claims()
+        current = self.reservations.states[3004]
+        self.reservations.states[3004] = dataclasses.replace(current, packet_id="other-packet")
+        with self.assertRaises(controller.IntegrationError):
+            self._resume()
+
+    def test_claim_token_or_ownership_inconsistency_is_refused(self):
+        self._strand()
+        self._seed_claims()
+        current = self.reservations.states[3000]
+        self.reservations.states[3000] = dataclasses.replace(current, lease_token="")
+        with self.assertRaises(controller.ControllerError):
+            self._resume()
+
+    def test_materialized_claim_while_controller_planned_is_refused(self):
+        self._strand()
+        self._seed_claims()
+        current = self.reservations.states[3000]
+        self.reservations.states[3000] = dataclasses.replace(current, state="MATERIALIZED")
+        with self.assertRaises(controller.IntegrationError):
+            self._resume()
+
+    def test_reservation_failure_before_claim_leaves_replayable_planned(self):
+        self._strand()
+        self.reservations.fail_reserve_before_once = True
+        with self.assertRaises(RuntimeError):
+            self._resume()
+        self.assertEqual(self.controller.load(self.run_id, self.packet_id)["state"], controller.PLANNED)
+        self.assertEqual(len(self._events()), 1)
+
+    def test_retry_after_reservation_failure_succeeds(self):
+        self._strand()
+        self.reservations.fail_reserve_before_once = True
+        with self.assertRaises(RuntimeError):
+            self._resume()
+        packet = self._resume()
+        self.assertEqual(packet["state"], controller.ID_RESERVED)
+
+    def test_partial_failure_relies_on_reservation_api_rollback_state(self):
+        self._strand()
+        self.reservations.fail_reserve_partial_once = True
+        with self.assertRaisesRegex(RuntimeError, "after API rollback"):
+            self._resume()
+        packet = self.controller.load(self.run_id, self.packet_id)
+        self.assertEqual(packet["state"], controller.PLANNED)
+        self.assertEqual(self.reservations.states[3000].state, "RELEASED")
+        self.assertEqual(len(self._events()), 1)
+
+    def test_repeated_resume_after_id_reserved_is_typed_refusal(self):
+        self._strand()
+        self._resume()
+        with self.assertRaises(controller.IllegalControllerTransition):
+            self._resume()
+
+    def test_exact_old_permission_defect_can_be_privatized_and_resumed(self):
+        self._strand()
+        runtime_dirs = []
+        for root, dirs, _files in os.walk(self.factory):
+            runtime_dirs.append(pathlib.Path(root))
+            runtime_dirs.extend(pathlib.Path(root) / name for name in dirs)
+        for path in runtime_dirs:
+            os.chmod(path, 0o755)
+        with self.assertRaises(controller.SafetyViolation):
+            self._resume()
+        proof = self.controller.privatize_planned_runtime(
+            run_id=self.run_id, packet_id=self.packet_id, actor=self.actor,
+            planning=self.planning(),
+        )
+        self.assertEqual(proof["status"], "PRIVATE_RUNTIME_READY")
+        for path in runtime_dirs:
+            self._assert_mode(path, 0o700)
+        packet = self._resume()
+        self.assertEqual(packet["state"], controller.ID_RESERVED)
+        event_types = [event["eventType"] for event in self._events()]
+        self.assertEqual(event_types.count("PACKET_PLANNED"), 1)
+        self.assertEqual(event_types.count("IDS_RESERVED"), 1)
+
+    def test_resume_cli_can_explicitly_privatize_before_resume(self):
+        planning_path = self.base / "resume-planning.json"
+        planning_path.write_text(json.dumps(self.planning()), encoding="utf-8")
+        fake = mock.Mock()
+        fake.resume_planned_packet.return_value = {"state": controller.ID_RESERVED}
+        fake.preflight_anchors.return_value = {"state": controller.ANCHOR_PREFLIGHT_PASSED}
+        argv = [
+            "resume-planned", "--run-id", self.run_id, "--packet-id", self.packet_id,
+            "--actor", self.actor, "--repo-root", str(self.repo), "--worktree", str(self.repo),
+            "--factory-home", str(self.factory), "--planning", str(planning_path),
+            "--privatize-runtime",
+        ]
+        with mock.patch.object(controller, "_cli_controller", return_value=fake), \
+                mock.patch.object(controller, "_print_json") as print_json:
+            self.assertEqual(controller.main(argv), 0)
+        fake.privatize_planned_runtime.assert_called_once()
+        fake.resume_planned_packet.assert_called_once()
+        fake.preflight_anchors.assert_called_once_with(
+            self.run_id, self.packet_id, actor=self.actor,
+        )
+        print_json.assert_called_once_with({
+            "status": "OK", "packet": {"state": controller.ANCHOR_PREFLIGHT_PASSED},
+        })
 
 
 class ReservationIntegrationTests(ControllerTestCase):
