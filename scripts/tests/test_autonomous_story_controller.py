@@ -46,19 +46,24 @@ class FakeReservations:
     def __init__(self):
         self.states = {}
         self.reserve_packet_calls = 0
+        self.reserve_lease_seconds = []
+        self.renew_calls = []
+        self.renew_updates = {}
         self.confirm_calls = 0
         self.fail_confirm_before_once = False
         self.fail_confirm_after_once = False
         self.fail_reserve_before_once = False
         self.fail_reserve_partial_once = False
+        self.fail_renew_story_id_once = None
 
     def replay_ledger(self, _factory_home):
         return dict(self.states)
 
     def reserve_packet(self, *, count, run_id, packet_id, actor, worktree,
                        repo_root, factory_home, lease_seconds, worktrees):
-        del repo_root, factory_home, lease_seconds, worktrees
+        del repo_root, factory_home, worktrees
         self.reserve_packet_calls += 1
+        self.reserve_lease_seconds.append(lease_seconds)
         if self.fail_reserve_before_once:
             self.fail_reserve_before_once = False
             raise RuntimeError("simulated reservation failure before any claim")
@@ -78,6 +83,8 @@ class FakeReservations:
             self.states[released.story_id] = released
             raise RuntimeError("simulated partial packet failure after API rollback")
         reservations = []
+        reserved_at = dt.datetime(2026, 1, 1, tzinfo=dt.timezone.utc)
+        expires_at = reserved_at + dt.timedelta(seconds=lease_seconds)
         for story_id in range(3000, 3000 + count):
             item = self.Reservation(
                 story_id=story_id,
@@ -86,13 +93,67 @@ class FakeReservations:
                 actor=actor,
                 lease_token=f"lease-{story_id}",
                 worktree=str(pathlib.Path(worktree).resolve()),
-                reserved_at="2026-01-01T00:00:00Z",
-                lease_expires_at="2026-01-01T01:00:00Z",
+                reserved_at=reserved_at.isoformat().replace("+00:00", "Z"),
+                lease_expires_at=expires_at.isoformat().replace("+00:00", "Z"),
                 state="RESERVED",
             )
             self.states[story_id] = item
             reservations.append(item)
         return tuple(reservations)
+
+    def _renew(
+        self,
+        reservation,
+        *,
+        actor,
+        lease_seconds,
+        now,
+        owner_authorized=None,
+        repo_root=None,
+        factory_home=None,
+        worktrees=None,
+    ):
+        del repo_root, factory_home, worktrees
+        self.renew_calls.append((reservation.story_id, owner_authorized))
+        current = self.states[reservation.story_id]
+        if self.fail_renew_story_id_once == reservation.story_id:
+            self.fail_renew_story_id_once = None
+            raise RuntimeError(f"simulated renewal failure for {reservation.story_id}")
+        for field in (
+            "story_id", "run_id", "packet_id", "actor", "lease_token",
+            "worktree", "reserved_at",
+        ):
+            if getattr(current, field) != getattr(reservation, field):
+                raise RuntimeError(f"renewal ownership mismatch: {field}")
+        if actor != current.actor or current.state != "RESERVED":
+            raise RuntimeError("renewal owner/state mismatch")
+        if current.lease_expires_at != reservation.lease_expires_at:
+            return current
+        current_expiry = dt.datetime.fromisoformat(
+            current.lease_expires_at.replace("Z", "+00:00")
+        )
+        renewed_expiry = max(current_expiry, now) + dt.timedelta(seconds=lease_seconds)
+        renewed = dataclasses.replace(
+            current,
+            lease_expires_at=renewed_expiry.isoformat().replace("+00:00", "Z"),
+        )
+        self.states[reservation.story_id] = renewed
+        self.renew_updates[reservation.story_id] = (
+            self.renew_updates.get(reservation.story_id, 0) + 1
+        )
+        return renewed
+
+    def renew_reservation(self, reservation, **kwargs):
+        return self._renew(reservation, **kwargs)
+
+    def renew_expired_reservation(self, reservation, *, owner_authorized, **kwargs):
+        if owner_authorized is not True:
+            raise RuntimeError("owner authorization required")
+        return self._renew(
+            reservation,
+            owner_authorized=owner_authorized,
+            **kwargs,
+        )
 
     def confirm_materialized(self, reservation, **_kwargs):
         self.confirm_calls += 1
@@ -679,6 +740,310 @@ class ReservationIntegrationTests(ControllerTestCase):
         self.controller.materialize_for_review(self.run_id, self.packet_id, actor=self.actor)
         self.controller.materialize_for_review(self.run_id, self.packet_id, actor=self.actor)
         self.assertEqual(self.reservations.confirm_calls, 5)
+
+
+class LeaseRenewalTests(ControllerTestCase):
+    def _events(self):
+        journal = self.controller.packet_dir(self.run_id, self.packet_id) / "events.jsonl"
+        return [json.loads(line) for line in journal.read_text().splitlines()]
+
+    def test_new_packet_default_requests_24_hour_production_lease(self):
+        self.controller.plan_packet(
+            run_id=self.run_id,
+            packet_id=self.packet_id,
+            actor=self.actor,
+            planning=self.planning(),
+        )
+        self.assertEqual(
+            self.reservations.reserve_lease_seconds,
+            [controller.PRODUCTION_LEASE_SECONDS],
+        )
+        self.assertEqual(controller.PRODUCTION_LEASE_SECONDS, 24 * 60 * 60)
+
+    def test_planned_resume_default_requests_24_hour_production_lease(self):
+        self.reservations.fail_reserve_before_once = True
+        with self.assertRaises(RuntimeError):
+            self.controller.plan_packet(
+                run_id=self.run_id,
+                packet_id=self.packet_id,
+                actor=self.actor,
+                planning=self.planning(),
+            )
+        self.controller.resume_planned_packet(
+            run_id=self.run_id,
+            packet_id=self.packet_id,
+            actor=self.actor,
+            planning=self.planning(),
+        )
+        self.assertEqual(
+            self.reservations.reserve_lease_seconds[-1],
+            controller.PRODUCTION_LEASE_SECONDS,
+        )
+
+    def test_assignment_ready_renews_exactly_five_without_state_change(self):
+        before = self.assignments()
+        assignment_hash = before["evidenceHashes"]["assignments"]
+        packet = self.controller.renew_packet_lease(
+            self.run_id,
+            self.packet_id,
+            actor=self.actor,
+        )
+        self.assertEqual(packet["state"], controller.ASSIGNMENT_READY)
+        self.assertEqual(set(self.reservations.renew_updates), set(range(3000, 3005)))
+        self.assertTrue(all(count == 1 for count in self.reservations.renew_updates.values()))
+        self.assertEqual(packet["evidenceHashes"]["assignments"], assignment_hash)
+        self.assertIn("leaseRenewalRound1", packet["evidenceHashes"])
+        self.assertEqual(self._events()[-1]["eventType"], "PACKET_LEASE_RENEWED")
+        self.assertEqual(self._events()[-1]["fromState"], controller.ASSIGNMENT_READY)
+        self.assertEqual(self._events()[-1]["toState"], controller.ASSIGNMENT_READY)
+
+    def test_expired_assignment_ready_requires_explicit_recovery_flag(self):
+        before = self.assignments()
+        tokens = [slot["reservation"]["leaseToken"] for slot in before["slots"]]
+        self.fixed_now += dt.timedelta(minutes=2)
+        with self.assertRaisesRegex(controller.IntegrationError, "recover-expired"):
+            self.controller.renew_packet_lease(
+                self.run_id,
+                self.packet_id,
+                actor=self.actor,
+            )
+        self.assertEqual(self.reservations.renew_calls, [])
+        packet = self.controller.renew_packet_lease(
+            self.run_id,
+            self.packet_id,
+            actor=self.actor,
+            recover_expired=True,
+        )
+        self.assertEqual(packet["state"], controller.ASSIGNMENT_READY)
+        self.assertEqual(
+            [slot["reservation"]["leaseToken"] for slot in packet["slots"]],
+            tokens,
+        )
+        self.assertTrue(all(
+            dt.datetime.fromisoformat(
+                slot["reservation"]["leaseExpiresAt"].replace("Z", "+00:00")
+            ) > self.fixed_now
+            for slot in packet["slots"]
+        ))
+
+    def test_partial_packet_failure_reconciles_without_duplicate_renewal(self):
+        self.assignments()
+        self.fixed_now += dt.timedelta(minutes=2)
+        self.reservations.fail_renew_story_id_once = 3002
+        with self.assertRaisesRegex(controller.IntegrationError, "story 3002"):
+            self.controller.renew_packet_lease(
+                self.run_id,
+                self.packet_id,
+                actor=self.actor,
+                recover_expired=True,
+            )
+        self.assertEqual(self.reservations.renew_updates, {3000: 1, 3001: 1})
+        self.assertNotIn("PACKET_LEASE_RENEWED", [event["eventType"] for event in self._events()])
+        packet = self.controller.renew_packet_lease(
+            self.run_id,
+            self.packet_id,
+            actor=self.actor,
+            recover_expired=True,
+        )
+        self.assertEqual(packet["state"], controller.ASSIGNMENT_READY)
+        self.assertEqual(
+            self.reservations.renew_updates,
+            {story_id: 1 for story_id in range(3000, 3005)},
+        )
+        self.assertEqual(
+            [event["eventType"] for event in self._events()].count("PACKET_LEASE_RENEWED"),
+            1,
+        )
+
+    def test_repeated_packet_renewal_is_replayable(self):
+        self.assignments()
+        first = self.controller.renew_packet_lease(
+            self.run_id,
+            self.packet_id,
+            actor=self.actor,
+        )
+        self.fixed_now += dt.timedelta(minutes=1)
+        second = self.controller.renew_packet_lease(
+            self.run_id,
+            self.packet_id,
+            actor=self.actor,
+        )
+        self.assertEqual(second["state"], controller.ASSIGNMENT_READY)
+        self.assertIn("leaseRenewalRound1", first["evidenceHashes"])
+        self.assertIn("leaseRenewalRound2", second["evidenceHashes"])
+        self.assertEqual(
+            self.controller.load(self.run_id, self.packet_id),
+            second,
+        )
+
+    def test_wrong_actor_and_materialized_claims_are_rejected(self):
+        self.assignments()
+        with self.assertRaises(controller.IntegrationError):
+            self.controller.renew_packet_lease(
+                self.run_id,
+                self.packet_id,
+                actor="other-owner",
+            )
+
+        self.controller.ingest_writer_output(
+            self.run_id,
+            self.packet_id,
+            source_root=self.write_outputs(),
+            actor=self.actor,
+        )
+        self.controller.validate_outputs(self.run_id, self.packet_id, actor=self.actor)
+        self.controller.materialize_for_review(self.run_id, self.packet_id, actor=self.actor)
+        with self.assertRaisesRegex(controller.IntegrationError, "not RESERVED"):
+            self.controller.renew_packet_lease(
+                self.run_id,
+                self.packet_id,
+                actor=self.actor,
+            )
+
+    def test_review_ready_is_policy_eligible_when_claims_remain_reserved(self):
+        packet = copy.deepcopy(self.assignments())
+        packet["state"] = controller.REVIEW_READY
+        for slot in packet["slots"]:
+            slot["state"] = controller.REVIEW_READY
+        with mock.patch.object(self.controller, "load", return_value=packet), \
+                mock.patch.object(
+                    self.controller,
+                    "_record",
+                    side_effect=lambda _prior, updated, **_kwargs: updated,
+                ):
+            renewed = self.controller.renew_packet_lease(
+                self.run_id,
+                self.packet_id,
+                actor=self.actor,
+            )
+        self.assertEqual(renewed["state"], controller.REVIEW_READY)
+
+    def test_terminal_state_is_ineligible(self):
+        packet = copy.deepcopy(self.assignments())
+        packet["state"] = controller.READY_FOR_HUMAN_REVIEW
+        for slot in packet["slots"]:
+            slot["state"] = controller.READY_FOR_HUMAN_REVIEW
+        with mock.patch.object(self.controller, "load", return_value=packet):
+            with self.assertRaises(controller.IllegalControllerTransition):
+                self.controller.renew_packet_lease(
+                    self.run_id,
+                    self.packet_id,
+                    actor=self.actor,
+                )
+
+    def test_cli_requires_explicit_recover_expired_flag(self):
+        fake = mock.Mock()
+        fake.renew_packet_lease.return_value = {"state": controller.ASSIGNMENT_READY}
+        argv = [
+            "renew-packet-lease",
+            "--run-id", self.run_id,
+            "--packet-id", self.packet_id,
+            "--actor", self.actor,
+            "--repo-root", str(self.repo),
+            "--worktree", str(self.repo),
+            "--factory-home", str(self.factory),
+            "--recover-expired",
+        ]
+        with mock.patch.object(controller, "_cli_controller", return_value=fake), \
+                mock.patch.object(controller, "_print_json") as print_json:
+            self.assertEqual(controller.main(argv), 0)
+        fake.renew_packet_lease.assert_called_once_with(
+            self.run_id,
+            self.packet_id,
+            actor=self.actor,
+            recover_expired=True,
+            lease_seconds=float(controller.PRODUCTION_LEASE_SECONDS),
+        )
+        print_json.assert_called_once_with({
+            "status": "OK",
+            "packet": {"state": controller.ASSIGNMENT_READY},
+        })
+
+    def test_real_packet_shaped_expired_fixture_renews_without_reallocation(self):
+        mutable_now = [self.fixed_now]
+        real_controller = controller.AutonomousStoryController(
+            repo_root=self.repo,
+            worktree=self.repo,
+            factory_home=self.factory,
+            worktrees=[self.repo],
+            policy_root=REPO_ROOT,
+            reservations=controller.reservation_service,
+            overlap_evaluator=self.overlap,
+            clock=lambda: mutable_now[0],
+        )
+        original_reserve_packet = controller.reservation_service.reserve_packet
+
+        def reserve_expiring_packet(**kwargs):
+            kwargs["lease_seconds"] = 1
+            kwargs["now"] = self.fixed_now
+            return original_reserve_packet(**kwargs)
+
+        with mock.patch.object(
+            controller.reservation_service,
+            "reserve_packet",
+            side_effect=reserve_expiring_packet,
+        ):
+            real_controller.plan_packet(
+                run_id=self.run_id,
+                packet_id=self.packet_id,
+                actor=self.actor,
+                planning=self.planning(),
+            )
+        real_controller.preflight_anchors(
+            self.run_id,
+            self.packet_id,
+            actor=self.actor,
+        )
+        assignment_ready = real_controller.emit_writer_assignments(
+            self.run_id,
+            self.packet_id,
+            actor=self.actor,
+        )
+        original_tokens = [
+            slot["reservation"]["leaseToken"]
+            for slot in assignment_ready["slots"]
+        ]
+        assignment_hash = assignment_ready["evidenceHashes"]["assignments"]
+        mutable_now[0] = self.fixed_now + dt.timedelta(seconds=2)
+        renewed = real_controller.renew_packet_lease(
+            self.run_id,
+            self.packet_id,
+            actor=self.actor,
+            recover_expired=True,
+        )
+        self.assertEqual(renewed["state"], controller.ASSIGNMENT_READY)
+        self.assertEqual(
+            [slot["storyId"] for slot in renewed["slots"]],
+            list(range(3000, 3005)),
+        )
+        self.assertEqual(
+            [slot["reservation"]["leaseToken"] for slot in renewed["slots"]],
+            original_tokens,
+        )
+        self.assertEqual(renewed["evidenceHashes"]["assignments"], assignment_hash)
+        ledger_events = [
+            json.loads(line)
+            for line in (self.factory / "reservations.jsonl").read_text().splitlines()
+        ]
+        self.assertEqual(
+            [event["eventType"] for event in ledger_events].count("RESERVED"),
+            5,
+        )
+        self.assertEqual(
+            [event["eventType"] for event in ledger_events].count("RENEWED"),
+            5,
+        )
+        source = self.write_outputs(
+            renewed,
+            root=self.base / "real-shaped-writer-output",
+        )
+        ingested = real_controller.ingest_writer_output(
+            self.run_id,
+            self.packet_id,
+            source_root=source,
+            actor=self.actor,
+        )
+        self.assertEqual(ingested["state"], controller.WRITER_OUTPUT_RECEIVED)
 
 
 class OverlapIntegrationTests(ControllerTestCase):

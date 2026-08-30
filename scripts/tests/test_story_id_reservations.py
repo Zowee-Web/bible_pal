@@ -12,6 +12,7 @@ Run:
 
 from __future__ import annotations
 
+import dataclasses
 import datetime as dt
 import json
 import multiprocessing
@@ -109,6 +110,43 @@ def _process_reserve_worker(
         result_queue.put(("ok", [item.story_id for item in claimed]))
     except BaseException as exc:  # Propagate child evidence to the parent test.
         result_queue.put(("error", f"{type(exc).__name__}: {exc}"))
+
+
+def _process_renew_or_recover_worker(
+    repo: str,
+    factory_home: str,
+    reservation_fields: dict,
+    start_event,
+    result_queue,
+    action: str,
+    now: dt.datetime,
+) -> None:
+    try:
+        if not start_event.wait(20):
+            raise RuntimeError("start barrier timed out")
+        reservation = reservations.Reservation(**reservation_fields)
+        if action == "renew":
+            result = reservations.renew_expired_reservation(
+                reservation,
+                repo_root=repo,
+                factory_home=factory_home,
+                worktrees=[repo],
+                actor=reservation.actor,
+                owner_authorized=True,
+                lease_seconds=300,
+                now=now,
+            )
+        else:
+            result = reservations.recover_stale(
+                reservation.story_id,
+                repo_root=repo,
+                factory_home=factory_home,
+                worktrees=[repo],
+                now=now,
+            )
+        result_queue.put((action, "ok", dataclasses.asdict(result)))
+    except BaseException as exc:
+        result_queue.put((action, "error", f"{type(exc).__name__}: {exc}"))
 
 
 class ReservationTestCase(unittest.TestCase):
@@ -563,6 +601,254 @@ class StaleRecoveryTests(ReservationTestCase):
         (locks / "3000.lock").write_text("{}", encoding="utf-8")
         with self.assertRaises(reservations.ReservationConflict):
             self.recover()
+
+
+class RenewalTests(ReservationTestCase):
+    def claim(self, *, lease_seconds=60):
+        return self.reserve(now=self.start, lease_seconds=lease_seconds)
+
+    def renew(self, reservation, *, now=None, lease_seconds=60, actor=None):
+        return reservations.renew_reservation(
+            reservation,
+            repo_root=self.repo,
+            factory_home=self.factory,
+            worktrees=[self.repo],
+            actor=actor or reservation.actor,
+            lease_seconds=lease_seconds,
+            now=now or self.start + dt.timedelta(seconds=30),
+        )
+
+    def renew_expired(self, reservation, *, authorized=True, now=None):
+        return reservations.renew_expired_reservation(
+            reservation,
+            repo_root=self.repo,
+            factory_home=self.factory,
+            worktrees=[self.repo],
+            actor=reservation.actor,
+            owner_authorized=authorized,
+            lease_seconds=60,
+            now=now or self.start + dt.timedelta(seconds=61),
+        )
+
+    def test_active_renewal_appends_and_replay_uses_extended_expiration(self):
+        original = self.claim()
+        ledger_before = (self.factory / "reservations.jsonl").read_bytes()
+        renewed = self.renew(original)
+        ledger_after = (self.factory / "reservations.jsonl").read_bytes()
+        self.assertTrue(ledger_after.startswith(ledger_before))
+        self.assertEqual(len(self.ledger_lines()), 2)
+        self.assertEqual(json.loads(self.ledger_lines()[1])["eventType"], "RENEWED")
+        self.assertGreater(renewed.lease_expires_at, original.lease_expires_at)
+        self.assertEqual(reservations.replay_ledger(self.factory)[3000], renewed)
+        lock = json.loads((self.factory / "locks" / "3000.lock").read_text())
+        self.assertEqual(lock["leaseExpiresAt"], renewed.lease_expires_at)
+
+    def test_wrong_token_run_packet_actor_and_worktree_are_rejected(self):
+        original = self.claim()
+        variants = {
+            "story_id": 3001,
+            "lease_token": "00000000-0000-0000-0000-000000000000",
+            "run_id": "other-run",
+            "packet_id": "other-packet",
+            "actor": "other-owner",
+            "worktree": str(self.base / "other-worktree"),
+        }
+        for field, value in variants.items():
+            with self.subTest(field=field):
+                supplied = dataclasses.replace(original, **{field: value})
+                with self.assertRaises(reservations.ReservationConflict):
+                    self.renew(supplied)
+        with self.assertRaises(reservations.ReservationConflict):
+            self.renew(original, actor="other-owner")
+        self.assertEqual(len(self.ledger_lines()), 1)
+
+    def test_released_materialized_and_retired_claims_cannot_renew(self):
+        released_source = self.claim()
+        reservations.release_reservation(
+            released_source,
+            repo_root=self.repo,
+            factory_home=self.factory,
+            worktrees=[self.repo],
+            now=self.start + dt.timedelta(seconds=1),
+        )
+        with self.assertRaises(reservations.IllegalTransition):
+            self.renew(released_source)
+
+        materialized_source = self.reserve(
+            run_id="run-2",
+            packet_id="packet-2",
+            now=self.start + dt.timedelta(seconds=2),
+            lease_seconds=60,
+        )
+        materialized = self.materialize(materialized_source)
+        with self.assertRaises(reservations.IllegalTransition):
+            self.renew(materialized_source)
+        retired = reservations.retire_reservation(
+            materialized,
+            repo_root=self.repo,
+            factory_home=self.factory,
+            worktrees=[self.repo],
+        )
+        with self.assertRaises(reservations.IllegalTransition):
+            self.renew(retired)
+
+    def test_expired_claim_requires_explicit_owner_authorized_api(self):
+        original = self.claim()
+        with self.assertRaises(reservations.StaleRecoveryDenied):
+            self.renew(original, now=self.start + dt.timedelta(seconds=61))
+        with self.assertRaises(reservations.StaleRecoveryDenied):
+            self.renew_expired(original, authorized=False)
+        renewed = self.renew_expired(original)
+        self.assertEqual(renewed.story_id, original.story_id)
+        self.assertEqual(renewed.lease_token, original.lease_token)
+        self.assertEqual(renewed.state, "RESERVED")
+        self.assertGreater(renewed.lease_expires_at, original.lease_expires_at)
+
+    def test_expired_owner_recovery_refuses_physical_or_manifest_occupancy(self):
+        physical = self.claim()
+        self.story_dir(physical.story_id)
+        with self.assertRaises(reservations.ReservationConflict):
+            self.renew_expired(physical)
+
+        shutil.rmtree(self.story_dir(physical.story_id))
+        reservations.recover_stale(
+            physical.story_id,
+            repo_root=self.repo,
+            factory_home=self.factory,
+            worktrees=[self.repo],
+            now=self.start + dt.timedelta(seconds=61),
+        )
+        manifest = self.reserve(
+            run_id="run-2",
+            packet_id="packet-2",
+            now=self.start + dt.timedelta(seconds=62),
+            lease_seconds=60,
+        )
+        _write_manifest(self.repo, [manifest.story_id])
+        with self.assertRaises(reservations.ReservationConflict):
+            self.renew_expired(
+                manifest,
+                now=self.start + dt.timedelta(seconds=123),
+            )
+
+    def test_expired_owner_recovery_refuses_after_stale_release(self):
+        original = self.claim()
+        reservations.recover_stale(
+            original.story_id,
+            repo_root=self.repo,
+            factory_home=self.factory,
+            worktrees=[self.repo],
+            now=self.start + dt.timedelta(seconds=61),
+        )
+        with self.assertRaises(reservations.IllegalTransition):
+            self.renew_expired(original)
+
+    def test_repeated_renewal_remains_append_only_and_replayable(self):
+        original = self.claim()
+        first = self.renew(original)
+        second = self.renew(
+            first,
+            now=self.start + dt.timedelta(seconds=60),
+        )
+        self.assertGreater(second.lease_expires_at, first.lease_expires_at)
+        self.assertEqual(
+            [json.loads(line)["eventType"] for line in self.ledger_lines()],
+            ["RESERVED", "RENEWED", "RENEWED"],
+        )
+        self.assertEqual(reservations.replay_ledger(self.factory)[3000], second)
+
+    def test_retry_reconciles_event_append_before_lock_rewrite(self):
+        original = self.claim()
+        with mock.patch.object(
+            reservations,
+            "_rewrite_locked_claim",
+            side_effect=reservations.ReservationConflict("simulated lock write crash"),
+        ):
+            with self.assertRaises(reservations.ReservationConflict):
+                self.renew(original)
+        self.assertEqual(len(self.ledger_lines()), 2)
+        recovered = self.renew(original)
+        self.assertEqual(len(self.ledger_lines()), 2)
+        self.assertEqual(recovered, reservations.replay_ledger(self.factory)[3000])
+        lock = json.loads((self.factory / "locks" / "3000.lock").read_text())
+        self.assertEqual(lock["leaseExpiresAt"], recovered.lease_expires_at)
+
+    def test_malformed_and_duplicate_renewal_events_fail_closed(self):
+        original = self.claim()
+        malformed = json.loads(self.ledger_lines()[0])
+        malformed.update({
+            "eventId": str(uuid.uuid4()),
+            "timestamp": reservations._timestamp(self.start + dt.timedelta(seconds=30)),
+            "eventType": "RENEWED",
+            "priorState": "RESERVED",
+            "newState": "RESERVED",
+            "reason": "malformed non-extending renewal",
+        })
+        self.append_raw_event(malformed)
+        with self.assertRaises(reservations.LedgerCorrupt):
+            reservations.replay_ledger(self.factory)
+
+        self.factory = self.base / "second-factory"
+        original = self.claim()
+        self.renew(original)
+        self.append_raw_event(json.loads(self.ledger_lines()[1]))
+        with self.assertRaises(reservations.LedgerCorrupt):
+            reservations.replay_ledger(self.factory)
+
+    def test_expired_reserved_claim_remains_occupied_until_explicit_release(self):
+        original = self.claim(lease_seconds=1)
+        replacement = self.reserve(
+            run_id="run-2",
+            packet_id="packet-2",
+            now=self.start + dt.timedelta(days=1),
+        )
+        self.assertEqual(original.story_id, 3000)
+        self.assertEqual(replacement.story_id, 3001)
+
+    def test_renewal_and_stale_recovery_race_has_exactly_one_winner(self):
+        original = self.claim(lease_seconds=1)
+        ctx = multiprocessing.get_context("spawn")
+        start_event = ctx.Event()
+        result_queue = ctx.Queue()
+        now = self.start + dt.timedelta(seconds=2)
+        processes = [
+            ctx.Process(
+                target=_process_renew_or_recover_worker,
+                args=(
+                    str(self.repo),
+                    str(self.factory),
+                    dataclasses.asdict(original),
+                    start_event,
+                    result_queue,
+                    action,
+                    now,
+                ),
+            )
+            for action in ("renew", "recover")
+        ]
+        for process in processes:
+            process.start()
+        start_event.set()
+        results = [result_queue.get(timeout=60) for _ in processes]
+        for process in processes:
+            process.join(60)
+            self.assertFalse(process.is_alive())
+            self.assertEqual(process.exitcode, 0)
+        self.assertEqual(sum(status == "ok" for _, status, _ in results), 1)
+        current = reservations.replay_ledger(self.factory)[3000]
+        self.assertIn(current.state, {"RESERVED", "RELEASED"})
+        if current.state == "RESERVED":
+            with self.assertRaises(reservations.StaleRecoveryDenied):
+                reservations.recover_stale(
+                    3000,
+                    repo_root=self.repo,
+                    factory_home=self.factory,
+                    worktrees=[self.repo],
+                    now=now,
+                )
+        else:
+            with self.assertRaises(reservations.StoryIdReservationError):
+                self.renew_expired(original, now=now)
 
 
 class LedgerReplayTests(ReservationTestCase):

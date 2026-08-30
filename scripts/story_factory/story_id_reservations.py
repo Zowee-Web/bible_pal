@@ -39,7 +39,10 @@ _LOCKS_NAME = "locks"
 _STATES = frozenset({"RESERVED", "MATERIALIZED", "RELEASED", "RETIRED"})
 _OCCUPYING_STATES = frozenset({"RESERVED", "MATERIALIZED", "RETIRED"})
 _EVENT_TYPES = frozenset(
-    {"RESERVED", "MATERIALIZED", "RELEASED", "RETIRED", "RECOVERED", "ADOPTED"}
+    {
+        "RESERVED", "RENEWED", "MATERIALIZED", "RELEASED", "RETIRED",
+        "RECOVERED", "ADOPTED",
+    }
 )
 _EVENT_FIELDS = frozenset(
     {
@@ -158,6 +161,12 @@ def _utc_now(now: dt.datetime | None = None) -> dt.datetime:
     if not isinstance(value, dt.datetime) or value.tzinfo is None:
         raise ReservationConflict("now must be a timezone-aware datetime")
     return value.astimezone(dt.timezone.utc)
+
+
+def _require_lease_seconds(value: object) -> int | float:
+    if isinstance(value, bool) or not isinstance(value, (int, float)) or value <= 0:
+        raise ReservationConflict("lease_seconds must be a positive number")
+    return value
 
 
 def _timestamp(value: dt.datetime) -> str:
@@ -497,6 +506,7 @@ def _event_transition(event: Mapping[str, object], current: Reservation | None) 
         )
     allowed: dict[str, tuple[set[str | None], str]] = {
         "RESERVED": ({None, "RELEASED"}, "RESERVED"),
+        "RENEWED": ({"RESERVED"}, "RESERVED"),
         "ADOPTED": ({None, "RELEASED"}, "MATERIALIZED"),
         "MATERIALIZED": ({"RESERVED"}, "MATERIALIZED"),
         "RELEASED": ({"RESERVED"}, "RELEASED"),
@@ -560,6 +570,32 @@ def _replay_bytes(raw: bytes, source: str) -> dict[int, Reservation]:
             continue
 
         assert current is not None
+        if event["eventType"] == "RENEWED":
+            for field, current_value in (
+                ("runId", current.run_id),
+                ("packetId", current.packet_id),
+                ("actor", current.actor),
+                ("leaseToken", current.lease_token),
+                ("worktree", current.worktree),
+                ("reservedAt", current.reserved_at),
+            ):
+                if event[field] != current_value:
+                    raise LedgerCorrupt(
+                        f"story {story_id} renewal changes authoritative {field}"
+                    )
+            prior_expiry = _parse_timestamp(current.lease_expires_at, "leaseExpiresAt")
+            renewed_expiry = _parse_timestamp(event["leaseExpiresAt"], "leaseExpiresAt")
+            if renewed_expiry <= prior_expiry or renewed_expiry <= event_time:
+                raise LedgerCorrupt(
+                    f"story {story_id} renewal does not extend beyond the prior lease and event time"
+                )
+            states[story_id] = dataclasses.replace(
+                current,
+                lease_expires_at=event["leaseExpiresAt"],
+                state=new_state,
+            )
+            continue
+
         for field, current_value in (
             ("runId", current.run_id),
             ("packetId", current.packet_id),
@@ -803,6 +839,31 @@ def _validate_lock_matches(record: Mapping[str, object], reservation: Reservatio
         )
 
 
+def _lock_identity_matches(record: Mapping[str, object], reservation: Reservation) -> bool:
+    expected = _lock_record(reservation)
+    return all(
+        record.get(field) == value
+        for field, value in expected.items()
+        if field != "leaseExpiresAt"
+    )
+
+
+def _rewrite_locked_claim(fd: int, lock_path: Path, reservation: Reservation) -> None:
+    payload = json.dumps(
+        _lock_record(reservation), sort_keys=True, separators=(",", ":")
+    ).encode("utf-8")
+    try:
+        os.lseek(fd, 0, os.SEEK_SET)
+        os.ftruncate(fd, 0)
+        _write_all(fd, payload)
+        os.fsync(fd)
+        _fsync_directory(lock_path.parent)
+    except OSError as exc:
+        raise ReservationConflict(
+            f"cannot persist renewed reservation lock {lock_path}: {exc}"
+        ) from exc
+
+
 @contextmanager
 def _locked_claim(lock_path: Path) -> Iterator[int]:
     flags = os.O_RDWR
@@ -854,6 +915,208 @@ def _assert_api_reservation(current: Reservation | None, supplied: Reservation) 
     return supplied
 
 
+def _assert_renewal_identity(
+    current: Reservation | None,
+    supplied: Reservation,
+    *,
+    actor: str,
+) -> Reservation:
+    if not isinstance(supplied, Reservation):
+        raise ReservationConflict("reservation argument must be a Reservation")
+    if current is None:
+        raise ReservationConflict(
+            f"story {supplied.story_id} has no authoritative reservation"
+        )
+    if current.state != "RESERVED":
+        raise IllegalTransition(f"only RESERVED claims may renew, not {current.state}")
+    if supplied.state != "RESERVED":
+        raise ReservationConflict("supplied renewal claim must be RESERVED")
+    for field in (
+        "story_id", "run_id", "packet_id", "actor", "lease_token",
+        "worktree", "reserved_at",
+    ):
+        if getattr(current, field) != getattr(supplied, field):
+            raise ReservationConflict(
+                f"story {supplied.story_id} renewal ownership mismatch: {field}"
+            )
+    if actor != current.actor:
+        raise ReservationConflict(
+            f"story {supplied.story_id} renewal actor is not the reservation owner"
+        )
+    current_expiry = _parse_timestamp(
+        current.lease_expires_at, "leaseExpiresAt", ReservationConflict
+    )
+    supplied_expiry = _parse_timestamp(
+        supplied.lease_expires_at, "leaseExpiresAt", ReservationConflict
+    )
+    if current_expiry < supplied_expiry:
+        raise ReservationConflict(
+            f"story {supplied.story_id} supplied lease is newer than authoritative replay"
+        )
+    return current
+
+
+def _renew_reservation(
+    reservation: Reservation,
+    *,
+    repo_root: os.PathLike[str] | str,
+    factory_home: os.PathLike[str] | str | None,
+    worktrees: Iterable[os.PathLike[str] | str] | None,
+    actor: str,
+    lease_seconds: int | float,
+    now: dt.datetime | None,
+    allow_expired: bool,
+    owner_authorized: bool,
+) -> Reservation:
+    actor = _require_text(actor, "actor")
+    lease_seconds = _require_lease_seconds(lease_seconds)
+    event_time = _utc_now(now)
+    home, lock_path, _ = _transition_context(
+        reservation,
+        repo_root=repo_root,
+        factory_home=factory_home,
+        worktrees=worktrees,
+    )
+    initial = replay_ledger(home).get(reservation.story_id)
+    if initial is None:
+        raise ReservationConflict(
+            f"story {reservation.story_id} has no authoritative reservation"
+        )
+    if initial.state != "RESERVED":
+        raise IllegalTransition(f"only RESERVED claims may renew, not {initial.state}")
+    with _locked_claim(lock_path) as fd:
+        current = _assert_renewal_identity(
+            replay_ledger(home).get(reservation.story_id),
+            reservation,
+            actor=actor,
+        )
+        lock_record = _read_lock_fd(fd, lock_path)
+        current_expiry = _parse_timestamp(
+            current.lease_expires_at, "leaseExpiresAt", ReservationConflict
+        )
+        supplied_expiry = _parse_timestamp(
+            reservation.lease_expires_at, "leaseExpiresAt", ReservationConflict
+        )
+        if dict(lock_record) != _lock_record(current):
+            lock_expiry = _parse_timestamp(
+                lock_record.get("leaseExpiresAt"),
+                "leaseExpiresAt",
+                ReservationConflict,
+            )
+            if not _lock_identity_matches(lock_record, current) or lock_expiry >= current_expiry:
+                raise ReservationConflict(
+                    f"lock/ledger disagreement for story {reservation.story_id}"
+                )
+            snapshot = _scan_external_occupancy(repo_root, worktrees)
+            if reservation.story_id in snapshot.occupied_ids:
+                raise ReservationConflict(
+                    f"story {reservation.story_id} has physical or manifest occupancy and cannot renew"
+                )
+            _rewrite_locked_claim(fd, lock_path, current)
+            if current_expiry > event_time:
+                return current
+
+        snapshot = _scan_external_occupancy(repo_root, worktrees)
+        if reservation.story_id in snapshot.occupied_ids:
+            raise ReservationConflict(
+                f"story {reservation.story_id} has physical or manifest occupancy and cannot renew"
+            )
+        if current_expiry > supplied_expiry and current_expiry > event_time:
+            return current
+
+        expired = current_expiry <= event_time
+        if expired and not allow_expired:
+            raise StaleRecoveryDenied(
+                f"story {reservation.story_id} lease is expired; explicit owner recovery is required"
+            )
+        if expired and owner_authorized is not True:
+            raise StaleRecoveryDenied(
+                f"story {reservation.story_id} expired renewal lacks explicit owner authorization"
+            )
+
+        renewed_expiry = max(current_expiry, event_time) + dt.timedelta(
+            seconds=lease_seconds
+        )
+        renewed = dataclasses.replace(
+            current,
+            lease_expires_at=_timestamp(renewed_expiry),
+        )
+        _append_event(
+            home,
+            _new_event(
+                "RENEWED",
+                renewed,
+                actor=actor,
+                prior_state="RESERVED",
+                new_state="RESERVED",
+                reason=(
+                    "owner-authorized expired reservation renewal"
+                    if expired
+                    else "active reservation lease renewal"
+                ),
+                occupancy_hash=snapshot.evidence_hash,
+                now=event_time,
+            ),
+        )
+        _rewrite_locked_claim(fd, lock_path, renewed)
+        return renewed
+
+
+def renew_reservation(
+    reservation: Reservation,
+    *,
+    repo_root: os.PathLike[str] | str,
+    factory_home: os.PathLike[str] | str | None = None,
+    worktrees: Iterable[os.PathLike[str] | str] | None = None,
+    actor: str,
+    lease_seconds: int | float = DEFAULT_LEASE_SECONDS,
+    now: dt.datetime | None = None,
+) -> Reservation:
+    """Append an owner-matched renewal for a still-active RESERVED lease."""
+
+    return _renew_reservation(
+        reservation,
+        repo_root=repo_root,
+        factory_home=factory_home,
+        worktrees=worktrees,
+        actor=actor,
+        lease_seconds=lease_seconds,
+        now=now,
+        allow_expired=False,
+        owner_authorized=False,
+    )
+
+
+def renew_expired_reservation(
+    reservation: Reservation,
+    *,
+    repo_root: os.PathLike[str] | str,
+    factory_home: os.PathLike[str] | str | None = None,
+    worktrees: Iterable[os.PathLike[str] | str] | None = None,
+    actor: str,
+    owner_authorized: bool = False,
+    lease_seconds: int | float = DEFAULT_LEASE_SECONDS,
+    now: dt.datetime | None = None,
+) -> Reservation:
+    """Explicitly renew an expired, still-owned RESERVED claim without replacing it."""
+
+    if owner_authorized is not True:
+        raise StaleRecoveryDenied(
+            "expired reservation renewal requires owner_authorized=True"
+        )
+    return _renew_reservation(
+        reservation,
+        repo_root=repo_root,
+        factory_home=factory_home,
+        worktrees=worktrees,
+        actor=actor,
+        lease_seconds=lease_seconds,
+        now=now,
+        allow_expired=True,
+        owner_authorized=True,
+    )
+
+
 def _material_file_exists(story_id: int, worktrees: Iterable[Path]) -> bool:
     def contains_file(directory: Path) -> bool:
         try:
@@ -900,8 +1163,7 @@ def reserve_id(
     run_id = _require_text(run_id, "run_id")
     packet_id = _require_text(packet_id, "packet_id")
     actor = _require_text(actor, "actor")
-    if isinstance(lease_seconds, bool) or not isinstance(lease_seconds, (int, float)) or lease_seconds <= 0:
-        raise ReservationConflict("lease_seconds must be a positive number")
+    lease_seconds = _require_lease_seconds(lease_seconds)
     current_time = _utc_now(now)
     roots = _get_worktrees(repo_root, worktrees)
     owner_worktree = Path(worktree).expanduser().resolve(strict=True)
@@ -1343,6 +1605,8 @@ __all__ = [
     "adopt_preexisting",
     "confirm_materialized",
     "recover_stale",
+    "renew_expired_reservation",
+    "renew_reservation",
     "release_reservation",
     "replay_ledger",
     "reserve_id",

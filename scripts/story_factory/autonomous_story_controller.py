@@ -59,6 +59,7 @@ CONTROLLER_SCHEMA_VERSION = 1
 CONTROLLER_MILESTONE = "M1_TEXT_ONLY"
 PACKET_SIZE = 5
 MAX_CORRECTION_ROUNDS = 3
+PRODUCTION_LEASE_SECONDS = 24 * 60 * 60
 
 PLANNED = "PLANNED"
 ID_RESERVED = "ID_RESERVED"
@@ -90,6 +91,17 @@ STATES = frozenset({
     ABORTED,
 })
 
+RENEWABLE_PACKET_STATES = frozenset({
+    ID_RESERVED,
+    ANCHOR_PREFLIGHT_PASSED,
+    ASSIGNMENT_READY,
+    WRITER_OUTPUT_RECEIVED,
+    VALIDATION_PASSED,
+    REVIEW_READY,
+    REVIEW_CHANGES_REQUESTED,
+    CORRECTION_READY,
+})
+
 LEGAL_TRANSITIONS = {
     PLANNED: frozenset({ID_RESERVED, ABORTED, QUARANTINED}),
     ID_RESERVED: frozenset({ANCHOR_PREFLIGHT_PASSED, ABORTED, QUARANTINED}),
@@ -112,6 +124,7 @@ LEGAL_TRANSITIONS = {
 
 SAME_STATE_EVENTS = frozenset({
     "ANCHOR_PREFLIGHT_REFUSED",
+    "PACKET_LEASE_RENEWED",
     "VALIDATION_REFUSED",
     "MATERIALIZATION_RECORDED",
 })
@@ -853,7 +866,7 @@ class AutonomousStoryController:
         packet_id: str,
         actor: str,
         planning: dict,
-        lease_seconds: int | float = reservation_service.DEFAULT_LEASE_SECONDS,
+        lease_seconds: int | float = PRODUCTION_LEASE_SECONDS,
     ) -> dict:
         run_id = _safe_identifier(run_id, "runId")
         packet_id = _safe_identifier(packet_id, "packetId")
@@ -1039,7 +1052,7 @@ class AutonomousStoryController:
         packet_id: str,
         actor: str,
         planning: dict,
-        lease_seconds: int | float = reservation_service.DEFAULT_LEASE_SECONDS,
+        lease_seconds: int | float = PRODUCTION_LEASE_SECONDS,
     ) -> dict:
         run_id = _safe_identifier(run_id, "runId")
         packet_id = _safe_identifier(packet_id, "packetId")
@@ -1183,6 +1196,159 @@ class AutonomousStoryController:
                 raise IntegrationError(f"story {story_id} reservation is {current.state}")
             out[story_id] = current
         return out
+
+    def renew_packet_lease(
+        self,
+        run_id: str,
+        packet_id: str,
+        *,
+        actor: str,
+        recover_expired: bool = False,
+        lease_seconds: int | float = PRODUCTION_LEASE_SECONDS,
+    ) -> dict:
+        """Renew five owner-matched RESERVED claims without advancing workflow state.
+
+        Reservation events are appended one ID at a time.  The controller journal is
+        updated only after all five succeed.  If an interruption occurs partway through,
+        replay exposes the already-renewed expirations while the packet still carries the
+        prior references; a retry recognizes those matching-token renewals and continues
+        with only the remaining claims.
+        """
+
+        packet = self.load(run_id, packet_id)
+        if packet["state"] not in RENEWABLE_PACKET_STATES:
+            raise IllegalControllerTransition(
+                f"packet lease renewal is not allowed from {packet['state']}"
+            )
+        if actor != packet["actor"]:
+            raise IntegrationError("packet lease renewal actor is not the packet owner")
+        if type(recover_expired) is not bool:
+            raise ControllerConfigError("recover_expired must be a boolean")
+        if (
+            isinstance(lease_seconds, bool)
+            or not isinstance(lease_seconds, (int, float))
+            or lease_seconds <= 0
+        ):
+            raise ControllerConfigError("lease_seconds must be a positive number")
+        self._assert_manifest_unchanged(packet)
+
+        states = self.reservations.replay_ledger(self.factory_home)
+        now = self.clock().astimezone(dt.timezone.utc)
+        candidates = []
+        for slot in packet["slots"]:
+            story_id = slot["storyId"]
+            current = states.get(story_id)
+            if current is None:
+                raise IntegrationError(f"story {story_id} has no authoritative reservation")
+            if current.state != "RESERVED" or slot["reservation"]["state"] != "RESERVED":
+                raise IntegrationError(f"story {story_id} reservation is not RESERVED")
+            supplied = _reservation_from_dict(self.reservations, slot["reservation"])
+            for field in (
+                "story_id", "run_id", "packet_id", "actor", "lease_token",
+                "worktree", "reserved_at",
+            ):
+                if getattr(current, field) != getattr(supplied, field):
+                    raise IntegrationError(
+                        f"story {story_id} reservation ownership changed: {field}"
+                    )
+            try:
+                current_expiry = dt.datetime.fromisoformat(
+                    current.lease_expires_at.replace("Z", "+00:00")
+                ).astimezone(dt.timezone.utc)
+                supplied_expiry = dt.datetime.fromisoformat(
+                    supplied.lease_expires_at.replace("Z", "+00:00")
+                ).astimezone(dt.timezone.utc)
+            except (AttributeError, TypeError, ValueError) as exc:
+                raise IntegrationError(f"story {story_id} lease expiry is invalid") from exc
+            if current_expiry < supplied_expiry:
+                raise IntegrationError(
+                    f"story {story_id} authoritative lease moved backward"
+                )
+            if current_expiry <= now and not recover_expired:
+                raise IntegrationError(
+                    f"story {story_id} lease is expired; --recover-expired is required"
+                )
+            candidates.append((slot, supplied, current, current_expiry))
+
+        renewed_rows = []
+        renewed_by_id = {}
+        reservation_error = getattr(
+            self.reservations, "StoryIdReservationError", Exception
+        )
+        for slot, supplied, current, current_expiry in candidates:
+            try:
+                if current_expiry <= now:
+                    renewed = self.reservations.renew_expired_reservation(
+                        supplied,
+                        repo_root=self.repo_root,
+                        factory_home=self.factory_home,
+                        worktrees=self.worktrees,
+                        actor=actor,
+                        owner_authorized=True,
+                        lease_seconds=lease_seconds,
+                        now=now,
+                    )
+                else:
+                    renewed = self.reservations.renew_reservation(
+                        supplied,
+                        repo_root=self.repo_root,
+                        factory_home=self.factory_home,
+                        worktrees=self.worktrees,
+                        actor=actor,
+                        lease_seconds=lease_seconds,
+                        now=now,
+                    )
+            except reservation_error as exc:
+                raise IntegrationError(
+                    f"story {slot['storyId']} lease renewal failed: {exc}"
+                ) from exc
+            if renewed.state != "RESERVED" or renewed.lease_token != supplied.lease_token:
+                raise IntegrationError(
+                    f"story {slot['storyId']} renewal returned ambiguous ownership"
+                )
+            try:
+                renewed_expiry = dt.datetime.fromisoformat(
+                    renewed.lease_expires_at.replace("Z", "+00:00")
+                ).astimezone(dt.timezone.utc)
+            except (AttributeError, TypeError, ValueError) as exc:
+                raise IntegrationError(
+                    f"story {slot['storyId']} renewed lease expiry is invalid"
+                ) from exc
+            if renewed_expiry <= now:
+                raise IntegrationError(
+                    f"story {slot['storyId']} renewed lease is not active"
+                )
+            renewed_by_id[slot["storyId"]] = renewed
+            renewed_rows.append({
+                "storyId": slot["storyId"],
+                "leaseToken": renewed.lease_token,
+                "priorLeaseExpiresAt": supplied.lease_expires_at,
+                "leaseExpiresAt": renewed.lease_expires_at,
+                "recoveredExpired": current_expiry <= now,
+            })
+
+        updated = copy.deepcopy(packet)
+        for slot in updated["slots"]:
+            slot["reservation"] = _reservation_to_dict(renewed_by_id[slot["storyId"]])
+        updated["updatedAt"] = self._now()
+        renewal_round = 1 + sum(
+            key.startswith("leaseRenewalRound")
+            for key in packet["evidenceHashes"]
+        )
+        updated["evidenceHashes"][f"leaseRenewalRound{renewal_round}"] = _hash_value(
+            renewed_rows
+        )
+        return self._record(
+            packet,
+            updated,
+            event_type="PACKET_LEASE_RENEWED",
+            actor=actor,
+            reason=(
+                "owner-authorized expired packet lease recovery"
+                if any(row["recoveredExpired"] for row in renewed_rows)
+                else "active packet lease checkpoint"
+            ),
+        )
 
     def _overlap_queue_snapshot(self, packet: dict) -> Path:
         states = self._authoritative_reservations(packet)
@@ -2105,6 +2271,18 @@ def build_parser() -> argparse.ArgumentParser:
         help="explicitly validate and privatize the exact stranded controller tree before resume",
     )
     subs.add_parser("status", parents=[common])
+    renew = subs.add_parser("renew-packet-lease", parents=[common])
+    renew.add_argument(
+        "--recover-expired",
+        action="store_true",
+        help="explicitly owner-authorize renewal of matching expired RESERVED claims",
+    )
+    renew.add_argument(
+        "--lease-seconds",
+        type=float,
+        default=PRODUCTION_LEASE_SECONDS,
+        help="new campaign lease extension in seconds (default: 24 hours)",
+    )
     subs.add_parser("emit-writer-assignments", parents=[common])
     ingest = subs.add_parser("ingest-writer-output", parents=[common])
     ingest.add_argument("--source-root", required=True)
@@ -2152,6 +2330,14 @@ def main(argv=None) -> int:
             )
         elif args.command == "status":
             result = controller.load(args.run_id, args.packet_id)
+        elif args.command == "renew-packet-lease":
+            result = controller.renew_packet_lease(
+                args.run_id,
+                args.packet_id,
+                actor=args.actor,
+                recover_expired=args.recover_expired,
+                lease_seconds=args.lease_seconds,
+            )
         elif args.command == "emit-writer-assignments":
             result = controller.emit_writer_assignments(args.run_id, args.packet_id, actor=args.actor)
         elif args.command == "ingest-writer-output":
@@ -2186,7 +2372,8 @@ __all__ = [
     "AutonomousStoryController", "CONTROLLER_MILESTONE", "CORRECTION_READY",
     "ControllerConfigError", "ControllerError", "ID_RESERVED",
     "IllegalControllerTransition", "IntegrationError", "JournalCorrupt",
-    "MAX_CORRECTION_ROUNDS", "PACKET_SIZE", "PLANNED", "QUARANTINED",
+    "MAX_CORRECTION_ROUNDS", "PACKET_SIZE", "PLANNED", "PRODUCTION_LEASE_SECONDS",
+    "QUARANTINED", "RENEWABLE_PACKET_STATES",
     "READY_FOR_HUMAN_REVIEW", "REVIEW_APPROVED", "REVIEW_CHANGES_REQUESTED",
     "REVIEW_READY", "ReviewRejected", "SafetyViolation", "ValidationFailed",
     "VALIDATION_PASSED", "WorkspaceRejected", "WRITER_OUTPUT_RECEIVED",
