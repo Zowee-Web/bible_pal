@@ -275,6 +275,15 @@
     "reflectionText": {
       "type": "string"
     },
+    "reflectionForm": {
+      "type": "string",
+      "enum": [
+        "standard",
+        "observation",
+        "image_cascade"
+      ],
+      "description": "Optional reflection form. Absent normalizes to 'standard' (valid 25-80 words, target 35-60). The 'observation' and 'image_cascade' forms permit 25-120 words and may only be used when the controller's immutable planning assignment assigns that form; a writer may not self-elevate. Existing stories authored before this contract are grandfathered and omit the field."
+    },
     "reflectionQuestion": {
       "type": "string"
     },

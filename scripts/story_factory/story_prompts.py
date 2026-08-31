@@ -8,6 +8,11 @@ This module only defines prompts — it never generates prose itself.
 
 from __future__ import annotations
 
+from reflection_contract import (
+    STANDARD_TARGET_RANGE,
+    STANDARD_VALID_RANGE,
+)
+
 import json
 import pathlib
 
@@ -444,7 +449,8 @@ SYSTEM_PROMPT_REFLECTION = (
     "Gently connect the story's themes to everyday life "
     "using pattern-based language (observations, invitations to notice), "
     "without telling the listener what to do. "
-    "Target length: 120 to 220 words."
+    "Length is assigned by the controller for each story; follow the valid "
+    "range and writing target supplied in the assignment."
 )
 
 KID_SYSTEM_PROMPT_REFLECTION = (
@@ -571,7 +577,10 @@ KID_CREATIVE_RANGES = {
     "long":  (901, 1500),
 }
 
-REFLECTION_WORD_RANGE = (120, 220)
+# Adult reflection ranges come from the single source of truth so prompt text and
+# controller validation cannot drift apart (the 120-220 vs 25-80 conflict).
+REFLECTION_WORD_RANGE = STANDARD_VALID_RANGE
+REFLECTION_TARGET_RANGE = STANDARD_TARGET_RANGE
 KID_REFLECTION_WORD_RANGE = (60, 120)
 
 

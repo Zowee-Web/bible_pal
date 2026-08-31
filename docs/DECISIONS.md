@@ -1718,6 +1718,63 @@ authority.
 
 ---
 
+## ADR-033: Reflection Length Contract (Option B) + Versioned Journal Compatibility
+
+**Date:** 2026-08-30
+**Status:** Accepted
+
+**Context:** Three sources disagreed on adult reflection length.
+`story_prompts.REFLECTION_WORD_RANGE` enforced 120–220, while REFLECTION_VOICE.md
+specified roughly 25–60 with an ~80 hard cap, and the owner's exemplar reflections
+(1242: 57/62 words; 1537: 28/40) sat far below 120. A corpus audit of 682 stories
+found a WEB median of 56 words, p95 of 77, and 94.6% already inside 25–80; only
+16/682 (2.3%) fell inside 120–220. The configured gate would have rejected 97.7%
+of the shipped corpus and all four exemplar reflections.
+
+A first implementation of the corrected contract introduced a release blocker:
+controller journals written before `reflectionForm` existed could no longer replay,
+because the new required slot field was added without a schema version boundary.
+The real proving packet's 18-event journal failed with
+`JournalCorrupt: slot 1 fields differ from the M1 contract`.
+
+**Decision:** Adopt Option B as the single reflection contract, defined once in
+`scripts/story_factory/reflection_contract.py`:
+
+- standard — valid 25–80 words, writing target 35–60;
+- planner-assigned exceptions `observation` and `image_cascade` — valid 25–120,
+  writing target 60–100;
+- writers may not self-elevate into an exception form; the planner assigns it and
+  it is immutable through correction rounds;
+- no required rhetorical-question ending;
+- legacy rendered stories are grandfathered and are not re-cut;
+- kid reflections remain 60–120 and are out of scope.
+
+Introduce an explicit controller schema version boundary:
+
+- version 1 accepts only the exact historical packet/slot shape and omits
+  `reflectionForm`;
+- version 2 requires the exact current shape including `reflectionForm`;
+- raw event field sets and evidence hashes are verified before any normalization;
+- validated legacy packets are normalized in memory to `reflectionForm: standard`;
+- new writes use version 2; historical journal bytes are never rewritten.
+
+**Rationale:** A single importable contract prevents the prompt/validator drift
+that produced the original conflict. A versioned boundary keeps historical absence
+distinguishable from new corruption: an unversioned `setdefault` would have made a
+malformed new event indistinguishable from legitimate history, silently weakening
+tamper detection.
+
+**Consequences:** Existing packets and journals continue to replay, retain their
+original bytes and evidence hashes, and remain usable for status, review,
+correction and readiness operations. Mixed journals (v1 history followed by v2
+events) replay deterministically. Writer and correction assignments both carry the
+immutable assigned contract, so a correction writer never reconstructs the rule.
+Reflections authored under the former 120–220 guidance now fail validation and
+must be re-cut or grandfathered; the proving packet's reflections (171–198 words)
+are affected.
+
+---
+
 ## ADR-XXX: [Title]
 
 **Date:** YYYY-MM-DD

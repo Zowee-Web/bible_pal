@@ -47,7 +47,16 @@ from claude_validator import (  # noqa: E402
     validate_traditional,
 )
 from lib import reconstruction_check  # noqa: E402
-from story_prompts import REFLECTION_WORD_RANGE, TRADITIONAL_RANGES  # noqa: E402
+from reflection_contract import (  # noqa: E402
+    REFLECTION_FORMS,
+    ReflectionContractError,
+    STANDARD_FORM,
+    assert_assignment_matches_metadata,
+    describe_contract,
+    normalize_reflection_form,
+    validate_reflection_word_count,
+)
+from story_prompts import TRADITIONAL_RANGES  # noqa: E402
 from story_voice_registry import VoiceValidationError, validate_story_voice  # noqa: E402
 from tts_voice_gate import (  # noqa: E402
     TtsVoiceGateError,
@@ -55,7 +64,12 @@ from tts_voice_gate import (  # noqa: E402
 )
 
 
-CONTROLLER_SCHEMA_VERSION = 1
+LEGACY_CONTROLLER_SCHEMA_VERSION = 1
+CONTROLLER_SCHEMA_VERSION = 2
+SUPPORTED_CONTROLLER_SCHEMA_VERSIONS = (
+    LEGACY_CONTROLLER_SCHEMA_VERSION,
+    CONTROLLER_SCHEMA_VERSION,
+)
 CONTROLLER_MILESTONE = "M1_TEXT_ONLY"
 PACKET_SIZE = 5
 MAX_CORRECTION_ROUNDS = 3
@@ -324,11 +338,70 @@ def _validate_reservation_ref(ref: object, story_id: int) -> None:
             raise JournalCorrupt(f"story {story_id} reservation {field} is invalid")
 
 
-def validate_packet_model(packet: object) -> None:
-    """Validate the persisted packet model independently of filesystem state."""
+_CURRENT_SLOT_FIELDS = frozenset({
+    "slotId", "storyId", "reservation", "proposedAnchor", "narrator",
+    "mode", "kidFriendly", "lanes", "targetLengths", "mood",
+    "reflectionForm", "authoringBrief", "state", "writerAttempts",
+    "correctionHistory",
+    "overlapEvidence", "assignment", "workspace", "validationEvidence",
+    "reviewerVerdict", "unresolvedFindings", "materialization",
+    "finalReadiness",
+})
+# Historical M1 slots predate Option B and carry no reflectionForm. The legacy
+# field set is frozen: it must never gain fields, or a malformed new packet
+# could masquerade as history.
+_LEGACY_SLOT_FIELDS = frozenset(_CURRENT_SLOT_FIELDS - {"reflectionForm"})
+
+_SLOT_FIELDS_BY_VERSION = {
+    LEGACY_CONTROLLER_SCHEMA_VERSION: _LEGACY_SLOT_FIELDS,
+    CONTROLLER_SCHEMA_VERSION: _CURRENT_SLOT_FIELDS,
+}
+
+
+def _slot_fields_for_version(version: int) -> frozenset:
+    try:
+        return _SLOT_FIELDS_BY_VERSION[version]
+    except KeyError:
+        raise JournalCorrupt("unsupported controller schema version") from None
+
+
+def _declared_schema_version(packet: object) -> int:
+    """Return the packet's declared version, rejecting anything unsupported."""
 
     if not isinstance(packet, dict):
         raise JournalCorrupt("packet snapshot is not an object")
+    version = packet.get("schemaVersion")
+    if version not in SUPPORTED_CONTROLLER_SCHEMA_VERSIONS:
+        raise JournalCorrupt("unsupported controller schema version")
+    return version
+
+
+def normalize_packet_model(packet: Mapping[str, object]) -> dict:
+    """Normalize a validated legacy packet to current semantics, in memory only.
+
+    Historical bytes are never rewritten. A legacy packet omits reflectionForm
+    because the concept did not exist; every historical slot is semantically
+    the standard reflection form.
+    """
+
+    version = _declared_schema_version(packet)
+    if version == CONTROLLER_SCHEMA_VERSION:
+        return copy.deepcopy(dict(packet))
+    normalized = copy.deepcopy(dict(packet))
+    normalized["schemaVersion"] = CONTROLLER_SCHEMA_VERSION
+    slots = []
+    for slot in normalized["slots"]:
+        promoted = dict(slot)
+        promoted["reflectionForm"] = STANDARD_FORM
+        slots.append(promoted)
+    normalized["slots"] = slots
+    return normalized
+
+
+def validate_packet_model(packet: object) -> None:
+    """Validate the persisted packet model independently of filesystem state."""
+
+    version = _declared_schema_version(packet)
     required = {
         "schemaVersion", "controllerMilestone", "runId", "packetId",
         "createdAt", "updatedAt", "state", "actor", "repoRoot", "worktree",
@@ -337,8 +410,6 @@ def validate_packet_model(packet: object) -> None:
     }
     if set(packet) != required:
         raise JournalCorrupt("packet snapshot fields differ from the M1 contract")
-    if packet["schemaVersion"] != CONTROLLER_SCHEMA_VERSION:
-        raise JournalCorrupt("unsupported controller schema version")
     if packet["controllerMilestone"] != CONTROLLER_MILESTONE:
         raise JournalCorrupt("packet is not a Milestone-1 text-only packet")
     try:
@@ -360,14 +431,7 @@ def validate_packet_model(packet: object) -> None:
     if not isinstance(slots, list) or len(slots) != PACKET_SIZE:
         raise JournalCorrupt(f"packet must contain exactly {PACKET_SIZE} slots")
 
-    slot_required = {
-        "slotId", "storyId", "reservation", "proposedAnchor", "narrator",
-        "mode", "kidFriendly", "lanes", "targetLengths", "mood",
-        "authoringBrief", "state", "writerAttempts", "correctionHistory",
-        "overlapEvidence", "assignment", "workspace", "validationEvidence",
-        "reviewerVerdict", "unresolvedFindings", "materialization",
-        "finalReadiness",
-    }
+    slot_required = _slot_fields_for_version(version)
     story_ids = []
     for index, slot in enumerate(slots, 1):
         if not isinstance(slot, dict) or set(slot) != slot_required:
@@ -380,6 +444,8 @@ def validate_packet_model(packet: object) -> None:
             raise JournalCorrupt("M1 supports adult Traditional stories only")
         if slot["lanes"] != ["web", "kjv"]:
             raise JournalCorrupt("M1 requires deterministic WEB and KJV lanes")
+        if "reflectionForm" in slot_required and slot["reflectionForm"] not in REFLECTION_FORMS:
+            raise JournalCorrupt("slot reflectionForm is not a known reflection form")
         lengths = slot["targetLengths"]
         if not isinstance(lengths, list) or not lengths or any(v not in LENGTHS for v in lengths):
             raise JournalCorrupt("slot targetLengths are invalid")
@@ -405,7 +471,7 @@ def validate_packet_model(packet: object) -> None:
 def _validate_event(event: object, expected_sequence: int) -> dict:
     if not isinstance(event, dict) or set(event) != EVENT_FIELDS:
         raise JournalCorrupt(f"event {expected_sequence} has invalid fields")
-    if event["schemaVersion"] != CONTROLLER_SCHEMA_VERSION:
+    if event["schemaVersion"] not in SUPPORTED_CONTROLLER_SCHEMA_VERSIONS:
         raise JournalCorrupt("event schema version is unsupported")
     if event["sequence"] != expected_sequence:
         raise JournalCorrupt(
@@ -425,6 +491,8 @@ def _validate_event(event: object, expected_sequence: int) -> dict:
     if not isinstance(supplied_hash, str) or supplied_hash != _event_hash(core):
         raise JournalCorrupt("event evidence hash mismatch")
     validate_packet_model(event["packet"])
+    if event["packet"]["schemaVersion"] != event["schemaVersion"]:
+        raise JournalCorrupt("event schema version disagrees with its packet")
     if event["packet"]["state"] != event["toState"]:
         raise JournalCorrupt("event packet state disagrees with toState")
     if event["runId"] != event["packet"]["runId"] or event["packetId"] != event["packet"]["packetId"]:
@@ -478,7 +546,9 @@ def _replay_bytes(raw: bytes, source: str) -> dict | None:
                 raise IllegalControllerTransition(
                     f"illegal controller transition {current['state']} -> {event['toState']}"
                 )
-        current = event["packet"]
+        # Raw identity and evidence hash are already verified above; only now
+        # is the historical snapshot normalized to current semantics.
+        current = normalize_packet_model(event["packet"])
     return current
 
 
@@ -821,7 +891,7 @@ class AutonomousStoryController:
         for index, raw in enumerate(stories, 1):
             if not isinstance(raw, dict):
                 raise ControllerConfigError(f"planning story {index} is not an object")
-            allowed = {"proposedAnchor", "mood", "narrator", "mode", "kidFriendly", "lengths"}
+            allowed = {"proposedAnchor", "mood", "narrator", "mode", "kidFriendly", "lengths", "reflectionForm"}
             if not set(raw) <= allowed:
                 raise ControllerConfigError(f"planning story {index} has unsupported fields")
             anchor = raw.get("proposedAnchor")
@@ -841,11 +911,18 @@ class AutonomousStoryController:
             if not isinstance(lengths, list) or not lengths or any(v not in LENGTHS for v in lengths):
                 raise ControllerConfigError(f"planning story {index} has invalid lengths")
             lengths = sorted(set(lengths), key=LENGTHS.index)
+            try:
+                reflection_form = normalize_reflection_form(raw.get("reflectionForm"))
+            except ReflectionContractError as exc:
+                raise ControllerConfigError(
+                    f"planning story {index} has an invalid reflectionForm: {exc}"
+                ) from exc
             normalized.append({
                 "anchor": anchor,
                 "mood": mood,
                 "narrator": self._validate_narrator(raw.get("narrator")),
                 "lengths": lengths,
+                "reflectionForm": reflection_form,
             })
         return normalized
 
@@ -905,6 +982,7 @@ class AutonomousStoryController:
                 "lanes": ["web", "kjv"],
                 "targetLengths": plan["lengths"],
                 "mood": plan["mood"],
+                "reflectionForm": plan["reflectionForm"],
                 "authoringBrief": "",
                 "state": PLANNED,
                 "writerAttempts": 0,
@@ -1148,7 +1226,15 @@ class AutonomousStoryController:
             if info.st_uid != os.geteuid() or stat.S_IMODE(info.st_mode) != 0o600:
                 raise SafetyViolation(f"stranded runtime evidence file is not owner-private: {path}")
         snapshot = _load_json(pdir / "packet.json", error_type=SafetyViolation)
-        if snapshot != packet:
+        # A legacy convenience snapshot legitimately omits reflectionForm. It is
+        # fully validated against its own declared version before normalization,
+        # so a tampered or malformed snapshot still fails.
+        try:
+            validate_packet_model(snapshot)
+            normalized_snapshot = normalize_packet_model(snapshot)
+        except JournalCorrupt as exc:
+            raise SafetyViolation(f"packet snapshot is not a valid packet model: {exc}") from exc
+        if normalized_snapshot != packet:
             raise SafetyViolation("packet snapshot differs from authoritative journal replay")
 
         flags = os.O_RDONLY | getattr(os, "O_DIRECTORY", 0) | getattr(os, "O_NOFOLLOW", 0)
@@ -1424,7 +1510,7 @@ class AutonomousStoryController:
             "lanes": slot["lanes"],
             "targetLengths": slot["targetLengths"],
             "wordRanges": {length: list(TRADITIONAL_RANGES[length]) for length in slot["targetLengths"]},
-            "reflectionWordRange": list(REFLECTION_WORD_RANGE),
+            "reflectionContract": describe_contract(slot["reflectionForm"]),
             "assignedNarrator": slot["narrator"],
             "authoringBrief": slot["authoringBrief"],
             "requiredArtifacts": list(names),
@@ -1755,6 +1841,22 @@ class AutonomousStoryController:
         checks.append({"name": "reconstruction_diagnostic", "passed": True,
                        "advisory": reconstruction})
 
+        # Resolve the reflection form BEFORE any range check.  The assignment is the
+        # immutable planning authority; metadata may omit the field (normalizing to
+        # standard) but may never disagree with it.  A mismatch is the writer
+        # self-elevation path and fails closed for both lanes.
+        assigned_form = slot.get("reflectionForm", STANDARD_FORM)
+        form_ok = True
+        try:
+            reflection_form = assert_assignment_matches_metadata(
+                assigned_form, meta.get("reflectionForm")
+            )
+        except ReflectionContractError as exc:
+            form_ok = False
+            reflection_form = normalize_reflection_form(assigned_form)
+            errors.append(f"story {story_id}: reflection form: {exc}")
+        valid_range = describe_contract(reflection_form)["validWordRange"]
+
         reflection_details = []
         for lane in LANES:
             name = f"reflection_{story_id}_traditional_{lane}.txt"
@@ -1765,10 +1867,11 @@ class AutonomousStoryController:
                 continue
             words = len(text.split())
             item_errors = []
-            if not REFLECTION_WORD_RANGE[0] <= words <= REFLECTION_WORD_RANGE[1]:
-                item_errors.append(
-                    f"{words} words outside {REFLECTION_WORD_RANGE[0]}-{REFLECTION_WORD_RANGE[1]}"
-                )
+            try:
+                applied_range = validate_reflection_word_count(words, reflection_form)
+            except ReflectionContractError as exc:
+                applied_range = list(valid_range)
+                item_errors.append(str(exc))
             meta_hit = check_meta_text(text)
             if meta_hit is not None:
                 item_errors.append(f"meta-text {meta_hit!r}")
@@ -1778,8 +1881,14 @@ class AutonomousStoryController:
             for problem in item_errors:
                 errors.append(f"story {story_id}: {name}: {problem}")
             reflection_details.append({"file": name, "words": words,
+                                       "reflectionForm": reflection_form,
+                                       "appliedRange": list(applied_range),
                                        "passed": not item_errors, "errors": item_errors})
-        checks.append({"name": "reflection_quality", "passed": all(v["passed"] for v in reflection_details),
+        checks.append({"name": "reflection_quality",
+                       "passed": form_ok and all(v["passed"] for v in reflection_details),
+                       "reflectionForm": reflection_form,
+                       "assignedForm": assigned_form,
+                       "validWordRange": list(valid_range),
                        "files": reflection_details})
 
         scripture_details = []
@@ -2140,6 +2249,10 @@ class AutonomousStoryController:
                 "storyId": slot["storyId"],
                 "immutableAnchor": slot["proposedAnchor"],
                 "immutableNarrator": slot["narrator"],
+                # The assigned reflection form is immutable through correction:
+                # a correction writer must never reconstruct or re-choose it.
+                "immutableReflectionForm": slot["reflectionForm"],
+                "reflectionContract": describe_contract(slot["reflectionForm"]),
                 "findings": slot["unresolvedFindings"],
                 "requiredArtifacts": list(expected_artifact_names(slot["storyId"], slot["targetLengths"])),
                 "instruction": "Correct only the bounded findings and return the complete artifact set; no manifest or audio.",

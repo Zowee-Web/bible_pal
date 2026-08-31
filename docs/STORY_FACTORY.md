@@ -284,7 +284,11 @@ Runtime still classifies such a story as Short (any value ≤600 is Short).
 - Each story has exactly ONE canonical reflection.
 - Reflection applies to all three lengths.
 - Reflection is generated via the active engine (Claude Opus 4.6 for new stories).
-- Reflection word count target: **120–220 words**.
+- Reflection word counts are defined solely by `scripts/story_factory/reflection_contract.py`
+  (the single source of truth shared by prompts, controller validation and assignments):
+  standard **valid 25–80, target 35–60**; planner-assigned `observation` / `image_cascade`
+  **valid 25–120, target 60–100**. Writers may not self-elevate to an exception form.
+  See ADR-033. Kid reflections remain 60–120 and are unaffected.
 
 Reflection Guardrails:
 - No advice
@@ -441,3 +445,23 @@ The Story Factory exists to ensure:
 - Vendor independence where practical (Traditional is locked to gpt-4.1 per ADR-014/016)
 
 This document is the single source of truth for Traditional story generation.
+
+## Reflection length contract (locked 2026-08-30)
+
+Single source of truth: `scripts/story_factory/reflection_contract.py`. Prompt text and
+controller validation both consume it; no numeric reflection range may be redeclared anywhere
+else.
+
+| Form | Valid | Target |
+|---|---|---|
+| `standard` (default) | 25–80 | 35–60 |
+| `observation` (assigned) | 25–120 | 60–100 |
+| `image_cascade` (assigned) | 25–120 | 60–100 |
+
+`reflectionForm` is an optional planning field and an optional metadata field. Absent
+normalizes to `standard`. The controller assignment is authoritative and immutable: metadata
+must match it, so a writer cannot elevate itself into the wider window. Existing rendered
+stories are grandfathered — no corpus migration, no audio regeneration. Story length bands
+(short/full/long) are unchanged.
+
+See `docs/REFLECTION_VOICE.md` for the editorial voice this length contract serves.

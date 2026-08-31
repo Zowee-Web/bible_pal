@@ -26,6 +26,7 @@ from generate_traditional_story import (
     load_forbidden_words,
     validate_anchor_format,
 )
+from reflection_contract import STANDARD_VALID_RANGE
 from story_voice_registry import (
     APPROVED_NARRATOR_VOICES,
     BANNED_VOICES,
@@ -120,7 +121,11 @@ class TestReflectionWordRange(unittest.TestCase):
     """Verify reflection word count range (STORY_FACTORY.md Section 6)."""
 
     def test_range_defined(self):
-        self.assertEqual(REFLECTION_WORD_RANGE, (120, 220))
+        # Option B (2026-08-30): the adult reflection band now comes from
+        # reflection_contract.STANDARD_VALID_RANGE. The former 120-220 range fit
+        # 16/682 corpus stories and rejected both owner exemplars.
+        self.assertEqual(REFLECTION_WORD_RANGE, (25, 80))
+        self.assertEqual(REFLECTION_WORD_RANGE, STANDARD_VALID_RANGE)
 
     def test_range_contiguous(self):
         lo, hi = REFLECTION_WORD_RANGE

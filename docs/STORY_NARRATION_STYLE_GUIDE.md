@@ -187,7 +187,10 @@ The **Traditional (kid)** row is unchanged and is not affected by ADR-030.
 | Traditional (kid) | 250–600 | 601–1200 | 1201–1800 |
 | Creative (adult) | 200–400 | 401–700 | 701–1500 |
 
-Reflection: 120–220 (adult) / 60–120 (kid).
+Reflection (adult): governed by the shared Option-B contract in
+`scripts/story_factory/reflection_contract.py` — standard valid 25–80 (target 35–60);
+planner-assigned `observation` / `image_cascade` valid 25–120 (target 60–100).
+See [REFLECTION_VOICE.md](REFLECTION_VOICE.md) and ADR-033. Kid reflections are unchanged at 60–120.
 
 - Psalms may go below 300w if the full passage is included. Do not extend with framing.
 - Mixed-tone passages (oracle + narrative, poem + discourse) split into separate stories — do not merge to pad word count.
@@ -241,3 +244,11 @@ This guide consolidates rules previously scattered across:
 - Memory feedback entries: `audio_segmentation`, `midscene_grounding`, `story_endings`, `traditional_story_style`, `no_modern_language`, `complete_arcs`, `split_mixed_tone_passages`, `psalm_word_floor`
 
 **Stage 2 follow-up:** wire `claude_prompts.py` to source from this guide so prompts and human writing share one source of truth.
+
+## Reflection length (pointer)
+
+Reflection length is governed by the contract in `docs/REFLECTION_VOICE.md` and implemented in
+`scripts/story_factory/reflection_contract.py`: standard 25–80 words (target 35–60), with an
+explicitly assigned `observation` or `image_cascade` form permitted 25–120 (target 60–100).
+No reflection is required to end on a rhetorical or second-person question. Story narration
+length bands are unaffected by this contract.

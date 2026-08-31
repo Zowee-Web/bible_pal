@@ -28,6 +28,7 @@ sys.path.insert(0, str(STORY_FACTORY))
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
 import autonomous_story_controller as controller  # noqa: E402
+import reflection_contract  # noqa: E402
 from lib import reconstruction_check  # noqa: E402
 
 
@@ -281,6 +282,7 @@ class ControllerTestCase(unittest.TestCase):
             "timelineEra": "patriarchs",
             "primaryCharacterId": "test_character",
             "primaryCharacterDisplayName": "Test Character",
+            "reflectionForm": slot["reflectionForm"],
             "files": self.controller._expected_files_map(slot),
         }
 
@@ -301,7 +303,8 @@ class ControllerTestCase(unittest.TestCase):
                     (directory / name).write_text(words(floor, kjv=lane == "kjv"), encoding="utf-8")
             for lane in controller.LANES:
                 (directory / f"reflection_{story_id}_traditional_{lane}.txt").write_text(
-                    words(controller.REFLECTION_WORD_RANGE[0], kjv=lane == "kjv"), encoding="utf-8",
+                    words(reflection_contract.STANDARD_TARGET_RANGE[0], kjv=lane == "kjv"),
+                    encoding="utf-8",
                 )
                 scripture_tokens = reconstruction_check.resolve_source_tokens(
                     slot["proposedAnchor"], lane, repo_root=REPO_ROOT,
@@ -1431,5 +1434,374 @@ class IsolationProofTests(ControllerTestCase):
             self.assertNotIn(command, source.lower())
 
 
+class ReflectionContractIntegration(ControllerTestCase):
+    """Option B: assignment is authoritative; the writer cannot self-elevate."""
+
+    def _plan_with_form(self, form):
+        planning = self.planning()
+        if form is not None:
+            for story in planning["stories"]:
+                story["reflectionForm"] = form
+        return self.controller.plan_packet(
+            run_id=self.run_id, packet_id=self.packet_id, actor=self.actor,
+            planning=planning, lease_seconds=60,
+        )
+
+    def test_absent_planning_form_normalizes_to_standard(self):
+        packet = self._plan_with_form(None)
+        for slot in packet["slots"]:
+            self.assertEqual(slot["reflectionForm"], "standard")
+
+    def test_assignment_carries_form_and_both_ranges(self):
+        self._plan_with_form("observation")
+        self.controller.preflight_anchors(self.run_id, self.packet_id, actor=self.actor)
+        self.controller.emit_writer_assignments(self.run_id, self.packet_id, actor=self.actor)
+        payload = json.loads(
+            (self.controller.packet_dir(self.run_id, self.packet_id)
+             / "assignments" / "story_3000.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(payload["reflectionContract"], {
+            "reflectionForm": "observation",
+            "validWordRange": [25, 120],
+            "targetWordRange": [60, 100],
+            "explicitlyAssignedException": True,
+        })
+
+    def test_unknown_planning_form_is_rejected(self):
+        with self.assertRaises(controller.ControllerConfigError):
+            self._plan_with_form("sonnet")
+
+    def test_standard_assignment_rejects_exception_metadata(self):
+        packet = self._plan_with_form(None)
+        self.controller.preflight_anchors(self.run_id, self.packet_id, actor=self.actor)
+        packet = self.controller.emit_writer_assignments(
+            self.run_id, self.packet_id, actor=self.actor)
+
+        def elevate(root, pkt):
+            for slot in pkt["slots"]:
+                path = root / str(slot["storyId"]) / f"meta_{slot['storyId']}.json"
+                meta = json.loads(path.read_text(encoding="utf-8"))
+                meta["reflectionForm"] = "image_cascade"
+                path.write_text(json.dumps(meta), encoding="utf-8")
+
+        source = self.write_outputs(packet, mutate=elevate)
+        self.controller.ingest_writer_output(
+            self.run_id, self.packet_id, source_root=source, actor=self.actor)
+        with self.assertRaises(controller.ValidationFailed) as caught:
+            self.controller.validate_outputs(self.run_id, self.packet_id, actor=self.actor)
+        self.assertIn("reflection form", str(caught.exception))
+
+    def test_exception_assignment_with_matching_metadata_validates(self):
+        packet = self._plan_with_form("observation")
+        self.controller.preflight_anchors(self.run_id, self.packet_id, actor=self.actor)
+        packet = self.controller.emit_writer_assignments(
+            self.run_id, self.packet_id, actor=self.actor)
+
+        def declare(root, pkt):
+            for slot in pkt["slots"]:
+                path = root / str(slot["storyId"]) / f"meta_{slot['storyId']}.json"
+                meta = json.loads(path.read_text(encoding="utf-8"))
+                meta["reflectionForm"] = "observation"
+                path.write_text(json.dumps(meta), encoding="utf-8")
+                # 100 words is legal for the exception band and illegal for standard.
+                for lane in controller.LANES:
+                    (root / str(slot["storyId"])
+                     / f"reflection_{slot['storyId']}_traditional_{lane}.txt").write_text(
+                        words(100, kjv=lane == "kjv"), encoding="utf-8")
+
+        source = self.write_outputs(packet, mutate=declare)
+        self.controller.ingest_writer_output(
+            self.run_id, self.packet_id, source_root=source, actor=self.actor)
+        result = self.controller.validate_outputs(
+            self.run_id, self.packet_id, actor=self.actor)
+        self.assertEqual(result["state"], controller.VALIDATION_PASSED)
+        evidence = json.loads(
+            (self.controller.packet_dir(self.run_id, self.packet_id)
+             / "validation" / "story_3000.json").read_text(encoding="utf-8")
+        )
+        check = next(
+            c for c in evidence["orderedChecks"] if c["name"] == "reflection_quality"
+        )
+        self.assertEqual(check["reflectionForm"], "observation")
+        self.assertEqual(check["validWordRange"], [25, 120])
+
+    def test_standard_reflection_above_eighty_fails(self):
+        packet = self._plan_with_form(None)
+        self.controller.preflight_anchors(self.run_id, self.packet_id, actor=self.actor)
+        packet = self.controller.emit_writer_assignments(
+            self.run_id, self.packet_id, actor=self.actor)
+
+        def overlong(root, pkt):
+            for slot in pkt["slots"]:
+                for lane in controller.LANES:
+                    (root / str(slot["storyId"])
+                     / f"reflection_{slot['storyId']}_traditional_{lane}.txt").write_text(
+                        words(81, kjv=lane == "kjv"), encoding="utf-8")
+
+        source = self.write_outputs(packet, mutate=overlong)
+        self.controller.ingest_writer_output(
+            self.run_id, self.packet_id, source_root=source, actor=self.actor)
+        with self.assertRaises(controller.ValidationFailed) as caught:
+            self.controller.validate_outputs(self.run_id, self.packet_id, actor=self.actor)
+        self.assertIn("outside 25-80", str(caught.exception))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+def _downgrade_event(event):
+    """Rewrite a current-version event into an authentic legacy v1 event."""
+    legacy = copy.deepcopy(event)
+    legacy["schemaVersion"] = controller.LEGACY_CONTROLLER_SCHEMA_VERSION
+    legacy["packet"]["schemaVersion"] = controller.LEGACY_CONTROLLER_SCHEMA_VERSION
+    for slot in legacy["packet"]["slots"]:
+        slot.pop("reflectionForm", None)
+    core = {k: v for k, v in legacy.items() if k != "evidenceHash"}
+    legacy["evidenceHash"] = controller._event_hash(core)
+    return legacy
+
+
+def _downgrade_journal(path):
+    """Convert a journal (and its snapshot) to the pre-Option-B v1 shape."""
+    events = [json.loads(line) for line in path.read_text().splitlines()]
+    legacy = [_downgrade_event(event) for event in events]
+    path.write_bytes(b"".join(controller._canonical_bytes(e) + b"\n" for e in legacy))
+    snapshot = path.parent / "packet.json"
+    if snapshot.exists():
+        snapshot.write_text(json.dumps(legacy[-1]["packet"]), encoding="utf-8")
+    return path.read_bytes()
+
+
+class LegacyJournalCompatibilityTests(ControllerTestCase):
+    """Journals written before reflectionForm existed must still replay."""
+
+    def _legacy_at(self, builder):
+        builder()
+        journal = self.controller.packet_dir(self.run_id, self.packet_id) / "events.jsonl"
+        raw = _downgrade_journal(journal)
+        return journal, raw
+
+    def _replay(self):
+        return controller.replay_packet(self.factory, self.run_id, self.packet_id)
+
+    def test_legacy_planned_packet_replays(self):
+        self._legacy_at(self.plan)
+        self.assertEqual(self._replay()["state"], controller.ID_RESERVED)
+
+    def test_legacy_assignment_ready_packet_replays(self):
+        self._legacy_at(self.assignments)
+        self.assertEqual(self._replay()["state"], controller.ASSIGNMENT_READY)
+
+    def test_legacy_review_ready_packet_replays(self):
+        self._legacy_at(self.review_ready)
+        self.assertEqual(self._replay()["state"], controller.REVIEW_READY)
+
+    def test_legacy_correction_ready_packet_replays(self):
+        def build():
+            self.review_ready()
+            self.controller.ingest_review(
+                self.run_id, self.packet_id,
+                review=self.review(verdict="CHANGES_REQUESTED"), actor=self.actor,
+            )
+            self.controller.emit_corrections(self.run_id, self.packet_id, actor=self.actor)
+        self._legacy_at(build)
+        self.assertEqual(self._replay()["state"], controller.CORRECTION_READY)
+
+    def test_legacy_slots_normalize_to_standard(self):
+        self._legacy_at(self.review_ready)
+        packet = self._replay()
+        self.assertEqual(packet["schemaVersion"], controller.CONTROLLER_SCHEMA_VERSION)
+        self.assertEqual(
+            [slot["reflectionForm"] for slot in packet["slots"]],
+            [reflection_contract.STANDARD_FORM] * controller.PACKET_SIZE,
+        )
+
+    def test_legacy_evidence_hashes_remain_valid(self):
+        journal, raw = self._legacy_at(self.review_ready)
+        for line in raw.splitlines():
+            event = json.loads(line)
+            core = {k: v for k, v in event.items() if k != "evidenceHash"}
+            self.assertEqual(event["evidenceHash"], controller._event_hash(core))
+
+    def test_replay_never_rewrites_journal_bytes(self):
+        journal, raw = self._legacy_at(self.review_ready)
+        self._replay()
+        self.assertEqual(journal.read_bytes(), raw)
+
+    def test_legacy_snapshot_is_accepted_after_normalization(self):
+        self._legacy_at(self.review_ready)
+        pdir = self.controller.packet_dir(self.run_id, self.packet_id)
+        snapshot = json.loads((pdir / "packet.json").read_text())
+        self.assertEqual(snapshot["schemaVersion"], controller.LEGACY_CONTROLLER_SCHEMA_VERSION)
+        controller.validate_packet_model(snapshot)
+        self.assertEqual(controller.normalize_packet_model(snapshot), self._replay())
+
+    def test_malformed_snapshot_is_still_rejected(self):
+        self._legacy_at(self.review_ready)
+        pdir = self.controller.packet_dir(self.run_id, self.packet_id)
+        snapshot = json.loads((pdir / "packet.json").read_text())
+        snapshot["slots"][0].pop("mood")
+        with self.assertRaises(controller.JournalCorrupt):
+            controller.validate_packet_model(snapshot)
+
+
+class MixedVersionJournalTests(ControllerTestCase):
+    def test_v1_history_continues_into_v2_without_touching_old_bytes(self):
+        self.review_ready()
+        journal = self.controller.packet_dir(self.run_id, self.packet_id) / "events.jsonl"
+        legacy_bytes = _downgrade_journal(journal)
+
+        self.controller.ingest_review(
+            self.run_id, self.packet_id,
+            review=self.review(verdict="CHANGES_REQUESTED"), actor=self.actor,
+        )
+        self.controller.emit_corrections(self.run_id, self.packet_id, actor=self.actor)
+
+        after = journal.read_bytes()
+        self.assertTrue(after.startswith(legacy_bytes), "legacy prefix was rewritten")
+        events = [json.loads(line) for line in after.splitlines()]
+        old_count = len(legacy_bytes.splitlines())
+        self.assertTrue(all(
+            e["schemaVersion"] == controller.LEGACY_CONTROLLER_SCHEMA_VERSION
+            for e in events[:old_count]
+        ))
+        self.assertTrue(all(
+            e["schemaVersion"] == controller.CONTROLLER_SCHEMA_VERSION
+            for e in events[old_count:]
+        ))
+        packet = controller.replay_packet(self.factory, self.run_id, self.packet_id)
+        self.assertEqual(packet["state"], controller.CORRECTION_READY)
+        self.assertTrue(all(s["state"] == packet["state"] for s in packet["slots"]))
+
+    def test_new_snapshot_uses_current_version(self):
+        self.review_ready()
+        pdir = self.controller.packet_dir(self.run_id, self.packet_id)
+        _downgrade_journal(pdir / "events.jsonl")
+        self.controller.ingest_review(
+            self.run_id, self.packet_id,
+            review=self.review(verdict="CHANGES_REQUESTED"), actor=self.actor,
+        )
+        snapshot = json.loads((pdir / "packet.json").read_text())
+        self.assertEqual(snapshot["schemaVersion"], controller.CONTROLLER_SCHEMA_VERSION)
+        self.assertIn("reflectionForm", snapshot["slots"][0])
+
+
+class SchemaVersionTamperTests(ControllerTestCase):
+    def _first_event(self):
+        self.plan()
+        journal = self.controller.packet_dir(self.run_id, self.packet_id) / "events.jsonl"
+        return json.loads(journal.read_text().splitlines()[0])
+
+    def _reseal(self, event):
+        core = {k: v for k, v in event.items() if k != "evidenceHash"}
+        event["evidenceHash"] = controller._event_hash(core)
+        return event
+
+    def test_current_version_event_missing_reflection_form_fails(self):
+        event = self._first_event()
+        for slot in event["packet"]["slots"]:
+            slot.pop("reflectionForm")
+        with self.assertRaises(controller.JournalCorrupt):
+            controller._validate_event(self._reseal(event), 1)
+
+    def test_current_version_event_with_unknown_form_fails(self):
+        event = self._first_event()
+        for slot in event["packet"]["slots"]:
+            slot["reflectionForm"] = "freeform_epic"
+        with self.assertRaises(controller.JournalCorrupt):
+            controller._validate_event(self._reseal(event), 1)
+
+    def test_legacy_event_with_extra_reflection_form_fails(self):
+        event = _downgrade_event(self._first_event())
+        for slot in event["packet"]["slots"]:
+            slot["reflectionForm"] = reflection_contract.STANDARD_FORM
+        with self.assertRaises(controller.JournalCorrupt):
+            controller._validate_event(self._reseal(event), 1)
+
+    def test_modified_legacy_event_with_stale_hash_fails(self):
+        event = _downgrade_event(self._first_event())
+        event["packet"]["slots"][0]["proposedAnchor"] = "Genesis 9:1-3"
+        with self.assertRaises(controller.JournalCorrupt):
+            controller._validate_event(event, 1)
+
+    def test_event_version_must_match_its_packet_version(self):
+        event = self._first_event()
+        event["packet"]["schemaVersion"] = controller.LEGACY_CONTROLLER_SCHEMA_VERSION
+        for slot in event["packet"]["slots"]:
+            slot.pop("reflectionForm")
+        with self.assertRaises(controller.JournalCorrupt):
+            controller._validate_event(self._reseal(event), 1)
+
+    def test_unsupported_future_version_fails(self):
+        event = self._first_event()
+        event["schemaVersion"] = 3
+        event["packet"]["schemaVersion"] = 3
+        with self.assertRaises(controller.JournalCorrupt):
+            controller._validate_event(self._reseal(event), 1)
+
+
+class CorrectionAssignmentContractTests(ControllerTestCase):
+    def _corrections_for(self, form):
+        narrator = "VOICE_SARAH_STORYTELLER"
+        planning = {
+            "stories": [
+                {
+                    "proposedAnchor": ANCHORS[index], "mood": "encouraging",
+                    "narrator": narrator, "lengths": ["short"], "reflectionForm": form,
+                }
+                for index in range(controller.PACKET_SIZE)
+            ]
+        }
+        self.controller.plan_packet(
+            run_id=self.run_id, packet_id=self.packet_id, actor=self.actor,
+            planning=planning, lease_seconds=60,
+        )
+        self.controller.preflight_anchors(self.run_id, self.packet_id, actor=self.actor)
+        packet = self.controller.emit_writer_assignments(
+            self.run_id, self.packet_id, actor=self.actor,
+        )
+        source = self.write_outputs(packet)
+        self.controller.ingest_writer_output(
+            self.run_id, self.packet_id, source_root=source, actor=self.actor,
+        )
+        self.controller.validate_outputs(self.run_id, self.packet_id, actor=self.actor)
+        self.controller.materialize_for_review(self.run_id, self.packet_id, actor=self.actor)
+        self.controller.emit_review_packet(self.run_id, self.packet_id, actor=self.actor)
+        self.controller.ingest_review(
+            self.run_id, self.packet_id,
+            review=self.review(verdict="CHANGES_REQUESTED"), actor=self.actor,
+        )
+        self.controller.emit_corrections(self.run_id, self.packet_id, actor=self.actor)
+        cdir = self.controller.packet_dir(self.run_id, self.packet_id) / "corrections" / "round-1"
+        return [json.loads(p.read_text()) for p in sorted(cdir.glob("story_*.json"))]
+
+    def test_standard_form_survives_correction_with_contract(self):
+        payloads = self._corrections_for(reflection_contract.STANDARD_FORM)
+        self.assertEqual(len(payloads), controller.PACKET_SIZE)
+        for payload in payloads:
+            self.assertEqual(payload["immutableReflectionForm"], reflection_contract.STANDARD_FORM)
+            contract = payload["reflectionContract"]
+            self.assertEqual(contract["reflectionForm"], reflection_contract.STANDARD_FORM)
+            self.assertEqual(tuple(contract["validWordRange"]), reflection_contract.STANDARD_VALID_RANGE)
+            self.assertEqual(tuple(contract["targetWordRange"]), reflection_contract.STANDARD_TARGET_RANGE)
+            self.assertFalse(contract["explicitlyAssignedException"])
+
+    def test_observation_form_survives_correction(self):
+        for payload in self._corrections_for("observation"):
+            self.assertEqual(payload["immutableReflectionForm"], "observation")
+            contract = payload["reflectionContract"]
+            self.assertEqual(contract["reflectionForm"], "observation")
+            self.assertEqual(tuple(contract["validWordRange"]), reflection_contract.EXCEPTION_VALID_RANGE)
+            self.assertTrue(contract["explicitlyAssignedException"])
+
+    def test_image_cascade_form_survives_correction(self):
+        for payload in self._corrections_for("image_cascade"):
+            self.assertEqual(payload["immutableReflectionForm"], "image_cascade")
+            self.assertEqual(payload["reflectionContract"]["reflectionForm"], "image_cascade")
+            self.assertTrue(payload["reflectionContract"]["explicitlyAssignedException"])
+
+    def test_correction_cannot_switch_reflection_form(self):
+        self._corrections_for("observation")
+        packet = self.controller.load(self.run_id, self.packet_id)
+        self.assertTrue(all(s["reflectionForm"] == "observation" for s in packet["slots"]))

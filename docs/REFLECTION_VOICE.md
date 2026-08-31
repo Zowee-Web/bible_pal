@@ -63,9 +63,11 @@ Reserved for anchors where the emotional landing is so quiet and complete that a
 Locked 2026-05-31 after batch-1 audio review. Applies to all three forms:
 
 - **Target**: 10–30 seconds of audio
-- **Normal range**: ~25–60 words
-- **Hard cap**: ~80 words unless explicitly approved
-- **Refactor before rendering** if a reflection comes in over cap
+- **Valid range**: 25–80 words
+- **Writing target**: 35–60 words
+- **Explicit exception**: an *assigned* `observation` or `image_cascade` form may run to
+  120 words, target 60–100 (see "Assigned exception forms" below)
+- **Refactor before rendering** if a reflection comes in over its applicable ceiling
 
 Reflections are brief pauses for thought, not mini-devotionals. The cap exists because in the player UX a 60-second reflection trails the story too long; listeners feel the gear shift from narrative-immersion to closing-frame. Question form naturally lands at ~10–15s, image cascade at ~25–35s, observation form at ~30s — all under the cap.
 
@@ -75,13 +77,40 @@ The locked benchmarks 1096 (Bethesda) and 1121 (Hannah) were retroactively compr
 
 A series of 3-5 concrete narrative beats from the story, structured as short paragraphs that walk the listener through the key images in sequence. No question, no observation-statement, no narrator interpretation — the cascade IS the reflection. Lands on a final image that completes the arc.
 
-Reserved for anchors where the story's images are so iconic that re-presenting them in compressed form IS the reflection. Typically ~80-120 words. Identified as a valid form during the 2026-05-31 mechanical-sync triage when 1111-1115 were found to use this form and pass all six audit points.
+Reserved for anchors where the story's images are so iconic that re-presenting them in compressed form IS the reflection. When explicitly assigned it may use up to 120 words, but it does not have to exceed 80 — the named examples below run 57–73 words and remain fully valid. Identified as a valid form during the 2026-05-31 mechanical-sync triage when 1111-1115 were found to use this form and pass all six audit points.
 
 Examples:
 - **1112 David & Goliath**:
   > *For forty days the Philistine drew near morning and evening. For forty days no one in Israel answered. David chose five smooth stones from the brook. His sling was in his hand. He walked toward the giant with no sword, no armor, no shield. The stone struck Goliath in the forehead. He fell on his face to the earth. The valley lay quiet between the ridges.*
 - **1114 Daniel in the Lion's Den**:
   > *Daniel's windows were open toward Jerusalem. He kneeled three times a day, and prayed, and gave thanks before his God, as he did before. The decree was signed. The windows stayed open. The prayer did not change. The king passed the night fasting, with no music and no sleep. In the morning he went in haste to the den and cried out with a troubled voice. Daniel's voice answered from the darkness below.*
+
+## Assigned exception forms (locked 2026-08-30)
+
+The standard contract is **25–80 words, target 35–60**. Two forms may use a wider
+**25–120 window, target 60–100**:
+
+- `observation`
+- `image_cascade`
+
+**The wider window is not self-service.** A writer may never choose or elevate its own form.
+The form is part of the controller's immutable planning assignment, and story metadata must
+declare the same form; a mismatch fails closed. Metadata that omits `reflectionForm`
+normalizes to `standard`.
+
+**No required ending shape.** A statement, a restrained image, or one earned question may
+close a reflection. A rhetorical or second-person question is permitted, never required.
+
+**Existing stories are grandfathered.** This contract governs new and in-flight
+controller-authorized work from adoption forward. Reflections already written and rendered
+are not migrated and their audio is not regenerated.
+
+Corpus evidence behind these numbers (682 story concepts, all live worktrees): WEB median 56
+words, p95 77, and 94.6% already inside 25–80. The previously configured 120–220 authoring
+range fit 16/682 stories and would have rejected both owner exemplars and every named
+benchmark below.
+
+---
 
 ## Prohibited Patterns
 
