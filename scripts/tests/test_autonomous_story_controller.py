@@ -1090,6 +1090,126 @@ class OverlapIntegrationTests(ControllerTestCase):
             self.controller.validate_outputs(self.run_id, self.packet_id, actor=self.actor)
 
 
+class OverlapQueueProjectionTests(ControllerTestCase):
+    """F1: pin the ``materialized`` -> ``locked`` repair to the emitted literal.
+
+    Before this repair the controller emitted the string ``"materialized"``,
+    which is outside the gate's vocabulary and was silently discarded -- so a
+    materialized story occupied nothing in the queue.  Asserting only that the
+    gate happens to BLOCK would not have caught it, because ``harvest()`` finds
+    materialized stories on disk independently.  That masking is
+    configuration-dependent: it disappears the moment a sibling packet runs in
+    a worktree this controller was not given.  So these tests assert the
+    emitted STRING, never merely the verdict.
+    """
+
+    def _snapshot(self):
+        packet = self.plan()
+        path = self.controller._overlap_queue_snapshot(packet)
+        return json.loads(path.read_text(encoding="utf-8")), packet
+
+    def test_reserved_projects_reserved(self):
+        payload, _ = self._snapshot()
+        self.assertEqual(len(payload["reservations"]), 5)
+        for row in payload["reservations"]:
+            self.assertEqual(row["state"], "reserved")
+
+    def test_materialized_emits_the_literal_locked(self):
+        payload, packet = self._snapshot()
+        for slot in packet["slots"]:
+            reservation = self.reservations.states[slot["storyId"]]
+            self.reservations.states[slot["storyId"]] = dataclasses.replace(
+                reservation, state="MATERIALIZED",
+            )
+        path = self.controller._overlap_queue_snapshot(packet)
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        states = [row["state"] for row in payload["reservations"]]
+        self.assertEqual(states, ["locked"] * 5)
+        self.assertNotIn("materialized", states)
+        self.assertNotIn("materialized", path.read_text(encoding="utf-8"))
+
+    def test_retired_projects_the_literal_locked(self):
+        # ``_authoritative_reservations`` refuses anything but RESERVED and
+        # MATERIALIZED, so RETIRED cannot reach the snapshot today.  The
+        # projection must still be total: if that guard ever widens, RETIRED
+        # must already be a permanent occupancy rather than a silent omission.
+        self.assertEqual(
+            controller.AutonomousStoryController.reservation_to_queue_state("RETIRED"),
+            "locked",
+        )
+
+    def test_every_emitted_state_is_in_the_gate_vocabulary(self):
+        for state in ("RESERVED", "MATERIALIZED", "RETIRED"):
+            with self.subTest(state=state):
+                projected = controller.AutonomousStoryController.reservation_to_queue_state(state)
+                self.assertIn(projected, controller.overlap_gate.KNOWN_QUEUE_STATES)
+                self.assertIn(projected, controller.overlap_gate.OCCUPYING_STATES)
+
+    def test_released_projects_to_omission_not_to_an_unknown_state(self):
+        # Omission here is a decision, not a default: a RELEASED reservation is
+        # genuinely free.  It is expressed as None so the snapshot drops the
+        # row, never as a string the gate would have to interpret.
+        self.assertIsNone(
+            controller.AutonomousStoryController.reservation_to_queue_state("RELEASED")
+        )
+
+    def test_snapshot_only_ever_emits_occupying_states(self):
+        payload, packet = self._snapshot()
+        emitted = {row["state"] for row in payload["reservations"]}
+        for slot in packet["slots"]:
+            reservation = self.reservations.states[slot["storyId"]]
+            self.reservations.states[slot["storyId"]] = dataclasses.replace(
+                reservation, state="MATERIALIZED",
+            )
+        path = self.controller._overlap_queue_snapshot(packet)
+        emitted |= {row["state"] for row
+                    in json.loads(path.read_text(encoding="utf-8"))["reservations"]}
+        self.assertEqual(emitted, {"reserved", "locked"})
+        self.assertTrue(emitted <= controller.overlap_gate.OCCUPYING_STATES)
+
+    def test_projection_has_no_default_branch(self):
+        with self.assertRaises(controller.IntegrationError):
+            controller.AutonomousStoryController.reservation_to_queue_state("ABANDONED")
+        with self.assertRaises(controller.IntegrationError):
+            controller.AutonomousStoryController.reservation_to_queue_state("materialized")
+
+    def test_projection_is_total_over_the_reservation_services_states(self):
+        # If the reservation service ever adds a state, this fails rather than
+        # letting the new state vanish from the queue.
+        service_states = set(controller.reservation_service._STATES)
+        mapped = set(controller.AutonomousStoryController.RESERVATION_QUEUE_PROJECTION)
+        self.assertEqual(service_states, mapped)
+
+
+class AclQueueProjectionTests(ControllerTestCase):
+    """The controller reads global occupancy, not just its own five slots."""
+
+    def test_acl_queue_is_empty_without_a_ledger(self):
+        self.assertEqual(self.controller.acl_queue_rows(), [])
+
+    def test_acl_rows_reach_the_gate_vocabulary(self):
+        import anchor_claims
+        result = anchor_claims.claim_packet_anchors(
+            run_id="other-run", packet_id="other-packet",
+            proposals=[{"slotId": i + 1, "anchor": a}
+                       for i, a in enumerate(
+                           ("Nahum 1:1-15", "Joel 1:1-12", "Amos 1:1-10",
+                            "Obadiah 1:1-9", "Micah 1:1-9"))],
+            actor="owner", factory_home=self.factory,
+        )
+        rows = self.controller.acl_queue_rows()
+        self.assertEqual(len(rows), 5)
+        for row in rows:
+            self.assertEqual(row["state"], "reserved")
+            self.assertLess(row["storyId"], 0)
+            self.assertIn(row["state"], controller.overlap_gate.KNOWN_QUEUE_STATES)
+        self.assertEqual(
+            self.controller.acl_queue_rows(
+                exclude_packet=("other-run", "other-packet")),
+            [],
+        )
+
+
 class NarratorContractTests(ControllerTestCase):
     def test_invalid_narrator_is_rejected_at_plan(self):
         with self.assertRaises(controller.ControllerConfigError):

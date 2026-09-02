@@ -38,6 +38,7 @@ for _path in (str(SCRIPTS_DIR), str(MODULE_PATH.parent)):
     if _path not in sys.path:
         sys.path.insert(0, _path)
 
+import anchor_claims  # noqa: E402
 import preflight_anchor_overlap as overlap_gate  # noqa: E402
 import story_id_reservations as reservation_service  # noqa: E402
 from claude_validator import (  # noqa: E402
@@ -796,46 +797,50 @@ class AutonomousStoryController:
         flags = os.O_RDWR | os.O_CREAT | getattr(os, "O_NOFOLLOW", 0)
         fd = os.open(journal, flags, 0o600)
         try:
-            fcntl.flock(fd, fcntl.LOCK_EX)
-            journal_info = os.fstat(fd)
-            if (
-                not stat.S_ISREG(journal_info.st_mode)
-                or journal_info.st_uid != os.geteuid()
-                or stat.S_IMODE(journal_info.st_mode) != 0o600
-            ):
-                raise SafetyViolation("controller journal must be an owner-owned regular file with mode 0600")
-            os.lseek(fd, 0, os.SEEK_SET)
-            chunks = []
-            while True:
-                chunk = os.read(fd, 1024 * 1024)
-                if not chunk:
-                    break
-                chunks.append(chunk)
-            current = _replay_bytes(b"".join(chunks), str(journal))
-            if current != prior:
-                raise IntegrationError("packet changed while controller operation was in flight")
-            sequence = len(b"".join(chunks).splitlines()) + 1
-            event = {
-                "schemaVersion": CONTROLLER_SCHEMA_VERSION,
-                "eventId": str(uuid.uuid4()),
-                "sequence": sequence,
-                "timestamp": self._now(),
-                "eventType": event_type,
-                "runId": packet["runId"],
-                "packetId": packet["packetId"],
-                "storyId": story_id,
-                "fromState": prior["state"] if prior is not None else None,
-                "toState": packet["state"],
-                "actor": actor,
-                "reason": reason,
-                "packet": packet,
-            }
-            event["evidenceHash"] = _event_hash(event)
-            _validate_event(event, sequence)
-            os.lseek(fd, 0, os.SEEK_END)
-            _write_all(fd, _canonical_bytes(event) + b"\n")
-            os.fsync(fd)
-            _fsync_dir(pdir)
+            # L5 in the L1-L6 hierarchy.  The rank guard raises rather than
+            # deadlocking if a future caller ever holds the packet journal
+            # while reaching back down for the ACL or reservation ledger.
+            with anchor_claims.lock_rank(anchor_claims.L5_PACKET_JOURNAL, str(journal)):
+                fcntl.flock(fd, fcntl.LOCK_EX)
+                journal_info = os.fstat(fd)
+                if (
+                    not stat.S_ISREG(journal_info.st_mode)
+                    or journal_info.st_uid != os.geteuid()
+                    or stat.S_IMODE(journal_info.st_mode) != 0o600
+                ):
+                    raise SafetyViolation("controller journal must be an owner-owned regular file with mode 0600")
+                os.lseek(fd, 0, os.SEEK_SET)
+                chunks = []
+                while True:
+                    chunk = os.read(fd, 1024 * 1024)
+                    if not chunk:
+                        break
+                    chunks.append(chunk)
+                current = _replay_bytes(b"".join(chunks), str(journal))
+                if current != prior:
+                    raise IntegrationError("packet changed while controller operation was in flight")
+                sequence = len(b"".join(chunks).splitlines()) + 1
+                event = {
+                    "schemaVersion": CONTROLLER_SCHEMA_VERSION,
+                    "eventId": str(uuid.uuid4()),
+                    "sequence": sequence,
+                    "timestamp": self._now(),
+                    "eventType": event_type,
+                    "runId": packet["runId"],
+                    "packetId": packet["packetId"],
+                    "storyId": story_id,
+                    "fromState": prior["state"] if prior is not None else None,
+                    "toState": packet["state"],
+                    "actor": actor,
+                    "reason": reason,
+                    "packet": packet,
+                }
+                event["evidenceHash"] = _event_hash(event)
+                _validate_event(event, sequence)
+                os.lseek(fd, 0, os.SEEK_END)
+                _write_all(fd, _canonical_bytes(event) + b"\n")
+                os.fsync(fd)
+                _fsync_dir(pdir)
         finally:
             try:
                 fcntl.flock(fd, fcntl.LOCK_UN)
@@ -1099,17 +1104,24 @@ class AutonomousStoryController:
             reserved = self._validate_reservations_for_adoption(packet, existing)
             reason = "reconciled five authoritative reservations after missing controller transition"
         else:
-            reserved = self.reservations.reserve_packet(
-                count=PACKET_SIZE,
-                run_id=packet["runId"],
-                packet_id=packet["packetId"],
-                actor=actor,
-                worktree=self.worktree,
-                repo_root=self.repo_root,
-                factory_home=self.factory_home,
-                lease_seconds=lease_seconds,
-                worktrees=self.worktrees,
-            )
+            # L3 (reservation ledger) and L4 (per-story locks) live inside the
+            # reservation service.  They are observed here, at the call
+            # boundary, because that module is outside this change's scope; the
+            # ranks are still enforced relative to any ACL lock held above.
+            with anchor_claims.lock_rank(
+                anchor_claims.L3_RESERVATION_LEDGER, "reserve_packet"
+            ), anchor_claims.lock_rank(anchor_claims.L4_STORY_LOCK, "reserve_packet"):
+                reserved = self.reservations.reserve_packet(
+                    count=PACKET_SIZE,
+                    run_id=packet["runId"],
+                    packet_id=packet["packetId"],
+                    actor=actor,
+                    worktree=self.worktree,
+                    repo_root=self.repo_root,
+                    factory_home=self.factory_home,
+                    lease_seconds=lease_seconds,
+                    worktrees=self.worktrees,
+                )
             reserved = self._validate_reservations_for_adoption(packet, reserved)
             reason = "reservation service returned five authoritative claims"
         self._assert_manifest_unchanged(packet)
@@ -1436,19 +1448,57 @@ class AutonomousStoryController:
             ),
         )
 
+    #: Reservation lifecycle -> overlap-gate queue vocabulary.  Total over the
+    #: reservation service's own ``_STATES``; there is deliberately no default
+    #: branch.  ``MATERIALIZED`` and ``RETIRED`` project to ``locked`` because
+    #: the passage has been consumed and can never be re-drawn -- the earlier
+    #: ``materialized`` string was outside the gate's vocabulary and was
+    #: silently discarded, so a materialized story occupied nothing.
+    RESERVATION_QUEUE_PROJECTION = {
+        "RESERVED": "reserved",
+        "MATERIALIZED": "locked",
+        "RETIRED": "locked",
+        "RELEASED": None,
+    }
+
+    @classmethod
+    def reservation_to_queue_state(cls, state: str) -> str | None:
+        """Project one reservation state, or raise.  Never guesses."""
+        if state not in cls.RESERVATION_QUEUE_PROJECTION:
+            raise IntegrationError(
+                f"unmapped reservation state {state!r}; the overlap queue "
+                "cannot omit a state it does not recognise"
+            )
+        return cls.RESERVATION_QUEUE_PROJECTION[state]
+
     def _overlap_queue_snapshot(self, packet: dict) -> Path:
         states = self._authoritative_reservations(packet)
         payload = {"reservations": []}
         for slot in packet["slots"]:
             current = states[slot["storyId"]]
+            projected = self.reservation_to_queue_state(current.state)
+            if projected is None:
+                continue
             payload["reservations"].append({
                 "storyId": slot["storyId"],
                 "proposedAnchor": slot["proposedAnchor"],
-                "state": "reserved" if current.state == "RESERVED" else "materialized",
+                "state": projected,
             })
         path = self.packet_dir(packet["runId"], packet["packetId"]) / "overlap_queue_snapshot.json"
         _write_json(path, payload)
         return path
+
+    def acl_queue_rows(self, *, exclude_packet=None) -> list[dict]:
+        """Project every global anchor claim into gate queue rows.
+
+        This is what makes a second concurrent packet safe: the queue stops
+        describing only our own five slots and starts describing every packet's
+        occupancy, through ``anchor_claims``' single total projection.
+        """
+        claims = anchor_claims.replay_ledger(self.factory_home)
+        return anchor_claims.build_overlap_queue(
+            claims.values(), exclude_packet=exclude_packet
+        )
 
     def _evaluate_overlap(self, packet: dict, slot: dict, queue_path: Path) -> dict:
         kwargs = {

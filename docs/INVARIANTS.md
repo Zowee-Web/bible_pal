@@ -2639,6 +2639,53 @@ become an OS-level file lock before that happens.
 
 ---
 
+## 🔒 Anchor Occupancy Invariant (NON-NEGOTIABLE)
+
+**Invariant**: A scripture passage claimed by any packet, in any run, is
+occupied until an **explicit, committed, packet-atomic** decision frees it.
+Expiry is not such a decision.
+
+Three rules follow, and none may be weakened:
+
+1. **Only `RELEASED` and `ABORTED` free an anchor**, and only through
+   `PACKET_ANCHORS_RELEASED` / `PACKET_ANCHORS_ABORTED` carrying **exactly
+   five rows** with an authorized owner actor. `CLAIMED`, `AUTHORING`,
+   `MATERIALIZED`, `RETIRED` and `RECOVERABLE` all occupy.
+
+2. **No crash window may produce under-occupancy.** Over-occupancy — an anchor
+   held longer or more strongly than strictly necessary — is always safe and
+   always preferred. A transition may be applied per row if and only if every
+   intermediate state is occupying.
+
+3. **The queue projection is total and has no default branch.** An
+   unrecognised lifecycle state raises `AnchorLedgerCorrupt`; an unrecognised
+   queue state raises `GateError`. Neither is dropped. A silently dropped row
+   is an invisible occupancy, and the gate has no basis for deciding that an
+   unfamiliar state means "free".
+
+**Why**: a lease lapse is the most common failure in an autonomous line. If
+lapsing freed the anchor, a packet that merely *died* would surrender its
+passages to any sibling packet with no owner adjudication and no exact-anchor
+collision to raise suspicion. An earlier revision of this design did exactly
+that, and it survived three self-authored review passes before an independent
+reviewer found it.
+
+**Enforcement**: `scripts/story_factory/anchor_claims.py` (single projection
+function, packet-atomic freeing events, replay that rejects a per-row free),
+`scripts/preflight_anchor_overlap.py` (`KNOWN_QUEUE_STATES` fails closed),
+`AutonomousStoryController.reservation_to_queue_state` (total over the
+reservation service's states), and the suites
+`scripts/tests/test_anchor_claims.py` and
+`scripts/tests/test_controller_real_reservations.py`.
+
+**Corollary — materialized occupies.** A materialized story's anchor projects
+to `locked`, not to a string outside the gate's vocabulary. Asserting only that
+the gate blocks is insufficient: `harvest()` finds materialized stories on disk
+independently, and that masking disappears the moment a sibling packet runs in
+a worktree the controller was not given. Tests assert the emitted **literal**.
+
+---
+
 ## Future Invariants
 
 As the project evolves, additional invariants may be added here. Each invariant must:

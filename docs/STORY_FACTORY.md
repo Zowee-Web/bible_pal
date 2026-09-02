@@ -465,3 +465,115 @@ stories are grandfathered — no corpus migration, no audio regeneration. Story 
 (short/full/long) are unchanged.
 
 See `docs/REFLECTION_VOICE.md` for the editorial voice this length contract serves.
+
+---
+
+## 14. Global anchor claim ledger (multi-packet, 2026-08-31)
+
+Story-ID reservations answer *who owns this number*. They do not answer *who
+owns this passage*. Before this section, the overlap gate's queue was built
+from one packet's own five slots, so two packets running at once could each
+pass anchor preflight against a queue that never mentioned the other. The
+**anchor claim ledger** (`scripts/story_factory/anchor_claims.py`,
+`anchor_claims.jsonl` in the factory home) is the missing authority.
+
+### 14.1 Lifecycle and queue projection
+
+| State | Occupying? | Queue projection | Entered by | Left by |
+|---|---|---|---|---|
+| `CLAIMED` | yes | `reserved` | packet-atomic `PACKET_ANCHORS_CLAIMED` | bind, authoring, release, abort, lapse |
+| `AUTHORING` | yes | `authoring` | per-row, at writer assignment | materialize, release, abort, lapse |
+| `MATERIALIZED` | yes | `locked` | per-row, at materialization | retire only |
+| `RETIRED` | yes | `locked` | per-row, at catalog registration | never |
+| `RECOVERABLE` | **yes** | `reserved` | lease expiry | owner-authorized release/abort, or resumption |
+| `RELEASED` | no | omitted | packet-atomic `PACKET_ANCHORS_RELEASED` | terminal |
+| `ABORTED` | no | omitted | packet-atomic `PACKET_ANCHORS_ABORTED` | terminal |
+
+`claim_to_overlap_queue_row()` is the single translation point. It has **no
+default branch**: an unrecognised state raises `AnchorLedgerCorrupt` rather
+than vanishing, because a silently dropped row is an invisible occupancy. The
+occupying set is *derived* from the projection rather than written a second
+time — a lifecycle table and a projection map written independently is exactly
+how `RECOVERABLE` once became a fail-open.
+
+**Only `RELEASED` and `ABORTED` free an anchor, and nothing frees one
+automatically.** A lease lapse moves a claim to `RECOVERABLE`, which still
+occupies; expiry changes *who may act on the claim*, never *whether the passage
+is taken*.
+
+### 14.2 Atomicity
+
+A lifecycle transition may be applied per row **if and only if** every
+intermediate state is occupying. Otherwise it must be packet-atomic.
+
+- Packet-atomic, exactly five rows: `PACKET_ANCHORS_CLAIMED`,
+  `PACKET_ANCHORS_RELEASED`, `PACKET_ANCHORS_ABORTED`. Replay rejects any of
+  these carrying other than five rows over slots 1..5.
+- Per-row: `ANCHOR_BOUND`, `ANCHOR_AUTHORING`, `ANCHOR_MATERIALIZED`,
+  `ANCHOR_RETIRED`, `ANCHOR_RECOVERABLE` — all occupying → occupying.
+- Defence in depth: a per-row row lacking its packet-level completion event is
+  read as **still occupying** and raises on replay.
+
+### 14.3 Identity before a story ID exists
+
+A claim is made before IDs are reserved, so it carries
+`(runId, packetId, slotId, normalizedAnchor, anchorKey)` and a deterministic
+**negative** `comparisonId`. `ANCHOR_BOUND` replaces that identity with the
+real story ID exactly once; rebinding is refused and a story ID is never shared
+across claims.
+
+`pendingEventId` is a **pure function** of the transaction, not a fresh UUID.
+It is one of the seven lock-identity fields, so a random value would make an
+honest retry look divergent and the recovery branch unreachable.
+
+### 14.4 `EEXIST` on an exact-anchor lock
+
+| Owner | Committed? | Identity | Action |
+|---|---|---|---|
+| Foreign | either | — | `AnchorConflict`, rollback, no append |
+| Ours | yes | all seven match **and all five locks reconcile** | adopt, idempotent success |
+| Ours | yes | any of the five locks missing | `AnchorClaimRecoveryRequired`, owner-gated, lock never recreated |
+| Ours | no | all seven match | `AnchorClaimRecoveryRequired`, owner-gated |
+| Ours | either | any divergence | `AnchorLedgerCorrupt`, halt, no mutation |
+
+Nothing is ever auto-deleted, auto-stolen or auto-recreated.
+
+A committed retry reconciles **all five** exact-anchor locks before returning
+idempotent success. A matching ledger proves the claim exists; it does not
+prove the advisory exclusivity locks that make the claim enforceable are still
+in place, and those are separate files that can be removed or replaced out of
+band. Four matching locks never adopt a packet. When several rows are bad the
+findings are reported in a fixed severity order — corrupt, then conflict, then
+missing — so the outcome is deterministic rather than dependent on scan order.
+
+Because backfill writes only the ACL, a backfilled historical packet has **no**
+L2 locks; re-claiming one through the autonomous path therefore fails closed
+with `AnchorClaimRecoveryRequired` rather than silently adopting it.
+
+### 14.5 Lock order
+
+`L1` ACL ledger → `L2` exact anchor locks (canonical `anchorKey` order) →
+`L3` reservation ledger → `L4` per-story locks → `L5` packet journal →
+`L6` materialization swap. Acquiring a lower rank while holding a higher one
+raises `LockOrderViolation` rather than deadlocking under load.
+
+### 14.6 Backfill
+
+`backfill_packet_claims()` **appends ACL evidence only**. It never rewrites the
+controller journal, the reservation ledger, `packet.json`, story bytes,
+metadata, manifests, registries or audio. Its only write is an append to
+`anchor_claims.jsonl`.
+
+The guarantee is **structural, not defensive**: backfill opens exactly one path
+for writing, declared as `BACKFILL_WRITE_SURFACE`.
+`BACKFILL_FORBIDDEN_WRITES_DOC_CONTRACT` is a documentation and test contract
+listing what must never be written — it is consulted by nothing at runtime and
+is named so that no reader mistakes it for a guard. Enforcement lives in the
+tests, which assert the write surface both structurally and by hashing the
+whole factory home before and after.
+
+### 14.7 Gate vocabulary
+
+`preflight_anchor_overlap.KNOWN_QUEUE_STATES` is a closed vocabulary
+(`reserved`, `authoring`, `locked`, `abandoned`, `expired`, `released`). A
+state outside it is a hard `GateError`, never a silent PASS.

@@ -87,9 +87,20 @@ VERSIFICATION = "WEB"
 
 EXIT_PASS, EXIT_WARN, EXIT_BLOCK, EXIT_ERROR = 0, 10, 20, 30
 
-# Reservation states that occupy coverage. Anything else (abandoned, expired,
-# released, ...) does not reserve the passage.
+# Reservation states that occupy coverage.
 OCCUPYING_STATES = frozenset({"reserved", "authoring", "locked"})
+
+# Queue states that are known NOT to occupy. This list is a closed vocabulary,
+# not an "everything else" default: an unrecognised state used to be silently
+# dropped, which meant any producer typo or any new lifecycle name became an
+# invisible non-occupancy. The gate cannot tell a deliberately-free state from
+# a state it has never heard of, so it must not guess.
+NON_OCCUPYING_STATES = frozenset({"abandoned", "expired", "released"})
+
+# The complete queue vocabulary. A state outside it is a hard GateError, never
+# a silent PASS. Extending this set is a deliberate act, and adding a name here
+# is a decision about whether that name reserves a passage.
+KNOWN_QUEUE_STATES = OCCUPYING_STATES | NON_OCCUPYING_STATES
 
 # An approval is a HUMAN act. Authorization is an ALLOWLIST, never a denylist:
 # a denylist can only refuse identities someone thought of in advance, so any
@@ -410,7 +421,11 @@ def harvest(worktrees: list[str]) -> tuple[dict, list[dict], list[str], list[dic
 def load_reservations(path: str | None) -> list[dict]:
     """Small decoupled interface for the concurrently-built ID reservation
     service. Accepts {"reservations":[...]} or a bare list. Each entry needs
-    storyId, proposedAnchor, state. Only OCCUPYING_STATES reserve coverage."""
+    storyId, proposedAnchor, state. Only OCCUPYING_STATES reserve coverage.
+
+    A state outside KNOWN_QUEUE_STATES fails closed rather than being dropped:
+    silently ignoring an unrecognised state is indistinguishable from declaring
+    the passage free, which is the one answer the gate must never guess."""
     if not path:
         return []
     if not os.path.exists(path):
@@ -433,6 +448,13 @@ def load_reservations(path: str | None) -> list[dict]:
         state = (e.get("state") or "").strip().lower()
         if sid is None or not anchor or not state:
             raise GateError(f"reservation entry missing storyId/proposedAnchor/state: {e}")
+        if state not in KNOWN_QUEUE_STATES:
+            # Fail closed. A dropped row is an invisible occupancy, and the
+            # gate has no basis for deciding that an unfamiliar state is free.
+            raise GateError(
+                f"unknown reservation queue state {state!r} for story {sid}; "
+                f"known states: {sorted(KNOWN_QUEUE_STATES)}"
+            )
         out.append({"storyId": sid, "anchor": anchor, "state": state,
                     "origin": "queue", "path": path})
     return out

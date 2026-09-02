@@ -25,6 +25,7 @@ sys.path.insert(0, os.path.join(REPO_ROOT, "scripts"))
 
 from preflight_anchor_overlap import (  # noqa: E402
     EXIT_BLOCK, EXIT_ERROR, EXIT_PASS, EXIT_WARN,
+    KNOWN_QUEUE_STATES, NON_OCCUPYING_STATES, OCCUPYING_STATES,
     CoverageIntegrityError, GateError, classify, evaluate, main,
     normalize_reference, is_boundary_adjacent, load_bible, verse_set,
 )
@@ -483,6 +484,79 @@ class TestReservations(Base):
                 r = self.run_gate("Nahum 1:1-15", [], reservations_path=q)
                 self.assertEqual(r["verdict"], "PASS")
                 self.assertEqual(r["universe"]["occupyingReservations"], 0)
+
+    def test_materialized_state_fails_closed(self):
+        # The producer defect that motivated the closed vocabulary: the
+        # controller once emitted "materialized", which is not a gate state.
+        # It was silently dropped, so a materialized story occupied nothing.
+        q = self._queue([{"storyId": 1704, "proposedAnchor": "Nahum 1:1-15",
+                          "state": "materialized"}])
+        with self.assertRaises(GateError) as ctx:
+            self.run_gate("Nahum 1:1-15", [], reservations_path=q)
+        self.assertIn("materialized", str(ctx.exception))
+
+    def test_arbitrary_future_state_fails_closed(self):
+        for state in ("suspended", "claimed", "recoverable", "authoring_v2",
+                      "reservd", "materialised", "retired", "aborted"):
+            with self.subTest(state=state):
+                q = self._queue([{"storyId": 1705,
+                                  "proposedAnchor": "Nahum 1:1-15",
+                                  "state": state}])
+                with self.assertRaises(GateError):
+                    self.run_gate("Nahum 1:1-15", [], reservations_path=q)
+
+    def test_case_and_whitespace_are_normalised_before_the_vocabulary_check(self):
+        # Pre-existing loader behaviour, pinned deliberately: the state is
+        # .strip().lower()-ed first, so "LOCKED " is the known state "locked"
+        # and must still BLOCK.  Only a genuinely unrecognised NAME fails
+        # closed -- the vocabulary check is not a formatting check.
+        for state in ("LOCKED ", "  Reserved", "AUTHORING"):
+            with self.subTest(state=state):
+                q = self._queue([{"storyId": 1708,
+                                  "proposedAnchor": "Nahum 1:1-15",
+                                  "state": state}])
+                result = self.run_gate("Nahum 1:1-15", [], reservations_path=q)
+                self.assertEqual(result["verdict"], "BLOCK")
+        for state in (" Released ", "EXPIRED"):
+            with self.subTest(state=state):
+                q = self._queue([{"storyId": 1709,
+                                  "proposedAnchor": "Nahum 1:1-15",
+                                  "state": state}])
+                result = self.run_gate("Nahum 1:1-15", [], reservations_path=q)
+                self.assertEqual(result["verdict"], "PASS")
+
+    def test_unknown_state_fails_closed_even_when_it_cannot_collide(self):
+        # An unknown state is refused on sight, not merely when it would have
+        # blocked something.  The gate has no basis for deciding an unfamiliar
+        # name is free, so it must not reach a verdict at all.
+        q = self._queue([{"storyId": 1706, "proposedAnchor": "Jonah 1:1-17",
+                          "state": "suspended"}])
+        with self.assertRaises(GateError):
+            self.run_gate("Nahum 1:1-15", [], reservations_path=q)
+
+    def test_known_vocabulary_is_closed_and_partitioned(self):
+        self.assertEqual(KNOWN_QUEUE_STATES,
+                         OCCUPYING_STATES | NON_OCCUPYING_STATES)
+        self.assertEqual(OCCUPYING_STATES & NON_OCCUPYING_STATES, frozenset())
+        self.assertEqual(OCCUPYING_STATES, {"reserved", "authoring", "locked"})
+        self.assertEqual(NON_OCCUPYING_STATES,
+                         {"abandoned", "expired", "released"})
+
+    def test_every_known_state_is_accepted_and_classified(self):
+        # Pins legacy semantics: every name in the vocabulary parses, and each
+        # one lands on the side of the partition it is declared on.
+        for state in sorted(KNOWN_QUEUE_STATES):
+            with self.subTest(state=state):
+                q = self._queue([{"storyId": 1707,
+                                  "proposedAnchor": "Nahum 1:1-15",
+                                  "state": state}])
+                result = self.run_gate("Nahum 1:1-15", [], reservations_path=q)
+                if state in OCCUPYING_STATES:
+                    self.assertEqual(result["verdict"], "BLOCK")
+                    self.assertEqual(result["universe"]["occupyingReservations"], 1)
+                else:
+                    self.assertEqual(result["verdict"], "PASS")
+                    self.assertEqual(result["universe"]["occupyingReservations"], 0)
 
     def test_malformed_reservation_fails_closed(self):
         q = self._queue([{"storyId": 1703}])
