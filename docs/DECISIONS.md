@@ -1775,6 +1775,79 @@ are affected.
 
 ---
 
+## ADR-034: Owner-Authorized Length Reclassification
+
+**Date:** 2026-09-02
+**Status:** Accepted
+
+**Context:** ADR-030 §4 makes Short the default and Full and Long *conditional*
+on what the approved anchor honestly supports, and forbids padding, repeated
+propositions, invented physical detail, unstated thoughts or motives, and
+theological commentary added to reach a floor. But the controller had no way to
+act on that. Once a packet was planned with `["short","full","long"]`, the only
+paths available when a reviewer found a band unsupported were to have a writer
+pad to the floor — the exact failure ADR-030 forbids — or to quarantine the
+packet. Stories 3001 (2 Kings 9:1-13) and 3003 (2 Chronicles 26:16-21) are the
+concrete cases: independent adjudication found their Long bands, and 3003's Full
+band, unsupported by the anchors.
+
+**Decision:** Add `STORY_LENGTHS_RECLASSIFIED`, a same-state controller event
+legal **only** in `REVIEW_CHANGES_REQUESTED`, that removes unsupported length
+bands from a story's authoritative `targetLengths`.
+
+1. **Downward tail truncation only** — `0 < len(new) < len(old)` and
+   `new == old[:len(new)]`. `short` is never removable; no band may be added or
+   re-added; non-tail sets like `["short","long"]` are refused. Enforced in the
+   operation **and** in replay, because `validate_packet_model` accepts
+   `["short","long"]` as canonically ordered.
+2. **One distinct persisted reviewer finding per removed band**, validated
+   **bidirectionally**. Every removed band needs its own finding at its own
+   index, and every length-support finding the reviewer recorded must
+   correspond to a removed band. `findingText` must be **byte-equal** to the
+   persisted `unresolvedFindings` entry and match the pinned sentence
+   `length band (short|full|long) is not supported by the passage`.
+3. **Owner attestation of reviewer separation, explicitly not machine proof.**
+   Recorded as the literal
+   `REVIEWER_SEPARATION_OWNER_ATTESTED_NOT_MACHINE_PROVEN` in both the evidence
+   record and the event reason.
+4. **Evidence binding** to `reviewVerdictsRound{reviewRound}` and
+   `writerOutputAttempt{max attempt}` — no floating "latest", no
+   caller-selected hash.
+5. **Omission is not deletion.** No story, reflection, scripture, metadata,
+   audio or historical artifact is removed. Prior materialization evidence is
+   retained.
+6. **No correction round is consumed**; the cap of 3 is neither reset nor
+   bypassed.
+
+**Rationale — why attestation and not a `reviewer` schema field:** the factory
+has no authentication substrate. One uid, no signing key, no separate
+credential, and every event already carries `actor="owner"`. The `review` dict
+is a caller argument, so a `reviewer` field would be **exactly as
+caller-supplied as an attestation while looking like proof**. That is strictly
+worse than an honest attestation: it manufactures false confidence. It would
+also break the exact-set check that makes review input tamper-evident in shape.
+This ADR therefore claims no authenticated identity and no cryptographic
+identity proof, and says so in the recorded literal so no later reader of the
+journal can mistake it.
+
+**Rationale — why one finding per band:** a single finding naming the highest
+removed band would let `short/full/long → short` drop **Full** on a **Long**-only
+finding, with no reviewer statement about Full at all. The bidirectional rule
+also disposes of the retained-`short` case: a `length band short is not
+supported` finding can never be consumed, so the request fails and the
+contradiction reaches the owner instead of being silently dropped.
+
+**Consequences:**
+- `CONTROLLER_SCHEMA_VERSION` stays 2. No slot-shape change, no event-field
+  change; extension is through the free-form `evidenceHashes` dict only.
+- New: `is_legal_downward_move`, `normalize_role`,
+  `length_support_finding_bucket`, `reclassify_story_lengths`, the
+  `reclassify-lengths` CLI subcommand, and the replay invariants.
+- `ingest_review` and the review schema are unchanged.
+- Reclassification is owner-only and cannot bypass normal review ingestion.
+
+---
+
 ## ADR-XXX: [Title]
 
 **Date:** YYYY-MM-DD

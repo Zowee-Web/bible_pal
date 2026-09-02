@@ -1452,6 +1452,916 @@ class ReviewAndCorrectionTests(ControllerTestCase):
         self.assertIn("READY_FOR_HUMAN_REVIEW", report.read_text())
 
 
+FULL_FINDING = "length band full is not supported by the passage"
+LONG_FINDING = "length band long is not supported by the passage"
+SHORT_FINDING = "length band short is not supported by the passage"
+
+
+class LengthReclassificationTestCase(ControllerTestCase):
+    """Harness for ADR-030 owner-authorized length reclassification.
+
+    Plans a three-bucket packet, drives it to REVIEW_CHANGES_REQUESTED with
+    real length-support findings, and builds a valid owner attestation bound to
+    the evidence the controller actually recorded.
+    """
+
+    THREE = ["short", "full", "long"]
+
+    def planning(self, *, count=5, narrator="VOICE_SARAH_STORYTELLER"):
+        return {
+            "stories": [
+                {
+                    "proposedAnchor": ANCHORS[index],
+                    "mood": "encouraging",
+                    "narrator": narrator,
+                    "lengths": list(self.THREE),
+                }
+                for index in range(count)
+            ]
+        }
+
+    def changes_requested(self, findings_by_id=None):
+        self.review_ready()
+        packet = self.controller.load(self.run_id, self.packet_id)
+        default = ["Revise bounded detail."]
+        review = {"stories": [
+            {"storyId": slot["storyId"], "verdict": "CHANGES_REQUESTED",
+             "findings": list((findings_by_id or {}).get(slot["storyId"], default))}
+            for slot in packet["slots"]
+        ]}
+        return self.controller.ingest_review(
+            self.run_id, self.packet_id, review=review, actor=self.actor,
+        )
+
+    def attestation(self, packet=None, **over):
+        packet = packet or self.controller.load(self.run_id, self.packet_id)
+        attempts = max(slot["writerAttempts"] for slot in packet["slots"])
+        value = {
+            "reviewerRole": "Claude Window 3 (reviewer)",
+            "writerOrRepairerRole": "Codex Window 1 (writer)",
+            "differentActorsAttestedByOwner": True,
+            "ownerActor": packet["actor"],
+            "reviewEvidenceSha256":
+                packet["evidenceHashes"][f"reviewVerdictsRound{packet['reviewRound']}"],
+            "writerEvidenceSha256":
+                packet["evidenceHashes"][f"writerOutputAttempt{attempts}"],
+        }
+        value.update(over)
+        return value
+
+    def request(self, story_id, to_lengths, findings, *, from_lengths=None,
+                rationale="anchor does not support the removed band"):
+        packet = self.controller.load(self.run_id, self.packet_id)
+        slot = next(s for s in packet["slots"] if s["storyId"] == story_id)
+        return {
+            "storyId": story_id,
+            "fromLengths": list(from_lengths if from_lengths is not None
+                                else slot["targetLengths"]),
+            "toLengths": list(to_lengths),
+            "removedBucketFindings": findings,
+            "rationale": rationale,
+        }
+
+    def finding_map(self, story_id, buckets):
+        packet = self.controller.load(self.run_id, self.packet_id)
+        slot = next(s for s in packet["slots"] if s["storyId"] == story_id)
+        out = {}
+        for bucket in buckets:
+            text = f"length band {bucket} is not supported by the passage"
+            out[bucket] = {"findingIndex": slot["unresolvedFindings"].index(text),
+                           "findingText": text}
+        return out
+
+    _DEFAULT = object()
+
+    def reclassify(self, reclassifications, *, attestation=_DEFAULT, actor=None,
+                   owner_authorized=True):
+        # A sentinel, not None: several tests must pass None as the attestation
+        # and see it refused, which a None-means-default helper cannot express.
+        if attestation is self._DEFAULT:
+            attestation = self.attestation()
+        return self.controller.reclassify_story_lengths(
+            self.run_id, self.packet_id,
+            actor=actor if actor is not None else self.actor,
+            reclassifications=reclassifications,
+            reviewer_attestation=attestation,
+            owner_authorized=owner_authorized,
+        )
+
+    def journal_bytes(self):
+        return (self.controller.packet_dir(self.run_id, self.packet_id)
+                / "events.jsonl").read_bytes()
+
+    def drop_long(self, story_id):
+        """The story-3001 shape: short/full/long -> short/full."""
+        self.changes_requested({story_id: [LONG_FINDING]})
+        return self.request(story_id, ["short", "full"],
+                            self.finding_map(story_id, ["long"]))
+
+    def drop_full_and_long(self, story_id):
+        """The story-3003 shape: short/full/long -> short, two findings."""
+        self.changes_requested({story_id: [FULL_FINDING, LONG_FINDING]})
+        return self.request(story_id, ["short"],
+                            self.finding_map(story_id, ["full", "long"]))
+
+
+class LengthReclassificationHappyPathTests(LengthReclassificationTestCase):
+
+    def test_row_43_long_only_removal_passes(self):
+        request = self.drop_long(3001)
+        packet = self.reclassify([request])
+        slot = next(s for s in packet["slots"] if s["storyId"] == 3001)
+        self.assertEqual(slot["targetLengths"], ["short", "full"])
+        self.assertEqual(
+            len(controller.expected_artifact_names(3001, slot["targetLengths"])), 9)
+
+    def test_row_44_full_and_long_removal_with_both_findings_passes(self):
+        request = self.drop_full_and_long(3003)
+        packet = self.reclassify([request])
+        slot = next(s for s in packet["slots"] if s["storyId"] == 3003)
+        self.assertEqual(slot["targetLengths"], ["short"])
+        self.assertEqual(
+            len(controller.expected_artifact_names(3003, slot["targetLengths"])), 7)
+
+    def test_row_42_status_literal_in_evidence_and_event_reason(self):
+        request = self.drop_long(3001)
+        self.reclassify([request])
+        evidence = json.loads((
+            self.controller.packet_dir(self.run_id, self.packet_id)
+            / "reclassifications" / "round-1" / "story_3001.json"
+        ).read_text())
+        self.assertEqual(evidence["separationStatus"],
+                         "REVIEWER_SEPARATION_OWNER_ATTESTED_NOT_MACHINE_PROVEN")
+        journal = self.journal_bytes().decode().splitlines()
+        event = json.loads(journal[-1])
+        self.assertEqual(event["eventType"], "STORY_LENGTHS_RECLASSIFIED")
+        self.assertIn("REVIEWER_SEPARATION_OWNER_ATTESTED_NOT_MACHINE_PROVEN",
+                      event["reason"])
+        self.assertEqual(event["fromState"], event["toState"])
+
+    def test_evidence_records_raw_roles_and_omission_semantics(self):
+        request = self.drop_full_and_long(3003)
+        self.reclassify([request])
+        evidence = json.loads((
+            self.controller.packet_dir(self.run_id, self.packet_id)
+            / "reclassifications" / "round-1" / "story_3003.json"
+        ).read_text())
+        self.assertEqual(evidence["reviewerAttestation"]["reviewerRole"],
+                         "Claude Window 3 (reviewer)")
+        self.assertEqual(evidence["reviewerAttestation"]["writerOrRepairerRole"],
+                         "Codex Window 1 (writer)")
+        self.assertTrue(evidence["omissionIsNotDeletion"])
+        self.assertEqual(evidence["removedLengths"], ["full", "long"])
+        self.assertEqual(evidence["retainedArtifactCount"], 7)
+        self.assertEqual(len(evidence["removedArtifacts"]), 4)
+        self.assertEqual(evidence["adr"], "ADR-030")
+
+    def test_correction_round_is_not_consumed(self):
+        packet_before = self.changes_requested({3001: [LONG_FINDING]})
+        request = self.request(3001, ["short", "full"],
+                               self.finding_map(3001, ["long"]))
+        packet = self.reclassify([request])
+        self.assertEqual(packet["correctionRound"], packet_before["correctionRound"])
+        self.assertEqual(packet["reviewRound"], packet_before["reviewRound"])
+        self.assertEqual(packet["state"], controller.REVIEW_CHANGES_REQUESTED)
+
+    def test_subsequent_emit_corrections_uses_the_reduced_set(self):
+        request = self.drop_full_and_long(3003)
+        self.reclassify([request])
+        packet = self.controller.emit_corrections(
+            self.run_id, self.packet_id, actor=self.actor)
+        self.assertEqual(packet["correctionRound"], 1)
+        assignment = json.loads((
+            self.controller.packet_dir(self.run_id, self.packet_id)
+            / "corrections" / "round-1" / "story_3003.json").read_text())
+        expected = set(controller.expected_artifact_names(3003, ["short"]))
+        names = {value for value in assignment.values() if isinstance(value, str)}
+        listed = {name for value in assignment.values() if isinstance(value, list)
+                  for name in value if isinstance(name, str)}
+        self.assertTrue(expected <= (names | listed),
+                        f"correction assignment does not carry the reduced set: {assignment}")
+        self.assertNotIn(f"story_3003_traditional_web_long.txt", names | listed)
+
+    def test_multiple_stories_in_one_event(self):
+        self.changes_requested({3001: [LONG_FINDING],
+                                3003: [FULL_FINDING, LONG_FINDING]})
+        packet = self.reclassify([
+            self.request(3001, ["short", "full"], self.finding_map(3001, ["long"])),
+            self.request(3003, ["short"], self.finding_map(3003, ["full", "long"])),
+        ])
+        by_id = {s["storyId"]: s for s in packet["slots"]}
+        self.assertEqual(by_id[3001]["targetLengths"], ["short", "full"])
+        self.assertEqual(by_id[3003]["targetLengths"], ["short"])
+        # non-target stories unchanged
+        for story_id in (3000, 3002, 3004):
+            self.assertEqual(by_id[story_id]["targetLengths"], self.THREE)
+
+    def test_snapshot_equals_replay(self):
+        request = self.drop_long(3001)
+        packet = self.reclassify([request])
+        replayed = self.controller.load(self.run_id, self.packet_id)
+        self.assertEqual(replayed, packet)
+
+
+class LengthReclassificationAuthorizationTests(LengthReclassificationTestCase):
+
+    def test_no_owner_authorization_is_refused(self):
+        request = self.drop_long(3001)
+        before = self.journal_bytes()
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request], owner_authorized=False)
+        self.assertEqual(self.journal_bytes(), before)
+
+    def test_owner_authorized_must_be_literal_true(self):
+        request = self.drop_long(3001)
+        for truthy in (1, "true", "yes", [1], {"a": 1}):
+            with self.subTest(value=truthy):
+                with self.assertRaises(controller.ReviewRejected):
+                    self.reclassify([request], owner_authorized=truthy)
+
+    def test_actor_mismatch_is_refused(self):
+        request = self.drop_long(3001)
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request], actor="claude")
+
+    def test_row_39_missing_or_malformed_attestation_is_refused(self):
+        request = self.drop_long(3001)
+        before = self.journal_bytes()
+        for bad in (None, "attested", 42, [], {},
+                    {"reviewerRole": "a"},
+                    dict(self.attestation(), extra="x")):
+            with self.subTest(attestation=repr(bad)[:40]):
+                with self.assertRaises(controller.ReviewRejected):
+                    self.reclassify([request], attestation=bad)
+        missing = self.attestation()
+        del missing["ownerActor"]
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request], attestation=missing)
+        self.assertEqual(self.journal_bytes(), before)
+
+    def test_different_actors_flag_must_be_literal_true(self):
+        request = self.drop_long(3001)
+        for value in (False, 1, "true", None):
+            with self.subTest(value=value):
+                with self.assertRaises(controller.ReviewRejected):
+                    self.reclassify([request], attestation=self.attestation(
+                        differentActorsAttestedByOwner=value))
+
+    def test_owner_actor_must_equal_packet_owner(self):
+        request = self.drop_long(3001)
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request],
+                            attestation=self.attestation(ownerActor="claude"))
+
+    def test_row_40_identical_roles_are_refused(self):
+        request = self.drop_long(3001)
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request], attestation=self.attestation(
+                reviewerRole="Claude Window 2",
+                writerOrRepairerRole="Claude Window 2"))
+
+    def test_row_40_roles_differing_only_by_case_or_whitespace_are_refused(self):
+        request = self.drop_long(3001)
+        for reviewer, writer in (
+            ("Claude Window 2", "claude  window 2"),
+            ("Claude Window 2", "  CLAUDE WINDOW 2  "),
+            ("codex", "CODEX"),
+            ("a  b", "a b"),
+        ):
+            with self.subTest(reviewer=reviewer, writer=writer):
+                with self.assertRaises(controller.ReviewRejected):
+                    self.reclassify([request], attestation=self.attestation(
+                        reviewerRole=reviewer, writerOrRepairerRole=writer))
+
+    def test_row_40_roles_differing_only_by_unicode_normalization_are_refused(self):
+        # NFD "Cafe\u0301" and NFC "Café" are the same name; refusing them is
+        # the safe direction, because two roles that differ only in Unicode
+        # form are far more likely to be one person than two.
+        request = self.drop_long(3001)
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request], attestation=self.attestation(
+                reviewerRole="Caf\u00e9 Reviewer",
+                writerOrRepairerRole="Cafe\u0301 Reviewer"))
+
+    def test_row_40_empty_or_whitespace_roles_are_refused(self):
+        request = self.drop_long(3001)
+        for role in ("", "   ", "\t\n", "\u00a0"):
+            with self.subTest(role=repr(role)):
+                with self.assertRaises(controller.ReviewRejected):
+                    self.reclassify([request], attestation=self.attestation(
+                        reviewerRole=role))
+
+    def test_non_string_roles_are_refused(self):
+        request = self.drop_long(3001)
+        for role in (None, 7, ["a"], {"a": 1}):
+            with self.subTest(role=repr(role)):
+                with self.assertRaises(controller.ReviewRejected):
+                    self.reclassify([request], attestation=self.attestation(
+                        reviewerRole=role))
+
+    def test_distinct_roles_are_accepted(self):
+        request = self.drop_long(3001)
+        packet = self.reclassify([request], attestation=self.attestation(
+            reviewerRole="Claude Window 3", writerOrRepairerRole="Codex Window 1"))
+        self.assertEqual(
+            next(s for s in packet["slots"] if s["storyId"] == 3001)["targetLengths"],
+            ["short", "full"])
+
+
+class LengthReclassificationEvidenceBindingTests(LengthReclassificationTestCase):
+
+    def test_row_41_malformed_evidence_hashes_are_refused(self):
+        request = self.drop_long(3001)
+        for field in ("reviewEvidenceSha256", "writerEvidenceSha256"):
+            for bad in ("", "xyz", "A" * 64, "0" * 63, "0" * 65, None, 42,
+                        "0" * 64):
+                with self.subTest(field=field, value=repr(bad)[:24]):
+                    with self.assertRaises(controller.ReviewRejected):
+                        self.reclassify([request],
+                                        attestation=self.attestation(**{field: bad}))
+
+    def test_row_41_stale_review_verdicts_hash_is_refused(self):
+        request = self.drop_long(3001)
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request], attestation=self.attestation(
+                reviewEvidenceSha256="b" * 64))
+
+    def test_row_41_stale_writer_output_hash_is_refused(self):
+        request = self.drop_long(3001)
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request], attestation=self.attestation(
+                writerEvidenceSha256="c" * 64))
+
+    def test_arbitrary_caller_selected_evidence_is_refused(self):
+        # Any other recorded hash from the same packet -- real, well-formed,
+        # and hash-chained -- is still refused, because the binding is to a
+        # specific key, not to "some hash the controller has seen".
+        request = self.drop_long(3001)
+        packet = self.controller.load(self.run_id, self.packet_id)
+        for key, value in packet["evidenceHashes"].items():
+            if key.startswith("reviewVerdictsRound"):
+                continue
+            with self.subTest(key=key):
+                with self.assertRaises(controller.ReviewRejected):
+                    self.reclassify([request], attestation=self.attestation(
+                        reviewEvidenceSha256=value))
+
+    def test_evidence_hashes_bind_to_the_current_review_round(self):
+        request = self.drop_long(3001)
+        packet = self.controller.load(self.run_id, self.packet_id)
+        self.assertEqual(packet["reviewRound"], 1)
+        attestation = self.attestation()
+        self.assertEqual(attestation["reviewEvidenceSha256"],
+                         packet["evidenceHashes"]["reviewVerdictsRound1"])
+        self.reclassify([request], attestation=attestation)
+
+    def test_writer_hash_binds_to_the_max_attempt(self):
+        request = self.drop_long(3001)
+        packet = self.controller.load(self.run_id, self.packet_id)
+        attempts = max(slot["writerAttempts"] for slot in packet["slots"])
+        self.assertEqual(
+            self.attestation()["writerEvidenceSha256"],
+            packet["evidenceHashes"][f"writerOutputAttempt{attempts}"])
+
+
+class LengthReclassificationFindingTests(LengthReclassificationTestCase):
+
+    def test_row_45_full_and_long_removal_with_long_finding_only_is_refused(self):
+        # The V1 defect, pinned: story 3003 must not lose Full on a Long-only
+        # finding.  This is the single most important test in the suite.
+        self.changes_requested({3003: [LONG_FINDING]})
+        request = self.request(3003, ["short"],
+                               self.finding_map(3003, ["long"]))
+        before = self.journal_bytes()
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request])
+        self.assertEqual(self.journal_bytes(), before)
+        slot = next(s for s in self.controller.load(self.run_id, self.packet_id)["slots"]
+                    if s["storyId"] == 3003)
+        self.assertEqual(slot["targetLengths"], self.THREE)
+
+    def test_missing_finding_for_a_removed_bucket_is_refused(self):
+        self.changes_requested({3003: [FULL_FINDING, LONG_FINDING]})
+        partial = self.finding_map(3003, ["long"])
+        request = self.request(3003, ["short"], partial)
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request])
+
+    def test_row_47_extra_qualifying_finding_with_no_removed_bucket_is_refused(self):
+        # Reviewer said Full is unsupported; the request removes only Long.
+        # Silently ignoring the Full finding is exactly what rule 5 forbids.
+        self.changes_requested({3001: [FULL_FINDING, LONG_FINDING]})
+        request = self.request(3001, ["short", "full"],
+                               self.finding_map(3001, ["long"]))
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request])
+
+    def test_row_47_duplicate_finding_index_is_refused(self):
+        self.changes_requested({3003: [FULL_FINDING, LONG_FINDING]})
+        mapping = self.finding_map(3003, ["full", "long"])
+        mapping["long"]["findingIndex"] = mapping["full"]["findingIndex"]
+        mapping["long"]["findingText"] = mapping["full"]["findingText"]
+        request = self.request(3003, ["short"], mapping)
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request])
+
+    def test_row_51_paraphrased_finding_text_is_refused(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+        mapping = self.finding_map(3001, ["long"])
+        mapping["long"]["findingText"] = "The long band is not supported by the passage"
+        request = self.request(3001, ["short", "full"], mapping)
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request])
+
+    def test_finding_text_must_be_byte_equal_even_when_predicate_matches(self):
+        # A findingText that matches the predicate but is not the persisted
+        # string is still refused: the reviewer's actual sentence is the
+        # authority, not a well-formed sentence the caller composed.
+        self.changes_requested({3001: [LONG_FINDING]})
+        mapping = {"long": {"findingIndex": 0, "findingText": FULL_FINDING}}
+        request = self.request(3001, ["short", "full"], mapping)
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request])
+
+    def test_finding_naming_a_different_band_than_its_key_is_refused(self):
+        self.changes_requested({3001: [FULL_FINDING]})
+        mapping = {"long": {"findingIndex": 0, "findingText": FULL_FINDING}}
+        request = self.request(3001, ["short", "full"], mapping)
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request])
+
+    def test_row_46_map_naming_retained_short_is_refused(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+        mapping = self.finding_map(3001, ["long"])
+        mapping["short"] = {"findingIndex": 0, "findingText": LONG_FINDING}
+        request = self.request(3001, ["short", "full"], mapping)
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request])
+
+    def test_row_46_short_finding_can_never_be_consumed(self):
+        # short is not removable, so a "short is not supported" finding can
+        # never correspond to a removed bucket.  The request must fail and the
+        # contradiction reach the owner rather than being dropped.
+        self.changes_requested({3001: [SHORT_FINDING, LONG_FINDING]})
+        request = self.request(3001, ["short", "full"],
+                               self.finding_map(3001, ["long"]))
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request])
+
+    def test_finding_index_out_of_range_is_refused(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+        for index in (-1, 1, 99, True, 1.0, "0"):
+            with self.subTest(index=repr(index)):
+                mapping = {"long": {"findingIndex": index, "findingText": LONG_FINDING}}
+                request = self.request(3001, ["short", "full"], mapping)
+                with self.assertRaises(controller.ReviewRejected):
+                    self.reclassify([request])
+
+    def test_finding_entry_shape_is_exact(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+        for entry in ({"findingIndex": 0}, {"findingText": LONG_FINDING},
+                      {"findingIndex": 0, "findingText": LONG_FINDING, "x": 1},
+                      "text", None, 0):
+            with self.subTest(entry=repr(entry)[:40]):
+                request = self.request(3001, ["short", "full"], {"long": entry})
+                with self.assertRaises(controller.ReviewRejected):
+                    self.reclassify([request])
+
+    def test_finding_from_the_wrong_review_round_is_refused(self):
+        # Round 1 recorded a Long finding; round 2 records only a generic one.
+        # The stale round-1 text is no longer in unresolvedFindings, so citing
+        # it fails on the byte-equality check.
+        self.changes_requested({3001: [LONG_FINDING]})
+        self.controller.emit_corrections(self.run_id, self.packet_id, actor=self.actor)
+        source = self.write_outputs()
+        self.controller.ingest_writer_output(
+            self.run_id, self.packet_id, source_root=source, actor=self.actor)
+        self.controller.validate_outputs(self.run_id, self.packet_id, actor=self.actor)
+        self.controller.materialize_for_review(
+            self.run_id, self.packet_id, actor=self.actor)
+        self.controller.emit_review_packet(self.run_id, self.packet_id, actor=self.actor)
+        packet = self.controller.load(self.run_id, self.packet_id)
+        review = {"stories": [
+            {"storyId": slot["storyId"], "verdict": "CHANGES_REQUESTED",
+             "findings": ["Unrelated round two finding."]}
+            for slot in packet["slots"]]}
+        self.controller.ingest_review(
+            self.run_id, self.packet_id, review=review, actor=self.actor)
+        mapping = {"long": {"findingIndex": 0, "findingText": LONG_FINDING}}
+        request = self.request(3001, ["short", "full"], mapping)
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request])
+
+
+class LengthReclassificationMoveTests(LengthReclassificationTestCase):
+
+    def test_target_set_that_adds_a_bucket_is_refused(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+        request = self.request(3001, ["short", "full", "long", "long"],
+                               self.finding_map(3001, ["long"]))
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request])
+
+    def test_non_subset_target_sets_are_refused(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+        for target in (["short", "long"], ["full", "long"], ["long"], [],
+                       ["short", "full", "long"], ["full"], ["short", "medium"]):
+            with self.subTest(target=target):
+                request = self.request(3001, target,
+                                       self.finding_map(3001, ["long"]))
+                with self.assertRaises(controller.ReviewRejected):
+                    self.reclassify([request])
+
+    def test_short_is_never_removable(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+        request = self.request(3001, ["full"], self.finding_map(3001, ["long"]))
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request])
+
+    def test_stale_from_lengths_is_refused(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+        request = self.request(3001, ["short", "full"],
+                               self.finding_map(3001, ["long"]),
+                               from_lengths=["short", "full"])
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request])
+
+    def test_non_tail_target_is_refused_by_the_truncation_rule_alone(self):
+        # Isolating test.  With a `full` finding recorded and `["short","long"]`
+        # requested, removed == ["full"] and the finding map is complete and
+        # consistent -- so the ONLY rule that can refuse this is the tail
+        # truncation predicate.  Without it, a non-tail set would install.
+        self.changes_requested({3001: [FULL_FINDING]})
+        request = self.request(3001, ["short", "long"],
+                               self.finding_map(3001, ["full"]))
+        before = self.journal_bytes()
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request])
+        self.assertEqual(self.journal_bytes(), before)
+        slot = next(s for s in self.controller.load(self.run_id, self.packet_id)["slots"]
+                    if s["storyId"] == 3001)
+        self.assertEqual(slot["targetLengths"], self.THREE)
+
+    def test_removing_only_a_middle_band_is_refused(self):
+        # short/full/long -> short/long removes Full but keeps Long, which the
+        # bucket experience does not support: a story cannot offer a Long
+        # without the Full beneath it.
+        self.changes_requested({3001: [FULL_FINDING]})
+        request = self.request(3001, ["short", "long"],
+                               self.finding_map(3001, ["full"]))
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request])
+
+    def test_is_legal_downward_move_predicate(self):
+        legal = [(["short", "full", "long"], ["short", "full"]),
+                 (["short", "full", "long"], ["short"]),
+                 (["short", "full"], ["short"])]
+        illegal = [(["short", "full"], ["short", "full", "long"]),
+                   (["short"], ["short", "full"]),
+                   (["short", "full", "long"], []),
+                   (["short", "full"], ["full"]),
+                   (["short", "full", "long"], ["short", "long"]),
+                   (["short"], ["short"]),
+                   (["short", "full"], "short"),
+                   ("short", ["short"])]
+        for old, new in legal:
+            self.assertTrue(controller.is_legal_downward_move(old, new), (old, new))
+        for old, new in illegal:
+            self.assertFalse(controller.is_legal_downward_move(old, new), (old, new))
+
+    def test_wrong_packet_state_is_refused(self):
+        self.review_ready()
+        packet = self.controller.load(self.run_id, self.packet_id)
+        self.assertEqual(packet["state"], controller.REVIEW_READY)
+        slot = next(s for s in packet["slots"] if s["storyId"] == 3001)
+        request = {"storyId": 3001, "fromLengths": list(slot["targetLengths"]),
+                   "toLengths": ["short", "full"],
+                   "removedBucketFindings": {
+                       "long": {"findingIndex": 0, "findingText": LONG_FINDING}},
+                   "rationale": "r"}
+        with self.assertRaises(controller.IllegalControllerTransition):
+            self.controller.reclassify_story_lengths(
+                self.run_id, self.packet_id, actor=self.actor,
+                reclassifications=[request],
+                reviewer_attestation={
+                    "reviewerRole": "r", "writerOrRepairerRole": "w",
+                    "differentActorsAttestedByOwner": True,
+                    "ownerActor": packet["actor"],
+                    "reviewEvidenceSha256": "a" * 64,
+                    "writerEvidenceSha256": "b" * 64,
+                },
+                owner_authorized=True)
+
+    def test_unknown_story_id_is_refused(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+        request = self.request(3001, ["short", "full"],
+                               self.finding_map(3001, ["long"]))
+        request["storyId"] = 9999
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request])
+
+    def test_request_shape_is_exact(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+        base = self.request(3001, ["short", "full"], self.finding_map(3001, ["long"]))
+        for mutate in (lambda r: r.pop("rationale"),
+                       lambda r: r.update(extra=1),
+                       lambda r: r.pop("removedBucketFindings")):
+            with self.subTest():
+                request = copy.deepcopy(base)
+                mutate(request)
+                with self.assertRaises(controller.ReviewRejected):
+                    self.reclassify([request])
+        for bad in ([], "x", None, {}):
+            with self.subTest(payload=repr(bad)):
+                with self.assertRaises(controller.ReviewRejected):
+                    self.reclassify(bad)
+
+    def test_empty_rationale_is_refused(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+        for rationale in ("", "   ", None, 7):
+            with self.subTest(rationale=repr(rationale)):
+                request = self.request(3001, ["short", "full"],
+                                       self.finding_map(3001, ["long"]),
+                                       rationale=rationale)
+                with self.assertRaises(controller.ReviewRejected):
+                    self.reclassify([request])
+
+    def test_same_story_named_twice_is_refused(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+        request = self.request(3001, ["short", "full"],
+                               self.finding_map(3001, ["long"]))
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([request, copy.deepcopy(request)])
+
+
+class LengthReclassificationRetryTests(LengthReclassificationTestCase):
+
+    def test_row_48_identical_retry_is_a_verifying_no_op(self):
+        request = self.drop_long(3001)
+        first = self.reclassify([request])
+        journal = self.journal_bytes()
+        second = self.reclassify([copy.deepcopy(request)])
+        self.assertEqual(self.journal_bytes(), journal, "no duplicate append")
+        self.assertEqual(second, first)
+
+    def test_row_49_divergent_attestation_on_retry_is_refused(self):
+        request = self.drop_long(3001)
+        self.reclassify([request])
+        journal = self.journal_bytes()
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([copy.deepcopy(request)],
+                            attestation=self.attestation(
+                                reviewerRole="Claude Window 9"))
+        self.assertEqual(self.journal_bytes(), journal)
+
+    def test_divergent_rationale_on_retry_is_refused(self):
+        request = self.drop_long(3001)
+        self.reclassify([request])
+        journal = self.journal_bytes()
+        diverged = copy.deepcopy(request)
+        diverged["rationale"] = "a different reason"
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([diverged])
+        self.assertEqual(self.journal_bytes(), journal)
+
+    def test_matching_lengths_alone_never_conclude_a_no_op(self):
+        # The whole point of hashing the payload rather than comparing lengths.
+        request = self.drop_long(3001)
+        self.reclassify([request])
+        diverged = copy.deepcopy(request)
+        diverged["fromLengths"] = ["short", "full"]
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([diverged])
+
+    def test_repeated_bucket_removal_is_refused(self):
+        request = self.drop_full_and_long(3003)
+        self.reclassify([request])
+        journal = self.journal_bytes()
+        second = self.request(3003, ["short"], {}, from_lengths=["short"])
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([second])
+        self.assertEqual(self.journal_bytes(), journal)
+
+    def test_a_different_target_set_under_the_same_authority_is_refused(self):
+        self.changes_requested({3001: [LONG_FINDING],
+                                3003: [FULL_FINDING, LONG_FINDING]})
+        self.reclassify([self.request(3003, ["short"],
+                                      self.finding_map(3003, ["full", "long"]))])
+        journal = self.journal_bytes()
+        with self.assertRaises(controller.ReviewRejected):
+            self.reclassify([self.request(3001, ["short", "full"],
+                                          self.finding_map(3001, ["long"]))])
+        self.assertEqual(self.journal_bytes(), journal)
+
+
+class LengthReclassificationPreservationTests(LengthReclassificationTestCase):
+
+    def test_omission_does_not_delete_artifacts(self):
+        request = self.drop_full_and_long(3003)
+        packet_before = self.controller.load(self.run_id, self.packet_id)
+        slot_before = next(s for s in packet_before["slots"] if s["storyId"] == 3003)
+        production = self.controller.repo_root / slot_before["materialization"]["path"]
+        before = sorted(p.name for p in production.iterdir())
+        self.assertEqual(len(before), 11)
+        self.reclassify([request])
+        after = sorted(p.name for p in production.iterdir())
+        self.assertEqual(before, after,
+                         "reclassification must not delete any production file")
+        workspace = self.controller._workspace_dir(packet_before, slot_before)
+        self.assertEqual(len(sorted(workspace.iterdir())), 11)
+
+    def test_materialization_evidence_is_retained(self):
+        request = self.drop_full_and_long(3003)
+        before = next(s for s in self.controller.load(self.run_id, self.packet_id)["slots"]
+                      if s["storyId"] == 3003)["materialization"]
+        packet = self.reclassify([request])
+        after = next(s for s in packet["slots"] if s["storyId"] == 3003)["materialization"]
+        self.assertEqual(before, after)
+        self.assertEqual(len(after["fileHashes"]), 11)
+
+    def test_identity_fields_are_immutable(self):
+        request = self.drop_full_and_long(3003)
+        before = next(s for s in self.controller.load(self.run_id, self.packet_id)["slots"]
+                      if s["storyId"] == 3003)
+        packet = self.reclassify([request])
+        after = next(s for s in packet["slots"] if s["storyId"] == 3003)
+        for field in ("proposedAnchor", "narrator", "mood", "lanes", "mode",
+                      "kidFriendly", "reflectionForm", "storyId", "reservation",
+                      "unresolvedFindings", "reviewerVerdict", "writerAttempts"):
+            self.assertEqual(before[field], after[field], field)
+
+    def test_non_target_stories_are_untouched(self):
+        request = self.drop_long(3001)
+        before = {s["storyId"]: copy.deepcopy(s)
+                  for s in self.controller.load(self.run_id, self.packet_id)["slots"]}
+        packet = self.reclassify([request])
+        for slot in packet["slots"]:
+            if slot["storyId"] == 3001:
+                continue
+            self.assertEqual(slot, before[slot["storyId"]])
+
+    def test_prior_evidence_hashes_are_immutable(self):
+        request = self.drop_long(3001)
+        before = dict(self.controller.load(self.run_id, self.packet_id)["evidenceHashes"])
+        packet = self.reclassify([request])
+        for key, value in before.items():
+            self.assertEqual(packet["evidenceHashes"][key], value, key)
+        self.assertIn("lengthReclassificationReview1", packet["evidenceHashes"])
+
+    def test_journal_prefix_is_preserved(self):
+        request = self.drop_long(3001)
+        before = self.journal_bytes()
+        self.reclassify([request])
+        after = self.journal_bytes()
+        self.assertTrue(after.startswith(before))
+        self.assertEqual(len(after.splitlines()), len(before.splitlines()) + 1)
+
+    def test_round_1_verdicts_are_not_rewritten(self):
+        request = self.drop_long(3001)
+        verdicts = (self.controller.packet_dir(self.run_id, self.packet_id)
+                    / "reviews" / "round-1" / "verdicts.json")
+        before = verdicts.read_bytes()
+        self.reclassify([request])
+        self.assertEqual(verdicts.read_bytes(), before)
+
+    def test_row_50_review_schema_is_untouched(self):
+        # Asserted at REVIEW_READY, the only state where ingest_review is
+        # reachable.  Nothing in this feature added a reviewer field, and the
+        # exact-set checks still refuse one.
+        self.review_ready()
+        for bad in ({"stories": [], "reviewer": "claude"},
+                    {"reviewer": "claude"},
+                    {"stories": [{"storyId": 3000, "verdict": "APPROVED",
+                                  "findings": [], "reviewer": "claude"}]}):
+            with self.subTest(review=repr(bad)[:40]):
+                with self.assertRaises(controller.ReviewRejected):
+                    self.controller.ingest_review(
+                        self.run_id, self.packet_id, review=bad, actor=self.actor)
+        # And the reclassification feature added no reviewer field anywhere in
+        # the review path -- the attestation lives in its own request argument.
+        import inspect
+        source = inspect.getsource(controller.AutonomousStoryController.ingest_review)
+        self.assertNotIn("reviewerRole", source)
+        self.assertNotIn("reviewerAttestation", source)
+
+    def test_audio_present_blocks_reclassification(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+        packet = self.controller.load(self.run_id, self.packet_id)
+        slot = next(s for s in packet["slots"] if s["storyId"] == 3001)
+        production = self.controller.repo_root / slot["materialization"]["path"]
+        (production / "audio_3001_story.mp3").write_bytes(b"\x00")
+        request = self.request(3001, ["short", "full"],
+                               self.finding_map(3001, ["long"]))
+        with self.assertRaises(controller.SafetyViolation):
+            self.reclassify([request])
+
+
+class LengthReclassificationReplayTests(LengthReclassificationTestCase):
+
+    def _forge(self, mutate):
+        """Append a forged STORY_LENGTHS_RECLASSIFIED-shaped event."""
+        journal = (self.controller.packet_dir(self.run_id, self.packet_id)
+                   / "events.jsonl")
+        lines = journal.read_bytes().decode().splitlines()
+        last = json.loads(lines[-1])
+        packet = copy.deepcopy(last["packet"])
+        event = {
+            "schemaVersion": controller.CONTROLLER_SCHEMA_VERSION,
+            "eventId": "00000000-0000-4000-8000-000000000abc",
+            "sequence": len(lines) + 1,
+            "timestamp": "2099-01-01T00:00:00Z",
+            "eventType": "STORY_LENGTHS_RECLASSIFIED",
+            "runId": self.run_id, "packetId": self.packet_id, "storyId": None,
+            "fromState": last["toState"], "toState": last["toState"],
+            "actor": self.actor, "reason": "forged", "packet": packet,
+        }
+        mutate(event)
+        event["evidenceHash"] = controller._event_hash(event)
+        journal.write_bytes(journal.read_bytes()
+                            + controller._canonical_bytes(event) + b"\n")
+
+    def test_non_prefix_target_lengths_change_is_journal_corrupt(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+
+        def mutate(event):
+            for slot in event["packet"]["slots"]:
+                if slot["storyId"] == 3001:
+                    slot["targetLengths"] = ["short", "long"]
+            event["packet"]["evidenceHashes"]["lengthReclassificationReview1"] = "a" * 64
+        self._forge(mutate)
+        with self.assertRaises(controller.JournalCorrupt):
+            self.controller.load(self.run_id, self.packet_id)
+
+    def test_upward_target_lengths_change_is_journal_corrupt(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+
+        def mutate(event):
+            for slot in event["packet"]["slots"]:
+                if slot["storyId"] == 3001:
+                    slot["targetLengths"] = ["short", "full", "long", "long"]
+            event["packet"]["evidenceHashes"]["lengthReclassificationReview1"] = "a" * 64
+        self._forge(mutate)
+        with self.assertRaises(controller.JournalCorrupt):
+            self.controller.load(self.run_id, self.packet_id)
+
+    def test_missing_evidence_hash_is_journal_corrupt(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+
+        def mutate(event):
+            for slot in event["packet"]["slots"]:
+                if slot["storyId"] == 3001:
+                    slot["targetLengths"] = ["short", "full"]
+        self._forge(mutate)
+        with self.assertRaises(controller.JournalCorrupt):
+            self.controller.load(self.run_id, self.packet_id)
+
+    def test_reclassification_changing_nothing_is_journal_corrupt(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+
+        def mutate(event):
+            event["packet"]["evidenceHashes"]["lengthReclassificationReview1"] = "a" * 64
+        self._forge(mutate)
+        with self.assertRaises(controller.JournalCorrupt):
+            self.controller.load(self.run_id, self.packet_id)
+
+    def test_reclassification_moving_a_round_counter_is_journal_corrupt(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+
+        def mutate(event):
+            for slot in event["packet"]["slots"]:
+                if slot["storyId"] == 3001:
+                    slot["targetLengths"] = ["short", "full"]
+            event["packet"]["correctionRound"] = 2
+            event["packet"]["evidenceHashes"]["lengthReclassificationReview1"] = "a" * 64
+        self._forge(mutate)
+        with self.assertRaises(controller.JournalCorrupt):
+            self.controller.load(self.run_id, self.packet_id)
+
+    def test_another_event_type_changing_target_lengths_is_journal_corrupt(self):
+        self.changes_requested({3001: [LONG_FINDING]})
+
+        def mutate(event):
+            event["eventType"] = "PACKET_LEASE_RENEWED"
+            for slot in event["packet"]["slots"]:
+                if slot["storyId"] == 3001:
+                    slot["targetLengths"] = ["short", "full"]
+        self._forge(mutate)
+        with self.assertRaises(controller.JournalCorrupt):
+            self.controller.load(self.run_id, self.packet_id)
+
+    def test_reclassification_in_the_wrong_state_is_illegal_on_replay(self):
+        self.review_ready()
+
+        def mutate(event):
+            for slot in event["packet"]["slots"]:
+                if slot["storyId"] == 3001:
+                    slot["targetLengths"] = ["short", "full"]
+            event["packet"]["evidenceHashes"]["lengthReclassificationReview1"] = "a" * 64
+        self._forge(mutate)
+        with self.assertRaises(controller.IllegalControllerTransition):
+            self.controller.load(self.run_id, self.packet_id)
+
+
 class RecoveryTests(ControllerTestCase):
     def test_restart_replay_reconstructs_identical_packet(self):
         expected = self.assignments()

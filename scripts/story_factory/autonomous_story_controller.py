@@ -22,6 +22,7 @@ import re
 import shutil
 import stat
 import sys
+import unicodedata
 import tempfile
 import uuid
 from pathlib import Path, PurePosixPath
@@ -142,7 +143,56 @@ SAME_STATE_EVENTS = frozenset({
     "PACKET_LEASE_RENEWED",
     "VALIDATION_REFUSED",
     "MATERIALIZATION_RECORDED",
+    "STORY_LENGTHS_RECLASSIFIED",
 })
+
+#: Same-state events that are legal in only some states.  Constraining only the
+#: new type leaves v1/v2 replay of the four pre-existing same-state events
+#: bit-for-bit unaffected, which is why this is a narrow map rather than a rule
+#: applied to every same-state event.
+SAME_STATE_EVENT_STATES = {
+    "STORY_LENGTHS_RECLASSIFIED": frozenset({REVIEW_CHANGES_REQUESTED}),
+}
+
+#: ADR-030 length reclassification.
+#:
+#: The owner may remove a Full or Long bucket the anchor does not honestly
+#: support.  The alternative -- keeping the bucket and letting a writer reach
+#: its floor -- is what ADR-030 section 4 forbids: padding, repeated
+#: propositions, invented physical detail, unstated thoughts or motives, or
+#: theological commentary added to reach a minimum.  Removing the bucket is how
+#: the system says "this passage does not support that length" without asking
+#: anyone to write words the passage does not carry.
+STORY_LENGTHS_RECLASSIFIED = "STORY_LENGTHS_RECLASSIFIED"
+
+#: The attestation is an OWNER STATEMENT, not a machine proof.  The factory has
+#: no authentication substrate: one uid, no signing key, no separate
+#: credential, and every event already carries actor="owner".  A schema field
+#: naming the reviewer would be exactly as caller-supplied as this token while
+#: *looking* like proof, which is strictly worse.  The literal is required in
+#: both the evidence record and the event reason so that no later reader of the
+#: journal can mistake it for an identity guarantee.
+REVIEWER_SEPARATION_STATUS = "REVIEWER_SEPARATION_OWNER_ATTESTED_NOT_MACHINE_PROVEN"
+
+#: Exact key set of the required reviewer-separation attestation.
+REVIEWER_ATTESTATION_FIELDS = frozenset({
+    "reviewerRole",
+    "writerOrRepairerRole",
+    "differentActorsAttestedByOwner",
+    "ownerActor",
+    "reviewEvidenceSha256",
+    "writerEvidenceSha256",
+})
+
+#: The pinned reviewer sentence that authorizes removing one bucket.
+#:
+#: This is deliberately exact rather than a keyword search.  A reviewer who
+#: writes anything else -- a paraphrase, a longer sentence, a different
+#: wording -- does not authorize a removal, and the request fails closed.  The
+#: reviewer-facing instruction must therefore quote this sentence verbatim.
+LENGTH_SUPPORT_FINDING_RE = re.compile(
+    r"^length band (short|full|long) is not supported by the passage$"
+)
 
 REVIEW_VERDICTS = frozenset({"APPROVED", "CHANGES_REQUESTED", "REJECTED"})
 MOODS = frozenset({
@@ -469,6 +519,56 @@ def validate_packet_model(packet: object) -> None:
         raise JournalCorrupt("duplicate story ID in packet")
 
 
+def normalize_role(value: object) -> str:
+    """NFC -> strip -> collapse internal whitespace -> casefold.
+
+    Used ONLY for the non-empty and inequality tests; the raw strings supplied
+    by the owner are what get recorded.  The normalization deliberately refuses
+    cosmetic near-identity: "Claude Window 2" and "claude  window 2" normalize
+    equal and are refused, which is the safe direction -- two roles that differ
+    only in spacing are far more likely to be one person than two.
+    """
+    if not isinstance(value, str):
+        raise ReviewRejected("attestation role must be a string")
+    folded = unicodedata.normalize("NFC", value).strip()
+    return re.sub(r"\s+", " ", folded).casefold()
+
+
+def is_legal_downward_move(old: object, new: object) -> bool:
+    """A reclassification may only truncate the tail of the length list.
+
+    ``0 < len(new) < len(old) and new == old[:len(new)]`` gives, in one
+    predicate: non-empty, strictly smaller, order preserving, no bucket that
+    was not already present, and -- because every list begins with ``short`` --
+    ``short`` is never removable.
+
+    This is applied in the operation *and* in replay, because
+    ``validate_packet_model`` accepts ``["short", "long"]``: it checks only
+    uniqueness and canonical ordering, and that list is canonically ordered.
+    Without the predicate in replay a hand-edited journal could install a
+    non-tail set.
+    """
+    if not isinstance(old, list) or not isinstance(new, list):
+        return False
+    if not all(isinstance(item, str) for item in old + new):
+        return False
+    return 0 < len(new) < len(old) and new == old[:len(new)]
+
+
+def length_support_finding_bucket(text: object) -> str | None:
+    """Return the bucket a length-support finding names, or None.
+
+    The finding is normalized (NFC + whitespace collapse) before matching, but
+    the bucket token is matched case-sensitively: an uppercase ``FULL`` is not
+    the bucket ``full``.
+    """
+    if not isinstance(text, str):
+        return None
+    candidate = re.sub(r"\s+", " ", unicodedata.normalize("NFC", text).strip())
+    match = LENGTH_SUPPORT_FINDING_RE.match(candidate)
+    return match.group(1) if match else None
+
+
 def _validate_event(event: object, expected_sequence: int) -> dict:
     if not isinstance(event, dict) or set(event) != EVENT_FIELDS:
         raise JournalCorrupt(f"event {expected_sequence} has invalid fields")
@@ -543,14 +643,79 @@ def _replay_bytes(raw: bytes, source: str) -> dict | None:
                     raise IllegalControllerTransition(
                         f"same-state event {event['eventType']!r} is not authorized"
                     )
+                allowed_states = SAME_STATE_EVENT_STATES.get(event["eventType"])
+                if allowed_states is not None and current["state"] not in allowed_states:
+                    raise IllegalControllerTransition(
+                        f"same-state event {event['eventType']!r} is not legal in "
+                        f"{current['state']}"
+                    )
             elif event["toState"] not in LEGAL_TRANSITIONS[current["state"]]:
                 raise IllegalControllerTransition(
                     f"illegal controller transition {current['state']} -> {event['toState']}"
                 )
         # Raw identity and evidence hash are already verified above; only now
         # is the historical snapshot normalized to current semantics.
-        current = normalize_packet_model(event["packet"])
+        following = normalize_packet_model(event["packet"])
+        if current is not None:
+            _assert_target_lengths_invariants(current, following, event, sequence)
+        current = following
     return current
+
+
+def _assert_target_lengths_invariants(prior: dict, following: dict,
+                                      event: Mapping[str, object],
+                                      sequence: int) -> None:
+    """targetLengths may change ONLY through a valid reclassification event.
+
+    Four invariants, checked on every event so a hand-edited or forged journal
+    cannot install a length set the operation would have refused:
+
+    1. only ``STORY_LENGTHS_RECLASSIFIED`` may change any slot's targetLengths;
+    2. every change must satisfy the downward tail-truncation predicate;
+    3. a reclassification event must change at least one slot;
+    4. it must carry its evidence hash, and must not move the rounds.
+    """
+    prior_by_id = {slot["storyId"]: slot for slot in prior["slots"]}
+    changed = []
+    for slot in following["slots"]:
+        before = prior_by_id.get(slot["storyId"])
+        if before is None:
+            continue
+        if before["targetLengths"] != slot["targetLengths"]:
+            changed.append((slot["storyId"], before["targetLengths"],
+                            slot["targetLengths"]))
+    if event["eventType"] != STORY_LENGTHS_RECLASSIFIED:
+        if changed:
+            raise JournalCorrupt(
+                f"event {event['eventType']!r} at line {sequence} changes "
+                f"targetLengths for {[c[0] for c in changed]}; only "
+                f"{STORY_LENGTHS_RECLASSIFIED} may"
+            )
+        return
+    if not changed:
+        raise JournalCorrupt(
+            f"{STORY_LENGTHS_RECLASSIFIED} at line {sequence} changes no "
+            "targetLengths"
+        )
+    for story_id, before, after in changed:
+        if not is_legal_downward_move(before, after):
+            raise JournalCorrupt(
+                f"{STORY_LENGTHS_RECLASSIFIED} at line {sequence} moves story "
+                f"{story_id} from {before} to {after}, which is not a downward "
+                "tail truncation"
+            )
+    if (prior["reviewRound"] != following["reviewRound"]
+            or prior["correctionRound"] != following["correctionRound"]):
+        raise JournalCorrupt(
+            f"{STORY_LENGTHS_RECLASSIFIED} at line {sequence} moved a round "
+            "counter; reclassification consumes no correction round"
+        )
+    key = f"lengthReclassificationReview{following['reviewRound']}"
+    if key not in following["evidenceHashes"]:
+        raise JournalCorrupt(
+            f"{STORY_LENGTHS_RECLASSIFIED} at line {sequence} is missing "
+            f"evidenceHashes[{key!r}]"
+        )
 
 
 def _packet_dir(factory_home: Path, run_id: str, packet_id: str) -> Path:
@@ -2272,6 +2437,342 @@ class AutonomousStoryController:
         updated["evidenceHashes"][f"reviewVerdictsRound{packet['reviewRound']}"] = _hash_value(review)
         return self._record(packet, updated, event_type=event_type, actor=actor, reason=reason)
 
+    # ------------------------------------------------------------------
+    # ADR-030 owner-authorized length reclassification
+    # ------------------------------------------------------------------
+
+    def _validate_reviewer_attestation(self, packet: dict, attestation: object,
+                                       *, actor: str) -> dict:
+        """Validate the owner's reviewer-separation attestation.
+
+        This is an owner statement, hash-bound to the exact review verdicts and
+        the exact writer artifacts under adjudication.  It is NOT a proof that
+        the named roles were the actual actors, and nothing here should be read
+        as claiming otherwise.
+        """
+        if not isinstance(attestation, dict):
+            raise ReviewRejected("reviewerAttestation must be an object")
+        if set(attestation) != REVIEWER_ATTESTATION_FIELDS:
+            raise ReviewRejected(
+                "reviewerAttestation fields must be exactly "
+                f"{sorted(REVIEWER_ATTESTATION_FIELDS)}"
+            )
+        if attestation["differentActorsAttestedByOwner"] is not True:
+            raise ReviewRejected(
+                "differentActorsAttestedByOwner must be literal true; truthy "
+                "values are refused"
+            )
+        if attestation["ownerActor"] != packet["actor"] or actor != packet["actor"]:
+            raise ReviewRejected(
+                "reclassification actor and ownerActor must both equal the "
+                "packet owner"
+            )
+        reviewer = normalize_role(attestation["reviewerRole"])
+        writer = normalize_role(attestation["writerOrRepairerRole"])
+        if not reviewer or not writer:
+            raise ReviewRejected("attestation roles must be non-empty after normalization")
+        if reviewer == writer:
+            raise ReviewRejected(
+                "attested reviewer and writer roles are the same after "
+                "normalization; owner attestation cannot assert separation"
+            )
+
+        for field in ("reviewEvidenceSha256", "writerEvidenceSha256"):
+            value = attestation[field]
+            if not isinstance(value, str) or not HEX64_RE.fullmatch(value):
+                raise ReviewRejected(f"{field} must be a 64-character hex digest")
+
+        # Bind to already-recorded, hash-chained controller evidence.  Neither
+        # hash is caller-selected and neither floats to "latest": the review
+        # key is pinned to THIS review round, and the writer key to the highest
+        # attempt actually recorded on the packet.
+        review_key = f"reviewVerdictsRound{packet['reviewRound']}"
+        recorded_review = packet["evidenceHashes"].get(review_key)
+        if recorded_review is None:
+            raise ReviewRejected(f"packet has no recorded {review_key}")
+        if attestation["reviewEvidenceSha256"] != recorded_review:
+            raise ReviewRejected(
+                f"reviewEvidenceSha256 does not match recorded {review_key}"
+            )
+        attempts = [slot["writerAttempts"] for slot in packet["slots"]]
+        writer_key = f"writerOutputAttempt{max(attempts)}"
+        recorded_writer = packet["evidenceHashes"].get(writer_key)
+        if recorded_writer is None:
+            raise ReviewRejected(f"packet has no recorded {writer_key}")
+        if attestation["writerEvidenceSha256"] != recorded_writer:
+            raise ReviewRejected(
+                f"writerEvidenceSha256 does not match recorded {writer_key}"
+            )
+        return dict(attestation)
+
+    def _validate_removed_bucket_findings(self, slot: dict, removed: list[str],
+                                          mapping: object) -> dict:
+        """One distinct persisted reviewer finding per removed bucket.
+
+        Bidirectional by design.  Key-set equality alone would let a reviewer
+        finding about Full be silently ignored while only Long is removed, so
+        the reverse direction is checked too: every length-support finding the
+        reviewer recorded must correspond to a removed bucket.
+
+        That reverse rule also disposes of the retained-``short`` case.  A
+        ``length band short is not supported`` finding can never be consumed,
+        because ``short`` is not removable, so the request always fails and the
+        contradiction reaches the owner instead of being dropped.
+        """
+        story_id = slot["storyId"]
+        if not isinstance(mapping, dict):
+            raise ReviewRejected(f"story {story_id}: removedBucketFindings must be an object")
+        if set(mapping) != set(removed):
+            raise ReviewRejected(
+                f"story {story_id}: removedBucketFindings keys {sorted(mapping)} "
+                f"do not exactly match removed buckets {sorted(removed)}"
+            )
+        findings = slot["unresolvedFindings"]
+        seen_indexes: list[int] = []
+        resolved = {}
+        for bucket in sorted(mapping):
+            entry = mapping[bucket]
+            if not isinstance(entry, dict) or set(entry) != {"findingIndex", "findingText"}:
+                raise ReviewRejected(
+                    f"story {story_id}: finding entry for {bucket!r} must be "
+                    "exactly {findingIndex, findingText}"
+                )
+            index = entry["findingIndex"]
+            if type(index) is not int or not 0 <= index < len(findings):
+                raise ReviewRejected(
+                    f"story {story_id}: findingIndex for {bucket!r} is out of range"
+                )
+            if index in seen_indexes:
+                raise ReviewRejected(
+                    f"story {story_id}: findingIndex {index} cited for more than "
+                    "one bucket; no single finding may authorize two removals"
+                )
+            seen_indexes.append(index)
+            if findings[index] != entry["findingText"]:
+                raise ReviewRejected(
+                    f"story {story_id}: findingText for {bucket!r} is not byte-equal "
+                    "to the persisted unresolved finding; paraphrase is refused"
+                )
+            named = length_support_finding_bucket(entry["findingText"])
+            if named is None:
+                raise ReviewRejected(
+                    f"story {story_id}: finding for {bucket!r} does not match the "
+                    "pinned length-support sentence"
+                )
+            if named != bucket:
+                raise ReviewRejected(
+                    f"story {story_id}: finding names band {named!r} but is mapped "
+                    f"to {bucket!r}"
+                )
+            resolved[bucket] = {"findingIndex": index, "findingText": entry["findingText"]}
+
+        recorded = {b for b in (length_support_finding_bucket(f) for f in findings)
+                    if b is not None}
+        if recorded != set(removed):
+            raise ReviewRejected(
+                f"story {story_id}: reviewer recorded length-support findings for "
+                f"{sorted(recorded)} but the request removes {sorted(removed)}; "
+                "every such finding must be consumed"
+            )
+        return resolved
+
+    def _assert_reclassification_custody(self, packet: dict, slot: dict) -> None:
+        """Production custody: no audio, not cataloged, reservation untouched."""
+        story_id = slot["storyId"]
+        materialization = slot.get("materialization")
+        if not isinstance(materialization, dict):
+            raise SafetyViolation(f"story {story_id}: no controller materialization evidence")
+        if materialization.get("audioPresent") is not False:
+            raise SafetyViolation(f"story {story_id}: audioPresent is not False")
+        if materialization.get("manifestRegistered") is not False:
+            raise SafetyViolation(f"story {story_id}: story is registered in the catalog")
+        destination = self.repo_root / materialization["path"]
+        if destination.exists() and any(
+            path.suffix.lower() in {".mp3", ".wav", ".m4a"} for path in destination.iterdir()
+        ):
+            raise SafetyViolation(f"story {story_id}: audio exists in production")
+
+    def reclassify_story_lengths(
+        self,
+        run_id: str,
+        packet_id: str,
+        *,
+        actor: str,
+        reclassifications: list,
+        reviewer_attestation: object,
+        owner_authorized: bool = False,
+    ) -> dict:
+        """Remove Full/Long buckets the anchor does not honestly support.
+
+        ADR-030 makes Short the default and Full and Long conditional on what
+        the approved anchor supports.  When a reviewer records that a band is
+        unsupported, the honest response is to omit the band -- not to have a
+        writer pad, repeat propositions, invent physical detail, add unstated
+        thoughts or motives, or add theological commentary to reach a floor.
+
+        **Omission is not deletion.**  This operation changes the authoritative
+        target-length set and records why.  It removes no story, reflection,
+        scripture, metadata, audio or historical artifact from the record, and
+        it never touches an omitted variant's bytes in any prior evidence.
+
+        Every check runs for every named slot before any mutation, so a
+        partially applied reclassification is unrepresentable.
+        """
+        packet = self.load(run_id, packet_id)
+        if packet["state"] != REVIEW_CHANGES_REQUESTED:
+            raise IllegalControllerTransition(
+                "length reclassification requires REVIEW_CHANGES_REQUESTED"
+            )
+        if owner_authorized is not True:
+            raise ReviewRejected(
+                "length reclassification requires literal owner_authorized=True"
+            )
+        if actor != packet["actor"]:
+            raise ReviewRejected("length reclassification actor must be the packet owner")
+        attestation = self._validate_reviewer_attestation(
+            packet, reviewer_attestation, actor=actor,
+        )
+        self._assert_manifest_unchanged(packet)
+
+        if not isinstance(reclassifications, list) or not reclassifications:
+            raise ReviewRejected("reclassifications must be a non-empty list")
+        by_id = {slot["storyId"]: slot for slot in packet["slots"]}
+        planned = []
+        seen_ids = set()
+        for request in reclassifications:
+            if not isinstance(request, dict) or set(request) != {
+                "storyId", "fromLengths", "toLengths", "removedBucketFindings", "rationale",
+            }:
+                raise ReviewRejected(
+                    "each reclassification must be exactly {storyId, fromLengths, "
+                    "toLengths, removedBucketFindings, rationale}"
+                )
+            story_id = request["storyId"]
+            if story_id not in by_id:
+                raise ReviewRejected(f"story {story_id} is not in this packet")
+            if story_id in seen_ids:
+                raise ReviewRejected(f"story {story_id} named twice")
+            seen_ids.add(story_id)
+            slot = by_id[story_id]
+            self._assert_reclassification_custody(packet, slot)
+            old_lengths = request["fromLengths"]
+            new_lengths = request["toLengths"]
+            if not is_legal_downward_move(old_lengths, new_lengths):
+                raise ReviewRejected(
+                    f"story {story_id}: {old_lengths} -> {new_lengths} is "
+                    "not a downward tail truncation; short is never removable and "
+                    "no bucket may be added"
+                )
+            removed = [band for band in old_lengths if band not in new_lengths]
+            resolved = self._validate_removed_bucket_findings(
+                slot, removed, request["removedBucketFindings"],
+            )
+            rationale = request["rationale"]
+            if not isinstance(rationale, str) or not rationale.strip():
+                raise ReviewRejected(f"story {story_id}: rationale is required")
+            planned.append({
+                "slot": slot, "storyId": story_id, "removed": removed,
+                "fromLengths": list(old_lengths), "toLengths": list(new_lengths),
+                "findings": resolved, "rationale": rationale,
+            })
+
+        payloads = {}
+        for entry in planned:
+            slot = entry["slot"]
+            materialization = slot["materialization"]
+            retained_names = expected_artifact_names(entry["storyId"], entry["toLengths"])
+            removed_names = [
+                name for name in expected_artifact_names(
+                    entry["storyId"], entry["fromLengths"])
+                if name not in set(retained_names)
+            ]
+            payloads[str(entry["storyId"])] = {
+                "reclassificationVersion": 2,
+                "runId": run_id,
+                "packetId": packet_id,
+                "reviewRound": packet["reviewRound"],
+                "storyId": entry["storyId"],
+                "fromLengths": entry["fromLengths"],
+                "toLengths": entry["toLengths"],
+                "removedLengths": entry["removed"],
+                "removedBucketFindings": entry["findings"],
+                "removedArtifacts": sorted(removed_names),
+                "retainedArtifactCount": len(retained_names),
+                "reviewerAttestation": attestation,
+                "separationStatus": REVIEWER_SEPARATION_STATUS,
+                "workspaceTreeHash": (slot.get("workspace") or {}).get("treeHash"),
+                "materializationTreeHash": materialization.get("treeHash"),
+                "ownerActor": packet["actor"],
+                "rationale": entry["rationale"],
+                "adr": "ADR-030",
+                "omissionIsNotDeletion": True,
+            }
+        evidence_key = f"lengthReclassificationReview{packet['reviewRound']}"
+        evidence_hash = _hash_value(payloads)
+
+        # Retry.  Matching lengths alone NEVER conclude a no-op: the recomputed
+        # payload hash must match, which means byte-identical attestation and
+        # byte-identical finding maps too.  This runs BEFORE the fromLengths
+        # equality check below, because on a genuine retry the slot already
+        # holds the reduced set and that check would reject the no-op.
+        recorded = packet["evidenceHashes"].get(evidence_key)
+        if recorded is not None:
+            if recorded == evidence_hash:
+                return packet
+            raise ReviewRejected(
+                "a length reclassification is already recorded for this review "
+                "round and this request diverges from it; nothing was changed"
+            )
+        if any(entry["slot"]["targetLengths"] == entry["toLengths"]
+               for entry in planned):
+            raise ReviewRejected(
+                "target lengths are already reduced with no recorded "
+                "reclassification evidence; owner review is required"
+            )
+
+        # Mutation path only: the request must describe the CURRENT state.
+        for entry in planned:
+            if entry["fromLengths"] != entry["slot"]["targetLengths"]:
+                raise ReviewRejected(
+                    f"story {entry['storyId']}: fromLengths does not match the "
+                    "persisted target length set"
+                )
+
+        updated = copy.deepcopy(packet)
+        updated_by_id = {slot["storyId"]: slot for slot in updated["slots"]}
+        for entry in planned:
+            updated_by_id[entry["storyId"]]["targetLengths"] = entry["toLengths"]
+        updated["evidenceHashes"][evidence_key] = evidence_hash
+        updated["updatedAt"] = self._now()
+
+        # Identity immutability, asserted rather than assumed.
+        for before, after in zip(packet["slots"], updated["slots"]):
+            for field in ("proposedAnchor", "narrator", "mood", "lanes", "mode",
+                          "kidFriendly", "reflectionForm", "storyId", "reservation",
+                          "materialization", "unresolvedFindings", "reviewerVerdict"):
+                if before.get(field) != after.get(field):
+                    raise SafetyViolation(
+                        f"story {before['storyId']}: reclassification would change "
+                        f"immutable field {field!r}"
+                    )
+
+        evidence_dir = (self.packet_dir(run_id, packet_id) / "reclassifications"
+                        / f"round-{packet['reviewRound']}")
+        self._ensure_runtime_directory(evidence_dir)
+        for story_id, payload in payloads.items():
+            _write_json(evidence_dir / f"story_{story_id}.json", payload)
+
+        summary = ", ".join(
+            f"{entry['storyId']}:{'+'.join(entry['removed'])}" for entry in planned
+        )
+        return self._record(
+            packet, updated, event_type=STORY_LENGTHS_RECLASSIFIED, actor=actor,
+            reason=(
+                f"owner-authorized ADR-030 length reclassification ({summary}); "
+                f"{REVIEWER_SEPARATION_STATUS}"
+            ),
+        )
+
     def emit_corrections(self, run_id: str, packet_id: str, *, actor: str) -> dict:
         packet = self.load(run_id, packet_id)
         if packet["state"] not in {REVIEW_CHANGES_REQUESTED, WRITER_OUTPUT_RECEIVED}:
@@ -2454,6 +2955,9 @@ def build_parser() -> argparse.ArgumentParser:
     subs.add_parser("emit-review-packet", parents=[common])
     review = subs.add_parser("ingest-review", parents=[common])
     review.add_argument("--review-file", required=True)
+    reclassify = subs.add_parser("reclassify-lengths", parents=[common])
+    reclassify.add_argument("--reclassification-file", required=True)
+    reclassify.add_argument("--owner-authorize", action="store_true")
     subs.add_parser("emit-corrections", parents=[common])
     subs.add_parser("report", parents=[common])
     return parser
@@ -2516,6 +3020,21 @@ def main(argv=None) -> int:
         elif args.command == "ingest-review":
             result = controller.ingest_review(
                 args.run_id, args.packet_id, review=_load_json(Path(args.review_file)), actor=args.actor,
+            )
+        elif args.command == "reclassify-lengths":
+            payload = _load_json(Path(args.reclassification_file))
+            if not isinstance(payload, dict) or set(payload) != {
+                "reclassifications", "reviewerAttestation",
+            }:
+                raise ReviewRejected(
+                    "reclassification file must be exactly "
+                    "{reclassifications, reviewerAttestation}"
+                )
+            result = controller.reclassify_story_lengths(
+                args.run_id, args.packet_id, actor=args.actor,
+                reclassifications=payload["reclassifications"],
+                reviewer_attestation=payload["reviewerAttestation"],
+                owner_authorized=args.owner_authorize,
             )
         elif args.command == "emit-corrections":
             result = controller.emit_corrections(args.run_id, args.packet_id, actor=args.actor)

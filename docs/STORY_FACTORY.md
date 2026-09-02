@@ -577,3 +577,101 @@ whole factory home before and after.
 `preflight_anchor_overlap.KNOWN_QUEUE_STATES` is a closed vocabulary
 (`reserved`, `authoring`, `locked`, `abandoned`, `expired`, `released`). A
 state outside it is a hard `GateError`, never a silent PASS.
+
+---
+
+## 15. Owner-authorized length reclassification (ADR-034, 2026-09-02)
+
+ADR-030 §5 makes Full and Long **conditional** on what the approved anchor
+honestly supports. This section is how the controller acts on that finding
+without asking anyone to pad.
+
+### 15.1 When it applies
+
+A reviewer records, in `unresolvedFindings`, the exact sentence:
+
+```
+length band <short|full|long> is not supported by the passage
+```
+
+**The predicate depends on this exact sentence.** A paraphrase — "the long band
+is not supported", "this passage cannot sustain a Long" — authorizes nothing
+and the request fails closed. Reviewers must quote it verbatim, once per
+unsupported band.
+
+### 15.2 The operation
+
+`reclassify-lengths --reclassification-file PATH --owner-authorize`, or
+`reclassify_story_lengths(...)`. Legal **only** in `REVIEW_CHANGES_REQUESTED`,
+owner-only, same-state, and it consumes **no correction round**.
+
+Allowed moves are **downward tail truncations only**:
+
+| From | To | Removed |
+|---|---|---|
+| `short, full, long` | `short, full` | `long` |
+| `short, full, long` | `short` | `full` **and** `long` |
+| `short, full` | `short` | `full` |
+
+`short` is never removable. No band may be added or re-added. `["short","long"]`
+is refused — it is canonically ordered, so `validate_packet_model` accepts it
+and the truncation predicate is what actually stops it, in the operation *and*
+in replay.
+
+### 15.3 One finding per removed band
+
+Every removed band needs **its own** finding, at its own index:
+
+```json
+"removedBucketFindings": {
+  "full": {"findingIndex": 2, "findingText": "length band full is not supported by the passage"},
+  "long": {"findingIndex": 3, "findingText": "length band long is not supported by the passage"}
+}
+```
+
+Validated **in both directions**: every removed band has exactly one qualifying
+finding, and every length-support finding the reviewer recorded corresponds to a
+removed band. `findingText` must be **byte-equal** to the persisted finding, and
+two bands may never cite the same index.
+
+The reverse direction matters. Without it, a reviewer finding saying *Full is
+not supported* could be silently ignored while only Long is removed. It also
+means a `length band short is not supported` finding can never be consumed —
+`short` is not removable — so the request fails and the contradiction reaches
+the owner instead of being dropped.
+
+### 15.4 Owner attestation — not a machine proof
+
+The request carries a six-field `reviewerAttestation` naming the reviewer role
+and the writer/repairer role. Roles are compared after **NFC → strip → collapse
+whitespace → casefold** and must differ; the raw strings are what get recorded.
+
+Recorded verbatim, in both the evidence file and the event reason:
+
+```
+REVIEWER_SEPARATION_OWNER_ATTESTED_NOT_MACHINE_PROVEN
+```
+
+This is an owner statement, hash-bound to the exact review verdicts and writer
+artifacts. It is **not** proof that the named roles were the actual actors, and
+**no authenticated or cryptographic identity is claimed**. The factory has no
+authentication substrate — one uid, no signing key, every event already
+`actor="owner"` — so a `reviewer` schema field would be exactly as
+caller-supplied while *looking* like proof. The honest smaller mechanism is the
+safe one.
+
+### 15.5 Omission is not deletion
+
+Reclassification changes the authoritative target-length set and writes
+`reclassifications/round-{n}/story_{id}.json` recording what was omitted and
+why. It **deletes nothing**: story, reflection, scripture, metadata, audio and
+historical artifacts all remain physically present, and prior materialization
+evidence is retained.
+
+Files under `reclassifications/round-{N}/` are supporting evidence artifacts
+only. A committed reclassification is authoritative only when the corresponding
+packet/journal evidence key `lengthReclassificationReview{N}` exists and binds
+their canonical payload hash. An orphan evidence file left by a crash before
+journal commit is inert and is not proof that a reclassification occurred.
+
+Artifact counts follow `2·|lengths| + 5` → **11 / 9 / 7**.
