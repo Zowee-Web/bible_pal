@@ -28,6 +28,7 @@ sys.path.insert(0, str(STORY_FACTORY))
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
 import autonomous_story_controller as controller  # noqa: E402
+import claude_validator  # noqa: E402
 import reflection_contract  # noqa: E402
 from lib import reconstruction_check  # noqa: E402
 
@@ -201,6 +202,70 @@ def words(count: int, *, kjv: bool = False) -> str:
         )
     tokens = base.split()
     return " ".join(tokens[index % len(tokens)] for index in range(count))
+
+
+class MetaTextContextTests(unittest.TestCase):
+    def test_scriptural_first_person_i_have_is_not_model_meta_text(self):
+        for text in (
+            '"I have anointed you king over Israel."',
+            '"I have anointed thee king over Israel."',
+            "I have kept the faith.",
+            "I have kept the ways of the LORD.",
+            "I have made a covenant with mine eyes.",
+            "I have prepared the house.",
+            "I have provided me a king.",
+            "I have created him for my glory.",
+            "I have written unto you.",
+            "I have followed him fully.",
+            "I have heard your prayer.",
+            "I have seen your tears.",
+        ):
+            with self.subTest(text=text):
+                self.assertIsNone(controller.check_meta_text(text))
+
+    def test_model_work_announcements_remain_blocked(self):
+        for text in (
+            "I have written the requested story.",
+            "I have generated the following output.",
+            "I have prepared the corrected version.",
+            "I have included the files below.",
+            "I have included both language lanes.",
+            "I have expanded the passage carefully.",
+            "I have retold the account faithfully.",
+            "I have provided both lanes as requested.",
+            "I have created the reflection you asked for.",
+            "I have rewritten the opening.",
+            "I have followed the style guide.",
+            "I have made the requested changes.",
+            "I have kept the corrected files in the folder.",
+        ):
+            with self.subTest(text=text):
+                self.assertIsNotNone(claude_validator._I_HAVE_MODEL_WORK_RE.search(text))
+                self.assertIsNotNone(controller.check_meta_text(text))
+
+    def test_nearby_biblical_objects_do_not_become_work_products(self):
+        for text in (
+            "I have written the law upon their hearts.",
+            "I have prepared a place for you.",
+            "I have made the earth.",
+            "I have kept your precepts.",
+            "I have provided for the widow.",
+        ):
+            with self.subTest(text=text):
+                self.assertIsNone(controller.check_meta_text(text))
+
+    def test_i_have_model_work_rule_has_zero_project_bible_collisions(self):
+        for translation in ("kjv", "web"):
+            corpus = json.loads(
+                (REPO_ROOT / "server" / "data" / f"bible_{translation}.json").read_text()
+            )
+            collisions = []
+            for book, chapters in corpus["books"].items():
+                for chapter, verses in chapters.items():
+                    for verse, text in verses.items():
+                        if claude_validator._I_HAVE_MODEL_WORK_RE.search(text):
+                            collisions.append(f"{book} {chapter}:{verse}")
+            self.assertEqual(collisions, [], translation)
 
 
 class ControllerTestCase(unittest.TestCase):
@@ -1362,6 +1427,9 @@ class ProductionSafetyTests(ControllerTestCase):
                 {path.name for path in destination.iterdir()},
                 set(controller.expected_artifact_names(slot["storyId"], slot["targetLengths"])),
             )
+            self.assertEqual(
+                slot["materialization"]["nonAuthoritativePreservedFileHashes"], {},
+            )
 
     def test_manifest_is_unchanged_across_materialization(self):
         before = controller._hash_file(self.repo / "assets" / "stories" / "manifest.json")
@@ -1372,6 +1440,52 @@ class ProductionSafetyTests(ControllerTestCase):
     def test_audio_is_absent_after_materialization(self):
         self.materialized()
         self.assertEqual(list(self.repo.rglob("*.mp3")), [])
+
+    def test_validation_preserves_initial_overlap_snapshot_and_binds_fresh_snapshot(self):
+        self.ingested()
+        initial = (
+            self.controller.packet_dir(self.run_id, self.packet_id)
+            / "overlap_queue_snapshot.json"
+        )
+        historical = b'{"historical":"initial-preflight-evidence"}\n'
+        initial.write_bytes(historical)
+        packet = self.controller.validate_outputs(
+            self.run_id, self.packet_id, actor=self.actor,
+        )
+        self.assertEqual(initial.read_bytes(), historical)
+        fresh = (
+            self.controller.packet_dir(self.run_id, self.packet_id)
+            / "overlap" / "validation" / "round-0" / "queue_snapshot.json"
+        )
+        self.assertTrue(fresh.is_file())
+        reference = packet["slots"][0]["validationEvidence"]["overlapQueueSnapshot"]
+        self.assertEqual(reference["path"], "overlap/validation/round-0/queue_snapshot.json")
+        self.assertEqual(reference["hash"], controller._hash_value(json.loads(fresh.read_text())))
+
+    def test_final_readiness_preserves_initial_overlap_snapshot(self):
+        self.review_ready()
+        self.controller.ingest_review(
+            self.run_id, self.packet_id, review=self.review("APPROVED"), actor=self.actor,
+        )
+        initial = (
+            self.controller.packet_dir(self.run_id, self.packet_id)
+            / "overlap_queue_snapshot.json"
+        )
+        historical = b'{"historical":"initial-preflight-evidence"}\n'
+        initial.write_bytes(historical)
+        packet = self.controller.mark_ready_for_human_review(
+            self.run_id, self.packet_id, actor=self.actor,
+        )
+        self.assertEqual(initial.read_bytes(), historical)
+        fresh = (
+            self.controller.packet_dir(self.run_id, self.packet_id)
+            / "overlap" / "final-readiness" / "round-0" / "queue_snapshot.json"
+        )
+        self.assertTrue(fresh.is_file())
+        self.assertEqual(
+            packet["slots"][0]["finalReadiness"]["overlapQueueSnapshot"]["hash"],
+            controller._hash_value(json.loads(fresh.read_text())),
+        )
 
 
 class ReviewAndCorrectionTests(ControllerTestCase):
@@ -2156,6 +2270,27 @@ class LengthReclassificationRetryTests(LengthReclassificationTestCase):
 
 class LengthReclassificationPreservationTests(LengthReclassificationTestCase):
 
+    def _materialize_after_reclassification(self, request, *, mutate=None):
+        self.reclassify([request])
+        packet = self.controller.emit_corrections(
+            self.run_id, self.packet_id, actor=self.actor,
+        )
+        changed = {slot["storyId"] for slot in packet["slots"] if slot["unresolvedFindings"]}
+        source = self.write_outputs(
+            packet, root=self.base / "reclassified-writer", only_ids=changed,
+            mutate=mutate,
+        )
+        self.controller.ingest_writer_output(
+            self.run_id, self.packet_id, source_root=source, actor=self.actor,
+        )
+        self.controller.validate_outputs(self.run_id, self.packet_id, actor=self.actor)
+        return self.controller.materialize_for_review(
+            self.run_id, self.packet_id, actor=self.actor,
+        )
+
+    def _production(self, story_id):
+        return self.repo / "assets" / "stories" / "traditional" / str(story_id)
+
     def test_omission_does_not_delete_artifacts(self):
         request = self.drop_full_and_long(3003)
         packet_before = self.controller.load(self.run_id, self.packet_id)
@@ -2178,6 +2313,80 @@ class LengthReclassificationPreservationTests(LengthReclassificationTestCase):
         after = next(s for s in packet["slots"] if s["storyId"] == 3003)["materialization"]
         self.assertEqual(before, after)
         self.assertEqual(len(after["fileHashes"]), 11)
+
+    def test_short_full_materialization_preserves_historical_long_bytes(self):
+        request = self.drop_long(3001)
+        production = self._production(3001)
+        authoritative_name = "story_3001_traditional_web_short.txt"
+        authoritative_before = (production / authoritative_name).read_bytes()
+        omitted = {
+            name: (production / name).read_bytes()
+            for name in (
+                "story_3001_traditional_web_long.txt",
+                "story_3001_traditional_kjv_long.txt",
+            )
+        }
+        def update_authoritative(root, _packet):
+            path = root / "3001" / authoritative_name
+            path.write_text("At dawn " + path.read_text(), encoding="utf-8")
+
+        self._materialize_after_reclassification(
+            request, mutate=update_authoritative,
+        )
+        self.assertEqual(
+            {name: (production / name).read_bytes() for name in omitted}, omitted,
+        )
+        self.assertNotEqual((production / authoritative_name).read_bytes(), authoritative_before)
+
+    def test_short_materialization_preserves_historical_full_and_long_bytes(self):
+        request = self.drop_full_and_long(3003)
+        production = self._production(3003)
+        omitted_names = {
+            f"story_3003_traditional_{lane}_{length}.txt"
+            for lane in controller.LANES for length in ("full", "long")
+        }
+        omitted = {name: (production / name).read_bytes() for name in omitted_names}
+        self._materialize_after_reclassification(request)
+        self.assertEqual(
+            {name: (production / name).read_bytes() for name in omitted_names}, omitted,
+        )
+
+    def test_authoritative_materialization_evidence_excludes_preserved_files(self):
+        request = self.drop_full_and_long(3003)
+        packet = self._materialize_after_reclassification(request)
+        slot = next(item for item in packet["slots"] if item["storyId"] == 3003)
+        materialization = slot["materialization"]
+        authoritative = set(controller.expected_artifact_names(3003, ["short"]))
+        self.assertEqual(set(materialization["fileHashes"]), authoritative)
+        self.assertEqual(
+            set(materialization["nonAuthoritativePreservedFileHashes"]),
+            {
+                f"story_3003_traditional_{lane}_{length}.txt"
+                for lane in controller.LANES for length in ("full", "long")
+            },
+        )
+        self.assertTrue(authoritative.isdisjoint(
+            materialization["nonAuthoritativePreservedFileHashes"],
+        ))
+
+    def test_repeat_materialization_preserves_historical_files_idempotently(self):
+        request = self.drop_long(3001)
+        first = self._materialize_after_reclassification(request)
+        production = self._production(3001)
+        omitted_names = {
+            "story_3001_traditional_web_long.txt",
+            "story_3001_traditional_kjv_long.txt",
+        }
+        before = {name: (production / name).read_bytes() for name in omitted_names}
+        second = self.controller.materialize_for_review(
+            self.run_id, self.packet_id, actor=self.actor,
+        )
+        self.assertEqual(
+            {name: (production / name).read_bytes() for name in omitted_names}, before,
+        )
+        first_slot = next(item for item in first["slots"] if item["storyId"] == 3001)
+        second_slot = next(item for item in second["slots"] if item["storyId"] == 3001)
+        self.assertEqual(first_slot["materialization"], second_slot["materialization"])
 
     def test_identity_fields_are_immutable(self):
         request = self.drop_full_and_long(3003)
@@ -2398,6 +2607,181 @@ class RecoveryTests(ControllerTestCase):
         )
         self.assertTrue(all(slot["reservation"]["state"] == "MATERIALIZED" for slot in packet["slots"]))
         self.assertEqual(self.reservations.confirm_calls, 5)
+
+
+class ValidationInfrastructureRecoveryTests(ControllerTestCase):
+    def _quarantine_with_legacy_i_have_hit(self, *, genuine_model_meta=False):
+        packet = self.assignments()
+        real_detector = controller.check_meta_text
+        for attempt in range(1, controller.MAX_CORRECTION_ROUNDS + 2):
+            def mutate(root, current, attempt=attempt):
+                if attempt <= controller.MAX_CORRECTION_ROUNDS:
+                    for slot in current["slots"]:
+                        for lane in controller.LANES:
+                            (root / str(slot["storyId"])
+                             / f"reflection_{slot['storyId']}_traditional_{lane}.txt").write_text(
+                                "too short", encoding="utf-8",
+                            )
+                else:
+                    phrase = (
+                        "I have generated the requested reflection below."
+                        if genuine_model_meta
+                        else "I have anointed {pronoun} king over Israel."
+                    )
+                    slot = next(item for item in current["slots"] if item["storyId"] == 3001)
+                    for lane in controller.LANES:
+                        pronoun = "thee" if lane == "kjv" else "you"
+                        (root / "3001"
+                         / f"reflection_3001_traditional_{lane}.txt").write_text(
+                            phrase.format(pronoun=pronoun) + " "
+                            + words(30, kjv=lane == "kjv"),
+                            encoding="utf-8",
+                        )
+
+            source = self.write_outputs(
+                packet, root=self.base / f"recovery-attempt-{attempt}", mutate=mutate,
+            )
+            self.controller.ingest_writer_output(
+                self.run_id, self.packet_id, source_root=source, actor=self.actor,
+            )
+            if attempt == controller.MAX_CORRECTION_ROUNDS + 1:
+                def legacy_detector(text):
+                    if "i have" in text.lstrip()[:200].lower():
+                        return "i have"
+                    return real_detector(text)
+
+                context = mock.patch.object(
+                    controller, "check_meta_text", side_effect=legacy_detector,
+                )
+            else:
+                context = mock.patch.object(
+                    controller, "check_meta_text", side_effect=real_detector,
+                )
+            with context, self.assertRaises(controller.ValidationFailed):
+                self.controller.validate_outputs(
+                    self.run_id, self.packet_id, actor=self.actor,
+                )
+            packet = self.controller.load(self.run_id, self.packet_id)
+            if attempt <= controller.MAX_CORRECTION_ROUNDS:
+                packet = self.controller.emit_corrections(
+                    self.run_id, self.packet_id, actor=self.actor,
+                )
+        self.assertEqual(packet["state"], controller.QUARANTINED)
+        return packet
+
+    def _request(self, packet, **overrides):
+        attempt = max(slot["writerAttempts"] for slot in packet["slots"])
+        value = {
+            "failureClass": controller.VALIDATION_I_HAVE_FALSE_POSITIVE,
+            "writerOutputEvidenceSha256":
+                packet["evidenceHashes"][f"writerOutputAttempt{attempt}"],
+            "validationFailureSha256": packet["evidenceHashes"]["validationFailure"],
+            "adjudication": (
+                "The complete recorded failure set is the retired context-free "
+                "I-have validator rule, not an editorial waiver."
+            ),
+        }
+        value.update(overrides)
+        return value
+
+    def _recover(self, packet, **kwargs):
+        return self.controller.recover_validation_i_have_false_positive(
+            self.run_id,
+            self.packet_id,
+            actor=kwargs.pop("actor", self.actor),
+            request=kwargs.pop("request", self._request(packet)),
+            owner_authorized=kwargs.pop("owner_authorized", True),
+            **kwargs,
+        )
+
+    def test_owner_recovery_revalidates_same_attempt_without_new_round(self):
+        quarantined = self._quarantine_with_legacy_i_have_hit()
+        before_attempts = [slot["writerAttempts"] for slot in quarantined["slots"]]
+        before_histories = [copy.deepcopy(slot["correctionHistory"])
+                            for slot in quarantined["slots"]]
+        journal = (self.controller.packet_dir(self.run_id, self.packet_id)
+                   / "events.jsonl")
+        failed_event_count = len(journal.read_bytes().splitlines())
+        recovered = self._recover(quarantined)
+        self.assertEqual(recovered["state"], controller.WRITER_OUTPUT_RECEIVED)
+        self.assertEqual(recovered["correctionRound"], controller.MAX_CORRECTION_ROUNDS)
+        self.assertEqual([slot["writerAttempts"] for slot in recovered["slots"]], before_attempts)
+        self.assertEqual([slot["correctionHistory"] for slot in recovered["slots"]], before_histories)
+        events = [json.loads(line) for line in journal.read_text().splitlines()]
+        self.assertEqual(len(events), failed_event_count + 1)
+        self.assertEqual(events[-2]["eventType"], "VALIDATION_CORRECTION_CAP_EXCEEDED")
+        self.assertEqual(events[-1]["eventType"], controller.VALIDATION_INFRASTRUCTURE_RECOVERY)
+        evidence_path = (
+            self.controller.packet_dir(self.run_id, self.packet_id)
+            / "recoveries" / "validation" / "round-3"
+            / "i_have_context_false_positive.json"
+        )
+        self.assertTrue(evidence_path.is_file())
+        self.assertEqual(oct(evidence_path.stat().st_mode & 0o777), "0o600")
+        passed = self.controller.validate_outputs(
+            self.run_id, self.packet_id, actor=self.actor,
+        )
+        self.assertEqual(passed["state"], controller.VALIDATION_PASSED)
+        self.assertEqual([slot["writerAttempts"] for slot in passed["slots"]], before_attempts)
+
+    def test_changed_quarantined_attempt_is_refused_without_event(self):
+        packet = self._quarantine_with_legacy_i_have_hit()
+        journal = (self.controller.packet_dir(self.run_id, self.packet_id)
+                   / "events.jsonl")
+        before = journal.read_bytes()
+        slot = next(item for item in packet["slots"] if item["storyId"] == 3001)
+        workspace = self.controller._workspace_dir(packet, slot)
+        target = workspace / "reflection_3001_traditional_web.txt"
+        target.write_bytes(target.read_bytes() + b" changed")
+        with self.assertRaises(controller.SafetyViolation):
+            self._recover(packet)
+        self.assertEqual(journal.read_bytes(), before)
+
+    def test_genuine_model_meta_text_cannot_be_adjudicated_away(self):
+        packet = self._quarantine_with_legacy_i_have_hit(genuine_model_meta=True)
+        journal = (self.controller.packet_dir(self.run_id, self.packet_id)
+                   / "events.jsonl")
+        before = journal.read_bytes()
+        with self.assertRaisesRegex(controller.ReviewRejected, "genuine blocking finding"):
+            self._recover(packet)
+        self.assertEqual(journal.read_bytes(), before)
+
+    def test_recovery_requires_exact_owner_authorization_and_hashes(self):
+        packet = self._quarantine_with_legacy_i_have_hit()
+        with self.assertRaises(controller.ReviewRejected):
+            self._recover(packet, owner_authorized=False)
+        bad = self._request(packet, writerOutputEvidenceSha256="0" * 64)
+        with self.assertRaises(controller.ReviewRejected):
+            self._recover(packet, request=bad)
+
+    def test_replay_refuses_a_different_event_using_quarantined_exit(self):
+        packet = self._quarantine_with_legacy_i_have_hit()
+        journal = (self.controller.packet_dir(self.run_id, self.packet_id)
+                   / "events.jsonl")
+        lines = journal.read_bytes().splitlines()
+        forged_packet = copy.deepcopy(packet)
+        forged_packet["state"] = controller.WRITER_OUTPUT_RECEIVED
+        for slot in forged_packet["slots"]:
+            slot["state"] = controller.WRITER_OUTPUT_RECEIVED
+        event = {
+            "schemaVersion": controller.CONTROLLER_SCHEMA_VERSION,
+            "eventId": "00000000-0000-4000-8000-000000000999",
+            "sequence": len(lines) + 1,
+            "timestamp": "2099-01-01T00:00:00Z",
+            "eventType": "WRITER_OUTPUT_INGESTED",
+            "runId": self.run_id,
+            "packetId": self.packet_id,
+            "storyId": None,
+            "fromState": controller.QUARANTINED,
+            "toState": controller.WRITER_OUTPUT_RECEIVED,
+            "actor": self.actor,
+            "reason": "forged generic exit",
+            "packet": forged_packet,
+        }
+        event["evidenceHash"] = controller._event_hash(event)
+        journal.write_bytes(journal.read_bytes() + controller._canonical_bytes(event) + b"\n")
+        with self.assertRaises(controller.JournalCorrupt):
+            self.controller.load(self.run_id, self.packet_id)
 
 
 class IsolationProofTests(ControllerTestCase):

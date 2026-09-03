@@ -134,7 +134,9 @@ LEGAL_TRANSITIONS = {
     CORRECTION_READY: frozenset({WRITER_OUTPUT_RECEIVED, QUARANTINED, ABORTED}),
     REVIEW_APPROVED: frozenset({READY_FOR_HUMAN_REVIEW, QUARANTINED}),
     READY_FOR_HUMAN_REVIEW: frozenset(),
-    QUARANTINED: frozenset(),
+    # The only exit is the narrowly replay-guarded validator-infrastructure
+    # recovery event.  Editorial/reviewer quarantines remain terminal.
+    QUARANTINED: frozenset({WRITER_OUTPUT_RECEIVED}),
     ABORTED: frozenset(),
 }
 
@@ -164,6 +166,17 @@ SAME_STATE_EVENT_STATES = {
 #: the system says "this passage does not support that length" without asking
 #: anyone to write words the passage does not carry.
 STORY_LENGTHS_RECLASSIFIED = "STORY_LENGTHS_RECLASSIFIED"
+
+# A correction-cap quarantine may be reopened only when the complete failure
+# set is the former context-free ``i have`` detector hit, the same immutable
+# writer attempt still verifies, and the corrected validator now passes that
+# attempt.  This is intentionally not a generic quarantine waiver.
+VALIDATION_INFRASTRUCTURE_RECOVERY = "VALIDATION_INFRASTRUCTURE_RECOVERY_AUTHORIZED"
+VALIDATION_I_HAVE_FALSE_POSITIVE = "META_TEXT_I_HAVE_CONTEXT_FALSE_POSITIVE"
+VALIDATION_RECOVERY_REQUEST_FIELDS = frozenset({
+    "failureClass", "writerOutputEvidenceSha256",
+    "validationFailureSha256", "adjudication",
+})
 
 #: The attestation is an OWNER STATEMENT, not a machine proof.  The factory has
 #: no authentication substrate: one uid, no signing key, no separate
@@ -611,6 +624,7 @@ def _replay_bytes(raw: bytes, source: str) -> dict | None:
     except UnicodeError as exc:
         raise JournalCorrupt(f"controller journal is not UTF-8: {source}") from exc
     current = None
+    prior_event_type = None
     event_ids = set()
     last_timestamp = None
     for sequence, line in enumerate(text.splitlines(), 1):
@@ -658,7 +672,12 @@ def _replay_bytes(raw: bytes, source: str) -> dict | None:
         following = normalize_packet_model(event["packet"])
         if current is not None:
             _assert_target_lengths_invariants(current, following, event, sequence)
+            _assert_validation_recovery_invariants(
+                current, following, event, sequence,
+                prior_event_type=prior_event_type,
+            )
         current = following
+        prior_event_type = event["eventType"]
     return current
 
 
@@ -716,6 +735,74 @@ def _assert_target_lengths_invariants(prior: dict, following: dict,
             f"{STORY_LENGTHS_RECLASSIFIED} at line {sequence} is missing "
             f"evidenceHashes[{key!r}]"
         )
+
+
+def _assert_validation_recovery_invariants(prior: dict, following: dict,
+                                           event: Mapping[str, object],
+                                           sequence: int, *,
+                                           prior_event_type: str | None) -> None:
+    """Pin the sole QUARANTINED exit to an evidence-bound state-only recovery."""
+
+    is_transition = (
+        prior["state"] == QUARANTINED
+        and following["state"] == WRITER_OUTPUT_RECEIVED
+    )
+    is_recovery = event["eventType"] == VALIDATION_INFRASTRUCTURE_RECOVERY
+    if is_transition != is_recovery:
+        raise JournalCorrupt(
+            f"event {event['eventType']!r} at line {sequence} does not match "
+            "the sole authorized QUARANTINED recovery transition"
+        )
+    if not is_recovery:
+        return
+    if prior_event_type != "VALIDATION_CORRECTION_CAP_EXCEEDED":
+        raise JournalCorrupt("validation recovery does not follow a correction-cap failure")
+    if prior["correctionRound"] != MAX_CORRECTION_ROUNDS:
+        raise JournalCorrupt("validation recovery does not follow the correction cap")
+    findings = [
+        finding
+        for slot in prior["slots"]
+        for finding in slot["unresolvedFindings"]
+    ]
+    failure_hash = prior["evidenceHashes"].get("validationFailure")
+    if not findings or _hash_value(findings) != failure_hash:
+        raise JournalCorrupt("validation recovery findings do not match failure evidence")
+    for slot in prior["slots"]:
+        story_id = slot["storyId"]
+        allowed = {
+            f"story {story_id}: reflection_{story_id}_traditional_{lane}.txt: "
+            "meta-text 'i have'"
+            for lane in LANES
+        }
+        if any(finding not in allowed for finding in slot["unresolvedFindings"]):
+            raise JournalCorrupt("validation recovery follows a non-infrastructure finding")
+    if prior["correctionRound"] != following["correctionRound"]:
+        raise JournalCorrupt("validation recovery changed the correction round")
+    if prior["reviewRound"] != following["reviewRound"]:
+        raise JournalCorrupt("validation recovery changed the review round")
+    evidence_key = f"validationInfrastructureRecoveryRound{prior['correctionRound']}"
+    prior_evidence = prior["evidenceHashes"]
+    following_evidence = following["evidenceHashes"]
+    if set(following_evidence) != set(prior_evidence) | {evidence_key}:
+        raise JournalCorrupt("validation recovery changed evidence outside its recovery key")
+    if evidence_key in prior_evidence or not HEX64_RE.fullmatch(
+        following_evidence.get(evidence_key, "")
+    ):
+        raise JournalCorrupt("validation recovery evidence hash is missing or invalid")
+
+    for field in set(prior) - {"state", "updatedAt", "slots", "evidenceHashes"}:
+        if prior[field] != following[field]:
+            raise JournalCorrupt(f"validation recovery changed packet field {field!r}")
+    prior_slots = {slot["storyId"]: slot for slot in prior["slots"]}
+    for slot in following["slots"]:
+        before = prior_slots.get(slot["storyId"])
+        if before is None:
+            raise JournalCorrupt("validation recovery changed packet story identity")
+        for field in set(before) - {"state"}:
+            if before[field] != slot[field]:
+                raise JournalCorrupt(
+                    f"validation recovery changed story {slot['storyId']} field {field!r}"
+                )
 
 
 def _packet_dir(factory_home: Path, run_id: str, packet_id: str) -> Path:
@@ -1636,7 +1723,7 @@ class AutonomousStoryController:
             )
         return cls.RESERVATION_QUEUE_PROJECTION[state]
 
-    def _overlap_queue_snapshot(self, packet: dict) -> Path:
+    def _overlap_queue_payload(self, packet: dict) -> dict:
         states = self._authoritative_reservations(packet)
         payload = {"reservations": []}
         for slot in packet["slots"]:
@@ -1649,9 +1736,38 @@ class AutonomousStoryController:
                 "proposedAnchor": slot["proposedAnchor"],
                 "state": projected,
             })
-        path = self.packet_dir(packet["runId"], packet["packetId"]) / "overlap_queue_snapshot.json"
+        return payload
+
+    def _write_overlap_queue_snapshot(self, packet: dict, path: Path) -> dict:
+        payload = self._overlap_queue_payload(packet)
+        self._ensure_runtime_directory(path.parent)
         _write_json(path, payload)
+        return {
+            "path": str(path.relative_to(self.packet_dir(
+                packet["runId"], packet["packetId"],
+            ))),
+            "hash": _hash_value(payload),
+        }
+
+    def _overlap_queue_snapshot(self, packet: dict) -> Path:
+        """Write the immutable initial-preflight queue snapshot.
+
+        Later validation and final-readiness checks use round-scoped evidence;
+        they must never repurpose this historical path.
+        """
+        path = self.packet_dir(packet["runId"], packet["packetId"]) / "overlap_queue_snapshot.json"
+        self._write_overlap_queue_snapshot(packet, path)
         return path
+
+    def _fresh_overlap_queue_snapshot(self, packet: dict, *, phase: str) -> tuple[Path, dict]:
+        if phase not in {"validation", "final-readiness"}:
+            raise ControllerConfigError(f"unsupported overlap snapshot phase {phase!r}")
+        path = (
+            self.packet_dir(packet["runId"], packet["packetId"])
+            / "overlap" / phase / f"round-{packet['correctionRound']}"
+            / "queue_snapshot.json"
+        )
+        return path, self._write_overlap_queue_snapshot(packet, path)
 
     def acl_queue_rows(self, *, exclude_packet=None) -> list[dict]:
         """Project every global anchor claim into gate queue rows.
@@ -2138,7 +2254,9 @@ class AutonomousStoryController:
             raise IllegalControllerTransition("validation requires WRITER_OUTPUT_RECEIVED")
         self._assert_manifest_unchanged(packet)
         self._authoritative_reservations(packet)
-        queue_path = self._overlap_queue_snapshot(packet)
+        queue_path, queue_snapshot = self._fresh_overlap_queue_snapshot(
+            packet, phase="validation",
+        )
         updated = copy.deepcopy(packet)
         all_errors = []
         validation_dir = self.packet_dir(run_id, packet_id) / "validation"
@@ -2151,6 +2269,7 @@ class AutonomousStoryController:
                 final_overlap = {"verdict": "ERROR", "errorType": type(exc).__name__, "error": str(exc)}
             evidence["finalOverlap"] = final_overlap
             evidence["finalOverlapHash"] = _hash_value(final_overlap)
+            evidence["overlapQueueSnapshot"] = queue_snapshot
             if final_overlap.get("verdict") != "PASS":
                 errors.append(f"story {slot['storyId']}: final overlap verdict {final_overlap.get('verdict', 'ERROR')}")
             if errors:
@@ -2163,6 +2282,7 @@ class AutonomousStoryController:
                 "workspaceTreeHash": evidence.get("workspaceTreeHash"),
                 "finalOverlapHash": evidence["finalOverlapHash"],
                 "finalOverlapVerdict": final_overlap.get("verdict"),
+                "overlapQueueSnapshot": queue_snapshot,
             }
             slot["overlapEvidence"]["final"] = {
                 "verdict": final_overlap.get("verdict"),
@@ -2191,29 +2311,204 @@ class AutonomousStoryController:
         return self._record(packet, updated, event_type="VALIDATION_PASSED",
                             actor=actor, reason="all ordered text/schema/campaign checks passed")
 
-    def _directory_matches(self, directory: Path, expected_hashes: Mapping[str, str]) -> bool:
+    def recover_validation_i_have_false_positive(
+        self,
+        run_id: str,
+        packet_id: str,
+        *,
+        actor: str,
+        request: object,
+        owner_authorized: bool,
+    ) -> dict:
+        """Reopen only a correction-cap quarantine caused by the legacy rule.
+
+        This adjudicates validator infrastructure; it does not waive content.
+        The exact quarantined writer attempt is verified and dry-run through the
+        current validator before a state-only transition permits normal
+        ``validate`` to run again.
+        """
+
+        packet = self.load(run_id, packet_id)
+        if owner_authorized is not True:
+            raise ReviewRejected("validation infrastructure recovery requires owner authorization")
+        if actor != packet["actor"]:
+            raise ReviewRejected("validation infrastructure recovery actor differs from packet owner")
+        if not isinstance(request, dict) or set(request) != VALIDATION_RECOVERY_REQUEST_FIELDS:
+            raise ReviewRejected(
+                "validation recovery request fields must be exactly "
+                f"{sorted(VALIDATION_RECOVERY_REQUEST_FIELDS)}"
+            )
+        if request["failureClass"] != VALIDATION_I_HAVE_FALSE_POSITIVE:
+            raise ReviewRejected("unsupported validation infrastructure failure class")
+        if not isinstance(request["adjudication"], str) or not request["adjudication"].strip():
+            raise ReviewRejected("validation recovery adjudication must be a non-empty owner statement")
+        for field in ("writerOutputEvidenceSha256", "validationFailureSha256"):
+            if not isinstance(request[field], str) or not HEX64_RE.fullmatch(request[field]):
+                raise ReviewRejected(f"validation recovery {field} is not SHA-256")
+        if packet["state"] != QUARANTINED:
+            raise IllegalControllerTransition("validation recovery requires QUARANTINED")
+        if packet["correctionRound"] != MAX_CORRECTION_ROUNDS:
+            raise ReviewRejected("validation recovery requires a correction-cap quarantine")
+
+        journal_path = self.packet_dir(run_id, packet_id) / "events.jsonl"
+        try:
+            lines = journal_path.read_bytes().splitlines()
+            last_event = json.loads(lines[-1], object_pairs_hook=_strict_json_pairs)
+        except (OSError, IndexError, json.JSONDecodeError, ControllerConfigError) as exc:
+            raise JournalCorrupt(f"cannot inspect quarantining event: {exc}") from exc
+        last_event = _validate_event(last_event, len(lines))
+        if (
+            last_event["eventType"] != "VALIDATION_CORRECTION_CAP_EXCEEDED"
+            or normalize_packet_model(last_event["packet"]) != packet
+        ):
+            raise ReviewRejected("packet was not quarantined by correction-cap validation")
+
+        failure_hash = packet["evidenceHashes"].get("validationFailure")
+        if failure_hash != request["validationFailureSha256"]:
+            raise ReviewRejected("validation failure evidence hash differs from the owner request")
+        findings = [
+            finding
+            for slot in packet["slots"]
+            for finding in slot["unresolvedFindings"]
+        ]
+        if not findings or _hash_value(findings) != failure_hash:
+            raise SafetyViolation("quarantined findings do not reproduce validationFailure evidence")
+        for slot in packet["slots"]:
+            story_id = slot["storyId"]
+            allowed = {
+                f"story {story_id}: reflection_{story_id}_traditional_{lane}.txt: "
+                "meta-text 'i have'"
+                for lane in LANES
+            }
+            if any(finding not in allowed for finding in slot["unresolvedFindings"]):
+                raise ReviewRejected(
+                    "validation recovery cannot waive a non-infrastructure finding"
+                )
+
+        attempt = max(slot["writerAttempts"] for slot in packet["slots"])
+        writer_key = f"writerOutputAttempt{attempt}"
+        writer_hash = packet["evidenceHashes"].get(writer_key)
+        if writer_hash != request["writerOutputEvidenceSha256"]:
+            raise ReviewRejected("writer output evidence hash differs from the owner request")
+        attempt_rows = {}
+        dry_run_hashes = {}
+        for slot in packet["slots"]:
+            directory = self._workspace_dir(packet, slot)
+            expected = expected_artifact_names(slot["storyId"], slot["targetLengths"])
+            tree_hash, file_hashes = _tree_hash(directory, expected)
+            workspace = slot.get("workspace")
+            if not isinstance(workspace, dict) or (
+                tree_hash != workspace.get("treeHash")
+                or file_hashes != workspace.get("fileHashes")
+            ):
+                raise SafetyViolation(
+                    f"story {slot['storyId']}: quarantined writer workspace changed"
+                )
+            if slot["writerAttempts"] == attempt:
+                attempt_rows[str(slot["storyId"])] = tree_hash
+            evidence, current_errors = self._validate_story_workspace(packet, slot)
+            if current_errors:
+                raise ReviewRejected(
+                    "current validation still reports a genuine blocking finding: "
+                    + "; ".join(current_errors)
+                )
+            dry_run_hashes[str(slot["storyId"])] = _hash_value(evidence)
+        if _hash_value(attempt_rows) != writer_hash:
+            raise SafetyViolation("quarantined writer attempt no longer reproduces its evidence hash")
+
+        recovery_payload = {
+            "recoveryVersion": 1,
+            "failureClass": VALIDATION_I_HAVE_FALSE_POSITIVE,
+            "runId": run_id,
+            "packetId": packet_id,
+            "actor": actor,
+            "ownerAuthorized": True,
+            "adjudication": request["adjudication"].strip(),
+            "correctionRound": packet["correctionRound"],
+            "reviewRound": packet["reviewRound"],
+            "writerAttempt": attempt,
+            "writerOutputEvidenceKey": writer_key,
+            "writerOutputEvidenceSha256": writer_hash,
+            "validationFailureSha256": failure_hash,
+            "adjudicatedFindings": findings,
+            "currentValidatorDryRunSha256": _hash_value(dry_run_hashes),
+            "decision": "REVALIDATE_SAME_IMMUTABLE_WRITER_ATTEMPT",
+        }
+        evidence_key = f"validationInfrastructureRecoveryRound{packet['correctionRound']}"
+        evidence_hash = _hash_value(recovery_payload)
+        evidence_path = (
+            self.packet_dir(run_id, packet_id) / "recoveries" / "validation"
+            / f"round-{packet['correctionRound']}" / "i_have_context_false_positive.json"
+        )
+        self._ensure_runtime_directory(evidence_path.parent)
+        if evidence_path.exists():
+            if _load_json(evidence_path, error_type=SafetyViolation) != recovery_payload:
+                raise SafetyViolation("existing validation recovery evidence diverges")
+        else:
+            _write_json(evidence_path, recovery_payload)
+
+        updated = self._transition(packet, WRITER_OUTPUT_RECEIVED)
+        updated["evidenceHashes"][evidence_key] = evidence_hash
+        return self._record(
+            packet,
+            updated,
+            event_type=VALIDATION_INFRASTRUCTURE_RECOVERY,
+            actor=actor,
+            reason=(
+                "owner adjudicated the legacy context-free i-have detector as "
+                "infrastructure false positive; same writer attempt may be revalidated"
+            ),
+        )
+
+    def _directory_matches(
+        self,
+        directory: Path,
+        expected_hashes: Mapping[str, str],
+        preserved_hashes: Mapping[str, str] | None = None,
+    ) -> bool:
         if not directory.is_dir():
             return False
+        preserved_hashes = preserved_hashes or {}
+        if set(expected_hashes) & set(preserved_hashes):
+            return False
+        all_hashes = {**preserved_hashes, **expected_hashes}
         try:
             actual = {entry.name for entry in os.scandir(directory)}
         except OSError:
             return False
-        if actual != set(expected_hashes):
+        if actual != set(all_hashes):
             return False
         try:
-            return all(_hash_file(directory / name) == digest for name, digest in expected_hashes.items())
+            return all(
+                _hash_file(directory / name) == digest
+                for name, digest in all_hashes.items()
+            )
         except ControllerError:
             return False
 
-    def _copy_to_staging(self, source: Path, staging: Path, expected: tuple[str, ...]) -> None:
+    def _copy_to_staging(
+        self,
+        source: Path,
+        staging: Path,
+        expected: tuple[str, ...],
+        *,
+        preserved_source: Path | None = None,
+        preserved_hashes: Mapping[str, str] | None = None,
+    ) -> None:
         if staging.exists():
             shutil.rmtree(staging)
         staging.mkdir(parents=False, mode=0o700)
+        for name in (preserved_hashes or {}):
+            if preserved_source is None:
+                raise SafetyViolation("historical preservation source is missing")
+            _atomic_write(staging / name, (preserved_source / name).read_bytes(), mode=0o644)
         for name in expected:
             _atomic_write(staging / name, (source / name).read_bytes(), mode=0o644)
         _fsync_dir(staging)
 
-    def _install_story_directory(self, packet: dict, slot: dict, source: Path) -> tuple[str, dict[str, str]]:
+    def _install_story_directory(
+        self, packet: dict, slot: dict, source: Path,
+    ) -> tuple[str, dict[str, str], dict[str, str]]:
         story_id = slot["storyId"]
         expected = expected_artifact_names(story_id, slot["targetLengths"])
         tree_hash, source_hashes = _tree_hash(source, expected)
@@ -2223,28 +2518,58 @@ class AutonomousStoryController:
         staging = parent / f".{story_id}.controller-staging"
         backup = parent / f".{story_id}.controller-backup"
 
+        previous = slot.get("materialization")
+        prior_authoritative = (
+            previous.get("fileHashes") if isinstance(previous, dict) else {}
+        )
+        prior_preserved = (
+            previous.get("nonAuthoritativePreservedFileHashes", {})
+            if isinstance(previous, dict) else {}
+        )
+        if not isinstance(prior_authoritative, dict) or not isinstance(prior_preserved, dict):
+            raise SafetyViolation(f"story {story_id}: prior materialization hashes are invalid")
+        if set(prior_authoritative) & set(prior_preserved):
+            raise SafetyViolation(f"story {story_id}: prior materialization evidence is ambiguous")
+        prior_all = {**prior_preserved, **prior_authoritative}
+        preserved_hashes = {
+            name: digest for name, digest in prior_all.items()
+            if name not in source_hashes
+        }
+
         if backup.exists():
-            if destination.exists() and self._directory_matches(destination, source_hashes):
+            if destination.exists() and self._directory_matches(
+                destination, source_hashes, preserved_hashes,
+            ):
                 shutil.rmtree(backup)
-            elif not destination.exists() and staging.exists() and self._directory_matches(staging, source_hashes):
+            elif not destination.exists() and staging.exists() and self._directory_matches(
+                staging, source_hashes, preserved_hashes,
+            ):
                 os.replace(staging, destination)
                 _fsync_dir(parent)
                 shutil.rmtree(backup)
             else:
                 raise SafetyViolation(f"story {story_id}: unresolved controller directory-swap recovery state")
-        if destination.exists() and self._directory_matches(destination, source_hashes):
+        if destination.exists() and self._directory_matches(
+            destination, source_hashes, preserved_hashes,
+        ):
             if staging.exists():
                 shutil.rmtree(staging)
-            return tree_hash, source_hashes
+            return tree_hash, source_hashes, preserved_hashes
 
-        previous = slot.get("materialization")
         if destination.exists():
-            prior_hashes = previous.get("fileHashes") if isinstance(previous, dict) else None
-            if not isinstance(prior_hashes, dict) or not self._directory_matches(destination, prior_hashes):
+            if not previous or not self._directory_matches(
+                destination, prior_authoritative, prior_preserved,
+            ):
                 raise SafetyViolation(
                     f"story {story_id}: production directory exists without controller-owned hash evidence"
                 )
-        self._copy_to_staging(source, staging, expected)
+        self._copy_to_staging(
+            source, staging, expected,
+            preserved_source=destination if preserved_hashes else None,
+            preserved_hashes=preserved_hashes,
+        )
+        if not self._directory_matches(staging, source_hashes, preserved_hashes):
+            raise SafetyViolation(f"story {story_id}: controller staging hash verification failed")
         if destination.exists():
             if backup.exists():
                 raise SafetyViolation(f"story {story_id}: controller backup unexpectedly exists")
@@ -2252,12 +2577,12 @@ class AutonomousStoryController:
             _fsync_dir(parent)
         os.replace(staging, destination)
         _fsync_dir(parent)
-        if not self._directory_matches(destination, source_hashes):
+        if not self._directory_matches(destination, source_hashes, preserved_hashes):
             raise SafetyViolation(f"story {story_id}: production copy hash verification failed")
         if backup.exists():
             shutil.rmtree(backup)
             _fsync_dir(parent)
-        return tree_hash, source_hashes
+        return tree_hash, source_hashes, preserved_hashes
 
     def materialize_for_review(self, run_id: str, packet_id: str, *, actor: str) -> dict:
         packet = self.load(run_id, packet_id)
@@ -2276,7 +2601,9 @@ class AutonomousStoryController:
             )
             if tree_hash != evidence.get("workspaceTreeHash"):
                 raise SafetyViolation(f"story {slot['storyId']}: workspace changed after validation")
-            installed_hash, installed_files = self._install_story_directory(packet, slot, source)
+            installed_hash, installed_files, preserved_files = self._install_story_directory(
+                packet, slot, source,
+            )
             current = authoritative[slot["storyId"]]
             if current.state == "RESERVED":
                 current = self.reservations.confirm_materialized(
@@ -2293,6 +2620,9 @@ class AutonomousStoryController:
                 "path": f"assets/stories/traditional/{slot['storyId']}",
                 "treeHash": installed_hash,
                 "fileHashes": installed_files,
+                # Separate custody evidence keeps these bytes verifiable while
+                # leaving fileHashes/treeHash authoritative only for targetLengths.
+                "nonAuthoritativePreservedFileHashes": preserved_files,
                 "reservationState": current.state,
                 "audioPresent": False,
                 "manifestRegistered": False,
@@ -2315,7 +2645,10 @@ class AutonomousStoryController:
             if authoritative[story_id].state != "MATERIALIZED":
                 raise IntegrationError(f"story {story_id}: reservation is not MATERIALIZED")
             destination = self.repo_root / materialization["path"]
-            if not self._directory_matches(destination, materialization["fileHashes"]):
+            preserved = materialization.get("nonAuthoritativePreservedFileHashes", {})
+            if not isinstance(preserved, dict) or not self._directory_matches(
+                destination, materialization["fileHashes"], preserved,
+            ):
                 raise SafetyViolation(f"story {story_id}: production files differ from recorded hashes")
             if any(path.suffix.lower() in {".mp3", ".wav", ".m4a"} for path in destination.iterdir()):
                 raise SafetyViolation(f"story {story_id}: audio exists before human review")
@@ -2822,8 +3155,10 @@ class AutonomousStoryController:
         return self._record(packet, updated, event_type="CORRECTION_ASSIGNMENTS_EMITTED",
                             actor=actor, reason=f"bounded correction round {round_number} emitted")
 
-    def _final_overlap_pass(self, packet: dict) -> dict[str, dict]:
-        queue_path = self._overlap_queue_snapshot(packet)
+    def _final_overlap_pass(self, packet: dict) -> tuple[dict[str, dict], dict]:
+        queue_path, queue_snapshot = self._fresh_overlap_queue_snapshot(
+            packet, phase="final-readiness",
+        )
         results = {}
         for slot in packet["slots"]:
             try:
@@ -2835,7 +3170,7 @@ class AutonomousStoryController:
                     f"story {slot['storyId']} final human-gate overlap is {result.get('verdict', 'ERROR')}"
                 )
             results[str(slot["storyId"])] = result
-        return results
+        return results, queue_snapshot
 
     def _human_report(self, packet: dict) -> str:
         lines = [
@@ -2867,7 +3202,7 @@ class AutonomousStoryController:
             raise IllegalControllerTransition("human-review readiness requires REVIEW_APPROVED")
         self._assert_manifest_unchanged(packet)
         self._assert_materialized(packet)
-        final_overlap = self._final_overlap_pass(packet)
+        final_overlap, queue_snapshot = self._final_overlap_pass(packet)
         updated = self._transition(packet, READY_FOR_HUMAN_REVIEW)
         for slot in updated["slots"]:
             if slot["reviewerVerdict"] != "APPROVED" or slot["unresolvedFindings"]:
@@ -2884,6 +3219,7 @@ class AutonomousStoryController:
                 "storyTreeHash": tree_hash,
                 "fileHashes": file_hashes,
                 "overlapHash": _hash_value(final_overlap[str(slot["storyId"])]),
+                "overlapQueueSnapshot": queue_snapshot,
                 "reservationState": "MATERIALIZED",
                 "audioPresent": False,
                 "manifestRegistered": False,
@@ -2951,6 +3287,11 @@ def build_parser() -> argparse.ArgumentParser:
     ingest = subs.add_parser("ingest-writer-output", parents=[common])
     ingest.add_argument("--source-root", required=True)
     subs.add_parser("validate", parents=[common])
+    recover_validation = subs.add_parser(
+        "recover-validation-i-have-false-positive", parents=[common],
+    )
+    recover_validation.add_argument("--recovery-file", required=True)
+    recover_validation.add_argument("--owner-authorize", action="store_true")
     subs.add_parser("materialize", parents=[common])
     subs.add_parser("emit-review-packet", parents=[common])
     review = subs.add_parser("ingest-review", parents=[common])
@@ -3013,6 +3354,14 @@ def main(argv=None) -> int:
             )
         elif args.command == "validate":
             result = controller.validate_outputs(args.run_id, args.packet_id, actor=args.actor)
+        elif args.command == "recover-validation-i-have-false-positive":
+            result = controller.recover_validation_i_have_false_positive(
+                args.run_id,
+                args.packet_id,
+                actor=args.actor,
+                request=_load_json(Path(args.recovery_file)),
+                owner_authorized=args.owner_authorize,
+            )
         elif args.command == "materialize":
             result = controller.materialize_for_review(args.run_id, args.packet_id, actor=args.actor)
         elif args.command == "emit-review-packet":
@@ -3058,6 +3407,7 @@ __all__ = [
     "QUARANTINED", "RENEWABLE_PACKET_STATES",
     "READY_FOR_HUMAN_REVIEW", "REVIEW_APPROVED", "REVIEW_CHANGES_REQUESTED",
     "REVIEW_READY", "ReviewRejected", "SafetyViolation", "ValidationFailed",
+    "VALIDATION_I_HAVE_FALSE_POSITIVE", "VALIDATION_INFRASTRUCTURE_RECOVERY",
     "VALIDATION_PASSED", "WorkspaceRejected", "WRITER_OUTPUT_RECEIVED",
     "build_parser", "expected_artifact_names", "main", "replay_packet",
     "validate_packet_model",

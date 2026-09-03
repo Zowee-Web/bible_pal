@@ -26,10 +26,27 @@ META_TEXT_BLOCKLIST = [
     "sure,", "sure!", "in this retelling", "expanded carefully",
     "staying true to", "the following", "this passage", "this story",
     "this verse", "this retelling", "this rendering", "this adaptation",
-    "i've", "i have", "let me", "below is", "as requested", "as you asked",
+    "i've", "let me", "below is", "as requested", "as you asked",
     "happy to", "glad to", "i'd be", "i would be", "absolutely",
     "great question", "what a",
 ]
+
+# The original ``i have`` entry was intended to reject a model announcing work
+# it performed, not ordinary first-person grammar.  A verb alone is not enough:
+# Scripture legitimately says "I have kept/made/prepared/provided/written".
+# Require both a work verb and an assistant-task/work-product object.
+_I_HAVE_MODEL_WORK_RE = re.compile(
+    r"(?:^|\b)i have\s+"
+    r"(?:adapted|completed|created|crafted|expanded|followed|generated|included|"
+    r"kept|made|prepared|produced|provided|retold|rewritten|written)\s+"
+    r"(?:(?:a|an|all|both|our|that|the|this|your)\s+)?"
+    r"(?:(?:complete|corrected|expanded|final|following|language|new|requested|"
+    r"revised|updated)\s+)?"
+    r"(?:account|adaptation|changes?|draft|files?|folder|lanes?|opening|output|"
+    r"passage|reflection|rendering|response|retelling|rewrite|story|"
+    r"style\s+guide|text|version)\b",
+    re.IGNORECASE,
+)
 
 
 def check_meta_text(text: str) -> str | None:
@@ -48,6 +65,8 @@ def check_meta_text(text: str) -> str | None:
         pattern = r"(?:^|\b)" + re.escape(phrase)
         if re.search(pattern, opening):
             return phrase
+    if _I_HAVE_MODEL_WORK_RE.search(opening):
+        return "i have"
     if trimmed.startswith("---") or trimmed.startswith("***"):
         return "leading separator"
     return None
