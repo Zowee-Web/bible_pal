@@ -1879,6 +1879,379 @@ class AutonomousStoryController:
         return self._record(packet, updated, event_type="WRITER_ASSIGNMENTS_EMITTED",
                             actor=actor, reason="deterministic manual writer handoffs emitted")
 
+    def _assert_unstarted_abort_contract(self, packet: dict) -> None:
+        if packet["state"] != ASSIGNMENT_READY:
+            raise IllegalControllerTransition(
+                "pre-ingestion abort requires ASSIGNMENT_READY"
+            )
+        if packet["correctionRound"] != 0 or packet["reviewRound"] != 0:
+            raise SafetyViolation("pre-ingestion abort requires untouched review rounds")
+        allowed_evidence = {"reservations", "initialOverlap", "assignments"}
+        unexpected_evidence = {
+            key
+            for key in packet["evidenceHashes"]
+            if key not in allowed_evidence and not key.startswith("leaseRenewalRound")
+        }
+        if unexpected_evidence or not allowed_evidence <= set(packet["evidenceHashes"]):
+            raise SafetyViolation(
+                "packet has missing or downstream lifecycle evidence: "
+                + ", ".join(sorted(unexpected_evidence))
+            )
+        for slot in packet["slots"]:
+            if slot["writerAttempts"] != 0:
+                raise SafetyViolation(
+                    f"story {slot['storyId']} has a writer attempt; pre-ingestion abort is forbidden"
+                )
+            if slot["correctionHistory"] or slot["workspace"] is not None:
+                raise SafetyViolation(
+                    f"story {slot['storyId']} has writer or correction output"
+                )
+            if (
+                slot["validationEvidence"] is not None
+                or slot["reviewerVerdict"] is not None
+                or slot["unresolvedFindings"]
+                or slot["materialization"] is not None
+                or slot["finalReadiness"] is not None
+            ):
+                raise SafetyViolation(
+                    f"story {slot['storyId']} has downstream lifecycle evidence"
+                )
+            if not isinstance(slot["assignment"], dict):
+                raise SafetyViolation(
+                    f"story {slot['storyId']} has no assignment-ready evidence"
+                )
+            expected_assignment = str(
+                PurePosixPath("assignments") / f"story_{slot['storyId']}.json"
+            )
+            initial_overlap = slot["overlapEvidence"].get("initial")
+            expected_overlap = str(
+                PurePosixPath("overlap") / "initial" / f"{slot['storyId']}.json"
+            )
+            if (
+                set(slot["assignment"]) != {"path", "hash"}
+                or slot["assignment"]["path"] != expected_assignment
+                or not HEX64_RE.fullmatch(slot["assignment"]["hash"] or "")
+                or set(slot["overlapEvidence"]) != {"initial"}
+                or not isinstance(initial_overlap, dict)
+                or initial_overlap.get("path") != expected_overlap
+                or not HEX64_RE.fullmatch(initial_overlap.get("hash") or "")
+            ):
+                raise SafetyViolation(
+                    f"story {slot['storyId']} assignment-ready paths or hashes are invalid"
+                )
+            reservation = slot["reservation"]
+            if (
+                reservation["storyId"] != slot["storyId"]
+                or reservation["runId"] != packet["runId"]
+                or reservation["packetId"] != packet["packetId"]
+                or reservation["actor"] != packet["actor"]
+                or reservation["worktree"] != packet["worktree"]
+                or reservation["state"] != "RESERVED"
+            ):
+                raise SafetyViolation(
+                    f"story {slot['storyId']} reservation reference is not this packet's RESERVED claim"
+                )
+
+    def _assert_unstarted_abort_runtime(self, packet: dict) -> None:
+        pdir = self.packet_dir(packet["runId"], packet["packetId"])
+        expected_files = {
+            pdir / "events.jsonl",
+            pdir / "packet.json",
+            pdir / "overlap_queue_snapshot.json",
+        }
+        expected_dirs = {pdir, pdir / "assignments", pdir / "overlap", pdir / "overlap" / "initial"}
+        for slot in packet["slots"]:
+            assignment = pdir / slot["assignment"]["path"]
+            overlap = pdir / slot["overlapEvidence"]["initial"]["path"]
+            expected_files.update({assignment, overlap})
+            if _hash_value(_load_json(assignment, error_type=SafetyViolation)) != slot["assignment"]["hash"]:
+                raise SafetyViolation(
+                    f"story {slot['storyId']} assignment evidence changed"
+                )
+            if _hash_value(_load_json(overlap, error_type=SafetyViolation)) != slot["overlapEvidence"]["initial"]["hash"]:
+                raise SafetyViolation(
+                    f"story {slot['storyId']} initial-overlap evidence changed"
+                )
+        abort_path = pdir / "abort" / "pre_ingestion.json"
+        if abort_path.exists():
+            expected_dirs.add(abort_path.parent)
+            expected_files.add(abort_path)
+
+        actual_dirs = set()
+        actual_files = set()
+        for raw_root, dir_names, file_names in os.walk(pdir, followlinks=False):
+            root = Path(raw_root)
+            actual_dirs.add(root)
+            for name in dir_names:
+                path = root / name
+                info = path.lstat()
+                if stat.S_ISLNK(info.st_mode) or not stat.S_ISDIR(info.st_mode):
+                    raise SafetyViolation(f"unsafe packet runtime directory: {path}")
+                actual_dirs.add(path)
+            for name in file_names:
+                path = root / name
+                if path.suffix.lower() in {".mp3", ".wav", ".m4a"}:
+                    raise SafetyViolation(f"audio exists in unstarted packet runtime: {path}")
+                self._verify_private_runtime_file(path)
+                actual_files.add(path)
+        if actual_dirs != expected_dirs or actual_files != expected_files:
+            unexpected = sorted(str(path.relative_to(pdir)) for path in actual_files - expected_files)
+            raise SafetyViolation(
+                "packet runtime contains downstream or unexpected artifacts"
+                + (f": {', '.join(unexpected)}" if unexpected else "")
+            )
+
+    def _packet_abort_claims(self, packet: dict) -> tuple[tuple, str]:
+        states = anchor_claims.replay_ledger(self.factory_home)
+        claims = tuple(sorted(
+            (
+                claim
+                for claim in states.values()
+                if (claim.run_id, claim.packet_id) == (
+                    packet["runId"],
+                    packet["packetId"],
+                )
+            ),
+            key=lambda claim: claim.slot_id,
+        ))
+        if len(claims) != PACKET_SIZE:
+            raise IntegrationError(
+                "pre-ingestion abort requires exactly five packet ACL claims"
+            )
+        for slot, claim in zip(packet["slots"], claims):
+            normalized = " ".join(slot["proposedAnchor"].split())
+            if (
+                claim.slot_id != slot["slotId"]
+                or claim.story_id != slot["storyId"]
+                or claim.normalized_anchor != normalized
+                or claim.anchor_key != anchor_claims.anchor_key(normalized)
+            ):
+                raise IntegrationError(
+                    f"slot {slot['slotId']} ACL ownership differs from the packet"
+                )
+        claim_hashes = {claim.packet_claim_hash for claim in claims}
+        if len(claim_hashes) != 1:
+            raise IntegrationError("packet ACL claim hashes do not reconcile")
+        claim_hash = next(iter(claim_hashes))
+        rows = [
+            {
+                "slotId": claim.slot_id,
+                "normalizedAnchor": claim.normalized_anchor,
+                "anchorKey": claim.anchor_key,
+            }
+            for claim in claims
+        ]
+        if anchor_claims.packet_claim_hash(packet["runId"], packet["packetId"], rows) != claim_hash:
+            raise IntegrationError("packet ACL transaction identity is divergent")
+        states_present = {claim.state for claim in claims}
+        if states_present not in ({anchor_claims.AUTHORING}, {anchor_claims.ABORTED}):
+            raise IntegrationError(
+                "pre-ingestion abort requires an all-five AUTHORING or exact ABORTED ACL"
+            )
+        if states_present == {anchor_claims.AUTHORING}:
+            anchor_claims.reconcile_committed_locks(
+                claims,
+                run_id=packet["runId"],
+                packet_id=packet["packetId"],
+                claim_hash=claim_hash,
+                lock_dir=anchor_claims.locks_dir(self.factory_home),
+            )
+        return claims, claim_hash
+
+    @staticmethod
+    def _abort_evidence(packet: dict, reservations: Iterable[object], claims: Iterable[object],
+                        claim_hash: str, actor: str) -> dict:
+        released = tuple(sorted(reservations, key=lambda item: item.story_id))
+        terminal_claims = tuple(sorted(claims, key=lambda item: item.slot_id))
+        return {
+            "schemaVersion": 1,
+            "operation": "PREINGEST_PACKET_ABORT",
+            "runId": packet["runId"],
+            "packetId": packet["packetId"],
+            "actor": actor,
+            "ownerAuthorized": True,
+            "sourceState": ASSIGNMENT_READY,
+            "terminalState": ABORTED,
+            "writerAttempts": [
+                {"storyId": slot["storyId"], "attempts": 0}
+                for slot in packet["slots"]
+            ],
+            "reservations": [_reservation_to_dict(item) for item in released],
+            "anchorClaims": {
+                "packetClaimHash": claim_hash,
+                "state": anchor_claims.ABORTED,
+                "rows": [
+                    {
+                        "slotId": claim.slot_id,
+                        "storyId": claim.story_id,
+                        "normalizedAnchor": claim.normalized_anchor,
+                        "anchorKey": claim.anchor_key,
+                        "eventId": claim.event_id,
+                    }
+                    for claim in terminal_claims
+                ],
+            },
+            "checks": {
+                "writerOutputPresent": False,
+                "validationEvidencePresent": False,
+                "materializationPresent": False,
+                "reviewEvidencePresent": False,
+                "correctionOutputPresent": False,
+                "finalReadinessPresent": False,
+                "oldClaimProductionOccupancyAtReleasePresent": False,
+                "oldClaimManifestRegistrationAtReleasePresent": False,
+                "packetAudioPresent": False,
+            },
+            "manifestHash": packet["manifestHashAtPlan"],
+            "assignmentEvidenceHash": packet["evidenceHashes"]["assignments"],
+        }
+
+    def _verify_completed_preingest_abort(self, packet: dict, *, actor: str) -> dict:
+        if packet["state"] != ABORTED or any(
+            slot["writerAttempts"] != 0 or slot["reservation"]["state"] != "RELEASED"
+            for slot in packet["slots"]
+        ):
+            raise SafetyViolation("ABORTED packet lacks the pre-ingestion terminal shape")
+        claims, claim_hash = self._packet_abort_claims(packet)
+        released = []
+        for slot in packet["slots"]:
+            supplied = _reservation_from_dict(self.reservations, slot["reservation"])
+            released.append(self.reservations.inspect_reservation_release(
+                supplied,
+                repo_root=self.repo_root,
+                factory_home=self.factory_home,
+                worktrees=self.worktrees,
+            ))
+        evidence = self._abort_evidence(packet, released, claims, claim_hash, actor)
+        path = self.packet_dir(packet["runId"], packet["packetId"]) / "abort" / "pre_ingestion.json"
+        self._verify_private_runtime_file(path)
+        if _load_json(path, error_type=SafetyViolation) != evidence:
+            raise SafetyViolation("pre-ingestion abort evidence does not reconcile")
+        if packet["evidenceHashes"].get("preIngestionAbort") != _hash_value(evidence):
+            raise SafetyViolation("pre-ingestion abort evidence hash does not reconcile")
+        return packet
+
+    def abort_unstarted_packet(
+        self,
+        run_id: str,
+        packet_id: str,
+        *,
+        actor: str,
+        owner_authorized: bool = False,
+    ) -> dict:
+        """Abort exactly one assignment-ready packet before its first ingest."""
+
+        if owner_authorized is not True:
+            raise SafetyViolation("pre-ingestion abort requires explicit owner authorization")
+        packet = self.load(run_id, packet_id)
+        if actor != "owner" or packet["actor"] != actor:
+            raise SafetyViolation("pre-ingestion abort actor must be the persisted owner")
+        if packet["state"] == ABORTED:
+            return self._verify_completed_preingest_abort(packet, actor=actor)
+
+        self._assert_unstarted_abort_contract(packet)
+        self._assert_unstarted_abort_runtime(packet)
+        self._assert_manifest_unchanged(packet)
+
+        inspected = []
+        for slot in packet["slots"]:
+            supplied = _reservation_from_dict(self.reservations, slot["reservation"])
+            try:
+                inspected.append(self.reservations.inspect_reservation_release(
+                    supplied,
+                    repo_root=self.repo_root,
+                    factory_home=self.factory_home,
+                    worktrees=self.worktrees,
+                ))
+            except self.reservations.StoryIdReservationError as exc:
+                raise IntegrationError(
+                    f"story {slot['storyId']} reservation is not safely releasable: {exc}"
+                ) from exc
+        try:
+            _, claim_hash = self._packet_abort_claims(packet)
+            terminal_claims = anchor_claims.abort_packet_claims(
+                run_id=packet["runId"],
+                packet_id=packet["packetId"],
+                actor=actor,
+                packet_claim_hash_value=claim_hash,
+                factory_home=self.factory_home,
+                reason="owner-authorized pre-ingestion packet abort",
+            )
+        except anchor_claims.AnchorClaimError as exc:
+            raise IntegrationError(f"packet ACL abort failed: {exc}") from exc
+
+        released = []
+        for slot, candidate in zip(packet["slots"], inspected):
+            try:
+                with anchor_claims.lock_rank(
+                    anchor_claims.L3_RESERVATION_LEDGER,
+                    f"release-{slot['storyId']}",
+                ), anchor_claims.lock_rank(
+                    anchor_claims.L4_STORY_LOCK,
+                    f"release-{slot['storyId']}",
+                ):
+                    result = self.reservations.release_reservation(
+                        candidate,
+                        repo_root=self.repo_root,
+                        factory_home=self.factory_home,
+                        worktrees=self.worktrees,
+                        actor=actor,
+                        reason="owner-authorized unstarted packet abort",
+                    )
+            except self.reservations.StoryIdReservationError as exc:
+                raise IntegrationError(
+                    f"story {slot['storyId']} release failed after ACL terminalization: {exc}"
+                ) from exc
+            if (
+                result.state != "RELEASED"
+                or result.story_id != slot["storyId"]
+                or result.run_id != packet["runId"]
+                or result.packet_id != packet["packetId"]
+                or result.lease_token != slot["reservation"]["leaseToken"]
+            ):
+                raise IntegrationError(
+                    f"story {slot['storyId']} release returned divergent ownership"
+                )
+            released.append(result)
+
+        verified_claims, verified_hash = self._packet_abort_claims(packet)
+        if verified_hash != claim_hash or {claim.state for claim in verified_claims} != {
+            anchor_claims.ABORTED
+        }:
+            raise IntegrationError("packet ACL did not reach exact ABORTED terminal state")
+        verified_releases = [
+            self.reservations.inspect_reservation_release(
+                item,
+                repo_root=self.repo_root,
+                factory_home=self.factory_home,
+                worktrees=self.worktrees,
+            )
+            for item in released
+        ]
+        evidence = self._abort_evidence(
+            packet,
+            verified_releases,
+            terminal_claims,
+            claim_hash,
+            actor,
+        )
+        evidence_path = self.packet_dir(run_id, packet_id) / "abort" / "pre_ingestion.json"
+        self._ensure_runtime_directory(evidence_path.parent)
+        _write_json(evidence_path, evidence)
+
+        updated = self._transition(packet, ABORTED)
+        by_id = {item.story_id: item for item in verified_releases}
+        for slot in updated["slots"]:
+            slot["reservation"] = _reservation_to_dict(by_id[slot["storyId"]])
+        updated["evidenceHashes"]["preIngestionAbort"] = _hash_value(evidence)
+        return self._record(
+            packet,
+            updated,
+            event_type="PREINGEST_PACKET_ABORTED",
+            actor=actor,
+            reason="owner-authorized unstarted packet resources terminalized",
+        )
+
     def _copy_writer_attempt(self, source: Path, destination: Path, expected: tuple[str, ...]) -> None:
         source = source.expanduser().resolve(strict=True)
         production_root = (self.repo_root / "assets" / "stories").resolve(strict=False)
@@ -3281,6 +3654,12 @@ def build_parser() -> argparse.ArgumentParser:
         default=PRODUCTION_LEASE_SECONDS,
         help="new campaign lease extension in seconds (default: 24 hours)",
     )
+    abort = subs.add_parser("abort-unstarted-packet", parents=[common])
+    abort.add_argument(
+        "--owner-authorize",
+        action="store_true",
+        help="explicitly authorize terminal release of an unstarted ASSIGNMENT_READY packet",
+    )
     subs.add_parser("emit-writer-assignments", parents=[common])
     ingest = subs.add_parser("ingest-writer-output", parents=[common])
     ingest.add_argument("--source-root", required=True)
@@ -3343,6 +3722,13 @@ def main(argv=None) -> int:
                 actor=args.actor,
                 recover_expired=args.recover_expired,
                 lease_seconds=args.lease_seconds,
+            )
+        elif args.command == "abort-unstarted-packet":
+            result = controller.abort_unstarted_packet(
+                args.run_id,
+                args.packet_id,
+                actor=args.actor,
+                owner_authorized=args.owner_authorize,
             )
         elif args.command == "emit-writer-assignments":
             result = controller.emit_writer_assignments(args.run_id, args.packet_id, actor=args.actor)

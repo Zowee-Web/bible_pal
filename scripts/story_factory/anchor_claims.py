@@ -777,6 +777,29 @@ _IDENTITY_FIELDS = (
 )
 
 
+def _read_lock_fd(fd: int, path: Path) -> dict:
+    try:
+        info = os.fstat(fd)
+        if not stat.S_ISREG(info.st_mode):
+            raise AnchorLedgerCorrupt(f"anchor lock is not a regular file: {path}")
+        os.lseek(fd, 0, os.SEEK_SET)
+        raw = b""
+        while True:
+            chunk = os.read(fd, 1 << 16)
+            if not chunk:
+                break
+            raw += chunk
+    except OSError as exc:
+        raise AnchorLedgerCorrupt(f"cannot read anchor lock {path}: {exc}") from exc
+    try:
+        record = json.loads(raw.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise AnchorLedgerCorrupt(f"anchor lock {path} is unreadable: {exc}") from exc
+    if not isinstance(record, dict):
+        raise AnchorLedgerCorrupt(f"anchor lock {path} is not an object")
+    return record
+
+
 def _read_lock(path: Path) -> dict:
     flags = os.O_RDONLY
     if hasattr(os, "O_NOFOLLOW"):
@@ -786,24 +809,9 @@ def _read_lock(path: Path) -> dict:
     except OSError as exc:
         raise AnchorLedgerCorrupt(f"cannot read anchor lock {path}: {exc}") from exc
     try:
-        info = os.fstat(fd)
-        if not stat.S_ISREG(info.st_mode):
-            raise AnchorLedgerCorrupt(f"anchor lock is not a regular file: {path}")
-        raw = b""
-        while True:
-            chunk = os.read(fd, 1 << 16)
-            if not chunk:
-                break
-            raw += chunk
+        return _read_lock_fd(fd, path)
     finally:
         os.close(fd)
-    try:
-        record = json.loads(raw.decode("utf-8"))
-    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
-        raise AnchorLedgerCorrupt(f"anchor lock {path} is unreadable: {exc}") from exc
-    if not isinstance(record, dict):
-        raise AnchorLedgerCorrupt(f"anchor lock {path} is not an object")
-    return record
 
 
 def _classify_existing_lock(record: Mapping[str, object], desired: Mapping[str, object],
@@ -1110,6 +1118,97 @@ def reconcile_committed_locks(
         )
 
 
+def _remove_terminal_lock_if_owned(
+    lock_path: Path,
+    *,
+    claim: AnchorClaim,
+    run_id: str,
+    packet_id: str,
+    claim_hash: str,
+) -> bool:
+    """Remove one exact post-commit freeing orphan, never a successor's lock."""
+
+    flags = os.O_RDONLY
+    if hasattr(os, "O_NOFOLLOW"):
+        flags |= os.O_NOFOLLOW
+    try:
+        fd = os.open(lock_path, flags)
+    except FileNotFoundError:
+        return False
+    except OSError as exc:
+        raise AnchorLedgerCorrupt(f"cannot inspect terminal anchor lock {lock_path}: {exc}") from exc
+    try:
+        fcntl.flock(fd, fcntl.LOCK_EX)
+        opened = os.fstat(fd)
+        record = _read_lock_fd(fd, lock_path)
+        desired = {
+            "runId": run_id,
+            "packetId": packet_id,
+            "slotId": claim.slot_id,
+            "normalizedAnchor": claim.normalized_anchor,
+            "anchorKey": claim.anchor_key,
+            "packetClaimHash": claim_hash,
+            "pendingEventId": pending_event_id(run_id, packet_id, claim_hash),
+        }
+        verdict = _classify_existing_lock(
+            record,
+            desired,
+            committed=True,
+            path=lock_path,
+        )
+        if verdict == "conflict":
+            # The old terminal claim no longer owns this exact-key lock.  A
+            # later packet may have reused the anchor; never touch its lock.
+            return False
+        if verdict == "corrupt":
+            raise AnchorLedgerCorrupt(
+                f"terminal anchor lock {lock_path} bears {run_id}/{packet_id} "
+                "ownership but divergent transaction identity"
+            )
+        try:
+            current = os.stat(lock_path, follow_symlinks=False)
+        except FileNotFoundError:
+            return False
+        except OSError as exc:
+            raise AnchorLedgerCorrupt(
+                f"terminal anchor lock changed while inspected: {lock_path}: {exc}"
+            ) from exc
+        if (opened.st_dev, opened.st_ino) != (current.st_dev, current.st_ino):
+            raise AnchorLedgerCorrupt(
+                f"refusing to unlink replaced terminal anchor lock: {lock_path}"
+            )
+        os.unlink(lock_path)
+        return True
+    finally:
+        try:
+            fcntl.flock(fd, fcntl.LOCK_UN)
+        finally:
+            os.close(fd)
+
+
+def _reconcile_terminal_packet_locks(
+    claims: Sequence[AnchorClaim],
+    *,
+    run_id: str,
+    packet_id: str,
+    claim_hash: str,
+    lock_dir: Path,
+) -> None:
+    removed = False
+    for claim in sorted(claims, key=lambda item: item.anchor_key):
+        lock_path = lock_dir / f"{claim.anchor_key}.lock"
+        with lock_rank(L2_ANCHOR_LOCK, claim.anchor_key):
+            removed = _remove_terminal_lock_if_owned(
+                lock_path,
+                claim=claim,
+                run_id=run_id,
+                packet_id=packet_id,
+                claim_hash=claim_hash,
+            ) or removed
+    if removed:
+        _fsync_directory(lock_dir)
+
+
 def _rollback_locks(created: Sequence[Path]) -> None:
     """Unlink only the locks this transaction created, in reverse canonical order."""
     for lock_path in reversed(list(created)):
@@ -1192,7 +1291,11 @@ def _per_row_transition(event_type: str, claim: AnchorClaim, *, actor: str,
                     )
                 return current  # idempotent re-bind of an already-bound row
             for other in states.values():
-                if other.story_id == story_id and other.key != current.key:
+                if (
+                    other.story_id == story_id
+                    and other.key != current.key
+                    and other.state in OCCUPYING_STATES
+                ):
                     raise AnchorLedgerCorrupt(
                         f"story {story_id} is already bound to {other.key}"
                     )
@@ -1283,8 +1386,6 @@ def _free_packet(event_type: str, *, run_id: str, packet_id: str, actor: str,
                 f"{run_id}/{packet_id} has {len(claims)} claims; a free must "
                 f"reconcile exactly {PACKET_SIZE}"
             )
-        if all(c.state == target for c in claims):
-            return tuple(claims)  # idempotent retry
         # All-five identity: four matching rows and one divergent row fails the
         # retry rather than freeing the four.
         rows_for_hash = [{"slotId": c.slot_id, "normalizedAnchor": c.normalized_anchor,
@@ -1295,17 +1396,31 @@ def _free_packet(event_type: str, *, run_id: str, packet_id: str, actor: str,
                 f"{run_id}/{packet_id} transaction identity does not reconcile; "
                 "no anchor was freed"
             )
+        lock_dir = home / _LOCKS_NAME
+        if all(c.state == target for c in claims):
+            _reconcile_terminal_packet_locks(
+                claims,
+                run_id=run_id,
+                packet_id=packet_id,
+                claim_hash=actual,
+                lock_dir=lock_dir,
+            )
+            return tuple(claims)  # idempotent retry
         for claim in claims:
             if target not in _LEGAL_TRANSITIONS[claim.state]:
                 raise AnchorLedgerCorrupt(
                     f"illegal transition {claim.state} -> {target} for {claim.key}"
                 )
-
-        lock_dir = home / _LOCKS_NAME
-        held: list[Path] = []
-        for claim in sorted(claims, key=lambda c: c.anchor_key):
-            with lock_rank(L2_ANCHOR_LOCK, claim.anchor_key):
-                held.append(lock_dir / f"{claim.anchor_key}.lock")
+        # Before freeing the authoritative rows, prove all five advisory locks
+        # still belong to this exact transaction.  A foreign lock must never be
+        # unlinked merely because its filename matches one of our anchor keys.
+        reconcile_committed_locks(
+            claims,
+            run_id=run_id,
+            packet_id=packet_id,
+            claim_hash=actual,
+            lock_dir=lock_dir,
+        )
 
         event = {
             "schemaVersion": SCHEMA_VERSION,
@@ -1327,19 +1442,22 @@ def _free_packet(event_type: str, *, run_id: str, packet_id: str, actor: str,
         }
         # Commit FIRST: the append is the authoritative free.  A crash between
         # commit and unlink leaves stale release orphans, which are never
-        # auto-deleted.  The reverse order would drop exclusivity for nothing.
+        # treated as occupancy.  An exact owner-authorized retry removes only
+        # its own orphan and leaves any successor packet's lock untouched.  The
+        # reverse order would drop exclusivity for nothing.
         _append_locked(path, event)
-        for lock_path in held:
-            try:
-                os.unlink(lock_path)
-            except FileNotFoundError:
-                continue
-        if held:
-            _fsync_directory(lock_dir)
-        return tuple(
+        terminal = tuple(
             dataclasses.replace(c, state=target, event_id=event["eventId"])
             for c in claims
         )
+        _reconcile_terminal_packet_locks(
+            terminal,
+            run_id=run_id,
+            packet_id=packet_id,
+            claim_hash=actual,
+            lock_dir=lock_dir,
+        )
+        return terminal
 
 
 def release_packet_claims(*, run_id, packet_id, actor, packet_claim_hash_value,

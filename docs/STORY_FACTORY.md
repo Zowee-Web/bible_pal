@@ -578,6 +578,31 @@ whole factory home before and after.
 (`reserved`, `authoring`, `locked`, `abandoned`, `expired`, `released`). A
 state outside it is a hard `GateError`, never a silent PASS.
 
+### 14.8 Owner-authorized pre-ingestion abort
+
+`autonomous_story_controller.py abort-unstarted-packet --owner-authorize`
+supports one deliberately narrow terminal operation. It is legal only from
+`ASSIGNMENT_READY` when all five `writerAttempts` are zero and no writer
+output, validation, materialization, review, correction, final-readiness,
+production, manifest-registration, or audio evidence exists. It is not a
+general abort mechanism for later lifecycle states.
+
+The controller first proves the packet's five exact reservation leases and
+five exact `AUTHORING` ACL rows. It then appends the packet-atomic ACL
+`ABORTED` transition, releases each still-`RESERVED` ID through the reservation
+service, and records `PREINGEST_PACKET_ABORTED` in the controller journal only
+after all resources reconcile. The append-before-unlink ordering is safely
+retryable: an exact retry may remove only this packet's own post-commit lock
+orphan, recognizes its old lease token in append-only release history, and
+never touches a successor packet that has already reused an ID or anchor.
+
+The packet directory and packet ID remain permanent historical evidence and
+cannot be recreated. Its terminal ACL and reservation rows also remain in
+their append-only ledgers, but no longer contribute occupancy. The released
+IDs and anchors are reusable through the ordinary reservation and packet-claim
+APIs. `MATERIALIZED` and `RETIRED` IDs remain permanently occupied and are
+never eligible for this operation.
+
 ---
 
 ## 15. Owner-authorized length reclassification (ADR-034, 2026-09-02)

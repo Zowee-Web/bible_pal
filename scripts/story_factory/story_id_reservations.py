@@ -522,7 +522,12 @@ def _event_transition(event: Mapping[str, object], current: Reservation | None) 
     return expected_new
 
 
-def _replay_bytes(raw: bytes, source: str) -> dict[int, Reservation]:
+def _replay_bytes(
+    raw: bytes,
+    source: str,
+    *,
+    released_history: dict[tuple[int, str], Reservation] | None = None,
+) -> dict[int, Reservation]:
     if not raw:
         return {}
     if not raw.endswith(b"\n"):
@@ -551,6 +556,12 @@ def _replay_bytes(raw: bytes, source: str) -> dict[int, Reservation]:
         last_timestamps[story_id] = event_time
         current = states.get(story_id)
         new_state = _event_transition(event, current)
+        if event["eventType"] == "RELEASED" and released_history is not None:
+            assert current is not None
+            released_history[(story_id, current.lease_token)] = dataclasses.replace(
+                current,
+                state="RELEASED",
+            )
 
         if event["eventType"] in {"RESERVED", "ADOPTED"}:
             if event["leaseToken"] in lease_tokens:
@@ -612,17 +623,12 @@ def _replay_bytes(raw: bytes, source: str) -> dict[int, Reservation]:
     return states
 
 
-def replay_ledger(
-    factory_home: os.PathLike[str] | str | None = None,
-) -> dict[int, Reservation]:
-    """Strictly replay the append-only ledger; never consult ``state.json``."""
-
-    home = _resolve_factory_home(factory_home)
+def _read_ledger_bytes(home: Path) -> tuple[bytes, str]:
     ledger = home / _LEDGER_NAME
     try:
         os.lstat(ledger)
     except FileNotFoundError:
-        return {}
+        return b"", str(ledger)
     except OSError as exc:
         raise LedgerCorrupt(f"cannot inspect ledger {ledger}: {exc}") from exc
 
@@ -644,7 +650,7 @@ def replay_ledger(
             if not chunk:
                 break
             chunks.append(chunk)
-        return _replay_bytes(b"".join(chunks), str(ledger))
+        return b"".join(chunks), str(ledger)
     except OSError as exc:
         raise LedgerCorrupt(f"cannot read ledger {ledger}: {exc}") from exc
     finally:
@@ -652,6 +658,16 @@ def replay_ledger(
             fcntl.flock(fd, fcntl.LOCK_UN)
         finally:
             os.close(fd)
+
+
+def replay_ledger(
+    factory_home: os.PathLike[str] | str | None = None,
+) -> dict[int, Reservation]:
+    """Strictly replay the append-only ledger; never consult ``state.json``."""
+
+    home = _resolve_factory_home(factory_home)
+    raw, source = _read_ledger_bytes(home)
+    return _replay_bytes(raw, source)
 
 
 def scan_occupied_ids(
@@ -1276,6 +1292,119 @@ def _transition_context(
     return home, locks / f"{reservation.story_id}.lock", roots
 
 
+_STABLE_CLAIM_FIELDS = (
+    "story_id",
+    "run_id",
+    "packet_id",
+    "actor",
+    "lease_token",
+    "worktree",
+    "reserved_at",
+)
+
+
+def _same_claim_identity(left: Reservation, right: Reservation) -> bool:
+    return all(
+        getattr(left, field) == getattr(right, field)
+        for field in _STABLE_CLAIM_FIELDS
+    )
+
+
+def inspect_reservation_release(
+    reservation: Reservation,
+    *,
+    repo_root: os.PathLike[str] | str,
+    factory_home: os.PathLike[str] | str | None = None,
+    worktrees: Iterable[os.PathLike[str] | str] | None = None,
+) -> Reservation:
+    """Prove that one exact claim is releasable or was already released.
+
+    The append-only lease token is the retry identity.  A later packet may
+    legitimately reserve the same story ID after this exact claim reached
+    ``RELEASED``; in that case the old released row is returned and the newer
+    projection and lock are deliberately left alone.
+    """
+
+    if not isinstance(reservation, Reservation):
+        raise ReservationConflict("reservation argument must be a Reservation")
+    if reservation.state not in {"RESERVED", "RELEASED"}:
+        raise IllegalTransition(
+            f"only RESERVED claims may release, not {reservation.state}"
+        )
+    home, lock_path, _ = _transition_context(
+        reservation,
+        repo_root=repo_root,
+        factory_home=factory_home,
+        worktrees=worktrees,
+    )
+    released_history: dict[tuple[int, str], Reservation] = {}
+    raw, source = _read_ledger_bytes(home)
+    states = _replay_bytes(raw, source, released_history=released_history)
+    released = released_history.get((reservation.story_id, reservation.lease_token))
+    if released is not None:
+        if not _same_claim_identity(released, reservation):
+            raise LedgerCorrupt(
+                f"story {reservation.story_id} release history has divergent claim identity"
+            )
+        return released
+
+    current = states.get(reservation.story_id)
+    if current is None or not _same_claim_identity(current, reservation):
+        raise ReservationConflict(
+            f"story {reservation.story_id} is not owned by the supplied reservation claim"
+        )
+    if current.state != "RESERVED":
+        raise IllegalTransition(
+            f"only RESERVED claims may release, not {current.state}"
+        )
+    with _locked_claim(lock_path) as fd:
+        current = replay_ledger(home).get(reservation.story_id)
+        if current is None or not _same_claim_identity(current, reservation):
+            raise ReservationConflict(
+                f"story {reservation.story_id} reservation ownership changed"
+            )
+        if current.state != "RESERVED":
+            raise IllegalTransition(
+                f"only RESERVED claims may release, not {current.state}"
+            )
+        _validate_lock_matches(_read_lock_fd(fd, lock_path), current)
+        snapshot = _scan_external_occupancy(repo_root, worktrees)
+        if reservation.story_id in snapshot.occupied_ids:
+            raise IllegalTransition(
+                f"story {reservation.story_id} has physical or manifest occupancy and cannot release"
+            )
+        return current
+
+
+def _reconcile_released_lock(home: Path, lock_path: Path, released: Reservation) -> None:
+    """Remove only this exact claim's post-commit release orphan, if present."""
+
+    current = replay_ledger(home).get(released.story_id)
+    if current is None or current.state != "RELEASED" or not _same_claim_identity(
+        current,
+        released,
+    ):
+        # The ID was legitimately reused.  Its new lock is not ours.
+        return
+    try:
+        os.lstat(lock_path)
+    except FileNotFoundError:
+        return
+    except OSError as exc:
+        raise ReservationConflict(
+            f"cannot inspect released reservation lock {lock_path}: {exc}"
+        ) from exc
+    with _locked_claim(lock_path) as fd:
+        current = replay_ledger(home).get(released.story_id)
+        if current is None or current.state != "RELEASED" or not _same_claim_identity(
+            current,
+            released,
+        ):
+            return
+        _validate_lock_matches(_read_lock_fd(fd, lock_path), released)
+        _remove_locked_claim(lock_path, fd)
+
+
 def confirm_materialized(
     reservation: Reservation,
     *,
@@ -1328,36 +1457,72 @@ def release_reservation(
     reason: str = "unmaterialized reservation released",
     now: dt.datetime | None = None,
 ) -> Reservation:
-    """Release only a still-RESERVED claim with no external occupancy."""
+    """Release only a still-RESERVED claim with no external occupancy.
+
+    Exact retries are idempotent across the append-before-unlink crash window
+    and after legitimate reuse of the released ID by another packet.
+    """
 
     home, lock_path, _ = _transition_context(
         reservation, repo_root=repo_root, factory_home=factory_home, worktrees=worktrees
     )
-    with _locked_claim(lock_path) as fd:
-        current = _assert_api_reservation(replay_ledger(home).get(reservation.story_id), reservation)
-        if current.state != "RESERVED":
-            raise IllegalTransition(f"only RESERVED claims may release, not {current.state}")
-        _validate_lock_matches(_read_lock_fd(fd, lock_path), current)
-        snapshot = _scan_external_occupancy(repo_root, worktrees)
-        if reservation.story_id in snapshot.occupied_ids:
-            raise IllegalTransition(
-                f"story {reservation.story_id} has physical or manifest occupancy and cannot release"
+    inspected = inspect_reservation_release(
+        reservation,
+        repo_root=repo_root,
+        factory_home=home,
+        worktrees=worktrees,
+    )
+    if inspected.state == "RELEASED":
+        _reconcile_released_lock(home, lock_path, inspected)
+        return inspected
+
+    try:
+        with _locked_claim(lock_path) as fd:
+            current = replay_ledger(home).get(reservation.story_id)
+            if current is None or not _same_claim_identity(current, inspected):
+                raise ReservationConflict(
+                    f"story {reservation.story_id} reservation ownership changed"
+                )
+            if current.state != "RESERVED":
+                raise IllegalTransition(
+                    f"only RESERVED claims may release, not {current.state}"
+                )
+            _validate_lock_matches(_read_lock_fd(fd, lock_path), current)
+            snapshot = _scan_external_occupancy(repo_root, worktrees)
+            if reservation.story_id in snapshot.occupied_ids:
+                raise IllegalTransition(
+                    f"story {reservation.story_id} has physical or manifest occupancy and cannot release"
+                )
+            _append_event(
+                home,
+                _new_event(
+                    "RELEASED",
+                    current,
+                    actor=actor or current.actor,
+                    prior_state="RESERVED",
+                    new_state="RELEASED",
+                    reason=reason,
+                    occupancy_hash=snapshot.evidence_hash,
+                    now=_utc_now(now),
+                ),
             )
-        _append_event(
-            home,
-            _new_event(
-                "RELEASED",
-                reservation,
-                actor=actor or reservation.actor,
-                prior_state="RESERVED",
-                new_state="RELEASED",
-                reason=reason,
-                occupancy_hash=snapshot.evidence_hash,
-                now=_utc_now(now),
-            ),
+            released = dataclasses.replace(current, state="RELEASED")
+            _remove_locked_claim(lock_path, fd)
+            return released
+    except ReservationConflict:
+        # A concurrent exact release can win between the read-only inspection
+        # and acquisition of the per-ID lock.  Prove the durable old lineage;
+        # never infer success from the current story-ID projection alone.
+        retried = inspect_reservation_release(
+            reservation,
+            repo_root=repo_root,
+            factory_home=home,
+            worktrees=worktrees,
         )
-        _remove_locked_claim(lock_path, fd)
-    return dataclasses.replace(reservation, state="RELEASED")
+        if retried.state == "RELEASED":
+            _reconcile_released_lock(home, lock_path, retried)
+            return retried
+        raise
 
 
 def retire_reservation(
@@ -1604,6 +1769,7 @@ __all__ = [
     "StaleRecoveryDenied",
     "adopt_preexisting",
     "confirm_materialized",
+    "inspect_reservation_release",
     "recover_stale",
     "renew_expired_reservation",
     "renew_reservation",
