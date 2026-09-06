@@ -21,6 +21,7 @@ import tempfile
 import threading
 import unittest
 from pathlib import Path
+from unittest import mock
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
@@ -263,6 +264,150 @@ class RealControllerTests(RealStackTestCase):
         ids_a = {slot["storyId"] for slot in pa["slots"]}
         ids_b = {slot["storyId"] for slot in pb["slots"]}
         self.assertFalse(ids_a & ids_b)
+
+    def test_same_run_second_planned_packet_reserves_after_first_materialized(self):
+        run_id = "campaign-3000-3258-run-001"
+        first_packet_id = "proving-packet-001"
+        second_packet_id = "proving-packet-002"
+        first = self.build(0)
+        first_packet = first.plan_packet(
+            run_id=run_id, packet_id=first_packet_id,
+            planning=self.planning(0), actor="owner", lease_seconds=600,
+        )
+        for slot in first_packet["slots"]:
+            story_id = slot["storyId"]
+            story_dir = self.repo / "assets" / "stories" / "traditional" / str(story_id)
+            story_dir.mkdir(parents=True)
+            (story_dir / f"meta_{story_id}.json").write_text("{}")
+            reservations.confirm_materialized(
+                reservations.replay_ledger(self.factory)[story_id],
+                repo_root=self.repo, factory_home=self.factory,
+                worktrees=[self.repo], actor="owner",
+            )
+
+        acl.claim_packet_anchors(
+            run_id=run_id, packet_id=second_packet_id,
+            proposals=[
+                {"slotId": index + 1, "anchor": anchor}
+                for index, anchor in enumerate(PACKET_ANCHORS[1])
+            ],
+            actor="owner", factory_home=self.factory,
+        )
+        second = self.build(1)
+        with mock.patch.object(
+            second, "_continue_planned_reservation",
+            side_effect=RuntimeError("simulated crash before reservation"),
+        ):
+            with self.assertRaisesRegex(RuntimeError, "before reservation"):
+                second.plan_packet(
+                    run_id=run_id, packet_id=second_packet_id,
+                    planning=self.planning(1), actor="owner", lease_seconds=600,
+                )
+
+        resumed = second.resume_planned_packet(
+            run_id=run_id, packet_id=second_packet_id,
+            planning=self.planning(1), actor="owner", lease_seconds=600,
+        )
+        self.assertEqual(resumed["state"], controller.ID_RESERVED)
+        self.assertEqual(
+            [slot["storyId"] for slot in resumed["slots"]],
+            list(range(3005, 3010)),
+        )
+        states = reservations.replay_ledger(self.factory)
+        self.assertEqual([states[story_id].state for story_id in range(3000, 3005)],
+                         ["MATERIALIZED"] * 5)
+        self.assertEqual([states[story_id].state for story_id in range(3005, 3010)],
+                         ["RESERVED"] * 5)
+        claims = acl.replay_ledger(self.factory)
+        second_claims = [
+            claim for claim in claims.values()
+            if (claim.run_id, claim.packet_id) == (run_id, second_packet_id)
+        ]
+        self.assertEqual(len(second_claims), 5)
+        self.assertEqual({claim.state for claim in second_claims}, {acl.CLAIMED})
+        self.assertEqual({claim.story_id for claim in second_claims}, {None})
+
+    def test_same_run_different_packet_reserves_distinct_ids(self):
+        run_id = "campaign-3000-3258-run-001"
+        first = self.build(0).plan_packet(
+            run_id=run_id, packet_id="proving-packet-001",
+            planning=self.planning(0), actor="owner", lease_seconds=600,
+        )
+        second = self.build(1).plan_packet(
+            run_id=run_id, packet_id="proving-packet-002",
+            planning=self.planning(1), actor="owner", lease_seconds=600,
+        )
+        self.assertEqual([slot["storyId"] for slot in first["slots"]],
+                         list(range(3000, 3005)))
+        self.assertEqual([slot["storyId"] for slot in second["slots"]],
+                         list(range(3005, 3010)))
+
+    def test_same_packet_name_in_different_runs_reserves_distinct_ids(self):
+        packet_id = "proving-packet"
+        first = self.build(0).plan_packet(
+            run_id="campaign-a", packet_id=packet_id,
+            planning=self.planning(0), actor="owner", lease_seconds=600,
+        )
+        second = self.build(1).plan_packet(
+            run_id="campaign-b", packet_id=packet_id,
+            planning=self.planning(1), actor="owner", lease_seconds=600,
+        )
+        first_ids = {slot["storyId"] for slot in first["slots"]}
+        second_ids = {slot["storyId"] for slot in second["slots"]}
+        self.assertFalse(first_ids & second_ids)
+
+    def test_planned_resume_adopts_only_its_exact_packet_reservations(self):
+        run_id = "campaign-3000-3258-run-001"
+        packet_id = "proving-packet-002"
+        ctl = self.build(1)
+        with mock.patch.object(
+            ctl, "_continue_planned_reservation",
+            side_effect=RuntimeError("simulated crash before reservation"),
+        ):
+            with self.assertRaisesRegex(RuntimeError, "before reservation"):
+                ctl.plan_packet(
+                    run_id=run_id, packet_id=packet_id,
+                    planning=self.planning(1), actor="owner", lease_seconds=600,
+                )
+        reserved = reservations.reserve_packet(
+            count=5, run_id=run_id, packet_id=packet_id, actor="owner",
+            worktree=self.repo, repo_root=self.repo, factory_home=self.factory,
+            worktrees=[self.repo], lease_seconds=600,
+        )
+        resumed = ctl.resume_planned_packet(
+            run_id=run_id, packet_id=packet_id,
+            planning=self.planning(1), actor="owner", lease_seconds=600,
+        )
+        self.assertEqual([slot["storyId"] for slot in resumed["slots"]],
+                         [item.story_id for item in reserved])
+        self.assertEqual(len((self.factory / "reservations.jsonl").read_text().splitlines()), 5)
+
+    def test_planned_resume_rejects_partial_exact_packet_reservations(self):
+        run_id = "campaign-3000-3258-run-001"
+        packet_id = "proving-packet-002"
+        ctl = self.build(1)
+        with mock.patch.object(
+            ctl, "_continue_planned_reservation",
+            side_effect=RuntimeError("simulated crash before reservation"),
+        ):
+            with self.assertRaisesRegex(RuntimeError, "before reservation"):
+                ctl.plan_packet(
+                    run_id=run_id, packet_id=packet_id,
+                    planning=self.planning(1), actor="owner", lease_seconds=600,
+                )
+        reservations.reserve_packet(
+            count=1, run_id=run_id, packet_id=packet_id, actor="owner",
+            worktree=self.repo, repo_root=self.repo, factory_home=self.factory,
+            worktrees=[self.repo], lease_seconds=600,
+        )
+        with self.assertRaisesRegex(
+            controller.IntegrationError,
+            "partial or extra authoritative packet reservations",
+        ):
+            ctl.resume_planned_packet(
+                run_id=run_id, packet_id=packet_id,
+                planning=self.planning(1), actor="owner", lease_seconds=600,
+            )
 
     def test_controller_sees_a_sibling_packets_acl_occupancy(self):
         self.claim(1)

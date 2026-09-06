@@ -1340,12 +1340,10 @@ class AutonomousStoryController:
             raise IllegalControllerTransition("reservation continuation requires PLANNED")
         states = self.reservations.replay_ledger(self.factory_home)
         active = [value for value in states.values() if value.state in {"RESERVED", "MATERIALIZED"}]
-        ambiguous = [
-            value for value in active
-            if (value.run_id == packet["runId"]) != (value.packet_id == packet["packetId"])
-        ]
-        if ambiguous:
-            raise IntegrationError("reservation ledger has conflicting run/packet ownership")
+        # Packet identity is the complete (runId, packetId) pair.  Other
+        # packets' rows remain authoritative per-ID occupancy, but they are
+        # not reservations that this packet may adopt or a reason to block it
+        # from asking the reservation service for different free IDs.
         existing = [
             value for value in active
             if value.run_id == packet["runId"] and value.packet_id == packet["packetId"]
