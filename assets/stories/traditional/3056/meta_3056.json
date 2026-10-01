@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3056,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "joyful",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_013",
+  "title": "Joy in the Advance of the Good News",
+  "scriptureAnchor": "Philippians 1:3-30",
+  "scriptureAnchorId": "philippians_1_3-30",
+  "shortScripture": false,
+  "bibleStoryKey": "joy_in_the_advance_of_the_good_news",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "emotionalTags": ["joyful", "confident", "courageous"],
+  "themeTags": ["gospel", "partnership", "suffering", "steadfastness"],
+  "reflectionForm": "standard",
+  "reflectionText": "Paul’s joy did not depend on freedom from chains. He rejoiced in partnership, prayer, Christ being proclaimed, and believers standing together without fear. His hard choice between life and death remained ordered toward Christ and their good. What gives joy a steady center when circumstances remain difficult?",
+  "editorialNotes": "Packet 013 writer output. The retelling follows Philippians 1:3-30 from thanksgiving and prayer through Paul’s bonds, life-or-death conflict, and call to stand together, without importing later themes from the letter.",
+  "files": {
+    "short": {"storyText": "story_3056_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3056_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3056_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3056_traditional_kjv.txt"}
+  }
+}

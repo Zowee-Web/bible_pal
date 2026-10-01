@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3057,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "brave_courage",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_013",
+  "title": "Faith Shown by Works",
+  "scriptureAnchor": "James 2:1-26",
+  "scriptureAnchorId": "james_2_1-26",
+  "shortScripture": false,
+  "bibleStoryKey": "faith_shown_by_works",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "james",
+  "primaryCharacterDisplayName": "James",
+  "emotionalTags": ["brave", "challenged", "resolute"],
+  "themeTags": ["partiality", "mercy", "faith", "works"],
+  "reflectionForm": "standard",
+  "reflectionText": "James joins the whole passage tightly: partiality violates neighbor-love, mercy must shape conduct, and claimed faith cannot leave a hungry person unaided. Abraham and Rahab make visible what mere words cannot prove. Where does professed belief need to become impartial, merciful action?",
+  "editorialNotes": "Packet 013 writer output. The retelling preserves James 2’s sequence from partiality and the royal law through mercy, material need, and the Abraham and Rahab examples, without turning the passage into a detached topical sermon.",
+  "files": {
+    "short": {"storyText": "story_3057_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3057_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3057_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3057_traditional_kjv.txt"}
+  }
+}

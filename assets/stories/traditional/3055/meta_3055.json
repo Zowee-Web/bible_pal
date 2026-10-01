@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3055,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "weary",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_013",
+  "title": "The Vision at the Watch",
+  "scriptureAnchor": "Habakkuk 2:1-20",
+  "scriptureAnchorId": "habakkuk_2_1-20",
+  "shortScripture": false,
+  "bibleStoryKey": "vision_at_the_watch",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "timelineEra": "prophets",
+  "primaryCharacterId": "habakkuk",
+  "primaryCharacterDisplayName": "Habakkuk",
+  "emotionalTags": ["weary", "watchful", "steadfast"],
+  "themeTags": ["faith", "justice", "judgment", "true_worship"],
+  "reflectionForm": "standard",
+  "reflectionText": "Habakkuk was told to wait for the appointed vision while the proud were not upright and the righteous lived by faith. Idols had no breath, but Yahweh was in his holy temple, and all the earth was commanded to be silent before him. What steadies faithful waiting?",
+  "editorialNotes": "Packet 013 writer output. The retelling stays within Habakkuk 2:1-20 and preserves the watch, written vision, five woes, and temple silence without importing material from Habakkuk 1 or 3.",
+  "files": {
+    "short": {"storyText": "story_3055_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3055_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3055_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3055_traditional_kjv.txt"}
+  }
+}

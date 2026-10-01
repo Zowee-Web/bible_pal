@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3058,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "hurting",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_013",
+  "title": "Living Stones and the Suffering Christ",
+  "scriptureAnchor": "1 Peter 2:4-25",
+  "scriptureAnchorId": "1_peter_2_4-25",
+  "shortScripture": false,
+  "bibleStoryKey": "living_stones_and_the_suffering_christ",
+  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "peter",
+  "primaryCharacterDisplayName": "Peter",
+  "emotionalTags": ["hurting", "steadfast", "sheltered"],
+  "themeTags": ["identity", "witness", "unjust_suffering", "christ_example"],
+  "reflectionForm": "standard",
+  "reflectionText": "Peter names unjust suffering as wrong and points to God as the righteous Judge. Christ’s example rejects retaliation while his wounds lead wandering people into righteousness and the Shepherd’s care. How can good behavior bear witness without confusing patient endurance with approval of wrongdoing?",
+  "editorialNotes": "Packet 013 writer output. The retelling follows 1 Peter 2:4-25 and handles verses 18-25 by naming suffering as wrongful, preserving God’s righteous judgment, and avoiding language that endorses abuse.",
+  "files": {
+    "short": {"storyText": "story_3058_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3058_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3058_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3058_traditional_kjv.txt"}
+  }
+}
