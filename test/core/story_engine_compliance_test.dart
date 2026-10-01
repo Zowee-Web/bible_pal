@@ -3,6 +3,15 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 
+bool _isSanctionedCampaignAuthor(String modeDir, int? storyId, String model) {
+  // ADR-036: Traditional campaign IDs only; independent review remains required.
+  return modeDir == 'traditional' &&
+      model == 'gpt-5.6-sol' &&
+      storyId != null &&
+      storyId >= 3000 &&
+      storyId <= 3258;
+}
+
 /// CRITICAL: Validates all production meta.json files have correct
 /// createdByModel per STORY_FACTORY.md dual-engine architecture (Section 0).
 ///
@@ -88,7 +97,9 @@ void main() {
           };
 
           if (mode == 'traditional') {
-            if (!traditionalAllowedModels.contains(model)) {
+            if (!traditionalAllowedModels.contains(model) &&
+                !_isSanctionedCampaignAuthor(
+                    modeDir, int.tryParse(storyId), model)) {
               violations.add(
                 '$mode/$storyId: createdByModel="$model" '
                 '(expected one of: ${traditionalAllowedModels.join(", ")})',
@@ -118,6 +129,39 @@ void main() {
           reason:
               'All production meta.json files must have correct createdByModel '
               'per STORY_FACTORY.md dual-engine architecture');
+    });
+
+    test(
+        'Packet 009 Traditional author metadata uses sanctioned campaign model',
+        () {
+      for (var storyId = 3035; storyId <= 3039; storyId++) {
+        final metaFile =
+            File('assets/stories/traditional/$storyId/meta_$storyId.json');
+        expect(metaFile.existsSync(), isTrue);
+        final meta =
+            jsonDecode(metaFile.readAsStringSync()) as Map<String, dynamic>;
+        expect(meta['mode'], 'traditional', reason: 'story $storyId');
+        expect(meta['createdByModel'], 'gpt-5.6-sol', reason: 'story $storyId');
+        expect(
+            _isSanctionedCampaignAuthor(
+                'traditional', storyId, meta['createdByModel'] as String),
+            isTrue,
+            reason: 'story $storyId');
+      }
+    });
+
+    test('campaign author exception stays within Traditional IDs 3000-3258',
+        () {
+      expect(_isSanctionedCampaignAuthor('traditional', 3000, 'gpt-5.6-sol'),
+          isTrue);
+      expect(_isSanctionedCampaignAuthor('traditional', 3258, 'gpt-5.6-sol'),
+          isTrue);
+      expect(_isSanctionedCampaignAuthor('traditional', 2999, 'gpt-5.6-sol'),
+          isFalse);
+      expect(_isSanctionedCampaignAuthor('traditional', 3259, 'gpt-5.6-sol'),
+          isFalse);
+      expect(_isSanctionedCampaignAuthor('creative', 3035, 'gpt-5.6-sol'),
+          isFalse);
     });
   });
 }
