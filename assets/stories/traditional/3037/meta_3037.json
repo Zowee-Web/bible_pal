@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3037,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_009",
+  "title": "Wisdom Calls at the Gates",
+  "scriptureAnchor": "Proverbs 8:1-36",
+  "scriptureAnchorId": "proverbs_8_1-36",
+  "shortScripture": false,
+  "bibleStoryKey": "wisdom_calls_at_the_gates",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "wisdom",
+  "primaryCharacterId": "wisdom",
+  "primaryCharacterDisplayName": "Wisdom",
+  "emotionalTags": [
+    "inviting",
+    "wise",
+    "earnest"
+  ],
+  "themeTags": [
+    "wisdom",
+    "truth",
+    "creation",
+    "life"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Wisdom's public call joins truthful speech, righteous rule, and the ordered creation. Silver and gold cannot measure her value. The closing choice is therefore weighty: attentive hearers find life and Yahweh's favor, while rejecting wisdom harms the soul.",
+  "editorialNotes": "Packet 009 held authoring. Wisdom remains poetic personification rather than a physically invented woman or narrative scene. The discourse follows its call, value, creation, blessing, and warning.",
+  "files": {
+    "short": {
+      "storyText": "story_3037_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3037_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_3037_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_3037_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3037_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3037_traditional_kjv.txt"
+    }
+  }
+}

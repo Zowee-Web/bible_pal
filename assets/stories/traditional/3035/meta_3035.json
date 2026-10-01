@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3035,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short",
+    "full",
+    "long"
+  ],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_009",
+  "title": "Jehu and the Fall of Ahab's House",
+  "scriptureAnchor": "2 Kings 9:14-10:28",
+  "scriptureAnchorId": "2_kings_9_14-10_28",
+  "shortScripture": false,
+  "bibleStoryKey": "jehu_fall_of_ahabs_house",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "jehu",
+  "primaryCharacterDisplayName": "Jehu",
+  "emotionalTags": [
+    "severe",
+    "sober",
+    "resolute"
+  ],
+  "themeTags": [
+    "judgment",
+    "fulfilled_word",
+    "house_of_ahab",
+    "baal"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Naboth's field, Ahab's house, and Jehu's zeal show how grievously violence spreads through lives and generations. Yahweh's word through Elijah came to pass amid human choices that brought bloodshed and loss. What becomes of zeal when it has no room for mercy?",
+  "editorialNotes": "Packet 009 held authoring. Anchor begins at 2 Kings 9:14, after story 3001, and ends at 10:28. Deaths and judgment are stated without invented motives, emotions, or sensational detail.",
+  "files": {
+    "short": {
+      "storyText": "story_3035_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3035_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_3035_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_3035_traditional_kjv_full.txt"
+    },
+    "long": {
+      "storyText": "story_3035_traditional_web_long.txt"
+    },
+    "long_kjv": {
+      "storyText": "story_3035_traditional_kjv_long.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3035_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3035_traditional_kjv.txt"
+    }
+  }
+}

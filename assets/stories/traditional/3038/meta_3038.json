@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3038,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_009",
+  "title": "God Has Spoken by His Son",
+  "scriptureAnchor": "Hebrews 1:1-2:18",
+  "scriptureAnchorId": "hebrews_1_1-2_18",
+  "shortScripture": false,
+  "bibleStoryKey": "god_has_spoken_by_his_son",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "emotionalTags": [
+    "reverent",
+    "urgent",
+    "assured"
+  ],
+  "themeTags": [
+    "son",
+    "angels",
+    "salvation",
+    "high_priest"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Jesus is greater than the angels, yet he shared flesh and blood and tasted death for everyone. The merciful high priest is not distant from human weakness: he suffered when tempted and is able to help. What fear can be faced differently because the Son calls his people brothers and sisters?",
+  "editorialNotes": "Packet 009 held authoring. Epistle and teaching form is preserved. Scriptural quotations remain within the argument; no audience scene or dialogue is invented and no later Hebrews material is imported.",
+  "files": {
+    "short": {
+      "storyText": "story_3038_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3038_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_3038_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_3038_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3038_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3038_traditional_kjv.txt"
+    }
+  }
+}

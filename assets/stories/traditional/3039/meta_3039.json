@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3039,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_009",
+  "title": "Abiding in the Teaching of Christ",
+  "scriptureAnchor": "2 John 1:1-3, 7-13",
+  "scriptureAnchorId": "2_john_1_1-3_7-13",
+  "shortScripture": true,
+  "bibleStoryKey": "abiding_in_the_teaching_of_christ",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "john_the_elder",
+  "primaryCharacterDisplayName": "The Elder",
+  "emotionalTags": [
+    "loving",
+    "watchful",
+    "steadfast"
+  ],
+  "themeTags": [
+    "truth",
+    "love",
+    "deceivers",
+    "fellowship"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The elder holds truth and love together. Abiding truth shapes both warm fellowship and firm boundaries: Jesus Christ is confessed as come in the flesh, deceptive teaching receives no support, and fuller joy is sought in face-to-face communion.",
+  "editorialNotes": "Packet 009 owner approved short Scripture for this Short artifact, 120-500 words. Anchor excludes 2 John 1:4-6; only the assigned surrounding verses are retold.",
+  "files": {
+    "short": {
+      "storyText": "story_3039_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3039_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3039_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3039_traditional_kjv.txt"
+    }
+  }
+}
