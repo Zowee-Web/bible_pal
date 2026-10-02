@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3030,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_008",
+  "title": "The Conclusion of the Whole Matter",
+  "scriptureAnchor": "Ecclesiastes 12:8-14",
+  "scriptureAnchorId": "ecclesiastes_12_8-14",
+  "shortScripture": false,
+  "bibleStoryKey": "conclusion_of_the_whole_matter",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "wisdom",
+  "primaryCharacterId": "preacher",
+  "primaryCharacterDisplayName": "The Preacher",
+  "emotionalTags": [
+    "sober",
+    "steady",
+    "encouraging"
+  ],
+  "themeTags": [
+    "wisdom",
+    "reverence",
+    "obedience",
+    "judgment"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The Preacher's final words hold searching and duty together. Wisdom weighs language carefully, yet no number of books can replace the plain conclusion: reverence belongs to God, obedience matters, and even hidden work remains before his judgment.",
+  "editorialNotes": "Packet 008 held authoring. Anchor Ecclesiastes 12:8-14 only; Short only by assignment. The epilogue's vanity refrain is kept beside the Preacher's teaching labor and the final call to fear God and keep his commandments, without turning vanity into modern nihilism.",
+  "files": {
+    "short": {
+      "storyText": "story_3030_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3030_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3030_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3030_traditional_kjv.txt"
+    }
+  }
+}

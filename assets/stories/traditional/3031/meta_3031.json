@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3031,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_008",
+  "title": "A Lament for the Devastated Land",
+  "scriptureAnchor": "Joel 1:1-20",
+  "scriptureAnchorId": "joel_1_1-20",
+  "shortScripture": false,
+  "bibleStoryKey": "lament_for_the_devastated_land",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "timelineEra": "prophets",
+  "primaryCharacterId": "joel",
+  "primaryCharacterDisplayName": "Joel",
+  "emotionalTags": [
+    "weary",
+    "grieving",
+    "solemn"
+  ],
+  "themeTags": [
+    "lament",
+    "devastation",
+    "fasting",
+    "communal_prayer"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Empty barns, stripped branches, absent offerings, and groaning animals all enter Joel's lament. No part of the land is hidden from the communal cry, and the prophet's own voice finally rises with it directly to Yahweh.",
+  "editorialNotes": "Packet 008 held authoring. Anchor Joel 1:1-20 only; Short and Full by assignment. The retelling remains within the passage's agricultural devastation, interrupted offerings, summoned fast, communal lament, and Joel's cry. No modern disaster, date, or end-times identification is supplied.",
+  "files": {
+    "short": {
+      "storyText": "story_3031_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3031_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_3031_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_3031_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3031_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3031_traditional_kjv.txt"
+    }
+  }
+}
