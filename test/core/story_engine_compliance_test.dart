@@ -3,10 +3,17 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 
+const _campaignAuthorModels = {
+  'gpt-5.6-sol', // ADR-036
+  'gpt-5', // ADR-037
+  'openai-codex-gpt-5', // ADR-037
+};
+
 bool _isSanctionedCampaignAuthor(String modeDir, int? storyId, String model) {
-  // ADR-036: Traditional campaign IDs only; independent review remains required.
+  // ADR-036/ADR-037: Traditional campaign IDs only; independent review remains
+  // required.
   return modeDir == 'traditional' &&
-      model == 'gpt-5.6-sol' &&
+      _campaignAuthorModels.contains(model) &&
       storyId != null &&
       storyId >= 3000 &&
       storyId <= 3258;
@@ -162,6 +169,48 @@ void main() {
           isFalse);
       expect(_isSanctionedCampaignAuthor('creative', 3035, 'gpt-5.6-sol'),
           isFalse);
+    });
+
+    test(
+        'Packet 012 Traditional author metadata uses sanctioned campaign model',
+        () {
+      for (var storyId = 3050; storyId <= 3054; storyId++) {
+        final metaFile =
+            File('assets/stories/traditional/$storyId/meta_$storyId.json');
+        expect(metaFile.existsSync(), isTrue);
+        final meta =
+            jsonDecode(metaFile.readAsStringSync()) as Map<String, dynamic>;
+        expect(meta['mode'], 'traditional', reason: 'story $storyId');
+        expect(meta['createdByModel'], 'gpt-5', reason: 'story $storyId');
+        expect(
+            _isSanctionedCampaignAuthor(
+                'traditional', storyId, meta['createdByModel'] as String),
+            isTrue,
+            reason: 'story $storyId');
+      }
+    });
+
+    test(
+        'ADR-037 campaign author models stay within Traditional IDs 3000-3258',
+        () {
+      for (final model in ['gpt-5', 'openai-codex-gpt-5']) {
+        expect(_isSanctionedCampaignAuthor('traditional', 3000, model), isTrue,
+            reason: model);
+        expect(_isSanctionedCampaignAuthor('traditional', 3258, model), isTrue,
+            reason: model);
+        expect(_isSanctionedCampaignAuthor('traditional', 2999, model), isFalse,
+            reason: model);
+        expect(_isSanctionedCampaignAuthor('traditional', 3259, model), isFalse,
+            reason: model);
+        expect(_isSanctionedCampaignAuthor('creative', 3050, model), isFalse,
+            reason: model);
+        // Non-numeric story directory: int.tryParse yields null.
+        expect(
+            _isSanctionedCampaignAuthor(
+                'traditional', int.tryParse('3050_draft'), model),
+            isFalse,
+            reason: model);
+      }
     });
   });
 }
