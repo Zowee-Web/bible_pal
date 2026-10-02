@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3054,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "calm_peaceful",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_012",
+  "title": "The Household of God",
+  "scriptureAnchor": "1 Timothy 2:1-3:16",
+  "scriptureAnchorId": "1_timothy_2_1-3_16",
+  "shortScripture": false,
+  "bibleStoryKey": "the_household_of_god",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "emotionalTags": ["settled", "responsible", "faithful"],
+  "themeTags": ["prayer", "character", "service", "church"],
+  "reflectionForm": "standard",
+  "reflectionText": "Life in God’s household joins prayer for all people with tested character, faithful service, and conduct shaped by the truth. Which quiet qualification—gentleness, integrity, self-control, hospitality, or faithfulness—most needs patient attention today?",
+  "editorialNotes": "Packet 012 initial writer output. The story presents the assigned instructions without inventing a church meeting, biographies, reactions, or doctrinal harmonization beyond 1 Timothy 2:1-3:16.",
+  "files": {
+    "short": {"storyText": "story_3054_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3054_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3054_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3054_traditional_kjv.txt"}
+  }
+}

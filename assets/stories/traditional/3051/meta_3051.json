@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3051,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "brave_courage",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_012",
+  "title": "Yahweh Roars from Zion",
+  "scriptureAnchor": "Joel 3:1-21",
+  "scriptureAnchorId": "joel_3_1-21",
+  "shortScripture": false,
+  "bibleStoryKey": "yahweh_roars_from_zion",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "prophets",
+  "primaryCharacterId": "joel",
+  "primaryCharacterDisplayName": "Joel",
+  "emotionalTags": ["strengthened", "protected", "hopeful"],
+  "themeTags": ["justice", "refuge", "restoration", "presence"],
+  "reflectionForm": "standard",
+  "reflectionText": "The nations gather in strength, but the valley belongs to Yahweh, who judges violence and shelters his people. His final picture is not endless ruin but cleansing, abundance, and his presence in Zion. Where is refuge found when human power seems overwhelming?",
+  "editorialNotes": "Packet 012 initial writer output. The story presents Joel's prophecy without assigning a speculative timeline, identifying unnamed nations, or turning poetic imagery into invented action.",
+  "files": {
+    "short": {"storyText": "story_3051_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3051_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3051_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3051_traditional_kjv.txt"}
+  }
+}

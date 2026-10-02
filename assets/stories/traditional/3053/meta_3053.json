@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3053,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "encouraging",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_012",
+  "title": "Rooted and Built Up in Christ",
+  "scriptureAnchor": "Colossians 2:1-23",
+  "scriptureAnchorId": "colossians_2_1-23",
+  "shortScripture": false,
+  "bibleStoryKey": "rooted_and_built_up_in_christ",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "emotionalTags": ["encouraged", "grounded", "free"],
+  "themeTags": ["christ", "fullness", "cross", "freedom"],
+  "reflectionForm": "standard",
+  "reflectionText": "Rules that look severe or spiritual can still fail to change desire, because life and growth come from holding firmly to Christ the Head. Where is an impressive human practice competing with the fullness, forgiveness, and freedom already given in Christ?",
+  "editorialNotes": "Packet 012 initial writer output. The story follows Paul's Colossians 2 argument without invented audience scenes, modern doctrinal systems, or material imported from Colossians 1 or 3.",
+  "files": {
+    "short": {"storyText": "story_3053_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3053_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3053_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3053_traditional_kjv.txt"}
+  }
+}
