@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3046,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "gpt-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_011",
+  "title": "Yahweh's Appointed Feasts",
+  "scriptureAnchor": "Leviticus 23:1-44",
+  "scriptureAnchorId": "leviticus_23_1-44",
+  "shortScripture": false,
+  "bibleStoryKey": "yahwehs_appointed_feasts",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "emotionalTags": [
+    "grateful",
+    "reverent",
+    "joyful"
+  ],
+  "themeTags": [
+    "sabbath",
+    "appointed_feasts",
+    "harvest",
+    "remembrance"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Yahweh gave Israel times for work, rest, worship, gratitude, humility, and joy. Even the harvest calendar protected a share for the poor and the foreigner. What might an ordered life reveal when receiving God's provision and caring for a neighbor belong together?",
+  "editorialNotes": "Packet 011 initial writer output. The story presents Leviticus 23 as law and appointed worship without fictional festival scenes or later fulfillment overlays.",
+  "files": {
+    "short": {
+      "storyText": "story_3046_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3046_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_3046_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_3046_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3046_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3046_traditional_kjv.txt"
+    }
+  }
+}

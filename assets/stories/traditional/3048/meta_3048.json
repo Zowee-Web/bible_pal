@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3048,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "gpt-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_011",
+  "title": "I Myself Will Search for My Sheep",
+  "scriptureAnchor": "Ezekiel 34:1-31",
+  "scriptureAnchorId": "ezekiel_34_1-31",
+  "shortScripture": false,
+  "bibleStoryKey": "i_myself_will_search_for_my_sheep",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "timelineEra": "exile",
+  "primaryCharacterId": "ezekiel",
+  "primaryCharacterDisplayName": "Ezekiel",
+  "emotionalTags": [
+    "encouraged",
+    "protected",
+    "restored"
+  ],
+  "themeTags": [
+    "shepherd",
+    "justice",
+    "restoration",
+    "peace"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Yahweh saw every neglected, scattered, and wounded member of his flock. His answer joined rescue with justice: he would seek the lost, confront those who harmed the weak, and establish peace. Where might hope begin when God says, “I myself will search”?",
+  "editorialNotes": "Packet 011 initial writer output. The story preserves Ezekiel's prophetic oracle without modern shepherd identifications, New Testament import, or speculative timelines.",
+  "files": {
+    "short": {
+      "storyText": "story_3048_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3048_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_3048_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_3048_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3048_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3048_traditional_kjv.txt"
+    }
+  }
+}

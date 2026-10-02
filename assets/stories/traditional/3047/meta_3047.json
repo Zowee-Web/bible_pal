@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3047,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short",
+    "full"
+  ],
+  "createdByModel": "gpt-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_011",
+  "title": "The King Comes to His Garden",
+  "scriptureAnchor": "Song of Solomon 3:1-5:1",
+  "scriptureAnchorId": "song_of_solomon_3_1-5_1",
+  "shortScripture": false,
+  "bibleStoryKey": "the_king_comes_to_his_garden",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "timelineEra": "wisdom",
+  "primaryCharacterId": "beloved",
+  "primaryCharacterDisplayName": "The Beloved",
+  "emotionalTags": [
+    "joyful",
+    "longing",
+    "delighted"
+  ],
+  "themeTags": [
+    "love",
+    "beauty",
+    "desire",
+    "welcome"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Love is neither hurried nor careless here. It searches, finds, delights, invites, and receives while honoring its proper time. The lovers delight in beauty without turning it into possession. What changes when delight is joined to patience, welcome, and freely given love?",
+  "editorialNotes": "Packet 011 initial writer output. The story preserves the poetic voices and imagery of Song of Solomon 3:1-5:1 without imposing an allegory or invented wedding narrative.",
+  "files": {
+    "short": {
+      "storyText": "story_3047_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3047_traditional_kjv_short.txt"
+    },
+    "full": {
+      "storyText": "story_3047_traditional_web_full.txt"
+    },
+    "full_kjv": {
+      "storyText": "story_3047_traditional_kjv_full.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3047_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3047_traditional_kjv.txt"
+    }
+  }
+}
