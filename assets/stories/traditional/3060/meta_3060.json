@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3060,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "brave_courage",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_014",
+  "title": "Asa Seeks Yahweh",
+  "scriptureAnchor": "2 Chronicles 14:1-15:19",
+  "scriptureAnchorId": "2_chronicles_14_1-15_19",
+  "shortScripture": false,
+  "bibleStoryKey": "asa_seeks_yahweh",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "asa",
+  "primaryCharacterDisplayName": "Asa",
+  "emotionalTags": ["courageous", "resolute", "joyful"],
+  "themeTags": ["reform", "prayer", "deliverance", "covenant"],
+  "reflectionForm": "standard",
+  "reflectionText": "Asa prayed when the greater army came, then acted on Azariah’s call to be strong. Judah’s covenant sounded with voices, trumpets, and cornets, while Maacah’s image was ground to dust. What is it to seek God with a whole desire?",
+  "editorialNotes": "Packet 014 writer output. Short-only owner plan. The retelling covers Asa’s reforms, prayer, victory, covenant renewal, and removal of Maacah within 2 Chronicles 14:1-15:19 without adding battle detail.",
+  "files": {
+    "short": {"storyText": "story_3060_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3060_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3060_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3060_traditional_kjv.txt"}
+  }
+}

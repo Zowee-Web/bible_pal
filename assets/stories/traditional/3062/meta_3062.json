@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3062,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "grateful",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_014",
+  "title": "Bless Yahweh, My Soul",
+  "scriptureAnchor": "Psalm 104:1-35",
+  "scriptureAnchorId": "psalm_104_1-35",
+  "shortScripture": false,
+  "bibleStoryKey": "bless_yahweh_my_soul",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "timelineEra": "wisdom",
+  "primaryCharacterId": "psalmist",
+  "primaryCharacterDisplayName": "Psalmist",
+  "emotionalTags": ["grateful", "awed", "joyful"],
+  "themeTags": ["creation", "provision", "dependence", "praise"],
+  "reflectionForm": "standard",
+  "reflectionText": "Springs water the valleys, lions seek their food, ships cross the wide sea, and every living thing waits for an open hand. Breath returns to dust, and the Spirit renews the ground. What is it to praise the Maker of this abundance?",
+  "editorialNotes": "Packet 014 writer output. Short-only owner plan. The retelling carries Psalm 104’s full movement from majesty and ordered waters through creatures, provision, mortality, renewal, praise, and the unsmoothed plea that sinners be consumed and the wicked be no more.",
+  "files": {
+    "short": {"storyText": "story_3062_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3062_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3062_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3062_traditional_kjv.txt"}
+  }
+}

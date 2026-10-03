@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3061,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "calm_peaceful",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_014",
+  "title": "Where Wisdom Is Found",
+  "scriptureAnchor": "Job 28:1-28",
+  "scriptureAnchorId": "job_28_1-28",
+  "shortScripture": false,
+  "bibleStoryKey": "where_wisdom_is_found",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "timelineEra": "wisdom",
+  "primaryCharacterId": "job",
+  "primaryCharacterDisplayName": "Job",
+  "emotionalTags": ["searching", "wondering", "reverent"],
+  "themeTags": ["wisdom", "mining", "creation", "fear_of_the_lord"],
+  "reflectionForm": "standard",
+  "reflectionText": "Miners bring buried gold and sapphires into the light, yet no treasure can purchase wisdom and no living eye can uncover its place. God knows its way. What is it to find wisdom in fearing the Lord and departing from evil?",
+  "editorialNotes": "Packet 014 writer output. Short-only owner plan. The retelling follows Job 28 through mining, wisdom’s hidden place and incomparable value, God’s knowledge of its way, and the fear of the Lord without commentary about the literary form.",
+  "files": {
+    "short": {"storyText": "story_3061_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3061_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3061_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3061_traditional_kjv.txt"}
+  }
+}

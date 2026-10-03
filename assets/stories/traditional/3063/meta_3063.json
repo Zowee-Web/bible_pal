@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3063,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "hurting",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_014",
+  "title": "The Fire in Jeremiah’s Bones",
+  "scriptureAnchor": "Jeremiah 20:1-18",
+  "scriptureAnchorId": "jeremiah_20_1-18",
+  "shortScripture": false,
+  "bibleStoryKey": "fire_in_jeremiahs_bones",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "prophets",
+  "primaryCharacterId": "jeremiah",
+  "primaryCharacterDisplayName": "Jeremiah",
+  "emotionalTags": ["hurting", "weary", "anguished"],
+  "themeTags": ["persecution", "prophecy", "lament", "endurance"],
+  "reflectionForm": "standard",
+  "reflectionText": "Jeremiah came out of the stocks and still spoke the word that burned in his bones. He praised deliverance, then cursed the day of his birth and ended with labor, sorrow, and shame. What is it to hear both cries without silencing either one?",
+  "editorialNotes": "Packet 014 writer output. Short-only owner plan. The retelling preserves Pashhur’s punishment of Jeremiah, the oracle against Pashhur, the fire in Jeremiah’s bones, his confidence and praise, and the unresolved closing curse and lament.",
+  "files": {
+    "short": {"storyText": "story_3063_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3063_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3063_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3063_traditional_kjv.txt"}
+  }
+}
