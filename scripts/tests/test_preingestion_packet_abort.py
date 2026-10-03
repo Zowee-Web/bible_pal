@@ -25,6 +25,7 @@ import story_id_reservations as reservations  # noqa: E402
 
 
 RUN_ID = "campaign-3000-3258-run-001"
+ID_RESERVED_ACTOR = "codex-gpt-5-6-sol"
 PACKET_003_ANCHORS = (
     "Jude 1:1-19",
     "Hosea 1:1-3:5",
@@ -146,6 +147,45 @@ class PreIngestionAbortTests(unittest.TestCase):
             owner_authorized=True,
         )
 
+    def make_id_reserved_refusal(self, packet_id="proving-packet-015"):
+        ctl = self.build()
+
+        def refuse_one(anchor, **kwargs):
+            verdict = "BLOCK" if anchor == PACKET_003_ANCHORS[0] else "PASS"
+            return {
+                "gateVersion": "id-reserved-recovery-test",
+                "candidate": {
+                    "rawReference": anchor,
+                    "proposedStoryId": kwargs.get("story_id"),
+                },
+                "verdict": verdict,
+                "blockingStoryIds": [42] if verdict == "BLOCK" else [],
+                "warnings": [],
+            }
+
+        ctl.overlap_evaluator = refuse_one
+        packet = ctl.plan_packet(
+            run_id=RUN_ID,
+            packet_id=packet_id,
+            actor=ID_RESERVED_ACTOR,
+            planning=self.planning(),
+            lease_seconds=3600,
+        )
+        with self.assertRaises(controller.OverlapRejected):
+            ctl.preflight_anchors(RUN_ID, packet_id, actor=ID_RESERVED_ACTOR)
+        packet = ctl.load(RUN_ID, packet_id)
+        self.assertEqual(packet["state"], controller.ID_RESERVED)
+        return ctl, packet
+
+    def abort_id_reserved(self, ctl, packet_id="proving-packet-015"):
+        return ctl.abort_unstarted_packet(
+            RUN_ID,
+            packet_id,
+            actor=ID_RESERVED_ACTOR,
+            owner_authorized=True,
+            reason="authoritative anchor-preflight refusal before assignments",
+        )
+
     def packet_claims(self, packet_id):
         return [
             claim
@@ -256,9 +296,188 @@ class PreIngestionAbortTests(unittest.TestCase):
             with self.subTest(state=state), mock.patch.object(ctl, "load", return_value=forged):
                 with self.assertRaisesRegex(
                     controller.IllegalControllerTransition,
-                    "requires ASSIGNMENT_READY",
+                    "requires ID_RESERVED.*ASSIGNMENT_READY",
                 ):
                     self.abort(ctl)
+
+    def test_id_reserved_refusal_abort_releases_ids_and_records_immutable_evidence(self):
+        ctl, packet = self.make_id_reserved_refusal()
+        repo_before = _tree_hash(self.repo)
+        manifest_before = (self.repo / "assets" / "stories" / "manifest.json").read_bytes()
+
+        result = self.abort_id_reserved(ctl)
+
+        self.assertEqual(result["state"], controller.ABORTED)
+        self.assertEqual(
+            {slot["reservation"]["state"] for slot in result["slots"]},
+            {"RELEASED"},
+        )
+        story_ids = sorted(slot["storyId"] for slot in packet["slots"])
+        ledger = reservations.replay_ledger(self.factory)
+        self.assertEqual([ledger[story_id].state for story_id in story_ids], ["RELEASED"] * 5)
+        for story_id in story_ids:
+            self.assertFalse((self.factory / "locks" / f"{story_id}.lock").exists())
+
+        evidence_path = (
+            ctl.packet_dir(RUN_ID, packet["packetId"])
+            / "abort" / "id_reserved_anchor_preflight.json"
+        )
+        evidence = json.loads(evidence_path.read_text(encoding="utf-8"))
+        self.assertEqual(evidence["packetId"], packet["packetId"])
+        self.assertEqual(evidence["sourceState"], controller.ID_RESERVED)
+        self.assertEqual(evidence["releasedStoryIds"], story_ids)
+        self.assertEqual(
+            {row["state"] for row in evidence["reservationLedgerReleaseResult"]},
+            {"RELEASED"},
+        )
+        self.assertEqual(evidence["actor"], ID_RESERVED_ACTOR)
+        self.assertEqual(
+            evidence["recoveryReason"],
+            "authoritative anchor-preflight refusal before assignments",
+        )
+        self.assertRegex(
+            evidence["authoritativeAnchorPreflightRefusal"]["eventHash"],
+            r"^[0-9a-f]{64}$",
+        )
+        self.assertFalse(evidence["checks"]["productionFilesTouchedByRecovery"])
+        self.assertFalse(evidence["checks"]["manifestTouchedByRecovery"])
+        self.assertEqual(_tree_hash(self.repo), repo_before)
+        self.assertEqual(
+            (self.repo / "assets" / "stories" / "manifest.json").read_bytes(),
+            manifest_before,
+        )
+
+    def test_id_reserved_refusal_abort_refuses_assignment_evidence(self):
+        ctl, packet = self.make_id_reserved_refusal()
+        forged = copy.deepcopy(packet)
+        forged["slots"][0]["assignment"] = {"path": "assignments/forbidden.json", "hash": "0" * 64}
+        before = (self.factory / "reservations.jsonl").read_bytes()
+        with mock.patch.object(ctl, "load", return_value=forged):
+            with self.assertRaisesRegex(controller.SafetyViolation, "assignment evidence"):
+                self.abort_id_reserved(ctl)
+        self.assertEqual((self.factory / "reservations.jsonl").read_bytes(), before)
+
+    def test_id_reserved_refusal_abort_refuses_live_story_directory(self):
+        ctl, packet = self.make_id_reserved_refusal()
+        story_id = packet["slots"][0]["storyId"]
+        (self.repo / "assets" / "stories" / "traditional" / str(story_id)).mkdir()
+        before = (self.factory / "reservations.jsonl").read_bytes()
+        with self.assertRaisesRegex(controller.SafetyViolation, "live story directories"):
+            self.abort_id_reserved(ctl)
+        self.assertEqual((self.factory / "reservations.jsonl").read_bytes(), before)
+
+    def test_id_reserved_refusal_abort_refuses_materialization_evidence(self):
+        ctl, packet = self.make_id_reserved_refusal()
+        forged = copy.deepcopy(packet)
+        forged["slots"][0]["materialization"] = {
+            "treeHash": "0" * 64,
+            "files": {},
+        }
+        before = (self.factory / "reservations.jsonl").read_bytes()
+        with mock.patch.object(ctl, "load", return_value=forged):
+            with self.assertRaisesRegex(controller.SafetyViolation, "downstream lifecycle"):
+                self.abort_id_reserved(ctl)
+        self.assertEqual((self.factory / "reservations.jsonl").read_bytes(), before)
+
+    def test_id_reserved_refusal_abort_refuses_manifest_entry(self):
+        ctl, packet = self.make_id_reserved_refusal()
+        story_id = packet["slots"][0]["storyId"]
+        manifest = self.repo / "assets" / "stories" / "manifest.json"
+        manifest.write_text(json.dumps({
+            "version": 2,
+            "parables": [{
+                "storyId": f"story_{story_id}_forbidden",
+                "textFilePath": (
+                    f"traditional/{story_id}/story_{story_id}_traditional_web_short.txt"
+                ),
+            }],
+        }), encoding="utf-8")
+        before = (self.factory / "reservations.jsonl").read_bytes()
+        with self.assertRaisesRegex(controller.SafetyViolation, "manifest entries"):
+            self.abort_id_reserved(ctl)
+        self.assertEqual((self.factory / "reservations.jsonl").read_bytes(), before)
+
+    def test_id_reserved_refusal_abort_requires_explicit_reason(self):
+        ctl, packet = self.make_id_reserved_refusal()
+        with self.assertRaisesRegex(controller.SafetyViolation, "explicit reason"):
+            ctl.abort_unstarted_packet(
+                RUN_ID,
+                packet["packetId"],
+                actor=ID_RESERVED_ACTOR,
+                owner_authorized=True,
+            )
+        self.assertEqual(
+            {item.state for item in reservations.replay_ledger(self.factory).values()},
+            {"RESERVED"},
+        )
+
+    def test_id_reserved_refusal_abort_requires_exact_persisted_actor(self):
+        ctl, packet = self.make_id_reserved_refusal()
+        with self.assertRaisesRegex(controller.SafetyViolation, "persisted packet actor"):
+            ctl.abort_unstarted_packet(
+                RUN_ID,
+                packet["packetId"],
+                actor="owner",
+                owner_authorized=True,
+                reason="authoritative anchor-preflight refusal before assignments",
+            )
+        self.assertEqual(
+            {item.state for item in reservations.replay_ledger(self.factory).values()},
+            {"RESERVED"},
+        )
+
+    def test_id_reserved_incoherent_reservation_refuses_before_any_release(self):
+        ctl, packet = self.make_id_reserved_refusal()
+        story_id = packet["slots"][-1]["storyId"]
+        lock_path = self.factory / "locks" / f"{story_id}.lock"
+        lock = json.loads(lock_path.read_text(encoding="utf-8"))
+        lock["packetId"] = "foreign-packet"
+        lock_path.write_text(
+            json.dumps(lock, sort_keys=True, separators=(",", ":")),
+            encoding="utf-8",
+        )
+        before = (self.factory / "reservations.jsonl").read_bytes()
+        with self.assertRaisesRegex(controller.IntegrationError, "not safely releasable"):
+            self.abort_id_reserved(ctl)
+        self.assertEqual((self.factory / "reservations.jsonl").read_bytes(), before)
+
+    def test_id_reserved_partial_release_retries_through_supported_api(self):
+        ctl, packet = self.make_id_reserved_refusal()
+        story_ids = [slot["storyId"] for slot in packet["slots"]]
+        real_release = reservations.release_reservation
+        calls = 0
+
+        def fail_third(item, **kwargs):
+            nonlocal calls
+            calls += 1
+            if calls == 3:
+                raise reservations.ReservationConflict("injected third-release failure")
+            return real_release(item, **kwargs)
+
+        with mock.patch.object(reservations, "release_reservation", side_effect=fail_third):
+            with self.assertRaisesRegex(controller.IntegrationError, "release failed"):
+                self.abort_id_reserved(ctl)
+        states = reservations.replay_ledger(self.factory)
+        self.assertEqual(
+            [states[story_id].state for story_id in story_ids],
+            ["RELEASED", "RELEASED", "RESERVED", "RESERVED", "RESERVED"],
+        )
+        self.assertEqual(self.abort_id_reserved(ctl)["state"], controller.ABORTED)
+
+    def test_id_reserved_abort_replay_and_event_hash_remain_coherent(self):
+        ctl, packet = self.make_id_reserved_refusal()
+        result = self.abort_id_reserved(ctl)
+        replayed = ctl.load(RUN_ID, packet["packetId"])
+        self.assertEqual(replayed, result)
+        journal = ctl.packet_dir(RUN_ID, packet["packetId"]) / "events.jsonl"
+        events = [json.loads(line) for line in journal.read_text().splitlines()]
+        self.assertEqual(events[-1]["eventType"], "ID_RESERVED_ANCHOR_PREFLIGHT_ABORTED")
+        event = copy.deepcopy(events[-1])
+        digest = event.pop("evidenceHash")
+        self.assertEqual(digest, controller._event_hash(event))
+        before = journal.read_bytes()
+        self.assertEqual(self.abort_id_reserved(ctl), result)
+        self.assertEqual(journal.read_bytes(), before)
 
     def test_foreign_reservation_lock_is_rejected_without_acl_abort(self):
         ctl, packet, _ = self.make_ready()
@@ -440,9 +659,16 @@ class PreIngestionAbortTests(unittest.TestCase):
         parsed = controller.build_parser().parse_args(["abort-unstarted-packet", *common])
         self.assertFalse(parsed.owner_authorize)
         parsed = controller.build_parser().parse_args(
-            ["abort-unstarted-packet", *common, "--owner-authorize"]
+            [
+                "abort-unstarted-packet",
+                *common,
+                "--owner-authorize",
+                "--reason",
+                "authoritative anchor-preflight refusal",
+            ]
         )
         self.assertTrue(parsed.owner_authorize)
+        self.assertEqual(parsed.reason, "authoritative anchor-preflight refusal")
 
     def test_reservation_release_crash_orphan_is_reconciled_by_exact_retry(self):
         item = reservations.reserve_id(

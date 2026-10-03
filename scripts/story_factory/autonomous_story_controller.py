@@ -380,6 +380,31 @@ def _write_json(path: Path, value: object) -> None:
     _atomic_write(path, _canonical_bytes(value) + b"\n")
 
 
+def _write_json_once(path: Path, value: object) -> None:
+    """Publish owner evidence atomically without replacing an existing record."""
+    try:
+        fd, raw_tmp = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
+    except OSError as exc:
+        raise SafetyViolation(f"cannot prepare owner evidence {path}: {exc}") from exc
+    tmp = Path(raw_tmp)
+    try:
+        try:
+            os.fchmod(fd, 0o600)
+            _write_all(fd, _canonical_bytes(value) + b"\n")
+            os.fsync(fd)
+        finally:
+            os.close(fd)
+        try:
+            os.link(tmp, path)
+        except FileExistsError as exc:
+            raise ReviewRejected("shortScripture approval evidence already exists") from exc
+        except OSError as exc:
+            raise SafetyViolation(f"cannot publish owner evidence {path}: {exc}") from exc
+        _fsync_dir(path.parent)
+    finally:
+        tmp.unlink(missing_ok=True)
+
+
 def _event_hash(event_without_hash: Mapping[str, object]) -> str:
     return _hash_value(event_without_hash)
 
@@ -1879,6 +1904,395 @@ class AutonomousStoryController:
         return self._record(packet, updated, event_type="WRITER_ASSIGNMENTS_EMITTED",
                             actor=actor, reason="deterministic manual writer handoffs emitted")
 
+    def _anchor_preflight_refusal_event(self, packet: dict) -> dict:
+        """Return the latest authoritative refusal that stranded this packet."""
+
+        journal = self.packet_dir(packet["runId"], packet["packetId"]) / "events.jsonl"
+        self._verify_private_runtime_file(journal)
+        try:
+            raw = journal.read_bytes()
+            events = [
+                _validate_event(
+                    json.loads(line, object_pairs_hook=_strict_json_pairs),
+                    sequence,
+                )
+                for sequence, line in enumerate(raw.splitlines(), 1)
+            ]
+        except (OSError, json.JSONDecodeError, ControllerConfigError, JournalCorrupt) as exc:
+            raise SafetyViolation(f"cannot verify anchor-preflight refusal event: {exc}") from exc
+        refusal_indexes = [
+            index
+            for index, event in enumerate(events)
+            if event["eventType"] == "ANCHOR_PREFLIGHT_REFUSED"
+        ]
+        if not refusal_indexes:
+            raise SafetyViolation(
+                "ID_RESERVED abort requires authoritative ANCHOR_PREFLIGHT_REFUSED evidence"
+            )
+        index = refusal_indexes[-1]
+        refusal = events[index]
+        if (
+            refusal["runId"] != packet["runId"]
+            or refusal["packetId"] != packet["packetId"]
+            or refusal["actor"] != packet["actor"]
+            or refusal["fromState"] != ID_RESERVED
+            or refusal["toState"] != ID_RESERVED
+            or refusal["packet"]["state"] != ID_RESERVED
+        ):
+            raise SafetyViolation("anchor-preflight refusal does not bind this ID_RESERVED packet")
+        later_types = {event["eventType"] for event in events[index + 1:]}
+        if not later_types <= {"ANCHOR_PREFLIGHT_REFUSED", "PACKET_LEASE_RENEWED"}:
+            raise SafetyViolation(
+                "packet has non-recovery controller activity after anchor-preflight refusal"
+            )
+        return {
+            "eventId": refusal["eventId"],
+            "sequence": refusal["sequence"],
+            "eventHash": refusal["evidenceHash"],
+            "reason": refusal["reason"],
+        }
+
+    def _assert_id_reserved_abort_contract(self, packet: dict) -> dict:
+        if packet["state"] != ID_RESERVED:
+            raise IllegalControllerTransition(
+                "anchor-preflight recovery requires ID_RESERVED"
+            )
+        if packet["correctionRound"] != 0 or packet["reviewRound"] != 0:
+            raise SafetyViolation("ID_RESERVED recovery requires untouched review rounds")
+        allowed_evidence = {"reservations"}
+        unexpected_evidence = {
+            key
+            for key in packet["evidenceHashes"]
+            if key not in allowed_evidence and not key.startswith("leaseRenewalRound")
+        }
+        if unexpected_evidence or "reservations" not in packet["evidenceHashes"]:
+            raise SafetyViolation(
+                "ID_RESERVED packet has assignment or downstream lifecycle evidence: "
+                + ", ".join(sorted(unexpected_evidence))
+            )
+        reservations = [slot["reservation"] for slot in packet["slots"]]
+        if packet["evidenceHashes"]["reservations"] != _hash_value(reservations):
+            raise SafetyViolation("packet reservation evidence hash does not reconcile")
+        refusal_count = 0
+        for slot in packet["slots"]:
+            story_id = slot["storyId"]
+            if slot["writerAttempts"] != 0:
+                raise SafetyViolation(
+                    f"story {story_id} has a writer attempt; ID_RESERVED recovery is forbidden"
+                )
+            if slot["assignment"] is not None:
+                raise SafetyViolation(f"story {story_id} has assignment evidence")
+            if slot["correctionHistory"] or slot["workspace"] is not None:
+                raise SafetyViolation(f"story {story_id} has writer or correction output")
+            if (
+                slot["validationEvidence"] is not None
+                or slot["reviewerVerdict"] is not None
+                or slot["unresolvedFindings"]
+                or slot["materialization"] is not None
+                or slot["finalReadiness"] is not None
+            ):
+                raise SafetyViolation(f"story {story_id} has downstream lifecycle evidence")
+            reservation = slot["reservation"]
+            if (
+                not isinstance(reservation, dict)
+                or reservation["storyId"] != story_id
+                or reservation["runId"] != packet["runId"]
+                or reservation["packetId"] != packet["packetId"]
+                or reservation["actor"] != packet["actor"]
+                or reservation["worktree"] != packet["worktree"]
+                or reservation["state"] != "RESERVED"
+            ):
+                raise SafetyViolation(
+                    f"story {story_id} reservation reference is not this packet's RESERVED claim"
+                )
+            initial = slot["overlapEvidence"].get("initial")
+            expected_path = str(PurePosixPath("overlap") / "initial" / f"{story_id}.json")
+            if (
+                set(slot["overlapEvidence"]) != {"initial"}
+                or not isinstance(initial, dict)
+                or set(initial) != {"verdict", "hash", "path"}
+                or initial["path"] != expected_path
+                or not HEX64_RE.fullmatch(initial["hash"] or "")
+            ):
+                raise SafetyViolation(f"story {story_id} lacks exact initial preflight evidence")
+            refusal_count += initial["verdict"] != "PASS"
+        if refusal_count == 0:
+            raise SafetyViolation("ID_RESERVED packet has no refused anchor-preflight verdict")
+        return self._anchor_preflight_refusal_event(packet)
+
+    def _assert_id_reserved_abort_runtime(self, packet: dict) -> None:
+        pdir = self.packet_dir(packet["runId"], packet["packetId"])
+        expected_files = {
+            pdir / "events.jsonl",
+            pdir / "packet.json",
+            pdir / "overlap_queue_snapshot.json",
+        }
+        expected_dirs = {pdir, pdir / "overlap", pdir / "overlap" / "initial"}
+        for slot in packet["slots"]:
+            path = pdir / slot["overlapEvidence"]["initial"]["path"]
+            expected_files.add(path)
+            if _hash_value(_load_json(path, error_type=SafetyViolation)) != slot["overlapEvidence"]["initial"]["hash"]:
+                raise SafetyViolation(
+                    f"story {slot['storyId']} initial-overlap evidence changed"
+                )
+        evidence_path = pdir / "abort" / "id_reserved_anchor_preflight.json"
+        if evidence_path.exists():
+            expected_dirs.add(evidence_path.parent)
+            expected_files.add(evidence_path)
+
+        actual_dirs = set()
+        actual_files = set()
+        for raw_root, dir_names, file_names in os.walk(pdir, followlinks=False):
+            root = Path(raw_root)
+            actual_dirs.add(root)
+            for name in dir_names:
+                path = root / name
+                info = path.lstat()
+                if stat.S_ISLNK(info.st_mode) or not stat.S_ISDIR(info.st_mode):
+                    raise SafetyViolation(f"unsafe packet runtime directory: {path}")
+                actual_dirs.add(path)
+            for name in file_names:
+                path = root / name
+                if path.suffix.lower() in {".mp3", ".wav", ".m4a"}:
+                    raise SafetyViolation(f"audio exists in ID_RESERVED packet runtime: {path}")
+                self._verify_private_runtime_file(path)
+                actual_files.add(path)
+        if actual_dirs != expected_dirs or actual_files != expected_files:
+            raise SafetyViolation(
+                "ID_RESERVED packet runtime contains assignment, downstream, or unexpected artifacts"
+            )
+        snapshot = _load_json(pdir / "packet.json", error_type=SafetyViolation)
+        try:
+            validate_packet_model(snapshot)
+            snapshot = normalize_packet_model(snapshot)
+        except JournalCorrupt as exc:
+            raise SafetyViolation(f"packet snapshot is invalid: {exc}") from exc
+        if snapshot != packet:
+            raise SafetyViolation("packet snapshot differs from authoritative journal replay")
+
+    def _id_reserved_occupancy_snapshot(self, packet: dict):
+        scan = getattr(self.reservations, "scan_occupied_ids", None)
+        if scan is None:
+            raise IntegrationError("reservation service does not expose authoritative occupancy scan")
+        try:
+            snapshot = scan(
+                self.repo_root,
+                factory_home=self.factory_home,
+                worktrees=self.worktrees,
+            )
+        except self.reservations.StoryIdReservationError as exc:
+            raise IntegrationError(f"cannot prove reserved-ID occupancy: {exc}") from exc
+        story_ids = {slot["storyId"] for slot in packet["slots"]}
+        physical = sorted(story_ids & set(snapshot.physical_ids))
+        manifest = sorted(story_ids & set(snapshot.manifest_ids))
+        if physical:
+            raise SafetyViolation(
+                "live story directories exist for reserved IDs: "
+                + ", ".join(map(str, physical))
+            )
+        if manifest:
+            raise SafetyViolation(
+                "manifest entries exist for reserved IDs: "
+                + ", ".join(map(str, manifest))
+            )
+        return snapshot
+
+    @staticmethod
+    def _id_reserved_abort_evidence(
+        packet: dict,
+        released: Iterable[object],
+        refusal: dict,
+        actor: str,
+        reason: str,
+        manifest_hashes: Mapping[str, str],
+    ) -> dict:
+        rows = tuple(sorted(released, key=lambda item: item.story_id))
+        return {
+            "schemaVersion": 1,
+            "operation": "ID_RESERVED_ANCHOR_PREFLIGHT_ABORT",
+            "runId": packet["runId"],
+            "packetId": packet["packetId"],
+            "actor": actor,
+            "ownerAuthorized": True,
+            "sourceState": ID_RESERVED,
+            "terminalState": ABORTED,
+            "recoveryReason": reason,
+            "authoritativeAnchorPreflightRefusal": refusal,
+            "releasedStoryIds": [item.story_id for item in rows],
+            "reservationLedgerReleaseResult": [
+                _reservation_to_dict(item) for item in rows
+            ],
+            "checks": {
+                "reservationEvidencePresent": True,
+                "assignmentEvidencePresent": False,
+                "writerOutputPresent": False,
+                "validationEvidencePresent": False,
+                "materializationPresent": False,
+                "reviewEvidencePresent": False,
+                "reportOrFinalReadinessPresent": False,
+                "liveStoryDirectoriesPresent": False,
+                "manifestEntriesPresent": False,
+                "productionFilesTouchedByRecovery": False,
+                "manifestTouchedByRecovery": False,
+                "audioGenerated": False,
+            },
+            "manifestHashes": dict(sorted(manifest_hashes.items())),
+        }
+
+    def _verify_completed_id_reserved_abort(self, packet: dict, *, actor: str) -> dict:
+        if packet["state"] != ABORTED or any(
+            slot["writerAttempts"] != 0 or slot["reservation"]["state"] != "RELEASED"
+            for slot in packet["slots"]
+        ):
+            raise SafetyViolation("ABORTED packet lacks the ID_RESERVED terminal shape")
+        path = (
+            self.packet_dir(packet["runId"], packet["packetId"])
+            / "abort" / "id_reserved_anchor_preflight.json"
+        )
+        self._verify_private_runtime_file(path)
+        evidence = _load_json(path, error_type=SafetyViolation)
+        if (
+            evidence.get("operation") != "ID_RESERVED_ANCHOR_PREFLIGHT_ABORT"
+            or evidence.get("packetId") != packet["packetId"]
+            or evidence.get("actor") != actor
+            or evidence.get("sourceState") != ID_RESERVED
+            or evidence.get("terminalState") != ABORTED
+            or evidence.get("releasedStoryIds")
+            != sorted(slot["storyId"] for slot in packet["slots"])
+            or packet["evidenceHashes"].get("idReservedAnchorPreflightAbort")
+            != _hash_value(evidence)
+        ):
+            raise SafetyViolation("ID_RESERVED abort evidence does not reconcile")
+        for slot in packet["slots"]:
+            supplied = _reservation_from_dict(self.reservations, slot["reservation"])
+            try:
+                released = self.reservations.inspect_reservation_release(
+                    supplied,
+                    repo_root=self.repo_root,
+                    factory_home=self.factory_home,
+                    worktrees=self.worktrees,
+                )
+            except self.reservations.StoryIdReservationError as exc:
+                raise IntegrationError(
+                    f"story {slot['storyId']} released reservation cannot be verified: {exc}"
+                ) from exc
+            if released.state != "RELEASED":
+                raise IntegrationError(f"story {slot['storyId']} is not durably RELEASED")
+        return packet
+
+    def _abort_id_reserved_packet(
+        self,
+        packet: dict,
+        *,
+        actor: str,
+        reason: str,
+    ) -> dict:
+        refusal = self._assert_id_reserved_abort_contract(packet)
+        self._assert_id_reserved_abort_runtime(packet)
+        before = self._id_reserved_occupancy_snapshot(packet)
+        manifest_hashes_before = {
+            worktree: _hash_file(Path(worktree) / "assets" / "stories" / "manifest.json")
+            for worktree in before.worktrees
+        }
+
+        inspected = []
+        for slot in packet["slots"]:
+            supplied = _reservation_from_dict(self.reservations, slot["reservation"])
+            try:
+                inspected.append(self.reservations.inspect_reservation_release(
+                    supplied,
+                    repo_root=self.repo_root,
+                    factory_home=self.factory_home,
+                    worktrees=self.worktrees,
+                ))
+            except self.reservations.StoryIdReservationError as exc:
+                raise IntegrationError(
+                    f"story {slot['storyId']} reservation is not safely releasable: {exc}"
+                ) from exc
+
+        released = []
+        for slot, candidate in zip(packet["slots"], inspected):
+            try:
+                with anchor_claims.lock_rank(
+                    anchor_claims.L3_RESERVATION_LEDGER,
+                    f"release-{slot['storyId']}",
+                ), anchor_claims.lock_rank(
+                    anchor_claims.L4_STORY_LOCK,
+                    f"release-{slot['storyId']}",
+                ):
+                    result = self.reservations.release_reservation(
+                        candidate,
+                        repo_root=self.repo_root,
+                        factory_home=self.factory_home,
+                        worktrees=self.worktrees,
+                        actor=actor,
+                        reason=reason,
+                    )
+            except self.reservations.StoryIdReservationError as exc:
+                raise IntegrationError(
+                    f"story {slot['storyId']} reservation release failed: {exc}"
+                ) from exc
+            if (
+                result.state != "RELEASED"
+                or result.story_id != slot["storyId"]
+                or result.run_id != packet["runId"]
+                or result.packet_id != packet["packetId"]
+                or result.lease_token != slot["reservation"]["leaseToken"]
+            ):
+                raise IntegrationError(
+                    f"story {slot['storyId']} release returned divergent ownership"
+                )
+            released.append(result)
+
+        after = self._id_reserved_occupancy_snapshot(packet)
+        manifest_hashes_after = {
+            worktree: _hash_file(Path(worktree) / "assets" / "stories" / "manifest.json")
+            for worktree in after.worktrees
+        }
+        if manifest_hashes_after != manifest_hashes_before:
+            raise SafetyViolation("manifest changed while ID_RESERVED recovery was in flight")
+        verified = [
+            self.reservations.inspect_reservation_release(
+                item,
+                repo_root=self.repo_root,
+                factory_home=self.factory_home,
+                worktrees=self.worktrees,
+            )
+            for item in released
+        ]
+        evidence = self._id_reserved_abort_evidence(
+            packet,
+            verified,
+            refusal,
+            actor,
+            reason,
+            manifest_hashes_after,
+        )
+        evidence_path = (
+            self.packet_dir(packet["runId"], packet["packetId"])
+            / "abort" / "id_reserved_anchor_preflight.json"
+        )
+        self._ensure_runtime_directory(evidence_path.parent)
+        if evidence_path.exists():
+            self._verify_private_runtime_file(evidence_path)
+            if _load_json(evidence_path, error_type=SafetyViolation) != evidence:
+                raise SafetyViolation("immutable ID_RESERVED abort evidence already differs")
+        else:
+            _write_json_once(evidence_path, evidence)
+
+        updated = self._transition(packet, ABORTED)
+        by_id = {item.story_id: item for item in verified}
+        for slot in updated["slots"]:
+            slot["reservation"] = _reservation_to_dict(by_id[slot["storyId"]])
+        updated["evidenceHashes"]["idReservedAnchorPreflightAbort"] = _hash_value(evidence)
+        return self._record(
+            packet,
+            updated,
+            event_type="ID_RESERVED_ANCHOR_PREFLIGHT_ABORTED",
+            actor=actor,
+            reason=reason,
+        )
+
     def _assert_unstarted_abort_contract(self, packet: dict) -> None:
         if packet["state"] != ASSIGNMENT_READY:
             raise IllegalControllerTransition(
@@ -2138,16 +2552,38 @@ class AutonomousStoryController:
         *,
         actor: str,
         owner_authorized: bool = False,
+        reason: str | None = None,
     ) -> dict:
-        """Abort exactly one assignment-ready packet before its first ingest."""
+        """Abort a narrowly proven pre-assignment or pre-ingestion packet."""
 
         if owner_authorized is not True:
             raise SafetyViolation("pre-ingestion abort requires explicit owner authorization")
         packet = self.load(run_id, packet_id)
-        if actor != "owner" or packet["actor"] != actor:
-            raise SafetyViolation("pre-ingestion abort actor must be the persisted owner")
+        if packet["actor"] != actor:
+            raise SafetyViolation("pre-ingestion abort actor must match the persisted packet actor")
         if packet["state"] == ABORTED:
+            if "idReservedAnchorPreflightAbort" in packet["evidenceHashes"]:
+                return self._verify_completed_id_reserved_abort(packet, actor=actor)
+            if actor != "owner":
+                raise SafetyViolation("pre-ingestion abort actor must be the persisted owner")
             return self._verify_completed_preingest_abort(packet, actor=actor)
+        if packet["state"] == ID_RESERVED:
+            if not isinstance(reason, str) or not reason.strip():
+                raise SafetyViolation(
+                    "ID_RESERVED anchor-preflight recovery requires an explicit reason"
+                )
+            return self._abort_id_reserved_packet(
+                packet,
+                actor=actor,
+                reason=reason.strip(),
+            )
+        if actor != "owner":
+            raise SafetyViolation("pre-ingestion abort actor must be the persisted owner")
+        if packet["state"] != ASSIGNMENT_READY:
+            raise IllegalControllerTransition(
+                "unstarted packet abort requires ID_RESERVED after anchor-preflight refusal "
+                "or ASSIGNMENT_READY"
+            )
 
         self._assert_unstarted_abort_contract(packet)
         self._assert_unstarted_abort_runtime(packet)
@@ -3658,7 +4094,11 @@ def build_parser() -> argparse.ArgumentParser:
     abort.add_argument(
         "--owner-authorize",
         action="store_true",
-        help="explicitly authorize terminal release of an unstarted ASSIGNMENT_READY packet",
+        help="explicitly authorize terminal release of a narrowly proven unstarted packet",
+    )
+    abort.add_argument(
+        "--reason",
+        help="required recovery reason for an ID_RESERVED anchor-preflight refusal",
     )
     subs.add_parser("emit-writer-assignments", parents=[common])
     ingest = subs.add_parser("ingest-writer-output", parents=[common])
@@ -3729,6 +4169,7 @@ def main(argv=None) -> int:
                 args.packet_id,
                 actor=args.actor,
                 owner_authorized=args.owner_authorize,
+                reason=args.reason,
             )
         elif args.command == "emit-writer-assignments":
             result = controller.emit_writer_assignments(args.run_id, args.packet_id, actor=args.actor)
