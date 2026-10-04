@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3073,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "anxious",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_017",
+  "title": "Saul’s Offering at Gilgal",
+  "scriptureAnchor": "1 Samuel 13:2-15",
+  "scriptureAnchorId": "1_samuel_13_2-15",
+  "shortScripture": false,
+  "bibleStoryKey": "sauls_offering_at_gilgal",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "saul",
+  "primaryCharacterDisplayName": "Saul",
+  "emotionalTags": ["anxious", "pressured", "rebuked"],
+  "themeTags": ["waiting", "offering", "commandment", "judgment"],
+  "reflectionForm": "standard",
+  "reflectionText": "Israel’s people hid, crossed the Jordan, trembled, and scattered while Saul watched the appointed days pass. His offering was followed immediately by Samuel’s question and judgment. What is revealed when visible pressure, shrinking numbers, and a fixed time stand beside a command that has not changed?",
+  "editorialNotes": "Packet 017 initial writer output. Short-only owner plan. The retelling begins at 1 Samuel 13:2, preserves the army, Philistine pressure, seven-day wait, offering, Saul’s stated explanation, Samuel’s rebuke and judgment, and the count of six hundred without importing verse 1 or later consequences.",
+  "files": {
+    "short": {"storyText": "story_3073_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3073_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3073_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3073_traditional_kjv.txt"}
+  }
+}

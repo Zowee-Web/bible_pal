@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3070,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "hurting",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_017",
+  "title": "David Mourns Abner",
+  "scriptureAnchor": "2 Samuel 3:22-39",
+  "scriptureAnchorId": "2_samuel_3_22-39",
+  "shortScripture": false,
+  "bibleStoryKey": "david_mourns_abner",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "emotionalTags": ["grieving", "horrified", "publicly_resolute"],
+  "themeTags": ["violence", "repudiation", "mourning", "justice"],
+  "reflectionForm": "standard",
+  "reflectionText": "Abner returned under a summons David had not sent, and violence met him inside Hebron’s gate. David answered publicly with mourning, fasting, lament, and a declaration that the killing was not his command. What is it to make grief and repudiation visible when another person’s wrongdoing touches one’s own house?",
+  "editorialNotes": "Packet 017 initial writer output. Short-only owner plan. The retelling attributes Joab’s claims to Joab, keeps David unaware of Abner’s recall, and preserves David’s public repudiation, mourning, lament, weakness, and appeal for judgment within 2 Samuel 3:22-39.",
+  "files": {
+    "short": {"storyText": "story_3070_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3070_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3070_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3070_traditional_kjv.txt"}
+  }
+}

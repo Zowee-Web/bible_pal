@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3071,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "anxious",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_017",
+  "title": "The Riot at Ephesus",
+  "scriptureAnchor": "Acts 19:23-41",
+  "scriptureAnchorId": "acts_19_23-41",
+  "shortScripture": false,
+  "bibleStoryKey": "riot_at_ephesus",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "emotionalTags": ["anxious", "confused", "restrained"],
+  "themeTags": ["riot", "attributed_claims", "lawful_process", "public_order"],
+  "reflectionForm": "standard",
+  "reflectionText": "Demetrius named threats to wealth and worship, while a confused crowd repeated a cry for hours. The town clerk finally separated accusation from lawful proof and pointed toward open courts and an orderly assembly. What changes when charged claims are heard as claims instead of being carried forward as settled facts?",
+  "editorialNotes": "Packet 017 initial writer output. Short-only owner plan. The retelling attributes Demetrius’s assertions and the crowd’s cries, preserves WEB Artemis versus KJV Diana and WEB Zeus versus KJV Jupiter, and follows the clerk’s reasoning through dismissal without narrating the crowd’s religious claims as fact.",
+  "files": {
+    "short": {"storyText": "story_3071_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3071_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3071_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3071_traditional_kjv.txt"}
+  }
+}

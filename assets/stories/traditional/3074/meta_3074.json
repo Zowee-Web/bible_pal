@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3074,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "brave_courage",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_017",
+  "title": "The Torn Garment",
+  "scriptureAnchor": "1 Kings 11:26-40",
+  "scriptureAnchorId": "1_kings_11_26-40",
+  "shortScripture": false,
+  "bibleStoryKey": "torn_garment_of_ahijah",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "jeroboam",
+  "primaryCharacterDisplayName": "Jeroboam",
+  "emotionalTags": ["called", "warned", "threatened"],
+  "themeTags": ["prophetic_sign", "divided_kingdom", "conditional_promise", "flight"],
+  "reflectionForm": "standard",
+  "reflectionText": "Ahijah tore one garment into twelve pieces and placed ten in Jeroboam’s hands. The promised rule came with a spoken condition: listen, walk rightly, and keep Yahweh’s commands. What is it to receive a visible sign of responsibility while also hearing the terms that must govern it?",
+  "editorialNotes": "Packet 017 initial writer output. Short-only owner plan. The retelling preserves Jeroboam’s appointment, Ahijah’s twelve-piece sign and ten-tribe word, the delayed division, the explicit condition in verse 38, Solomon’s attempt to kill Jeroboam, and the flight to Egypt without continuing into the revolt.",
+  "files": {
+    "short": {"storyText": "story_3074_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3074_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3074_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3074_traditional_kjv.txt"}
+  }
+}

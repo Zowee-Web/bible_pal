@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3072,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "hurting",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_017",
+  "title": "The Cave of Machpelah",
+  "scriptureAnchor": "Genesis 23:1-20",
+  "scriptureAnchorId": "genesis_23_1-20",
+  "shortScripture": false,
+  "bibleStoryKey": "cave_of_machpelah",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "timelineEra": "patriarchs",
+  "primaryCharacterId": "abraham",
+  "primaryCharacterDisplayName": "Abraham",
+  "emotionalTags": ["grieving", "respectful", "steadfast"],
+  "themeTags": ["mourning", "burial", "witnesses", "faithful_care"],
+  "reflectionForm": "standard",
+  "reflectionText": "Abraham rose from mourning and spoke before witnesses about a particular field, cave, price, and burial place. Silver was weighed, the transfer was confirmed, and Sarah was buried. What is it to let careful, visible action carry love and honor through a season of grief?",
+  "editorialNotes": "Packet 017 initial writer output. Short-only owner plan. The retelling preserves Sarah’s death and Abraham’s mourning, the public field-and-cave negotiation, four hundred weighed shekels, the witnessed transfer, and Sarah’s burial without assigning modern legal concepts or unstated bargaining motives.",
+  "files": {
+    "short": {"storyText": "story_3072_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3072_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3072_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3072_traditional_kjv.txt"}
+  }
+}
