@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3077,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "brave_courage",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_018",
+  "title": "The Young Men Go Out from Samaria",
+  "scriptureAnchor": "1 Kings 20:1-21",
+  "scriptureAnchorId": "1_kings_20_1-21",
+  "shortScripture": false,
+  "bibleStoryKey": "young_men_go_out_from_samaria",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "ahab",
+  "primaryCharacterDisplayName": "Ahab",
+  "emotionalTags": ["threatened", "resolute", "victorious"],
+  "themeTags": ["siege", "counsel", "prophetic_word", "battle"],
+  "reflectionForm": "standard",
+  "reflectionText": "Ahab heard an overwhelming demand, consulted the elders, and refused the second command. Then a prophet named who would lead against the great multitude, and the smaller force went out. What do the counsel, the mustering, and the ordered advance show before the Syrians fled?",
+  "editorialNotes": "Packet 018 initial writer output. Short-only owner plan. The retelling remains within 1 Kings 20:1-21, preserving Ben Hadad’s siege and demands, Ahab’s consultation and refusal, the exchanged messages, the prophet’s word, the mustering of the smaller force, and the Syrian flight.",
+  "files": {
+    "short": {"storyText": "story_3077_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3077_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3077_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3077_traditional_kjv.txt"}
+  }
+}

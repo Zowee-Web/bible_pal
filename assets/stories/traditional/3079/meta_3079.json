@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3079,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "anxious",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_018",
+  "title": "Festus Presents Paul’s Case",
+  "scriptureAnchor": "Acts 25:13-27",
+  "scriptureAnchorId": "acts_25_13-27",
+  "shortScripture": false,
+  "bibleStoryKey": "festus_presents_pauls_case",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "emotionalTags": ["accused", "confined", "awaiting_judgment"],
+  "themeTags": ["accusation", "defense", "appeal", "examination"],
+  "reflectionForm": "standard",
+  "reflectionText": "Festus repeatedly described an unresolved case: the expected charges did not appear, Paul had appealed, and no certain accusation was ready to accompany the prisoner. He brought Paul before Agrippa seeking something definite to write. What does Festus’s account reveal about accusation without a stated charge?",
+  "editorialNotes": "Packet 018 initial writer output. Short-only owner plan. The retelling remains within Acts 25:13-27, preserving Festus’s attributed account of the proceedings, Paul’s appeal, Agrippa’s request, the formal hearing, Festus’s finding, and his stated difficulty in sending a prisoner without specified charges.",
+  "files": {
+    "short": {"storyText": "story_3079_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3079_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3079_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3079_traditional_kjv.txt"}
+  }
+}

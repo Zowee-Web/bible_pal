@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3078,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "hurting",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_018",
+  "title": "Meetings at the King’s Return",
+  "scriptureAnchor": "2 Samuel 19:15-30",
+  "scriptureAnchorId": "2_samuel_19_15-30",
+  "shortScripture": false,
+  "bibleStoryKey": "meetings_at_davids_return",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "emotionalTags": ["hurting", "penitent", "relieved"],
+  "themeTags": ["return", "mercy", "accusation", "peace"],
+  "reflectionForm": "standard",
+  "reflectionText": "Shimei fell before the returning king and received a sworn promise that he would not die. Mephibosheth arrived bearing visible signs of his long neglect and answered David’s decision by valuing the king’s peaceful return above the land. Which details make each meeting difficult to dismiss?",
+  "editorialNotes": "Packet 018 initial writer output. Short-only owner plan. The retelling remains within 2 Samuel 19:15-30, preserving David’s crossing, Shimei’s plea and sworn reprieve, Mephibosheth’s appearance and attributed claims, David’s division of the land, and Mephibosheth’s answer.",
+  "files": {
+    "short": {"storyText": "story_3078_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3078_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3078_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3078_traditional_kjv.txt"}
+  }
+}

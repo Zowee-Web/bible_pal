@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3076,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "anxious",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_018",
+  "title": "The Book Found in Yahweh’s House",
+  "scriptureAnchor": "2 Chronicles 34:14-28",
+  "scriptureAnchorId": "2_chronicles_34_14-28",
+  "shortScripture": false,
+  "bibleStoryKey": "book_of_the_law_found",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "josiah",
+  "primaryCharacterDisplayName": "Josiah",
+  "emotionalTags": ["anxious", "humbled", "weeping"],
+  "themeTags": ["book_of_the_law", "inquiry", "judgment", "humility"],
+  "reflectionForm": "standard",
+  "reflectionText": "The king heard the recovered book read aloud, tore his clothes, and sent servants to inquire of Yahweh. Huldah’s answer named both coming judgment and the king’s tender, humble response. What is visible in the sequence from hearing the words to seeking an answer?",
+  "editorialNotes": "Packet 018 initial writer output. Short-only owner plan. The retelling remains within 2 Chronicles 34:14-28, preserving Hilkiah’s discovery, Shaphan’s report and reading, the king’s response and inquiry, Huldah’s identity, the announced judgment, and the answer concerning the humbled king.",
+  "files": {
+    "short": {"storyText": "story_3076_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3076_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3076_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3076_traditional_kjv.txt"}
+  }
+}

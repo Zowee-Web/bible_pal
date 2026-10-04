@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3075,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "weary",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_018",
+  "title": "The Seventy Elders",
+  "scriptureAnchor": "Numbers 11:16-30",
+  "scriptureAnchorId": "numbers_11_16-30",
+  "shortScripture": false,
+  "bibleStoryKey": "seventy_elders_share_the_burden",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "emotionalTags": ["weary", "questioning", "openhanded"],
+  "themeTags": ["shared_burden", "elders", "spirit", "prophecy"],
+  "reflectionForm": "standard",
+  "reflectionText": "Seventy elders were appointed to share the people’s burden, while Eldad and Medad prophesied even though they remained in the camp. Moses did not protect his own position when Joshua objected. What stands out in his willingness to see the Spirit rest beyond the expected gathering?",
+  "editorialNotes": "Packet 018 initial writer output. Short-only owner plan. The retelling remains within Numbers 11:16-30, preserving the seventy elders, the promised sharing of the burden, Moses’ questions, the Spirit resting on the elders, Eldad and Medad prophesying in the camp, Joshua’s objection, and Moses’ reply.",
+  "files": {
+    "short": {"storyText": "story_3075_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3075_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3075_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3075_traditional_kjv.txt"}
+  }
+}
