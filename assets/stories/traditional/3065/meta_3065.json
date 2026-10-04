@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3065,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "weary",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_016",
+  "title": "The Pledge Beyond Jordan",
+  "scriptureAnchor": "Numbers 32:1-27",
+  "scriptureAnchorId": "numbers_32_1-27",
+  "shortScripture": false,
+  "bibleStoryKey": "pledge_beyond_jordan",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "emotionalTags": ["weary", "concerned", "resolute"],
+  "themeTags": ["inheritance", "warning", "pledge", "shared_duty"],
+  "reflectionForm": "standard",
+  "reflectionText": "Sheepfolds and fortified towns stood on one side of the Jordan, while a shared battle waited on the other. Reuben and Gad changed their request into a public pledge, and Moses bound the gift to their word. What is it to carry responsibility alongside a desired inheritance?",
+  "editorialNotes": "Packet 016 writer output. Short-only owner plan. The retelling keeps Moses’ recalled Kadesh warning distinct from the present request, revised pledge, and conditional agreement in Numbers 32:1-27.",
+  "files": {
+    "short": {"storyText": "story_3065_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3065_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3065_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3065_traditional_kjv.txt"}
+  }
+}

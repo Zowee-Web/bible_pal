@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3067,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "brave_courage",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_016",
+  "title": "Judges Appointed in Judah",
+  "scriptureAnchor": "2 Chronicles 19:1-11",
+  "scriptureAnchorId": "2_chronicles_19_1-11",
+  "shortScripture": false,
+  "bibleStoryKey": "judges_appointed_in_judah",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "jehoshaphat",
+  "primaryCharacterDisplayName": "Jehoshaphat",
+  "emotionalTags": ["rebuked", "resolute", "courageous"],
+  "themeTags": ["reform", "judgment", "faithfulness", "courage"],
+  "reflectionForm": "standard",
+  "reflectionText": "City by city, judges received a charge that named injustice, partiality, bribes, and the fear of Yahweh. Jehoshaphat placed priests, rulers, and Levites under defined responsibilities, then told them to act courageously. What is it to join careful judgment with a heart prepared for faithful work?",
+  "editorialNotes": "Packet 016 writer output. Short-only owner plan. The retelling keeps Jehu’s rebuke, Jehoshaphat’s reforms, the appointed judges, their jurisdictions, and the king’s concrete charge within 2 Chronicles 19:1-11.",
+  "files": {
+    "short": {"storyText": "story_3067_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3067_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3067_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3067_traditional_kjv.txt"}
+  }
+}

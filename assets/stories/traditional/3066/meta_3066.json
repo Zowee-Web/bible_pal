@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3066,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "anxious",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_016",
+  "title": "The Altar of Witness",
+  "scriptureAnchor": "Joshua 22:10-29",
+  "scriptureAnchorId": "joshua_22_10-29",
+  "shortScripture": false,
+  "bibleStoryKey": "altar_of_witness",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "conquest",
+  "primaryCharacterId": "phinehas",
+  "primaryCharacterDisplayName": "Phinehas",
+  "emotionalTags": ["anxious", "alarmed", "earnest"],
+  "themeTags": ["witness", "misunderstanding", "unity", "faithfulness"],
+  "reflectionForm": "standard",
+  "reflectionText": "A great altar stood beside the Jordan, visible enough to summon an army and yet built for a purpose the distant tribes had not heard. The eastern tribes called it a witness for generations, not a place of sacrifice. What is it to let a careful defense name the purpose of a troubling sign?",
+  "editorialNotes": "Packet 016 writer output. Short-only owner plan. The retelling presents the altar as the eastern tribes’ witness rather than a rival sacrificial altar and ends with their defense in Joshua 22:29, without importing verses 30-34.",
+  "files": {
+    "short": {"storyText": "story_3066_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3066_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3066_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3066_traditional_kjv.txt"}
+  }
+}

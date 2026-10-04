@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3069,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "brave_courage",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_016",
+  "title": "Paul Seized in Jerusalem",
+  "scriptureAnchor": "Acts 21:17-36",
+  "scriptureAnchorId": "acts_21_17-36",
+  "shortScripture": false,
+  "bibleStoryKey": "paul_seized_in_jerusalem",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "emotionalTags": ["welcomed", "threatened", "steadfast"],
+  "themeTags": ["purification", "accusation", "riot", "roman_intervention"],
+  "reflectionForm": "standard",
+  "reflectionText": "Purification in the temple gave way to shouted accusations, closed doors, two chains, and soldiers carrying Paul above the crowd. The crowd shouted conflicting answers, the commander could not learn the truth, and the soldiers carried Paul into the fortress. What is it to notice courage amid voices that do not agree?",
+  "editorialNotes": "Packet 016 writer output. Short-only owner plan. The retelling identifies the elders’ course as their proposal, preserves the crowd’s claims as accusations and supposition, and follows purification, riot, and Roman intervention through Acts 21:36.",
+  "files": {
+    "short": {"storyText": "story_3069_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3069_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3069_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3069_traditional_kjv.txt"}
+  }
+}

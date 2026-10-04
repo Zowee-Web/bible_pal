@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3068,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "brave_courage",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_016",
+  "title": "The Storerooms Restored",
+  "scriptureAnchor": "Nehemiah 13:4-14",
+  "scriptureAnchorId": "nehemiah_13_4-14",
+  "shortScripture": false,
+  "bibleStoryKey": "storerooms_restored",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "return",
+  "primaryCharacterId": "nehemiah",
+  "primaryCharacterDisplayName": "Nehemiah",
+  "emotionalTags": ["grieved", "resolute", "prayerful"],
+  "themeTags": ["temple_service", "restoration", "stewardship", "faithfulness"],
+  "reflectionForm": "standard",
+  "reflectionText": "An occupied chamber was emptied, cleansed, and filled again with vessels, offerings, and provisions for temple service. Nehemiah also restored the servants and entrusted distribution to people counted faithful. What is it to repair neglected service through concrete acts and end by asking God to remember?",
+  "editorialNotes": "Packet 016 writer output. Short-only owner plan. The retelling preserves Tobiah’s chamber, Nehemiah’s return, removal and cleansing, restoration of vessels and provisions, faithful treasurers, and the closing prayer without modernizing storehouse or temple-service details.",
+  "files": {
+    "short": {"storyText": "story_3068_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3068_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3068_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3068_traditional_kjv.txt"}
+  }
+}
