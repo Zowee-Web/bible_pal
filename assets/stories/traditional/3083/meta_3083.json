@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3083,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "brave_courage",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_019",
+  "title": "From Thessalonica to Beroea",
+  "scriptureAnchor": "Acts 17:1-15",
+  "scriptureAnchorId": "acts_17_1-15",
+  "shortScripture": false,
+  "bibleStoryKey": "paul_in_thessalonica_and_beroea",
+  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "emotionalTags": ["steadfast", "opposed", "searching"],
+  "themeTags": ["scripture", "proclamation", "accusation", "discernment"],
+  "reflectionForm": "standard",
+  "reflectionText": "Paul reasoned from the Scriptures in Thessalonica, while the Bereans later examined the Scriptures daily. Accusation and agitation followed him from one city to the next, yet proclamation continued. Where do you see courage joined with careful examination rather than careless certainty?\n",
+  "editorialNotes": "Packet 019 initial writer output. Short-only owner plan. The retelling remains within Acts 17:1-15, keeps Thessalonica and Beroea distinct, attributes the charges as accusations, and identifies only the specific groups named in the passage.",
+  "files": {
+    "short": {"storyText": "story_3083_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3083_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3083_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3083_traditional_kjv.txt"}
+  }
+}

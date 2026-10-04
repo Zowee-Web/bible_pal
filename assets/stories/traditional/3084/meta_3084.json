@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3084,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "encouraging",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_019",
+  "title": "Paul Teaches in Corinth",
+  "scriptureAnchor": "Acts 18:1-17",
+  "scriptureAnchorId": "acts_18_1-17",
+  "shortScripture": false,
+  "bibleStoryKey": "paul_teaches_in_corinth",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "emotionalTags": ["encouraged", "opposed", "steadfast"],
+  "themeTags": ["shared_work", "witness", "assurance", "teaching"],
+  "reflectionForm": "standard",
+  "reflectionText": "Paul worked beside Aquila and Priscilla, testified after Silas and Timothy arrived, taught next door to the synagogue, and remained after the Lord told him to speak. What encouragement do you find in this sequence of shared work, new belief, opposition, and continued teaching?\n",
+  "editorialNotes": "Packet 019 initial writer output. Short-only owner plan. The retelling remains within Acts 18:1-17 and preserves Aquila, Priscilla, Silas, Timothy, Justus, Crispus, Gallio, and Sosthenes in sequence, including the lane-specific names and wording around the beating.",
+  "files": {
+    "short": {"storyText": "story_3084_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3084_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3084_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3084_traditional_kjv.txt"}
+  }
+}

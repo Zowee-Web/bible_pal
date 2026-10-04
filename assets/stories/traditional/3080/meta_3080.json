@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3080,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": ["web", "kjv"],
+  "mood": "anxious",
+  "lengths": ["short"],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_019",
+  "title": "Saul Chosen Before Israel",
+  "scriptureAnchor": "1 Samuel 10:17-27",
+  "scriptureAnchorId": "1_samuel_10_17-27",
+  "shortScripture": false,
+  "bibleStoryKey": "saul_chosen_before_israel",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "saul",
+  "primaryCharacterDisplayName": "Saul",
+  "emotionalTags": ["uncertain", "exposed", "rejected"],
+  "themeTags": ["selection", "kingship", "silence", "opposition"],
+  "reflectionForm": "standard",
+  "reflectionText": "Saul was chosen in the assembled nation, found among the baggage, acclaimed by the people, and then openly despised by others. He did not answer those who withheld their tribute. What do Saul’s silence and Samuel’s ordered proceedings invite you to notice amid a tense beginning?\n",
+  "editorialNotes": "Packet 019 initial writer output. Short-only owner plan. The retelling remains within 1 Samuel 10:17-27 and narrates Saul among the baggage only as an observable fact, without assigning a motive.",
+  "files": {
+    "short": {"storyText": "story_3080_traditional_web_short.txt"},
+    "short_kjv": {"storyText": "story_3080_traditional_kjv_short.txt"},
+    "reflection": {"reflectionText": "reflection_3080_traditional_web.txt"},
+    "reflection_kjv": {"reflectionText": "reflection_3080_traditional_kjv.txt"}
+  }
+}
