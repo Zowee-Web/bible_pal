@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3088,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_020",
+  "title": "The Word Grows in Ephesus",
+  "scriptureAnchor": "Acts 19:1-20",
+  "scriptureAnchorId": "acts_19_1-20",
+  "shortScripture": false,
+  "bibleStoryKey": "word_grows_in_ephesus",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "emotionalTags": [
+    "bold",
+    "awestruck",
+    "changed"
+  ],
+  "themeTags": [
+    "teaching",
+    "authority",
+    "confession",
+    "renunciation"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "In Ephesus, teaching continued through resistance, borrowed authority was exposed, hidden practices were confessed, and costly books were burned in public. The passage ends with the word growing and prevailing. What do these visible changes invite you to notice about courage becoming honest and concrete?\n",
+  "editorialNotes": "Packet 020 initial writer output. Short-only owner plan. The retelling stays within Acts 19:1-20, keeps the linked Ephesian scenes distinct, and does not equate Christian authority with magical practice.",
+  "files": {
+    "short": {
+      "storyText": "story_3088_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3088_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3088_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3088_traditional_kjv.txt"
+    }
+  }
+}

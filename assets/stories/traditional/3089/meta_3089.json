@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3089,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_020",
+  "title": "Amaziah Challenges Jehoash",
+  "scriptureAnchor": "2 Kings 14:8-22",
+  "scriptureAnchorId": "2_kings_14_8-22",
+  "shortScripture": false,
+  "bibleStoryKey": "amaziah_challenges_jehoash",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "amaziah",
+  "primaryCharacterDisplayName": "Amaziah",
+  "emotionalTags": [
+    "tense",
+    "defeated",
+    "exposed"
+  ],
+  "themeTags": [
+    "warning",
+    "pride",
+    "conflict",
+    "consequence"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Amaziah answered victory with a challenge, received a warning, refused it, and saw Judah defeated and Jerusalem opened. Years later, conspiracy ended his reign, and the people appointed his son. What do the warning and its aftermath invite you to notice about confidence that will not listen?\n",
+  "editorialNotes": "Packet 020 initial writer output. Short-only owner plan. The retelling stays within 2 Kings 14:8-22, preserves the Judah/Israel referents, and does not praise Amaziah’s challenge as courage.",
+  "files": {
+    "short": {
+      "storyText": "story_3089_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3089_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3089_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3089_traditional_kjv.txt"
+    }
+  }
+}

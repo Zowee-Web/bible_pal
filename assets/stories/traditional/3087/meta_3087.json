@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3087,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_020",
+  "title": "The Temple Work Proceeds",
+  "scriptureAnchor": "Ezra 6:1-15",
+  "scriptureAnchorId": "ezra_6_1-15",
+  "shortScripture": false,
+  "bibleStoryKey": "temple_work_proceeds_under_darius",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "timelineEra": "return",
+  "primaryCharacterId": "darius",
+  "primaryCharacterDisplayName": "Darius",
+  "emotionalTags": [
+    "grateful",
+    "relieved",
+    "steadfast"
+  ],
+  "themeTags": [
+    "restoration",
+    "provision",
+    "obedience",
+    "temple"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "A forgotten decree was found, opposition was restrained, daily provision was ordered, and the elders continued building through prophetic encouragement. The house was finished under the same royal authority that had once seemed distant. Where do you notice gratitude arising from provision arriving at the needed time?\n",
+  "editorialNotes": "Packet 020 initial writer output. Short-only owner plan. The retelling stays within Ezra 6:1-15 and ends with the completion date, without entering the dedication beginning in verse 16.",
+  "files": {
+    "short": {
+      "storyText": "story_3087_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3087_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3087_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3087_traditional_kjv.txt"
+    }
+  }
+}
