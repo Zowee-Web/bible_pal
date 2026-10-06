@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3103,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_023",
+  "title": "Rivers of Living Water",
+  "scriptureAnchor": "John 7:37-52",
+  "scriptureAnchorId": "john_7_37-52",
+  "shortScripture": false,
+  "bibleStoryKey": "rivers_of_living_water",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "emotionalTags": [
+    "bold",
+    "divided",
+    "astonished"
+  ],
+  "themeTags": [
+    "invitation",
+    "testimony",
+    "division",
+    "courage"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Officers sent to arrest Jesus returned without him, saying that no man ever spoke like this man. On the feast’s greatest day he had called the thirsty to come to him and drink. When the voices around you divide over Jesus, what have his own words been to you?\n",
+  "editorialNotes": "Packet 023 initial writer output. Short-only owner plan. The retelling remains within John 7:37-52, attributes every claim to its speakers, and keeps the narrator’s own explanation of verse 39 as reported explanation.",
+  "files": {
+    "short": {
+      "storyText": "story_3103_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3103_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3103_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3103_traditional_kjv.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3100,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_023",
+  "title": "Saul Seeks the Lost Donkeys",
+  "scriptureAnchor": "1 Samuel 9:1-27",
+  "scriptureAnchorId": "1_samuel_9_1-27",
+  "shortScripture": false,
+  "bibleStoryKey": "saul_seeks_the_lost_donkeys",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "saul",
+  "primaryCharacterDisplayName": "Saul",
+  "emotionalTags": [
+    "uncertain",
+    "searching",
+    "honored"
+  ],
+  "themeTags": [
+    "providence",
+    "seeking",
+    "hospitality",
+    "calling"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Saul went out looking for lost donkeys and was met instead by a seer to whom Yahweh had already spoken of his coming. A reserved portion waited for him at the table before he asked for anything. Where might an ordinary errand be carrying you toward something God has prepared?\n",
+  "editorialNotes": "Packet 023 initial writer output. Short-only owner plan. The retelling remains within 1 Samuel 9:1-27 and narrates the search, the meeting with Samuel, and the reserved portion as observable events only.",
+  "files": {
+    "short": {
+      "storyText": "story_3100_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3100_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3100_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3100_traditional_kjv.txt"
+    }
+  }
+}

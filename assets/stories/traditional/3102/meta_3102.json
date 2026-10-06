@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3102,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_023",
+  "title": "Hezekiah’s Passover Invitation",
+  "scriptureAnchor": "2 Chronicles 30:1-27",
+  "scriptureAnchorId": "2_chronicles_30_1-27",
+  "shortScripture": false,
+  "bibleStoryKey": "hezekiahs_passover_invitation",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "hezekiah",
+  "primaryCharacterDisplayName": "Hezekiah",
+  "emotionalTags": [
+    "glad",
+    "welcomed",
+    "humbled"
+  ],
+  "themeTags": [
+    "invitation",
+    "repentance",
+    "worship",
+    "joy"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Many in the assembly had not cleansed themselves, yet they ate the Passover, and Hezekiah prayed that the good Yahweh would pardon everyone who set his heart to seek God. Yahweh listened and healed the people. What does this welcome show about seeking God before everything is in order?\n",
+  "editorialNotes": "Packet 023 initial writer output. Short-only owner plan. The retelling remains within 2 Chronicles 30:1-27 and preserves the letters, the mockery and the humbling, the irregular Passover, Hezekiah’s prayer, and the doubled feast.",
+  "files": {
+    "short": {
+      "storyText": "story_3102_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3102_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3102_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3102_traditional_kjv.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3104,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_023",
+  "title": "Repentance to Life",
+  "scriptureAnchor": "Acts 11:1-18",
+  "scriptureAnchorId": "acts_11_1-18",
+  "shortScripture": false,
+  "bibleStoryKey": "repentance_to_life",
+  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "peter",
+  "primaryCharacterDisplayName": "Peter",
+  "emotionalTags": [
+    "questioned",
+    "assured",
+    "glad"
+  ],
+  "themeTags": [
+    "testimony",
+    "welcome",
+    "spirit",
+    "unity"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Peter answered criticism by telling in order what he had seen: the sheet from heaven, the Spirit’s command, and the gift falling on the Gentiles as at the beginning. Who was he, that he could withstand God? Where might God’s welcome already be wider than you expected?\n",
+  "editorialNotes": "Packet 023 initial writer output. Short-only owner plan. The retelling remains within Acts 11:1-18 and renders Peter’s defense as his ordered report, keeping the inner quotations attributed as he attributed them.",
+  "files": {
+    "short": {
+      "storyText": "story_3104_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3104_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3104_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3104_traditional_kjv.txt"
+    }
+  }
+}
