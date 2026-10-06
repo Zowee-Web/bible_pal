@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3097,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_022",
+  "title": "The King Crowned in the Temple",
+  "scriptureAnchor": "2 Kings 11:4-20",
+  "scriptureAnchorId": "2_kings_11_4-20",
+  "shortScripture": false,
+  "bibleStoryKey": "jehoiada_crowns_joash",
+  "storyVoiceKey": "VOICE_ESTHER_BRAVE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "jehoiada",
+  "primaryCharacterDisplayName": "Jehoiada",
+  "emotionalTags": [
+    "guarded",
+    "courageous",
+    "joyful"
+  ],
+  "themeTags": [
+    "courage",
+    "kingship",
+    "covenant",
+    "faithfulness"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Jehoiada guarded the king’s son, ordered each watch carefully, and placed the crown before the gathered people. The covenant that followed joined Yahweh, king, and people in declared faithfulness. What responsibility before you calls for both courageous action and careful preparation?\n",
+  "editorialNotes": "Packet 022 initial writer output. Short-only plan. The retelling stays within 2 Kings 11:4-20 and preserves Jehoiada’s guard plan, Joash’s coronation, Athaliah’s death outside Yahweh’s house, the covenants, and the city’s quiet.",
+  "files": {
+    "short": {
+      "storyText": "story_3097_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3097_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3097_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3097_traditional_kjv.txt"
+    }
+  }
+}

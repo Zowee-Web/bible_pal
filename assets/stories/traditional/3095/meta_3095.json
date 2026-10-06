@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3095,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_022",
+  "title": "Moses Returns with Aaron",
+  "scriptureAnchor": "Exodus 4:18-31",
+  "scriptureAnchorId": "exodus_4_18-31",
+  "shortScripture": false,
+  "bibleStoryKey": "moses_returns_with_aaron",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "emotionalTags": [
+    "anxious",
+    "obedient",
+    "supported"
+  ],
+  "themeTags": [
+    "calling",
+    "obedience",
+    "deliverance",
+    "worship"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Moses returned carrying a hard message, while Aaron was sent to meet him and help speak it before Israel’s elders. The people believed when they heard that Yahweh had seen their affliction. When a difficult calling must be faced, who has God placed beside you for the work?\n",
+  "editorialNotes": "Packet 022 initial writer output. Short-only plan. The retelling stays within Exodus 4:18-31 and preserves Moses’s return, the lodging-place encounter, Aaron’s meeting, the signs, and Israel’s worship without resolving ambiguities the passage leaves unexplained.",
+  "files": {
+    "short": {
+      "storyText": "story_3095_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3095_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3095_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3095_traditional_kjv.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3099,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_022",
+  "title": "Paul Before Felix",
+  "scriptureAnchor": "Acts 24:1-27",
+  "scriptureAnchorId": "acts_24_1-27",
+  "shortScripture": false,
+  "bibleStoryKey": "paul_before_felix",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "emotionalTags": [
+    "accused",
+    "steadfast",
+    "confined"
+  ],
+  "themeTags": [
+    "testimony",
+    "resurrection",
+    "justice",
+    "endurance"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Paul answered serious accusations with facts, confessed his faith openly, and kept speaking of righteousness and resurrection while he remained in custody. Felix listened repeatedly but delayed judgment and left Paul bound. What helps you remain truthful when another person controls the timing of the outcome?\n",
+  "editorialNotes": "Packet 022 initial writer output. Short-only plan. The retelling stays within Acts 24:1-27 and preserves Tertullus’s charges, Paul’s defense and confession, Felix’s delay, repeated conversations, and Paul’s continued bonds.",
+  "files": {
+    "short": {
+      "storyText": "story_3099_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3099_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3099_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3099_traditional_kjv.txt"
+    }
+  }
+}

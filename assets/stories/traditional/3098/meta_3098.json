@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3098,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_022",
+  "title": "Your Son Lives",
+  "scriptureAnchor": "John 4:43-54",
+  "scriptureAnchorId": "john_4_43-54",
+  "shortScripture": false,
+  "bibleStoryKey": "nobleman_son_lives",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "emotionalTags": [
+    "urgent",
+    "believing",
+    "encouraged"
+  ],
+  "themeTags": [
+    "faith",
+    "healing",
+    "signs",
+    "belief"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The nobleman asked Jesus to come with him, but Jesus gave him a word to carry home instead. He believed that word before his servants met him with news that his son lived. Where are you being asked to keep walking with Jesus’s word before the outcome is visible?\n",
+  "editorialNotes": "Packet 022 initial writer output. Short-only plan. The retelling stays within John 4:43-54 and preserves the nobleman’s plea, Jesus’s spoken word, the servants’ report, the matched hour, and the household’s belief.",
+  "files": {
+    "short": {
+      "storyText": "story_3098_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3098_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3098_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3098_traditional_kjv.txt"
+    }
+  }
+}
