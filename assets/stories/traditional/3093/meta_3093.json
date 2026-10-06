@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3093,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_021",
+  "title": "Mercy and the Lowest Seat",
+  "scriptureAnchor": "Luke 14:1-14",
+  "scriptureAnchorId": "luke_14_1-14",
+  "shortScripture": false,
+  "bibleStoryKey": "mercy_and_the_lowest_seat",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "emotionalTags": [
+    "watched",
+    "compassionate",
+    "welcoming"
+  ],
+  "themeTags": [
+    "mercy",
+    "humility",
+    "hospitality",
+    "generosity"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Jesus joined mercy, humility, and hospitality at one Sabbath meal. He healed the man before him, challenged the pursuit of honored seats, and named guests who could not repay their host. What changes when welcome is offered for another person’s good rather than for recognition or return?\n",
+  "editorialNotes": "Packet 021 initial writer output. Short-only plan. The retelling stays within Luke 14:1-14 and preserves the Sabbath healing, the parable of the seats, and Jesus’s instruction about guests unable to repay.",
+  "files": {
+    "short": {
+      "storyText": "story_3093_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3093_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3093_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3093_traditional_kjv.txt"
+    }
+  }
+}

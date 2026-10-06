@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3094,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_021",
+  "title": "Sent from Antioch to Cyprus",
+  "scriptureAnchor": "Acts 13:1-12",
+  "scriptureAnchorId": "acts_13_1-12",
+  "shortScripture": false,
+  "bibleStoryKey": "barnabas_saul_sent_to_cyprus",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "emotionalTags": [
+    "called",
+    "opposed",
+    "courageous"
+  ],
+  "themeTags": [
+    "mission",
+    "prayer",
+    "courage",
+    "faith"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Barnabas and Saul were sent from a praying community into work that quickly met resistance. Paul answered Elymas directly, and the proconsul saw what happened and believed. Where can shared prayer, clear calling, and courage help a community remain faithful when someone tries to turn others away?\n",
+  "editorialNotes": "Packet 021 initial writer output. Short-only plan. The retelling stays within Acts 13:1-12 and preserves the Antioch commissioning, the journey to Cyprus, Elymas’s opposition, Paul’s rebuke, and the proconsul’s belief.",
+  "files": {
+    "short": {
+      "storyText": "story_3094_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3094_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3094_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3094_traditional_kjv.txt"
+    }
+  }
+}

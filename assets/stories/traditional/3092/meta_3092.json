@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3092,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_021",
+  "title": "Ittai Stays with David",
+  "scriptureAnchor": "2 Samuel 15:13-23",
+  "scriptureAnchorId": "2_samuel_15_13-23",
+  "shortScripture": false,
+  "bibleStoryKey": "ittai_stays_with_david",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "emotionalTags": [
+    "anxious",
+    "grieving",
+    "loyal"
+  ],
+  "themeTags": [
+    "loyalty",
+    "exile",
+    "courage",
+    "companionship"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "David left Jerusalem under threat, but Ittai chose to remain with him despite being a recent arrival and an exile. His loyalty was spoken plainly and then demonstrated by crossing with his whole company. What does steadfast presence look like when another person’s road becomes uncertain and costly?\n",
+  "editorialNotes": "Packet 021 initial writer output. Short-only plan. The retelling stays within 2 Samuel 15:13-23 and preserves David’s flight, Ittai’s voluntary loyalty, the public crossing, and the country’s grief.",
+  "files": {
+    "short": {
+      "storyText": "story_3092_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3092_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3092_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3092_traditional_kjv.txt"
+    }
+  }
+}

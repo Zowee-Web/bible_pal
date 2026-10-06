@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3090,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "gpt-5.6-sol",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_021",
+  "title": "The Covenant at Galeed",
+  "scriptureAnchor": "Genesis 31:43-55",
+  "scriptureAnchorId": "genesis_31_43-55",
+  "shortScripture": false,
+  "bibleStoryKey": "jacob_laban_covenant_galeed",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "timelineEra": "patriarchs",
+  "primaryCharacterId": "jacob",
+  "primaryCharacterDisplayName": "Jacob",
+  "emotionalTags": [
+    "guarded",
+    "resolved",
+    "peaceful"
+  ],
+  "themeTags": [
+    "covenant",
+    "boundaries",
+    "witness",
+    "peace"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Jacob and Laban ended a bitter dispute by naming clear boundaries before God and sharing a meal beside the stones they raised. Their covenant did not erase the past, but it stopped further harm. Where might a truthful boundary open a path toward peace without pretending that trust is effortless?\n",
+  "editorialNotes": "Packet 021 initial writer output. Short-only plan. The retelling remains within Genesis 31:43-55 and preserves the covenant, stone witnesses, shared meal, and peaceful departure without importing the preceding dispute.",
+  "files": {
+    "short": {
+      "storyText": "story_3090_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3090_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3090_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3090_traditional_kjv.txt"
+    }
+  }
+}
