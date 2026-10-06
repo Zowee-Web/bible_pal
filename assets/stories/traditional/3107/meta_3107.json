@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3107,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_024",
+  "title": "Seven Chosen to Serve",
+  "scriptureAnchor": "Acts 6:1-15",
+  "scriptureAnchorId": "acts_6_1-15",
+  "shortScripture": false,
+  "bibleStoryKey": "seven_chosen_to_serve",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "stephen",
+  "primaryCharacterDisplayName": "Stephen",
+  "emotionalTags": [
+    "chosen",
+    "opposed",
+    "steadfast"
+  ],
+  "themeTags": [
+    "service",
+    "wisdom",
+    "testimony",
+    "opposition"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Seven men full of the Spirit and of wisdom were chosen so that widows would not be neglected and the word of God could increase. When Stephen was seized and accused, the council saw his face like the face of an angel. Where is faithful service and courage joined for you?\n",
+  "editorialNotes": "Packet 024 initial writer output. Short-only owner plan. The retelling remains within Acts 6:1-15 and ends at verse 15 with the council looking at Stephen’s face.",
+  "files": {
+    "short": {
+      "storyText": "story_3107_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3107_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3107_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3107_traditional_kjv.txt"
+    }
+  }
+}

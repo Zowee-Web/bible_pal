@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3106,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_024",
+  "title": "The Woman of Tekoa",
+  "scriptureAnchor": "2 Samuel 14:1-24",
+  "scriptureAnchorId": "2_samuel_14_1-24",
+  "shortScripture": false,
+  "bibleStoryKey": "woman_of_tekoa",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "emotionalTags": [
+    "grieved",
+    "estranged",
+    "pleading"
+  ],
+  "themeTags": [
+    "reconciliation",
+    "wisdom",
+    "parable",
+    "distance"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The woman of Tekoa spoke of water spilled on the ground that cannot be gathered up again, and of a God who devises means so that the banished one is not an outcast. Absalom came home, yet he did not see the king’s face. What distance in your own life does her word name?\n",
+  "editorialNotes": "Packet 024 initial writer output. Short-only owner plan. The retelling remains within 2 Samuel 14:1-24 and ends at verse 24, with Absalom returned but not seeing the king’s face.",
+  "files": {
+    "short": {
+      "storyText": "story_3106_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3106_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3106_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3106_traditional_kjv.txt"
+    }
+  }
+}

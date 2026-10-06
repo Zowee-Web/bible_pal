@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3109,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_024",
+  "title": "The Twelve Sent Out",
+  "scriptureAnchor": "Matthew 10:1-15",
+  "scriptureAnchorId": "matthew_10_1-15",
+  "shortScripture": false,
+  "bibleStoryKey": "twelve_sent_out",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "emotionalTags": [
+    "commissioned",
+    "entrusted",
+    "ready"
+  ],
+  "themeTags": [
+    "sending",
+    "authority",
+    "provision",
+    "peace"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The twelve were sent out with authority, told to take no gold or bag, and promised that the laborer is worthy of his food. Their peace would rest on worthy houses or return to them. What would it mean for you to go with so little and give so freely?\n",
+  "editorialNotes": "Packet 024 initial writer output. Short-only owner plan. The retelling remains within Matthew 10:1-15, keeps each lane’s own wording of the instructions, and ends at verse 15.",
+  "files": {
+    "short": {
+      "storyText": "story_3109_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3109_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3109_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3109_traditional_kjv.txt"
+    }
+  }
+}

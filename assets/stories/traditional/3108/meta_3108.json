@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3108,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_024",
+  "title": "Abimelech’s Dream",
+  "scriptureAnchor": "Genesis 20:1-18",
+  "scriptureAnchorId": "genesis_20_1-18",
+  "shortScripture": false,
+  "bibleStoryKey": "abimelechs_dream",
+  "storyVoiceKey": "VOICE_SARAH_STORYTELLER",
+  "timelineEra": "patriarchs",
+  "primaryCharacterId": "abraham",
+  "primaryCharacterDisplayName": "Abraham",
+  "emotionalTags": [
+    "afraid",
+    "confronted",
+    "restored"
+  ],
+  "themeTags": [
+    "truth",
+    "warning",
+    "intercession",
+    "restoration"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Abimelech heard the warning in a dream, rose early, and restored what he had taken, while Abraham, whose fear had bent the truth, prayed for him and God healed. Where has honest restoration opened the way for prayer and healing that you did not expect?\n",
+  "editorialNotes": "Packet 024 initial writer output. Short-only owner plan. The retelling remains within Genesis 20:1-18, keeps each lane’s own rendering of verse 16, and ends at verses 17-18.",
+  "files": {
+    "short": {
+      "storyText": "story_3108_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3108_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3108_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3108_traditional_kjv.txt"
+    }
+  }
+}
