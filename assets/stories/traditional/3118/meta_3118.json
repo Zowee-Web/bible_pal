@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3118,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_026",
+  "title": "Sight at Bethsaida",
+  "scriptureAnchor": "Mark 8:11-26",
+  "scriptureAnchorId": "mark_8_11-26",
+  "shortScripture": false,
+  "bibleStoryKey": "sight_at_bethsaida",
+  "storyVoiceKey": "VOICE_PETER_BOLD",
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "emotionalTags": [
+    "questioned",
+    "patient",
+    "clear"
+  ],
+  "themeTags": [
+    "understanding",
+    "signs",
+    "healing",
+    "sight"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "In the boat the disciples counted loaves while Jesus asked them to remember twelve baskets and seven. At Bethsaida a blind man first saw men like walking trees, then everyone clearly. Where is your own sight somewhere between the first touch and the second?\n",
+  "editorialNotes": "Packet 026 initial writer output. Short-only owner plan. The retelling remains within Mark 8:11-26 and ends at verse 26.",
+  "files": {
+    "short": {
+      "storyText": "story_3118_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3118_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3118_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3118_traditional_kjv.txt"
+    }
+  }
+}

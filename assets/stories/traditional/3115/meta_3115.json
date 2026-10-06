@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3115,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_026",
+  "title": "The Foreign Gods Put Away",
+  "scriptureAnchor": "Judges 10:6-16",
+  "scriptureAnchorId": "judges_10_6-16",
+  "shortScripture": false,
+  "bibleStoryKey": "foreign_gods_put_away",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "judges",
+  "primaryCharacterId": "israel",
+  "primaryCharacterDisplayName": "Israel",
+  "emotionalTags": [
+    "oppressed",
+    "penitent",
+    "distressed"
+  ],
+  "themeTags": [
+    "repentance",
+    "idolatry",
+    "mercy",
+    "deliverance"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Israel cried out under eighteen years of oppression and heard Yahweh’s rebuke: go and cry to the gods you have chosen, and let them save you. Israel answered by putting the foreign gods away and serving Yahweh, and his soul was grieved for the misery of Israel. What would putting something away, rather than only asking, look like for you?\n",
+  "editorialNotes": "Packet 026 initial writer output. Short-only owner plan. The retelling remains within Judges 10:6-16 and ends at verse 16 with the foreign gods put away and Yahweh’s grief over Israel’s misery stated as the text states it.",
+  "files": {
+    "short": {
+      "storyText": "story_3115_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3115_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3115_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3115_traditional_kjv.txt"
+    }
+  }
+}

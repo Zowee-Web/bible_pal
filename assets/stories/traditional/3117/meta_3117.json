@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3117,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_026",
+  "title": "Water in the Wilderness of Edom",
+  "scriptureAnchor": "2 Kings 3:4-27",
+  "scriptureAnchorId": "2_kings_3_4-27",
+  "shortScripture": false,
+  "bibleStoryKey": "water_in_the_wilderness_of_edom",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "elisha",
+  "primaryCharacterDisplayName": "Elisha",
+  "emotionalTags": [
+    "desperate",
+    "provided",
+    "withdrawn"
+  ],
+  "themeTags": [
+    "provision",
+    "prophecy",
+    "alliance",
+    "war"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Three thirsty armies heard a word given while a musician played: fill the valley with trenches, and without wind or rain the water would come. By morning the country was filled with water. Where are you being asked to dig before there is any sign of rain?\n",
+  "editorialNotes": "Packet 026 initial writer output. Short-only owner plan. The retelling remains within 2 Kings 3:4-27, narrates verse 27 factually, and ends at the departure to their own land.",
+  "files": {
+    "short": {
+      "storyText": "story_3117_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3117_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3117_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3117_traditional_kjv.txt"
+    }
+  }
+}

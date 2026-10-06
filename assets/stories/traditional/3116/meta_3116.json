@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3116,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_026",
+  "title": "Crossed Hands of Blessing",
+  "scriptureAnchor": "Genesis 48:1-22",
+  "scriptureAnchorId": "genesis_48_1-22",
+  "shortScripture": false,
+  "bibleStoryKey": "crossed_hands_of_blessing",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "timelineEra": "patriarchs",
+  "primaryCharacterId": "jacob",
+  "primaryCharacterDisplayName": "Jacob",
+  "emotionalTags": [
+    "thankful",
+    "surprised",
+    "blessed"
+  ],
+  "themeTags": [
+    "blessing",
+    "inheritance",
+    "memory",
+    "promise"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Jacob, nearly blind, crossed his hands and blessed the younger before the firstborn, naming the God who had fed him all his life long and the angel who had redeemed him from all evil. What has God’s long feeding and redeeming looked like across your own years?\n",
+  "editorialNotes": "Packet 026 initial writer output. Short-only owner plan. The retelling remains within Genesis 48:1-22 and ends at verse 22.",
+  "files": {
+    "short": {
+      "storyText": "story_3116_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3116_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3116_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3116_traditional_kjv.txt"
+    }
+  }
+}

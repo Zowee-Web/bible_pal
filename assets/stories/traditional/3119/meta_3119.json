@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3119,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_026",
+  "title": "Testify Also at Rome",
+  "scriptureAnchor": "Acts 23:1-11",
+  "scriptureAnchorId": "acts_23_1-11",
+  "shortScripture": false,
+  "bibleStoryKey": "testify_also_at_rome",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "emotionalTags": [
+    "struck",
+    "resolute",
+    "assured"
+  ],
+  "themeTags": [
+    "testimony",
+    "division",
+    "protection",
+    "assurance"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Struck on the mouth and caught between divided parties, Paul was carried to the barracks by soldiers. That night the Lord stood by him: as he had testified at Jerusalem, so he must testify also at Rome. What word of courage would reach you in the middle of the conflict?\n",
+  "editorialNotes": "Packet 026 initial writer output. Short-only owner plan. The retelling remains within Acts 23:1-11 and ends with the Lord’s word to Paul in verse 11.",
+  "files": {
+    "short": {
+      "storyText": "story_3119_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3119_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3119_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3119_traditional_kjv.txt"
+    }
+  }
+}
