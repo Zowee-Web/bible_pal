@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3113,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_025",
+  "title": "Whose Image and Inscription",
+  "scriptureAnchor": "Matthew 22:15-33",
+  "scriptureAnchorId": "matthew_22_15-33",
+  "shortScripture": false,
+  "bibleStoryKey": "whose_image_and_inscription",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "emotionalTags": [
+    "composed",
+    "tested",
+    "astonished"
+  ],
+  "themeTags": [
+    "wisdom",
+    "testing",
+    "resurrection",
+    "truth"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Handed a denarius by those who meant to entrap him, Jesus asked whose image and inscription it bore, and answered with a word that left them marveling. The Sadducees’ riddle met the God of the living. Where might a calm and truthful answer quiet a trap set for you?\n",
+  "editorialNotes": "Packet 025 initial writer output. Short-only owner plan. The retelling remains within Matthew 22:15-33 and ends with the multitudes astonished in verse 33.",
+  "files": {
+    "short": {
+      "storyText": "story_3113_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3113_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3113_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3113_traditional_kjv.txt"
+    }
+  }
+}

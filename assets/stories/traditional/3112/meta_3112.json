@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3112,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_025",
+  "title": "The Ark Returns on a Cart",
+  "scriptureAnchor": "1 Samuel 6:1-21",
+  "scriptureAnchorId": "1_samuel_6_1-21",
+  "shortScripture": false,
+  "bibleStoryKey": "ark_returns_on_a_cart",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "judges",
+  "primaryCharacterId": "israel",
+  "primaryCharacterDisplayName": "Israel",
+  "emotionalTags": [
+    "relieved",
+    "rejoicing",
+    "awed"
+  ],
+  "themeTags": [
+    "return",
+    "offering",
+    "holiness",
+    "reverence"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Two milk cows left their calves and pulled the ark straight up the road to Beth Shemesh, lowing as they went, while the reapers rejoiced to see it return. The cart was split for wood, and the cows were offered up to Yahweh that same day. What return of something holy has moved you to gratitude?\n",
+  "editorialNotes": "Packet 025 initial writer output. Short-only owner plan. The retelling remains within 1 Samuel 6:1-21 and ends with the message to Kiriath Jearim in verse 21.",
+  "files": {
+    "short": {
+      "storyText": "story_3112_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3112_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3112_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3112_traditional_kjv.txt"
+    }
+  }
+}

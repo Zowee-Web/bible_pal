@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3114,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_025",
+  "title": "Paul Speaks to Jerusalem",
+  "scriptureAnchor": "Acts 22:1-21",
+  "scriptureAnchorId": "acts_22_1-21",
+  "shortScripture": false,
+  "bibleStoryKey": "paul_speaks_to_jerusalem",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "emotionalTags": [
+    "bold",
+    "candid",
+    "commissioned"
+  ],
+  "themeTags": [
+    "testimony",
+    "conversion",
+    "calling",
+    "witness"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "When Paul spoke in the Hebrew language, the crowd grew even more quiet, and he told plainly what he had been, what he had seen on the Damascus road, and what the Lord had said in the temple: that he would be sent far away to the Gentiles. What part of your own story asks for that kind of plain telling?\n",
+  "editorialNotes": "Packet 025 initial writer output. Short-only owner plan. The retelling remains within Acts 22:1-21, keeps the speech’s inner quotations attributed as Paul attributed them, and ends at verse 21.",
+  "files": {
+    "short": {
+      "storyText": "story_3114_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3114_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3114_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3114_traditional_kjv.txt"
+    }
+  }
+}

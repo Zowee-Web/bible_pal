@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3111,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_025",
+  "title": "Ahijah’s Heavy News",
+  "scriptureAnchor": "1 Kings 14:1-20",
+  "scriptureAnchorId": "1_kings_14_1-20",
+  "shortScripture": false,
+  "bibleStoryKey": "ahijahs_heavy_news",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "jeroboam",
+  "primaryCharacterDisplayName": "Jeroboam",
+  "emotionalTags": [
+    "grieving",
+    "exposed",
+    "mourning"
+  ],
+  "themeTags": [
+    "judgment",
+    "disguise",
+    "prophecy",
+    "loss"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Jeroboam’s wife came to the blind prophet in disguise, but Yahweh had already told Ahijah who was at the door, and the heavy news was spoken plainly. All Israel mourned for the child in whom some good thing was found. What sorrow are you tempted to carry in disguise?\n",
+  "editorialNotes": "Packet 025 initial writer output. Short-only owner plan. The retelling remains within 1 Kings 14:1-20 and ends at the succession notice of verse 20.",
+  "files": {
+    "short": {
+      "storyText": "story_3111_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3111_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3111_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3111_traditional_kjv.txt"
+    }
+  }
+}
