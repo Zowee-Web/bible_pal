@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3123,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_027",
+  "title": "Teaching in the Temple",
+  "scriptureAnchor": "John 7:14-36",
+  "scriptureAnchorId": "john_7_14-36",
+  "shortScripture": false,
+  "bibleStoryKey": "teaching_in_the_temple",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "emotionalTags": [
+    "bold",
+    "questioned",
+    "steadfast"
+  ],
+  "themeTags": [
+    "teaching",
+    "authority",
+    "sabbath",
+    "judgment"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "In the middle of the feast, Jesus taught in the temple: his teaching was not his own, but his who sent him. Some sought to take him, yet no one laid a hand on him, for his hour had not yet come; later, officers were sent to arrest him. Where are you asked to judge righteously rather than by appearance?\n",
+  "editorialNotes": "Packet 027 initial writer output. Short-only owner plan. The retelling remains within John 7:14-36 and ends at the hearers’ question in verse 36.",
+  "files": {
+    "short": {
+      "storyText": "story_3123_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3123_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3123_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3123_traditional_kjv.txt"
+    }
+  }
+}

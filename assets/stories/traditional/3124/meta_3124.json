@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3124,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_027",
+  "title": "The Wise Woman of Abel",
+  "scriptureAnchor": "2 Samuel 20:1-22",
+  "scriptureAnchorId": "2_samuel_20_1-22",
+  "shortScripture": false,
+  "bibleStoryKey": "wise_woman_of_abel",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "joab",
+  "primaryCharacterDisplayName": "Joab",
+  "emotionalTags": [
+    "divided",
+    "alarmed",
+    "spared"
+  ],
+  "themeTags": [
+    "rebellion",
+    "wisdom",
+    "negotiation",
+    "peace"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "While the wall of Abel was battered, one wise woman asked Joab to come near and reminded him that counsel was once asked at Abel. A city and a mother in Israel were spared when her word, not the siege, settled the matter. Where might asking counsel still hold off ruin?\n",
+  "editorialNotes": "Packet 027 initial writer output. Short-only owner plan. The retelling remains within 2 Samuel 20:1-22, narrates Amasa’s death with factual restraint, and ends at verse 22 with Joab’s return to Jerusalem.",
+  "files": {
+    "short": {
+      "storyText": "story_3124_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3124_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3124_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3124_traditional_kjv.txt"
+    }
+  }
+}

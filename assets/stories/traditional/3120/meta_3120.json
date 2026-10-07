@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3120,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_027",
+  "title": "Jephthah Called Back",
+  "scriptureAnchor": "Judges 11:1-28",
+  "scriptureAnchorId": "judges_11_1-28",
+  "shortScripture": false,
+  "bibleStoryKey": "jephthah_called_back",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
+  "timelineEra": "judges",
+  "primaryCharacterId": "jephthah",
+  "primaryCharacterDisplayName": "Jephthah",
+  "emotionalTags": [
+    "rejected",
+    "sought",
+    "vindicated"
+  ],
+  "themeTags": [
+    "restoration",
+    "leadership",
+    "covenant",
+    "outcast"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Driven out by his brothers, Jephthah was later sought by the elders of Gilead, who asked him to lead, and Yahweh was named as witness between them. Then the outcast made Israel’s case to Ammon’s king and left the verdict with Yahweh the Judge. Where might a wrong done to you still end in honest words and an appeal to God?\n",
+  "editorialNotes": "Packet 027 initial writer output. Short-only owner plan. The retelling remains within Judges 11:1-28 and ends at verse 28 with the king of Ammon not listening.",
+  "files": {
+    "short": {
+      "storyText": "story_3120_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3120_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3120_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3120_traditional_kjv.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3121,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_027",
+  "title": "Through the Window",
+  "scriptureAnchor": "1 Samuel 19:1-18",
+  "scriptureAnchorId": "1_samuel_19_1-18",
+  "shortScripture": false,
+  "bibleStoryKey": "through_the_window",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "emotionalTags": [
+    "hunted",
+    "defended",
+    "escaped"
+  ],
+  "themeTags": [
+    "loyalty",
+    "danger",
+    "escape",
+    "intercession"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Jonathan spoke good of David to his father, and Michal let David down through the window and delayed the messengers with the teraphim in the bed. David escaped to Samuel at Ramah and told him everything. Who has stood between you and harm, and what did it cost them?\n",
+  "editorialNotes": "Packet 027 initial writer output. Short-only owner plan. The retelling remains within 1 Samuel 19:1-18 and ends at verse 18 with David and Samuel at Naioth.",
+  "files": {
+    "short": {
+      "storyText": "story_3121_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3121_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3121_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3121_traditional_kjv.txt"
+    }
+  }
+}

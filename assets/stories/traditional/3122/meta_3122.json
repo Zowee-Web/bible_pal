@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3122,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_027",
+  "title": "Shields of Bronze",
+  "scriptureAnchor": "2 Chronicles 12:1-12",
+  "scriptureAnchorId": "2_chronicles_12_1-12",
+  "shortScripture": false,
+  "bibleStoryKey": "shields_of_bronze",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "rehoboam",
+  "primaryCharacterDisplayName": "Rehoboam",
+  "emotionalTags": [
+    "humbled",
+    "chastened",
+    "spared"
+  ],
+  "themeTags": [
+    "humbling",
+    "judgment",
+    "mercy",
+    "loss"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "After Shemaiah named the reason for Shishak’s coming, the king and the princes said only, “Yahweh is righteous,” and the wrath that was due did not destroy them. Gold shields were lost, and bronze took their place. What honest words of humbling might stand where your gold once did?\n",
+  "editorialNotes": "Packet 027 initial writer output. Short-only owner plan. The retelling remains within 2 Chronicles 12:1-12 and ends at verse 12.",
+  "files": {
+    "short": {
+      "storyText": "story_3122_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3122_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3122_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3122_traditional_kjv.txt"
+    }
+  }
+}
