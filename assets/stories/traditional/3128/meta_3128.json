@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3128,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_028",
+  "title": "Sorrow Turned to Joy",
+  "scriptureAnchor": "John 16:16-33",
+  "scriptureAnchorId": "john_16_16-33",
+  "shortScripture": false,
+  "bibleStoryKey": "sorrow_turned_to_joy",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "emotionalTags": [
+    "puzzled",
+    "sorrowful",
+    "assured"
+  ],
+  "themeTags": [
+    "joy",
+    "promise",
+    "peace",
+    "overcoming"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Jesus told his disciples plainly that sorrow was coming and that it would be turned into joy no one could take away, as a mother forgets anguish for joy that a child is born. In the world, trouble; in him, peace. Which of his promises steadies you in the little while?\n",
+  "editorialNotes": "Packet 028 initial writer output. Short-only owner plan. The retelling remains within John 16:16-33 and ends at verse 33.",
+  "files": {
+    "short": {
+      "storyText": "story_3128_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3128_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3128_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3128_traditional_kjv.txt"
+    }
+  }
+}

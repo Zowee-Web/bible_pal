@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3129,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_028",
+  "title": "David’s Charge to Solomon",
+  "scriptureAnchor": "1 Kings 2:1-12",
+  "scriptureAnchorId": "1_kings_2_1-12",
+  "shortScripture": false,
+  "bibleStoryKey": "davids_charge_to_solomon",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "solomon",
+  "primaryCharacterDisplayName": "Solomon",
+  "emotionalTags": [
+    "charged",
+    "sober",
+    "established"
+  ],
+  "themeTags": [
+    "succession",
+    "obedience",
+    "promise",
+    "kingship"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Dying, David charged Solomon first with the law of Moses and the promise of Yahweh, and only then with the unfinished matters of Joab, Barzillai’s sons, and Shimei. Solomon sat on the throne, and the kingdom was firmly established. What charge would you place first for those who follow you?\n",
+  "editorialNotes": "Packet 028 initial writer output. Short-only owner plan. The retelling remains within 1 Kings 2:1-12, narrates the charges concerning Joab and Shimei factually, and ends at verse 12.",
+  "files": {
+    "short": {
+      "storyText": "story_3129_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3129_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3129_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3129_traditional_kjv.txt"
+    }
+  }
+}

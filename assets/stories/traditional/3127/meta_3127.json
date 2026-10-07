@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3127,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_028",
+  "title": "An Arm of Flesh",
+  "scriptureAnchor": "2 Chronicles 32:1-23",
+  "scriptureAnchorId": "2_chronicles_32_1-23",
+  "shortScripture": false,
+  "bibleStoryKey": "an_arm_of_flesh",
+  "storyVoiceKey": "VOICE_ESTHER_BRAVE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "hezekiah",
+  "primaryCharacterDisplayName": "Hezekiah",
+  "emotionalTags": [
+    "threatened",
+    "steadfast",
+    "delivered"
+  ],
+  "themeTags": [
+    "courage",
+    "trust",
+    "prayer",
+    "deliverance"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Hezekiah stopped the springs, built the wall, and told the people that only an arm of flesh was with Assyria, but Yahweh their God was with them. When the letters and shouting came, he and Isaiah prayed and cried to heaven. Which arm are you measuring your trouble against?\n",
+  "editorialNotes": "Packet 028 initial writer output. Short-only owner plan. The retelling remains within 2 Chronicles 32:1-23 and ends at verse 23.",
+  "files": {
+    "short": {
+      "storyText": "story_3127_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3127_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3127_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3127_traditional_kjv.txt"
+    }
+  }
+}

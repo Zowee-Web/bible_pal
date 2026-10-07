@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3125,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-fable-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_028",
+  "title": "Fire and the Third Captain",
+  "scriptureAnchor": "2 Kings 1:1-18",
+  "scriptureAnchorId": "2_kings_1_1-18",
+  "shortScripture": false,
+  "bibleStoryKey": "fire_and_the_third_captain",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "elijah",
+  "primaryCharacterDisplayName": "Elijah",
+  "emotionalTags": [
+    "confronted",
+    "fearless",
+    "spared"
+  ],
+  "themeTags": [
+    "judgment",
+    "inquiry",
+    "mercy",
+    "obedience"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Two captains repeated the king’s command and were consumed, but the third fell on his knees and asked that the lives of his fifty be precious in Elijah’s sight—and the angel said, “Go down with him.” What changes when a demand becomes a plea for the lives entrusted to you?\n",
+  "editorialNotes": "Packet 028 initial writer output. Short-only owner plan. The retelling remains within 2 Kings 1:1-18 and ends at the chronicle notice of verse 18.",
+  "files": {
+    "short": {
+      "storyText": "story_3125_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3125_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3125_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3125_traditional_kjv.txt"
+    }
+  }
+}
