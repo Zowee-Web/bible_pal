@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3144,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_031",
+  "title": "The Amalekite Who Came from Gilboa",
+  "scriptureAnchor": "2 Samuel 1:1-16",
+  "scriptureAnchorId": "2_samuel_1_1-16",
+  "shortScripture": false,
+  "bibleStoryKey": "the_amalekite_who_came_from_gilboa",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "emotionalTags": [
+    "grieving",
+    "mourning",
+    "stern"
+  ],
+  "themeTags": [
+    "grief",
+    "mourning",
+    "anointing",
+    "judgment"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "A young man came to David at Ziklag with his clothes torn, saying that Saul and Jonathan were dead and that he had killed Saul. David tore his clothes, and he and his men mourned, wept, and fasted until evening for Saul, for Jonathan, and for the people of Yahweh. How do you mourn for those who have fallen?\n",
+  "editorialNotes": "Packet 031 initial writer output. Short-only owner plan. The retelling remains within 2 Samuel 1:1-16, reports the young man’s account only as his own speech without judging it against other passages, keeps WEB “showed respect” and KJV “did obeisance” in their own lanes, and ends with David’s words in verse 16 before the lament of verse 17, dovetailing with 1357 (2 Samuel 1:17-27).",
+  "files": {
+    "short": {
+      "storyText": "story_3144_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3144_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3144_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3144_traditional_kjv.txt"
+    }
+  }
+}

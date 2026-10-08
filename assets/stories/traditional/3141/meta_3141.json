@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3141,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_031",
+  "title": "Esther Made Queen",
+  "scriptureAnchor": "Esther 2:12-23",
+  "scriptureAnchorId": "esther_2_12-23",
+  "shortScripture": false,
+  "bibleStoryKey": "esther_made_queen",
+  "storyVoiceKey": "VOICE_ESTHER_BRAVE",
+  "timelineEra": "return",
+  "primaryCharacterId": "esther",
+  "primaryCharacterDisplayName": "Esther",
+  "emotionalTags": [
+    "favored",
+    "obedient",
+    "loyal"
+  ],
+  "themeTags": [
+    "favor",
+    "kingship",
+    "loyalty",
+    "record"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Esther required nothing but what Hegai advised, and she obtained favor in the sight of all who looked at her. When two doorkeepers sought to lay hands on the king, Mordecai informed Esther, and Esther informed the king in Mordecai’s name. It was written in the chronicles. Whose faithful deeds do you speak of by name?\n",
+  "editorialNotes": "Packet 031 initial writer output. Short-only owner plan. The retelling remains within Esther 2:12-23, dovetails with 1431 (Esther 2:5-11), omits verse 21’s opening time phrase in both lanes, keeps WEB eunuch/gallows and KJV chamberlain/tree in their own lanes, and ends with the matter written in the book of the chronicles in verse 23.",
+  "files": {
+    "short": {
+      "storyText": "story_3141_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3141_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3141_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3141_traditional_kjv.txt"
+    }
+  }
+}

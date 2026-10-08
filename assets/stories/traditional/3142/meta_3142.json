@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3142,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_031",
+  "title": "Flour for a Shekel at the Gate",
+  "scriptureAnchor": "2 Kings 7:10-20",
+  "scriptureAnchorId": "2_kings_7_10-20",
+  "shortScripture": false,
+  "bibleStoryKey": "flour_for_a_shekel_at_the_gate",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "king_of_israel",
+  "primaryCharacterDisplayName": "The King",
+  "emotionalTags": [
+    "suspicious",
+    "doubting",
+    "provided_for"
+  ],
+  "themeTags": [
+    "provision",
+    "prophecy",
+    "unbelief",
+    "fulfillment"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The king said the Syrians were hiding in the field, but the messengers found the way to the Jordan full of garments and equipment the Syrians had cast away. The people plundered the camp, and a seah of fine flour was sold for a shekel, according to Yahweh’s word. How do you give thanks when provision comes?\n",
+  "editorialNotes": "Packet 031 initial writer output. Short-only owner plan. The retelling remains within 2 Kings 7:10-20 and dovetails with 1396 (2 Kings 7:3-9). Verse 10 says only “they”, so the opening calls them “some men” and does not import their identity from earlier verses; the man of God stays unnamed as in the anchor. Verses 18-19 are kept as the anchor’s own recollection of the earlier word, rendered in the pluperfect, and the story ends with verse 20.",
+  "files": {
+    "short": {
+      "storyText": "story_3142_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3142_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3142_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3142_traditional_kjv.txt"
+    }
+  }
+}

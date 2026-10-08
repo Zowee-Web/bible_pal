@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3140,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_031",
+  "title": "The Lot Fell on Matthias",
+  "scriptureAnchor": "Acts 1:12-26",
+  "scriptureAnchorId": "acts_1_12-26",
+  "shortScripture": false,
+  "bibleStoryKey": "the_lot_fell_on_matthias",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "peter",
+  "primaryCharacterDisplayName": "Peter",
+  "emotionalTags": [
+    "prayerful",
+    "united",
+    "steadfast"
+  ],
+  "themeTags": [
+    "prayer",
+    "scripture",
+    "apostleship",
+    "witness"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The apostles continued with one accord in prayer and supplication, with the women and Mary the mother of Jesus. They put forward two men and prayed to the Lord who knows the hearts of all men, and the lot fell on Matthias. When a choice is before you, how do you seek the One who knows every heart?\n",
+  "editorialNotes": "Packet 031 initial writer output. Short-only owner plan. The retelling remains within Acts 1:12-26, names “the apostles” in verse 12 from the verse 13 list and the verse 26 “eleven apostles” where verse 12 says “they”, omits verse 15’s opening time phrase in both lanes, keeps verses 18-19 inside Peter’s speech as the WEB text quotes them, keeps WEB Akeldama/office and KJV Aceldama/bishoprick in their own lanes, and ends with Matthias numbered with the eleven in verse 26.",
+  "files": {
+    "short": {
+      "storyText": "story_3140_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3140_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3140_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3140_traditional_kjv.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3143,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_031",
+  "title": "The Altar Split at Bethel",
+  "scriptureAnchor": "1 Kings 13:1-10",
+  "scriptureAnchorId": "1_kings_13_1-10",
+  "shortScripture": false,
+  "bibleStoryKey": "the_altar_split_at_bethel",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "man_of_god_from_judah",
+  "primaryCharacterDisplayName": "Man of God from Judah",
+  "emotionalTags": [
+    "bold",
+    "unbending",
+    "steadfast"
+  ],
+  "themeTags": [
+    "prophecy",
+    "idolatry",
+    "obedience",
+    "sign"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "A man of God cried against the altar at Bethel. When Jeroboam put out his hand, saying, “Seize him!” his hand dried up, and the altar was split apart. Offered a reward, he would not eat bread nor drink water there, and went another way. How do you answer when a reward would turn you aside?\n",
+  "editorialNotes": "Packet 031 initial writer output. Short-only owner plan. The retelling remains within 1 Kings 13:1-10, keeps the man of God unnamed as in the anchor, keeps WEB Bethel and KJV Beth-el in their own lanes, and ends at verse 10 before the old prophet of verse 11, dovetailing with 3002 (1 Kings 13:11-32).",
+  "files": {
+    "short": {
+      "storyText": "story_3143_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3143_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3143_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3143_traditional_kjv.txt"
+    }
+  }
+}
