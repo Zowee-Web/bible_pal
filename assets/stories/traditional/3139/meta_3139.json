@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3139,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_030",
+  "title": "Barzillai at the Jordan",
+  "scriptureAnchor": "2 Samuel 19:31-43",
+  "scriptureAnchorId": "2_samuel_19_31-43",
+  "shortScripture": false,
+  "bibleStoryKey": "barzillai_at_the_jordan",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "barzillai",
+  "primaryCharacterDisplayName": "Barzillai",
+  "emotionalTags": [
+    "aged",
+    "blessed",
+    "fierce"
+  ],
+  "themeTags": [
+    "hospitality",
+    "old_age",
+    "reward",
+    "rivalry"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Barzillai, eighty years old, had provided for the king at Mahanaim, and he asked to turn back and die in his own city, by the grave of his parents. He offered his servant Chimham to go over with the king, and the king kissed Barzillai and blessed him. How do you honor those who provided for you?\n",
+  "editorialNotes": "Packet 030 initial writer output. Short-only owner plan. The retelling remains within 2 Samuel 19:31-43, follows Barzillai’s parting and the quarrel between the men of Israel and Judah, and ends at verse 43.",
+  "files": {
+    "short": {
+      "storyText": "story_3139_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3139_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3139_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3139_traditional_kjv.txt"
+    }
+  }
+}

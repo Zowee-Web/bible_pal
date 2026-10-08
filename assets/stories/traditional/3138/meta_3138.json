@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3138,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_030",
+  "title": "Jeremiah in the House of Jonathan",
+  "scriptureAnchor": "Jeremiah 37:1-21",
+  "scriptureAnchorId": "jeremiah_37_1-21",
+  "shortScripture": false,
+  "bibleStoryKey": "jeremiah_in_the_house_of_jonathan",
+  "storyVoiceKey": "VOICE_JOSEPH_DREAMER",
+  "timelineEra": "prophets",
+  "primaryCharacterId": "jeremiah",
+  "primaryCharacterDisplayName": "Jeremiah",
+  "emotionalTags": [
+    "accused",
+    "imprisoned",
+    "pleading"
+  ],
+  "themeTags": [
+    "prophecy",
+    "imprisonment",
+    "truth",
+    "provision"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Going out toward the land of Benjamin, Jeremiah was seized, struck, and put in prison in Jonathan’s house. When the king asked secretly for a word from Yahweh, Jeremiah said, “There is,” and pleaded not to be sent back. When you are asked in secret, do you give the word you have?\n",
+  "editorialNotes": "Packet 030 initial writer output. Short-only owner plan. The retelling remains within Jeremiah 37:1-21, condenses the verses 7-10 message and Jeremiah’s verse 20 plea into attributed reported speech and shortens the verse 11 restatement and Irijah’s lineage for length, keeps WEB “receive his portion” and KJV “separate himself thence” in their own lanes, and ends with Jeremiah in the court of the guard (KJV: court of the prison) in verse 21.",
+  "files": {
+    "short": {
+      "storyText": "story_3138_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3138_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3138_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3138_traditional_kjv.txt"
+    }
+  }
+}

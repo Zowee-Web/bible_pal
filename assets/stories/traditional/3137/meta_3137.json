@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3137,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_030",
+  "title": "Micah’s House of Gods",
+  "scriptureAnchor": "Judges 17:1-13",
+  "scriptureAnchorId": "judges_17_1-13",
+  "shortScripture": false,
+  "bibleStoryKey": "micahs_house_of_gods",
+  "storyVoiceKey": "VOICE_SARAH_STORYTELLER",
+  "timelineEra": "judges",
+  "primaryCharacterId": "micah",
+  "primaryCharacterDisplayName": "Micah",
+  "emotionalTags": [
+    "confessing",
+    "content",
+    "assured"
+  ],
+  "themeTags": [
+    "idolatry",
+    "priesthood",
+    "silver",
+    "no_king"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Micah restored the silver he had taken, and his mother had images made from it. He made an ephod and teraphim; there was no king in Israel. He then consecrated a young Levite to be his priest and said, “Now I know that Yahweh will do good to me.” On what do you rest your confidence that good will come?\n",
+  "editorialNotes": "Packet 030 initial writer output. Short-only owner plan. The retelling remains within Judges 17:1-13, renders verse 6’s opening time phrase as “At that time” in both lanes, and ends with Micah’s words in verse 13.",
+  "files": {
+    "short": {
+      "storyText": "story_3137_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3137_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3137_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3137_traditional_kjv.txt"
+    }
+  }
+}

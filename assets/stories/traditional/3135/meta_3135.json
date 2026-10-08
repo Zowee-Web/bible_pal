@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3135,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_030",
+  "title": "In the Likeness of Men",
+  "scriptureAnchor": "Acts 14:1-18",
+  "scriptureAnchorId": "acts_14_1-18",
+  "shortScripture": false,
+  "bibleStoryKey": "in_the_likeness_of_men",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "emotionalTags": [
+    "bold",
+    "fleeing",
+    "distressed"
+  ],
+  "themeTags": [
+    "healing",
+    "idolatry",
+    "witness",
+    "creation"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "At Lystra a man who had never walked leaped up at Paul’s word, and the multitude called Barnabas and Paul gods. The apostles tore their clothes, said they were men of the same nature, and urged the people to turn to the living God. When praise comes to you, to whom do you turn it?\n",
+  "editorialNotes": "Packet 030 initial writer output. Short-only owner plan. The retelling remains within Acts 14:1-18, names Paul and Barnabas from verses 12 and 14 where verse 1 says “they”, keeps WEB Mercury and KJV Mercurius in their own lanes, and ends at verse 18 before the stoning recorded in verse 19.",
+  "files": {
+    "short": {
+      "storyText": "story_3135_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3135_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3135_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3135_traditional_kjv.txt"
+    }
+  }
+}

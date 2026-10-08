@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3136,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_030",
+  "title": "Sent Back from Aphek",
+  "scriptureAnchor": "1 Samuel 29:1-11",
+  "scriptureAnchorId": "1_samuel_29_1-11",
+  "shortScripture": false,
+  "bibleStoryKey": "sent_back_from_aphek",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "emotionalTags": [
+    "distrusted",
+    "questioning",
+    "dismissed"
+  ],
+  "themeTags": [
+    "loyalty",
+    "suspicion",
+    "reputation",
+    "departure"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Achish found no fault in David, yet the princes of the Philistines would not let him go down with them to battle. David asked, “But what have I done?” So David rose up early with his men to return into the land of the Philistines. When you are sent back from the way before you, how do you go?\n",
+  "editorialNotes": "Packet 030 initial writer output. Short-only owner plan. The retelling remains within 1 Samuel 29:1-11 and ends with David’s departure and the Philistines going up to Jezreel in verse 11.",
+  "files": {
+    "short": {
+      "storyText": "story_3136_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3136_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3136_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3136_traditional_kjv.txt"
+    }
+  }
+}
