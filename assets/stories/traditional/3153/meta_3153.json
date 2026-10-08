@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3153,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_033",
+  "title": "The Altar Set on Its Base",
+  "scriptureAnchor": "Ezra 3:1-9",
+  "scriptureAnchorId": "ezra_3_1-9",
+  "shortScripture": false,
+  "bibleStoryKey": "the_altar_set_on_its_base",
+  "storyVoiceKey": "VOICE_MARTHA_CARING",
+  "timelineEra": "return",
+  "primaryCharacterId": "jeshua",
+  "primaryCharacterDisplayName": "Jeshua",
+  "emotionalTags": [
+    "united",
+    "afraid",
+    "willing"
+  ],
+  "themeTags": [
+    "worship",
+    "rebuilding",
+    "feasts",
+    "return"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Jeshua and Zerubbabel built the altar, and in spite of their fear they set it on its base and offered burnt offerings to Yahweh morning and evening, though the foundation of Yahweh’s temple was not yet laid. In the second year they began the work. What worship will you keep before everything is rebuilt?\n",
+  "editorialNotes": "Packet 033 initial writer output. Short-only owner plan. The retelling remains within Ezra 3:1-9 and comes before 1182/1366/1459 (Ezra 3:10-13). Verse 3 keeps each lane’s own sense, WEB “In spite of their fear” and KJV “for fear was upon them”. It keeps WEB booths/Sidon/“to the sea, to Joppa”/oversight and KJV tabernacles/Zidon/“the sea of Joppa”/set forward in their own lanes, and ends with Jeshua and the Levites overseeing the workmen in verse 9.",
+  "files": {
+    "short": {
+      "storyText": "story_3153_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3153_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3153_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3153_traditional_kjv.txt"
+    }
+  }
+}

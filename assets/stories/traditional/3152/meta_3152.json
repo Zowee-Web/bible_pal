@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3152,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_033",
+  "title": "Between the Dead and the Living",
+  "scriptureAnchor": "Numbers 16:36-50",
+  "scriptureAnchorId": "numbers_16_36-50",
+  "shortScripture": false,
+  "bibleStoryKey": "between_the_dead_and_the_living",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "aaron",
+  "primaryCharacterDisplayName": "Aaron",
+  "emotionalTags": [
+    "accused",
+    "urgent",
+    "interceding"
+  ],
+  "themeTags": [
+    "atonement",
+    "plague",
+    "priesthood",
+    "intercession"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "When the congregation complained against Moses and Aaron, Moses told Aaron that wrath had gone out from Yahweh. Aaron took his censer, ran into the middle of the assembly, and made atonement for the people. He stood between the dead and the living, and the plague was stayed. Whom could you stand beside today?\n",
+  "editorialNotes": "Packet 033 initial writer output. Short-only owner plan. The retelling remains within Numbers 16:36-50 and follows 1596 (Numbers 16:1-35). It joins verses 37-38 into one quotation, keeps WEB bronze/Tent of Meeting/“your censer” and KJV brasen/tabernacle of the congregation/“a censer” in their own lanes, and ends with Aaron returning to Moses as the plague is stopped in verse 50.",
+  "files": {
+    "short": {
+      "storyText": "story_3152_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3152_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3152_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3152_traditional_kjv.txt"
+    }
+  }
+}

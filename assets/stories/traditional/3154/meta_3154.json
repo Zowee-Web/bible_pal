@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3154,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_033",
+  "title": "The Letter to Antioch",
+  "scriptureAnchor": "Acts 15:22-41",
+  "scriptureAnchorId": "acts_15_22-41",
+  "shortScripture": false,
+  "bibleStoryKey": "the_letter_to_antioch",
+  "storyVoiceKey": "VOICE_JANE_PROFESSIONAL",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "emotionalTags": [
+    "encouraged",
+    "strengthened",
+    "divided"
+  ],
+  "themeTags": [
+    "letter",
+    "unity",
+    "ministry",
+    "separation"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "When the apostles’ letter was read in Antioch, they rejoiced over the encouragement, and Judas and Silas encouraged the brothers with many words. Later the contention between Paul and Barnabas grew so sharp that they separated, and Paul went through Syria and Cilicia, strengthening the assemblies. Whom can you strengthen with your words?\n",
+  "editorialNotes": "Packet 033 initial writer output. Short-only owner plan. The retelling remains within Acts 15:22-41 and follows 1645 (Acts 15:1-21). The WEB canon has no verse 34, so the WEB lane omits it; the KJV lane renders its verse 34, “Notwithstanding it pleased Silas to abide there still.” It joins the verses 23-29 letter into one quotation, keeps WEB assembly/letter/encouragement/strengthening the assemblies and KJV church/epistle/consolation/confirming the churches in their own lanes, and ends with Paul going through Syria and Cilicia in verse 41.",
+  "files": {
+    "short": {
+      "storyText": "story_3154_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3154_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3154_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3154_traditional_kjv.txt"
+    }
+  }
+}

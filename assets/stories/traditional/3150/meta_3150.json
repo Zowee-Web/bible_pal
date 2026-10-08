@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3150,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_033",
+  "title": "The Altar of Baal Broken Down",
+  "scriptureAnchor": "Judges 6:25-35",
+  "scriptureAnchorId": "judges_6_25-35",
+  "shortScripture": false,
+  "bibleStoryKey": "the_altar_of_baal_broken_down",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "judges",
+  "primaryCharacterId": "gideon",
+  "primaryCharacterDisplayName": "Gideon",
+  "emotionalTags": [
+    "afraid",
+    "obedient",
+    "defended"
+  ],
+  "themeTags": [
+    "idolatry",
+    "obedience",
+    "holy_spirit",
+    "gathering"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Because he feared his father’s household and the men of the city, Gideon threw down the altar of Baal by night. When they said he must die, Joash said, “If he is a god, let him contend for himself.” Then Yahweh’s Spirit came on Gideon. What has God asked you to do while you are afraid?\n",
+  "editorialNotes": "Packet 033 initial writer output. Short-only owner plan. The retelling remains within Judges 6:25-35 and sits between 1035/1043 (Judges 6:11-24) and 1159 (Judges 6:36-40). It names Gideon for verse 25’s “him”, joins verses 25-26 into one quotation, keeps WEB bull/Asherah/stronghold/contend/Jerub-Baal and KJV bullock/grove/rock/plead/Jerubbaal in their own lanes, and ends with the tribes coming up to meet them in verse 35.",
+  "files": {
+    "short": {
+      "storyText": "story_3150_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3150_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3150_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3150_traditional_kjv.txt"
+    }
+  }
+}

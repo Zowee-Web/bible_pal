@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3151,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_033",
+  "title": "The Great Mourning at Atad",
+  "scriptureAnchor": "Genesis 50:1-14",
+  "scriptureAnchorId": "genesis_50_1-14",
+  "shortScripture": false,
+  "bibleStoryKey": "the_great_mourning_at_atad",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "timelineEra": "patriarchs",
+  "primaryCharacterId": "joseph",
+  "primaryCharacterDisplayName": "Joseph",
+  "emotionalTags": [
+    "grieving",
+    "weeping",
+    "keeping_an_oath"
+  ],
+  "themeTags": [
+    "death",
+    "burial",
+    "promise",
+    "family"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Joseph fell on his father’s face, wept on him, and kissed him. Then he went up to bury his father in the land of Canaan, just as his father had made him swear, and at the threshing floor of Atad they lamented with a very great and severe lamentation. How do you keep faith with someone you have lost?\n",
+  "editorialNotes": "Packet 033 initial writer output. Short-only owner plan. The retelling remains within Genesis 50:1-14 and comes before 1146 (Genesis 50:15-21). It nests the oath in verse 5 inside Joseph’s request in verse 4, keeps WEB wept/seventy days/favor and KJV mourned/threescore and ten days/grace in their own lanes, and ends with Joseph returning into Egypt in verse 14.",
+  "files": {
+    "short": {
+      "storyText": "story_3151_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3151_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3151_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3151_traditional_kjv.txt"
+    }
+  }
+}
