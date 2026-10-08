@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3131,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_029",
+  "title": "Bread and a Sword at Nob",
+  "scriptureAnchor": "1 Samuel 21:1-15",
+  "scriptureAnchorId": "1_samuel_21_1-15",
+  "shortScripture": false,
+  "bibleStoryKey": "bread_and_a_sword_at_nob",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "emotionalTags": [
+    "alone",
+    "fleeing",
+    "afraid"
+  ],
+  "themeTags": [
+    "provision",
+    "flight",
+    "holiness",
+    "fear"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Coming alone, David asked for bread and a weapon, and Ahimelech the priest gave him holy bread and the sword of Goliath, while Doeg the Edomite was there that day. In Gath David was very afraid, and he pretended to be insane before Achish. What have you asked for when you came with nothing in your hand?\n",
+  "editorialNotes": "Packet 029 initial writer output. Short-only owner plan. The retelling remains within 1 Samuel 21:1-15, renders verse 12’s “laid up these words in his heart” as “took these words to heart” in both lanes, notes Doeg’s presence without anticipating later chapters, and ends with Achish’s questions in verse 15.",
+  "files": {
+    "short": {
+      "storyText": "story_3131_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3131_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3131_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3131_traditional_kjv.txt"
+    }
+  }
+}

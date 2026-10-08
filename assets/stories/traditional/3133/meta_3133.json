@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3133,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_029",
+  "title": "That They May Be One",
+  "scriptureAnchor": "John 17:1-26",
+  "scriptureAnchorId": "john_17_1-26",
+  "shortScripture": false,
+  "bibleStoryKey": "that_they_may_be_one",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "timelineEra": "jesus_ministry",
+  "primaryCharacterId": "jesus",
+  "primaryCharacterDisplayName": "Jesus",
+  "emotionalTags": [
+    "prayerful",
+    "kept",
+    "loved"
+  ],
+  "themeTags": [
+    "prayer",
+    "unity",
+    "truth",
+    "glory"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Jesus prayed for those the Father had given him and for those who would believe in him through their word. He asked that they be kept from the evil one, sanctified in truth, and made one, that the world may believe that the Father sent him. For whom do you pray before the Father?\n",
+  "editorialNotes": "Packet 029 initial writer output. Short-only owner plan. The retelling remains within John 17:1-26, keeps the prayer’s petitions to the Father in quotation, condenses verses 2-3, 6-14, and 20-23 into attributed reported speech for length, and ends at verse 26.",
+  "files": {
+    "short": {
+      "storyText": "story_3133_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3133_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3133_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3133_traditional_kjv.txt"
+    }
+  }
+}

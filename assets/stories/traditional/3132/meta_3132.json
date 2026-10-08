@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3132,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_029",
+  "title": "The Rechabites and the Wine",
+  "scriptureAnchor": "Jeremiah 35:1-19",
+  "scriptureAnchorId": "jeremiah_35_1-19",
+  "shortScripture": false,
+  "bibleStoryKey": "the_rechabites_and_the_wine",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "timelineEra": "prophets",
+  "primaryCharacterId": "jeremiah",
+  "primaryCharacterDisplayName": "Jeremiah",
+  "emotionalTags": [
+    "offered",
+    "faithful",
+    "warned"
+  ],
+  "themeTags": [
+    "obedience",
+    "faithfulness",
+    "warning",
+    "promise"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Jeremiah set bowls full of wine before the Rechabites in Yahweh’s house, and they would not drink, because Jonadab their father had commanded them. Yahweh set their obedience beside a people who had not listened, and promised that Jonadab would not lack a man to stand before him. Whose word do you obey all your days?\n",
+  "editorialNotes": "Packet 029 initial writer output. Short-only owner plan. The retelling remains within Jeremiah 35:1-19, renders Jeremiah’s first-person narration in the third person, condenses the room detail of verse 4 and the restatements in verses 8-10 and 16 for length, and ends with the promise to Jonadab in verse 19.",
+  "files": {
+    "short": {
+      "storyText": "story_3132_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3132_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3132_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3132_traditional_kjv.txt"
+    }
+  }
+}

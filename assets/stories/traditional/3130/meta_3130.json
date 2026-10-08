@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3130,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_029",
+  "title": "A Yoke of Iron",
+  "scriptureAnchor": "Jeremiah 28:1-17",
+  "scriptureAnchorId": "jeremiah_28_1-17",
+  "shortScripture": false,
+  "bibleStoryKey": "a_yoke_of_iron",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "timelineEra": "prophets",
+  "primaryCharacterId": "jeremiah",
+  "primaryCharacterDisplayName": "Jeremiah",
+  "emotionalTags": [
+    "confronted",
+    "rebuked",
+    "sober"
+  ],
+  "themeTags": [
+    "true_prophecy",
+    "false_prophecy",
+    "judgment",
+    "waiting"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Jeremiah answered Hananiah’s words with “Amen,” yet he said that the prophet who prophesies of peace is known when the word happens. When Hananiah broke the bar from his neck, Jeremiah went his way, and after that Yahweh’s word came to him about bars of iron. How do you weigh words that you wish were true?\n",
+  "editorialNotes": "Packet 029 initial writer output. Short-only owner plan. The retelling remains within Jeremiah 28:1-17, renders the first-person “me” of verse 1 as Jeremiah, keeps the WEB bar/bars and KJV yoke/yokes wording in their own lanes, and ends at verse 17.",
+  "files": {
+    "short": {
+      "storyText": "story_3130_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3130_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3130_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3130_traditional_kjv.txt"
+    }
+  }
+}

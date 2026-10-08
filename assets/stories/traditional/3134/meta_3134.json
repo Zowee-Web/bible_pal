@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3134,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_029",
+  "title": "Passover in the Second Month",
+  "scriptureAnchor": "Numbers 9:1-14",
+  "scriptureAnchorId": "numbers_9_1-14",
+  "shortScripture": false,
+  "bibleStoryKey": "passover_in_the_second_month",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "emotionalTags": [
+    "excluded",
+    "waiting",
+    "included"
+  ],
+  "themeTags": [
+    "passover",
+    "provision",
+    "obedience",
+    "inclusion"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Unclean because of a dead body, certain men asked Moses why they were kept back from the offering of Yahweh. Moses said, “Wait,” and Yahweh gave the Passover in the second month to them and to anyone on a journey far away. When have you asked, and waited to hear what Yahweh would command concerning you?\n",
+  "editorialNotes": "Packet 029 initial writer output. Short-only owner plan. The retelling remains within Numbers 9:1-14, keeps WEB “Wait” and KJV “Stand still” in their own lanes, and ends with the one statute of verse 14.",
+  "files": {
+    "short": {
+      "storyText": "story_3134_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3134_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3134_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3134_traditional_kjv.txt"
+    }
+  }
+}
