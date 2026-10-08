@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3157,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_034",
+  "title": "Fruitful in the Land of Affliction",
+  "scriptureAnchor": "Genesis 41:41-57",
+  "scriptureAnchorId": "genesis_41_41-57",
+  "shortScripture": false,
+  "bibleStoryKey": "fruitful_in_the_land_of_affliction",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "timelineEra": "patriarchs",
+  "primaryCharacterId": "joseph",
+  "primaryCharacterDisplayName": "Joseph",
+  "emotionalTags": [
+    "honored",
+    "provided_for",
+    "thankful"
+  ],
+  "themeTags": [
+    "provision",
+    "famine",
+    "family",
+    "wisdom"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Pharaoh said to Joseph, “I have set you over all the land of Egypt.” In the seven plenteous years Joseph laid up grain as the sand of the sea. He called his second son Ephraim, saying, “For God has made me fruitful in the land of my affliction.” Where has God made you fruitful in a hard place?\n",
+  "editorialNotes": "Packet 034 initial writer output. Short-only owner plan. The retelling remains within Genesis 41:41-57 and follows 831 (Genesis 41:1-40). It attributes Joseph’s naming words for Ephraim in verse 52 with “saying”, and keeps WEB signet ring/robes/Zaphenath-Paneah/Potiphera/grain/famine/severe and KJV ring/vestures/Zaphnath–paaneah/Poti–pherah/corn/dearth/“waxed sore” in their own lanes. Verse 43 keeps WEB “He set him over” and KJV “he made him ruler over”. It ends with all countries coming to Joseph to buy in verse 57.",
+  "files": {
+    "short": {
+      "storyText": "story_3157_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3157_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3157_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3157_traditional_kjv.txt"
+    }
+  }
+}

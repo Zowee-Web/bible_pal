@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3159,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_034",
+  "title": "Who Is David?",
+  "scriptureAnchor": "1 Samuel 25:1-13",
+  "scriptureAnchorId": "1_samuel_25_1-13",
+  "shortScripture": false,
+  "bibleStoryKey": "who_is_david",
+  "storyVoiceKey": "VOICE_ARABELLA",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "emotionalTags": [
+    "grieving",
+    "refused",
+    "provoked"
+  ],
+  "themeTags": [
+    "death_of_samuel",
+    "hospitality",
+    "wilderness",
+    "insult"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Samuel died, and all Israel mourned; then David went down to the wilderness. David’s young men greeted Nabal, saying, “Peace be to you!” and asked for whatever came to his hand. Nabal answered, “Who is David?” They went back and told David. When your greeting of peace is turned away, whom do you tell first?\n",
+  "editorialNotes": "Packet 034 initial writer output. Short-only owner plan. The retelling remains within 1 Samuel 25:1-13 and comes before 1513 (1 Samuel 25:14-42). It nests the verses 6-8 message inside David’s verse 5 charge as an inner quotation, and joins Nabal’s verses 10-11 answer into one quotation. It keeps WEB mourned/intelligent/surly/waited/meat/baggage and KJV lamented/“of good understanding”/churlish/ceased/flesh/stuff in their own lanes, and ends with four hundred men going up after David and two hundred staying behind in verse 13.",
+  "files": {
+    "short": {
+      "storyText": "story_3159_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3159_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3159_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3159_traditional_kjv.txt"
+    }
+  }
+}

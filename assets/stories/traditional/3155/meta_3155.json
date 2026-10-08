@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3155,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_034",
+  "title": "Jephthah’s Only Child",
+  "scriptureAnchor": "Judges 11:29-40",
+  "scriptureAnchorId": "judges_11_29-40",
+  "shortScripture": false,
+  "bibleStoryKey": "jephthahs_only_child",
+  "storyVoiceKey": "VOICE_SARAH_STORYTELLER",
+  "timelineEra": "judges",
+  "primaryCharacterId": "jephthah",
+  "primaryCharacterDisplayName": "Jephthah",
+  "emotionalTags": [
+    "grieving",
+    "bound_by_a_vow",
+    "mourning"
+  ],
+  "themeTags": [
+    "vow",
+    "victory",
+    "daughter",
+    "lament"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Jephthah vowed that whatever came out of his doors to meet him would be Yahweh’s. His daughter, his only child, came out with tambourines and with dances, and he tore his clothes. She asked to be left alone two months, and went to the mountains with her companions. Who near you might need a companion in their sorrow?\n",
+  "editorialNotes": "Packet 034 initial writer output. Short-only owner plan. The retelling remains within Judges 11:29-40 and follows 3120 (Judges 11:1-28). It joins the verses 30-31 vow into one quotation and joins verses 39-40 into one sentence. The narrator’s second-person route phrase in verse 33 (WEB “until you come to Minnith”, KJV “even till thou come to Minnith”) is rendered “as far as Minnith” (WEB) and “even unto Minnith” (KJV), so that second person stays inside quotations. Verse 36 keeps each lane’s own wording, WEB “you have opened your mouth” and KJV “if thou hast opened thy mouth”, and verse 40 keeps WEB “celebrate” and KJV “lament”. It keeps WEB Mizpah/tambourines/Abelcheramim/“She was a virgin” and KJV Mizpeh/timbrels/“the plain of the vineyards”/“she knew no man” in their own lanes, and ends with the yearly four days in verse 40.",
+  "files": {
+    "short": {
+      "storyText": "story_3155_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3155_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3155_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3155_traditional_kjv.txt"
+    }
+  }
+}

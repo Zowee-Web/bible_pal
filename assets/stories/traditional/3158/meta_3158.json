@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3158,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_034",
+  "title": "Times of Refreshing",
+  "scriptureAnchor": "Acts 3:11-26",
+  "scriptureAnchorId": "acts_3_11-26",
+  "shortScripture": false,
+  "bibleStoryKey": "times_of_refreshing",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "peter",
+  "primaryCharacterDisplayName": "Peter",
+  "emotionalTags": [
+    "amazed",
+    "called_to_repent",
+    "hopeful"
+  ],
+  "themeTags": [
+    "repentance",
+    "healing",
+    "prophecy",
+    "blessing"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "When the people ran together in Solomon’s porch, Peter asked why they fastened their eyes on him and John. Jesus’ name, through faith in his name, had made the man strong. Peter told them to repent and turn again, that their sins might be blotted out and times of refreshing might come. Where do you long for refreshing?\n",
+  "editorialNotes": "Packet 034 initial writer output. Short-only owner plan. The retelling remains within Acts 3:11-26 and follows 1015 (Acts 3:1-10). Peter’s speech in verses 12-26 is one continuous quotation, broken into paragraphs at verses 17, 19, 22 and 25, with Moses’ words (verses 22-23) and God’s word to Abraham (verse 25) as inner quotations. Verse 12 keeps the text’s own “as though by our own power”. It keeps WEB Servant/“Holy and Righteous One”/“turn again”/restoration/offspring/wickedness and KJV Son/“Holy One and the Just”/“be converted”/restitution/seed/iniquities in their own lanes, and ends with God sending his servant to bless them in verse 26.",
+  "files": {
+    "short": {
+      "storyText": "story_3158_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3158_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3158_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3158_traditional_kjv.txt"
+    }
+  }
+}

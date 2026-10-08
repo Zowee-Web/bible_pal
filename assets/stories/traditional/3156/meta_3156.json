@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3156,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_034",
+  "title": "The Ark of God Taken",
+  "scriptureAnchor": "1 Samuel 4:1-12",
+  "scriptureAnchorId": "1_samuel_4_1-12",
+  "shortScripture": false,
+  "bibleStoryKey": "the_ark_of_god_taken",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "timelineEra": "judges",
+  "primaryCharacterId": "elders_of_israel",
+  "primaryCharacterDisplayName": "Elders of Israel",
+  "emotionalTags": [
+    "afraid",
+    "defeated",
+    "urgent"
+  ],
+  "themeTags": [
+    "ark",
+    "battle",
+    "defeat",
+    "covenant"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The people brought the ark of Yahweh’s covenant out of Shiloh, and all Israel shouted so that the earth resounded. The Philistines were afraid, yet they fought, and God’s ark was taken. A man of Benjamin ran to Shiloh with his clothes torn. What hard news are you carrying, and to whom will you bring it?\n",
+  "editorialNotes": "Packet 034 initial writer output. Short-only owner plan. The retelling remains within 1 Samuel 4:1-12 and comes before 1339 (1 Samuel 4:13-18). It joins the verses 7-9 Philistine speech into one quotation and joins verses 10-11 into one paragraph. In verse 6 the scanner-banned phrase for “they understood” is rendered “Then they learned that” (WEB) and “And they knew that” (KJV). It keeps WEB encamped/Ebenezer/defeated/Yahweh of Armies/resounded/“behave like men”/dirt and KJV pitched/Eben–ezer/smitten/Lord of hosts/“rang again”/“quit yourselves like men”/earth in their own lanes, and ends with the man of Benjamin coming to Shiloh in verse 12.",
+  "files": {
+    "short": {
+      "storyText": "story_3156_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3156_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3156_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3156_traditional_kjv.txt"
+    }
+  }
+}
