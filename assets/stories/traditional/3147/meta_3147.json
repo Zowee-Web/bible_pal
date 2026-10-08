@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3147,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_032",
+  "title": "Tell Me the Dream",
+  "scriptureAnchor": "Daniel 2:1-18",
+  "scriptureAnchorId": "daniel_2_1-18",
+  "shortScripture": false,
+  "bibleStoryKey": "tell_me_the_dream",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "timelineEra": "exile",
+  "primaryCharacterId": "daniel",
+  "primaryCharacterDisplayName": "Daniel",
+  "emotionalTags": [
+    "troubled",
+    "threatened",
+    "prudent"
+  ],
+  "themeTags": [
+    "dreams",
+    "wisdom",
+    "prayer",
+    "danger"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "When the king commanded that all the wise men of Babylon be destroyed, Daniel answered Arioch with counsel and prudence and asked the king for time. Then he made the thing known to his companions, that they would desire mercies of the God of heaven concerning this secret. Whom do you call on when danger comes?\n",
+  "editorialNotes": "Packet 032 initial writer output. Short-only owner plan. The retelling remains within Daniel 2:1-18 and comes before 1295 (Daniel 2:19-23). It keeps WEB “Syrian language”/law/prudence and KJV Syriack/decree/wisdom in their own lanes, shortens verse 1’s repeated name and drops verse 6’s closing repetition of the demand for length, and ends with Daniel asking his companions to seek mercies of the God of heaven in verse 18.",
+  "files": {
+    "short": {
+      "storyText": "story_3147_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3147_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3147_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3147_traditional_kjv.txt"
+    }
+  }
+}

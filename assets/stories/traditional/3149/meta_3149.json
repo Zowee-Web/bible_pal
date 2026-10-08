@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3149,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_032",
+  "title": "What Do These Stones Mean?",
+  "scriptureAnchor": "Joshua 4:10-24",
+  "scriptureAnchorId": "joshua_4_10-24",
+  "shortScripture": false,
+  "bibleStoryKey": "what_do_these_stones_mean",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "timelineEra": "conquest",
+  "primaryCharacterId": "joshua",
+  "primaryCharacterDisplayName": "Joshua",
+  "emotionalTags": [
+    "remembering",
+    "reverent",
+    "awed"
+  ],
+  "themeTags": [
+    "memorial",
+    "crossing",
+    "teaching_children",
+    "fear_of_god"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "When the priests who bore the ark came up out of the Jordan, the waters returned to their place. Joshua set up the twelve stones in Gilgal and said that when children ask what they mean, they are to be told that Yahweh dried up the waters of the Jordan. What do you tell of what Yahweh has done?\n",
+  "editorialNotes": "Packet 032 initial writer output. Short-only owner plan. The retelling remains within Joshua 4:10-24 and follows 1297 (Joshua 4:1-9). It drops verse 10’s connective “For” at the opening, keeps WEB “ark of the covenant” and KJV “ark of the testimony” (verse 16) in their own lanes, and ends with Joshua’s words about the stones in verse 24.",
+  "files": {
+    "short": {
+      "storyText": "story_3149_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3149_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3149_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3149_traditional_kjv.txt"
+    }
+  }
+}

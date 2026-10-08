@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3145,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_032",
+  "title": "Simon and the Gift of God",
+  "scriptureAnchor": "Acts 8:9-25",
+  "scriptureAnchorId": "acts_8_9-25",
+  "shortScripture": false,
+  "bibleStoryKey": "simon_and_the_gift_of_god",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "simon_of_samaria",
+  "primaryCharacterDisplayName": "Simon",
+  "emotionalTags": [
+    "amazed",
+    "rebuked",
+    "asking_prayer"
+  ],
+  "themeTags": [
+    "holy_spirit",
+    "repentance",
+    "gift",
+    "baptism"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Simon believed and was baptized, yet when he saw the Holy Spirit given through the laying on of the apostles’ hands, he offered them money. Peter said the gift of God could not be obtained with money, and Simon said, “Pray for me to the Lord.” What are you trying to buy that can only be received?\n",
+  "editorialNotes": "Packet 032 initial writer output. Short-only owner plan. The retelling remains within Acts 8:9-25 and sits between 1308 (Acts 8:5-8) and 1125 (Acts 8:26-40). It keeps WEB “Christ Jesus” and KJV “Lord Jesus” (verse 16), and WEB silver/poison and KJV money/gall, in their own lanes, keeps verse 16 as narration without the KJV parentheses, and ends with the apostles preaching in many Samaritan villages in verse 25.",
+  "files": {
+    "short": {
+      "storyText": "story_3145_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3145_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3145_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3145_traditional_kjv.txt"
+    }
+  }
+}

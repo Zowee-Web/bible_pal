@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3148,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_032",
+  "title": "Aaron on Mount Hor",
+  "scriptureAnchor": "Numbers 20:14-29",
+  "scriptureAnchorId": "numbers_20_14-29",
+  "shortScripture": false,
+  "bibleStoryKey": "aaron_on_mount_hor",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "aaron",
+  "primaryCharacterDisplayName": "Aaron",
+  "emotionalTags": [
+    "refused",
+    "grieving",
+    "obedient"
+  ],
+  "themeTags": [
+    "death",
+    "priesthood",
+    "succession",
+    "mourning"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Edom refused to give Israel passage, so Israel turned away and came to Mount Hor. There Moses stripped Aaron of his garments and put them on Eleazar his son, and Aaron died on the top of the mountain. All the house of Israel wept for Aaron thirty days. How do you grieve when a long road ends?\n",
+  "editorialNotes": "Packet 032 initial writer output. Short-only owner plan. The retelling remains within Numbers 20:14-29 and follows 1364 (Numbers 20:1-13). It joins the verses 14-17 message into one quotation, keeps WEB wept/livestock and KJV mourned/cattle in their own lanes, and ends with the thirty days of mourning in verse 29.",
+  "files": {
+    "short": {
+      "storyText": "story_3148_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3148_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3148_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3148_traditional_kjv.txt"
+    }
+  }
+}

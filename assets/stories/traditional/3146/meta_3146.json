@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3146,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_032",
+  "title": "Weeping up the Mount of Olives",
+  "scriptureAnchor": "2 Samuel 15:24-37",
+  "scriptureAnchorId": "2_samuel_15_24-37",
+  "shortScripture": false,
+  "bibleStoryKey": "weeping_up_the_mount_of_olives",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "emotionalTags": [
+    "weeping",
+    "yielding",
+    "mourning"
+  ],
+  "themeTags": [
+    "exile",
+    "trust",
+    "friendship",
+    "counsel"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "David sent the ark of God back into the city, saying, “Let him do to me as seems good to him.” Then he went up the Mount of Olives weeping, with his head covered and barefoot, and all the people with him wept as they went up. Whom do you trust when the way goes uphill?\n",
+  "editorialNotes": "Packet 032 initial writer output. Short-only owner plan. The retelling remains within 2 Samuel 15:24-37 and follows 3092 (2 Samuel 15:13-23). It closes the nested quotation of David’s message for Absalom after verse 34’s words of service, keeps WEB Mount of Olives/tunic and KJV mount Olivet/coat in their own lanes, and ends with Hushai and Absalom coming into Jerusalem in verse 37.",
+  "files": {
+    "short": {
+      "storyText": "story_3146_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3146_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3146_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3146_traditional_kjv.txt"
+    }
+  }
+}
