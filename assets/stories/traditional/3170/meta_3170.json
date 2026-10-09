@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3170,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_037",
+  "title": "The Servant’s Prayer at the Well",
+  "scriptureAnchor": "Genesis 24:1-14",
+  "scriptureAnchorId": "genesis_24_1-14",
+  "shortScripture": false,
+  "bibleStoryKey": "the_servants_prayer_at_the_well",
+  "storyVoiceKey": "VOICE_BRADFORD",
+  "timelineEra": "patriarchs",
+  "primaryCharacterId": "abrahams_servant",
+  "primaryCharacterDisplayName": "Abraham’s Servant",
+  "emotionalTags": [
+    "trusting",
+    "faithful",
+    "prayerful"
+  ],
+  "themeTags": [
+    "oath",
+    "guidance",
+    "prayer",
+    "marriage"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Abraham made his servant swear to take a wife for Isaac from his country and his relatives. At evening the servant made the camels kneel by the well and said, “Yahweh, the God of my master Abraham, please give me success today.” Where would you ask God for guidance today?\n",
+  "editorialNotes": "Packet 037 initial writer output. Short-only owner plan. The retelling remains within Genesis 24:1-14 and comes before 1334 (Genesis 24:26-27). It joins Abraham’s verses 2-4 charge, his verses 6-8 answer, and the servant’s verses 12-14 prayer into single quotations. The WEB canon’s verse 7 inner quotation opens without closing (“saying, ‘I will give this land to your offspring—he will send”); the retelling closes it after “offspring” and removes the dashes, with no change of wording. It keeps WEB “well advanced in age”/relatives/“What if”/“having a variety of good things”/“please give me success today”/“young lady” and KJV “well stricken in age”/kindred/Peradventure/“for all the goods of his master were in his hand”/“send me good speed this day”/damsel in their own lanes, and ends with the servant’s prayer in verse 14.",
+  "files": {
+    "short": {
+      "storyText": "story_3170_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3170_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3170_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3170_traditional_kjv.txt"
+    }
+  }
+}

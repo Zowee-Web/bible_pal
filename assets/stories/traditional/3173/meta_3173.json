@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3173,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_037",
+  "title": "Obadiah Meets Elijah",
+  "scriptureAnchor": "1 Kings 18:1-16",
+  "scriptureAnchorId": "1_kings_18_1-16",
+  "shortScripture": false,
+  "bibleStoryKey": "obadiah_meets_elijah",
+  "storyVoiceKey": "VOICE_NATASHA_AFRICAN_AMERICAN",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "obadiah",
+  "primaryCharacterDisplayName": "Obadiah",
+  "emotionalTags": [
+    "afraid",
+    "faithful",
+    "courageous"
+  ],
+  "themeTags": [
+    "famine",
+    "protection_of_prophets",
+    "obedience",
+    "courage"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Obadiah feared Yahweh greatly; when Jezebel cut off Yahweh’s prophets, he hid one hundred of them in caves and fed them with bread and water. When Elijah sent him to Ahab, Obadiah said, “He will kill me.” Elijah answered, “I will surely show myself to him today.” So Obadiah went to meet Ahab. What brave step is before you today?\n",
+  "editorialNotes": "Packet 037 initial writer output. Short-only owner plan. The retelling remains within 1 Kings 18:1-16 and comes before 1065/1073/1460 (1 Kings 18:20-39). The canon’s verses 3-4 parenthesis is rendered as plain narration with no change of wording. In verses 7-9 the pronoun subjects are named (verse 7 “He recognized him”/“he knew him” becomes Obadiah; verse 8 “He answered him” becomes Elijah; verse 9 “He said” becomes Obadiah). Obadiah’s verses 9-14 plea is one quotation; Elijah’s quoted message inside it (verses 11 and 14) is kept as one inner quotation, so the canon’s third level of quotation marks is not reproduced. It keeps WEB “over the household”/“fifty to a cave”/springs/animals/kill/“Yahweh of Armies” and KJV “governor of his house”/“by fifty in a cave”/fountains/beasts/slay/“Lord of hosts” in their own lanes, and ends with Obadiah going to Ahab and Ahab going to meet Elijah in verse 16.",
+  "files": {
+    "short": {
+      "storyText": "story_3173_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3173_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3173_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3173_traditional_kjv.txt"
+    }
+  }
+}

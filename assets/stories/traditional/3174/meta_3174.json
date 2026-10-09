@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3174,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_037",
+  "title": "The King Disguised for Battle",
+  "scriptureAnchor": "1 Kings 22:29-40",
+  "scriptureAnchorId": "1_kings_22_29-40",
+  "shortScripture": false,
+  "bibleStoryKey": "the_king_disguised_for_battle",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "ahab",
+  "primaryCharacterDisplayName": "Ahab",
+  "emotionalTags": [
+    "exposed",
+    "wounded",
+    "fallen"
+  ],
+  "themeTags": [
+    "judgment",
+    "prophecy_fulfilled",
+    "death_of_a_king",
+    "succession"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The king of Israel disguised himself and went into the battle. A certain man drew his bow at random and struck him between the joints of the armor. The king was propped up in his chariot, and died at evening. The dogs licked up his blood, according to Yahweh’s word. What word from God are you holding onto today?\n",
+  "editorialNotes": "Packet 037 initial writer output. Short-only owner plan. The retelling remains within 1 Kings 22:29-40 and follows 1525 (1 Kings 22:1-28). It keeps the passage’s own title “the king of Israel” through verse 38 and names Ahab only where verses 39-40 do. Verse 38 keeps each lane’s own wording, WEB “where the prostitutes washed themselves” and KJV “and they washed his armour”. It keeps WEB Ramoth Gilead/“at random”/armor/“propped up”/“at evening”/army and KJV Ramoth–gilead/“at a venture”/harness/“stayed up”/“at even”/host in their own lanes, and ends with Ahaziah reigning in Ahab’s place in verse 40.",
+  "files": {
+    "short": {
+      "storyText": "story_3174_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3174_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3174_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3174_traditional_kjv.txt"
+    }
+  }
+}

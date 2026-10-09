@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3172,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_037",
+  "title": "David Recovered All",
+  "scriptureAnchor": "1 Samuel 30:9-20",
+  "scriptureAnchorId": "1_samuel_30_9-20",
+  "shortScripture": false,
+  "bibleStoryKey": "david_recovered_all",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "emotionalTags": [
+    "weary",
+    "determined",
+    "restored"
+  ],
+  "themeTags": [
+    "pursuit",
+    "rescue",
+    "recovery",
+    "mercy_to_a_stranger"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Two hundred men were so faint that they could not go over the brook Besor, but David pursued with four hundred. They found an Egyptian in the field, and when he had eaten, his spirit came again to him. He brought David down to the troop, and David recovered all. What have you seen restored that seemed lost?\n",
+  "editorialNotes": "Packet 037 initial writer output. Short-only owner plan. The retelling remains within 1 Samuel 30:9-20 and follows 1387/1497 (1 Samuel 30:1-6 and 30:1-8). It joins the Egyptian’s verses 13-14 answer into one quotation. Verse 19 keeps each lane’s own ending, WEB “David brought them all back” and KJV “David recovered all”. It keeps WEB troop/raid/plunder/livestock/“got sick” and KJV company/invasion/spoil/cattle/“fell sick” in their own lanes, and ends with David taking the flocks and herds as his plunder in verse 20.",
+  "files": {
+    "short": {
+      "storyText": "story_3172_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3172_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3172_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3172_traditional_kjv.txt"
+    }
+  }
+}

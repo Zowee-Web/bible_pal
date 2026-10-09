@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3171,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_037",
+  "title": "Balak Sends for Balaam",
+  "scriptureAnchor": "Numbers 22:1-14",
+  "scriptureAnchorId": "numbers_22_1-14",
+  "shortScripture": false,
+  "bibleStoryKey": "balak_sends_for_balaam",
+  "storyVoiceKey": "VOICE_REVEREND_MICHAEL_C_VINCENT",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "balaam",
+  "primaryCharacterDisplayName": "Balaam",
+  "emotionalTags": [
+    "afraid",
+    "distressed",
+    "refused"
+  ],
+  "themeTags": [
+    "blessing",
+    "curse",
+    "fear",
+    "obedience"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Moab was very afraid of the people, and Balak sent messengers to Balaam to curse Israel. God said to Balaam, “You shall not curse the people, for they are blessed.” In the morning Balaam told the princes, “Yahweh refuses to permit me to go with you.” When others plot against you, how might you rest in God’s blessing?\n",
+  "editorialNotes": "Packet 037 initial writer output. Short-only owner plan. The retelling remains within Numbers 22:1-14 and comes before 1597 (Numbers 22:21-35). It joins Balak’s verses 5-6 message into one quotation and nests Balak’s words inside Balaam’s verses 10-11 answer. It keeps WEB traveled/encamped/“beyond the Jordan”/“very afraid”/multitude/“Who are these men”/“refuses to permit me” and KJV “set forward”/pitched/“on this side Jordan”/“sore afraid”/company/“What men are these”/“refuseth to give me leave” in their own lanes, and ends with the princes reporting Balaam’s refusal to Balak in verse 14.",
+  "files": {
+    "short": {
+      "storyText": "story_3171_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3171_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3171_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3171_traditional_kjv.txt"
+    }
+  }
+}
