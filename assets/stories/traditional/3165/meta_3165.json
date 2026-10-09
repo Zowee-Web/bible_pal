@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3165,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_036",
+  "title": "A Pot of Manna Before the Testimony",
+  "scriptureAnchor": "Exodus 16:19-36",
+  "scriptureAnchorId": "exodus_16_19-36",
+  "shortScripture": false,
+  "bibleStoryKey": "a_pot_of_manna_before_the_testimony",
+  "storyVoiceKey": "VOICE_MARTHA_CARING",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "emotionalTags": [
+    "provided_for",
+    "resting",
+    "remembering"
+  ],
+  "themeTags": [
+    "manna",
+    "sabbath",
+    "provision",
+    "obedience"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Some of the people left the manna until the morning, and it bred worms. On the sixth day they gathered twice as much, and what they laid up for the Sabbath did not become foul. So the people rested on the seventh day. What could you lay down today, trusting there is enough?\n",
+  "editorialNotes": "Packet 036 initial writer output. Short-only owner plan. The retelling remains within Exodus 16:19-36 and follows 1023/1031 (Exodus 16:1-18). The WEB lane drops verse 19’s “to them”, matching the KJV lane’s “And Moses said”, so the story does not open on a pronoun without an antecedent. Verse 23’s “He said to them”/“And he said unto them” names Moses. It joins verses 25-26 and 28-29 into single quotations. It keeps WEB “became foul”/“angry”/“solemn rest”/boil/“omer-full” and KJV stank/wroth/“the rest of the holy sabbath”/seethe/“Fill an omer” in their own lanes, and ends with the measure of an omer in verse 36.",
+  "files": {
+    "short": {
+      "storyText": "story_3165_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3165_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3165_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3165_traditional_kjv.txt"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3168,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_036",
+  "title": "Two Sticks in One Hand",
+  "scriptureAnchor": "Ezekiel 37:15-28",
+  "scriptureAnchorId": "ezekiel_37_15-28",
+  "shortScripture": false,
+  "bibleStoryKey": "two_sticks_in_one_hand",
+  "storyVoiceKey": "VOICE_MIRIAM_JOYFUL",
+  "timelineEra": "exile",
+  "primaryCharacterId": "ezekiel",
+  "primaryCharacterDisplayName": "Ezekiel",
+  "emotionalTags": [
+    "hopeful",
+    "gathered",
+    "restored"
+  ],
+  "themeTags": [
+    "unity",
+    "covenant_of_peace",
+    "restoration",
+    "presence"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Yahweh told Ezekiel to write on two sticks, for Judah and for Joseph, and to join them into one stick in his hand. Yahweh said he would gather the children of Israel and make them one nation. “My tent also will be with them. I will be their God.” What could God join together in your life?\n",
+  "editorialNotes": "Packet 036 initial writer output. Short-only owner plan. The retelling remains within Ezekiel 37:15-28 and follows 1184 (Ezekiel 37:1-14). The passage is the prophet’s first-person report; verse 15’s “to me”/“unto me” is rendered “to Ezekiel”/“unto Ezekiel”, as in the book’s own setting, so the narration stays in the third person. Yahweh’s word in verses 16-28 is one quotation, broken into paragraphs at verses 18, 21, 24 and 26. The words to be spoken to the people are the inner quotation, so the canon’s third level of quotation marks is not reproduced. It keeps WEB companions/nations/ordinances/forever/tent and KJV fellows/heathen/judgments/“for ever”/tabernacle in their own lanes, and ends with the nations knowing that Yahweh sanctifies Israel in verse 28.",
+  "files": {
+    "short": {
+      "storyText": "story_3168_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3168_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3168_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3168_traditional_kjv.txt"
+    }
+  }
+}

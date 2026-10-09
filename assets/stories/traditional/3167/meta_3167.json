@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3167,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_036",
+  "title": "Zelophehad’s Daughters Marry Within the Tribe",
+  "scriptureAnchor": "Numbers 36:1-13",
+  "scriptureAnchorId": "numbers_36_1-13",
+  "shortScripture": false,
+  "bibleStoryKey": "zelophehads_daughters_marry_within_the_tribe",
+  "storyVoiceKey": "VOICE_HANNAH_HOPE",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "daughters_of_zelophehad",
+  "primaryCharacterDisplayName": "Daughters of Zelophehad",
+  "emotionalTags": [
+    "heard",
+    "provided_for",
+    "obedient"
+  ],
+  "themeTags": [
+    "inheritance",
+    "tribes",
+    "law",
+    "family"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The heads of Gilead’s fathers’ households said that if Zelophehad’s daughters married into other tribes, their inheritance would be taken away. Moses said, “The tribe of the sons of Joseph speak what is right.” The daughters did as Yahweh commanded Moses, and their inheritance remained in their father’s tribe. How could you help keep what is entrusted to your family?\n",
+  "editorialNotes": "Packet 036 initial writer output. Short-only owner plan. The retelling remains within Numbers 36:1-13 and is the sequel to 1436 (Numbers 27:1-11). It joins the verses 2-4 petition into one quotation and the verses 5-9 ruling into one quotation, with Yahweh’s command as an inner quotation, and joins verses 10-12 into one paragraph. It keeps WEB “heads of the fathers’ households”/“will be added to”/jubilee/“speak what is right”/ordinances and KJV “chief fathers”/“shall be put to”/jubile/“hath said well”/judgments in their own lanes, and ends with the commandments given in the plains of Moab in verse 13.",
+  "files": {
+    "short": {
+      "storyText": "story_3167_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3167_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3167_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3167_traditional_kjv.txt"
+    }
+  }
+}

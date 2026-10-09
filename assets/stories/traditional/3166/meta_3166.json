@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3166,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_036",
+  "title": "Say Shibboleth",
+  "scriptureAnchor": "Judges 12:1-15",
+  "scriptureAnchorId": "judges_12_1-15",
+  "shortScripture": false,
+  "bibleStoryKey": "say_shibboleth",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "timelineEra": "judges",
+  "primaryCharacterId": "jephthah",
+  "primaryCharacterDisplayName": "Jephthah",
+  "emotionalTags": [
+    "threatened",
+    "embattled",
+    "unsettled"
+  ],
+  "themeTags": [
+    "conflict",
+    "tribes",
+    "judges",
+    "succession"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The men of Ephraim said to Jephthah, “We will burn your house around you with fire!” Jephthah answered that when he called them, they did not save him. Then Gilead fought Ephraim, and at that time forty-two thousand of Ephraim fell. When others come against you in anger, how will you answer them?\n",
+  "editorialNotes": "Packet 036 initial writer output. Short-only owner plan. The retelling remains within Judges 12:1-15 and follows 3155 (Judges 11:29-40). It joins Jephthah’s verses 2-3 answer into one quotation and the verses 5-6 exchange at the river into one paragraph. Verse 9 keeps each lane’s own sense, WEB “He had thirty sons. He sent his thirty daughters outside his clan” and KJV “he had thirty sons, and thirty daughters, whom he sent abroad”. It keeps WEB fords/“No”/“couldn’t manage to pronounce it correctly”/“sons’ sons”/“donkey colts”/“hill country” and KJV passages/“Nay”/“could not frame to pronounce it right”/nephews/“ass colts”/mount in their own lanes, and ends with Abdon’s burial in Pirathon in verse 15.",
+  "files": {
+    "short": {
+      "storyText": "story_3166_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3166_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3166_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3166_traditional_kjv.txt"
+    }
+  }
+}
