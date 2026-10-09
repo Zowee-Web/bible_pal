@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3176,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_038",
+  "title": "The King Weeps for Absalom",
+  "scriptureAnchor": "2 Samuel 19:1-14",
+  "scriptureAnchorId": "2_samuel_19_1-14",
+  "shortScripture": false,
+  "bibleStoryKey": "the_king_weeps_for_absalom",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "emotionalTags": [
+    "grieving",
+    "rebuked",
+    "roused"
+  ],
+  "themeTags": [
+    "grief",
+    "kingship",
+    "loyalty",
+    "return"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The victory that day was turned into mourning, for the king grieved for his son. He cried with a loud voice, “My son Absalom, Absalom, my son, my son!” Joab told him to arise and comfort his servants, and the king arose and sat in the gate. When grief overwhelms you, who helps you rise again?\n",
+  "editorialNotes": "Packet 038 initial writer output. Short-only owner plan. The retelling remains within 2 Samuel 19:1-14, follows 1582 (2 Samuel 18) and comes before 3078 (2 Samuel 19:15-30). It joins Joab’s verses 5-7 rebuke, the people’s verses 9-10 words, and David’s verses 11-13 message (with the words for the elders and for Amasa as inner quotations) into single quotations. Verse 14’s “He bowed” keeps the canon’s unnamed subject. Verse 2 keeps each lane’s own form, WEB direct speech “The king grieves for his son” and KJV indirect “how the king was grieved for his son”. It keeps WEB sneaked/“love those who hate you”/“speak to comfort”/army/“instead of Joab” and KJV “gat them by stealth”/“lovest thine enemies”/“speak comfortably”/host/“in the room of Joab” in their own lanes, and ends with the men of Judah sending to the king in verse 14.",
+  "files": {
+    "short": {
+      "storyText": "story_3176_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3176_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3176_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3176_traditional_kjv.txt"
+    }
+  }
+}

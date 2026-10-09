@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3177,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_038",
+  "title": "So Moses Finished the Work",
+  "scriptureAnchor": "Exodus 40:16-33",
+  "scriptureAnchorId": "exodus_40_16-33",
+  "shortScripture": false,
+  "bibleStoryKey": "so_moses_finished_the_work",
+  "storyVoiceKey": "VOICE_JANE_PROFESSIONAL",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "emotionalTags": [
+    "obedient",
+    "steady",
+    "reverent"
+  ],
+  "themeTags": [
+    "tabernacle",
+    "obedience",
+    "worship",
+    "completion"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Moses raised up the tabernacle, brought the ark into it, set the bread in order before Yahweh, lit the lamps, and burned incense, as Yahweh commanded Moses. Moses, Aaron, and his sons washed at the basin. So Moses finished the work. What work has God given you to finish with care today?\n",
+  "editorialNotes": "Packet 038 initial writer output. Short-only owner plan. The retelling remains within Exodus 40:16-33 and comes before 3015 (Exodus 40:34-38). It groups the verses into paragraphs by furnishing and keeps every recurrence of “as Yahweh commanded Moses”/“as the Lord commanded Moses”. It keeps WEB “raised up”/covenant/poles/veil/“lamp stand”/“meal offering”/basin and KJV “reared up”/testimony/staves/vail/candlestick/“meat offering”/laver in their own lanes, and ends with Moses finishing the work in verse 33.",
+  "files": {
+    "short": {
+      "storyText": "story_3177_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3177_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3177_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3177_traditional_kjv.txt"
+    }
+  }
+}

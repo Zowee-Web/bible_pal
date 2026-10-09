@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3178,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_038",
+  "title": "A Step Between Me and Death",
+  "scriptureAnchor": "1 Samuel 20:1-11",
+  "scriptureAnchorId": "1_samuel_20_1-11",
+  "shortScripture": false,
+  "bibleStoryKey": "a_step_between_me_and_death",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "emotionalTags": [
+    "hunted",
+    "endangered",
+    "befriended"
+  ],
+  "themeTags": [
+    "friendship",
+    "covenant",
+    "danger",
+    "loyalty"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "David fled from Naioth and said to Jonathan, “What have I done?” Jonathan answered, “Far from it; you will not die.” David said, “There is but a step between me and death.” Jonathan said, “Whatever your soul desires, I will even do it for you.” Who stands beside you when you are afraid?\n",
+  "editorialNotes": "Packet 038 initial writer output. Short-only owner plan. The retelling remains within 1 Samuel 20:1-11 and comes before 1630 (1 Samuel 20:24-42). Verse 2’s “He said to him”/“And he said unto him” names Jonathan. It joins David’s verses 5-8 request into one quotation, with the excuse for Saul and Saul’s possible answer as inner quotations. It keeps WEB “Far from it”/favor/dine/angry/kill and KJV “God forbid”/grace/“sit with the king at meat”/“very wroth”/slay in their own lanes. Verse 10 keeps each lane’s own form, WEB one question and KJV two (“Who shall tell me? or what if…”). It ends with the two going out into the field in verse 11.",
+  "files": {
+    "short": {
+      "storyText": "story_3178_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3178_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3178_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3178_traditional_kjv.txt"
+    }
+  }
+}

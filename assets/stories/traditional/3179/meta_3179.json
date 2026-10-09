@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3179,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_038",
+  "title": "Joab Before and Behind",
+  "scriptureAnchor": "2 Samuel 10:1-14",
+  "scriptureAnchorId": "2_samuel_10_1-14",
+  "shortScripture": false,
+  "bibleStoryKey": "joab_before_and_behind",
+  "storyVoiceKey": "VOICE_JAMES_HUSKY",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "joab",
+  "primaryCharacterDisplayName": "Joab",
+  "emotionalTags": [
+    "shamed",
+    "embattled",
+    "courageous"
+  ],
+  "themeTags": [
+    "kindness_refused",
+    "courage",
+    "battle",
+    "brotherhood"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Hanun shaved off one half of the beards of David’s servants, and the men were greatly ashamed. David said, “Wait at Jericho until your beards have grown.” When the battle was set against Joab before and behind, he said, “Be courageous, and let’s be strong for our people.” For whom could you be courageous today?\n",
+  "editorialNotes": "Packet 038 initial writer output. Short-only owner plan. The retelling remains within 2 Samuel 10:1-14 (the parallel 1 Chronicles 19 has no story). It joins Joab’s verses 11-12 charge into one quotation. Verse 6 keeps each lane’s own wording, WEB “had become odious to David” and KJV “stank before David”. It keeps WEB “in his place”/“Wait at Jericho”/Zobah/“men of Tob”/army/“Be courageous, and let’s be strong” and KJV “in his stead”/“Tarry at Jericho”/Zoba/Ish–tob/host/“Be of good courage, and let us play the men” in their own lanes, and ends with Joab returning to Jerusalem in verse 14.",
+  "files": {
+    "short": {
+      "storyText": "story_3179_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3179_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3179_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3179_traditional_kjv.txt"
+    }
+  }
+}

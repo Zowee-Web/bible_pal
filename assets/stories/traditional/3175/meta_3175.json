@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3175,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_038",
+  "title": "Farewell at Miletus",
+  "scriptureAnchor": "Acts 20:17-38",
+  "scriptureAnchorId": "acts_20_17-38",
+  "shortScripture": false,
+  "bibleStoryKey": "farewell_at_miletus",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "emotionalTags": [
+    "entrusted",
+    "sorrowing",
+    "steadfast"
+  ],
+  "themeTags": [
+    "farewell",
+    "ministry",
+    "grace",
+    "giving"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "At Miletus Paul told the elders of the assembly that he did not hold his life dear, so that he might finish his race with joy. He entrusted them to God and to the word of his grace. They all wept, and accompanied him to the ship. To whose care could you entrust someone you love?\n",
+  "editorialNotes": "Packet 038 initial writer output. Short-only owner plan. The retelling remains within Acts 20:17-38 and follows 1482 (Acts 20:7-12). Verse 17’s “he sent” names Paul, so the story does not open on a pronoun without an antecedent; this is a one-word substitution, and both lanes otherwise keep every canon word. Paul’s speech in verses 18-35 is one continuous quotation, broken into paragraphs at verses 22, 25 and 32, with the Lord Jesus’ saying as an inner quotation. It keeps WEB assembly/“set foot in Asia”/“bound by the Spirit”/race/“vicious wolves”/entrust and KJV church/“came into Asia”/“bound in the spirit”/course/“grievous wolves”/commend in their own lanes, and ends with the elders accompanying Paul to the ship in verse 38.",
+  "files": {
+    "short": {
+      "storyText": "story_3175_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3175_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3175_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3175_traditional_kjv.txt"
+    }
+  }
+}
