@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3160,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_035",
+  "title": "Rachel’s Pillar on the Way to Ephrath",
+  "scriptureAnchor": "Genesis 35:8-29",
+  "scriptureAnchorId": "genesis_35_8-29",
+  "shortScripture": false,
+  "bibleStoryKey": "rachels_pillar_on_the_way_to_ephrath",
+  "storyVoiceKey": "VOICE_MARY_PONDER",
+  "timelineEra": "patriarchs",
+  "primaryCharacterId": "jacob",
+  "primaryCharacterDisplayName": "Jacob",
+  "emotionalTags": [
+    "grieving",
+    "blessed",
+    "bereaved"
+  ],
+  "themeTags": [
+    "death",
+    "birth",
+    "naming",
+    "family"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Deborah, Rebekah’s nurse, died and was buried below Bethel. On the way to Ephrath, Rachel had hard labor, and as she died she named her son Benoni; his father named him Benjamin. Jacob set up a pillar on her grave. Isaac died, old and full of days, and Esau and Jacob buried him. Whose loss are you still marking?\n",
+  "editorialNotes": "Packet 035 initial writer output. Short-only owner plan. The retelling remains within Genesis 35:8-29 and follows 1382 (Genesis 35:1-7). It joins the verses 11-12 promise into one quotation and the verses 22b-26 list of Jacob’s sons into one paragraph. The WEB lane renders the canon’s parenthetical asides (verses 18, 19, 23, 25, 26, 27) with commas and no change of wording. The KJV lane omits the opening conjunction “But” of verse 8, since the story begins there. It keeps WEB Bethel/Allon Bacuth/Paddan Aram/Benoni/Eder/“lived as foreigners”/“gave up the spirit” and KJV Beth–el/Allon–bachuth/Padan–aram/Ben–oni/Edar/sojourned/“gave up the ghost” in their own lanes, and ends with Esau and Jacob burying Isaac in verse 29.",
+  "files": {
+    "short": {
+      "storyText": "story_3160_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3160_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3160_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3160_traditional_kjv.txt"
+    }
+  }
+}

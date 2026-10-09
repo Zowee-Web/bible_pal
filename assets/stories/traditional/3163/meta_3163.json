@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3163,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_035",
+  "title": "Adonijah at the Horns of the Altar",
+  "scriptureAnchor": "1 Kings 1:41-53",
+  "scriptureAnchorId": "1_kings_1_41-53",
+  "shortScripture": false,
+  "bibleStoryKey": "adonijah_at_the_horns_of_the_altar",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "adonijah",
+  "primaryCharacterDisplayName": "Adonijah",
+  "emotionalTags": [
+    "afraid",
+    "scattered",
+    "spared"
+  ],
+  "themeTags": [
+    "kingship",
+    "succession",
+    "altar",
+    "mercy"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Adonijah’s guests heard that Solomon was made king; they were afraid and went their way. Adonijah, afraid because of Solomon, hung onto the horns of the altar. Solomon said, “If he shows himself a worthy man, not a hair of his shall fall to the earth,” then, “Go to your house.” What are you holding onto in fear today?\n",
+  "editorialNotes": "Packet 035 initial writer output. Short-only owner plan. The retelling remains within 1 Kings 1:41-53 and follows 1633 (1 Kings 1:28-40). Verse 41’s “heard it” is rendered “heard the noise” in both lanes, using the verse’s own noun, and verse 53’s “He came”/“And he came” names Adonijah. Jonathan’s report in verses 43-48 is one quotation, with the servants’ blessing and David’s words as inner quotations. It keeps WEB “worthy man”/“good news”/“hung onto”/“swear to me first”/kill and KJV “valiant man”/“good tidings”/“caught hold on”/“swear unto me to day”/slay in their own lanes, and ends with Solomon sending Adonijah to his house in verse 53.",
+  "files": {
+    "short": {
+      "storyText": "story_3163_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3163_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3163_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3163_traditional_kjv.txt"
+    }
+  }
+}

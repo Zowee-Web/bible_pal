@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3162,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "claude-opus-5-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_035",
+  "title": "Gathered at Shechem",
+  "scriptureAnchor": "Joshua 24:1-13",
+  "scriptureAnchorId": "joshua_24_1-13",
+  "shortScripture": false,
+  "bibleStoryKey": "gathered_at_shechem",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "timelineEra": "conquest",
+  "primaryCharacterId": "joshua",
+  "primaryCharacterDisplayName": "Joshua",
+  "emotionalTags": [
+    "remembering",
+    "thankful",
+    "gathered"
+  ],
+  "themeTags": [
+    "history",
+    "deliverance",
+    "covenant",
+    "gift_of_the_land"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "At Shechem, Joshua told all the people what Yahweh, the God of Israel, says. Yahweh took Abraham from beyond the River, brought their fathers out of Egypt, and delivered their enemies into their hand, not with their sword. He gave them cities they did not build. What have you received that you did not plant?\n",
+  "editorialNotes": "Packet 035 initial writer output. Short-only owner plan. The retelling remains within Joshua 24:1-13 and comes before 1137/1456/1551 (Joshua 24:14-28). Joshua’s words in verses 2-13 are one continuous quotation, with Yahweh’s words as the inner quotation, broken into paragraphs at verses 5, 8 and 11. It keeps WEB “beyond the River”/Nahor/offspring/“many days”/“listen to Balaam”/“olive groves” and KJV “the other side of the flood”/Nachor/seed/“a long season”/“hearken unto Balaam”/oliveyards in their own lanes. Verse 12 keeps WEB “your sword” and KJV “thy sword”. It ends with the vineyards they did not plant in verse 13.",
+  "files": {
+    "short": {
+      "storyText": "story_3162_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3162_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3162_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3162_traditional_kjv.txt"
+    }
+  }
+}
