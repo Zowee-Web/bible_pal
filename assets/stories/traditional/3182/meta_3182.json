@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3182,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex-gpt-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_039",
+  "title": "The Camps Set Forward",
+  "scriptureAnchor": "Numbers 10:11-28",
+  "scriptureAnchorId": "numbers_10_11-28",
+  "shortScripture": false,
+  "bibleStoryKey": "the_camps_set_forward",
+  "storyVoiceKey": "VOICE_NOAH_PATIENT",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "journey",
+    "tabernacle",
+    "tribes"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The children of Israel set out at Yahweh's command by Moses. Judah went first; the sons of Gershon and Merari carried the tabernacle; and Dan formed the rear guard. The cloud stayed in the wilderness of Paran. What do you notice about the order of their journey?\n",
+  "editorialNotes": "Packet 039 initial writer output, Traditional Short only. Both stories retain all source words and the passage’s ordered account of the departure, tribal standards, leaders, and tabernacle bearers. Paragraph breaks follow the recorded camp movements. WEB covenant, Nethanel, Ochran, and rear guard remain distinct from KJV testimony, Nethaneel, Ocran, and rereward. No dialogue, travel scenery, or emotional reactions are added.",
+  "files": {
+    "short": {
+      "storyText": "story_3182_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3182_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3182_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3182_traditional_kjv.txt"
+    }
+  }
+}

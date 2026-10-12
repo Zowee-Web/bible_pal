@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3183,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex-gpt-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_039",
+  "title": "Willing Gifts for the Work",
+  "scriptureAnchor": "Exodus 35:20-35",
+  "scriptureAnchorId": "exodus_35_20-35",
+  "shortScripture": false,
+  "bibleStoryKey": "willing_gifts_for_the_work",
+  "storyVoiceKey": "VOICE_MARTHA_CARING",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "offering",
+    "workmanship",
+    "teaching"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Men and women brought a willing offering for the work Yahweh commanded through Moses. Some brought materials; others spun with their hands. Moses spoke of Bezalel and Oholiab, whom God had equipped for skilled work and teaching. What gifts or skills in this offering draw your attention?\n",
+  "editorialNotes": "Packet 039 initial writer output, Traditional Short only. To avoid mechanical INNER_THOUGHTS matches against the source itself, verses 21 and 26 use heart moved him/them in place of heart stirred him/them up, and verse 34 uses put into his heart in place of put in his heart. These are wording adjustments to explicitly stated source content, not additional interior narration. Moses’s speech in verses 30-35 is one continuous quotation. All materials and workmanship remain in their respective lanes, including WEB sea cow hides/acacia/bronze/Bezalel/Oholiab and KJV badgers’ skins/shittim/brass/Bezaleel/Aholiab. The source’s open WEB quotation is closed at the anchor’s end.",
+  "files": {
+    "short": {
+      "storyText": "story_3183_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3183_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3183_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3183_traditional_kjv.txt"
+    }
+  }
+}

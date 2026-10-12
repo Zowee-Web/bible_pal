@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3180,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex-gpt-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_039",
+  "title": "I Appeal to Caesar",
+  "scriptureAnchor": "Acts 25:1-12",
+  "scriptureAnchorId": "acts_25_1-12",
+  "shortScripture": false,
+  "bibleStoryKey": "i_appeal_to_caesar",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "paul",
+  "primaryCharacterDisplayName": "Paul",
+  "themeTags": [
+    "accusation",
+    "judgment",
+    "appeal"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The charges against Paul could not be proved. Before Festus, Paul denied wrongdoing against the law, the temple, or Caesar, and appealed to Caesar. Festus conferred with the council and answered that Paul would go to Caesar. What do you notice about Paul's answer under accusation?\n",
+  "editorialNotes": "Packet 039 initial writer output, Traditional Short only. Source wording retained in both lanes except that Paul replaces the pronoun he in verse 8 to identify the speaker. Dialogue punctuation and paragraphing added for narration. KJV retains Cesarea and Cesar; WEB retains Caesarea and Caesar. Paul’s answer spans verses 10-11. The account ends at Festus’s answer in verse 12, without adding a journey to Rome.",
+  "files": {
+    "short": {
+      "storyText": "story_3180_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3180_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3180_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3180_traditional_kjv.txt"
+    }
+  }
+}

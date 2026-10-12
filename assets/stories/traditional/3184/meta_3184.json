@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3184,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex-gpt-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_039",
+  "title": "Treasures Shown to Babylon",
+  "scriptureAnchor": "2 Kings 20:12-21",
+  "scriptureAnchorId": "2_kings_20_12-21",
+  "shortScripture": false,
+  "bibleStoryKey": "treasures_shown_to_babylon",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "hezekiah",
+  "primaryCharacterDisplayName": "Hezekiah",
+  "themeTags": [
+    "treasures",
+    "warning",
+    "succession"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Hezekiah showed the visitors from Babylon all his treasures. Isaiah announced that these would be carried to Babylon, and that some of Hezekiah's sons would be eunuchs in its king's palace. Hezekiah called Yahweh's word good and spoke of peace and truth in his days. What do you notice in his reply?\n",
+  "editorialNotes": "Packet 039 initial writer output, Traditional Short only. Verse 15 names Isaiah in place of he to clarify the questioner. In WEB verse 13 the dash after things becomes a comma with a space; all other WEB source words are retained. KJV words are otherwise unchanged and dialogue punctuation is added. Isaiah’s prediction in verses 16-18 remains a prediction, not an event narrated as fulfilled. Hezekiah’s reply is retained without attributing pride, selfishness, fear, or repentance. The account includes the closing notice of his works, death, and Manasseh’s succession.",
+  "files": {
+    "short": {
+      "storyText": "story_3184_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3184_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3184_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3184_traditional_kjv.txt"
+    }
+  }
+}

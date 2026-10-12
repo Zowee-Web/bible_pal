@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3181,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex-gpt-5",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_039",
+  "title": "Before the Morning Light",
+  "scriptureAnchor": "2 Samuel 17:15-23",
+  "scriptureAnchorId": "2_samuel_17_15-23",
+  "shortScripture": false,
+  "bibleStoryKey": "before_the_morning_light",
+  "storyVoiceKey": "VOICE_ARCHER",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "themeTags": [
+    "warning",
+    "messengers",
+    "crossing"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Hushai urged the priests to warn David. After hiding in a well, Jonathan and Ahimaaz brought the warning to the king. David and all who were with him crossed the Jordan by morning light. What stands out to you about the warning and the crossing?\n",
+  "editorialNotes": "Packet 039 initial writer output, Traditional Short only. Verse 21 names Absalom’s servants as those who departed and Jonathan and Ahimaaz as those coming up from the well. Other source words are retained, with paragraphing and dialogue punctuation. The opening retains Hushai’s report that he and Ahithophel gave counsel without supplying the counsel from outside the anchor. WEB retains fords of the wilderness and crushed grain; KJV retains plains of the wilderness and ground corn. Verse 23 includes Ahithophel’s death and burial without inferred feelings or additional detail.",
+  "files": {
+    "short": {
+      "storyText": "story_3181_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3181_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3181_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3181_traditional_kjv.txt"
+    }
+  }
+}
