@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3196,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_042",
+  "title": "The Land Given Beyond the Jordan",
+  "scriptureAnchor": "Deuteronomy 3:12-22",
+  "scriptureAnchorId": "deuteronomy_3_12-22",
+  "shortScripture": false,
+  "bibleStoryKey": "the_land_given_beyond_the_jordan",
+  "storyVoiceKey": "VOICE_JANE_PROFESSIONAL",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "joshua",
+  "primaryCharacterDisplayName": "Joshua",
+  "themeTags": [
+    "inheritance",
+    "duty",
+    "courage"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The land already given to the tribes did not end their obligation to their brothers. Their armed men were to cross over until the others also received rest. How does the command to Joshua connect what his eyes had seen with the kingdoms still before him?\n",
+  "editorialNotes": "Packet 042 initial writer output; Traditional Short only. Each story lane retains all wording from its respective bundled source passage. Verse numbers and the scripture heading are absent from story text, and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve the full lane sources. WEB quotation marks and speech boundaries are retained; KJV retains its source's unquoted direct-speech punctuation. No dialogue is flattened into narrator assertion, no speaker is newly named in the story, and no repetition or anchor-critical clause is omitted or compressed. No emotion, motive, action, setting, chronology, or doctrinal explanation is added. The first-person address is preserved without adding a speaker name from outside the assigned anchor. Metadata identifies Joshua, who is explicitly addressed in verse 21. Every tribal allotment, geographical limit, Jair's naming, Machir, the wives, little ones and livestock remaining in the cities, the armed men's obligation, the condition for returning, and the command to Joshua are retained. The passage's reference to two kings remains a reference without importing their earlier battles. WEB retains land of Rephaim, valley of the Arnon, Arabah, slopes of Pisgah, and men of valor; KJV retains land of giants, river Arnon, plain, Ashdoth-pisgah, and all that are meet for the war, with source spelling and punctuation unchanged. The future commands and assurances are not narrated as accomplished events.",
+  "files": {
+    "short": {
+      "storyText": "story_3196_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3196_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3196_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3196_traditional_kjv.txt"
+    }
+  }
+}

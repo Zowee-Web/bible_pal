@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3197,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_042",
+  "title": "Jonathan's Covenant and the Arrows",
+  "scriptureAnchor": "1 Samuel 20:12-23",
+  "scriptureAnchorId": "1_samuel_20_12-23",
+  "shortScripture": false,
+  "bibleStoryKey": "jonathan_s_covenant_and_the_arrows",
+  "storyVoiceKey": "VOICE_JOHN_BELOVED",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "jonathan",
+  "primaryCharacterDisplayName": "Jonathan",
+  "themeTags": [
+    "covenant",
+    "kindness",
+    "faithfulness"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Jonathan bound himself to tell David what he learned from his father. He also asked for kindness toward his own house, and described how the arrows would carry his message. What do you notice about the promises each man was asked to keep?\n",
+  "editorialNotes": "Packet 042 initial writer output; Traditional Short only. Each story lane retains all wording from its respective bundled source passage. Verse numbers and the scripture heading are absent from story text, and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve the full lane sources. WEB quotation marks and speech boundaries are retained; KJV retains its source's unquoted direct-speech punctuation. No dialogue is flattened into narrator assertion, no speaker is newly named in the story, and no repetition or anchor-critical clause is omitted or compressed. No emotion, motive, action, setting, chronology, or doctrinal explanation is added. Jonathan's oath, both possible reports from his father, the request for continuing kindness to his house, covenant, renewed oath, explicitly stated love, empty seat at the new moon, three-day timing, hiding place and stone Ezel, three arrows, both messages to the boy/lad, and the closing witness between the two men are all retained. Jonathan's stated affection is source-grounded; no additional inner response is invented for either man. His proposed arrow signal remains future speech: no arrows are actually shot within this anchor. The source comparison 'as though I shot at a mark' is retained in both lanes as Jonathan's own description, not added lyrical narration. WEB retains loving kindness, boy, no danger and its oath wording; KJV retains kindness, lad/young man, no hurt and its distinct conditional oath wording. His father is not newly named Saul.",
+  "files": {
+    "short": {
+      "storyText": "story_3197_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3197_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3197_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3197_traditional_kjv.txt"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3198,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_042",
+  "title": "Abner Comes to David at Hebron",
+  "scriptureAnchor": "2 Samuel 3:6-21",
+  "scriptureAnchorId": "2_samuel_3_6-21",
+  "shortScripture": false,
+  "bibleStoryKey": "abner_comes_to_david_at_hebron",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "abner",
+  "primaryCharacterDisplayName": "Abner",
+  "themeTags": [
+    "alliance",
+    "conflict",
+    "kingship"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Abner offered to gather Israel to David, while David required Michal's return. The account also records Paltiel's weeping as he followed her. What do these distinct actions show about who spoke, who set conditions, and who was sent away?\n",
+  "editorialNotes": "Packet 042 initial writer output; Traditional Short only. Each story lane retains all wording from its respective bundled source passage. Verse numbers and the scripture heading are absent from story text, and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve the full lane sources. WEB quotation marks and speech boundaries are retained; KJV retains its source's unquoted direct-speech punctuation. No dialogue is flattened into narrator assertion, no speaker is newly named in the story, and no repetition or anchor-critical clause is omitted or compressed. No emotion, motive, action, setting, chronology, or doctrinal explanation is added. Ishbosheth's accusation concerning Rizpah remains his accusation, not an independently asserted act. Abner's anger, Ishbosheth's fear, and Paltiel/Phaltiel's weeping are expressly stated by the source and are retained without invented motives. Abner's oath and claim about Yahweh/the Lord's promise, his message about the land, David's requirement, Michal's identity and the hundred foreskins, her removal from her husband and the journey to Bahurim, Abner's words to the elders and Benjamin, the twenty men, feast, proposal to gather Israel, and peaceful departure are all retained. WEB explicitly names David as speaker in verse 13; KJV retains its pronoun 'he' there. WEB keeps Ishbosheth, Paltiel, alliance/treaty/covenant and transfer; KJV keeps its distinct Ish-bosheth and Phaltiel forms, league, and translate. No later gathering, completed transfer of all Israel, or death of Abner is added.",
+  "files": {
+    "short": {
+      "storyText": "story_3198_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3198_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3198_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3198_traditional_kjv.txt"
+    }
+  }
+}

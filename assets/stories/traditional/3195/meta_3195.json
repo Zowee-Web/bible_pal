@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3195,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_042",
+  "title": "Purification and the Dividing of the Plunder",
+  "scriptureAnchor": "Numbers 31:19-30",
+  "scriptureAnchorId": "numbers_31_19-30",
+  "shortScripture": false,
+  "bibleStoryKey": "purification_and_the_dividing_of_the_plunder",
+  "storyVoiceKey": "VOICE_PRISCILLA_TEACHER",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "eleazar",
+  "primaryCharacterDisplayName": "Eleazar",
+  "themeTags": [
+    "purification",
+    "instruction",
+    "division"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Eleazar gave instructions for purification, and Yahweh commanded how the captives and livestock were to be divided. The warriors' portion and the congregation's portion carried different levies. What distinctions do you notice between purification, division, and the portions given to the priest and the Levites?\n",
+  "editorialNotes": "Packet 042 initial writer output; Traditional Short only. Each story lane retains all wording from its respective bundled source passage. Verse numbers and the scripture heading are absent from story text, and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve the full lane sources. WEB quotation marks and speech boundaries are retained; KJV retains its source's unquoted direct-speech punctuation. No dialogue is flattened into narrator assertion, no speaker is newly named in the story, and no repetition or anchor-critical clause is omitted or compressed. No emotion, motive, action, setting, chronology, or doctrinal explanation is added. The opening purification commands remain without a newly supplied speaker name; Eleazar and Yahweh/the Lord are named only where the passage names them. Commands remain commands, with no assertion that the purification or distribution has already occurred. The seven-day exclusion, third- and seventh-day purification, captives, all material categories, fire and water distinctions, washing and reentry, equal division, one in five hundred and one in fifty, recipient priest and Levites, and both human and animal portions are retained. WEB retains bronze, water for impurity, plunder, cattle, donkeys, wave offering, and tabernacle; KJV retains brass, water of separation, prey, beeves, asses, heave offering, and tabernacle. The text does not soften the inclusion of persons among the portions or import the preceding battle.",
+  "files": {
+    "short": {
+      "storyText": "story_3195_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3195_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3195_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3195_traditional_kjv.txt"
+    }
+  }
+}

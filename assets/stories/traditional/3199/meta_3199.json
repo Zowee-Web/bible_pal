@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3199,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_042",
+  "title": "The Promise and Warning to Solomon",
+  "scriptureAnchor": "1 Kings 9:1-9",
+  "scriptureAnchorId": "1_kings_9_1-9",
+  "shortScripture": false,
+  "bibleStoryKey": "the_promise_and_warning_to_solomon",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "solomon",
+  "primaryCharacterDisplayName": "Solomon",
+  "themeTags": [
+    "covenant",
+    "obedience",
+    "warning"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Yahweh's answer to Solomon joined a promise about the throne with a warning about turning to other gods. The house he had made holy was also named in the warning. What conditions accompany the promise, and what reasons would people give for the calamity upon the land and house?\n",
+  "editorialNotes": "Packet 042 initial writer output; Traditional Short only. Each story lane retains all wording from its respective bundled source passage. Verse numbers and the scripture heading are absent from story text, and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve the full lane sources. WEB quotation marks and speech boundaries are retained; KJV retains its source's unquoted direct-speech punctuation. No dialogue is flattened into narrator assertion, no speaker is newly named in the story, and no repetition or anchor-critical clause is omitted or compressed. No emotion, motive, action, setting, chronology, or doctrinal explanation is added. Solomon's completed buildings and desires, the second appearance and its Gibeon comparison, the answered prayer, sanctification of the house, perpetual name/eyes/heart, the condition concerning David's example, promised throne, warning to Solomon and his children, other gods, removal from the land, rejection of the house, proverb and byword, astonishment and hissing, and the quoted future question and answer are all retained. The promise is conditional in the speech; the threatened judgment and future explanation remain speech, not events already accomplished. No details of the earlier Gibeon appearance, the prior prayer, or a later destruction are imported. WEB retains made holy, ordinances, peoples, abandoned and embraced; KJV retains hallowed, judgments, people, forsook and taken hold. The source's words about the divine eyes and heart are retained as spoken, without added theological interpretation.",
+  "files": {
+    "short": {
+      "storyText": "story_3199_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3199_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3199_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3199_traditional_kjv.txt"
+    }
+  }
+}
