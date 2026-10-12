@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3186,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "joyful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_040",
+  "title": "The Levites Carry the Ark",
+  "scriptureAnchor": "1 Chronicles 15:1-24",
+  "scriptureAnchorId": "1_chronicles_15_1-24",
+  "shortScripture": false,
+  "bibleStoryKey": "the_levites_carry_the_ark",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "themeTags": [
+    "service",
+    "worship",
+    "obedience"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "David called the priests and Levites to sanctify themselves, and the Levites carried the ark as Moses had commanded. Singers, musicians, and doorkeepers received their appointed work. Which of these responsibilities draws your attention as you consider the account of their service?\n",
+  "editorialNotes": "Packet 040 initial writer output; Traditional Short only. WEB source wording is retained with verse numbers removed and verses grouped into paragraphs. KJV omits repeated verse-opening And and repeated and within the lists in verses 18, 20, 21, and 24; all named persons, family groups, counts, roles, instruments, and source order remain. Quotation marks are added around David's KJV speech in verses 2 and 12-13. No speaker is newly named. WEB retains brothers, poles, bronze, stringed instruments, eight-stringed lyre, and the source name spellings; KJV retains brethren, staves, brass, psalteries, Sheminith, and its own name spellings. The account ends at verse 24; no procession events from later verses are supplied.",
+  "files": {
+    "short": {
+      "storyText": "story_3186_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3186_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3186_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3186_traditional_kjv.txt"
+    }
+  }
+}

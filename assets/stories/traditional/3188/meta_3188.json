@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3188,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_040",
+  "title": "The Account of the Tabernacle Materials",
+  "scriptureAnchor": "Exodus 38:21-31",
+  "scriptureAnchorId": "exodus_38_21-31",
+  "shortScripture": false,
+  "bibleStoryKey": "the_account_of_the_tabernacle_materials",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "ithamar",
+  "primaryCharacterDisplayName": "Ithamar",
+  "themeTags": [
+    "service",
+    "offerings",
+    "workmanship"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The account names the workers and records the gold, silver, and bronze used for the tabernacle. It also specifies the uses of the silver and bronze. Which detail about the materials, their quantities, or their use holds your attention as you read?\n",
+  "editorialNotes": "Packet 040 initial writer output; Traditional Short only. The materials account is presented without changing either lane's source wording. Verse numbers are removed and verses grouped into paragraphs; no dialogue, named speaker, conversion to modern weights, explanation, omitted repetition, or compression is added. All quantities, ages, numbers of men and sockets, family and tribal identifications, crafts, colors, and listed uses remain. WEB preserves Bezalel, Oholiab, bronze, capitals, veil, and Tent of Meeting; KJV preserves Bezaleel, Aholiab, brass, chapiters, vail, and tabernacle of the congregation. Pronoun he remains as in the source without an added attribution.",
+  "files": {
+    "short": {
+      "storyText": "story_3188_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3188_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3188_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3188_traditional_kjv.txt"
+    }
+  }
+}

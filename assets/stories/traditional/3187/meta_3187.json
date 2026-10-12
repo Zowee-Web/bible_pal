@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3187,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_040",
+  "title": "The Levites Given for Service",
+  "scriptureAnchor": "Numbers 3:1-13",
+  "scriptureAnchorId": "numbers_3_1-13",
+  "shortScripture": false,
+  "bibleStoryKey": "the_levites_given_for_service",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "service",
+    "priesthood",
+    "consecration"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The Levites were given to Aaron and his sons for the service of the tabernacle. The instructions name their duties and distinguish them from the priests' charge. What do you notice about the care given to these responsibilities and to those appointed to carry them?\n",
+  "editorialNotes": "Packet 040 initial writer output; Traditional Short only. The source wording in both lanes is retained, including the genealogy introduction, Nadab and Abihu's death and childlessness, the Levites' charge, the warning concerning the stranger, and the firstborn declaration. Verse numbers are removed and verses grouped into paragraphs. KJV quotation marks are added around the divine speeches in verses 6-10 and 12-13; no speaker is newly named. WEB retains Tent of Meeting, furnishings, firstborn who open the womb, and man and animal; KJV retains tabernacle of the congregation, instruments, firstborn that openeth the matrix, and man and beast. No command is narrated as a completed action; no repetitions are omitted.",
+  "files": {
+    "short": {
+      "storyText": "story_3187_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3187_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3187_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3187_traditional_kjv.txt"
+    }
+  }
+}

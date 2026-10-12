@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3189,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_040",
+  "title": "The Heaps of Offerings",
+  "scriptureAnchor": "2 Chronicles 31:1-10",
+  "scriptureAnchorId": "2_chronicles_31_1-10",
+  "shortScripture": false,
+  "bibleStoryKey": "the_heaps_of_offerings",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "hezekiah",
+  "primaryCharacterDisplayName": "Hezekiah",
+  "themeTags": [
+    "offerings",
+    "service",
+    "thanksgiving"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Hezekiah and the princes saw the heaps and blessed Yahweh and his people. Azariah reported that they had enough to eat and plenty remained. What stands out to you in the people's gifts, the king's question, and the chief priest's answer?\n",
+  "editorialNotes": "Packet 040 initial writer output; Traditional Short only. Both lanes retain their source wording, with verse numbers removed and paragraphing added. KJV quotation marks are added around Azariah's answer in verse 10; his identification remains the source's identification. No quotation is flattened, no repetition is omitted, and no opening antecedent is supplied from chapter 30. The destruction of the worship objects and sites, assigned service and offerings, command to Jerusalem, produce and animal tithes, months, blessing, question, and answer all remain. WEB retains pillars, Asherah poles, divisions, Yahweh's camp, grain, new wine, cattle, and give themselves to the law; KJV retains images, groves, courses, tents of the Lord, corn, wine, oxen, and be encouraged in the law.",
+  "files": {
+    "short": {
+      "storyText": "story_3189_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3189_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3189_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3189_traditional_kjv.txt"
+    }
+  }
+}

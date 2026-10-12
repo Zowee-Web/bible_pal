@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3185,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_040",
+  "title": "We Must Obey God",
+  "scriptureAnchor": "Acts 5:17-42",
+  "scriptureAnchorId": "acts_5_17-42",
+  "shortScripture": false,
+  "bibleStoryKey": "we_must_obey_god",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "timelineEra": "early_church",
+  "primaryCharacterId": "peter",
+  "primaryCharacterDisplayName": "Peter",
+  "themeTags": [
+    "obedience",
+    "witness",
+    "perseverance"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The apostles answered the council by speaking of Jesus and of obedience to God. After being beaten and released, they continued teaching. What do you notice about the words they spoke before the council and the work they continued afterward?\n",
+  "editorialNotes": "Packet 040 initial writer output; Traditional Short only. Acts 5:17-42 is compressed through shorter reporting clauses and indirect speech for the officers' report, the high priest's accusation, and Gamaliel's counsel. Repeated introductions and commands are condensed; the prison conditions, officials' responses, both failed leaders and their followers, both alternatives in Gamaliel's counsel, beating, command, release, rejoicing, and continued teaching remain. The angel's command and Peter and the apostles' answer retain each lane's source wording, with quotation marks added. The council is named as the referent of WEB verse 33's they, and Gamaliel is named again when his counsel continues. WEB retains jealousy, an angel, teaching, remission, Holy Spirit, enrollment, dishonor, and at home; KJV retains indignation, the angel, doctrine, forgiveness, Holy Ghost, taxing, shame, and every house. No motive or emotion is supplied beyond the anchor. No event outside the anchor is added.",
+  "files": {
+    "short": {
+      "storyText": "story_3185_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3185_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3185_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3185_traditional_kjv.txt"
+    }
+  }
+}
