@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3190,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_041",
+  "title": "The Wagons Sent for Jacob",
+  "scriptureAnchor": "Genesis 45:16-28",
+  "scriptureAnchorId": "genesis_45_16-28",
+  "shortScripture": false,
+  "bibleStoryKey": "the_wagons_sent_for_jacob",
+  "storyVoiceKey": "VOICE_BARNABAS_ENCOURAGER",
+  "timelineEra": "patriarchs",
+  "primaryCharacterId": "joseph",
+  "primaryCharacterDisplayName": "Joseph",
+  "themeTags": [
+    "provision",
+    "family",
+    "hope"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Jacob first heard that Joseph was alive and did not believe. After hearing Joseph's words and seeing the wagons, his spirit revived. Which details show how the news reached him, and what helped him receive it?\n",
+  "editorialNotes": "Packet 041 bounded validation correction; Traditional Short only. Verse numbers are removed from story text and adjacent verses are grouped into paragraphs. The full, numbered scripture artifacts preserve the bundled lane sources. WEB quotation marks and speech boundaries are retained except for the explicitly noted report in 3190; the KJV source's unquoted direct-speech punctuation is retained, with no conversion of speakers' statements into narrator assertions. No speaker is newly named. WEB verse 16 changes the quoted report to indirect narration: news reached Pharaoh's house that Joseph's brothers had come, and Pharaoh and his servants were well pleased. WEB verse 21 renders 'according to the commandment of Pharaoh' as 'at Pharaoh's command' and 'provision for the way' as 'provisions for the journey'; its statement that the sons of Israel did so is retained. All other WEB wording and all KJV wording are retained from their respective source passages. These are local narration changes, not omission of events or clauses. WEB retains clothing, donkeys, grain and provisions, ruler, and the warning not to quarrel; KJV retains raiment, asses, corn and meat, governor, and 'fall not out'. The quantities, distinction of Benjamin's gifts, Jacob's initial unbelief and revival, and Israel's closing intention are retained. No later journey is narrated. The WEB reflection removes the phrase in this passage to satisfy the mechanical meta-text rule; metadata reflectionText is synchronized including the terminal newline.",
+  "files": {
+    "short": {
+      "storyText": "story_3190_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3190_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3190_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3190_traditional_kjv.txt"
+    }
+  }
+}

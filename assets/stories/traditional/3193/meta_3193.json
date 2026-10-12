@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3193,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_041",
+  "title": "They Shall Share Alike",
+  "scriptureAnchor": "1 Samuel 30:21-31",
+  "scriptureAnchorId": "1_samuel_30_21-31",
+  "shortScripture": false,
+  "bibleStoryKey": "they_shall_share_alike",
+  "storyVoiceKey": "VOICE_MARTHA_CARING",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "themeTags": [
+    "sharing",
+    "provision",
+    "gratitude"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "David called the recovered plunder a gift from Yahweh and required equal shares for those who fought and those who stayed with the baggage. He also sent gifts to Judah's elders. How do his words and actions shape the sharing described in this passage?\n",
+  "editorialNotes": "Packet 041 initial writer output; Traditional Short only. Verse numbers are removed from story text and adjacent verses are grouped into paragraphs. The full, numbered scripture artifacts preserve the bundled lane sources. WEB quotation marks and speech boundaries are retained; the KJV source's unquoted direct-speech punctuation is retained, with no conversion of speakers' statements into narrator assertions. No speaker is newly named. WEB verse 21 is recast into shorter narrative sentences: David came to the two hundred men at the brook Besor; they had been too faint to follow him and had been made to stay there; they went out to meet him and his people; he greeted them as he drew near. The repeated name David is locally replaced by pronouns without changing the participants. All other WEB wording and all KJV wording are retained. Both lanes keep 'all' for the wicked speakers, their proposed exception for wives and children, David's attribution of preservation and victory to Yahweh/the Lord, equal shares, the statute and ordinance 'to this day', the gifts to the elders and friends, and every place in the recipient list. WEB retains worthless fellows, plunder, baggage, Ramoth of the South, Racal and Borashan; KJV retains men of Belial, spoil, stuff, south Ramoth, Rachal and Chor–ashan. No preceding battle is retold; no recipient or repeated list formula is omitted.",
+  "files": {
+    "short": {
+      "storyText": "story_3193_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3193_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3193_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3193_traditional_kjv.txt"
+    }
+  }
+}

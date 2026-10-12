@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3191,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "grateful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_041",
+  "title": "Skilled Work and the Sabbath",
+  "scriptureAnchor": "Exodus 31:1-18",
+  "scriptureAnchorId": "exodus_31_1-18",
+  "shortScripture": false,
+  "bibleStoryKey": "skilled_work_and_the_sabbath",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "workmanship",
+    "sabbath",
+    "covenant"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Yahweh named Bezalel and appointed Oholiab with him, giving wisdom for the work he commanded. He also instructed Israel to keep his Sabbaths. What do you notice about these commands for skilled work and holy rest, and about the sign between Yahweh and Israel?\n",
+  "editorialNotes": "Packet 041 initial writer output; Traditional Short only. Verse numbers are removed from story text and adjacent verses are grouped into paragraphs. The full, numbered scripture artifacts preserve the bundled lane sources. WEB quotation marks and speech boundaries are retained; the KJV source's unquoted direct-speech punctuation is retained, with no conversion of speakers' statements into narrator assertions. No speaker is newly named. Both lanes retain their full source wording as divine instructions followed by the giving of the stone tablets. No commands are converted into completed craftsmanship. The named workers and ancestry, all skills, every listed furnishing and garment, both Sabbath death-penalty statements, cutting off from the people, the perpetual covenant and sign, six-day creation, rest and refreshment, and tablets written with God's finger are retained. WEB preserves Bezalel/Oholiab, bronze, Tent of Meeting, ark of the covenant, lamp stand, basin and base, finely worked garments, and tablets of the covenant. KJV preserves Bezaleel/Aholiab, brass, tabernacle of the congregation, ark of the testimony, candlestick, laver and foot, cloths of service alongside holy garments, and tables of testimony. No repetition is omitted or compressed.",
+  "files": {
+    "short": {
+      "storyText": "story_3191_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3191_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3191_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3191_traditional_kjv.txt"
+    }
+  }
+}

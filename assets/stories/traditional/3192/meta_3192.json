@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3192,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_041",
+  "title": "The Cities of Refuge",
+  "scriptureAnchor": "Joshua 20:1-9",
+  "scriptureAnchorId": "joshua_20_1-9",
+  "shortScripture": false,
+  "bibleStoryKey": "the_cities_of_refuge",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "conquest",
+  "primaryCharacterId": "joshua",
+  "primaryCharacterDisplayName": "Joshua",
+  "themeTags": [
+    "refuge",
+    "judgment",
+    "protection"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The cities of refuge provided a place for the person who killed unintentionally, while preserving the requirement to stand before the congregation for judgment. What do you notice about the elders' responsibility to hear the case and protect the person who fled to them?\n",
+  "editorialNotes": "Packet 041 bounded validation correction; Traditional Short only. Verse numbers are removed from story text and adjacent verses are grouped into paragraphs. The full, numbered scripture artifacts preserve the bundled lane sources. WEB quotation marks and speech boundaries are retained; the KJV source's unquoted direct-speech punctuation is retained, with no conversion of speakers' statements into narrator assertions. No speaker is newly named. Both lanes retain their source wording except that the high-priest clause in verse 6 renders 'in those days' as 'at that time' to avoid the mechanical scene-integrity phrase rule. The temporal qualification is retained. The divine directions remain instructions, followed by the account of cities appointed; no example killing or flight is invented. The unintentional nature of the killing, absence of prior hatred, declaration at the gate, elders' reception, protection from the avenger, judgment before the congregation, death of the high priest, and return to one's own city and house are all retained. All six city names, locations and tribal attributions remain. The closing provision for Israel and the resident alien/sojourning stranger is retained with its judgment clause. WEB keeps 'accidentally or unintentionally', Kiriath Arba and 'alien'; KJV keeps 'unawares and unwittingly', Kirjath–arba and 'stranger that sojourneth'. No repetition is omitted or compressed.",
+  "files": {
+    "short": {
+      "storyText": "story_3192_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3192_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3192_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3192_traditional_kjv.txt"
+    }
+  }
+}
