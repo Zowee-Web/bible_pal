@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3203,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_043",
+  "title": "David's House and the Two Battles",
+  "scriptureAnchor": "2 Samuel 5:11-25",
+  "scriptureAnchorId": "2_samuel_5_11-25",
+  "shortScripture": false,
+  "bibleStoryKey": "david_s_house_and_the_two_battles",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "themeTags": [
+    "kingship",
+    "inquiry",
+    "obedience"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "David twice inquired of Yahweh when the Philistines spread out in the valley. The two answers gave different instructions, and David acted as he was commanded. What do you notice about the first command to go up and the later command to circle behind them?\n",
+  "editorialNotes": "Packet 043 initial writer output; adult Traditional Short only. The story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose, and adjacent verses are grouped into paragraphs. The separate numbered scripture files preserve every source verse unchanged. No source repetition, listed item, numerical detail, or anchor-critical clause is omitted or compressed. No emotion, motive, scene, action, chronology, or doctrinal explanation is invented. Direct speech remains speech. WEB source quotation marks and KJV source unquoted direct-speech punctuation are preserved except for the explicitly described WEB outer quotation in Deuteronomy. For audio clarity in verse 21, WEB replaces 'They left their images there' with 'The Philistines left their images there'; KJV replaces 'And there they left their images' with 'And there the Philistines left their images'. In verse 23, WEB replaces 'When David inquired of Yahweh, he said' with 'When David inquired of Yahweh, Yahweh said'; KJV replaces 'And when David enquired of the Lord, he said' with 'And when David enquired of the Lord, the Lord said'. These changes identify the existing agents and divine speaker, without adding an action. All other source wording is retained. Hiram's messengers, materials and workers, the house, David's explicitly stated perception, the additional concubines and wives, sons and daughters, every son's name, both Philistine advances, David's move to the stronghold/hold, both inquiries and distinct replies, the breach-of-waters comparison in David's own speech, the place name, the images, the mulberry-tree signal, obedience and the final geographical limits are all retained. No additional motive or emotion is supplied. The important source distinction at verse 21 remains intact: WEB says David and his men took the images away, while KJV says they burned them. WEB Eliphelet, stronghold and Gezer remain distinct from KJV Eliphalet, hold and Gazer.",
+  "files": {
+    "short": {
+      "storyText": "story_3203_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3203_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3203_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3203_traditional_kjv.txt"
+    }
+  }
+}

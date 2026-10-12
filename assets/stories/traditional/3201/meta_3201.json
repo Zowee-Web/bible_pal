@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3201,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_043",
+  "title": "Moses Warns Israel Not to Forget",
+  "scriptureAnchor": "Deuteronomy 6:10-25",
+  "scriptureAnchorId": "deuteronomy_6_10-25",
+  "shortScripture": false,
+  "bibleStoryKey": "moses_warns_israel_not_to_forget",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "remembrance",
+    "instruction",
+    "obedience"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Moses warned Israel not to forget Yahweh after receiving cities they had not built and vineyards they had not planted. He also gave words for a parent's answer to a child. How does that answer connect deliverance from Egypt with the commandments Israel was to keep?\n",
+  "editorialNotes": "Packet 043 initial writer output; adult Traditional Short only. The story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose, and adjacent verses are grouped into paragraphs. The separate numbered scripture files preserve every source verse unchanged. No source repetition, listed item, numerical detail, or anchor-critical clause is omitted or compressed. No emotion, motive, scene, action, chronology, or doctrinal explanation is invented. Direct speech remains speech. WEB source quotation marks and KJV source unquoted direct-speech punctuation are preserved except for the explicitly described WEB outer quotation in Deuteronomy. The anchor continues Moses' address to Israel, identified in Deuteronomy 5:1. For audio clarity only, WEB adds 'Moses said to Israel,' before an outer quotation covering the whole anchor; its two existing double-quoted inner speeches (the son's question and the parent's answer) become single-quoted, and the outer quotation closes at the story's end. KJV replaces the opening 'And it shall be' with 'And Moses said unto Israel, It shall be'; its source convention of unquoted direct speech is otherwise retained. No event from the contextual speaker identification is narrated. The promises remain future and the commands remain Moses' speech, not the narrator's commands to a listener. Every named patriarch, unbuilt city, unfilled house, undug cistern/well, unplanted vineyard and olive tree, the warnings against forgetting, other gods and tempting at Massah, the command to keep the statutes, the future son's question, deliverance from Egypt, signs and wonders, and the complete answer through righteousness are retained. WEB didn't, cisterns, slaves, great and awesome, and ordinances remain distinct from KJV buildedst/filledst/diggedst/plantedst not, wells, bondmen, great and sore, and judgments. Beyond speaker identification, the moved opening conjunction and capital, and quotation nesting, no source wording is changed.",
+  "files": {
+    "short": {
+      "storyText": "story_3201_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3201_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3201_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3201_traditional_kjv.txt"
+    }
+  }
+}

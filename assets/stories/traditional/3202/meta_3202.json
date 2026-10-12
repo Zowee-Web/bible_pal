@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3202,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_043",
+  "title": "David at Ziklag",
+  "scriptureAnchor": "1 Samuel 27:1-12",
+  "scriptureAnchorId": "1_samuel_27_1-12",
+  "shortScripture": false,
+  "bibleStoryKey": "david_at_ziklag",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "themeTags": [
+    "refuge",
+    "conflict",
+    "deception"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "David asked Achish for a place in the country, and Achish gave him Ziklag. The account distinguishes David's raids from the report he gave Achish, and records Achish's belief. What do you notice when you place those actions, words, and beliefs beside one another?\n",
+  "editorialNotes": "Packet 043 initial writer output; adult Traditional Short only. The story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose, and adjacent verses are grouped into paragraphs. The separate numbered scripture files preserve every source verse unchanged. No source repetition, listed item, numerical detail, or anchor-critical clause is omitted or compressed. No emotion, motive, scene, action, chronology, or doctrinal explanation is invented. Direct speech remains speech. WEB source quotation marks and KJV source unquoted direct-speech punctuation are preserved except for the explicitly described WEB outer quotation in Deuteronomy. In both story lanes, the source phrase 'in his heart' in verse 1 is replaced only by 'within himself' because the mechanical Traditional phrase rules block the former. David's inward speech is explicitly in the Scripture source; the substitution preserves that attribution rather than inventing an inner thought or making it public dialogue. The separate scripture artifacts retain 'in his heart' unchanged. No other source words or quotation boundaries are changed. The six hundred men, their households, both wives and their source descriptions, Saul's stopping his search, David's request, Achish's grant of Ziklag and the statement about Judah's kings, the full year and four months, all three raided peoples and geography, the killing of men and women, the seized animals and clothing, David's report to Achish, his stated reason for leaving no survivors, and Achish's belief are retained. David's report and Achish's belief remain attributed speech; they are not flattened into facts asserted by the narrator. The killings and concealment are neither excused nor softened. WEB Girzites, raided, cattle, donkeys, clothing and forever remain distinct from KJV Gezrites, invaded, oxen, asses, apparel and for ever.",
+  "files": {
+    "short": {
+      "storyText": "story_3202_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3202_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3202_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3202_traditional_kjv.txt"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3200,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_043",
+  "title": "The Portions and the Officers' Offering",
+  "scriptureAnchor": "Numbers 31:31-54",
+  "scriptureAnchorId": "numbers_31_31-54",
+  "shortScripture": false,
+  "bibleStoryKey": "the_portions_and_the_officers_offering",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "eleazar",
+  "primaryCharacterDisplayName": "Eleazar",
+  "themeTags": [
+    "offering",
+    "memorial",
+    "obedience"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Moses and Eleazar received the officers' gold and brought it into the Tent of Meeting as a memorial. The officers reported that not one man was missing. What do you notice about the numbered portions, the appointed recipients, and the reason the officers gave for their offering?\n",
+  "editorialNotes": "Packet 043 initial writer output; adult Traditional Short only. The story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose, and adjacent verses are grouped into paragraphs. The separate numbered scripture files preserve every source verse unchanged. No source repetition, listed item, numerical detail, or anchor-critical clause is omitted or compressed. No emotion, motive, scene, action, chronology, or doctrinal explanation is invented. Direct speech remains speech. WEB source quotation marks and KJV source unquoted direct-speech punctuation are preserved except for the explicitly described WEB outer quotation in Deuteronomy. Both lanes retain all source wording. The full lists and totals for sheep, cattle/beeves, donkeys/asses, and persons are retained, including the descriptions of the women, the warriors' half, the tribute to Eleazar, the congregation's half, and the one-in-fifty portion given to the Levites. The officers' report that no man is missing remains their report. Their stated purpose of atonement, the named gold objects, the total weight of gold, each warrior's own booty, and the memorial are retained without explanation or moral smoothing. WEB wave offering, cattle, donkeys, armlets, signet rings, necklaces and Tent of Meeting remain distinct from KJV heave offering, beeves, asses, chains, rings, tablets and tabernacle of the congregation. No speaker or participant is newly named, and no wording is changed.",
+  "files": {
+    "short": {
+      "storyText": "story_3200_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3200_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3200_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3200_traditional_kjv.txt"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3204,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_043",
+  "title": "Hadad and Rezon, Adversaries of Solomon",
+  "scriptureAnchor": "1 Kings 11:14-25",
+  "scriptureAnchorId": "1_kings_11_14-25",
+  "shortScripture": false,
+  "bibleStoryKey": "hadad_and_rezon_adversaries_of_solomon",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "hadad",
+  "primaryCharacterDisplayName": "Hadad",
+  "themeTags": [
+    "opposition",
+    "exile",
+    "kingship"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Hadad asked Pharaoh to let him return to his own country, though he said he lacked nothing in Egypt. Rezon gathered men and reigned in Damascus. What do the different accounts of these two adversaries reveal about their histories, their words, and their opposition during Solomon's reign?\n",
+  "editorialNotes": "Packet 043 initial writer output; adult Traditional Short only. The story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose, and adjacent verses are grouped into paragraphs. The separate numbered scripture files preserve every source verse unchanged. No source repetition, listed item, numerical detail, or anchor-critical clause is omitted or compressed. No emotion, motive, scene, action, chronology, or doctrinal explanation is invented. Direct speech remains speech. WEB source quotation marks and KJV source unquoted direct-speech punctuation are preserved except for the explicitly described WEB outer quotation in Deuteronomy. For audio clarity in verse 22, WEB 'He answered' becomes 'Hadad answered', and KJV 'And he answered' becomes 'And Hadad answered'. In verse 23 WEB 'God raised up an adversary to him' becomes 'God raised up an adversary to Solomon'; KJV 'And God stirred him up another adversary' becomes 'And God stirred up another adversary unto Solomon'. This names the existing target of the opposition after the intervening backstory, while preserving KJV 'another'. In verse 24 WEB 'He gathered men' becomes 'Rezon gathered men', and KJV 'And he gathered men' becomes 'And Rezon gathered men'. No other source wording is changed. Both adversaries and their distinct histories remain intact: Hadad's royal descent, the deaths in Edom, Joab's six months, Hadad's flight as a child with the servants, Midian and Paran, Pharaoh's gifts, marriage and Genubath's weaning and place in the household, the news of David's and Joab's deaths, and the complete exchange with Pharaoh are retained. The story does not assert that Pharaoh granted Hadad's request. Rezon's flight from Hadadezer, gathering of men, the source's account of David's killing, Damascus, and Rezon's hostility and rule are retained. The embedded accounts remain in their source order; no extra chronology or motive is supplied. WEB Eliada, food and troop remain distinct from KJV Eliadah, victuals and band.",
+  "files": {
+    "short": {
+      "storyText": "story_3204_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3204_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3204_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3204_traditional_kjv.txt"
+    }
+  }
+}
