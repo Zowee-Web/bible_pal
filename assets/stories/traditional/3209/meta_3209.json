@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3209,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_044",
+  "title": "Jehoahaz and Jehoash in Samaria",
+  "scriptureAnchor": "2 Kings 13:1-13",
+  "scriptureAnchorId": "2_kings_13_1-13",
+  "shortScripture": false,
+  "bibleStoryKey": "jehoahaz_and_jehoash_in_samaria",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "jehoahaz",
+  "primaryCharacterDisplayName": "Jehoahaz",
+  "themeTags": [
+    "oppression",
+    "deliverance",
+    "kingship"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Jehoahaz sought Yahweh, and Israel received deliverance from Syrian oppression. Yet the account also records the sins that remained. What do you notice about the help given, the condition of the people, and the continuing conduct described in the reigns of Jehoahaz and his son?\n",
+  "editorialNotes": "Packet 044 initial writer output; adult Traditional Short only. Both story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve all source verses unchanged. No anchor-critical clause, numerical detail, listed item or source repetition is omitted. No scene, emotion, motive, action, chronology or doctrinal explanation is invented. Direct speech remains attributed speech. In verse 7 the king of Syria replaces the opening he to make the agent of the destruction clear after the parenthetical account. No other source wording changes. All accession years, reign lengths, royal fathers, named Syrian kings, descriptions of wrongdoing, the plea and response, deliverance and remaining idolatry, the three military totals, the threshing comparison, references to the chronicles, burial places, succession notices and the reference to Amaziah are retained. Joash king of Judah remains distinct from Jehoahaz son Joash/Jehoash king of Israel; the source name forms are preserved. WEB Asherah and continually remain distinct from KJV grove and all their days. The unnamed savior/saviour is not identified and no chronology is added.",
+  "files": {
+    "short": {
+      "storyText": "story_3209_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3209_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3209_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3209_traditional_kjv.txt"
+    }
+  }
+}

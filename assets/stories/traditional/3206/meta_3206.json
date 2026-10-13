@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3206,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_044",
+  "title": "The Tablets in the Ark",
+  "scriptureAnchor": "Deuteronomy 10:1-11",
+  "scriptureAnchorId": "deuteronomy_10_1-11",
+  "shortScripture": false,
+  "bibleStoryKey": "the_tablets_in_the_ark",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "covenant",
+    "intercession",
+    "service"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Moses recounted receiving the commandments again and placing the tablets in the ark. The account also names the service entrusted to Levi, and Moses recalls that Yahweh listened to him. What do you notice about the commands Moses received and the actions he describes taking?\n",
+  "editorialNotes": "Packet 044 initial writer output; adult Traditional Short only. Both story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve all source verses unchanged. No anchor-critical clause, numerical detail, listed item or source repetition is omitted. No scene, emotion, motive, action, chronology or doctrinal explanation is invented. Direct speech remains attributed speech. Moses is identified as the speaker to Israel at the opening and again when first-person speech resumes in verse 10. In WEB, outer quotation marks enclose verses 1-5 and 10-11, with the divine quotations nested inside; the parenthetical verses 6-9 remain outside those speech quotations. KJV retains its unquoted direct-speech convention with explicit Moses attribution at both points. Moses, not the assigned voice narrator, is the I and me. Every command concerning the tablets and ark, the ten commandments and assembly, the return and placement, travel place, Aaron death and burial, Eleazar succession, Levi duties and inheritance, forty days and nights, intercession and onward command is retained. Acacia versus shittim wood, brooks versus rivers, place-name forms, and WEB spoke versus KJV promised remain source-specific. No chronological reconciliation or account from outside the anchor is added.",
+  "files": {
+    "short": {
+      "storyText": "story_3206_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3206_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3206_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3206_traditional_kjv.txt"
+    }
+  }
+}

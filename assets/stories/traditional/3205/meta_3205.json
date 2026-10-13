@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3205,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_044",
+  "title": "The Inheritance Beyond the Jordan",
+  "scriptureAnchor": "Numbers 32:28-42",
+  "scriptureAnchorId": "numbers_32_28-42",
+  "shortScripture": false,
+  "bibleStoryKey": "the_inheritance_beyond_the_jordan",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "inheritance",
+    "obedience",
+    "promise"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Moses set before the leaders the condition for giving Gilead to Gad and Reuben. The tribes answered that they would cross armed, and the account names the towns they built. What do you notice about the connection between their stated commitment and the land assigned to them?\n",
+  "editorialNotes": "Packet 044 initial writer output; adult Traditional Short only. Both story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve all source verses unchanged. No anchor-critical clause, numerical detail, listed item or source repetition is omitted. No scene, emotion, motive, action, chronology or doctrinal explanation is invented. Direct speech remains attributed speech. The opening pronoun referring to Gad and Reuben is replaced by their names for audio clarity. No other source wording changes. Both conditions, the reply, the grant to Gad, Reuben and half Manasseh, both conquered kingdoms, every town and personal name, the sheepfolds, changed city names, dispossession and settlement are retained. WEB Atroth-shophan is not harmonized with KJV Atroth, Shophan; other source spellings and WEB beyond the Jordan versus KJV this side Jordan remain intact.",
+  "files": {
+    "short": {
+      "storyText": "story_3205_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3205_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3205_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3205_traditional_kjv.txt"
+    }
+  }
+}

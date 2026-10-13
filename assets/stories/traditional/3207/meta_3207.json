@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3207,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_044",
+  "title": "Samuel's Words and Saul's Departure",
+  "scriptureAnchor": "1 Samuel 28:16-25",
+  "scriptureAnchorId": "1_samuel_28_16-25",
+  "shortScripture": false,
+  "bibleStoryKey": "samuels_words_and_sauls_departure",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "saul",
+  "primaryCharacterDisplayName": "Saul",
+  "themeTags": [
+    "judgment",
+    "disobedience",
+    "fear"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Samuel named Saul's disobedience and spoke of defeat and death. Saul fell to the ground without strength, then eventually ate with his servants before leaving that night. What do you notice about the words Saul heard and the actions recorded afterward, without setting aside the severity of the warning?\n",
+  "editorialNotes": "Packet 044 initial writer output; adult Traditional Short only. Both story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve all source verses unchanged. No anchor-critical clause, numerical detail, listed item or source repetition is omitted. No scene, emotion, motive, action, chronology or doctrinal explanation is invented. Direct speech remains attributed speech. The opening speech explicitly names Saul as the listener: WEB Samuel said to Saul; KJV Then said Samuel unto Saul. No other source wording changes. The severe prediction remains Samuel speech, with no narrated fulfillment imported from elsewhere. The words about departure, the kingdom and David, Amalek, the Philistines, Saul and his sons, and the repeated reference to the army are retained. Saul fear and lack of strength are explicitly stated by Scripture. The woman appeal, Saul refusal, the combined urging of the woman and servants, the bed, calf, flour, unleavened bread, meal and night departure are all retained. The WEB to you and KJV to him difference in verse 17 remains intact. The woman is not given an invented name or motive.",
+  "files": {
+    "short": {
+      "storyText": "story_3207_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3207_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3207_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3207_traditional_kjv.txt"
+    }
+  }
+}
