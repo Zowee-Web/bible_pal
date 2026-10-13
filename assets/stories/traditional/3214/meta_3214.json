@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3214,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_045",
+  "title": "Jehoshaphat and Ahaziah",
+  "scriptureAnchor": "1 Kings 22:41-53",
+  "scriptureAnchorId": "1_kings_22_41-53",
+  "shortScripture": false,
+  "bibleStoryKey": "jehoshaphat_and_ahaziah",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "jehoshaphat",
+  "primaryCharacterDisplayName": "Jehoshaphat",
+  "themeTags": [
+    "kingship",
+    "worship",
+    "obedience"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Jehoshaphat did what was right, yet the high places remained. Ahaziah walked in the ways of his father and mother and served Baal. What do you hear in the different accounts of these two kings, where the worship of each reign is named alongside its years?\n",
+  "editorialNotes": "Packet 045 initial writer output; adult Traditional Short only. Both story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve all source verses unchanged. No anchor-critical clause, numerical detail, listed item or source repetition is omitted. No scene, emotion, motive, action, chronology or doctrinal explanation is invented. Direct speech remains attributed speech. The complete regnal account is retained: both accession synchronisms and reign lengths, Jehoshaphat's age and mother, his right conduct and the remaining high places, peace with Israel, chronicles reference, removal of the sodomites, Edom's deputy, wrecked ships and refused offer, burial and Jehoram's succession, and Ahaziah's evil, parental and Jeroboam precedents, Baal worship and provocation. WEB deputy ruled and KJV deputy was king remain distinct. No Chronicles parallel is imported, and no causal explanation for the wreck or refusal is invented. No source wording changes.",
+  "files": {
+    "short": {
+      "storyText": "story_3214_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3214_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3214_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3214_traditional_kjv.txt"
+    }
+  }
+}

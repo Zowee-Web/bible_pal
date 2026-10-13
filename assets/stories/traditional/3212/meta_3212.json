@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3212,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_045",
+  "title": "Manasseh’s Families and Inheritance",
+  "scriptureAnchor": "Joshua 17:1-13",
+  "scriptureAnchorId": "joshua_17_1-13",
+  "shortScripture": false,
+  "bibleStoryKey": "manasseh_s_families_and_inheritance",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "conquest",
+  "primaryCharacterId": "joshua",
+  "primaryCharacterDisplayName": "Joshua",
+  "themeTags": [
+    "inheritance",
+    "promise",
+    "land"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Mahlah, Noah, Hoglah, Milcah, and Tirzah came before the leaders asking for the inheritance commanded through Moses. Their names stand among the families and boundaries of Manasseh. What is it like to hear those five daughters named within the account of the land they received?\n",
+  "editorialNotes": "Packet 045 initial writer output; adult Traditional Short only. Both story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve all source verses unchanged. No anchor-critical clause, numerical detail, listed item or source repetition is omitted. No scene, emotion, motive, action, chronology or doctrinal explanation is invented. Direct speech remains attributed speech. The genealogies, six family groups, five daughters, their appeal and grant, ten portions, Gilead and Bashan, every boundary and town, shared Ephraim cities, and the undriven Canaanites and later labor/tribute are retained. WEB three heights, forced labor, brook and source place-name spellings remain distinct from KJV three countries, tribute, river and its place-name spellings. The grant is not described as completed dispossession. No source wording changes.",
+  "files": {
+    "short": {
+      "storyText": "story_3212_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3212_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3212_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3212_traditional_kjv.txt"
+    }
+  }
+}

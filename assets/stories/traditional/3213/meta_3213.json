@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3213,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_045",
+  "title": "David and the Murderers of Ishbosheth",
+  "scriptureAnchor": "2 Samuel 4:1-12",
+  "scriptureAnchorId": "2_samuel_4_1-12",
+  "shortScripture": false,
+  "bibleStoryKey": "david_and_the_murderers_of_ishbosheth",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "themeTags": [
+    "justice",
+    "violence",
+    "judgment"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Rechab and Baanah brought Ishbosheth’s head to David and spoke of vengeance. David answered by naming a righteous man killed in his own house upon his bed. How do you hear their claim beside David’s answer, before the account closes with punishment and burial in Hebron?\n",
+  "editorialNotes": "Packet 045 initial writer output; adult Traditional Short only. Both story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve all source verses unchanged. No anchor-critical clause, numerical detail, listed item or source repetition is omitted. No scene, emotion, motive, action, chronology or doctrinal explanation is invented. Direct speech remains attributed speech. Saul's son is identified as Ishbosheth in the opening sentence for listening clarity, using each lane's spelling. No other source wording changes. The Beerothite background, Mephibosheth's age and injury, noon rest, pretext of fetching wheat, killing and the source's repeated description, all-night journey, brothers' claim, David's oath and account of Ziklag, condemnation, execution, dismemberment, display and burial are retained. The claim that the Lord avenged David remains the brothers' speech. WEB in the body, Arabah and reward I gave him remain distinct from KJV under the fifth rib, plain and thought that I would have given him a reward. No extraneous motive or moral synthesis is added.",
+  "files": {
+    "short": {
+      "storyText": "story_3213_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3213_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3213_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3213_traditional_kjv.txt"
+    }
+  }
+}

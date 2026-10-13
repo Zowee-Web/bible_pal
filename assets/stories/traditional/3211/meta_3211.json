@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3211,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_045",
+  "title": "The Men Sent to Search Canaan",
+  "scriptureAnchor": "Numbers 13:1-24",
+  "scriptureAnchorId": "numbers_13_1-24",
+  "shortScripture": false,
+  "bibleStoryKey": "the_men_sent_to_search_canaan",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "obedience",
+    "courage",
+    "exploration"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Moses sent the men to look at the land, its people, its cities, and its fruit. At Eshcol, two men carried one cluster of grapes on a staff. What do you notice in the fruit they carried after hearing Moses’ questions about the land?\n",
+  "editorialNotes": "Packet 045 initial writer output; adult Traditional Short only. Both story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve all source verses unchanged. No anchor-critical clause, numerical detail, listed item or source repetition is omitted. No scene, emotion, motive, action, chronology or doctrinal explanation is invented. Direct speech remains attributed speech. All twelve tribal representatives and patronymics, the renaming of Hoshea/Oshea, every question in Moses' commission, first-ripe grapes, the route, three sons of Anak, Hebron's seven-year precedence over Zoan, and the grapes, pomegranates and figs are retained. WEB Hoshea/Joshua, valley of Eshcol and camps remain distinct from KJV Oshea/Jehoshua, brook Eshcol and tents. No later report, division, or response is imported. No source wording changes.",
+  "files": {
+    "short": {
+      "storyText": "story_3211_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3211_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3211_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3211_traditional_kjv.txt"
+    }
+  }
+}

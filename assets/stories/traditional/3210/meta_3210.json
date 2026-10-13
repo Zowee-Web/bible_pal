@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3210,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_045",
+  "title": "The Tabernacle and the Priests",
+  "scriptureAnchor": "Exodus 40:1-15",
+  "scriptureAnchorId": "exodus_40_1-15",
+  "shortScripture": false,
+  "bibleStoryKey": "the_tabernacle_and_the_priests",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "holiness",
+    "worship",
+    "service"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The basin is to stand between the tent and the altar, filled with water. Aaron and his sons are also to be washed and anointed for their appointed service. As you hear these instructions, what stands out in the care given to both the place and those who will serve there?\n",
+  "editorialNotes": "Packet 045 initial writer output; adult Traditional Short only. Both story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve all source verses unchanged. No anchor-critical clause, numerical detail, listed item or source repetition is omitted. No scene, emotion, motive, action, chronology or doctrinal explanation is invented. Direct speech remains attributed speech. The passage remains divine instructions addressed to Moses, not a narrated fulfillment. Every furnishing, position, screen, vessel, anointing, garment, washing, and the enduring priesthood is retained. WEB Tent of Meeting, basin, lamp stand, tunics and ark of the covenant remain distinct from KJV tent of the congregation, laver, candlestick, coats and ark of the testimony. No source wording changes.",
+  "files": {
+    "short": {
+      "storyText": "story_3210_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3210_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3210_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3210_traditional_kjv.txt"
+    }
+  }
+}
