@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3217,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_046",
+  "title": "Return and Be Gathered",
+  "scriptureAnchor": "Deuteronomy 30:1-10",
+  "scriptureAnchorId": "deuteronomy_30_1-10",
+  "shortScripture": false,
+  "bibleStoryKey": "return_and_be_gathered",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "restoration",
+    "covenant",
+    "obedience"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Those scattered among the nations are told of returning to God and being gathered again. The promise also speaks of the heart, of love, and of listening to his voice. What do you hear as the words about coming back to the land are joined to returning with the whole heart?\n",
+  "editorialNotes": "Packet 046 initial writer output; adult Traditional Short only. Both story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve all source verses unchanged. No anchor-critical clause, numerical detail, listed item or source repetition is omitted. No scene, emotion, motive, action, chronology or doctrinal explanation is invented. Direct speech remains attributed speech. The conditional future address is preserved, including blessing and curse, remembrance among the nations, return with the children, gathering from the farthest exile, possession and increase, circumcision of the heart and offspring, curses on persecutors, obedience, every named form of fruitfulness, and the final conditions. None of these promises is narrated as already fulfilled or converted into an unconditional promise to the listener. Source-wording addition in the story prose only: the speaker frame \"Moses said to Israel\" (KJV \"Moses said unto Israel\") is added at the opening; the KJV opening continues \"And it shall come to pass\" without moving the conjunction. The WEB address is enclosed in an outer quotation that reopens at each paragraph and closes after the final sentence. The frame is grounded in the Deuteronomy address that contains this anchor. Scripture files, reflections, and reflectionText are unchanged.",
+  "files": {
+    "short": {
+      "storyText": "story_3217_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3217_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3217_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3217_traditional_kjv.txt"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3216,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_046",
+  "title": "The Tithe and the Covenant Declaration",
+  "scriptureAnchor": "Deuteronomy 26:12-19",
+  "scriptureAnchorId": "deuteronomy_26_12-19",
+  "shortScripture": false,
+  "bibleStoryKey": "the_tithe_and_the_covenant_declaration",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "generosity",
+    "covenant",
+    "obedience"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The Levite, the foreigner, the fatherless, and the widow are to eat and be filled. The declaration before God names both the gift and the keeping of his commands. What stands out as you hear care for these neighbors alongside the call to walk in God’s ways?\n",
+  "editorialNotes": "Packet 046 initial writer output; adult Traditional Short only. Both story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve all source verses unchanged. No anchor-critical clause, numerical detail, listed item or source repetition is omitted. No scene, emotion, motive, action, chronology or doctrinal explanation is invented. Direct speech remains attributed speech. The third-year tithe and all four recipient groups are retained, together with the prescribed declaration, mourning and uncleanness restrictions, the prohibition concerning the dead, the prayer for Israel and its land, and the mutual covenant declarations. Instructions and prescribed speech remain instructions and prescribed speech; no completed ceremony is invented. WEB foreigner and people for his own possession remain distinct from KJV stranger and peculiar people. Source-wording addition in the story prose only: the speaker frame \"Moses said to Israel\" (KJV \"And Moses said unto Israel\") is added at the opening, and the WEB declaration quotation is nested in single quotation marks within the outer Moses quotation. The WEB outer quotation reopens at each paragraph and closes after the final sentence. The frame is grounded in the Deuteronomy address that contains this anchor. Scripture files, reflections, and reflectionText are unchanged.",
+  "files": {
+    "short": {
+      "storyText": "story_3216_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3216_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3216_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3216_traditional_kjv.txt"
+    }
+  }
+}

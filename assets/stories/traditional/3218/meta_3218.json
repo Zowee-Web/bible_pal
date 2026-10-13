@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3218,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_046",
+  "title": "Solomon’s Gold, Wisdom, and Trade",
+  "scriptureAnchor": "1 Kings 10:14-29",
+  "scriptureAnchorId": "1_kings_10_14-29",
+  "shortScripture": false,
+  "bibleStoryKey": "solomon_s_gold_wisdom_and_trade",
+  "storyVoiceKey": "VOICE_DAVID_SHEPHERD",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "solomon",
+  "primaryCharacterDisplayName": "Solomon",
+  "themeTags": [
+    "wisdom",
+    "wealth",
+    "kingship"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Among the gold vessels, twelve lions, chariots, and yearly gifts, the account names the wisdom God put in Solomon’s heart. People sought his presence to hear it. What draws your attention as the detailed measure of his riches stands beside the wisdom for which people came?\n",
+  "editorialNotes": "Packet 046 initial writer output; adult Traditional Short only. Both story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve all source verses unchanged. No anchor-critical clause, numerical detail, listed item or source repetition is omitted. No scene, emotion, motive, action, chronology or doctrinal explanation is invented. Direct speech remains attributed speech. Every quantity, unit, furnishing, source of revenue, cargo, interval, gift, military total, comparison and trading price is retained. The distinction between the wisdom God put in Solomon's heart and the description of his wealth is preserved without importing an explanation or judgment. WEB kings of the mixed people, bucklers, minas, armrests, and horses received in droves remain distinct from KJV kings of Arabia, targets, pound, stays, and linen yarn. No Chronicles parallel is imported. Source-wording substitutions in the story prose only: both WEB and KJV replace \"in his heart\" with \"in Solomon's heart\" in verse 24; WEB also replaces \"was considered\" with \"was reckoned\" in verse 21. These substitutions address the mechanical Traditional validator findings while preserving the referent and meaning. Scripture excerpts and reflections remain unchanged.",
+  "files": {
+    "short": {
+      "storyText": "story_3218_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3218_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3218_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3218_traditional_kjv.txt"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3219,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_046",
+  "title": "Hezekiah’s Messengers and Assyria’s Threat",
+  "scriptureAnchor": "2 Kings 19:1-13",
+  "scriptureAnchorId": "2_kings_19_1-13",
+  "shortScripture": false,
+  "bibleStoryKey": "hezekiah_s_messengers_and_assyria_s_threat",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "hezekiah",
+  "primaryCharacterDisplayName": "Hezekiah",
+  "themeTags": [
+    "prayer",
+    "trust",
+    "threats"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Hezekiah’s messengers ask Isaiah to pray for the remnant that is left. Isaiah answers with the command not to fear, and another Assyrian threat follows. How do you hear that answer beside the renewed message, while the account still leaves the king facing the words sent against him?\n",
+  "editorialNotes": "Packet 046 initial writer output; adult Traditional Short only. Both story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve all source verses unchanged. No anchor-critical clause, numerical detail, listed item or source repetition is omitted. No scene, emotion, motive, action, chronology or doctrinal explanation is invented. Direct speech remains attributed speech. The opening pronoun it is rendered as the words of Rabshakeh/Rab–shakeh, identified in verse 4, and the king of Assyria is named as the antecedent of he in verse 9 for listening clarity. These are the only wording changes. Hezekiah's actions, all messengers and offices, the childbirth comparison, request for prayer, Isaiah's entire answer, movements at Libnah and Lachish, news of Tirhakah, renewed threat, and every named nation and city are retained. WEB rejection and spirit remain distinct from KJV blasphemy and blast. The Assyrian claim remains attributed hostile speech. No later prayer, deliverance, death or Isaiah parallel is imported.",
+  "files": {
+    "short": {
+      "storyText": "story_3219_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3219_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3219_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3219_traditional_kjv.txt"
+    }
+  }
+}

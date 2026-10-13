@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3215,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_046",
+  "title": "The Sabbath and the Willing Offering",
+  "scriptureAnchor": "Exodus 35:1-19",
+  "scriptureAnchorId": "exodus_35_1-19",
+  "shortScripture": false,
+  "bibleStoryKey": "the_sabbath_and_the_willing_offering",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "sabbath",
+    "worship",
+    "service"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Moses speaks of a holy day of rest before naming the offering and the work to be done. Gold and spices, cloth and wood, garments and vessels all appear in his instructions. What do you notice as you hear the Sabbath command beside the invitation to a willing heart?\n",
+  "editorialNotes": "Packet 046 initial writer output; adult Traditional Short only. Both story lanes closely retain their respective bundled Scripture sources. Scripture headings and verse numbers are omitted from story prose and adjacent verses are grouped into paragraphs. The separate numbered scripture artifacts preserve all source verses unchanged. No anchor-critical clause, numerical detail, listed item or source repetition is omitted. No scene, emotion, motive, action, chronology or doctrinal explanation is invented. Direct speech remains attributed speech. The Sabbath command, its death penalty and prohibition of fire, the willing offering, every material and furnishing, and the priestly garments remain intact. These are commands addressed to the congregation, not a narrated completion of the work. WEB sea cow hides, acacia wood, bronze, lamp stand and basin remain distinct from KJV badgers' skins, shittim wood, brass, candlestick and laver. No source wording changes.",
+  "files": {
+    "short": {
+      "storyText": "story_3215_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3215_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3215_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3215_traditional_kjv.txt"
+    }
+  }
+}
