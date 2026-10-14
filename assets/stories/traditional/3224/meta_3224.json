@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3224,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_047",
+  "title": "Jeroboam’s Border and Azariah’s Reign",
+  "scriptureAnchor": "2 Kings 14:23-15:7",
+  "scriptureAnchorId": "2_kings_14_23-15_7",
+  "shortScripture": false,
+  "bibleStoryKey": "jeroboam_s_border_and_azariah_s_reign",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "azariah",
+  "primaryCharacterDisplayName": "Azariah",
+  "themeTags": [
+    "kingship",
+    "mercy",
+    "judgment"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Israel has no helper, yet Yahweh sees its bitter affliction and saves it through a king whose evil is plainly named. Azariah’s reign also holds both commendation and limits. What do you notice when these judgments and acts of mercy remain together in the record of the kings?\n",
+  "editorialNotes": "Packet 047 initial writer output; adult Traditional Short only. Each lane follows its respective bundled Bible source. Numbered Scripture artifacts preserve the exact source verses. Preserves both chronologies and reign lengths, Jeroboam’s evil, restored boundary, Jonah’s full identification, lane-specific affliction wording, rescue, recovered cities and chronicle record, both successions, Azariah’s mother, right conduct and high places, leprosy without an imported cause, separate house, Jotham’s duties, and burial.",
+  "files": {
+    "short": {
+      "storyText": "story_3224_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3224_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3224_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3224_traditional_kjv.txt"
+    }
+  }
+}

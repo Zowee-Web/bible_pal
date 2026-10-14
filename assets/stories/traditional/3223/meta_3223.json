@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3223,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_047",
+  "title": "Abijam and Asa in Jerusalem",
+  "scriptureAnchor": "1 Kings 15:1-15",
+  "scriptureAnchorId": "1_kings_15_1-15",
+  "shortScripture": false,
+  "bibleStoryKey": "abijam_and_asa_in_jerusalem",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "asa",
+  "primaryCharacterDisplayName": "Asa",
+  "themeTags": [
+    "kingship",
+    "worship",
+    "faithfulness"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Asa removes idols and brings dedicated gifts into Yahweh’s house, while the high places remain. Abijam’s reign carries a different judgment, yet David’s sake is remembered there too. What stands out as you hear these particular deeds beside the words about each king’s heart?\n",
+  "editorialNotes": "Packet 047 initial writer output; adult Traditional Short only. Each lane follows its respective bundled Bible source. Numbered Scripture artifacts preserve the exact source verses. Retains both reign dates and lengths, both maternal identifications as each source states them, David’s lamp and the Uriah exception, both wars, chronicle record, burial and succession, all reforms and gifts, and the high places qualification. No genealogical correction or later event is imported.",
+  "files": {
+    "short": {
+      "storyText": "story_3223_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3223_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3223_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3223_traditional_kjv.txt"
+    }
+  }
+}

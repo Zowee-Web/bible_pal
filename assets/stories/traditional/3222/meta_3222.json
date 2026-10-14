@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3222,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_047",
+  "title": "Absalom Comes Before the King",
+  "scriptureAnchor": "2 Samuel 14:25-33",
+  "scriptureAnchorId": "2_samuel_14_25-33",
+  "shortScripture": false,
+  "bibleStoryKey": "absalom_comes_before_the_king",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "absalom",
+  "primaryCharacterDisplayName": "Absalom",
+  "themeTags": [
+    "family",
+    "conflict",
+    "reconciliation"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Absalom’s unanswered summonses lead to a burning field, a message, and an audience with the king. The king’s kiss closes the meeting. What do you notice in the distance between living in Jerusalem and being allowed to see the king’s face?\n",
+  "editorialNotes": "Packet 047 initial writer output; adult Traditional Short only. Each lane follows its respective bundled Bible source. Numbered Scripture artifacts preserve the exact source verses. Retains the beauty description, yearly hair cutting and weight, all children named or counted, two years, two summonses, field and barley, burning, Joab’s question, Absalom’s full message, bow, and kiss. No later reconciliation outcome is inferred.",
+  "files": {
+    "short": {
+      "storyText": "story_3222_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3222_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3222_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3222_traditional_kjv.txt"
+    }
+  }
+}

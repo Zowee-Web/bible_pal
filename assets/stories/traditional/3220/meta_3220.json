@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3220,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_047",
+  "title": "The Words of the Covenant",
+  "scriptureAnchor": "Exodus 34:11-28",
+  "scriptureAnchorId": "exodus_34_11-28",
+  "shortScripture": false,
+  "bibleStoryKey": "the_words_of_the_covenant",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "covenant",
+    "worship",
+    "obedience"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The commands join worship with work, rest, harvest, and the firstborn. Moses remains with Yahweh while the words of the covenant are written. What draws your attention among these particular commands, as the call to worship no other god reaches into the rhythms of Israel’s life?\n",
+  "editorialNotes": "Packet 047 initial writer output; adult Traditional Short only. Each lane follows its respective bundled Bible source. Numbered Scripture artifacts preserve the exact source verses. The opening identifies Yahweh/the Lord as speaker and Moses as recipient. Commands remain commands. Every listed nation, worship restriction, festival, firstborn rule, work and rest provision, land assurance, sacrifice rule, and closing covenant detail is retained; no surrounding event is imported.",
+  "files": {
+    "short": {
+      "storyText": "story_3220_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3220_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3220_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3220_traditional_kjv.txt"
+    }
+  }
+}
