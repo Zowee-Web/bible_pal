@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3226,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_048",
+  "title": "Forty Years and the Presumptuous Ascent",
+  "scriptureAnchor": "Numbers 14:26-45",
+  "scriptureAnchorId": "numbers_14_26-45",
+  "shortScripture": false,
+  "bibleStoryKey": "forty_years_and_the_presumptuous_ascent",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "obedience",
+    "judgment",
+    "presumption"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The people mourn, confess their sin, and then climb the mountain against Moses’ warning. The ark and Moses remain in the camp. What do you notice about the difference between their readiness to move and the command they have just received?\n",
+  "editorialNotes": "Packet 048 initial writer output; Traditional Short WEB/KJV only. Each lane uses its respective bundled Bible. Scripture artifacts contain every exact source verse with its verse number and terminal newline. The complete numbered source wording is retained in verse order as continuous narration; verse numbers and Scripture headers are omitted from story text. Paragraphs group verses 26-35, 36-38, 39-40, 41-43, and 44-45. KJV quotation marks explicitly enclose the Lord’s speech, the people’s declaration, and Moses’ warning; the instruction to speak to Israel carries a nested quotation. WEB source quotation marks are retained. No speaker, motive, sequence, or wording is changed.",
+  "files": {
+    "short": {
+      "storyText": "story_3226_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3226_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3226_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3226_traditional_kjv.txt"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3229,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_048",
+  "title": "Daniel Asks About the Fourth Beast",
+  "scriptureAnchor": "Daniel 7:15-28",
+  "scriptureAnchorId": "daniel_7_15-28",
+  "shortScripture": false,
+  "bibleStoryKey": "daniel_asks_about_the_fourth_beast",
+  "storyVoiceKey": "VOICE_JOSEPH_DREAMER",
+  "timelineEra": "exile",
+  "primaryCharacterId": "daniel",
+  "primaryCharacterDisplayName": "Daniel",
+  "themeTags": [
+    "kingdom",
+    "judgment",
+    "endurance"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Daniel asks about the vision and receives an answer that includes both suffering and an enduring kingdom. His thoughts remain troubled when the explanation ends. What do you notice about that troubled response alongside the promise that the saints of the Most High will possess the kingdom?\n",
+  "editorialNotes": "Packet 048 initial writer output; Traditional Short WEB/KJV only. Each lane uses its respective bundled Bible. Scripture artifacts contain every exact source verse with its verse number and terminal newline. Daniel’s first-person report in verses 15-16 and 19-22 becomes explicitly named third-person narration; his closing verse 28 remains an attributed quotation so the narrator does not become Daniel. Verses 17-18 remain a quotation from the unnamed one standing by; no angel identity is added. Verses 23-27 become attributed indirect speech, changing predictive shall/will to would without changing predicted events. Repeated relative clauses become sentences. Verse 28’s end-of-matter formula becomes “ended/closed by saying.” WEB animals, bronze, arrogantly, sky, and half a time remain distinct from KJV beasts, brass, very great things, heaven, and dividing of time. No historical identification of horns or kings and no explanatory theology is added.",
+  "files": {
+    "short": {
+      "storyText": "story_3229_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3229_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3229_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3229_traditional_kjv.txt"
+    }
+  }
+}

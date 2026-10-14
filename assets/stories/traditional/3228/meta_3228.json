@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3228,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_048",
+  "title": "Jehoram and Ahaziah of Judah",
+  "scriptureAnchor": "2 Kings 8:16-29",
+  "scriptureAnchorId": "2_kings_8_16-29",
+  "shortScripture": false,
+  "bibleStoryKey": "jehoram_and_ahaziah_of_judah",
+  "storyVoiceKey": "VOICE_ELIJAH_SAGE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "jehoram",
+  "primaryCharacterDisplayName": "Jehoram",
+  "themeTags": [
+    "kingship",
+    "covenant",
+    "conflict"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Judah’s kings walk in the way of Ahab’s house, while Yahweh’s promise to David is remembered. Revolt, succession, and a wounded king follow. What draws your attention as the promise of a lamp stands beside the actions and troubles of these reigns?\n",
+  "editorialNotes": "Packet 048 initial writer output; Traditional Short WEB/KJV only. Each lane uses its respective bundled Bible. Scripture artifacts contain every exact source verse with its verse number and terminal newline. Both lanes retain the complete source narrative in verse order, grouped as verses 16-19, 20-24, 25-27, and 28-29. Story text removes verse labels and the Scripture header only. The source’s Jehoram/Joram naming, Jehoshaphat’s position in the opening synchronism, Judah/Israel distinctions, reign lengths, familial descriptions, Edom and Libnah revolts, chronicler reference, and ending visit remain intact. WEB lamp and KJV light remain distinct. No harmonization with Chronicles or inference about the later visit is introduced.",
+  "files": {
+    "short": {
+      "storyText": "story_3228_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3228_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3228_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3228_traditional_kjv.txt"
+    }
+  }
+}

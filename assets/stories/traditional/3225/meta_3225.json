@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3225,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_048",
+  "title": "Moses Returns to the Camp",
+  "scriptureAnchor": "Exodus 32:15-35",
+  "scriptureAnchorId": "exodus_32_15-35",
+  "shortScripture": false,
+  "bibleStoryKey": "moses_returns_to_the_camp",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "themeTags": [
+    "covenant",
+    "judgment",
+    "intercession"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The broken tablets, the calf reduced to powder, and the deaths in the camp give weight to Moses’ plea for forgiveness. He returns to Yahweh after naming the people’s sin. What holds your attention as his plea is met with an answer about responsibility and the journey ahead?\n",
+  "editorialNotes": "Packet 048 initial writer output; Traditional Short WEB/KJV only. Each lane uses its respective bundled Bible. Scripture artifacts contain every exact source verse with its verse number and terminal newline. Verses 15-16 are combined without repeating the two-sided writing detail. Verse 18 names Moses as speaker. Speeches in verses 17-18, 21-23, 26-27, and 29-34 become attributed indirect speech; verse 24 is Aaron’s quoted speech, retaining requests, commands, uncertainties, and conditions; Aaron’s claim that the calf emerged remains his claim. Victory/mastery and cries of being overcome are condensed to victory/mastery and defeat. The sword command retains gate-to-gate movement and brother, companion, and neighbor/neighbour. WEB verse 25 keeps loss of control and derision; KJV keeps nakedness and shame. WEB verse 29 follows its stated speech order; KJV preserves “had” for Moses’ prior command. Repeated next-day and great-sin phrases are compressed. The book remains unspecified; the angel, future punishment, and final plague remain distinct. KJV “appointed place” renders the place the Lord had spoken of. No surrounding scene or subsequent outcome is supplied.",
+  "files": {
+    "short": {
+      "storyText": "story_3225_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3225_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3225_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3225_traditional_kjv.txt"
+    }
+  }
+}

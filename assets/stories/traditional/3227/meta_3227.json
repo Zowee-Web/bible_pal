@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3227,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "calm_peaceful",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_048",
+  "title": "Solomon’s Cities and Ships",
+  "scriptureAnchor": "1 Kings 9:10-28",
+  "scriptureAnchorId": "1_kings_9_10-28",
+  "shortScripture": false,
+  "bibleStoryKey": "solomon_s_cities_and_ships",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "solomon",
+  "primaryCharacterDisplayName": "Solomon",
+  "themeTags": [
+    "kingship",
+    "labor",
+    "worship"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Cities, workers, offerings, and ships appear together among Solomon’s works. Hiram’s displeasure over the Galilean cities is also preserved. Which detail holds your attention as the building projects, the different kinds of service, and the voyage to Ophir come into view?\n",
+  "editorialNotes": "Packet 048 initial writer output; Traditional Short WEB/KJV only. Each lane uses its respective bundled Bible. Scripture artifacts contain every exact source verse with its verse number and terminal newline. Source narrative is retained in verse order, with paragraphs for verses 10-14, 15-19, 20-23, 24-25, and 26-28. KJV verse 10’s introductory “And it came to pass” is omitted, with “At” capitalized; verse 13 receives quotation marks around Hiram’s question. WEB keeps cypress, Tamar, forced labor, and bondservants; KJV keeps fir, Tadmor, levy, and bondservice. Lists, quantities, the report of Gezer’s earlier capture, the distinction between labor groups, and Millo’s timing remain as sourced. No other wording or attribution adjustments.",
+  "files": {
+    "short": {
+      "storyText": "story_3227_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3227_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3227_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3227_traditional_kjv.txt"
+    }
+  }
+}
