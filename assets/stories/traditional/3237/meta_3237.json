@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3237,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_050",
+  "title": "Jacob Names His Wages",
+  "scriptureAnchor": "Genesis 30:25-43",
+  "scriptureAnchorId": "genesis_30_25-43",
+  "shortScripture": false,
+  "bibleStoryKey": "jacob_names_his_wages",
+  "storyVoiceKey": "VOICE_JOSEPH_DREAMER",
+  "timelineEra": "patriarchs",
+  "primaryCharacterId": "jacob",
+  "primaryCharacterDisplayName": "Jacob",
+  "themeTags": [
+    "labor",
+    "household",
+    "flocks"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Jacob asks when he will provide for his own household. His wages take the shape of marked animals, and his droves come to stand apart from Laban's. What does it feel like when work done for another begins to make provision for your own house?\n",
+  "editorialNotes": "Traditional Short only under Packet 050 assignment. Full and Long are omitted by assigned scope, without claiming the passage cannot support them. Canonical Scripture excerpts preserve every assigned verse with supported numeric labels and terminal newlines. The wage negotiation is primarily indirect speech, explicitly attributed to Jacob or Laban. Jacob's proposed removal is distinguished from Laban's subsequent removal and delivery to his sons. Laban's stated means of learning remains divination in WEB and experience in KJV; neither is endorsed by the narrator. WEB retains black sheep, poplar/almond/plane, and donkeys; KJV retains brown sheep, poplar/hazel/chesnut, ringstraked cattle, and asses. The rods, conception, separation, and stronger/feebler outcomes are narrated in order without adding a biological explanation or importing Jacob's later dream. The language identifying potentially stolen animals paraphrases Jacob's proposed future test, not an accusation that theft occurred. Direct quotations preserve lane wording with sentence-boundary punctuation adjusted for narration; each quoted passage closes within its paragraph.",
+  "files": {
+    "short": {
+      "storyText": "story_3237_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3237_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3237_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3237_traditional_kjv.txt"
+    }
+  }
+}

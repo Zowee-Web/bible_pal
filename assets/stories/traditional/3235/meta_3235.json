@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3235,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_050",
+  "title": "Samson at Lehi",
+  "scriptureAnchor": "Judges 15:1-20",
+  "scriptureAnchorId": "judges_15_1-20",
+  "shortScripture": false,
+  "bibleStoryKey": "samson_at_lehi",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "timelineEra": "judges",
+  "primaryCharacterId": "samson",
+  "primaryCharacterDisplayName": "Samson",
+  "themeTags": [
+    "conflict",
+    "deliverance",
+    "thirst"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The jawbone falls from Samson's hand, and thirst brings his voice toward Yahweh. A thousand men have fallen, yet he still needs water to live. What stays with you in that turn from the strength of his hand to the need of his body?\n",
+  "editorialNotes": "Traditional Short only under Packet 050 assignment. Full and Long are omitted by assigned scope, without claiming the passage cannot support them. Canonical Scripture excerpts preserve every assigned verse with supported numeric labels and terminal newlines. Narration is recast into connected spoken scenes; speeches are mostly attributed indirect speech, with Samson's jawbone saying retained in lane-specific quotations. The father's mistaken explanation and Samson's claims of blamelessness and retaliation remain their claims. WEB retains olive groves, the cave in Etam's rock, and water from the hollow place in Lehi; KJV retains vineyards and olives, the top of Etam's rock, and the hollow in the jaw. These source differences are not harmonized. The spring's continuing presence is condensed without supplying a date. All numbers, the oath, the Spirit's action, and the twenty-year judgeship remain. Direct quotations preserve lane wording with sentence-boundary punctuation adjusted for narration; each quoted passage closes within its paragraph.",
+  "files": {
+    "short": {
+      "storyText": "story_3235_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3235_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3235_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3235_traditional_kjv.txt"
+    }
+  }
+}

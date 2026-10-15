@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3238,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_050",
+  "title": "The Torn Robe and Saul’s Plea",
+  "scriptureAnchor": "1 Samuel 15:24-35",
+  "scriptureAnchorId": "1_samuel_15_24-35",
+  "shortScripture": false,
+  "bibleStoryKey": "the_torn_robe_and_saul_s_plea",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "saul_king",
+  "primaryCharacterDisplayName": "Saul",
+  "themeTags": [
+    "confession",
+    "kingship",
+    "mourning"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Saul asks Samuel to return, and Samuel does return. Yet the torn robe and the words about the kingdom remain. Later, Samuel mourns for the king he no longer visits. What is it like to grieve for someone from whom you have become separated?\n",
+  "editorialNotes": "Traditional Short only under Packet 050 assignment. Full and Long are omitted by assigned scope, without claiming the passage cannot support them. Canonical Scripture excerpts preserve every assigned verse with supported numeric labels and terminal newlines. Saul and Samuel are identified at the opening; Saul's confession and stated fear remain attributed to Saul. Narration and most speech are recast into shorter listening beats; Saul's opening confession and plea, his renewed confession, and Agag's mistaken assurance remain direct quotations. Agag's assurance is his claim, immediately followed by Samuel's response and action. WEB preserves Agag coming cheerfully and Yahweh grieving; KJV preserves Agag coming delicately and the Lord repenting. Both lanes retain the Strength of Israel statement without an added theological reconciliation. The mantle/robe gesture is Samuel's stated sign, not a new narrator interpretation. The neighbor is not named because this anchor does not name him. Samuel's return to worship is kept distinct from the later separation and mourning. Direct quotations preserve lane wording with sentence-boundary punctuation adjusted for narration; each quoted passage closes within its paragraph.",
+  "files": {
+    "short": {
+      "storyText": "story_3238_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3238_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3238_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3238_traditional_kjv.txt"
+    }
+  }
+}

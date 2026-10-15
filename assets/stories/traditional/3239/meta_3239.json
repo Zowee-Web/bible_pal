@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3239,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_050",
+  "title": "The Tree and the Warning",
+  "scriptureAnchor": "Daniel 4:10-27",
+  "scriptureAnchorId": "daniel_4_10-27",
+  "shortScripture": false,
+  "bibleStoryKey": "the_tree_and_the_warning",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "exile",
+  "primaryCharacterId": "nebuchadnezzar",
+  "primaryCharacterDisplayName": "Nebuchadnezzar",
+  "themeTags": [
+    "dream",
+    "warning",
+    "mercy"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Nebuchadnezzar hears of the great tree and the command to spare its roots. Daniel's warning ends with counsel about righteousness and mercy to the poor. What stays with you when a warning about losing power leads toward the needs of people who have little?\n",
+  "editorialNotes": "Traditional Short only under Packet 050 assignment. Full and Long are omitted by assigned scope, without claiming the passage cannot support them. Canonical Scripture excerpts preserve every assigned verse with supported numeric labels and terminal newlines. The opening explicitly identifies Nebuchadnezzar as the dream's speaker and Belteshazzar as his hearer; Daniel and Belteshazzar are then identified as the same person. The first-person account and nested dream speech are largely rendered as attributed indirect narrative, except for the watcher’s quoted command about his portion, changed heart, and seven times, keeping the watcher’s commands unfulfilled and Daniel’s predicted humiliation and restoration in the future. Repeated tree imagery is condensed while retaining food, shelter, extent, the bound stump, dew, the changed heart, seven times, and the stated purpose. The holy-gods assertion remains Nebuchadnezzar’s belief. Symbolic interpretation and counsel belong explicitly to Daniel. WEB retains bronze, a while of muteness, and Heaven rules; KJV retains brass, astonishment for one hour, and the heavens rule. The concluding possibility of prolonged tranquility remains conditional; no repentance, later humiliation, or restoration is narrated as accomplished. Direct quotations preserve lane wording with sentence-boundary punctuation adjusted for narration; each quoted passage closes within its paragraph.",
+  "files": {
+    "short": {
+      "storyText": "story_3239_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3239_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3239_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3239_traditional_kjv.txt"
+    }
+  }
+}

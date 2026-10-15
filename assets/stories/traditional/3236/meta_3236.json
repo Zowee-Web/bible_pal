@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3236,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_050",
+  "title": "The Trumpet Ends the Pursuit",
+  "scriptureAnchor": "2 Samuel 2:12-32",
+  "scriptureAnchorId": "2_samuel_2_12-32",
+  "shortScripture": false,
+  "bibleStoryKey": "the_trumpet_ends_the_pursuit",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "joab",
+  "primaryCharacterDisplayName": "Joab",
+  "themeTags": [
+    "conflict",
+    "loss",
+    "restraint"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Joab's trumpet stops the pursuit, but Asahel still has to be carried to his father's tomb. The men reach Hebron at daybreak with their losses counted. What is it like when the fighting has ended and the work of mourning is still before you?\n",
+  "editorialNotes": "Traditional Short only under Packet 050 assignment. Full and Long are omitted by assigned scope, without claiming the passage cannot support them. Canonical Scripture excerpts preserve every assigned verse with supported numeric labels and terminal newlines. The battle, pursuit, warnings, halt, casualty counts, burial, and return remain in source order. The two groups of twelve are distinguished, and nineteen missing men are counted separately from Asahel. Abner's alternative proposal is reported without inventing Asahel's compliance. Abner's warnings are condensed into attributed speech; Joab's difficult conditional reply is quoted exactly in each lane without resolving its ambiguity. WEB keeps gazelle, body, and Arabah; KJV keeps roe, fifth rib, and plain. The narration is restructured into listening beats without adding motives or physical details. Direct quotations preserve lane wording with sentence-boundary punctuation adjusted for narration; each quoted passage closes within its paragraph.",
+  "files": {
+    "short": {
+      "storyText": "story_3236_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3236_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3236_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3236_traditional_kjv.txt"
+    }
+  }
+}
