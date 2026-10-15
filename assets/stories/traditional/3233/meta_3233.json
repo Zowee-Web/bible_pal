@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3233,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "weary",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_049",
+  "title": "The Assembly in the Rain",
+  "scriptureAnchor": "Ezra 10:1-17",
+  "scriptureAnchorId": "ezra_10_1-17",
+  "shortScripture": false,
+  "bibleStoryKey": "the_assembly_in_the_rain",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "return",
+  "primaryCharacterId": "ezra",
+  "primaryCharacterDisplayName": "Ezra",
+  "themeTags": [
+    "confession",
+    "assembly",
+    "covenant"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The people sit before God’s house, trembling under the rain as they answer Ezra. Their agreement leads to appointed hearings that take more than a day or two. What stays with you in the distance between a loud answer and the examination of each case?\n",
+  "editorialNotes": "Assigned Traditional Short only; Full and Long are omitted by packet scope without claiming an intrinsic length limit. Shecaniah/Shechaniah’s confession, proposal, and exhortation, Ezra’s commands, and the assembly’s proposed hearing arrangement are attributed indirect speech. Wives and their children remain in the proposal; actual separations are not invented. Ezra is named as the referent of my lord in verse 3. WEB Jehohanan/Jahzeiah and KJV Johanan/Jahaziah remain distinct. WEB verse 15 retains opposition and help given to the opponents; KJV retains employment about the matter and help, without harmonization. The attendance penalty remains a proclamation rather than an asserted forfeiture. The three-day gathering, twentieth day of ninth month, first day of tenth month, and first day of first month are retained. Completion concerns the examination, not an added scene of departure. Scripture excerpts preserve every canonical verse, labelled with a numeral and space.",
+  "files": {
+    "short": {
+      "storyText": "story_3233_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3233_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3233_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3233_traditional_kjv.txt"
+    }
+  }
+}

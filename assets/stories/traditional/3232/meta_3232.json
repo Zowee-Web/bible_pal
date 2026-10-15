@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3232,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_049",
+  "title": "Letters Sealed with the King’s Ring",
+  "scriptureAnchor": "Esther 8:1-14",
+  "scriptureAnchorId": "esther_8_1-14",
+  "shortScripture": false,
+  "bibleStoryKey": "letters_sealed_with_the_king_s_ring",
+  "storyVoiceKey": "VOICE_ESTHER_BRAVE",
+  "timelineEra": "exile",
+  "primaryCharacterId": "esther",
+  "primaryCharacterDisplayName": "Esther",
+  "themeTags": [
+    "petition",
+    "decree",
+    "deliverance"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The king’s ring has changed hands, yet Esther still falls at his feet in tears for her people. Her request is followed by letters carried across the provinces. What holds your attention as her concern for her relatives reaches far beyond the palace?\n",
+  "editorialNotes": "Both assigned Short lanes retain the petition and royal decree as speech and authorization, not completed killing or deliverance. Full and Long are omitted by packet scope, without declaring them intrinsically unsupported. Esther’s four conditions and two questions are retained; the questions follow each lane. Haman’s death is reported in the king’s reply. The unrevocable sealed writing is not silently rewritten as a revoked first decree. Administrative recipients, 127 provinces, India–Ethiopia extent, scripts/languages, and Sivan/Adar dates remain. WEB royal horses and Susa are preserved separately from KJV horses, mules, camels, young dromedaries, and Shushan. The decree’s destruction, little ones/women, and plunder clauses remain within its authorization. Repeated issuance and dispatch statements are combined for narration. No outcome from later verses is added. Canonical scripture files retain the complete source wording and supported verse labels.",
+  "files": {
+    "short": {
+      "storyText": "story_3232_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3232_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3232_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3232_traditional_kjv.txt"
+    }
+  }
+}

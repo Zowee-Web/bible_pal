@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3230,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_049",
+  "title": "Samson’s Riddle at the Feast",
+  "scriptureAnchor": "Judges 14:1-20",
+  "scriptureAnchorId": "judges_14_1-20",
+  "shortScripture": false,
+  "bibleStoryKey": "samson_s_riddle_at_the_feast",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "timelineEra": "judges",
+  "primaryCharacterId": "samson",
+  "primaryCharacterDisplayName": "Samson",
+  "themeTags": [
+    "riddle",
+    "marriage",
+    "conflict"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "Samson carries honey from the lion and later carries clothing from Ashkelon. Between those journeys, a riddle becomes a threat against his wife, and the feast ends in anger. What stays with you when the sweetness of the answer stands beside the cost of obtaining it?\n",
+  "editorialNotes": "Traditional Short only by Packet 049 assignment; Full and Long are omitted under this scope, without a claim that the passage cannot support them. Both lanes restructure narration for listening and condense repeated dialogue into attributed indirect speech. The riddle, answer, and heifer reply retain each canonical lane’s wording; KJV sheets and WEB linen garments remain distinct. Parental objections, the companions’ threats and accusations, and the wife’s accusation remain their speech. Verse 4 identifies the Lord as the seeker of an occasion. The three unsolved days, seventh-day threat and disclosure, seven days of weeping, and answer before sunset retain the source sequence without harmonizing its chronology. No subsequent burning or retaliation from Judges 15 is added. The source’s marriage and feast custom is condensed, and both visits to the woman and both Spirit statements remain. Scripture excerpts reproduce all canonical verses with numeric labels and terminal newlines.",
+  "files": {
+    "short": {
+      "storyText": "story_3230_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3230_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3230_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3230_traditional_kjv.txt"
+    }
+  }
+}

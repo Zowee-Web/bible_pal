@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3231,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_049",
+  "title": "Abiathar Escapes from Nob",
+  "scriptureAnchor": "1 Samuel 22:6-23",
+  "scriptureAnchorId": "1_samuel_22_6-23",
+  "shortScripture": false,
+  "bibleStoryKey": "abiathar_escapes_from_nob",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "abiathar",
+  "primaryCharacterDisplayName": "Abiathar",
+  "themeTags": [
+    "accusation",
+    "loss",
+    "refuge"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The guards refuse Saul’s order, but Doeg carries it out. Abiathar reaches David with news of his father’s house, and David answers with responsibility and an offer of shelter. What do you hear in that promise of safety after so many lives have been taken?\n",
+  "editorialNotes": "Traditional Short only as assigned; Full and Long are omitted under packet scope, with no unsupported-length finding asserted. Saul’s conspiracy and ambush allegations are explicitly attributed rather than asserted as fact; Doeg’s report of the priest’s acts remains his report. The priest’s defence is mainly indirect, with his rhetorical question retained in the respective lane. WEB retains tamarisk, Doeg among the servants, and David as bodyguard captain; KJV retains an unspecified tree, Doeg set over the servants, and David going at Saul’s bidding. The death sentence, guards’ refusal, Doeg’s eighty-five victims and the city’s victims remain distinct. David’s stated knowledge and responsibility are attributed to him. His final commands and promise retain their speech status; no later safety outcome is supplied. KJV eighty-five is retained as fourscore and five. Scripture files contain unchanged canonical verse text with supported numeric labels.",
+  "files": {
+    "short": {
+      "storyText": "story_3231_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3231_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3231_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3231_traditional_kjv.txt"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3234,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "brave_courage",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_049",
+  "title": "Nehemiah Guards the Sabbath",
+  "scriptureAnchor": "Nehemiah 13:15-22",
+  "scriptureAnchorId": "nehemiah_13_15-22",
+  "shortScripture": false,
+  "bibleStoryKey": "nehemiah_guards_the_sabbath",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "return",
+  "primaryCharacterId": "nehemiah",
+  "primaryCharacterDisplayName": "Nehemiah",
+  "themeTags": [
+    "sabbath",
+    "gates",
+    "mercy"
+  ],
+  "reflectionForm": "standard",
+  "reflectionText": "The merchants camp outside Jerusalem, and Nehemiah’s warning brings an end to their Sabbath visits. His account moves from orders at the gates to a prayer for loving kindness. What do you hear when the man giving those commands asks God to spare him?\n",
+  "editorialNotes": "Assigned Short WEB/KJV only; Full and Long are omitted under packet scope, without asserting they are unsupported. Nehemiah’s first-person account is recast as third-person narration with Nehemiah named at the opening. His accusation against the nobles, warning to merchants, gate orders, Levite command, and final prayer remain attributed. The closing prayer is quoted in the respective canonical lane; Both lanes also quote the question to the nobles. No enforcement beyond the stated warning and merchants’ cessation is added. The gate closure, reopening time, and Levite purification remain commands, while posting servants is an action. All listed goods, Tyrian sellers, once-or-twice lodging, and the distinction between servants and Levites remain. WEB loving kindness and KJV mercy remain lane-specific. Each Scripture artifact preserves exact source verse wording and uses numeric verse labels with a following space.",
+  "files": {
+    "short": {
+      "storyText": "story_3234_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3234_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3234_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3234_traditional_kjv.txt"
+    }
+  }
+}
