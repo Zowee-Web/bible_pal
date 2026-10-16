@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3240,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_051",
+  "title": "Jacob Leaves for the Land of His Fathers",
+  "scriptureAnchor": "Genesis 31:1-21",
+  "scriptureAnchorId": "genesis_31_1-21",
+  "shortScripture": false,
+  "bibleStoryKey": "jacob_leaves_for_the_land_of_his_fathers",
+  "storyVoiceKey": "VOICE_JOSEPH_DREAMER",
+  "timelineEra": "patriarchs",
+  "primaryCharacterId": "jacob",
+  "primaryCharacterDisplayName": "Jacob",
+  "reflectionForm": "standard",
+  "reflectionText": "Rachel and Leah hear Jacob’s account beside the flock, far from their father’s house. They speak of an inheritance no longer waiting there, then tell Jacob to do what God has said. What is it like to leave with your children when the household you came from treats you as a stranger?\n",
+  "editorialNotes": "Traditional Short only under Packet 051 assignment. Full and Long are outside assigned scope; no claim is made that the passage cannot support them. Scripture files preserve all assigned canonical verses with supported numeric labels and terminal newlines. Laban’s sons’ accusation stays attributed to them. Jacob’s account of wages, protection, and the dream remains his reported speech; the angel’s identity as the God of Bethel is explicit. Narration and extended dialogue are recast into listening beats. The dream call and answer, the divine self-identification, and the sisters’ closing instruction remain direct quotations, with quotation boundaries closed within each paragraph. WEB retains male goats, streaked, grizzled, teraphim, Paddan Aram and land of birth; KJV retains rams, ringstraked, grisled, images, Padan–aram and land of kindred. Rachel’s theft and Jacob’s unannounced flight remain separate actions. The command to return precedes the departure; no arrival in Canaan is supplied.",
+  "files": {
+    "short": {
+      "storyText": "story_3240_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3240_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3240_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3240_traditional_kjv.txt"
+    }
+  }
+}

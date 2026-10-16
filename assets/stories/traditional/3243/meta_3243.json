@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3243,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_051",
+  "title": "Rizpah Keeps Watch on the Rock",
+  "scriptureAnchor": "2 Samuel 21:1-14",
+  "scriptureAnchorId": "2_samuel_21_1-14",
+  "shortScripture": false,
+  "bibleStoryKey": "rizpah_keeps_watch_on_the_rock",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "rizpah",
+  "primaryCharacterDisplayName": "Rizpah",
+  "reflectionForm": "standard",
+  "reflectionText": "Rizpah spreads sackcloth on the rock and keeps the birds and animals away from the bodies, through the days and nights until the rain comes. David hears what she has done. What is it like to remain beside those you can no longer bring home alive?\n",
+  "editorialNotes": "Traditional Short only under Packet 051 assignment. Full and Long are outside assigned scope; no claim is made that the passage cannot support them. Scripture files preserve all assigned canonical verses with supported numeric labels and terminal newlines. The famine’s cause remains the Lord’s answer; the demand for seven remains the Gibeonites’ request and David’s agreement, not an added divine command. Dialogue is recast as attributed indirect speech except David’s brief agreement. Jonathan’s Mephibosheth is distinguished from Rizpah’s Mephibosheth. WEB retains Merab bearing the five sons and KJV retains Michal bringing them up for Adriel, without harmonization. Rizpah’s vigil ends at the stated rain boundary; no duration in months or unstated thoughts are added. The earlier taking of Saul’s and Jonathan’s bones stays past history within David’s retrieval. Gathering the seven men’s bones is preserved without adding an unstated burial location for them. Sentence structure and referents are revised for listening; the last divine response remains in each lane’s wording.",
+  "files": {
+    "short": {
+      "storyText": "story_3243_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3243_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3243_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3243_traditional_kjv.txt"
+    }
+  }
+}

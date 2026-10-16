@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3244,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_051",
+  "title": "Daniel’s Vision Beside the Ulai",
+  "scriptureAnchor": "Daniel 8:1-14",
+  "scriptureAnchorId": "daniel_8_1-14",
+  "shortScripture": false,
+  "bibleStoryKey": "daniel_s_vision_beside_the_ulai",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "exile",
+  "primaryCharacterId": "daniel",
+  "primaryCharacterDisplayName": "Daniel",
+  "reflectionForm": "standard",
+  "reflectionText": "Daniel sees the ram trampled, the great horn broken, and truth cast to the ground. Then a holy one asks how long the sanctuary will lie underfoot. What is it like to hear an answer measured in evenings and mornings while that vision is still before you?\n",
+  "editorialNotes": "Traditional Short only under Packet 051 assignment. Full and Long are outside assigned scope; no claim is made that the passage cannot support them. Scripture files preserve all assigned canonical verses with supported numeric labels and terminal newlines. Daniel is explicitly identified at the opening. His first-person visionary account is recast in third-person narration, consistently framed as a vision rather than asserted historical fulfillment. No identities or interpretation from later verses are imported. The directional movements, unequal horns and order of growth, four replacement horns, little horn, host, sanctuary, transgression and truth remain. The holy one’s question is attributed indirect speech and the final answer to Daniel is direct speech. WEB retains Susa, glorious land, army of the sky, continual burnt offering and two thousand three hundred evenings and mornings; KJV retains Shushan, pleasant land, host of heaven, daily sacrifice and two thousand three hundred days. Cleansing remains a promised future event, not a narrated completion.",
+  "files": {
+    "short": {
+      "storyText": "story_3244_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3244_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3244_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3244_traditional_kjv.txt"
+    }
+  }
+}

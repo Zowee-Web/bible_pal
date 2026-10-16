@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3241,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_051",
+  "title": "Gideon Pursues the Two Kings",
+  "scriptureAnchor": "Judges 8:1-21",
+  "scriptureAnchorId": "judges_8_1-21",
+  "shortScripture": false,
+  "bibleStoryKey": "gideon_pursues_the_two_kings",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "timelineEra": "judges",
+  "primaryCharacterId": "gideon",
+  "primaryCharacterDisplayName": "Gideon",
+  "reflectionForm": "standard",
+  "reflectionText": "The kings answer Gideon’s question about Tabor. Gideon names the dead as his brothers, sons of his own mother. Then he commands his young son to kill the kings. What is it like to hear that command while the sword stays at your side?\n",
+  "editorialNotes": "Traditional Short only under Packet 051 assignment. Full and Long are outside assigned scope; no claim is made that the passage cannot support them. Scripture files preserve all assigned canonical verses with supported numeric labels and terminal newlines. Gideon is named as the opening addressee. The Ephraim exchange, requests for bread, Succoth’s taunt, and final demand are condensed into attributed indirect speech. Penuel’s warning, the kings’ answer about Tabor, and Gideon’s identification and oath remain direct speech with closed quotation boundaries. Every stated troop count, the seventy-seven officials, both kings, Oreb and Zeeb, Jether’s identity and fear, and the vengeance motive remain. Threats precede their narrated consequences; Jether is not said to execute the kings. WEB preserves the ascent of Heres and camel crescents; KJV preserves return before sunrise and camel ornaments. The final proverb is rendered as attributed indirect speech, not an invented narrator explanation.",
+  "files": {
+    "short": {
+      "storyText": "story_3241_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3241_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3241_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3241_traditional_kjv.txt"
+    }
+  }
+}

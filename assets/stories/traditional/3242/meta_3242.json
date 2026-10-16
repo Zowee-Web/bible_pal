@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3242,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_051",
+  "title": "Michal’s Marriage and Saul’s Snare",
+  "scriptureAnchor": "1 Samuel 18:20-30",
+  "scriptureAnchorId": "1_samuel_18_20-30",
+  "shortScripture": false,
+  "bibleStoryKey": "michal_s_marriage_and_saul_s_snare",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "david",
+  "primaryCharacterDisplayName": "David",
+  "reflectionForm": "standard",
+  "reflectionText": "Saul’s servants carry words of favor to David, while Saul intends the marriage to become a snare. Michal’s love remains, and Saul’s fear grows. What is it like to enter a household where one person loves you and another keeps seeking your fall?\n",
+  "editorialNotes": "Traditional Short only under Packet 051 assignment. Full and Long are outside assigned scope; no claim is made that the passage cannot support them. Scripture files preserve all assigned canonical verses with supported numeric labels and terminal newlines. Saul’s stated design and the favor-message he dictates remain attributed to him; neither is endorsed as sincere favor by the narrator. Saul’s marriage declaration, dictated favor-message and dowry-message, and David’s answer about poverty and standing, remain direct quotations in each lane. WEB also quotes Saul’s snare declaration; KJV renders that declaration indirectly. KJV retains “in the one of the twain” while WEB retains its second-time wording. Quotation marks clarify direct speech, including the WEB snare declaration that lacks opening marks in the canonical source artifact. The servants’ messages, marriage, counts of one hundred demanded and two hundred killed, unexpired deadline, Michal’s love, Saul’s recognition and continued enmity, and David’s reputation remain in order. Narration is restructured and pronouns are resolved for listening; direct quotations close within their paragraphs.",
+  "files": {
+    "short": {
+      "storyText": "story_3242_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3242_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3242_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3242_traditional_kjv.txt"
+    }
+  }
+}
