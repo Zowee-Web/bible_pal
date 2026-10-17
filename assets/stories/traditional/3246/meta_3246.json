@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3246,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_052",
+  "title": "Moses Recounts the Defeat of Sihon",
+  "scriptureAnchor": "Deuteronomy 2:26-37",
+  "scriptureAnchorId": "deuteronomy_2_26-37",
+  "shortScripture": false,
+  "bibleStoryKey": "moses_recounts_the_defeat_of_sihon",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "exodus",
+  "primaryCharacterId": "moses",
+  "primaryCharacterDisplayName": "Moses",
+  "reflectionForm": "standard",
+  "reflectionText": "Moses names both the cities Israel took and the places they were forbidden to approach. His words about victory end with a boundary. When success opens a way ahead, what helps you remember a limit you have been told to honor?\n",
+  "editorialNotes": "Traditional Short only under Packet 052 assignment. Full and Long are outside assigned scope; no claim is made that the passage cannot support them. Scripture files preserve all assigned canonical verses with supported numeric labels and terminal newlines. Moses is identified from Deuteronomy 1:1 and the continuing speech; the biblical first person never becomes the voice narrator. His singular diplomatic request and Israel’s collective battle are distinguished. The message is paraphrased, while the divine command in verse 31 is quoted from each lane. Hardening remains attributed to God within Moses’s speech; the command precedes the battle. The destruction of women and children is not softened. WEB retains valley/city in the valley and too high; KJV retains river/city by the river, too strong, and explicit men, women and little ones. No event from outside the assigned anchor is added.",
+  "files": {
+    "short": {
+      "storyText": "story_3246_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3246_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3246_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3246_traditional_kjv.txt"
+    }
+  }
+}

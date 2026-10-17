@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3248,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_052",
+  "title": "Elisha Weeps Before Hazael",
+  "scriptureAnchor": "2 Kings 8:7-15",
+  "scriptureAnchorId": "2_kings_8_7-15",
+  "shortScripture": false,
+  "bibleStoryKey": "elisha_weeps_before_hazael",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "elisha",
+  "primaryCharacterDisplayName": "Elisha",
+  "reflectionForm": "standard",
+  "reflectionText": "Elisha weeps as he speaks of what Hazael will do. Hazael returns to the sick king carrying an answer about recovery. What do you notice about the difference between everything Hazael hears and the words he chooses to report?\n",
+  "editorialNotes": "Traditional Short only under Packet 052 assignment. Full and Long are outside assigned scope; no claim is made that the passage cannot support them. Scripture files preserve all assigned canonical verses with supported numeric labels and terminal newlines. Elisha, Hazael and Benhadad are explicitly named to resolve source pronouns, including the fixed gaze/countenance, shame, reported answer and final killing. The retelling preserves the source’s distinction between the commanded answer and Elisha’s revelation: WEB surely recover and KJV mayest certainly recover. Hazael’s dog question retains its different lane forms. Essential dialogue, including the future atrocities and the selective return report, is quoted from each lane with quotation nesting supplied; other speech and surrounding action are restructured. KJV verse 10’s internal punctuation is adjusted to mark the embedded answer. All forty camels and every specified atrocity remain. The atrocities remain predictions; no motive for the final killing is invented.",
+  "files": {
+    "short": {
+      "storyText": "story_3248_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3248_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3248_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3248_traditional_kjv.txt"
+    }
+  }
+}

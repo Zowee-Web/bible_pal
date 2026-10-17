@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3247,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_052",
+  "title": "Jotham’s Warning from Mount Gerizim",
+  "scriptureAnchor": "Judges 9:1-21",
+  "scriptureAnchorId": "judges_9_1-21",
+  "shortScripture": false,
+  "bibleStoryKey": "jotham_s_warning_from_mount_gerizim",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "judges",
+  "primaryCharacterId": "jotham",
+  "primaryCharacterDisplayName": "Jotham",
+  "reflectionForm": "standard",
+  "reflectionText": "Shechem’s men hear that Abimelech is their brother and incline toward him. From the mountain, Jotham asks what their choice has meant for his father’s house. When someone appeals to a bond you share, what helps you consider the people who may bear the cost?\n",
+  "editorialNotes": "Traditional Short only under Packet 052 assignment. Full and Long are outside assigned scope; no claim is made that the passage cannot support them. Scripture files preserve all assigned canonical verses with supported numeric labels and terminal newlines. The accession narrative, fable, conditional warning and flight remain in source order. Jotham is explicitly the speaker of the fable and its application; the bramble’s threat and Jotham’s reciprocal fire warning are not narrated as fulfilled. All dialogue is paraphrased as attributed speech. The source’s seventy sons/seventy slain formulation and Jotham’s survival are retained without an invented numerical reconciliation. WEB retains oak of the pillar, oil, waving trees, new wine and refuge; KJV retains plain of the pillar, fatness, promotion, wine and trust in shadow. No later reign or death events are imported.",
+  "files": {
+    "short": {
+      "storyText": "story_3247_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3247_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3247_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3247_traditional_kjv.txt"
+    }
+  }
+}

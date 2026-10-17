@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3249,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "encouraging",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_052",
+  "title": "Jeremiah Returns to the People Left in Judah",
+  "scriptureAnchor": "Jeremiah 40:1-12",
+  "scriptureAnchorId": "jeremiah_40_1-12",
+  "shortScripture": false,
+  "bibleStoryKey": "jeremiah_returns_to_the_people_left_in_judah",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "timelineEra": "exile",
+  "primaryCharacterId": "jeremiah",
+  "primaryCharacterDisplayName": "Jeremiah",
+  "reflectionForm": "standard",
+  "reflectionText": "Jeremiah’s chains are removed, and he is offered a choice of where to go. He settles among the people left in Judah. What might it mean to begin again alongside those who remain, gathering what the land can still provide?\n",
+  "editorialNotes": "Traditional Short only under Packet 052 assignment. Full and Long are outside assigned scope; no claim is made that the passage cannot support them. Scripture files preserve all assigned canonical verses with supported numeric labels and terminal newlines. The opening retains the word-coming notice without inventing its content. The captain’s theological explanation stays his attributed speech; plural guilt is assigned to the people, not to Jeremiah alone. Offers, promises and commands remain such until the source narrates an action. Dialogue is recast into indirect speech. All named arriving leaders and their patronymics, the remnant’s groups and the returnees’ locations are retained. WEB preserves food/present and standing before the Chaldeans; KJV preserves victuals/reward and serving the Chaldeans. The instruction includes oil, but the final harvest names only wine and summer fruits. No assassination warning or later events are imported.",
+  "files": {
+    "short": {
+      "storyText": "story_3249_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3249_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3249_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3249_traditional_kjv.txt"
+    }
+  }
+}

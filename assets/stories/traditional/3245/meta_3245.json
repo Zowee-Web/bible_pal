@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3245,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_052",
+  "title": "Laban Searches Jacob’s Tents",
+  "scriptureAnchor": "Genesis 31:22-42",
+  "scriptureAnchorId": "genesis_31_22-42",
+  "shortScripture": false,
+  "bibleStoryKey": "laban_searches_jacob_s_tents",
+  "storyVoiceKey": "VOICE_JOSEPH_DREAMER",
+  "timelineEra": "patriarchs",
+  "primaryCharacterId": "jacob",
+  "primaryCharacterDisplayName": "Jacob",
+  "reflectionForm": "standard",
+  "reflectionText": "Rachel sits above the hidden teraphim while Laban searches. Jacob, who does not know she stole them, has already spoken a sentence of death. How does not knowing the whole truth change the weight of a confident accusation or promise?\n",
+  "editorialNotes": "Traditional Short only under Packet 052 assignment. Full and Long are outside assigned scope; no claim is made that the passage cannot support them. Scripture files preserve all assigned canonical verses with supported numeric labels and terminal newlines. All accusations and claimed motives remain attributed to Laban; Jacob’s service history and closing assessment remain attributed to Jacob. Rachel’s explanation is reported as her claim. No covenant is imported. Dialogue is mostly recast as indirect speech; the dream warning is quoted verbatim in each lane. WEB retains the single tent of two female servants, camel saddle and teraphim; KJV retains two maidservants’ tents, camel furniture and images. Jacob’s ignorance, the death declaration, all service/wage counts, and the unsuccessful search remain explicit.",
+  "files": {
+    "short": {
+      "storyText": "story_3245_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3245_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3245_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3245_traditional_kjv.txt"
+    }
+  }
+}
