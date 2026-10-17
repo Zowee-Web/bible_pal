@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3250,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_053",
+  "title": "Dinah and the Swords at Shechem",
+  "scriptureAnchor": "Genesis 34:1-31",
+  "scriptureAnchorId": "genesis_34_1-31",
+  "shortScripture": false,
+  "bibleStoryKey": "dinah_and_the_swords_at_shechem",
+  "storyVoiceKey": "VOICE_RUTH_COMFORT",
+  "timelineEra": "patriarchs",
+  "primaryCharacterId": "dinah",
+  "primaryCharacterDisplayName": "Dinah",
+  "reflectionForm": "standard",
+  "reflectionText": "Dinah is taken from Shechem's house, but the violence reaches wives and little ones who are carried away. When anger speaks in defense of someone wounded, whose suffering can disappear from view? The brothers' final question leaves those captives standing beside it.\n",
+  "editorialNotes": "Traditional Short only under Packet 053 assignment. Full and Long are outside assigned scope; no claim is made that the passage cannot support them. Scripture files preserve all assigned canonical verses with supported numeric labels and terminal newlines. Narration compresses the full chapter in source order and names speakers at changes of address. No words or feelings are supplied for Dinah. The city-gate claims about peacefulness and acquiring possessions, and Jacob’s predictions, remain attributed. WEB retains humbled, sister, unsuspecting city, and prostitute; KJV retains defiled, dowry and gift, the quoted our daughter, boldly, and harlot. Household plurals clarify the collective plundering without adding victims. Reflections consider the named captives without inventing an aftermath.",
+  "files": {
+    "short": {
+      "storyText": "story_3250_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3250_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3250_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3250_traditional_kjv.txt"
+    }
+  }
+}

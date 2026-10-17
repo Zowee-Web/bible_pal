@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3253,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_053",
+  "title": "Shimei Leaves Jerusalem",
+  "scriptureAnchor": "1 Kings 2:36-46",
+  "scriptureAnchorId": "1_kings_2_36-46",
+  "shortScripture": false,
+  "bibleStoryKey": "shimei_leaves_jerusalem",
+  "storyVoiceKey": "VOICE_DEBORAH_WISE",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "shimei",
+  "primaryCharacterDisplayName": "Shimei",
+  "reflectionForm": "standard",
+  "reflectionText": "For three years, Shimei's promise has a place: Jerusalem. Then the news of two runaway slaves takes him toward Gath. What can make an oath we once called good seem less binding when something belonging to us has gone beyond reach?\n",
+  "editorialNotes": "Traditional Short only under Packet 053 assignment. Full and Long are outside assigned scope; no claim is made that the passage cannot support them. Scripture files preserve all assigned canonical verses with supported numeric labels and terminal newlines. Solomon is named at the opening from immediate context, and the king’s warning and later claims remain attributed speech. The WEB lane quotes the initial command, warning, and Shimei’s answer directly; report and summons are narrated with named referents. In the verse-44 correction, the statement about Shimei’s knowledge is quoted directly from each lane’s canonical text with Solomon explicitly addressing Shimei; Solomon’s subsequent causal conclusion remains attributed speech. Kidron remains part of the warning; no crossing is asserted for the Gath journey. WEB preserves slaves and Maacah; KJV preserves servants, Maachah, and the scope of wickedness the heart is privy to. Solomon’s causal conclusion and blessing prediction remain his declarations; the kingdom’s establishment remains canonical narration. No earlier scene of Shimei’s wrongdoing is added. The reflection asks about the oath rather than asserting an unrecorded motive.",
+  "files": {
+    "short": {
+      "storyText": "story_3253_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3253_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3253_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3253_traditional_kjv.txt"
+    }
+  }
+}

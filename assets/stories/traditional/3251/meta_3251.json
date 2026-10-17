@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3251,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_053",
+  "title": "Gaal at the Gate of Shechem",
+  "scriptureAnchor": "Judges 9:22-41",
+  "scriptureAnchorId": "judges_9_22-41",
+  "shortScripture": false,
+  "bibleStoryKey": "gaal_at_the_gate_of_shechem",
+  "storyVoiceKey": "VOICE_SAMUEL_EARNEST",
+  "timelineEra": "judges",
+  "primaryCharacterId": "gaal",
+  "primaryCharacterDisplayName": "Gaal",
+  "reflectionForm": "standard",
+  "reflectionText": "At the gate, Gaal sees the approaching men while Zebul calls them shadows. The boast spoken among celebrating men must now face an army. Which words of confidence are hardest to recognize as empty when others have already placed their trust in them?\n",
+  "editorialNotes": "Traditional Short only under Packet 053 assignment. Full and Long are outside assigned scope; no claim is made that the passage cannot support them. Scripture files preserve all assigned canonical verses with supported numeric labels and terminal newlines. Retelling preserves the stated divine sending and responsibility for the seventy sons, then follows Gaal’s arrival, challenge, ambush, defeat, and expulsion. All rhetorical questions are attributed to Gaal or Zebul; Zebul’s shadow claim remains his claim. WEB keeps inciting, craftily, oak of Meonenim, and fallen wounded; KJV keeps secretly for privily, fortifying, plain of Meonenim, and overthrown and wounded. Speech is condensed into attributed indirect narration; no next-day battle is imported. Reflections use the vineyard celebration as their image without assigning hidden motives.",
+  "files": {
+    "short": {
+      "storyText": "story_3251_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3251_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3251_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3251_traditional_kjv.txt"
+    }
+  }
+}

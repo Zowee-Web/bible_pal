@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3254,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "hurting",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_053",
+  "title": "The Captives Turn Back at Gibeon",
+  "scriptureAnchor": "Jeremiah 41:1-18",
+  "scriptureAnchorId": "jeremiah_41_1-18",
+  "shortScripture": false,
+  "bibleStoryKey": "the_captives_turn_back_at_gibeon",
+  "storyVoiceKey": "VOICE_MARCUS_ANCHOR",
+  "timelineEra": "exile",
+  "primaryCharacterId": "johanan",
+  "primaryCharacterDisplayName": "Johanan",
+  "reflectionForm": "standard",
+  "reflectionText": "At Gibeon, the captives see Johanan and are glad. They turn toward him. Yet their journey pauses near Bethlehem with fear still upon them. Where have relief and fear traveled together in your life, even after the immediate danger has passed?\n",
+  "editorialNotes": "Traditional Short only under Packet 053 assignment. Full and Long are outside assigned scope; no claim is made that the passage cannot support them. Scripture files preserve all assigned canonical verses with supported numeric labels and terminal newlines. Repeated patronymics are consolidated after full identifications, and grandson clarifies the two-generation chain. The retelling follows the passage sequence, keeps the ten spared and eight escapees distinct, and does not infer what happened to the other attackers. WEB retains one chief officer, Chaldean soldiers, meal offerings and frankincense, hidden stores, dead beside Gedaliah, and Geruth Chimham. KJV retains the opening company of royal princes, Chaldeans and men of war, offerings and incense, treasures in the field, slain because of Gedaliah, mighty men of war, and the habitation of Chimham. Egypt remains an intended destination. The captives’ gladness and later fear are explicit in the anchor; reflections add no subsequent journey.",
+  "files": {
+    "short": {
+      "storyText": "story_3254_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3254_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3254_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3254_traditional_kjv.txt"
+    }
+  }
+}

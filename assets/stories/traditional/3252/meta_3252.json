@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "storyId": 3252,
+  "mode": "traditional",
+  "kidFriendly": false,
+  "languageStyle": "WEB",
+  "lanes": [
+    "web",
+    "kjv"
+  ],
+  "mood": "anxious",
+  "lengths": [
+    "short"
+  ],
+  "createdByModel": "openai-codex",
+  "generationBatch": "CAMPAIGN_3000_3258_RUN_001_PROVING_PACKET_053",
+  "title": "Joab at the Altar",
+  "scriptureAnchor": "1 Kings 2:26-35",
+  "scriptureAnchorId": "1_kings_2_26-35",
+  "shortScripture": false,
+  "bibleStoryKey": "joab_at_the_altar",
+  "storyVoiceKey": "VOICE_JAMES_BRITISH_PROFESSIONAL",
+  "timelineEra": "kingdom",
+  "primaryCharacterId": "solomon",
+  "primaryCharacterDisplayName": "Solomon",
+  "reflectionForm": "standard",
+  "reflectionText": "Joab's hands hold the altar's horns, while Solomon speaks of blood those hands have shed. The sacred place does not erase the names Abner and Amasa. What happens to our plea for shelter when the people we have harmed are still named before us?\n",
+  "editorialNotes": "Traditional Short only under Packet 053 assignment. Full and Long are outside assigned scope; no claim is made that the passage cannot support them. Scripture files preserve all assigned canonical verses with supported numeric labels and terminal newlines. The opening king is identified as Solomon from immediate context. Repeated messenger formulas become explicit exchanges between Solomon, Benaiah, and Joab. Abiathar’s spared life, removal, and fulfillment concerning Eli remain distinct; Joab’s Adonijah/Absalom distinction is retained. Solomon’s responsibility claims, judgment of the two commanders, David’s lack of knowledge, causal conclusion, and predictions remain attributed throughout. WEB uses Yahweh’s Tent and blood shed without cause; KJV uses the Lord’s tabernacle and innocent blood. The command to go to Anathoth remains a command, and the sequence within Solomon’s explanation is preserved. Reflections use altar and named victims without inventing dialogue or an answer from Joab.",
+  "files": {
+    "short": {
+      "storyText": "story_3252_traditional_web_short.txt"
+    },
+    "short_kjv": {
+      "storyText": "story_3252_traditional_kjv_short.txt"
+    },
+    "reflection": {
+      "reflectionText": "reflection_3252_traditional_web.txt"
+    },
+    "reflection_kjv": {
+      "reflectionText": "reflection_3252_traditional_kjv.txt"
+    }
+  }
+}
